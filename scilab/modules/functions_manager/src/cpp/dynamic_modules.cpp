@@ -318,8 +318,8 @@ int InterpolationModule::Load()
 {
     wstring wstPath = L"interpolation";
 #ifdef _MSC_VER
-    wstring wstModuleName = L"interpolation_gw";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    wstring wstModuleName = L"interpolation";
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
     wstring wstModuleName = L"interpolation";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);

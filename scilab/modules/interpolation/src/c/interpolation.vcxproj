@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;../../../symbol/includes;../../../ast/includes;../../../threads/includes;../../../system_env/includes;../../../types/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;INTERPOLATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -107,7 +107,7 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;../../../symbol/includes;../../../ast/includes;../../../threads/includes;../../../system_env/includes;../../../types/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;INTERPOLATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -136,7 +136,7 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;../../../symbol/includes;../../../ast/includes;../../../threads/includes;../../../system_env/includes;../../../types/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;INTERPOLATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -172,7 +172,7 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;../../../symbol/includes;../../../ast/includes;../../../threads/includes;../../../system_env/includes;../../../types/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;INTERPOLATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -202,25 +202,23 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_bsplin3val.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_cshep2d.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_eval_cshep2d.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_interp.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_interp2d.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_interp3d.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_linear_interpn.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_lsq_splin.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_splin.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_splin2d.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_splin3d.cpp" />
     <ClCompile Include="DllmainInterpolation.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_interpolation.c" />
     <ClCompile Include="interpolation.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_bsplin3val.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cshep2d.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_eval_cshep2d.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_interp.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_interp2d.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_interp3d.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_linear_interpn.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_lsq_splin.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_splin.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_splin2d.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_splin3d.c" />
     <ClCompile Include="someinterp.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_interpolation.h" />
-    <ClInclude Include="..\..\includes\gw_interpolation.h" />
     <ClInclude Include="interpolation.h" />
     <ClInclude Include="someinterp.h" />
   </ItemGroup>
@@ -249,6 +247,9 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\elementary_functions\src\c\elementary_functions.vcxproj">
+      <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -260,6 +261,12 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ProjectReference Include="..\..\..\string\src\c\string.vcxproj">
       <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
+      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\types\types.vcxproj">
+      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -182,10 +182,10 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     // *** Perform operation. ***
     pDblVp = new types::Double(lpDblXp[0]->getRows(), lpDblXp[0]->getCols());
 
-    double* x[n]; // allocate n double*
-    double* xp[n]; // allocate n double*
+    double** x = new double*[n]; // allocate n double*
+    double** xp = new double*[n]; // allocate n double*
     int* dim = new int[n];
-    int iPow = pow(2, n);
+    int iPow = (int)pow((double)2, n);
 
     for (int i = 0; i < n; i++)
     {
@@ -208,6 +208,8 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     delete[] v;
     delete[] ad;
     delete[] k;
+    delete[] xp;
+    delete[] x;
 
     // *** Return result in Scilab. ***
     out.push_back(pDblVp);
