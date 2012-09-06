@@ -18,6 +18,7 @@
 #include "list.hxx"
 #include "cell.hxx"
 #include "sparse.hxx"
+#include "int.hxx"
 
 using namespace types;
 
@@ -480,6 +481,25 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     }
 
     /*
+    ** INT == INT
+    */
+
+    if(_pLeftOperand->isInt() && _pRightOperand->isInt())
+    {
+        if(_pLeftOperand->getType() != _pRightOperand->getType())
+        {//call overload function to convert left or right or both to have comparable type
+            return NULL;
+        }
+
+        int iResult = EqualToIntAndInt(_pLeftOperand, _pRightOperand, (GenericType**)&pResult);
+        if(iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+    /*
     ** Default case : Return NULL will Call Overloading.
     */
     return NULL;
@@ -611,4 +631,122 @@ int EqualToBoolAndSparseBool(Bool* _pB1, SparseBool* _pSB2, GenericType** _pOut)
     int iRet = EqualToSparseBoolAndSparseBool(pSB, _pSB2, _pOut);
     delete pSB;
     return iRet;
+}
+
+int EqualToIntAndInt(InternalType* _pL, InternalType*  _pR, GenericType** _pOut)
+{
+    switch(_pL->getType())
+    {
+    case InternalType::RealInt8 :
+        {
+            Int8* pI1 = _pL->getAs<Int8>();
+            Int8* pI2 = _pR->getAs<Int8>();
+            return EqualToIntAndInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt8 :
+        {
+            UInt8* pI1 = _pL->getAs<UInt8>();
+            UInt8* pI2 = _pR->getAs<UInt8>();
+            return EqualToIntAndInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealInt16 :
+        {
+            Int16* pI1 = _pL->getAs<Int16>();
+            Int16* pI2 = _pR->getAs<Int16>();
+            return EqualToIntAndInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt16 :
+        {
+            UInt16* pI1 = _pL->getAs<UInt16>();
+            UInt16* pI2 = _pR->getAs<UInt16>();
+            return EqualToIntAndInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealInt32 :
+        {
+            Int32* pI1 = _pL->getAs<Int32>();
+            Int32* pI2 = _pR->getAs<Int32>();
+            return EqualToIntAndInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt32 :
+        {
+            UInt32* pI1 = _pL->getAs<UInt32>();
+            UInt32* pI2 = _pR->getAs<UInt32>();
+            return EqualToIntAndInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealInt64 :
+        {
+            Int64* pI1 = _pL->getAs<Int64>();
+            Int64* pI2 = _pR->getAs<Int64>();
+            return EqualToIntAndInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt64 :
+        {
+            UInt64* pI1 = _pL->getAs<UInt64>();
+            UInt64* pI2 = _pR->getAs<UInt64>();
+            return EqualToIntAndInt(pI1, pI2, _pOut);
+        }
+    }
+
+    return 0;
+}
+
+template <class T>
+int EqualToIntAndInt(T* _pL, T* _pR, GenericType** _pOut)
+{
+    if(_pL->isScalar())
+    {
+        Bool *pB = new Bool(_pR->getDims(), _pR->getDimsArray());
+
+        int* pb = pB->get();
+
+        for(int i = 0 ; i < pB->getSize() ; i++)
+        {
+            pb[i] = _pL->get(0) == _pR->get(i);
+        }
+
+        *_pOut = pB;
+        return 0;
+    }
+
+    if(_pR->isScalar())
+    {
+        Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
+
+        int* pb = pB->get();
+
+        for(int i = 0 ; i < pB->getSize() ; i++)
+        {
+            pb[i] = _pR->get(0) == _pL->get(i);
+        }
+
+        *_pOut = pB;
+        return 0;
+    }
+
+    if(_pL->getDims() != _pR->getDims())
+    {
+        *_pOut = new Bool(false);
+        return 0;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for(int i = 0 ; i < _pL->getDims() ; i++)
+    {
+        if(piDimsL[i] != piDimsR[i])
+        {
+            *_pOut = new Bool(false);
+            return 0;
+        }
+    }
+
+    Bool* pB = new Bool(_pR->getDims(), _pR->getDimsArray());
+    for(int i = 0 ; i < _pL->getSize() ; i++)
+    {
+        pB->set(i, _pL->get(i) == _pR->get(i));
+    }
+
+    *_pOut = pB;
+    return 0;
 }

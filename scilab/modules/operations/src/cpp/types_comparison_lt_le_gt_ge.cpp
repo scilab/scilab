@@ -14,6 +14,7 @@
 #include "types_comparison_lt_le_gt_ge.hxx"
 #include "double.hxx"
 #include "sparse.hxx"
+#include "int.hxx"
 
 #include "scilabexception.hxx"
 
@@ -89,6 +90,26 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
         Double *pR = _pRightOperand->getAs<Double>();
 
         int iResult = SparseLessDouble(pL, pR, (SparseBool**)&pResult);
+        if(iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+
+
+    /*
+    ** INT < INT
+    */
+    if(_pLeftOperand->isInt() && _pRightOperand->isInt())
+    {
+        if(_pLeftOperand->getType() != _pRightOperand->getType())
+        {//call overload function to convert left or right or both to have comparable type
+            return NULL;
+        }
+
+        int iResult = IntLessInt(_pLeftOperand, _pRightOperand, (GenericType**)&pResult);
         if(iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
@@ -268,6 +289,25 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
 
         return pResult;
     }
+
+    /*
+    ** INT <= INT
+    */
+    if(_pLeftOperand->isInt() && _pRightOperand->isInt())
+    {
+        if(_pLeftOperand->getType() != _pRightOperand->getType())
+        {//call overload function to convert left or right or both to have comparable type
+            return NULL;
+        }
+
+        int iResult = IntLessEqualInt(_pLeftOperand, _pRightOperand, (GenericType**)&pResult);
+        if(iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
     return NULL;
 }
 
@@ -376,4 +416,236 @@ InternalType *GenericGreater(InternalType *_pLeftOperand, InternalType *_pRightO
 InternalType *GenericGreaterEqual(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     return GenericLessEqual(_pRightOperand, _pLeftOperand);
+}
+
+int IntLessInt(types::InternalType* _pL, types::InternalType*  _pR, types::GenericType** _pOut)
+{
+    switch(_pL->getType())
+    {
+    case InternalType::RealInt8 :
+        {
+            Int8* pI1 = _pL->getAs<Int8>();
+            Int8* pI2 = _pR->getAs<Int8>();
+            return IntLessInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt8 :
+        {
+            UInt8* pI1 = _pL->getAs<UInt8>();
+            UInt8* pI2 = _pR->getAs<UInt8>();
+            return IntLessInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealInt16 :
+        {
+            Int16* pI1 = _pL->getAs<Int16>();
+            Int16* pI2 = _pR->getAs<Int16>();
+            return IntLessInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt16 :
+        {
+            UInt16* pI1 = _pL->getAs<UInt16>();
+            UInt16* pI2 = _pR->getAs<UInt16>();
+            return IntLessInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealInt32 :
+        {
+            Int32* pI1 = _pL->getAs<Int32>();
+            Int32* pI2 = _pR->getAs<Int32>();
+            return IntLessInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt32 :
+        {
+            UInt32* pI1 = _pL->getAs<UInt32>();
+            UInt32* pI2 = _pR->getAs<UInt32>();
+            return IntLessInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealInt64 :
+        {
+            Int64* pI1 = _pL->getAs<Int64>();
+            Int64* pI2 = _pR->getAs<Int64>();
+            return IntLessInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt64 :
+        {
+            UInt64* pI1 = _pL->getAs<UInt64>();
+            UInt64* pI2 = _pR->getAs<UInt64>();
+            return IntLessInt(pI1, pI2, _pOut);
+        }
+    }
+
+    return 0;
+}
+
+template <class T>
+int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
+{
+    if(_pL->isScalar())
+    {
+        Bool *pB = new Bool(_pR->getDims(), _pR->getDimsArray());
+
+        int* pb = pB->get();
+
+        for(int i = 0 ; i < pB->getSize() ; i++)
+        {
+            pb[i] = _pL->get(0) < _pR->get(i);
+        }
+
+        *_pOut = pB;
+        return 0;
+    }
+
+    if(_pR->isScalar())
+    {
+        Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
+
+        int* pb = pB->get();
+
+        for(int i = 0 ; i < pB->getSize() ; i++)
+        {
+            pb[i] = _pL->get(i) < _pR->get(0);
+        }
+
+        *_pOut = pB;
+        return 0;
+    }
+
+    if(_pL->getDims() != _pR->getDims())
+    {
+        return 1;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for(int i = 0 ; i < _pL->getDims() ; i++)
+    {
+        if(piDimsL[i] != piDimsR[i])
+        {
+            return 1;
+        }
+    }
+
+    Bool* pB = new Bool(_pR->getDims(), _pR->getDimsArray());
+    for(int i = 0 ; i < _pL->getSize() ; i++)
+    {
+        pB->set(i, _pL->get(i) < _pR->get(i));
+    }
+
+    *_pOut = pB;
+    return 0;
+}
+
+int IntLessEqualInt(types::InternalType* _pL, types::InternalType* _pR, types::GenericType** _pOut)
+{
+    switch(_pL->getType())
+    {
+    case InternalType::RealInt8 :
+        {
+            Int8* pI1 = _pL->getAs<Int8>();
+            Int8* pI2 = _pR->getAs<Int8>();
+            return IntLessEqualInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt8 :
+        {
+            UInt8* pI1 = _pL->getAs<UInt8>();
+            UInt8* pI2 = _pR->getAs<UInt8>();
+            return IntLessEqualInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealInt16 :
+        {
+            Int16* pI1 = _pL->getAs<Int16>();
+            Int16* pI2 = _pR->getAs<Int16>();
+            return IntLessEqualInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt16 :
+        {
+            UInt16* pI1 = _pL->getAs<UInt16>();
+            UInt16* pI2 = _pR->getAs<UInt16>();
+            return IntLessEqualInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealInt32 :
+        {
+            Int32* pI1 = _pL->getAs<Int32>();
+            Int32* pI2 = _pR->getAs<Int32>();
+            return IntLessEqualInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt32 :
+        {
+            UInt32* pI1 = _pL->getAs<UInt32>();
+            UInt32* pI2 = _pR->getAs<UInt32>();
+            return IntLessEqualInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealInt64 :
+        {
+            Int64* pI1 = _pL->getAs<Int64>();
+            Int64* pI2 = _pR->getAs<Int64>();
+            return IntLessInt(pI1, pI2, _pOut);
+        }
+    case InternalType::RealUInt64 :
+        {
+            UInt64* pI1 = _pL->getAs<UInt64>();
+            UInt64* pI2 = _pR->getAs<UInt64>();
+            return IntLessEqualInt(pI1, pI2, _pOut);
+        }
+    }
+
+    return 0;
+}
+
+template <class T>
+int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
+{
+    if(_pL->isScalar())
+    {
+        Bool *pB = new Bool(_pR->getDims(), _pR->getDimsArray());
+
+        int* pb = pB->get();
+
+        for(int i = 0 ; i < pB->getSize() ; i++)
+        {
+            pb[i] = _pL->get(0) <= _pR->get(i);
+        }
+
+        *_pOut = pB;
+        return 0;
+    }
+
+    if(_pR->isScalar())
+    {
+        Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
+
+        int* pb = pB->get();
+
+        for(int i = 0 ; i < pB->getSize() ; i++)
+        {
+            pb[i] = _pL->get(i) <= _pR->get(0);
+        }
+
+        *_pOut = pB;
+        return 0;
+    }
+
+    if(_pL->getDims() != _pR->getDims())
+    {
+        return 1;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for(int i = 0 ; i < _pL->getDims() ; i++)
+    {
+        if(piDimsL[i] != piDimsR[i])
+        {
+            return 1;
+        }
+    }
+
+    Bool* pB = new Bool(_pR->getDims(), _pR->getDimsArray());
+    for(int i = 0 ; i < _pL->getSize() ; i++)
+    {
+        pB->set(i, _pL->get(i) <= _pR->get(i));
+    }
+
+    *_pOut = pB;
+    return 0;
 }

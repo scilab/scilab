@@ -26,4 +26,8 @@ int EqualToSparseBoolAndSparseBool(types::SparseBool* _pSB1, types::SparseBool* 
 int EqualToSparseBoolAndBool(types::SparseBool* _pSB1, types::Bool* _pB2, types::GenericType** _pOut);
 int EqualToBoolAndSparseBool(types::Bool* _pB1, types::SparseBool* _pSB2, types::GenericType** _pOut);
 
+int EqualToIntAndInt(types::InternalType* _pI1, types::InternalType*  _pI2, types::GenericType** _pOut);
+template <class T>
+int EqualToIntAndInt(T* _pI1, T* _pI2, types::GenericType** _pOut);
+
 #endif /* !__TYPES_COMPARISON_EQUAL_HXX__ */
