@@ -498,7 +498,39 @@ void visitprivate(const AssignExp  &e)
                 {
                     pRet = pIT->getAs<Sparse>()->insert(pArgs, pInsert);
                 }
-                else if (pIT->isPoly() && pInsert->isPoly())
+                else if(pIT->isPoly() && pInsert->isDouble())
+                {
+                    Polynom* pDest = pIT->getAs<Polynom>();
+                    Double* pIns = pInsert->getAs<Double>();
+                    Polynom* pP = new Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray());
+                    pP->setComplex(pIns->isComplex());
+
+                    for(int idx = 0 ; idx < pP->getSize() ; idx++)
+                    {
+                        double* pR = NULL;
+                        double* pI = NULL;
+                        if(pP->isComplex())
+                        {
+                            SinglePoly* pS = new SinglePoly(&pR, &pI, 1);
+                            double dblR = pIns->get(idx);
+                            double dblI = pIns->getImg(idx);
+                            pS->setCoef(&dblR, &dblI);
+                            pP->set(idx, pS);
+                            delete pS;
+                        }
+                        else
+                        {
+                            SinglePoly* pS = new SinglePoly(&pR, 1);
+                            double dblR = pIns->get(idx);
+                            pS->setCoef(&dblR, NULL);
+                            pP->set(idx, pS);
+                            delete pS;
+                        }
+                    }
+                    pRet = pIT->getAs<Polynom>()->insert(pArgs, pP);
+                    delete pP;
+                }
+                else if(pIT->isPoly() && pInsert->isPoly())
                 {
                     pRet = pIT->getAs<Polynom>()->insert(pArgs, pInsert);
                 }
