@@ -742,20 +742,6 @@ public :
             pIT = pVar->extractValue(0);
             symbol::Symbol varName = e.vardec_get().name_get();
 
-            //long long llOverHead = 0;
-            //long long llTotal = 0;
-            //LARGE_INTEGER liFresquency;
-            //LARGE_INTEGER liRef1;
-            //LARGE_INTEGER liRef2;
-
-            //QueryPerformanceFrequency(&liFresquency);
-            ////compute api execution time
-            //QueryPerformanceCounter(&liRef1);
-            //QueryPerformanceCounter(&liRef2);
-            //llOverHead = liRef2.QuadPart - liRef1.QuadPart;
-
-            //LARGE_INTEGER liStart, liStop;
-
             //keep pIt as Double to optimize Double case
             if (pIT->isDouble())
             {
@@ -876,6 +862,32 @@ public :
             //    std::cout << L"Total time (ms): " << (((double)llTotal /  (double)liFresquency.QuadPart) * 1000) << std::endl;
             //    std::cout << L"Mean time (ms): " << (((double)llMean /  (double)liFresquency.QuadPart) * 1000) << std::endl;
             //}
+        }
+        else if(result_get()->isList())
+        {
+            InternalType* pIT = result_get();
+            List* pL = pIT->getAs<List>();
+            for (int i = 0 ; i < pL->getSize() ; i++)
+            {
+                InternalType* pNew = pL->get(i);
+                symbol::Context::getInstance()->put(e.vardec_get().name_get(), *pNew);
+                e.body_get().accept(*this);
+                if (e.body_get().is_break())
+                {
+                    break;
+                }
+
+                if (e.body_get().is_continue())
+                {
+                    continue;
+                }
+
+                if (e.body_get().is_return())
+                {
+                    const_cast<ForExp*>(&e)->return_set();
+                    break;
+                }
+            }
         }
         else
         {
