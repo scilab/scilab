@@ -118,7 +118,14 @@ public :
     static int Load();
 };
 
+
 class CacsdModule : public GenericModule
+{
+public :
+    static int Load();
+};
+
+class SoundModule : public GenericModule
 {
 public :
     static int Load();

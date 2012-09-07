@@ -49,5 +49,6 @@
     <module name="atoms" activate="yes"/>
     <module name="interpolation" activate="yes"/>
     <module name="cacsd" activate="yes"/>
+    <module name="sound" activate="yes"/>
 </modules>
 

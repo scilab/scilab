@@ -313,6 +313,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"graphics", &GraphicsModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"interpolation", &InterpolationModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"cacsd", &CacsdModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"sound", &SoundModule::Load));
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {

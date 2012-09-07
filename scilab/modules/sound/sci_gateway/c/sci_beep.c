@@ -128,11 +128,11 @@ int sci_beep(char *fname, void* pvApiCtx)
 
     if (beepON)
     {
-        output = strdup(BEEP_ON);
+        output = os_strdup(BEEP_ON);
     }
     else
     {
-        output = strdup(BEEP_OFF);
+        output = os_strdup(BEEP_OFF);
     }
 
     sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m_out, n_out, &output);
