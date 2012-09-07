@@ -35,6 +35,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
  * Zoom management
+ *
  * @author Bruno JOFFRET
  */
 @SuppressWarnings(value = { "serial" })
@@ -59,7 +60,9 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 
         /**
          * Default constructor
-         * @param scilabGraph the current graph
+         *
+         * @param scilabGraph
+         *            the current graph
          */
         public CustomMouseWheelListener(ScilabGraph scilabGraph) {
             this.scilabGraph = scilabGraph;
@@ -67,7 +70,9 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 
         /**
          * When the wheel is used
-         * @param e the parameters
+         *
+         * @param e
+         *            the parameters
          * @see java.awt.event.MouseWheelListener#mouseWheelMoved(java.awt.event.MouseWheelEvent)
          */
         @Override
@@ -82,14 +87,15 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 
     /**
      * Constructor
-     * @param scilabGraph corresponding Scilab Graph
+     *
+     * @param scilabGraph
+     *            corresponding Scilab Graph
      */
     public ZoomOutAction(ScilabGraph scilabGraph) {
         super(scilabGraph);
 
         MouseWheelListener mouseListener = new CustomMouseWheelListener(scilabGraph);
-        scilabGraph.getAsComponent().getViewport().addMouseWheelListener(mouseListener);
-
+        scilabGraph.getAsComponent().addMouseWheelListener(mouseListener);
 
         // Multi-shortcut action
         final ActionMap am = scilabGraph.getAsComponent().getActionMap();
@@ -104,17 +110,14 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
             /*
              * AZERTY for Mac has a non-supported classic layout
              */
-            keystrokes = new KeyStroke[] {
-                KeyStroke.getKeyStroke('=', ACCELERATOR_KEY),
-                KeyStroke.getKeyStroke('=', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
-            };
+            keystrokes = new KeyStroke[] { KeyStroke.getKeyStroke('=', ACCELERATOR_KEY),
+                                           KeyStroke.getKeyStroke('=', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
+                                         };
         } else {
-            keystrokes = new KeyStroke[] {
-                KeyStroke.getKeyStroke('-', ACCELERATOR_KEY),
-                KeyStroke.getKeyStroke('-', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
-                KeyStroke.getKeyStroke('_', ACCELERATOR_KEY),
-                KeyStroke.getKeyStroke('_', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
-            };
+            keystrokes = new KeyStroke[] { KeyStroke.getKeyStroke('-', ACCELERATOR_KEY),
+                                           KeyStroke.getKeyStroke('-', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK), KeyStroke.getKeyStroke('_', ACCELERATOR_KEY),
+                                           KeyStroke.getKeyStroke('_', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
+                                         };
         }
 
         for (KeyStroke k : keystrokes) {
@@ -124,7 +127,9 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 
     /**
      * Create a button for a graph toolbar
-     * @param scilabGraph corresponding Scilab Graph
+     *
+     * @param scilabGraph
+     *            corresponding Scilab Graph
      * @return the button
      */
     public static PushButton zoomoutButton(ScilabGraph scilabGraph) {
@@ -133,7 +138,9 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 
     /**
      * Create a menu for a graph menubar
-     * @param scilabGraph corresponding Scilab Graph
+     *
+     * @param scilabGraph
+     *            corresponding Scilab Graph
      * @return the menu
      */
     public static MenuItem zoomoutMenu(ScilabGraph scilabGraph) {
@@ -142,7 +149,9 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 
     /**
      * Action associated
-     * @param e the event
+     *
+     * @param e
+     *            the event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
      */
     @Override
