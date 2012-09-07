@@ -17,7 +17,7 @@ extern "C"
 }
 
 #include "CallGraphicController.hxx"
-
+#include "GraphicObjectBuilder.hxx"
 #include "DataController.hxx"
 
 using namespace org_scilab_modules_graphic_objects;
@@ -40,4 +40,17 @@ char const* createDataObject(char const* _sId, int _iType)
 void buildFigureMenuBar(char const* _sFigureId)
 {
     CallGraphicController::buildFigureMenuBar(getScilabJavaVM(), _sFigureId);
+}
+
+char * constructRectangles(char * pparentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline)
+{
+    try
+    {
+	return GraphicObjectBuilder::constructRectangles(getScilabJavaVM(), pparentsubwinUID, x, y, height, width, foreground, background, isfilled, isline);
+    }
+    catch (std::exception & e)
+    {
+	printf("exception: %s\n", e.what());
+	return NULL;
+    }
 }
