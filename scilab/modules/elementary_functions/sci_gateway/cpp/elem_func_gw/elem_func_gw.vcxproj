@@ -92,7 +92,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -152,7 +152,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -186,7 +186,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;linpack_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
