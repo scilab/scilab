@@ -151,6 +151,13 @@ public final class XConfigManager extends XCommonManager {
         XConfigManager.displayAndWait(initialPath);
     }
 
+    /**
+     * Opens a dialog to setup preferences.
+     */
+    public static void openPreferences() {
+        XConfigManager.displayAndWait(null);
+    }
+
     /** Secondary dialog for help.*/
     private static JDialog help = null;
 
