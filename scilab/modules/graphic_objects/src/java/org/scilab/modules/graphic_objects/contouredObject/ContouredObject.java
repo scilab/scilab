@@ -144,27 +144,27 @@ public abstract class ContouredObject extends GraphicObject {
 		if (property == ContouredObjectPropertyType.LINE) {
 			setLine((Line) value);
 		} else if (property == LinePropertyType.MODE) {
-			setLineMode((Boolean) value);
+			return setLineMode((Boolean) value);
 		} else if (property == LinePropertyType.LINESTYLE) {
 			setLineStyle((Integer) value);
 		} else if (property == LinePropertyType.THICKNESS) {
 			setLineThickness((Double) value);
 		} else if (property == LinePropertyType.COLOR) {
-			setLineColor((Integer) value);
+			return setLineColor((Integer) value);
 		} else if (property == ContouredObjectPropertyType.FILLMODE) {
-			setFillMode((Boolean) value);
+			return setFillMode((Boolean) value);
 		} else if (property == ContouredObjectPropertyType.BACKGROUND) {
 			setBackground((Integer) value);
 		} else if (property == ContouredObjectPropertyType.MARK) {
 			setMark((Mark) value);
 		} else if (property == MarkPropertyType.MODE) {
-			setMarkMode((Boolean) value);
+			return setMarkMode((Boolean) value);
 		} else if (property == MarkPropertyType.STYLE) {
-			setMarkStyle((Integer) value);
+			return setMarkStyle((Integer) value);
 		} else if (property == MarkPropertyType.SIZEUNIT) {
 			setMarkSizeUnit((Integer) value);
 		} else if (property == MarkPropertyType.SIZE) {
-			setMarkSize((Integer) value);
+			return setMarkSize((Integer) value);
 		} else if (property == MarkPropertyType.FOREGROUND) {
 			this.setMarkForeground((Integer) value);
 		} else if (property == MarkPropertyType.BACKGROUND) {
@@ -200,8 +200,12 @@ public abstract class ContouredObject extends GraphicObject {
 	/**
 	 * @param fillMode the fillMode to set
 	 */
-	public void setFillMode(Boolean fillMode) {
+	public UpdateStatus setFillMode(Boolean fillMode) {
+		if (this.fillMode == fillMode) {
+		    return UpdateStatus.NoChange;
+		}
 		this.fillMode = fillMode;
+		return UpdateStatus.Success;
 	}
 
 	/**
@@ -230,8 +234,8 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Set the line color
 	 * @param color the color to set
 	 */
-	public void setLineColor(Integer color) {
-		line.setColor(color);
+	public UpdateStatus setLineColor(Integer color) {
+		return line.setColor(color);
 	}
 
 	/**
@@ -278,8 +282,8 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Set the line mode
 	 * @param mode the mode to set
 	 */
-	public void setLineMode(Boolean mode) {
-		line.setMode(mode);
+	public UpdateStatus setLineMode(Boolean mode) {
+		return line.setMode(mode);
 	}
 
 	/**
@@ -388,8 +392,8 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Set the mark size
 	 * @param size the size to set
 	 */
-	public void setMarkSize(Integer size) {
-		mark.setSize(size);
+	public UpdateStatus setMarkSize(Integer size) {
+		return mark.setSize(size);
 	}
 
 	/**
@@ -404,8 +408,8 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Set the mark mode
 	 * @param mode the mode to set
 	 */
-	public void setMarkMode(Boolean mode) {
-		mark.setMode(mode);
+	public UpdateStatus setMarkMode(Boolean mode) {
+		return mark.setMode(mode);
 	}
 
 	/**
@@ -420,8 +424,8 @@ public abstract class ContouredObject extends GraphicObject {
 	 * Set the mark style
 	 * @param style the style to set
 	 */
-	public void setMarkStyle(Integer style) {
-		mark.setStyle(style);
+	public UpdateStatus setMarkStyle(Integer style) {
+		return mark.setStyle(style);
 	}
 
 }

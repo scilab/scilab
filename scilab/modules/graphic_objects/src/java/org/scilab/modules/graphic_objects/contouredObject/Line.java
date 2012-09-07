@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.contouredObject;
 
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+
 /**
  * Line class
  * @author Manuel JULIACHS
@@ -102,7 +104,7 @@ public class Line {
 	public Line() {
 		mode = false;
 		lineStyle = LineType.SOLID;
-		thickness = 0.0;
+		thickness = 1.0;
 		color = -1;
 	}
 
@@ -127,8 +129,13 @@ public class Line {
 	/**
 	 * @param color the color to set
 	 */
-	public void setColor(Integer color) {
+	public UpdateStatus setColor(Integer color) {
+		if (this.color == color) {
+		    return UpdateStatus.NoChange;
+		}
 		this.color = color;
+		return UpdateStatus.Success;
+		    
 	}
 
 	/**
@@ -155,8 +162,12 @@ public class Line {
 	/**
 	 * @param mode the mode to set
 	 */
-	public void setMode(Boolean mode) {
+	public UpdateStatus setMode(Boolean mode) {
+		if(this.mode == mode) {
+		    return UpdateStatus.NoChange;
+		}
 		this.mode = mode;
+		return UpdateStatus.Success;
 	}
 
 	/**

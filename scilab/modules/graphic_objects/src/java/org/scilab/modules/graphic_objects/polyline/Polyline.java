@@ -150,18 +150,19 @@ public class Polyline extends ClippableContouredObject {
 	 * @return true if the property has been set, false otherwise
 	 */
 	public UpdateStatus setProperty(Object property, Object value) {
-		if (property == PolylineProperty.CLOSED) {
+		synchronized (this) {
+	    if (property == PolylineProperty.CLOSED) {
 			setClosed((Boolean) value);
 		} else if (property == PolylineProperty.ARROWSIZEFACTOR) {
-			setArrowSizeFactor((Double) value);
+			return setArrowSizeFactor((Double) value);
 		} else if (property == PolylineProperty.POLYLINESTYLE) {
-			setPolylineStyle((Integer) value);
+			return setPolylineStyle((Integer) value);
 		} else if (property == PolylineProperty.INTERPCOLORVECTOR) {
 			setInterpColorVector((Integer[]) value);
 		} else if (property == PolylineProperty.INTERPCOLORVECTORSET) {
 			setInterpColorVectorSet((Boolean) value);
 		} else if (property == PolylineProperty.INTERPCOLORMODE) {
-			setInterpColorMode((Boolean) value);
+			return setInterpColorMode((Boolean) value);
 		} else if (property == PolylineProperty.XSHIFT) {
 			setXShift((double[]) value);
 		} else if (property == PolylineProperty.YSHIFT) {
@@ -173,8 +174,8 @@ public class Polyline extends ClippableContouredObject {
 		} else {
 			return super.setProperty(property, value);
 		}
-
 		return UpdateStatus.Success;
+	 }
 	}
 
 	/**
@@ -187,8 +188,12 @@ public class Polyline extends ClippableContouredObject {
 	/**
 	 * @param arrowSizeFactor the arrowSizeFactor to set
 	 */
-	public void setArrowSizeFactor(Double arrowSizeFactor) {
+	public UpdateStatus setArrowSizeFactor(Double arrowSizeFactor) {
+		if (this.arrowSizeFactor == arrowSizeFactor) {
+		    return UpdateStatus.NoChange;
+		}
 		this.arrowSizeFactor = arrowSizeFactor;
+		return UpdateStatus.Success;
 	}
 
 	/**
@@ -229,8 +234,12 @@ public class Polyline extends ClippableContouredObject {
 	/**
 	 * @param interpColorMode the interpColorMode to set
 	 */
-	public void setInterpColorMode(Boolean interpColorMode) {
+	public UpdateStatus setInterpColorMode(Boolean interpColorMode) {
+		if (this.interpColorMode == interpColorMode) {
+		    return UpdateStatus.NoChange;
+		}
 		this.interpColorMode = interpColorMode;
+		return UpdateStatus.Success;
 	}
 
 	/**
@@ -282,8 +291,12 @@ public class Polyline extends ClippableContouredObject {
 	/**
 	 * @param polylineStyle the polylineStyle to set
 	 */
-	public void setPolylineStyle(Integer polylineStyle) {
+	public UpdateStatus setPolylineStyle(Integer polylineStyle) {
+		if (this.polylineStyle == polylineStyle) {
+		    return UpdateStatus.NoChange;
+		}
 		this.polylineStyle = polylineStyle;
+		return UpdateStatus.Success;
 	}
 
 	/**
