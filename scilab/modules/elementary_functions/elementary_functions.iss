@@ -23,7 +23,6 @@ Source: bin\linpack_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\linpack_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\eispack_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: bin\elem_func.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\elem_func_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\{#ELEMFUNCTIONS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
