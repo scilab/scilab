@@ -28,6 +28,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    types::GenericType* pGTIn  = NULL;
     types::GenericType* pGTOut = NULL;
     int* piSizes    = NULL;
     int iDims       = 0;
@@ -35,9 +36,9 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
     int newSize     = 1;
     bool bOk        = false;
 
-    if (in.size() < 1 )
+    if (in.size() < 2 )
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): At most %d expected.\n"), L"matrix", 2);
+        ScierrorW(77, _W("%ls: Wrong number of input argument(s): At least %d expected.\n"), L"matrix", 2);
         return types::Function::Error;
     }
 
@@ -53,7 +54,14 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
     }
 
-    pGTOut = in[0]->getAs<types::GenericType>()->clone()->getAs<types::GenericType>();
+    pGTIn = in[0]->getAs<types::GenericType>();
+    if (pGTIn->getSize() == 0)
+    {
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
+    }
+
+    pGTOut = pGTIn->clone()->getAs<types::GenericType>();
 
     if (in.size() == 2)
     {
