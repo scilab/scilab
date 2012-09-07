@@ -466,77 +466,79 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(final Polyline polyline) {
-        if (polyline.isValid() && polyline.getVisible()) {
-            axesDrawer.enableClipping(currentAxes, polyline.getClipProperty());
-            try {
-                DefaultGeometry geometry = new DefaultGeometry();
+        synchronized (polyline) {
+            if (polyline.isValid() && polyline.getVisible()) {
+                axesDrawer.enableClipping(currentAxes, polyline.getClipProperty());
+                try {
+                    DefaultGeometry geometry = new DefaultGeometry();
 
-                geometry.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
-                geometry.setIndices(dataManager.getIndexBuffer(polyline.getIdentifier()));
-                geometry.setWireIndices(dataManager.getWireIndexBuffer(polyline.getIdentifier()));
+                    geometry.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
+                    geometry.setIndices(dataManager.getIndexBuffer(polyline.getIdentifier()));
+                    geometry.setWireIndices(dataManager.getWireIndexBuffer(polyline.getIdentifier()));
 
-                final int style = polyline.getPolylineStyle();
-                if (style == 1 || style == 2 || style == 4 || style == 5) {
-                    geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_STRIP);
-                } else {
-                    geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
-                }
-
-                geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-                geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
-
-                geometry.setPolygonOffsetMode(currentAxes.getCamera().getView() == ViewType.VIEW_3D);
-
-                /* Interpolated color rendering is used only for basic polylines for now. */
-                Appearance appearance = new Appearance();
-
-                if (polyline.getInterpColorMode() && style == 1) {
-                    geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(polyline.getIdentifier()));
-                    appearance.setTexture(getColorMapTexture());
-                } else {
-                    geometry.setColors(null);
-                }
-
-                appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
-                appearance.setLineWidth(polyline.getLineThickness().floatValue());
-                appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
-
-                if (!polyline.getInterpColorMode() || style != 1) {
-                    int fillColor;
-
-                    /*
-                     * The line color is used as fill color for the filled patch polyline style
-                     * whereas the background color is used for all the other styles.
-                     */
-                    if (style == 5) {
-                        fillColor = polyline.getLineColor();
+                    final int style = polyline.getPolylineStyle();
+                    if (style == 1 || style == 2 || style == 4 || style == 5) {
+                        geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_STRIP);
                     } else {
-                        fillColor = polyline.getBackground();
+                        geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                     }
 
-                    appearance.setFillColor(ColorFactory.createColor(colorMap, fillColor));
-                }
+                    geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
+                    geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
-                drawingTools.draw(geometry, appearance);
+                    geometry.setPolygonOffsetMode(currentAxes.getCamera().getView() == ViewType.VIEW_3D);
 
-                if (style == 4) {
-                    arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
-                                           polyline.getLineThickness(), false, false, polyline.getLineColor(), true);
-                }
+                    /* Interpolated color rendering is used only for basic polylines for now. */
+                    Appearance appearance = new Appearance();
 
-                if (polyline.getMarkMode()) {
-                    Texture sprite = markManager.getMarkSprite(polyline, colorMap);
-                    ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
-                    drawingTools.draw(sprite, AnchorPosition.CENTER, positions);
+                    if (polyline.getInterpColorMode() && style == 1) {
+                        geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(polyline.getIdentifier()));
+                        appearance.setTexture(getColorMapTexture());
+                    } else {
+                        geometry.setColors(null);
+                    }
+
+                    appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+                    appearance.setLineWidth(polyline.getLineThickness().floatValue());
+                    appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
+
+                    if (!polyline.getInterpColorMode() || style != 1) {
+                        int fillColor;
+
+                        /*
+                         * The line color is used as fill color for the filled patch polyline style
+                         * whereas the background color is used for all the other styles.
+                         */
+                        if (style == 5) {
+                            fillColor = polyline.getLineColor();
+                        } else {
+                            fillColor = polyline.getBackground();
+                        }
+
+                        appearance.setFillColor(ColorFactory.createColor(colorMap, fillColor));
+                    }
+
+                    drawingTools.draw(geometry, appearance);
+
+                    if (style == 4) {
+                        arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
+                                polyline.getLineThickness(), false, false, polyline.getLineColor(), true);
+                    }
+
+                    if (polyline.getMarkMode()) {
+                        Texture sprite = markManager.getMarkSprite(polyline, colorMap);
+                        ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions);
+                    }
+                } catch (ObjectRemovedException e) {
+                    invalidate(polyline, e);
+                } catch (OutOfMemoryException e) {
+                    invalidate(polyline, e);
+                } catch (SciRendererException e) {
+                    invalidate(polyline, e);
                 }
-            } catch (ObjectRemovedException e) {
-                invalidate(polyline, e);
-            } catch (OutOfMemoryException e) {
-                invalidate(polyline, e);
-            } catch (SciRendererException e) {
-                invalidate(polyline, e);
+                axesDrawer.disableClipping(polyline.getClipProperty());
             }
-            axesDrawer.disableClipping(polyline.getClipProperty());
         }
     }
 
