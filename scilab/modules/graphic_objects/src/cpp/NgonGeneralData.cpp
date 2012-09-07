@@ -10,6 +10,8 @@
  *
  */
 
+#include <iostream>
+
 #include "NgonGeneralData.hxx"
 #include "DataProperties.hxx"
 
@@ -188,10 +190,7 @@ void NgonGeneralData::setData(double const* data, int numElements)
         coordinates = new double[3 * numElements];
     }
 
-    for (int i = 0; i < 3 * numElements; i++)
-    {
-        coordinates[i] = data[i];
-    }
+    memcpy(coordinates, data, 3 * numElements * sizeof(double));
 }
 
 void NgonGeneralData::setDataX(double const* data, int numElements)
@@ -199,12 +198,7 @@ void NgonGeneralData::setDataX(double const* data, int numElements)
     double* xCoordinates = NULL;
 
     xCoordinates = coordinates;
-
-    for (int i = 0; i < numElements; i++)
-    {
-        xCoordinates[i] = data[i];
-    }
-
+    memcpy(xCoordinates, data, numElements * sizeof(double));
 }
 
 void NgonGeneralData::setDataY(double const* data, int numElements)
@@ -212,12 +206,7 @@ void NgonGeneralData::setDataY(double const* data, int numElements)
     double* yCoordinates;
 
     yCoordinates = &coordinates[numGons * numVerticesPerGon];
-
-    for (int i = 0; i < numElements; i++)
-    {
-        yCoordinates[i] = data[i];
-    }
-
+    memcpy(yCoordinates, data, numElements * sizeof(double));
 }
 
 void NgonGeneralData::setDataZ(double const* data, int numElements)
@@ -225,12 +214,7 @@ void NgonGeneralData::setDataZ(double const* data, int numElements)
     double* zCoordinates = NULL;
 
     zCoordinates = &coordinates[2 * numGons * numVerticesPerGon];
-
-    for (int i = 0; i < numElements; i++)
-    {
-        zCoordinates[i] = data[i];
-    }
-
+    memcpy(zCoordinates, data, numElements * sizeof(double));
 }
 
 int NgonGeneralData::getNumElements(void)
@@ -337,11 +321,7 @@ void NgonGeneralData::setColors(double const* colors, int numElements)
     {
         return;
     }
-
-    for (int i = 0; i < numElements; i++)
-    {
-        colorValues[i] = colors[i];
-    }
+    memcpy(colorValues, colors, numElements * sizeof(double));
 }
 
 int NgonGeneralData::getNumColors(void)
