@@ -391,7 +391,7 @@ public final class ConfigurationManager {
      */
     public XcosDiagram loadDiagram(DocumentType doc) {
         File f = getFile(doc);
-        if (!f.exists()) {
+        if (f != null && !f.exists()) {
             f = null;
         }
 
