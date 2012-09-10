@@ -83,7 +83,7 @@
             write_csv(A, TMPDIR + '/datas.tsv');
             
             //coma-separated values
-            write_csv(A, TMPDIR + '/datas.csv', ';'); 
+            write_csv(A, TMPDIR + '/data.csv', ';'); 
             
         </programlisting>
     </refsection>
@@ -105,3 +105,4 @@
         </simplelist>
     </refsection>
 </refentry>
+
