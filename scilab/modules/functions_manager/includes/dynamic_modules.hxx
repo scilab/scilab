@@ -21,7 +21,7 @@ struct GatewayStr
     GatewayStr()
     {
         wstName = L"";
-        wstFunction=L"";
+        wstFunction = L"";
         iType = types::Function::EntryPointC;
     }
 
@@ -44,28 +44,28 @@ public :
 
 class ScinotesModule : public GenericModule
 {
-   static bool loadedDep;
-   static void LoadDeps(void);
+    static bool loadedDep;
+    static void LoadDeps(void);
 public :
-   static int Load();
+    static int Load();
 };
 
 class FunctionsModule : public GenericModule
 {
 public :
-   static int Load();
+    static int Load();
 };
 
 class StatisticsModule : public GenericModule
 {
 public :
-   static int Load();
+    static int Load();
 };
 
 class SignalProcessingModule : public GenericModule
 {
 public :
-   static int Load();
+    static int Load();
 };
 
 class HelptoolsModule : public GenericModule
@@ -73,49 +73,55 @@ class HelptoolsModule : public GenericModule
     static bool loadedDep;
     static void LoadDeps(void);
 public :
-   static int Load();
+    static int Load();
 };
 
 class MatioModule : public GenericModule
 {
 public :
-   static int Load();
+    static int Load();
 };
 
 class Hdf5Module : public GenericModule
 {
 public :
-   static int Load();
+    static int Load();
 };
 
 class ActionBindingModule : public GenericModule
 {
 public :
-   static int Load();
+    static int Load();
 };
 
 class DifferentialEquationsModule : public GenericModule
 {
 public :
-   static int Load();
+    static int Load();
 };
 
 class SpreadsheetModule : public GenericModule
 {
 public :
-   static int Load();
+    static int Load();
 };
 
 class RandlibModule : public GenericModule
 {
 public :
-   static int Load();
+    static int Load();
 };
 
 class InterpolationModule : public GenericModule
 {
 public :
-   static int Load();
+    static int Load();
+};
+
+class CacsdModule : public GenericModule
+{
+public :
+    static int Load();
 };
 
 #endif /* !__DYNAMIC_MODULES_HXX_ */

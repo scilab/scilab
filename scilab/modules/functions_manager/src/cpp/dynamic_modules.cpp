@@ -19,7 +19,7 @@
 extern "C"
 {
 #include "loadOnUseClassPath.h"
-//XML API
+    //XML API
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 #include "MALLOC.h"
@@ -44,7 +44,7 @@ vectGateway loadGatewaysName(wstring _wstModuleName)
     xmlXPathObjectPtr xpathObj = NULL;
 
     doc = xmlParseFile(pstModuleName);
-    if(doc == NULL)
+    if (doc == NULL)
     {
         std::cout << "Error: Could not parse file " << pstModuleName << std::endl;
         FREE(pstModuleName);
@@ -53,27 +53,27 @@ vectGateway loadGatewaysName(wstring _wstModuleName)
 
     xpathCtxt = xmlXPathNewContext(doc);
     xpathObj = xmlXPathEval((const xmlChar*)"//module/gateway", xpathCtxt);
-    if(xpathObj && xpathObj->nodesetval->nodeMax)
+    if (xpathObj && xpathObj->nodesetval->nodeMax)
     {
         /* the Xpath has been understood and there are node */
-        for(int	i = 0 ; i < xpathObj->nodesetval->nodeNr ; i++)
+        for (int	i = 0 ; i < xpathObj->nodesetval->nodeNr ; i++)
         {
             GatewayStr str;
 
             xmlAttrPtr attrib = xpathObj->nodesetval->nodeTab[i]->properties;
             /* Get the properties of <module>  */
-            while(attrib != NULL)
+            while (attrib != NULL)
             {
                 /* loop until when have read all the attributes */
-                if(xmlStrEqual(attrib->name, (const xmlChar*)"name"))
+                if (xmlStrEqual(attrib->name, (const xmlChar*)"name"))
                 {
                     str.wstName = to_wide_string((const char*)attrib->children->content);
                 }
-                else if(xmlStrEqual(attrib->name, (const xmlChar*)"function"))
+                else if (xmlStrEqual(attrib->name, (const xmlChar*)"function"))
                 {
                     str.wstFunction = to_wide_string((const char*)attrib->children->content);
                 }
-                else if(xmlStrEqual(attrib->name, (const xmlChar*)"type"))
+                else if (xmlStrEqual(attrib->name, (const xmlChar*)"type"))
                 {
                     str.iType = (types::Function::FunctionType)atoi((const char*)attrib->children->content);
                 }
@@ -83,12 +83,12 @@ vectGateway loadGatewaysName(wstring _wstModuleName)
         }
     }
 
-    if(xpathObj)
+    if (xpathObj)
     {
         xmlXPathFreeObject(xpathObj);
     }
 
-    if(xpathCtxt)
+    if (xpathCtxt)
     {
         xmlXPathFreeContext(xpathCtxt);
     }
@@ -120,7 +120,7 @@ int ScinotesModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstModuleName);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &ScinotesModule::LoadDeps, wstModuleName));
     }
@@ -141,7 +141,7 @@ int FunctionsModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -161,7 +161,7 @@ int StatisticsModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -181,7 +181,7 @@ int SignalProcessingModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -210,7 +210,7 @@ int HelptoolsModule::Load()
 
     vectGateway vect = loadGatewaysName(wstModuleName);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &HelptoolsModule::LoadDeps, wstModuleName));
     }
@@ -230,7 +230,7 @@ int MatioModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -248,7 +248,7 @@ int Hdf5Module::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstModuleName);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -268,7 +268,7 @@ int ActionBindingModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -288,7 +288,7 @@ int DifferentialEquationsModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -306,7 +306,7 @@ int SpreadsheetModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstModuleName);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -326,7 +326,7 @@ int InterpolationModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
@@ -344,7 +344,25 @@ int RandlibModule::Load()
 #endif
     vectGateway vect = loadGatewaysName(wstModuleName);
 
-    for(int i = 0 ; i < (int)vect.size() ; i++)
+    for (int i = 0 ; i < (int)vect.size() ; i++)
+    {
+        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+    }
+
+    return 1;
+}
+
+int CacsdModule::Load()
+{
+    wstring wstModuleName = L"cacsd";
+#ifdef _MSC_VER
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+#else
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+#endif
+    vectGateway vect = loadGatewaysName(wstModuleName);
+
+    for (int i = 0 ; i < (int)vect.size() ; i++)
     {
         symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }

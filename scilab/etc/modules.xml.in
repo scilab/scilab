@@ -48,5 +48,6 @@
     <module name="randlib" activate="yes"/>
     <module name="atoms" activate="yes"/>
     <module name="interpolation" activate="yes"/>
+    <module name="cacsd" activate="yes"/>
 </modules>
 
