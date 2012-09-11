@@ -334,6 +334,10 @@ long ScilabView::getObjectHandle(char const* UID)
 char const* ScilabView::getObjectFromHandle(long handle)
 {
     __uidList_iterator it = m_uidList.find(handle);
+    if (it == m_uidList.end())
+    {
+        return NULL;
+    }
 
     return it->second.c_str();
 }
