@@ -23,6 +23,9 @@ Bug Fixes
 
 * Bug #8799 fixed - gsort did not work with hypermatrices.
 
+* Bug #10559 fixed - Sspectral estimation demonstration failed if the graphic
+                     figure was closed.
+
 * Bug #11293 fixed - Line style was not taken into account.
 
 * Bug #11558 fixed - Typo in helptools module fixed.
