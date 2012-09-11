@@ -32,6 +32,16 @@ CSV features
                      management.
 
 
+Signal Processing
+=================
+
+* New functions:
+  - dct - Discrete cosine transform (based on FFTW library).
+  - idct - Inverse discrete cosine transform (based on FFTW library).
+  - dst - Discrete sine transform (based on FFTW library).
+  - idst - Discrete sine transform (based on FFTW library).
+
+
 Windows version
 ===============
 

@@ -1,8 +1,5 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006/2007 - INRIA - Alan LAYEC
-* Copyright (C) 2007 - INRIA - Allan CORNET
-* Copyright (C) 2012 - DIGITEO - Allan CORNET
 * Copyright (C) 2012 - INRIA - Serge STEER
 *
 * This file must be used under the terms of the CeCILL.
@@ -23,31 +20,27 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
-/*--------------------------------------------------------------------------*/
-enum Scaling
-{
-    Divide = -1,
-    None = 0,
-    Multiply = 1,
-};
+#include "sci_data_utilities.h"
+
+
 /*--------------------------------------------------------------------------*/
 extern void C2F(dscal)(int *n, double *da, double *dx, int *incx); /* blas routine */
 extern void C2F(dset)(int *n, double *da, double *dx, int *incx); /* blas routine */
 /*--------------------------------------------------------------------------*/
-static int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt, guru_dim_struct gdim);
-static int sci_fft_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt);
-static int sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt);
-static int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt);
+static int sci_dst_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, guru_dim_struct gdim, int iopt);
+static int sci_dst_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt);
+static int sci_dst_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt);
+static int sci_dst_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt);
 /*--------------------------------------------------------------------------*/
 
-int WITHMKL = 0;
+extern int WITHMKL;
 /* fftw function.
 *
 * Scilab Calling sequence :
-*   fftw(A [,option])
-*   fftw(A,sign [,option])
-*   fftw(A,sel,sign [,option])
-*   fftw(A,sign,dim,incr [,option])
+*   dst(A )
+*   dst(A,sign )
+*   dst(A,sel,sign )
+*   dst(A,sign,dim,incr )
 *
 * Input : A : a scilab double complex or real vector, matrix or hypermatrix
 *
@@ -66,19 +59,18 @@ int WITHMKL = 0;
 *          gives the result of the transform.
 *
 */
-int sci_fftw(char *fname, unsigned long fname_len)
+int sci_dst(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddr = NULL;
-    char *option = NULL;
-    int iopt = 0; /* automatic r2c or c2r transform use decision */
     int rhs = Rhs;
     int iTypeOne = 0;
+    int iopt = 0;
 
     int ndimsA = 0;
     int *dimsA = NULL;
     double *Ar = NULL, *Ai = NULL;
-
+    char *option = NULL;
     int isn = FFTW_FORWARD;
     WITHMKL = withMKL();
     /****************************************
@@ -86,7 +78,7 @@ int sci_fftw(char *fname, unsigned long fname_len)
     ****************************************/
 
     /* check min/max lhs/rhs arguments of scilab function */
-    CheckRhs(1, 5);
+    CheckRhs(1, 4);
     CheckLhs(1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
@@ -121,7 +113,6 @@ int sci_fftw(char *fname, unsigned long fname_len)
         }
     }
 
-    /* checking if last argument is a potential option argument (character string) */
     sciErr = getVarAddressFromPosition(pvApiCtx, Rhs, &piAddr);
     if (sciErr.iErr)
     {
@@ -130,36 +121,24 @@ int sci_fftw(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (isStringType(pvApiCtx, piAddr))   /*  fftw(...,option); */
+    if (isStringType(pvApiCtx, piAddr))   /*  dst(...,option); */
     {
         if (isScalar(pvApiCtx, piAddr))
         {
             if (getAllocatedSingleString(pvApiCtx, piAddr, &option) == 0)
             {
-                if (strcmp("symmetric", option) == 0)  iopt = 1; /*user assumes symmetry */
-                else if (strcmp("nonsymmetric", option) == 0) iopt = 2; /*user claims full transform */
-                else
-                {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, Rhs, "\"symmetric\"", "\"nonsymmetric\"");
-                    freeAllocatedSingleString(option);
-                    option = NULL;
-                    return 0;
-                }
-                freeAllocatedSingleString(option);
-                option = NULL;
                 rhs = Rhs - 1;
             }
             else
             {
-                 Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, Rhs, "\"symmetric\"", "\"nonsymmetric\"");
+              Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
                 return 0;
             }
         }
     }
 
-
     /********************  Checking if isn is given  ************************************************/
-    if (rhs == 1)  /*only one rhs argument: forward fft*/
+    if (rhs == 1)  /*only one rhs argument: forward dst*/
     {
         isn = FFTW_FORWARD; /* default value */
     }
@@ -179,6 +158,44 @@ int sci_fftw(char *fname, unsigned long fname_len)
         }
     }
 
+    if (option != NULL)
+      {
+        if (isn== FFTW_FORWARD)
+          {
+            if (strcmp("dst1", option) == 0)  iopt = 1;
+            else if (strcmp("dst2", option) == 0)  iopt = 2;
+            else if (strcmp("dst", option) == 0)  iopt = 0;
+            else if (strcmp("dst4", option) == 0)  iopt = 4;
+            else
+              {
+                Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), fname, Rhs,
+                         "\"dst\", \"dst1\",\"dst2\",\"dst4\"");
+                freeAllocatedSingleString(option);
+                option = NULL;
+                return 0;
+              }
+          }
+        else {
+            if (strcmp("dst1", option) == 0)  iopt = 1;
+            else if (strcmp("dst3", option) == 0)  iopt = 3;
+            else if (strcmp("idst", option) == 0)  iopt = 0;
+            else if (strcmp("dst4", option) == 0)  iopt = 4;
+            else
+              {
+                Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), fname, Rhs,
+                         "\"idst\", \"dst1\",\"dst3\",\"dst4\"");
+                freeAllocatedSingleString(option);
+                option = NULL;
+                return 0;
+              }
+
+        }
+        freeAllocatedSingleString(option);
+        option = NULL;
+
+    }
+
+
     /********************  getting the array A      ************************************************/
     getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (!getArrayOfDouble(pvApiCtx, piAddr, &ndimsA, &dimsA, &Ar, &Ai))
@@ -192,24 +209,24 @@ int sci_fftw(char *fname, unsigned long fname_len)
     /********************  Select proper method     ************************************************/
     if (rhs < 3)
     {
-        /* fftw(A ,sign [,option])*/
-        sci_fft_2args(pvApiCtx, fname, ndimsA, dimsA, Ar, Ai, isn, iopt);
+        /* dst(A ,sign)*/
+      sci_dst_2args(pvApiCtx, fname, ndimsA, dimsA, Ar, Ai, isn, iopt);
     }
     else if (rhs == 3)
     {
-        /* fftw(A ,sign ,sel [,option])*/
-        sci_fft_3args(pvApiCtx, fname, ndimsA, dimsA, Ar, Ai, isn, iopt);
+        /* dst(A ,sign ,sel)*/
+        sci_dst_3args(pvApiCtx, fname, ndimsA, dimsA, Ar, Ai, isn, iopt);
     }
     else if (rhs == 4)
     {
-        /* fftw(A ,sign ,dim,incr [option])*/
-        sci_fft_4args(pvApiCtx, fname, ndimsA, dimsA, Ar, Ai, isn, iopt);
+        /* dst(A ,sign ,dim,incr)*/
+        sci_dst_4args(pvApiCtx, fname, ndimsA, dimsA, Ar, Ai, isn, iopt);
     }
 
     return 0;
 }
 
-int sci_fft_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt)
+int sci_dst_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt)
 {
     /*FFTW specific library variable */
     guru_dim_struct gdim = {0, NULL, 0, NULL};
@@ -266,7 +283,7 @@ int sci_fft_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     gdim.howmany_dims = NULL;
 
 
-    if (!sci_fft_gen(_pvCtx, fname, ndimsA, dimsA,  Ar,  Ai, isn, iopt, gdim))
+    if (!sci_dst_gen(_pvCtx, fname, ndimsA, dimsA,  Ar,  Ai, isn, gdim,iopt))
     {
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
@@ -285,7 +302,7 @@ int sci_fft_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
 }
 
 
-int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt)
+int  sci_dst_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt)
 {
     /* API variables */
     SciErr sciErr;
@@ -404,7 +421,6 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
     /* Compute howmany_rank based on jumps in the Sel sequence */
     gdim.howmany_rank = 0;
     if ((Sel[0] != 1) && (Sel[0] != ndimsA)) gdim.howmany_rank++;
-
     for (i = 1; i <= rank - 1; i++)
       {
         if (Sel[i] != Sel[i-1] + 1)
@@ -424,7 +440,6 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
       }
 
     if ((Sel[rank - 1] != ndimsA) || (rank == 1)) gdim.howmany_rank++;
-
     /* Fill the howmany_dims struct */
     if (gdim.howmany_rank > 0)
     {
@@ -493,7 +508,7 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
         }
     }
 
-    if (!sci_fft_gen(_pvCtx, fname, ndimsA, dimsA, Ar,  Ai, isn, iopt, gdim))
+    if (!sci_dst_gen(_pvCtx, fname, ndimsA, dimsA, Ar,  Ai, isn, gdim, iopt))
     {
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
@@ -511,7 +526,7 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
     return 0;
 }
 
-int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt)
+int sci_dst_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt)
 {
     /* API variables */
     SciErr sciErr;
@@ -751,8 +766,7 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
 
     rank = ndims;
     ndims = nd;
-
-    /* now one  same algorithm than sci_fft_3args applies */
+    /* now  same algorithm than sci_dst_3args applies */
     /* Create  gdim struct */
     gdim.rank = rank;
     if ((gdim.dims = (fftw_iodim *)MALLOC(sizeof(fftw_iodim) * gdim.rank)) == NULL)
@@ -787,9 +801,22 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     if ((Sel[0] != 1) && (Sel[0] != ndims)) gdim.howmany_rank++;
 
     for (i = 1; i <= rank - 1; i++)
-    {
-        if (Sel[i] != Sel[i - 1] + 1) gdim.howmany_rank++;
-    }
+      {
+        if (Sel[i] != Sel[i-1] + 1)
+          {
+            /*check if all dimensions between Sel[i-1]+1 and Sel[i]-1 are
+              equal to one, in this case they can be ignored and there is
+              no jump*/
+            for (j = Sel[i - 1] + 1; j <= Sel[i] - 1; j++)
+              {
+                if (Dim[j - 1] != 1)
+                  {
+                    gdim.howmany_rank++;
+                    break;
+                  }
+              }
+          }
+      }
     if ((Sel[rank - 1] != ndims) || (rank == 1)) gdim.howmany_rank++;
     /* Fill the howmany_dims struct */
     if (gdim.howmany_rank > 0)
@@ -820,20 +847,32 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
             ih++;
         }
         pd *= Dim[Sel[0] - 1]; /*prod(Dims(1:sel(1)))*/
-        for (i = 2; i <= rank; i++)
-        {
+
+        for (i = 1; i <= rank -1; i++)
+          {
             /* intermediate selected dimensions */
-            if (Sel[i - 1] != Sel[i - 2] + 1)
-            {
+            if (Sel[i] != Sel[i - 1] + 1)
+              {
                 pds = 1;
-                for (j = (Sel[i - 2] + 1); j <= (Sel[i - 1] - 1); j++) pds *= Dim[j - 1]; /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
-                gdim.howmany_dims[ih].is = pd;
-                gdim.howmany_dims[ih].os = pd;
-                gdim.howmany_dims[ih].n = pds;
-                ih++;
-            }
-            pd *= pds * Dim[Sel[i - 1] - 1]; /*prod(Dims(1:sel(i)))*/
-        }
+                for (j = (Sel[i - 1] + 1); j <= (Sel[i] - 1); j++) pds *= Dim[j - 1]; /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+                /*check again if all dimensions between Sel[i-1]+1 and
+                  Sel[i]-1 are equal to one, in this case they can be
+                  ignored and there is no jump*/
+                for (j = (Sel[i - 1] + 1); j <= (Sel[i] - 1); j++)
+                  {
+                    if (Dim[j - 1] != 1)
+                      {
+                        gdim.howmany_dims[ih].is = pd;
+                        gdim.howmany_dims[ih].os = pd;
+                        gdim.howmany_dims[ih].n = pds;
+                        ih++;
+                        break;
+                      }
+                  }
+              }
+
+            pd *= pds * Dim[Sel[i] - 1]; /*prod(Dims(1:sel(i)))*/
+          }
 
         if (Sel[rank - 1] != ndims)
         {
@@ -853,7 +892,7 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
             ih++;
         }
     }
-    if (!sci_fft_gen(_pvCtx, fname, ndimsA, dimsA, Ar,  Ai, isn, iopt, gdim))
+    if (!sci_dst_gen(_pvCtx, fname, ndimsA, dimsA, Ar,  Ai, isn, gdim,iopt))
     {
         FREE(Dim1);
         FREE(Incr);
@@ -879,24 +918,17 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------*/
-int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt, guru_dim_struct gdim)
+int sci_dst_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, guru_dim_struct gdim, int iopt)
 {
-    /* API variables */
-    SciErr sciErr;
 
     /* Input  array variables */
-    int  isrealA = (Ai == NULL), issymA = 1, lA = 1;
-    /*for MKL*/
-    int isrealA_save = isrealA ;
+    int  isrealA = (Ai == NULL),  lA = 1;
+    double half=0.5;
 
     /*FFTW specific library variable */
-    enum Scaling scale = None;
     enum Plan_Type type;
-    fftw_plan p;
-
-    /* input/output address for transform variables */
-    double *ri = NULL, *ii = NULL, *ro = NULL, *io = NULL;
+    fftw_r2r_kind *kind = NULL;
+    fftw_plan p=NULL;
 
     /* for MKL special cases */
     int * dims1 = NULL;
@@ -907,187 +939,48 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
     int i = 0;
     int errflag = 0;
 
+    for (i = 0; i < ndimsA; i++) lA *= dimsA[i];
 
-    for (i = 0; i < ndimsA; i++)
-    {
-        lA *= dimsA[i];
-    }
-
-
-    if (iopt == 0)
-    {
-        /* automatically selected algorithm*/
-        issymA =  check_array_symmetry(Ar, Ai, gdim);
-        if (issymA < 0 )
-        {
-            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-            return 0;
-        }
-    }
-
-    else if (iopt == 1)
-    {
-        issymA = 1; /* user forces symmetry */
-    }
-    else
-    {
-        issymA = 0;
-    }
 
     AssignOutputVariable(_pvCtx, 1) =  1;/* assume inplace transform*/
-
-    if (WITHMKL)
-    {
-        double dzero = 0.0;
-        if (isrealA)
-        {
-            /*MKL does not implement the r2c nor r2r guru split methods, make A complex */
-            if (issymA)
-            {
-                /* result will be real, the imaginary part of A can be allocated alone */
-                sciErr = allocMatrixOfDouble(pvApiCtx, *getNbInputArgument(_pvCtx) + 1, 1, lA, &Ai);
-                if (sciErr.iErr)
-                {
-                    Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                    return 0;
-                }
-                C2F(dset)(&lA, &dzero, Ai, &one);
-            }
-            else
-            {
-                /* result will be complex, realloc A for inplace computation */
-                sciErr = allocComplexArrayOfDouble(pvApiCtx, *getNbInputArgument(_pvCtx) + 1, ndimsA, dimsA, &ri, &Ai);
-                if (sciErr.iErr)
-                {
-                    Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                    return 0;
-                }
-                C2F(dcopy)(&lA, Ar, &one, ri, &one);
-                Ar = ri;
-                C2F(dset)(&lA, &dzero, Ai, &one);
-                AssignOutputVariable(_pvCtx, 1) =  nbInputArgument(_pvCtx) + 1;
-                isrealA = 0;
-            }
-        }
-    }
-
-    if (!isrealA && issymA) /* A is complex but result is real */
-    {
-        /* result will be complex, realloc real part of A for real part inplace computation */
-        sciErr = allocArrayOfDouble(pvApiCtx, *getNbInputArgument(_pvCtx) + 1, ndimsA, dimsA, &ri);
-        if (sciErr.iErr)
-        {
-            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-            return 0;
-        }
-        C2F(dcopy)(&lA, Ar, &one, ri, &one);
-        Ar = ri;
-        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(_pvCtx) + 1;
-    }
-
     /* Set pointers on real and imaginary part of the input */
-    ri = Ar;
-    ii = Ai;
 
-    scale = None; /*no scaling needed */
-    if (isn == FFTW_BACKWARD) scale = Divide;
-    if (isrealA & !WITHMKL) /* To have type = C2C_PLAN*/
-    {
-        /*A is real */
-        if (issymA)
-        {
-            /*r2r =  isrealA &&  issymA*/
-            /* there is no general plan able to compute r2r transform so it is tranformed into
-            a R2c plan. The computed imaginary part will be zero*/
-            sciErr = allocMatrixOfDouble(pvApiCtx, *getNbInputArgument(_pvCtx) + 1, 1, lA,  &io);
-            if (sciErr.iErr)
-            {
-                Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                return 0;
-            }
-            type = R2C_PLAN;
-            ro = Ar;
-        }
-        else
-        {
-            /*r2c =  isrealA && ~issymA;*/
-            /* transform cannot be done in place */
-            sciErr = allocComplexArrayOfDouble(pvApiCtx, *getNbInputArgument(_pvCtx) + 1, ndimsA, dimsA, &ro, &io);
-            if (sciErr.iErr)
-            {
-                Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                return 0;
-            }
-            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(_pvCtx) + 1;
-            type = R2C_PLAN; /* fftw_plan_guru_split_dft_r2c plans for an FFTW_FORWARD transform*/
-            if (isn == FFTW_BACKWARD)
-            {
-                /*transform problem into a FORWARD fft*/
-                /*ifft(A)=conj(fft(A/N)) cas vect*/
-                /* pre traitement A must be  divided by N cas vect*/
-                /* post treatment result must conjugated */
-            }
-        }
-    }
+    /* use inplace transform*/
+    type = R2R_PLAN;
+    if ((kind = (fftw_r2r_kind *)MALLOC(sizeof(fftw_r2r_kind) *gdim.rank)) == NULL)
+      {
+        Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+        return 0;
+      }
+
+
+    if (isn==-1)
+      {
+      if (iopt==0|iopt==1)
+        for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_RODFT00;
+      else if (iopt==2)
+         for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_RODFT10;
+      else if (iopt==4)
+         for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_RODFT11;
+      }
     else
-    {
-        /* A is complex */
-        if (!WITHMKL && issymA) /*result is real*/
-        {
-            /*c2r =  ~isrealA &&  issymA*/
-            ro = ri;
-            io = NULL;
-
-            type = C2R_PLAN; /*fftw_plan_guru_split_dft_c2r plans for an FFTW_BACKWARD transform*/
-            if (isn == FFTW_FORWARD)
-            {
-                /*transform problem into a BACKWARD fft : fft(A)=ifft(conj(A))*/
-                double minusone = -1.0;
-                C2F(dscal)(&lA, &minusone, ii, &one);
-            }
-        }
-        else
-        {
-            /*c2c =  ~isrealA && ~issymA;*/
-            /* use inplace transform*/
-            isrealA = 0;
-            type = C2C_PLAN; /*  fftw_plan_guru_split_dft plans for an FFTW_FORWARD transform*/
-            if (isn == FFTW_BACKWARD)
-            {
-                /*transform problem into a FORWARD fft*/
-                /* ifft(A) = %i*conj(fft(%i*conj(A)/N) */
-                /* reverse input */
-                ri = Ai;
-                ii = Ar;
-                /* reverse output */
-                ro = Ai;
-                io = Ar;
-            }
-            else
-            {
-                ro = ri;
-                io = ii;
-            }
-        }
-    }
-
-    /* pre-treatment */
-    if (scale != None)
-    {
-        double ak = 1.0;
-        for (i = 0; i < gdim.rank; i++) ak = ak * ((double)(gdim.dims[i].n));
-        if (scale == Divide) ak = 1.0 / ak;
-        C2F(dscal)(&lA, &ak, ri, &one);
-        if (isrealA == 0) C2F(dscal)(&lA, &ak, ii, &one);
-    }
+      {
+      if (iopt==0|iopt==1)
+        for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_RODFT00;
+      else if (iopt==3)
+         for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_RODFT01;
+      else if (iopt==4)
+         for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_RODFT11;
+      }
 
     if (!WITHMKL || gdim.howmany_rank <= 1)
     {
         /* Set Plan */
-      p = GetFFTWPlan(type, &gdim, ri, ii, ro, io, getCurrentFftwFlags(), isn , (fftw_r2r_kind *)NULL,&errflag);
+      p = GetFFTWPlan(type, &gdim, Ar, NULL, Ar, NULL, getCurrentFftwFlags(), isn , kind, &errflag);
+
         if (errflag == 1)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
             return 0;
         }
         else if (errflag == 2)
@@ -1096,7 +989,10 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
             return 0;
         }
         /* execute FFTW plan */
-        ExecuteFFTWPlan(type, p, ri, ii, ro, io);
+         ExecuteFFTWPlan(type, p, Ar, NULL, Ar, NULL);
+        if (!isrealA)
+          ExecuteFFTWPlan(type, p, Ai, NULL, Ai, NULL);
+
     }
     else
     {
@@ -1113,10 +1009,10 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         gdim.howmany_rank = 0;
         gdim.howmany_dims = NULL;
 
-        p = GetFFTWPlan(type, &gdim, ri, ii, ro, io, getCurrentFftwFlags(), isn , (fftw_r2r_kind *)NULL,&errflag);
+        p = GetFFTWPlan(type, &gdim, Ar, NULL, Ar, NULL, getCurrentFftwFlags(), isn , kind, &errflag);
         if (errflag == 1)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
             FREE(dims1);
             FREE(incr1);
             return 0;
@@ -1133,7 +1029,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         /* Build temporary arrays used by flatened loop */
         if ((dims1 = (int *)MALLOC(sizeof(int) * howmany_rank)) == NULL)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
             FREE(dims1);
             FREE(incr1);
             return 0;
@@ -1144,10 +1040,10 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
 
         if ((incr1 = (int *)MALLOC(sizeof(int) * howmany_rank)) == NULL)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
-            FREE(dims1);
-            FREE(incr1);
-            return 0;
+          Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+          FREE(dims1);
+          FREE(incr1);
+          return 0;
         }
         t = 1;
         for (i = 0; i < howmany_rank; i++)
@@ -1161,8 +1057,11 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         {
             /* the input and output are assumed to be complex because
                within MKL real cases are transformed to complex ones in
-               previous steps of sci_fft_gen*/
-            ExecuteFFTWPlan(type, p, &ri[i], &ii[i], &ro[i], &io[i]);
+               previous steps of sci_dst_gen*/
+            ExecuteFFTWPlan(type, p, &Ar[i], NULL, &Ar[i], NULL);
+            if (!isrealA)
+              ExecuteFFTWPlan(type, p, &Ai[i], NULL, &Ai[i], NULL);
+
             i += howmany_dims[0].is;
             /* check if  a loop ends*/
             for (i2 = howmany_rank - 2; i2 >= 0; i2--)
@@ -1183,65 +1082,23 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         gdim.howmany_dims = howmany_dims;
 
     }
-    /* Post treatment */
-    switch (type)
-    {
-        case R2R_PLAN:
-            if (complete_array(ro, NULL, gdim) == -1)
-            {
-                Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                return 0;
-            }
-            break;
-        case C2R_PLAN:
-            break;
-        case R2C_PLAN:
-            if (issymA)
-            {
-                /*R2C has been used to solve an r2r problem*/
-                if (complete_array(ro, NULL, gdim) == -1)
-                {
-                    Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                    return 0;
-                }
-            }
-            else
-            {
-                if (complete_array(ro, io, gdim) == -1)
-                {
-                    Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                    return 0;
-                }
-                if (isn == FFTW_BACKWARD)
-                {
-                    /*conjugate result */
-                    double ak = -1.0;
-                    C2F(dscal)(&lA, &ak, io, &one);
-                }
-            }
-            break;
-        case C2C_PLAN:
-            if (WITHMKL && isrealA_save)
-            {
-                if (isn == FFTW_FORWARD)
-                {
-                    if (complete_array(ro, io, gdim) == -1)
-                    {
-                        Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                        return 0;
-                    }
-                }
-                else
-                {
-                    if (complete_array(io, ro, gdim) == -1)
-                    {
-                        Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                        return 0;
-                    }
-                }
-            }
-            break;
-    }
 
+    /* normalization */
+    if (iopt==0)
+      {
+    if (isn==-1)
+      {
+        C2F(dscal)(&lA,&half,Ar,&one);
+        if (!isrealA)  C2F(dscal)(&lA,&half,Ai,&one);
+      }
+    else
+      {
+        if (dst_scale_array(Ar, Ai, gdim,isn) == -1)
+          {
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            return 0;
+          }
+      }
+      }
     return 1;
 }

@@ -22,6 +22,13 @@ int check_ND_symmetry(double *Ar, double *Ai, int ndims, int *dims, int *incr);
 void complete_1D_array(double *Ar, double *Ai, int nA, int iA);
 void complete_2D_array(double *Ar, double *Ai, int mA, int iA, int nA, int jA);
 int complete_ND_array(double *Ar, double *Ai, int ndims, int *dims, int *incr);
+void dct_scale_1D_array(double *Ar, double *Ai, int nA, int iA, int isn, double fact);
+void dct_scale_2D_array(double *Ar, double *Ai, int mA, int iA, int nA, int jA, int isn, double fact);
+int dct_scale_ND_array(double *Ar, double *Ai, int ndims, int *dims, int *incr, int isn, double fact);
+
+void dst_scale_1D_array(double *Ar, double *Ai, int nA, int iA, int isn, double fact);
+void dst_scale_2D_array(double *Ar, double *Ai, int mA, int iA, int nA, int jA, int isn, double fact);
+int dst_scale_ND_array(double *Ar, double *Ai, int ndims, int *dims, int *incr, int isn, double fact);
 
 /*--------------------------------------------------------------------------*/
 /* definition of structures to store parameters
@@ -29,18 +36,20 @@ int complete_ND_array(double *Ar, double *Ai, int ndims, int *dims, int *incr);
  */
 FFTW_Plan_struct Sci_Forward_Plan =
 {
-    0,               /* int plan_type            */
-    NULL,            /* fftw_plan p              */
+    0,                  /* int plan_type            */
+    NULL,               /* fftw_plan p              */
     {0, NULL, 0, NULL}, /* guru_dim_struct gdim     */
-    FFTW_ESTIMATE    /* unsigned flags           */
+    FFTW_ESTIMATE,      /* unsigned flags           */
+    NULL                /* kind                     */   
 };
 
 FFTW_Plan_struct Sci_Backward_Plan =
 {
-    0,                /* int plan_type            */
-    NULL,             /* fftw_plan p              */
+    0,                  /* int plan_type            */
+    NULL,               /* fftw_plan p              */
     {0, NULL, 0, NULL}, /* guru_dim_struct gdim     */
-    FFTW_ESTIMATE     /* unsigned flags           */
+    FFTW_ESTIMATE,      /* unsigned flags           */
+    NULL                /* kind                     */   
 };
 /*--------------------------------------------------------------------------*/
 FFTW_Plan_struct *getSci_Backward_Plan(void)
@@ -84,6 +93,8 @@ int FreeFFTWPlan(FFTW_Plan_struct *Sci_Plan)
         Sci_Plan->gdim.rank = 0;
         FREE(Sci_Plan->gdim.dims);
         Sci_Plan->gdim.dims = NULL;
+        FREE(Sci_Plan->kind);
+        Sci_Plan->kind = NULL;
     }
     if (Sci_Plan->gdim.howmany_rank != 0)
     {
@@ -116,11 +127,10 @@ int FreeFFTWPlan(FFTW_Plan_struct *Sci_Plan)
 fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
                       double *ri, double *ii,
                       double *ro, double *io,
-                      unsigned flags, int isn, int *errflag)
+                      unsigned flags, int isn, fftw_r2r_kind *kind,int *errflag)
 {
     FFTW_Plan_struct *Sci_Plan;
     int i = 0;
-    fftw_r2r_kind *kind = NULL;
 
     *errflag = 0;
 
@@ -128,6 +138,7 @@ fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
     else Sci_Plan = &Sci_Forward_Plan;
 
     if ( (!(CheckGuruDims(&(Sci_Plan->gdim), gdim))) ||
+         (!CheckKindArray(Sci_Plan->kind,kind, gdim->rank)) ||
             (Sci_Plan->flags != cur_fftw_flags) ||
             (Sci_Plan->plan_type != type))
     {
@@ -136,20 +147,30 @@ fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
 
         Sci_Plan->plan_type = type;
         if (gdim->rank != 0)
-        {
+          {
             Sci_Plan->gdim.rank = gdim->rank;
             if ((Sci_Plan->gdim.dims = (fftw_iodim *) MALLOC(sizeof(fftw_iodim) * (gdim->rank))) == NULL)
-            {
+              {
                 *errflag = 1;
                 return(NULL);
-            }
+              }
             for (i = 0; i < gdim->rank; i++)
-            {
+              {
                 Sci_Plan->gdim.dims[i].n  = gdim->dims[i].n;
                 Sci_Plan->gdim.dims[i].is = gdim->dims[i].is;
                 Sci_Plan->gdim.dims[i].os = gdim->dims[i].os;
-            }
-        }
+              }
+
+            if (kind != NULL) 
+              {
+                if ((Sci_Plan->kind = (fftw_iodim *) MALLOC(sizeof(fftw_r2r_kind) * (gdim->rank))) == NULL)
+                  {
+                    *errflag = 1;
+                    return(NULL);
+                  }
+                for (i = 0; i < gdim->rank; i++) Sci_Plan->kind[i]  = kind[i];
+              }
+          }
         if (gdim->howmany_rank != 0)
         {
             Sci_Plan->gdim.howmany_rank = gdim->howmany_rank;
@@ -195,33 +216,11 @@ fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
 
                 break;
             case R2R_PLAN:
-                if ((kind = (fftw_r2r_kind *)MALLOC(sizeof(fftw_r2r_kind) * Sci_Plan->gdim.rank)) == NULL)
-                {
-                    *errflag = 1;
-                    return(NULL);
-                }
-                for (i = 0; i < Sci_Plan->gdim.rank; i++)
-                {
-                    kind[i] = FFTW_REDFT00;
-                    if  ((Sci_Plan->gdim.dims[i].n) % 2 == 0)
-                    {
-                        /*even */
-                        /*   kind[i]=(isn==-1)?FFTW_RODFT10:FFTW_RODFT01; */
-                        //kind[i]=FFTW_R2HC;
-                        kind[i] = FFTW_REDFT00;
-                    }
-                    else
-                    {
-                        /*odd*/
-                        kind[i] = FFTW_REDFT00;
-                    }
-                }
                 Sci_Plan->p = call_fftw_plan_guru_split_dft_r2r(Sci_Plan->gdim.rank,
                               Sci_Plan->gdim.dims,
                               Sci_Plan->gdim.howmany_rank,
                               Sci_Plan->gdim.howmany_dims,
                               ri, ro, kind, flags);
-                FREE(kind);
                 break;
         }
 
@@ -265,6 +264,27 @@ int CheckGuruDims(guru_dim_struct *gdim1, guru_dim_struct *gdim2)
     else return(0);
 }
 /*--------------------------------------------------------------------------*/
+/* Check if kind array  are equal
+ *
+ * Input : fftw_r2r_kind *kind1
+ *         gfftw_r2r_kind *kind2
+ *         int rank
+ *
+ * Output : int, return 0 if False, else 1.
+ *
+ */
+int CheckKindArray(fftw_r2r_kind *kind1,fftw_r2r_kind *kind2, int rank)
+{
+    int i;
+    if ((kind1 == NULL) && (kind2 == NULL)) return(1);
+    
+    for (i = 0; i < rank; i++)
+      {
+        if (kind1[i]  != kind2[i])  return(0);
+      }
+    return(1);
+}
+/*--------------------------------------------------------------------------*/
 /* call different fftw_execute_split_dft_xxx procedures according to type input
  *
  * Input :  Plan_Type type
@@ -288,7 +308,7 @@ void ExecuteFFTWPlan(enum Plan_Type type, const fftw_plan p, double *ri, double 
             call_fftw_execute_split_dft_r2c(p, ri, ro, io);
             break;
         case R2R_PLAN:
-            call_fftw_execute_split_dft_r2r(p, ri, ro);
+            call_fftw_execute_split_dft_r2r(p, ri, ro); 
             break;
     }
 }
@@ -867,7 +887,7 @@ int complete_ND_array(double *Ar, double *Ai, int ndims, int *dims, int *incr)
     int *temp = NULL;
     int *dims1 = NULL;
     int *incr1 = NULL;
-    int nSub = 0, nSubs2 = 0, k = 0, step = 0;
+    int nSub = 0, nSubs2 = 0, step = 0, k = 0;
 
     if (ndims == 2)
     {
@@ -1009,10 +1029,8 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
     else
     {
         int m = 0;
-        int p = 1;
         int *dims1 = NULL;
         int *incr1 = NULL;
-        int ir = 0;
         int hrank = gdim.howmany_rank;
 
         if ((dims1 = (int *)MALLOC(sizeof(int) * hrank)) == NULL) return -1;
@@ -1025,58 +1043,50 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
             FREE(dims1);
             return -1;
         }
-        p = 1;
-        for (i = 0; i < hrank; i++)
-        {
-            p += (gdim.howmany_dims[i].n - 1) * gdim.howmany_dims[i].is;
-            incr1[i] = p;
-        }
-
+        incr1[0] = gdim.howmany_dims[0].n * gdim.howmany_dims[0].is;
+        for (i = 1; i < hrank; i++)
+          {
+            incr1[i] = incr1[i-1] + (gdim.howmany_dims[i].n - 1) * gdim.howmany_dims[i].is;;
+          }
         switch (gdim.rank)
         {
             case 1: /* multiple 1D fft */
-                if (Ai == NULL)
+              if (Ai == NULL)
                 {
-                    for (ir = 0; ir < hrank; ir++)
+                  j = 0;
+                  for (i = 1; i <= m; i++)
                     {
-                        j = 0;
-                        for (i = 1; i <= m; i++)
+                      complete_1D_array(Ar + j, NULL, gdim.dims[0].n, gdim.dims[0].is);
+                      j += gdim.howmany_dims[0].is;
+                      for (k = hrank - 2; k >= 0; k--)
                         {
-                            complete_1D_array(Ar + j, NULL, gdim.dims[0].n, gdim.dims[0].is);
-                            j += gdim.howmany_dims[0].is;
-                            for (k = hrank - 2; k >= 0; k--)
+                          if (i % dims1[k] == 0)
                             {
-                                if (i % dims1[k] == 0)
-                                {
-                                    j += -incr1[k] + gdim.howmany_dims[k + 1].is;
-                                    break;
-                                }
+                              j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                              break;
                             }
                         }
                     }
                 }
-                else
+              else
                 {
-                    for (ir = 0; ir < hrank; ir++)
+                  j = 0;
+                  for (i = 1; i <= m; i++)
                     {
-                        j = 0;
-                        for (i = 1; i <= m; i++)
+                      complete_1D_array(Ar + j, Ai + j, gdim.dims[0].n, gdim.dims[0].is);
+                      j += gdim.howmany_dims[0].is;
+                      for (k = hrank - 2; k >= 0; k--)
                         {
-                            complete_1D_array(Ar + j, Ai + j, gdim.dims[0].n, gdim.dims[0].is);
-                            j += gdim.howmany_dims[0].is;
-                            for (k = hrank - 2; k >= 0; k--)
+                          if (i % dims1[k] == 0)
                             {
-                                if (i % dims1[k] == 0)
-                                {
-                                    j += -incr1[k] + gdim.howmany_dims[k + 1].is;
-                                    break;
-                                }
+                              j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                              break;
                             }
                         }
                     }
                 }
-                FREE(dims1);
-                return 0;
+              FREE(dims1);
+              return 0;
             case 2: /* multiple 2D fft */
                 if (Ai == NULL)
                 {
@@ -1128,33 +1138,31 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
                     dims[i] = gdim.dims[i].n;
                     incr[i] = gdim.dims[i].is;
                 }
-                for (ir = 0; ir < hrank; ir++)
-                {
-                    j = 0;
-                    for (i = 1; i <= m; i++)
-                    {
-                        if (Ai == NULL)
-                            r = complete_ND_array(Ar + j, NULL, ndims, dims, incr);
-                        else
-                            r = complete_ND_array(Ar + j, Ai + j, ndims, dims, incr);
-                        if (r < 0)
-                        {
-                            FREE(dims);
-                            FREE(incr);
-                            FREE(dims1);
-                            return r;
-                        }
-                        j += gdim.howmany_dims[0].is;
-                        for (k = hrank - 2; k >= 0; k--)
-                        {
-                            if (i % dims1[k] == 0)
-                            {
-                                j += -incr1[k] + gdim.howmany_dims[k + 1].is;
-                                break;
-                            }
-                        }
-                    }
-                }
+                j = 0;
+                for (i = 1; i <= m; i++)
+                  {
+                    if (Ai == NULL)
+                      r = complete_ND_array(Ar + j, NULL, ndims, dims, incr);
+                    else
+                      r = complete_ND_array(Ar + j, Ai + j, ndims, dims, incr);
+                    if (r < 0)
+                      {
+                        FREE(dims);
+                        FREE(incr);
+                        FREE(dims1);
+                        return r;
+                      }
+                    j += gdim.howmany_dims[0].is;
+                    for (k = hrank - 2; k >= 0; k--)
+                      {
+                        if (i % dims1[k] == 0)
+                          {
+                            j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                            break;
+                          }
+                      }
+                  }
+
                 FREE(dims);
                 FREE(incr);
                 FREE(dims1);
@@ -1174,3 +1182,541 @@ int withMKL(void)
     return (call_fftw_export_wisdom_to_string() == NULL);
 }
 /*--------------------------------------------------------------------------*/
+
+
+
+
+void dct_scale_1D_array(double *Ar, double *Ai, int nA, int iA, int isn, double fact)
+{
+  /* fact: multiplication factor for all terms but the first one*/
+  double s,s0;
+  int i=0;
+
+  if (isn==-1) 
+    {
+      s0=fact*0.5/sqrt(nA);
+    }
+  else 
+    {
+      s0=fact/sqrt(nA);/* 2.0*sqrt(nA)/(2*nA) */
+    }
+  s=fact/sqrt(2.0*nA);/* sqrt(2.0*nA)/(2*nA) */
+  if (Ai == NULL)
+    {
+      Ar[0] *= s0;
+      for (i=1;i<nA;i++) 
+        {
+          Ar[i*iA] *=s;
+        }
+    }
+  else
+    {
+      Ar[0] *= s0;
+      Ai[0] *= s0;
+      for (i=1;i<nA;i++) 
+        {
+          Ar[i*iA] *=s;
+          Ai[i*iA] *=s;
+        }
+
+    }
+}
+
+
+
+void dct_scale_2D_array(double *Ar, double *Ai, int mA, int iA, int nA, int jA, int isn, double fact)
+{
+  int j = 0; /* loop variables */
+  double s,s0;
+  s=fact/sqrt(2*nA);
+  s0=fact/sqrt(nA);
+  if (isn==-1)  s0 *=0.5;
+
+  /* first column  */
+  dct_scale_1D_array(Ar, Ai, mA, iA, isn, s0);
+  /* other columns */
+  if (Ai == NULL) 
+    {
+      for (j=1;j<nA;j++) 
+        {
+          dct_scale_1D_array(&Ar[j*jA],NULL, mA, iA, isn, s);
+        }
+    }
+  else
+    {
+      for (j=1;j<nA;j++) 
+        {
+          dct_scale_1D_array(&Ar[j*jA],&Ai[j*jA], mA, iA, isn, s);
+        }
+    }
+}
+
+int dct_scale_ND_array(double *Ar, double *Ai, int ndims, int *dims, int *incr, int isn, double fact)
+{
+    int i = 0;
+    double s=1.0,s0=1.0;
+
+    if (ndims == 2)
+    {
+      dct_scale_2D_array(Ar, Ai, dims[0], incr[0], dims[1], incr[1],isn,fact);
+    }
+    else if (ndims == 1)
+    {
+      dct_scale_1D_array(Ar, Ai, dims[0], incr[0],isn,fact);
+    }
+    else 
+      {
+        /* Decompose recursively along the first array dimension 
+           A_scaled(i,:,...,:)=s1(i)*scale(A(i,:,...,:))
+           with 
+           s1(1) = 1/(2*sqrt(n1) and  s1(i>1) = 1/(sqrt(2*n1)
+        */
+        s=fact/sqrt(2.0*dims[0]);
+        s0=fact/sqrt(dims[0]);
+        if (isn==-1)  s0 *=0.5;
+       
+        if (Ai == NULL) 
+          {
+            /* first index: s1(1)*/ 
+            dct_scale_ND_array(Ar, Ai, ndims - 1, dims+1, incr+1, isn,s0);
+            /* next indexes: s1(i>1)*/
+            for (i = 1; i<dims[0]; i++) 
+              {
+                dct_scale_ND_array(&Ar[i*incr[0]], NULL, ndims - 1, dims+1, incr+1, isn,s);
+              }
+          }
+        else
+          {
+            dct_scale_ND_array(Ar, Ai, ndims - 1, dims+1, incr+1, isn,s0);
+
+            for (i = 1; i<dims[0]; i++) 
+              {
+                dct_scale_ND_array(&Ar[i*incr[0]], &Ai[i*incr[0]], ndims - 1, dims+1, incr+1, isn,s);
+              }
+          }
+      }
+    return 0;
+
+}
+
+
+int dct_scale_array(double *Ar, double *Ai, guru_dim_struct gdim, int isn)
+{
+  int * dims = NULL;
+  int * incr = NULL;
+  int *dims1 = NULL;
+  int *incr1 = NULL;
+
+  int i = 0, j = 0, k = 0;
+  if (gdim.howmany_rank == 0)
+    {
+      switch (gdim.rank)
+        {
+        case 1:
+          dct_scale_1D_array(Ar, Ai, gdim.dims[0].n, gdim.dims[0].is, isn,(double)1.0);
+          return 0;
+        case 2:
+          dct_scale_2D_array(Ar, Ai, gdim.dims[0].n, gdim.dims[0].is, gdim.dims[1].n, gdim.dims[1].is, isn,(double)1.0);
+          return 0;
+        default: /*general N-D case*/
+          if ((dims = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL) goto ERR;
+          if ((incr = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)  goto ERR;
+          for (i = 0; i < gdim.rank; i++)
+            {
+              dims[i] = gdim.dims[i].n;
+              incr[i] = gdim.dims[i].is;
+            }
+          dct_scale_ND_array(Ar, Ai, gdim.rank, dims, incr, isn,(double)1.0);
+        }
+    }
+  else
+    {
+      int m = 0;
+      int hrank = gdim.howmany_rank;
+      if ((dims1 = (int *)MALLOC(sizeof(int) * hrank)) == NULL) goto ERR;
+      dims1[0] = gdim.howmany_dims[0].n;
+      for (i = 1; i < hrank; i++) dims1[i] = dims1[i - 1] * gdim.howmany_dims[i].n;
+      m = dims1[gdim.howmany_rank - 1];
+
+      if ((incr1 = (int *)MALLOC(sizeof(int) * hrank)) == NULL) goto ERR;
+
+      incr1[0] = gdim.howmany_dims[0].n * gdim.howmany_dims[0].is;
+      for (i = 1; i < hrank; i++)
+        {
+          incr1[i] = incr1[i-1] + (gdim.howmany_dims[i].n - 1) * gdim.howmany_dims[i].is;;
+        }
+      switch (gdim.rank)
+        {
+        case 1: /* multiple 1D dct */
+          if (Ai == NULL)
+            {
+              j = 0;
+              for (i = 1; i <= m; i++)
+                {
+                  dct_scale_1D_array(Ar + j, NULL, gdim.dims[0].n, gdim.dims[0].is, isn,(double)1.0);
+                  j += gdim.howmany_dims[0].is;
+                  for (k = hrank - 2; k >= 0; k--)
+                    {
+                      if (i % dims1[k] == 0)
+                        {
+                          j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                          break;
+                        }
+                    }
+                }
+            }
+          else
+            {
+              j = 0;
+              for (i = 1; i <= m; i++)
+                {
+                  dct_scale_1D_array(Ar + j, Ai + j, gdim.dims[0].n, gdim.dims[0].is, isn,(double)1.0);
+                  j += gdim.howmany_dims[0].is;
+                  for (k = hrank - 2; k >= 0; k--)
+                    {
+                      if (i % dims1[k] == 0)
+                        {
+                          j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                          break;
+                        }
+                    }
+                }
+            }
+          break;
+        case 2: /* multiple 2D dct */
+           if (Ai == NULL)
+            {
+              j = 0;
+               for (i = 1; i <= m; i++)
+                {
+                  dct_scale_2D_array(&Ar[j], NULL, gdim.dims[0].n, gdim.dims[0].is, gdim.dims[1].n, gdim.dims[1].is, isn,(double)1.0);
+                  j += gdim.howmany_dims[0].is;
+                  for (k = hrank - 2; k >= 0; k--)
+                    {
+                      if (i % dims1[k] == 0)
+                        {
+                          j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                          break;
+                        }
+                    }
+                }
+            }
+           
+          else
+            {
+              j = 0;
+              for (i = 1; i <= m; i++)
+                {
+                  dct_scale_2D_array(&Ar[j], &Ai[j], gdim.dims[0].n, gdim.dims[0].is, gdim.dims[1].n, gdim.dims[1].is, isn,(double)1.0);
+
+                  j += gdim.howmany_dims[0].is;
+                  for (k = hrank - 2; k >= 0; k--)
+                    {
+                      if (i % dims1[k] == 0)
+                        {
+                          j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                          break;
+                        }
+                    }
+                }
+            }
+           break;
+        default:  /* multiple ND dct */
+          if ((dims = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL) goto ERR;
+          if ((incr = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL) goto ERR;
+ 
+          for (i = 0; i < gdim.rank; i++)
+            {
+              dims[i] = gdim.dims[i].n;
+              incr[i] = gdim.dims[i].is;
+            }
+          j = 0;
+          for (i = 1; i <= m; i++)
+            {
+              if (Ai == NULL)
+                dct_scale_ND_array(Ar + j, NULL, gdim.rank, dims, incr, isn,(double)1.0);
+              else
+                dct_scale_ND_array(Ar + j, Ai + j, gdim.rank, dims, incr, isn,(double)1.0);
+
+              j += gdim.howmany_dims[0].is;
+              for (k = hrank - 2; k >= 0; k--)
+                {
+                  if (i % dims1[k] == 0)
+                    {
+                      j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                      break;
+                    }
+                }
+            }
+        }
+
+    }
+  FREE(dims);
+  FREE(incr);
+  FREE(dims1);
+  FREE(incr1);
+  return 0;
+
+ ERR:
+  FREE(dims);
+  FREE(incr);
+  FREE(dims1);
+  FREE(incr1);
+  return -1;
+}
+
+void dst_scale_1D_array(double *Ar, double *Ai, int nA, int iA, int isn, double fact)
+{
+  /* fact: multiplication factor for all terms but the first one*/
+  double s=fact/(1.0+nA);
+  int i=0;
+
+  if (Ai == NULL)
+    {
+      for (i=0;i<nA;i++) 
+        {
+          Ar[i*iA] *=s;
+        }
+    }
+  else
+    {
+      for (i=0;i<nA;i++) 
+        {
+          Ar[i*iA] *=s;
+          Ai[i*iA] *=s;
+        }
+
+    }
+}
+
+
+void dst_scale_2D_array(double *Ar, double *Ai, int mA, int iA, int nA, int jA, int isn, double fact)
+{
+  int j = 0; /* loop variables */
+  double s=fact/(1.0+nA);
+
+  if (Ai == NULL) 
+    {
+      for (j=0;j<nA;j++) 
+        {
+          dst_scale_1D_array(&Ar[j*jA],NULL, mA, iA, isn, s);
+        }
+    }
+  else
+    {
+      for (j=0;j<nA;j++) 
+        {
+          dst_scale_1D_array(&Ar[j*jA],&Ai[j*jA], mA, iA, isn, s);
+        }
+    }
+}
+
+int dst_scale_ND_array(double *Ar, double *Ai, int ndims, int *dims, int *incr, int isn, double fact)
+{
+    int i = 0;
+    double s=1.0;
+
+    if (ndims == 2)
+    {
+      dst_scale_2D_array(Ar, Ai, dims[0], incr[0], dims[1], incr[1],isn,fact);
+    }
+    else if (ndims == 1)
+    {
+      dst_scale_1D_array(Ar, Ai, dims[0], incr[0],isn,fact);
+    }
+    else 
+      {
+        /* Decompose recursively along the first array dimension 
+           A_scaled(i,:,...,:)=s1*scale(A(i,:,...,:))
+           with 
+           s1 = 1/(n+1) 
+        */
+
+        s=fact/(1.0+dims[0]);
+
+        if (Ai == NULL) 
+          {
+            /* next indexes: s1(i>1)*/
+            for (i = 0; i<dims[0]; i++) 
+              {
+                dst_scale_ND_array(&Ar[i*incr[0]], NULL, ndims - 1, dims+1, incr+1, isn,s);
+              }
+          }
+        else
+          {
+            for (i = 0; i<dims[0]; i++) 
+              {
+                dst_scale_ND_array(&Ar[i*incr[0]], &Ai[i*incr[0]], ndims - 1, dims+1, incr+1, isn,s);
+              }
+          }
+      }
+    return 0;
+}
+
+
+int dst_scale_array(double *Ar, double *Ai, guru_dim_struct gdim, int isn)
+{
+  int * dims = NULL;
+  int * incr = NULL;
+  int *dims1 = NULL;
+  int *incr1 = NULL;
+
+  int i = 0, j = 0, k = 0;
+  if (gdim.howmany_rank == 0)
+    {
+      switch (gdim.rank)
+        {
+        case 1:
+          dst_scale_1D_array(Ar, Ai, gdim.dims[0].n, gdim.dims[0].is, isn,(double)1.0);
+          return 0;
+        case 2:
+          dst_scale_2D_array(Ar, Ai, gdim.dims[0].n, gdim.dims[0].is, gdim.dims[1].n, gdim.dims[1].is, isn,(double)1.0);
+          return 0;
+        default: /*general N-D case*/
+          if ((dims = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL) goto ERR;
+          if ((incr = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL)  goto ERR;
+          for (i = 0; i < gdim.rank; i++)
+            {
+              dims[i] = gdim.dims[i].n;
+              incr[i] = gdim.dims[i].is;
+            }
+          dst_scale_ND_array(Ar, Ai, gdim.rank, dims, incr, isn,(double)1.0);
+        }
+    }
+  else
+    {
+      int m = 0;
+      int hrank = gdim.howmany_rank;
+
+      if ((dims1 = (int *)MALLOC(sizeof(int) * hrank)) == NULL) goto ERR;
+      dims1[0] = gdim.howmany_dims[0].n;
+      for (i = 1; i < hrank; i++) dims1[i] = dims1[i - 1] * gdim.howmany_dims[i].n;
+      m = dims1[gdim.howmany_rank - 1];
+
+      if ((incr1 = (int *)MALLOC(sizeof(int) * hrank)) == NULL) goto ERR;
+
+      incr1[0] = gdim.howmany_dims[0].n * gdim.howmany_dims[0].is;
+      for (i = 1; i < hrank; i++)
+        {
+          incr1[i] = incr1[i-1] + (gdim.howmany_dims[i].n - 1) * gdim.howmany_dims[i].is;;
+        }
+
+      switch (gdim.rank)
+        {
+        case 1: /* multiple 1D dst */
+          if (Ai == NULL)
+            {
+              j = 0;
+              for (i = 1; i <= m; i++)
+                {
+                  dst_scale_1D_array(Ar + j, NULL, gdim.dims[0].n, gdim.dims[0].is, isn,(double)1.0);
+                  j += gdim.howmany_dims[0].is;
+                  for (k = hrank - 2; k >= 0; k--)
+                    {
+                      if (i % dims1[k] == 0)
+                        {
+                          j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                          break;
+                        }
+                    }
+                }
+            }
+          else
+            {
+              j = 0;
+              for (i = 1; i <= m; i++)
+                {
+                  dst_scale_1D_array(Ar + j, Ai + j, gdim.dims[0].n, gdim.dims[0].is, isn,(double)1.0);
+                  j += gdim.howmany_dims[0].is;
+                  for (k = hrank - 2; k >= 0; k--)
+                    {
+                      if (i % dims1[k] == 0)
+                        {
+                          j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                          break;
+                        }
+                    }
+                }
+            }
+          break;
+        case 2: /* multiple 2D dst */
+           if (Ai == NULL)
+            {
+              j = 0;
+               for (i = 1; i <= m; i++)
+                {
+                  dst_scale_2D_array(&Ar[j], NULL, gdim.dims[0].n, gdim.dims[0].is, gdim.dims[1].n, gdim.dims[1].is, isn,(double)1.0);
+                  j += gdim.howmany_dims[0].is;
+                  for (k = hrank - 2; k >= 0; k--)
+                    {
+                      if (i % dims1[k] == 0)
+                        {
+                          j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                          break;
+                        }
+                    }
+                }
+            }
+           
+          else
+            {
+              j = 0;
+              for (i = 1; i <= m; i++)
+                {
+                  dst_scale_2D_array(&Ar[j], &Ai[j], gdim.dims[0].n, gdim.dims[0].is, gdim.dims[1].n, gdim.dims[1].is, isn,(double)1.0);
+
+                  j += gdim.howmany_dims[0].is;
+                  for (k = hrank - 2; k >= 0; k--)
+                    {
+                      if (i % dims1[k] == 0)
+                        {
+                          j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                          break;
+                        }
+                    }
+                }
+            }
+           break;
+        default:  /* multiple ND dst */
+          if ((dims = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL) goto ERR;
+          if ((incr = (int *)MALLOC(sizeof(int) * gdim.rank)) == NULL) goto ERR;
+ 
+          for (i = 0; i < gdim.rank; i++)
+            {
+              dims[i] = gdim.dims[i].n;
+              incr[i] = gdim.dims[i].is;
+            }
+          j = 0;
+          for (i = 1; i <= m; i++)
+            {
+              if (Ai == NULL)
+                dst_scale_ND_array(Ar + j, NULL, gdim.rank, dims, incr, isn,(double)1.0);
+              else
+                dst_scale_ND_array(Ar + j, Ai + j, gdim.rank, dims, incr, isn,(double)1.0);
+
+              j += gdim.howmany_dims[0].is;
+              for (k = hrank - 2; k >= 0; k--)
+                {
+                  if (i % dims1[k] == 0)
+                    {
+                      j += -incr1[k] + gdim.howmany_dims[k + 1].is;
+                      break;
+                    }
+                }
+            }
+        }
+
+    }
+  FREE(dims);
+  FREE(incr);
+  FREE(dims1);
+  FREE(incr1);
+  return 0;
+
+ ERR:
+  FREE(dims);
+  FREE(incr);
+  FREE(dims1);
+  FREE(incr1);
+  return -1;
+}
