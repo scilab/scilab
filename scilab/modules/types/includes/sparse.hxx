@@ -483,11 +483,12 @@ struct TYPES_IMPEXP SparseBool : GenericType
     bool reshape(int* _piNewDims, int _iNewDims);
     bool reshape(int _iNewRows, int _iNewCols);
 
-    bool insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType CONST* _poSource, bool _bAsVector);
+    SparseBool* insert(typed_list* _pArgs, InternalType* _pSource);
+    SparseBool* insert(typed_list* _pArgs, SparseBool* _pSource);
 
     bool append(int _iRows, int _iCols, SparseBool CONST* _poSource);
 
-    static SparseBool* insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType CONST* _poSource, bool _bAsVector);
+    static InternalType* insertNew(typed_list* _pArgs, InternalType* _pSource);
     SparseBool* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) CONST;
     InternalType* extract(typed_list* _pArgs);
 

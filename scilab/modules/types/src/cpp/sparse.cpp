@@ -387,7 +387,7 @@ void Sparse::create(int rows, int cols, Double CONST& src, DestIter o, std::size
 
 void Sparse::fill(Double& dest, int r, int c) CONST
 {
-    Sparse& cthis(const_cast<Sparse&>(*this));
+    Sparse & cthis(const_cast<Sparse&>(*this));
     if (isComplex())
     {
         mycopy_n(makeMatrixIterator<std::complex<double> >(*matrixCplx, RowWiseFullIterator(cthis.getRows(), cthis.getCols())), cthis.getSize()
@@ -653,7 +653,7 @@ bool Sparse::resize(int _iNewRows, int _iNewCols)
 bool Sparse::operator==(const InternalType& it) CONST
 {
     Sparse* otherSparse = const_cast<Sparse*>(dynamic_cast<Sparse const*>(&it));/* types::GenericType is not const-correct :( */
-    Sparse& cthis (const_cast<Sparse&>(*this));
+    Sparse & cthis (const_cast<Sparse&>(*this));
 
     if (otherSparse == NULL)
     {
@@ -858,9 +858,10 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
         if (getRows() == 1 || getCols() == 1)
         {
             //vector or scalar
-            bNeedToResize = true;
             if (getSize() < piMaxDim[0])
             {
+                bNeedToResize = true;
+
                 //need to enlarge sparse dimensions
                 if (getCols() == 1 || getSize() == 0)
                 {
@@ -948,29 +949,35 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
     else
     {
         double* pIdxRow = pArg[0]->getAs<Double>()->get();
+        int iRowSize    = pArg[0]->getAs<Double>()->getSize();
         double* pIdxCol = pArg[1]->getAs<Double>()->get();
+        int iColSize    = pArg[1]->getAs<Double>()->getSize();
+
         for (int i = 0 ; i < iSeqCount ; i++)
         {
             if (pSource->isScalar())
             {
                 if (pSource->isComplex())
                 {
-                    set((int)pIdxRow[i % 2] - 1, (int)pIdxCol[i / 2] - 1, std::complex<double>(pSource->get(0), pSource->getImg(0)));
+                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, std::complex<double>(pSource->get(0), pSource->getImg(0)));
                 }
                 else
                 {
-                    set((int)pIdxRow[i % 2] - 1, (int)pIdxCol[i / 2] - 1, pSource->get(0));
+                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, pSource->get(0));
                 }
             }
             else
             {
+                int iRowOrig = i % pSource->getRows();
+                int iColOrig = i / pSource->getRows();
+
                 if (pSource->isComplex())
                 {
-                    set((int)pIdxRow[i % 2] - 1, (int)pIdxCol[i / 2] - 1, std::complex<double>(pSource->get(i), pSource->getImg(i)));
+                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, std::complex<double>(pSource->get(iRowOrig, iColOrig), pSource->getImg(iRowOrig, iColOrig)));
                 }
                 else
                 {
-                    set((int)pIdxRow[i % 2] - 1, (int)pIdxCol[i / 2] - 1, pSource->get(i));
+                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, pSource->get(iRowOrig, iColOrig));
                 }
             }
         }
@@ -1069,7 +1076,6 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
     if (iDims == 1)
     {
         double* pIdx = pArg[0]->getAs<Double>()->get();
-        int idx = 0;
         for (int i = 0 ; i < iSeqCount ; i++)
         {
             int iRow = static_cast<int>(pIdx[i] - 1) % getRows();
@@ -1088,8 +1094,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
             }
             else
             {
-                int iRowOrig = idx % _pSource->getRows();
-                int iColOrig = idx / _pSource->getRows();
+                int iRowOrig = i % _pSource->getRows();
+                int iColOrig = i / _pSource->getRows();
                 if (_pSource->isComplex())
                 {
                     set(iRow, iCol, _pSource->getImg(iRowOrig, iColOrig));
@@ -1099,41 +1105,41 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
                     set(iRow, iCol, _pSource->get(iRowOrig, iColOrig));
                 }
             }
-            idx++;
         }
     }
     else
     {
         double* pIdxRow = pArg[0]->getAs<Double>()->get();
+        int iRowSize    = pArg[0]->getAs<Double>()->getSize();
         double* pIdxCol = pArg[1]->getAs<Double>()->get();
-        int idx = 0;
+        int iColSize    = pArg[1]->getAs<Double>()->getSize();
+
         for (int i = 0 ; i < iSeqCount ; i++)
         {
             if (_pSource->isScalar())
             {
                 if (_pSource->isComplex())
                 {
-                    set((int)pIdxRow[i % 2] - 1, (int)pIdxCol[i / 2] - 1, _pSource->getImg(0, 0));
+                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->getImg(0, 0));
                 }
                 else
                 {
-                    set((int)pIdxRow[i % 2] - 1, (int)pIdxCol[i / 2] - 1, _pSource->get(0, 0));
+                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->get(0, 0));
                 }
             }
             else
             {
-                int iRowOrig = idx % _pSource->getRows();
-                int iColOrig = idx / _pSource->getRows();
+                int iRowOrig = i % _pSource->getRows();
+                int iColOrig = i / _pSource->getRows();
                 if (_pSource->isComplex())
                 {
-                    set((int)pIdxRow[i % 2] - 1, (int)pIdxCol[i / 2] - 1, _pSource->getImg(iRowOrig, iColOrig));
+                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->getImg(iRowOrig, iColOrig));
                 }
                 else
                 {
-                    set((int)pIdxRow[i % 2] - 1, (int)pIdxCol[i / 2] - 1, _pSource->get(iRowOrig, iColOrig));
+                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->get(iRowOrig, iColOrig));
                 }
             }
-            idx++;
         }
     }
 
@@ -1307,7 +1313,7 @@ Sparse* Sparse::extract(int nbCoords, int CONST* coords, int CONST* maxCoords, i
     }
 
     bool const cplx(isComplex());
-    Sparse* pSp (0);
+    Sparse * pSp (0);
     if (asVector)
     {
         pSp = (getRows() == 1) ?  new Sparse(1, resSize[0], cplx) : new Sparse(resSize[0], 1, cplx);
@@ -1877,65 +1883,256 @@ bool SparseBool::resize(int _iNewRows, int _iNewCols)
     return true;
 }
 
-bool SparseBool::insert(int nbCoords, int CONST* coords, int CONST * maxCoords, GenericType CONST* src, bool asVector)
+SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
 {
-    int iNewRows = Max(maxCoords[0], getRows());
-    int iNewCols = Max(maxCoords[1], getCols());
-    int iPos     = 0;
-    int row      = 0;
-    int col      = 0;
-    bool res(false);
-    // invalid index < 1
-    if (*std::min_element(coords, coords + (asVector ? 1 : 2)* nbCoords) < 1)
+    bool bNeedToResize  = false;
+    int iDims           = (int)_pArgs->size();
+    if (iDims > 2)
     {
-        return false;
+        //sparse are only in 2 dims
+        return NULL;
     }
-    switch (src->getType())
+
+    typed_list pArg;
+
+    int piMaxDim[2];
+    int piCountDim[2];
+
+    //on case of resize
+    int iNewRows    = 0;
+    int iNewCols    = 0;
+
+    //evaluate each argument and replace by appropriate value and compute the count of combinations
+    int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    if (iSeqCount == 0)
     {
-        case InternalType::RealBool :
+        return this;
+    }
+
+    if (iDims < 2)
+    {
+        //see as vector
+        if (getRows() == 1 || getCols() == 1)
         {
-            res = false;
-            if ( asVector )
+            //vector or scalar
+            if (getSize() < piMaxDim[0])
             {
-                mycopy_n(makeMatrixIterator<bool>(*src->getAs<Bool>(), RowWiseFullIterator(src->getRows(), src->getCols()))
-                         , nbCoords
-                         , makeMatrixIterator<bool>(*matrixBool,  Coords<true>(coords, getRows())));
+                bNeedToResize = true;
+
+                //need to enlarge sparse dimensions
+                if (getCols() == 1 || getSize() == 0)
+                {
+                    //column vector
+                    iNewRows    = piMaxDim[0];
+                    iNewCols    = 1;
+                }
+                else if (getRows() == 1)
+                {
+                    //row vector
+                    iNewRows    = 1;
+                    iNewCols    = piMaxDim[0];
+                }
+            }
+        }
+        else if (getSize() < piMaxDim[0])
+        {
+            //out of range
+            return NULL;
+        }
+    }
+    else
+    {
+        if (piMaxDim[0] > getRows() || piMaxDim[1] > getCols())
+        {
+            bNeedToResize = true;
+            iNewRows = Max(getRows(), piMaxDim[0]);
+            iNewCols = Max(getCols(), piMaxDim[1]);
+        }
+    }
+
+    //check number of insertion
+    if (_pSource->isScalar() == false && _pSource->getSize() != iSeqCount)
+    {
+        return NULL;
+    }
+
+    //now you are sure to be able to insert values
+    if (bNeedToResize)
+    {
+        if (resize(iNewRows, iNewCols) == false)
+        {
+            return NULL;
+        }
+    }
+
+    if (iDims == 1)
+    {
+        double* pIdx = pArg[0]->getAs<Double>()->get();
+        for (int i = 0 ; i < iSeqCount ; i++)
+        {
+            int iRow = static_cast<int>(pIdx[i] - 1) % getRows();
+            int iCol = static_cast<int>(pIdx[i] - 1) / getRows();
+
+            if (_pSource->isScalar())
+            {
+                set(iRow, iCol, _pSource->get(0, 0));
             }
             else
             {
-                mycopy_n(makeMatrixIterator<bool>(*src->getAs<Bool>(), RowWiseFullIterator(src->getRows(), src->getCols()))
-                         , nbCoords
-                         , makeMatrixIterator<bool>(*matrixBool,  Coords<false>(coords)));
+                int iRowOrig = i % _pSource->getRows();
+                int iColOrig = i / _pSource->getRows();
+                set(iRow, iCol, _pSource->get(iRowOrig, iColOrig));
             }
-            res = true;
-            finalize();
-            break;
         }
-        case InternalType::RealSparseBool :
+    }
+    else
+    {
+        double* pIdxRow = pArg[0]->getAs<Double>()->get();
+        int iRowSize    = pArg[0]->getAs<Double>()->getSize();
+        double* pIdxCol = pArg[1]->getAs<Double>()->get();
+        int iColSize    = pArg[1]->getAs<Double>()->getSize();
+
+        for (int i = 0 ; i < iSeqCount ; i++)
         {
-            res = false;
-            if ( asVector )
+            if (_pSource->isScalar())
             {
-                mycopy_n(makeMatrixIterator<bool>(*src->getAs<SparseBool>(), RowWiseFullIterator(src->getRows(), src->getCols()))
-                         , nbCoords
-                         , makeMatrixIterator<bool>(*matrixBool,  Coords<true>(coords, getRows())));
+                set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->get(0, 0));
             }
             else
             {
-                mycopy_n(makeMatrixIterator<bool>(*src->getAs<SparseBool>(), RowWiseFullIterator(src->getRows(), src->getCols()))
-                         , nbCoords
-                         , makeMatrixIterator<bool>(*matrixBool,  Coords<false>(coords)));
+                int iRowOrig = i % _pSource->getRows();
+                int iColOrig = i / _pSource->getRows();
+                set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->get(iRowOrig, iColOrig));
             }
-            res = true;
-            finalize();
-            break;
-        }
-        default :
-        {
-            res = false;
         }
     }
-    return res;
+
+    return this;
+}
+
+SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
+{
+    bool bNeedToResize  = false;
+    int iDims           = (int)_pArgs->size();
+    if (iDims > 2)
+    {
+        //sparse are only in 2 dims
+        return NULL;
+    }
+
+    typed_list pArg;
+
+    int piMaxDim[2];
+    int piCountDim[2];
+
+    //on case of resize
+    int iNewRows    = 0;
+    int iNewCols    = 0;
+    Bool* pSource = _pSource->getAs<Bool>();
+
+    //evaluate each argument and replace by appropriate value and compute the count of combinations
+    int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    if (iSeqCount == 0)
+    {
+        return this;
+    }
+
+    if (iDims < 2)
+    {
+        //see as vector
+        if (getRows() == 1 || getCols() == 1)
+        {
+            //vector or scalar
+            bNeedToResize = true;
+            if (getSize() < piMaxDim[0])
+            {
+                //need to enlarge sparse dimensions
+                if (getCols() == 1 || getSize() == 0)
+                {
+                    //column vector
+                    iNewRows    = piMaxDim[0];
+                    iNewCols    = 1;
+                }
+                else if (getRows() == 1)
+                {
+                    //row vector
+                    iNewRows    = 1;
+                    iNewCols    = piMaxDim[0];
+                }
+            }
+        }
+        else if (getSize() < piMaxDim[0])
+        {
+            //out of range
+            return NULL;
+        }
+    }
+    else
+    {
+        if (piMaxDim[0] > getRows() || piMaxDim[1] > getCols())
+        {
+            bNeedToResize = true;
+            iNewRows = Max(getRows(), piMaxDim[0]);
+            iNewCols = Max(getCols(), piMaxDim[1]);
+        }
+    }
+
+    //check number of insertion
+    if (pSource->isScalar() == false && pSource->getSize() != iSeqCount)
+    {
+        return NULL;
+    }
+
+    //now you are sure to be able to insert values
+    if (bNeedToResize)
+    {
+        if (resize(iNewRows, iNewCols) == false)
+        {
+            return NULL;
+        }
+    }
+
+    if (iDims == 1)
+    {
+        double* pIdx = pArg[0]->getAs<Double>()->get();
+        for (int i = 0 ; i < iSeqCount ; i++)
+        {
+            int iRow = static_cast<int>(pIdx[i] - 1) % getRows();
+            int iCol = static_cast<int>(pIdx[i] - 1) / getRows();
+            if (pSource->isScalar())
+            {
+                set(iRow, iCol, pSource->get(0));
+            }
+            else
+            {
+                set(iRow, iCol, pSource->get(i));
+            }
+        }
+    }
+    else
+    {
+        double* pIdxRow = pArg[0]->getAs<Double>()->get();
+        int iRowSize    = pArg[0]->getAs<Double>()->getSize();
+        double* pIdxCol = pArg[1]->getAs<Double>()->get();
+        int iColSize    = pArg[1]->getAs<Double>()->getSize();
+
+        for (int i = 0 ; i < iSeqCount ; i++)
+        {
+            if (pSource->isScalar())
+            {
+                set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, pSource->get(0));
+            }
+            else
+            {
+                int iRowOrig = i % pSource->getRows();
+                int iColOrig = i / pSource->getRows();
+
+                set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, pSource->get(iRowOrig, iColOrig));
+            }
+        }
+    }
+
+    return this;
 }
 
 bool SparseBool::append(int r, int c, SparseBool CONST* src)
@@ -1945,30 +2142,111 @@ bool SparseBool::append(int r, int c, SparseBool CONST* src)
     return true;
 }
 
-SparseBool* SparseBool::insert_new(int nbCoords, int CONST* coords, int CONST* maxCoords, GenericType CONST* src, bool asVector)
+InternalType* SparseBool::insertNew(typed_list* _pArgs, InternalType* _pSource)
 {
-    SparseBool* pSp;
-    if (asVector)
+    typed_list pArg;
+    InternalType *pOut  = NULL;
+    SparseBool* pSource = _pSource->getAs<SparseBool>();
+
+    int iDims           = (int)_pArgs->size();
+    int* piMaxDim       = new int[iDims];
+    int* piCountDim     = new int[iDims];
+    bool bUndefine      = false;
+
+    //evaluate each argument and replace by appropriate value and compute the count of combinations
+    int iSeqCount = checkIndexesArguments(NULL, _pArgs, &pArg, piMaxDim, piCountDim);
+    if (iSeqCount == 0)
     {
-        if (src->getCols() == 1)
+        return createEmptyDouble();
+    }
+
+    if (iSeqCount < 0)
+    {
+        iSeqCount = -iSeqCount;
+        bUndefine = true;
+    }
+
+    if (bUndefine)
+    {
+        //manage : and $ in creation by insertion
+        int iSource         = 0;
+        int *piSourceDims   = pSource->getDimsArray();
+
+        for (int i = 0 ; i < iDims ; i++)
         {
-            pSp = new SparseBool(maxCoords[0], 1);
+            if (pArg[i] == NULL)
+            {
+                //undefine value
+                if (pSource->isScalar())
+                {
+                    piMaxDim[i]     = 1;
+                    piCountDim[i]   = 1;
+                }
+                else
+                {
+                    piMaxDim[i]     = piSourceDims[iSource];
+                    piCountDim[i]   = piSourceDims[iSource];
+                }
+                iSource++;
+                //replace pArg value by the new one
+                pArg[i] = createDoubleVector(piMaxDim[i]);
+            }
+            //else
+            //{
+            //    piMaxDim[i] = piCountDim[i];
+            //}
+        }
+    }
+
+    //remove last dimension at size 1
+    //remove last dimension if are == 1
+    for (int i = (iDims - 1) ; i >= 2 ; i--)
+    {
+        if (piMaxDim[i] == 1)
+        {
+            iDims--;
+            pArg.pop_back();
         }
         else
         {
-            pSp = (src->getRows() == 1) ? new SparseBool(1, maxCoords[0]) : 0;
+            break;
+        }
+    }
+
+    if (checkArgValidity(pArg) == false)
+    {
+        //contain bad index, like <= 0, ...
+        return NULL;
+    }
+
+    if (iDims == 1)
+    {
+        if (pSource->getCols() == 1)
+        {
+            pOut = new SparseBool(piCountDim[0], 1);
+        }
+        else
+        {
+            //rows == 1
+            pOut = new SparseBool(1, piCountDim[0]);
         }
     }
     else
     {
-        pSp =  new SparseBool(maxCoords[0], maxCoords[1]);
+        pOut = new SparseBool(piMaxDim[0], piMaxDim[1]);
     }
-    if ( pSp && !pSp->insert(nbCoords, coords, maxCoords, src, asVector) )
+
+    //fill with null item
+    SparseBool* pSpOut = pOut->getAs<SparseBool>();
+
+    //insert values in new matrix
+    InternalType* pOut2 = pSpOut->insert(&pArg, pSource);
+    if (pOut != pOut2)
     {
-        delete pSp;
-        pSp = 0;
+        delete pOut;
     }
-    return pSp;
+
+    return pOut2;
 }
 
 SparseBool* SparseBool::extract(int nbCoords, int CONST* coords, int CONST* maxCoords, int CONST* resSize, bool asVector) CONST
@@ -1980,7 +2258,7 @@ SparseBool* SparseBool::extract(int nbCoords, int CONST* coords, int CONST* maxC
         return 0;
     }
 
-    SparseBool* pSp (0);
+    SparseBool * pSp (0);
     if (asVector)
     {
         pSp = (getRows() == 1) ?  new SparseBool(1, resSize[0]) : new SparseBool(resSize[0], 1);
