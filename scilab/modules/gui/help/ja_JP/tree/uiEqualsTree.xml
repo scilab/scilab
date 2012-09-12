@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="uiEqualsTree">
+    <refnamediv>
+        <refname>uiEqualsTree</refname>
+        <refpurpose>2つのツリーを比較 </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>isEqual = uiEqualsTree(tree1, tree2)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>入力パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>tree1, tree2</term>
+                <listitem>
+                    <para>ツリー型</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>出力パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>isEqual</term>
+                <listitem>
+                    <para>論理値, ツリーは等しいか否かを示します</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            2つの構造を比較します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// ツリーを作成
+root = uiCreateNode('Root', 'path\rootImage.jpg', 'rootCallback')
+node1 = uiCreateNode('Node 1', 'default', 'node1Callback')
+node2 = uiCreateNode('Node 2', 'default', 'node2Callback')
+myTree1 = uiCreateTree(root, node1, node2)
+myTree2 = uiCreateTree(root, node1, node2)
+
+// myTree1 と myTree2を比較
+isEqual = uiEqualsTree(myTree1, myTree2)
+
+// will return 'isEqual = T'
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uiCreateNode">uiCreateNode</link>
+            </member>
+            <member>
+                <link linkend="uiCreateTree">uiCreateTree</link>
+            </member>
+            <member>
+                <link linkend="uiDisplayTree">uiDisplayTree</link>
+            </member>
+            <member>
+                <link linkend="uiDumpTree">uiDumpTree</link>
+            </member>
+            <member>
+                <link linkend="uiInsertNode">uiInsertNode</link>
+            </member>
+            <member>
+                <link linkend="uiDeleteNode">uiDeleteNode</link>
+            </member>
+            <member>
+                <link linkend="uiConcatTree">uiConcatTree</link>
+            </member>
+            <member>
+                <link linkend="uiFindNode">uiFindNode</link>
+            </member>
+            <member>
+                <link linkend="uiGetParentNode">uiGetParentNode</link>
+            </member>
+            <member>
+                <link linkend="uiGetChildrenNode">uiGetChildrenNode</link>
+            </member>
+            <member>
+                <link linkend="uiGetNodePosition">uiGetNodePosition</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

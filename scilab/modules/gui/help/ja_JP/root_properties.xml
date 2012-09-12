@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Vincent Couvert
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="root_properties">
+    <refnamediv>
+        <refname>root_properties</refname>
+        <refpurpose>ルートオブジェクトプロパティの説明.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ルートオブジェクトはコンピュータ画面プロパティを取得する際に
+            使用される仮想オブジェクトです.
+            このプロパティにアクセスするには最初の引数に<emphasis>0</emphasis>を
+            指定して<literal>get</literal>関数をコールしてください.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>ルートプロパティ</term>
+                <listitem>
+                    <variablelist>
+                        <varlistentry>
+                            <term>screensize_px: </term>
+                            <listitem>
+                                <para>画面の大きさ(単位:ピクセル)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>screensize_pt: </term>
+                            <listitem>
+                                <para>画面の大きさ(単位:ポイント)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>screensize_mm: </term>
+                            <listitem>
+                                <para>画面の大きさ(単位:ミリメートル)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>screensize_cm: </term>
+                            <listitem>
+                                <para>画面の大きさ(単位:センチメートル)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>screensize_in: </term>
+                            <listitem>
+                                <para>画面の大きさ(単位:インチ)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>screensize_norm: </term>
+                            <listitem>
+                                <para>正規化された画面の大きさ</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>screendepth: </term>
+                            <listitem>
+                                <para>色をエンコードする際に使用される
+                                    ビット数.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+get(0, "screensize_px")
+get(0, "screendepth")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="get">get</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

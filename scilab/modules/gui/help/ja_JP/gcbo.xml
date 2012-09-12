@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="gcbo" xml:lang="ja">
+    <refnamediv>
+        <refname>gcbo</refname>
+        <refpurpose>コールバックを実行中のオブジェクトのハンドル</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            gcbo
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>gcbo</literal> はコールバック実行時に自動的に
+            作成されるScilab変数です.
+            この変数は
+            <link linkend="getcallbackobject">getcallbackobject</link>により
+            初期化されます.
+        </para>
+        <para>
+            コールバックが実行中でない場合,Scilab環境に
+            <literal>gcbo</literal> は存在しません.
+        </para>
+        <para>
+            複数のオブジェクト用に単一のコールバックを作成する際,
+            ユーザのアクションを受信したオブジェクトを知るために,
+            コールバック関数で<literal>gcbo</literal>を使用できます.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getcallbackobject">getcallbackobject</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

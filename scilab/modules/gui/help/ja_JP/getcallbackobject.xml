@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getcallbackobject" xml:lang="ja">
+    <refnamediv>
+        <refname>getcallbackobject</refname>
+        <refpurpose>コールバックを実行中のオブジェクトのハンドルを返す.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            h = getcallbackobject(objectUID)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>ハンドル: コールバックを実行中のオブジェクトのハンドル.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>objectUID</term>
+                <listitem>
+                    <para>文字列: JavaオブジェクトのUID.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>getcallbackobject</literal> は
+            コールバック実行中に
+            <link linkend="gcbo">gcbo</link>という名前のScilab変数を
+            自動的に作成するために使用されます.
+        </para>
+        <para>
+            <literal>getcallbackobject</literal> は,
+            現在実行されているコールバックがない場合に [] を返します.
+        </para>
+        <para>
+            <literal>getcallbackobject</literal> は
+            Javaコールバック以外では直接使用するべきではありません.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gcbo">gcbo</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

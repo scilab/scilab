@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="figure">
+    <refnamediv>
+        <refname>figure</refname>
+        <refpurpose>図を作成する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            f = figure(num);
+            f = figure("PropertyName1", Propertyvalue1, ..., ..., "PropertyNameN", PropertyvalueN); 
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            このルーチンは図を作成します. IDが指定された場合,
+            このIDに対応する図が作成されます.
+            それ以外の場合,
+            ウインドウは最初のフリーなID,すなわちウインドウで使用されていない
+            最小の番号で作成されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>num</term>
+                <listitem>
+                    <para>作成するウインドウのID. 
+                        指定されない場合, 最初のフリーなIDが使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PropertyName{1, ..., N}</term>
+                <listitem>
+                    <para>
+                        設定するプロパティ名の文字列,
+                        以下に一覧を示すプロパティ名のどれか.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PropertyValue{1, ..., N}</term>
+                <listitem>
+                    <para>
+                        対応するプロパティに指定するscilabオブジェクトの値.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>新規に作成されたウインドウのハンドル.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>プロパティ</title>
+        <variablelist>
+            <varlistentry>
+                <term>BackgroundColor</term>
+                <listitem>
+                    <para>
+                        図の背景色を表す実数ベクトル [1,3] または文字列. 
+                        色は赤, 緑および青の値で指定します.
+                        これらの値は[0,1]の範囲の実数です.
+                        色は実数ベクトル,すなわち[R,G,B]または
+                        "|"で区切られた文字列,すなわち"R|G|B"
+                        で指定できます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Figure_name</term>
+                <listitem>
+                    <para>文字列, 図の表題を設定できます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ForegroundColor</term>
+                <listitem>
+                    <para>
+                        図の表面色を表す実数ベクトル [1,3] または文字列. 
+                        色は赤, 緑および青の値で指定します.
+                        これらの値は[0,1]の範囲の実数です.
+                        色は実数ベクトル,すなわち[R,G,B]または
+                        "|"で区切られた文字列,すなわち"R|G|B"
+                        で指定できます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Position</term>
+                <listitem>
+                    <para>
+                        これにより図の外観を制御できます.
+                        [1,4]の実数ベクトルで, [x y width height] 
+                        各文字は左上隅の位置x,左上隅の位置y,
+                        仮想グラフィックウインドウの幅と高さ
+                        (uicontrolsおよびグラフィックを有する図の部分)
+                        を意味します.
+                        
+                        <link linkend="figure_properties">図のプロパティ</link>
+                        のヘルプページで説明された
+                        <emphasis role="bold">axes_size</emphasis>プロパティ
+                        を参照してください.
+                        "x|y|width|height"のように
+                        フィールドを"|"で区切った文字列によりこのプロパティを
+                        指定することもできます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Tag</term>
+                <listitem>
+                    <para>
+                        文字列で,このプロパティは一般に図を特定する際に使用されます.
+                        これにより,"名前"を付けることができるようになります.
+                        主にfindobj()と組み合わせて使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Userdata</term>
+                <listitem>
+                    <para>
+                        図に何らかのScilabオブジェクトを関連付ける際に使用できます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// figure_id==3の図を作成します
+h=figure(3);
+// 図3にテキストuicontrolを追加します
+uicontrol(h, "style", "text", ...
+             "string", "This is a figure", ...
+             "position", [50 70 100 100], ...
+             "fontsize",15);
+
+// figure_id==1の図を作成します
+figure();
+// 図1のテキストuicontrolを追加します
+uicontrol("style", "text", ...
+          "string", "Another figure", ...
+          "position", [50 70 100 100], ...
+          "fontsize", 15);
+
+// カレントの図(すなわち,図1)を閉じる
+close();
+// 図3を閉じる
+close(h);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="close">close</link>
+            </member>
+            <member>
+                <link linkend="gcf">gcf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

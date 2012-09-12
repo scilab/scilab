@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="clipboard">
+    <refnamediv>
+        <refname>clipboard</refname>
+        <refpurpose>システムのクリップボードに(またはから)コピー/貼り付ける.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            clipboard("copy",data)
+            str=clipboard("paste")
+            clipboard("do","paste")
+            clipboard("do","copy")
+            clipboard("do","empty")
+            clipboard(winnum,"EMF")
+            clipboard(winnum,"DIB")
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>data</term>
+                <listitem>
+                    <para>クリップボードのコンテンツとして設定する
+                        Scilab変数またはデータ.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>Scilab文字列として返されたクリップボードの
+                        コンテンツ.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>winnum</term>
+                <listitem>
+                    <para>クリップボードのコンテンツとして設定する
+                        グラフィックウインドウの番号.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>clipboard("copy",data)</literal> はクリップボードの
+            コンテンツをdataに設定します.dataが文字列配列でない場合,
+            clipboardは<literal>sci2exp</literal>によりこれを文字列に変換します.
+        </para>
+        <para>
+            <literal>str = clipboard("paste")</literal> は現在の
+            クリップボードのコンテンツを文字列として返します.
+            現在のクリップボードの内容が文字列に変換できない場合,
+            空の文字列("")を返します.
+        </para>
+        <para>
+            <literal>clipboard("do","paste")</literal>,
+            <literal>clipboard("do","copy")</literal>, <literal>clipboard("do","empty")</literal>はそれぞれ貼付け,コピーまたはクリップボードを
+            空にする処理を行います.
+        </para>
+        <para>
+            <literal>clipboard(winnum,"EMF")</literal> は,
+            ウインドウ番号で指定されたグラフィックウインドウを
+            EMF形式でクリップボードにコピーします.
+        </para>
+        <para>
+            <literal>clipboard(winnum,"DIB")</literal> は,
+            ウインドウ番号で指定されたグラフィックウインドウを
+            DIB形式でクリップボードにコピーします.
+        </para>
+        <para>
+            <literal>clipboard</literal> 関数はScilabがウインドウモードで
+            動作している場合のみ使用可能であることに注意してください.
+        </para>
+    </refsection>
+</refentry>

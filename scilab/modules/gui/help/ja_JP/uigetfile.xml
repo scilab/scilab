@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uigetfile" xml:lang="ja">
+    <refnamediv>
+        <refname>uigetfile</refname>
+        <refpurpose>
+            ファイル,名前,パス,フィルタ添字取得用のダイアログウインドウ
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[FileName[,PathName[,FilterIndex]]]=uigetfile([file_mask[,dir[,boxTitle[,multipleSelection]]]])
+            PathFileName=uigetfile([file_mask[,dir[,boxTitle[,multiple]]]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>入力パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>file_mask</term>
+                <listitem>
+                    <para>
+                        ファイル選択時に使用されるファイルマスクを指定する
+                        文字列行列.
+                        <literal>file_mask</literal> はUnix表記で指定します.
+                        デフォルト値は '*'です.
+                    </para>
+                    <para>
+                        ["*.x*","X
+                        files";"*.bin","BIN files"]のように,
+                        マスクに説明を追加することができます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dir</term>
+                <listitem>
+                    <para>
+                        ファイル検索に使用される初期ディレクトリを
+                        指定する文字列.
+                        デフォルトで uigetfile は
+                        以前に選択されたディレクトリを使用します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>boxTitle</term>
+                <listitem>
+                    <para>
+                        uigetfileウインドウの表題を指定する文字列.
+                        デフォルトでuigetfileの表題は'uigetfile'です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>multipleSelection</term>
+                <listitem>
+                    <para>
+                        論理値で,'%f'(false)を指定した場合に一つのファイルのみ,
+                        '%t' (true)を指定した場合に複数のファイルを
+                        読み込むことができます.
+                        デフォルトで, uigetfileの複数ファイル選択は
+                        有効ではありません.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>出力パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>FileName</term>
+                <listitem>
+                    <para>
+                        ユーザが "Ok" と答えた場合は,
+                        ユーザが選択したファイルを指定する文字列の行列
+                        (パス + ファイル名),
+                        ユーザが "Cancel"した場合は " "文字列を.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PathName</term>
+                <listitem>
+                    <para>
+                        ユーザーが "Ok" と答えた場合はユーザが選択したファイル,
+                        ユーザが"Cancel"と答えた場合は" "文字列.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>FilterIndex</term>
+                <listitem>
+                    <para>
+                        ユーザーが "Ok" と答えた場合はリストボックスで
+                        ユーザが選択したファイル添字,
+                        ユーザが"Cancel"と答えた場合は" "文字列.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ファイル選択用のダイアログを作成します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>コメント</title>
+        <para>
+            Windowsでは, uigetfileで使用されるjava要素は
+            .zipアーカイブもブラウズするため,
+            大きな.zipファイルの場合は非常に遅くなります.
+        </para>
+        <para>この機能を無効にするには以下のようにします:</para>
+        <para>if getos() == 'Windows' then unix("REGSVR32 /u %WINDIR%\System32\zipfldr.dll")
+            ;end
+        </para>
+        <para>再度有効にするには以下のようにします,</para>
+        <para>if getos() == 'Windows' then unix("REGSVR32 %WINDIR%\System32\zipfldr.dll")
+            ;end
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example">uigetfile(["*.bin";"*.sce";"*.cos*"])
+            uigetfile(["*.sci";"*.bin"],"SCI/modules/gui/macros/")
+            uigetfile(["*.sc*";"*.bin"],"SCI/modules/gui/macros/")
+            uigetfile(["*.x*","X files";"*.bin","BIN files"],"SCI/modules/gui/macros/")
+            uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name", %t); 
+            uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name", %f); 
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uiputfile">uiputfile</link>
+            </member>
+            <member>
+                <link linkend="uigetdir">uigetdir</link>
+            </member>
+            <member>
+                <link linkend="x_dialog">x_dialog</link>
+            </member>
+            <member>
+                <link linkend="file">file</link>
+            </member>
+            <member>
+                <link linkend="read">read</link>
+            </member>
+            <member>
+                <link linkend="write">write</link>
+            </member>
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
