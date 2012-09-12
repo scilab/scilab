@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -22,31 +22,76 @@
 
 using namespace types;
 
+static void clearAlloc(bool _bAllocL, InternalType* _pIL, bool _bAllocR, InternalType* _pIR);
+
 InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     GenericType::RealType TypeL = _pLeftOperand->getType();
     GenericType::RealType TypeR = _pRightOperand->getType();
+
+    InternalType* pIL = _pLeftOperand;
+    InternalType* pIR = _pRightOperand;
+    bool bAllocL = false;
+    bool bAllocR = false;
+
     InternalType *pResult = NULL;
 
     /*
     ** [] == ??
     */
-    if(TypeL == GenericType::RealDouble && _pLeftOperand->getAs<Double>()->getSize() == 0)
+    if(TypeL == GenericType::RealDouble && pIL->getAs<Double>()->getSize() == 0)
     {
         if(TypeR != InternalType::RealDouble)
         {
-            return (new Bool(false));
+            return new Bool(false);
         }
     }
 
     /*
     ** ?? == []
     */
-    if(TypeR == GenericType::RealDouble && _pRightOperand->getAs<Double>()->getSize() == 0)
+    if(TypeR == GenericType::RealDouble && pIR->getAs<Double>()->getSize() == 0)
     {
         if(TypeL != InternalType::RealDouble)
         {
-            return(new Bool(false));
+            return new Bool(false);
+        }
+    }
+
+    if(TypeL == GenericType::RealColon && TypeR == GenericType::RealColon)
+    {//: == :
+        return new Bool(true);
+    }
+
+    if(TypeL == GenericType::RealColon)
+    {// : == x
+        if(pIR->isGenericType())
+        {
+            //transform left operand in a identity matrix with same dimension of right operand
+            GenericType* pGT = pIR->getAs<GenericType>();
+            pIL = Double::Identity(pGT->getDims(), pGT->getDimsArray());;
+            TypeL = GenericType::RealDouble;
+            bAllocL = true;
+        }
+        else
+        {
+            return new Bool(false);
+        }
+    }
+
+    if(TypeR == GenericType::RealColon)
+    {// x == :
+        if(pIL->isGenericType())
+        {
+            //transform right operand in a identity matrix with same dimensions of left operand
+            GenericType* pGT = pIL->getAs<GenericType>();
+            pIR = Double::Identity(pGT->getDims(), pGT->getDimsArray());;
+            TypeR = GenericType::RealDouble;
+            bAllocR = true;
+        }
+        else
+        {
+            return new Bool(false);
         }
     }
 
@@ -55,19 +100,21 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
     {
-        Double *pL   = _pLeftOperand->getAs<Double>();
-        Double *pR   = _pRightOperand->getAs<Double>();
+        Double *pL   = pIL->getAs<Double>();
+        Double *pR   = pIR->getAs<Double>();
 
         if(pR->isEmpty() && pL->isEmpty())
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return new Bool(true);
         }
-        
+
         if(pL->isEmpty() || pR->isEmpty())
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return new Bool(false);
         }
-        
+
         if(pR->isScalar())
         {
             Bool* pB = new Bool(pL->getDims(), pL->getDimsArray());
@@ -76,9 +123,11 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 pB->getAs<Bool>()->set(i, pL->get(i) == dblRef);
             }
+
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return pB;
         }
-        
+
         if(pL->isScalar())
         {
             Bool* pB = new Bool(pR->getDims(), pR->getDimsArray());
@@ -88,12 +137,14 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 pB->getAs<Bool>()->set(i, dblRef == pR->get(i));
             }
 
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return pB;
         }
-        
+
 
         if(pL->getDims() != pR->getDims())
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return new Bool(false);
         }
 
@@ -104,6 +155,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         {
             if(piDimsL[i] != piDimsR[i])
             {
+                clearAlloc(bAllocL, pIL, bAllocR, pIR);
                 return new Bool(false);
             }
         }
@@ -114,6 +166,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             pB->set(i, pL->get(i) == pR->get(i));
         }
 
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pB;
     }
 
@@ -122,8 +175,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
     {
-        String *pL   = _pLeftOperand->getAs<String>();
-        String *pR   = _pRightOperand->getAs<String>();
+        String *pL   = pIL->getAs<String>();
+        String *pR   = pIR->getAs<String>();
 
         if(pL->isScalar())
         {
@@ -135,6 +188,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 pResult->getAs<Bool>()->set(i, wcscmp(pstL, pR->get(i)) == 0);
             }
 
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return pResult;
         }
 
@@ -148,6 +202,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 pResult->getAs<Bool>()->set(i, wcscmp(pL->get(i), pstR) == 0);
             }
 
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return pResult;
         }
 
@@ -156,6 +211,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
 
         if(iDims1 != iDims2)
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return new Bool(false);
         }
 
@@ -166,6 +222,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         {
             if(piDims1[i] != piDims2[i])
             {
+                clearAlloc(bAllocL, pIL, bAllocR, pIR);
                 return new Bool(false);
             }
         }
@@ -176,6 +233,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         {
             pResult->getAs<Bool>()->set(i, wcscmp(pL->get(i), pR->get(i)) == 0);
         }
+
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
     }
 
@@ -184,8 +243,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealBool && TypeR == GenericType::RealBool)
     {
-        Bool *pL   = _pLeftOperand->getAs<Bool>();
-        Bool *pR   = _pRightOperand->getAs<Bool>();
+        Bool *pL   = pIL->getAs<Bool>();
+        Bool *pR   = pIR->getAs<Bool>();
 
         if(pL->isScalar())
         {
@@ -196,9 +255,11 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 pResult->getAs<Bool>()->set(i, iL == pR->get(i));
             }
+
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return pResult;
         }
-        
+
         if(pR->isScalar())
         {
             pResult = new Bool(pL->getDims(), pL->getDimsArray());
@@ -208,15 +269,18 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 pResult->getAs<Bool>()->set(i, iR == pL->get(i));
             }
+
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return pResult;
         }
-        
-        
+
+
         int iDims1 = pL->getDims();
         int iDims2 = pR->getDims();
 
         if(iDims1 != iDims2)
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return new Bool(false);
         }
 
@@ -227,6 +291,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         {
             if(piDims1[i] != piDims2[i])
             {
+                clearAlloc(bAllocL, pIL, bAllocR, pIR);
                 return new Bool(false);
             }
         }
@@ -237,6 +302,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         {
             pResult->getAs<Bool>()->set(i, pL->get(i) == pR->get(i));
         }
+
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
     }
 
@@ -245,8 +312,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealPoly)
     {
-        Polynom *pL   = _pLeftOperand->getAs<Polynom>();
-        Polynom *pR   = _pRightOperand->getAs<Polynom>();
+        Polynom *pL   = pIL->getAs<Polynom>();
+        Polynom *pR   = pIR->getAs<Polynom>();
 
         if(pL->isScalar())
         {
@@ -257,6 +324,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 pResult->getAs<Bool>()->set(i, *pSL == *pR->get(i));
             }
+
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return pResult;
         }
 
@@ -269,11 +338,14 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 pResult->getAs<Bool>()->set(i, *pSR == *pL->get(i));
             }
+
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return pResult;
         }
 
         if(pL->getDims() != pR->getDims())
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return new Bool(false);
         }
 
@@ -284,6 +356,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         {
             if(piDims1[i] != piDims2[i])
             {
+                clearAlloc(bAllocL, pIL, bAllocR, pIR);
                 return new Bool(false);
             }
         }
@@ -294,6 +367,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         {
             pResult->getAs<Bool>()->set(i, *pL->get(i) == *pR->get(i));
         }
+
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
     }
 
@@ -302,16 +377,18 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealList && TypeR == GenericType::RealList)
     {
-        List* pLL = _pLeftOperand->getAs<List>();
-        List* pLR = _pRightOperand->getAs<List>();
+        List* pLL = pIL->getAs<List>();
+        List* pLR = pIR->getAs<List>();
 
         if(pLL->getSize() != pLR->getSize())
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return new Bool(false);
         }
 
         if(pLL->getSize() == 0 && pLR->getSize() == 0)
         {//list() == list() -> return true
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return new Bool(true);
         }
 
@@ -320,6 +397,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         {
             pB->set(i, *pLL->get(i) == *pLR->get(i));
         }
+
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pB;
     }
 
@@ -328,12 +407,13 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealCell && TypeR == GenericType::RealCell)
     {
-        Cell* pCL = _pLeftOperand->getAs<Cell>();
-        Cell* pCR = _pRightOperand->getAs<Cell>();
+        Cell* pCL = pIL->getAs<Cell>();
+        Cell* pCR = pIR->getAs<Cell>();
 
         /* check dimension*/
         if(pCL->getDims() != pCR->getDims())
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return new Bool(false);
         }
 
@@ -344,12 +424,14 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         {
             if(piDimsL[i] != piDimsR[i])
             {
+                clearAlloc(bAllocL, pIL, bAllocR, pIR);
                 return new Bool(false);
             }
         }
 
         if(pCL->getSize() == 0)
         {//{} == {} -> return true
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return new Bool(true);
         }
 
@@ -358,6 +440,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         {
             pB->set(i, *pCL->get(i) == *pCR->get(i));
         }
+
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pB;
     }
 
@@ -367,6 +451,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealString)
     {
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return new Bool(0);
     }
 
@@ -375,7 +460,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealString && TypeR == GenericType::RealDouble)
     {
-        return new Bool(0);;
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
+        return new Bool(0);
     }
 
     /*
@@ -383,15 +469,17 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealSparse && TypeR == GenericType::RealSparse)
     {
-        Sparse* pL = _pLeftOperand->getAs<Sparse>();
-        Sparse* pR = _pRightOperand->getAs<Sparse>();
+        Sparse* pL = pIL->getAs<Sparse>();
+        Sparse* pR = pIR->getAs<Sparse>();
 
         int iResult = EqualToSparseAndSparse(pL, pR, (GenericType**)&pResult);
         if(iResult)
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
 
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
     }
 
@@ -400,15 +488,17 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealSparse && TypeR == GenericType::RealDouble)
     {
-        Sparse* pL = _pLeftOperand->getAs<Sparse>();
-        Double* pR = _pRightOperand->getAs<Double>();
+        Sparse* pL = pIL->getAs<Sparse>();
+        Double* pR = pIR->getAs<Double>();
 
         int iResult = EqualToSparseAndDouble(pL, pR, (GenericType**)&pResult);
         if(iResult)
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
 
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
     }
 
@@ -417,15 +507,17 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealSparse)
     {
-        Double* pL = _pLeftOperand->getAs<Double>();
-        Sparse* pR = _pRightOperand->getAs<Sparse>();
+        Double* pL = pIL->getAs<Double>();
+        Sparse* pR = pIR->getAs<Sparse>();
 
         int iResult = EqualToDoubleAndSparse(pL, pR, (GenericType**)&pResult);
         if(iResult)
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
 
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
     }
 
@@ -434,15 +526,17 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealSparseBool && TypeR == GenericType::RealSparseBool)
     {
-        SparseBool* pL = _pLeftOperand->getAs<SparseBool>();
-        SparseBool* pR = _pRightOperand->getAs<SparseBool>();
+        SparseBool* pL = pIL->getAs<SparseBool>();
+        SparseBool* pR = pIR->getAs<SparseBool>();
 
         int iResult = EqualToSparseBoolAndSparseBool(pL, pR, (GenericType**)&pResult);
         if(iResult)
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
 
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
     }
 
@@ -451,15 +545,17 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealSparseBool && TypeR == GenericType::RealBool)
     {
-        SparseBool* pL = _pLeftOperand->getAs<SparseBool>();
-        Bool* pR = _pRightOperand->getAs<Bool>();
+        SparseBool* pL = pIL->getAs<SparseBool>();
+        Bool* pR = pIR->getAs<Bool>();
 
         int iResult = EqualToSparseBoolAndBool(pL, pR, (GenericType**)&pResult);
         if(iResult)
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
 
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
     }
 
@@ -468,15 +564,17 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealBool && TypeR == GenericType::RealSparseBool)
     {
-        Bool* pL = _pLeftOperand->getAs<Bool>();
-        SparseBool* pR = _pRightOperand->getAs<SparseBool>();
+        Bool* pL = pIL->getAs<Bool>();
+        SparseBool* pR = pIR->getAs<SparseBool>();
 
         int iResult = EqualToBoolAndSparseBool(pL, pR, (GenericType**)&pResult);
         if(iResult)
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
 
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
     }
 
@@ -484,24 +582,28 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     ** INT == INT
     */
 
-    if(_pLeftOperand->isInt() && _pRightOperand->isInt())
+    if(pIL->isInt() && pIR->isInt())
     {
-        if(_pLeftOperand->getType() != _pRightOperand->getType())
+        if(pIL->getType() != pIR->getType())
         {//call overload function to convert left or right or both to have comparable type
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             return NULL;
         }
 
-        int iResult = EqualToIntAndInt(_pLeftOperand, _pRightOperand, (GenericType**)&pResult);
+        int iResult = EqualToIntAndInt(pIL, pIR, (GenericType**)&pResult);
         if(iResult)
         {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
 
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
     }
     /*
     ** Default case : Return NULL will Call Overloading.
     */
+    clearAlloc(bAllocL, pIL, bAllocR, pIR);
     return NULL;
 }
 
@@ -749,4 +851,17 @@ int EqualToIntAndInt(T* _pL, T* _pR, GenericType** _pOut)
 
     *_pOut = pB;
     return 0;
+}
+
+static void clearAlloc(bool _bAllocL, InternalType* _pIL, bool _bAllocR, InternalType* _pIR)
+{
+    if(_bAllocL)
+    {
+        delete _pIL;
+    }
+
+    if(_bAllocR)
+    {
+        delete _pIR;
+    }
 }

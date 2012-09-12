@@ -54,11 +54,18 @@ namespace types
 
 	bool GenericType::isIdentity(void)
 	{
-		if(m_iRows == -1 && m_iCols == -1)
-		{
-			return true;
-		}
-		return false;
+        if(m_piDims)
+        {
+            for(int i = 0 ; i < getDims() ; i++)
+            {
+                if(m_piDims[i] != -1)
+                {
+                    return false;
+                }
+            }
+        }
+
+		return true;
 	}
 
     bool GenericType::hasAllIndexesOfRow(int _iRow, int* _piCoord, int _iCoordCount)

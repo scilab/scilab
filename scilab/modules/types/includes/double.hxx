@@ -40,6 +40,9 @@ namespace types
                         	        Double(int _iDims, int* _piDims, bool _bComplex = false);
 
         static Double*              Empty();
+        static Double*              Identity(int _iRows, int _iCols);
+        static Double*              Identity(int _iDims, int* _piDims);
+
 
         /*data management*/
         double*                     getReal() const;

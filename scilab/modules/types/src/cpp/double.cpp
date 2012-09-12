@@ -35,6 +35,44 @@ namespace types
         return new Double(0,0);
     }
 
+    Double* Double::Identity(int _iRows, int _iCols)
+    {
+        Double* pI = new Double(_iRows, _iCols);
+        pI->setZeros();
+        for(int i = 0 ; i < Min(_iRows, _iCols) ; i++)
+        {
+            pI->set(i, i, 1);
+        }
+        return pI;
+    }
+
+    Double* Double::Identity(int _iDims, int* _piDims)
+    {
+        Double* pI = new Double(_iDims, _piDims);
+        pI->setZeros();
+        int iMinDim = _piDims[0];
+        for(int i = 1 ; i < _iDims ; i++)
+        {
+            if(_piDims[i] < iMinDim)
+            {
+                iMinDim = _piDims[i];
+            }
+        }
+
+        for(int i = 0 ; i < iMinDim ; i++)
+        {
+            int* piIndex = new int[_iDims];
+            for(int j = 0 ; j < _iDims ; j++)
+            {
+                piIndex[j] = i;
+            }
+
+            int index = getIndexWithDims(piIndex, _piDims, _iDims);
+            pI->set(index, 1);
+        }
+        return pI;
+    }
+
     bool Double::isEmpty()
     {
         if(getDims() == 2 && getRows() == 0 && getCols() == 0)
