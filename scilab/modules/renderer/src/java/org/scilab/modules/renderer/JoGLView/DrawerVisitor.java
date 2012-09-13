@@ -77,6 +77,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.SwingUtilities;
+
 /**
  * @author Pierre Lando
  */
@@ -522,7 +524,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     if (style == 4) {
                         arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
-                                polyline.getLineThickness(), false, false, polyline.getLineColor(), true);
+                                               polyline.getLineThickness(), false, false, polyline.getLineColor(), true);
                     }
 
                     if (polyline.getMarkMode()) {
@@ -938,7 +940,17 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (object instanceof Figure && visitorMap.containsKey(id)) {
             visitorMap.remove(id);
             GraphicController.getController().unregister(this);
-            canvas.destroy();
+            if (SwingUtilities.isEventDispatchThread()) {
+                canvas.destroy();
+            } else {
+                try {
+                    SwingUtilities.invokeAndWait(new Runnable() {
+                            public void run() {
+                                canvas.destroy();
+                            }
+                        });
+                } catch (Exception e) { }
+            }
         } else {
             if (isImmediateDrawing(id)) {
                 canvas.redraw();
