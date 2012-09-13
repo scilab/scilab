@@ -29,7 +29,7 @@ int sci_xend(char * fname, unsigned long fname_len)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
 
-    char const* uid = ScilabView::getCurrentFigure();
+    char* uid = strdup(ScilabView::getCurrentFigure());
 
     if (uid)
     {
@@ -38,11 +38,12 @@ int sci_xend(char * fname, unsigned long fname_len)
 
         if (*ret != '\0')
         {
+            free(uid);
             Scierror(999, _("%s: An error occurred: %s\n"), fname, ret);
             return 0;
         }
     }
-
+    free(uid);
     LhsVar(1) = 0;
     PutLhsVar();
 
