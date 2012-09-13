@@ -69,6 +69,7 @@ Bug Fixes
 
 * Bug #11840 fixed - In Xcos, dialogs could not be closed on escape.
 
+* Bug #11861 fixed - There was sometimes an exception when closing a figure.
 
 
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
