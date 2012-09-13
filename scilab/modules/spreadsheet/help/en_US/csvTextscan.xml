@@ -14,7 +14,7 @@
     <refnamediv>
         <refname>csvTextScan</refname>
         
-        <refpurpose>Read comma-separated value in a matrix of strings</refpurpose>
+        <refpurpose>Convert a comma-separated value to a matrix</refpurpose>
     </refnamediv>
     
     <refsynopsisdiv>
@@ -149,6 +149,15 @@
                 <link linkend="csvRead">csvRead</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function introduced. Based on the 'csv_readwrite' module.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
 

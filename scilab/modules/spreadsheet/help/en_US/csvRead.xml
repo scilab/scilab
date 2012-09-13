@@ -373,5 +373,15 @@
             </member>
         </simplelist>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function introduced. Based on the 'csv_readwrite' module.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
 </refentry>
 

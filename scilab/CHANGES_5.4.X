@@ -2,13 +2,28 @@
             ========================================================
 
 
+CSV features
+============
+
+* New functions added:
+  - csvRead: Read a CSV file.
+  - csvWrite: Write data into a CSV file.
+  - csvTextscan: Transform a CSV line into a matrix
+  - csvDefault: Configure the CSV behavior.
+
+* csvRead and cvsWrite provide the same features as read_csv and write_csv
+  with major improvements in term of usability and performances:
+  - Write performances improved to a 100x factor.
+  - Read performances improved to a 3x factor.
+
+
 Windows version
 ===============
 
 * Scilab can now be installed without administration rights.
   In this case, the file association will not be configured.
 
-* ATOMS module is now mandatory and is installed in the minimal version.
+* ATOMS module is now mandatory and is installed in the minimal installation.
 
 
 Xcos
