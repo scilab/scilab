@@ -22,6 +22,12 @@ extern "C"
 #include "matrix_division.h"
 }
 
+/* ISNAN overloading for Mac OS X */
+#ifdef __APPLE__
+#undef ISNAN
+#define ISNAN std::isnan
+#endif
+
 /*------------------------ comparison function ------------------------------*/
 // Basic comparison.
 template <typename T>
