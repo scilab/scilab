@@ -37,20 +37,18 @@ public class DatatipHighlight {
             if (!isSelected) {
                 firstColorMarker = (Integer) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
                 GraphicController.getController().setProperty(datatipUid, GraphicObjectProperties.__GO_MARK_BACKGROUND__, -3);
-                oldDatatip = datatipUid;
-                isSelected = true;
             } else {
                 GraphicController.getController().setProperty(oldDatatip, GraphicObjectProperties.__GO_MARK_BACKGROUND__, firstColorMarker);
                 firstColorMarker = (Integer) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
                 GraphicController.getController().setProperty(datatipUid, GraphicObjectProperties.__GO_MARK_BACKGROUND__, -3);
-                oldDatatip = datatipUid;
-                isSelected = false;
             }
+            isSelected = true;
         } else {
             if (oldDatatip != null) {
                 GraphicController.getController().setProperty(oldDatatip, GraphicObjectProperties.__GO_MARK_BACKGROUND__, firstColorMarker);
                 isSelected = false;
             }
         }
+        oldDatatip = datatipUid;
     }
 }
