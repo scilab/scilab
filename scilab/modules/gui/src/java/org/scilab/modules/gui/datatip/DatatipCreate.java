@@ -75,87 +75,30 @@ public class DatatipCreate {
     */
     public static String createDatatipProgramCoord(String polylineUid, double[] coordDoubleXY) {
 
-        String compoundUid = (String) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_PARENT__);
-        String axesUid = (String) GraphicController.getController().getProperty(compoundUid, GraphicObjectProperties.__GO_PARENT__);
-        String figureUid = (String) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_PARENT__);
+        if (polylineUid != null) {
+            String polylineInterp = null;
+            polylineInterp = (String) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_TAG__);
 
-        String polylineInterp = null;
-        polylineInterp = (String) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_TAG__);
-        if (polylineInterp.equals("d_i")) {
-            double[] DataX = (double[]) PolylineData.getDataX (polylineUid);
-            double[] DataY = (double[]) PolylineData.getDataY (polylineUid);
-            double[] distAllPoints = new double[DataX.length];
-            for (int i = 0 ; i < DataX.length ; i++) {
-                double distPoint = Math.sqrt(Math.pow((coordDoubleXY[0] - DataX[i]), 2.0) + Math.pow((coordDoubleXY[1] - DataY[i]), 2.0));
-                distAllPoints[i] = distPoint;
-            }
-            double minValue = distAllPoints[0];
-            int posMin = 0;
-            for (int j = 1 ; j < distAllPoints.length ; j++) {
-                if (distAllPoints[j] < minValue) {
-                    minValue = distAllPoints[j];
-                    posMin = j;
-                }
-            }
-            String newDatatip = createDatatipProgramIndex(polylineUid, posMin + 1);
-            return newDatatip;
+            DatatipCommon.Segment seg = DatatipCommon.getSegment(coordDoubleXY[0], polylineUid);
 
-        } else {
+            double[] position = null;
 
-            int middleLineFactor = 0;
-            coordInteger = getDatatipPositionInteger (coordDoubleXY, axesUid);
-            int yVerify = 0;
-            Integer[] axesDimension = new Integer[] {0, 0};
-            axesDimension = (Integer[])GraphicController.getController().getProperty(figureUid, GraphicObjectProperties.__GO_AXES_SIZE__);
-
-            String polylineUidEnd = null;
-            for (yVerify = 0 ; yVerify < axesDimension[1] ; yVerify++) {
-                polylineUidEnd = ep.pick (figureUid, coordInteger[0], yVerify);
-                if (polylineUidEnd != null) {
-                    if (polylineUidEnd.equals(polylineUid)) {
-                        middleLineFactor++;
-                    }
-                }
-            }
-
-            if (middleLineFactor < 20) {
-
-                for (yVerify = 0 ; yVerify < axesDimension[1] ; yVerify++) {
-                    polylineUidEnd = ep.pick (figureUid, coordInteger[0], yVerify);
-                    if (polylineUidEnd != null) {
-                        if (polylineUidEnd.equals(polylineUid)) {
-                            break;
-                        }
-                    }
-                }
-
-                Integer newX = 0;
-                Integer newY = 0;
-                newX = coordInteger[0];
-                newY = yVerify + (middleLineFactor / 2);
-
-                Integer[] pixelMouseCoordInt = new Integer[] {0, 0};
-                pixelMouseCoordInt[0] = newX;
-                pixelMouseCoordInt[1] = newY;
-
-                pixelMouseCoordDouble = transformPixelCoordToDouble(pixelMouseCoordInt);
-
-                graphicCoord = transformPixelCoordToGraphic (axesUid, pixelMouseCoordDouble);
-
-                insertPoint (polylineUid, graphicCoord[0], graphicCoord[1]);
-                newDatatip = datatipProperties (graphicCoord, polylineUid);
-                return newDatatip;
-
+            if (polylineInterp.equals("d_i")) {
+                Double[] pos = DatatipCommon.Interpolate(coordDoubleXY[0], seg);
+                position = new double[]{pos[0], pos[1], 0.0};
             } else {
-                insertPoint (polylineUid, coordDoubleXY[0], coordDoubleXY[1]);
-                newDatatip = datatipProperties (coordDoubleXY, polylineUid);
-                return newDatatip;
-
+                position = new double[]{seg.x0, seg.y0, 0.0};
             }
+
+            insertPoint (polylineUid, position[0], position[1]);
+            newDatatip = datatipProperties (position, polylineUid);
+            return newDatatip;
 
         }
 
+        return null;
     }
+
 
     public static double[] createDatatipField (String polylineUid, double[] coordDoubleXY) {
 

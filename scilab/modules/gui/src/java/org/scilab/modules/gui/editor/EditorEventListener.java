@@ -147,17 +147,22 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     * @param arg0 MouseEvent
     */
     public void mousePressed(MouseEvent arg0) {
+        
         if (arg0.getButton() == 1) {
-            isLeftButtonPressed = true;
-            editor.onLeftMouseDown(arg0);
 
-            // Part responsible for the exchange of properties of the GED.
-            //If the GED is open, so the code is executed.
-            if (Inspector.isInspectorOpened()) {
-                editor.onClickGED();
-            }
-            if (PlotBrowser.isPlotBrowserOpened()) {
-                PlotBrowser.getPlotBrowser(windowUid);
+                isLeftButtonPressed = true;
+
+            if (!DatatipManagerMode.getDatatipManagerMode()) {
+                editor.onLeftMouseDown(arg0);
+
+                // Part responsible for the exchange of properties of the GED.
+                //If the GED is open, so the code is executed.
+                if (Inspector.isInspectorOpened()) {
+                    editor.onClickGED();
+                }
+                if (PlotBrowser.isPlotBrowserOpened()) {
+                    PlotBrowser.getPlotBrowser(windowUid);
+                }
             }
         }
     }
@@ -168,14 +173,16 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     * @param arg0 MouseEvent
     */
     public void mouseReleased(MouseEvent arg0) {
-        if (arg0.getButton() == 3) {
-            if (!isInRotation) {
-                if (!DatatipManagerMode.getDatatipManagerMode()) {
+        if (!DatatipManagerMode.getDatatipManagerMode()) {
+
+            if (arg0.getButton() == 3) {
+                if (!isInRotation) {
                     editor.onRightMouseClick(arg0);
                 }
+            } else if (arg0.getButton() == 1) {
+                editor.onLeftMouseRelease(arg0);
             }
-        } else if (arg0.getButton() == 1) {
-            editor.onLeftMouseRelease(arg0);
+
         }
         isInRotation = false;
         isLeftButtonPressed = false;
@@ -183,14 +190,19 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
 
     /**On left mouse dragged: pass event to editor.*/
     public void mouseDragged(MouseEvent arg0) {
-        if (isLeftButtonPressed) {
-            editor.onMouseDragged(arg0);
+
+        if (!DatatipManagerMode.getDatatipManagerMode()) {
+
+            if (isLeftButtonPressed) {
+                editor.onMouseDragged(arg0);
+            } else {
+                isInRotation = true;
+            }
         } else {
-            isInRotation = true;
-        }
-        if (selectedDatatip != null) {
-            DatatipDrag.dragDatatip(selectedDatatip, arg0.getX(), arg0.getY());
-            //DatatipOrientation.setOrientation (selectedDatatip);
+            if (selectedDatatip != null && isLeftButtonPressed) {
+                DatatipDrag.dragDatatip(selectedDatatip, arg0.getX(), arg0.getY());
+                //DatatipOrientation.setOrientation (selectedDatatip);
+            }
         }
     }
 

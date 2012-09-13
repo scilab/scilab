@@ -52,15 +52,15 @@ public class DatatipDelete {
     */
     public static void datatipRemoveProgramIndex (String polylineUid, int indexRemove) {
 
-        String figureUid = (String)GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_PARENT_FIGURE__);
-        String[] datatips = (new ObjectSearcher()).search(figureUid, GraphicObjectProperties.__GO_DATATIP__);
+        String[] datatips = (new ObjectSearcher()).search(polylineUid, GraphicObjectProperties.__GO_DATATIP__);
 
         if (datatips != null) {
-            if (indexRemove > 0 && indexRemove < datatips.length)
+            /* use index from 1 .. lenght (like scilab vectors)*/
+            if (indexRemove >= 1 && indexRemove <= datatips.length)
             {
-                Double[] datatipPosition = (Double[]) GraphicController.getController().getProperty(datatips[indexRemove], GraphicObjectProperties.__GO_DATATIP_DATA__);
+                Double[] datatipPosition = (Double[]) GraphicController.getController().getProperty(datatips[indexRemove - 1], GraphicObjectProperties.__GO_DATATIP_DATA__);
+                GraphicController.getController().removeRelationShipAndDelete(datatips[indexRemove - 1]);
                 removePoint (polylineUid, datatipPosition[0], datatipPosition[1]);
-                GraphicController.getController().removeRelationShipAndDelete(datatips[indexRemove]);
             }
         }
 
