@@ -488,6 +488,7 @@ includes/api_pointer.h \
 includes/api_poly.h \
 includes/api_sparse.h \
 includes/api_string.h \
+includes/api_handle.h \
 includes/api_scilab.h
 
 
