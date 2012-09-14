@@ -69,7 +69,6 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-// example #1
 t = linspace(0,16*%pi,1000)';
 x = -20 + t + 0.3*sin(0.5*t) + sin(t) + 2*sin(2*t) + 0.5*sin(3*t); 
 y = detrend(x);
@@ -77,8 +76,17 @@ clf()
 plot2d(t,[x y],style=[2 5])
 legend(["before detrend","after detrend"]);
 xgrid()
-
-// example #2
+ ]]></programlisting>
+        <scilab:image>
+            t = linspace(0,16*%pi,1000)';
+            x = -20 + t + 0.3*sin(0.5*t) + sin(t) + 2*sin(2*t) + 0.5*sin(3*t); 
+            y = detrend(x);
+            clf()
+            plot2d(t,[x y],style=[2 5])
+            legend(["before detrend","after detrend"]);
+            xgrid()
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 t = linspace(0,32*%pi,2000)';
 x = abs(t-16*%pi) + 0.3*sin(0.5*t) + sin(t) + 2*sin(2*t) + 0.5*sin(3*t); 
 y = detrend(x,"linear",1000);
@@ -87,5 +95,14 @@ plot2d(t,[x y],style=[2 5])
 legend(["before detrend","after detrend"]);
 xgrid()
  ]]></programlisting>
+        <scilab:image>
+            t = linspace(0,32*%pi,2000)';
+            x = abs(t-16*%pi) + 0.3*sin(0.5*t) + sin(t) + 2*sin(2*t) + 0.5*sin(3*t); 
+            y = detrend(x,"linear",1000);
+            clf()
+            plot2d(t,[x y],style=[2 5])
+            legend(["before detrend","after detrend"]);
+            xgrid()
+        </scilab:image>
     </refsection>
 </refentry>
