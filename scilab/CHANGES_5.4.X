@@ -86,6 +86,9 @@ Bug Fixes
 
 * Bug #11861 fixed - There was sometimes an exception when closing a figure.
 
+* Bug #11865 fixed - There was no information about a LaTeX error in doc
+                     generation.
+
 
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab
             ===============================================================
