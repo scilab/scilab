@@ -18,6 +18,7 @@ extern "C"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
+#include "deleteGraphicObject.h"
 
 #include "gw_graphic_export.h"
 }
@@ -90,7 +91,7 @@ int sci_driver(char * fname, unsigned long fname_len )
 
                 if (uid)
                 {
-                    ScilabView::deleteObject(uid);
+                    deleteGraphicObject(uid);
                 }
                 free(uid);
             }
