@@ -306,7 +306,7 @@ int sci_csvTextScan(char *fname)
                 else /* to double */
                 {
                     stringToComplexError ierr = STRINGTOCOMPLEX_ERROR;
-                    csv_complexArray *ptrCsvComplexArray = stringsToCvsComplexArray((const char**)result->pstrValues, result->m * result->n, decimal, TRUE, &ierr);
+                    csv_complexArray *ptrCsvComplexArray = stringsToCsvComplexArray((const char**)result->pstrValues, result->m * result->n, decimal, TRUE, &ierr);
                     if (ptrCsvComplexArray == NULL)
                     {
                         freeCsvResult(result);

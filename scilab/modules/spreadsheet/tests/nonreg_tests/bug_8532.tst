@@ -24,4 +24,5 @@ msg = lasterror();
 if msg <> msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "read_csv", 2) then pause, end
 
 if execstr("B1 = read_csv(TMPDIR + ""/foo.csv"", ""\t"");", "errcatch") <> 0 then pause, end
-assert_checkequal(A,B1)
+assert_checkequal(A,evstr(B1));
+

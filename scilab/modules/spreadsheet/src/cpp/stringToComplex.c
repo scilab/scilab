@@ -49,7 +49,7 @@ static char *leftstring(const char *tx, size_t pos);
 static BOOL is_unit_imaginary (const char *src, double *im);
 static double returnNAN(void);
 /* ========================================================================== */
-csv_complexArray *stringsToCvsComplexArray(const char **pSTRs, int nbElements,
+csv_complexArray *stringsToCsvComplexArray(const char **pSTRs, int nbElements,
         const char *decimal,
         BOOL bConvertByNAN,
         stringToComplexError *ierr)

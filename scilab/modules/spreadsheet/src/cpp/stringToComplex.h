@@ -36,7 +36,7 @@ extern "C" {
                                   BOOL bConvertByNAN,
                                   stringToComplexError *ierr);
 
-    csv_complexArray *stringsToCvsComplexArray(const char **pSTRs, int nbElements,
+    csv_complexArray *stringsToCsvComplexArray(const char **pSTRs, int nbElements,
             const char *decimal,
             BOOL bConvertByNAN,
             stringToComplexError *ierr);

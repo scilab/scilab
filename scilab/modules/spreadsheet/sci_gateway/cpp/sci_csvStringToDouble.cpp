@@ -58,7 +58,7 @@ int sci_csvStringToDouble(char *fname)
     pStringValues = csv_getArgumentAsMatrixOfString(pvApiCtx, 1, fname, &m1, &n1, &iErr);
     if (iErr) return 0;
 
-    ptrCsvComplexArray = stringsToCvsComplexArray((const char**)pStringValues, m1 * n1, getCsvDefaultDecimal(), bConvertToNan, &ierr);
+    ptrCsvComplexArray = stringsToCsvComplexArray((const char**)pStringValues, m1 * n1, getCsvDefaultDecimal(), bConvertToNan, &ierr);
 
     freeArrayOfString(pStringValues, m1 * n1);
     pStringValues = NULL;

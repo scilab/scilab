@@ -18,6 +18,13 @@
         </refpurpose>
     </refnamediv>
     <refsection>
+        <title>Description</title>
+        <para>
+            Unlike <link linkend="csvRead">csvRead</link>, the conversion is set to <literal>string</literal> by default to insure the compatibility with previous versions.
+        </para>
+    </refsection>
+    
+    <refsection>
         <title>History</title>
         <revhistory>
             <revision>
