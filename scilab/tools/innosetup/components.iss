@@ -91,9 +91,9 @@ Name: {#COMPN_SCINOTES}; Description:{cm:DescriptionSciNotes}; Types: default fu
 ;
 Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: default full custom; Flags: fixed;
 ;
-Name: {#COMPN_EXTERNAL_OBJECTS}; Description: {cm:DescriptionExternalObjects}; Flags: fixed;
+Name: {#COMPN_EXTERNAL_OBJECTS}; Description: {cm:DescriptionExternalObjects}; Types: default full custom; Flags: fixed;
 ;
-Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Flags: fixed;
+Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: default full custom; Flags: fixed;
 ;
 Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: default full custom cli;
 ;
