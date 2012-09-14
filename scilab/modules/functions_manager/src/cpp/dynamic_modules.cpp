@@ -390,7 +390,6 @@ int CacsdModule::Load()
     return 1;
 }
 
-
 int UmfpackModule::Load()
 {
     wstring wstModuleName = L"umfpack";
@@ -412,6 +411,24 @@ int UmfpackModule::Load()
 int OptimizationModule::Load()
 {
     wstring wstModuleName = L"optimization";
+#ifdef _MSC_VER
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+#else
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+#endif
+    vectGateway vect = loadGatewaysName(wstModuleName);
+
+    for (int i = 0 ; i < (int)vect.size() ; i++)
+    {
+        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+    }
+
+    return 1;
+}
+
+int SpecialFunctionModule::Load()
+{
+    wstring wstModuleName = L"special_functions";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
