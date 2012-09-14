@@ -29,21 +29,26 @@ int sci_xend(char * fname, unsigned long fname_len)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
 
-    char* uid = strdup(ScilabView::getCurrentFigure());
+    const char* pstCurrentFigureReference = ScilabView::getCurrentFigure();
 
-    if (uid)
+    if (pstCurrentFigureReference != NULL)
     {
-        char * ret = org_scilab_modules_graphic_export::Driver::end(getScilabJavaVM(), uid);
-        ScilabView::deleteObject(uid);
+        char* uid = strdup(pstCurrentFigureReference);
 
-        if (*ret != '\0')
+        if (uid)
         {
-            free(uid);
-            Scierror(999, _("%s: An error occurred: %s\n"), fname, ret);
-            return 0;
+            char * ret = org_scilab_modules_graphic_export::Driver::end(getScilabJavaVM(), uid);
+            ScilabView::deleteObject(uid);
+	    free(uid);
+
+            if (*ret != '\0')
+            {
+                Scierror(999, _("%s: An error occurred: %s\n"), fname, ret);
+                return 0;
+            }
         }
     }
-    free(uid);
+
     LhsVar(1) = 0;
     PutLhsVar();
 
