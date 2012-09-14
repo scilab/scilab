@@ -32,7 +32,7 @@ types::Function::ReturnValue sci_conj(types::typed_list &in, int _iRetCount, typ
 
     double dLeatOne = -1;
     int iOne        = 1;
-    int iSize       = pDblOut->getSize();
+    int iSize       = 0;
 
     if (in.size() != 1)
     {
@@ -61,6 +61,7 @@ types::Function::ReturnValue sci_conj(types::typed_list &in, int _iRetCount, typ
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
     }
 
+    iSize = pDblOut->getSize();
     if (pDblOut->isComplex())
     {
         C2F(dscal)(&iSize, &dLeatOne, pDblOut->getImg(), &iOne);
