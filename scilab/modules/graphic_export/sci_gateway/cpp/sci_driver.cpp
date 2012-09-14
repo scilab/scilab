@@ -83,13 +83,17 @@ int sci_driver(char * fname, unsigned long fname_len )
         else if (org_scilab_modules_gui::SwingView::isHeadless(getScilabJavaVM()))
         {
             org_scilab_modules_gui::SwingView::setHeadless(getScilabJavaVM(), false);
-            char* uid = strdup(ScilabView::getCurrentFigure());
-
-            if (uid)
+            const char* pstCurrentFigureReference = ScilabView::getCurrentFigure();
+            if (pstCurrentFigureReference != NULL)
             {
-                ScilabView::deleteObject(uid);
+                char* uid = strdup(pstCurrentFigureReference);
+
+                if (uid)
+                {
+                    ScilabView::deleteObject(uid);
+                }
+                free(uid);
             }
-            free(uid);
         }
 
         freeAllocatedSingleString(driver);
