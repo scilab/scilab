@@ -25,6 +25,7 @@
 #include "MALLOC.h"
 
 #include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 #include "CallDatatipCreateField.h"
@@ -50,7 +51,7 @@ int set_datatips_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
         return SET_PROPERTY_ERROR ;
     }
 
-    if ( !( nbRow*nbCol % 2 == 0 ) )
+    if ( !( nbRow * nbCol % 2 == 0 ) )
     {
         Scierror(999, _("Wrong number of input arguments for '%s' property: X and Y expected.\n"), "datatips");
         return SET_PROPERTY_ERROR ;
@@ -58,8 +59,10 @@ int set_datatips_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 
     currentDatatipsCoords = getDoubleMatrixFromStack(stackPointer);
 
-    for (i = 0 ; i < nbRow*nbCol ; i = i + 2) {
-        if (currentDatatipsCoords[i] > pvecx[nPoints - 1] || currentDatatipsCoords[i] < pvecx[0]) {
+    for (i = 0 ; i < nbRow * nbCol ; i = i + 2)
+    {
+        if (currentDatatipsCoords[i] > pvecx[nPoints - 1] || currentDatatipsCoords[i] < pvecx[0])
+        {
             Scierror(999, _("Invalid input argument for '%s' property: %g is out of bounds.\n"), "datatips", currentDatatipsCoords[i]);
             return SET_PROPERTY_ERROR ;
         }
