@@ -173,7 +173,7 @@ public final class StartAction extends OneBlockDependantAction {
      */
     public void updateUI(boolean started) {
         GraphActionManager.setEnable(StartAction.class, !started);
-        GraphActionManager.setEnable(StopAction.class, started);
+        GraphActionManager.setEnable(StopAction.class, false);
         ((XcosDiagram) getGraph(null)).setReadOnly(started);
 
         if (started) {

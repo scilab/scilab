@@ -47,6 +47,8 @@ Xcos
 * Bug #9075 fixed - Demo Xcos/Control systems/inverted pendulum
                     opened a useless graphic windows
 
+* Bug #10433 fixed - Xcos stop simulation button
+
 * Bug #10943 fixed - Accented character in the file path broke file loading.
 
 * Bug #11717 fixed - Setting recent opened file number in preferences GUI

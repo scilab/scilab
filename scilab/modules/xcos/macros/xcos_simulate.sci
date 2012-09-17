@@ -272,6 +272,9 @@ function %cpr = xcos_simulate(scs_m, needcompile)
   //** scicos simulation
   tf = scs_m.props.tf
 
+  // inform Xcos the simulator is going to run
+  xcosSimulationStarted();
+
   //** run scicosim via 'start' flag
   ierr = execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
 	             '''run'',tolerances)','errcatch')
