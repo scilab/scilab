@@ -46,10 +46,10 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-        #if !defined(byte) | !defined(_MSC_VER) /* Defined anyway with Visual */
-                typedef signed char byte;
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
+            #include <Windows.h>
         #else
-                #pragma message("Byte has been redefined elsewhere. Some problems can happen")
+            typedef signed char byte;
         #endif
 
 

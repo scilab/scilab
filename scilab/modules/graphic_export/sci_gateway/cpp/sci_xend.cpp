@@ -10,6 +10,10 @@
  *
  */
 
+#include "ScilabView.hxx"
+#include "SwingView.hxx"
+#include "Driver.hxx"
+
 extern "C"
 {
 #include "getScilabJavaVM.h"
@@ -19,11 +23,10 @@ extern "C"
 #include "deleteGraphicObject.h"
 
 #include "gw_graphic_export.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 }
-
-#include "ScilabView.hxx"
-#include "SwingView.hxx"
-#include "Driver.hxx"
 
 /*--------------------------------------------------------------------------*/
 int sci_xend(char * fname, unsigned long fname_len)

@@ -12,6 +12,10 @@
 
 #include <string.h>
 
+#include "ScilabView.hxx"
+#include "SwingView.hxx"
+#include "Driver.hxx"
+
 extern "C"
 {
 #include "getScilabJavaVM.h"
@@ -23,9 +27,6 @@ extern "C"
 #include "gw_graphic_export.h"
 }
 
-#include "ScilabView.hxx"
-#include "SwingView.hxx"
-#include "Driver.hxx"
 
 #if _MSC_VER
 #define strcasecmp _stricmp

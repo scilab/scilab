@@ -16,6 +16,13 @@
 #include <iostream>
 #include <string>
 
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+#include "displaytree.hxx"
+#include "ScilabDisplayTree.hxx"
+#include "GiwsException.hxx"
+
 extern "C"
 {
 #include "stack-c.h"
@@ -27,12 +34,6 @@ extern "C"
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
 }
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
-#include "displaytree.hxx"
-#include "ScilabDisplayTree.hxx"
-#include "GiwsException.hxx"
 
 using namespace std;
 
