@@ -155,13 +155,6 @@ int gw_dynamic_arnoldi(void);
 int gw_dynamic_symbolic(void);
 
 /**
-* hdf5 gateway
-* hdf5 is loaded dynamically at runtime
-* load gw_hdf5 in SCI/modules/hdf5/sci_gateway/gw_hdf5.c
-*/
-int gw_dynamic_hdf5(void);
-
-/**
 * graphic_export gateway
 * graphic_export is loaded dynamically at runtime
 * load gw_graphic_export in SCI/modules/graphic_export/sci_gateway/gw_graphic_export.c
