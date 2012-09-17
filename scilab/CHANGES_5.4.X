@@ -4,6 +4,9 @@
 Bug fixes
 ==========
 
+* Bug #8883 fixed - In some cases, Scilab build from sources was looking for
+                   libraries at the wrong place.
+
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
 
