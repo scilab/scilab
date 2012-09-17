@@ -122,11 +122,11 @@ public class ScilabImageConverter implements ExternalImageConverter {
 
     private final String convertToPNG(String currentFile, String code, File imageFile, String imageName) {
         buffer.append("__olddrv__=driver();\n");
-        buffer.append("disp(\"Generate image " + imageName + " from Scilab code in file " + new File(currentFile).getName() + "\");\n");
+        buffer.append("disp(\"Generate image " + imageName + " from Scilab code from file " + new File(currentFile).getName() + "\");\n");
         buffer.append("driver(\"png\");\n");
         buffer.append("xinit(\"").append(imageFile.getAbsolutePath()).append("\");\n");
         buffer.append(code).append("\n");
-	buffer.append("___f___=gcf();___f___.anti_aliasing=\"2x\";clear(\"___f___\");\n");
+        buffer.append("___f___=gcf();___f___.anti_aliasing=\"2x\";clear(\"___f___\");\n");
         buffer.append("xend();\n");
         buffer.append("driver(__olddrv__);\n");
 
@@ -177,26 +177,26 @@ public class ScilabImageConverter implements ExternalImageConverter {
         for (int j = start; j <= end; j++) {
             c = code.charAt(j);
             switch (c) {
-            case '&':
-                buffer.append("&amp;");
-                break;
-            case '<':
-                buffer.append("&lt;");
-                break;
-            case '>':
-                buffer.append("&gt;");
-                break;
-            case '\n':
-                buffer.append("<br />");
-                break;
-            case '\'':
-                buffer.append("&#039;");
-                break;
-            case '\"':
-                buffer.append("&quot;");
-                break;
-            default:
-                buffer.append(c);
+                case '&':
+                    buffer.append("&amp;");
+                    break;
+                case '<':
+                    buffer.append("&lt;");
+                    break;
+                case '>':
+                    buffer.append("&gt;");
+                    break;
+                case '\n':
+                    buffer.append("<br />");
+                    break;
+                case '\'':
+                    buffer.append("&#039;");
+                    break;
+                case '\"':
+                    buffer.append("&quot;");
+                    break;
+                default:
+                    buffer.append(c);
             }
         }
 
