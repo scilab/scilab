@@ -22,7 +22,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            return in <literal>s</literal> all libraries on scilab stack.
+            return in <literal>s</literal> all libraries in the Scilab environment.
         </para>
         <para>libraries are scanned from the lastest loaded to the first one.</para>
     </refsection>
