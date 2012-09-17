@@ -123,12 +123,6 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int
         return sciErr;
     }
 
-    if (isVarComplex(_pvCtx, _piAddress) != _iComplex)
-    {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_COMPLEXITY, _("%s: Bad call to get a non complex matrix"), "getComplexMatrixOfDouble");
-        return sciErr;
-    }
-
     sciErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
     if (sciErr.iErr)
     {
@@ -140,7 +134,7 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int
     {
         *_pdblReal	= (double*)(_piAddress + 4);
     }
-    if (_iComplex && _pdblImg != NULL)
+    if (isVarComplex(_pvCtx, _piAddress) && _pdblImg != NULL)
     {
         *_pdblImg	= (double*)(_piAddress + 4) + *_piRows * *_piCols;
     }
