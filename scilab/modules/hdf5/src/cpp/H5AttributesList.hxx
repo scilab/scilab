@@ -17,27 +17,28 @@
 
 namespace org_modules_hdf5
 {
-    class H5Attribute;
+class H5Attribute;
 
-    class H5AttributesList : protected H5ListObject<H5Attribute>
-    {
+class H5AttributesList : public H5ListObject<H5Attribute>
+{
 
-    public :
-	
-	H5AttributesList(H5Object & _parent);
-	
-	~H5AttributesList();
+public :
 
-	void setObject(const unsigned int pos, H5Attribute & attribute);
-	H5Attribute & getObject(const int pos);
-	const unsigned int getSize() const;
-	
-	virtual std::string dump(const unsigned int indentLevel) const;
-        virtual std::string toString(const unsigned int indentLevel) const;
+    H5AttributesList(H5Object & _parent);
 
-    private:
-	H5Attribute & getObject(const int pos, const bool checkPos);
-    };
+    ~H5AttributesList();
+
+    virtual void setObject(const unsigned int pos, H5Attribute & attribute);
+    virtual H5Attribute & getObject(const int pos);
+    virtual H5Attribute & getObject(const std::string & name);
+    virtual const unsigned int getSize() const;
+
+    virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const;
+    virtual std::string toString(const unsigned int indentLevel) const;
+
+private:
+    H5Attribute & getObject(const int pos, const bool checkPos);
+};
 }
 
 #endif // __H5ATTRIBUTESLIST_HXX__

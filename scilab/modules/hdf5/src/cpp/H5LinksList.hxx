@@ -18,31 +18,32 @@
 #include "H5Group.hxx"
 #include "H5Dataset.hxx"
 #include "H5Type.hxx"
+#include "H5Link.hxx"
 
 namespace org_modules_hdf5
 {
-    class H5Attribute;
+class H5Attribute;
 
-    class H5LinksList : public H5ListObject<H5Object>
-    {
+class H5LinksList : public H5ListObject<H5Object>
+{
 
-    public :
-	
-	H5LinksList(H5Object & _parent);
-	
-	~H5LinksList();
+public :
 
-	void setObject(const unsigned int pos, H5Object & obj);
-	H5Object & getObject(const int pos);
-	const unsigned int getSize() const;
-	
-	virtual std::string dump(const unsigned int indentLevel) const;
-        virtual std::string toString(const unsigned int indentLevel) const;
+    H5LinksList(H5Object & _parent);
 
-    private:
+    ~H5LinksList();
 
-	H5Object & getObject(const int pos, const bool checkPos);
-    };
+    void setObject(const unsigned int pos, H5Object & obj);
+    H5Object & getObject(const int pos);
+    const unsigned int getSize() const;
+
+    virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const;
+    virtual std::string toString(const unsigned int indentLevel) const;
+
+private:
+
+    H5Object & getObject(const int pos, const bool checkPos);
+};
 }
 
 #endif // __H5LINKSLIST_HXX__

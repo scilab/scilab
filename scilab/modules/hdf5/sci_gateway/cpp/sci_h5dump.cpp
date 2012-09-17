@@ -10,6 +10,9 @@
  *
  */
 
+#include <set>
+#include <string>
+
 extern "C"
 {
 #include "gw_hdf5.h"
@@ -17,8 +20,10 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "sciprint.h"
+#include "expandPathVariable.h"
 }
 
+#include "HDF5Scilab.hxx"
 #include "H5File.hxx"
 
 using namespace org_modules_hdf5;
@@ -26,13 +31,40 @@ using namespace org_modules_hdf5;
 /*--------------------------------------------------------------------------*/
 int sci_h5dump(char *fname, unsigned long fname_len)
 {
-    H5File * h5file = 0;
+    H5Object * hobj = 0;
     SciErr err;
     int * addr = 0;
     char * path = 0;
+    char * expandedPath = 0;
+    char * name = 0;
+    std::map<haddr_t, std::string> visited;
+    bool mustDelete = true;
 
     CheckLhs(1, 1);
-    CheckRhs(1, 1);
+    CheckRhs(1, 2);
+
+    if (Rhs == 2)
+    {
+        err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            return 0;
+        }
+
+        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+        {
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            return 0;
+        }
+
+        if (getAllocatedSingleString(pvApiCtx, addr, &name) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
+    }
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -42,41 +74,83 @@ int sci_h5dump(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+    if (HDF5Scilab::isH5Object(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
-    }
+        hobj = HDF5Scilab::getH5Object(addr, pvApiCtx);
+        if (!hobj)
+        {
+            Scierror(999, _("%s: Can not print H5Object: invalid object.\n"), fname);
+            return 0;
+        }
 
-    if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
+        if (Rhs == 2)
+        {
+            try
+            {
+                hobj = &H5Object::getObject(*hobj, name);
+            }
+            catch (H5Exception & e)
+            {
+                Scierror(999, gettext("%s: %s\n"), fname, e.what());
+                return 0;
+            }
+        }
+        else
+        {
+            mustDelete = false;
+        }
+    }
+    else
     {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
-    }
+        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+        {
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            return 0;
+        }
 
+        if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
+        expandedPath = expandPathVariable(path);
+        freeAllocatedSingleString(path);
+        try
+        {
+            if (Rhs == 2)
+            {
+                hobj = new H5File((const char *)expandedPath, (const char *)name, "r");
+            }
+            else
+            {
+                hobj = new H5File((const char *)expandedPath, "/", "r");
+            }
+            FREE(expandedPath);
+        }
+        catch (const H5Exception & e)
+        {
+            Scierror(999, _("%s: %s\n"), fname, e.what());
+            FREE(expandedPath);
+            return 0;
+        }
+    }
 
     try
     {
-	h5file = new H5File((const char *)path);
-	freeAllocatedSingleString(path);
+        HDF5Scilab::scilabPrint(hobj->dump(visited));
+        if (mustDelete)
+        {
+            delete hobj;
+        }
     }
     catch (const H5Exception & e)
     {
-	Scierror(999, _("%s: %s\n"), fname, e.what());
-	freeAllocatedSingleString(path);
-	return 0;
-    }
-
-    try
-    {
-	sciprint("%s\n", h5file->toString(0).c_str());
-	delete h5file;
-    }
-     catch (const H5Exception & e)
-    {
-	Scierror(999, _("%s: %s\n"), fname, e.what());
-	delete h5file;
-	return 0;
+        Scierror(999, _("%s: %s\n"), fname, e.what());
+        if (mustDelete)
+        {
+            delete hobj;
+        }
+        return 0;
     }
 
     LhsVar(1) = 0;

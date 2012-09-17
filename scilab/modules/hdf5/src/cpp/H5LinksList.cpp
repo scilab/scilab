@@ -14,88 +14,88 @@
 
 namespace org_modules_hdf5
 {
-    H5LinksList::H5LinksList(H5Object & _parent) : H5ListObject(_parent) { }
+H5LinksList::H5LinksList(H5Object & _parent) : H5ListObject(_parent) { }
 
-    H5LinksList::~H5LinksList() { }
-    
-    const unsigned int H5LinksList::getSize() const
+H5LinksList::~H5LinksList() { }
+
+const unsigned int H5LinksList::getSize() const
+{
+    H5G_info_t info;
+    herr_t err = H5Gget_info(getParent().getH5Id(), &info);
+
+    if (err < 0)
     {
-	H5G_info_t info;
-	herr_t err = H5Gget_info(getParent().getH5Id(), &info);
-	
-	if (err < 0)
-	{
-	    throw H5Exception(__LINE__, __FILE__, _("Cannot get the number of links."));
-	}
-
-	return (unsigned int)info.nlinks;
+        throw H5Exception(__LINE__, __FILE__, _("Cannot get the number of links."));
     }
 
-    void H5LinksList::setObject(const unsigned int pos, H5Object & obj)
-    {
+    return (unsigned int)info.nlinks;
+}
 
+void H5LinksList::setObject(const unsigned int pos, H5Object & obj)
+{
+
+}
+
+H5Object & H5LinksList::getObject(const int pos)
+{
+    return getObject(pos, true);
+}
+
+H5Object & H5LinksList::getObject(const int pos, const bool checkPos)
+{
+    if (checkPos)
+    {
+        unsigned int size = getSize();
+        if (pos < 0 || pos >= size)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Invalid index %u: must be between 0 and %u."), pos, size);
+        }
     }
 
-    H5Object & H5LinksList::getObject(const int pos)
+    H5Object * obj = 0;
+    hid_t parentId = getParent().getH5Id();
+    ssize_t nameSize = H5Gget_objname_by_idx(parentId, (hsize_t)pos, 0, 0);
+    char * name = (char *)MALLOC((nameSize + 1) * sizeof(char));
+    H5Gget_objname_by_idx(parentId, (hsize_t)pos, name, nameSize + 1);
+    int type = H5Gget_objtype_by_idx(parentId, (hsize_t)pos);
+
+    switch (type)
     {
-	return getObject(pos, true);
+        case H5G_LINK:
+            obj = &H5Link::getLink(getParent(), name);
+            break;
+        case H5G_GROUP:
+            obj = new H5Group(getParent(), name);
+            break;
+        case H5G_DATASET:
+            obj = new H5Dataset(getParent(), name);
+            break;
+        case H5G_TYPE:
+            obj = new H5Type(getParent(), name);
+            break;
     }
 
-    H5Object & H5LinksList::getObject(const int pos, const bool checkPos)
+    return *obj;
+}
+
+std::string H5LinksList::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
+{
+    std::ostringstream os;
+    const unsigned int size = getSize();
+
+    for (unsigned int i = 0; i < size; i++)
     {
-	if (checkPos)
-	{
-	    unsigned int size = getSize();
-	    if (pos < 0 || pos >= size)
-	    {
-		throw H5Exception(__LINE__, __FILE__, _("Invalid index %u: must be between 0 and %u."), pos, size);
-	    }
-	}
-	    
-	H5Object * obj = 0;
-	hid_t parentId = getParent().getH5Id();
-	ssize_t nameSize = H5Gget_objname_by_idx(parentId, (hsize_t)pos, 0, 0);
-	char * name = (char *)MALLOC((nameSize + 1) * sizeof(char));
-	H5Gget_objname_by_idx(parentId, (hsize_t)pos, name, nameSize + 1);
-	int type = H5Gget_objtype_by_idx(parentId, (hsize_t)pos);
+        const H5Object & obj = const_cast<H5LinksList *>(this)->getObject(i, false);
+        os << obj.dump(alreadyVisited, indentLevel);
 
-	switch (type)
-	{
-	case H5G_LINK:
-	    //obj = new H5Link(parent, name);
-	    break;
-	case H5G_GROUP:
-	    obj = new H5Group(getParent(), name);
-	    break;
-	case H5G_DATASET:
-	    obj = new H5Dataset(getParent(), name);
-	    break;
-	case H5G_TYPE:
-	    obj = new H5Type(getParent(), name);
-	    break;
-	}
-
-	return *obj;
+        delete &obj;
     }
 
-    std::string H5LinksList::dump(const unsigned int indentLevel) const
-    {
-	std::ostringstream os;
-	const unsigned int size = getSize();
+    return os.str();
+}
 
-	for (unsigned int i = 0; i < size; i++)
-	{
-	    const H5Object & obj = const_cast<H5LinksList *>(this)->getObject(i, false);
-	    os << obj.dump(indentLevel);
-
-	    delete &obj;
-	}
-	
-	return os.str();
-    }
-
-    std::string H5LinksList::toString(const unsigned int indentLevel) const
-    {
-	return "";
-    }
+std::string H5LinksList::toString(const unsigned int indentLevel) const
+{
+    return "";
+}
 }

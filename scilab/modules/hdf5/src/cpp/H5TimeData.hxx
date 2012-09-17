@@ -18,21 +18,21 @@
 namespace org_modules_hdf5
 {
 
-    class H5TimeData : public H5BasicData<char>
-    {
-	
-    public:
-	
-	H5TimeData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, char * _data, const hsize_t _stride = -1, const size_t _offset = 0, const bool _dataOwner = true) : H5BasicData(_parent, _totalSize, _dataSize, _ndims + 1, _dims, _data, _stride, _offset, _dataOwner)
-	    {
-		//dims[ndims - 1] = dataSize;
-	    }
+class H5TimeData : public H5BasicData<char>
+{
 
-	virtual ~H5TimeData()
-	    {
- 
-	    }
-    };
+public:
+
+    H5TimeData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, char * _data, const hsize_t _stride = -1, const size_t _offset = 0, const bool _dataOwner = true) : H5BasicData(_parent, _totalSize, _dataSize, _ndims + 1, _dims, _data, _stride, _offset, _dataOwner)
+    {
+        //dims[ndims - 1] = dataSize;
+    }
+
+    virtual ~H5TimeData()
+    {
+
+    }
+};
 }
 
 #endif // __H5TIMEDATA_HXX__

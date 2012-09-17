@@ -15,72 +15,77 @@
 
 namespace org_modules_hdf5
 {
-    
-    H5AttributesList::H5AttributesList(H5Object & _parent) : H5ListObject(_parent) { }
 
-    H5AttributesList::~H5AttributesList() { }
+H5AttributesList::H5AttributesList(H5Object & _parent) : H5ListObject(_parent) { }
 
-    const unsigned int H5AttributesList::getSize() const
+H5AttributesList::~H5AttributesList() { }
+
+const unsigned int H5AttributesList::getSize() const
+{
+    H5O_info_t info;
+    herr_t err = H5Oget_info(parent.getH5Id(), &info);
+
+    if (err < 0)
     {
-	H5O_info_t info;
-	herr_t err = H5Oget_info(parent.getH5Id(), &info);
-	
-	if (err < 0)
-	{
-	    throw H5Exception(__LINE__, __FILE__, _("Cannot get the size of attribute list."));
-	}
-	
-	return (unsigned int)info.num_attrs;
+        throw H5Exception(__LINE__, __FILE__, _("Cannot get the size of attribute list."));
     }
 
-    void H5AttributesList::setObject(const unsigned int pos, H5Attribute & attribute)
+    return (unsigned int)info.num_attrs;
+}
+
+void H5AttributesList::setObject(const unsigned int pos, H5Attribute & attribute)
+{
+
+}
+
+H5Attribute & H5AttributesList::getObject(const std::string & name)
+{
+    return *new H5Attribute(parent, name);
+}
+
+H5Attribute & H5AttributesList::getObject(const int pos)
+{
+    return getObject(pos, true);
+}
+
+H5Attribute & H5AttributesList::getObject(const int pos, const bool checkPos)
+{
+    if (checkPos)
     {
-	
+        unsigned int size = getSize();
+        if (pos < 0 || pos >= size)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Invalid index %u: must be between 0 and %u."), pos, size);
+        }
     }
 
-    H5Attribute & H5AttributesList::getObject(const int pos)
+    return *new H5Attribute(parent, (const unsigned int)pos);
+}
+
+std::string H5AttributesList::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
+{
+    std::ostringstream os;
+    unsigned int size = getSize();
+
+    for (unsigned int i = 0; i < size; i++)
     {
-	return getObject(pos, true);
+        const H5Attribute & attr = const_cast<H5AttributesList *>(this)->getObject(i, false);
+        os << attr.dump(alreadyVisited, indentLevel);
+
+        delete &attr;
     }
 
-    H5Attribute & H5AttributesList::getObject(const int pos, const bool checkPos)
-    {
-	if (checkPos)
-	{
-	    unsigned int size = getSize();
-	    if (pos < 0 || pos >= size)
-	    {
-		throw H5Exception(__LINE__, __FILE__, _("Invalid index %u: must be between 0 and %u."), pos, size);
-	    }
-	}
+    return os.str();
+}
 
-	return *new H5Attribute(parent, parent.getH5Id(), (const unsigned int)pos);
-    }
+std::string H5AttributesList::toString(const unsigned int indentLevel) const
+{
+    std::ostringstream os;
+    std::string indentString = H5Object::getIndentString(indentLevel);
 
-    std::string H5AttributesList::dump(const unsigned int indentLevel) const
-    {
-	std::ostringstream os;
-	unsigned int size = getSize();
-	
-	for (unsigned int i = 0; i < size; i++)
-	{
-	    const H5Attribute & attr = const_cast<H5AttributesList *>(this)->getObject(i, false);
-	    os << attr.dump(indentLevel);
+    os << indentString << _("Filename") << ": " << getFile().getFileName() << std::endl
+       << indentString << _("Attributes") << ": [1 x " << getSize() << "]";
 
-	    delete &attr;
-	}
-	
-	return os.str();
-    }
-
-    std::string H5AttributesList::toString(const unsigned int indentLevel) const
-    {
-	std::ostringstream os;
-	std::string indentString = H5Object::getIndentString(indentLevel);
-	
-	os << indentString << _("Filename") << ": " << getFile().getFileName() << std::endl
-	   << indentString << _("Number of attributes") << ": " << getSize();
-
-	return os.str();
-    }
+    return os.str();
+}
 }

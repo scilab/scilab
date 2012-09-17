@@ -15,75 +15,119 @@
 namespace org_modules_hdf5
 {
 
-    H5Type::H5Type(H5Object & _parent, const hid_t _type) : H5Object(_parent), type(_type), name(0)
-    {
+std::map<std::string, hid_t> H5Type::nameToType = initMap();
 
+void H5Type::init()
+{
+    type = H5Topen2(getParent().getH5Id(), name.c_str(), H5P_DEFAULT);
+    if (type < 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Invalid H5Type name: %s."), name.c_str());
     }
+}
 
-    H5Type::H5Type(H5Object & _parent, const hid_t _type, const char * _name) : H5Object(_parent), type(_type), name(_name)
+H5Type::H5Type(H5Object & _parent, const hid_t _type) : H5Object(_parent), type(_type), name("")
+{
+
+}
+
+H5Type::H5Type(H5Object & _parent, const hid_t _type, const char * _name) : H5Object(_parent), type(_type), name(std::string(_name))
+{
+
+}
+
+
+H5Type::H5Type(H5Object & _parent, const hid_t _type, const std::string & _name) : H5Object(_parent), type(_type), name(_name)
+{
+
+}
+
+H5Type::H5Type(H5Object & _parent, const char * _name) : H5Object(_parent), name(std::string(_name))
+{
+    init();
+}
+
+H5Type::H5Type(H5Object & _parent, const std::string & _name) : H5Object(_parent), name(_name)
+{
+    init();
+}
+
+H5Type::~H5Type()
+{
+    if (type >= 0)
     {
-
+        H5Tclose(type);
     }
+}
 
-    H5Type::H5Type(H5Object & _parent, const char * _name) : H5Object(_parent), name(_name)
+std::string H5Type::getClassName() const
+{
+    switch (H5Tget_class(type))
     {
-	type = H5Topen2(_parent.getH5Id(), name, H5P_DEFAULT);
-	if (type < 0)
-	{
-	    throw H5Exception(__LINE__, __FILE__, _("Invalid H5Type name: %s."), name);
-	}
-    }
-
-    H5Type::~H5Type()
-    {
-        if (type >= 0)
-        {
-            H5Tclose(type);
-        }
-	if (name)
-	{
-	    FREE(const_cast<char *>(name));
-	}
-    }
-
-    std::string H5Type::getClassName() const
-    {
-        switch (H5Tget_class(type)) {
         case H5T_INTEGER:
-	    return "integer";
+            return "integer";
         case H5T_FLOAT:
-	    return "float";
+            return "float";
         case H5T_TIME:
-	    return "time";
-	case H5T_STRING:
-	    return "string";
-	case H5T_BITFIELD:
-	    return "bitfield";
-	case H5T_OPAQUE:
-	    return "opaque";
-	case H5T_COMPOUND:
-	    return "compound";
-	case H5T_REFERENCE:
-	    return "reference";
-	case H5T_ENUM:
-	    return "enum";
-	case H5T_VLEN:
-	    return "vlen";
-	case H5T_ARRAY:
-	    return "array";
-	default:
-	    return "unknown";
-	}
+            return "time";
+        case H5T_STRING:
+            return "string";
+        case H5T_BITFIELD:
+            return "bitfield";
+        case H5T_OPAQUE:
+            return "opaque";
+        case H5T_COMPOUND:
+            return "compound";
+        case H5T_REFERENCE:
+            return "reference";
+        case H5T_ENUM:
+            return "enum";
+        case H5T_VLEN:
+            return "vlen";
+        case H5T_ARRAY:
+            return "array";
+        default:
+            return "unknown";
     }
+}
 
-    std::string H5Type::getTypeName() const
+unsigned int H5Type::getTypeSize() const
+{
+    return (unsigned int)H5Tget_size(type);
+}
+
+std::string H5Type::getTypeName() const
+{
+    return getNameFromType(type);
+}
+
+unsigned int H5Type::getNativeTypeSize() const
+{
+    const hid_t nativeType = H5Tget_native_type(type, H5T_DIR_DEFAULT);
+    unsigned int size = (unsigned int)H5Tget_size(nativeType);
+    H5Tclose(nativeType);
+
+    return size;
+}
+
+std::string H5Type::getNativeTypeName() const
+{
+    const hid_t nativeType = H5Tget_native_type(type, H5T_DIR_DEFAULT);
+    std::string name = getNameFromType(nativeType);
+    H5Tclose(nativeType);
+
+    return name;
+}
+
+std::string H5Type::getNameFromType(hid_t type)
+{
+    std::string sorder, ssign;
+    std::ostringstream os;
+    H5T_sign_t sign;
+    H5T_order_t order;
+
+    switch (H5Tget_class(type))
     {
-        std::string sorder, ssign;
-        std::ostringstream os;
-        H5T_sign_t sign;
-	H5T_order_t order;
-
-	switch (H5Tget_class(type)) {
         case H5T_INTEGER:
             if (H5Tequal(type, H5T_STD_I8BE) > 0)
             {
@@ -189,103 +233,103 @@ namespace org_modules_hdf5
             {
                 return "H5T_NATIVE_ULLONG";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT8) > 0)
             {
                 return "H5T_NATIVE_INT8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT8) > 0)
             {
                 return "H5T_NATIVE_UINT8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_LEAST8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_LEAST8) > 0)
             {
                 return "H5T_NATIVE_INT_LEAST8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST8) > 0)
             {
                 return "H5T_NATIVE_UINT_LEAST8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_FAST8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_FAST8) > 0)
             {
                 return "H5T_NATIVE_INT_FAST8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_FAST8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_FAST8) > 0)
             {
                 return "H5T_NATIVE_UINT_FAST8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT16) > 0)
             {
                 return "H5T_NATIVE_INT16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT16) > 0)
             {
                 return "H5T_NATIVE_UINT16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_LEAST16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_LEAST16) > 0)
             {
                 return "H5T_NATIVE_INT_LEAST16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST16) > 0)
             {
                 return "H5T_NATIVE_UINT_LEAST16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_FAST16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_FAST16) > 0)
             {
                 return "H5T_NATIVE_INT_FAST16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_FAST16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_FAST16) > 0)
             {
                 return "H5T_NATIVE_UINT_FAST16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT32) > 0)
             {
                 return "H5T_NATIVE_INT32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT32) > 0)
             {
                 return "H5T_NATIVE_UINT32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_LEAST32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_LEAST32) > 0)
             {
                 return "H5T_NATIVE_INT_LEAST32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST32) > 0)
             {
                 return "H5T_NATIVE_UINT_LEAST32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_FAST32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_FAST32) > 0)
             {
                 return "H5T_NATIVE_INT_FAST32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_FAST32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_FAST32) > 0)
             {
                 return "H5T_NATIVE_UINT_FAST32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT64) > 0)
             {
                 return "H5T_NATIVE_INT64";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT64) > 0)
             {
                 return "H5T_NATIVE_UINT64";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_LEAST64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_LEAST64) > 0)
             {
                 return "H5T_NATIVE_INT_LEAST64";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST64) > 0)
             {
                 return "H5T_NATIVE_UINT_LEAST64";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_FAST64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_FAST64) > 0)
             {
                 return "H5T_NATIVE_INT_FAST64";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_FAST64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_FAST64) > 0)
             {
                 return "H5T_NATIVE_UINT_FAST64";
             }
-	    else if (H5Tequal(type, H5T_INTEL_I8) > 0)
+            else if (H5Tequal(type, H5T_INTEL_I8) > 0)
             {
                 return "H5T_INTEL_I8";
             }
@@ -401,7 +445,7 @@ namespace org_modules_hdf5
             {
                 return "H5T_NATIVE_HBOOL";
             }
-            else 
+            else
             {
                 if (H5Tget_size(type) > 1)
                 {
@@ -454,7 +498,7 @@ namespace org_modules_hdf5
                    << ssign
                    << " integer";
 
-		return os.str();
+                return os.str();
             }
             break;
         case H5T_FLOAT:
@@ -526,7 +570,7 @@ namespace org_modules_hdf5
             {
                 return "H5T_MIPS_F64";
             }
-            else 
+            else
             {
                 if (H5Tget_size(type) > 1)
                 {
@@ -557,7 +601,7 @@ namespace org_modules_hdf5
                    << sorder
                    << " floating-point";
 
-		return os.str();
+                return os.str();
             }
             break;
         case H5T_TIME:
@@ -583,7 +627,7 @@ namespace org_modules_hdf5
             }
             break;
         case H5T_STRING:
-	    return "H5T_STRING";
+            return "H5T_STRING";
             break;
         case H5T_BITFIELD:
             if (H5Tequal(type, H5T_STD_B8BE) > 0)
@@ -618,113 +662,182 @@ namespace org_modules_hdf5
             {
                 return "H5T_STD_B64LE";
             }
-	    else if (H5Tequal(type, H5T_INTEL_B8) > 0)
+            else if (H5Tequal(type, H5T_INTEL_B8) > 0)
             {
                 return "H5T_INTEL_B8";
             }
-	    else if (H5Tequal(type, H5T_INTEL_B16) > 0)
+            else if (H5Tequal(type, H5T_INTEL_B16) > 0)
             {
                 return "H5T_INTEL_B16";
             }
-	    else if (H5Tequal(type, H5T_INTEL_B32) > 0)
+            else if (H5Tequal(type, H5T_INTEL_B32) > 0)
             {
                 return "H5T_INTEL_B32";
             }
-	    else if (H5Tequal(type, H5T_INTEL_B64) > 0)
+            else if (H5Tequal(type, H5T_INTEL_B64) > 0)
             {
                 return "H5T_INTEL_B64";
             }
-	    else if (H5Tequal(type, H5T_ALPHA_B8) > 0)
+            else if (H5Tequal(type, H5T_ALPHA_B8) > 0)
             {
                 return "H5T_ALPHA_B8";
             }
-	    else if (H5Tequal(type, H5T_ALPHA_B16) > 0)
+            else if (H5Tequal(type, H5T_ALPHA_B16) > 0)
             {
                 return "H5T_ALPHA_B16";
             }
-	    else if (H5Tequal(type, H5T_ALPHA_B32) > 0)
+            else if (H5Tequal(type, H5T_ALPHA_B32) > 0)
             {
                 return "H5T_ALPHA_B32";
             }
-	    else if (H5Tequal(type, H5T_ALPHA_B64) > 0)
+            else if (H5Tequal(type, H5T_ALPHA_B64) > 0)
             {
                 return "H5T_ALPHA_B64";
             }
-	    else if (H5Tequal(type, H5T_MIPS_B8) > 0)
+            else if (H5Tequal(type, H5T_MIPS_B8) > 0)
             {
                 return "H5T_MIPS_B8";
             }
-	    else if (H5Tequal(type, H5T_MIPS_B16) > 0)
+            else if (H5Tequal(type, H5T_MIPS_B16) > 0)
             {
                 return "H5T_MIPS_B16";
             }
-	    else if (H5Tequal(type, H5T_MIPS_B32) > 0)
+            else if (H5Tequal(type, H5T_MIPS_B32) > 0)
             {
                 return "H5T_MIPS_B32";
             }
-	    else if (H5Tequal(type, H5T_MIPS_B64) > 0)
+            else if (H5Tequal(type, H5T_MIPS_B64) > 0)
             {
                 return "H5T_MIPS_B64";
             }
-	    else 
-	    {
+            else
+            {
                 return "undefined bitfield";
             }
         case H5T_OPAQUE:
-	    return "H5T_OPAQUE";
+            return "H5T_OPAQUE";
         case H5T_COMPOUND:
-	    return "H5T_COMPOUND";
+            return "H5T_COMPOUND";
         case H5T_REFERENCE:
-	    if (H5Tequal(type, H5T_STD_REF_DSETREG) > 0)
-	    {
-		return "H5T_STD_REF_DSETREG";
-	    }
-	    else
-	    {
-		return "H5T_STD_REF_OBJECT";
-	    }
+            if (H5Tequal(type, H5T_STD_REF_DSETREG) > 0)
+            {
+                return "H5T_STD_REF_DSETREG";
+            }
+            else
+            {
+                return "H5T_STD_REF_OBJECT";
+            }
             break;
         case H5T_ENUM:
-	    return "H5T_ENUM";
+            return "H5T_ENUM";
         case H5T_VLEN:
-	    return "H5T_VLEN";
+            return "H5T_VLEN";
         case H5T_ARRAY:
-	    return "H5T_ARRAY";
+            return "H5T_ARRAY";
         default:
-	    return _("Unknown datatype");
+            return _("Unknown datatype");
+    }
+}
+
+void H5Type::getAccessibleAttribute(const std::string & _name, const int pos, void * pvApiCtx) const
+{
+    SciErr err;
+    std::string lower(_name);
+    std::transform(_name.begin(), _name.end(), lower.begin(), tolower);
+
+    if (lower == "class")
+    {
+        std::string _class = getClassName();
+        const char * __class = _class.c_str();
+        err = createMatrixOfString(pvApiCtx, pos, 1, 1, &__class);
+        if (err.iErr)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create a string on the stack."));
         }
+
+        return;
+    }
+    else if (lower == "type")
+    {
+        std::string type = getTypeName();
+        const char * _type = type.c_str();
+        err = createMatrixOfString(pvApiCtx, pos, 1, 1, &_type);
+        if (err.iErr)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create a string on the stack."));
+        }
+
+        return;
+    }
+    else if (lower == "size")
+    {
+        unsigned int size = getTypeSize();
+        err = createMatrixOfUnsignedInteger32(pvApiCtx, pos, 1, 1, &size);
+        if (err.iErr)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create an integer on the stack."));
+        }
+
+        return;
+    }
+    else if (lower == "nativetype")
+    {
+        std::string type = getNativeTypeName();
+        const char * _type = type.c_str();
+        err = createMatrixOfString(pvApiCtx, pos, 1, 1, &_type);
+        if (err.iErr)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create a string on the stack."));
+        }
+
+        return;
+    }
+    else if (lower == "nativesize")
+    {
+        unsigned int size = getNativeTypeSize();
+        err = createMatrixOfUnsignedInteger32(pvApiCtx, pos, 1, 1, &size);
+        if (err.iErr)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create an integer on the stack."));
+        }
+
+        return;
     }
 
-    std::string H5Type::dump(const unsigned int indentLevel) const
+    H5Object::getAccessibleAttribute(_name, pos, pvApiCtx);
+}
+
+std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
+{
+    std::string sorder, ssign;
+    std::ostringstream os;
+    H5T_sign_t sign;
+    hsize_t * dims = 0;
+    unsigned int ndims;
+    hid_t strType;
+    hid_t super;
+    size_t size;
+    unsigned int nmembers;
+    H5T_order_t order;
+    H5T_str_t strpad;
+    H5T_cset_t cset;
+    htri_t isVariableLength;
+    std::string indent;
+    char * opaqueTag = 0;
+
+    os << H5Object::getIndentString(indentLevel);
+
+    if (!name.empty())
     {
-        std::string sorder, ssign;
-        std::ostringstream os;
-        H5T_sign_t sign;
-	hsize_t * dims = 0;
-	unsigned int ndims;
-	hid_t strType;
-	hid_t super;
-	size_t size;
-	unsigned int nmembers;
-	H5T_order_t order;
-	H5T_str_t strpad;
-	H5T_cset_t cset;
-	htri_t isVariableLength;
-	std::string indent;
-	char * opaqueTag = 0;
+        os << "DATATYPE \"" << name << "\" ";
+    }
+    else
+    {
+        os << "DATATYPE ";
+    }
 
-	os << H5Object::getIndentString(indentLevel);
-
-	if (name)
-	{
-	    os << "DATATYPE \"" << name << "\" ";
-	}
-	else
-	{
-	    os << "DATATYPE ";
-	}
-
-        switch (H5Tget_class(type)) {
+    switch (H5Tget_class(type))
+    {
         case H5T_INTEGER:
             if (H5Tequal(type, H5T_STD_I8BE) > 0)
             {
@@ -830,103 +943,103 @@ namespace org_modules_hdf5
             {
                 os << "H5T_NATIVE_ULLONG";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT8) > 0)
             {
                 os << "H5T_NATIVE_INT8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT8) > 0)
             {
                 os << "H5T_NATIVE_UINT8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_LEAST8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_LEAST8) > 0)
             {
                 os << "H5T_NATIVE_INT_LEAST8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST8) > 0)
             {
                 os << "H5T_NATIVE_UINT_LEAST8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_FAST8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_FAST8) > 0)
             {
                 os << "H5T_NATIVE_INT_FAST8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_FAST8) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_FAST8) > 0)
             {
                 os << "H5T_NATIVE_UINT_FAST8";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT16) > 0)
             {
                 os << "H5T_NATIVE_INT16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT16) > 0)
             {
                 os << "H5T_NATIVE_UINT16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_LEAST16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_LEAST16) > 0)
             {
                 os << "H5T_NATIVE_INT_LEAST16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST16) > 0)
             {
                 os << "H5T_NATIVE_UINT_LEAST16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_FAST16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_FAST16) > 0)
             {
                 os << "H5T_NATIVE_INT_FAST16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_FAST16) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_FAST16) > 0)
             {
                 os << "H5T_NATIVE_UINT_FAST16";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT32) > 0)
             {
                 os << "H5T_NATIVE_INT32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT32) > 0)
             {
                 os << "H5T_NATIVE_UINT32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_LEAST32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_LEAST32) > 0)
             {
                 os << "H5T_NATIVE_INT_LEAST32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST32) > 0)
             {
                 os << "H5T_NATIVE_UINT_LEAST32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_FAST32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_FAST32) > 0)
             {
                 os << "H5T_NATIVE_INT_FAST32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_FAST32) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_FAST32) > 0)
             {
                 os << "H5T_NATIVE_UINT_FAST32";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT64) > 0)
             {
                 os << "H5T_NATIVE_INT64";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT64) > 0)
             {
                 os << "H5T_NATIVE_UINT64";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_LEAST64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_LEAST64) > 0)
             {
                 os << "H5T_NATIVE_INT_LEAST64";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_LEAST64) > 0)
             {
                 os << "H5T_NATIVE_UINT_LEAST64";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_INT_FAST64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_INT_FAST64) > 0)
             {
                 os << "H5T_NATIVE_INT_FAST64";
             }
-	    else if (H5Tequal(type, H5T_NATIVE_UINT_FAST64) > 0)
+            else if (H5Tequal(type, H5T_NATIVE_UINT_FAST64) > 0)
             {
                 os << "H5T_NATIVE_UINT_FAST64";
             }
-	    else if (H5Tequal(type, H5T_INTEL_I8) > 0)
+            else if (H5Tequal(type, H5T_INTEL_I8) > 0)
             {
                 os << "H5T_INTEL_I8";
             }
@@ -1042,7 +1155,7 @@ namespace org_modules_hdf5
             {
                 os << "H5T_NATIVE_HBOOL";
             }
-            else 
+            else
             {
                 if (H5Tget_size(type) > 1)
                 {
@@ -1165,7 +1278,7 @@ namespace org_modules_hdf5
             {
                 os << "H5T_MIPS_F64";
             }
-            else 
+            else
             {
                 if (H5Tget_size(type) > 1)
                 {
@@ -1224,79 +1337,79 @@ namespace org_modules_hdf5
             strpad = H5Tget_strpad(type);
             cset = H5Tget_cset(type);
             isVariableLength = H5Tis_variable_str(type);
-	    indent = H5Object::getIndentString(indentLevel + 1);
+            indent = H5Object::getIndentString(indentLevel + 1);
 
-	    strType = H5Tcopy(H5T_C_S1);
-	    H5Tset_size(strType, isVariableLength ? H5T_VARIABLE : size); 
-	    H5Tset_cset(strType, cset);
-	    H5Tset_strpad(strType, strpad);
+            strType = H5Tcopy(H5T_C_S1);
+            H5Tset_size(strType, isVariableLength ? H5T_VARIABLE : size);
+            H5Tset_cset(strType, cset);
+            H5Tset_strpad(strType, strpad);
 
-	    os << "H5T_STRING {" << std::endl;
-	    if (isVariableLength)
-	    {
-		os << indent << "STRSIZE H5T_VARIABLE;" << std::endl;
-	    }
-	    else
-	    {
-		os << indent << "STRSIZE " << (int)size << ";" << std::endl;
-	    }
+            os << "H5T_STRING {" << std::endl;
+            if (isVariableLength)
+            {
+                os << indent << "STRSIZE H5T_VARIABLE;" << std::endl;
+            }
+            else
+            {
+                os << indent << "STRSIZE " << (int)size << ";" << std::endl;
+            }
 
-	    os << indent << "STRPAD ";
-	    switch (strpad)
-	    {
-	    case H5T_STR_NULLTERM:
-	    	os << "H5T_STR_NULLTERM;" << std::endl;
-		break;
-	    case H5T_STR_NULLPAD:
-	    	os << "H5T_STR_NULLPAD;" << std::endl;
-		break;
-	    case H5T_STR_SPACEPAD:
-	    	os << "H5T_STR_SPACEPAD;" << std::endl;
-		break;
-	    default:
-	    	os << "H5T_STR_ERROR;" << std::endl;
-		break;
-	    }
+            os << indent << "STRPAD ";
+            switch (strpad)
+            {
+                case H5T_STR_NULLTERM:
+                    os << "H5T_STR_NULLTERM;" << std::endl;
+                    break;
+                case H5T_STR_NULLPAD:
+                    os << "H5T_STR_NULLPAD;" << std::endl;
+                    break;
+                case H5T_STR_SPACEPAD:
+                    os << "H5T_STR_SPACEPAD;" << std::endl;
+                    break;
+                default:
+                    os << "H5T_STR_ERROR;" << std::endl;
+                    break;
+            }
 
-	    os << indent << "CSET ";
-	    if (cset == H5T_CSET_ASCII)
-	    {
-		os << "H5T_CSET_ASCII;" << std::endl;
-	    }
-	    else if (cset == H5T_CSET_UTF8)
-	    {
-		os << "H5T_CSET_UTF8;" << std::endl;
-	    }
-	    else
-	    {
-		os << "Unknown charset;" << std::endl;
-	    }
+            os << indent << "CSET ";
+            if (cset == H5T_CSET_ASCII)
+            {
+                os << "H5T_CSET_ASCII;" << std::endl;
+            }
+            else if (cset == H5T_CSET_UTF8)
+            {
+                os << "H5T_CSET_UTF8;" << std::endl;
+            }
+            else
+            {
+                os << "Unknown charset;" << std::endl;
+            }
 
-	    // TODO: modif l'endianess (cf h5dump.c::1068)
-	    os << indent << "CTYPE ";
-	    if (H5Tequal(type, strType) > 0)
-	    {
-		H5Tclose(strType);
-		os << "H5T_C_S1;" << std::endl;
-	    }
-	    else
-	    {
-		H5Tclose(strType);
-		strType = H5Tcopy(H5T_FORTRAN_S1);
-		H5Tset_size(strType, size); 
-		H5Tset_cset(strType, cset);
-		H5Tset_strpad(strType, strpad);
-		if (H5Tequal(type, H5T_FORTRAN_S1) > 0)
-		{
-		    os << "H5T_FORTRAN_S1;" << std::endl;
-		}
-		else
-		{
-		    os << "Unknown one character type;" << std::endl;
-		}
-	    }
-	    
-	    os << H5Object::getIndentString(indentLevel) << "}";
+            // TODO: modif l'endianess (cf h5dump.c::1068)
+            os << indent << "CTYPE ";
+            if (H5Tequal(type, strType) > 0)
+            {
+                H5Tclose(strType);
+                os << "H5T_C_S1;" << std::endl;
+            }
+            else
+            {
+                H5Tclose(strType);
+                strType = H5Tcopy(H5T_FORTRAN_S1);
+                H5Tset_size(strType, size);
+                H5Tset_cset(strType, cset);
+                H5Tset_strpad(strType, strpad);
+                if (H5Tequal(type, H5T_FORTRAN_S1) > 0)
+                {
+                    os << "H5T_FORTRAN_S1;" << std::endl;
+                }
+                else
+                {
+                    os << "Unknown one character type;" << std::endl;
+                }
+            }
+
+            os << H5Object::getIndentString(indentLevel) << "}";
             break;
         case H5T_BITFIELD:
             if (H5Tequal(type, H5T_STD_B8BE) > 0)
@@ -1331,142 +1444,165 @@ namespace org_modules_hdf5
             {
                 os << "H5T_STD_B64LE";
             }
-	    else if (H5Tequal(type, H5T_INTEL_B8) > 0)
+            else if (H5Tequal(type, H5T_INTEL_B8) > 0)
             {
                 os << "H5T_INTEL_B8";
             }
-	    else if (H5Tequal(type, H5T_INTEL_B16) > 0)
+            else if (H5Tequal(type, H5T_INTEL_B16) > 0)
             {
                 os << "H5T_INTEL_B16";
             }
-	    else if (H5Tequal(type, H5T_INTEL_B32) > 0)
+            else if (H5Tequal(type, H5T_INTEL_B32) > 0)
             {
                 os << "H5T_INTEL_B32";
             }
-	    else if (H5Tequal(type, H5T_INTEL_B64) > 0)
+            else if (H5Tequal(type, H5T_INTEL_B64) > 0)
             {
                 os << "H5T_INTEL_B64";
             }
-	    else if (H5Tequal(type, H5T_ALPHA_B8) > 0)
+            else if (H5Tequal(type, H5T_ALPHA_B8) > 0)
             {
                 os << "H5T_ALPHA_B8";
             }
-	    else if (H5Tequal(type, H5T_ALPHA_B16) > 0)
+            else if (H5Tequal(type, H5T_ALPHA_B16) > 0)
             {
                 os << "H5T_ALPHA_B16";
             }
-	    else if (H5Tequal(type, H5T_ALPHA_B32) > 0)
+            else if (H5Tequal(type, H5T_ALPHA_B32) > 0)
             {
                 os << "H5T_ALPHA_B32";
             }
-	    else if (H5Tequal(type, H5T_ALPHA_B64) > 0)
+            else if (H5Tequal(type, H5T_ALPHA_B64) > 0)
             {
                 os << "H5T_ALPHA_B64";
             }
-	    else if (H5Tequal(type, H5T_MIPS_B8) > 0)
+            else if (H5Tequal(type, H5T_MIPS_B8) > 0)
             {
                 os << "H5T_MIPS_B8";
             }
-	    else if (H5Tequal(type, H5T_MIPS_B16) > 0)
+            else if (H5Tequal(type, H5T_MIPS_B16) > 0)
             {
                 os << "H5T_MIPS_B16";
             }
-	    else if (H5Tequal(type, H5T_MIPS_B32) > 0)
+            else if (H5Tequal(type, H5T_MIPS_B32) > 0)
             {
                 os << "H5T_MIPS_B32";
             }
-	    else if (H5Tequal(type, H5T_MIPS_B64) > 0)
+            else if (H5Tequal(type, H5T_MIPS_B64) > 0)
             {
                 os << "H5T_MIPS_B64";
             }
-	    else 
-	    {
+            else
+            {
                 os << "undefined bitfield";
             }
             break;
         case H5T_OPAQUE:
-	    opaqueTag = H5Tget_tag(type);
+            opaqueTag = H5Tget_tag(type);
             os << "H5T_OPAQUE;" << std::endl
-	       << H5Object::getIndentString(indentLevel + 1)
-	       << "OPAQUE TAG \"" << opaqueTag << "\";";
-	    
-	    free(opaqueTag);
+               << H5Object::getIndentString(indentLevel + 1)
+               << "OPAQUE TAG \"" << opaqueTag << "\";";
+
+            free(opaqueTag);
             break;
         case H5T_COMPOUND:
             nmembers = H5Tget_nmembers(type);
-	    os << "H5T_COMPOUND {" << std::endl;
+            os << "H5T_COMPOUND {" << std::endl;
 
             for (unsigned int i = 0; i < nmembers; i++)
             {
                 char * mname = H5Tget_member_name(type, i);
                 hid_t mtype = H5Tget_member_type(type, i);
-		
-		os << H5Type(*const_cast<H5Type *>(this), mtype).dump(0) 
-		   << " " << "\"" << mname << "\";" << std::endl;
 
-		free(mname);
+                os << H5Object::getIndentString(indentLevel + 1)
+                   << H5Type(*const_cast<H5Type *>(this), mtype).getTypeName()
+                   << " " << "\"" << mname << "\";" << std::endl;
+
+                free(mname);
             }
 
-	    os << H5Object::getIndentString(indentLevel) << "}";
+            os << H5Object::getIndentString(indentLevel) << "}";
             break;
         case H5T_REFERENCE:
-	    os << "H5T_REFERENCE";
-	    if (H5Tequal(type, H5T_STD_REF_DSETREG) > 0)
-	    {
-		os << " { H5T_STD_REF_DSETREG }";
-	    }
-	    else
-	    {
-		os << " { H5T_STD_REF_OBJECT }";
-	    }
+            os << "H5T_REFERENCE";
+            if (H5Tequal(type, H5T_STD_REF_DSETREG) > 0)
+            {
+                os << " { H5T_STD_REF_DSETREG }";
+            }
+            else
+            {
+                os << " { H5T_STD_REF_OBJECT }";
+            }
             break;
         case H5T_ENUM:
-	    // TODO : c'est pas bien ca: il faut print les key->values.
-	    os << "H5T_ENUM { "
-	       << H5Type(*const_cast<H5Type *>(this), H5Tget_super(type)).dump(0) << std::endl
-	       << H5Object::getIndentString(indentLevel) << "}";
+            // TODO : c'est pas bien ca: il faut print les key->values.
+            os << "H5T_ENUM { "
+               << H5Type(*const_cast<H5Type *>(this), H5Tget_super(type)).dump(alreadyVisited, 0) << std::endl
+               << H5Object::getIndentString(indentLevel) << "}";
             break;
         case H5T_VLEN:
-	    os << "H5T_VLEN { "
-	       << H5Type(*const_cast<H5Type *>(this), H5Tget_super(type)).dump(0) << std::endl
-	       << H5Object::getIndentString(indentLevel) << "}";
+            os << "H5T_VLEN { "
+               << H5Type(*const_cast<H5Type *>(this), H5Tget_super(type)).dump(alreadyVisited, 0) << std::endl
+               << H5Object::getIndentString(indentLevel) << "}";
             break;
         case H5T_ARRAY:
             super = H5Tget_super(type);
             ndims = H5Tget_array_ndims(type);
-	    dims = new hsize_t[ndims];
+            dims = new hsize_t[ndims];
             H5Tget_array_dims2(type, dims);
 
-	    os << "H5T_ARRAY { ";
+            os << "H5T_ARRAY { ";
 
             for (unsigned int i = 0; i < ndims; i++)
-	    {
-		os << "[" << (unsigned int)dims[i] << "]";
-	    }
-             
-	    os << H5Type(*const_cast<H5Type *>(this), super).dump(0) << " }";
-	    delete[] dims;
+            {
+                os << "[" << (unsigned int)dims[i] << "]";
+            }
+
+            os << H5Type(*const_cast<H5Type *>(this), super).dump(alreadyVisited, 0) << " }";
+            delete[] dims;
             break;
         default:
-	    os << _("Unknown datatype");
+            os << _("Unknown datatype");
             break;
-        }
-
-	os << std::endl;
-    
-	return os.str();
     }
 
-    std::string H5Type::toString(const unsigned int indentLevel) const
+    os << std::endl;
+
+    return os.str();
+}
+
+void H5Type::printLsInfo(std::ostringstream & os) const
+{
+    if (!getName().empty())
     {
-	std::ostringstream os;
-	std::string indentString = H5Object::getIndentString(indentLevel);
-	
-	os << indentString << _("Filename") << ": " << getFile().getFileName() << std::endl
-	   << indentString << _("Name") << ": " << name << std::endl
-	   << indentString << _("Class name") << ": " << getClassName() << std::endl
-	   << indentString << _("Type name") << ": " << getTypeName();
+        std::string str(getName());
+        H5Object::getResizedString(str);
 
-	return os.str();
+        os << str << "Type" << std::endl;
     }
+}
+
+std::string H5Type::ls() const
+{
+    std::ostringstream os;
+    printLsInfo(os);
+
+    return os.str();
+}
+
+std::string H5Type::toString(const unsigned int indentLevel) const
+{
+    std::ostringstream os;
+    std::string indentString = H5Object::getIndentString(indentLevel);
+
+    os << indentString << _("Filename") << ": " << getFile().getFileName() << std::endl
+       << indentString << _("Name") << ": " << name << std::endl
+       << indentString << _("Class name") << ": " << getClassName() << std::endl
+       << indentString << _("Type name") << ": " << getTypeName() << std::endl
+       << indentString << _("Type size") << ": " << getTypeSize() << std::endl
+       << indentString << _("Native type name") << ": " << getNativeTypeName() << std::endl
+       << indentString << _("Native type size") << ": " << getNativeTypeSize();
+
+    return os.str();
+}
 }

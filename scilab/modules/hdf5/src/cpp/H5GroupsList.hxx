@@ -19,18 +19,18 @@
 namespace org_modules_hdf5
 {
 
-    class H5GroupsList : public H5NamedObjectsList<H5Group>
+class H5GroupsList : public H5NamedObjectsList<H5Group>
+{
+
+public :
+
+    H5GroupsList(H5Group & _parent) : H5NamedObjectsList(_parent, H5G_GROUP, -1, "H5 Group") { }
+
+    ~H5GroupsList()
     {
 
-    public :
-	
-	H5GroupsList(H5Group & _parent) : H5NamedObjectsList(_parent, H5G_GROUP, "H5 Group") { }
-	
-	~H5GroupsList()
-	    {
-
-	    }
-    };
+    }
+};
 }
 
 #endif // __H5GROUPSLIST_HXX__

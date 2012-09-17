@@ -32,51 +32,51 @@ extern "C"
 
 namespace org_modules_hdf5
 {
-    class H5Exception
+class H5Exception : public std::exception
+{
+    std::string message;
+    std::string file;
+    int line;
+
+public :
+
+    H5Exception(const int _line, const char * _file, std::string _message, ...) : message(""), file(_file), line(_line)
     {
-	std::string message;
-	std::string file;
-	int line;
+        char str[BUFFER_SIZE];
+        va_list args;
 
-    public :
-	
-	H5Exception(const int _line, const char * _file, std::string _message, ...) : message(""), file(_file), line(_line)
-	    {
-		char str[BUFFER_SIZE];
-		va_list args;
-		
-		va_start(args, _message);
-		vsnprintf(str, BUFFER_SIZE, _message.c_str(), args);
-		va_end(args);
-		
-		message = getDescription(std::string(str));
-	    }
+        va_start(args, _message);
+        vsnprintf(str, BUFFER_SIZE, _message.c_str(), args);
+        va_end(args);
 
-	H5Exception(const int _line, const char * _file, const char * _message, ...) : message(""), file(_file), line(_line)
-	    {
-		char str[BUFFER_SIZE];
-		va_list args;
-		
-		va_start(args, _message);
-		vsnprintf(str, BUFFER_SIZE, _message, args);
-		va_end(args);
-		
-		message = getDescription(std::string(str));
-	    }
-	
-	virtual ~H5Exception() throw() { }
+        message = getDescription(std::string(str));
+    }
 
-	virtual const char * what() const throw()
-	    {
-		return message.c_str();
-	    }
+    H5Exception(const int _line, const char * _file, const char * _message, ...) : message(""), file(_file), line(_line)
+    {
+        char str[BUFFER_SIZE];
+        va_list args;
+
+        va_start(args, _message);
+        vsnprintf(str, BUFFER_SIZE, _message, args);
+        va_end(args);
+
+        message = getDescription(std::string(str));
+    }
+
+    virtual ~H5Exception() throw() { }
+
+    virtual const char * what() const throw()
+    {
+        return message.c_str();
+    }
 
 private:
 
     inline std::string getDescription(std::string m) const
     {
 
-#if defined(HDF5OBJECTS_DEBUG)
+#if defined(__HDF5OBJECTS_DEBUG__)
 
         if (line == -1)
         {
@@ -102,7 +102,7 @@ private:
 
 #endif
     }
-    };
+};
 }
 
 #endif // __H5EXCEPTION_HXX__

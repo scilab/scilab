@@ -14,38 +14,82 @@
 #define __H5GROUP_HXX__
 
 #include "H5Object.hxx"
+#include "H5Type.hxx"
+#include "H5Dataset.hxx"
+#include "H5SoftLink.hxx"
+#include "H5ExternalLink.hxx"
+#include "H5NamedObjectsList.hxx"
 #include "H5AttributesList.hxx"
 
 namespace org_modules_hdf5
 {
-    
-    class H5LinksList;
-    class H5GroupsList;
-    class H5DatasetsList;
-    class H5TypesList;
-    class H5File;
 
-    class H5Group : public H5Object
+class H5SoftLinksList;
+class H5LinksList;
+class H5GroupsList;
+class H5DatasetsList;
+class H5TypesList;
+class H5File;
+
+class H5Group : public H5Object
+{
+    typedef struct
     {
-	hid_t group;
-	const char * name;
+        H5Object * parent;
+        std::ostringstream * os;
+    } OpData;
 
-    public:
+    hid_t group;
+    const std::string name;
 
-	H5Group(H5Object & _parent, const char * name);
-	H5Group(H5Object & _parent, hid_t _group, const char * _name);
-	
-	virtual ~H5Group();
+public:
 
-	virtual hid_t getH5Id() const { return group; }
-        virtual H5LinksList & getLinks();
-        virtual H5GroupsList & getGroups();
-        virtual H5DatasetsList & getDatasets();
-        virtual H5TypesList & getTypes();
-	virtual std::string getName() const { return std::string(name); }
-	virtual std::string toString(const unsigned int indentLevel) const;
-	virtual std::string dump(const unsigned int indentLevel = 0) const;
-    };
+    H5Group(H5Object & _parent, const char * name);
+    H5Group(H5Object & _parent, const std::string & name);
+    H5Group(H5Object & _parent, hid_t _group, const char * _name);
+    H5Group(H5Object & _parent, hid_t _group, const std::string & _name);
+
+    virtual ~H5Group();
+
+    virtual hid_t getH5Id() const
+    {
+        return group;
+    }
+
+    virtual bool checkType(const int type) const
+    {
+        return type == H5O_TYPE_GROUP;
+    }
+
+    virtual H5LinksList & getLinks();
+    virtual H5NamedObjectsList<H5SoftLink> & getSoftLinks();
+    virtual H5NamedObjectsList<H5ExternalLink> & getExternalLinks();
+    virtual H5GroupsList & getGroups();
+    virtual H5NamedObjectsList<H5Group> & getHardGroups();
+    virtual H5NamedObjectsList<H5Type> & getHardTypes();
+    virtual H5NamedObjectsList<H5Dataset> & getHardDatasets();
+    virtual H5DatasetsList & getDatasets();
+    virtual H5TypesList & getTypes();
+    const unsigned int getLinksSize() const;
+    virtual std::string getCompletePath() const;
+    virtual const std::string & getName() const
+    {
+        return name;
+    }
+    virtual std::string toString(const unsigned int indentLevel) const;
+    virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel = 0) const;
+    virtual std::string ls() const;
+    virtual void printLsInfo(std::ostringstream & os) const;
+
+    virtual void getAccessibleAttribute(const std::string & name, const int pos, void * pvApiCtx) const;
+
+    static H5Group & createGroup(H5Object & parent, const std::string & name);
+
+private :
+
+    void init();
+    static herr_t printLsInfo(hid_t g_id, const char * name, const H5L_info_t * info, void * op_data);
+};
 }
 
 #endif // __H5GROUP_HXX__

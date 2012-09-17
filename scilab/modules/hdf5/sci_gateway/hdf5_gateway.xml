@@ -12,8 +12,8 @@
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="hdf5">
-
-<!--
+  
+  <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -29,9 +29,21 @@
  Don't touch if you do not know what you are doing
 
 -->
-<PRIMITIVE gatewayId="62" primitiveId="1" primitiveName="export_to_hdf5" />
-<PRIMITIVE gatewayId="62" primitiveId="2" primitiveName="import_from_hdf5" />
-<PRIMITIVE gatewayId="62" primitiveId="3" primitiveName="listvar_in_hdf5" />
-<PRIMITIVE gatewayId="62" primitiveId="4" primitiveName="is_hdf5_file" />
-<PRIMITIVE gatewayId="62" primitiveId="5" primitiveName="h5dump" />
+  <PRIMITIVE gatewayId="62" primitiveId="1" primitiveName="export_to_hdf5" />
+  <PRIMITIVE gatewayId="62" primitiveId="2" primitiveName="import_from_hdf5" />
+  <PRIMITIVE gatewayId="62" primitiveId="3" primitiveName="listvar_in_hdf5" />
+  <PRIMITIVE gatewayId="62" primitiveId="4" primitiveName="is_hdf5_file" />
+  <PRIMITIVE gatewayId="62" primitiveId="5" primitiveName="h5dump" />
+  <PRIMITIVE gatewayId="62" primitiveId="6" primitiveName="h5open" />
+  <PRIMITIVE gatewayId="62" primitiveId="7" primitiveName="h5close" />
+  <PRIMITIVE gatewayId="62" primitiveId="8" primitiveName="h5read" />
+  <PRIMITIVE gatewayId="62" primitiveId="9" primitiveName="h5ls" />
+  <PRIMITIVE gatewayId="62" primitiveId="10" primitiveName="%H5Object_p" />
+  <PRIMITIVE gatewayId="62" primitiveId="11" primitiveName="%H5Object_e" />
+  <PRIMITIVE gatewayId="62" primitiveId="12" primitiveName="h5group" />
+  <PRIMITIVE gatewayId="62" primitiveId="13" primitiveName="h5delete" />
+  <PRIMITIVE gatewayId="62" primitiveId="14" primitiveName="h5dataset" />
+  <PRIMITIVE gatewayId="62" primitiveId="15" primitiveName="h5attr" />
+  <PRIMITIVE gatewayId="62" primitiveId="16" primitiveName="h5link" />
+  <PRIMITIVE gatewayId="62" primitiveId="17" primitiveName="h5readattr" />
 </GATEWAY>

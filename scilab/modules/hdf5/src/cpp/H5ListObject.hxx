@@ -18,18 +18,35 @@
 namespace org_modules_hdf5
 {
 
-    template<typename T>
-    class H5ListObject : public H5Object
+template<typename T>
+class H5ListObject : public H5Object
+{
+
+public :
+
+    H5ListObject(H5Object & _parent) : H5Object(_parent) { }
+
+    virtual void setObject(const unsigned int pos, T & object) = 0;
+    virtual T & getObject(const int pos) = 0;
+    virtual T & getObject(const std::string & name)
     {
+        throw H5Exception(__LINE__, __FILE__, _("Invalid operation"));
+    }
 
-    public :
+    virtual const unsigned int getSize() const = 0;
 
-	H5ListObject(H5Object & _parent) : H5Object(_parent) { }
+    virtual void getAccessibleAttribute(const double index, const int pos, void * pvApiCtx) const
+    {
+        T & obj = const_cast<H5ListObject *>(this)->getObject((int)index);
+        obj.createOnScilabStack(pos, pvApiCtx);
+    }
 
-        virtual void setObject(const unsigned int pos, T & object) = 0;
-        virtual T & getObject(const int pos) = 0;
-        virtual const unsigned int getSize() const = 0;
-    };
+    virtual void getAccessibleAttribute(const std::string & name, const int pos, void * pvApiCtx) const
+    {
+        T & obj = const_cast<H5ListObject *>(this)->getObject(name);
+        obj.createOnScilabStack(pos, pvApiCtx);
+    }
+};
 }
 
 #endif // __H5FILE_HXX__

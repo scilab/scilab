@@ -18,95 +18,98 @@
 
 namespace org_modules_hdf5
 {
-    class H5Data : public H5Object
+class H5Data : public H5Object
+{
+
+protected:
+
+    void * data;
+    const hsize_t totalSize;
+    const hsize_t dataSize;
+    const hsize_t ndims;
+    const hsize_t * dims;
+    const hsize_t stride;
+    const size_t offset;
+    const bool dataOwner;
+
+public:
+
+    H5Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, void * _data, const hsize_t _stride = -1, const size_t _offset = 0, const bool _dataOwner = true) : H5Object(_parent), totalSize(_totalSize), dataSize(_dataSize), ndims(_ndims), dims(_dims), data(_data), stride(_stride), offset(_offset), dataOwner(_dataOwner)
     {
 
-    protected:
+    }
 
-        void * data;
-        const hsize_t totalSize;
-        const hsize_t dataSize;
-        const hsize_t ndims;
-        const hsize_t * dims;
-        const hsize_t stride;
-        const size_t offset;
-        const bool dataOwner;
+    virtual ~H5Data()
+    {
+        if (dataOwner)
+        {
+            delete[] dims;
+            delete[] static_cast<char *>(data);
+        }
+    }
 
-    public:
+    virtual void * getData() const
+    {
+        return data;
+    }
 
-        H5Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, void * _data, const hsize_t _stride = -1, const size_t _offset = 0, const bool _dataOwner = true) : H5Object(_parent), totalSize(_totalSize), dataSize(_dataSize), ndims(_ndims), dims(_dims), data(_data), stride(_stride), offset(_offset), dataOwner(_dataOwner)
+    virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const {  }
+
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const = 0;
+
+protected:
+
+    int * getHypermatrix(void * pvApiCtx, const int position, int * parentList = 0, const int listPosition = 0) const
+    {
+        static const char * hypermat[3] = {"hm", "dims", "entries"};
+
+        int * list = 0;
+        SciErr err;
+        if (parentList)
+        {
+            err = createMListInList(pvApiCtx, position, parentList, listPosition, 3, &list);
+        }
+        else
+        {
+            err = createMList(pvApiCtx, position, 3, &list);
+        }
+
+        if (err.iErr)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
+        }
+
+        err = createMatrixOfStringInList(pvApiCtx, position, list, 1, 1, 3, hypermat);
+        if (err.iErr)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
+        }
+
+        if (sizeof(int) == sizeof(hsize_t))
+        {
+            err = createMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, ndims, (int *)dims);
+            if (err.iErr)
             {
-
+                throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
             }
-
-        virtual ~H5Data()
+        }
+        else
+        {
+            int * _dims = 0;
+            err = allocMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, ndims, &_dims);
+            if (err.iErr)
             {
-                if (dataOwner)
-                {
-                    delete[] dims;
-                    FREE(data);
-                }
+                throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
             }
-
-        virtual void * getData() const { return data; }
-
-	virtual void printData(std::ostream & os, void * data) const { }
-
-        virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const = 0;
-
-    protected:
-
-        int * getHypermatrix(void * pvApiCtx, const int position, int * parentList = 0, const int listPosition = 0) const
+            for (int i = 0; i < ndims; i++)
             {
-                static const char * hypermat[3] = {"hm", "dims", "entries"};
-
-                int * list = 0;
-                SciErr err;
-                if (parentList)
-                {
-                    err = createMListInList(pvApiCtx, position, parentList, listPosition, 3, &list);
-                }
-                else
-                {
-                    err = createMList(pvApiCtx, position, 3, &list);
-                }
-
-                if (err.iErr)
-                {
-                    throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
-                }
-
-                err = createMatrixOfStringInList(pvApiCtx, position, list, 1, 1, 3, hypermat);
-                if (err.iErr)
-                {
-                    throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
-                }
-
-                if (sizeof(int) == sizeof(hsize_t))
-                {
-                    err = createMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, ndims, (int *)dims);
-                    if (err.iErr)
-                    {
-                        throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
-                    }
-                }
-                else
-                {
-                    int * _dims = 0;
-                    err = allocMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, ndims, &_dims);
-                    if (err.iErr)
-                    {
-                        throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
-                    }
-                    for (int i = 0; i < ndims; i++)
-                    {
-                        _dims[i] = dims[i];
-                    }
-                }
-
-                return list;
+                _dims[i] = dims[i];
             }
-    };
+        }
+
+        return list;
+    }
+};
 }
 
 #endif // __H5DATA_HXX__

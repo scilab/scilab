@@ -16,13 +16,13 @@
 namespace org_modules_hdf5
 {
 
-    H5DatasetsList::H5DatasetsList(H5Group & _parent) : H5NamedObjectsList(_parent, H5G_DATASET, "H5 Dataset")
-    {
-    
-    }
-	
-    H5DatasetsList::~H5DatasetsList()
-    {
+H5DatasetsList::H5DatasetsList(H5Group & _parent) : H5NamedObjectsList(_parent, H5G_DATASET, "H5 Dataset")
+{
 
-    }
+}
+
+H5DatasetsList::~H5DatasetsList()
+{
+
+}
 }

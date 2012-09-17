@@ -19,17 +19,17 @@
 namespace org_modules_hdf5
 {
 
-    class H5Group;
+class H5Group;
 
-    class H5DatasetsList : public H5NamedObjectsList<H5Dataset>
-    {
+class H5DatasetsList : public H5NamedObjectsList<H5Dataset>
+{
 
-    public :
-	
-	H5DatasetsList(H5Group & _parent) : H5NamedObjectsList<H5Dataset>(_parent, H5G_DATASET, "H5 Dataset") { }
-	
-	~H5DatasetsList() { }
-    };
+public :
+
+    H5DatasetsList(H5Group & _parent) : H5NamedObjectsList<H5Dataset>(_parent, H5G_DATASET, -1, "H5 Dataset") { }
+
+    ~H5DatasetsList() { }
+};
 }
 
 #endif // __H5DATASETSLIST_HXX__

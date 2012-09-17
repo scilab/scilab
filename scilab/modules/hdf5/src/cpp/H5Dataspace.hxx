@@ -13,25 +13,33 @@
 #ifndef __H5DATASPACE_HXX__
 #define __H5DATASPACE_HXX__
 
+#include "HDF5Objects.h"
 #include "H5Object.hxx"
 
 namespace org_modules_hdf5
 {
-    
-    class H5Dataspace : public H5Object
-    {
-	hid_t space;
 
-    public:
+class H5Dataspace : public H5Object
+{
+    hid_t space;
 
-	H5Dataspace(H5Object & _parent, hid_t _space);
-	~H5Dataspace();
+public:
 
-	virtual hid_t getH5Id();
-    
-	virtual std::string dump(unsigned int indentLevel) const;
-	virtual std::string toString(unsigned int indentLevel) const;
-    };
+    H5Dataspace(H5Object & _parent, hid_t _space);
+    ~H5Dataspace();
+
+    virtual hid_t getH5Id();
+    virtual std::vector<unsigned int> getDims() const;
+    virtual std::string getTypeName() const;
+
+    virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const;
+    virtual std::string toString(const unsigned int indentLevel) const;
+
+    virtual void getAccessibleAttribute(const std::string & name, const int pos, void * pvApiCtx) const;
+
+    static H5Dataspace & createDataspace(H5Object & parent, const std::string & type);
+    static H5Dataspace & createDataspace(H5Object & parent, const int rank, const hsize_t * dims, const hsize_t * maxdims);
+};
 }
 
 #endif // __H5DATASPACE_HXX__
