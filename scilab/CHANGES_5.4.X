@@ -57,6 +57,8 @@ Bug Fixes
 * Bug #10559 fixed - Sspectral estimation demonstration failed if the graphic
                      figure was closed.
 
+* Bug #10885 fixed - Renamed "Exit" to "Exit Scinotes" in Scinotes.
+
 * Bug #11293 fixed - Line style was not taken into account.
 
 * Bug #11558 fixed - Typo in helptools module fixed.
