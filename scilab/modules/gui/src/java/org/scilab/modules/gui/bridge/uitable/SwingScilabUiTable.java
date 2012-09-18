@@ -270,6 +270,11 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         if (uiTable == null) {
             uiTable = new JTable(data, colNames);
             uiTable.setFillsViewportHeight(true);
+            if (uiTable.getGridColor().equals(Color.WHITE)) {
+                uiTable.setGridColor(new Color(128, 128, 128));
+            }
+            uiTable.setShowHorizontalLines(true);
+            uiTable.setShowVerticalLines(true);
         }
         return uiTable;
     }
