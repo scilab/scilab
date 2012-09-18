@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="do" xml:lang="en">
+    <refnamediv>
+        <refname>do</refname>
+        <refpurpose>palavra-chave de linguagem para laços ("loops") (significa
+            "faça...")
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Pode ser usado dentro de instruções <literal>for</literal> ou
+            <literal>while</literal> para separar a definição de variável do laço e o
+            conjunto de instruções do mesmo. 
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+      i = 0
+      while i<5 do
+          disp("i");
+          i = i + 1;
+      end
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+n=5;
+for i = 1:n do
+    for j = 1:n do
+        a(i,j) = 1/(i+j-1);
+    end;
+end
+
+ ]]></programlisting>
+    </refsection>
+    
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="for">for</link>
+            </member>
+            <member>
+                <link linkend="while">while</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

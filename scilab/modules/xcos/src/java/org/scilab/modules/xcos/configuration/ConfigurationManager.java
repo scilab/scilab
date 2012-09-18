@@ -390,7 +390,10 @@ public final class ConfigurationManager {
      * @return the loaded diagram or null on error
      */
     public XcosDiagram loadDiagram(DocumentType doc) {
-        final File f = getFile(doc);
+        File f = getFile(doc);
+        if (f != null && !f.exists()) {
+            f = null;
+        }
 
         XcosDiagram graph;
         try {

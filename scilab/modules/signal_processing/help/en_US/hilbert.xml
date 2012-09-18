@@ -71,5 +71,13 @@ h=hilb(n)';
 h=[h((m+1):$);h(1:m)];
 plot([imag(y) h])
  ]]></programlisting>
+        <scilab:image>
+            m=25;
+            n=2*m+1;
+            y=hilbert(eye(n,1));
+            h=hilb(n)';
+            h=[h((m+1):$);h(1:m)];
+            plot([imag(y) h])
+        </scilab:image>
     </refsection>
 </refentry>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="x_mdialog">
+    <refnamediv>
+        <refname>x_mdialog</refname>
+        <refpurpose>対話的なベクトル/行列入力用のダイアログ.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>result=x_mdialog(title,labels,default_inputs_vector)
+            result=x_mdialog(title,labelsv,labelsh,default_input_matrix)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>title</term>
+                <listitem>
+                    <para>文字列の列ベクトル, ダイアログの表題</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>labels</term>
+                <listitem>
+                    <para>
+                        文字列の列ベクトル, <literal>labels(i)</literal> は
+                        i番目に指定する値のラベル
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>default_input_vector</term>
+                <listitem>
+                    <para>文字列の列ベクトル,
+                        <literal>default_input_vector(i)</literal> は
+                        i番目に指定する値の初期値です
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>labelsv</term>
+                <listitem>
+                    <para>
+                        文字列ベクトル, <literal>labelsv(i)</literal> は
+                        指定する行列のi番目の行のラベルです
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>labelsh</term>
+                <listitem>
+                    <para>
+                        文字列のベクトル, <literal>labelsh(j)</literal> は
+                        指定する行列のj番目の列のラベルです
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>default_input_matrix</term>
+                <listitem>
+                    <para>文字列の n x m 行列,
+                        <literal>default_input_matrix(i,j)</literal> は
+                        指定する行列の要素(i,j)の初期値です
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>result</term>
+                <listitem>
+                    <para>"Ok"ボタンが押された場合は文字列の n x m 行列,
+                        "Cancel"ボタンが押された場合は []
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>対話的なベクトル/行列入力用のダイアログを開きます.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+txt = ['magnitude';'frequency';'phase    '];
+sig = x_mdialog('enter sine signal',txt,['1';'10';'0'])
+mag = evstr(sig(1))
+frq = evstr(sig(2))
+ph  = evstr(sig(3))
+
+rep = x_mdialog(['System Simulation';'with PI regulator'],...
+                 ['P gain';'I gain '],[' ';' '])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="editvar">editvar</link>
+            </member>
+            <member>
+                <link linkend="x_dialog">x_dialog</link>
+            </member>
+            <member>
+                <link linkend="x_choose">x_choose</link>
+            </member>
+            <member>
+                <link linkend="messagebox">messagebox</link>
+            </member>
+            <member>
+                <link linkend="getvalue">getvalue</link>
+            </member>
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

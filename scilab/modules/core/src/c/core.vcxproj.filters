@@ -784,6 +784,9 @@
     <ClInclude Include="..\..\includes\setlines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\stackTypeVariable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\core.iss" />

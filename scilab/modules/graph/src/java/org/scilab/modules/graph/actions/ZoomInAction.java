@@ -57,7 +57,9 @@ public class ZoomInAction extends DefaultAction {
 
         /**
          * Default constructor
-         * @param scilabGraph the current graph
+         *
+         * @param scilabGraph
+         *            the current graph
          */
         public CustomMouseWheelListener(ScilabGraph scilabGraph) {
             this.scilabGraph = scilabGraph;
@@ -65,7 +67,9 @@ public class ZoomInAction extends DefaultAction {
 
         /**
          * When the wheel is used
-         * @param e the parameters
+         *
+         * @param e
+         *            the parameters
          * @see java.awt.event.MouseWheelListener#mouseWheelMoved(java.awt.event.MouseWheelEvent)
          */
         @Override
@@ -80,13 +84,15 @@ public class ZoomInAction extends DefaultAction {
 
     /**
      * Constructor
-     * @param scilabGraph corresponding Scilab Graph
+     *
+     * @param scilabGraph
+     *            corresponding Scilab Graph
      */
     public ZoomInAction(ScilabGraph scilabGraph) {
         super(scilabGraph);
 
         MouseWheelListener mouseListener = new CustomMouseWheelListener(scilabGraph);
-        scilabGraph.getAsComponent().getViewport().addMouseWheelListener(mouseListener);
+        scilabGraph.getAsComponent().addMouseWheelListener(mouseListener);
 
         // Multi-shortcut action
         final ActionMap am = scilabGraph.getAsComponent().getActionMap();
@@ -101,17 +107,14 @@ public class ZoomInAction extends DefaultAction {
             /*
              * AZERTY for Mac has a non-supported classic layout
              */
-            keystrokes = new KeyStroke[] {
-                KeyStroke.getKeyStroke('/', ACCELERATOR_KEY),
-                KeyStroke.getKeyStroke('/', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
-            };
+            keystrokes = new KeyStroke[] { KeyStroke.getKeyStroke('/', ACCELERATOR_KEY),
+                                           KeyStroke.getKeyStroke('/', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
+                                         };
         } else {
-            keystrokes = new KeyStroke[] {
-                KeyStroke.getKeyStroke('=', ACCELERATOR_KEY),
-                KeyStroke.getKeyStroke('=', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
-                KeyStroke.getKeyStroke('+', ACCELERATOR_KEY),
-                KeyStroke.getKeyStroke('+', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
-            };
+            keystrokes = new KeyStroke[] { KeyStroke.getKeyStroke('=', ACCELERATOR_KEY),
+                                           KeyStroke.getKeyStroke('=', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK), KeyStroke.getKeyStroke('+', ACCELERATOR_KEY),
+                                           KeyStroke.getKeyStroke('+', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
+                                         };
         }
 
         for (KeyStroke k : keystrokes) {
@@ -121,7 +124,9 @@ public class ZoomInAction extends DefaultAction {
 
     /**
      * Create a button for a graph toolbar
-     * @param scilabGraph corresponding Scilab Graph
+     *
+     * @param scilabGraph
+     *            corresponding Scilab Graph
      * @return the button
      */
     public static PushButton zoominButton(ScilabGraph scilabGraph) {
@@ -130,7 +135,9 @@ public class ZoomInAction extends DefaultAction {
 
     /**
      * Create a menu for a graph menubar
-     * @param scilabGraph corresponding Scilab Graph
+     *
+     * @param scilabGraph
+     *            corresponding Scilab Graph
      * @return the menu
      */
     public static MenuItem zoominMenu(ScilabGraph scilabGraph) {
@@ -139,7 +146,9 @@ public class ZoomInAction extends DefaultAction {
 
     /**
      * Action associated
-     * @param e the event
+     *
+     * @param e
+     *            the event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
      */
     @Override

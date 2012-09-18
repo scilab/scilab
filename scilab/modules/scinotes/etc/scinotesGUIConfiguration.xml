@@ -96,6 +96,11 @@
       <menuitem action="scinotes-encoding" label="Current file encoding"/>
       <menuitem action="scinotes-eof" label="Line Endings"/>
       <separator/>
+      <menu label="Preferences">
+	<menuitem action="scinotes-set-font" label="Set font"/>
+	<menuitem action="scinotes-set-colors" label="Set colors"/>
+      </menu>
+      <separator/>
       <menu label="Auto-completion on">
         <menuitem action="scinotes-autocomplete-openers" label="(, [, ..."/>
         <menuitem action="scinotes-autocomplete-keyword" label="if, function, ..."/>

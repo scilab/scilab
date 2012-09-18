@@ -105,6 +105,12 @@ char const* DataModel::createDataObject(char const* _pstID, char const* _sType)
 
 void DataModel::deleteDataObject(char const* _pstID)
 {
+    Data3D* newObject = (*m_dataMap)[std::string(_pstID)];
+    if (newObject != NULL)
+    {
+        delete newObject;
+    }
+
     m_dataMap->erase(std::string(_pstID));
 }
 

@@ -34,11 +34,14 @@ private :
     // Define type for easy manipulation.
     typedef std::map<std::string, long>  __handleList;
     typedef __handleList::iterator          __handleList_iterator;
+    typedef std::map<long, std::string>  __uidList;
+    typedef __uidList::iterator          __uidList_iterator;
     typedef std::map<std::string, int>    __figureList;
     typedef __figureList::iterator          __figureList_iterator;
 
     static __figureList                     m_figureList;
     static __handleList                     m_handleList;
+    static __uidList                        m_uidList;
     static long                             m_topHandleValue;
     static std::string                      m_currentFigure;
     static std::string                      m_currentObject;

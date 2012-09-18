@@ -297,8 +297,10 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
      */
     public void setText(String text) {
-        ((DefaultListModel) getList().getModel()).clear();
-        ((DefaultListModel) getList().getModel()).addElement(text);
+        DefaultListModel model = new DefaultListModel();
+        model.addElement(text);
+        getList().setModel(model);
+        revalidate();
     }
 
     /**
@@ -315,7 +317,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
             updateNeeded = true;
         } else {
             for (int k = 0; k < text.length; k++) {
-                if (!text[k].equals(previousText[k])) {
+                if (text[k].compareTo(previousText[k]) != 0) {
                     updateNeeded = true;
                     break;
                 }
@@ -326,21 +328,21 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         }
 
         final String[] textF = text;
-
-        /* Clear previous items */
-        ((DefaultListModel) getList().getModel()).clear();
+        DefaultListModel model = new DefaultListModel();
         if (textF.length == 1 & text[0].contains(STRING_SEPARATOR)) {
             StringTokenizer strTok = new StringTokenizer(textF[0], STRING_SEPARATOR);
             while (strTok.hasMoreTokens()) {
-                ((DefaultListModel) getList().getModel()).addElement(strTok.nextToken());
+                model.addElement(strTok.nextToken());
             }
             /* Update the model with the parsed string */
             GraphicController.getController().setProperty(uid, __GO_UI_STRING__, getAllItemsText());
         } else {
             for (int i = 0; i < textF.length; i++) {
-                ((DefaultListModel) getList().getModel()).addElement(textF[i]);
+                model.addElement(textF[i]);
             }
         }
+        getList().setModel(model);
+        revalidate();
     }
 
     /**

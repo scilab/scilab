@@ -667,7 +667,7 @@ public class Axes extends GraphicObject {
         } else if (property == AxesProperty.HIDDENCOLOR) {
             setHiddenColor((Integer) value);
         } else if (property == LinePropertyType.MODE) {
-            setLineMode((Boolean) value);
+            return setLineMode((Boolean) value);
         } else if (property == LinePropertyType.LINESTYLE) {
             setLineStyle((Integer) value);
         } else if (property == LinePropertyType.THICKNESS) {
@@ -675,11 +675,11 @@ public class Axes extends GraphicObject {
         } else if (property == LinePropertyType.COLOR) {
             setLineColor((Integer) value);
         } else if (property == MarkPropertyType.MODE) {
-            setMarkMode((Boolean) value);
+            return setMarkMode((Boolean) value);
         } else if (property == MarkPropertyType.STYLE) {
-            setMarkStyle((Integer) value);
+            return setMarkStyle((Integer) value);
         } else if (property == MarkPropertyType.SIZE) {
-            setMarkSize((Integer) value);
+            return setMarkSize((Integer) value);
         } else if (property == MarkPropertyType.SIZEUNIT) {
             setMarkSizeUnit((Integer) value);
         } else if (property == MarkPropertyType.FOREGROUND) {
@@ -1504,8 +1504,8 @@ public class Axes extends GraphicObject {
     /**
      * @param lineMode the line mode to set
      */
-    public void setLineMode(Boolean lineMode) {
-        line.setMode(lineMode);
+    public UpdateStatus setLineMode(Boolean lineMode) {
+        return line.setMode(lineMode);
     }
 
     /**
@@ -1546,8 +1546,8 @@ public class Axes extends GraphicObject {
     /**
      * @param lineColor the lineColor to set
      */
-    public void setLineColor(Integer lineColor) {
-        line.setColor(lineColor);
+    public UpdateStatus setLineColor(Integer lineColor) {
+        return line.setColor(lineColor);
     }
 
     /**
@@ -1560,8 +1560,8 @@ public class Axes extends GraphicObject {
     /**
      * @param markMode the mark mode to set
      */
-    public void setMarkMode(Boolean markMode) {
-        mark.setMode(markMode);
+    public UpdateStatus setMarkMode(Boolean markMode) {
+        return mark.setMode(markMode);
     }
 
     /**
@@ -1574,8 +1574,8 @@ public class Axes extends GraphicObject {
     /**
      * @param markStyle the mark style to set
      */
-    public void setMarkStyle(Integer markStyle) {
-        mark.setStyle(markStyle);
+    public UpdateStatus setMarkStyle(Integer markStyle) {
+        return mark.setStyle(markStyle);
     }
 
     /**
@@ -1588,8 +1588,8 @@ public class Axes extends GraphicObject {
     /**
      * @param markSize the mark size to set
      */
-    public void setMarkSize(Integer markSize) {
-        mark.setSize(markSize);
+    public UpdateStatus setMarkSize(Integer markSize) {
+        return mark.setSize(markSize);
     }
 
     /**

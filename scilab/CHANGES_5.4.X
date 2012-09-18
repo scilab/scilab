@@ -14,8 +14,36 @@
             Changes between version 5.4.0-beta-3 and 5.4.0 of Scilab
             ========================================================
 
+
+CSV features
+============
+
+* New functions added:
+  - csvRead: Read a CSV file.
+  - csvWrite: Write data into a CSV file.
+  - csvTextscan: Transform a CSV line into a matrix
+  - csvDefault: Configure the CSV behavior.
+
+* csvRead and cvsWrite provide the same features as read_csv and write_csv
+  with major improvements in term of usability and performances:
+  - Write performances improved to a 100x factor.
+  - Read performances improved to a 3x factor.
+
+
+Windows version
+===============
+
+* Scilab can now be installed without administration rights.
+  In this case, the file association will not be configured.
+
+* ATOMS module is now mandatory and is installed in the minimal installation.
+
+
 Xcos
 ====
+
+* Bug #9075 fixed - Demo Xcos/Control systems/inverted pendulum
+                    opened a useless graphic windows
 
 * Bug #10943 fixed - Accented character in the file path broke file loading.
 
@@ -34,7 +62,13 @@ Compilation
 Bug Fixes
 =========
 
+* Bug #7874 fixed - The help page of qp_solve did not give enough information
+                    about iact.
+
 * Bug #8799 fixed - gsort did not work with hypermatrices.
+
+* Bug #10559 fixed - Sspectral estimation demonstration failed if the graphic
+                     figure was closed.
 
 * Bug #11293 fixed - Line style was not taken into account.
 
@@ -51,8 +85,24 @@ Bug Fixes
 * Bug #11810 fixed - In EditVar, undesired data were added when the edition
                      is cancelled.
 
-* Bug #11810 fixed - In BrowseVar, contents of "visibility" column are left
+* Bug #11810 fixed - In BrowseVar, contents of "visibility" column were left
                      aligned.
+
+* Bug #11810 fixed - In Editvar, under mac OS, there was no vertical/horizontal
+                     lines.
+
+* Bug #11834 fixed - In SciNotes there was not a menu to set font or colors.
+
+* Bug #11838 fixed - Maximized state of a window was not saved in quitting.
+
+* Bug #11840 fixed - In Xcos, dialogs could not be closed on escape.
+
+* Bug #11842 fixed - CTRL+X did not work in Scilab console.
+
+* Bug #11861 fixed - There was sometimes an exception when closing a figure.
+
+* Bug #11865 fixed - There was no information about a LaTeX error in doc
+                     generation.
 
 
             Changes between version 5.4.0-beta-2 and 5.4.0-beta-3 of Scilab

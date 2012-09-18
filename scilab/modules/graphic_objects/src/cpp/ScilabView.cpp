@@ -24,6 +24,7 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
+#include "deleteGraphicObject.h"
 }
 
 /**
@@ -163,7 +164,10 @@ void ScilabView::deleteObject(char const* pstId)
     }
 
     // Remove the corresponding handle.
+    m_uidList.erase(m_handleList.find(pstId)->second);
     m_handleList.erase(pstId);
+
+    deleteDataObject(pstId);
 }
 
 void ScilabView::updateObject(char const* pstId, char const* pstProperty)
@@ -192,6 +196,9 @@ void ScilabView::updateObject(char const* pstId, char const* pstProperty)
 void ScilabView::registerToController(void)
 {
     org_scilab_modules_graphic_objects::CallGraphicController::registerScilabView(getScilabJavaVM());
+    m_figureList.get_allocator().allocate(4096);
+    m_handleList.get_allocator().allocate(4096);
+    m_uidList.get_allocator().allocate(4096);
 }
 
 /*
@@ -319,22 +326,20 @@ long ScilabView::getObjectHandle(char const* UID)
     // register new handle and return it.
     m_topHandleValue++;
     m_handleList[UID] = m_topHandleValue;
+    m_uidList[m_topHandleValue] = UID;
 
     return m_topHandleValue;
 }
 
 char const* ScilabView::getObjectFromHandle(long handle)
 {
-    __handleList_iterator it;
-
-    for (it = m_handleList.begin(); it != m_handleList.end(); ++it)
+    __uidList_iterator it = m_uidList.find(handle);
+    if (it == m_uidList.end())
     {
-        if (it->second == handle)
-        {
-            return it->first.c_str();
-        }
+        return NULL;
     }
-    return NULL;
+
+    return it->second.c_str();
 }
 
 char const* ScilabView::getFigureModel(void)
@@ -372,6 +377,7 @@ void ScilabView::setAxesModel(char const* UID)
 */
 ScilabView::__figureList ScilabView::m_figureList = *new __figureList();
 ScilabView::__handleList ScilabView::m_handleList = *new __handleList();
+ScilabView::__uidList ScilabView::m_uidList = *new __uidList();
 long ScilabView::m_topHandleValue = 0;
 std::string ScilabView::m_currentFigure;
 std::string ScilabView::m_currentObject;

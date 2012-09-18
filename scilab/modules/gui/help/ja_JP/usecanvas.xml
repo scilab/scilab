@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="usecanvas">
+    <refnamediv>
+        <refname>usecanvas</refname>
+        <refpurpose>Scilabグラフィックで使用されるメイン要素を取得/設定.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            [canvasused] = usecanvas([usecanvasfordisplay]);
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>canvasused</term>
+                <listitem>
+                    <para>論理値:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                グラフィックディスプレイに"GLCanvas" を
+                                使用する場合は<literal>%T</literal>
+                                (uicontrols とグラフィックは混用
+                                <emphasis role="bold">できません</emphasis>).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                グラフィックディスプレイに"GLJPanel" を
+                                使用する場合は<literal>%F</literal>
+                                (uicontrols とグラフィックは混用
+                                <emphasis role="bold">できません</emphasis>).
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>usecanvasfordisplay</term>
+                <listitem>
+                    <para>Boolean:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                グラフィックディスプレイに"GLCanvas" を
+                                使用する場合は<literal>%T</literal>
+                                (uicontrols とグラフィックは混用
+                                <emphasis role="bold">できません</emphasis>).		      
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                グラフィックディスプレイに"GLJPanel" を
+                                使用する場合は<literal>%F</literal>
+                                (uicontrols とグラフィックは混用
+                                <emphasis role="bold">できません</emphasis>).
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            Scilabはグラフィック(plot3d, plot, ...)を表示する際に"GLJPanel"
+            (Swing OpenGL要素)を使用します.
+            この要素は,	いくつかのプラットフォームに正しくサポートされていない
+            (オペレーティング・システム, ビデオカード, ドライバ ...に依存する)
+            いくつかの高レベルOpenGLプリミティブを使用します.
+        </para>
+        <para>
+            "GLCanvas" (AWT + OpenGL) は, Javaフレームワークで提供される
+            別の要素です.
+            Scilabはグラフィックを描画する際にこれを使用することができます.
+            <emphasis role="bold">しかし, この要素を使用するとプロットと
+                uicontrolの混用のようないくつかの機能が無効となります(デモGUI/UIcontrol2参照).
+                これがこの機能がデフォルトとなっていない理由です.
+            </emphasis>
+        </para>
+        <para>
+            いくつかの特殊なケースでは,
+            Scilab開始時に"GLCanvas"要素の使用が強制されます
+            (最初にグラフィック関数が使用される際に警告メッセージが表示されます),
+            以下にこれらのケースの一覧を示します:
+        </para>
+        <informaltable border="2">
+            <tr>
+                <td align="center">
+                    <emphasis role="bold">オペレーティング・システム</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis role="bold">ビデオカード</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis role="bold">詳細</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">64ビットWindows</td>
+                <td align="center">All</td>
+                <td align="center">When Scilab is used in a remote session.</td>
+            </tr>
+            <tr>
+                <td rowspan="3" valign="middle" align="center">Linux</td>
+                <td align="center">NVIDIAカード</td>
+                <td align="center">フリードライバを使用.</td>
+            </tr>
+            <tr>
+                <td align="center">ATIカード</td>
+                <td align="center">フリードライバまたはバージョン&lt; 8.52.3の
+                    ATIドライバ(インストーラ バージョン &lt; 8.8 / 
+                    OpenGL バージョン &lt; 2.1.7873).
+                </td>
+            </tr>
+            <tr>
+                <td align="center">INTELカード</td>
+                <td align="center">直接レンダリングが有効になります.</td>
+            </tr>
+        </informaltable>
+        <para>
+            Scilabにより<literal>usecanvas</literal>を用いてこの要素を動的に有効にします:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>usecanvas(%T)</literal>はプロット描画に
+                    "GLCanvas" を使用します.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>usecanvas(%F)</literal> はプロット描画に
+                    "GLJPanel" を使用します.
+                    使用する設定において"GLJPanel"で問題が発生することが既知の場合
+                    (上の表を参照),警告メッセージが表示されます.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            "GLJPanel"を使用することできる環境であると信じているにも関わらず,
+            Scilabが自動的に "GLCanvas" の使用を強制する場合,設定を
+            "GLJPanel" (<literal>usecanvas(%F)</literal>)に切り替え,
+            何か(例えば<literal>plot3d()</literal>)をプロットしてみてください.
+            Scilabグラフィックが動作する場合,
+            emailを<literal>scilab.support@scilab.org</literal>に送信し,
+            オペレーティング・システム/ビデオカード/ビデオカードドライバの
+            バージョンを我々に知らせてください.
+            これによりScilabの将来のバージョンを改良できるようになります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Workaround</title>
+        <para>
+            このコードは,グラフィックカードの問題に関連する潜在的な問題の多くを
+            修正します.性能が低下することに注意してください.
+            <programlisting role="example"><![CDATA[ 
+    system_setproperty("jogl.gljpanel.nohw","");
+    ]]></programlisting>
+        </para>
+    </refsection>
+    <!-- This part comes from http://wiki.scilab.org/Graphical_issues_with_Scilab_5.0 -->
+    <refsection>
+        <title>技術的な側面</title>
+        <para>
+            バージョン 5.0以降, ScilabはJOGL(the Java Binding for the OpenGL)の
+            先進的な使用として, Java2D OpenGLパイプラインを使用しています.
+            性能上の理由により,Java2D OpenGLパイプラインを使用しています.
+            より技術的な側面から, <literal>pbuffer</literal>と呼ばれる
+            グラフィックカードの内部バッファを使用します.
+        </para>
+        <para>
+            グラフィックカードのドライバがこのアプローチを正しくサポートしていない
+            場合に問題が発生する可能性があります.
+            既知のように, Linuxではこの機能を処理するフリードライバは
+            存在しません. Intelのプロプライエタリな世界では,状況は以下のようになります:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>NVIDIA</literal>: Nvidia は適当なプロプライエタリドライバを
+                    提供します. Scilabのグラフィックは多くのNVIDIAドライバで
+                    問題なく動作します.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>ATI</literal>: ドライババージョン8.8以降, 多くの
+                    ATIグラフィックはLinuxでpbufferをサポートします.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>Intel</literal>: これがpbufferの大きな欠点です.
+                    公式なIntelのドライバはLinuxでpbufferをサポートしていません.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            この問題に立ち向かうためのLinux用の回避策がありますが,
+            解決策はソフトウェアアクセラレータドライバを使用することです.
+            これを行うには, <literal>/etc/X11/xorg.conf</literal>で,
+            <emphasis role="italic">Section "Device"</emphasis>を探し,
+            オプション<emphasis role="italic">Driver</emphasis>を
+            <emphasis role="italic">vesa</emphasis>に変更します:
+        </para>
+        <programlisting role="example"><![CDATA[ 
+Section "Device"
+        Identifier      "Your Graphic card"
+        Driver  "vesa"
+[...]
+EndSection
+ ]]></programlisting>
+        <para>
+            残念なことに, この解はScilabをかなり遅くします. 
+        </para>
+        <para>
+            Windowsでは, ビデオカードの製造元は定期的に更新しており,
+            <literal>pbuffers</literal>は管理されています. 
+            最近のドライバを以下の場所からダウンロードしてください:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>ATIカード</literal>の場合: <ulink url="http://ati.amd.com/support/driver.html">http://ati.amd.com/support/driver.html</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>Intelカード</literal>の場合: <ulink url="http://www.intel.com/support/graphics/">http://www.intel.com/support/graphics/</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>Matroxカード</literal>の場合: <ulink url="http://www.matrox.com/graphics/en/support/drivers/">http://www.matrox.com/graphics/en/support/drivers/</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>NVIDIAカード</literal>の場合: <ulink url="http://www.nvidia.com/content/drivers/drivers.asp">http://www.nvidia.com/content/drivers/drivers.asp</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>S3カード</literal>の場合: <ulink url="http://www.s3graphics.com/en/resources/drivers/index.jsp">http://www.s3graphics.com/en/resources/drivers/index.jsp</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>SiSカード</literal>の場合: <ulink url="http://www.sis.com/download/">http://www.sis.com/download/</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>VIAカード</literal>の場合: <ulink url="http://www.viaarena.com/default.aspx?PageID=2">http://www.viaarena.com/default.aspx?PageID=2</ulink>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            (ビデオドライバが古くなったり,サポートされていない)
+            Windows 2000においても何らかの問題が発生する可能性があります.
+        </para>
+        <para>
+            pBufferが問題を発生する場合, 
+            <literal>pbuffer</literal>が動作するのを待つのは解決策ではありません: 
+            <ulink url="https://jogl.dev.java.net/issues/show_bug.cgi?id=163">
+                <emphasis role="italic">
+                    OpenGLコミュニティはpbufferからフレームバッファオブジェクト拡張
+                    に移行しつつあります.
+                    この拡張は移植性に優れ,オフスクリーン描画に関してpbufferよりも
+                    より高い性能を得ることができます.
+                </emphasis>
+            </ulink>
+            JOGLチームはこの問題を修正中です.
+        </para>
+        <para>この問題に関する詳細については以下を参照ください: </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>JoGL</literal> bug database: <ulink url="https://jogl.dev.java.net/issues/show_bug.cgi?id=366">Bug #366</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>Scilab</literal> bug database: <ulink url="http://bugzilla.scilab.org/show_bug.cgi?id=3525">Bug #3525</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>Debian</literal> bug database: <ulink url="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=501799">Bug #501799</ulink>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>Freedesktop</literal> bug database: <ulink url="https://bugs.freedesktop.org/show_bug.cgi?id=17603">Bug #17603</ulink>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// GLJPanelの使用例 (uicontrolsおよびグラフィックの混用)
+usecanvas(%F);
+plot2d();
+uicontrol("String", "Close the window", "Position", [10 10 100, 25], "Callback", "delete(gcf())");
+messagebox("You can see the button on the figure.", "Usecanvas example", "info");
+
+// GLCanvasの使用例 (uicontrolsとグラフィックを混用せずに, uicontrolsは不可視)
+usecanvas(%T);
+plot2d();
+uicontrol("String", "Close the window", "Position", [10 10 100, 25], "Callback", "delete(gcf())");
+messagebox("You can''t see any button on the figure.", "Usecanvas example", "info");
+ ]]></programlisting>
+    </refsection>
+</refentry>

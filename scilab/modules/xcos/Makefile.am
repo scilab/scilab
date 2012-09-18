@@ -165,10 +165,13 @@ images/blocks/RAMP.svg \
 images/blocks/Resistor.svg \
 images/blocks/SampleCLK.svg \
 images/blocks/SATURATION.svg \
+images/blocks/sawtooth.svg \
 images/blocks/Self_Switch_off.svg \
 images/blocks/Self_Switch_on.svg \
 images/blocks/SELF_SWITCH.svg \
+images/blocks/SINUS_f.svg \
 images/blocks/SourceP.svg \
+images/blocks/SQUARE_WAVE_f.svg \
 images/blocks/STEP_FUNCTION.svg \
 images/blocks/SUM.svg \
 images/blocks/SUPER.svg \

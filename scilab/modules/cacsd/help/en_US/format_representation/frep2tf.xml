@@ -85,7 +85,7 @@
             is a priori given in <literal>dg</literal> which must be provided.
             The following linear system is solved in the least square sense.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[ 
  weight(k)*(n( phi_k) - d(phi_k)*rep_k)=0, k=1,..,n
  ]]></programlisting>
         <para>
@@ -101,26 +101,56 @@
         <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 h=syslin('c',(s-1)/(s^3+5*s+20))
-frq=0:0.05:3;repf=repfreq(h,frq);
+frq=0:0.05:3;
+repf=repfreq(h,frq);
 clean(frep2tf(frq,repf,3))
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[ 
 
-Sys=ssrand(1,1,10); 
+Sys=ssrand(1,1,10);
 frq=logspace(-3,2,200);
 [frq,rep]=repfreq(Sys,frq);  //Frequency response of Sys
-[Sys2,err]=frep2tf(frq,rep,10);Sys2=clean(Sys2)//Sys2 obtained from freq. resp of Sys
+[Sys2,err]=frep2tf(frq,rep,10);
+Sys2=clean(Sys2) //Sys2 obtained from freq. resp of Sys
+
 [frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
-clf();bode(frq,[rep;rep2])   //Responses of Sys and Sys2
-[gsort(spec(Sys('A'))),gsort(roots(Sys2('den')))] //poles
-
-
+clf();
+bode(frq,[rep;rep2])   //Responses of Sys and Sys2
+[gsort(spec(Sys('A'))), gsort(roots(Sys2('den')))] //poles
+ ]]></programlisting>
+        <scilab:image>
+            
+            Sys=ssrand(1,1,10);
+            frq=logspace(-3,2,200);
+            [frq,rep]=repfreq(Sys,frq); 
+            [Sys2,err]=frep2tf(frq,rep,10);
+            Sys2=clean(Sys2)
+            
+            [frq,rep2]=repfreq(Sys2,frq);
+            bode(frq,[rep;rep2])
+            [gsort(spec(Sys('A'))), gsort(roots(Sys2('den')))]
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 dom=1/1000; // Sampling time 
 z=poly(0,'z');
 h=syslin(dom,(z^2+0.5)/(z^3+0.1*z^2-0.5*z+0.08))
-frq=(0:0.01:0.5)/dom;repf=repfreq(h,frq);
+frq=(0:0.01:0.5)/dom;
+repf=repfreq(h,frq);
 [Sys2,err]=frep2tf(frq,repf,3,dom);
 [frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
-clf();plot2d1("onn",frq',abs([repf;rep2])');
-]]></programlisting>
+clf();
+plot2d1("onn",frq',abs([repf;rep2])');
+ ]]></programlisting>
+        <scilab:image>
+            dom=1/1000;
+            z=poly(0,'z');
+            h=syslin(dom,(z^2+0.5)/(z^3+0.1*z^2-0.5*z+0.08))
+            frq=(0:0.01:0.5)/dom;
+            repf=repfreq(h,frq);
+            [Sys2,err]=frep2tf(frq,repf,3,dom);
+            [frq,rep2]=repfreq(Sys2,frq);
+            plot2d1("onn",frq',abs([repf;rep2])');
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

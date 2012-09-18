@@ -80,6 +80,8 @@
     <entry type="java" action="CopySelectionInNewTabAction" name="scinotes-selection-new-tab"/>
     <entry type="java" action="SplitAction" name="scinotes-split"/>
     <entry type="java" action="HelpOnKeywordInPopupAction" name="scinotes-help-keyword-popup"/>
+    <entry type="java" action="SetFontAction" name="scinotes-set-font"/>
+    <entry type="java" action="SetColorsAction" name="scinotes-set-colors"/>
   </scinotes>
   <console>
     <entry type="java" action="org.scilab.modules.console.SelectAllAction" name="console-select-all"/>

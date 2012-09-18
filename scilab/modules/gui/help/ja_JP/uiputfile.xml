@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="uiputfile">
+    <refnamediv>
+        <refname>uiputfile</refname>
+        <refpurpose>ファイル選択/保存用の標準ダイアログボックスを開く.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[FileName[,PathName[,FilterIndex]]]=uiputfile([file_mask[,dir[,boxTitle]]])
+            PathFileName=uiputfile([file_mask[,dir[,boxTitle]]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>入力パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>file_mask</term>
+                <listitem>
+                    <para>
+                        ファイル選択に使用するファイルマスクを指定する文字列
+                        行列.
+                        <literal>file_mask</literal> は
+                        Unix表記で指定します.
+                        デフォルト値は'*'です.
+                    </para>
+                    <para>
+                        マスク用の説明を追加することができます.
+                        例えば,["*.x*","X files";"*.bin","BIN files"].
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dir</term>
+                <listitem>
+                    <para>
+                        ファイル選択で使用される初期ディレクトリを
+                        指定する文字列.
+                        デフォルトで uiputfile は以前に選択されたディレクトリを
+                        使用します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>boxTitle</term>
+                <listitem>
+                    <para>
+                        uiputfileウインドウの表題を指定する文字列.
+                        デフォルトでuiputfileの表題は'uiputfile'です.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>出力パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>FileName</term>
+                <listitem>
+                    <para>
+                        ユーザが"Ok"を押した場合は,
+                        ユーザが選択したファイルを指定する文字列
+                        (パス + ファイル名) ,または
+                        ユーザが"Cancel"を押した場合は" "文字列.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PathName</term>
+                <listitem>
+                    <para>
+                        ユーザが"Ok"を押した場合は,
+                        ユーザが選択したファイルパス ,または
+                        ユーザが"Cancel"を押した場合は" "文字列.		      
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>FilterIndex</term>
+                <listitem>
+                    <para>
+                        ユーザが"Ok"を押した場合は,		      
+                        リストボックスでユーザが選択したフィルタ添字,
+                        ユーザが"Cancel"を押した場合は" "文字列.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ファイル保存用のダイアログボックスを作成します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+uiputfile(["*.bin";"*.sce";"*.cos*"])
+uiputfile(["*.sci";"*.bin"],"SCI/modules/gui/macros/")
+uiputfile(["*.sc*";"*.bin"],"SCI/modules/gui/macros/")
+uiputfile(["*.x*","X files";"*.bin","BIN files"],"SCI/modules/gui/macros/")
+uiputfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name"); 
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uigetfile">uigetfile</link>
+            </member>
+            <member>
+                <link linkend="uigetdir">uigetdir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
