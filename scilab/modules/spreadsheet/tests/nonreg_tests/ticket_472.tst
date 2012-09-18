@@ -23,3 +23,5 @@ ierr = execstr("res = csvTextScan(txt, [] , [], ""string"")", "errcatch");
 assert_checkequal(ierr, 0);
 assert_checkequal(res, ref_res);
 // =============================================================================
+
+assert_checkequal(csvDefault('blank','off'), %t);
