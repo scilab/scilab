@@ -350,14 +350,15 @@ static int getNumbersOfColumnsInLines(const char **lines, int sizelines,
             }
             else
             {
-                if (previousNbColumns != NbColumns)
+                if (previousNbColumns < NbColumns)
                 {
+                    previousNbColumns = NbColumns;
                     return 0;
                 }
             }
         }
     }
-    return NbColumns;
+    return previousNbColumns;
 }
 // =============================================================================
 static int getNumbersOfColumnsInLine(const char *line, const char *separator)
@@ -366,7 +367,7 @@ static int getNumbersOfColumnsInLine(const char *line, const char *separator)
     {
         int i = 0;
         int nbTokens = 0;
-        char **splittedStr = splitLine(line, separator, &nbTokens, 0);
+        char **splittedStr = splitLineCSV(line, separator, &nbTokens, 0);
         if (splittedStr)
         {
             if (nbTokens > 0)
@@ -411,7 +412,7 @@ static char **getStringsFromLines(const char **lines, int sizelines,
         for (i = 0; i < sizelines; i++)
         {
             int nbTokens = 0;
-            char **lineStrings = splitLine(lines[i], separator, &nbTokens, 0);
+            char **lineStrings = splitLineCSV(lines[i], separator, &nbTokens, 0);
             int j = 0;
 
             if (lineStrings)
@@ -433,13 +434,19 @@ static char **getStringsFromLines(const char **lines, int sizelines,
 
             if (m != nbTokens)
             {
-                freeArrayOfString(results, m * n);
+                //                freeArrayOfString(results, nbTokens * n);
                 FREE(lineStrings);
-                return NULL;
+                //                return NULL;
             }
 
             for (j = 0; j < m; j++)
             {
+                if (j > nbTokens)
+                {
+                    printf("Bourrage à la position %d\n", j);
+                    results[i + n * j] = "42";
+                }
+
                 if (decimal)
                 {
                     results[i + n * j] = strdup(lineStrings[j]);
@@ -449,9 +456,9 @@ static char **getStringsFromLines(const char **lines, int sizelines,
                     results[i + n * j] = csv_strsubst(lineStrings[j], decimal, getCsvDefaultDecimal());
                 }
 
-                if (lineStrings[j])
+                if (lineStrings[j] && j <= nbTokens)
                 {
-                    FREE(lineStrings[j]);
+                    //                    FREE(lineStrings[j]);
                     lineStrings[j] = NULL;
                 }
             }
