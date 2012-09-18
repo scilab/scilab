@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) 2010-2011 - INRIA - Allan CORNET
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ -->
+<refentry version="5.0-subset Scilab" xml:id="csvWrite" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>csvWrite</refname>
+        
+        <refpurpose>CSVファイルを書き込む</refpurpose>
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            csvWrite(M, filename)
+            csvWrite(M, filename, separator)
+            csvWrite(M, filename, separator, decimal)
+            csvWrite(M, filename, separator, decimal, precision)
+            csvWrite(M, filename, separator, decimal, precision, comments)
+        </synopsis>
+    </refsynopsisdiv>
+    
+    <refsection>
+        <title>パラメータ</title>
+        
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                
+                <listitem>
+                    <para>1行1列の文字列行列, ファイルのパス.</para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>M</term>
+                
+                <listitem>
+                    <para>m行n列の文字列またはdoubleの行列 
+                        (複素数がサポートされています).
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>separator</term>
+                
+                <listitem>
+                    <para>1行1列の文字列の行列, 列セパレータ記号.</para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>decimal</term>
+                
+                <listitem>
+                    <para>1行1列の文字列の行列, 小数点記号. 
+                        利用可能な値は"." または ",".
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>precision</term>
+                
+                <listitem>
+                    <para>1行1列の文字列の行列, C形式.</para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>comments</term>
+                
+                <listitem>
+                    <para>m行1列の文字列の行列,
+                        ファイルの先頭に保存されるコメント.
+                        このオプションは,例えば,
+                        ライセンスヘッダをデータファイルに
+                        記入するために使用できます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    
+    <refsection>
+        <title>説明</title>
+        
+        <para>
+            この関数は,行列 M を filename にカンマ区切りの値として
+            書き込みます.
+        </para>
+        
+        <para>
+            オプションの入力引数のデフォルト値は
+            <literal>csvDefault</literal> 関数で定義されます.
+        </para>
+        
+        <para>
+            オプションの入力引数に空の行列<literal>[]</literal>を指定すると,
+            デフォルト値が設定されます.
+        </para>
+        
+        <para>
+            <literal>filename</literal> がすでに存在する場合,
+            上書きされます.
+        </para>
+    </refsection>
+    
+    <refsection>
+        <title>例</title>
+        
+        <para>
+            以下の例では,
+            <literal>csvWrite</literal> および <literal>csvRead</literal>
+            関数を組み合わせて使用します.
+        </para>
+        
+        <programlisting role="example">// CSVファイル形式で行列を保存
+            M = [1:10] * 0.1;
+            filename = fullfile(TMPDIR, "data.csv");
+            csvWrite(M, filename);
+            
+            // テキストとして読み込む
+            mgetl(filename)
+            
+            r = csvRead(filename);    
+        </programlisting>
+        
+        <para>以下の例では,
+            <literal>csvWrite</literal> 関数の種々のオプションを使用します.
+        </para>
+        
+        <programlisting role="example">// CSVファイル形式で行列を保存
+            M = rand(2,3);
+            filename = fullfile(TMPDIR, "data.csv");
+            //
+            // セパレータとしてタブを使用
+            csvWrite(M, filename,ascii(9));
+            mgetl(filename)
+            //
+            // 小数点として "," を使用
+            // (そしてセパレータとして空白を使用).
+            csvWrite(M, filename," ",",");
+            mgetl(filename)
+            //
+            // 精度を指定
+            // 注意: このより低い精度により読み書きサイクルで
+            // 誤差を発生する可能性があります!
+            csvWrite(M, filename,[],[],"%.8e");
+            mgetl(filename)
+            //
+            // コメントを指定
+            comments = [
+            "// Copyright (C) INRIA"
+            "//  This file must be used under the terms of the CeCILL."
+            ];
+            csvWrite(M, filename,[],[],[],comments);
+            mgetl(filename)   
+        </programlisting>
+        
+        <para>以下の例は
+            <literal>csvWrite</literal>関数のより高度な使用例を示します.
+        </para>
+        
+        <programlisting role="example">A = [
+            1 0 200 %inf 0
+            1 1.e-300 200 %inf 0
+            9.99999999999990010e-001 9.99999999999999980e-201 200 3.15e300 102
+            9.99999999899999990e-001 1.e-100 200 296 117
+            1 %inf -%inf %nan 0
+            ];
+            
+            // ファイルに書き込む
+            filename=fullfile(TMPDIR,"foo.csv");
+            csvWrite ( A , filename );
+            edit(filename)   
+        </programlisting>
+    </refsection>
+    
+    <refsection>
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            <member>
+                <link linkend="csvRead">csvRead</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>関数が導入されました. 'csv_readwrite'モジュール
+                    に基づきます.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
+</refentry>
+
