@@ -538,8 +538,13 @@ int sci_csvRead(char *fname)
             }
             break;
 
-            case CSV_READ_READLINES_ERROR:
             case CSV_READ_COLUMNS_ERROR:
+            {
+                Scierror(999, _("%s: can not read file %s: Error in the column structure\n"), fname, filename);
+            }
+            break;
+
+            case CSV_READ_READLINES_ERROR:
             case CSV_READ_ERROR:
             {
                 Scierror(999, _("%s: can not read file %s.\n"), fname, filename);
