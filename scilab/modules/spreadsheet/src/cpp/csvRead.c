@@ -260,6 +260,7 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
             result->pstrComments = NULL;
             result->nbComments = 0;
         }
+        FREE(cleanedLines);
         return result;
     }
     else
@@ -285,6 +286,10 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
             result->pstrValues = cellsStrings;
             result->pstrComments = NULL;
             result->nbComments = 0;
+        }
+        else
+        {
+            FREE(cellsStrings);
         }
     }
     else

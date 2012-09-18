@@ -180,7 +180,11 @@ int sci_csvRead(char *fname)
     {
         int iErr = 0;
         conversion = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 4, fname, getCsvDefaultConversion(), &iErr);
-        if (iErr) return 0;
+        if (iErr)
+        {
+            FREE(regexp);
+            return 0;
+        }
         if (!((strcmp(conversion, CONVTOSTR) == 0) || (strcmp(conversion, CONVTODOUBLE) == 0)))
         {
             if (regexp)

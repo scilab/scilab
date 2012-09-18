@@ -173,6 +173,7 @@ int sci_csvWrite(char *fname)
         {
             //invalid value
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "write_csv", 4, ".", ",");
+            FREE(precisionFormat);
             return 1;
         }
     }
