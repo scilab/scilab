@@ -64,6 +64,8 @@ Bug Fixes
 
 * Bug #11293 fixed - Line style was not taken into account.
 
+* Bug #11489 fixed - 'SliderStep' property was ignored for uicontrols.
+
 * Bug #11558 fixed - Typo in helptools module fixed.
 
 * Bug #11657 fixed - Setting the callback_type property of an uicontrol was not

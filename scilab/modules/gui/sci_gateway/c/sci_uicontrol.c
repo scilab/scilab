@@ -428,6 +428,24 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         setGraphicObjectProperty(pUicontrol, __GO_VISIBLE__, &b, jni_bool, 1);
     }
 
+    if (propertiesValuesIndices[14] == NOT_FOUND)    /* SliderStep property not set */
+    {
+        /* Set SliderStep property to [1/100*(Max-Min) 1/10*(Max-Min)] */
+        double maxValue = 0;
+        double* pdblMaxValue = &maxValue;
+        double minValue = 0;
+        double* pdblMinValue = &minValue;
+        double pdblStep[2];
+
+        getGraphicObjectProperty(pUicontrol, __GO_UI_MIN__, jni_double, (void**) &pdblMinValue);
+        getGraphicObjectProperty(pUicontrol, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
+
+        pdblStep[0] = 0.01 * (maxValue - minValue);
+        pdblStep[1] = 0.1 * (maxValue - minValue);
+
+        setGraphicObjectProperty(pUicontrol, __GO_UI_SLIDERSTEP__, pdblStep, jni_double_vector, 2);
+    }
+
     FREE(propertiesValuesIndices);
 
     /* Create return variable */
