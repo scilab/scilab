@@ -514,7 +514,6 @@ int check_ND_symmetry(double *Ar, double *Ai, int ndims, int *dims, int *incr)
     nSubs2 = (int)(nSub / 2);
 
 
-    k = 0;
     if (Ai == NULL)
     {
         /* Real case */
@@ -927,7 +926,7 @@ int complete_ND_array(double *Ar, double *Ai, int ndims, int *dims, int *incr)
     for (i = 0; i < ndims; i++) nSub *= (dims[i] - 1);
 
     nSubs2 = (int)(nSub / 2);
-    k = 0;
+
     if (Ai == 0)
     {
         /* Real case */

@@ -245,29 +245,103 @@ int getArrayOfDouble(void* _pvCtx, int *piAddr, int *ndims, int **dims, double *
     else if (iType == sci_mlist)
     {
         sciErr = getListItemNumber(_pvCtx, piAddr, &nItems);
-        if (nItems != 3) return 0;
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        if (nItems != 3)
+        {
+            return 0;
+        }
         /*Check if first item is ["hm","dims","entries"] */
         sciErr = getListItemAddress(_pvCtx, piAddr, 1, &piAddrChild);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
         sciErr = getVarType(_pvCtx, piAddrChild, &iType);
-        if (iType != sci_strings) return 0;
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        if (iType != sci_strings)
+        {
+            return 0;
+        }
         sciErr = getVarDimension(_pvCtx, piAddrChild, &iRows, &iCols);
-        if (iRows*iCols != 3) return 0;
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        if (iRows*iCols != 3)
+        {
+            return 0;
+        }
         /* Check if first entry of the first item is "hm" */
         piOffset = piAddrChild + 4;
-        if (piOffset[1] - piOffset[0] != 2)  return 0;
+        if (piOffset[1] - piOffset[0] != 2)
+        {
+            return 0;
+        }
         piData = piOffset + iRows * iCols + 1;
-        if (piData[0] != 17 || piData[1] != 22) return 0; /* check "hm" */
+        if (piData[0] != 17 || piData[1] != 22)
+        {
+            return 0; /* check "hm" */
+        }
         /* Get second item dims */
         sciErr = getListItemAddress(_pvCtx, piAddr, 2, &piAddrChild);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
         sciErr = getVarType(_pvCtx, piAddrChild, &iType);
-        if (iType != sci_ints) return 0;
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        if (iType != sci_ints)
+        {
+            return 0;
+        }
         sciErr = getMatrixOfInteger32(_pvCtx, piAddrChild, &iRows, &iCols, dims);
-        if (sciErr.iErr)  return 0;
+        if (sciErr.iErr)
+        {
+            return 0;
+        }
         *ndims = iRows * iCols;
         /* Get thirds item entries */
+
         sciErr = getListItemAddress(_pvCtx, piAddr, 3, &piAddrChild);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
         sciErr = getVarType(_pvCtx, piAddrChild, &iType);
-        if (iType != sci_matrix) return 0;
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        if (iType != sci_matrix)
+        {
+            return 0;
+        }
+
         if (isVarComplex(_pvCtx, piAddrChild))
         {
             getComplexMatrixOfDouble(_pvCtx, piAddrChild, &iRows, &iCols, Ar, Ai);
