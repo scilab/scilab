@@ -131,7 +131,7 @@
         </menu>
         
         <menu label="?">
-            <menuitem action="scinotes-help" label="SciNotes help"/>
+            <menuitem action="scinotes-help" label="Scinotes help"/>
             <menuitem action="scinotes-help-keyword" label="Help on ;Help on selection"/>
             <menuitem action="scinotes-about" label="About"/>
         </menu>
