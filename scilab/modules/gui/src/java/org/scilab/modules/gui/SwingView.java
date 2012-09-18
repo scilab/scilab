@@ -85,6 +85,7 @@ import org.scilab.modules.graphic_export.Driver;
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
@@ -220,91 +221,102 @@ public final class SwingView implements GraphicView {
             return _children.contains(childUID);
         }
     };
-
+    
+    private static final Set<Integer> managedTypes = new HashSet<Integer>(Arrays.asList(
+            GraphicObjectProperties.__GO_FIGURE__,
+            GraphicObjectProperties.__GO_UICONTEXTMENU__,
+            GraphicObjectProperties.__GO_UIMENU__,
+            GraphicObjectProperties.__GO_CONSOLE__,
+            GraphicObjectProperties.__GO_PROGRESSIONBAR__,
+            GraphicObjectProperties.__GO_WAITBAR__,
+            GraphicObjectProperties.__GO_UICONTROL__
+            ));
     @Override
     public void createObject(String id) {
+        
+        int objectType = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
+        
+        if (managedTypes.contains(objectType) == false) {
+            return;
+        }
+        //System.err.println("[SwingWiew] Object Created : " + id + " with type : " + objectType);
         boolean isValid = (Boolean) GraphicController.getController().getProperty(id, __GO_VALID__);
         if (!isValid) {
             return;
         }
 
-        String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
-
         if (!headless && !GraphicsEnvironment.isHeadless()) {
             DEBUG("SwingWiew", "Object Created : " + id + "with type : " + objectType);
-            if (objectType.equals(__GO_FIGURE__)
-                || objectType.equals(__GO_UICONTEXTMENU__)
-                || objectType.equals(__GO_UIMENU__)
-                || objectType.equals(__GO_CONSOLE__)
-                || objectType.equals(__GO_PROGRESSIONBAR__)
-                || objectType.equals(__GO_WAITBAR__)) {
+            if (objectType == __GO_FIGURE__
+                    || objectType == __GO_UICONTEXTMENU__
+                    || objectType == __GO_UIMENU__
+                    || objectType == __GO_CONSOLE__
+                    || objectType == __GO_PROGRESSIONBAR__
+                    || objectType == __GO_WAITBAR__) {
                 allObjects.put(id, CreateObjectFromType(objectType, id));
                 return;
             }
 
-            if (objectType.equals(__GO_UICONTROL__)) {
-                String style = (String) GraphicController.getController().getProperty(id, __GO_STYLE__);
+            if (objectType == __GO_UICONTROL__) {
+                int style = (Integer) GraphicController.getController().getProperty(id, __GO_STYLE__);
                 DEBUG("SwingView", "__GO_STYLE__(" + style + ")");
-                if (style != null) {
-                    allObjects.put(id, CreateObjectFromType(style, id));
-                } else {
-                    allObjects.put(id, null);
-                }
+                allObjects.put(id, CreateObjectFromType(style, id));
             }
         } else {
-            if (objectType.equals(__GO_FIGURE__)) {
+            if (objectType == __GO_FIGURE__) {
                 Driver.setDefaultVisitor(id);
             }
         }
     }
 
-    private UielementType StyleToEnum(String style) {
+    private UielementType StyleToEnum(int style) {
         DEBUG("SwingView", "StyleToEnum(" + style + ")");
-        if (style.equals(__GO_FIGURE__)) {
+        switch (style) {
+        case __GO_FIGURE__ :
             return UielementType.Figure;
-        } else if (style.equals(__GO_CONSOLE__)) {
+        case __GO_CONSOLE__ :
             return UielementType.Console;
-        } else if (style.equals(__GO_UI_CHECKBOX__)) {
+        case __GO_UI_CHECKBOX__ :
             return UielementType.CheckBox;
-        } else if (style.equals(__GO_UI_EDIT__)) {
+        case __GO_UI_EDIT__ :
             return UielementType.Edit;
-        } else if (style.equals(__GO_UI_FRAME__)) {
+        case __GO_UI_FRAME__ :
             return UielementType.Frame;
-        } else if (style.equals(__GO_UI_IMAGE__)) {
+        case __GO_UI_IMAGE__ :
             return UielementType.Image;
-        } else if (style.equals(__GO_UI_LISTBOX__)) {
+        case __GO_UI_LISTBOX__ :
             return UielementType.ListBox;
-        } else if (style.equals(__GO_UI_POPUPMENU__)) {
+        case __GO_UI_POPUPMENU__ :
             return UielementType.PopupMenu;
-        } else if (style.equals(__GO_UI_PUSHBUTTON__)) {
+        case __GO_UI_PUSHBUTTON__ :
             return UielementType.PushButton;
-        } else if (style.equals(__GO_UI_RADIOBUTTON__)) {
+        case __GO_UI_RADIOBUTTON__ :
             return UielementType.RadioButton;
-        } else if (style.equals(__GO_UI_SLIDER__)) {
+        case __GO_UI_SLIDER__ :
             return UielementType.Slider;
-        } else if (style.equals(__GO_UI_TABLE__)) {
+        case __GO_UI_TABLE__ :
             return UielementType.Table;
-        } else if (style.equals(__GO_UI_TEXT__)) {
+        case __GO_UI_TEXT__ :
             return UielementType.Text;
-        } else if (style.equals(__GO_UIMENU__)) {
+        case __GO_UIMENU__ :
             return UielementType.UiChildMenu;
-        } else if (style.equals(__GO_UIPARENTMENU__)) {
+        case __GO_UIPARENTMENU__ :
             return UielementType.UiParentMenu;
-        } else if (style.equals(__GO_UICHILDMENU__)) {
+        case __GO_UICHILDMENU__ :
             return UielementType.UiChildMenu;
-        } else if (style.equals(__GO_UICHECKEDMENU__)) {
+        case __GO_UICHECKEDMENU__ :
             return UielementType.UiCheckedMenu;
-        } else if (style.equals(__GO_PROGRESSIONBAR__)) {
+        case __GO_PROGRESSIONBAR__ :
             return UielementType.Progressbar;
-        } else if (style.equals(__GO_WAITBAR__)) {
+        case __GO_WAITBAR__ :
             return UielementType.Waitbar;
-        } else if (style.equals(__GO_UICONTEXTMENU__)) {
+        case __GO_UICONTEXTMENU__ :
             return UielementType.UiContextMenu;
         }
         return null;
     }
 
-    private TypedObject CreateObjectFromType(String type, String id) {
+    private TypedObject CreateObjectFromType(int type, String id) {
         UielementType enumType = StyleToEnum(type);
         return new TypedObject(enumType, CreateObjectFromType(enumType, id));
     }
@@ -557,66 +569,64 @@ public final class SwingView implements GraphicView {
     }
 
     @Override
-    public void updateObject(String id, String property) {
+    public void updateObject(String id, int property) {
         TypedObject registeredObject = allObjects.get(id);
         DEBUG("SwingView", "Update" + property);
 
         /* On uicontrol style is set after object creation */
-        if (registeredObject == null && property.equals(__GO_STYLE__)) {
-            String style = (String) GraphicController.getController().getProperty(id, __GO_STYLE__);
+        if (registeredObject == null && property == __GO_STYLE__) {
+            int style = (Integer) GraphicController.getController().getProperty(id, __GO_STYLE__);
             allObjects.put(id, CreateObjectFromType(style, id));
         }
 
         /* Removes the swing object if its parent is not display */
-        if (registeredObject != null && property.equals(__GO_PARENT__)) {
+        if (registeredObject != null && property == __GO_PARENT__) {
             String parentId = (String) GraphicController.getController().getProperty(id, __GO_PARENT__);
             TypedObject registeredParent = allObjects.get(parentId);
             if (registeredParent == null) {
                 allObjects.remove(id);
             }
         }
-
+        int type = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
         /* Children list update */
-        if (registeredObject != null && property.equals(__GO_CHILDREN__)) {
+        if (registeredObject != null && property == __GO_CHILDREN__) {
             String[] newChildren = (String[]) GraphicController.getController().getProperty(id, __GO_CHILDREN__);
-            String type = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
 
+            switch(type)
+            {
             /*
              * FIGURE CHILDREN UPDATE
              */
-            if (type.equals(__GO_FIGURE__)) {
+            case __GO_FIGURE__ :
                 updateFigureChildren(id, newChildren);
-            }
-
+                break;
             /*
              * CONSOLE CHILDREN UPDATE
              */
-            if (type.equals(__GO_CONSOLE__)) {
+            case __GO_CONSOLE__ :
                 updateConsoleChildren(id, newChildren);
-            }
-
+                break;
             /*
              * MENU CHILDREN UPDATE
              */
-            if (type.equals(__GO_UIMENU__)) {
+            case __GO_UIMENU__ :
                 updateMenuChildren(id, newChildren);
-            }
-
+                break;
             /*
              * CONTEXTMENU CHILDREN UPDATE
              */
-            if (type.equals(__GO_UICONTEXTMENU__)) {
+            case __GO_UICONTEXTMENU__ :
                 updateContextMenuChildren(id, newChildren);
-            }
-
+                break;
             /*
              * UICONTROL "FRAME" CHILDREN UPDATE
              */
-            if (type.equals(__GO_UICONTROL__)) {
-                String style = (String) GraphicController.getController().getProperty(id, __GO_STYLE__);
-                if (style.equals(__GO_UI_FRAME__)) {
+            case __GO_UICONTROL__ :
+                int style = (Integer) GraphicController.getController().getProperty(id, __GO_STYLE__);
+                if (style == __GO_UI_FRAME__) {
                     updateFrameChildren(id, newChildren);
                 }
+                break;
             }
         }
 
@@ -624,9 +634,8 @@ public final class SwingView implements GraphicView {
          * When the CHECKED property is updated for a UIMENU,
          * the object is converted to a SwingScilabCheckBoxMenuItem is not already of this type
          */
-        if (registeredObject != null && property.equals(__GO_UI_CHECKED__)) {
-            String type = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
-            if (type.equals(__GO_UIMENU__)) {
+        if (registeredObject != null && property == __GO_UI_CHECKED__) {
+            if (type == __GO_UIMENU__) {
                 TypedObject updatedObject = allObjects.get(id);
                 switch (updatedObject.getType()) {
                 case UiParentMenu:
@@ -653,9 +662,8 @@ public final class SwingView implements GraphicView {
          * When the property is set to TRUE: A separator is added if not already done
          * When the property is set to FALSE: The previous separator is removed if it exists
          */
-        if (registeredObject != null && property.equals(__GO_UI_SEPARATOR__)) {
-            String type = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
-            if (type.equals(__GO_UIMENU__)) {
+        if (registeredObject != null && property == __GO_UI_SEPARATOR__) {
+            if (type == __GO_UIMENU__) {
                 String parentId = (String) GraphicController.getController().getProperty(id, __GO_PARENT__);
                 int menuPosition = -1;
                 Component[] allChildren =  ((SwingScilabMenu) allObjects.get(parentId).getValue()).getMenuComponents();
@@ -707,16 +715,16 @@ public final class SwingView implements GraphicView {
                 // Add the child
                 updatedObject.addChild(childId);
 
-                String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+                int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
 
                 /* Add an uicontrol */
-                if (childType.equals(__GO_UICONTROL__)) {
+                if (childType == __GO_UICONTROL__) {
                     ((SwingScilabTab) updatedComponent).addMember(allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
 
                 /* Add an uimenu */
-                if (childType.equals(__GO_UIMENU__)) {
+                if (childType == __GO_UIMENU__) {
                     TypedObject childAsTypedObject = allObjects.get(childId);
                     switch (childAsTypedObject.getType()) {
                     case UiChildMenu:
@@ -743,16 +751,16 @@ public final class SwingView implements GraphicView {
                 // Remove the child
                 updatedObject.removeChild(childId);
 
-                String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+                int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
 
                 /* Remove an uicontrol */
-                if (childType.equals(__GO_UICONTROL__)) {
+                if (childType ==__GO_UICONTROL__) {
                     ((SwingScilabTab) updatedComponent).removeMember(allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
 
                 /* Remove an uimenu */
-                if (childType.equals(__GO_UIMENU__)) {
+                if (childType == __GO_UIMENU__) {
                     TypedObject childAsTypedObject = allObjects.get(childId);
                     switch (childAsTypedObject.getType()) {
                     case UiCheckedMenu:
@@ -788,10 +796,10 @@ public final class SwingView implements GraphicView {
                 // Add the child
                 updatedObject.addChild(childId);
 
-                String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+                int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
 
                 /* Add an uicontrol */
-                if (childType.equals(__GO_UICONTROL__)) {
+                if (childType == __GO_UICONTROL__) {
                     ((SwingScilabFrame) updatedComponent).addMember(allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
@@ -808,10 +816,10 @@ public final class SwingView implements GraphicView {
                 // Remove the child
                 updatedObject.removeChild(childId);
 
-                String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+                int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
 
                 /* Remove an uicontrol */
-                if (childType.equals(__GO_UICONTROL__)) {
+                if (childType == __GO_UICONTROL__) {
                     updatedComponent.remove((Component) allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
@@ -839,9 +847,9 @@ public final class SwingView implements GraphicView {
                 // Add the child
                 updatedObject.addChild(childId);
 
-                String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+                int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
 
-                if (childType.equals(__GO_UIMENU__)) {
+                if (childType == __GO_UIMENU__) {
                     TypedObject childAsTypedObject = allObjects.get(childId);
                     switch (childAsTypedObject.getType()) {
                     case UiChildMenu:
@@ -868,9 +876,9 @@ public final class SwingView implements GraphicView {
                 // Remove the child
                 updatedObject.removeChild(childId);
 
-                String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+                int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
 
-                if (childType.equals(__GO_UIMENU__)) {
+                if (childType == __GO_UIMENU__) {
                     ((Container) ((SwingScilabTab) allObjects.get(id).getValue()).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabMenu) allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
@@ -896,8 +904,8 @@ public final class SwingView implements GraphicView {
 
         // Add new children
         for (String childId : newChildren) {
-            String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
-            if (childType.equals(__GO_UIMENU__)) {
+            int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+            if (childType == __GO_UIMENU__) {
                 if (!updatedObject.hasChild(childId)) {
                     // Add the child
                     updatedObject.addChild(childId);
@@ -1032,8 +1040,8 @@ public final class SwingView implements GraphicView {
 
         // Add new children
         for (String childId : newChildren) {
-            String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
-            if (childType.equals(__GO_UIMENU__)) {
+            int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+            if (childType == __GO_UIMENU__) {
                 if (!updatedObject.hasChild(childId)) {
 
                     // Add the child

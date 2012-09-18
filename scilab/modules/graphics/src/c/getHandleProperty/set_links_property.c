@@ -39,7 +39,8 @@
 int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
     char* parentAxes = NULL;
     char** links = NULL;
     int i = 0;
@@ -83,9 +84,9 @@ int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
         char* polylineParentAxes;
         char* polylineObjectUID = (char*)getObjectFromHandle( getHandleFromStack( stackPointer + i ) );
 
-        getGraphicObjectProperty(polylineObjectUID, __GO_TYPE__, jni_string, (void **)&type);
+        getGraphicObjectProperty(polylineObjectUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-        if (strcmp(type, __GO_POLYLINE__) != 0)
+        if (type == __GO_POLYLINE__)
         {
             Scierror(999, _("%s: Input argument #%d must be a '%s' handle.\n"), "links", i, "polyline");
             status = FALSE;

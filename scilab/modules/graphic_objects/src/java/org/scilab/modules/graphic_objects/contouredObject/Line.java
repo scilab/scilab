@@ -130,12 +130,11 @@ public class Line {
 	 * @param color the color to set
 	 */
 	public UpdateStatus setColor(Integer color) {
-		if (this.color == color) {
-		    return UpdateStatus.NoChange;
-		}
-		this.color = color;
-		return UpdateStatus.Success;
-		    
+	    if (this.color == color) {
+	        return UpdateStatus.NoChange;
+	    }
+	    this.color = color;
+	    return UpdateStatus.Success;
 	}
 
 	/**

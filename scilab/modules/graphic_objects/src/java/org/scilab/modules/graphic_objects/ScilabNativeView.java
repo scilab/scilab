@@ -9,16 +9,16 @@
 package org.scilab.modules.graphic_objects;
 
 public class ScilabNativeView {
-    public static void ScilabNativeView__createObject(String pstId) {
-        ScilabNativeViewJNI.ScilabNativeView__createObject(pstId);
-    }
+  public static void ScilabNativeView__createObject(String pstId) {
+    ScilabNativeViewJNI.ScilabNativeView__createObject(pstId);
+  }
 
-    public static void ScilabNativeView__deleteObject(String pstId) {
-        ScilabNativeViewJNI.ScilabNativeView__deleteObject(pstId);
-    }
+  public static void ScilabNativeView__deleteObject(String pstId) {
+    ScilabNativeViewJNI.ScilabNativeView__deleteObject(pstId);
+  }
 
-    public static void ScilabNativeView__updateObject(String pstId, String pstProperty) {
-        ScilabNativeViewJNI.ScilabNativeView__updateObject(pstId, pstProperty);
-    }
+  public static void ScilabNativeView__updateObject(String pstId, int iProperty) {
+    ScilabNativeViewJNI.ScilabNativeView__updateObject(pstId, iProperty);
+  }
 
 }

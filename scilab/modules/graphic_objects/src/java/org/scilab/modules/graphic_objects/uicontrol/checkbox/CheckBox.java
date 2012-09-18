@@ -13,7 +13,6 @@
 package org.scilab.modules.graphic_objects.uicontrol.checkbox;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FLAT_RELIEF__;
 
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 

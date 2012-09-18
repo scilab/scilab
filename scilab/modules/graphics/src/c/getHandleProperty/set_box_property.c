@@ -38,7 +38,8 @@
 int set_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
 
     if ( !( valueType == sci_strings ) )
     {
@@ -46,14 +47,14 @@ int set_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int value
         return SET_PROPERTY_ERROR ;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * Required since the Box property is implemented differently for the Axes and Text
      * objects (respectively as an Integer and a Boolean).
      * To be corrected
      */
-    if (strcmp(type, __GO_AXES__) == 0)
+    if (type == __GO_AXES__)
     {
         int boxType;
 
@@ -97,7 +98,7 @@ int set_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int value
         }
 
     }
-    else if (strcmp(type, __GO_TEXT__) == 0)
+    else if (type == __GO_TEXT__)
     {
         int box;
 

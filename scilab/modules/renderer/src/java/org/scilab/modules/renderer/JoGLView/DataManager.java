@@ -38,7 +38,7 @@ public class DataManager {
     /**
      * Set of properties that affect Fac3d data.
      */
-    private static final Set<String> FAC3D_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> FAC3D_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_DATA_MODEL__,
             GraphicObjectProperties.__GO_COLOR_FLAG__,
             GraphicObjectProperties.__GO_COLOR_MODE__,
@@ -48,7 +48,7 @@ public class DataManager {
     /**
      * Set of properties that affect Fec data.
      */
-    private static final Set<String> FEC_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> FEC_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_DATA_MODEL__,
             GraphicObjectProperties.__GO_Z_BOUNDS__,
             GraphicObjectProperties.__GO_COLOR_RANGE__,
@@ -58,7 +58,7 @@ public class DataManager {
     /**
      * Set of properties that affect Grayplot data.
      */
-    private static final Set<String> GRAYPLOT_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> GRAYPLOT_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_DATA_MODEL__,
             GraphicObjectProperties.__GO_DATA_MAPPING__
     ));
@@ -66,14 +66,14 @@ public class DataManager {
     /**
      * Set of properties that affect Matplot data.
      */
-    private static final Set<String> MATPLOT_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> MATPLOT_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_DATA_MODEL__
     ));
 
     /**
      * Set of properties that affect polyline data.
      */
-    private static final Set<String> POLYLINE_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> POLYLINE_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_DATA_MODEL__,
             GraphicObjectProperties.__GO_POLYLINE_STYLE__,
             GraphicObjectProperties.__GO_LINE_MODE__,
@@ -87,14 +87,14 @@ public class DataManager {
     /**
      * Set of properties that affect Plot3d data.
      */
-    private static final Set<String> PLOT3D_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> PLOT3D_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_DATA_MODEL__
     ));
 
     /**
      * Set of properties that affect Arc data.
      */
-    private static final Set<String> ARC_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> ARC_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_UPPER_LEFT_POINT__,
             GraphicObjectProperties.__GO_WIDTH__,
             GraphicObjectProperties.__GO_HEIGHT__,
@@ -105,7 +105,7 @@ public class DataManager {
     /**
      * Set of properties that affect Champ data.
      */
-    private static final Set<String> CHAMP_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> CHAMP_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_BASE_X__,
             GraphicObjectProperties.__GO_BASE_Y__,
             GraphicObjectProperties.__GO_BASE_Z__,
@@ -118,7 +118,7 @@ public class DataManager {
     /**
      * Set of properties that affect Rectangle data.
      */
-    private static final Set<String> RECTANGLE_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> RECTANGLE_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_UPPER_LEFT_POINT__,
             GraphicObjectProperties.__GO_WIDTH__,
             GraphicObjectProperties.__GO_HEIGHT__
@@ -127,7 +127,7 @@ public class DataManager {
     /**
      * Set of properties that affect Segs data.
      */
-    private static final Set<String> SEGS_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> SEGS_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_BASE__,
             GraphicObjectProperties.__GO_DIRECTION__,
             GraphicObjectProperties.__GO_SEGS_COLORS__
@@ -262,8 +262,8 @@ public class DataManager {
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, String property) throws OutOfMemoryException {
-        String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+    public void update(String id, int property) throws OutOfMemoryException {
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         try {
             if (vertexBufferMap.containsKey(id)) {
@@ -280,15 +280,15 @@ public class DataManager {
                     fillBuffers(id);
                 }
             }
-            if (property.equals(GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__)) {
+            if (property == GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__) {
                 updateChildrenVertexIndex(id, 0x01);
             }
 
-            if (property.equals(GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__)) {
+            if (property == GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__) {
                 updateChildrenVertexIndex(id, 0x02);
             }
 
-            if (property.equals(GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)) {
+            if (property == GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__) {
                 updateChildrenVertexIndex(id, 0x04);
             }
         } catch (ObjectRemovedException e) {

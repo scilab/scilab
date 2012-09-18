@@ -197,13 +197,14 @@ sciSetDefaultValues (void)
 int
 sciSetSelectedSubWin (char * psubwinobjUID)
 {
-    char* type = NULL;
+    int iType = -1;
+    int *piType = &iType;
     char* parent = NULL;
 
-    getGraphicObjectProperty(psubwinobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(psubwinobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /* Check that the object is an AXES */
-    if (strcmp(type, __GO_AXES__) != 0)
+    if (iType != __GO_AXES__)
     {
         Scierror(999, _("Handle is not a SubWindow.\n"));
         return -1;
@@ -225,16 +226,19 @@ sciSetSelectedSubWin (char * psubwinobjUID)
 int
 sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 {
-    char* type = NULL;
+    int iType = -1;
+    int *piType = &iType;
     int i = 0, n1 = 0;
 
-    getGraphicObjectProperty(pthis, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pthis, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * switch over sciGetEntityType replaced by object type string comparisons
      * Still required as we have no better way to do this for the moment
      */
-    if (strcmp(type, __GO_POLYLINE__) == 0)
+    switch (iType)
+    {
+    case __GO_POLYLINE__ :
     {
         BOOL result;
         int numElementsArray[2];
@@ -300,7 +304,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 
         return 0;
     }
-    else if (strcmp(type, __GO_RECTANGLE__) == 0)
+    case __GO_RECTANGLE__ :
     {
         double* currentUpperLeftPoint = NULL;
         double upperLeftPoint[3];
@@ -345,7 +349,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 
         return 0;
     }
-    else if (strcmp(type, __GO_ARC__) == 0)
+    case __GO_ARC__ :
     {
         double startAngle = 0.;
         double endAngle = 0.;
@@ -402,7 +406,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 
         return 0;
     }
-    else if (strcmp(type, __GO_TEXT__) == 0)
+    case __GO_TEXT__ :
     {
         char* parentAxes = NULL;
         double position[3];
@@ -442,7 +446,7 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 
         return 0;
     }
-    else if (strcmp(type, __GO_SEGS__) == 0)
+    case __GO_SEGS__ :
     {
         int numArrows = 0;
         double* arrowPoints = NULL;
@@ -516,17 +520,17 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
     }
     /* DJ.A 2003 */
     /* SCI_SURFACE has been replaced by the MVC's FAC3D and PLOT3D */
-    else if (strcmp(type, __GO_FAC3D__) == 0)
+    case __GO_FAC3D__ :
     {
         Scierror(999, _("Unhandled data field\n"));
         return -1;
     }
-    else if (strcmp(type, __GO_PLOT3D__) == 0)
+    case __GO_PLOT3D__ :
     {
         Scierror(999, _("Unhandled data field\n"));
         return -1;
     }
-    else if (strcmp(type, __GO_MATPLOT__) == 0)
+    case __GO_MATPLOT__ :
     {
         int nx = 0;
         int ny = 0;
@@ -554,8 +558,9 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
         }
 
         setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z__, tab, jni_double_vector, nx * ny);
+        return 0;
     }
-    else if (strcmp(type, __GO_FEC__) == 0)
+    case __GO_FEC__ :
     {
         BOOL result = FALSE;
         int Nnode = 0;
@@ -579,34 +584,35 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
         setGraphicObjectProperty(pthis, __GO_DATA_MODEL_X__, tab, jni_double_vector, Nnode);
         setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Y__, &tab[Nnode], jni_double_vector, Nnode);
         setGraphicObjectProperty(pthis, __GO_DATA_MODEL_VALUES__, &tab[2 * Nnode], jni_double_vector, Nnode);
+        return 0;
     }
-    else if (strcmp(type, __GO_FIGURE__) == 0)
+    case __GO_FIGURE__ :
     {
         printSetGetErrorMessage("data");
         return -1;
     }
-    else if (strcmp(type, __GO_AXES__) == 0)
+    case __GO_AXES__ :
     {
         printSetGetErrorMessage("data");
         return -1;
     }
-    else if (strcmp(type, __GO_LEGEND__) == 0)
+    case __GO_LEGEND__ :
     {
         printSetGetErrorMessage("data");
         return -1;
     }
-    else if (strcmp(type, __GO_AXIS__) == 0)
+    case __GO_AXIS__ :
     {
         printSetGetErrorMessage("data");
         return -1;
     }
-    else if (strcmp(type, __GO_COMPOUND__) == 0)
+    case __GO_COMPOUND__ :
     {
         printSetGetErrorMessage("data");
         return -1;
     }
     /* F.Leray 28.05.04 */
-    else if (strcmp(type, __GO_LABEL__) == 0)
+    case __GO_LABEL__ :
     {
         printSetGetErrorMessage("data");
         return -1;
@@ -618,10 +624,11 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
 #if 0
 case SCI_UIMENU:
 #endif
-    else
+    default :
     {
         printSetGetErrorMessage("data");
         return -1;
+    }
     }
 
     return 0;

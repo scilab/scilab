@@ -34,11 +34,11 @@ int SetUicontrolSliderStep(void* _pvCtx, char* sciObjUID, size_t stackPointer, i
         pdblStep[0] = pdblStackVal[0];
         pdblStep[1] = 0.1;// default big value : 10%
 
-        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), pdblStep, jni_double_vector, 2);
+        status = setGraphicObjectProperty(sciObjUID, __GO_UI_SLIDERSTEP__, pdblStep, jni_double_vector, 2);
     }
     else if (nbRow == 1 && nbCol == 2)
     {
-        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_SLIDERSTEP__), stk(stackPointer), jni_double_vector, 2);
+        status = setGraphicObjectProperty(sciObjUID, __GO_UI_SLIDERSTEP__, stk(stackPointer), jni_double_vector, 2);
     }
     else
     {

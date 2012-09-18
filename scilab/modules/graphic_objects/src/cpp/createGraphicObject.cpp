@@ -22,9 +22,9 @@ extern "C"
 
 using namespace org_scilab_modules_graphic_objects;
 
-char *createGraphicObject(char const* _sType)
+char *createGraphicObject(int _iType)
 {
-    return CallGraphicController::askGraphicObject(getScilabJavaVM(), _sType);
+    return CallGraphicController::askGraphicObject(getScilabJavaVM(), _iType);
 }
 
 char *cloneGraphicObject(char const* _sId)
@@ -32,9 +32,9 @@ char *cloneGraphicObject(char const* _sId)
     return CallGraphicController::cloneGraphicObject(getScilabJavaVM(), _sId);
 }
 
-char const* createDataObject(char const* _sId, char const* _sType)
+char const* createDataObject(char const* _sId, int _iType)
 {
-    return DataController::createDataObject(_sId, _sType);
+    return DataController::createDataObject(_sId, _iType);
 }
 
 void buildFigureMenuBar(char const* _sFigureId)

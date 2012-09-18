@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.arc;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -92,22 +93,23 @@ public class Arc extends ClippableContouredObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_UPPER_LEFT_POINT__)) {
-			return ArcProperty.UPPERLEFTPOINT;
-		} else if (propertyName.equals(__GO_WIDTH__)) {
-			return ArcProperty.WIDTH;
-		} else if (propertyName.equals(__GO_HEIGHT__)) {
-			return ArcProperty.HEIGHT;
-		} else if (propertyName.equals(__GO_START_ANGLE__)) {
-			return ArcProperty.STARTANGLE;
-		} else if (propertyName.equals(__GO_END_ANGLE__)) {
-			return ArcProperty.ENDANGLE;
-		} else if (propertyName.equals(__GO_ARC_DRAWING_METHOD__)) {
-			return ArcProperty.ARCDRAWINGMETHOD;
-		} else {
-			return super.getPropertyFromName(propertyName);
-		}
+	public Object getPropertyFromName(int propertyName) {
+	    switch (propertyName) {
+	    case __GO_UPPER_LEFT_POINT__ :
+	        return ArcProperty.UPPERLEFTPOINT;
+	    case __GO_WIDTH__ :
+	        return ArcProperty.WIDTH;
+	    case __GO_HEIGHT__ :
+	        return ArcProperty.HEIGHT;
+	    case __GO_START_ANGLE__ :
+	        return ArcProperty.STARTANGLE;
+	    case __GO_END_ANGLE__ :
+	        return ArcProperty.ENDANGLE;
+	    case __GO_ARC_DRAWING_METHOD__ :
+	        return ArcProperty.ARCDRAWINGMETHOD;
+	    default :
+	        return super.getPropertyFromName(propertyName);
+	    }
 	}
 
 	/**
@@ -275,7 +277,7 @@ public class Arc extends ClippableContouredObject {
 		this.width = width;
 	}
 
-	public String getType() {
-	    return "Arc";
+	public Integer getType() {
+	    return GraphicObjectProperties.__GO_ARC__;
 	}
 }

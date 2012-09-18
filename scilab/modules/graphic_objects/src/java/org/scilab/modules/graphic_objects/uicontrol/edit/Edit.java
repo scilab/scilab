@@ -13,7 +13,6 @@
 package org.scilab.modules.graphic_objects.uicontrol.edit;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SUNKEN_RELIEF__;
 
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 

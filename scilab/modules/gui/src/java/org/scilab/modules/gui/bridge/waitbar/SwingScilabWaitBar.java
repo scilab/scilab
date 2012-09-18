@@ -216,10 +216,10 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
      * @param property property name
      * @param value property value
      */
-    public void update(String property, Object value) {
-        if (property.equals(__GO_UI_MESSAGE__)) {
+    public void update(int property, Object value) {
+        if (property == __GO_UI_MESSAGE__) {
             setMessage((String[]) value);
-        } else if (property.equals(__GO_UI_VALUE__)) {
+        } else if (property == __GO_UI_VALUE__) {
             setValue((Integer) value);
         }
     }

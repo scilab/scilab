@@ -36,7 +36,8 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
     size_t stackPointer = 0;
 
     char* pstrUID = NULL;
-    char* pstrType = NULL;
+    int iType = -1;
+    int *piType = &iType;
 
     /* check size of input and output */
     CheckRhs(0,1);
@@ -65,8 +66,8 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
 
         pstrUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer));
 
-        getGraphicObjectProperty(pstrUID, __GO_TYPE__, jni_string, (void **)&pstrType);
-        if (strcmp(pstrType, __GO_AXES__) == 0)
+        getGraphicObjectProperty(pstrUID, __GO_TYPE__, jni_int, (void **)&piType);
+        if (iType == __GO_AXES__)
         {
             getGraphicObjectProperty(pstrUID, __GO_PARENT__, jni_string, (void **)&pstrUID);
         }

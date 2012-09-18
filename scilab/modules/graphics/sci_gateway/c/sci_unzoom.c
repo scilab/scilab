@@ -43,7 +43,8 @@ int sci_unzoom(char *fname,unsigned long fname_len)
   char* objectUID = NULL;
 
   /* object type */
-  char *pstType = NULL;
+  int iType = -1;
+  int *piType = &iType;
 
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
@@ -74,8 +75,8 @@ int sci_unzoom(char *fname,unsigned long fname_len)
     for (i = 0; i < nbObjects; i++ )
     {
       objectUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer + i));
-      getGraphicObjectProperty(objectUID, __GO_TYPE__, jni_string, (void **) &pstType);
-      if ((strcmp(pstType, __GO_FIGURE__) != 0) && (strcmp(pstType, __GO_AXES__) != 0))
+      getGraphicObjectProperty(objectUID, __GO_TYPE__, jni_int, (void **) &piType);
+      if (iType != __GO_FIGURE__ && iType != __GO_AXES__)
       {
         FREE(objectsId);
         Scierror(999, _("%s: Wrong type for input argument: Vector of Axes and Figure handles expected.\n"),fname);

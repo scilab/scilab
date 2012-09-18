@@ -35,7 +35,8 @@
 /*------------------------------------------------------------------------*/
 int set_zoom_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    char* type = NULL;
+    int iType = -1;
+    int *piType = &iType;
 
     if ( !( valueType == sci_matrix ) )
     {
@@ -43,9 +44,9 @@ int set_zoom_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_AXES__) != 0)
+    if (iType == __GO_AXES__)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "zoom_box");
         return SET_PROPERTY_ERROR;

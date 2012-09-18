@@ -22,12 +22,14 @@ int SetUicontrolMin(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valu
     double* pdblValue = &value;
     double maxValue = 0.0;
     double* pdblMaxValue = &maxValue;
-    char* objectStyle = NULL;
-    char* type = NULL;
+    int objectStyle = -1;
+    int *piObjectStyle = &objectStyle;
+    int type = -1;
+    int *piType = &type;
 
     // Check type
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_TYPE__), jni_string, (void**) &type);
-    if (strcmp(type, __GO_UICONTROL__) != 0)
+    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**) &piType);
+    if (type != __GO_UICONTROL__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Min");
         return SET_PROPERTY_ERROR;
@@ -52,11 +54,11 @@ int SetUicontrolMin(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valu
     /*
      * For Checkboxes and Radiobuttons: display a warning if the value is neither equal to Min nor Max
      */
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_STYLE__), jni_string, (void**) &objectStyle);
-    if ((strcmp(objectStyle, __GO_UI_CHECKBOX__) == 0) || (strcmp(objectStyle, __GO_UI_RADIOBUTTON__)) == 0)
+    getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
+    if (objectStyle == __GO_UI_CHECKBOX__ || objectStyle == __GO_UI_RADIOBUTTON__)
     {
-        getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_VALUE__), jni_double, (void**) &pdblValue);
-        getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_MAX__), jni_double, (void**) &pdblMaxValue);
+        getGraphicObjectProperty(sciObjUID, __GO_UI_VALUE__, jni_double, (void**) &pdblValue);
+        getGraphicObjectProperty(sciObjUID, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
 
         if ((value != minValue) && (value != maxValue))
         {
@@ -64,9 +66,8 @@ int SetUicontrolMin(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valu
         }
 
     }
-    free(objectStyle);
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_MIN__), &minValue, jni_double, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_MIN__, &minValue, jni_double, 1);
 
     if (status == TRUE)
     {

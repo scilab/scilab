@@ -34,13 +34,14 @@
 /*------------------------------------------------------------------------*/
 int get_position_property(void* _pvCtx, char* pobjUID)
 {
-    char* type = NULL;
+    int iType = -1;
+    int* piType = &iType;
     double* position = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **) &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **) &piType);
 
     /* Special figure case */
-    if (strcmp(type, __GO_FIGURE__) == 0)
+    if (iType == __GO_FIGURE__)
     {
         int* figurePosition;
         int* figureSize;
@@ -65,7 +66,7 @@ int get_position_property(void* _pvCtx, char* pobjUID)
     }
 
     /* Special label and legend case : only 2 values for position */
-    if (strcmp(type, __GO_LABEL__) == 0 || strcmp(type, __GO_LEGEND__) == 0)
+    if (iType == __GO_LABEL__ || iType == __GO_LEGEND__)
     {
         double* position;
 

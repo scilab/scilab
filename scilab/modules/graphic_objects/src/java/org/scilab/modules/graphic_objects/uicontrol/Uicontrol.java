@@ -37,7 +37,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RAISED_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
@@ -75,7 +74,6 @@ public class Uicontrol extends GraphicObject {
     private static final String DEFAULTFONTNAME = "helvetica";
     private static final String DEFAULTFONTWEIGHT = "normal";
     private static final String DEFAULTFONTANGLE = DEFAULTFONTWEIGHT;
-    private static final String DEFAULTRELIEF = __GO_UI_RAISED_RELIEF__;
 
     private UicontrolStyle style;
     private Double[] backgroundColor = {DEFAULT_RED_BACKGROUND, DEFAULT_GREEN_BACKGROUND, DEFAULT_BLUE_BACKGROUND};
@@ -91,7 +89,7 @@ public class Uicontrol extends GraphicObject {
     private double max = 1.0;
     private double min;
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
-    private String relief = DEFAULTRELIEF;
+    private String relief = "raised";
     private Double[] sliderStep = {0.01, 0.1};
     private String[] string = {""};
     private int stringColNb = 1; // Used for tables
@@ -99,6 +97,13 @@ public class Uicontrol extends GraphicObject {
     private String units = "pixels";
     private Double[] value;
     private String verticalAlignment = "middle";
+    
+    protected static final String __GO_UI_FLAT_RELIEF__ =         "flat";
+    protected static final String __GO_UI_RAISED_RELIEF__ =       "raised";
+    protected static final String __GO_UI_SUNKEN_RELIEF__ =       "sunken";
+    protected static final String __GO_UI_GROOVE_RELIEF__ =       "groove";
+    protected static final String __GO_UI_RIDGE_RELIEF__ =        "ridge";
+    protected static final String __GO_UI_SOLID_RELIEF__ =        "solid";
 
     /**
      * All uicontrol properties
@@ -164,47 +169,33 @@ public class Uicontrol extends GraphicObject {
      * @param style the uicontrol style
      * @return the uicontrol style as a string
      */
-    private String styleEnumToString(UicontrolStyle style) {
-        String stringStyle = null;
+    private int styleEnumToInt(UicontrolStyle style) {
         switch (style) {
             case CHECKBOX:
-                stringStyle = __GO_UI_CHECKBOX__;
-                break;
+                return __GO_UI_CHECKBOX__;
             case EDIT:
-                stringStyle = __GO_UI_EDIT__;
-                break;
+                return __GO_UI_EDIT__;
             case FRAME:
-                stringStyle = __GO_UI_FRAME__;
-                break;
+                return __GO_UI_FRAME__;
             case IMAGE:
-                stringStyle = __GO_UI_IMAGE__;
-                break;
+                return __GO_UI_IMAGE__;
             case LISTBOX:
-                stringStyle = __GO_UI_LISTBOX__;
-                break;
+                return __GO_UI_LISTBOX__;
             case POPUPMENU:
-                stringStyle = __GO_UI_POPUPMENU__;
-                break;
+                return __GO_UI_POPUPMENU__;
             case PUSHBUTTON:
-                stringStyle = __GO_UI_PUSHBUTTON__;
-                break;
+                return __GO_UI_PUSHBUTTON__;
             case RADIOBUTTON:
-                stringStyle = __GO_UI_RADIOBUTTON__;
-                break;
+                return __GO_UI_RADIOBUTTON__;
             case SLIDER:
-                stringStyle = __GO_UI_SLIDER__;
-                break;
+                return __GO_UI_SLIDER__;
             case TABLE:
-                stringStyle = __GO_UI_TABLE__;
-                break;
+                return __GO_UI_TABLE__;
             case TEXT:
-                stringStyle = __GO_UI_TEXT__;
-                break;
-            default:
-                stringStyle = null;
-                break;
+                return __GO_UI_TEXT__;
+            default :
+                return -1;
         }
-        return stringStyle;
     }
 
     /**
@@ -212,32 +203,33 @@ public class Uicontrol extends GraphicObject {
      * @param style the uicontrol style
      * @return the uicontrol style as an enum element
      */
-    private UicontrolStyle stringToStyleEnum(String style) {
-        UicontrolStyle enumStyle = null;
-        if (style.equals(__GO_UI_CHECKBOX__)) {
-            enumStyle = UicontrolStyle.CHECKBOX;
-        } else if (style.equals(__GO_UI_EDIT__)) {
-            enumStyle = UicontrolStyle.EDIT;
-        } else if (style.equals(__GO_UI_FRAME__)) {
-            enumStyle = UicontrolStyle.FRAME;
-        } else if (style.equals(__GO_UI_IMAGE__)) {
-            enumStyle = UicontrolStyle.IMAGE;
-        } else if (style.equals(__GO_UI_LISTBOX__)) {
-            enumStyle = UicontrolStyle.LISTBOX;
-        } else if (style.equals(__GO_UI_POPUPMENU__)) {
-            enumStyle = UicontrolStyle.POPUPMENU;
-        } else if (style.equals(__GO_UI_PUSHBUTTON__)) {
-            enumStyle = UicontrolStyle.PUSHBUTTON;
-        } else if (style.equals(__GO_UI_RADIOBUTTON__)) {
-            enumStyle = UicontrolStyle.RADIOBUTTON;
-        } else if (style.equals(__GO_UI_SLIDER__)) {
-            enumStyle = UicontrolStyle.SLIDER;
-        } else if (style.equals(__GO_UI_TABLE__)) {
-            enumStyle = UicontrolStyle.TABLE;
-        } else if (style.equals(__GO_UI_TEXT__)) {
-            enumStyle = UicontrolStyle.TEXT;
+    private UicontrolStyle intToStyleEnum(int style) {
+        switch (style) {
+        case __GO_UI_CHECKBOX__ :
+            return UicontrolStyle.CHECKBOX;
+        case __GO_UI_EDIT__ :
+            return UicontrolStyle.EDIT;
+        case __GO_UI_FRAME__ :
+            return UicontrolStyle.FRAME;
+        case __GO_UI_IMAGE__ :
+            return  UicontrolStyle.IMAGE;
+        case __GO_UI_LISTBOX__ :
+            return UicontrolStyle.LISTBOX;
+        case __GO_UI_POPUPMENU__ :
+            return UicontrolStyle.POPUPMENU;
+        case __GO_UI_PUSHBUTTON__ :
+            return UicontrolStyle.PUSHBUTTON;
+        case __GO_UI_RADIOBUTTON__ :
+            return UicontrolStyle.RADIOBUTTON;
+        case __GO_UI_SLIDER__ :
+            return UicontrolStyle.SLIDER;
+        case __GO_UI_TABLE__ :
+            return UicontrolStyle.TABLE;
+        case __GO_UI_TEXT__ :
+            return UicontrolStyle.TEXT;
+        default :
+            return null;
         }
-        return enumStyle;
     }
 
     /**
@@ -245,7 +237,7 @@ public class Uicontrol extends GraphicObject {
      * @return uicontrol
      * @see org.scilab.modules.graphic_objects.graphicObject.GraphicObject#getType()
      */
-    public String getType() {
+    public Integer getType() {
         return __GO_UICONTROL__;
     }
 
@@ -254,60 +246,61 @@ public class Uicontrol extends GraphicObject {
      * @param propertyName the property name
      * @return the property enum
      */
-    public Object getPropertyFromName(String propertyName) {
-        if (propertyName.equals(__GO_STYLE__)) {
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+        case __GO_STYLE__ :
             return UicontrolProperty.STYLE;
-        } else if (propertyName.equals(__GO_UI_BACKGROUNDCOLOR__)) {
+        case __GO_UI_BACKGROUNDCOLOR__ :
             return UicontrolProperty.BACKGROUNDCOLOR;
-        } else if (propertyName.equals(__GO_UI_ENABLE__)) {
+        case __GO_UI_ENABLE__ :
             return UicontrolProperty.ENABLE;
-        } else if (propertyName.equals(__GO_UI_FONTANGLE__)) {
+        case __GO_UI_FONTANGLE__ :
             return UicontrolProperty.FONTANGLE;
-        } else if (propertyName.equals(__GO_UI_FONTNAME__)) {
+        case __GO_UI_FONTNAME__ :
             return UicontrolProperty.FONTNAME;
-        } else if (propertyName.equals(__GO_UI_FONTSIZE__)) {
+        case __GO_UI_FONTSIZE__ :
             return UicontrolProperty.FONTSIZE;
-        } else if (propertyName.equals(__GO_UI_FONTUNITS__)) {
+        case __GO_UI_FONTUNITS__ :
             return UicontrolProperty.FONTUNITS;
-        } else if (propertyName.equals(__GO_UI_FONTWEIGHT__)) {
+        case __GO_UI_FONTWEIGHT__ :
             return UicontrolProperty.FONTWEIGHT;
-        } else if (propertyName.equals(__GO_UI_FOREGROUNDCOLOR__)) {
+        case __GO_UI_FOREGROUNDCOLOR__ :
             return UicontrolProperty.FOREGROUNDCOLOR;
-        } else if (propertyName.equals(__GO_UI_HORIZONTALALIGNMENT__)) {
+        case __GO_UI_HORIZONTALALIGNMENT__ :
             return UicontrolProperty.HORIZONTALALIGNMENT;
-        } else if (propertyName.equals(__GO_UI_LISTBOXTOP__)) {
+        case __GO_UI_LISTBOXTOP__ :
             return UicontrolProperty.LISTBOXTOP;
-        } else if (propertyName.equals(__GO_UI_LISTBOXTOP_SIZE__)) {
+        case __GO_UI_LISTBOXTOP_SIZE__ :
             return UicontrolProperty.LISTBOXTOP_SIZE;
-        } else if (propertyName.equals(__GO_UI_MAX__)) {
+        case __GO_UI_MAX__ :
             return UicontrolProperty.MAX;
-        } else if (propertyName.equals(__GO_UI_MIN__)) {
+        case __GO_UI_MIN__ :
             return UicontrolProperty.MIN;
-        } else if (propertyName.equals(__GO_POSITION__)) {
+        case __GO_POSITION__ :
             return UicontrolProperty.POSITION;
-        } else if (propertyName.equals(__GO_UI_RELIEF__)) {
+        case __GO_UI_RELIEF__ :
             return UicontrolProperty.RELIEF;
-        } else if (propertyName.equals(__GO_UI_SLIDERSTEP__)) {
+        case __GO_UI_SLIDERSTEP__ :
             return UicontrolProperty.SLIDERSTEP;
-        } else if (propertyName.equals(__GO_UI_STRING__)) {
+        case __GO_UI_STRING__ :
             return UicontrolProperty.STRING;
-        } else if (propertyName.equals(__GO_UI_STRING_SIZE__)) {
+        case __GO_UI_STRING_SIZE__ :
             return UicontrolProperty.STRING_SIZE;
-        } else if (propertyName.equals(__GO_UI_STRING_COLNB__)) {
+        case __GO_UI_STRING_COLNB__ :
             return UicontrolProperty.STRING_COLNB;
-        } else if (propertyName.equals(__GO_UI_TOOLTIPSTRING__)) {
+        case __GO_UI_TOOLTIPSTRING__ :
             return UicontrolProperty.TOOLTIPSTRING;
-        } else if (propertyName.equals(__GO_UI_TOOLTIPSTRING_SIZE__)) {
+        case __GO_UI_TOOLTIPSTRING_SIZE__ :
             return UicontrolProperty.TOOLTIPSTRING_SIZE;
-        } else if (propertyName.equals(__GO_UI_UNITS__)) {
+        case __GO_UI_UNITS__ :
             return UicontrolProperty.UNITS;
-        } else if (propertyName.equals(__GO_UI_VALUE__)) {
+        case __GO_UI_VALUE__ :
             return UicontrolProperty.VALUE;
-        } else if (propertyName.equals(__GO_UI_VALUE_SIZE__)) {
+        case __GO_UI_VALUE_SIZE__ :
             return UicontrolProperty.VALUE_SIZE;
-        } else if (propertyName.equals(__GO_UI_VERTICALALIGNMENT__)) {
+        case __GO_UI_VERTICALALIGNMENT__ :
             return UicontrolProperty.VERTICALALIGNMENT;
-        } else {
+        default :
             return super.getPropertyFromName(propertyName);
         }
     }
@@ -383,7 +376,7 @@ public class Uicontrol extends GraphicObject {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == UicontrolProperty.STYLE) {
-            setStyle((String) value);
+            setStyle((Integer) value);
         } else if (property == UicontrolProperty.BACKGROUNDCOLOR) {
             setBackgroundColor((Double[]) value);
         } else if (property == UicontrolProperty.ENABLE) {
@@ -437,16 +430,16 @@ public class Uicontrol extends GraphicObject {
      * Get the style
      * @return the style
      */
-    public String getStyle() {
-        return styleEnumToString(this.style);
+    public Integer getStyle() {
+        return styleEnumToInt(this.style);
     }
 
     /**
      * Set the style
      * @param style the style
      */
-    public void setStyle(String style) {
-        this.style = stringToStyleEnum(style);
+    public void setStyle(int style) {
+        this.style = intToStyleEnum(style);
     }
 
     /* Background Color */

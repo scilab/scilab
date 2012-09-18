@@ -50,7 +50,7 @@ public class GuiLogView implements GraphicView {
     
     public void createObject(String id) {
         try {
-            String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
+            int objectType = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
             Document doc = htmlLogPane.getDocument();
             doc.insertString(doc.getLength(), "+++"+id+" Object Created type is "+objectType+".\n", null);
             htmlLogPane.setCaretPosition(doc.getLength());
@@ -69,7 +69,7 @@ public class GuiLogView implements GraphicView {
             e.printStackTrace();
         }
     }
-    public void updateObject(String id, String property) {
+    public void updateObject(String id, int property) {
         try {
             Document doc = htmlLogPane.getDocument();
             doc.insertString(doc.getLength(), "==="+id+" Object Property " + property + " Updated.\n", null);

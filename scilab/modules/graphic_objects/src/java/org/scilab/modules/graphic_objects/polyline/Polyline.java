@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects.polyline;
 
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -86,28 +87,29 @@ public class Polyline extends ClippableContouredObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_CLOSED__)) {
+	public Object getPropertyFromName(int propertyName) {
+		switch (propertyName) { 
+		case __GO_CLOSED__ :
 			return PolylineProperty.CLOSED;
-		} else if (propertyName.equals(__GO_ARROW_SIZE_FACTOR__)) {
+		case __GO_ARROW_SIZE_FACTOR__ :
 			return PolylineProperty.ARROWSIZEFACTOR;
-		} else if (propertyName.equals(__GO_POLYLINE_STYLE__)) {
+		case __GO_POLYLINE_STYLE__ :
 			return PolylineProperty.POLYLINESTYLE;
-		} else if (propertyName.equals(__GO_INTERP_COLOR_VECTOR__)) {
+		case __GO_INTERP_COLOR_VECTOR__ :
 			return PolylineProperty.INTERPCOLORVECTOR;
-		} else if (propertyName.equals(__GO_INTERP_COLOR_VECTOR_SET__)) {
+		case __GO_INTERP_COLOR_VECTOR_SET__ :
 			return PolylineProperty.INTERPCOLORVECTORSET;
-		} else if (propertyName.equals(__GO_INTERP_COLOR_MODE__)) {
+		case __GO_INTERP_COLOR_MODE__ :
 			return PolylineProperty.INTERPCOLORMODE;
-		} else if (propertyName.equals(__GO_X_SHIFT__)) {
+		case __GO_X_SHIFT__ :
 			return PolylineProperty.XSHIFT;
-		} else if (propertyName.equals(__GO_Y_SHIFT__)) {
+		case __GO_Y_SHIFT__ :
 			return PolylineProperty.YSHIFT;
-		} else if (propertyName.equals(__GO_Z_SHIFT__)) {
+		case __GO_Z_SHIFT__ :
 			return PolylineProperty.ZSHIFT;
-		} else if (propertyName.equals(__GO_BAR_WIDTH__)) {
+		case __GO_BAR_WIDTH__ :
 			return PolylineProperty.BARWIDTH;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}	
@@ -344,8 +346,8 @@ public class Polyline extends ClippableContouredObject {
 	/**
 	 * @return Type as String
 	 */
-	public String getType() {
-		return "Polyline";
+	public Integer getType() {
+		return GraphicObjectProperties.__GO_POLYLINE__;
 	}
 
 }

@@ -35,7 +35,8 @@ int sci_exportUI(char * fname, unsigned long fname_len)
     if (GetType(1) == sci_handles) // exportUI(figHandle)
     {
         char *pstFigureUID = NULL;
-        char *pstHandleType = NULL;
+        int iHandleType = -1;
+        int *piHandleType = &iHandleType;
         int *piFigureId = &iFigureId;
 
         GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &iRows, &iCols, &stackPointer);
@@ -46,8 +47,8 @@ int sci_exportUI(char * fname, unsigned long fname_len)
 
         pstFigureUID = getObjectFromHandle((unsigned long) * (hstk(stackPointer)));
 
-        getGraphicObjectProperty(pstFigureUID, __GO_TYPE__, jni_string, (void **)&pstHandleType);
-        if (strcmp(pstHandleType, __GO_FIGURE__) != 0)
+        getGraphicObjectProperty(pstFigureUID, __GO_TYPE__, jni_int, (void **)&piHandleType);
+        if (iHandleType == __GO_FIGURE__)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
             return FALSE;

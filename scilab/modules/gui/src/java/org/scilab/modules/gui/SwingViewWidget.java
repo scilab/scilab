@@ -91,29 +91,39 @@ public final class SwingViewWidget {
      * @param property the property name
      * @param value the property value
      */
-    public static void update(Widget uiControl, String property, Object value) {
+    public static void update(Widget uiControl, int property, Object value) {
         String uid = ((SwingViewObject) uiControl).getId();
-        if (property.equals(__GO_UI_BACKGROUNDCOLOR__)) {
-            Double[] allColors = ((Double[]) value);
+        Font font = null;
+        Double[] allColors = null;
+        double maxValue = 0;
+        
+        switch (property) {
+        case __GO_UI_BACKGROUNDCOLOR__ :
+            allColors = ((Double[]) value);
             uiControl.setBackground(new Color((int) (allColors[0] * COLORS_COEFF),
                                               (int) (allColors[1] * COLORS_COEFF),
                                               (int) (allColors[2] * COLORS_COEFF)));
-        } else if (property.equals(__GO_CALLBACK__)) {
+            break;
+        case __GO_CALLBACK__ :
             int cbType = (Integer) GraphicController.getController().getProperty(uid, __GO_CALLBACKTYPE__);
             uiControl.setCallback(CommonCallBack.createCallback((String) value, cbType, uid));
-        } else if (property.equals(__GO_CALLBACKTYPE__)) {
+            break;
+        case __GO_CALLBACKTYPE__ :
             String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
             if ((Integer) value == CallBack.UNTYPED) { /* Deactivate callback */
                 uiControl.setCallback(null);
             } else {
                 uiControl.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, uid));
             }
-        } else if (property.equals(__GO_CHILDREN__)) {
+            break;
+        case __GO_CHILDREN__ :
             /* Nothing to do */
-        } else if (property.equals(__GO_UI_ENABLE__)) {
+            break;
+        case __GO_UI_ENABLE__ :
             uiControl.setEnabled(((Boolean) value).booleanValue());
-        } else if (property.equals(__GO_UI_FONTANGLE__)) {
-            Font font = uiControl.getFont();
+            break;
+        case __GO_UI_FONTANGLE__ :
+            font = uiControl.getFont();
             if (font != null) {
                 String angle = (String) value;
 
@@ -133,8 +143,9 @@ public final class SwingViewWidget {
 
                 uiControl.setFont(font);
             }
-        } else if (property.equals(__GO_UI_FONTNAME__)) {
-            Font font = uiControl.getFont();
+            break;
+        case __GO_UI_FONTNAME__ :
+            font = uiControl.getFont();
             if (font != null) {
                 String name = (String) value;
 
@@ -142,20 +153,23 @@ public final class SwingViewWidget {
 
                 uiControl.setFont(font);
             }
-        } else if (property.equals(__GO_UI_FONTSIZE__)) {
+            break;
+        case __GO_UI_FONTSIZE__ :
             UicontrolUnits fontUnitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController()
                                                .getProperty(uid, __GO_UI_FONTUNITS__));
             Double dblFontSize = UnitsConverter.convertToPoint((Double) value, fontUnitsProperty, uiControl, false);
-            Font font = uiControl.getFont();
+            font = uiControl.getFont();
             if (font != null) {
                 int size = dblFontSize.intValue();
                 font = new Font(font.getName(), font.getStyle(), size);
                 uiControl.setFont(font);
             }
-        } else if (property.equals(__GO_UI_FONTUNITS__)) {
+            break;
+        case __GO_UI_FONTUNITS__ :
             /* Nothing to do here, this property is used when setting position */
-        } else if (property.equals(__GO_UI_FONTWEIGHT__)) {
-            Font font = uiControl.getFont();
+            break;
+        case __GO_UI_FONTWEIGHT__ :
+            font = uiControl.getFont();
             if (font != null) {
                 String weight = (String) value;
 
@@ -175,22 +189,26 @@ public final class SwingViewWidget {
 
                 uiControl.setFont(font);
             }
-        } else if (property.equals(__GO_UI_FOREGROUNDCOLOR__)) {
-            Double[] allColors = ((Double[]) value);
+            break;
+        case __GO_UI_FOREGROUNDCOLOR__ :
+            allColors = ((Double[]) value);
             uiControl.setForeground(new Color((int) (allColors[0] * COLORS_COEFF),
                                               (int) (allColors[1] * COLORS_COEFF),
                                               (int) (allColors[2] * COLORS_COEFF)));
-        } else if (property.equals(__GO_UI_HORIZONTALALIGNMENT__)) {
+            break;
+        case __GO_UI_HORIZONTALALIGNMENT__ :
             uiControl.setHorizontalAlignment((String) value);
-        } else if (property.equals(__GO_UI_LISTBOXTOP__)) {
+            break;
+        case __GO_UI_LISTBOXTOP__ :
             if (uiControl instanceof SwingScilabListBox) {
                 Integer[] listboxtopValue = ((Integer[]) value);
                 if (listboxtopValue.length > 0) {
                     ((SwingScilabListBox) uiControl).setListBoxTop(listboxtopValue[0]);
                 }
             }
-        } else if (property.equals(__GO_UI_MAX__)) {
-            double maxValue = ((Double) value);
+            break;
+        case __GO_UI_MAX__ :
+            maxValue = ((Double) value);
             Double[] allValues = (Double[]) GraphicController.getController().getProperty(uid, __GO_UI_VALUE__);
             if ((allValues == null) || (allValues.length == 0)) {
                 return;
@@ -218,11 +236,12 @@ public final class SwingViewWidget {
                 // Check/Uncheck the RadioButton
                 ((SwingScilabRadioButton) uiControl).setChecked(maxValue == uicontrolValue);
             }
-        } else if (property.equals(__GO_UI_MIN__)) {
+            break;
+        case __GO_UI_MIN__ :
             double minValue = ((Double) value);
             if (uiControl instanceof SwingScilabSlider) {
                 // Update the slider properties
-                double maxValue = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+                maxValue = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
                 ((SwingScilabSlider) uiControl).setMinimumValue(minValue);
                 Double[] sliderStep = ((Double[]) GraphicController.getController().getProperty(uid, __GO_UI_SLIDERSTEP__));
                 double minorSliderStep = sliderStep[0].doubleValue();
@@ -233,10 +252,11 @@ public final class SwingViewWidget {
                 }
             } else if (uiControl instanceof SwingScilabListBox) {
                 // Enable/Disable multiple selection
-                double maxValue = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+                maxValue = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
                 ((SwingScilabListBox) uiControl).setMultipleSelectionEnabled(maxValue - minValue > 1);
             }
-        } else if (property.equals(__GO_POSITION__)) {
+            break;
+        case __GO_POSITION__ :
             /* Convert value according to units */
             UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController
                                            .getController().getProperty(uid, __GO_UI_UNITS__));
@@ -252,9 +272,11 @@ public final class SwingViewWidget {
                     ((SwingScilabSlider) uiControl).setVertical();
                 }
             }
-        } else if (property.equals(__GO_UI_RELIEF__)) {
+            break;
+        case __GO_UI_RELIEF__ : 
             uiControl.setRelief((String) value);
-        } else if (property.equals(__GO_UI_SLIDERSTEP__)) {
+            break;
+        case __GO_UI_SLIDERSTEP__ :
             Double[] sliderStep = ((Double[]) value);
             if (uiControl instanceof SwingScilabSlider) {
                 // Update the slider properties
@@ -263,9 +285,11 @@ public final class SwingViewWidget {
                 ((SwingScilabSlider) uiControl).setMinorTickSpacing(minorSliderStep);
                 ((SwingScilabSlider) uiControl).setMajorTickSpacing(majorSliderStep);
             }
-        } else if (property.equals(__GO_STYLE__)) {
+            break;
+        case __GO_STYLE__ :
             /* Nothing to do unless we want to change style interactively */
-        } else if (property.equals(__GO_UI_STRING__)) {
+            break;
+        case __GO_UI_STRING__ :
             if (uiControl instanceof SwingScilabUiTable) {
                 // Update column names
                 String[] stringValue = (String[]) value;
@@ -301,7 +325,8 @@ public final class SwingViewWidget {
             } else {
                 uiControl.setText(((String[]) value)[0]);
             }
-        } else if (property.equals(__GO_UI_TOOLTIPSTRING__)) {
+            break;
+        case __GO_UI_TOOLTIPSTRING__ :
             String[] tooltipString = ((String[]) value);
             String tooltipText = tooltipString[0];
             if (tooltipString.length > 1) {
@@ -316,17 +341,19 @@ public final class SwingViewWidget {
             } else {
                 uiControl.setToolTipText(tooltipText);
             }
-        } else if (property.equals(__GO_UI_STRING_COLNB__)) {
+            break;
+        case __GO_UI_STRING_COLNB__ :
             /* Nothing to do */
-        } else if (property.equals(__GO_TAG__)) {
+        case __GO_TAG__ :
             /* Nothing to do */
-        } else if (property.equals(__GO_USER_DATA__)) {
+        case __GO_USER_DATA__ :
             /* Nothing to do here */
-        } else if (property.equals(__GO_UI_UNITS__)) {
+        case __GO_UI_UNITS__ :
             /* Nothing to do here, this property is used when setting position */
-        } else if (property.equals(__GO_VALID__)) {
+        case __GO_VALID__ :
             /* Nothing to do */
-        } else if (property.equals(__GO_UI_VALUE__)) {
+            break;
+        case __GO_UI_VALUE__ :
 
             Double[] doubleValue = ((Double[]) value);
             if (doubleValue.length == 0) {
@@ -345,11 +372,11 @@ public final class SwingViewWidget {
                 ((SwingScilabPopupMenu) uiControl).setUserSelectedIndex(intValue[0]);
             } else if (uiControl instanceof SwingScilabCheckBox) {
                 // Check the checkbox if the value is equal to MAX property
-                double maxValue = ((Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__)).intValue();
+                maxValue = ((Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__)).intValue();
                 ((SwingScilabCheckBox) uiControl).setChecked(maxValue == intValue[0]);
             } else if (uiControl instanceof SwingScilabRadioButton) {
                 // Check the radiobutton if the value is equal to MAX property
-                double maxValue = ((Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__)).intValue();
+                maxValue = ((Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__)).intValue();
                 ((SwingScilabRadioButton) uiControl).setChecked(maxValue == intValue[0]);
             } else if (uiControl instanceof SwingScilabSlider) {
                 // Update the slider value
@@ -392,16 +419,20 @@ public final class SwingViewWidget {
                 ((SwingScilabUiImage) uiControl).setShear(shear);
                 ((SwingScilabUiImage) uiControl).setRotate(imageParams[4]);
             }
-        } else if (property.equals(__GO_UI_VERTICALALIGNMENT__)) {
+            break;
+        case __GO_UI_VERTICALALIGNMENT__ :
             uiControl.setVerticalAlignment((String) value);
-        } else if (property.equals(__GO_VISIBLE__)) {
+            break;
+        case __GO_VISIBLE__ :
             uiControl.setVisible(((Boolean) value).booleanValue());
-        } else if (property.equals(__GO_PARENT__)) {
+            break;
+        case __GO_PARENT__ :
             /* Update position */
             SwingViewWidget.update(uiControl, __GO_POSITION__,
                                    (Double[]) GraphicController.getController()
                                    .getProperty(uid, __GO_POSITION__));
-        } else {
+            break;
+        default :
             System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);
         }
     }

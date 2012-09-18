@@ -22,7 +22,7 @@ extern "C"
 {
     void ScilabNativeView__createObject(char const* pstId);
     void ScilabNativeView__deleteObject(char const* pstId);
-    void ScilabNativeView__updateObject(char const* pstId, char const* pstProperty);
+    void ScilabNativeView__updateObject(char const* pstId, int iProperty);
 }
 
 class GRAPHIC_OBJECTS_IMPEXP ScilabView
@@ -52,7 +52,7 @@ private :
 public :
     static void   createObject(char const* pstId);
     static void   deleteObject(char const* pstId);
-    static void   updateObject(char const* pstId, char const* pstProperty);
+    static void   updateObject(char const* pstId, int iProperty);
 
     static int    getNbFigure(void);
     static void   getFiguresId(int ids[]);

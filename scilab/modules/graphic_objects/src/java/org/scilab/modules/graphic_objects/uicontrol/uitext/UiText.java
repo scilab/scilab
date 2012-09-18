@@ -12,7 +12,6 @@
 
 package org.scilab.modules.graphic_objects.uicontrol.uitext;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FLAT_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;

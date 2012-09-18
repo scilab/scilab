@@ -12,8 +12,6 @@
 package org.scilab.modules.graphic_objects.graphicView;
 
 import org.scilab.modules.graphic_objects.ScilabNativeView;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 
 public class ScilabView extends ScilabNativeView implements GraphicView {
 
@@ -37,7 +35,7 @@ public class ScilabView extends ScilabNativeView implements GraphicView {
         ScilabNativeView__deleteObject(id);
     }
 
-    public void updateObject(String id, String property) {
+    public void updateObject(String id, int property) {
         ScilabNativeView__updateObject(id, property);
     }
 

@@ -1043,7 +1043,7 @@ public class AxesDrawer {
         this.projectionMap.clear();
     }
 
-    public void update(String id, String property) {
+    public void update(String id, int property) {
         this.rulerDrawer.update(id, property);
     }
 

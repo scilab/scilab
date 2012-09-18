@@ -86,13 +86,18 @@ public class MarkSpriteManager {
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, String property) {
+    public void update(String id, int property) {
 
         /**
          * If the Mark properties have changed.
          * Dispose the involved mark sprite.
          */
-        if (property.startsWith(GraphicObjectProperties.__GO_MARK__)) {
+        if (property == GraphicObjectProperties.__GO_MARK_MODE__
+                || property == GraphicObjectProperties.__GO_MARK_STYLE__
+                || property == GraphicObjectProperties.__GO_MARK_SIZE_UNIT__
+                || property == GraphicObjectProperties.__GO_MARK_SIZE__
+                || property == GraphicObjectProperties.__GO_MARK_FOREGROUND__
+                || property == GraphicObjectProperties.__GO_MARK_BACKGROUND__) {
             dispose(id);
         }
     }

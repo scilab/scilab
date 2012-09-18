@@ -9,72 +9,72 @@
 package org.scilab.modules.commons;
 
 
-/**
-  * Some commons values from Scilab engine to Java
-  * @author Sylvestre LEDRU
-  * @copyright DIGITEO 2010
-  */
+ /** 
+   * Some commons values from Scilab engine to Java
+   * @author Sylvestre LEDRU
+   * @copyright DIGITEO 2010
+   */
 public class ScilabCommons {
 
-    /**
-      * Constructor
-      */
-    protected ScilabCommons() {
-        throw new UnsupportedOperationException();
-    }
+ /**
+   * Constructor
+   */
+ protected ScilabCommons() {
+    throw new UnsupportedOperationException();
+ }
+  
+ /**
+   * Get SCIHOME variable from Scilab
+   * @return SCIHOME value
+   */
+public static String getSCIHOME() {
+    return ScilabCommonsJNI.getSCIHOME();
+  }
 
-    /**
-      * Get SCIHOME variable from Scilab
-      * @return SCIHOME value
-      */
-    public static String getSCIHOME() {
-        return ScilabCommonsJNI.getSCIHOME();
-    }
+  public static String getTMPDIR() {
+    return ScilabCommonsJNI.getTMPDIR();
+  }
 
-    public static String getTMPDIR() {
-        return ScilabCommonsJNI.getTMPDIR();
-    }
+  public static String getlanguage() {
+    return ScilabCommonsJNI.getlanguage();
+  }
 
-    public static String getlanguage() {
-        return ScilabCommonsJNI.getlanguage();
-    }
+  public static String createtempfilename(String prefix, int bShortFormat) {
+    return ScilabCommonsJNI.createtempfilename(prefix, bShortFormat);
+  }
 
-    public static String createtempfilename(String prefix, int bShortFormat) {
-        return ScilabCommonsJNI.createtempfilename(prefix, bShortFormat);
-    }
+  public static int getieee() {
+    return ScilabCommonsJNI.getieee();
+  }
 
-    public static int getieee() {
-        return ScilabCommonsJNI.getieee();
-    }
+  public static void setieee(int arg0) {
+    ScilabCommonsJNI.setieee(arg0);
+  }
 
-    public static void setieee(int arg0) {
-        ScilabCommonsJNI.setieee(arg0);
-    }
+  
+ /**
+   * Set the Scilab ieee mode 
+   */
+public static void setformat(String format, int width) {
+    ScilabCommonsJNI.setformat(format, width);
+  }
 
+  
+ /**
+   * returns the Scilab format ("v" or "e") 
+   * @return format
+   */
+public static String getformat() {
+    return ScilabCommonsJNI.getformat();
+  }
 
-    /**
-      * Set the Scilab ieee mode
-      */
-    public static void setformat(String format, int width) {
-        ScilabCommonsJNI.setformat(format, width);
-    }
-
-
-    /**
-      * returns the Scilab format ("v" or "e")
-      * @return format
-      */
-    public static String getformat() {
-        return ScilabCommonsJNI.getformat();
-    }
-
-
-    /**
-      * returns the Scilab format width
-      * @return format
-      */
-    public static int getformatwidth() {
-        return ScilabCommonsJNI.getformatwidth();
-    }
+  
+ /**
+   * returns the Scilab format width 
+   * @return format
+   */
+public static int getformatwidth() {
+    return ScilabCommonsJNI.getformatwidth();
+  }
 
 }

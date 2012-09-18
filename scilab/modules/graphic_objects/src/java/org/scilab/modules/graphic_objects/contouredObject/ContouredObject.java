@@ -61,36 +61,37 @@ public abstract class ContouredObject extends GraphicObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_LINE__)) {
+	public Object getPropertyFromName(int propertyName) {
+		switch (propertyName) {
+		case __GO_LINE__ :
 			return ContouredObjectPropertyType.LINE;
-		} else if (propertyName.equals(__GO_LINE_MODE__)) {
+		case __GO_LINE_MODE__ :
 			return LinePropertyType.MODE;
-		} else if (propertyName.equals(__GO_LINE_STYLE__)) {
+		case __GO_LINE_STYLE__ :
 			return LinePropertyType.LINESTYLE;
-		} else if (propertyName.equals(__GO_LINE_THICKNESS__)) {
+		case __GO_LINE_THICKNESS__ :
 			return LinePropertyType.THICKNESS;
-		} else if (propertyName.equals(__GO_LINE_COLOR__)) {
+		case __GO_LINE_COLOR__ :
 			return LinePropertyType.COLOR;
-		} else if (propertyName.equals(__GO_FILL_MODE__)) {
+		case __GO_FILL_MODE__ :
 			return ContouredObjectPropertyType.FILLMODE;
-		} else if (propertyName.equals(__GO_BACKGROUND__)) {
+		case __GO_BACKGROUND__ :
 			return ContouredObjectPropertyType.BACKGROUND;
-		} else if (propertyName.equals(__GO_MARK__)) {
+		case __GO_MARK__ :
 			return ContouredObjectPropertyType.MARK;
-		} else if (propertyName.equals(__GO_MARK_MODE__)) {
+		case __GO_MARK_MODE__ :
 			return MarkPropertyType.MODE;
-		} else if (propertyName.equals(__GO_MARK_STYLE__)) {
+		case __GO_MARK_STYLE__ :
 			return MarkPropertyType.STYLE;
-		} else if (propertyName.equals(__GO_MARK_SIZE_UNIT__)) {
+		case __GO_MARK_SIZE_UNIT__ :
 			return MarkPropertyType.SIZEUNIT;
-		} else if (propertyName.equals(__GO_MARK_SIZE__)) {
+		case __GO_MARK_SIZE__ :
 			return MarkPropertyType.SIZE;
-		} else if (propertyName.equals(__GO_MARK_FOREGROUND__)) {
+		case __GO_MARK_FOREGROUND__ :
 			return MarkPropertyType.FOREGROUND;
-		} else if (propertyName.equals(__GO_MARK_BACKGROUND__)) {
+		case __GO_MARK_BACKGROUND__ :
 			return MarkPropertyType.BACKGROUND;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}

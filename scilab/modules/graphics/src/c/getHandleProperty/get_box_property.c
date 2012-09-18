@@ -34,16 +34,19 @@
 /*------------------------------------------------------------------------*/
 int get_box_property(void* _pvCtx, char* pobjUID)
 {
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **) &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **) &piType);
 
     /*
      * Required since the Box property is implemented differently for the Axes and Text
      * objects (respectively as an Integer and a Boolean).
      * To be corrected
      */
-    if (strcmp(type, __GO_AXES__) == 0)
+    switch (type)
+    {
+    case __GO_AXES__ :
     {
         int iBoxType = 0;
         int* piBoxType = &iBoxType;
@@ -74,7 +77,8 @@ int get_box_property(void* _pvCtx, char* pobjUID)
         }
 
     }
-    else if (strcmp(type, __GO_TEXT__) == 0)
+    break;
+    case __GO_TEXT__ :
     {
         int iBox = 0;
         int* piBox = &iBox;
@@ -97,12 +101,12 @@ int get_box_property(void* _pvCtx, char* pobjUID)
         }
 
     }
-    else
+    break;
+    default :
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"box");
         return -1;
     }
-
-    return -1;
+    }
 }
 /*------------------------------------------------------------------------*/
