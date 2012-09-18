@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-09-03 11:07+0100\n"
+"Revision-Date: 2012-09-18 13:50+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 135
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -241,7 +241,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_delete.c, line: 138
 # File: sci_gateway/c/sci_move.c, line: 52
-# File: sci_gateway/c/sci_xstringb.c, line: 68
+# File: sci_gateway/c/sci_xstringb.c, line: 78
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
@@ -1142,7 +1142,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_box_property.c, line: 133
 # File: src/c/getHandleProperty/set_callback_property.c, line: 98
 # File: src/c/getHandleProperty/set_callback_property.c, line: 110
-# File: src/c/getHandleProperty/set_callback_type_property.c, line: 59
+# File: src/c/getHandleProperty/set_callback_type_property.c, line: 66
 # File: src/c/getHandleProperty/set_cdata_mapping_property.c, line: 66
 # File: src/c/getHandleProperty/set_clip_box_property.c, line: 70
 # File: src/c/getHandleProperty/set_clip_box_property.c, line: 80
@@ -1538,6 +1538,12 @@ msgid "Wrong size for '%s' property: A Real scalar expected.\n"
 msgstr ""
 
 #
+# File: src/c/getHandleProperty/set_callback_type_property.c, line: 54
+#, c-format
+msgid "Wrong value for '%s' property: %d, %d, %d or %d expected.\n"
+msgstr ""
+
+#
 # File: src/c/getHandleProperty/set_children_property.c, line: 29
 msgid "Children property can not be modified directly.\n"
 msgstr ""
@@ -1873,12 +1879,12 @@ msgstr ""
 msgid "Scilab Graphics module not installed.\n"
 msgstr ""
 
-# File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 39
+# File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 38
 msgid "Computing in progress..."
 msgstr ""
 
 #
-# File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 89
+# File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 88
 msgid ""
 "Matplot1(..) displays a matrix\n"
 "(value => color#), with SCALED AXES\n"
@@ -1886,12 +1892,12 @@ msgid ""
 msgstr ""
 
 #
-# File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 91
+# File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 90
 msgid "Real part"
 msgstr ""
 
 #
-# File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 92
+# File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 91
 msgid "Imaginary part"
 msgstr ""
 

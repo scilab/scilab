@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-09-03 11:07+0100\n"
+"Revision-Date: 2012-09-18 13:50+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 73
 #, c-format
@@ -375,7 +375,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 133
-# File: sci_gateway/c/sci_uicontrol.c, line: 417
+# File: sci_gateway/c/sci_uicontrol.c, line: 416
 # File: sci_gateway/c/sci_uimenu.c, line: 222
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
@@ -563,7 +563,7 @@ msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_about.cpp, line: 39
-# File: sci_gateway/cpp/sci_displaytree.cpp, line: 152
+# File: sci_gateway/cpp/sci_displaytree.cpp, line: 153
 # File: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 37
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 37
 # File: sci_gateway/cpp/sci_printfigure.cpp, line: 65
@@ -1279,138 +1279,138 @@ msgid "Select a file name"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 765
+# File: scilab_fake_localization_file.c, line: 777
 msgid "Colors"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 810
+# File: scilab_fake_localization_file.c, line: 822
 msgid "Desktop color"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 821
+# File: scilab_fake_localization_file.c, line: 833
 msgid "Use system color"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 839
+# File: scilab_fake_localization_file.c, line: 851
 msgid "Text "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 846
+# File: scilab_fake_localization_file.c, line: 858
 msgid "Background "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 853
+# File: scilab_fake_localization_file.c, line: 865
 msgid "Cursor "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 865
+# File: scilab_fake_localization_file.c, line: 877
 msgid "Syntax highlighting colors"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 881
+# File: scilab_fake_localization_file.c, line: 893
 msgid "Keyword color "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 893
+# File: scilab_fake_localization_file.c, line: 905
 msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 900
+# File: scilab_fake_localization_file.c, line: 912
 msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 907
+# File: scilab_fake_localization_file.c, line: 919
 msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 914
+# File: scilab_fake_localization_file.c, line: 926
 msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 942
+# File: scilab_fake_localization_file.c, line: 954
 msgid "Fonts"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 977
+# File: scilab_fake_localization_file.c, line: 989
 msgid "Desktop font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 981
+# File: scilab_fake_localization_file.c, line: 993
 msgid "Use system font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 997
+# File: scilab_fake_localization_file.c, line: 1009
 msgid "Desktop text font: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1013
+# File: scilab_fake_localization_file.c, line: 1025
 msgid "Custom font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1027
+# File: scilab_fake_localization_file.c, line: 1039
 msgid "Fonts to use:"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1030
+# File: scilab_fake_localization_file.c, line: 1042
 msgid "Desktop text font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1036
+# File: scilab_fake_localization_file.c, line: 1048
 msgid "Custom:"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1240
+# File: scilab_fake_localization_file.c, line: 1252
 msgid "Web"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1256
+# File: scilab_fake_localization_file.c, line: 1268
 msgid "Web browser and mailer"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1258
+# File: scilab_fake_localization_file.c, line: 1270
 msgid "Use default web browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1264
+# File: scilab_fake_localization_file.c, line: 1276
 msgid "Command for web browser: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1279
-# File: scilab_fake_localization_file.c, line: 1310
+# File: scilab_fake_localization_file.c, line: 1291
+# File: scilab_fake_localization_file.c, line: 1322
 msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1289
+# File: scilab_fake_localization_file.c, line: 1301
 msgid "Use default mailer"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1295
+# File: scilab_fake_localization_file.c, line: 1307
 msgid "Command for mailer: "
 msgstr ""
 
@@ -1776,17 +1776,17 @@ msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2475
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2480
 msgid "Console Font..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2494
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2499
 msgid "Console Background..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2628
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2633
 msgid "No print service found."
 msgstr ""
 
