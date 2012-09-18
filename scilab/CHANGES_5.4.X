@@ -66,6 +66,9 @@ Bug Fixes
 
 * Bug #11558 fixed - Typo in helptools module fixed.
 
+* Bug #11657 fixed - Setting the callback_type property of an uicontrol was not
+                     taken into account.
+
 * Bug #11684 fixed - mfft failed due to MKL fftw library restrictions.
 
 * Bug #11688 fixed - The example in example_run help page failed.

@@ -48,6 +48,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
@@ -102,7 +103,11 @@ public final class SwingViewWidget {
             uiControl.setCallback(CommonCallBack.createCallback((String) value, cbType, uid));
         } else if (property.equals(__GO_CALLBACKTYPE__)) {
             String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
-            uiControl.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, uid));
+            if ((Integer) value == CallBack.UNTYPED) { /* Deactivate callback */
+                uiControl.setCallback(null);
+            } else {
+                uiControl.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, uid));
+            }
         } else if (property.equals(__GO_CHILDREN__)) {
             /* Nothing to do */
         } else if (property.equals(__GO_UI_ENABLE__)) {
