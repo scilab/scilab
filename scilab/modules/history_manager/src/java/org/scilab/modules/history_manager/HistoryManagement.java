@@ -114,7 +114,7 @@ public class HistoryManagement {
 
     /**
     * Get all lines in history
-    * @return an array of string
+    * @return an array of strings
     */
     public static String[] getAllLinesOfScilabHistory() {
         return HistoryManagementJNI.getAllLinesOfScilabHistory();
