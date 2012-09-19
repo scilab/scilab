@@ -46,7 +46,7 @@ int set_zoom_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (iType == __GO_AXES__)
+    if (iType != __GO_AXES__)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "zoom_box");
         return SET_PROPERTY_ERROR;
