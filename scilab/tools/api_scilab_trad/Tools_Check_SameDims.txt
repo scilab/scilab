@@ -1,0 +1,7 @@
+\1//CheckSameDims
+\1if (\4 != \6 || \5 != \7)
+\1{
+\1    Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, \2, \4, \5);
+\1    return 1;
+\1}
+
