@@ -12,6 +12,7 @@
  *
  */
 
+#include "GetUicontrolStyle.hxx"
 #include "SetUicontrolMin.hxx"
 
 int SetUicontrolMin(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
@@ -62,7 +63,7 @@ int SetUicontrolMin(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valu
 
         if ((value != minValue) && (value != maxValue))
         {
-            sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), objectStyle, "Min", "Max");
+            sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), IntToStyle(objectStyle), "Min", "Max");
         }
 
     }
