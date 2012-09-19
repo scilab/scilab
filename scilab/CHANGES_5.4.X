@@ -14,7 +14,9 @@ CSV features
 * csvRead and cvsWrite provide the same features as read_csv and write_csv
   with major improvements in term of usability and performances:
   - Write performances improved to a 100x factor.
-  - Read performances improved to a 3x factor.
+  - Read performances improved from 3x to 200x factor.
+
+* Bug #9969 fixed - Performances of CSV functions were bad for large files.
 
 * Bug #10203 fixed - The help pages of CSV function did not details the encoding
                      management.
