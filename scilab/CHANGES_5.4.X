@@ -16,6 +16,9 @@ CSV features
   - Write performances improved to a 100x factor.
   - Read performances improved from 3x to 200x factor.
 
+* Bug #8653 fixed - csvRead returns double values by default.
+                    (read_csv still return string values)
+
 * Bug #8654 fixed - write_csv did not use the standard separator and decimal mark.
 
 * Bug #8656 fixed - write_csv had accuracy issues.
