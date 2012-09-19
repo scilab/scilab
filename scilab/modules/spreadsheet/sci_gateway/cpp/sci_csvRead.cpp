@@ -102,7 +102,7 @@ int sci_csvRead(char *fname)
                 FREE(iRange);
                 iRange = NULL;
             }
-            Scierror(999, _("%s: Wrong value for input argument #%d: Unconsistent range.\n"), fname, 7);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Inconsistent range.\n"), fname, 7);
             return 0;
         }
     }

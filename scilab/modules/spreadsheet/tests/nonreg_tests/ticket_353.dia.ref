@@ -43,13 +43,13 @@ expected = [
 ];
 assert_checkequal ( r , expected );
 //
-// Unconsistent range: C2 < C1
+// Inconsistent range: C2 < C1
 instr = "r = csvRead(fullfile(path,""K_1.csv""), [], [], ""string"" , [] , [], [2 3 3 2] );";
-assert_checkerror ( instr , "csvRead: Wrong value for input argument #7: Unconsistent range." );
+assert_checkerror ( instr , "csvRead: Wrong value for input argument #7: Inconsistent range." );
 //
-// Unconsistent range: R2 < R1
+// Inconsistent range: R2 < R1
 instr = "r = csvRead(fullfile(path,""K_1.csv""), [], [], ""string"" , [] , [], [3 1 2 2] );";
-assert_checkerror ( instr , "csvRead: Wrong value for input argument #7: Unconsistent range." );
+assert_checkerror ( instr , "csvRead: Wrong value for input argument #7: Inconsistent range." );
 //
 // Non-integer indice
 instr="r = csvRead(fullfile(path,""K_1.csv""), [], [], ""string"" , [] , [], [2 1 1.5 2] );";
