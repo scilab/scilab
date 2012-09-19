@@ -16,7 +16,11 @@ CSV features
   - Write performances improved to a 100x factor.
   - Read performances improved from 3x to 200x factor.
 
+* Bug #8656 fixed - The write_csv function had accuracy issues.
+
 * Bug #9969 fixed - Performances of CSV functions were bad for large files.
+
+* Bug #9969 fixed - Strong improvement of the performances.
 
 * Bug #10203 fixed - The help pages of CSV function did not details the encoding
                      management.
