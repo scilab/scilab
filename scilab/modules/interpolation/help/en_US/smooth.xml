@@ -50,6 +50,13 @@ plot2d(x',y',[3],"011"," ",[-10,-40,50,50]);
 yi=smooth([x;y],0.1);
 plot2d(yi(1,:)',yi(2,:)',[1],"000");
  ]]></programlisting>
+        <scilab:image>
+            x=[1 10 20 30 40];
+            y=[1 30 -10 20 40];
+            plot2d(x',y',[3],"011"," ",[-10,-40,50,50]);
+            yi=smooth([x;y],0.1);
+            plot2d(yi(1,:)',yi(2,:)',[1],"000");
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

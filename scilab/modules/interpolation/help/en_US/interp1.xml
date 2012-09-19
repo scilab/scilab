@@ -152,6 +152,17 @@ plot(xx,[yy1;yy2;yy3],x,y,'*')
 xtitle('interpolation of square function')
 legend(['linear','spline','nearest'],a=2)
  ]]></programlisting>
+        <scilab:image>
+            x=linspace(0,3,20);
+            y=x^2;
+            xx=linspace(0,3,100);
+            yy1=interp1(x,y,xx,'linear');
+            yy2=interp1(x,y,xx,'spline');
+            yy3=interp1(x,y,xx,'nearest');
+            plot(xx,[yy1;yy2;yy3],x,y,'*')
+            xtitle('interpolation of square function')
+            legend(['linear','spline','nearest'],a=2)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
