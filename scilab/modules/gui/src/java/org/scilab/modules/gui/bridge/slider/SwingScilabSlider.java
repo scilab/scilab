@@ -64,6 +64,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
         super();
         // needed to have slider working with GLCanvas
         setOpaque(true);
+        setFocusable(true); /* Enable to manage the slider using keyboard (See bug #10840) */
         setMinimum(MINIMUM_VALUE);
         setMaximum(MAXIMUM_VALUE + getVisibleAmount());
         adjustmentListener = new AdjustmentListener() {

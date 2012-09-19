@@ -75,6 +75,8 @@ Bug Fixes
 * Bug #10559 fixed - Sspectral estimation demonstration failed if the graphic
                      figure was closed.
 
+* Bug #10840 fixed - Keyboard arrows were disabled on 'Slider' uicontrols.
+
 * Bug #10885 fixed - Renamed "Exit" to "Exit Scinotes" in Scinotes.
 
 * Bug #11293 fixed - Line style was not taken into account.
