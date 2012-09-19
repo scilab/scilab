@@ -28,18 +28,27 @@ static char *IntToStyle(int _iStyle)
     switch (_iStyle)
     {
     case __GO_UI_CHECKBOX__ :
-        return "CheckBox";
+        return "checkbox";
     case __GO_UI_EDIT__ :
+        return "edit";
     case __GO_UI_FRAME__ :
+        return "frame";
     case __GO_UI_IMAGE__ :
+        return "image";
     case __GO_UI_LISTBOX__ :
+        return "listbox";
     case __GO_UI_POPUPMENU__ :
+        return "popupmenu";
     case __GO_UI_PUSHBUTTON__ :
+        return "pushbutton";
     case __GO_UI_RADIOBUTTON__ :
+        return "radiobutton";
     case __GO_UI_SLIDER__ :
+        return "slider";
     case __GO_UI_TABLE__ :
+        return "table";
     case __GO_UI_TEXT__ :
-        return "UI_????";
+        return "text";
     }
 }
 
