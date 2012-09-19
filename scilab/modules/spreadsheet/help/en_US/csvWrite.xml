@@ -108,6 +108,10 @@
             If the file <literal>filename</literal> already exists, it is
             overwritten.
         </para>
+        
+        <para>
+            If relevant (ie with 'special' characters), the file will be saved as UTF-8.
+        </para>
     </refsection>
     
     <refsection>
