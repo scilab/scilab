@@ -27,8 +27,17 @@ BOOL DataModel::setGraphicObjectProperty(char const* _pstID, int _iName, void co
     int returnValue = 0;
 
     dataObject = (*m_dataMap)[std::string(_pstID)];
+    if (dataObject == NULL)
+    {
+        return FALSE;
+    }
 
     property = dataObject->getPropertyFromName(_iName);
+
+    if (property == UNKNOWN_DATA_PROPERTY)
+    {
+        return FALSE;
+    }
 
     returnValue = dataObject->setDataProperty(property, _dblValue, numElements);
 
