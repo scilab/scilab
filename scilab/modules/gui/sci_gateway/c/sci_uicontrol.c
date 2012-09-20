@@ -92,6 +92,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             pstCurrentFigure = createNewFigureWithAxes();
         }
         setGraphicObjectRelationship(pstCurrentFigure, (char*)getObjectFromHandle(GraphicHandle));
+        pUicontrol = (char*)getObjectFromHandle(GraphicHandle);
     }
     else if (Rhs == 1)
     {
@@ -149,6 +150,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                          "Uimenu");
                 return FALSE;
             }
+            pUicontrol = (char*)getObjectFromHandle(GraphicHandle);
         }
     }
     else
@@ -421,14 +423,14 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         }
     }
 
-    if (propertiesValuesIndices[24] == NOT_FOUND)    /* Visible property not set */
+    if ((Rhs < 2) || (propertiesValuesIndices[24] == NOT_FOUND))    /* Visible property not set */
     {
         /* Force the uicontrol to be visible because is invisible by default in the model (See bug #10346) */
         int b = (int)TRUE;
         setGraphicObjectProperty(pUicontrol, __GO_VISIBLE__, &b, jni_bool, 1);
     }
 
-    if (propertiesValuesIndices[14] == NOT_FOUND)    /* SliderStep property not set */
+    if ((Rhs < 2) || (propertiesValuesIndices[14] == NOT_FOUND))    /* SliderStep property not set */
     {
         /* Set SliderStep property to [1/100*(Max-Min) 1/10*(Max-Min)] */
         double maxValue = 0;
