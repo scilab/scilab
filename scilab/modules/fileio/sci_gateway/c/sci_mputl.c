@@ -1,15 +1,15 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_fileio.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -22,7 +22,7 @@
 #include "MALLOC.h"
 #include "BOOL.h"
 #include "mputl.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int sci_mputl(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
@@ -54,7 +54,7 @@ int sci_mputl(char *fname, unsigned long fname_len)
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
@@ -67,7 +67,7 @@ int sci_mputl(char *fname, unsigned long fname_len)
 
         if (!isScalar(pvApiCtx, piAddressVarTwo))
         {
-            Scierror(999,_("%s: Wrong size for input argument #%d: Integer expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Integer expected.\n"), fname, 2);
             return 0;
         }
 
@@ -77,56 +77,60 @@ int sci_mputl(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
-    } 
+    }
     else if ( isStringType(pvApiCtx, piAddressVarTwo) )
     {
         if (!isScalar(pvApiCtx, piAddressVarTwo))
         {
-            Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &filename) == 0)
         {
-            #define WRITE_ONLY_TEXT_MODE "wt"
+#define WRITE_ONLY_TEXT_MODE "wt"
             int f_swap = 0;
             double res = 0.0;
             int ierr = 0;
             char *expandedFileName = expandPathVariable(filename);
-            
+
             C2F(mopen)(&fileDescriptor, expandedFileName, WRITE_ONLY_TEXT_MODE, &f_swap, &res, &ierr);
-            if (expandedFileName) {FREE(expandedFileName); expandedFileName = NULL;}
+            if (expandedFileName)
+            {
+                FREE(expandedFileName);
+                expandedFileName = NULL;
+            }
 
             switch (ierr)
             {
-            case MOPEN_NO_ERROR:
-                bCloseFile = TRUE;
-                break;
-            case MOPEN_NO_MORE_LOGICAL_UNIT:
+                case MOPEN_NO_ERROR:
+                    bCloseFile = TRUE;
+                    break;
+                case MOPEN_NO_MORE_LOGICAL_UNIT:
                 {
                     freeAllocatedSingleString(filename);
                     Scierror(66, _("%s: Too many files opened!\n"), fname);
                     return 0;
                 }
                 break;
-            case MOPEN_CAN_NOT_OPEN_FILE:
+                case MOPEN_CAN_NOT_OPEN_FILE:
                 {
                     Scierror(999, _("%s: Cannot open file %s.\n"), fname, filename);
                     freeAllocatedSingleString(filename);
                     return 0;
                 }
                 break;
-            case MOPEN_NO_MORE_MEMORY:
+                case MOPEN_NO_MORE_MEMORY:
                 {
                     freeAllocatedSingleString(filename);
                     Scierror(999, _("%s: No more memory.\n"), fname);
                     return 0;
                 }
                 break;
-            case MOPEN_INVALID_FILENAME:
+                case MOPEN_INVALID_FILENAME:
                 {
                     if (filename)
                     {
@@ -140,7 +144,8 @@ int sci_mputl(char *fname, unsigned long fname_len)
                     return 0;
                 }
                 break;
-            case MOPEN_INVALID_STATUS: default:
+                case MOPEN_INVALID_STATUS:
+                default:
                 {
                     freeAllocatedSingleString(filename);
                     Scierror(999, _("%s: invalid status.\n"), fname);
@@ -153,17 +158,17 @@ int sci_mputl(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
     }
     else
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), fname, 2);
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -172,12 +177,12 @@ int sci_mputl(char *fname, unsigned long fname_len)
 
     if (!isStringType(pvApiCtx, piAddressVarOne))
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
         return 0;
     }
 
-    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne, &nOne, NULL, NULL);
-    if(sciErr.iErr)
+    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, NULL, NULL);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
@@ -185,7 +190,7 @@ int sci_mputl(char *fname, unsigned long fname_len)
 
     if ( !((mOne == 1) || (nOne == 1)) )
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), fname, 1);
         return 0;
     }
 
@@ -198,8 +203,8 @@ int sci_mputl(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&mOne, &nOne, lenStVarOne, NULL);
-    if(sciErr.iErr)
+    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, NULL);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -209,7 +214,8 @@ int sci_mputl(char *fname, unsigned long fname_len)
     pStVarOne = (char**) MALLOC(sizeof(char*) * mnOne);
     if (pStVarOne == NULL)
     {
-        FREE(lenStVarOne); lenStVarOne = NULL;
+        FREE(lenStVarOne);
+        lenStVarOne = NULL;
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }
@@ -220,15 +226,23 @@ int sci_mputl(char *fname, unsigned long fname_len)
         if (pStVarOne[i] == NULL)
         {
             freeArrayOfString(pStVarOne, i);
-            if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+            if (lenStVarOne)
+            {
+                FREE(lenStVarOne);
+                lenStVarOne = NULL;
+            }
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
     }
 
     sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, pStVarOne);
-    if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
-    if(sciErr.iErr)
+    if (lenStVarOne)
+    {
+        FREE(lenStVarOne);
+        lenStVarOne = NULL;
+    }
+    if (sciErr.iErr)
     {
         freeArrayOfString(pStVarOne, mnOne);
         printError(&sciErr, 0);
@@ -243,30 +257,29 @@ int sci_mputl(char *fname, unsigned long fname_len)
     {
         double dErrClose = 0.;
         C2F(mclose)(&fileDescriptor, &dErrClose);
-        bCloseFile = FALSE;
     }
 
     switch (mputlErr)
     {
-    case MPUTL_NO_ERROR:
-        createScalarBoolean(pvApiCtx, Rhs + 1, TRUE);
-        LhsVar(1) = Rhs + 1;
-        PutLhsVar();
-        break;
+        case MPUTL_NO_ERROR:
+            createScalarBoolean(pvApiCtx, Rhs + 1, TRUE);
+            LhsVar(1) = Rhs + 1;
+            PutLhsVar();
+            break;
 
-    case MPUTL_INVALID_FILE_DESCRIPTOR:
-        // commented for compatiblity
-        // Scierror(999, _("%s: invalid file descriptor.\n"), fname);
-        // break;
-    case MPUTL_ERROR:
-    case MPUTL_NO_WRITE_RIGHT:
-    default:
-        createScalarBoolean(pvApiCtx, Rhs + 1, FALSE);
-        LhsVar(1) = Rhs + 1;
-        PutLhsVar();
-        break;
+        case MPUTL_INVALID_FILE_DESCRIPTOR:
+            // commented for compatiblity
+            // Scierror(999, _("%s: invalid file descriptor.\n"), fname);
+            // break;
+        case MPUTL_ERROR:
+        case MPUTL_NO_WRITE_RIGHT:
+        default:
+            createScalarBoolean(pvApiCtx, Rhs + 1, FALSE);
+            LhsVar(1) = Rhs + 1;
+            PutLhsVar();
+            break;
     }
 
     return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
