@@ -14,13 +14,10 @@
 
 package org.scilab.modules.gui.bridge.popupmenu;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.util.StringTokenizer;
 
 import javax.swing.JComboBox;
 
@@ -46,8 +43,6 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, SimplePopupMenu {
 
     private static final long serialVersionUID = -4366581303317502544L;
-
-    private static final String STRING_SEPARATOR = "|";
 
     private String uid;
 
@@ -294,14 +289,6 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         if (text.length == 1 & text[0].length() == 0) {
             /* Clear the popup items */
             return;
-        } else if (text.length == 1 & text[0].contains(STRING_SEPARATOR)) {
-            /* Special case if the text contains | to separate items */
-            StringTokenizer strTok = new StringTokenizer(text[0], STRING_SEPARATOR);
-            while (strTok.hasMoreTokens()) {
-                addItem(new SwingScilabPopupMenuItem(strTok.nextToken()));
-            }
-            /* Update the model with the parsed string */
-            GraphicController.getController().setProperty(uid, __GO_UI_STRING__, getAllItemsText());
         } else {
             for (int i = 0; i < text.length; i++) {
                 addItem(new SwingScilabPopupMenuItem(text[i]));

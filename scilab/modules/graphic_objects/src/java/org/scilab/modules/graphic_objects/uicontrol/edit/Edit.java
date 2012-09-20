@@ -27,7 +27,7 @@ public class Edit extends Uicontrol {
     public Edit() {
         super();
         setStyle(__GO_UI_EDIT__);
-        setRelief(__GO_UI_SUNKEN_RELIEF__);
+        setRelief(SUNKEN_RELIEF);
     }
 
 }

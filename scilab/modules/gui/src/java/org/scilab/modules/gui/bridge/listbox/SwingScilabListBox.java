@@ -14,14 +14,12 @@
 
 package org.scilab.modules.gui.bridge.listbox;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.StringTokenizer;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -50,8 +48,6 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabListBox extends JScrollPane implements SwingViewObject, SimpleListBox {
 
     private static final long serialVersionUID = 3507396207331058895L;
-
-    private static final String STRING_SEPARATOR = "|";
 
     private String uid;
 
@@ -327,19 +323,9 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
             return;
         }
 
-        final String[] textF = text;
         DefaultListModel model = new DefaultListModel();
-        if (textF.length == 1 & text[0].contains(STRING_SEPARATOR)) {
-            StringTokenizer strTok = new StringTokenizer(textF[0], STRING_SEPARATOR);
-            while (strTok.hasMoreTokens()) {
-                model.addElement(strTok.nextToken());
-            }
-            /* Update the model with the parsed string */
-            GraphicController.getController().setProperty(uid, __GO_UI_STRING__, getAllItemsText());
-        } else {
-            for (int i = 0; i < textF.length; i++) {
-                model.addElement(textF[i]);
-            }
+        for (int i = 0; i < text.length; i++) {
+            model.addElement(text[i]);
         }
         getList().setModel(model);
         revalidate();

@@ -22,12 +22,12 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 public class PopupMenu extends Uicontrol {
 
     /**
-	 * Constructor
-	 */
-	public PopupMenu() {
-		super();
-		setStyle(__GO_UI_POPUPMENU__);
-        setRelief(__GO_UI_FLAT_RELIEF__);
-	}
+     * Constructor
+     */
+    public PopupMenu() {
+        super();
+        setStyle(__GO_UI_POPUPMENU__);
+        setRelief(FLAT_RELIEF);
+    }
 
 }

@@ -27,7 +27,7 @@ public class CheckBox extends Uicontrol {
     public CheckBox() {
         super();
         setStyle(__GO_UI_CHECKBOX__);
-        setRelief(__GO_UI_FLAT_RELIEF__);
+        setRelief(FLAT_RELIEF);
 
         // Default value is the min value (not checked)
         Double[] value = new Double[1];

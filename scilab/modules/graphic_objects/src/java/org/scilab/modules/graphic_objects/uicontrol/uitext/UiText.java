@@ -27,7 +27,7 @@ public class UiText extends Uicontrol {
     public UiText() {
         super();
         setStyle(__GO_UI_TEXT__);
-        setRelief(__GO_UI_FLAT_RELIEF__);
+        setRelief(FLAT_RELIEF);
     }
 
 }

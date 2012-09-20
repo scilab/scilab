@@ -27,7 +27,7 @@ public class ListBox extends Uicontrol {
     public ListBox() {
         super();
         setStyle(__GO_UI_LISTBOX__);
-        setRelief(__GO_UI_FLAT_RELIEF__);
+        setRelief(FLAT_RELIEF);
 
         // Default value is the min value
         Double[] value = new Double[1];

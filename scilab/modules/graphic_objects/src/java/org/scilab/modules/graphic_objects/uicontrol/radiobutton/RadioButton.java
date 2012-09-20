@@ -27,7 +27,7 @@ public class RadioButton extends Uicontrol {
     public RadioButton() {
         super();
         setStyle(__GO_UI_RADIOBUTTON__);
-        setRelief(__GO_UI_FLAT_RELIEF__);
+        setRelief(FLAT_RELIEF);
 
         // Default value is the min value (not checked)
         Double[] value = new Double[1];

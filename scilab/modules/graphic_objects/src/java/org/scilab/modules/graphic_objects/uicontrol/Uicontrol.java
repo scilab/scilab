@@ -52,6 +52,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 
+import java.util.StringTokenizer;
+
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
@@ -60,6 +62,13 @@ import org.scilab.modules.graphic_objects.graphicObject.Visitor;
  * @author Vincent COUVERT
  */
 public class Uicontrol extends GraphicObject {
+
+    protected static final String FLAT_RELIEF   = "flat";
+    protected static final String RAISED_RELIEF = "raised";
+    protected static final String SUNKEN_RELIEF = "sunken";
+    protected static final String GROOVE_RELIEF = "groove";
+    protected static final String RIDGE_RELIEF  = "ridge";
+    protected static final String SOLID_RELIEF  = "solid";
 
     private static final double DEFAULT_RED_BACKGROUND = 0.8;
     private static final double DEFAULT_GREEN_BACKGROUND = 0.8;
@@ -74,6 +83,7 @@ public class Uicontrol extends GraphicObject {
     private static final String DEFAULTFONTNAME = "helvetica";
     private static final String DEFAULTFONTWEIGHT = "normal";
     private static final String DEFAULTFONTANGLE = DEFAULTFONTWEIGHT;
+    private static final String STRING_SEPARATOR = "|";
 
     private UicontrolStyle style;
     private Double[] backgroundColor = {DEFAULT_RED_BACKGROUND, DEFAULT_GREEN_BACKGROUND, DEFAULT_BLUE_BACKGROUND};
@@ -89,7 +99,7 @@ public class Uicontrol extends GraphicObject {
     private double max = 1.0;
     private double min;
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
-    private String relief = "raised";
+    private String relief = RAISED_RELIEF;
     private Double[] sliderStep = {0.01, 0.1};
     private String[] string = {""};
     private int stringColNb = 1; // Used for tables
@@ -97,13 +107,6 @@ public class Uicontrol extends GraphicObject {
     private String units = "pixels";
     private Double[] value;
     private String verticalAlignment = "middle";
-    
-    protected static final String __GO_UI_FLAT_RELIEF__ =         "flat";
-    protected static final String __GO_UI_RAISED_RELIEF__ =       "raised";
-    protected static final String __GO_UI_SUNKEN_RELIEF__ =       "sunken";
-    protected static final String __GO_UI_GROOVE_RELIEF__ =       "groove";
-    protected static final String __GO_UI_RIDGE_RELIEF__ =        "ridge";
-    protected static final String __GO_UI_SOLID_RELIEF__ =        "solid";
 
     /**
      * All uicontrol properties
@@ -205,30 +208,30 @@ public class Uicontrol extends GraphicObject {
      */
     private UicontrolStyle intToStyleEnum(int style) {
         switch (style) {
-        case __GO_UI_CHECKBOX__ :
-            return UicontrolStyle.CHECKBOX;
-        case __GO_UI_EDIT__ :
-            return UicontrolStyle.EDIT;
-        case __GO_UI_FRAME__ :
-            return UicontrolStyle.FRAME;
-        case __GO_UI_IMAGE__ :
-            return  UicontrolStyle.IMAGE;
-        case __GO_UI_LISTBOX__ :
-            return UicontrolStyle.LISTBOX;
-        case __GO_UI_POPUPMENU__ :
-            return UicontrolStyle.POPUPMENU;
-        case __GO_UI_PUSHBUTTON__ :
-            return UicontrolStyle.PUSHBUTTON;
-        case __GO_UI_RADIOBUTTON__ :
-            return UicontrolStyle.RADIOBUTTON;
-        case __GO_UI_SLIDER__ :
-            return UicontrolStyle.SLIDER;
-        case __GO_UI_TABLE__ :
-            return UicontrolStyle.TABLE;
-        case __GO_UI_TEXT__ :
-            return UicontrolStyle.TEXT;
-        default :
-            return null;
+            case __GO_UI_CHECKBOX__ :
+                return UicontrolStyle.CHECKBOX;
+            case __GO_UI_EDIT__ :
+                return UicontrolStyle.EDIT;
+            case __GO_UI_FRAME__ :
+                return UicontrolStyle.FRAME;
+            case __GO_UI_IMAGE__ :
+                return  UicontrolStyle.IMAGE;
+            case __GO_UI_LISTBOX__ :
+                return UicontrolStyle.LISTBOX;
+            case __GO_UI_POPUPMENU__ :
+                return UicontrolStyle.POPUPMENU;
+            case __GO_UI_PUSHBUTTON__ :
+                return UicontrolStyle.PUSHBUTTON;
+            case __GO_UI_RADIOBUTTON__ :
+                return UicontrolStyle.RADIOBUTTON;
+            case __GO_UI_SLIDER__ :
+                return UicontrolStyle.SLIDER;
+            case __GO_UI_TABLE__ :
+                return UicontrolStyle.TABLE;
+            case __GO_UI_TEXT__ :
+                return UicontrolStyle.TEXT;
+            default :
+                return null;
         }
     }
 
@@ -248,60 +251,60 @@ public class Uicontrol extends GraphicObject {
      */
     public Object getPropertyFromName(int propertyName) {
         switch (propertyName) {
-        case __GO_STYLE__ :
-            return UicontrolProperty.STYLE;
-        case __GO_UI_BACKGROUNDCOLOR__ :
-            return UicontrolProperty.BACKGROUNDCOLOR;
-        case __GO_UI_ENABLE__ :
-            return UicontrolProperty.ENABLE;
-        case __GO_UI_FONTANGLE__ :
-            return UicontrolProperty.FONTANGLE;
-        case __GO_UI_FONTNAME__ :
-            return UicontrolProperty.FONTNAME;
-        case __GO_UI_FONTSIZE__ :
-            return UicontrolProperty.FONTSIZE;
-        case __GO_UI_FONTUNITS__ :
-            return UicontrolProperty.FONTUNITS;
-        case __GO_UI_FONTWEIGHT__ :
-            return UicontrolProperty.FONTWEIGHT;
-        case __GO_UI_FOREGROUNDCOLOR__ :
-            return UicontrolProperty.FOREGROUNDCOLOR;
-        case __GO_UI_HORIZONTALALIGNMENT__ :
-            return UicontrolProperty.HORIZONTALALIGNMENT;
-        case __GO_UI_LISTBOXTOP__ :
-            return UicontrolProperty.LISTBOXTOP;
-        case __GO_UI_LISTBOXTOP_SIZE__ :
-            return UicontrolProperty.LISTBOXTOP_SIZE;
-        case __GO_UI_MAX__ :
-            return UicontrolProperty.MAX;
-        case __GO_UI_MIN__ :
-            return UicontrolProperty.MIN;
-        case __GO_POSITION__ :
-            return UicontrolProperty.POSITION;
-        case __GO_UI_RELIEF__ :
-            return UicontrolProperty.RELIEF;
-        case __GO_UI_SLIDERSTEP__ :
-            return UicontrolProperty.SLIDERSTEP;
-        case __GO_UI_STRING__ :
-            return UicontrolProperty.STRING;
-        case __GO_UI_STRING_SIZE__ :
-            return UicontrolProperty.STRING_SIZE;
-        case __GO_UI_STRING_COLNB__ :
-            return UicontrolProperty.STRING_COLNB;
-        case __GO_UI_TOOLTIPSTRING__ :
-            return UicontrolProperty.TOOLTIPSTRING;
-        case __GO_UI_TOOLTIPSTRING_SIZE__ :
-            return UicontrolProperty.TOOLTIPSTRING_SIZE;
-        case __GO_UI_UNITS__ :
-            return UicontrolProperty.UNITS;
-        case __GO_UI_VALUE__ :
-            return UicontrolProperty.VALUE;
-        case __GO_UI_VALUE_SIZE__ :
-            return UicontrolProperty.VALUE_SIZE;
-        case __GO_UI_VERTICALALIGNMENT__ :
-            return UicontrolProperty.VERTICALALIGNMENT;
-        default :
-            return super.getPropertyFromName(propertyName);
+            case __GO_STYLE__ :
+                return UicontrolProperty.STYLE;
+            case __GO_UI_BACKGROUNDCOLOR__ :
+                return UicontrolProperty.BACKGROUNDCOLOR;
+            case __GO_UI_ENABLE__ :
+                return UicontrolProperty.ENABLE;
+            case __GO_UI_FONTANGLE__ :
+                return UicontrolProperty.FONTANGLE;
+            case __GO_UI_FONTNAME__ :
+                return UicontrolProperty.FONTNAME;
+            case __GO_UI_FONTSIZE__ :
+                return UicontrolProperty.FONTSIZE;
+            case __GO_UI_FONTUNITS__ :
+                return UicontrolProperty.FONTUNITS;
+            case __GO_UI_FONTWEIGHT__ :
+                return UicontrolProperty.FONTWEIGHT;
+            case __GO_UI_FOREGROUNDCOLOR__ :
+                return UicontrolProperty.FOREGROUNDCOLOR;
+            case __GO_UI_HORIZONTALALIGNMENT__ :
+                return UicontrolProperty.HORIZONTALALIGNMENT;
+            case __GO_UI_LISTBOXTOP__ :
+                return UicontrolProperty.LISTBOXTOP;
+            case __GO_UI_LISTBOXTOP_SIZE__ :
+                return UicontrolProperty.LISTBOXTOP_SIZE;
+            case __GO_UI_MAX__ :
+                return UicontrolProperty.MAX;
+            case __GO_UI_MIN__ :
+                return UicontrolProperty.MIN;
+            case __GO_POSITION__ :
+                return UicontrolProperty.POSITION;
+            case __GO_UI_RELIEF__ :
+                return UicontrolProperty.RELIEF;
+            case __GO_UI_SLIDERSTEP__ :
+                return UicontrolProperty.SLIDERSTEP;
+            case __GO_UI_STRING__ :
+                return UicontrolProperty.STRING;
+            case __GO_UI_STRING_SIZE__ :
+                return UicontrolProperty.STRING_SIZE;
+            case __GO_UI_STRING_COLNB__ :
+                return UicontrolProperty.STRING_COLNB;
+            case __GO_UI_TOOLTIPSTRING__ :
+                return UicontrolProperty.TOOLTIPSTRING;
+            case __GO_UI_TOOLTIPSTRING_SIZE__ :
+                return UicontrolProperty.TOOLTIPSTRING_SIZE;
+            case __GO_UI_UNITS__ :
+                return UicontrolProperty.UNITS;
+            case __GO_UI_VALUE__ :
+                return UicontrolProperty.VALUE;
+            case __GO_UI_VALUE_SIZE__ :
+                return UicontrolProperty.VALUE_SIZE;
+            case __GO_UI_VERTICALALIGNMENT__ :
+                return UicontrolProperty.VERTICALALIGNMENT;
+            default :
+                return super.getPropertyFromName(propertyName);
         }
     }
 
@@ -585,6 +588,18 @@ public class Uicontrol extends GraphicObject {
      * @param string the string
      */
     public void setString(String[] string) {
+        if (this.style == UicontrolStyle.LISTBOX || this.style == UicontrolStyle.POPUPMENU) {
+            /* String can be set using a|b|c|d */
+            if (string.length == 1 & string[0].contains(STRING_SEPARATOR)) {
+                StringTokenizer strTok = new StringTokenizer(string[0], STRING_SEPARATOR);
+                String[] stringTab = new String[strTok.countTokens()];
+                while (strTok.hasMoreTokens()) {
+                    stringTab[stringTab.length - strTok.countTokens()] = strTok.nextToken();
+                }
+                this.string = stringTab;
+                return;
+            }
+        }
         this.string = string;
     }
 
