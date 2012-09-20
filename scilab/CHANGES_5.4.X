@@ -83,6 +83,8 @@ Bug Fixes
 
 * Bug #11293 fixed - Line style was not taken into account.
 
+* Bug #11298 fixed - Listboxes callback was executed several times for one action.
+
 * Bug #11489 fixed - 'SliderStep' property was ignored for uicontrols.
 
 * Bug #11558 fixed - Typo in helptools module fixed.
