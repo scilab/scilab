@@ -50,9 +50,7 @@ Userdata = []
 Tag = 
 assert_checkequal(c.callback_type, 0);
 c.callback_type = -1;
-callbackType = -1
 assert_checkequal(c.callback_type, -1);
 refMsg = msprintf(_("Wrong value for ''%s'' property: %d, %d, %d or %d expected.\n"), "callback_type", -1, 0, 1, 2);
 assert_checkerror("c;c.callback_type = 10;", refMsg);
-callbackType = 10
 delete(gcf());
