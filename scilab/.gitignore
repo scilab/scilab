@@ -151,7 +151,9 @@ scilab.pc
 # atoms generated files
 .atoms
 contrib/archives
-
+contrib/*/
+!contrib/toolbox_skeleton/
+!contrib/xcos_toolbox_skeleton/
 
 # SWIG generated files which are not used
 modules/types/src/java/org/scilab/modules/types/types.java
