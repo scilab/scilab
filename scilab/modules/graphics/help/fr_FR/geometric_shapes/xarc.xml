@@ -40,13 +40,43 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // échelle isométrique 
 plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
 xset("color",3)
 xarc(-1,1,2,2,0,90*64)
 xarc(-1.5,1.5,3,3,0,360*64)
  ]]></programlisting>
+        <scilab:image>
+            plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
+            xset("color",3)
+            xarc(-1,1,2,2,0,90*64)
+            xarc(-1.5,1.5,3,3,0,360*64)
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[
+
+  rect=[-1,-1,1,1]
+  plot2d(0,0,0,rect=rect,frameflag=3,axesflag=5)
+  xrpoly([0,0],3,1)
+  xarc(-1,1,2,2,0,64*360)
+  xarc(-1,1,2,2,0,64*360)
+  xstring(1,0.1,'A')//label A
+  xstring(-0.5,0.9,'B')//label B
+  xstring(-0.5,-1,'C')//label C 
+ ]]></programlisting>
+        <scilab:image>
+            
+            rect=[-1,-1,1,1]
+            plot2d(0,0,0,rect=rect,frameflag=3,axesflag=5)
+            xrpoly([0,0],3,1)
+            xarc(-1,1,2,2,0,64*360)
+            xarc(-1,1,2,2,0,64*360)
+            xstring(1,0.1,'A')//label A
+            xstring(-0.5,0.9,'B')//label B
+            xstring(-0.5,-1,'C')//label C 
+            
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

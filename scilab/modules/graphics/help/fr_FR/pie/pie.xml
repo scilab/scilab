@@ -65,15 +65,30 @@
 // Premier exemple : un argument d'entrée  x=[1 2 5] 
 scf(0);
 pie([1 2 5]);
-
+ ]]></programlisting>
+        
+        <scilab:image>
+            pie([1 2 5]);
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[ 
 // Deuxième example : deux arguments d'entrées x=[5 9  4 6 3], sp=[0 1 0 1 0], la 2ème et 4ème parts du cercle sont séparées des autres
 scf(1);
 pie([5 9 4 6 3],[0 1 0 1 0]);
-
+ ]]></programlisting>
+        
+        <scilab:image>
+            pie([5 9 4 6 3],[0 1 0 1 0]);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // Troisième exemple : trois arguments d'entrées, x=[3 4 6 2], sp=[0 1 0 0], txt=["part1","part2","part3","part4"]
 scf(2);
 pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
  ]]></programlisting>
+        <scilab:image>
+            pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

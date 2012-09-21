@@ -72,6 +72,16 @@ xsetech([0,0.5,1.0,0.5])
 [wrect,frect,logflag,arect]=xgetech();
 clf();
  ]]></programlisting>
+        <scilab:image>
+            xsetech([0,0,1.0,0.5])
+            plot2d()
+            xsetech([0,0.5,1.0,0.5])
+            grayplot()
+            xsetech([0,0,1.0,0.5])
+            [wrect,frect,logflag,arect]=xgetech();
+            xsetech([0,0.5,1.0,0.5])
+            [wrect,frect,logflag,arect]=xgetech();
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
