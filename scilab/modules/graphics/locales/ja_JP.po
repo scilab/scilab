@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 15985)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -876,6 +876,10 @@ msgstr "プロパティ'%s' の型が間違っています: 実スカラーを�
 #, c-format
 msgid "Wrong size for '%s' property: A Real scalar expected.\n"
 msgstr "プロパティ'%s' の大きさが間違っています: 実スカラーを指定してください.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: %d, %d, %d or %d expected.\n"
+msgstr ""
 
 msgid "Children property can not be modified directly.\n"
 msgstr "子のプロパティは直接修正できません.\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-03 12:05+0000\n"
+"PO-Revision-Date: 2012-09-18 23:25+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 15985)\n"
 "Language: ru\n"
 
 #, c-format
@@ -367,7 +367,7 @@ msgid "Remove trailing whites"
 msgstr "Удалить пробелы в конце строки"
 
 msgid "Select block"
-msgstr ""
+msgstr "Выбрать блок"
 
 msgid "Open current tab in a new window"
 msgstr "Открыть текущую вкладку в новом окне"
@@ -528,38 +528,44 @@ msgstr "Заменить кавычки на двойные кавычки"
 msgid "Line numbering"
 msgstr "Нумерация строк"
 
+msgid "Set the SciNotes font"
+msgstr "Установить шрифт в SciNotes"
+
+msgid "Set the SciNotes colors"
+msgstr "Установить цвета в SciNotes"
+
 msgid "New diagram"
 msgstr ""
 
 msgid "Open file in Scilab current directory"
-msgstr ""
+msgstr "Открыть файл в текущей директории Scilab"
 
 msgid "Export"
-msgstr ""
+msgstr "Экспортировать"
 
 msgid "Quit Xcos"
-msgstr ""
+msgstr "Выход из Xcos"
 
 msgid "Invert selection"
-msgstr ""
+msgstr "Инвертировать выделение"
 
 msgid "Block Parameters"
-msgstr ""
+msgstr "Параметры блока"
 
 msgid "Region to superblock"
 msgstr ""
 
 msgid "Zoom In"
-msgstr ""
+msgstr "Увеличить"
 
 msgid "Zoom Out"
-msgstr ""
+msgstr "Уменьшить"
 
 msgid "Fit diagram to view"
-msgstr ""
+msgstr "Уместить диаграмму в окне"
 
 msgid "Normal 100%"
-msgstr ""
+msgstr "Нормальный 100%"
 
 msgid "Palette browser"
 msgstr ""
@@ -571,91 +577,91 @@ msgid "Viewport"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "Подробности"
 
 msgid "Setup"
-msgstr ""
+msgstr "Установка"
 
 msgid "Execution trace and Debug"
-msgstr ""
+msgstr "Отслеживание исполнения и Отладка"
 
 msgid "Set Context"
 msgstr ""
 
 msgid "Compile"
-msgstr ""
+msgstr "Компилировать"
 
 msgid "Start"
-msgstr ""
+msgstr "Запустить"
 
 msgid "Stop"
-msgstr ""
+msgstr "Остановить"
 
 msgid "Rotate"
-msgstr ""
+msgstr "Повернуть"
 
 msgid "Flip"
-msgstr ""
+msgstr "Отразить"
 
 msgid "Mirror"
-msgstr ""
+msgstr "Зеркально"
 
 msgid "Show/Hide shadow"
-msgstr ""
+msgstr "Показать/скрыть тень"
 
 msgid "Left"
-msgstr ""
+msgstr "Влево"
 
 msgid "Center"
-msgstr ""
+msgstr "По центру"
 
 msgid "Right"
-msgstr ""
+msgstr "Вправо"
 
 msgid "Top"
-msgstr ""
+msgstr "Вверх"
 
 msgid "Middle"
-msgstr ""
+msgstr "По центру"
 
 msgid "Bottom"
-msgstr ""
+msgstr "Внизу"
 
 msgid "Border Color"
-msgstr ""
+msgstr "Цвет границы"
 
 msgid "Fill Color"
-msgstr ""
+msgstr "Цвет заливки"
 
 msgid "Horizontal"
-msgstr ""
+msgstr "Горизонтально"
 
 msgid "Straight"
 msgstr ""
 
 msgid "Vertical"
-msgstr ""
+msgstr "По вертикали"
 
 msgid "Diagram background"
-msgstr ""
+msgstr "Фон диаграммы"
 
 msgid "Grid"
-msgstr ""
+msgstr "Сетка"
 
 msgid "Code generation"
-msgstr ""
+msgstr "Сформировать код"
 
 msgid "Xcos Help"
-msgstr ""
+msgstr "Справка по Xcos"
 
 msgid "Block Help"
-msgstr ""
+msgstr "Справка по блоку"
 
 msgid "Xcos Demos"
-msgstr ""
+msgstr "Примеры Xcos"
 
 msgid "About Xcos"
-msgstr ""
+msgstr "О Xcos"
 
 msgid "Save variable"
 msgstr "Сохранить переменную"
@@ -682,7 +688,7 @@ msgid "Default language: "
 msgstr "Язык по умолчанию: "
 
 msgid "(This requires a restart of Scilab)"
-msgstr "(Это требует перезапуск Scilab''а)"
+msgstr "(Это требует перезапуск Scilab'а)"
 
 msgid "Java Heap Memory"
 msgstr "Динамическая память для Java (heap memory)"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-08-25 19:04+0000\n"
+"PO-Revision-Date: 2012-09-18 23:28+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 15985)\n"
 "Language: ru\n"
 
 #, c-format
@@ -215,18 +215,19 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d of list: A sparse matrix expected.\n"
+"%s: Wrong type for input argument #%d (List element: %d): A sparse matrix "
+"expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d списка: ожидалась разрежённая "
-"матрица.\n"
+"%s: Неверный тип входного аргумента №%d (Элемент списка: %d): ожидалась "
+"разрежённая матрица.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size of input argument #%d of list: Same size as input argument "
-"#%d expected.\n"
+"%s: Wrong size of input argument #%d (List element: %d): Same size as input "
+"argument #%d expected.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента №%d списка: ожидался тот же размер, "
-"что и у входного аргумента №%d.\n"
+"%s: Неверный размер входного аргумента №%d (Элемент списка: %d): ожидался "
+"тот  же размер, что и у входного аргумента №%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected"

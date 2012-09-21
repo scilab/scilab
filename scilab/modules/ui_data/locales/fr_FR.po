@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-07-23 09:22+0000\n"
+"PO-Revision-Date: 2012-09-21 10:27+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 15985)\n"
 "Language: fr\n"
 
 #, c-format
@@ -293,10 +293,10 @@ msgid "Enter your working folder"
 msgstr "Renseigner votre répertoire de travail"
 
 msgid "Case sensitive"
-msgstr "Sensible à la casse"
+msgstr "Respecter la casse"
 
 msgid "Regular expression"
-msgstr "Expression rationnelle"
+msgstr "Expression régulière"
 
 msgid "Select a directory"
 msgstr "Sélectionner un répertoire"
@@ -332,6 +332,12 @@ msgstr "Éditer avec l'application par défaut"
 
 msgid "Open with default application"
 msgstr "Ouvrir avec l'application par défaut"
+
+msgid "Previous directory"
+msgstr "Répertoire précédent"
+
+msgid "Next directory"
+msgstr "Répertoire suivant"
 
 msgid "Scilab type:"
 msgstr "Type Scilab :"

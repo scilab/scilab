@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-28 20:57+0000\n"
+"PO-Revision-Date: 2012-09-19 20:28+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 15985)\n"
 
 #, c-format
 msgid "FFTW Library %s not found.\n"
@@ -127,6 +127,10 @@ msgstr "%s: Nekompatibilní vstupní argumenty #%d a #%d.\n"
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Není víc paměti.\n"
+
+#, c-format
+msgid "%s: Creation of requested fftw plan failed.\n"
+msgstr "%s: Vytvoření požadovaného plánu fftw selhalo.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
