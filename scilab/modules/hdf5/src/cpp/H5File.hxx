@@ -47,6 +47,8 @@ public :
         return true;
     }
 
+    void flush(const bool local) const;
+
     virtual std::string getCompletePath() const;
 
     const std::string & getFileName() const

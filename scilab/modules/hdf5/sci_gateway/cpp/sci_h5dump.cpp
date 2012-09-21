@@ -19,7 +19,6 @@ extern "C"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
-#include "sciprint.h"
 #include "expandPathVariable.h"
 }
 
@@ -79,7 +78,7 @@ int sci_h5dump(char *fname, unsigned long fname_len)
         hobj = HDF5Scilab::getH5Object(addr, pvApiCtx);
         if (!hobj)
         {
-            Scierror(999, _("%s: Can not print H5Object: invalid object.\n"), fname);
+            Scierror(999, _("%s: Invalid H5Object.\n"), fname);
             return 0;
         }
 

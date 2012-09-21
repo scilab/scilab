@@ -13,6 +13,8 @@
 #ifndef __HDF5SCILAB_HXX__
 #define __HDF5SCILAB_HXX__
 
+#include <vector>
+
 #include "H5Object.hxx"
 #include "H5File.hxx"
 #include "H5Group.hxx"
@@ -45,6 +47,8 @@ public:
     static bool isH5Object(int * mlist, void * pvApiCtx);
 
     static void scilabPrint(const std::string & str);
+
+    static void split(const std::string & str, std::vector<std::string> & v, const char c = '\n');
 
     static void readData(const std::string & filename, const std::string & name, int pos, void * pvApiCtx);
 

@@ -38,6 +38,7 @@ static gw_generic_table Tab[] =
     {sci_h5attr, "h5attr"},
     {sci_h5link, "h5link"},
     {sci_h5readattr, "h5readattr"},
+    {sci_h5flush, "h5flush"},
 };
 /*--------------------------------------------------------------------------*/
 int gw_hdf5(void)

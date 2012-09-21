@@ -85,14 +85,27 @@ bool HDF5Scilab::isH5Object(int * mlist, void * pvApiCtx)
 
 void HDF5Scilab::scilabPrint(const std::string & str)
 {
-    std::string::size_type lastPos = str.find_first_not_of("\n", 0);
-    std::string::size_type pos = str.find_first_of("\n", lastPos);
+    std::string::size_type lastPos = str.find_first_not_of('\n', 0);
+    std::string::size_type pos = str.find_first_of('\n', lastPos);
 
     while (std::string::npos != pos || std::string::npos != lastPos)
     {
         sciprint("%s\n", str.substr(lastPos, pos - lastPos).c_str());
-        lastPos = str.find_first_not_of("\n", pos);
-        pos = str.find_first_of("\n", lastPos);
+        lastPos = str.find_first_not_of('\n', pos);
+        pos = str.find_first_of('\n', lastPos);
+    }
+}
+
+void HDF5Scilab::split(const std::string & str, std::vector<std::string> & v, const char c)
+{
+    std::string::size_type lastPos = str.find_first_not_of(c, 0);
+    std::string::size_type pos = str.find_first_of(c, lastPos);
+
+    while (std::string::npos != pos || std::string::npos != lastPos)
+    {
+        v.push_back(str.substr(lastPos, pos - lastPos));
+        lastPos = str.find_first_not_of(c, pos);
+        pos = str.find_first_of(c, lastPos);
     }
 }
 

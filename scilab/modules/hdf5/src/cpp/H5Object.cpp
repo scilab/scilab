@@ -283,7 +283,11 @@ std::string H5Object::getCompletePath() const
         return name;
     }
 
-    if (path.at(path.length() - 1) == '/' || name.at(0) == '/')
+    if (path.at(path.length() - 1) == '/' && name.at(0) == '/')
+    {
+        return path + name.substr(1);
+    }
+    else if (path.at(path.length() - 1) == '/' || name.at(0) == '/')
     {
         return path + name;
     }

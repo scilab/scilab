@@ -362,6 +362,7 @@ std::string H5Group::toString(const unsigned int indentLevel) const
 H5Group & H5Group::createGroup(H5Object & parent, const std::string & name)
 {
     hid_t obj;
+    hid_t lcpl;
     H5Object * loc = 0;
 
     if (H5Lexists(parent.getH5Id(), name.c_str(), H5P_DEFAULT) > 0)
@@ -378,7 +379,11 @@ H5Group & H5Group::createGroup(H5Object & parent, const std::string & name)
         loc = &parent;
     }
 
-    obj = H5Gcreate2(loc->getH5Id(), name.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    lcpl = H5Pcreate(H5P_LINK_CREATE);
+    H5Pset_create_intermediate_group(lcpl, 1);
+
+    obj = H5Gcreate2(loc->getH5Id(), name.c_str(), lcpl, H5P_DEFAULT, H5P_DEFAULT);
+    H5Pclose(lcpl);
     if (obj < 0)
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot create the group: %s."), name.c_str());

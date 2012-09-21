@@ -58,7 +58,8 @@ sci_gateway/cpp/sci_h5delete.cpp \
 sci_gateway/cpp/sci_h5dataset.cpp \
 sci_gateway/cpp/sci_h5attr.cpp \
 sci_gateway/cpp/sci_h5link.cpp \
-sci_gateway/cpp/sci_h5readattr.cpp
+sci_gateway/cpp/sci_h5readattr.cpp \
+sci_gateway/cpp/sci_h5flush.cpp
 
 if GIWS
 BUILT_SOURCES=giws

@@ -172,7 +172,8 @@ am__objects_3 = libscihdf5_la-sci_export_to_hdf5.lo \
 	libscihdf5_la-sci_percent_H5Object_e.lo \
 	libscihdf5_la-sci_h5group.lo libscihdf5_la-sci_h5delete.lo \
 	libscihdf5_la-sci_h5dataset.lo libscihdf5_la-sci_h5attr.lo \
-	libscihdf5_la-sci_h5link.lo libscihdf5_la-sci_h5readattr.lo
+	libscihdf5_la-sci_h5link.lo libscihdf5_la-sci_h5readattr.lo \
+	libscihdf5_la-sci_h5flush.lo
 am__objects_4 = libscihdf5_la-gw_hdf5.lo
 am_libscihdf5_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscihdf5_la_OBJECTS = $(am_libscihdf5_la_OBJECTS)
@@ -511,7 +512,8 @@ sci_gateway/cpp/sci_h5delete.cpp \
 sci_gateway/cpp/sci_h5dataset.cpp \
 sci_gateway/cpp/sci_h5attr.cpp \
 sci_gateway/cpp/sci_h5link.cpp \
-sci_gateway/cpp/sci_h5readattr.cpp
+sci_gateway/cpp/sci_h5readattr.cpp \
+sci_gateway/cpp/sci_h5flush.cpp
 
 @GIWS_TRUE@BUILT_SOURCES = giws
 
@@ -810,6 +812,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_h5dataset.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_h5delete.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_h5dump.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_h5flush.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_h5group.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_h5link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_h5ls.Plo@am__quote@
@@ -1150,6 +1153,13 @@ libscihdf5_la-sci_h5readattr.lo: sci_gateway/cpp/sci_h5readattr.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_h5readattr.cpp' object='libscihdf5_la-sci_h5readattr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_la-sci_h5readattr.lo `test -f 'sci_gateway/cpp/sci_h5readattr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_h5readattr.cpp
+
+libscihdf5_la-sci_h5flush.lo: sci_gateway/cpp/sci_h5flush.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_la-sci_h5flush.lo -MD -MP -MF $(DEPDIR)/libscihdf5_la-sci_h5flush.Tpo -c -o libscihdf5_la-sci_h5flush.lo `test -f 'sci_gateway/cpp/sci_h5flush.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_h5flush.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_la-sci_h5flush.Tpo $(DEPDIR)/libscihdf5_la-sci_h5flush.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_h5flush.cpp' object='libscihdf5_la-sci_h5flush.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_la-sci_h5flush.lo `test -f 'sci_gateway/cpp/sci_h5flush.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_h5flush.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

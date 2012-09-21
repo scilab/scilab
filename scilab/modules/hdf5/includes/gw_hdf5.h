@@ -34,6 +34,7 @@ HDF5_SCILAB_IMPEXP int sci_h5dataset(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5attr(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5link(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5readattr(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5flush(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_HDF5_H__ */
 /*--------------------------------------------------------------------------*/

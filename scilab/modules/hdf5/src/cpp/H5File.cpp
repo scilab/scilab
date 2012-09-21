@@ -125,6 +125,16 @@ H5File::~H5File()
     if (file >= 0)
     {
         H5Fclose(file);
+        H5garbage_collect();
+    }
+}
+
+void H5File::flush(const bool local) const
+{
+    herr_t err = H5Fflush(file, local ? H5F_SCOPE_LOCAL : H5F_SCOPE_GLOBAL);
+    if (err < 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Error in flushing the file."));
     }
 }
 
