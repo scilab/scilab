@@ -108,10 +108,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>fchamp();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 deff("[xdot] = derpol(t,x)",..
@@ -122,6 +118,15 @@ xf= -1:0.1:1;
 yf= -1:0.1:1;
 fchamp(derpol,0,xf,yf)
  ]]></programlisting>
+        <scilab:image>
+            deff("[xdot] = derpol(t,x)",..
+            ["xd1 = x(2)";..
+            "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+            "xdot = [ xd1 ; xd2 ]"])
+            xf= -1:0.1:1;
+            yf= -1:0.1:1;
+            fchamp(derpol,0,xf,yf)
+        </scilab:image>
         <programlisting role="example"><![CDATA[ 
 deff("[xdot] = derpol(t,x)",..
         ["xd1 = x(2)";..
@@ -132,6 +137,16 @@ yf= -1:0.1:1;
 clf()
 fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
  ]]></programlisting>
+        <scilab:image>
+            deff("[xdot] = derpol(t,x)",..
+            ["xd1 = x(2)";..
+            "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+            "xdot = [ xd1 ; xd2 ]"])
+            xf= -1:0.1:1;
+            yf= -1:0.1:1;
+            clf()
+            fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

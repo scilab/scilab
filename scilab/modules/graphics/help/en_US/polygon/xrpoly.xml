@@ -59,18 +59,16 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            plot2d(0,0,-1,"012"," ",[0,0,10,10])
-            xrpoly([5,5],5,5)
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"012"," ",[0,0,10,10])
 xrpoly([5,5],5,5)
  ]]></programlisting>
+        <scilab:image>
+            plot2d(0,0,-1,"012"," ",[0,0,10,10])
+            xrpoly([5,5],5,5)
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

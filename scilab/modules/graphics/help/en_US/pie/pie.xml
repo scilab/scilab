@@ -66,12 +66,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // First example : one input argument  x=[1 2 5]
@@ -98,6 +92,9 @@ pie([5 9 4 6 3],[0 1 0 1 0]);
 scf(2);
 pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
  ]]></programlisting>
+        <scilab:image>
+            pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

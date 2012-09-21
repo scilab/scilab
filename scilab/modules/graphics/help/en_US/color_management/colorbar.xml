@@ -63,20 +63,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image localized="true"> 
-            // example 1
-            x = linspace(0,1,81);
-            z = cos(2*%pi*x)'*sin(2*%pi*x);
-            zm = min(z); zM = max(z);
-            clf()
-            xset("colormap",jetcolormap(64))
-            colorbar(zm,zM)
-            Sgrayplot(x,x,z)
-            xtitle("The function cos(2 pi x)sin(2 pi y)")
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // example 1
@@ -89,6 +75,17 @@ colorbar(zm,zM)
 Sgrayplot(x,x,z)
 xtitle("The function cos(2 pi x)sin(2 pi y)")
  ]]></programlisting>
+        <scilab:image localized="true"> 
+            // example 1
+            x = linspace(0,1,81);
+            z = cos(2*%pi*x)'*sin(2*%pi*x);
+            zm = min(z); zM = max(z);
+            clf()
+            xset("colormap",jetcolormap(64))
+            colorbar(zm,zM)
+            Sgrayplot(x,x,z)
+            xtitle("The function cos(2 pi x)sin(2 pi y)")
+        </scilab:image>
         <programlisting role="example"><![CDATA[ 
 // example 2 
 x = linspace(0,1,81);
