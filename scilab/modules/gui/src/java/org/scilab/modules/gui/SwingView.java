@@ -36,8 +36,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTUNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTSIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTUNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
@@ -641,7 +641,12 @@ public final class SwingView implements GraphicView {
                 TypedObject updatedObject = allObjects.get(id);
                 switch (updatedObject.getType()) {
                     case UiParentMenu:
+                        SwingScilabMenu meAsAMenu = (SwingScilabMenu) updatedObject.getValue();
+                        Container parent = meAsAMenu.getParent();
+                        parent.remove(meAsAMenu);
                         allObjects.put(id, CreateObjectFromType(__GO_UICHECKEDMENU__, id));
+                        SwingScilabCheckBoxMenuItem meAsAMenuItem = (SwingScilabCheckBoxMenuItem) allObjects.get(id).getValue();
+                        parent.add(meAsAMenuItem);
                         registeredObject = allObjects.get(id);
                         break;
                     case UiChildMenu:
@@ -731,6 +736,7 @@ public final class SwingView implements GraphicView {
                     switch (childAsTypedObject.getType()) {
                         case UiChildMenu:
                         case UiCheckedMenu:
+                            allObjects.remove(childId);
                             allObjects.put(childId, CreateObjectFromType(__GO_UIPARENTMENU__, childId));
                             ((Container) ((SwingScilabTab) updatedComponent).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) allObjects.get(childId).getValue());
                             break;
@@ -974,6 +980,7 @@ public final class SwingView implements GraphicView {
                                     ((SwingScilabMenu) allObjects.get(id).getValue()).add((SwingScilabCheckBoxMenuItem) allObjects.get(childId).getValue());
                                     break;
                                 default: /* UiParentMenu */
+                                    System.out.println("childAsTypedObject.getType() = UiParentMenu");
                                     ((SwingScilabMenu) allObjects.get(id).getValue()).add((SwingScilabMenu) allObjects.get(childId).getValue());
                                     break;
                             }
@@ -989,7 +996,10 @@ public final class SwingView implements GraphicView {
                                     updatedMenu.add((SwingScilabCheckBoxMenuItem) allObjects.get(childId).getValue());
                                     break;
                                 default: /* UiParentMenu */
-                                    updatedMenu.add((SwingScilabMenu) allObjects.get(childId).getValue());
+                                    /* Java can not add a JMenu in a JMenu */
+                                    /* We need to convert the child into a MenuItem */
+                                    allObjects.put(childId, CreateObjectFromType(__GO_UIMENU__, childId));
+                                    updatedMenu.add((SwingScilabMenuItem) allObjects.get(childId).getValue());
                                     break;
                             }
                             break;
