@@ -24,7 +24,7 @@
             <listitem>
                 <para>
                     Единственное ограничение состоит в том, что каждое ключевое слово <literal>then</literal> 
-                    или <literal>do</literal> должны быть в той же самой строке, что и ключевое слово 
+                    или <literal>do</literal> должно быть в той же самой строке, что и ключевое слово
                     <literal>while</literal>.
                 </para>
             </listitem>
