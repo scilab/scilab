@@ -1,8 +1,15 @@
                     Changes between version 5.4.0 and 5.4.1
                     =======================================
 
+
+Improvements
+=============
+
+* A warning has been added for 1./x and 1.\x syntax clarification.
+
+
 Xcos
-====
+=====
 
 * Bug #10434 fixed - loadXcosLibs changed the predef value.
 
