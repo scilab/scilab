@@ -27,7 +27,7 @@ public class Frame extends Uicontrol {
 	public Frame() {
 		super();
 		setStyle(__GO_UI_FRAME__);
-        setRelief(__GO_UI_RIDGE_RELIEF__);
+        setRelief(RIDGE_RELIEF);
 	}
 
 }
