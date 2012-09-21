@@ -140,7 +140,6 @@ public class Datatip extends Text {
         tipData[1] = data[1];
         tipData[2] = data[2];
         updateText();
-        updateTextPosition();
     }
 
     /**
@@ -177,7 +176,6 @@ public class Datatip extends Text {
      */
     public void setOrientation(Integer orientation) {
         currentOrientation = TipOrientation.intToEnum(orientation);
-        updateTextPosition();
     }
 
     /**
@@ -186,7 +184,6 @@ public class Datatip extends Text {
      */
     public void setOrientationAsEnum(TipOrientation orientation) {
         currentOrientation = orientation;
-        updateTextPosition();
     }
 
     /**
@@ -203,30 +200,9 @@ public class Datatip extends Text {
     public void setUse3Component(Boolean useZ) {
         use3component = useZ;
         updateText();
-        updateTextPosition();
     }
 
-    /**
-     * Update the text box position based on current tipData position
-     * and the currentOrientation.
-     */
-    public void updateTextPosition() {
-        Double[] corners = getCorners();
-        Double yLength = corners[0 * 3 + 1] - corners[1 * 3 + 1];
-        Double xLength = corners[0 * 3 + 0] - corners[3 * 3 + 0];
 
-        Double[] newPosition = getTipData();
-
-        if (currentOrientation == TipOrientation.BOTTOM_LEFT ||
-                currentOrientation == TipOrientation.BOTTOM_RIGHT) {
-            newPosition[1] += yLength;
-        }
-        if (currentOrientation == TipOrientation.TOP_LEFT ||
-                currentOrientation == TipOrientation.BOTTOM_LEFT) {
-            newPosition[0] += xLength;
-        }
-        setPosition(newPosition);
-    }
 
     /**
      * Update the text from the datatip base on current tipData value.
@@ -243,6 +219,11 @@ public class Datatip extends Text {
 
         setTextArrayDimensions(dim);
         setTextStrings(textArray);
+    }
+
+    @Override
+    public Double[] getPosition(){
+        return getTipData();
     }
 
     /**

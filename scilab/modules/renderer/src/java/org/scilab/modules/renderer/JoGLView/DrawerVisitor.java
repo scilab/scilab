@@ -67,6 +67,7 @@ import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
+import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -139,6 +140,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final AxisDrawer axisDrawer;
     private final ArrowDrawer arrowDrawer;
     private final FecDrawer fecDrawer;
+    private final DatatipTextDrawer datatipTextDrawer;
 
     private DrawingTools drawingTools;
     private Texture colorMapTexture;
@@ -174,6 +176,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.legendDrawer = new LegendDrawer(this);
         this.fecDrawer = new FecDrawer(this);
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
+        this.datatipTextDrawer = new DatatipTextDrawer(canvas.getTextureManager());
 
         /*
          * Forces font loading from the main thread. This is done because
@@ -243,6 +246,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     public ColorMap getColorMap() {
         return colorMap;
+    }
+
+    public DatatipTextDrawer getDatatipTextDrawer() {
+        return datatipTextDrawer;
     }
 
 
@@ -731,9 +738,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (datatip.isValid() && datatip.getVisible()) {
             axesDrawer.enableClipping(currentAxes, datatip.getClipProperty());
             try {
-                textManager.draw(drawingTools, colorMap, (Text)datatip);
-                /* corners are calculated only after drawing */
-                datatip.updateTextPosition();
+                datatipTextDrawer.draw(drawingTools, colorMap, datatip);
 
                 if (datatip.getMarkMode()) {
                     Texture texture = markManager.getMarkSprite(datatip, colorMap);
@@ -861,6 +866,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     axesDrawer.disposeAll();
                     fecDrawer.updateAll();
                     colorMapTextureDataProvider.update();
+                    datatipTextDrawer.disposeAll();
                 } else {
                     labelManager.update(id, property);
                     dataManager.update(id, property);
@@ -869,6 +875,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     axesDrawer.update(id, property);
                     legendDrawer.update(id, property);
                     fecDrawer.update(id, property);
+                    datatipTextDrawer.update(id, property);
                 }
 
                 if (GraphicObjectProperties.__GO_ANTIALIASING__.equals(property)) {
