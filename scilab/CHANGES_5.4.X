@@ -1,6 +1,8 @@
                     Changes between version 5.4.0 and 5.4.1
                     =======================================
 
+Syntax changes
+===============
 
 Improvements
 =============
@@ -46,6 +48,8 @@ Documentation
 ==============
 
 * Add the 'scilab:needs-examples="no"' tag to specify that the help page does not need any example.
+
+* Vector ^ scalar syntax declared obsolete. See bug #11524
 
 
 Bug fixes
