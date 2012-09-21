@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,10 +10,7 @@
  *
  */
 
-package org.scilab.modules.ui_data.variablebrowser.actions;
-
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
+package org.scilab.modules.ui_data.actions;
 
 import javax.swing.ImageIcon;
 
@@ -29,24 +26,19 @@ import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
- * RefreshAction class
- * @author Calixte DENIZET
+ * Launch Scilab help class
+ * @author Vincent COUVERT
  */
 @SuppressWarnings(value = { "serial" })
-public final class RefreshAction extends CommonCallBack {
+public final class HelpAction extends CommonCallBack {
 
-    /** Mnemonic key of the action */
-    public static final int MNEMONIC_KEY = KeyEvent.VK_W;
-    /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-
-    private static ImageIcon icon = new ImageIcon(ScilabSwingUtilities.findIcon("view-refresh"));
+    private static ImageIcon icon = new ImageIcon(ScilabSwingUtilities.findIcon("help-browser"));
 
     /**
      * Constructor
      * @param name the name of the action
      */
-    public RefreshAction(String name) {
+    public HelpAction(String name) {
         super(name);
     }
 
@@ -56,7 +48,7 @@ public final class RefreshAction extends CommonCallBack {
     @Override
     public void callBack() {
         try {
-            ScilabInterpreterManagement.asynchronousScilabExec(null, "browsevar");
+            ScilabInterpreterManagement.asynchronousScilabExec(null, "help");
         } catch (InterpreterException e) {
             System.err.println(e);
         }
@@ -69,7 +61,7 @@ public final class RefreshAction extends CommonCallBack {
      */
     public static PushButton createButton(String title) {
         PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new RefreshAction(title));
+        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new HelpAction(title));
         button.setToolTipText(title);
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(icon);
 
@@ -85,7 +77,7 @@ public final class RefreshAction extends CommonCallBack {
         MenuItem menuItem = ScilabMenuItem.createMenuItem();
         menuItem.setText(label);
         SwingScilabMenuItem swingItem = (SwingScilabMenuItem) menuItem.getAsSimpleMenuItem();
-        swingItem.setCallback(new RefreshAction(label));
+        swingItem.setCallback(new HelpAction(label));
         swingItem.setIcon(icon);
         return menuItem;
     }
