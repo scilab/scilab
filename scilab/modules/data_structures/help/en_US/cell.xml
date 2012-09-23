@@ -32,16 +32,16 @@
                 <term>x</term>
                 <listitem>
                     <para>
-		      a vector containing the dimensions of the cell to create.
-		    </para>
+                        a vector containing the dimensions of the cell to create.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>m1, m2, ..., mn</term>
                 <listitem>
                     <para>
-		      dimensions of the cell to create.
-		    </para>
+                        dimensions of the cell to create.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -49,8 +49,8 @@
     <refsection>
         <title>Description</title>
         <para>
-	  <function>cell</function> returns a cell array of empty matrices.
-	</para>
+            <function>cell</function> returns a cell array of empty matrices.
+        </para>
         <variablelist>
             <varlistentry>
                 <term>cell()</term>
@@ -88,7 +88,7 @@
                 <term>cell(x)</term>
                 <listitem>
                     <para>
-		      returns a cell array of empty matrices with: the first dimension of the cell array is <literal>x(1)</literal>, the second dimension is <literal>x(2)</literal> and so on.
+                        returns a cell array of empty matrices with: the first dimension of the cell array is <literal>x(1)</literal>, the second dimension is <literal>x(2)</literal> and so on.
                     </para>
                 </listitem>
             </varlistentry>
@@ -103,11 +103,11 @@
             <code>cell()</code> is equivalent to <code>cell(0)</code>.
         </para>
         <para>
-	  If <literal>A</literal> is a cell array, you can access the contents of an element of <literal>A</literal> by using <code>A(m1, m2, ..., mn).entries</code>. The expression <code>A(1,1) = zeros(2,2)</code> is not valid, the right syntax is
+            If <literal>A</literal> is a cell array, you can access the contents of an element of <literal>A</literal> by using <code>A(m1, m2, ..., mn).entries</code>. The expression <code>A(1,1) = zeros(2,2)</code> is not valid, the right syntax is
             <code>A(1,1).entries = zeros(2,2)</code>.
         </para>
         <para>
-	  If <literal>A</literal> is a cell array, you can get its dimensions by using <code>A.dims</code> which returns an <literal>int32</literal> value that cannot be used as a subscript for the cell array. In this case, the best way to get the cell array dimensions is <code>size(A)</code>.
+            If <literal>A</literal> is a cell array, you can get its dimensions by using <code>A.dims</code> which returns an <literal>int32</literal> value that cannot be used as a subscript for the cell array. In this case, the best way to get the cell array dimensions is <code>size(A)</code>.
         </para>
     </refsection>
     <refsection>
@@ -162,4 +162,3 @@ size(b)
         </simplelist>
     </refsection>
 </refentry>
- 

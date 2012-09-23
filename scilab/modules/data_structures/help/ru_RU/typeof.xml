@@ -10,44 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="typeof" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="typeof" xml:lang="ru">
     <refnamediv>
         <refname>typeof</refname>
-        <refpurpose>object type</refpurpose>
+        <refpurpose>указывает тип объекта</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Последовательность вызова</title>
         <synopsis>[t]=typeof(object)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>object</term>
                 <listitem>
-                    <para>a Scilab object</para>
+                    <para>объект Scilab'а</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>a string</para>
+                    <para>строковое значение</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            <code>t=typeof(object)</code> returns one of the following
-            strings:
+            Инструкция <code>t=typeof(object)</code> возвращает одну из следующих строк:
         </para>
         <variablelist>
             <varlistentry>
                 <term>"constant"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a real or complex matrix of double.
+                        если <varname>object</varname> - матрица вещественных или комплексных значений удвоенной точности.
                     </para>
                 </listitem>
             </varlistentry>
@@ -55,7 +54,7 @@
                 <term>"polynomial"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a <link linkend="poly">polynomial matrix</link>.
+                        если <varname>object</varname> матрица <link linkend="poly">полиномов</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,7 +62,7 @@
                 <term>"function"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a <link linkend="function">function</link> (Scilab code). See also <link linkend="deff">deff</link>.
+                        если <varname>object</varname> - <link linkend="function">функция</link> (Scilab-код). См. также <link linkend="deff">deff</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -71,7 +70,7 @@
                 <term>"handle"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is an <link linkend="graphics_entities">handle</link>.
+                        если <varname>object</varname> - <link linkend="graphics_entities">дескриптор</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -79,7 +78,7 @@
                 <term>"string"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a matrix made of <link linkend="strings">character strings</link>.
+                        если <varname>object</varname> - матрица, составленная из <link linkend="strings">символьных строк</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -87,7 +86,7 @@
                 <term>"boolean"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a <link linkend="matrices">boolean matrix</link>.
+                        если <varname>object</varname> - <link linkend="matrices">матрица</link> логических значений.
                     </para>
                 </listitem>
             </varlistentry>
@@ -95,7 +94,7 @@
                 <term>"list"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a <link linkend="list">list</link>.
+                        если <varname>object</varname> - <link linkend="list">список</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -103,7 +102,7 @@
                 <term>"rational"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a <link linkend="rational">rational matrix</link> (transfer matrix).
+                        если <varname>object</varname> - матрица <link linkend="rational">рациональных чисел</link> (передаточная матрица).
                     </para>
                 </listitem>
             </varlistentry>
@@ -111,7 +110,7 @@
                 <term>"state-space"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a state-space model (see <link linkend="syslin">syslin</link>).
+                        если <varname>object</varname> - модель пространства состояний (см.<link linkend="syslin">syslin</link>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -119,7 +118,7 @@
                 <term>"sparse"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a (real) <link linkend="sparse">sparse matrix</link>.
+                        если <varname>object</varname> - (вещественная) <link linkend="sparse">разрежённая матрица</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -127,7 +126,7 @@
                 <term>"boolean sparse"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a <link linkend="sparse">boolean sparse matrix</link>.
+                        если <varname>object</varname> - <link linkend="sparse">разрежённая матрица</link> логических значений.
                     </para>
                 </listitem>
             </varlistentry>
@@ -135,7 +134,7 @@
                 <term>"hypermat"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a <link linkend="hypermatrices">hypermatrix</link> (<literal>N</literal>-dimension array with <literal><![CDATA[N<=3]]></literal>.
+                        если <varname>object</varname> - <link linkend="hypermatrices">гиперматрица</link> (<literal>N</literal>-мерный массив <literal><![CDATA[N<=3]]></literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -143,7 +142,7 @@
                 <term>"st"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a <link linkend="struct">structure</link>.
+                        если <varname>object</varname> - <link linkend="struct">структура</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -151,7 +150,7 @@
                 <term>"ce"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a <link linkend="cell">cell</link> array.
+                        если <varname>object</varname> - <link linkend="cell">cell</link>-массив.
                     </para>
                 </listitem>
             </varlistentry>
@@ -159,7 +158,7 @@
                 <term>"fptr"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a built-in Scilab function, called also <emphasis role="italic">gateway</emphasis> (C, C++ or Fortran code).
+                        если <varname>object</varname> - встроенная Scilab-функция, называетмая также <emphasis role="italic">шлюзом</emphasis> (код C, C++ или Fortran).
                     </para>
                 </listitem>
             </varlistentry>
@@ -167,7 +166,7 @@
                 <term>"pointer"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a pointer (See an use case: <link linkend="lufact">lufact</link>).
+                        если <varname>object</varname> - указатель (см. <link linkend="lufact">lufact</link>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -175,7 +174,7 @@
                 <term>"size implicit"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a size implicit polynomial used for indexing. This a purely internal value.
+                        если <varname>object</varname> - размер неявного полинома, используемый для индексации. Это чисто внутреннее значение.
                     </para>
                 </listitem>
             </varlistentry>
@@ -183,27 +182,27 @@
                 <term>"library"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a function <link linkend="library">library</link>.
+                        если <varname>object</varname> - <link linkend="library">библиотека функций</link>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"int8" or "uint8" or "int16" or "uint16" or "int32" or "uint32"</term>
+                <term>"int8" или "uint8" или "int16" или "uint16" или "int32" или "uint32"</term>
                 <listitem>
                     <para>
-                        if <varname>object</varname> is a matrix of [unsigned] integers stored on 8, 16 or 32 bits. (See <link linkend="int8">int</link>)
+                        если <varname>object</varname> - матрица [беззнаковых] целых чисел, хранимых в 8, 16 или 32 битах. (См. <link linkend="int8">int</link>)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
         <para>
             <note>
-                Note that if the <varname>object</varname> is a <link linkend="tlist">tlist</link> or <link linkend="mlist">mlist</link>, <function>typeof</function> will return the first string in the first list entry.
+                Заметьте, что, если объект <varname>object</varname> является <link linkend="tlist">tlist</link> или <link linkend="mlist">mlist</link>, то <function>typeof</function> вернёт первое строковое значение в первом элементе списка.
             </note>
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[ 
 typeof(1)
 typeof(poly(0,'x'))
@@ -225,7 +224,7 @@ typeof(corelib)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="type">type</link>
@@ -242,3 +241,4 @@ typeof(corelib)
         </simplelist>
     </refsection>
 </refentry>
+

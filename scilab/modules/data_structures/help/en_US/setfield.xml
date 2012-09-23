@@ -32,14 +32,16 @@
                 <term>l</term>
                 <listitem>
                     <para>
-                      a <literal>list</literal>, <literal>tlist</literal> or <literal>mlist</literal> variable.
+                        a <literal>list</literal>, <literal>tlist</literal> or <literal>mlist</literal> variable.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>i</term>
                 <listitem>
-                    <para>a field index, see <link linkend="insertion">insertion</link> for more details.</para>
+                    <para>
+                        a field index, see <link linkend="insertion">insertion</link> for more details.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

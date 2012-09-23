@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="rlist">
+    <refnamediv>
+        <refname>rlist</refname>
+        <refpurpose>определение функции рационального деления Scilab rational fraction function definition</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>rlist()
+            rlist(a1 ,..., an)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>rlist(a1, ..., an)</literal> is a shortcut  to
+            <literal>tlist(['r','num';'den','dt'], a1, ..., an)</literal>.
+        </para>
+        <para>
+            <literal>rlist(a1, ..., an)</literal> создаёт <literal>tlist</literal> с  <literal>['r','num';'den','dt']</literal> в качестве первого элемента и <literal>ai</literal>-тыми в качестве последующих элементов, если они есть. Над <literal>ai</literal>-тыми элементами не делается проверка ни типа ни размера.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

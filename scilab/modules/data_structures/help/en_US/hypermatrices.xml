@@ -35,11 +35,11 @@
             dimension are stored first).
         </para>
         <para>
-          <note>
-            The number of dimension of hypermatrices with right-most sizes equal to
-            1 are automatically reduced. An hypermatrix with only two dimensions is
-            automatically changed to a regular matrix (type 1).
-          </note>
+            <note>
+                The number of dimension of hypermatrices with right-most sizes equal to
+                1 are automatically reduced. An hypermatrix with only two dimensions is
+                automatically changed to a regular matrix (type 1).
+            </note>
         </para>
     </refsection>
     <refsection>

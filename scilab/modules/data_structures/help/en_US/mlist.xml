@@ -67,7 +67,8 @@
             <literal>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1, ..., in, b, a)</literal>.
         </para>
         <para/>
-        <para><literal>mlist</literal> fields must then be designed by their names. They can also be
+        <para>
+            <literal>mlist</literal> fields must then be designed by their names. They can also be
             handled using the <function>getfield</function> and <function>setfield</function>
             functions.
         </para>

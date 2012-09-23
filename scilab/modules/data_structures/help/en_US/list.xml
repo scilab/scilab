@@ -68,10 +68,10 @@
                     <para>
                         <code>L(0)=e</code>.
                         <note>
-                          After this
-                          operation <literal>e</literal> is an index 1,
-                          the initial elements being shifted on the
-                          right.
+                            After this
+                            operation <literal>e</literal> is an index 1,
+                            the initial elements being shifted on the
+                            right.
                         </note>
                     </para>
                 </listitem>

@@ -10,63 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="struct">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="struct">
     <refnamediv>
         <refname>struct</refname>
-        <refpurpose>create a struct</refpurpose>
+        <refpurpose>создаёт структуру</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Последовательность вызова</title>
         <synopsis>st = struct(field1, value1, field2, value2, ...)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>field1, field2, ...</term>
                 <listitem>
-                    <para>strings representing the fields names.</para>
+                    <para>строки, представляющие имена полей.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>value1, value2, ...</term>
                 <listitem>
                     <para>
-                        all data type (<literal>double</literal>, <literal>char</literal>, <literal>int</literal>, ...), representing the fields values.
+                        все типы данных (<literal>double</literal>, <literal>char</literal>, <literal>int</literal>, ...), представляющие значения полей.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            This function returns a struct with the fields names
-            <varname>fields1</varname>, <varname>field2</varname>, ..., and the fields values
-            corresponding <varname>value1</varname>, <varname>value2</varname>, ...
+            Эта функция возвращает структуру с именами полей 
+            <varname>fields1</varname>, <varname>field2</varname>, ..., и значениями полей, соответственно, <varname>value1</varname>, <varname>value2</varname>, ...
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-//create a struct date
+//создадим структуру данных
 date_st=struct('day',25,'month' ,'DEC','year',2006)
  
-//change the month
+//изменим месяц
 date_st.month='AUG';
  
-//change the year
+//изменим год
 date_st.year=1973;
  
-//change the day
+//изменим день
 date_st.day=19;
  
-//add a new field
+//добавим новое поле
 date_st.semaine=32
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cell">cell</link>
@@ -74,3 +73,4 @@ date_st.semaine=32
         </simplelist>
     </refsection>
 </refentry>
+

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="hypermatrices">
+    <refnamediv>
+        <refname>hypermatrices</refname>
+        <refpurpose>объект Scilab'а, N-мерная матрица в Scilab'е</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Тип гиперматрицы позволяет манипулировать многомерными массивами.
+        </para>
+        <para>
+            Они могут быть определены расширением двумерных матриц следующим
+            образом <code>a=[1 2;3 4];a(:,:,2)=rand(2,2)</code> или напрямую
+            с помощью функции <function>hypermat</function>.
+        </para>
+        <para>
+            Элементы могут быть вещественными или комплексными числами,
+            полиномами, рациональными числами, строковыми и логическими
+            значениями.
+        </para>
+        <para>
+            Гиперматрицы являются матричноориентированными списками <literal>mlists</literal>:
+            <code>mlist(['hm','dims','entries'],sz,v)</code>, где
+            <literal>sz</literal> - вектор-строка размеров, а
+            <literal>v</literal> - вектор-столбец элементов (первая
+            размерность сохраняется первой).
+        </para>
+        <para>
+            <note>
+                Число размерностей гиперматрицы с самыми правыми размерами,
+                равными  1, автоматически уменьшается. Гиперматрица, у которой
+                только две размерности, автоматически меняется на обычную матрицу
+                (тип 1).
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+a(1,1,1,1:2)=[1 2]
+a=[1 2;3 4];a(:,:,2)=rand(2,2)
+a(1,1,:)
+ 
+size(a)
+ 
+a(:,:,1) //уменьшение размерности
+type(a(:,:,1))
+ 
+[a a]
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="hypermat">hypermat</link>
+            </member>
+            <member>
+                <link linkend="zeros">zeros</link>
+            </member>
+            <member>
+                <link linkend="ones">ones</link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
+            </member>
+            <member>
+                <link linkend="matrix">matrix</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
