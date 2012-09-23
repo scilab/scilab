@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>lc=lstcat(l1,..ln)</synopsis>
+        <synopsis>lc = lstcat(l1, ..., ln)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>li</term>
                 <listitem>
-                    <para>list or any other type of variable</para>
+                    <para>a list or any other type of variable</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -39,14 +39,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>lc=lstcat(l1,..ln)</literal> catenates components of <literal>li</literal> lists in a
-            single list. If the <literal>li</literal> are other type of variables they are simply
+            <literal>lc = lstcat(l1, ..., ln)</literal> concatenates components of <varname>li</varname> lists in a
+            single list <varname>lc</varname>. If the <varname>li</varname> are other type of variables they are simply
             added to the resulting list.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 lstcat(list(1,2,3),33,list('foo',%s))
 lstcat(1,2,3)
  ]]></programlisting>

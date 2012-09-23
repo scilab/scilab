@@ -13,18 +13,21 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="list">
     <refnamediv>
         <refname>list</refname>
-        <refpurpose> Scilab object and list function definition</refpurpose>
+        <refpurpose>a Scilab object and a list definition function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>list(a1,....an)</synopsis>
+        <synopsis>list(a1, ..., an)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>
-            Creates a <literal>list</literal> with elements <literal>ai</literal>'s which are arbitrary Scilab
-            objects (<literal>matrix, list,...</literal>). Type of <literal>list</literal> objects is 15.
-            <literal>list()</literal> creates the empty <literal>list</literal> (0 element).
+            Creates a <literal>list</literal> with elements
+            <varname>ai</varname>'s which are arbitrary Scilab objects
+            (<literal>matrix</literal>,
+            <literal>list</literal>,...). Type of
+            <literal>list</literal> objects is 15. <code>list()</code>
+            creates the empty <literal>list</literal> (0 element).
         </para>
     </refsection>
     <refsection>
@@ -34,8 +37,8 @@
                 <term>extraction</term>
                 <listitem>
                     <para>
-                        <literal>[x,y,z...]=L(v)</literal> where <literal>v</literal> is a vector of indices;
-                        <literal>[x,y,z]=L(:)</literal> extracts all the elements.
+                        <literal>[x,y,z,...]=L(v)</literal> where <literal>v</literal> is a vector of indices;
+                        <literal>[x,y,z,...]=L(:)</literal> extracts all the elements.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,9 +46,11 @@
                 <term>insertion at index i</term>
                 <listitem>
                     <para>
-                        <literal>L(i)=a</literal> (note that it is not an error to use <literal>L(i)=a</literal>
-                        with <emphasis>i &gt; 1 + size(L)</emphasis> but some list entries are then undefined
-                        and their extraction gives raise to an error).
+                        <code>L(i)=a</code> (note that it is not an
+                        error to use <code>L(i)=a</code> with
+                        <code><![CDATA[i > 1 + size(L)]]></code> but
+                        some list entries are then undefined and their
+                        extraction gives raise to an error).
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,7 +58,7 @@
                 <term>append an element in queue</term>
                 <listitem>
                     <para>
-                        <literal>L($+1)=e</literal>.
+                        <code>L($+1)=e</code>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -61,8 +66,13 @@
                 <term>append an element in head</term>
                 <listitem>
                     <para>
-                        <literal>L(0)=e</literal>. (note that after this operation <literal>e</literal> is
-                        at index 1, the initial elements being shifted on the right).
+                        <code>L(0)=e</code>.
+                        <note>
+                          After this
+                          operation <literal>e</literal> is an index 1,
+                          the initial elements being shifted on the
+                          right.
+                        </note>
                     </para>
                 </listitem>
             </varlistentry>
@@ -70,7 +80,7 @@
                 <term>deletion</term>
                 <listitem>
                     <para>
-                        <literal>L(i)=null()</literal> removes the i-th element of the list <literal>L</literal>.
+                        <code>L(i)=null()</code> removes the <literal>i</literal>-th element of the list <literal>L</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -78,7 +88,7 @@
                 <term>concatenation of two lists</term>
                 <listitem>
                     <para>
-                        <literal>L3 = lstcat(L1,L2)</literal>.
+                        <code>L3 = lstcat(L1,L2)</code>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -86,8 +96,8 @@
                 <term>number of elements of a list</term>
                 <listitem>
                     <para>
-                        you can use either <literal>nb_elm = size(L)</literal>
-                        or <literal>nb_elm = length(L)</literal>.
+                        you can use either <code>nb_elm = size(L)</code>
+                        or <code>nb_elm = length(L)</code>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -98,7 +108,7 @@
                         it is possible to use a list <literal>L</literal> with a <link linkend="for">for</link> loop:
                         <literal>for e=L,...,end</literal> is a loop with <literal>length(L)</literal>
                         iterations, the loop variable <literal>e</literal> being equal to <literal>L(i)</literal>
-                        at the i th iteration.
+                        at the <literal>i</literal>-th iteration.
                     </para>
                 </listitem>
             </varlistentry>
@@ -110,7 +120,7 @@
             Scilab provides also other kinds of list, the <link linkend="tlist">tlist</link> type (typed list) and
             the <link linkend="mlist">mlist</link> type which are useful to define a new data type with operator
             <link linkend="overloading">overloading</link> facilities (<link linkend="hypermatrices">hypermatrices</link> which are
-            multi-dimensionnal arrays in scilab are in fact <emphasis>mlist</emphasis>).
+            multidimensional arrays in Scilab are in fact <emphasis>mlist</emphasis>).
         </para>
         <para>
             Matlab <emphasis>struct</emphasis> are also available.
@@ -118,7 +128,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l = list(1,["a" "b"])
 l(0) = "foo"
 l($+1) = "hello"

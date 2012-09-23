@@ -14,12 +14,12 @@
     <refnamediv>
         <refname>mlist</refname>
         <refpurpose>Scilab object, matrix oriented typed list
-            definition.
+            definition
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>mlist(typ,a1,....an )</synopsis>
+        <synopsis>mlist(typ, a1, ..., an)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -27,14 +27,14 @@
             <varlistentry>
                 <term>typ</term>
                 <listitem>
-                    <para>vector of character strings</para>
+                    <para>a vector of character strings.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ai</term>
                 <listitem>
                     <para>
-                        any Scilab object (<literal>matrix, list,string...</literal>).
+                        any Scilab object (<literal>matrix</literal>, <literal>list</literal>, <literal>string</literal>, ...).
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,41 +43,42 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>mlist</literal> object are very similar to <link linkend="tlist">tlist</link> objects.
-            The only difference concerns the <link linkend="extraction">extraction</link>  and <link linkend="insertion">insertion</link>   syntax:
-            if <literal>M</literal> is an mlist, for any index <literal>i</literal> which is
-            not a field name, <literal>M(i)</literal> is no more the <literal>i</literal>th
+            <link linkend="mlist">mlist</link> object is very similar to <link linkend="tlist">tlist</link> object.
+            The only difference concerns the <link linkend="extraction">extraction</link>  and <link linkend="insertion">insertion</link> syntax:
+            if <literal>M</literal> is an <literal>mlist</literal>, for any index <literal>i</literal> which is
+            not a field name, <literal>M(i)</literal> is no more the <literal>i</literal>-th
             field of the list.
         </para>
-        <para> The semantic of the extraction and insertion syntax should be given by
-            an <link linkend="overloading">overloading</link> functions.
+        <para>
+            The semantic of the extraction and insertion syntax should be given by
+            an <link linkend="overloading">overloading</link> function.
         </para>
         <para>
-            The overloading function for extraction syntax <literal>b=a(i1,...,in)</literal>
-            has the following calling sequence: <literal>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal> 
+            The overloading function for extraction syntax <literal>b=a(i1, ..., in)</literal>
+            has the following calling sequence: <literal>b=%&lt;type_of_a&gt;_e_(i1, ..., in, a)</literal>
         </para>
         <para>and the syntax
-            <literal>[x1,..,xm]=a(i1,...,in)</literal> has the following calling sequence:
-            <literal>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+            <literal>[x1, ..., xm]=a(i1, ..., in)</literal> has the following calling sequence:
+            <literal>[x1, ..., xm]=%&lt;type_of_a&gt;_e_(i1, ..., in,a)</literal>
         </para>
         <para/>
         <para> The overloading function associated to the insertion syntax
-            <literal>a(i1,...,in)=b</literal>  has the following calling sequence:
-            <literal>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</literal>. 
+            <literal>a(i1, ..., in)=b</literal>  has the following calling sequence:
+            <literal>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1, ..., in, b, a)</literal>.
         </para>
         <para/>
-        <para>mlist fields must then be designed by their names. They can also be
-            handled using the <literal>getfield</literal> and <literal>setfield</literal>
+        <para><literal>mlist</literal> fields must then be designed by their names. They can also be
+            handled using the <function>getfield</function> and <function>setfield</function>
             functions.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
 //define display
 function %V_p(M),disp(M.name+':'+string(M.value)),endfunction
-
+ 
 //define extraction operation
 function r=%V_e(varargin)
   M=varargin($)
@@ -85,7 +86,7 @@ function r=%V_e(varargin)
 endfunction
 M(2,:) // the second row of  M
 M.value
-
+ 
 //define insertion operations
 function M=%V_i_V(varargin)
   M=varargin($)
@@ -94,7 +95,7 @@ function M=%V_i_V(varargin)
   M.name(varargin(1:$-2))=N.name
 endfunction
 M(1,1)=M(2,2)
-
+ 
 function M=%s_i_V(varargin) //insertion of a regular matrix into a V matrix
   M=varargin($)
   N=varargin($-1)
@@ -102,12 +103,12 @@ function M=%s_i_V(varargin) //insertion of a regular matrix into a V matrix
   M.name(varargin(1:$-2))=emptystr(N)
 endfunction
 M(1,1)=44
-
+ 
 //tlist case
 M=tlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
 M(2)
 M(2)='a'+string([1 2;3 4])
-
+ 
 M('name')
  ]]></programlisting>
     </refsection>

@@ -13,47 +13,47 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="hypermatrices">
     <refnamediv>
         <refname>hypermatrices</refname>
-        <refpurpose> Scilab object, N dimensional matrices in Scilab</refpurpose>
+        <refpurpose>a Scilab object, N dimensional matrix in Scilab</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Hypermatrix type allows to manipulate multidimensional arrays
+            Hypermatrix type allows to manipulate multidimensional arrays.
         </para>
         <para>
             They can be defined by extension of 2D matrices as follows
-            a=[1 2;3 4];a(:,:,2)=rand(2,2)
+            <code>a=[1 2;3 4];a(:,:,2)=rand(2,2)</code> or directly using <function>hypermat</function> function.
         </para>
         <para>
-            or directly using <literal>hypermat</literal> function
-        </para>
-        <para>
-            Entries  can be real or complex numbers, polynomials,
+            Entries can be real or complex numbers, polynomials,
             rationals, strings, booleans.
         </para>
         <para>
             Hypermatrices are <literal>mlists</literal>:
-            <literal>mlist(['hm','dims','entries'],sz,v)</literal> where <literal>sz</literal> is the row
+            <code>mlist(['hm','dims','entries'],sz,v)</code> where <literal>sz</literal> is the row
             vector of dimensions and <literal>v</literal> the column vector of entries (first
-            dimension are stored first)
+            dimension are stored first).
         </para>
-        <para>NOTES: The number of dimension of hypermatrices with right-most sizes equal to
+        <para>
+          <note>
+            The number of dimension of hypermatrices with right-most sizes equal to
             1 are automatically reduced. An hypermatrix with only two dimensions is
             automatically changed to a regular matrix (type 1).
+          </note>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a(1,1,1,1:2)=[1 2]
 a=[1 2;3 4];a(:,:,2)=rand(2,2)
 a(1,1,:)
-
+ 
 size(a)
-
-a(:,:,1) //dimensionnality reduction
+ 
+a(:,:,1) //dimensionality reduction
 type(a(:,:,1))
-
+ 
 [a a]
  ]]></programlisting>
     </refsection>
