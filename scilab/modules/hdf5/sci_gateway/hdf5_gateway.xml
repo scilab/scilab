@@ -56,4 +56,6 @@
     <PRIMITIVE gatewayId="62" primitiveId="25" primitiveName="h5isType" />
     <PRIMITIVE gatewayId="62" primitiveId="26" primitiveName="h5isRef" />
     <PRIMITIVE gatewayId="62" primitiveId="27" primitiveName="h5isList" />
+    <PRIMITIVE gatewayId="62" primitiveId="28" primitiveName="h5mount" />
+    <PRIMITIVE gatewayId="62" primitiveId="29" primitiveName="h5umount" />
 </GATEWAY>

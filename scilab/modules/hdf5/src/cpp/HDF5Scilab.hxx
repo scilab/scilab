@@ -95,6 +95,10 @@ public:
 
     static bool checkType(const H5Object & obj, const H5ObjectType type);
 
+    static void mount(H5Object & obj, const std::string & location, H5Object & file);
+
+    static void umount(H5Object & obj, const std::string & location);
+
     template <typename T, typename U>
     static U & create(H5Object & parent, const std::string & name, const unsigned int rank, const hsize_t * dims, const hsize_t * maxdims, T * data, const hid_t targetType)
     {

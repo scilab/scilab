@@ -534,4 +534,40 @@ bool HDF5Scilab::checkType(const H5Object & obj, const H5ObjectType type)
             return false;
     }
 }
+
+void HDF5Scilab::mount(H5Object & obj, const std::string & location, H5Object & file)
+{
+    herr_t err;
+
+    if (!file.isFile())
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Target object is not a file"));
+    }
+
+    if (location.empty())
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Invalid location"));
+    }
+
+    err = H5Fmount(obj.getH5Id(), location.c_str(), reinterpret_cast<H5File *>(&file)->getH5Id(), H5P_DEFAULT);
+    if (err < 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Cannot mount the file: %s"), file.getFile().getFileName().c_str());
+    }
+}
+
+void HDF5Scilab::umount(H5Object & obj, const std::string & location)
+{
+    herr_t err;
+    if (location.empty())
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Invalid location"));
+    }
+
+    err = H5Funmount(obj.getH5Id(), location.c_str());
+    if (err < 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Cannot unmount the file at location: %s"), location.c_str());
+    }
+}
 }

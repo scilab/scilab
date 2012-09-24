@@ -63,7 +63,10 @@ sci_gateway/cpp/sci_h5ln.cpp \
 sci_gateway/cpp/sci_h5readattr.cpp \
 sci_gateway/cpp/sci_h5flush.cpp \
 sci_gateway/cpp/sci_h5cp.cpp \
-sci_gateway/cpp/sci_h5isfoo.cpp
+sci_gateway/cpp/sci_h5isfoo.cpp \
+sci_gateway/cpp/sci_h5mount.cpp \
+sci_gateway/cpp/sci_h5umount.cpp
+
 
 if GIWS
 BUILT_SOURCES=giws

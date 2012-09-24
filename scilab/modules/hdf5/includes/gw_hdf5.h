@@ -44,6 +44,8 @@ HDF5_SCILAB_IMPEXP int sci_h5isSpace(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5isType(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5isRef(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5isList(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5mount(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5umount(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_HDF5_H__ */
 /*--------------------------------------------------------------------------*/
