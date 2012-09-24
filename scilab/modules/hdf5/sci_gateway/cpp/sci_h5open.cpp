@@ -34,11 +34,12 @@ int sci_h5open(char *fname, unsigned long fname_len)
     const char * access = 0;
     const char * name = 0;
     char * args[3];
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(1, 3);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 1, 3);
 
-    for (int i = 1; i <= Rhs; i++)
+    for (int i = 1; i <= nbIn; i++)
     {
         err = getVarAddressFromPosition(pvApiCtx, i, &addr);
         if (err.iErr)
@@ -75,7 +76,7 @@ int sci_h5open(char *fname, unsigned long fname_len)
 
     path = expandPathVariable(args[0]);
 
-    switch (Rhs)
+    switch (nbIn)
     {
         case 1:
             access = "a";
@@ -114,7 +115,7 @@ int sci_h5open(char *fname, unsigned long fname_len)
     try
     {
         h5file = new H5File(path, name, access);
-        for (int i = 0; i < Rhs; i++)
+        for (int i = 0; i < nbIn; i++)
         {
             freeAllocatedSingleString(args[i]);
         }
@@ -122,7 +123,7 @@ int sci_h5open(char *fname, unsigned long fname_len)
     }
     catch (const std::exception & e)
     {
-        for (int i = 0; i < Rhs; i++)
+        for (int i = 0; i < nbIn; i++)
         {
             freeAllocatedSingleString(args[i]);
         }
@@ -133,7 +134,7 @@ int sci_h5open(char *fname, unsigned long fname_len)
 
     try
     {
-        h5file->createOnScilabStack(Rhs + 1, pvApiCtx);
+        h5file->createOnScilabStack(nbIn + 1, pvApiCtx);
     }
     catch (const std::exception & e)
     {
@@ -142,8 +143,8 @@ int sci_h5open(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

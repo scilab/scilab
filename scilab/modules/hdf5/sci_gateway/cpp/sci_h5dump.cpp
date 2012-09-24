@@ -38,11 +38,12 @@ int sci_h5dump(char *fname, unsigned long fname_len)
     char * name = 0;
     std::map<haddr_t, std::string> visited;
     bool mustDelete = true;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(1, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 1, 2);
 
-    if (Rhs == 2)
+    if (nbIn == 2)
     {
         err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
@@ -82,7 +83,7 @@ int sci_h5dump(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (Rhs == 2)
+        if (nbIn == 2)
         {
             try
             {
@@ -116,7 +117,7 @@ int sci_h5dump(char *fname, unsigned long fname_len)
         freeAllocatedSingleString(path);
         try
         {
-            if (Rhs == 2)
+            if (nbIn == 2)
             {
                 hobj = new H5File((const char *)expandedPath, (const char *)name, "r");
             }
@@ -152,8 +153,8 @@ int sci_h5dump(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

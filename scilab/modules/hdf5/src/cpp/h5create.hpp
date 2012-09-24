@@ -37,9 +37,10 @@ int h5create(char *fname, unsigned long fname_len)
     int * col = (int *)&dims[0];
     int * row = (int *)&dims[1];
     int type;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(3, 4);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 3, 4);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -81,7 +82,7 @@ int h5create(char *fname, unsigned long fname_len)
     _name = std::string(name);
     freeAllocatedSingleString(name);
 
-    if (Rhs == 4)
+    if (nbIn == 4)
     {
         err = getVarAddressFromPosition(pvApiCtx, 4, &addr);
         if (err.iErr)
@@ -283,7 +284,7 @@ int h5create(char *fname, unsigned long fname_len)
 
     try
     {
-        newobj->createOnScilabStack(Rhs + 1, pvApiCtx);
+        newobj->createOnScilabStack(nbIn + 1, pvApiCtx);
     }
     catch (const H5Exception & e)
     {
@@ -291,8 +292,8 @@ int h5create(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

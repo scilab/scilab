@@ -36,10 +36,11 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
     std::string _field;
     int fieldtype;
     double  * index = 0;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-    if (Rhs < 2)
+    if (nbIn < 2)
     {
         Scierror(999, gettext("%s: Wrong number of input argument: More than %d expected.\n"), fname, 2);
     }
@@ -66,7 +67,7 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
 
     if (fieldtype == sci_strings)
     {
-        if (Rhs >= 3)
+        if (nbIn >= 3)
         {
             Scierror(999, gettext("%s: Only one field can be requested.\n"), fname);
         }
@@ -82,9 +83,9 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
     }
     else
     {
-        index = new double[Rhs - 1];
+        index = new double[nbIn - 1];
 
-        for (unsigned int i = 1; i <= Rhs - 1; i++)
+        for (unsigned int i = 1; i <= nbIn - 1; i++)
         {
             err = getVarAddressFromPosition(pvApiCtx, i, &addr);
             if (err.iErr)
@@ -104,7 +105,7 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
         }
     }
 
-    err = getVarAddressFromPosition(pvApiCtx, Rhs, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, nbIn, &addr);
     if (err.iErr)
     {
         if (index)
@@ -112,7 +113,7 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
             delete[] index;
         }
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, Rhs);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, nbIn);
         return 0;
     }
 
@@ -135,7 +136,7 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
         {
             delete[] index;
         }
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A H5Object expected.\n"), fname, Rhs);
+        Scierror(999, gettext("%s: Wrong type for input argument #%i: A H5Object expected.\n"), fname, nbIn);
         return 0;
     }
 
@@ -143,15 +144,15 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
     {
         if (fieldtype == sci_strings)
         {
-            obj->getAccessibleAttribute(_field, Rhs + 1, pvApiCtx);
+            obj->getAccessibleAttribute(_field, nbIn + 1, pvApiCtx);
         }
         else
         {
             if (obj->isReference())
             {
                 H5ReferenceData * ref = reinterpret_cast<H5ReferenceData *>(obj);
-                H5Object & robj = ref->getReferencesObject(Rhs - 1, index);
-                robj.createOnScilabStack(Rhs + 1, pvApiCtx);
+                H5Object & robj = ref->getReferencesObject(nbIn - 1, index);
+                robj.createOnScilabStack(nbIn + 1, pvApiCtx);
             }
         }
     }
@@ -170,8 +171,8 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
         delete[] index;
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

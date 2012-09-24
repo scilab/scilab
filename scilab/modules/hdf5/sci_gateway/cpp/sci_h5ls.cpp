@@ -37,9 +37,10 @@ int sci_h5ls(char *fname, unsigned long fname_len)
     std::string path;
     std::string name;
     bool mustDelete = true;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(1, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 1, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -77,7 +78,7 @@ int sci_h5ls(char *fname, unsigned long fname_len)
         FREE(expandedPath);
     }
 
-    if (Rhs == 2)
+    if (nbIn == 2)
     {
         err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
@@ -107,11 +108,11 @@ int sci_h5ls(char *fname, unsigned long fname_len)
     {
         if (hobj)
         {
-            HDF5Scilab::ls(*hobj, name, Rhs + 1, pvApiCtx);
+            HDF5Scilab::ls(*hobj, name, nbIn + 1, pvApiCtx);
         }
         else
         {
-            HDF5Scilab::ls(path, name, Rhs + 1, pvApiCtx);
+            HDF5Scilab::ls(path, name, nbIn + 1, pvApiCtx);
         }
     }
     catch (const std::exception & e)
@@ -120,8 +121,8 @@ int sci_h5ls(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

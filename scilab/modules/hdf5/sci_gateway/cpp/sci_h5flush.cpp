@@ -31,9 +31,10 @@ int sci_h5flush(char *fname, unsigned long fname_len)
     int * addr = 0;
     int local;
     bool _local = true;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(1, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 1, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -58,7 +59,7 @@ int sci_h5flush(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (Rhs == 2)
+    if (nbIn == 2)
     {
         err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
@@ -93,8 +94,8 @@ int sci_h5flush(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

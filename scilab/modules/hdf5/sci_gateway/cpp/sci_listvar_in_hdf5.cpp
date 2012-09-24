@@ -64,9 +64,10 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
     int iFile       = 0;
     int iNbItem     = 0;
     VarInfo* pInfo  = NULL;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckRhs(1, 1);
-    CheckLhs(1, 4);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 4);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
@@ -96,16 +97,18 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
 
     //manage version information
     int iVersion = getSODFormatAttribute(iFile);
-    if(iVersion != SOD_FILE_VERSION)
+    if (iVersion != SOD_FILE_VERSION)
     {
         if (iVersion > SOD_FILE_VERSION)
-        {//can't read file with version newer that me !
+        {
+            //can't read file with version newer that me !
             Scierror(999, _("%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
             return 1;
         }
         else
-        {//call older import functions and exit or ... EXIT !
-            if(iVersion == 1 || iVersion == -1)
+        {
+            //call older import functions and exit or ... EXIT !
+            if (iVersion == 1 || iVersion == -1)
             {
                 //sciprint("old sci_listvar_in_hdf5_v1\n");
                 return sci_listvar_in_hdf5_v1(fname, fname_len);
@@ -152,11 +155,11 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
         //no variable returms [] for each Lhs
         for (int i = 0 ; i < Lhs ; i++)
         {
-            createEmptyMatrix(pvApiCtx, Rhs + i + 1);
-            LhsVar(i + 1) = Rhs + i + 1;
+            createEmptyMatrix(pvApiCtx, nbIn + i + 1);
+            AssignOutputVariable(pvApiCtx, i + 1) = nbIn + i + 1;
         }
 
-        PutLhsVar();
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
@@ -167,7 +170,7 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
         pstVarName[i] = pInfo[i].varName;
     }
 
-    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iNbItem, 1, pstVarName);
+    sciErr = createMatrixOfString(pvApiCtx, nbIn + 1, iNbItem, 1, pstVarName);
     FREE(pstVarName);
     if (sciErr.iErr)
     {
@@ -175,13 +178,13 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    LhsVar(1) = Rhs + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
 
     if (Lhs > 1)
     {
         //2nd Lhs
         double* pdblType;
-        sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iNbItem, 1, &pdblType);
+        sciErr = allocMatrixOfDouble(pvApiCtx, nbIn + 2, iNbItem, 1, &pdblType);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -193,43 +196,43 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
             pdblType[i] = pInfo[i].iType;
         }
 
-        LhsVar(2) = Rhs + 2;
+        AssignOutputVariable(pvApiCtx, 2) = nbIn + 2;
 
         if (Lhs > 2)
         {
             //3rd Lhs
             int* pList = NULL;
-            sciErr = createList(pvApiCtx, Rhs + 3, iNbItem, &pList);
+            sciErr = createList(pvApiCtx, nbIn + 3, iNbItem, &pList);
             for (int i = 0 ; i < iNbItem ; i++)
             {
                 double* pdblDims = NULL;
-                allocMatrixOfDoubleInList(pvApiCtx, Rhs + 3, pList, i + 1, 1, pInfo[i].iDims, &pdblDims);
+                allocMatrixOfDoubleInList(pvApiCtx, nbIn + 3, pList, i + 1, 1, pInfo[i].iDims, &pdblDims);
                 for (int j = 0 ; j < pInfo[i].iDims ; j++)
                 {
                     pdblDims[j] = pInfo[i].piDims[j];
                 }
             }
 
-            LhsVar(3) = Rhs + 3;
+            AssignOutputVariable(pvApiCtx, 3) = nbIn + 3;
         }
 
         if (Lhs > 3)
         {
             //4th Lhs
             double* pdblSize;
-            sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 4, iNbItem, 1, &pdblSize);
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbIn + 4, iNbItem, 1, &pdblSize);
             for (int i = 0 ; i < iNbItem ; i++)
             {
                 pdblSize[i] = pInfo[i].iSize;
             }
 
-            LhsVar(4) = Rhs + 4;
+            AssignOutputVariable(pvApiCtx, 4) = nbIn + 4;
         }
 
     }
 
     FREE(pInfo);
-    PutLhsVar();
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

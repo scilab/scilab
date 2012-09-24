@@ -32,9 +32,10 @@ inline static int sci_h5isfoo(const HDF5Scilab::H5ObjectType type, char * fname,
     SciErr err;
     int * addr = 0;
     bool ok = false;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -69,14 +70,14 @@ inline static int sci_h5isfoo(const HDF5Scilab::H5ObjectType type, char * fname,
         return 0;
     }
 
-    if (createScalarBoolean(pvApiCtx, Rhs + 1, ok ? 1 : 0))
+    if (createScalarBoolean(pvApiCtx, nbIn + 1, ok ? 1 : 0))
     {
         Scierror(999, _("%s: Can not create output argument.\n"), fname);
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

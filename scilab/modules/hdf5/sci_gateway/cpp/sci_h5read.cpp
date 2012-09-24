@@ -42,9 +42,10 @@ int sci_h5read(char *fname, unsigned long fname_len)
     int inc = 0;
     int row, col;
     unsigned int size = 0;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(1, 6);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 1, 6);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -83,7 +84,7 @@ int sci_h5read(char *fname, unsigned long fname_len)
         freeAllocatedSingleString(path);
     }
 
-    if (Rhs >= 2)
+    if (nbIn >= 2)
     {
         err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
@@ -138,7 +139,7 @@ int sci_h5read(char *fname, unsigned long fname_len)
     }
 
 
-    for (unsigned int i = 3; i <= Rhs; i++)
+    for (unsigned int i = 3; i <= nbIn; i++)
     {
         err = getVarAddressFromPosition(pvApiCtx, i, &addr);
         if (err.iErr)
@@ -177,11 +178,11 @@ int sci_h5read(char *fname, unsigned long fname_len)
     {
         if (hobj)
         {
-            HDF5Scilab::readData(*hobj, _location, size, start, stride, count, block, Rhs + 1, pvApiCtx);
+            HDF5Scilab::readData(*hobj, _location, size, start, stride, count, block, nbIn + 1, pvApiCtx);
         }
         else
         {
-            HDF5Scilab::readData(_expandedPath, _location, size, start, stride, count, block, Rhs + 1, pvApiCtx);
+            HDF5Scilab::readData(_expandedPath, _location, size, start, stride, count, block, nbIn + 1, pvApiCtx);
         }
     }
     catch (const std::exception & e)
@@ -190,8 +191,8 @@ int sci_h5read(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

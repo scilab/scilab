@@ -33,7 +33,7 @@ int sci_percent_H5Object_p(char * fname, unsigned long fname_len)
     SciErr err;
     int * mlistaddr = 0;
 
-    CheckRhs(1, 1);
+    CheckInputArgument(pvApiCtx, 1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &mlistaddr);
     if (err.iErr)

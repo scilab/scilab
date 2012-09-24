@@ -37,9 +37,10 @@ int sci_h5cp(char *fname, unsigned long fname_len)
     std::string dfile;
     std::string sloc;
     std::string dloc("");
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(2, 4);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 2, 4);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -109,7 +110,7 @@ int sci_h5cp(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (Rhs == 3)
+        if (nbIn == 3)
         {
             expandedPath = expandPathVariable(str);
             dfile = std::string(expandedPath);
@@ -122,7 +123,7 @@ int sci_h5cp(char *fname, unsigned long fname_len)
         freeAllocatedSingleString(str);
     }
 
-    if (Rhs >= 3)
+    if (nbIn >= 3)
     {
         err = getVarAddressFromPosition(pvApiCtx, 3, &addr);
         if (err.iErr)
@@ -155,7 +156,7 @@ int sci_h5cp(char *fname, unsigned long fname_len)
                 return 0;
             }
 
-            if (Rhs == 4)
+            if (nbIn == 4)
             {
                 expandedPath = expandPathVariable(str);
                 dfile = std::string(expandedPath);
@@ -168,7 +169,7 @@ int sci_h5cp(char *fname, unsigned long fname_len)
             freeAllocatedSingleString(str);
         }
 
-        if (Rhs == 4)
+        if (nbIn == 4)
         {
             err = getVarAddressFromPosition(pvApiCtx, 4, &addr);
             if (err.iErr)
@@ -226,8 +227,8 @@ int sci_h5cp(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

@@ -31,14 +31,15 @@ int sci_h5close(char *fname, unsigned long fname_len)
     int id;
     SciErr err;
     int * addr = 0;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    if (Rhs == 0)
+    if (nbIn == 0)
     {
         H5Object::cleanAll();
     }
     else
     {
-        for (unsigned int i = 1; i <= Rhs; i++)
+        for (unsigned int i = 1; i <= nbIn; i++)
         {
             err = getVarAddressFromPosition(pvApiCtx, i, &addr);
             if (err.iErr)
@@ -61,8 +62,8 @@ int sci_h5close(char *fname, unsigned long fname_len)
         }
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

@@ -35,9 +35,10 @@ int sci_h5rm(char *fname, unsigned long fname_len)
     int * addr = 0;
     char * name = 0;
     std::string _name;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(1, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 1, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -61,7 +62,7 @@ int sci_h5rm(char *fname, unsigned long fname_len)
         Scierror(999, _("%s: Invalid input argument #%d: a H5Object expected.\n"), fname, 1);
     }
 
-    if (Rhs == 2)
+    if (nbIn == 2)
     {
         err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
@@ -97,8 +98,8 @@ int sci_h5rm(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

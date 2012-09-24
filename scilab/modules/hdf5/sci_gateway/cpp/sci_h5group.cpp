@@ -34,9 +34,10 @@ int sci_h5group(char *fname, unsigned long fname_len)
     int * addr = 0;
     char * name = 0;
     std::string _name;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(2, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 2, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -86,7 +87,7 @@ int sci_h5group(char *fname, unsigned long fname_len)
     try
     {
         group = &H5Group::createGroup(*hobj, _name);
-        group->createOnScilabStack(Rhs + 1, pvApiCtx);
+        group->createOnScilabStack(nbIn + 1, pvApiCtx);
     }
     catch (const std::exception & e)
     {
@@ -94,8 +95,8 @@ int sci_h5group(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

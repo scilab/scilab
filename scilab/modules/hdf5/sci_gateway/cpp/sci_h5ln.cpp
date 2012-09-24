@@ -39,9 +39,10 @@ int sci_h5ln(char *fname, unsigned long fname_len)
     std::string _targetFile;
     int _hard = 0;
     bool hard = false;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(3, 4);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 3, 4);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -123,7 +124,7 @@ int sci_h5ln(char *fname, unsigned long fname_len)
         freeAllocatedSingleString(targetName);
     }
 
-    if (Rhs == 4)
+    if (nbIn == 4)
     {
         err = getVarAddressFromPosition(pvApiCtx, 4, &addr);
         if (err.iErr)
@@ -191,8 +192,8 @@ int sci_h5ln(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

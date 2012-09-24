@@ -35,9 +35,10 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
     std::string _expandedPath;
     std::string _location;
     std::string _name;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckLhs(1, 1);
-    CheckRhs(2, 3);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgument(pvApiCtx, 2, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -58,7 +59,7 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
     }
     else
     {
-        if (Rhs != 3)
+        if (nbIn != 3)
         {
             Scierror(999, _("%s: Invalid number of arguments: %d expected.\n"), fname, 3);
             return 0;
@@ -102,7 +103,7 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (Rhs == 3)
+    if (nbIn == 3)
     {
         _location = std::string(name);
         freeAllocatedSingleString(name);
@@ -139,11 +140,11 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
     {
         if (hobj)
         {
-            HDF5Scilab::readAttributeData(*hobj, _location, _name, Rhs + 1, pvApiCtx);
+            HDF5Scilab::readAttributeData(*hobj, _location, _name, nbIn + 1, pvApiCtx);
         }
         else
         {
-            HDF5Scilab::readAttributeData(_expandedPath, _location, _name, Rhs + 1, pvApiCtx);
+            HDF5Scilab::readAttributeData(_expandedPath, _location, _name, nbIn + 1, pvApiCtx);
         }
     }
     catch (const std::exception & e)
@@ -152,8 +153,8 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }
