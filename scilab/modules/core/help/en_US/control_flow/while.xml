@@ -39,7 +39,7 @@
             </listitem>
             <listitem>
                 <para>
-                    The optional <literal>,else instructions</literal> construction
+                    The optional <literal>[,else instructions]</literal> construction
                     allows to gives <literal>instructions</literal> which are executed when 
                     <literal>expr</literal> expression becomes false.
                 </para>
