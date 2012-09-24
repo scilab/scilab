@@ -142,14 +142,20 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
                     break;
             }
         }
-        else sprintf(startup, " ");
+        else
+        {
+            sprintf(startup, " ");
+        }
     }
 
     startup[PATH_MAX] = '\0'; /* force string to be null-terminated on overflow */
 
     /* initialize scilab interp  */
     C2F(inisci)(&initialization, &memory, &ierr);
-    if (ierr > 0) sciquit() ;
+    if (ierr > 0)
+    {
+        sciquit() ;
+    }
     /* execute the initial script and enter scilab */
 
     InitializePreferences();
