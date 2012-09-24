@@ -99,6 +99,7 @@
             <menu label="Preferences">
                 <menuitem action="scinotes-set-font" label="Set font"/>
                 <menuitem action="scinotes-set-colors" label="Set colors"/>
+                <menuitem action="scinotes-general-settings" label="Scinotes General settings"/>
             </menu>
             <separator/>
             <menu label="Auto-completion on">
@@ -187,6 +188,10 @@
         <button action="scinotes-execute-scilab" tooltip="Execute" icon="media-playback-start"/>
         <button action="scinotes-save-execute" tooltip="Save and execute" icon="save-and-execute"/>
         <button action="scinotes-save-execute-all" tooltip="Save and execute all" icon="execute-all"/>
+        <separator/>
+        <button action="scinotes-general-settings" tooltip="Scinotes General settings" icon="preferences-system"/>
+        <separator/>
+        <button action="scinotes-help" tooltip="Scinotes help" icon="help-browser"/>
     </ToolBar>
     
 </Configuration>

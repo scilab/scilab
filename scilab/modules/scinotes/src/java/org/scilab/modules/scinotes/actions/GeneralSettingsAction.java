@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,53 +14,43 @@ package org.scilab.modules.scinotes.actions;
 
 import javax.swing.KeyStroke;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.ScilabGeneralPrefs;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 
 /**
- * HelpAction Class
- * @author Bruno JOFRET
- *
+ * SetFontAction Class
+ * @author Calixte DENIZET
  */
-public final class HelpAction extends DefaultAction {
-
-    /**
-     * serialVersionUID
-     */
-    private static final long serialVersionUID = -3024180292998640447L;
+public class GeneralSettingsAction extends DefaultAction {
 
     /**
      * Constructor
      * @param name the name of the action
      * @param editor SciNotes
      */
-    public HelpAction(String name, SciNotes editor) {
+    public GeneralSettingsAction(String name, SciNotes editor) {
         super(name, editor);
     }
 
     /**
      * doAction
      */
+    @Override
     public void doAction() {
-        String selection = getEditor().getTextPane().getSelectedText();
-        if (selection == null || selection.equals("")) {
-            InterpreterManagement.requestScilabExec("help('editor')");
-        } else {
-            InterpreterManagement.requestScilabExec("help('" + selection + "')");
-        }
+        ScilabGeneralPrefs.openPreferences("scinotes/");
     }
 
     /**
      * createMenu
      * @param label label of the menu
      * @param editor SciNotes
-     * @param key KeyStroke
+     * @param key Keystroke
      * @return MenuItem
      */
-    public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
-        return createMenu(label, null, new HelpAction(label, editor), key);
+    public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new GeneralSettingsAction(label, editor), key);
     }
 
     /**
@@ -71,6 +61,6 @@ public final class HelpAction extends DefaultAction {
      * @return PushButton
      */
     public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
-        return createButton(tooltip, icon, new HelpAction(tooltip, editor));
+        return createButton(tooltip, icon, new GeneralSettingsAction(tooltip, editor));
     }
 }
