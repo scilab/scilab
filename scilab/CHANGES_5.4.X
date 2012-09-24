@@ -60,7 +60,9 @@ Xcos
 Compilation
 ===========
 
-* Update to Scirenderer 0.5.8.
+* Update to Scirenderer 1.0.0.
+
+* Update to JLaTeXMath 1.0.0.
 
 
 Bug Fixes
