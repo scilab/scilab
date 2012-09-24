@@ -107,6 +107,12 @@ int sci_regexp(char *fname, unsigned long fname_len)
     }
 
     len = (int)strlen(Str[0]);
+
+    if (len == 0)
+    {
+        len++;
+    }
+
     values_start = (int *)MALLOC( sizeof(int) * len);
     values_end = (int *)MALLOC( sizeof(int) * len);
 
