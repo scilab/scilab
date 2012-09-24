@@ -14,7 +14,10 @@ package org.scilab.modules.history_browser.actions;
 
 import java.lang.reflect.InvocationTargetException;
 
+import javax.swing.ImageIcon;
+
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
@@ -63,6 +66,7 @@ public final class CutAction extends CommonCallBack {
         menuItem.setText(LABEL);
         menuItem.setMnemonic(MNEMONIC);
         menuItem.setCallback(getCallBack());
+        ((SwingScilabMenuItem) menuItem.getAsSimpleMenuItem()).setIcon(new ImageIcon(ICON));
         return menuItem;
     }
 
