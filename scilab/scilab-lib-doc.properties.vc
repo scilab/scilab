@@ -12,7 +12,7 @@ saxon.jar=${thirdparty.dir}/saxon.jar
 fop.jar=${thirdparty.dir}/fop.jar
 
 ; LaTeX plugin
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.7.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.0.jar
 
 ; A complete MathML rendering solution 
 jeuclid-core.jar=${thirdparty.dir}/jeuclid-core.jar
