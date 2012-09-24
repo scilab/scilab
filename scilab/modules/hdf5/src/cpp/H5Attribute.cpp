@@ -16,25 +16,7 @@
 namespace org_modules_hdf5
 {
 
-H5Attribute::H5Attribute(H5Object & _parent, const unsigned int pos) : H5Object(_parent), name("")
-{
-    attr = H5Aopen_by_idx(getParent().getH5Id(), ".", H5_INDEX_NAME, H5_ITER_NATIVE, (hsize_t)pos, H5P_DEFAULT, H5P_DEFAULT);
-    if (attr < 0)
-    {
-        throw H5Exception(__LINE__, __FILE__, _("Cannot open attribute at position %u."), pos);
-    }
-
-    ssize_t size = H5Aget_name(attr, 0, 0);
-    if (size > 0)
-    {
-        char * _name = new char[size + 1];
-        H5Aget_name(attr, size + 1, _name);
-        name = std::string(_name);
-        delete[] _name;
-    }
-}
-
-H5Attribute::H5Attribute(H5Object & _parent, const std::string & _name) : H5Object(_parent), name(_name)
+H5Attribute::H5Attribute(H5Object & _parent, const std::string & _name) : H5Object(_parent, _name)
 {
     if (H5Aexists(getParent().getH5Id(), name.c_str()) <= 0)
     {
@@ -48,12 +30,7 @@ H5Attribute::H5Attribute(H5Object & _parent, const std::string & _name) : H5Obje
     }
 }
 
-H5Attribute::H5Attribute(H5Object & _parent, hid_t _attr, const std::string & _name) : H5Object(_parent), attr(_attr), name(_name)
-{
-
-}
-
-H5Attribute::H5Attribute(H5Object & _parent, hid_t _attr, const char * _name) : H5Object(_parent), attr(_attr), name(std::string(_name))
+H5Attribute::H5Attribute(H5Object & _parent, hid_t _attr, const std::string & _name) : H5Object(_parent, _name), attr(_attr)
 {
 
 }
@@ -68,7 +45,7 @@ H5Attribute::~H5Attribute()
 
 H5Data & H5Attribute::getData()
 {
-    return H5DataFactory::getData(*this, attr, true);
+    return H5DataFactory::getData(*this, attr, 0, 0, true);
 }
 
 H5Type & H5Attribute::getDataType()
@@ -163,10 +140,20 @@ std::string H5Attribute::toString(const unsigned int indentLevel) const
     return os.str();
 }
 
-hid_t H5Attribute::create(H5Object & loc, const std::string & name, hid_t type, hid_t targettype, hid_t space, void * data)
+void H5Attribute::copy(H5Object & parent, const std::string & name)
+{
+    H5Attribute::copy(this->getH5Id(), parent.getH5Id(), name);
+}
+
+hid_t H5Attribute::create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t space, void * data)
+{
+    return create(loc.getH5Id(), name, type, targettype, space, data);
+}
+
+hid_t H5Attribute::create(const hid_t loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t space, void * data)
 {
     herr_t err;
-    hid_t attr = H5Acreate2(loc.getH5Id(), name.c_str(), targettype, space, H5P_DEFAULT, H5P_DEFAULT);
+    hid_t attr = H5Acreate2(loc, name.c_str(), targettype, space, H5P_DEFAULT, H5P_DEFAULT);
     if (attr < 0)
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot create a new attribute."));
@@ -175,10 +162,75 @@ hid_t H5Attribute::create(H5Object & loc, const std::string & name, hid_t type, 
     err = H5Awrite(attr, type, data);
     if (err < 0)
     {
-        H5Dclose(attr);
+        H5Aclose(attr);
         throw H5Exception(__LINE__, __FILE__, _("Cannot write data in the attribute."));
     }
 
     return attr;
 }
+
+void H5Attribute::copy(const hid_t src, const hid_t dest, const std::string & name)
+{
+    hid_t type, stype;
+    hid_t space, sspace;
+    char * data = 0;
+    hsize_t size;
+    hsize_t * dims = 0;
+    hsize_t ndims;
+
+    sspace = H5Aget_space(src);
+    if (sspace < 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Cannot copy the attribute"));
+    }
+    space = H5Scopy(sspace);
+    H5Sclose(sspace);
+
+    stype = H5Aget_type(src);
+    if (stype < 0)
+    {
+        H5Sclose(space);
+        throw H5Exception(__LINE__, __FILE__, _("Cannot copy the attribute"));
+    }
+    type = H5Tcopy(stype);
+    H5Tclose(stype);
+
+    size = H5Tget_size(type);
+    dims = new hsize_t[__SCILAB_HDF5_MAX_DIMS__];
+    ndims = H5Sget_simple_extent_dims(space, dims, 0);
+    for (unsigned int i = 0; i < ndims; i++)
+    {
+        size *= dims[i];
+    }
+
+    data = new char[size];
+    if (H5Aread(src, type, data) < 0)
+    {
+        H5Sclose(space);
+        H5Tclose(type);
+        delete[] dims;
+        delete[] data;
+
+        throw H5Exception(__LINE__, __FILE__, _("Cannot read attribute data."));
+    }
+
+    try
+    {
+        hid_t attr = create(dest, name, type, type, space, data);
+        H5Aclose(attr);
+        H5Sclose(space);
+        H5Tclose(type);
+        delete[] dims;
+        delete[] data;
+    }
+    catch (const H5Exception & e)
+    {
+        H5Sclose(space);
+        H5Tclose(type);
+        delete[] dims;
+        delete[] data;
+        throw;
+    }
+}
+
 }

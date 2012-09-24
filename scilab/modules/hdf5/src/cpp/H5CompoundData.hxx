@@ -73,6 +73,8 @@ public:
 
     virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
     {
+        // TODO: gerer le cas ndims=0 (cas SCALAR)
+
         static int structdims[2] = { 1, 1 };
         const char ** _fieldsname = new const char *[nfields + 2];
         SciErr err;

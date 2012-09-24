@@ -59,6 +59,18 @@ public:
 
 protected:
 
+    void createEmpty(void * pvApiCtx, const int position, int * parentList = 0, const int listPosition = 0) const
+    {
+        if (parentList)
+        {
+            createMatrixOfDoubleInList(pvApiCtx, position, parentList, listPosition, 0, 0, 0);
+        }
+        else
+        {
+            createEmptyMatrix(pvApiCtx, position);
+        }
+    }
+
     int * getHypermatrix(void * pvApiCtx, const int position, int * parentList = 0, const int listPosition = 0) const
     {
         static const char * hypermat[3] = {"hm", "dims", "entries"};

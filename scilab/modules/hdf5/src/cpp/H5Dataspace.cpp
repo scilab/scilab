@@ -83,6 +83,15 @@ std::vector<unsigned int> H5Dataspace::getDims() const
     return vdims;
 }
 
+void H5Dataspace::select() const
+{
+    herr_t err = H5Sselect_all(space);
+    if (err)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Cannot select all."));
+    }
+}
+
 void H5Dataspace::getAccessibleAttribute(const std::string & _name, const int pos, void * pvApiCtx) const
 {
     SciErr err;

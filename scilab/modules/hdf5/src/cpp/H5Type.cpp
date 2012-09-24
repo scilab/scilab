@@ -26,28 +26,17 @@ void H5Type::init()
     }
 }
 
-H5Type::H5Type(H5Object & _parent, const hid_t _type) : H5Object(_parent), type(_type), name("")
+H5Type::H5Type(H5Object & _parent, const hid_t _type) : H5Object(_parent), type(_type)
 {
 
 }
 
-H5Type::H5Type(H5Object & _parent, const hid_t _type, const char * _name) : H5Object(_parent), type(_type), name(std::string(_name))
+H5Type::H5Type(H5Object & _parent, const hid_t _type, const std::string & _name) : H5Object(_parent, _name), type(_type)
 {
 
 }
 
-
-H5Type::H5Type(H5Object & _parent, const hid_t _type, const std::string & _name) : H5Object(_parent), type(_type), name(_name)
-{
-
-}
-
-H5Type::H5Type(H5Object & _parent, const char * _name) : H5Object(_parent), name(std::string(_name))
-{
-    init();
-}
-
-H5Type::H5Type(H5Object & _parent, const std::string & _name) : H5Object(_parent), name(_name)
+H5Type::H5Type(H5Object & _parent, const std::string & _name) : H5Object(_parent, _name)
 {
     init();
 }

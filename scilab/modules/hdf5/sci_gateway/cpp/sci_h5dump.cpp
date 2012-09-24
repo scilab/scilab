@@ -54,7 +54,7 @@ int sci_h5dump(char *fname, unsigned long fname_len)
 
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -88,9 +88,9 @@ int sci_h5dump(char *fname, unsigned long fname_len)
             {
                 hobj = &H5Object::getObject(*hobj, name);
             }
-            catch (H5Exception & e)
+            catch (const std::exception & e)
             {
-                Scierror(999, gettext("%s: %s\n"), fname, e.what());
+                Scierror(999, _("%s: %s\n"), fname, e.what());
                 return 0;
             }
         }
@@ -103,7 +103,7 @@ int sci_h5dump(char *fname, unsigned long fname_len)
     {
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
             return 0;
         }
 
@@ -126,7 +126,7 @@ int sci_h5dump(char *fname, unsigned long fname_len)
             }
             FREE(expandedPath);
         }
-        catch (const H5Exception & e)
+        catch (const std::exception & e)
         {
             Scierror(999, _("%s: %s\n"), fname, e.what());
             FREE(expandedPath);
@@ -142,7 +142,7 @@ int sci_h5dump(char *fname, unsigned long fname_len)
             delete hobj;
         }
     }
-    catch (const H5Exception & e)
+    catch (const std::exception & e)
     {
         Scierror(999, _("%s: %s\n"), fname, e.what());
         if (mustDelete)

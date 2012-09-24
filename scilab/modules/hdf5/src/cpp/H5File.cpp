@@ -150,7 +150,7 @@ H5Object & H5File::getRoot()
     {
         return H5Object::getObject(*this, obj);
     }
-    catch (H5Exception & e)
+    catch (const H5Exception & e)
     {
         H5Oclose(obj);
         throw;
@@ -189,6 +189,17 @@ void H5File::getAccessibleAttribute(const std::string & _name, const int pos, vo
 {
     SciErr err;
     std::string lower(_name);
+
+    /*    try
+        {
+    	H5Object & _root = const_cast<H5File *>(this)->getRoot();
+            H5Object & obj = H5Object::getObject(_root, _name);
+            obj.createOnScilabStack(pos, pvApiCtx);
+            return;
+        }
+        catch (const H5Exception & e) { }
+    */
+
     std::transform(_name.begin(), _name.end(), lower.begin(), tolower);
 
     if (lower == "name")
@@ -227,9 +238,8 @@ void H5File::getAccessibleAttribute(const std::string & _name, const int pos, vo
     }
     else if (lower == "root")
     {
-        H5Object & root = const_cast<H5File *>(this)->getRoot();
-        root.createOnScilabStack(pos, pvApiCtx);
-
+        H5Object & _root = const_cast<H5File *>(this)->getRoot();
+        _root.createOnScilabStack(pos, pvApiCtx);
         return;
     }
 
@@ -247,6 +257,13 @@ std::string H5File::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
     delete &_root;
 
     return os.str();
+}
+
+void H5File::ls(std::vector<std::string> & name, std::vector<std::string> & type) const
+{
+    H5Object & _root = const_cast<H5File *>(this)->getRoot();
+    _root.ls(name, type);
+    delete &_root;
 }
 
 std::string H5File::ls() const

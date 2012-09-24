@@ -146,7 +146,7 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
             HDF5Scilab::readAttributeData(_expandedPath, _location, _name, Rhs + 1, pvApiCtx);
         }
     }
-    catch (const H5Exception & e)
+    catch (const std::exception & e)
     {
         Scierror(999, _("%s: %s\n"), fname, e.what());
         return 0;

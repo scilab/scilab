@@ -15,7 +15,7 @@
 namespace org_modules_hdf5
 {
 
-H5Data & H5DataFactory::getData(H5Object & parent, const hid_t obj, const bool isAttribute)
+H5Data & H5DataFactory::getData(H5Object & parent, const hid_t obj, H5Dataspace * space, hsize_t * selectdims, const bool isAttribute)
 {
     const hid_t type = isAttribute ? H5Aget_type(obj) : H5Dget_type(obj);
     if (type < 0)
@@ -23,41 +23,47 @@ H5Data & H5DataFactory::getData(H5Object & parent, const hid_t obj, const bool i
         throw H5Exception(__LINE__, __FILE__, _("Cannot get the data type"));
     }
     H5Data * data = 0;
+    hid_t spaceId = space ? space->getH5Id() : -1;
+
     // TODO: le type est ferme dans getNativeData: bonne idee ou pas ??
 
     switch (H5Tget_class(type))
     {
         case H5T_INTEGER:
-            data = &getIntegerData(parent, obj, type, isAttribute);
+            data = &getIntegerData(parent, obj, spaceId, selectdims, type, isAttribute);
             break;
         case H5T_FLOAT:
-            data = &getFloatingData(parent, obj, type, isAttribute);
+            data = &getFloatingData(parent, obj, spaceId, selectdims, type, isAttribute);
             break;
         case H5T_TIME:
-            data = &getTimeData(parent, obj, type, isAttribute);
+            data = &getTimeData(parent, obj, spaceId, selectdims, type, isAttribute);
             break;
         case H5T_STRING:
-            data = &getStringData(parent, obj, type, isAttribute);
+            data = &getStringData(parent, obj, spaceId, selectdims, type, isAttribute);
             break;
         case H5T_BITFIELD:
-            data = &getBitfieldData(parent, obj, type, isAttribute);
+            data = &getBitfieldData(parent, obj, spaceId, selectdims, type, isAttribute);
             break;
         case H5T_OPAQUE:
-            data = &getOpaqueData(parent, obj, type, isAttribute);
+            data = &getOpaqueData(parent, obj, spaceId, selectdims, type, isAttribute);
             break;
         case H5T_COMPOUND:
-            data = &getCompoundData(parent, obj, type, isAttribute);
+            data = &getCompoundData(parent, obj, spaceId, selectdims, type, isAttribute);
             break;
         case H5T_REFERENCE:
-            data = &getReferenceData(parent, obj, type, isAttribute);
+            data = &getReferenceData(parent, obj, spaceId, selectdims, type, isAttribute);
             break;
         case H5T_ENUM:
+            std::cout << "ENUM" << std::endl;
             //data = &getEnumData(parent, obj, type, isAttribute);
             //break;
         case H5T_VLEN:
+            std::cout << "VLEN" << std::endl;
+
             //data = &getVlenData(parent, obj, type, isAttribute);
             //break;
         case H5T_ARRAY:
+            std::cout << "ARRAY" << std::endl;
             //data = &getArrayData(parent, obj, type, isAttribute);
             //break;
         default:
@@ -115,6 +121,16 @@ H5Data & H5DataFactory::getData(H5Object & parent, const hsize_t totalSize, cons
             {
                 return *new H5BasicData<unsigned long long>(parent, totalSize, dataSize, ndims, dims, (unsigned long long *)data, stride, offset, false);
             }
+#else
+
+            else if (H5Tequal(type, H5T_NATIVE_LONG))
+            {
+                return *new H5TransformedData<long long, int>(parent, totalSize, dataSize, ndims, dims, (long long *)data, stride, offset, false);
+            }
+            else if (H5Tequal(type, H5T_NATIVE_ULONG))
+            {
+                return *new H5TransformedData<unsigned long long, unsigned int>(parent, totalSize, dataSize, ndims, dims, (unsigned long long *)data, stride, offset, false);
+            }
 
 #endif // __SCILAB_INT64__
 
@@ -127,7 +143,8 @@ H5Data & H5DataFactory::getData(H5Object & parent, const hsize_t totalSize, cons
         case H5T_FLOAT:
             if (H5Tequal(type, H5T_NATIVE_FLOAT))
             {
-                return *new H5FloatData(parent, totalSize, dataSize, ndims, dims, (float *)data, stride, offset, false);
+                //return *new H5FloatData(parent, totalSize, dataSize, ndims, dims, (float *)data, stride, offset, false);
+                return *new H5TransformedData<float, double>(parent, totalSize, dataSize, ndims, dims, (float *)data, stride, offset, false);
             }
             else if (H5Tequal(type, H5T_NATIVE_DOUBLE))
             {
@@ -199,7 +216,7 @@ H5Data & H5DataFactory::getData(H5Object & parent, const hsize_t totalSize, cons
     throw H5Exception(__LINE__, __FILE__, _("Cannot get data from an unknown data type."));
 }
 
-H5Data & H5DataFactory::getIntegerData(H5Object & parent, const hid_t obj, const hid_t type, const bool isAttribute)
+H5Data & H5DataFactory::getIntegerData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute)
 {
     hsize_t ndims;
     hsize_t * dims = 0;
@@ -209,7 +226,7 @@ H5Data & H5DataFactory::getIntegerData(H5Object & parent, const hid_t obj, const
     H5Data * dataObj = 0;
     const hid_t nativeType = H5Tget_native_type(type, H5T_DIR_DEFAULT);
 
-    getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
+    getNativeData(obj, space, selectdims, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
 
     if (H5Tequal(nativeType, H5T_NATIVE_SCHAR))
     {
@@ -247,6 +264,17 @@ H5Data & H5DataFactory::getIntegerData(H5Object & parent, const hid_t obj, const
         dataObj = new H5BasicData<unsigned long long>(parent, totalSize, dataSize, ndims, dims, (unsigned long long *)data);
     }
 
+#else
+
+    else if (H5Tequal(nativeType, H5T_NATIVE_LONG))
+    {
+        dataObj = new H5TransformedData<long long, int>(parent, totalSize, dataSize, ndims, dims, (long long *)data);
+    }
+    else if (H5Tequal(nativeType, H5T_NATIVE_ULONG))
+    {
+        dataObj = new H5TransformedData<unsigned long long, unsigned int>(parent, totalSize, dataSize, ndims, dims, (unsigned long long *)data);
+    }
+
 #endif // __SCILAB_INT64__
 
     else
@@ -262,7 +290,7 @@ H5Data & H5DataFactory::getIntegerData(H5Object & parent, const hid_t obj, const
     return *dataObj;
 }
 
-H5Data & H5DataFactory::getFloatingData(H5Object & parent, const hid_t obj, const hid_t type, const bool isAttribute)
+H5Data & H5DataFactory::getFloatingData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute)
 {
     hsize_t ndims;
     hsize_t totalSize;
@@ -272,11 +300,11 @@ H5Data & H5DataFactory::getFloatingData(H5Object & parent, const hid_t obj, cons
     H5Data * dataObj = 0;
     const hid_t nativeType = H5Tget_native_type(type, H5T_DIR_DEFAULT);
 
-    getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
+    getNativeData(obj, space, selectdims, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
 
     if (H5Tequal(nativeType, H5T_NATIVE_FLOAT))
     {
-        dataObj = new H5FloatData(parent, totalSize, dataSize, ndims, dims, (float *)data);
+        dataObj = new H5TransformedData<float, double>(parent, totalSize, dataSize, ndims, dims, (float *)data);
     }
     else if (H5Tequal(nativeType, H5T_NATIVE_DOUBLE))
     {
@@ -295,7 +323,7 @@ H5Data & H5DataFactory::getFloatingData(H5Object & parent, const hid_t obj, cons
     return *dataObj;
 }
 
-H5StringData & H5DataFactory::getStringData(H5Object & parent, const hid_t obj, const hid_t type, const bool isAttribute)
+H5StringData & H5DataFactory::getStringData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute)
 {
     hsize_t ndims;
     hsize_t totalSize;
@@ -303,7 +331,7 @@ H5StringData & H5DataFactory::getStringData(H5Object & parent, const hid_t obj, 
     hsize_t * dims = 0;
     void * data = 0;
 
-    getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
+    getNativeData(obj, space, selectdims, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
     if (H5Tis_variable_str(type))
     {
         return *new H5StringData(parent, totalSize, dataSize, ndims, dims, (char **)data);
@@ -314,7 +342,7 @@ H5StringData & H5DataFactory::getStringData(H5Object & parent, const hid_t obj, 
     }
 }
 
-H5TimeData & H5DataFactory::getTimeData(H5Object & parent, const hid_t obj, const hid_t type, const bool isAttribute)
+H5TimeData & H5DataFactory::getTimeData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute)
 {
     hsize_t ndims;
     hsize_t totalSize;
@@ -322,12 +350,12 @@ H5TimeData & H5DataFactory::getTimeData(H5Object & parent, const hid_t obj, cons
     hsize_t * dims = 0;
     void * data = 0;
 
-    getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
+    getNativeData(obj, space, selectdims, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
 
     return *new H5TimeData(parent, totalSize, dataSize, ndims, dims, static_cast<char *>(data));
 }
 
-H5BitfieldData & H5DataFactory::getBitfieldData(H5Object & parent, const hid_t obj, const hid_t type, const bool isAttribute)
+H5BitfieldData & H5DataFactory::getBitfieldData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute)
 {
     hsize_t ndims;
     hsize_t totalSize;
@@ -335,12 +363,12 @@ H5BitfieldData & H5DataFactory::getBitfieldData(H5Object & parent, const hid_t o
     hsize_t * dims = 0;
     void * data = 0;
 
-    getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
+    getNativeData(obj, space, selectdims, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
 
     return *new H5BitfieldData(parent, totalSize, dataSize, ndims, dims, static_cast<char *>(data));
 }
 
-H5OpaqueData & H5DataFactory::getOpaqueData(H5Object & parent, const hid_t obj, const hid_t type, const bool isAttribute)
+H5OpaqueData & H5DataFactory::getOpaqueData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute)
 {
     hsize_t ndims;
     hsize_t totalSize;
@@ -348,12 +376,12 @@ H5OpaqueData & H5DataFactory::getOpaqueData(H5Object & parent, const hid_t obj, 
     hsize_t * dims = 0;
     void * data = 0;
 
-    getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
+    getNativeData(obj, space, selectdims, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
 
     return *new H5OpaqueData(parent, totalSize, dataSize, ndims, dims, static_cast<char *>(data));
 }
 
-H5Data & H5DataFactory::getCompoundData(H5Object & parent, const hid_t obj, const hid_t type, const bool isAttribute)
+H5Data & H5DataFactory::getCompoundData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute)
 {
     hsize_t ndims;
     hsize_t totalSize;
@@ -361,7 +389,8 @@ H5Data & H5DataFactory::getCompoundData(H5Object & parent, const hid_t obj, cons
     hsize_t * dims = 0;
     void * data = 0;
     const hid_t nativeType = H5Tget_native_type(type, H5T_DIR_DEFAULT);
-    getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
+
+    getNativeData(obj, space, selectdims, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
 
     try
     {
@@ -374,7 +403,7 @@ H5Data & H5DataFactory::getCompoundData(H5Object & parent, const hid_t obj, cons
     }
 }
 
-H5ReferenceData & H5DataFactory::getReferenceData(H5Object & parent, const hid_t obj, const hid_t type, const bool isAttribute)
+H5ReferenceData & H5DataFactory::getReferenceData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute)
 {
     hsize_t ndims;
     hsize_t totalSize;
@@ -382,7 +411,7 @@ H5ReferenceData & H5DataFactory::getReferenceData(H5Object & parent, const hid_t
     hsize_t * dims = 0;
     void * data = 0;
 
-    getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
+    getNativeData(obj, space, selectdims, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
     return *new H5ReferenceData(parent, H5Tequal(type, H5T_STD_REF_DSETREG) > 0, totalSize, dataSize, ndims, dims, (char *)data);
 }
 
@@ -438,13 +467,13 @@ H5ReferenceData & H5DataFactory::getReferenceData(H5Object & parent, const hid_t
 
 //return *new H5StringData(parent, totalSize, dataSize, ndims, dims, data);
 
-void H5DataFactory::getNativeData(const hid_t obj, const hid_t type, hsize_t * totalSize, hsize_t * dataSize, hsize_t * ndims, hsize_t ** dims, void ** data, const bool isAttribute)
+/*void H5DataFactory::getNativeData(const hid_t obj, const hid_t type, hsize_t * totalSize, hsize_t * dataSize, hsize_t * ndims, hsize_t ** dims, void ** data, const bool isAttribute)
 {
     hid_t nativeType = H5Tget_native_type(type, H5T_DIR_DEFAULT);
     const hid_t space = isAttribute ? H5Aget_space(obj) : H5Dget_space(obj);
     hsize_t size = H5Tget_size(nativeType);
     *totalSize = 1;
-    *dims = new hsize_t[__SCILAB_HDF5_MAX_DIMS__ + 1]();
+    *dims = new hsize_t[__SCILAB_HDF5_MAX_DIMS__]();
     *ndims = H5Sget_simple_extent_dims(space, *dims, 0);
 
     if (H5Tget_class(nativeType) == H5T_STRING && !H5Tis_variable_str(nativeType))
@@ -455,7 +484,7 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t type, hsize_t * t
 
     *dataSize = size;
 
-    for (int i = 0; i < *ndims; i++)
+    for (unsigned int i = 0; i < *ndims; i++)
     {
         *totalSize *= (*dims)[i];
     }
@@ -482,7 +511,7 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t type, hsize_t * t
     }
 
     if ((isAttribute && H5Aread(obj, nativeType, *data) < 0)
-            || (!isAttribute && H5Dread(obj, nativeType, H5S_ALL, H5S_ALL, H5P_DEFAULT, *data) < 0))
+	|| (!isAttribute && H5Dread(obj, nativeType, H5S_ALL, space, H5P_DEFAULT, *data) < 0))
     {
         H5Tclose(type);
         H5Tclose(nativeType);
@@ -494,5 +523,122 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t type, hsize_t * t
 
     H5Tclose(nativeType);
     H5Sclose(space);
+}
+*/
+
+void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, hsize_t * totalSize, hsize_t * dataSize, hsize_t * ndims, hsize_t ** dims, void ** data, const bool isAttribute)
+{
+    hid_t nativeType = H5Tget_native_type(type, H5T_DIR_DEFAULT);
+    hid_t _space = space < 0 ? (isAttribute ? H5Aget_space(obj) : H5Dget_space(obj)) : space;
+    hsize_t size = H5Tget_size(nativeType);
+    H5S_sel_type sel;
+    hid_t targetspace;
+    herr_t err;
+    hsize_t * blockbuf = 0;
+    bool hyperslab = false;
+
+    *totalSize = 1;
+    if (H5Tget_class(nativeType) == H5T_STRING && !H5Tis_variable_str(nativeType))
+    {
+        // We have a C-string so it is null terminated
+        size++;
+    }
+
+    *dataSize = size;
+    *ndims = H5Sget_simple_extent_dims(_space, 0, 0);
+    *dims = new hsize_t[*ndims];
+
+    if (isAttribute)
+    {
+        H5Sget_simple_extent_dims(_space, *dims, 0);
+    }
+    else
+    {
+        sel = H5Sget_select_type(_space);
+        switch (sel)
+        {
+            case H5S_SEL_NONE:
+            case H5S_SEL_ALL:
+                H5Sget_simple_extent_dims(_space, *dims, 0);
+                for (unsigned int i = 0; i < *ndims; i++)
+                {
+                    *totalSize *= (*dims)[i];
+                }
+                break;
+            case H5S_SEL_POINTS:
+                break;
+            case H5S_SEL_HYPERSLABS:
+                for (unsigned int i = 0; i < *ndims; i++)
+                {
+                    (*dims)[i] = selectdims[i];
+                    *totalSize *= (*dims)[i];
+                }
+                hyperslab = true;
+        }
+    }
+
+    size *= *totalSize;
+
+    if ((hsize_t)((size_t)size) != size)
+    {
+        H5Tclose(type);
+        H5Tclose(nativeType);
+        if (space < 0)
+        {
+            H5Sclose(_space);
+        }
+        delete[] *dims;
+        throw H5Exception(__LINE__, __FILE__, _("Memory to allocate is too big"));
+    }
+
+    *data = static_cast<void *>(new char[(size_t)size]());
+    if (!*data)
+    {
+        H5Tclose(type);
+        H5Tclose(nativeType);
+        if (space < 0)
+        {
+            H5Sclose(_space);
+        }
+        delete[] *dims;
+        throw H5Exception(__LINE__, __FILE__, _("Cannot allocate memory to get the data"));
+    }
+
+    if (hyperslab)
+    {
+        targetspace =  H5Screate_simple(*ndims, *dims, 0);
+        err = H5Dread(obj, nativeType, targetspace, _space, H5P_DEFAULT, *data);
+        H5Sclose(targetspace);
+    }
+    else
+    {
+        if (isAttribute)
+        {
+            err = H5Aread(obj, nativeType, *data);
+        }
+        else
+        {
+            err = H5Dread(obj, nativeType, H5S_ALL, H5S_ALL, H5P_DEFAULT, *data);
+        }
+    }
+
+    if (err < 0)
+    {
+        H5Tclose(type);
+        H5Tclose(nativeType);
+        if (space < 0)
+        {
+            H5Sclose(_space);
+        }
+        delete[] static_cast<char *>(*data);
+        delete[] *dims;
+        throw H5Exception(__LINE__, __FILE__, _("Cannot retrieve the data from the attribute"));
+    }
+
+    H5Tclose(nativeType);
+    if (space < 0)
+    {
+        H5Sclose(_space);
+    }
 }
 }

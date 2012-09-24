@@ -29,7 +29,7 @@
             err = createMatrixOf##NAME(pvApiCtx, position, rows, cols, ptr); \
         }                                                               \
         if (err.iErr)                                                   \
-        {           printError(&err, 0);				\
+        {								\
             throw H5Exception(__LINE__, __FILE__, "Cannot allocate memory"); \
         }                                                               \
     }
@@ -46,7 +46,7 @@
             err = allocMatrixOf##NAME(pvApiCtx, position, rows, cols, ptr); \
         }                                                               \
         if (err.iErr)                                                   \
-        {           printError(&err, 0);                                                            \
+        {								\
             throw H5Exception(__LINE__, __FILE__, "Cannot allocate memory"); \
         }                                                               \
     }
@@ -136,7 +136,12 @@ public:
     {
         SciErr err;
         T * newData = 0;
-        if (ndims == 1)
+
+        if (ndims == 0)
+        {
+            create(pvApiCtx, lhsPosition, 1, 1, static_cast<T *>(getData()), parentList, listPosition);
+        }
+        else if (ndims == 1)
         {
             alloc(pvApiCtx, lhsPosition, 1, *dims, parentList, listPosition, &newData);
             copyData(newData);

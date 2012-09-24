@@ -13,6 +13,7 @@
 #include "H5Exception.hxx"
 #include "HDF5Scilab.hxx"
 #include "H5Object.hxx"
+#include "H5ReferenceData.hxx"
 
 extern "C"
 {
@@ -29,25 +30,28 @@ using namespace org_modules_hdf5;
 int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
 {
     H5Object * obj = 0;
-    int id;
     SciErr err;
-    int * fieldaddr = 0;
-    int * mlistaddr = 0;
+    int * addr = 0;
     char * field = 0;
+    std::string _field;
     int fieldtype;
-    double index;
+    double  * index = 0;
 
     CheckLhs(1, 1);
-    CheckRhs(2, 2);
 
-    err = getVarAddressFromPosition(pvApiCtx, 1, &fieldaddr);
+    if (Rhs < 2)
+    {
+        Scierror(999, gettext("%s: Wrong number of input argument: More than %d expected.\n"), fname, 2);
+    }
+
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
     {
         printError(&err, 0);
         return 0;
     }
 
-    err = getVarType(pvApiCtx, fieldaddr, &fieldtype);
+    err = getVarType(pvApiCtx, addr, &fieldtype);
     if (err.iErr)
     {
         printError(&err, 0);
@@ -60,59 +64,110 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    err = getVarAddressFromPosition(pvApiCtx, 2, &mlistaddr);
+    if (fieldtype == sci_strings)
+    {
+        if (Rhs >= 3)
+        {
+            Scierror(999, gettext("%s: Only one field can be requested.\n"), fname);
+        }
+
+        if (getAllocatedSingleString(pvApiCtx, addr, &field) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
+
+        _field = std::string(field);
+        freeAllocatedSingleString(field);
+    }
+    else
+    {
+        index = new double[Rhs - 1];
+
+        for (unsigned int i = 1; i <= Rhs - 1; i++)
+        {
+            err = getVarAddressFromPosition(pvApiCtx, i, &addr);
+            if (err.iErr)
+            {
+                delete[] index;
+                printError(&err, 0);
+                return 0;
+            }
+
+            if (getScalarDouble(pvApiCtx, addr, index + i - 1) != 0)
+            {
+                delete[] index;
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
+            index[i - 1]--;
+        }
+    }
+
+    err = getVarAddressFromPosition(pvApiCtx, Rhs, &addr);
     if (err.iErr)
     {
+        if (index)
+        {
+            delete[] index;
+        }
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, Rhs);
         return 0;
     }
 
-    if (fieldtype == sci_strings)
+    if (HDF5Scilab::isH5Object(addr, pvApiCtx))
     {
-        if (getAllocatedSingleString(pvApiCtx, fieldaddr, &field) != 0)
+        obj = HDF5Scilab::getH5Object(addr, pvApiCtx);
+        if (!obj)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            if (index)
+            {
+                delete[] index;
+            }
+            Scierror(999, _("%s: Invalid H5Object.\n"), fname);
             return 0;
         }
     }
     else
     {
-        if (getScalarDouble(pvApiCtx, fieldaddr, &index) != 0)
+        if (index)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
-            return 0;
+            delete[] index;
         }
+        Scierror(999, gettext("%s: Wrong type for input argument #%i: A H5Object expected.\n"), fname, Rhs);
+        return 0;
     }
 
     try
     {
-        id = HDF5Scilab::getH5ObjectId(mlistaddr, pvApiCtx);
-        obj = H5VariableScope::getVariableFromId(id);
-
         if (fieldtype == sci_strings)
         {
-            obj->getAccessibleAttribute(std::string(field), Rhs + 1, pvApiCtx);
+            obj->getAccessibleAttribute(_field, Rhs + 1, pvApiCtx);
         }
         else
         {
-            obj->getAccessibleAttribute(index - 1, Rhs + 1, pvApiCtx);
+            if (obj->isReference())
+            {
+                H5ReferenceData * ref = reinterpret_cast<H5ReferenceData *>(obj);
+                H5Object & robj = ref->getReferencesObject(Rhs - 1, index);
+                robj.createOnScilabStack(Rhs + 1, pvApiCtx);
+            }
         }
     }
     catch (std::exception & e)
     {
-        if (fieldtype == sci_strings)
+        if (index)
         {
-            freeAllocatedSingleString(field);
+            delete[] index;
         }
         Scierror(999, _("%s: Error in retrieving field content:\n%s\n"), fname, e.what());
-
         return 0;
     }
 
-    if (fieldtype == sci_strings)
+    if (index)
     {
-        freeAllocatedSingleString(field);
+        delete[] index;
     }
 
     LhsVar(1) = Rhs + 1;

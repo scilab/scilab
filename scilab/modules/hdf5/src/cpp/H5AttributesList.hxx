@@ -25,6 +25,7 @@ class H5AttributesList : public H5ListObject<H5Attribute>
 public :
 
     H5AttributesList(H5Object & _parent);
+    H5AttributesList(H5Object & _parent, const unsigned int size, const unsigned int * index);
 
     ~H5AttributesList();
 

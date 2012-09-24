@@ -24,7 +24,21 @@ class H5ListObject : public H5Object
 
 public :
 
-    H5ListObject(H5Object & _parent) : H5Object(_parent) { }
+    H5ListObject(H5Object & _parent) : H5Object(_parent), indexSize(0), indexList(0) { }
+    H5ListObject(H5Object & _parent, const unsigned int size, const unsigned int * index) : H5Object(_parent), indexSize(size), indexList(index) { }
+
+    virtual ~H5ListObject()
+    {
+        if (indexList)
+        {
+            delete indexList;
+        }
+    }
+
+    virtual bool isList() const
+    {
+        return true;
+    }
 
     virtual void setObject(const unsigned int pos, T & object) = 0;
     virtual T & getObject(const int pos) = 0;
@@ -46,6 +60,12 @@ public :
         T & obj = const_cast<H5ListObject *>(this)->getObject(name);
         obj.createOnScilabStack(pos, pvApiCtx);
     }
+
+protected :
+
+    const unsigned int indexSize;
+    const unsigned int * indexList;
+
 };
 }
 

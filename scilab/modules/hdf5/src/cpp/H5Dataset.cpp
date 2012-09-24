@@ -27,22 +27,12 @@ void H5Dataset::init()
     }
 }
 
-H5Dataset::H5Dataset(H5Object & _parent, const char * _name) : H5Object(_parent), name(std::string(_name)), dataset((hid_t) - 1)
+H5Dataset::H5Dataset(H5Object & _parent, const std::string & _name) : H5Object(_parent, _name), dataset((hid_t) - 1)
 {
     init();
 }
 
-H5Dataset::H5Dataset(H5Object & _parent, const std::string & _name) : H5Object(_parent), name(_name), dataset((hid_t) - 1)
-{
-    init();
-}
-
-H5Dataset::H5Dataset(H5Object & _parent, hid_t _dataset, const char * _name) : H5Object(_parent), dataset(_dataset), name(std::string(_name))
-{
-
-}
-
-H5Dataset::H5Dataset(H5Object & _parent, hid_t _dataset, const std::string & _name) : H5Object(_parent), dataset(_dataset), name(_name)
+H5Dataset::H5Dataset(H5Object & _parent, hid_t _dataset, const std::string & _name) : H5Object(_parent, _name), dataset(_dataset)
 {
 
 }
@@ -57,7 +47,12 @@ H5Dataset::~H5Dataset()
 
 H5Data & H5Dataset::getData()
 {
-    return H5DataFactory::getData(*this, dataset, false);
+    return H5DataFactory::getData(*this, dataset, 0, 0, false);
+}
+
+H5Data & H5Dataset::getData(H5Dataspace & space, hsize_t * dims)
+{
+    return H5DataFactory::getData(*this, dataset, &space, dims, false);
 }
 
 H5Dataspace & H5Dataset::getSpace()
@@ -121,7 +116,7 @@ void H5Dataset::getAccessibleAttribute(const std::string & _name, const int pos,
 
         return;
     }
-    catch (H5Exception & e) { }
+    catch (const H5Exception & e) { }
 
     std::transform(_name.begin(), _name.end(), lower.begin(), tolower);
 
@@ -151,7 +146,10 @@ void H5Dataset::getAccessibleAttribute(const std::string & _name, const int pos,
         const H5Data & data = const_cast<H5Dataset *>(this)->getData();
         data.toScilab(pvApiCtx, pos);
 
-        delete &data;
+        if (!data.isReference())
+        {
+            delete &data;
+        }
 
         return;
     }
@@ -242,6 +240,22 @@ std::string H5Dataset::ls() const
     return os.str();
 }
 
+void H5Dataset::ls(std::vector<std::string> & name, std::vector<std::string> & type) const
+{
+    herr_t err;
+    OpDataGetLs opdata;
+    opdata.parent = const_cast<H5Dataset *>(this);
+    opdata.name = &name;
+    opdata.type = &type;
+    hsize_t idx = 0;
+
+    err = H5Aiterate2(dataset, H5_INDEX_NAME, H5_ITER_INC, &idx, H5Object::getLsAttributes, &opdata);
+    if (err < 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Cannot list dataset attributes."));
+    }
+}
+
 std::string H5Dataset::toString(const unsigned int indentLevel) const
 {
     std::ostringstream os;
@@ -262,7 +276,7 @@ std::string H5Dataset::toString(const unsigned int indentLevel) const
     return os.str();
 }
 
-hid_t H5Dataset::create(H5Object & loc, const std::string & name, hid_t type, hid_t targettype, hid_t space, void * data)
+hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t space, void * data)
 {
     herr_t err;
     hid_t dataset = H5Dcreate2(loc.getH5Id(), name.c_str(), targettype, space, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);

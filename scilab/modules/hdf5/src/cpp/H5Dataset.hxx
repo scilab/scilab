@@ -26,13 +26,10 @@ namespace org_modules_hdf5
 class H5Dataset : public H5Object
 {
     hid_t dataset;
-    const std::string name;
 
 public :
 
-    H5Dataset(H5Object & _parent, const char * _name);
     H5Dataset(H5Object & _parent, const std::string & _name);
-    H5Dataset(H5Object & _parent, hid_t _dataset, const char * _name);
     H5Dataset(H5Object & _parent, hid_t _dataset, const std::string & _name);
 
     virtual ~H5Dataset();
@@ -42,17 +39,13 @@ public :
         return dataset;
     }
 
-    virtual bool checkType(const int type) const
+    virtual bool isDataset() const
     {
-        return type == H5O_TYPE_DATASET;
-    }
-
-    virtual const std::string & getName() const
-    {
-        return name;
+        return true;
     }
 
     H5Data & getData();
+    H5Data & getData(H5Dataspace & space, hsize_t * dims);
     H5Dataspace & getSpace();
     H5Type & getDataType();
 
@@ -61,6 +54,7 @@ public :
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const;
     virtual std::string toString(const unsigned int indentLevel) const;
     virtual std::string ls() const;
+    virtual void ls(std::vector<std::string> & name, std::vector<std::string> & type) const;
     virtual void printLsInfo(std::ostringstream & os) const;
 
     class H5Layout : public H5Object
@@ -186,7 +180,7 @@ public :
 
     H5Layout & getLayout();
 
-    static hid_t create(H5Object & loc, const std::string & name, hid_t type, hid_t targettype, hid_t space, void * data);
+    static hid_t create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t space, void * data);
 
 private:
 

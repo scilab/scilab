@@ -87,7 +87,7 @@ int sci_h5flush(char *fname, unsigned long fname_len)
     {
         hobj->getFile().flush(_local);
     }
-    catch (const H5Exception & e)
+    catch (const std::exception & e)
     {
         Scierror(999, _("%s: %s\n"), fname, e.what());
         return 0;

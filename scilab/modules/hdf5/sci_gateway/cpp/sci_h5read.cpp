@@ -34,9 +34,17 @@ int sci_h5read(char *fname, unsigned long fname_len)
     char * location = 0;
     std::string _expandedPath;
     std::string _location;
+    double * start = 0;
+    double * stride = 0;
+    double * count = 0;
+    double * block = 0;
+    double ** dptrs[4] = {&start, &count, &stride, &block};
+    int inc = 0;
+    int row, col;
+    unsigned int size = 0;
 
     CheckLhs(1, 1);
-    CheckRhs(1, 2);
+    CheckRhs(1, 6);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -57,12 +65,6 @@ int sci_h5read(char *fname, unsigned long fname_len)
     }
     else
     {
-        if (Rhs != 2)
-        {
-            Scierror(999, _("%s: Invalid number of arguments: %d expected.\n"), fname, 2);
-            return 0;
-        }
-
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
@@ -81,7 +83,7 @@ int sci_h5read(char *fname, unsigned long fname_len)
         freeAllocatedSingleString(path);
     }
 
-    if (Rhs == 2)
+    if (Rhs >= 2)
     {
         err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
@@ -91,38 +93,98 @@ int sci_h5read(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+        if (isStringType(pvApiCtx, addr))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-            return 0;
-        }
+            if (getAllocatedSingleString(pvApiCtx, addr, &location) != 0)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
 
-        if (getAllocatedSingleString(pvApiCtx, addr, &location) != 0)
+            _location = std::string(location);
+            freeAllocatedSingleString(location);
+        }
+        else
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
-            return 0;
-        }
+            _location = std::string(".");
 
-        _location = std::string(location);
-        freeAllocatedSingleString(location);
+            if (isDoubleType(pvApiCtx, addr))
+            {
+                err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, dptrs[0]);
+                if (row != 1 && col != 1)
+                {
+                    Scierror(999, _("%s: Bad dimensions for input argument #%d: a row or a column expected.\n"), fname, 2);
+                    return 0;
+                }
+
+                if (size == 0)
+                {
+                    size = row > col ? row : col;
+                }
+                else if (size != (row > col ? row : col))
+                {
+                    Scierror(999, _("%s: Bad dimensions for input argument #%d: the same size are expected.\n"), fname, 2);
+                    return 0;
+                }
+
+                inc = 1;
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A row of doubles expected.\n"), fname, 2);
+                return 0;
+            }
+        }
     }
-    else
+
+
+    for (unsigned int i = 3; i <= Rhs; i++)
     {
-        _location = std::string(".");
+        err = getVarAddressFromPosition(pvApiCtx, i, &addr);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
+            return 0;
+        }
+        if (isDoubleType(pvApiCtx, addr))
+        {
+            err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, dptrs[i - 3 + inc]);
+            if (row != 1 && col != 1)
+            {
+                Scierror(999, _("%s: Bad dimensions for input argument #%d: a row or a column expected.\n"), fname, i);
+                return 0;
+            }
+
+            if (size == 0)
+            {
+                size = row > col ? row : col;
+            }
+            else if (size != (row > col ? row : col))
+            {
+                Scierror(999, _("%s: Bad dimensions for input argument #%d: the same size are expected.\n"), fname, i);
+                return 0;
+            }
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A row of doubles expected.\n"), fname, i);
+            return 0;
+        }
     }
 
     try
     {
         if (hobj)
         {
-            HDF5Scilab::readData(*hobj, _location, Rhs + 1, pvApiCtx);
+            HDF5Scilab::readData(*hobj, _location, size, start, stride, count, block, Rhs + 1, pvApiCtx);
         }
         else
         {
-            HDF5Scilab::readData(_expandedPath, _location, Rhs + 1, pvApiCtx);
+            HDF5Scilab::readData(_expandedPath, _location, size, start, stride, count, block, Rhs + 1, pvApiCtx);
         }
     }
-    catch (const H5Exception & e)
+    catch (const std::exception & e)
     {
         Scierror(999, _("%s: %s\n"), fname, e.what());
         return 0;

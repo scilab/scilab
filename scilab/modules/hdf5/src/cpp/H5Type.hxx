@@ -24,16 +24,13 @@ namespace org_modules_hdf5
 class H5Type : public H5Object
 {
     hid_t type;
-    const std::string name;
 
     static std::map<std::string, hid_t> nameToType;
 
 public:
 
     H5Type(H5Object & _parent, hid_t type);
-    H5Type(H5Object & _parent, const char * name);
     H5Type(H5Object & _parent, const std::string & name);
-    H5Type(H5Object & _parent, hid_t type, const char * name);
     H5Type(H5Object & _parent, hid_t type, const std::string & name);
 
     virtual ~H5Type();
@@ -43,15 +40,11 @@ public:
         return type;
     }
 
-    virtual bool checkType(const int type) const
+    virtual bool isType() const
     {
-        return !name.empty() && type == H5O_TYPE_NAMED_DATATYPE;
+        return true;
     }
 
-    virtual const std::string & getName() const
-    {
-        return name;
-    }
     virtual std::string getClassName() const;
     virtual std::string getTypeName() const;
     virtual unsigned int getTypeSize() const;

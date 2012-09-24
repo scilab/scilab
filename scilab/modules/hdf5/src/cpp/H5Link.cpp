@@ -19,15 +19,7 @@
 namespace org_modules_hdf5
 {
 
-H5Link::H5Link(H5Object & _parent, const char * _name) : H5Object(_parent), name(std::string(_name))
-{
-    if (H5Lexists(_parent.getH5Id(), name.c_str(), H5P_DEFAULT) <= 0)
-    {
-        throw H5Exception(__LINE__, __FILE__, _("The link %s does not exist."), name.c_str());
-    }
-}
-
-H5Link::H5Link(H5Object & _parent, const std::string & _name) : H5Object(_parent), name(_name)
+H5Link::H5Link(H5Object & _parent, const std::string & _name) : H5Object(_parent, _name)
 {
     if (H5Lexists(_parent.getH5Id(), name.c_str(), H5P_DEFAULT) <= 0)
     {

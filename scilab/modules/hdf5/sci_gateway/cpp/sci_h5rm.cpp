@@ -10,6 +10,7 @@
  *
  */
 
+#include <set>
 #include <string>
 
 extern "C"
@@ -18,25 +19,25 @@ extern "C"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
+#include "sciprint.h"
+#include "expandPathVariable.h"
 }
 
-#include "H5Group.hxx"
 #include "HDF5Scilab.hxx"
 
 using namespace org_modules_hdf5;
 
 /*--------------------------------------------------------------------------*/
-int sci_h5group(char *fname, unsigned long fname_len)
+int sci_h5rm(char *fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
-    H5Group * group = 0;
     SciErr err;
     int * addr = 0;
     char * name = 0;
     std::string _name;
 
     CheckLhs(1, 1);
-    CheckRhs(2, 2);
+    CheckRhs(1, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -57,36 +58,38 @@ int sci_h5group(char *fname, unsigned long fname_len)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A H5Object expected.\n"), fname, 1);
+        Scierror(999, _("%s: Invalid input argument #%d: a H5Object expected.\n"), fname, 1);
     }
 
-    err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
-    if (err.iErr)
+    if (Rhs == 2)
     {
-        printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-        return 0;
-    }
+        err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            return 0;
+        }
 
-    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
-    {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-        return 0;
-    }
+        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+        {
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            return 0;
+        }
 
-    if (getAllocatedSingleString(pvApiCtx, addr, &name) != 0)
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
-    }
+        if (getAllocatedSingleString(pvApiCtx, addr, &name) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
 
-    _name = std::string(name);
-    freeAllocatedSingleString(name);
+        _name = std::string(name);
+        freeAllocatedSingleString(name);
+    }
 
     try
     {
-        group = &H5Group::createGroup(*hobj, _name);
-        group->createOnScilabStack(Rhs + 1, pvApiCtx);
+        HDF5Scilab::deleteObject(*hobj, _name);
     }
     catch (const std::exception & e)
     {
@@ -94,7 +97,7 @@ int sci_h5group(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1;
+    LhsVar(1) = 0;
     PutLhsVar();
 
     return 0;

@@ -19,7 +19,9 @@
 #include "H5File.hxx"
 #include "H5Group.hxx"
 #include "H5Dataset.hxx"
+#include "H5Dataspace.hxx"
 #include "H5Attribute.hxx"
+#include "H5BasicData.hxx"
 #include "H5Data.hxx"
 #include "H5VariableScope.hxx"
 
@@ -40,6 +42,17 @@ class HDF5Scilab
 
 public:
 
+    enum H5ObjectType {
+        H5FILE,
+        H5GROUP,
+        H5DATASET,
+        H5ATTRIBUTE,
+        H5SPACE,
+        H5TYPE,
+        H5REFERENCE,
+        H5LIST
+    };
+
     static int getH5ObjectId(int * mlist, void * pvApiCtx);
 
     static H5Object * getH5Object(int * mlist, void * pvApiCtx);
@@ -50,15 +63,15 @@ public:
 
     static void split(const std::string & str, std::vector<std::string> & v, const char c = '\n');
 
-    static void readData(const std::string & filename, const std::string & name, int pos, void * pvApiCtx);
+    static void readData(const std::string & filename, const std::string & name, const unsigned int size, const double * start, const double * stride, const double * count, const double * block, int pos, void * pvApiCtx);
 
-    static void readData(H5Object & obj, const std::string & name, int pos, void * pvApiCtx);
+    static void readData(H5Object & obj, const std::string & name, const unsigned int size, const double * start, const double * stride, const double * count, const double * block, int pos, void * pvApiCtx);
 
     static void readAttributeData(H5Object & obj, const std::string & path, const std::string & attrName, int pos, void * pvApiCtx);
 
     static void readAttributeData(const std::string & filename, const std::string & path, const std::string & attrName, int pos, void * pvApiCtx);
 
-    static void deleteLink(H5Object & parent, const std::string & name);
+    static void deleteObject(H5Object & parent, const std::string & name);
 
     static void createLink(H5Object & parent, const std::string & name, const std::string & targetPath, const bool hard);
 
@@ -67,6 +80,20 @@ public:
     static void createLink(H5Object & parent, const std::string & name, const std::string & targetFile, const std::string & targetPath);
 
     static void createLink(H5Object & parent, const std::string & name, H5Object & targetObject);
+
+    static void copy(H5Object & src, H5Object & dest, const std::string & dlocation);
+
+    static void copy(H5Object & src, const std::string & dfile, const std::string & dlocation);
+
+    static void copy(const std::string & sfile, const std::string & slocation, H5Object & dest, const std::string & dlocation);
+
+    static void copy(const std::string & sfile, const std::string & slocation, const std::string & dfile, const std::string & dlocation);
+
+    static void ls(H5Object & obj, std::string name, int position, void * pvApiCtx);
+
+    static void ls(std::string path, std::string name, int position, void * pvApiCtx);
+
+    static bool checkType(const H5Object & obj, const H5ObjectType type);
 
     template <typename T, typename U>
     static U & create(H5Object & parent, const std::string & name, const unsigned int rank, const hsize_t * dims, const hsize_t * maxdims, T * data, const hid_t targetType)
@@ -146,7 +173,7 @@ public:
             H5Tclose(type);
             H5Sclose(space);
         }
-        catch (H5Exception & e)
+        catch (const H5Exception & e)
         {
             H5Tclose(type);
             H5Sclose(space);
@@ -182,7 +209,7 @@ public:
             }
             return obj;
         }
-        catch (H5Exception & e)
+        catch (const H5Exception & e)
         {
             if (targettype >= 0)
             {

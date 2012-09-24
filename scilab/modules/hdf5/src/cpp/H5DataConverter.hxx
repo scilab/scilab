@@ -52,7 +52,9 @@ public:
 
         if (ndims == 0)
         {
-            os << start << "0): 0";
+            os << start << "0): ";
+            obj.printData(os, 0, 0);
+            os << std::endl;
         }
         else if (ndims == 1)
         {
@@ -92,30 +94,6 @@ public:
             }
         }
     }
-
-    static void toScilabString(void * pvApiCtx, const int position, const int ndims, const hsize_t * dims, char ** data);
-
-    static void toScilabDouble(void * pvApiCtx, const int position, const int ndims, const hsize_t * dims, double * data);
-
-    static void toScilabInt8(void * pvApiCtx, const int position, const int ndims, const hsize_t * dims, char * data);
-
-    static void toScilabUInt8(void * pvApiCtx, const int position, const int ndims, const hsize_t * dims, unsigned char * data);
-
-    static void toScilabInt16(void * pvApiCtx, const int position, const int ndims, const hsize_t * dims, short * data);
-
-    static void toScilabUInt16(void * pvApiCtx, const int position, const int ndims, const hsize_t * dims, unsigned short * data);
-
-    static void toScilabInt32(void * pvApiCtx, const int position, const int ndims, const hsize_t * dims, int * data);
-
-    static void toScilabUInt32(void * pvApiCtx, const int position, const int ndims, const hsize_t * dims, unsigned int * data);
-
-#ifdef __SCILAB_INT64__
-
-    static void toScilabInt64(void * pvApiCtx, const int position, const int ndims, const hsize_t * dims, long long * data);
-
-    static void toScilabUInt64(void * pvApiCtx, const int position, const int ndims, const hsize_t * dims, unsigned long long * data);
-
-#endif // __SCILAB_INT64__
 
     template <typename T>
     static void C2FHypermatrix(const int ndims, const hsize_t * dims, const hsize_t size, const T * src, T * dest)

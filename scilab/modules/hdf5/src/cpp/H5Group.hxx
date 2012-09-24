@@ -37,16 +37,13 @@ class H5Group : public H5Object
     {
         H5Object * parent;
         std::ostringstream * os;
-    } OpData;
+    } OpDataPrintLs;
 
     hid_t group;
-    const std::string name;
 
 public:
 
-    H5Group(H5Object & _parent, const char * name);
     H5Group(H5Object & _parent, const std::string & name);
-    H5Group(H5Object & _parent, hid_t _group, const char * _name);
     H5Group(H5Object & _parent, hid_t _group, const std::string & _name);
 
     virtual ~H5Group();
@@ -56,9 +53,9 @@ public:
         return group;
     }
 
-    virtual bool checkType(const int type) const
+    virtual bool isGroup() const
     {
-        return type == H5O_TYPE_GROUP;
+        return true;
     }
 
     virtual H5LinksList & getLinks();
@@ -72,13 +69,10 @@ public:
     virtual H5TypesList & getTypes();
     const unsigned int getLinksSize() const;
     virtual std::string getCompletePath() const;
-    virtual const std::string & getName() const
-    {
-        return name;
-    }
     virtual std::string toString(const unsigned int indentLevel) const;
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel = 0) const;
     virtual std::string ls() const;
+    virtual void ls(std::vector<std::string> & name, std::vector<std::string> & type) const;
     virtual void printLsInfo(std::ostringstream & os) const;
 
     virtual void getAccessibleAttribute(const std::string & name, const int pos, void * pvApiCtx) const;
@@ -89,6 +83,7 @@ private :
 
     void init();
     static herr_t printLsInfo(hid_t g_id, const char * name, const H5L_info_t * info, void * op_data);
+    static herr_t getLsInfo(hid_t g_id, const char * name, const H5L_info_t * info, void * op_data);
 };
 }
 

@@ -29,12 +29,21 @@ HDF5_SCILAB_IMPEXP int sci_h5ls(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_percent_H5Object_p(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_percent_H5Object_e(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5group(char *fname, unsigned long fname_len);
-HDF5_SCILAB_IMPEXP int sci_h5delete(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5rm(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5dataset(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5attr(char *fname, unsigned long fname_len);
-HDF5_SCILAB_IMPEXP int sci_h5link(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5ln(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5readattr(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5flush(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5cp(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5isFile(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5isGroup(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5isSet(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5isAttr(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5isSpace(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5isType(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5isRef(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5isList(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_HDF5_H__ */
 /*--------------------------------------------------------------------------*/

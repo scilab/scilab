@@ -31,22 +31,12 @@ void H5Group::init()
     }
 }
 
-H5Group::H5Group(H5Object & _parent, const std::string & _name) : H5Object(_parent), name(_name)
+H5Group::H5Group(H5Object & _parent, const std::string & _name) : H5Object(_parent, _name)
 {
     init();
 }
 
-H5Group::H5Group(H5Object & _parent, const char * _name) : H5Object(_parent), name(std::string(_name))
-{
-    init();
-}
-
-H5Group::H5Group(H5Object & _parent, hid_t _group, const char * _name) : H5Object(_parent), group(_group), name(std::string(_name))
-{
-
-}
-
-H5Group::H5Group(H5Object & _parent, hid_t _group, const std::string & _name) : H5Object(_parent), group(_group), name(_name)
+H5Group::H5Group(H5Object & _parent, hid_t _group, const std::string & _name) : H5Object(_parent, _name), group(_group)
 {
 
 }
@@ -140,7 +130,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
         obj.createOnScilabStack(pos, pvApiCtx);
         return;
     }
-    catch (H5Exception & e) { }
+    catch (const H5Exception & e) { }
 
     std::transform(_name.begin(), _name.end(), lower.begin(), tolower);
 
@@ -206,11 +196,92 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
     H5Object::getAccessibleAttribute(_name, pos, pvApiCtx);
 }
 
+void H5Group::ls(std::vector<std::string> & name, std::vector<std::string> & type) const
+{
+    herr_t err;
+    OpDataGetLs opdata;
+    opdata.parent = const_cast<H5Group *>(this);
+    opdata.name = &name;
+    opdata.type = &type;
+    hsize_t idx = 0;
+
+    err = H5Literate(group, H5_INDEX_NAME, H5_ITER_INC, &idx, getLsInfo, &opdata);
+    if (err < 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Cannot list group links."));
+    }
+
+    idx = 0;
+    err = H5Aiterate2(group, H5_INDEX_NAME, H5_ITER_INC, &idx, H5Object::getLsAttributes, &opdata);
+    if (err < 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Cannot list group attributes."));
+    }
+}
+
+herr_t H5Group::getLsInfo(hid_t g_id, const char * name, const H5L_info_t * info, void * op_data)
+{
+    H5O_info_t oinfo;
+    herr_t err;
+    H5Object * hobj = 0;
+    hid_t obj;
+    OpDataGetLs & opdata = *(OpDataGetLs *)op_data;
+
+    if (obj < 0)
+    {
+        return (herr_t) - 1;
+    }
+
+    switch (info->type)
+    {
+        case H5L_TYPE_SOFT:
+            opdata.name->push_back(name);
+            opdata.type->push_back("soft");
+            break;
+        case H5L_TYPE_EXTERNAL:
+            opdata.name->push_back(name);
+            opdata.type->push_back("external");
+            break;
+        case H5L_TYPE_HARD:
+            obj = H5Oopen(g_id, name, H5P_DEFAULT);
+            err = H5Oget_info(obj, &oinfo);
+            H5Oclose(obj);
+
+            if (err < 0)
+            {
+                return (herr_t) - 1;
+            }
+
+            switch (oinfo.type)
+            {
+                case H5O_TYPE_GROUP:
+                    opdata.name->push_back(name);
+                    opdata.type->push_back("group");
+                    break;
+                case H5O_TYPE_DATASET:
+                    opdata.name->push_back(name);
+                    opdata.type->push_back("dataset");
+                    break;
+                case H5O_TYPE_NAMED_DATATYPE:
+                    opdata.name->push_back(name);
+                    opdata.type->push_back("type");
+                    break;
+                default:
+                    return (herr_t) - 1;
+            }
+            break;
+        default:
+            return (herr_t) - 1;
+    }
+
+    return (herr_t)0;
+}
+
 std::string H5Group::ls() const
 {
     std::ostringstream os;
     herr_t err;
-    OpData opdata;
+    OpDataPrintLs opdata;
     opdata.parent = const_cast<H5Group *>(this);
     opdata.os = &os;
     hsize_t idx = 0;
@@ -230,7 +301,7 @@ herr_t H5Group::printLsInfo(hid_t g_id, const char * name, const H5L_info_t * in
     herr_t err;
     H5Object * hobj = 0;
     hid_t obj;
-    OpData & opdata = *(OpData *)op_data;
+    OpDataPrintLs & opdata = *(OpDataPrintLs *)op_data;
 
     if (obj < 0)
     {

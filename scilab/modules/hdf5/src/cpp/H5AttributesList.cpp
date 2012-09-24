@@ -18,19 +18,28 @@ namespace org_modules_hdf5
 
 H5AttributesList::H5AttributesList(H5Object & _parent) : H5ListObject(_parent) { }
 
+H5AttributesList::H5AttributesList(H5Object & _parent, const unsigned int _size, const unsigned int * _index) : H5ListObject(_parent, _size, _index) { }
+
 H5AttributesList::~H5AttributesList() { }
 
 const unsigned int H5AttributesList::getSize() const
 {
-    H5O_info_t info;
-    herr_t err = H5Oget_info(parent.getH5Id(), &info);
-
-    if (err < 0)
+    if (H5ListObject::indexList)
     {
-        throw H5Exception(__LINE__, __FILE__, _("Cannot get the size of attribute list."));
+        return H5ListObject::indexSize;
     }
+    else
+    {
+        H5O_info_t info;
+        herr_t err = H5Oget_info(parent.getH5Id(), &info);
 
-    return (unsigned int)info.num_attrs;
+        if (err < 0)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot get the size of attribute list."));
+        }
+
+        return (unsigned int)info.num_attrs;
+    }
 }
 
 void H5AttributesList::setObject(const unsigned int pos, H5Attribute & attribute)
@@ -50,6 +59,11 @@ H5Attribute & H5AttributesList::getObject(const int pos)
 
 H5Attribute & H5AttributesList::getObject(const int pos, const bool checkPos)
 {
+    hid_t attr;
+    ssize_t ssize;
+    std::string name;
+    int _pos = pos;
+
     if (checkPos)
     {
         unsigned int size = getSize();
@@ -59,7 +73,27 @@ H5Attribute & H5AttributesList::getObject(const int pos, const bool checkPos)
         }
     }
 
-    return *new H5Attribute(parent, (const unsigned int)pos);
+    if (H5ListObject::indexList)
+    {
+        _pos = H5ListObject::indexList[pos];
+    }
+
+    attr = H5Aopen_by_idx(parent.getH5Id(), ".", H5_INDEX_NAME, H5_ITER_NATIVE, (hsize_t)_pos, H5P_DEFAULT, H5P_DEFAULT);
+    if (attr < 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Cannot open attribute at position %u."), pos);
+    }
+
+    ssize = H5Aget_name(attr, 0, 0);
+    if (ssize > 0)
+    {
+        char * _name = new char[ssize + 1];
+        H5Aget_name(attr, ssize + 1, _name);
+        name = std::string(_name);
+        delete[] _name;
+    }
+
+    return *new H5Attribute(parent, name);
 }
 
 std::string H5AttributesList::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const

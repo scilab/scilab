@@ -120,7 +120,7 @@ int sci_h5open(char *fname, unsigned long fname_len)
         }
         FREE(path);
     }
-    catch (const H5Exception & e)
+    catch (const std::exception & e)
     {
         for (int i = 0; i < Rhs; i++)
         {
@@ -135,7 +135,7 @@ int sci_h5open(char *fname, unsigned long fname_len)
     {
         h5file->createOnScilabStack(Rhs + 1, pvApiCtx);
     }
-    catch (const H5Exception & e)
+    catch (const std::exception & e)
     {
         Scierror(999, _("%s: %s\n"), fname, e.what());
         delete h5file;

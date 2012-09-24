@@ -275,7 +275,7 @@ int h5create(char *fname, unsigned long fname_len)
         }
         }
     }
-    catch (H5Exception & e)
+    catch (const H5Exception & e)
     {
         Scierror(999, _("%s: %s\n"), fname, e.what());
         return 0;

@@ -16,11 +16,17 @@
 #include "H5Dataset.hxx"
 #include "H5Type.hxx"
 #include "H5AttributesList.hxx"
+#include "H5Attribute.hxx"
 
 namespace org_modules_hdf5
 {
 
 H5Object & H5Object::root = *new H5Object();
+
+H5Object::H5Object(H5Object & _parent, const std::string & _name) : parent(_parent), children(std::set<H5Object *>()), locked(false), scilabId(-1), name(_name)
+{
+    parent.registerChild(this);
+}
 
 H5Object::H5Object(H5Object & _parent) : parent(_parent), children(std::set<H5Object *>()), locked(false), scilabId(-1)
 {
@@ -212,25 +218,26 @@ H5Object & H5Object::getObject(H5Object & parent, hid_t obj)
 
 H5Object & H5Object::getObject(H5Object & parent, const std::string & name)
 {
-    return getObject(parent, name.c_str());
-}
-
-H5Object & H5Object::getObject(H5Object & parent, const char * name)
-{
     hid_t loc = parent.getH5Id();
     H5O_info_t info;
     herr_t err;
     H5Object * obj = 0;
 
-    if (H5Lexists(loc, name, H5P_DEFAULT) <= 0)
+    if (H5Lexists(loc, name.c_str(), H5P_DEFAULT) <= 0)
     {
-        throw H5Exception(__LINE__, __FILE__, _("Invalid name: %s."), name);
+        if (H5Aexists(loc, name.c_str()) <= 0)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Invalid name: %s."), name.c_str());
+        }
+
+        return *new H5Attribute(parent, name);
     }
 
-    err = H5Oget_info_by_name(loc, name, &info, H5P_DEFAULT);
+    err = H5Oget_info_by_name(loc, name.c_str(), &info, H5P_DEFAULT);
+
     if (err < 0)
     {
-        throw H5Exception(__LINE__, __FILE__, _("Invalid name: %s."), name);
+        throw H5Exception(__LINE__, __FILE__, _("Invalid name: %s."), name.c_str());
     }
 
     switch (info.type)
@@ -250,24 +257,6 @@ H5Object & H5Object::getObject(H5Object & parent, const char * name)
 
     return *obj;
 }
-
-/*    std::string H5Object::getCompletePath() const
-      {
-      std::string name = getName();
-      if (this != &root && name != "")
-      {
-      std::string path = parent.getCompletePath();
-      if (path == "/")
-      {
-      return "/" + name;
-      }
-      else
-      {
-      return path + "/" + name;
-      }
-      }
-      return "";
-      }*/
 
 std::string H5Object::getCompletePath() const
 {
@@ -358,6 +347,15 @@ herr_t H5Object::iterateGetInfo(hid_t g_id, const char * name, const H5L_info_t 
         default:
             linfo.type->push_back("unknown");
     }
+
+    return (herr_t)0;
+}
+
+herr_t H5Object::getLsAttributes(hid_t location_id, const char * attr_name, const H5A_info_t * ainfo, void * op_data)
+{
+    OpDataGetLs & opdata = *(OpDataGetLs *)op_data;
+    opdata.name->push_back(std::string(attr_name));
+    opdata.type->push_back("attribute");
 
     return (herr_t)0;
 }

@@ -33,12 +33,21 @@ static gw_generic_table Tab[] =
     {sci_percent_H5Object_p, "%H5Object_p"},
     {sci_percent_H5Object_e, "%H5Object_e"},
     {sci_h5group, "h5group"},
-    {sci_h5delete, "h5delete"},
+    {sci_h5rm, "h5rm"},
     {sci_h5dataset, "h5dataset"},
     {sci_h5attr, "h5attr"},
-    {sci_h5link, "h5link"},
+    {sci_h5ln, "h5ln"},
     {sci_h5readattr, "h5readattr"},
     {sci_h5flush, "h5flush"},
+    {sci_h5cp, "h5cp"},
+    {sci_h5isFile, "h5isFile"},
+    {sci_h5isGroup, "h5isGroup"},
+    {sci_h5isSet, "h5isSet"},
+    {sci_h5isAttr, "h5isAttr"},
+    {sci_h5isSpace, "h5isSpace"},
+    {sci_h5isType, "h5isType"},
+    {sci_h5isRef, "h5isRef"},
+    {sci_h5isList, "h5isList"},
 };
 /*--------------------------------------------------------------------------*/
 int gw_hdf5(void)

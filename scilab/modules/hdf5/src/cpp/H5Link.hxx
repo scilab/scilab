@@ -24,19 +24,12 @@ class H5Link : public H5Object
 
 protected:
 
-    const std::string name;
-
 public:
 
-    H5Link(H5Object & _parent, const char * name);
     H5Link(H5Object & _parent, const std::string & name);
 
     virtual ~H5Link();
 
-    virtual const std::string & getName() const
-    {
-        return name;
-    }
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel = 0) const
     {
         return "";

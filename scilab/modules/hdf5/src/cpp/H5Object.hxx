@@ -48,7 +48,6 @@ class H5Object
     bool locked;
     H5Object & parent;
     int scilabId;
-    std::string name;
 
     friend class H5AttributesList;
     friend class H5LinkList;
@@ -57,6 +56,7 @@ class H5Object
 public :
 
     H5Object(H5Object & _parent);
+    H5Object(H5Object & _parent, const std::string & _name);
     virtual ~H5Object();
 
     virtual hid_t getH5Id() const;
@@ -75,6 +75,41 @@ public :
         return false;
     }
 
+    virtual bool isGroup() const
+    {
+        return false;
+    }
+
+    virtual bool isAttribute() const
+    {
+        return false;
+    }
+
+    virtual bool isReference() const
+    {
+        return false;
+    }
+
+    virtual bool isDataspace() const
+    {
+        return false;
+    }
+
+    virtual bool isDataset() const
+    {
+        return false;
+    }
+
+    virtual bool isType() const
+    {
+        return false;
+    }
+
+    virtual bool isList() const
+    {
+        return false;
+    }
+
     virtual haddr_t getAddr() const
     {
         return getInfo().addr;
@@ -84,6 +119,20 @@ public :
     {
         return name;
     }
+
+    virtual const std::string getBaseName() const
+    {
+        std::string::size_type pos = name.find_last_of('/');
+        if (pos == std::string::npos)
+        {
+            return name;
+        }
+        else
+        {
+            return name.substr(pos + 1);
+        }
+    }
+
     virtual std::string getCompletePath() const;
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel = 0) const
     {
@@ -93,6 +142,11 @@ public :
     virtual std::string ls() const
     {
         return "";
+    }
+
+    virtual void ls(std::vector<std::string> & name, std::vector<std::string> & type) const
+    {
+
     }
 
     virtual void printLsInfo(std::ostringstream & os) const
@@ -122,11 +176,6 @@ public :
     virtual void setAccessibleAttribute(const double index, const int pos, void * pvApiCtx) const
     {
         throw H5Exception(__LINE__, __FILE__, _("Invalid operation"));
-    }
-
-    virtual bool checkType(const int type) const
-    {
-        return getInfo().type == type;
     }
 
     void setScilabId(const int id)
@@ -177,11 +226,19 @@ public :
     }
 
     static H5Object & getObject(H5Object & parent, hid_t obj);
-    static H5Object & getObject(H5Object & parent, const char * name);
     static H5Object & getObject(H5Object & parent, const std::string & name);
     static void getLinksInfo(const H5Object & obj, std::vector<std::string> & linksName, std::vector<std::string> & types, std::vector<std::string> & linksType);
 
 protected :
+
+    typedef struct
+    {
+        H5Object * parent;
+        std::vector<std::string> * name;
+        std::vector<std::string> * type;
+    } OpDataGetLs;
+
+    const std::string name;
     std::set<H5Object *> children;
     void registerChild(H5Object * child)
     {
@@ -191,6 +248,8 @@ protected :
     {
         if (!locked) children.erase(child);
     }
+
+    static herr_t getLsAttributes(hid_t location_id, const char * attr_name, const H5A_info_t * ainfo, void * op_data);
 
 private :
 

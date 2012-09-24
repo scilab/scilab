@@ -45,6 +45,18 @@ public :
 
     H5NamedObjectsList(H5Group & _parent, const int _baseType, const int _linkType, const std::string _baseTypeName) : H5ListObject<T>(_parent), baseType(_baseType), linkType(_linkType), baseTypeName(_baseTypeName), prevPos(0), idx(0) { }
 
+    H5NamedObjectsList(H5Group & _parent, const unsigned int _size, const unsigned int * _index, const int _baseType, const int _linkType, const std::string _baseTypeName) : H5ListObject<T>(_parent, _size, _index), baseType(_baseType), linkType(_linkType), baseTypeName(_baseTypeName), prevPos(0), idx(0)
+    {
+        const unsigned int lsize = getSize(true);
+        for (unsigned int i = 0; i < H5ListObject<T>::indexSize; i++)
+        {
+            if (H5ListObject<T>::indexList[i] >= lsize)
+            {
+                throw H5Exception(__LINE__, __FILE__, _("Invalid index at position %d"), i);
+            }
+        }
+    }
+
     virtual ~H5NamedObjectsList()
     {
 
@@ -147,22 +159,34 @@ public :
 
     const unsigned int getSize() const
     {
-        hsize_t idx = 0;
-        OpData op_data;
-        herr_t err;
+        return getSize(false);
+    }
 
-        op_data.u.count = 0;
-        op_data.linktype = linkType;
-        op_data.basetype = baseType;
-
-        err = H5Literate(H5Object::getParent().getH5Id(), H5_INDEX_NAME, H5_ITER_INC, &idx, count, &op_data);
-
-        if (err < 0)
+    const unsigned int getSize(const bool indexChecking) const
+    {
+        if (H5ListObject<T>::indexList && !indexChecking)
         {
-            throw H5Exception(__LINE__, __FILE__, _("Cannot get the number of groups %d."));
+            return H5ListObject<T>::indexSize;
         }
+        else
+        {
+            hsize_t idx = 0;
+            OpData op_data;
+            herr_t err;
 
-        return op_data.u.count;
+            op_data.u.count = 0;
+            op_data.linktype = linkType;
+            op_data.basetype = baseType;
+
+            err = H5Literate(H5Object::getParent().getH5Id(), H5_INDEX_NAME, H5_ITER_INC, &idx, count, &op_data);
+
+            if (err < 0)
+            {
+                throw H5Exception(__LINE__, __FILE__, _("Cannot get the number of objects."));
+            }
+
+            return op_data.u.count;
+        }
     }
 
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
@@ -221,32 +245,45 @@ private:
     {
         OpData op_data;
         herr_t err;
+        int _pos = pos;
+
+        if (H5ListObject<T>::indexList)
+        {
+            if (pos >= 0 && pos < H5ListObject<T>::indexSize)
+            {
+                _pos = H5ListObject<T>::indexList[pos];
+            }
+            else
+            {
+                throw H5Exception(__LINE__, __FILE__, _("Invalid index: %d."), pos);
+            }
+        }
 
         op_data.linktype = linkType;
         op_data.basetype = baseType;
 
-        if (pos < prevPos)
+        if (_pos < prevPos)
         {
             idx = 0;
-            op_data.u.count = pos + 1;
+            op_data.u.count = _pos + 1;
         }
         else
         {
-            op_data.u.count = pos - prevPos + 1;
+            op_data.u.count = _pos - prevPos + 1;
         }
 
         err = H5Literate(H5Object::getParent().getH5Id(), H5_INDEX_NAME, H5_ITER_INC, &idx, getElement, &op_data);
 
         if (err > 0)
         {
-            prevPos = pos + 1;
+            prevPos = _pos + 1;
             return *new T(H5Object::getParent(), op_data.u.name);
         }
         else
         {
             idx = 0;
             prevPos = 0;
-            throw H5Exception(__LINE__, __FILE__, _("Cannot get the number of groups %d %d."), getSize(), pos);
+            throw H5Exception(__LINE__, __FILE__, _("Cannot get object at position %d."), pos);
         }
     }
 
