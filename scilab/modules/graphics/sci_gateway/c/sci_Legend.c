@@ -21,7 +21,7 @@
 #include <string.h>
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "BuildObjects.h"
 #include "MALLOC.h"
 #include "localization.h"
@@ -41,9 +41,19 @@
 /*--------------------------------------------------------------------------*/
 int sci_Legend( char * fname, unsigned long fname_len )
 {
-    int numrow = 0, numcol = 0, l1 = 0, l2 = 0, n = 0, m2 = 0, n2 = 0;
+    SciErr sciErr;
+
+    double* Empty = NULL;
+    int* piAddrl1 = NULL;
+    long long* l1 = NULL;
+    int* piAddrStr = NULL;
+    int* piAddrl2 = NULL;
+    char* l2 = NULL;
+    long long* outindex = NULL;
+
+    int numrow = 0, numcol = 0, n = 0, m2 = 0, n2 = 0;
     long handlesvalue = 0;
-    int outindex = 0, i = 0;
+    int i = 0;
     char *pobjUID = NULL;
     long long *tabofhandles = NULL;
     char * psubwinUID = NULL;
@@ -54,38 +64,92 @@ int sci_Legend( char * fname, unsigned long fname_len )
     char **Str = NULL;
     char * legendUID = NULL;
 
-    CheckRhs(2, 3);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 2, 3);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
 
     GetMatrixdims(1, &numrow, &numcol);
     n = numrow * numcol;
     if (numrow == 0 || numcol == 0)
     {
-        CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &numrow, &numcol, &l1);
-        LhsVar(1) = Rhs + 1;
-        PutLhsVar();
+        sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, numrow, numcol, &Empty);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
+
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
+
     GetMatrixdims(2, &m2, &n2);
     if (m2*n2 != n)
     {
         Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"), fname, 1, 2);
-        return 0;
+        return 1;
     }
 
 
-    GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &numrow, &numcol, &l1);
-    GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &m2, &n2, &Str);
-    if (Rhs == 3)
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+    if (sciErr.iErr)
     {
-        GetRhsVar(3, STRING_DATATYPE, &m2, &n2, &l2);
-        location = propertyNameToLegendPlace(cstk(l2));
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of handle at position 1.
+    sciErr = getMatrixOfHandle(pvApiCtx, piAddrl1, &numrow, &numcol, &l1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrStr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of string at position 2.
+    if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m2, &n2, &Str))
+    {
+        freeAllocatedMatrixOfString(m2, n2, Str);
+        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+        return 1;
+    }
+
+    if (nbInputArgument(pvApiCtx) == 3)
+    {
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrl2);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 3.
+        if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
+        {
+            freeAllocatedMatrixOfString(m2, n2, Str);
+            freeAllocatedSingleString(l2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            return 1;
+        }
+
+        location = propertyNameToLegendPlace((l2));
 
         if (location == SCI_LEGEND_POSITION_UNSPECIFIED)
         {
+            freeAllocatedMatrixOfString(m2, n2, Str);
+            freeAllocatedSingleString(l2);
             Scierror(999, _("%s: Wrong value for input argument #%d: Incorrect value.\n"), fname, 3);
-            return 0;
+            return 1;
         }
     }
     else
@@ -96,29 +160,29 @@ int sci_Legend( char * fname, unsigned long fname_len )
     tabofhandles = (long long *)MALLOC(n * sizeof(long long));
     if (tabofhandles == NULL)
     {
-        freeArrayOfString(Str, n);
+        freeAllocatedMatrixOfString(m2, n2, Str);
         Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
+        return 1;
     }
 
     for (i = 0; i < n; i++)
     {
         char* subwinUID;
 
-        handlesvalue = (unsigned long) (hstk(l1))[n - 1 - i];
+        handlesvalue = (unsigned long) ((long long*)(l1))[n - 1 - i];
         pobjUID = (char*)getObjectFromHandle(handlesvalue);
 
         if (pobjUID == NULL)
         {
-            freeArrayOfString(Str, n);
+            freeAllocatedMatrixOfString(m2, n2, Str);
             FREE(tabofhandles);
             Scierror(999, _("%s: The handle is no more valid.\n"), fname);
-            return 0;
+            return 1;
         }
 
-       /**
-         * We get the current pSubwin & pFigure from the first handle's parents.
-         */
+        /**
+          * We get the current pSubwin & pFigure from the first handle's parents.
+          */
         if (i == 0)
         {
             getGraphicObjectProperty(pobjUID, __GO_PARENT_FIGURE__, jni_string, (void **)&pFigureUID);
@@ -132,19 +196,20 @@ int sci_Legend( char * fname, unsigned long fname_len )
 
         if (strcmp(psubwinUID, subwinUID) != 0)
         {
+            freeAllocatedMatrixOfString(m2, n2, Str);
             Scierror(999, _("%s: Objects must have the same axes.\n"), fname);
             FREE(tabofhandles);
-            return 0;
+            return 1;
         }
 
         getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
         if (type != __GO_POLYLINE__)
         {
-            freeArrayOfString(Str, n);
+            freeAllocatedMatrixOfString(m2, n2, Str);
             FREE(tabofhandles);
             Scierror(999, _("%s: The %d th handle is not a polyline handle.\n"), fname, i + 1);
-            return 0;
+            return 1;
         }
 
         tabofhandles[i] = handlesvalue;
@@ -155,16 +220,24 @@ int sci_Legend( char * fname, unsigned long fname_len )
 
     setGraphicObjectProperty(legendUID, __GO_LEGEND_LOCATION__, &location, jni_int, 1);
 
-    freeArrayOfString(Str, n);
+    freeAllocatedMatrixOfString(m2, n2, Str);
     FREE(tabofhandles);
 
     /* Return the handle of the newly created legend */
     numrow = 1;
     numcol = 1;
-    CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &numrow, &numcol, &outindex);
-    hstk(outindex)[0] = getHandle((char *) getCurrentObject());
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+
+    sciErr = allocMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, numrow, numcol, &outindex);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
+
+    outindex[0] = getHandle((char *) getCurrentObject());
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -18,7 +18,9 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "localization.h"
 #include "sciCall.h"
 #include "BuildObjects.h"
 
@@ -33,9 +35,18 @@
 /*--------------------------------------------------------------------------*/
 int sci_xpolys(char *fname, unsigned long fname_len)
 {
-    int m1 = 0, n1 = 0, l1 = 0;
-    int m2 = 0, n2 = 0, l2 = 0;
-    int m3 = 0, n3 = 0, l3 = 0;
+    SciErr sciErr;
+
+    int* piAddrl1 = NULL;
+    double* l1 = NULL;
+    int* piAddrl2 = NULL;
+    double* l2 = NULL;
+    int* piAddr3 = NULL;
+    int* l3 = NULL;
+
+    int m1 = 0, n1 = 0;
+    int m2 = 0, n2 = 0;
+    int m3 = 0, n3 = 0;
 
     int i = 0;
     long hdl = 0;
@@ -48,36 +59,99 @@ int sci_xpolys(char *fname, unsigned long fname_len)
     int iVisible = 0;
     int *piVisible = &iVisible;
 
-    CheckRhs(2, 3);
+    CheckInputArgument(pvApiCtx, 2, 3);
 
-    GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
-    CheckSameDims(1, 2, m1, n1, m2, n2);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 1.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 2.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        return 1;
+    }
+
+    //CheckSameDims
+    if (m1 != m2 || n1 != n2)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, 1, m1, n1);
+        return 1;
+    }
+
 
     if (m1 * n1 == 0 || m2 * n2 == 0)
     {
         /* dimension 0, 0 polyline to draw */
-        LhsVar(1) = 0;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
-    pstSubWinUID = getOrCreateDefaultSubwin();
-    pstFigureUID = getCurrentFigure();
+    pstSubWinUID = (char*)getOrCreateDefaultSubwin();
+    pstFigureUID = (char*)getCurrentFigure();
     // Create compound.
     pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
     setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iFalse, jni_bool, 1);
     /* Sets the parent-child relationship for the Compound */
     setGraphicObjectRelationship(pstSubWinUID, pstCompoundUID);
 
-    if (Rhs == 3)
+    if (nbInputArgument(pvApiCtx) == 3)
     {
-        GetRhsVar(3, MATRIX_OF_INTEGER_DATATYPE, &m3, &n3, &l3);
-        CheckVector(3, m3, n3);
-        CheckDimProp(1, 3, m3 * n3 < n1);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 3.
+        sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddr3, &m3, &n3, &l3);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+            return 1;
+        }
+
+        //CheckVector
+        if (m3 != 1 && n3 != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 3);
+            return 1;
+        }
+
+        //CheckDimProp
+        if (m3 * n3 < n1)
+        {
+            Scierror(999, _("%s: Wrong size for input arguments: Incompatible sizes.\n"), fname);
+            return 1;
+        }
+
         /* Construct the polylines */
         for (i = 0; i < n1; ++i)
         {
-            Objpoly(stk(l1 + (i * m1)), stk(l2 + (i * m2)), m1, 0, *istk(l3 + i), &hdl);
+            Objpoly((l1 + (i * m1)), (l2 + (i * m2)), m1, 0, *(int*)(l3 + i), &hdl);
             // Add newly created object to Compound
             setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
         }
@@ -86,7 +160,7 @@ int sci_xpolys(char *fname, unsigned long fname_len)
     {
         for (i = 0; i < n1; ++i)
         {
-            Objpoly(stk(l1 + (i * m1)), stk(l2 + (i * m2)), m1, 0, 1, &hdl);
+            Objpoly((l1 + (i * m1)), (l2 + (i * m2)), m1, 0, 1, &hdl);
             // Add newly created object to Compound
             setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
         }
@@ -98,8 +172,8 @@ int sci_xpolys(char *fname, unsigned long fname_len)
 
     setCurrentObject(pstCompoundUID);
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

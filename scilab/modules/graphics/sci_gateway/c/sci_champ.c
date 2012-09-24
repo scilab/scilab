@@ -18,7 +18,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
 #include "DefaultCommandArg.h"
@@ -26,90 +26,186 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int sci_champ (char *fname,unsigned long fname_len)
+int sci_champ (char *fname, unsigned long fname_len)
 {
-    return sci_champ_G(fname,C2F(champ),fname_len);
+    return sci_champ_G(fname, C2F(champ), fname_len);
 }
 /*--------------------------------------------------------------------------*/
-int sci_champ1 (char *fname,unsigned long fname_len)
+int sci_champ1 (char *fname, unsigned long fname_len)
 {
-    return sci_champ_G(fname,C2F(champ1),fname_len);
+    return sci_champ_G(fname, C2F(champ1), fname_len);
 }
 /*--------------------------------------------------------------------------*/
 int sci_champ_G(char *fname,
                 int (*func) (double *, double *, double *, double *, int *, int *, char *, double *, double *, int),
                 unsigned long fname_len)
 {
+    SciErr sciErr;
     double arfact_def = 1.0;
     double * arfact = &arfact_def;
-    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0, m4 = 0, n4 = 0, l4 = 0;
-    static rhs_opts opts[]= { {-1,"arfact","?",0,0,0},
-                              {-1,"rect","?",0,0,0},
-                              {-1,"strf","?",0,0,0},
-                              {-1,NULL,NULL,0,0}};
+    int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0;
+    static rhs_opts opts[] =
+    {
+        { -1, "arfact", "?", 0, 0, 0},
+        { -1, "rect", "?", 0, 0, 0},
+        { -1, "strf", "?", 0, 0, 0},
+        { -1, NULL, NULL, 0, 0}
+    };
 
     char   * strf = NULL ;
     double * rect = NULL ;
 
-    CheckRhs(-1,7) ;
-    CheckLhs(0,1) ;
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
+    int* piAddr3 = NULL;
+    int* piAddr4 = NULL;
 
-    if (Rhs <= 0)
+    double* l1 = NULL;
+    double* l2 = NULL;
+    double* l3 = NULL;
+    double* l4 = NULL;
+
+    CheckInputArgument(pvApiCtx, -1, 7) ;
+    CheckOutputArgument(pvApiCtx, 0, 1) ;
+
+    if (nbInputArgument(pvApiCtx) <= 0)
     {
         sci_demo(fname, fname_len);
         return 0;
     }
-    else if ( Rhs < 4 )
+    else if (nbInputArgument(pvApiCtx) < 4)
     {
-        Scierror(999,_("%s: Wrong number of input arguments: At least %d expected.\n"),fname,4);
+        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), fname, 4);
         return 0;
     }
 
-    if ( get_optionals(fname,opts) == 0)
+    if (get_optionals(fname, opts) == 0)
     {
         return 0;
     }
 
     if ( FirstOpt() < 5 )
     {
-        Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname,1, 5);
+        Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 5);
         return -1;
     }
 
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
-    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
-    GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE, &m4, &n4, &l4);
-    CheckSameDims(3,4,m3,n3,m4,n4);
-    CheckDimProp(2,3,m2 * n2 != n3);
-    CheckDimProp(1,3,m1 * n1 != m3);
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 1.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 2.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 3.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr4);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 4.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr4, &m4, &n4, &l4);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //CheckSameDims
+    if (m3 != m4 || n3 != n4)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, 3, m3, n3);
+        return 1;
+    }
+
+    //CheckDimProp
+    if (m2 * n2 != n3)
+    {
+        Scierror(999, _("%s: Wrong size for input arguments: Incompatible sizes.\n"), fname);
+        return 1;
+    }
+
+    //CheckDimProp
+    if (m1 * n1 != m3)
+    {
+        Scierror(999, _("%s: Wrong size for input arguments: Incompatible sizes.\n"), fname);
+        return 1;
+    }
+
     if (m3 * n3 == 0)
     {
-        LhsVar(1) = 0;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
-    GetOptionalDoubleArg(fname,5,"arfact",&arfact,1,opts);
-    GetRect(fname,6,opts,&rect);
-    GetStrf(fname,7,opts,&strf);
+    GetOptionalDoubleArg(fname, 5, "arfact", &arfact, 1, opts);
+    GetRect(fname, 6, opts, &rect);
+    GetStrf(fname, 7, opts, &strf);
 
     getOrCreateDefaultSubwin();
 
     if ( isDefStrf( strf ) )
     {
         char strfl[4];
-        strcpy(strfl,DEFSTRFN);
+        strcpy(strfl, DEFSTRFN);
         strf = strfl;
         if ( !isDefRect( rect ) )
         {
-            strf[1]='5';
+            strf[1] = '5';
         }
     }
 
-    (*func)(stk(l1 ),stk(l2 ),stk(l3 ),stk(l4 ),&m3,&n3,strf,rect, arfact, 4L);
-    LhsVar(1) = 0;
-    PutLhsVar();
+    (*func)((l1 ), (l2 ), (l3 ), (l4 ), &m3, &n3, strf, rect, arfact, 4L);
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

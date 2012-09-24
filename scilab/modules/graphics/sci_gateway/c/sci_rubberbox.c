@@ -17,7 +17,7 @@
 /* desc : interface for rubberbox routine                                 */
 /*------------------------------------------------------------------------*/
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
@@ -35,15 +35,33 @@ static int returnRectAndButton(const double *_piJavaValues, int _iSelectedRectSi
 /*--------------------------------------------------------------------------*/
 static int getInitialRectangle(double initRect[4])
 {
+    SciErr sciErr;
     int rectNbRow = 0;
     int rectNbCol = 0;
-    int rectStackPointer = 0;
     int i = 0;
     int nbDims = 0;
     double * rect = NULL;
 
     /* Initial rect is always in first position */
-    GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &rectNbRow, &rectNbCol, &rectStackPointer);
+    //get variable address
+    int* piAddr1 = NULL;
+    double* rectStackPointer = NULL;
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 1.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &rectNbRow, &rectNbCol, &rectStackPointer);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), "rubberbox", 1);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
 
     /* We have found a matrix of double within the parameters check its dims */
     nbDims = rectNbCol * rectNbRow;
@@ -55,7 +73,7 @@ static int getInitialRectangle(double initRect[4])
 
 
     /* pointer on the stack */
-    rect = stk(rectStackPointer);
+    rect = (rectStackPointer);
 
     /* intialize to 0 */
     for (i = 0; i < 4; i++)
@@ -73,18 +91,36 @@ static int getInitialRectangle(double initRect[4])
 /*--------------------------------------------------------------------------*/
 static int getEditionMode(int rhsPos)
 {
-    int stackPointer = 0;
+    SciErr sciErr;
     int nbRow = 0;
     int nbCol = 0;
     BOOL isEditionModeOn = FALSE;
-    GetRhsVar(rhsPos, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &stackPointer);
+    //get variable address
+    int* piAddrrhsPos = NULL;
+    int* stackPointer = NULL;
+    sciErr = getVarAddressFromPosition(pvApiCtx, rhsPos, &piAddrrhsPos);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of boolean at position rhsPos.
+    sciErr = getMatrixOfBoolean(pvApiCtx, piAddrrhsPos, &nbRow, &nbCol, &stackPointer);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), "rubberbox", rhsPos);
+        return 1;
+    }
+
 
     if (nbRow * nbCol != 1)
     {
         return -1;
     }
 
-    isEditionModeOn = *istk(stackPointer);
+    isEditionModeOn = *(stackPointer);
     if (isEditionModeOn)
     {
         return 1;
@@ -98,55 +134,82 @@ static int getEditionMode(int rhsPos)
 /*--------------------------------------------------------------------------*/
 static int returnRectAndButton(const double *_piJavaValues, int _iSelectedRectSize)
 {
+    SciErr sciErr;
     int zero = 0;
     int one = 1;
-    int rectStackPointer = 0;
     int i = 0;
     int j = 0;
+    double* rectStackPointer = NULL;
 
     // button < 0 means user cancelled selection so return [] or [], []
     if (_piJavaValues[0] < 0)
     {
-        CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &rectStackPointer);
-        LhsVar(1) = Rhs + 1;
-        if (Lhs >= 2)
+        sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, zero, zero, &rectStackPointer);
+        if (sciErr.iErr)
         {
-            CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &zero, &zero, &rectStackPointer);
-            LhsVar(2) = Rhs + 2;
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), "rubberbox");
+            return 1;
         }
-        PutLhsVar();
+
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+        if (nbOutputArgument(pvApiCtx) >= 2)
+        {
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 2, zero, zero, &rectStackPointer);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), "rubberbox");
+                return 1;
+            }
+
+            AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
+        }
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
     /* return rectangle */
-    CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &one, &_iSelectedRectSize, &rectStackPointer);
+    sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, one, _iSelectedRectSize, &rectStackPointer);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), "rubberbox");
+        return 1;
+    }
+
     for ( i = 0; i < _iSelectedRectSize / 2; i++)
     {
         j = i + _iSelectedRectSize / 2;
-        stk(rectStackPointer)[i] = _piJavaValues[i + 1];
-        stk(rectStackPointer)[j] = _piJavaValues[i + 4];
+        (rectStackPointer)[i] = _piJavaValues[i + 1];
+        (rectStackPointer)[j] = _piJavaValues[i + 4];
     }
-    LhsVar(1) = Rhs + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 
     /* return button */
-    if (Lhs >= 2)
+    if (nbOutputArgument(pvApiCtx) >= 2)
     {
-        int buttonStackPointer = 0;
-        CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &buttonStackPointer);
-        *stk(buttonStackPointer) = _piJavaValues[0];
-        LhsVar(2) = Rhs + 2;
+        double* buttonStackPointer = NULL;
+        sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 2, one, one, &buttonStackPointer);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), "rubberbox");
+            return 1;
+        }
+
+        *(buttonStackPointer) = _piJavaValues[0];
+        AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
     }
 
-    PutLhsVar();
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 int sci_rubberbox(char * fname, unsigned long fname_len)
 {
-
     /* [final_rect, btn] = rubberbox([initial_rect],[edition_mode]) */
 
-    int button = 0;
     double initialRect[4] = {0.0, 0.0, 0.0, 0.0};
     int initialRectSize = 0;
 
@@ -158,20 +221,20 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 
     BOOL bClickMode = TRUE;
 
-    CheckRhs(0, 2);
-    CheckLhs(1, 2);
+    CheckInputArgument(pvApiCtx, 0, 2);
+    CheckOutputArgument(pvApiCtx, 1, 2);
     // iView == 1 => 2D
     // else 3D
     getGraphicObjectProperty(pSubwinUID, __GO_VIEW__, jni_int, (void**)&piView);
     getGraphicObjectProperty(pSubwinUID, __GO_PARENT__, jni_string, (void **)&pFigureUID);
 
-    if (Rhs == 0)
+    if (nbInputArgument(pvApiCtx) == 0)
     {
         /* rubberbox() */
         bClickMode = TRUE;
         initialRectSize = 0;
     }
-    else if (Rhs == 1)
+    else if (nbInputArgument(pvApiCtx) == 1)
     {
         // Check we are running 2D view rubberbox,
         // Otherwise initial_rect and edition_mode are not usable.
@@ -181,7 +244,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
             return -1;
         }
         /* rubberbox(initial_rect) or rubberbox(edition_mode) */
-        if (GetType(1) == sci_matrix)
+        if (checkInputArgumentType(pvApiCtx, 1, sci_matrix))
         {
             /* rubberbox(initial_rect) */
             if (getInitialRectangle(initialRect) == 1)
@@ -195,7 +258,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
                 return -1;
             }
         }
-        else if (GetType(1) == sci_boolean)
+        else if (checkInputArgumentType(pvApiCtx, 1, sci_boolean))
         {
             /* rubberbox(editionMode) */
             int editionModeStatus = getEditionMode(1);
@@ -223,7 +286,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
             return -1;
         }
     }
-    else if (Rhs == 2)
+    else if (nbInputArgument(pvApiCtx) == 2)
     {
         /* rubberbox(initial_rect, edition_mode) */
 
@@ -239,13 +302,13 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
             return -1;
         }
 
-        if (GetType(1) != sci_matrix)
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_matrix)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Real row vector expected.\n"), fname, 1);
             return -1;
         }
 
-        if (GetType(2) != sci_boolean)
+        if ((!checkInputArgumentType(pvApiCtx, 2, sci_boolean)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
             return -1;

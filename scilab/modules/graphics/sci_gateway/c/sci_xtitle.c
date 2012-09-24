@@ -18,7 +18,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "SetProperty.h"
 #include "MALLOC.h"
@@ -38,27 +38,34 @@
 /*--------------------------------------------------------------------------*/
 int sci_xtitle( char * fname, unsigned long fname_len )
 {
+    SciErr sciErr;
+
+    int* piAddr4 = NULL;
+    int* boxPtr = NULL;
+    int* piAddrStr = NULL;
+
     int  narg = 0;
     int  nbLabels = 0; /* number of modified labels */
     int  box = 0;
     BOOL isBoxSpecified = FALSE;
     char * psubwinUID = NULL;
-    static rhs_opts opts[] = { {-1,"boxed","i" ,0,0,0},
-    {-1,NULL   ,NULL,0,0,0} };
+    static rhs_opts opts[] = { { -1, "boxed", "i" , 0, 0, 0},
+        { -1, NULL   , NULL, 0, 0, 0}
+    };
 
-    if (Rhs <= 0)
+    if (nbInputArgument(pvApiCtx) <= 0)
     {
         sci_demo(fname, fname_len);
         return 0;
     }
 
-    CheckRhs(1,5);
+    CheckInputArgument(pvApiCtx, 1, 5);
 
 
-    nbLabels = Rhs;
+    nbLabels = nbInputArgument(pvApiCtx);
 
     /* get the given options from the name in opts */
-    if ( !get_optionals(fname,opts) )
+    if ( !get_optionals(fname, opts) )
     {
         /* error */
         return 0;
@@ -67,16 +74,36 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     /* compatibility with previous version in which box was put */
     /* at the fourth position */
 
-    if ( Rhs == 4 )
+    if ( nbInputArgument(pvApiCtx) == 4 )
     {
-        int type = GetType(4);
+        int type = getInputArgumentType(pvApiCtx, 4);
         if ( type == 1 || type == 8 )/* double or int */
         {
-            int n = 0,m = 0;
-            int boxPtr   = -1 ; /* pointer of box on the stack */
-            GetRhsVar(4,MATRIX_OF_INTEGER_DATATYPE,&m,&n,&boxPtr);
-            CheckScalar(4,m,n);
-            box = *istk( boxPtr );
+            int n = 0, m = 0;
+            sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr4);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 4.
+            sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddr4, &m, &n, &boxPtr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+                return 1;
+            }
+
+            //CheckScalar
+            if (m != 1 || n != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 4);
+                return 1;
+            }
+
+            box = *boxPtr;
             nbLabels--; /* it is not a label text */
             isBoxSpecified = TRUE;
         }
@@ -85,7 +112,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     if ( opts[0].position != -1 && !isBoxSpecified )
     {
         /* check if "box" is in the options */
-        box = *istk(opts[0].l) ;
+        box = opts[0].l;
         if ( opts[0].m * opts[0].n != 1 )
         {
             /* check size */
@@ -99,24 +126,37 @@ int sci_xtitle( char * fname, unsigned long fname_len )
 
     for ( narg = 1 ; narg <= nbLabels ; narg++)
     {
-        int m = 0,n = 0;
+        int m = 0, n = 0;
         char **Str = NULL;
         char * modifiedLabel = NULL;
 
-        GetRhsVar(narg,MATRIX_OF_STRING_DATATYPE,&m,&n,&Str);
+        sciErr = getVarAddressFromPosition(pvApiCtx, narg, &piAddrStr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of string at position narg.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m, &n, &Str))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, narg);
+            return 1;
+        }
+
         if ( m*n == 0 )
         {
             continue;
         }
 
-        switch(narg)
+        switch (narg)
         {
             case 1:
                 getGraphicObjectProperty(psubwinUID, __GO_TITLE__, jni_string, (void **)&modifiedLabel);
                 break;
             case 2:
                 getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, (void **)&modifiedLabel);
-            break;
+                break;
             case 3:
                 getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, (void **)&modifiedLabel);
                 break;
@@ -139,7 +179,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
         endFigureDataWriting(pFigure);
 #endif
 
-        freeArrayOfString(Str,m*n);
+        freeArrayOfString(Str, m * n);
     }
 
     setCurrentObject(psubwinUID);
@@ -147,7 +187,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     sciDrawObj(pFigure);
 #endif
 
-    LhsVar(1)=0;
+    AssignOutputVariable(pvApiCtx, 1) = 0;
     C2F(putlhsvar)();
     return 0;
 }

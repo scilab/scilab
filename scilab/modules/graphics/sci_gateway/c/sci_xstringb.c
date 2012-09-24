@@ -18,7 +18,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "sciCall.h"
 #include "freeArrayOfString.h"
@@ -26,7 +26,21 @@
 /*--------------------------------------------------------------------------*/
 int sci_xstringb(char *fname, unsigned long fname_len)
 {
-    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, l4 = 0, m5 = 0, n5 = 0, l5 = 0, m6 = 0, n6 = 0, l6 = 0;
+    SciErr sciErr;
+
+    int* piAddrl1 = NULL;
+    double* l1 = NULL;
+    int* piAddrl2 = NULL;
+    double* l2 = NULL;
+    int* piAddrStr = NULL;
+    int* piAddrl4 = NULL;
+    double* l4 = NULL;
+    int* piAddrl5 = NULL;
+    double* l5 = NULL;
+    int* piAddrl6 = NULL;
+    char* l6 = NULL;
+
+    int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, m5 = 0, n5 = 0, m6 = 0, n6 = 0;
     BOOL autoSize = TRUE ;
     double x = 0., y = 0., w = 0., hx = 0.;
     char **Str = NULL;
@@ -35,40 +49,151 @@ int sci_xstringb(char *fname, unsigned long fname_len)
     double userSize[2] ;
     int textBoxMode = 1; // 0 : off | 1 : centered | 2 : filled
 
-    if ( Rhs <= 0 )
+    if ( nbInputArgument(pvApiCtx) <= 0 )
     {
         /* demo */
         sci_demo(fname, fname_len);
         return 0 ;
     }
 
-    CheckRhs(5, 6);
+    CheckInputArgument(pvApiCtx, 5, 6);
 
-    GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-    CheckScalar(1, m1, n1);
-    x = *stk(l1);
-    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
-    CheckScalar(2, m2, n2);
-    y = *stk(l2);
-    GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &m3, &n3, &Str);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 1.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        return 1;
+    }
+
+    //CheckScalar
+    if (m1 != 1 || n1 != 1)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 1);
+        return 1;
+    }
+
+    x = *l1;
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 2.
+    // YOU MUST REMOVE YOUR VARIABLE DECLARATION "int l2".
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        return 1;
+    }
+
+    //CheckScalar
+    if (m2 != 1 || n2 != 1)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 2);
+        return 1;
+    }
+
+    y = *l2;
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrStr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of string at position 3.
+    if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m3, &n3, &Str))
+    {
+        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+        return 1;
+    }
+
     if ( m3*n3 == 0 )
     {
-        LhsVar(1) = 0;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
-    GetRhsVar(4, MATRIX_OF_DOUBLE_DATATYPE, &m4, &n4, &l4);
-    CheckScalar(4, m4, n4);
-    w = *stk(l4);
-    GetRhsVar(5, MATRIX_OF_DOUBLE_DATATYPE, &m5, &n5, &l5);
-    CheckScalar(5, m5, n5);
-    hx = *stk(l5);
-
-    if (Rhs == 6)
+    sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddrl4);
+    if (sciErr.iErr)
     {
-        GetRhsVar(6, STRING_DATATYPE, &m6, &n6, &l6);
-        if ( m6*n6 != 0 && strcmp(cstk(l6), "fill") == 0 )
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 4.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl4, &m4, &n4, &l4);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        return 1;
+    }
+
+    //CheckScalar
+    if (m4 != 1 || n4 != 1)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 4);
+        return 1;
+    }
+
+    w = *l4;
+    sciErr = getVarAddressFromPosition(pvApiCtx, 5, &piAddrl5);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 5.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl5, &m5, &n5, &l5);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        return 1;
+    }
+
+    //CheckScalar
+    if (m5 != 1 || n5 != 1)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 5);
+        return 1;
+    }
+
+    hx = *l5;
+
+    if (nbInputArgument(pvApiCtx) == 6)
+    {
+        sciErr = getVarAddressFromPosition(pvApiCtx, 6, &piAddrl6);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 6.
+        if (getAllocatedSingleString(pvApiCtx, piAddrl6, &l6))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 6);
+            return 1;
+        }
+
+        if ( m6*n6 != 0 && strcmp((l6), "fill") == 0 )
         {
             autoSize = FALSE ;
             textBoxMode = 2;
@@ -78,6 +203,8 @@ int sci_xstringb(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 6, "fill");
             return 0;
         }
+
+        freeAllocatedSingleString(l6);
     }
 
     userSize[0] = w ;
@@ -86,8 +213,8 @@ int sci_xstringb(char *fname, unsigned long fname_len)
 
     freeArrayOfString(Str, m3 * n3);
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 

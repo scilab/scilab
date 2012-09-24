@@ -18,7 +18,9 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "localization.h"
 #include "BuildObjects.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
@@ -30,10 +32,10 @@ int sci_drawlater( char * fname, unsigned long fname_len )
     char* pFigureUID = NULL;
     char* pSubwinUID = NULL;
 
-    CheckRhs(0, 0);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 0, 0);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if (Rhs <= 0)
+    if (nbInputArgument(pvApiCtx) <= 0)
     {
         pSubwinUID = (char*)getOrCreateDefaultSubwin();
         if (pSubwinUID != NULL)
@@ -46,8 +48,8 @@ int sci_drawlater( char * fname, unsigned long fname_len )
         }
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

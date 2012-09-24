@@ -18,7 +18,7 @@
 /*------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "DrawObjects.h"
@@ -47,26 +47,47 @@ int xsetg(char * str, char * str1, int lx0, int lx1) ;
 /*--------------------------------------------------------------------------*/
 int sci_xset( char *fname, unsigned long fname_len )
 {
-    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, xm[5], xn[5], x[5] = {0, 0, 0, 0, 0}, i = 0, v = 0;
-    int lr = 0;
+    SciErr sciErr;
+
+    int* piAddrl1 = NULL;
+    char* l1 = NULL;
+    int* piAddrl2 = NULL;
+    char* l2 = NULL;
+    int* piAddrlr = NULL;
+    double* lr = NULL;
+
+    int m1 = 0, m2 = 0, xm[5], xn[5], x[5] = {0, 0, 0, 0, 0}, i = 0, v = 0;
     double  xx[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
     char * subwinUID = NULL;
     BOOL keyFound = FALSE ;
 
-    if (Rhs <= 0)
+    if (nbInputArgument(pvApiCtx) <= 0)
     {
         sci_demo(fname, fname_len);
         return 0;
     }
 
-    CheckRhs(1, 6);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 1, 6);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 1.
+    if (getAllocatedSingleString(pvApiCtx, piAddrl1, &l1))
+    {
+        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+        return 1;
+    }
+
 
     for ( i = 0 ; i < NUMSETFONC ; i++ )
     {
-        if ( strcmp(cstk(l1), KeyTab_[i]) == 0 )
+        if ( strcmp(l1, KeyTab_[i]) == 0 )
         {
             keyFound = TRUE ;
             break ;
@@ -75,42 +96,70 @@ int sci_xset( char *fname, unsigned long fname_len )
 
     if ( !keyFound )
     {
-        Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
+        Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, (l1));
         return 0;
     }
 
     /* Allan CORNET Avril 2004 */
     /* Bloque la commande xset('window') sans numero de fenetre */
-    if (Rhs == 1 && (strcmp(cstk(l1), "window") == 0) )
+    if (nbInputArgument(pvApiCtx) == 1 && (strcmp((l1), "window") == 0) )
     {
         Scierror(999, _("%s : '%s' must be set\n"), fname, "window-number");
         return 0;
     }
 
-    if (Rhs == 2 && VarType(2) != sci_matrix)
+    if (nbInputArgument(pvApiCtx) == 2 && (!checkInputArgumentType(pvApiCtx, 2, sci_matrix)))
     {
         /* second argument is not a scalar it must be a string */
-        GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
-        xsetg(cstk(l1), cstk(l2), m1, m2);
-        LhsVar(1) = 0;
-        PutLhsVar();
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 2.
+        if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+            return 1;
+        }
+
+        xsetg(l1, l2, m1, m2);
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
-    if (Rhs == 1 && strcmp(cstk(l1), "default") == 0)
+    if (nbInputArgument(pvApiCtx) == 1 && strcmp((l1), "default") == 0)
     {
         /* first treatment for xsetg : then we continue */
-        xsetg(cstk(l1), "void", m1, 4L);
+        xsetg((l1), "void", m1, 4L);
     }
 
-    for ( i = 2 ; i <= Rhs ; i++ )
+    for ( i = 2 ; i <= nbInputArgument(pvApiCtx) ; i++ )
     {
-        GetRhsVar(i, MATRIX_OF_DOUBLE_DATATYPE, &xm[i - 2], &xn[i - 2], &lr);
-        x[i - 2] = (int)  * stk(lr);
-        xx[i - 2] = *stk(lr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddrlr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position i.
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddrlr, &xm[i - 2], &xn[i - 2], &lr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, i);
+            return 1;
+        }
+
+        x[i - 2] = (int)lr[0];
+        xx[i - 2] = lr[0];
     }
 
-    if (strcmp(cstk(l1), "wdim") == 0 || strcmp(cstk(l1), "wpdim") == 0)
+    if (strcmp((l1), "wdim") == 0 || strcmp((l1), "wpdim") == 0)
     {
         /* Xwindows limits dimensions to 2^16 */
         if ( (x[0] > 65535) || (x[1] > 65535))
@@ -123,23 +172,37 @@ int sci_xset( char *fname, unsigned long fname_len )
         }
     }
 
-    if (strcmp(cstk(l1), "clipping") == 0)
+    if (strcmp((l1), "clipping") == 0)
     {
         int clipState = 2;
-        if (Rhs != 5 && Rhs != 2)
+        if (nbInputArgument(pvApiCtx) != 5 && nbInputArgument(pvApiCtx) != 2)
         {
             Scierror(999, _("%s: Wrong number of input argument: %d or %d expected.\n"), fname, 2, 5);
             return 1;
         }
 
-        if (Rhs == 2)
+        if (nbInputArgument(pvApiCtx) == 2)
         {
             int i = 0;
-            int lr = 0;
             int iRows = 0;
             int iCols = 0;
 
-            GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &lr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrlr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 2.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrlr, &iRows, &iCols, &lr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+                return 1;
+            }
+
 
             if (iRows * iCols != 4)
             {
@@ -149,21 +212,21 @@ int sci_xset( char *fname, unsigned long fname_len )
 
             for (i = 0; i < 4 ; i++)
             {
-                xx[i] = *stk(lr + i);
+                xx[i] = lr[i];
             }
         }
         subwinUID = (char*)getOrCreateDefaultSubwin();
         setGraphicObjectProperty(subwinUID, __GO_CLIP_BOX__, xx, jni_double_vector, 4);
         setGraphicObjectProperty(subwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "colormap") == 0)
+    else if ( strcmp((l1), "colormap") == 0)
     {
         char *pFigureUID = NULL;
         getOrCreateDefaultSubwin();
         pFigureUID = (char*)getCurrentFigure();
-        setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, stk(lr), jni_double_vector, *xm * (*xn));
+        setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, (lr), jni_double_vector, *xm * (*xn));
     }
-    else if ( strcmp(cstk(l1), "mark size") == 0)
+    else if ( strcmp((l1), "mark size") == 0)
     {
         int markSize = (int) xx[0];
         int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
@@ -172,13 +235,13 @@ int sci_xset( char *fname, unsigned long fname_len )
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "mark") == 0)
+    else if ( strcmp((l1), "mark") == 0)
     {
         int markStyle = (int) xx[0];
         int markSize = (int) xx[1];
         int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
         char *subwinUID = NULL;
-        if (Rhs != 3)
+        if (nbInputArgument(pvApiCtx) != 3)
         {
             Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 3);
             return -1;
@@ -189,13 +252,13 @@ int sci_xset( char *fname, unsigned long fname_len )
         setGraphicObjectProperty(subwinUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "font size") == 0)
+    else if ( strcmp((l1), "font size") == 0)
     {
         double fontSize = xx[0];
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
     }
-    else if ( strcmp(cstk(l1), "default") == 0 )
+    else if ( strcmp((l1), "default") == 0 )
     {
         // default color map
         unsigned short defcolors[] =
@@ -262,8 +325,8 @@ int sci_xset( char *fname, unsigned long fname_len )
         {
             pFigureUID = createNewFigureWithAxes();
             setCurrentFigure(pFigureUID);
-            LhsVar(1) = 0;
-            PutLhsVar();
+            AssignOutputVariable(pvApiCtx, 1) = 0;
+            ReturnArguments(pvApiCtx);
             free(pdblColorMap);
             return 0;
         }
@@ -329,30 +392,30 @@ int sci_xset( char *fname, unsigned long fname_len )
         setGraphicObjectProperty(pFigureUID, __GO_PARENT__, "", jni_string, 1);
 
     }
-    else if ( strcmp(cstk(l1), "clipgrf") == 0 )
+    else if ( strcmp((l1), "clipgrf") == 0 )
     {
         int clipState = 1;
         /* special treatement for xset("cligrf") */
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, &clipState, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "clipoff") == 0 )
+    else if ( strcmp((l1), "clipoff") == 0 )
     {
         int clipState = 0;
         /* special treatement for xset("clipoff") */
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, &clipState, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "hidden3d") == 0 )
+    else if ( strcmp((l1), "hidden3d") == 0 )
     {
         /* special treatement for xset("hidden3d") */
         int hiddenColor = (int) x[0];
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "font") == 0)
+    else if ( strcmp((l1), "font") == 0)
     {
         int fontStyle = (int) xx[0];
         double fontSize = xx[1];
-        if (Rhs != 3)
+        if (nbInputArgument(pvApiCtx) != 3)
         {
             Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 3);
             return -1;
@@ -361,7 +424,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "window") == 0 || strcmp(cstk(l1), "figure") == 0 )
+    else if ( strcmp((l1), "window") == 0 || strcmp((l1), "figure") == 0 )
     {
         // Find if window already exists, if not create a new one
         int iID = x[0];
@@ -374,54 +437,54 @@ int sci_xset( char *fname, unsigned long fname_len )
         }
         setCurrentFigure(pFigureUID);
     }
-    else if (( strcmp(cstk(l1), "foreground") == 0) || (strcmp(cstk(l1), "color") == 0) || ( strcmp(cstk(l1), "pattern") == 0) )
+    else if (( strcmp((l1), "foreground") == 0) || (strcmp((l1), "color") == 0) || ( strcmp((l1), "pattern") == 0) )
     {
         int iColor = (int) x[0];
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_COLOR__, &iColor, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "background") == 0)
+    else if ( strcmp((l1), "background") == 0)
     {
         int iColor = (int) x[0];
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_BACKGROUND__, &iColor, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "thickness") == 0)
+    else if ( strcmp((l1), "thickness") == 0)
     {
         sciSetLineWidth((char*)getOrCreateDefaultSubwin(), x[0]);
     }
-    else if ( strcmp(cstk(l1), "line style") == 0)
+    else if ( strcmp((l1), "line style") == 0)
     {
         int lineStyle = (int) x[0];
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "mark") == 0)
+    else if ( strcmp((l1), "mark") == 0)
     {
         int markMode = 1;
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_MARK_MODE__, &markMode, jni_bool, 1);
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_MARK_STYLE__, x, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "colormap") == 0)
+    else if ( strcmp((l1), "colormap") == 0)
     {
         getOrCreateDefaultSubwin();
-        setGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP__, stk(lr), jni_double_vector, xm[0] * xn[0]);
+        setGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP__, (lr), jni_double_vector, xm[0] * xn[0]);
     }
-    else if ( strcmp(cstk(l1), "dashes") == 0)
+    else if ( strcmp((l1), "dashes") == 0)
     {
         int lineStyle = (int) x[0];
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
     }
-    else if ( strcmp(cstk(l1), "wresize") == 0)
+    else if ( strcmp((l1), "wresize") == 0)
     {
         int iAutoResizeMode = x[0];
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTORESIZE__, &iAutoResizeMode, jni_bool, 1);
     }
-    else if ( strcmp(cstk(l1), "wpos") == 0)
+    else if ( strcmp((l1), "wpos") == 0)
     {
         int figurePosition[2];
-        if (Rhs != 2)
+        if (nbInputArgument(pvApiCtx) != 2)
         {
             Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 2);
             return -1;
@@ -432,10 +495,10 @@ int sci_xset( char *fname, unsigned long fname_len )
         figurePosition[1] = x[1];
         setGraphicObjectProperty(getCurrentFigure(), __GO_POSITION__, figurePosition, jni_int_vector, 2);
     }
-    else if ( strcmp(cstk(l1), "wpdim") == 0 || strcmp(cstk(l1), "wdim") == 0)
+    else if ( strcmp((l1), "wpdim") == 0 || strcmp((l1), "wdim") == 0)
     {
         int figureSize[2];
-        if (Rhs != 2 && Rhs != 3)
+        if (nbInputArgument(pvApiCtx) != 2 && nbInputArgument(pvApiCtx) != 3)
         {
             Scierror(999, _("%s: Wrong number of input argument: %d or %d expected.\n"), fname, 2, 3);
             return -1;
@@ -446,14 +509,14 @@ int sci_xset( char *fname, unsigned long fname_len )
         figureSize[1] = x[1];
         setGraphicObjectProperty(getCurrentFigure(), __GO_SIZE__, figureSize, jni_int_vector, 2);
     } /*Ajout A.Djalel le 10/11/03 */
-    else if ( strcmp(cstk(l1), "pixmap") == 0)
+    else if ( strcmp((l1), "pixmap") == 0)
     {
         int iPixmapMode = x[0];
         getOrCreateDefaultSubwin();
 
         setGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, &iPixmapMode, jni_bool, 1);
     }
-    else if ( strcmp(cstk(l1), "wshow") == 0)
+    else if ( strcmp((l1), "wshow") == 0)
     {
         if (getWarningMode())
         {
@@ -462,13 +525,13 @@ int sci_xset( char *fname, unsigned long fname_len )
             sciprint(_("WARNING: %s\n"), _("Please use drawlater/drawnow instead."));
         }
     }
-    else if (strcmp(cstk(l1), "viewport") == 0)
+    else if (strcmp((l1), "viewport") == 0)
     {
         int viewport[4] = {x[0], x[1], 0, 0};
         getOrCreateDefaultSubwin();
         setGraphicObjectProperty(getCurrentFigure(), __GO_VIEWPORT__, viewport, jni_int_vector, 2);
     }
-    else if (strcmp(cstk(l1), "wwpc") == 0)
+    else if (strcmp((l1), "wwpc") == 0)
     {
         if (getWarningMode())
         {
@@ -477,7 +540,7 @@ int sci_xset( char *fname, unsigned long fname_len )
             sciprint(_("WARNING: %s\n"), _("Please use drawlater/drawnow instead."));
         }
     }
-    else if (strcmp(cstk(l1), "line mode") == 0)
+    else if (strcmp((l1), "line mode") == 0)
     {
         char *pstSubwinUID = (char*)getOrCreateDefaultSubwin();
         int iZero = 0;
@@ -493,12 +556,14 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else
     {
-        Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
+        Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, (l1));
         return 0;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
+    freeAllocatedSingleString(l1);
+    freeAllocatedSingleString(l2);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
