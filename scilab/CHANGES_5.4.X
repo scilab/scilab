@@ -8,27 +8,27 @@ CSV features
 * New functions added:
   - csvRead: Read a CSV file.
   - csvWrite: Write data into a CSV file.
-  - csvTextscan: Transform a CSV line into a matrix
+  - csvTextscan: Transform a CSV line into a matrix.
   - csvDefault: Configure the CSV behavior.
 
 * csvRead and cvsWrite provide the same features as read_csv and write_csv
   with major improvements in term of usability and performances:
-  - Write performances improved to a 100x factor.
-  - Read performances improved from 3x to 200x factor.
+  - Writing performances are improved to a 100x factor.
+  - Reading performances are improved from 3x to 200x factor.
 
-* Bug #8349 fixed - write_csv() failed to support writting complexes with %nan
-                    or %inf parts.
+* Bug #8349 fixed - write_csv() failed to support the writing of complexes with 
+                    %nan or %inf parts.
 
-* Bug #8653 fixed - csvRead returns double values by default.
-                    (read_csv still return string values)
+* Bug #8653 fixed - csvRead now returns double values by default.
+                    (read_csv still returns string values)
 
 * Bug #8654 fixed - write_csv did not use the standard separator and decimal mark.
 
 * Bug #8656 fixed - write_csv had accuracy issues.
 
-* Bug #9969 fixed - Performances of CSV functions were bad for large files.
+* Bug #9969 fixed - Issues of performances of CSV functions for large files.
 
-* Bug #10203 fixed - The help pages of CSV function did not details the encoding
+* Bug #10203 fixed - The help pages of CSV function did not detail the encoding
                      management.
 
 
@@ -39,7 +39,7 @@ Signal Processing
   - dct - Discrete cosine transform (based on FFTW library).
   - idct - Inverse discrete cosine transform (based on FFTW library).
   - dst - Discrete sine transform (based on FFTW library).
-  - idst - Discrete sine transform (based on FFTW library).
+  - idst - Inverse discrete sine transform (based on FFTW library).
 
 
 Windows version
@@ -54,15 +54,16 @@ Windows version
 Xcos
 ====
 
-* Bug #9075 fixed - Demo Xcos/Control systems/inverted pendulum
+* Bug #9075 fixed - The inverted pendulum demonstration in Xcos/Control systems
                     opened a useless graphic windows
 
-* Bug #10433 fixed - Xcos stop simulation button
+* Bug #10433 fixed - Xcos stop simulation button did not work properly.
 
-* Bug #10943 fixed - Accented character in the file path broke file loading.
+* Bug #10943 fixed - Accented character in the file path broke file loading 
+                     in Xcos.
 
-* Bug #11717 fixed - Setting recent opened file number in preferences GUI
-                     did not apply in Xcos menu.
+* Bug #11717 fixed - Setting recent opened file number in the preferences GUI
+                     was not applied in Xcos menu.
 
 * Bug #11747 fixed - Modelica block text was visible under the block image.
 
@@ -78,15 +79,15 @@ Compilation
 Bug Fixes
 =========
 
-* Bug #7874 fixed - The help page of qp_solve did not give enough information
+* Bug #7874 fixed - qp_solve help page did not give enough information
                     about iact.
 
 * Bug #8799 fixed - gsort did not work with hypermatrices.
 
-* Bug #10346 fixed - An uicontrol was visible during few milliseconds even if
+* Bug #10346 fixed - An uicontrol was visible during a few milliseconds even if
                      its "Visible" property was set to "off".
 
-* Bug #10559 fixed - Sspectral estimation demonstration failed if the graphic
+* Bug #10559 fixed - Spectral estimation demonstration failed if the graphic
                      figure was closed.
 
 * Bug #10840 fixed - Keyboard arrows were disabled on 'Slider' uicontrols.
@@ -113,15 +114,15 @@ Bug Fixes
 * Bug #11802 fixed - mrfit function redefined the diff function.
 
 * Bug #11810 fixed - In EditVar, undesired data were added when the edition
-                     is cancelled.
+                     was cancelled.
 
 * Bug #11810 fixed - In BrowseVar, contents of "visibility" column were left
                      aligned.
 
-* Bug #11810 fixed - In Editvar, under mac OS, there was no vertical/horizontal
+* Bug #11810 fixed - In Editvar, under Mac OS, there was no vertical/horizontal
                      lines.
 
-* Bug #11834 fixed - In SciNotes there was not a menu to set font or colors.
+* Bug #11834 fixed - New menu to set font or colors in SciNotes.
 
 * Bug #11838 fixed - Maximized state of a window was not saved in quitting.
 
@@ -129,7 +130,7 @@ Bug Fixes
 
 * Bug #11842 fixed - CTRL+X did not work in Scilab console.
 
-* Bug #11861 fixed - There was sometimes an exception when closing a figure.
+* Bug #11861 fixed - An exception could occur when closing a figure.
 
 * Bug #11865 fixed - There was no information about a LaTeX error in doc
                      generation.
