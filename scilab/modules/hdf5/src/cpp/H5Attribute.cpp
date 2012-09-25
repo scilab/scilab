@@ -145,15 +145,15 @@ void H5Attribute::copy(H5Object & parent, const std::string & name)
     H5Attribute::copy(this->getH5Id(), parent.getH5Id(), name);
 }
 
-hid_t H5Attribute::create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t space, void * data)
+hid_t H5Attribute::create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data)
 {
-    return create(loc.getH5Id(), name, type, targettype, space, data);
+    return create(loc.getH5Id(), name, type, targettype, srcspace, targetspace, data);
 }
 
-hid_t H5Attribute::create(const hid_t loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t space, void * data)
+hid_t H5Attribute::create(const hid_t loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data)
 {
     herr_t err;
-    hid_t attr = H5Acreate2(loc, name.c_str(), targettype, space, H5P_DEFAULT, H5P_DEFAULT);
+    hid_t attr = H5Acreate2(loc, name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, H5P_DEFAULT);
     if (attr < 0)
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot create a new attribute."));
@@ -216,7 +216,7 @@ void H5Attribute::copy(const hid_t src, const hid_t dest, const std::string & na
 
     try
     {
-        hid_t attr = create(dest, name, type, type, space, data);
+        hid_t attr = create(dest, name, type, type, space, space, data);
         H5Aclose(attr);
         H5Sclose(space);
         H5Tclose(type);

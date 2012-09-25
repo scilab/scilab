@@ -109,6 +109,14 @@ public:
         return H5Tcopy(H5T_NATIVE_ULONG);
     }
 
+    static hid_t getBaseType(char ** data)
+    {
+        hid_t type = H5Tcopy(H5T_C_S1);
+        herr_t err = H5Tset_size(type, H5T_VARIABLE);
+
+        return type;
+    }
+
     static hid_t getBaseType(const std::string & type)
     {
         std::string upper(type);

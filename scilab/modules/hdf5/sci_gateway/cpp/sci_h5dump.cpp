@@ -33,9 +33,10 @@ int sci_h5dump(char *fname, unsigned long fname_len)
     H5Object * hobj = 0;
     SciErr err;
     int * addr = 0;
-    char * path = 0;
+    char * str = 0;
     char * expandedPath = 0;
-    char * name = 0;
+    std::string name;
+    std::string _expandedPath;
     std::map<haddr_t, std::string> visited;
     bool mustDelete = true;
     const int nbIn = nbInputArgument(pvApiCtx);
@@ -59,11 +60,14 @@ int sci_h5dump(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (getAllocatedSingleString(pvApiCtx, addr, &name) != 0)
+        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
+
+        name = std::string(str);
+        freeAllocatedSingleString(str);
     }
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
@@ -108,29 +112,29 @@ int sci_h5dump(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
+        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
-        expandedPath = expandPathVariable(path);
-        freeAllocatedSingleString(path);
+        expandedPath = expandPathVariable(str);
+        _expandedPath = std::string(expandedPath);
+        FREE(expandedPath);
+        freeAllocatedSingleString(str);
         try
         {
             if (nbIn == 2)
             {
-                hobj = new H5File((const char *)expandedPath, (const char *)name, "r");
+                hobj = new H5File(_expandedPath, name, "r");
             }
             else
             {
-                hobj = new H5File((const char *)expandedPath, "/", "r");
+                hobj = new H5File(_expandedPath, "/", "r");
             }
-            FREE(expandedPath);
         }
         catch (const std::exception & e)
         {
             Scierror(999, _("%s: %s\n"), fname, e.what());
-            FREE(expandedPath);
             return 0;
         }
     }

@@ -276,16 +276,16 @@ std::string H5Dataset::toString(const unsigned int indentLevel) const
     return os.str();
 }
 
-hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t space, void * data)
+hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data)
 {
     herr_t err;
-    hid_t dataset = H5Dcreate2(loc.getH5Id(), name.c_str(), targettype, space, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    hid_t dataset = H5Dcreate2(loc.getH5Id(), name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     if (dataset < 0)
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot create a new dataset."));
     }
 
-    err = H5Dwrite(dataset, type, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
+    err = H5Dwrite(dataset, type, srcspace, H5S_ALL, H5P_DEFAULT, data);
     if (err < 0)
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot write data in the dataset."));
