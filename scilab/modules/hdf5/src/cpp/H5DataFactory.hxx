@@ -45,7 +45,7 @@ private:
     static H5Data & getFloatingData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
     static H5StringData & getStringData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
     static H5TimeData & getTimeData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
-    static H5BitfieldData & getBitfieldData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
+    static H5Data & getBitfieldData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
     static H5OpaqueData & getOpaqueData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
     static H5Data & getCompoundData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
     static H5ReferenceData & getReferenceData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);

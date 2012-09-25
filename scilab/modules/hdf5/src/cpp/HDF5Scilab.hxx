@@ -271,9 +271,9 @@ public:
     {
         T * newobj = 0;
         SciErr err;
-        const hsize_t dims[2] = {0, 0};
-        int * row = (int *)&dims[0];
-        int * col = (int *)&dims[1];
+        hsize_t dims[2] = {0, 0};
+        int row;
+        int col;
         int type;
 
         err = getVarType(pvApiCtx, addr, &type);
@@ -294,11 +294,13 @@ public:
                 }
                 else
                 {
-                    err = getMatrixOfDouble(pvApiCtx, addr, row, col, &mat);
+                    err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, &mat);
                     if (err.iErr)
                     {
                         throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                     }
+                    dims[0] = col;
+                    dims[1] = row;
                     newobj = &HDF5Scilab::create<double, T>(obj, name, 2, dims, 0, mat, targetType, size, start, stride, count, block);
                 }
                 break;
@@ -317,69 +319,85 @@ public:
                 switch (prec)
                 {
                     case SCI_INT8 :
-                        err = getMatrixOfInteger8(pvApiCtx, addr, row, col, (char **)(&ints));
+                        err = getMatrixOfInteger8(pvApiCtx, addr, &row, &col, (char **)(&ints));
                         if (err.iErr)
                         {
                             throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                         }
+                        dims[0] = col;
+                        dims[1] = row;
                         newobj = &HDF5Scilab::create<char, T>(obj, name, 2, dims, 0, (char *)ints, targetType, size, start, stride, count, block);
                         break;
                     case SCI_UINT8 :
-                        err = getMatrixOfUnsignedInteger8(pvApiCtx, addr, row, col, (unsigned char **)(&ints));
+                        err = getMatrixOfUnsignedInteger8(pvApiCtx, addr, &row, &col, (unsigned char **)(&ints));
                         if (err.iErr)
                         {
                             throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                         }
+                        dims[0] = col;
+                        dims[1] = row;
                         newobj = &HDF5Scilab::create<unsigned char, T>(obj, name, 2, dims, 0, (unsigned char *)ints, targetType, size, start, stride, count, block);
                         break;
                     case SCI_INT16 :
-                        err = getMatrixOfInteger16(pvApiCtx, addr, row, col, (short **)(&ints));
+                        err = getMatrixOfInteger16(pvApiCtx, addr, &row, &col, (short **)(&ints));
                         if (err.iErr)
                         {
                             throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                         }
+                        dims[0] = col;
+                        dims[1] = row;
                         newobj = &HDF5Scilab::create<short, T>(obj, name, 2, dims, 0, (short *)ints, targetType, size, start, stride, count, block);
                         break;
                     case SCI_UINT16 :
-                        err = getMatrixOfUnsignedInteger16(pvApiCtx, addr, row, col, (unsigned short **)(&ints));
+                        err = getMatrixOfUnsignedInteger16(pvApiCtx, addr, &row, &col, (unsigned short **)(&ints));
                         if (err.iErr)
                         {
                             throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                         }
+                        dims[0] = col;
+                        dims[1] = row;
                         newobj = &HDF5Scilab::create<unsigned short, T>(obj, name, 2, dims, 0, (unsigned short *)ints, targetType, size, start, stride, count, block);
                         break;
                     case SCI_INT32 :
-                        err = getMatrixOfInteger32(pvApiCtx, addr, row, col, (int**)(&ints));
+                        err = getMatrixOfInteger32(pvApiCtx, addr, &row, &col, (int**)(&ints));
                         if (err.iErr)
                         {
                             throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                         }
+                        dims[0] = col;
+                        dims[1] = row;
                         newobj = &HDF5Scilab::create<int, T>(obj, name, 2, dims, 0, (int *)ints, targetType, size, start, stride, count, block);
                         break;
                     case SCI_UINT32 :
-                        err = getMatrixOfUnsignedInteger32(pvApiCtx, addr, row, col, (unsigned int **)(&ints));
+                        err = getMatrixOfUnsignedInteger32(pvApiCtx, addr, &row, &col, (unsigned int **)(&ints));
                         if (err.iErr)
                         {
                             throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                         }
+                        dims[0] = col;
+                        dims[1] = row;
                         newobj = &HDF5Scilab::create<unsigned int, T>(obj, name, 2, dims, 0, (unsigned int *)ints, targetType, size, start, stride, count, block);
                         break;
 
 #ifdef __SCILAB_INT64__
                     case SCI_INT64 :
-                        err = getMatrixOfInteger64(pvApiCtx, addr, row, col, (long long **)(&ints));
+                        err = getMatrixOfInteger64(pvApiCtx, addr, &row, &col, (long long **)(&ints));
                         if (err.iErr)
                         {
                             throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                         }
+                        dims[0] = col;
+                        dims[1] = row;
                         newobj = &HDF5Scilab::create<long long, T>(obj, name, 2, dims, 0, (long long *)ints, targetType, size, start, stride, count, block);
                         break;
                     case SCI_UINT64 :
-                        err = getMatrixOfUnsignedInteger64(pvApiCtx, addr, row, col, (unsigned long long **)(&ints));
+                        err = getMatrixOfUnsignedInteger64(pvApiCtx, addr, &row, &col, (unsigned long long **)(&ints));
                         if (err.iErr)
                         {
                             throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                         }
+                        dims[0] = col;
+                        dims[1] = row;
                         newobj = &HDF5Scilab::create<unsigned long long, T>(obj, name, 2, dims, 0, (unsigned long long *)ints, targetType, size, start, stride, count, block);
                         break;
 #endif
@@ -389,32 +407,36 @@ public:
             case sci_strings :
             {
                 char ** matS = 0;
-                if (getAllocatedMatrixOfString(pvApiCtx, addr, row, col, &matS))
+                if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &matS))
                 {
                     throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                 }
                 try
                 {
+                    dims[0] = col;
+                    dims[1] = row;
                     newobj = &HDF5Scilab::create<char *, T>(obj, name, 2, dims, 0, matS, targetType, size, start, stride, count, block);
                 }
                 catch (const H5Exception & e)
                 {
-                    freeAllocatedMatrixOfString(*row, *col, matS);
+                    freeAllocatedMatrixOfString(*&row, *&col, matS);
                     throw;
                 }
 
-                freeAllocatedMatrixOfString(*row, *col, matS);
+                freeAllocatedMatrixOfString(*&row, *&col, matS);
                 break;
             }
             case sci_boolean :
             {
                 int * matB;
 
-                err = getMatrixOfBoolean(pvApiCtx, addr, row, col, &matB);
+                err = getMatrixOfBoolean(pvApiCtx, addr, &row, &col, &matB);
                 if (err.iErr)
                 {
                     throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                 }
+                dims[0] = col;
+                dims[1] = row;
                 newobj = &HDF5Scilab::create<int, T>(obj, name, 2, dims, 0, matB, targetType, size, start, stride, count, block);
                 break;
             }
