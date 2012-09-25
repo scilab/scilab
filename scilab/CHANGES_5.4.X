@@ -16,7 +16,7 @@ CSV features
   - Writing performances are improved to a 100x factor.
   - Reading performances are improved from 3x to 200x factor.
 
-* Bug #8349 fixed - write_csv() failed to support the writing of complexes with 
+* Bug #8349 fixed - write_csv() failed to support the writing of complexes with
                     %nan or %inf parts.
 
 * Bug #8653 fixed - csvRead now returns double values by default.
@@ -59,7 +59,7 @@ Xcos
 
 * Bug #10433 fixed - Xcos stop simulation button did not work properly.
 
-* Bug #10943 fixed - Accented character in the file path broke file loading 
+* Bug #10943 fixed - Accented character in the file path broke file loading
                      in Xcos.
 
 * Bug #11717 fixed - Setting recent opened file number in the preferences GUI
@@ -71,7 +71,7 @@ Xcos
 Compilation
 ===========
 
-* Update to Scirenderer 1.0.0.
+* Update to Scirenderer 1.0.1.
 
 * Update to JLaTeXMath 1.0.0.
 
