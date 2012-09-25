@@ -184,5 +184,6 @@ int get_UID(void* _pvCtx, char *pobjUID);
 int get_tip_data_property(void* _pvCtx, char *pobjUID);
 int get_tip_orientation_property(void* _pvCtx, char *pobjUID);
 int get_tip_3component_property(void* _pvCtx, char *pobjUID);
+int get_tip_auto_orientation_property(void* _pvCtx, char* pobjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

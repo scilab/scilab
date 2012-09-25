@@ -555,6 +555,7 @@ function %h_p(h)
                 "tip_data = "+sci2exp(h.tip_data)
                 "tip_orientation = "+sci2exp(h.tip_orientation)
                 "tip_3component = "+sci2exp(h.tip_3component)
+                "tip_auto_orientation = "+sci2exp(h.tip_auto_orientation)
                 "user_data = "+fmtuser_data(u)
                 "tag = "+h.tag
             ]

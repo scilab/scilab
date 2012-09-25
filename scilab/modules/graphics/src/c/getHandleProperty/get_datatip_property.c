@@ -84,3 +84,29 @@ int get_tip_3component_property(void* _pvCtx, char* pobjUID)
         return sciReturnString(_pvCtx, "off");
     }
 }
+
+/**
+ * Get the status if the auto-orientation is enabled.
+ */
+int get_tip_auto_orientation_property(void* _pvCtx, char* pobjUID)
+{
+    int tip_auto_orientation;
+    int *piTip_auto_orientation = &tip_auto_orientation;
+
+    getGraphicObjectProperty(pobjUID, __GO_DATATIP_AUTOORIENTATION__, jni_bool, (void **)&piTip_auto_orientation);
+
+    if (piTip_auto_orientation == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_3component");
+        return -1;
+    }
+
+    if (tip_auto_orientation)
+    {
+        return sciReturnString(_pvCtx, "on");
+    }
+    else
+    {
+        return sciReturnString(_pvCtx, "off");
+    }
+}

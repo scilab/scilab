@@ -12,12 +12,15 @@
 
 package org.scilab.modules.gui.datatip;
 
+import org.scilab.modules.gui.datatip.DatatipCommon;
+
 import java.util.ArrayList;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 import org.scilab.modules.gui.editor.AxesHandler;
 
@@ -31,115 +34,103 @@ import org.scilab.modules.gui.datatip.DatatipCreate;
  */
 public class DatatipOrientation {
 
-    public static Double[] datatipCorners = new Double[12];
-    public static Double[] markerPosition = new Double[3];
-    public static double[] newPosition = new double[3];
-    public static Double[] newDatatipPosition = new Double[3];
-    public static double xSize;
-    public static double ySize;
-    private static String datatipUid;
-
     /**
-    * Set the orientation of the datatip accordind to its position
-    *
-    * @param markerUid datatip marker unique identifier
-    */
-    public static void setOrientation (String markerUid) {
-
-        String axesUid = (String) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_PARENT__);
-        String figureUid = (String) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_PARENT__);
-        String[] axesChildrenUid = (String[]) GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_CHILDREN__);
-
-        for (int i = 0 ; i < axesChildrenUid.length ; i++) {
-            if (axesChildrenUid[i] == markerUid) {
-                datatipUid = axesChildrenUid[i + 1];
-                break;
+     * Setup the datatip orientation according with the curve segment inclination
+     *
+     * @param datatip the datatip uid
+     */
+    public static void setOrientation(String datatip) {
+        String polyline = DatatipCommon.getParentPolyline(datatip);
+        if (polyline != null) {
+            Double[] tip_pos = (Double[])GraphicController.getController().getProperty(datatip, __GO_DATATIP_DATA__);
+            DatatipCommon.Segment seg = DatatipCommon.getSegment(tip_pos[0], polyline);
+            if (seg != null) {
+                setOrientation(datatip, seg);
             }
         }
-
-        datatipCorners = (Double[]) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_CORNERS__);
-        markerPosition = (Double[]) GraphicController.getController().getProperty(markerUid, GraphicObjectProperties.__GO_POSITION__);
-
-        xSize = datatipCorners[9] - datatipCorners[0];
-        ySize = datatipCorners[4] - datatipCorners[1];
-
-        Double[] axesDataBounds = (Double[])GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_DATA_BOUNDS__);
-        Double[] axesZoomBox = (Double[])GraphicController.getController().getProperty(axesUid, GraphicObjectProperties.__GO_ZOOM_BOX__);
-
-        boolean zoomEnabled = AxesHandler.isZoomBoxEnabled(axesUid);
-
-        autoOrientation (zoomEnabled, axesDataBounds, axesZoomBox, markerPosition, xSize, ySize, datatipUid);
     }
 
     /**
-    * Get the datatip quadrant position and set the orientation
-    *
-    * @param zoomEnabled Boolean to check if zoom is enabled.
-    * @param axesDataBounds Bounds of clicked axes when zoom is disable.
-    * @param axesZoomBox Bounds of clicked axes when zoom is enable.
-    * @param markerPosition Position of selected datatip.
-    * @param xSize Length of x axis.
-    * @param ySize Length of y axis.
-    * @param datatipid selected datatip unique identifier.
-    */
-    public static void autoOrientation (boolean zoomEnabled, Double[] axesDataBounds, Double[] axesZoomBox, Double[] markerPosition, double xSize, double ySize, String datatipid) {
+     * Setup the datatip orientation according with the curve segment inclination
+     *
+     * @param datatip the datatip uid
+     * @param seg the line segment
+     */
+    public static void setOrientation(String datatip, DatatipCommon.Segment seg) {
 
-        if (!zoomEnabled) {
-            Double middleAxesX = axesDataBounds[0] + ((axesDataBounds[1] - axesDataBounds[0]) / 2);
-            Double middleAxesY = axesDataBounds[2] + ((axesDataBounds[3] - axesDataBounds[2]) / 2);
-            if ( markerPosition[0] > middleAxesX & markerPosition[1] > middleAxesY ) {
-                newPosition[0] = markerPosition[0] - xSize;
-                newPosition[1] = markerPosition[1] - ySize;
-                newPosition[2] = 0;
-                newDatatipPosition = DatatipCreate.setDatatipPosition (newPosition);
-                GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_POSITION__, newDatatipPosition);
-            } else if ( markerPosition[0] <= middleAxesX & markerPosition[1] > middleAxesY ) {
-                newPosition[0] = markerPosition[0];
-                newPosition[1] = markerPosition[1] - ySize;
-                newPosition[2] = 0;
-                newDatatipPosition = DatatipCreate.setDatatipPosition (newPosition);
-                GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_POSITION__, newDatatipPosition);
-            } else if ( markerPosition[0] <= middleAxesX & markerPosition[1] <= middleAxesY ) {
-                newPosition[0] = markerPosition[0];
-                newPosition[1] = markerPosition[1];
-                newPosition[2] = 0;
-                newDatatipPosition = DatatipCreate.setDatatipPosition (newPosition);
-                GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_POSITION__, newDatatipPosition);
-            } else if ( markerPosition[0] > middleAxesX & markerPosition[1] <= middleAxesY ) {
-                newPosition[0] = markerPosition[0] - xSize;
-                newPosition[1] = markerPosition[1];
-                newPosition[2] = 0;
-                newDatatipPosition = DatatipCreate.setDatatipPosition (newPosition);
-                GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_POSITION__, newDatatipPosition);
-            }
+        Double[] bounds;
+        Integer finalOrientation;
+
+        double dx = seg.x1 - seg.x0;
+        double dy = seg.y1 - seg.y0;
+
+        /* dx < 0 ? flip dy*/
+        if (dx < 0) {
+            dy = -dy;
+        }
+
+        String axesUid = (String)GraphicController.getController().getProperty(datatip, __GO_PARENT_AXES__);
+        if (AxesHandler.isZoomBoxEnabled(axesUid)){
+            bounds = (Double[])GraphicController.getController().getProperty(axesUid, __GO_ZOOM_BOX__);
         } else {
-            Double middleAxesX = axesZoomBox[0] + ((axesZoomBox[1] - axesZoomBox[0]) / 2);
-            Double middleAxesY = axesZoomBox[2] + ((axesZoomBox[3] - axesZoomBox[2]) / 2);
-            if ( markerPosition[0] > middleAxesX & markerPosition[1] > middleAxesY ) {
-                newPosition[0] = markerPosition[0] - xSize;
-                newPosition[1] = markerPosition[1] - ySize;
-                newPosition[2] = 0;
-                newDatatipPosition = DatatipCreate.setDatatipPosition (newPosition);
-                GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_POSITION__, newDatatipPosition);
-            } else if ( markerPosition[0] <= middleAxesX & markerPosition[1] > middleAxesY ) {
-                newPosition[0] = markerPosition[0];
-                newPosition[1] = markerPosition[1] - ySize;
-                newPosition[2] = 0;
-                newDatatipPosition = DatatipCreate.setDatatipPosition (newPosition);
-                GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_POSITION__, newDatatipPosition);
-            } else if ( markerPosition[0] <= middleAxesX & markerPosition[1] <= middleAxesY ) {
-                newPosition[0] = markerPosition[0];
-                newPosition[1] = markerPosition[1];
-                newPosition[2] = 0;
-                newDatatipPosition = DatatipCreate.setDatatipPosition (newPosition);
-                GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_POSITION__, newDatatipPosition);
-            } else if ( markerPosition[0] > middleAxesX & markerPosition[1] <= middleAxesY ) {
-                newPosition[0] = markerPosition[0] - xSize;
-                newPosition[1] = markerPosition[1];
-                newPosition[2] = 0;
-                newDatatipPosition = DatatipCreate.setDatatipPosition (newPosition);
-                GraphicController.getController().setProperty(datatipid, GraphicObjectProperties.__GO_POSITION__, newDatatipPosition);
+            bounds = (Double[])GraphicController.getController().getProperty(axesUid, __GO_DATA_BOUNDS__);
+        }
+
+        /* dy > 0 ? crescent (use top left) : decrescent (use top right) */
+        finalOrientation = dy > 0 ? 0 : 1;
+        Double[] tip_pos = (Double[])GraphicController.getController().getProperty(datatip, __GO_DATATIP_DATA__);
+        /* tip_pos.y  is below the middle of the axes? use bottom instead of top orientation*/
+        Double middle = bounds[2] + ((bounds[3] - bounds[2]) / 2.0);
+        if (tip_pos[1] < middle) {
+            finalOrientation = flipOrientation(finalOrientation);
+        }
+
+        GraphicController.getController().setProperty(datatip, __GO_DATATIP_ORIENTATION__, finalOrientation);
+
+
+        /* check if the tip is visible*/
+        CallRenderer.updateTextBounds(datatip);
+        Double[] corners = (Double[])GraphicController.getController().getProperty(datatip, __GO_CORNERS__);
+
+        /*if the tip is out of the  axes bounds try flip it*/
+        if (!isInBounds(corners[0], corners[1], bounds) || !isInBounds(corners[6], corners[7], bounds)) {
+            GraphicController.getController().setProperty(datatip, __GO_DATATIP_ORIENTATION__, flipOrientation(finalOrientation));
+        }
+    }
+
+    /**
+     * Check if the given position (x, y) is in bounds
+     *
+     * @param x position in X axis
+     * @param y position in Y axis
+     * @param bounds vector with the bounds
+     */
+    private static boolean isInBounds(Double x, Double y, Double[] bounds) {
+        if (x >= bounds[0] && x <= bounds[1]) {
+            if (y >= bounds[2] && y <= bounds[3]) {
+                return true;
             }
+        }
+        return false;
+    }
+
+    /**
+     * Flip the given orientation
+     * @param orientation the iven orientation
+     * @return the flipped orientation
+     */
+    private static Integer flipOrientation(Integer orientation) {
+        switch(orientation) {
+            /* top left*/
+            case 0: return 3;
+            /* top right*/
+            case 1: return 2;
+            /* bottom left*/
+            case 2: return 1;
+            /* bottom right*/
+            case 3: return 0;
+            /* do nothing*/
+            default: return orientation;
         }
     }
 }

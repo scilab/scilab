@@ -43,6 +43,13 @@ public class DatatipTextDrawer extends TextManager {
         super(textureManager);
     }
 
+    /**
+     * Draw the given Scilab {@see Datatip} with the given {@see DrawingTools}.
+     * @param drawingTools the given {@see DrawingTools}.
+     * @param colorMap the current {@see ColorMap}
+     * @param text the given Scilab {@see Datatip}
+     * @throws SciRendererException if the draw fails.
+     */
     public final void draw(final DrawingTools drawingTools, final ColorMap colorMap, final Datatip datatip) throws SciRendererException {
         Texture texture = getTexture(colorMap, datatip);
 
@@ -95,6 +102,7 @@ public class DatatipTextDrawer extends TextManager {
         }
 
         cornerPositions[0] = cornerPositions[0].plus(delta);
+	cornerPositions[1] = cornerPositions[1].plus(delta);
         /* The Text object's rotation direction convention is opposite to the standard one, its angle is expressed in radians. */
         drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, cornerPositions[0], -180.0*datatip.getFontAngle()/Math.PI);
 
@@ -110,6 +118,67 @@ public class DatatipTextDrawer extends TextManager {
 
         Vector3d[] corners = computeCorners(projection, projCorners, parentAxes);
         Double[] coordinates = cornersToCoordinateArray(corners);
+
+        /* Set the computed coordinates */
+        datatip.setCorners(coordinates);
+    }
+
+    /**
+     * Update the given datatip text corners
+     * @param datatip the given datatip
+     */
+    public static void updateTextCorners(Datatip datatip) {
+        Vector3d[] projCorners = null;
+
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(datatip.getParentFigure());
+        Transformation currentProj = currentVisitor.getAxesDrawer().getProjection(datatip.getParentAxes());
+
+        Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(datatip.getParentAxes());
+
+        Dimension spriteDim = currentVisitor.getDatatipTextDrawer().getSpriteDims(currentVisitor.getColorMap(), datatip);
+
+        /* Compute the corners */
+        try {
+            Vector3d[] textBoxVectors = currentVisitor.getDatatipTextDrawer().computeTextBoxVectors(currentProj, datatip, spriteDim, parentAxes);
+            Vector3d[] cornerPositions = currentVisitor.getDatatipTextDrawer().computeTextPosition(currentProj, datatip, textBoxVectors, spriteDim);
+
+            Integer size = datatip.getMarkSize();
+            Integer unit = datatip.getMarkSizeUnit();
+
+            /* calculate the size of the mark to dont position the text over the mark*/
+            double finalSize = (unit == 1) ? (8.0 + 2.0 * size) : size;
+            finalSize /= 2.0;
+            double r = datatip.getMarkStyle() == 11 ? 1.0 : 2.0;
+            finalSize -= (finalSize >= 2.0) ? r : 0.0;
+
+
+            Vector3d delta = new Vector3d(finalSize, finalSize, 0);
+            /* set up the text position according to the datatip orientation*/
+            if (datatip.getOrientation() == 2 || datatip.getOrientation() == 3) {
+                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
+                delta = delta.setY(-finalSize);
+            }
+            if (datatip.getOrientation() == 0 || datatip.getOrientation() == 2) {
+                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
+                delta = delta.setX(-finalSize);
+            }
+
+            cornerPositions[0] = cornerPositions[0].plus(delta);
+	    cornerPositions[1] = cornerPositions[1].plus(delta);
+
+
+            if (datatip.getTextBoxMode() == 2) {
+                projCorners = currentVisitor.getDatatipTextDrawer().computeProjTextBoxCorners(cornerPositions[1], datatip.getFontAngle(), textBoxVectors);
+            } else {
+                projCorners = currentVisitor.getDatatipTextDrawer().computeProjCorners(cornerPositions[0], datatip.getFontAngle(), spriteDim);
+            }
+        } catch (DegenerateMatrixException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        Vector3d[] corners = currentVisitor.getDatatipTextDrawer().computeCorners(currentProj, projCorners, parentAxes);
+        Double[] coordinates = currentVisitor.getDatatipTextDrawer().cornersToCoordinateArray(corners);
 
         /* Set the computed coordinates */
         datatip.setCorners(coordinates);

@@ -16,6 +16,7 @@ package org.scilab.modules.gui.datatip;
 import org.scilab.modules.gui.datatip.DatatipCreate;
 import org.scilab.modules.gui.datatip.DatatipMove;
 import org.scilab.modules.gui.datatip.DatatipCommon;
+import org.scilab.modules.gui.datatip.DatatipOrientation;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -47,6 +48,11 @@ public class DatatipDrag {
             DatatipCommon.Segment seg = DatatipCommon.getSegment(c2d[0], parentPolyline);
             Double[] newPos = DatatipCommon.Interpolate(c2d[0], seg);
             GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_DATA__, newPos);
+
+            Boolean AutoOrientation = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__);
+            if (AutoOrientation) {
+                DatatipOrientation.setOrientation(datatipUid, seg);
+            }
 
             DatatipMove.updateDatatipsField(parentPolyline, oldPos[0], oldPos[1], newPos[0], newPos[1]);
         }

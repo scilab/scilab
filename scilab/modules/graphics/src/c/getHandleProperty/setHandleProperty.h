@@ -184,5 +184,6 @@ int set_tag_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueTyp
 int set_tip_data_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_tip_orientation_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 int set_tip_3component_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+int set_tip_auto_orientation_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

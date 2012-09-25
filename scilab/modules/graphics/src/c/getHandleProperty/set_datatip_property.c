@@ -24,7 +24,7 @@
 /**
  * Sets the datatip data.
  */
-int set_tip_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tip_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double *tip_data;
@@ -63,7 +63,7 @@ int set_tip_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 /**
  * Sets the datatip oriantation.
  */
-int set_tip_orientation_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tip_orientation_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int tip_orientation;
@@ -92,7 +92,7 @@ int set_tip_orientation_property(void* _pvCtx, char* pobjUID, size_t stackPointe
 /**
  * Enable/disable the datatip Z component to be displayed.
  */
-int set_tip_3component_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tip_3component_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int use_z = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "tip_3component");
@@ -109,6 +109,31 @@ int set_tip_3component_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     else
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_3component");
+        return SET_PROPERTY_ERROR;
+    }
+}
+
+
+/**
+ * Enable/disable the datatip auto-orientation.
+ */
+int set_tip_auto_orientation_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+{
+    BOOL status = FALSE;
+    int auto_orientation = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "tip_auto_orientation");
+    if(auto_orientation == NOT_A_BOOLEAN_VALUE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
+    status = setGraphicObjectProperty(pobjUID, __GO_DATATIP_AUTOORIENTATION__, &auto_orientation, jni_bool, 1); 
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_auto_orientation");
         return SET_PROPERTY_ERROR;
     }
 }

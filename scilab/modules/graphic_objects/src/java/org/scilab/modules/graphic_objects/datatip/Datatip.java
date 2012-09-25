@@ -28,9 +28,11 @@ public class Datatip extends Text {
     Boolean use3component;
     /** Displayed number format*/
     DecimalFormat tipTextFormat;
+    /** For automatic update the datatip orientation*/
+    Boolean autoOrientation;
 
 
-    enum DatatipObjectProperty { TIP_DATA, TIP_ORIENTATION, TIP_3COMPONENT };
+    enum DatatipObjectProperty { TIP_DATA, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_3COMPONENT };
     enum TipOrientation { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT;
 
                           /**
@@ -62,6 +64,7 @@ public class Datatip extends Text {
         super();
         tipData = new Double[] {0.0, 0.0, 0.0};
         use3component = false;
+        autoOrientation = true;
         setOrientationAsEnum(TipOrientation.TOP_RIGHT);
         tipTextFormat = new DecimalFormat("#.####");
         setBox(true);
@@ -92,6 +95,8 @@ public class Datatip extends Text {
             return DatatipObjectProperty.TIP_ORIENTATION;
         } else if (propertyName.equals(__GO_DATATIP_3COMPONENT__)) {
             return DatatipObjectProperty.TIP_3COMPONENT;
+        } else if (propertyName.equals(__GO_DATATIP_AUTOORIENTATION__)) {
+            return DatatipObjectProperty.TIP_AUTOORIENTATION;
         } else {
             return super.getPropertyFromName(propertyName);
         }
@@ -107,6 +112,8 @@ public class Datatip extends Text {
             return getOrientation();
         } else if (property == DatatipObjectProperty.TIP_3COMPONENT) {
             return isUsing3Component();
+        } else if (property == DatatipObjectProperty.TIP_AUTOORIENTATION) {
+            return isAutoOrientationEnabled();
         } else {
             return super.getProperty(property);
         }
@@ -124,6 +131,8 @@ public class Datatip extends Text {
             setOrientation((Integer) value);
         } else if (property == DatatipObjectProperty.TIP_3COMPONENT) {
             setUse3Component((Boolean)value);
+        } else if (property == DatatipObjectProperty.TIP_AUTOORIENTATION) {
+            setAutoOrientation((Boolean)value);
         } else {
             return super.setProperty(property, value);
         }
@@ -200,6 +209,15 @@ public class Datatip extends Text {
     public void setUse3Component(Boolean useZ) {
         use3component = useZ;
         updateText();
+    }
+
+
+    public Boolean isAutoOrientationEnabled() {
+        return autoOrientation;
+    }
+
+    public void setAutoOrientation(Boolean status) {
+        autoOrientation = status;
     }
 
 
