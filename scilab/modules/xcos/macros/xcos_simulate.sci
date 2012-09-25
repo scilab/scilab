@@ -22,19 +22,43 @@ function %cpr = xcos_simulate(scs_m, needcompile)
   [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
 
     // Hook according to SEP066
-    if isdef("pre_xcos_simulate") then
-      try
-      continueSimulation = pre_xcos_simulate(scs_m, needcompile);
-      if ~continueSimulation then
-        %cpr = []
-        return
+    function [ok]=invoke_pre_simulate(fun, scs_m, needcompile)
+        ok=%f;
+        ierr=execstr('[continueSimulation]='+fun+'(scs_m, needcompile);', 'errcatch');
+        if ierr<>0 then
+            disp(_("Error occurred in pre_xcos_simulate: Cancelling simulation."));
+            [str,n,line,func]=lasterror();
+            mprintf(' at line %d of function %s\n', line, func);
+            return
+        end
+        if ~continueSimulation then
+            return
+        end
+        ok=%t;
+        
+        // force update on the parent in case of scoped modification
+        scs_m=resume(scs_m);
+    endfunction
+    
+  if isdef("pre_xcos_simulate") then
+      if type(pre_xcos_simulate) == 15 then
+          // if has a multiple implementation (on a list)
+          for f=pre_xcos_simulate;
+              ok=invoke_pre_simulate(f, scs_m, needcompile);
+              if ~ok then
+                  %cpr=[];
+                  return;
+              end
+          end
+      else
+          // if has a unique implementation
+          ok=invoke_pre_simulate("pre_xcos_simulate", scs_m, needcompile);
+          if ~ok then
+            %cpr=[];
+            return;
+          end
       end
-      catch
-      disp(_("Error occurred in pre_xcos_simulate: Cancelling simulation."))
-      %cpr = []
-      return
-      end
-    end
+  end
 
   //**---- prepare from and to workspace stuff ( "From workspace" block )
   scicos_workspace_init()
@@ -350,14 +374,38 @@ function %cpr = xcos_simulate(scs_m, needcompile)
 
   end
 
-  // Hook according to SEP066
-  if isdef("post_xcos_simulate") then
-    try
-      post_xcos_simulate(%cpr, scs_m, needcompile);
-    catch
-      disp(_("Error in post_xcos_simulate: ending simulation."))
+    // Hook according to SEP066
+    function ok=invoke_post_simulate(fun, %cpr, scs_m, needcompile)
+        ok=%f;
+        ierr=execstr(fun+'(%cpr, scs_m, needcompile);', 'errcatch');
+        if ierr<>0 then
+            disp(_("Error in post_xcos_simulate: ending simulation."))
+            return
+        end
+        ok=%t
+        // force update on the parent in case of scoped modification
+        scs_m=resume(scs_m);
+    endfunction
+    
+    if isdef("post_xcos_simulate") then
+      if type(post_xcos_simulate) == 15 then
+          // if has a multiple implementation (on a list)
+          for f=post_xcos_simulate;
+              ok=invoke_post_simulate(f, scs_m, needcompile);
+              if ~ok then
+                  %cpr=[];
+                  return;
+              end
+          end
+      else
+          // if has a unique implementation
+          ok=invoke_post_simulate("post_xcos_simulate", %cpr, scs_m, needcompile);
+          if ~ok then
+            %cpr=[];
+            return;
+          end
+      end
     end
-  end
 
   // finally restore the exported variables on the parent context
   if ~isempty(txt) then
