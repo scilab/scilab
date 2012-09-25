@@ -33,7 +33,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>y=sqrt(x)</literal> is the matrix square root of the
+            <literal>y=sqrtm(x)</literal> is the matrix square root of the
             <literal>x</literal> matrix (<literal>x=y^2</literal>). Result may not be
             accurate if <literal>x</literal> is not symmetric.
         </para>

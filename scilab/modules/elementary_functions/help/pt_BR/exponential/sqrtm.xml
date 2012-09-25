@@ -33,7 +33,7 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>y=sqrt(x)</literal> é a raiz quadrada da matriz
+            <literal>y=sqrtm(x)</literal> é a raiz quadrada da matriz
             <literal>x</literal> (matriz raiz quadrada de x)
             (<literal>x=y^2</literal>) . O resultado pode ser inacurado se
             <literal>x</literal> não é simétrica.
