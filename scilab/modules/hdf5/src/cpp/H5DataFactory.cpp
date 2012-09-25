@@ -183,7 +183,7 @@ H5Data & H5DataFactory::getData(H5Object & parent, const hsize_t totalSize, cons
 
             //return *new H5BitfieldData(parent, totalSize, dataSize, ndims, dims, (char *)data, stride, offset, false);
         case H5T_OPAQUE:
-            return *new H5OpaqueData(parent, totalSize, dataSize, ndims, dims, (char *)data, stride, offset, false);
+            return *new H5OpaqueData(parent, totalSize, dataSize, ndims, dims, (unsigned char *)data, stride, offset, false);
         case H5T_COMPOUND:
         {
             const unsigned int nmembers = (unsigned int)H5Tget_nmembers(type);
@@ -406,7 +406,7 @@ H5OpaqueData & H5DataFactory::getOpaqueData(H5Object & parent, const hid_t obj, 
 
     getNativeData(obj, space, selectdims, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
 
-    return *new H5OpaqueData(parent, totalSize, dataSize, ndims, dims, static_cast<char *>(data));
+    return *new H5OpaqueData(parent, totalSize, dataSize, ndims, dims, static_cast<unsigned char *>(data));
 }
 
 H5Data & H5DataFactory::getCompoundData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute)

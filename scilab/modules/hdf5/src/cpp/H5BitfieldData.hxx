@@ -35,7 +35,7 @@ public:
 
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
-        os << "0x" << std::hex << (int)static_cast<unsigned char * >(getData())[pos];
+        os << "0x" << std::hex << std::setfill('0') << std::setw(2) << (int)static_cast<unsigned char * >(getData())[pos];
     }
 };
 
@@ -57,7 +57,7 @@ public:
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
         const unsigned short x = static_cast<unsigned short * >(getData())[pos];
-        os << std::hex << (x & 0xFF) << ":" << ((x >> 8) & 0xFF);
+        os << std::hex << std::setfill('0') << std::setw(2) << (x & 0xFF) << ":" << ((x >> 8) & 0xFF);
     }
 };
 
@@ -79,7 +79,7 @@ public:
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
         const unsigned int x = static_cast<unsigned int * >(getData())[pos];
-        os << std::hex << (x & 0xFF) << ":" << ((x >> 8) & 0xFF) << ":" << ((x >> 16) & 0xFF) << ":" << ((x >> 24) & 0xFF);
+        os << std::hex << std::setfill('0') << std::setw(2) << (x & 0xFF) << ":" << ((x >> 8) & 0xFF) << ":" << ((x >> 16) & 0xFF) << ":" << ((x >> 24) & 0xFF);
     }
 };
 
@@ -103,7 +103,7 @@ public:
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
         const unsigned long long x = static_cast<unsigned long long * >(getData())[pos];
-        os << std::hex << (x & 0xFF) << ":" << ((x >> 8) & 0xFF) << ":" << ((x >> 16) & 0xFF) << ":" << ((x >> 24) & 0xFF) << ":" << ((x >> 32) & 0xFF) << ":" << ((x >> 40) & 0xFF) << ":" << ((x >> 48) & 0xFF) << ":" << ((x >> 56) & 0xFF);
+        os << std::hex << std::setfill('0') << std::setw(2) << (x & 0xFF) << ":" << ((x >> 8) & 0xFF) << ":" << ((x >> 16) & 0xFF) << ":" << ((x >> 24) & 0xFF) << ":" << ((x >> 32) & 0xFF) << ":" << ((x >> 40) & 0xFF) << ":" << ((x >> 48) & 0xFF) << ":" << ((x >> 56) & 0xFF);
     }
 };
 

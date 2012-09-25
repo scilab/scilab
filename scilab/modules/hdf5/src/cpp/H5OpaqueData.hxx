@@ -18,19 +18,66 @@
 namespace org_modules_hdf5
 {
 
-class H5OpaqueData : public H5BasicData<char>
+class H5OpaqueData : public H5BasicData<unsigned char>
 {
 
 public:
 
-    H5OpaqueData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, char * _data, const hsize_t _stride = -1, const size_t _offset = 0, const bool _dataOwner = true) : H5BasicData(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner)
+    H5OpaqueData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, unsigned char * _data, const hsize_t _stride = -1, const size_t _offset = 0, const bool _dataOwner = true) : H5BasicData(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner)
     {
-        //dims[ndims - 1] = dataSize;
+
     }
 
     virtual ~H5OpaqueData()
     {
 
+    }
+
+    virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
+    {
+        const unsigned char * x = &static_cast<unsigned char * >(getData())[pos * dataSize];
+        for (unsigned int i = 0; i < dataSize - 1; i++)
+        {
+            os << std::hex << std::setfill('0') << std::setw(2) << (int)x[i] << ":";
+        }
+        os << std::hex << std::setfill('0') << std::setw(2) << (int)x[dataSize - 1];
+    }
+
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
+    {
+        SciErr err;
+        unsigned char * newData = 0;
+
+        if (ndims == 0)
+        {
+            alloc(pvApiCtx, lhsPosition, 1, dataSize, parentList, listPosition, &newData);
+            copyData(newData);
+        }
+        else if (ndims == 1)
+        {
+            alloc(pvApiCtx, lhsPosition, *dims, dataSize, parentList, listPosition, &newData);
+            copyData(newData);
+        }
+        else
+        {
+            int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition);
+            hsize_t * _dims = new hsize_t[ndims + 1];
+            memcpy(_dims, dims, ndims * sizeof(hsize_t));
+            _dims[ndims] = (hsize_t)dataSize;
+
+            try
+            {
+                alloc(pvApiCtx, lhsPosition, 1, totalSize * dataSize, list, 3, &newData);
+                H5DataConverter::C2FHypermatrix(ndims + 1, _dims, totalSize * dataSize, static_cast<unsigned char *>(getData()), newData);
+            }
+            catch (const H5Exception & e)
+            {
+                delete[] _dims;
+                throw;
+            }
+
+            delete[] _dims;
+        }
     }
 };
 }

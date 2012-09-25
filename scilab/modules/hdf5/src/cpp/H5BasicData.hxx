@@ -91,19 +91,32 @@ public:
         {
             if (stride == -1)
             {
-                memcpy(static_cast<void *>(dest), data, totalSize * sizeof(T));
+                memcpy(static_cast<void *>(dest), data, totalSize * dataSize);
             }
             else if (transformedData)
             {
-                memcpy(static_cast<void *>(dest), static_cast<void *>(transformedData), totalSize * sizeof(T));
+                memcpy(static_cast<void *>(dest), static_cast<void *>(transformedData), totalSize * dataSize);
             }
             else
             {
                 char * cdata = static_cast<char *>(data) + offset;
-                for (int i = 0; i < totalSize; i++)
+                if (sizeof(T) == dataSize)
                 {
-                    dest[i] = *((T *)cdata);
-                    cdata += stride;
+                    for (int i = 0; i < totalSize; i++)
+                    {
+                        dest[i] = *((T *)cdata);
+                        cdata += stride;
+                    }
+                }
+                else
+                {
+                    char * _dest = reinterpret_cast<char *>(dest);
+                    for (int i = 0; i < totalSize; i++)
+                    {
+                        memcpy(_dest, cdata, dataSize);
+                        cdata += stride;
+                        _dest += dataSize;
+                    }
                 }
             }
         }
@@ -123,9 +136,9 @@ public:
         {
             if (!transformedData)
             {
-                T * dest = new T[totalSize];
-                copyData(dest);
-                const_cast<H5BasicData *>(this)->transformedData = dest;
+                char * dest = new char[totalSize * dataSize];
+                copyData(reinterpret_cast<T *>(dest));
+                const_cast<H5BasicData *>(this)->transformedData = reinterpret_cast<T *>(dest);
             }
 
             return static_cast<void *>(transformedData);
