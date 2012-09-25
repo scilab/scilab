@@ -153,8 +153,7 @@
             <varlistentry>
                 <term>-nb</term>
                 <listitem>
-                    <para>If this option is present then the scilab welcome banner is
-                        not displayed.
+                    <para>If this option is present then the Scilab loading message not displayed.
                     </para>
                 </listitem>
             </varlistentry>
