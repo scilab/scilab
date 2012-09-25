@@ -94,6 +94,8 @@ Bug Fixes
 
 * Bug #10885 fixed - Renamed "Exit" to "Exit Scinotes" in Scinotes.
 
+* Bug #11257 fixed - Memory leaks fixed in Scilab graphics.
+
 * Bug #11293 fixed - Line style was not taken into account.
 
 * Bug #11298 fixed - Listboxes callback was executed several times for one action.

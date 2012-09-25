@@ -39,99 +39,99 @@ public class DataManager {
      * Set of properties that affect Fac3d data.
      */
     private static final Set<Integer> FAC3D_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_DATA_MODEL__,
-            GraphicObjectProperties.__GO_COLOR_FLAG__,
-            GraphicObjectProperties.__GO_COLOR_MODE__,
-            GraphicObjectProperties.__GO_DATA_MAPPING__
-    ));
+                GraphicObjectProperties.__GO_DATA_MODEL__,
+                GraphicObjectProperties.__GO_COLOR_FLAG__,
+                GraphicObjectProperties.__GO_COLOR_MODE__,
+                GraphicObjectProperties.__GO_DATA_MAPPING__
+            ));
 
     /**
      * Set of properties that affect Fec data.
      */
     private static final Set<Integer> FEC_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_DATA_MODEL__,
-            GraphicObjectProperties.__GO_Z_BOUNDS__,
-            GraphicObjectProperties.__GO_COLOR_RANGE__,
-            GraphicObjectProperties.__GO_OUTSIDE_COLOR__
-    ));
+                GraphicObjectProperties.__GO_DATA_MODEL__,
+                GraphicObjectProperties.__GO_Z_BOUNDS__,
+                GraphicObjectProperties.__GO_COLOR_RANGE__,
+                GraphicObjectProperties.__GO_OUTSIDE_COLOR__
+            ));
 
     /**
      * Set of properties that affect Grayplot data.
      */
     private static final Set<Integer> GRAYPLOT_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_DATA_MODEL__,
-            GraphicObjectProperties.__GO_DATA_MAPPING__
-    ));
+                GraphicObjectProperties.__GO_DATA_MODEL__,
+                GraphicObjectProperties.__GO_DATA_MAPPING__
+            ));
 
     /**
      * Set of properties that affect Matplot data.
      */
     private static final Set<Integer> MATPLOT_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_DATA_MODEL__
-    ));
+                GraphicObjectProperties.__GO_DATA_MODEL__
+            ));
 
     /**
      * Set of properties that affect polyline data.
      */
     private static final Set<Integer> POLYLINE_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_DATA_MODEL__,
-            GraphicObjectProperties.__GO_POLYLINE_STYLE__,
-            GraphicObjectProperties.__GO_LINE_MODE__,
-            GraphicObjectProperties.__GO_BAR_WIDTH__,
-            GraphicObjectProperties.__GO_CLOSED__,
-            GraphicObjectProperties.__GO_FILL_MODE__,
-            GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR__,
-            GraphicObjectProperties.__GO_INTERP_COLOR_MODE__
-    ));
+                GraphicObjectProperties.__GO_DATA_MODEL__,
+                GraphicObjectProperties.__GO_POLYLINE_STYLE__,
+                GraphicObjectProperties.__GO_LINE_MODE__,
+                GraphicObjectProperties.__GO_BAR_WIDTH__,
+                GraphicObjectProperties.__GO_CLOSED__,
+                GraphicObjectProperties.__GO_FILL_MODE__,
+                GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR__,
+                GraphicObjectProperties.__GO_INTERP_COLOR_MODE__
+            ));
 
     /**
      * Set of properties that affect Plot3d data.
      */
     private static final Set<Integer> PLOT3D_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_DATA_MODEL__
-    ));
+                GraphicObjectProperties.__GO_DATA_MODEL__
+            ));
 
     /**
      * Set of properties that affect Arc data.
      */
     private static final Set<Integer> ARC_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_UPPER_LEFT_POINT__,
-            GraphicObjectProperties.__GO_WIDTH__,
-            GraphicObjectProperties.__GO_HEIGHT__,
-            GraphicObjectProperties.__GO_START_ANGLE__,
-            GraphicObjectProperties.__GO_END_ANGLE__
-    ));
+                GraphicObjectProperties.__GO_UPPER_LEFT_POINT__,
+                GraphicObjectProperties.__GO_WIDTH__,
+                GraphicObjectProperties.__GO_HEIGHT__,
+                GraphicObjectProperties.__GO_START_ANGLE__,
+                GraphicObjectProperties.__GO_END_ANGLE__
+            ));
 
     /**
      * Set of properties that affect Champ data.
      */
     private static final Set<Integer> CHAMP_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_BASE_X__,
-            GraphicObjectProperties.__GO_BASE_Y__,
-            GraphicObjectProperties.__GO_BASE_Z__,
-            GraphicObjectProperties.__GO_DIRECTION_X__,
-            GraphicObjectProperties.__GO_DIRECTION_Y__,
-            GraphicObjectProperties.__GO_DIRECTION_Z__,
-            GraphicObjectProperties.__GO_COLORED__
-    ));
+                GraphicObjectProperties.__GO_BASE_X__,
+                GraphicObjectProperties.__GO_BASE_Y__,
+                GraphicObjectProperties.__GO_BASE_Z__,
+                GraphicObjectProperties.__GO_DIRECTION_X__,
+                GraphicObjectProperties.__GO_DIRECTION_Y__,
+                GraphicObjectProperties.__GO_DIRECTION_Z__,
+                GraphicObjectProperties.__GO_COLORED__
+            ));
 
     /**
      * Set of properties that affect Rectangle data.
      */
     private static final Set<Integer> RECTANGLE_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_UPPER_LEFT_POINT__,
-            GraphicObjectProperties.__GO_WIDTH__,
-            GraphicObjectProperties.__GO_HEIGHT__
-    ));
+                GraphicObjectProperties.__GO_UPPER_LEFT_POINT__,
+                GraphicObjectProperties.__GO_WIDTH__,
+                GraphicObjectProperties.__GO_HEIGHT__
+            ));
 
     /**
      * Set of properties that affect Segs data.
      */
     private static final Set<Integer> SEGS_DATA_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_BASE__,
-            GraphicObjectProperties.__GO_DIRECTION__,
-            GraphicObjectProperties.__GO_SEGS_COLORS__
-    ));
+                GraphicObjectProperties.__GO_BASE__,
+                GraphicObjectProperties.__GO_DIRECTION__,
+                GraphicObjectProperties.__GO_SEGS_COLORS__
+            ));
 
     private static final double[] DEFAULT_SCALE     = new double[] {1, 1, 1};
     private static final double[] DEFAULT_TRANSLATE = new double[] {0, 0, 0};
@@ -366,7 +366,7 @@ public class DataManager {
      * Clears all the color buffers.
      */
     public void disposeAllColorBuffers() {
-    	canvas.getBuffersManager().dispose(colorBufferMap.values());
+        canvas.getBuffersManager().dispose(colorBufferMap.values());
         colorBufferMap.clear();
     }
 
@@ -438,10 +438,10 @@ public class DataManager {
     }
 
     private void fillColorBuffer(ElementsBuffer colorBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
-            int length = MainDataLoader.getDataSize(id);
-            FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
-            MainDataLoader.fillColors(id, data, 4);
-            colorBuffer.setData(data, 4);
+        int length = MainDataLoader.getDataSize(id);
+        FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
+        MainDataLoader.fillColors(id, data, 4);
+        colorBuffer.setData(data, 4);
     }
 
     private void fillIndexBuffer(IndicesBuffer indexBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
