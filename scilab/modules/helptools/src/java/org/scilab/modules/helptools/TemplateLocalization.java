@@ -25,9 +25,10 @@ public final class TemplateLocalization {
 
     static {
         Map<String, String> report_an_issue = new HashMap<String, String>();
-        report_an_issue.put("fr_FR", "Reporter un bug");
+        report_an_issue.put("fr_FR", "Signaler un problème");
         report_an_issue.put("pt_BR", "Reportero a bugo");
         report_an_issue.put("es_ES", "Raportare el bugo");
+        report_an_issue.put("ja_JP", "問題を報告");
 
         map.put("Report an issue", report_an_issue);
     }
