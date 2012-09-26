@@ -14,10 +14,13 @@
 
 package org.scilab.modules.gui.bridge.listbox;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -55,6 +58,8 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
 
     private MouseListener mouseListener;
 
+    private AdjustmentListener adjustmentListener;
+
     /**
      * the JList we use
      */
@@ -86,6 +91,15 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
             public void mouseReleased(MouseEvent arg0) { }
         };
         getList().addMouseListener(mouseListener);
+        adjustmentListener = new AdjustmentListener() {
+            public void adjustmentValueChanged(AdjustmentEvent arg0) {
+                int listboxtopValue = getList().getUI().locationToIndex(getList(), getViewport().getViewPosition()) + 1;
+                Integer[] modelValue = new Integer[1];
+                modelValue[0] = listboxtopValue;
+                GraphicController.getController().setProperty(uid, __GO_UI_LISTBOXTOP__, modelValue);
+            }
+        };
+        getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
     }
 
     /**
@@ -198,8 +212,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      *                      (true if the UIElement is enabled, false if not)
      */
     public void setEnabled(boolean newEnableState) {
-        if (newEnableState != super.isEnabled())
-        {
+        if (newEnableState != super.isEnabled()) {
             super.setEnabled(newEnableState);
             getList().setEnabled(newEnableState);
             if (newEnableState) {
@@ -459,10 +472,12 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * @param index the index of the element to be displayed at the top of the ListBox.
      */
     public void setListBoxTop(int index) {
+        getVerticalScrollBar().removeAdjustmentListener(adjustmentListener);
         if (index > 0) {
             getViewport().setViewPosition(getList().getUI().indexToLocation(getList(), index - 1));
             doLayout();
         }
+        getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
     }
 
     /**
