@@ -71,7 +71,7 @@ Xcos
 Compilation
 ===========
 
-* Update to Scirenderer 1.0.1.
+* Update to Scirenderer 1.0.2.
 
 * Update to JLaTeXMath 1.0.0.
 
