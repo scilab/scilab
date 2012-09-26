@@ -48,6 +48,8 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
     private CommonCallBack callback;
 
+    private ActionListener defaultActionListener;
+
     /**
      * Constructor
      */
@@ -55,7 +57,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         super();
         /* Bug 3635 fixed: allow arrow keys to browse items */
         putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
-        ActionListener actionListener = new ActionListener() {
+        defaultActionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Double[] scilabIndices = new Double[1];
                 scilabIndices[0] = (double) getUserSelectedIndex();
@@ -67,7 +69,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
             }
         };
-        addActionListener(actionListener);
+        addActionListener(defaultActionListener);
     }
 
     /**
@@ -202,9 +204,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      */
     public void setUserSelectedIndex(int index) {
         /* Remove the listener to avoid the callback to be executed */
-        if (this.callback != null) {
-            removeActionListener(this.callback);
-        }
+        removeActionListener(defaultActionListener);
 
         for (int i = 0; i < getItemCount(); i++) {
             // Scilab indices in Value begin at 1 and Java indices begin at 0
@@ -214,9 +214,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         }
 
         /* Put back the listener */
-        if (this.callback != null) {
-            addActionListener(this.callback);
-        }
+        addActionListener(defaultActionListener);
     }
 
     /**
