@@ -49,7 +49,7 @@ public abstract class ScilabCallBack extends CommonCallBack {
             public void callBack() {
                 Thread launchMe = new Thread() {
                     public void run() {
-                        InterpreterManagement.putCommandInScilabQueue(getCommand());
+                        InterpreterManagement.requestScilabExec(getCommand());
                     }
                 };
                 launchMe.start();
