@@ -29,6 +29,7 @@ public final class TemplateLocalization {
         report_an_issue.put("pt_BR", "Reportero a bugo");
         report_an_issue.put("es_ES", "Raportare el bugo");
         report_an_issue.put("ja_JP", "問題を報告");
+        report_an_issue.put("ru_RU", "Сообщить об ошибке");
 
         map.put("Report an issue", report_an_issue);
     }
