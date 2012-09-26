@@ -41,7 +41,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
 
     private static final long serialVersionUID = -5208590743368628657L;
 
-    private static final int WIDTH = 400;
+    private static final int WIDTH = 450;
     private static final int HEIGHT = 150;
 
     private String uid;
@@ -88,6 +88,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
         GridBagConstraints messageConstraints = new GridBagConstraints();
         messageConstraints.gridx = 1;
         messageConstraints.gridy = 0;
+        messageConstraints.fill = GridBagConstraints.BOTH;
         messageConstraints.insets = insets;
         messageLabel = new JLabel();
         gridbag.setConstraints(messageLabel, messageConstraints);
