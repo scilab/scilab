@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,6 +26,14 @@ extern "C"
 #include "H5File.hxx"
 
 using namespace org_modules_hdf5;
+
+/*
+  Dump on stdout the content of an object.
+  Scilab prototype:
+  - h5dump(obj)
+  - h5dump(obj, name)
+  - h5dump(filename, name)
+*/
 
 /*--------------------------------------------------------------------------*/
 int sci_h5dump(char *fname, unsigned long fname_len)
@@ -117,6 +125,7 @@ int sci_h5dump(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
+
         expandedPath = expandPathVariable(str);
         _expandedPath = std::string(expandedPath);
         FREE(expandedPath);

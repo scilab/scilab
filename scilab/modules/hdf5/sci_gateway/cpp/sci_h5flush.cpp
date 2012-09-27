@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,6 +22,13 @@ extern "C"
 #include "H5File.hxx"
 
 using namespace org_modules_hdf5;
+
+/*
+  Flush the file containing the object
+  Scilab prototype:
+  - h5flush(obj)
+  - h5flush(obj, local)
+*/
 
 /*--------------------------------------------------------------------------*/
 int sci_h5flush(char *fname, unsigned long fname_len)

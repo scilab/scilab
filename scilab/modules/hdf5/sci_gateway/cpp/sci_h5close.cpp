@@ -25,6 +25,13 @@ extern "C"
 
 using namespace org_modules_hdf5;
 
+/*
+  Close an open object.
+  Scilab prototype:
+  - h5close()
+  - h5close(obj)
+/*
+
 /*--------------------------------------------------------------------------*/
 int sci_h5close(char *fname, unsigned long fname_len)
 {

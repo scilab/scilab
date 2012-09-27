@@ -30,9 +30,9 @@ public :
     H5Attribute(H5Object & _parent, const std::string & name);
     H5Attribute(H5Object & _parent, hid_t _attr, const std::string & _name);
 
-    ~H5Attribute();
+    virtual ~H5Attribute();
 
-    hid_t getH5Id() const
+    virtual hid_t getH5Id() const
     {
         return attr;
     }

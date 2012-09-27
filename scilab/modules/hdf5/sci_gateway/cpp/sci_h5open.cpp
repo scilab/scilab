@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,9 +30,10 @@ int sci_h5open(char *fname, unsigned long fname_len)
     H5File * h5file = 0;
     SciErr err;
     int * addr = 0;
-    char * path = 0;
-    const char * access = 0;
-    const char * name = 0;
+    char * str = 0;
+    std::string path;
+    std::string access;
+    std::string name;
     char * args[3];
     const int nbIn = nbInputArgument(pvApiCtx);
 
@@ -74,7 +75,9 @@ int sci_h5open(char *fname, unsigned long fname_len)
         }
     }
 
-    path = expandPathVariable(args[0]);
+    str = expandPathVariable(args[0]);
+    path = std::string(str);
+    FREE(str);
 
     switch (nbIn)
     {
@@ -85,49 +88,44 @@ int sci_h5open(char *fname, unsigned long fname_len)
         case 2:
             if (H5File::checkFileAccess(args[1]))
             {
-                access = args[1];
+                access = std::string(args[1]);
                 name = "/";
             }
             else
             {
                 access = "a";
-                name = args[1];
+                name = std::string(args[1]);
             }
             break;
         case 3:
             if (H5File::checkFileAccess(args[1]))
             {
-                access = args[1];
-                name = args[2];
+                access = std::string(args[1]);
+                name = std::string(args[2]);
             }
             else if (H5File::checkFileAccess(args[2]))
             {
-                name = args[1];
-                access = args[2];
+                name = std::string(args[1]);
+                access = std::string(args[2]);
             }
             else
             {
-                name = args[1];
+                name = std::string(args[1]);
                 access = "a";
             }
+    }
+
+    for (int i = 0; i < nbIn; i++)
+    {
+        freeAllocatedSingleString(args[i]);
     }
 
     try
     {
         h5file = new H5File(path, name, access);
-        for (int i = 0; i < nbIn; i++)
-        {
-            freeAllocatedSingleString(args[i]);
-        }
-        FREE(path);
     }
     catch (const std::exception & e)
     {
-        for (int i = 0; i < nbIn; i++)
-        {
-            freeAllocatedSingleString(args[i]);
-        }
-        FREE(path);
         Scierror(999, _("%s: %s\n"), fname, e.what());
         return 0;
     }

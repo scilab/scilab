@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,22 +23,30 @@ extern "C"
 
 using namespace org_modules_hdf5;
 
+/*
+  Read the content of an attribute.
+  Scilab prototype:
+  - h5readattr(obj) (obj must be an attribute)
+  - h5readattr(obj, name)
+  - h5readattr(obj, location, name)
+  - h5readattr(filename, location, name)
+/*
+
 /*--------------------------------------------------------------------------*/
 int sci_h5readattr(char *fname, unsigned long fname_len)
 {
     SciErr err;
     H5Object * hobj = 0;
     int * addr = 0;
-    char * path = 0;
-    char * name = 0;
+    char * str = 0;
     char * expandedPath = 0;
     std::string _expandedPath;
-    std::string _location;
-    std::string _name;
+    std::string location;
+    std::string name;
     const int nbIn = nbInputArgument(pvApiCtx);
 
     CheckOutputArgument(pvApiCtx, 1, 1);
-    CheckInputArgument(pvApiCtx, 2, 3);
+    CheckInputArgument(pvApiCtx, 1, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -53,15 +61,15 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
         hobj = HDF5Scilab::getH5Object(addr, pvApiCtx);
         if (!hobj)
         {
-            Scierror(999, _("%s: Can not print H5Object: invalid object.\n"), fname);
+            Scierror(999, _("%s: Invalid H5Object.\n"), fname);
             return 0;
         }
     }
     else
     {
-        if (nbIn != 3)
+        if (nbIn == 1)
         {
-            Scierror(999, _("%s: Invalid number of arguments: %d expected.\n"), fname, 3);
+            Scierror(999, _("%s: Invalid number of arguments.\n"), fname);
             return 0;
         }
 
@@ -71,48 +79,25 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
+        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
 
-        expandedPath = expandPathVariable(path);
+        expandedPath = expandPathVariable(str);
         _expandedPath = std::string(expandedPath);
         FREE(expandedPath);
-        freeAllocatedSingleString(path);
+        freeAllocatedSingleString(str);
     }
 
-    err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
-    if (err.iErr)
+    if (nbIn >= 2)
     {
-        printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-        return 0;
-    }
-
-    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
-    }
-
-    if (getAllocatedSingleString(pvApiCtx, addr, &name) != 0)
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
-    }
-
-    if (nbIn == 3)
-    {
-        _location = std::string(name);
-        freeAllocatedSingleString(name);
-
-        err = getVarAddressFromPosition(pvApiCtx, 3, &addr);
+        err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
         {
             printError(&err, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
@@ -122,29 +107,57 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (getAllocatedSingleString(pvApiCtx, addr, &name) != 0)
+        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
-    }
-    else
-    {
-        _location = std::string(".");
-    }
 
-    _name = std::string(name);
-    freeAllocatedSingleString(name);
+        if (nbIn == 2)
+        {
+            name = std::string(str);
+            freeAllocatedSingleString(str);
+            location = std::string(".");
+        }
+        else
+        {
+            location = std::string(str);
+            freeAllocatedSingleString(str);
+
+            err = getVarAddressFromPosition(pvApiCtx, 3, &addr);
+            if (err.iErr)
+            {
+                printError(&err, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+                return 0;
+            }
+
+            if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+                return 0;
+            }
+
+            if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
+
+            name = std::string(str);
+            freeAllocatedSingleString(str);
+        }
+    }
 
     try
     {
         if (hobj)
         {
-            HDF5Scilab::readAttributeData(*hobj, _location, _name, nbIn + 1, pvApiCtx);
+            HDF5Scilab::readAttributeData(*hobj, location, name, nbIn + 1, pvApiCtx);
         }
         else
         {
-            HDF5Scilab::readAttributeData(_expandedPath, _location, _name, nbIn + 1, pvApiCtx);
+            HDF5Scilab::readAttributeData(_expandedPath, location, name, nbIn + 1, pvApiCtx);
         }
     }
     catch (const std::exception & e)

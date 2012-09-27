@@ -276,13 +276,26 @@ std::string H5Dataset::toString(const unsigned int indentLevel) const
     return os.str();
 }
 
-hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data)
+hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data, const bool chunked)
 {
     herr_t err;
-    hid_t dataset = H5Dcreate2(loc.getH5Id(), name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-    if (dataset < 0)
+    hid_t dataset;
+
+    if (H5Lexists(loc.getH5Id(), name.c_str(), H5P_DEFAULT) > 0)
     {
-        throw H5Exception(__LINE__, __FILE__, _("Cannot create a new dataset."));
+        dataset = H5Oopen(loc.getH5Id(), name.c_str(), H5P_DEFAULT);
+        if (dataset < 0)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot open the dataset: %s"), name.c_str());
+        }
+    }
+    else
+    {
+        dataset = H5Dcreate2(loc.getH5Id(), name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+        if (dataset < 0)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create the dataset: %s"), name.c_str());
+        }
     }
 
     err = H5Dwrite(dataset, type, srcspace, H5S_ALL, H5P_DEFAULT, data);

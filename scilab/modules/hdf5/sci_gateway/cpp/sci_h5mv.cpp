@@ -25,21 +25,21 @@ extern "C"
 using namespace org_modules_hdf5;
 
 /*
-  Copy an object (this code has been copied for h5mv).
+  Move an object (code is a cc of h5cp).
   Scilab prototype:
-  - h5cp(srcobj, destobj)
-  - h5cp(srcobj, destobj, destloc)
-  - h5cp(srcobj, destfile, destloc)
-  - h5cp(srcobj, sloc, destobj)
-  - h5cp(srcobj, sloc, destobj, destloc)
-  - h5cp(srcobj, sloc, destfile, destloc)
-  - h5cp(srcfile, sloc, destobj)
-  - h5cp(srcfile, sloc, destobj, destloc)
-  - h5cp(srcfile, sloc, destfile, destloc)
+  - h5mv(srcobj, destobj)
+  - h5mv(srcobj, destobj, destloc)
+  - h5mv(srcobj, destfile, destloc)
+  - h5mv(srcobj, sloc, destobj)
+  - h5mv(srcobj, sloc, destobj, destloc)
+  - h5mv(srcobj, sloc, destfile, destloc)
+  - h5mv(srcfile, sloc, destobj)
+  - h5mv(srcfile, sloc, destobj, destloc)
+  - h5mv(srcfile, sloc, destfile, destloc)
 */
 
 /*--------------------------------------------------------------------------*/
-int sci_h5cp(char *fname, unsigned long fname_len)
+int sci_h5mv(char *fname, unsigned long fname_len)
 {
     SciErr err;
     H5Object * sobj = 0;
@@ -221,6 +221,8 @@ int sci_h5cp(char *fname, unsigned long fname_len)
             {
                 HDF5Scilab::copy(*sobj, sloc, dfile, dloc);
             }
+            HDF5Scilab::deleteObject(*sobj, sloc);
+            H5VariableScope::removeIdAndDelete(sobj->getScilabId());
         }
         else
         {
@@ -232,6 +234,7 @@ int sci_h5cp(char *fname, unsigned long fname_len)
             {
                 HDF5Scilab::copy(sfile, sloc, dfile, dloc);
             }
+            HDF5Scilab::deleteObject(sfile, sloc);
         }
     }
     catch (const std::exception & e)

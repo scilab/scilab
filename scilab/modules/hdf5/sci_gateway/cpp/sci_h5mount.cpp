@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,6 +23,12 @@ extern "C"
 #include "H5File.hxx"
 
 using namespace org_modules_hdf5;
+
+/*
+  Mount a file on a group.
+  Scilab prototype:
+  - h5mount(obj, location, fileobj)
+*/
 
 /*--------------------------------------------------------------------------*/
 int sci_h5mount(char *fname, unsigned long fname_len)
@@ -57,6 +63,7 @@ int sci_h5mount(char *fname, unsigned long fname_len)
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A H5Object expected.\n"), fname, 1);
+        return 0;
     }
 
     err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
@@ -102,6 +109,7 @@ int sci_h5mount(char *fname, unsigned long fname_len)
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A H5Object expected.\n"), fname, 3);
+        return 0;
     }
 
     try

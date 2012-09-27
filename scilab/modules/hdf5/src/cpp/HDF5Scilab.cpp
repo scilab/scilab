@@ -240,6 +240,22 @@ void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsign
     }
 }
 
+void HDF5Scilab::deleteObject(const std::string & file, const std::string & name)
+{
+    H5File * _file = new H5File(file, "/", "r+");
+
+    try
+    {
+        deleteObject(*_file, name);
+        delete _file;
+    }
+    catch (const H5Exception & e)
+    {
+        delete _file;
+    }
+}
+
+
 void HDF5Scilab::deleteObject(H5Object & parent, const std::string & name)
 {
     herr_t err;
@@ -343,12 +359,46 @@ void HDF5Scilab::createLink(H5Object & parent, const std::string & name, H5Objec
     createLink(parent, name, targetObject.getFile().getFileName(), targetObject.getCompletePath());
 }
 
-void HDF5Scilab::copy(H5Object & src, H5Object & dest, const std::string & dlocation)
+void HDF5Scilab::createLink(const std::string & file, const std::string & location, const std::string & name, const std::string & destName, const bool hard)
+{
+    H5File * _file = new H5File(file, location, "r+");
+
+    try
+    {
+        createLink(_file->getRoot(), name, destName, hard);
+    }
+    catch (const H5Exception & e)
+    {
+        delete _file;
+        throw;
+    }
+
+    delete _file;
+}
+
+void HDF5Scilab::createLink(const std::string & file, const std::string & location, const std::string & name, const std::string & destFile, const std::string & destName)
+{
+    H5File * _file = new H5File(file, location, "r+");
+
+    try
+    {
+        createLink(_file->getRoot(), name, destFile, destName);
+    }
+    catch (const H5Exception & e)
+    {
+        delete _file;
+        throw;
+    }
+
+    delete _file;
+}
+
+void HDF5Scilab::copy(H5Object & src, const std::string & slocation, H5Object & dest, const std::string & dlocation)
 {
     H5Object * sobj = &src;
     H5Object * dobj = &dest;
     std::string name;
-    herr_t err = 0;
+    herr_t err;
 
     if (src.isFile())
     {
@@ -360,7 +410,7 @@ void HDF5Scilab::copy(H5Object & src, H5Object & dest, const std::string & dloca
         dobj = &reinterpret_cast<H5File *>(dobj)->getRoot();
     }
 
-    name = dlocation.empty() ? sobj->getBaseName() : dlocation;
+    name = (dlocation.empty() || dlocation == ".") ? sobj->getBaseName() : dlocation;
 
     if (sobj->isAttribute())
     {
@@ -385,7 +435,7 @@ void HDF5Scilab::copy(H5Object & src, H5Object & dest, const std::string & dloca
     }
     else
     {
-        err = H5Ocopy(sobj->getH5Id(), ".", dobj->getH5Id(), name.c_str(), H5P_DEFAULT, H5P_DEFAULT);
+        err = H5Ocopy(sobj->getH5Id(), slocation.empty() ? "." : slocation.c_str(), dobj->getH5Id(), name.c_str(), H5P_DEFAULT, H5P_DEFAULT);
     }
 
     if (src.isFile())
@@ -406,13 +456,13 @@ void HDF5Scilab::copy(H5Object & src, H5Object & dest, const std::string & dloca
     dest.getFile().flush(true);
 }
 
-void HDF5Scilab::copy(H5Object & src, const std::string & dfile, const std::string & dlocation)
+void HDF5Scilab::copy(H5Object & src, const std::string & slocation, const std::string & dfile, const std::string & dlocation)
 {
     H5File * dest = new H5File(dfile, dlocation);
 
     try
     {
-        copy(src, *dest, ".");
+        copy(src, slocation, *dest, ".");
         delete dest;
     }
     catch (const H5Exception & e)
@@ -428,7 +478,7 @@ void HDF5Scilab::copy(const std::string & sfile, const std::string & slocation, 
 
     try
     {
-        copy(*src, dest, dlocation);
+        copy(*src, "", dest, dlocation);
         delete src;
     }
     catch (const H5Exception & e)
@@ -455,7 +505,7 @@ void HDF5Scilab::copy(const std::string & sfile, const std::string & slocation, 
 
     try
     {
-        copy(*src, *dest, ".");
+        copy(*src, "", *dest, ".");
         delete src;
         delete dest;
     }
@@ -472,7 +522,7 @@ void HDF5Scilab::ls(H5Object & obj, std::string name, int position, void * pvApi
     std::vector<std::string> _name;
     std::vector<std::string> _type;
     std::vector<const char *> strs;
-    H5Object & hobj = name.empty() ? obj : H5Object::getObject(obj, name);
+    H5Object & hobj = (name.empty() || name == ".") ? obj : H5Object::getObject(obj, name);
 
     hobj.ls(_name, _type);
     strs.reserve(_name.size() * 2);
@@ -485,7 +535,7 @@ void HDF5Scilab::ls(H5Object & obj, std::string name, int position, void * pvApi
         strs.push_back(_type[i].c_str());
     }
 
-    if (!name.empty())
+    if (!name.empty() && name != ".")
     {
         delete &hobj;
     }
@@ -508,6 +558,54 @@ void HDF5Scilab::ls(std::string path, std::string name, int position, void * pvA
     }
 
     delete file;
+}
+
+
+void HDF5Scilab::createGroup(H5Object & parent, const std::string & name)
+{
+    H5Group::createGroup(parent, name);
+}
+
+void HDF5Scilab::createGroup(const std::string & file, const std::string & name)
+{
+    H5File * _file = new H5File(file, "/", "r+");
+
+    try
+    {
+        createGroup(_file->getRoot(), name);
+    }
+    catch (const H5Exception & e)
+    {
+        delete _file;
+        throw;
+    }
+
+    delete _file;
+}
+
+void HDF5Scilab::createGroup(H5Object & parent, const std::vector<std::string> & names)
+{
+    for (unsigned int i = 0; i < names.size(); i++)
+    {
+        H5Group::createGroup(parent, names[i]);
+    }
+}
+
+void HDF5Scilab::createGroup(const std::string & file, const std::vector<std::string> & names)
+{
+    H5File * _file = new H5File(file, "/", "r+");
+
+    try
+    {
+        createGroup(_file->getRoot(), names);
+    }
+    catch (const H5Exception & e)
+    {
+        delete _file;
+        throw;
+    }
+
+    delete _file;
 }
 
 bool HDF5Scilab::checkType(const H5Object & obj, const H5ObjectType type)
@@ -549,7 +647,7 @@ void HDF5Scilab::mount(H5Object & obj, const std::string & location, H5Object & 
         throw H5Exception(__LINE__, __FILE__, _("Invalid location"));
     }
 
-    err = H5Fmount(obj.getH5Id(), location.c_str(), reinterpret_cast<H5File *>(&file)->getH5Id(), H5P_DEFAULT);
+    err = H5Fmount(obj.getH5Id(), location.c_str(), file.getH5Id(), H5P_DEFAULT);
     if (err < 0)
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot mount the file: %s"), file.getFile().getFileName().c_str());

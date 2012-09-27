@@ -43,19 +43,22 @@
     <PRIMITIVE gatewayId="62" primitiveId="12" primitiveName="h5group" />
     <PRIMITIVE gatewayId="62" primitiveId="13" primitiveName="h5rm" />
     <PRIMITIVE gatewayId="62" primitiveId="14" primitiveName="h5dataset" />
-    <PRIMITIVE gatewayId="62" primitiveId="15" primitiveName="h5attr" />
-    <PRIMITIVE gatewayId="62" primitiveId="16" primitiveName="h5ln" />
-    <PRIMITIVE gatewayId="62" primitiveId="17" primitiveName="h5readattr" />
-    <PRIMITIVE gatewayId="62" primitiveId="18" primitiveName="h5flush" />
-    <PRIMITIVE gatewayId="62" primitiveId="19" primitiveName="h5cp" />
-    <PRIMITIVE gatewayId="62" primitiveId="20" primitiveName="h5isFile" />
-    <PRIMITIVE gatewayId="62" primitiveId="21" primitiveName="h5isGroup" />
-    <PRIMITIVE gatewayId="62" primitiveId="22" primitiveName="h5isSet" />
-    <PRIMITIVE gatewayId="62" primitiveId="23" primitiveName="h5isAttr" />
-    <PRIMITIVE gatewayId="62" primitiveId="24" primitiveName="h5isSpace" />
-    <PRIMITIVE gatewayId="62" primitiveId="25" primitiveName="h5isType" />
-    <PRIMITIVE gatewayId="62" primitiveId="26" primitiveName="h5isRef" />
-    <PRIMITIVE gatewayId="62" primitiveId="27" primitiveName="h5isList" />
-    <PRIMITIVE gatewayId="62" primitiveId="28" primitiveName="h5mount" />
-    <PRIMITIVE gatewayId="62" primitiveId="29" primitiveName="h5umount" />
+    <PRIMITIVE gatewayId="62" primitiveId="15" primitiveName="h5write" />
+    <PRIMITIVE gatewayId="62" primitiveId="16" primitiveName="h5attr" />
+    <PRIMITIVE gatewayId="62" primitiveId="17" primitiveName="h5writeattr" />
+    <PRIMITIVE gatewayId="62" primitiveId="18" primitiveName="h5ln" />
+    <PRIMITIVE gatewayId="62" primitiveId="19" primitiveName="h5readattr" />
+    <PRIMITIVE gatewayId="62" primitiveId="20" primitiveName="h5flush" />
+    <PRIMITIVE gatewayId="62" primitiveId="21" primitiveName="h5cp" />
+    <PRIMITIVE gatewayId="62" primitiveId="22" primitiveName="h5isFile" />
+    <PRIMITIVE gatewayId="62" primitiveId="23" primitiveName="h5isGroup" />
+    <PRIMITIVE gatewayId="62" primitiveId="24" primitiveName="h5isSet" />
+    <PRIMITIVE gatewayId="62" primitiveId="25" primitiveName="h5isAttr" />
+    <PRIMITIVE gatewayId="62" primitiveId="26" primitiveName="h5isSpace" />
+    <PRIMITIVE gatewayId="62" primitiveId="27" primitiveName="h5isType" />
+    <PRIMITIVE gatewayId="62" primitiveId="28" primitiveName="h5isRef" />
+    <PRIMITIVE gatewayId="62" primitiveId="29" primitiveName="h5isList" />
+    <PRIMITIVE gatewayId="62" primitiveId="30" primitiveName="h5mount" />
+    <PRIMITIVE gatewayId="62" primitiveId="31" primitiveName="h5umount" />
+    <PRIMITIVE gatewayId="62" primitiveId="32" primitiveName="h5mv" />
 </GATEWAY>

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,11 +10,240 @@
  *
  */
 
-#include "h5create.hpp"
+extern "C"
+{
+#include "gw_hdf5.h"
+#include "Scierror.h"
+#include "api_scilab.h"
+#include "localization.h"
+}
+
+#include "HDF5Scilab.hxx"
 
 using namespace org_modules_hdf5;
 
+/*
+  Create a new dataset (equivalent to h5write).
+  Scilab prototype:
+  - h5dataset(obj, name, data)
+  - h5dataset(obj, name, data, start, count)
+  - h5dataset(obj, name, data, start, count, stride)
+  - h5dataset(obj, name, data, start, count, stride, block)
+  - h5dataset(obj, name, data, targetType)
+  - h5dataset(obj, name, data, targetType, start, count)
+  - h5dataset(obj, name, data, targetType, start, count, stride)
+  - h5dataset(obj, name, data, targetType, start, count, stride, block)
+  - h5dataset(obj, name, data)
+  - h5dataset(obj, name, data, start, count)
+  - h5dataset(obj, name, data, start, count, stride)
+  - h5dataset(obj, name, data, start, count, stride, block)
+  - h5dataset(obj, name, data, targetType)
+  - h5dataset(obj, name, data, targetType, start, count)
+  - h5dataset(obj, name, data, targetType, start, count, stride)
+  - h5dataset(obj, name, data, targetType, start, count, stride, block)
+  - h5dataset(obj, name, data, targetType, start, count, stride, block, maxdims)
+  - h5dataset(filename, name, data)
+  - h5dataset(filename, name, data, start, count)
+  - h5dataset(filename, name, data, start, count, stride)
+  - h5dataset(filename, name, data, start, count, stride, block)
+  - h5dataset(filename, name, data, targetType)
+  - h5dataset(filename, name, data, targetType, start, count)
+  - h5dataset(filename, name, data, targetType, start, count, stride)
+  - h5dataset(filename, name, data, targetType, start, count, stride, block, maxdims)
+*/
+
 int sci_h5dataset(char *fname, unsigned long fname_len)
 {
-    return h5create<H5Dataset>(fname, fname_len);
+    H5Object * hobj = 0;
+    SciErr err;
+    int * addr = 0;
+    char * str = 0;
+    std::string name;
+    std::string targetType;
+    std::string file;
+    double * start = 0;
+    double * stride = 0;
+    double * count = 0;
+    double * block = 0;
+    double * maxdims = 0;
+    double ** dptrs[5] = {&start, &count, &stride, &block, &maxdims};
+    int inc = 0;
+    int row, col;
+    unsigned int size = 0;
+    unsigned int rhsBegin;
+    const int nbIn = nbInputArgument(pvApiCtx);
+
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    // passer a 9 pr autoriser le chunking et surtout l'ajouter a la creation du dataset.
+    CheckInputArgument(pvApiCtx, 3, 8);
+
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
+    if (err.iErr)
+    {
+        printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
+    }
+
+    if (HDF5Scilab::isH5Object(addr, pvApiCtx))
+    {
+        hobj = HDF5Scilab::getH5Object(addr, pvApiCtx);
+        if (!hobj)
+        {
+            Scierror(999, _("%s: Invalid H5Object.\n"), fname);
+            return 0;
+        }
+    }
+    else
+    {
+        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+        {
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            return 0;
+        }
+
+        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
+
+        file = std::string(str);
+        freeAllocatedSingleString(str);
+    }
+
+    err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
+    if (err.iErr)
+    {
+        printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        return 0;
+    }
+
+    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+    {
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        return 0;
+    }
+
+    if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
+
+    name = std::string(str);
+    freeAllocatedSingleString(str);
+
+    if (nbIn >= 4)
+    {
+        err = getVarAddressFromPosition(pvApiCtx, 4, &addr);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
+            return 0;
+        }
+
+        if (isStringType(pvApiCtx, addr))
+        {
+            if (!checkVarDimension(pvApiCtx, addr, 1, 1))
+            {
+                Scierror(999, _("%s: Invalid dimension for input argument #%d: a single Strng expected.\n"), fname, 4);
+                return 0;
+            }
+
+            if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
+            targetType = std::string(str);
+            freeAllocatedSingleString(str);
+            rhsBegin = 5;
+        }
+        else
+        {
+            rhsBegin = 4;
+        }
+    }
+
+    for (unsigned int i = rhsBegin; i <= nbIn; i++)
+    {
+        err = getVarAddressFromPosition(pvApiCtx, i, &addr);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
+            return 0;
+        }
+        if (isDoubleType(pvApiCtx, addr))
+        {
+            err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, dptrs[i - rhsBegin]);
+            if (row > 1 && col > 1)
+            {
+                Scierror(999, _("%s: Bad dimensions for input argument #%d: a row or a column expected.\n"), fname, i);
+                return 0;
+            }
+
+            if (row != 0 && col != 0)
+            {
+                if (size == 0)
+                {
+                    size = row > col ? row : col;
+                }
+                else if (size != (row > col ? row : col))
+                {
+                    Scierror(999, _("%s: Bad dimensions for input argument #%d: the same size are expected.\n"), fname, i);
+                    return 0;
+                }
+            }
+            else
+            {
+                *(dptrs[i - rhsBegin]) = 0;
+            }
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A row of doubles expected.\n"), fname, i);
+            return 0;
+        }
+    }
+
+    if (start && !count)
+    {
+        Scierror(999, _("%s: Argument 'count' is missing.\n"), fname);
+        return 0;
+    }
+
+    err = getVarAddressFromPosition(pvApiCtx, 3, &addr);
+    if (err.iErr)
+    {
+        printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+        return 0;
+    }
+
+    try
+    {
+        if (hobj)
+        {
+            HDF5Scilab::createObjectFromStack<H5Dataset>(*hobj, "", name, targetType, size, start, stride, count, block, maxdims, pvApiCtx, addr, 3);
+        }
+        else
+        {
+            HDF5Scilab::createObjectFromStack<H5Dataset>(file, "/", name, targetType, size, start, stride, count, block, maxdims, pvApiCtx, addr, 3);
+        }
+    }
+    catch (const H5Exception & e)
+    {
+        Scierror(999, _("%s: %s\n"), fname, e.what());
+        return 0;
+    }
+
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
+
+    return 0;
 }

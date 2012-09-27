@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,6 +18,7 @@ extern "C"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
+#include "expandPathVariable.h"
 }
 
 #include "H5Group.hxx"
@@ -25,16 +26,26 @@ extern "C"
 
 using namespace org_modules_hdf5;
 
+/*
+  Create a group
+  Scilab prototype:
+  - h5group(obj, name)
+  - h5group(filename, name)
+*/
+
 /*--------------------------------------------------------------------------*/
 int sci_h5group(char *fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
-    H5Group * group = 0;
     SciErr err;
     int * addr = 0;
-    char * name = 0;
-    std::string _name;
+    char * str = 0;
+    char ** strs = 0;
+    char * expandedPath = 0;
+    std::string _expandedPath;
     const int nbIn = nbInputArgument(pvApiCtx);
+    std::vector<std::string> v;
+    int row, col;
 
     CheckOutputArgument(pvApiCtx, 1, 1);
     CheckInputArgument(pvApiCtx, 2, 2);
@@ -52,13 +63,36 @@ int sci_h5group(char *fname, unsigned long fname_len)
         hobj = HDF5Scilab::getH5Object(addr, pvApiCtx);
         if (!hobj)
         {
-            Scierror(999, _("%s: Can not print H5Object: invalid object.\n"), fname);
+            Scierror(999, _("%s: Invalid H5Object.\n"), fname);
             return 0;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A H5Object expected.\n"), fname, 1);
+        err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            return 0;
+        }
+
+        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+        {
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            return 0;
+        }
+
+        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
+
+        expandedPath = expandPathVariable(str);
+        _expandedPath = std::string(expandedPath);
+        FREE(expandedPath);
+        freeAllocatedSingleString(str);
     }
 
     err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
@@ -69,25 +103,36 @@ int sci_h5group(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+    if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 0;
     }
 
-    if (getAllocatedSingleString(pvApiCtx, addr, &name) != 0)
+    if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &strs) != 0)
     {
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }
 
-    _name = std::string(name);
-    freeAllocatedSingleString(name);
+    v = std::vector<std::string>();
+    v.reserve(row * col);
+    for (unsigned int i = 0; i < row * col; i++)
+    {
+        v.push_back(std::string(strs[i]));
+    }
+    freeAllocatedMatrixOfString(row, col, strs);
 
     try
     {
-        group = &H5Group::createGroup(*hobj, _name);
-        group->createOnScilabStack(nbIn + 1, pvApiCtx);
+        if (hobj)
+        {
+            HDF5Scilab::createGroup(*hobj, v);
+        }
+        else
+        {
+            HDF5Scilab::createGroup(_expandedPath, v);
+        }
     }
     catch (const std::exception & e)
     {
@@ -95,7 +140,7 @@ int sci_h5group(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+    AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
 
     return 0;

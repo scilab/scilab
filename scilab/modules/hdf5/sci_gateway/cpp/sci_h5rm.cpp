@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,14 +27,23 @@ extern "C"
 
 using namespace org_modules_hdf5;
 
+/*
+  Remove an object.
+  Scilab prototype:
+  - h5rm(obj)
+  - h5rm(obj, name)
+  - h5rm(filename, name)
+*/
+
 /*--------------------------------------------------------------------------*/
 int sci_h5rm(char *fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
     SciErr err;
     int * addr = 0;
-    char * name = 0;
-    std::string _name;
+    char * str = 0;
+    std::string name;
+    std::string file;
     const int nbIn = nbInputArgument(pvApiCtx);
 
     CheckOutputArgument(pvApiCtx, 1, 1);
@@ -59,7 +68,20 @@ int sci_h5rm(char *fname, unsigned long fname_len)
     }
     else
     {
-        Scierror(999, _("%s: Invalid input argument #%d: a H5Object expected.\n"), fname, 1);
+        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+        {
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            return 0;
+        }
+
+        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
+
+        file = std::string(str);
+        freeAllocatedSingleString(str);
     }
 
     if (nbIn == 2)
@@ -78,19 +100,27 @@ int sci_h5rm(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (getAllocatedSingleString(pvApiCtx, addr, &name) != 0)
+        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
 
-        _name = std::string(name);
-        freeAllocatedSingleString(name);
+        name = std::string(str);
+        freeAllocatedSingleString(str);
     }
 
     try
     {
-        HDF5Scilab::deleteObject(*hobj, _name);
+        if (hobj)
+        {
+            HDF5Scilab::deleteObject(*hobj, name);
+            H5VariableScope::removeIdAndDelete(hobj->getScilabId());
+        }
+        else
+        {
+            HDF5Scilab::deleteObject(file, name);
+        }
     }
     catch (const std::exception & e)
     {

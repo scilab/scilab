@@ -35,7 +35,9 @@ static gw_generic_table Tab[] =
     {sci_h5group, "h5group"},
     {sci_h5rm, "h5rm"},
     {sci_h5dataset, "h5dataset"},
+    {sci_h5dataset, "h5write"},
     {sci_h5attr, "h5attr"},
+    {sci_h5attr, "h5writeattr"},
     {sci_h5ln, "h5ln"},
     {sci_h5readattr, "h5readattr"},
     {sci_h5flush, "h5flush"},
@@ -50,6 +52,7 @@ static gw_generic_table Tab[] =
     {sci_h5isList, "h5isList"},
     {sci_h5mount, "h5mount"},
     {sci_h5umount, "h5umount"},
+    {sci_h5mv, "h5mv"},
 };
 /*--------------------------------------------------------------------------*/
 int gw_hdf5(void)

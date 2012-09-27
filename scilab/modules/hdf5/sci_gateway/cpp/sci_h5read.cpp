@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,17 +23,33 @@ extern "C"
 
 using namespace org_modules_hdf5;
 
+/*
+  Read the content of a dataset.
+  Scilab prototype:
+  - h5read(obj) (obj must be a dataset)
+  - h5read(obj, location)
+  - h5read(obj, location, start, count)
+  - h5read(obj, location, start, count, stride)
+  - h5read(obj, location, start, count, stride, block)
+  - h5read(obj, start, count)
+  - h5read(obj, start, count, stride)
+  - h5read(obj, start, count, stride, block)
+  - h5read(filename, location)
+  - h5read(filename, location, start, count)
+  - h5read(filename, location, start, count, stride)
+  - h5read(filename, location, start, count, stride, block)
+*/
+
 /*--------------------------------------------------------------------------*/
 int sci_h5read(char *fname, unsigned long fname_len)
 {
     SciErr err;
     H5Object * hobj = 0;
     int * addr = 0;
-    char * path = 0;
     char * expandedPath = 0;
-    char * location = 0;
+    char * str = 0;
     std::string _expandedPath;
-    std::string _location;
+    std::string location;
     double * start = 0;
     double * stride = 0;
     double * count = 0;
@@ -66,22 +82,34 @@ int sci_h5read(char *fname, unsigned long fname_len)
     }
     else
     {
+        if (nbIn == 1)
+        {
+            Scierror(999, _("%s: Invalid number of input argument.\n"), fname);
+            return 0;
+        }
+
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
             return 0;
         }
 
-        if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
+        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
 
-        expandedPath = expandPathVariable(path);
+        expandedPath = expandPathVariable(str);
         _expandedPath = std::string(expandedPath);
         FREE(expandedPath);
-        freeAllocatedSingleString(path);
+        freeAllocatedSingleString(str);
+
+        if (_expandedPath.empty())
+        {
+            Scierror(999, _("%s: Invalid path: cannot be empty.\n"), fname);
+            return 0;
+        }
     }
 
     if (nbIn >= 2)
@@ -96,18 +124,30 @@ int sci_h5read(char *fname, unsigned long fname_len)
 
         if (isStringType(pvApiCtx, addr))
         {
-            if (getAllocatedSingleString(pvApiCtx, addr, &location) != 0)
+            if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
                 return 0;
             }
 
-            _location = std::string(location);
-            freeAllocatedSingleString(location);
+            location = std::string(str);
+            freeAllocatedSingleString(str);
         }
         else
         {
-            _location = std::string(".");
+            if (!_expandedPath.empty())
+            {
+                Scierror(999, _("%s: Second argument must be a dataset name.\n"), fname);
+                return 0;
+            }
+
+            if (nbIn == 2)
+            {
+                Scierror(999, _("%s: Invalid number of input argument.\n"), fname);
+                return 0;
+            }
+
+            location = std::string(".");
 
             if (isDoubleType(pvApiCtx, addr))
             {
@@ -137,7 +177,6 @@ int sci_h5read(char *fname, unsigned long fname_len)
             }
         }
     }
-
 
     for (unsigned int i = 3; i <= nbIn; i++)
     {
@@ -174,15 +213,21 @@ int sci_h5read(char *fname, unsigned long fname_len)
         }
     }
 
+    if (start && !count)
+    {
+        Scierror(999, _("%s: Argument 'count' is missing.\n"), fname);
+        return 0;
+    }
+
     try
     {
         if (hobj)
         {
-            HDF5Scilab::readData(*hobj, _location, size, start, stride, count, block, nbIn + 1, pvApiCtx);
+            HDF5Scilab::readData(*hobj, location, size, start, stride, count, block, nbIn + 1, pvApiCtx);
         }
         else
         {
-            HDF5Scilab::readData(_expandedPath, _location, size, start, stride, count, block, nbIn + 1, pvApiCtx);
+            HDF5Scilab::readData(_expandedPath, location, size, start, stride, count, block, nbIn + 1, pvApiCtx);
         }
     }
     catch (const std::exception & e)

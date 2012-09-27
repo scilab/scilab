@@ -71,6 +71,8 @@ public:
 
     static void readAttributeData(const std::string & filename, const std::string & path, const std::string & attrName, int pos, void * pvApiCtx);
 
+    static void deleteObject(const std::string & file, const std::string & name);
+
     static void deleteObject(H5Object & parent, const std::string & name);
 
     static void createLink(H5Object & parent, const std::string & name, const std::string & targetPath, const bool hard);
@@ -81,9 +83,13 @@ public:
 
     static void createLink(H5Object & parent, const std::string & name, H5Object & targetObject);
 
-    static void copy(H5Object & src, H5Object & dest, const std::string & dlocation);
+    static void createLink(const std::string & file, const std::string & location, const std::string & name, const std::string & destName, const bool hard);
 
-    static void copy(H5Object & src, const std::string & dfile, const std::string & dlocation);
+    static void createLink(const std::string & file, const std::string & location, const std::string & name, const std::string & destFile, const std::string & destName);
+
+    static void copy(H5Object & src, const std::string & slocation, H5Object & dest, const std::string & dlocation);
+
+    static void copy(H5Object & src, const std::string & slocation, const std::string & dfile, const std::string & dlocation);
 
     static void copy(const std::string & sfile, const std::string & slocation, H5Object & dest, const std::string & dlocation);
 
@@ -98,6 +104,14 @@ public:
     static void mount(H5Object & obj, const std::string & location, H5Object & file);
 
     static void umount(H5Object & obj, const std::string & location);
+
+    static void createGroup(H5Object & parent, const std::string & name);
+
+    static void createGroup(const std::string & file, const std::string & name);
+
+    static void createGroup(H5Object & parent, const std::vector<std::string> & names);
+
+    static void createGroup(const std::string & file, const std::vector<std::string> & names);
 
     template <typename T, typename U>
     static U & create(H5Object & parent, const std::string & name, const unsigned int rank, const hsize_t * dims, const hsize_t * maxdims, T * data, const hid_t targetType, const unsigned int size, const double * start, const double * stride, const double * count, const double * block)
@@ -267,14 +281,42 @@ public:
     }
 
     template <typename T>
-    static T & createObjectFromStack(H5Object & obj, const std::string & name, const std::string & targetType, const unsigned int size, const double * start, const double * stride, const double * count, const double * block, void * pvApiCtx, int * addr, const int rhsPosition)
+    static void createObjectFromStack(const std::string & file, const std::string & location, const std::string & name, const std::string & targetType, const unsigned int size, const double * start, const double * stride, const double * count, const double * block, const double * maxdims, void * pvApiCtx, int * addr, const int rhsPosition)
+    {
+        H5File & src = *new H5File(file, location, "r+");
+
+        try
+        {
+            createObjectFromStack<T>(src, "", name, targetType, size, start, stride, count, block, maxdims, pvApiCtx, addr, rhsPosition);
+            delete &src;
+        }
+        catch (const H5Exception & e)
+        {
+            delete &src;
+            throw;
+        }
+    }
+
+    template <typename T>
+    static void createObjectFromStack(H5Object & obj, const std::string & location, const std::string & name, const std::string & targetType, const unsigned int size, const double * start, const double * stride, const double * count, const double * block, const double * maxdims, void * pvApiCtx, int * addr, const int rhsPosition)
     {
         T * newobj = 0;
         SciErr err;
-        hsize_t dims[2] = {0, 0};
+        hsize_t dims[2] = { 0, 0 };
+        hsize_t * _maxdims = 0;
+        hsize_t mdims[2];
         int row;
         int col;
         int type;
+        H5Object * robj = 0;
+        H5Object * hobj = 0;
+
+        if (maxdims)
+        {
+            mdims[0] = std::numeric_limits<double>::infinity() == maxdims[0] ? H5S_UNLIMITED : (hsize_t)maxdims[0];
+            mdims[1] = std::numeric_limits<double>::infinity() == maxdims[1] ? H5S_UNLIMITED : (hsize_t)maxdims[1];
+            _maxdims = mdims;
+        }
 
         err = getVarType(pvApiCtx, addr, &type);
         if (err.iErr)
@@ -282,171 +324,204 @@ public:
             throw H5Exception(__LINE__, __FILE__, _("Can not get the type of input argument #%d."), rhsPosition);
         }
 
-        switch (type)
+        if (obj.isFile())
         {
-            case sci_matrix :
-            {
-                double * mat = 0;
+            robj = &reinterpret_cast<H5File *>(&obj)->getRoot();
+            hobj = (location.empty() || location == ".") ? robj : &H5Object::getObject(*robj, location);
+        }
+        else
+        {
+            hobj = (location.empty() || location == ".") ? &obj : &H5Object::getObject(obj, location);
+        }
 
-                if (isVarComplex(pvApiCtx, addr))
+        try
+        {
+            switch (type)
+            {
+                case sci_matrix :
                 {
-                    throw H5Exception(__LINE__, __FILE__, _("Complex datatype not handled for now."));
+                    double * mat = 0;
+
+                    if (isVarComplex(pvApiCtx, addr))
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("Complex datatype not handled for now."));
+                    }
+                    else
+                    {
+                        err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, &mat);
+                        if (err.iErr)
+                        {
+                            throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                        }
+                        dims[0] = col;
+                        dims[1] = row;
+                        newobj = &HDF5Scilab::create<double, T>(*hobj, name, 2, dims, _maxdims, mat, targetType, size, start, stride, count, block);
+                    }
+                    break;
                 }
-                else
+                case sci_ints :
                 {
-                    err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, &mat);
+                    int prec = 0;
+                    void * ints = 0;
+
+                    err = getMatrixOfIntegerPrecision(pvApiCtx, addr, &prec);
+                    if (err.iErr)
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                    }
+
+                    switch (prec)
+                    {
+                        case SCI_INT8 :
+                            err = getMatrixOfInteger8(pvApiCtx, addr, &row, &col, (char **)(&ints));
+                            if (err.iErr)
+                            {
+                                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                            }
+                            dims[0] = col;
+                            dims[1] = row;
+                            newobj = &HDF5Scilab::create<char, T>(*hobj, name, 2, dims, _maxdims, (char *)ints, targetType, size, start, stride, count, block);
+                            break;
+                        case SCI_UINT8 :
+                            err = getMatrixOfUnsignedInteger8(pvApiCtx, addr, &row, &col, (unsigned char **)(&ints));
+                            if (err.iErr)
+                            {
+                                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                            }
+                            dims[0] = col;
+                            dims[1] = row;
+                            newobj = &HDF5Scilab::create<unsigned char, T>(*hobj, name, 2, dims, _maxdims, (unsigned char *)ints, targetType, size, start, stride, count, block);
+                            break;
+                        case SCI_INT16 :
+                            err = getMatrixOfInteger16(pvApiCtx, addr, &row, &col, (short **)(&ints));
+                            if (err.iErr)
+                            {
+                                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                            }
+                            dims[0] = col;
+                            dims[1] = row;
+                            newobj = &HDF5Scilab::create<short, T>(*hobj, name, 2, dims, _maxdims, (short *)ints, targetType, size, start, stride, count, block);
+                            break;
+                        case SCI_UINT16 :
+                            err = getMatrixOfUnsignedInteger16(pvApiCtx, addr, &row, &col, (unsigned short **)(&ints));
+                            if (err.iErr)
+                            {
+                                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                            }
+                            dims[0] = col;
+                            dims[1] = row;
+                            newobj = &HDF5Scilab::create<unsigned short, T>(*hobj, name, 2, dims, _maxdims, (unsigned short *)ints, targetType, size, start, stride, count, block);
+                            break;
+                        case SCI_INT32 :
+                            err = getMatrixOfInteger32(pvApiCtx, addr, &row, &col, (int**)(&ints));
+                            if (err.iErr)
+                            {
+                                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                            }
+                            dims[0] = col;
+                            dims[1] = row;
+                            newobj = &HDF5Scilab::create<int, T>(*hobj, name, 2, dims, _maxdims, (int *)ints, targetType, size, start, stride, count, block);
+                            break;
+                        case SCI_UINT32 :
+                            err = getMatrixOfUnsignedInteger32(pvApiCtx, addr, &row, &col, (unsigned int **)(&ints));
+                            if (err.iErr)
+                            {
+                                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                            }
+                            dims[0] = col;
+                            dims[1] = row;
+                            newobj = &HDF5Scilab::create<unsigned int, T>(*hobj, name, 2, dims, _maxdims, (unsigned int *)ints, targetType, size, start, stride, count, block);
+                            break;
+
+#ifdef __SCILAB_INT64__
+                        case SCI_INT64 :
+                            err = getMatrixOfInteger64(pvApiCtx, addr, &row, &col, (long long **)(&ints));
+                            if (err.iErr)
+                            {
+                                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                            }
+                            dims[0] = col;
+                            dims[1] = row;
+                            newobj = &HDF5Scilab::create<long long, T>(*hobj, name, 2, dims, _maxdims, (long long *)ints, targetType, size, start, stride, count, block);
+                            break;
+                        case SCI_UINT64 :
+                            err = getMatrixOfUnsignedInteger64(pvApiCtx, addr, &row, &col, (unsigned long long **)(&ints));
+                            if (err.iErr)
+                            {
+                                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                            }
+                            dims[0] = col;
+                            dims[1] = row;
+                            newobj = &HDF5Scilab::create<unsigned long long, T>(*hobj, name, 2, dims, _maxdims, (unsigned long long *)ints, targetType, size, start, stride, count, block);
+                            break;
+#endif
+                    }
+                    break;
+                }
+                case sci_strings :
+                {
+                    char ** matS = 0;
+                    if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &matS))
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                    }
+                    try
+                    {
+                        dims[0] = col;
+                        dims[1] = row;
+                        newobj = &HDF5Scilab::create<char *, T>(*hobj, name, 2, dims, _maxdims, matS, targetType, size, start, stride, count, block);
+                    }
+                    catch (const H5Exception & e)
+                    {
+                        freeAllocatedMatrixOfString(*&row, *&col, matS);
+                        throw;
+                    }
+
+                    freeAllocatedMatrixOfString(*&row, *&col, matS);
+                    break;
+                }
+                case sci_boolean :
+                {
+                    int * matB;
+
+                    err = getMatrixOfBoolean(pvApiCtx, addr, &row, &col, &matB);
                     if (err.iErr)
                     {
                         throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
                     }
                     dims[0] = col;
                     dims[1] = row;
-                    newobj = &HDF5Scilab::create<double, T>(obj, name, 2, dims, 0, mat, targetType, size, start, stride, count, block);
+                    newobj = &HDF5Scilab::create<int, T>(*hobj, name, 2, dims, _maxdims, matB, targetType, size, start, stride, count, block);
+                    break;
                 }
-                break;
-            }
-            case sci_ints :
-            {
-                int prec = 0;
-                void * ints = 0;
-
-                err = getMatrixOfIntegerPrecision(pvApiCtx, addr, &prec);
-                if (err.iErr)
+                default :
                 {
-                    throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                    throw H5Exception(__LINE__, __FILE__, _("%s: Datatype not handled for now."));
                 }
-
-                switch (prec)
-                {
-                    case SCI_INT8 :
-                        err = getMatrixOfInteger8(pvApiCtx, addr, &row, &col, (char **)(&ints));
-                        if (err.iErr)
-                        {
-                            throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                        }
-                        dims[0] = col;
-                        dims[1] = row;
-                        newobj = &HDF5Scilab::create<char, T>(obj, name, 2, dims, 0, (char *)ints, targetType, size, start, stride, count, block);
-                        break;
-                    case SCI_UINT8 :
-                        err = getMatrixOfUnsignedInteger8(pvApiCtx, addr, &row, &col, (unsigned char **)(&ints));
-                        if (err.iErr)
-                        {
-                            throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                        }
-                        dims[0] = col;
-                        dims[1] = row;
-                        newobj = &HDF5Scilab::create<unsigned char, T>(obj, name, 2, dims, 0, (unsigned char *)ints, targetType, size, start, stride, count, block);
-                        break;
-                    case SCI_INT16 :
-                        err = getMatrixOfInteger16(pvApiCtx, addr, &row, &col, (short **)(&ints));
-                        if (err.iErr)
-                        {
-                            throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                        }
-                        dims[0] = col;
-                        dims[1] = row;
-                        newobj = &HDF5Scilab::create<short, T>(obj, name, 2, dims, 0, (short *)ints, targetType, size, start, stride, count, block);
-                        break;
-                    case SCI_UINT16 :
-                        err = getMatrixOfUnsignedInteger16(pvApiCtx, addr, &row, &col, (unsigned short **)(&ints));
-                        if (err.iErr)
-                        {
-                            throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                        }
-                        dims[0] = col;
-                        dims[1] = row;
-                        newobj = &HDF5Scilab::create<unsigned short, T>(obj, name, 2, dims, 0, (unsigned short *)ints, targetType, size, start, stride, count, block);
-                        break;
-                    case SCI_INT32 :
-                        err = getMatrixOfInteger32(pvApiCtx, addr, &row, &col, (int**)(&ints));
-                        if (err.iErr)
-                        {
-                            throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                        }
-                        dims[0] = col;
-                        dims[1] = row;
-                        newobj = &HDF5Scilab::create<int, T>(obj, name, 2, dims, 0, (int *)ints, targetType, size, start, stride, count, block);
-                        break;
-                    case SCI_UINT32 :
-                        err = getMatrixOfUnsignedInteger32(pvApiCtx, addr, &row, &col, (unsigned int **)(&ints));
-                        if (err.iErr)
-                        {
-                            throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                        }
-                        dims[0] = col;
-                        dims[1] = row;
-                        newobj = &HDF5Scilab::create<unsigned int, T>(obj, name, 2, dims, 0, (unsigned int *)ints, targetType, size, start, stride, count, block);
-                        break;
-
-#ifdef __SCILAB_INT64__
-                    case SCI_INT64 :
-                        err = getMatrixOfInteger64(pvApiCtx, addr, &row, &col, (long long **)(&ints));
-                        if (err.iErr)
-                        {
-                            throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                        }
-                        dims[0] = col;
-                        dims[1] = row;
-                        newobj = &HDF5Scilab::create<long long, T>(obj, name, 2, dims, 0, (long long *)ints, targetType, size, start, stride, count, block);
-                        break;
-                    case SCI_UINT64 :
-                        err = getMatrixOfUnsignedInteger64(pvApiCtx, addr, &row, &col, (unsigned long long **)(&ints));
-                        if (err.iErr)
-                        {
-                            throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                        }
-                        dims[0] = col;
-                        dims[1] = row;
-                        newobj = &HDF5Scilab::create<unsigned long long, T>(obj, name, 2, dims, 0, (unsigned long long *)ints, targetType, size, start, stride, count, block);
-                        break;
-#endif
-                }
-                break;
-            }
-            case sci_strings :
-            {
-                char ** matS = 0;
-                if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &matS))
-                {
-                    throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                }
-                try
-                {
-                    dims[0] = col;
-                    dims[1] = row;
-                    newobj = &HDF5Scilab::create<char *, T>(obj, name, 2, dims, 0, matS, targetType, size, start, stride, count, block);
-                }
-                catch (const H5Exception & e)
-                {
-                    freeAllocatedMatrixOfString(*&row, *&col, matS);
-                    throw;
-                }
-
-                freeAllocatedMatrixOfString(*&row, *&col, matS);
-                break;
-            }
-            case sci_boolean :
-            {
-                int * matB;
-
-                err = getMatrixOfBoolean(pvApiCtx, addr, &row, &col, &matB);
-                if (err.iErr)
-                {
-                    throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                }
-                dims[0] = col;
-                dims[1] = row;
-                newobj = &HDF5Scilab::create<int, T>(obj, name, 2, dims, 0, matB, targetType, size, start, stride, count, block);
-                break;
-            }
-            default :
-            {
-                throw H5Exception(__LINE__, __FILE__, _("%s: Datatype not handled for now."));
             }
         }
+        catch (const H5Exception & e)
+        {
+            if (obj.isFile())
+            {
+                delete robj;
+            }
+            else if (!location.empty() && location != ".")
+            {
+                delete hobj;
+            }
 
-        return *newobj;
+            throw;
+        }
+
+        if (obj.isFile())
+        {
+            delete robj;
+        }
+        else if (!location.empty() && location != ".")
+        {
+            delete hobj;
+        }
     }
 
 };

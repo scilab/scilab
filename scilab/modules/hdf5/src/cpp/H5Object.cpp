@@ -35,16 +35,23 @@ H5Object::H5Object(H5Object & _parent) : parent(_parent), children(std::set<H5Ob
 
 H5Object::~H5Object()
 {
+    cleanup();
+}
+
+void H5Object::cleanup()
+{
     locked = true;
     for (std::set<H5Object *>::iterator it = children.begin(); it != children.end(); it++)
     {
         delete *it;
     }
+    children.clear();
     locked = false;
     parent.unregisterChild(this);
 
     H5VariableScope::removeId(scilabId);
 }
+
 
 hid_t H5Object::getH5Id() const
 {

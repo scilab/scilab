@@ -110,10 +110,10 @@ void H5File::init()
     }
 }
 
-H5File::H5File(const char * _filename, const char * _path, const char * access) : H5Object(H5Object::getRoot()), filename(std::string(_filename)), path(std::string(_path)), flags(getFlags(std::string(access)))
+/*H5File::H5File(const char * _filename, const char * _path, const char * access) : H5Object(H5Object::getRoot()), filename(std::string(_filename)), path(std::string(_path)), flags(getFlags(std::string(access)))
 {
     init();
-}
+    }*/
 
 H5File::H5File(const std::string & _filename, const std::string & _path, const std::string & access) : H5Object(H5Object::getRoot()), filename(_filename), path(_path), flags(getFlags(access))
 {
@@ -122,8 +122,21 @@ H5File::H5File(const std::string & _filename, const std::string & _path, const s
 
 H5File::~H5File()
 {
+    cleanup();
     if (file >= 0)
     {
+
+#if defined(__HDF5OBJECTS_DEBUG__)
+
+        std::cout << "File " << filename << " is closing." << std::endl
+                  << "Open groups: " << H5Fget_obj_count(file, H5F_OBJ_GROUP) << std::endl
+                  << "Open datasets: " << H5Fget_obj_count(file, H5F_OBJ_DATASET) << std::endl
+                  << "Open datatypes: " << H5Fget_obj_count(file, H5F_OBJ_DATATYPE) << std::endl
+                  << "Open attributes: " << H5Fget_obj_count(file, H5F_OBJ_ATTR) << std::endl
+                  << "Open all (except the file itself): " << H5Fget_obj_count(file, H5F_OBJ_ALL) - 1 << std::endl;
+
+#endif
+
         H5Fclose(file);
         H5garbage_collect();
     }

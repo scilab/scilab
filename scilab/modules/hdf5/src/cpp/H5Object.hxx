@@ -16,12 +16,13 @@
 #include <hdf5.h>
 
 #include <algorithm>
+#include <cstdlib>
 #include <iostream>
 #include <iomanip>
-#include <string>
-#include <set>
+#include <limits>
 #include <map>
-#include <cstdlib>
+#include <set>
+#include <string>
 
 extern "C"
 {
@@ -59,6 +60,8 @@ public :
     H5Object(H5Object & _parent);
     H5Object(H5Object & _parent, const std::string & _name);
     virtual ~H5Object();
+
+    virtual void cleanup();
 
     virtual hid_t getH5Id() const;
     virtual H5AttributesList & getAttributes();
@@ -184,6 +187,11 @@ public :
         scilabId = id;
     }
 
+    const int getScilabId() const
+    {
+        return scilabId;
+    }
+
     H5Object & getParent() const
     {
         return parent;
@@ -214,6 +222,7 @@ public :
         {
             delete *it;
         }
+        root.children.clear();
         root.locked = false;
         H5VariableScope::clearScope();
     }

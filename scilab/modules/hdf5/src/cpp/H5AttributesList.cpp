@@ -93,7 +93,7 @@ H5Attribute & H5AttributesList::getObject(const int pos, const bool checkPos)
         delete[] _name;
     }
 
-    return *new H5Attribute(parent, name);
+    return *new H5Attribute(parent, attr, name);
 }
 
 std::string H5AttributesList::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
