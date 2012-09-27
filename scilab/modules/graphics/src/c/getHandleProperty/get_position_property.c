@@ -49,7 +49,7 @@ int get_position_property(void* _pvCtx, char* pobjUID)
 
         getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_int_vector, (void **) &figurePosition);
 
-        getGraphicObjectProperty(pobjUID, __GO_SIZE__, jni_int_vector, (void **) &figureSize);
+        getGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, jni_int_vector, (void **) &figureSize);
 
         if (figurePosition == NULL || figureSize == NULL)
         {
