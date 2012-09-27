@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-12-30 06:37+0000\n"
+"PO-Revision-Date: 2012-09-21 13:53+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15985)\n"
+"X-Generator: Launchpad (build 16033)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -77,126 +77,129 @@ msgstr "%s: ファイルの終端に達しました.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s: メモリ割当エラー.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: doubleを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A double expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: doubleを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of double expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: doubleの行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A matrix of double, with integer "
 "values, expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 整数の値を有するdoubleの行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' , '%s', '%s' '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s' , '%s', '%s' '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: double (値は 1 から 17) を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' ,'%s' , '%s', '%s', '%s', "
 "'%s' or '%s' expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s' ,'%s' , '%s', '%s', '%s', '%s' または '%s' "
+"を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 4つのエントリを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A column or row vector expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 列または行ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Unconsistent range.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 範囲が不整合です.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 文字列'%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
 #, c-format
 msgid "%s: separator and decimal must have different values.\n"
-msgstr ""
+msgstr "%s: セパレータと小数点は異なる値とする必要があります.\n"
 
 #, c-format
 msgid "%s: can not convert data.\n"
-msgstr ""
+msgstr "%s: データを変換できません.\n"
 
 #, c-format
 msgid "%s: %s does not exist.\n"
-msgstr ""
+msgstr "%s: %s は存在しません.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
-msgstr ""
+msgstr "%s: ファイル %s をオープンできません.\n"
 
 #, c-format
 msgid "%s: can not read file %s.\n"
-msgstr ""
+msgstr "%s: ファイル %s を読み込めません.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: can not read text.\n"
-msgstr ""
+msgstr "%s: テキストを読み込めません.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array of strings "
 "expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 1行n列またはm行1列の文字列配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Not supported format %s.\n"
-msgstr ""
+msgstr "%s: サポートされない形式 %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -206,11 +209,11 @@ msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s'
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of string or a matrix of "
 "real expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列行列または実数行列を指定してください.\n"
 
 #, c-format
 msgid "%s: error.\n"
-msgstr ""
+msgstr "%s: エラー.\n"
 
 #
 # File: src/c/ripole/logger.c, line: 117

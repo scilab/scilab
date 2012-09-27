@@ -41,7 +41,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>isequalbitwise</function> сравнивает свои аргументы. Если все они равны,
+            <function>isequalbitwise</function> сравнивает свои аргументы. Если все они равны,
             то функция возвращает <constant>%t</constant> в противном случае она
             возвращает <constant>%f</constant>.
         </para>
@@ -50,8 +50,8 @@
             рекурсивно, в порядке следования полей.
         </para>
         <para>
-          Данные с плавающей запятой сравниваются в соответствии с правилами IEEE, 
-            т.е. значения <constant>%nan<constant> не равны, <code>double(1)</code> и
+            Данные с плавающей запятой сравниваются в соответствии с правилами IEEE, 
+            т.е. значения <constant>%nan</constant> не равны, <code>double(1)</code> и
             <code>int32(1)</code> не равны. См. <link linkend="isequal">isequal</link> для
             сравнений IEEE.
         </para>
