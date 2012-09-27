@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>A, b, x</term>
                 <listitem>
-                    <para>матрица (соответственно, векторы) символьных строк</para>
+                    <para>матрица (соответственно, векторы) символьных строк.</para>
                 </listitem>
             </varlistentry>
         </variablelist>

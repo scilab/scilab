@@ -25,19 +25,19 @@
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>a real or complex square matrix</para>
+                    <para>a real or complex square matrix.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Ro</term>
                 <listitem>
-                    <para>a real matrix</para>
+                    <para>a real matrix.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Theta</term>
                 <listitem>
-                    <para>a real or complex matrix</para>
+                    <para>a real or complex matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,7 +45,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>[Ro,Theta]=polar(A)</code> returns the polar form of
+            <code>[Ro, Theta]=polar(A)</code> returns the polar form of
             <varname>A</varname> i.e.<code>A=Ro*expm(%i*Theta)</code> when <varname>Ro</varname> symmetric &gt;=0 and <varname>Theta</varname> hermitian
             &gt;=0.
         </para>

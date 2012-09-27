@@ -40,7 +40,7 @@
             <varlistentry>
                 <term>pp</term>
                 <listitem>
-                    <para>a polynomial or an integer/</para>
+                    <para>a polynomial or an integer.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -51,7 +51,7 @@
             <code>pp=lcm(p)</code> computes the lcm <varname>pp</varname> of polynomial vector <varname>p</varname>.
         </para>
         <para>
-            <code>[pp,fact]=lcm(p)</code> computes in addition the vector <varname>fact</varname> such that:
+            <code>[pp, fact]=lcm(p)</code> computes in addition the vector <varname>fact</varname> such that:
         </para>
         <para>
             <code>p.*fact=pp*ones(p)</code>.

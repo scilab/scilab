@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>d, c, r </term>
                 <listitem>
-                    <para>character strings</para>
+                    <para>character strings.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
