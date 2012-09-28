@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-09-18 13:50+0100\n"
+"Revision-Date: 2012-09-28 10:24+0100\n"
 
 # File: sci_gateway/c/sci_xls_open.c, line: 95
 # File: sci_gateway/c/sci_xls_open.c, line: 115
@@ -113,14 +113,14 @@ msgstr ""
 # File: sci_gateway/cpp/gw_csv_helpers.cpp, line: 415
 # File: sci_gateway/cpp/sci_csvDefault.cpp, line: 141
 # File: sci_gateway/cpp/sci_csvDefault.cpp, line: 322
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 378
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 410
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 440
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 461
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 485
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 509
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 533
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 548
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 382
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 414
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 444
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 465
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 489
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 513
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 537
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 557
 # File: sci_gateway/cpp/sci_csvStringToDouble.cpp, line: 76
 # File: sci_gateway/cpp/sci_csvStringToDouble.cpp, line: 101
 # File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 297
@@ -129,7 +129,7 @@ msgstr ""
 # File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 385
 # File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 414
 # File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 427
-# File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 442
+# File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 447
 # File: sci_gateway/cpp/sci_csvWrite.cpp, line: 118
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -223,7 +223,7 @@ msgstr ""
 # File: sci_gateway/cpp/sci_csvRead.cpp, line: 105
 # File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 105
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Unconsistent range.\n"
+msgid "%s: Wrong value for input argument #%d: Inconsistent range.\n"
 msgstr ""
 
 #
@@ -233,29 +233,29 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 201
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 205
 # File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 136
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 351
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 355
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 357
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 361
 # File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 276
-# File: sci_gateway/cpp/sci_csvWrite.cpp, line: 472
+# File: sci_gateway/cpp/sci_csvWrite.cpp, line: 473
 #, c-format
 msgid "%s: separator and decimal must have different values.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 406
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 466
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 410
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 470
 # File: sci_gateway/cpp/sci_csvStringToDouble.cpp, line: 72
 # File: sci_gateway/cpp/sci_csvStringToDouble.cpp, line: 107
 # File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 330
@@ -265,20 +265,26 @@ msgid "%s: can not convert data.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 521
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 525
 #, c-format
 msgid "%s: %s does not exist.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 527
-# File: sci_gateway/cpp/sci_csvWrite.cpp, line: 484
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 531
+# File: sci_gateway/cpp/sci_csvWrite.cpp, line: 485
 #, c-format
 msgid "%s: can not open file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_csvRead.cpp, line: 541
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 543
+#, c-format
+msgid "%s: can not read file %s: Error in the column structure\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_csvRead.cpp, line: 550
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr ""
@@ -290,7 +296,13 @@ msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 435
+# File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 433
+#, c-format
+msgid "%s: can not read text: Error in the column structure\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_csvTextScan.cpp, line: 440
 #, c-format
 msgid "%s: can not read text.\n"
 msgstr ""
@@ -316,7 +328,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_csvWrite.cpp, line: 406
+# File: sci_gateway/cpp/sci_csvWrite.cpp, line: 407
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of string or a matrix of "
@@ -324,7 +336,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_csvWrite.cpp, line: 490
+# File: sci_gateway/cpp/sci_csvWrite.cpp, line: 491
 #, c-format
 msgid "%s: error.\n"
 msgstr ""
