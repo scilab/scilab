@@ -86,7 +86,7 @@ int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
 
         getGraphicObjectProperty(polylineObjectUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-        if (type == __GO_POLYLINE__)
+        if (type != __GO_POLYLINE__)
         {
             Scierror(999, _("%s: Input argument #%d must be a '%s' handle.\n"), "links", i, "polyline");
             status = FALSE;
