@@ -6,6 +6,9 @@ Xcos
 
 * Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
 
+* Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
+                     Scilab crash.
+
 * Bug #11919 fixed - DLSS block with empty matrix as parameters made Scilab crash.
 
 
