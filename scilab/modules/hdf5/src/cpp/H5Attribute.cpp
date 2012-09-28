@@ -153,7 +153,7 @@ hid_t H5Attribute::create(H5Object & loc, const std::string & name, const hid_t 
 hid_t H5Attribute::create(const hid_t loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data)
 {
     herr_t err;
-    hid_t attr = H5Acreate2(loc, name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, H5P_DEFAULT);
+    hid_t attr = H5Acreate(loc, name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, H5P_DEFAULT);
     if (attr < 0)
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot create a new attribute."));

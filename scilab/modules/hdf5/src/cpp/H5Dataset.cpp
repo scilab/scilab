@@ -249,7 +249,7 @@ void H5Dataset::ls(std::vector<std::string> & name, std::vector<std::string> & t
     opdata.type = &type;
     hsize_t idx = 0;
 
-    err = H5Aiterate2(dataset, H5_INDEX_NAME, H5_ITER_INC, &idx, H5Object::getLsAttributes, &opdata);
+    err = H5Aiterate(dataset, H5_INDEX_NAME, H5_ITER_INC, &idx, H5Object::getLsAttributes, &opdata);
     if (err < 0)
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot list dataset attributes."));
@@ -291,7 +291,7 @@ hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t ty
     }
     else
     {
-        dataset = H5Dcreate2(loc.getH5Id(), name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+        dataset = H5Dcreate(loc.getH5Id(), name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
         if (dataset < 0)
         {
             throw H5Exception(__LINE__, __FILE__, _("Cannot create the dataset: %s"), name.c_str());

@@ -29,7 +29,6 @@ HDF5_CXX_SOURCES = src/cpp/H5Attribute.cpp \
 		   src/cpp/H5Dataspace.cpp \
 		   src/cpp/H5File.cpp \
 		   src/cpp/H5Group.cpp \
-		   src/cpp/H5LinksList.cpp \
 		   src/cpp/H5Object.cpp \
 		   src/cpp/H5Type.cpp \
 		   src/cpp/H5DataFactory.cpp \

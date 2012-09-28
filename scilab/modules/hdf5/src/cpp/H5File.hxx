@@ -31,7 +31,6 @@ class H5File : public H5Object
 
 public :
 
-    //H5File(const char * _filename, const char * _path, const char * access = "a");
     H5File(const std::string & _filename, const std::string & _path, const std::string & access = "a");
 
     ~H5File();

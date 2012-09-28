@@ -26,7 +26,7 @@ class H5DatasetsList : public H5NamedObjectsList<H5Dataset>
 
 public :
 
-    H5DatasetsList(H5Group & _parent) : H5NamedObjectsList<H5Dataset>(_parent, H5G_DATASET, -1, "H5 Dataset") { }
+    H5DatasetsList(H5Group & _parent) : H5NamedObjectsList<H5Dataset>(_parent, H5O_TYPE_DATASET, -1, "H5 Dataset") { }
 
     ~H5DatasetsList() { }
 };

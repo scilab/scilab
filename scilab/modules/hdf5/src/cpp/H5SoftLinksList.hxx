@@ -25,7 +25,7 @@ class H5SoftLinksList : public H5NamedObjectsList<H5SoftLink>
 
 public :
 
-    H5SoftLinksList(H5Group & _parent) : H5NamedObjectsList(_parent, H5G_GROUP, H5L_TYPE_SOFT, "H5 Soft Link") { }
+    H5SoftLinksList(H5Group & _parent) : H5NamedObjectsList(_parent, H5O_TYPE_GROUP, H5L_TYPE_SOFT, "H5 Soft Link") { }
 
     ~H5SoftLinksList()
     {

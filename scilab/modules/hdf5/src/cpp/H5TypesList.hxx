@@ -26,7 +26,7 @@ class H5TypesList : public H5NamedObjectsList<H5Type>
 
 public :
 
-    H5TypesList(H5Group & _parent) : H5NamedObjectsList(_parent, H5G_TYPE, -1, "H5 Type") { }
+    H5TypesList(H5Group & _parent) : H5NamedObjectsList(_parent, H5O_TYPE_NAMED_DATATYPE, -1, "H5 Type") { }
 
     ~H5TypesList()
     {

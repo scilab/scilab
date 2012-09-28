@@ -13,7 +13,6 @@
 #include "H5Group.hxx"
 #include "H5File.hxx"
 #include "H5SoftLinksList.hxx"
-#include "H5LinksList.hxx"
 #include "H5GroupsList.hxx"
 #include "H5DatasetsList.hxx"
 #include "H5TypesList.hxx"
@@ -47,11 +46,6 @@ H5Group::~H5Group()
     {
         H5Gclose(group);
     }
-}
-
-H5LinksList & H5Group::getLinks()
-{
-    return *new H5LinksList(*this);
 }
 
 H5NamedObjectsList<H5SoftLink> & H5Group::getSoftLinks()
@@ -212,7 +206,7 @@ void H5Group::ls(std::vector<std::string> & name, std::vector<std::string> & typ
     }
 
     idx = 0;
-    err = H5Aiterate2(group, H5_INDEX_NAME, H5_ITER_INC, &idx, H5Object::getLsAttributes, &opdata);
+    err = H5Aiterate(group, H5_INDEX_NAME, H5_ITER_INC, &idx, H5Object::getLsAttributes, &opdata);
     if (err < 0)
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot list group attributes."));
@@ -459,7 +453,7 @@ void H5Group::createGroup(H5Object & parent, const std::string & name)
     lcpl = H5Pcreate(H5P_LINK_CREATE);
     H5Pset_create_intermediate_group(lcpl, 1);
 
-    obj = H5Gcreate2(loc, name.c_str(), lcpl, H5P_DEFAULT, H5P_DEFAULT);
+    obj = H5Gcreate(loc, name.c_str(), lcpl, H5P_DEFAULT, H5P_DEFAULT);
 
     if (hobj)
     {

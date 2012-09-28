@@ -25,51 +25,55 @@ H5Data & H5DataFactory::getData(H5Object & parent, const hid_t obj, H5Dataspace 
     H5Data * data = 0;
     hid_t spaceId = space ? space->getH5Id() : -1;
 
-    // TODO: le type est ferme dans getNativeData: bonne idee ou pas ??
-
-    switch (H5Tget_class(type))
+    try
     {
-        case H5T_INTEGER:
-            data = &getIntegerData(parent, obj, spaceId, selectdims, type, isAttribute);
-            break;
-        case H5T_FLOAT:
-            data = &getFloatingData(parent, obj, spaceId, selectdims, type, isAttribute);
-            break;
-        case H5T_TIME:
-            data = &getTimeData(parent, obj, spaceId, selectdims, type, isAttribute);
-            break;
-        case H5T_STRING:
-            data = &getStringData(parent, obj, spaceId, selectdims, type, isAttribute);
-            break;
-        case H5T_BITFIELD:
-            data = &getBitfieldData(parent, obj, spaceId, selectdims, type, isAttribute);
-            break;
-        case H5T_OPAQUE:
-            data = &getOpaqueData(parent, obj, spaceId, selectdims, type, isAttribute);
-            break;
-        case H5T_COMPOUND:
-            data = &getCompoundData(parent, obj, spaceId, selectdims, type, isAttribute);
-            break;
-        case H5T_REFERENCE:
-            data = &getReferenceData(parent, obj, spaceId, selectdims, type, isAttribute);
-            break;
-        case H5T_ENUM:
-            std::cout << "ENUM" << std::endl;
-            //data = &getEnumData(parent, obj, type, isAttribute);
-            //break;
-        case H5T_VLEN:
-            std::cout << "VLEN" << std::endl;
-
-            //data = &getVlenData(parent, obj, type, isAttribute);
-            //break;
-        case H5T_ARRAY:
-            std::cout << "ARRAY" << std::endl;
-            //data = &getArrayData(parent, obj, type, isAttribute);
-            //break;
-        default:
-            H5Tclose(type);
-            throw H5Exception(__LINE__, __FILE__, _("Cannot get data from an unknown data type."));
+        switch (H5Tget_class(type))
+        {
+            case H5T_INTEGER:
+                data = &getIntegerData(parent, obj, spaceId, selectdims, type, isAttribute);
+                break;
+            case H5T_FLOAT:
+                data = &getFloatingData(parent, obj, spaceId, selectdims, type, isAttribute);
+                break;
+            case H5T_TIME:
+                data = &getTimeData(parent, obj, spaceId, selectdims, type, isAttribute);
+                break;
+            case H5T_STRING:
+                data = &getStringData(parent, obj, spaceId, selectdims, type, isAttribute);
+                break;
+            case H5T_BITFIELD:
+                data = &getBitfieldData(parent, obj, spaceId, selectdims, type, isAttribute);
+                break;
+            case H5T_OPAQUE:
+                data = &getOpaqueData(parent, obj, spaceId, selectdims, type, isAttribute);
+                break;
+            case H5T_COMPOUND:
+                data = &getCompoundData(parent, obj, spaceId, selectdims, type, isAttribute);
+                break;
+            case H5T_REFERENCE:
+                data = &getReferenceData(parent, obj, spaceId, selectdims, type, isAttribute);
+                break;
+            case H5T_ENUM:
+                data = &getEnumData(parent, obj, spaceId, selectdims, type, isAttribute);
+                break;
+            case H5T_VLEN:
+                //data = &getVlenData(parent, obj, spaceId, selectdims, type, isAttribute);
+                //break;
+            case H5T_ARRAY:
+                std::cout << "ARRAY" << std::endl;
+                //data = &getArrayData(parent, obj, type, isAttribute);
+                //break;
+            default:
+                throw H5Exception(__LINE__, __FILE__, _("Cannot get data from an unknown data type."));
+        }
     }
+    catch (const H5Exception & e)
+    {
+        H5Tclose(type);
+        throw;
+    }
+
+    H5Tclose(type);
 
     return *data;
 }
@@ -443,115 +447,115 @@ H5ReferenceData & H5DataFactory::getReferenceData(H5Object & parent, const hid_t
     return *new H5ReferenceData(parent, H5Tequal(type, H5T_STD_REF_DSETREG) > 0, totalSize, dataSize, ndims, dims, (char *)data);
 }
 
-/*H5EnumData & H5DataFactory::getEnumData(H5Object & parent, const hid_t obj, const hid_t type, const bool isAttribute)
-  {
-  hsize_t ndims;
-  hsize_t totalSize;
-  hisze_t dataSize;
-  hsize_t * dims = 0;
-  void * data = 0;
-  int nmembers = H5Tget_nmembers(type);
-  std::string * names = new std::string[nmembers];
+H5EnumData & H5DataFactory::getEnumData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute)
+{
+    hsize_t ndims;
+    hsize_t totalSize;
+    hsize_t dataSize;
+    hsize_t * dims = 0;
+    void * data = 0;
+    int nmembers = H5Tget_nmembers(type);
+    std::string * names = nmembers > 0 ? new std::string[nmembers] : 0;
 
-  for (unsigned int i = 0; i < nmembers; i++)
-  {
-  char * mname = H5Tget_member_name(type, i);
-  names[i] = std::string(mname);
-  free(mname);
-  }
+    for (unsigned int i = 0; i < nmembers; i++)
+    {
+        char * mname = H5Tget_member_name(type, i);
+        names[i] = std::string(mname);
+        free(mname);
+    }
 
-  getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
+    getNativeData(obj, space, selectdims, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
 
-  return *new H5EnumData(parent, totalSize, dataSize, ndims, dims, data, names);
-  }
+    return *new H5EnumData(parent, totalSize, dataSize, ndims, dims, static_cast<unsigned int *>(data), nmembers, names);
+}
 
-  H5VlenData & H5DataFactory::getVlenData(H5Object & parent, const hid_t obj, const hid_t type, const bool isAttribute)
-  {
-  hsize_t ndims;
-  hsize_t totalSize;
-  hisze_t dataSize;
-  hsize_t * dims = 0;
-  void * data = 0;
+/*    H5VlenData & H5DataFactory::getVlenData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute)
+    {
+        hsize_t ndims;
+        hsize_t totalSize;
+        hsize_t dataSize;
+        hsize_t * dims = 0;
+        void * data = 0;
 
-  getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
+        getNativeData(obj, space, selectdims, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
 
-  return *new H5VlenData(parent, totalSize, dataSize, ndims, dims, data);
-  }
+        return *new H5VlenData(parent, totalSize, dataSize, ndims, dims, static_cast<unsigned char *>(data));
+    }
 
   H5ArrayData & H5DataFactory::getArrayData(H5Object & parent, const hid_t obj, const hid_t type, const bool isAttribute)
-  {
-  hsize_t ndims;
-  hsize_t totalSize;
-  hisze_t dataSize;
-  hsize_t * dims = 0;
-  void * data = 0;
+    {
+    hsize_t ndims;
+    hsize_t totalSize;
+    hisze_t dataSize;
+    hsize_t * dims = 0;
+    void * data = 0;
 
-  getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
+    getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
 
-  return *new H5ArrayData(parent, totalSize, dataSize, ndims, dims, data);
-  }*/
+    return *new H5ArrayData(parent, totalSize, dataSize, ndims, dims, data);
+    }*/
 
 //  getNativeData(obj, type, &totalSize, &dataSize, &ndims, &dims, &data, isAttribute);
 
 //return *new H5StringData(parent, totalSize, dataSize, ndims, dims, data);
 
 /*void H5DataFactory::getNativeData(const hid_t obj, const hid_t type, hsize_t * totalSize, hsize_t * dataSize, hsize_t * ndims, hsize_t ** dims, void ** data, const bool isAttribute)
-{
-    hid_t nativeType = H5Tget_native_type(type, H5T_DIR_DEFAULT);
-    const hid_t space = isAttribute ? H5Aget_space(obj) : H5Dget_space(obj);
-    hsize_t size = H5Tget_size(nativeType);
-    *totalSize = 1;
-    *dims = new hsize_t[__SCILAB_HDF5_MAX_DIMS__]();
-    *ndims = H5Sget_simple_extent_dims(space, *dims, 0);
+  {
+  hid_t nativeType = H5Tget_native_type(type, H5T_DIR_DEFAULT);
+  const hid_t space = isAttribute ? H5Aget_space(obj) : H5Dget_space(obj);
+  hsize_t size = H5Tget_size(nativeType);
+  *totalSize = 1;
+  *dims = new hsize_t[__SCILAB_HDF5_MAX_DIMS__]();
+  *ndims = H5Sget_simple_extent_dims(space, *dims, 0);
 
-    if (H5Tget_class(nativeType) == H5T_STRING && !H5Tis_variable_str(nativeType))
-    {
-        // We have a C-string so it is null terminated
-        size++;
-    }
+  if (H5Tget_class(nativeType) == H5T_STRING && !H5Tis_variable_str(nativeType))
+  {
+  // We have a C-string so it is null terminated
+  size++;
+  }
 
-    *dataSize = size;
+  *dataSize = size;
 
-    for (unsigned int i = 0; i < *ndims; i++)
-    {
-        *totalSize *= (*dims)[i];
-    }
+  for (unsigned int i = 0; i < *ndims; i++)
+  {
+  *totalSize *= (*dims)[i];
+  }
 
-    size *= *totalSize;
+  size *= *totalSize;
 
-    if ((hsize_t)((size_t)size) != size)
-    {
-        H5Tclose(type);
-        H5Tclose(nativeType);
-        H5Sclose(space);
-        delete[] *dims;
-        throw H5Exception(__LINE__, __FILE__, _("Memory to allocate is too big"));
-    }
+  if ((hsize_t)((size_t)size) != size)
+  {
+  H5Tclose(type);
+  H5Tclose(nativeType);
+  H5Sclose(space);
+  delete[] *dims;
+  throw H5Exception(__LINE__, __FILE__, _("Memory to allocate is too big"));
+  }
 
-    *data = static_cast<void *>(new char[(size_t)size]());
-    if (!*data)
-    {
-        H5Tclose(type);
-        H5Tclose(nativeType);
-        H5Sclose(space);
-        delete[] *dims;
-        throw H5Exception(__LINE__, __FILE__, _("Cannot allocate memory to get the data"));
-    }
+  *data = static_cast<void *>(new char[(size_t)size]());
+  if (!*data)
+  {
+  H5Tclose(type);
+  H5Tclose(nativeType);
+  H5Sclose(space);
+  delete[] *dims;
+  throw H5Exception(__LINE__, __FILE__, _("Cannot allocate memory to get the data"));
+  }
 
-    if ((isAttribute && H5Aread(obj, nativeType, *data) < 0)
-	|| (!isAttribute && H5Dread(obj, nativeType, H5S_ALL, space, H5P_DEFAULT, *data) < 0))
-    {
-        H5Tclose(type);
-        H5Tclose(nativeType);
-        H5Sclose(space);
-        delete[] static_cast<char *>(*data);
-        delete[] *dims;
-        throw H5Exception(__LINE__, __FILE__, _("Cannot retrieve the data from the attribute"));
-    }
+  if ((isAttribute && H5Aread(obj, nativeType, *data) < 0)
+  || (!isAttribute && H5Dread(obj, nativeType, H5S_ALL, space, H5P_DEFAULT, *data) < 0))
+  {
+  H5Tclose(type);
+  H5Tclose(nativeType);
+  H5Sclose(space);
+  delete[] static_cast<char *>(*data);
+  delete[] *dims;
+  throw H5Exception(__LINE__, __FILE__, _("Cannot retrieve the data from the attribute"));
+  }
 
-    H5Tclose(nativeType);
-    H5Sclose(space);
-}
+  H5Tclose(nativeType);
+  H5Sclose(space);
+  }
 */
 
 void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, hsize_t * totalSize, hsize_t * dataSize, hsize_t * ndims, hsize_t ** dims, void ** data, const bool isAttribute)
@@ -609,7 +613,6 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * 
 
     if ((hsize_t)((size_t)size) != size)
     {
-        H5Tclose(type);
         H5Tclose(nativeType);
         if (space < 0)
         {
@@ -622,7 +625,6 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * 
     *data = static_cast<void *>(new char[(size_t)size]());
     if (!*data)
     {
-        H5Tclose(type);
         H5Tclose(nativeType);
         if (space < 0)
         {
@@ -652,7 +654,6 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * 
 
     if (err < 0)
     {
-        H5Tclose(type);
         H5Tclose(nativeType);
         if (space < 0)
         {

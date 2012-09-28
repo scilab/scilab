@@ -58,7 +58,6 @@ public:
         return true;
     }
 
-    virtual H5LinksList & getLinks();
     virtual H5NamedObjectsList<H5SoftLink> & getSoftLinks();
     virtual H5NamedObjectsList<H5ExternalLink> & getExternalLinks();
     virtual H5GroupsList & getGroups();

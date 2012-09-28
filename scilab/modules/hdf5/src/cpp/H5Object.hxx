@@ -13,7 +13,11 @@
 #ifndef __H5OBJECT_HXX__
 #define __H5OBJECT_HXX__
 
+#define H5_NO_DEPRECATED_SYMBOLS
+
 #include <hdf5.h>
+
+#undef H5_NO_DEPRECATED_SYMBOLS
 
 #include <algorithm>
 #include <cstdlib>

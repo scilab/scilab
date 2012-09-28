@@ -24,7 +24,7 @@ class H5GroupsList : public H5NamedObjectsList<H5Group>
 
 public :
 
-    H5GroupsList(H5Group & _parent) : H5NamedObjectsList(_parent, H5G_GROUP, -1, "H5 Group") { }
+    H5GroupsList(H5Group & _parent) : H5NamedObjectsList(_parent, H5O_TYPE_GROUP, -1, "H5 Group") { }
 
     ~H5GroupsList()
     {
