@@ -707,7 +707,7 @@ msgid "Desktop Layout"
 msgstr "Agencement du bureau"
 
 msgid "Select a layout"
-msgstr "Sélectionne un agencement"
+msgstr "Sélectionner un agencement"
 
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr ""
