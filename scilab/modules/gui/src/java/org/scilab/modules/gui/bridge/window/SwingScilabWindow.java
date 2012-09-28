@@ -197,8 +197,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * OS X "Quit Scilab" menu is called. It is the only case where this method
      * should be used
      */
-    public void macosxQuit() {
+    public boolean macosxQuit() {
         InterpreterManagement.requestScilabExec("exit();");
+        return false;
     }
 
     /**
