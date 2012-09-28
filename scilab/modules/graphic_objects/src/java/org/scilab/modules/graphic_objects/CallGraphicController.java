@@ -157,7 +157,7 @@ public final class CallGraphicController {
 
         Boolean tmpValue = (Boolean) getGraphicObjectProperty(id, propertyName);
 
-        result = tmpValue ? 1 : 0;
+        result = Boolean.TRUE.equals(tmpValue) ? 1 : 0;
 
         return result;
     }
