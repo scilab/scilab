@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16033)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: uk\n"
 
 #, c-format
@@ -262,6 +262,9 @@ msgstr "Встановити шрифт"
 msgid "Set colors"
 msgstr "Встановити кольори"
 
+msgid "Scinotes General settings"
+msgstr "Загальні параметри Scinotes"
+
 msgid "Auto-completion on"
 msgstr "Автодоповнення"
 
@@ -357,9 +360,6 @@ msgstr "(Не забудьте додати лапки, якщо у запису
 
 msgid "Scilab command: "
 msgstr "Команда Scilab: "
-
-msgid "Scinotes General settings"
-msgstr "Загальні параметри Scinotes"
 
 msgid "Restore previous session on start-up"
 msgstr "Відновлювати попередній сеанс під час запуску"

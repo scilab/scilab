@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16033)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: it\n"
 
 #, c-format
@@ -256,6 +256,9 @@ msgstr ""
 msgid "Set colors"
 msgstr ""
 
+msgid "Scinotes General settings"
+msgstr ""
+
 msgid "Auto-completion on"
 msgstr ""
 
@@ -350,9 +353,6 @@ msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 msgid "Scilab command: "
-msgstr ""
-
-msgid "Scinotes General settings"
 msgstr ""
 
 msgid "Restore previous session on start-up"

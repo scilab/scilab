@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16033)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: ja\n"
 
 #, c-format
@@ -252,6 +252,9 @@ msgstr "フォントを設定"
 msgid "Set colors"
 msgstr "色を設定"
 
+msgid "Scinotes General settings"
+msgstr "Scinotes一般設定"
+
 msgid "Auto-completion on"
 msgstr "オートコンプリート有効"
 
@@ -347,9 +350,6 @@ msgstr "(パスが空白文字を含む場合,必ず引用符で括ってくだ�
 
 msgid "Scilab command: "
 msgstr "Scilabコマンド: "
-
-msgid "Scinotes General settings"
-msgstr "Scinotes一般設定"
 
 msgid "Restore previous session on start-up"
 msgstr "起動時に前のセッションを回復する"

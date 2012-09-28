@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16033)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: de\n"
 
 #, c-format
@@ -136,7 +136,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Unconsistent range.\n"
+msgid "%s: Wrong value for input argument #%d: Inconsistent range.\n"
 msgstr ""
 
 #, c-format
@@ -169,11 +169,19 @@ msgid "%s: can not open file %s.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: can not read file %s: Error in the column structure\n"
+msgstr ""
+
+#, c-format
 msgid "%s: can not read file %s.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not read text: Error in the column structure\n"
 msgstr ""
 
 #, c-format

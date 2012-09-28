@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16033)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: fr\n"
 
 #, c-format
@@ -260,6 +260,9 @@ msgstr "Définir la police"
 msgid "Set colors"
 msgstr "Définir les couleurs"
 
+msgid "Scinotes General settings"
+msgstr "Paramètres généraux de SciNotes"
+
 msgid "Auto-completion on"
 msgstr "Complétion automatique sur"
 
@@ -359,9 +362,6 @@ msgstr ""
 
 msgid "Scilab command: "
 msgstr "Commande Scilab : "
-
-msgid "Scinotes General settings"
-msgstr "Paramètres généraux de SciNotes"
 
 msgid "Restore previous session on start-up"
 msgstr "Restaurer la session précédente au démarrage"
