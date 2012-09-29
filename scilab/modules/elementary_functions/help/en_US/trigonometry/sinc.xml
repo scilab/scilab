@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex vector or matrix</para>
+                    <para>a real or complex vector or matrix.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>real or complex vector or matrix</para>
+                    <para>a real or complex vector or matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,10 +39,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            If <literal>x</literal> is a vector or a matrix,
-            <literal>t=sinc(x)</literal> is the vector or matrix such that
-            <literal>t(i)=sin(x(i))/x(i)</literal> if <literal>x(i)~=0</literal> and
-            <literal>t(i)=1</literal> if <literal>x(i)==0.</literal>
+            If <varname>x</varname> is a vector or a matrix,
+            <code>t=sinc(x)</code> is the vector or matrix such that
+            <code>t(i)=sin(x(i))/x(i)</code> if <code>x(i)~=0</code> and
+            <code>t(i)=1</code> if <code>x(i)==0.</code>
         </para>
     </refsection>
     <refsection>

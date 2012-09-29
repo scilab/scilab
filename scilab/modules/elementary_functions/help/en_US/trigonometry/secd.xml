@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Ajouter ici d'éventuels commentaires sur le fichier XML
--->
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="secd" xml:lang="en">
     <refnamediv>
         <refname>secd</refname>
-        <refpurpose>Compute the element-wise secant of the argument given in
-            degree.
+        <refpurpose>computes the element-wise secant of the argument given in
+            degree
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -19,13 +27,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Real array.</para>
+                    <para>a real array.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>Real array.</para>
+                    <para>a real array.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,9 +41,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            The entries of <literal>y</literal> are the secant
-            <literal>1/cos</literal> of the entries of <literal>x</literal> given in
-            degree. The results are real and in <literal>]-%inf -1] U [1 %inf[</literal>.
+            The entries of <varname>y</varname> are the secant
+            <latex>1/\cos(x)</latex> of the entries of <varname>x</varname> given in
+                degree. The results are real and in <latex>]-\infty -1] \cup [1 %infty[</latex>.
             For entries equal to <literal>n*180</literal> with
             <literal>n</literal> integer, the result is exactly <literal>-1</literal>
             or <literal>+1</literal>. For entries equal to <literal>n*90</literal>with

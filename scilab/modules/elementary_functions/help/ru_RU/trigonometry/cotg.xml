@@ -17,13 +17,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>[t]=cotg(x)</synopsis>
+        <synopsis>[t] = cotg(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x,t</term>
+                <term>x, t</term>
                 <listitem>
                     <para>вещественные или комплексные векторы/матрицы</para>
                 </listitem>
@@ -33,9 +33,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы <literal>t</literal> являются котангенсами соответствующих элементов 
-            <literal>x</literal>. 
-            <literal>t=cos(x)./sin(x)</literal>
+            Элементы <varname>t</varname> являются котангенсами соответствующих элементов
+            <varname>x</varname>:
+            <code>t=cos(x)./sin(x)</code>.
         </para>
     </refsection>
     <refsection>

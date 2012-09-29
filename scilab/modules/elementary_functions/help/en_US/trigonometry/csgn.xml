@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="csgn">
     <refnamediv>
         <refname>csgn</refname>
-        <refpurpose> Returns the sign of a vector of real of complex values. </refpurpose>
+        <refpurpose>returns the sign of a vector of real of complex values </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -26,39 +26,39 @@
                 <term>z</term>
                 <listitem>
                     <para>
-                        The vector of values on which we want to compute the sign.
+                        a vector of values on which we want to compute the sign
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>s</term>
                 <listitem>
-                    <para>If the real part is not equal to zero:</para>
+                    <para>if the real part is not equal to zero:</para>
                     <itemizedlist>
                         <listitem>
-                            <para>+1 if the real part of an element is positive</para>
+                            <para><literal>+1</literal> if the real part of an element is positive</para>
                         </listitem>
                         <listitem>
-                            <para>-1 if the real part of an element is negative</para>
+                            <para><literal>-1</literal> if the real part of an element is negative</para>
                         </listitem>
                     </itemizedlist>
                     <para>If the real part is equal to zero:</para>
                     <itemizedlist>
                         <listitem>
-                            <para>+1 if the imaginary part of an element is positive</para>
+                            <para><literal>+1</literal> if the imaginary part of an element is positive</para>
                         </listitem>
                         <listitem>
-                            <para>-1 if the imaginary part of an element is negative</para>
+                            <para><literal>-1</literal> if the imaginary part of an element is negative</para>
                         </listitem>
                     </itemizedlist>
-                    <para>if the element is equal to zero, then returns %nan</para>
+                    <para>if the element is equal to zero, then returns <constant>%nan</constant></para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Returns the sign of a vector of real of complex values.</para>
+        <para>The <function>csgn</function> function returns the sign of a vector of real of complex values <varname>z</varname>.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

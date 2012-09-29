@@ -18,13 +18,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Вещественный или комплексный массив.</para>
+                    <para>вещественный или комплексный массив.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>Вещественный или комплексный массив.</para>
+                    <para>вещественный или комплексный массив.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -35,10 +35,16 @@
             Вычисляет поэлементно арксеканс аргумента. Для вещественного аргумента с абсолютным значением больше 1 результат вещественный.
         </para>
         <para>
-            Используются следующие равенства: <literal>asec(z) = -acsc(-z) =
-                asin(1/z) = %pi/2-asec(x) = %i*acsch(%i*z)
-            </literal>
+            Используются следующие равенства: <code>asec(z) == -acsc(-z) == asin(1/z) == %pi/2-asec(x) == %i*acsch(%i*z)</code>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Образец</title>
+        <scilab:image>
+            x=linspace(1,20,200);
+            x=[-x($:-1:1) %nan x];
+            plot(x,asec(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Примеры</title>

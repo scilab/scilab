@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>t=acos(x)</synopsis>
+        <synopsis>t = acos(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex vector or matrix</para>
+                    <para>a real or complex vector or matrix.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>real or complex vector or matrix</para>
+                    <para>a real or complex vector or matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,9 +39,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            The components of <literal>t</literal> are cosine inverse of
-            the corresponding entries of <literal>x</literal>. Definition
-            domain is [-1, 1].
+            The components of <varname>t</varname> are cosine inverse of
+            the corresponding entries of <varname>x</varname>. Definition
+            domain is <literal>[-1, 1]</literal>.
         </para>
     </refsection>
     <refsection>

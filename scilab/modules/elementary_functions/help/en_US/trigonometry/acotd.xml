@@ -19,21 +19,22 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Real or complex array.</para>
+                    <para>a real or complex array.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>Real or complex array.</para>
+                    <para>a real or complex array.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Computes the element-wise inverse cotangeant of the argument and
-            returns the results in degree. For real argument x the result is
+        <para>
+            Computes the element-wise inverse cotangeant of the argument and
+            returns the results in degree. For real argument <varname>x</varname> the result is
             real.
         </para>
     </refsection>

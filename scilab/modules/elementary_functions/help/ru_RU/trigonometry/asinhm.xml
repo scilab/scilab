@@ -17,15 +17,15 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>t=asinhm(x)</synopsis>
+        <synopsis>t = asinhm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x,t</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественные или комплексные квадратные матрицы.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,8 +33,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>asinhm</literal> является матричным гиперболическим арксинусом матрицы  <literal>x</literal>. Использует формулу 
-            <literal>t=logm(x+sqrtm(x*x+eye()))</literal>. Результаты могут быть ненадёжными для несимметричной матрицы.
+            <function>asinhm</function> является матричным гиперболическим арксинусом матрицы  <varname>x</varname>. Использует формулу
+            <code>t = logm(x+sqrtm(x*x+eye()))</code>. Результаты могут быть ненадёжными для несимметричной матрицы.
         </para>
     </refsection>
     <refsection>
@@ -55,6 +55,12 @@ sinhm(asinhm(A))
             </member>
             <member>
                 <link linkend="sqrtm">sqrtm</link>
+            </member>
+            <member>
+                <link linkend="sinhm">sinhm</link>
+            </member>
+            <member>
+                <link linkend="eye">eye</link>
             </member>
         </simplelist>
     </refsection>

@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>t=tand(x)</synopsis>
+        <synopsis>t = tand(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественный вектор или матрица</para>
+                    <para>вещественный вектор или матрица.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>вещественный вектор или матрица</para>
+                    <para>вещественный вектор или матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,7 +39,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы <literal>t</literal> являются тангенсом элементов <literal>x</literal> 
+            Элементы <varname>t</varname> являются тангенсом элементов <varname>x</varname>
             в предположении, что они заданы в градусах.
         </para>
     </refsection>

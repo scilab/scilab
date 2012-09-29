@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>a real or complex square matrix.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>a real or complex square matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,8 +39,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>atanm(x)</literal> is the matrix arctangent of the matrix
-            x. Result may be not reliable if <literal>x</literal> is not
+            <code>atanm(x)</code> is the matrix arctangent of the matrix
+            <varname>x</varname>. Result may be not reliable if <varname>x</varname> is not
             symmetric.
         </para>
     </refsection>

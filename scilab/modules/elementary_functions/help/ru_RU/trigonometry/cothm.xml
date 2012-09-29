@@ -17,13 +17,30 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>[t]=cothm(x)</synopsis>
+        <synopsis>[t] = cothm(x)</synopsis>
     </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>квадратная матрица (вещественная или комплексная).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>квадратная матрица (вещественная или комплексная)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>cothm(x)</literal> является матричным гиперболическим котангенсом 
-            квадратной матрицы <literal>x</literal>.
+            <code>cothm(x)</code> является матричным гиперболическим котангенсом
+            квадратной матрицы <varname>x</varname>.
         </para>
     </refsection>
     <refsection>
