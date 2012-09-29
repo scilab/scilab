@@ -33,7 +33,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <function>tanhm</function> function is the matrix hyperbolic tangent of the matrix <literal>x</literal>.
+            <code>tanhm(x)</code> is the matrix hyperbolic tangent of the matrix <varname>x</varname>.
         </para>
     </refsection>
     <refsection>
