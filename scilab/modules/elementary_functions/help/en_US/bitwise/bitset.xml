@@ -19,8 +19,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            y = bitset(x,pos)
-            y = bitset(x,pos,v)
+            y = bitset(x, pos)
+            y = bitset(x, pos, v)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,9 +30,9 @@
                 <term>x :</term>
                 <listitem>
                     <para>
-                        a m-by-n matrix of doubles
-                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-                        or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
                         Must contain positive integer values.
                     </para>
                 </listitem>
@@ -41,12 +41,12 @@
                 <term>pos :</term>
                 <listitem>
                     <para>
-                        a m-by-n matrix of doubles
-                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-                        or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
                         Must contain positive integer values.
-                        The input <literal>pos</literal> must be in the range 1,2,...,bitmax
-                        where bitmax is the maximum number of bits in x.
+                        The input <literal>pos</literal> must be in the range 1,2,...,<literal>bitmax</literal>
+                        where <literal>bitmax</literal> is the maximum number of bits in <varname>x</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -54,9 +54,9 @@
                 <term>v :</term>
                 <listitem>
                     <para>
-                        a m-by-n matrix of doubles
-                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-                        or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32). Default v=1.
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>). Default <varname>v</varname><literal>=1</literal>.
                         Must contain positive integer values.
                     </para>
                 </listitem>
@@ -65,9 +65,9 @@
                 <term>y :</term>
                 <listitem>
                     <para>
-                        a m-by-n matrix of doubles
-                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-                        or a m-by-n matrix of unsigned integers.
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers.
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,7 +76,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Set the bit at specified position.
+            Set the bit at specified position <varname>pos</varname>.
         </para>
     </refsection>
     <refsection>
