@@ -112,35 +112,32 @@ void HDF5Scilab::split(const std::string & str, std::vector<std::string> & v, co
 void HDF5Scilab::readAttributeData(H5Object & obj, const std::string & path, const std::string & attrName, int pos, void * pvApiCtx)
 {
     H5Object * hobj = &obj;
-    const bool mustDelete = path != "." || obj.isFile();
 
     if (path != ".")
     {
         hobj = &H5Object::getObject(obj, path);
     }
-    else if (obj.isFile())
-    {
-        hobj = &reinterpret_cast<H5File *>(hobj)->getRoot();
-    }
 
     H5Attribute * attr = new H5Attribute(*hobj, attrName);
     attr->getData().toScilab(pvApiCtx, pos);
-    delete attr;
 
-    if (mustDelete)
+    if (path != ".")
     {
         delete hobj;
+    }
+    else
+    {
+        delete attr;
     }
 }
 
 void HDF5Scilab::readAttributeData(const std::string & filename, const std::string & path, const std::string & attrName, int pos, void * pvApiCtx)
 {
-    H5File * file = new H5File(filename, path, "r");
-    H5Object & root = file->getRoot();
+    H5File * file = new H5File(filename, "/", "r");
 
     try
     {
-        readAttributeData(root, ".", attrName, pos, pvApiCtx);
+        readAttributeData(*file, path, attrName, pos, pvApiCtx);
     }
     catch (const H5Exception & e)
     {
@@ -153,12 +150,11 @@ void HDF5Scilab::readAttributeData(const std::string & filename, const std::stri
 
 void HDF5Scilab::readData(const std::string & filename, const std::string & name, const unsigned int size, const double * start, const double * stride, const double * count, const double * block, int pos, void * pvApiCtx)
 {
-    H5File * file = new H5File(filename, name, "r");
-    H5Object & root = file->getRoot();
+    H5File * file = new H5File(filename, "/", "r");
 
     try
     {
-        readData(root, ".", size, start, stride, count, block, pos, pvApiCtx);
+        readData(*file, name, size, start, stride, count, block, pos, pvApiCtx);
     }
     catch (const H5Exception & e)
     {
@@ -172,16 +168,11 @@ void HDF5Scilab::readData(const std::string & filename, const std::string & name
 void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsigned int size, const double * start, const double * stride, const double * count, const double * block, int pos, void * pvApiCtx)
 {
     H5Object * hobj = &obj;
-    const bool mustDelete = name != "." || obj.isFile();
     hsize_t * dims = 0;
 
-    if (name != ".")
+    if (!H5Object::isEmptyPath(name))
     {
         hobj = &H5Object::getObject(obj, name);
-    }
-    else if (obj.isFile())
-    {
-        hobj = &reinterpret_cast<H5File *>(hobj)->getRoot();
     }
 
     try
@@ -219,7 +210,7 @@ void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsign
     }
     catch (const H5Exception & e)
     {
-        if (mustDelete)
+        if (!H5Object::isEmptyPath(name))
         {
             delete hobj;
         }
@@ -230,7 +221,7 @@ void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsign
         throw;
     }
 
-    if (mustDelete)
+    if (!H5Object::isEmptyPath(name))
     {
         delete hobj;
     }
@@ -242,7 +233,7 @@ void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsign
 
 void HDF5Scilab::deleteObject(const std::string & file, const std::string & name)
 {
-    H5File * _file = new H5File(file, "/", "r+");
+    const H5File * _file = new H5File(file, "/", "r+");
 
     try
     {
@@ -255,41 +246,90 @@ void HDF5Scilab::deleteObject(const std::string & file, const std::string & name
     }
 }
 
+void HDF5Scilab::deleteObject(const std::string & file, const int size, const char ** names)
+{
+    const H5File * _file = new H5File(file, "/", "r+");
 
-void HDF5Scilab::deleteObject(H5Object & parent, const std::string & name)
+    try
+    {
+        deleteObject(*_file, size, names);
+        delete _file;
+    }
+    catch (const H5Exception & e)
+    {
+        delete _file;
+    }
+}
+
+void HDF5Scilab::deleteObject(const H5Object & parent, const std::string & name)
+{
+    const char * _name = name.c_str();
+    deleteObject(parent, 1, &_name);
+}
+
+void HDF5Scilab::deleteObject(const H5Object & parent, const int size, const char ** names)
 {
     herr_t err;
     hid_t loc = parent.getH5Id();
-    std::string _name = name;
-    if (name.empty())
-    {
-        _name = parent.getName();
-        if (!parent.isFile())
-        {
-            loc = parent.getParent().getH5Id();
-        }
-    }
 
-    if (H5Lexists(loc, _name.c_str(), H5P_DEFAULT) <= 0)
+    for (unsigned int i = 0; i < (unsigned int)size; i++)
     {
-        if (H5Aexists(loc, _name.c_str()) <= 0)
+        const char * _name = names[i];
+
+        if (H5Object::isEmptyPath(_name))
         {
-            throw H5Exception(__LINE__, __FILE__, _("The name doesn't exist: %s."), _name.c_str());
+            if (parent.isFile())
+            {
+                throw H5Exception(__LINE__, __FILE__, _("Cannot remove a file."));
+            }
+            else
+            {
+                _name = parent.getName().c_str();
+                loc = parent.getParent().getH5Id();
+            }
         }
 
-        err = H5Adelete(loc, _name.c_str());
+        if (_name[0] == '/' && _name[1] == '\0')
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot remove root element."));
+        }
+
+        if (H5Lexists(loc, _name, H5P_DEFAULT) <= 0)
+        {
+            if (H5Aexists(loc, _name) <= 0)
+            {
+                throw H5Exception(__LINE__, __FILE__, _("The name doesn't exist: %s."), _name);
+            }
+
+            err = H5Adelete(loc, _name);
+            if (err < 0)
+            {
+                throw H5Exception(__LINE__, __FILE__, _("Cannot remove the attribute: %s."), _name);
+            }
+
+            continue;
+        }
+
+        err = H5Ldelete(loc, _name, H5P_DEFAULT);
         if (err < 0)
         {
-            throw H5Exception(__LINE__, __FILE__, _("Cannot remove the attribute: %s."), _name.c_str());
+            throw H5Exception(__LINE__, __FILE__, _("Cannot remove the link: %s."), _name);
         }
-
-        return;
     }
+}
 
-    err = H5Ldelete(loc, _name.c_str(), H5P_DEFAULT);
-    if (err < 0)
+void HDF5Scilab::getObject(H5Object & parent, const std::string & location, int position, void * pvApiCtx)
+{
+    H5Object * obj = &H5Object::getObject(parent, location);
+
+    try
     {
-        throw H5Exception(__LINE__, __FILE__, _("Cannot remove the link: %s."), _name.c_str());
+        obj->createOnScilabStack(position, pvApiCtx);
+    }
+    catch (const H5Exception & e)
+    {
+        delete obj;
+        throw;
     }
 }
 
@@ -365,7 +405,7 @@ void HDF5Scilab::createLink(const std::string & file, const std::string & locati
 
     try
     {
-        createLink(_file->getRoot(), name, destName, hard);
+        createLink(*_file, name, destName, hard);
     }
     catch (const H5Exception & e)
     {
@@ -400,17 +440,7 @@ void HDF5Scilab::copy(H5Object & src, const std::string & slocation, H5Object & 
     std::string name;
     herr_t err;
 
-    if (src.isFile())
-    {
-        sobj = &reinterpret_cast<H5File *>(sobj)->getRoot();
-    }
-
-    if (dest.isFile())
-    {
-        dobj = &reinterpret_cast<H5File *>(dobj)->getRoot();
-    }
-
-    name = (dlocation.empty() || dlocation == ".") ? sobj->getBaseName() : dlocation;
+    name = H5Object::isEmptyPath(dlocation) ? sobj->getBaseName() : dlocation;
 
     if (sobj->isAttribute())
     {
@@ -421,31 +451,12 @@ void HDF5Scilab::copy(H5Object & src, const std::string & slocation, H5Object & 
         }
         catch (const H5Exception & e)
         {
-            if (src.isFile())
-            {
-                delete sobj;
-            }
-
-            if (dest.isFile())
-            {
-                delete dobj;
-            }
             throw;
         }
     }
     else
     {
         err = H5Ocopy(sobj->getH5Id(), slocation.empty() ? "." : slocation.c_str(), dobj->getH5Id(), name.c_str(), H5P_DEFAULT, H5P_DEFAULT);
-    }
-
-    if (src.isFile())
-    {
-        delete sobj;
-    }
-
-    if (dest.isFile())
-    {
-        delete dobj;
     }
 
     if (err < 0)
@@ -458,11 +469,11 @@ void HDF5Scilab::copy(H5Object & src, const std::string & slocation, H5Object & 
 
 void HDF5Scilab::copy(H5Object & src, const std::string & slocation, const std::string & dfile, const std::string & dlocation)
 {
-    H5File * dest = new H5File(dfile, dlocation);
+    H5File * dest = new H5File(dfile, "/", "r+");
 
     try
     {
-        copy(src, slocation, *dest, ".");
+        copy(src, slocation, *dest, dlocation);
         delete dest;
     }
     catch (const H5Exception & e)
@@ -474,11 +485,11 @@ void HDF5Scilab::copy(H5Object & src, const std::string & slocation, const std::
 
 void HDF5Scilab::copy(const std::string & sfile, const std::string & slocation, H5Object & dest, const std::string & dlocation)
 {
-    H5File * src = new H5File(sfile, slocation);
+    H5File * src = new H5File(sfile, "/", "r");
 
     try
     {
-        copy(*src, "", dest, dlocation);
+        copy(*src, slocation, dest, dlocation);
         delete src;
     }
     catch (const H5Exception & e)
@@ -490,12 +501,12 @@ void HDF5Scilab::copy(const std::string & sfile, const std::string & slocation, 
 
 void HDF5Scilab::copy(const std::string & sfile, const std::string & slocation, const std::string & dfile, const std::string & dlocation)
 {
-    H5File * src = new H5File(sfile, slocation);
+    H5File * src = new H5File(sfile, "/", "r");
     H5File * dest;
 
     try
     {
-        dest = new H5File(dfile, dlocation);
+        dest = new H5File(dfile, "/");
     }
     catch (const H5Exception & e)
     {
@@ -505,7 +516,7 @@ void HDF5Scilab::copy(const std::string & sfile, const std::string & slocation, 
 
     try
     {
-        copy(*src, "", *dest, ".");
+        copy(*src, slocation, *dest, dlocation);
         delete src;
         delete dest;
     }
@@ -522,7 +533,7 @@ void HDF5Scilab::ls(H5Object & obj, std::string name, int position, void * pvApi
     std::vector<std::string> _name;
     std::vector<std::string> _type;
     std::vector<const char *> strs;
-    H5Object & hobj = (name.empty() || name == ".") ? obj : H5Object::getObject(obj, name);
+    H5Object & hobj = H5Object::isEmptyPath(name) ? obj : H5Object::getObject(obj, name);
 
     hobj.ls(_name, _type);
     strs.reserve(_name.size() * 2);
@@ -535,7 +546,7 @@ void HDF5Scilab::ls(H5Object & obj, std::string name, int position, void * pvApi
         strs.push_back(_type[i].c_str());
     }
 
-    if (!name.empty() && name != ".")
+    if (!H5Object::isEmptyPath(name))
     {
         delete &hobj;
     }
@@ -572,7 +583,7 @@ void HDF5Scilab::createGroup(const std::string & file, const std::string & name)
 
     try
     {
-        createGroup(_file->getRoot(), name);
+        createGroup(*_file, name);
     }
     catch (const H5Exception & e)
     {
@@ -583,21 +594,18 @@ void HDF5Scilab::createGroup(const std::string & file, const std::string & name)
     delete _file;
 }
 
-void HDF5Scilab::createGroup(H5Object & parent, const std::vector<std::string> & names)
+void HDF5Scilab::createGroup(H5Object & parent, const int size, const char ** names)
 {
-    for (unsigned int i = 0; i < names.size(); i++)
-    {
-        H5Group::createGroup(parent, names[i]);
-    }
+    H5Group::createGroup(parent, size, names);
 }
 
-void HDF5Scilab::createGroup(const std::string & file, const std::vector<std::string> & names)
+void HDF5Scilab::createGroup(const std::string & file, const int size, const char ** names)
 {
     H5File * _file = new H5File(file, "/", "r+");
 
     try
     {
-        createGroup(_file->getRoot(), names);
+        createGroup(*_file, size, names);
     }
     catch (const H5Exception & e)
     {

@@ -28,15 +28,24 @@ protected:
     const hsize_t dataSize;
     const hsize_t ndims;
     const hsize_t * dims;
+    const hsize_t arank;
+    const hsize_t * adims;
+    hsize_t atotalSize;
     const hsize_t stride;
     const size_t offset;
     const bool dataOwner;
 
 public:
 
-    H5Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, void * _data, const hsize_t _stride = -1, const size_t _offset = 0, const bool _dataOwner = true) : H5Object(_parent), totalSize(_totalSize), dataSize(_dataSize), ndims(_ndims), dims(_dims), data(_data), stride(_stride), offset(_offset), dataOwner(_dataOwner)
+    H5Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, void * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Object(_parent), totalSize(_totalSize), dataSize(_dataSize), ndims(_ndims), dims(_dims), arank(_arank), adims(_adims), data(_data), stride(_stride), offset(_offset), dataOwner(_dataOwner), atotalSize(1)
     {
-
+        if (adims)
+        {
+            for (unsigned int i = 0; i < arank; i++)
+            {
+                atotalSize *= adims[i];
+            }
+        }
     }
 
     virtual ~H5Data()
@@ -45,6 +54,10 @@ public:
         {
             delete[] dims;
             delete[] static_cast<char *>(data);
+            if (adims)
+            {
+                delete[] adims;
+            }
         }
     }
 

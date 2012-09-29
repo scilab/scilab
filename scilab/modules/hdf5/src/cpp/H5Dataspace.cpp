@@ -51,10 +51,9 @@ std::string H5Dataspace::getTypeName() const
     }
 }
 
-std::vector<unsigned int> H5Dataspace::getDims() const
+std::vector<unsigned int> H5Dataspace::getDims(const bool b) const
 {
     hsize_t dims[__SCILAB_HDF5_MAX_DIMS__];
-    hsize_t maxdims[__SCILAB_HDF5_MAX_DIMS__];
     int ndims;
     std::vector<unsigned int> vdims;
     H5S_class_t _class = H5Sget_simple_extent_type(space);
@@ -65,7 +64,14 @@ std::vector<unsigned int> H5Dataspace::getDims() const
             vdims.push_back(1);
             break;
         case H5S_SIMPLE:
-            ndims = H5Sget_simple_extent_dims(space, (hsize_t *)dims, (hsize_t *)maxdims);
+            if (b)
+            {
+                ndims = H5Sget_simple_extent_dims(space, (hsize_t *)dims, 0);
+            }
+            else
+            {
+                ndims = H5Sget_simple_extent_dims(space, 0, (hsize_t *)dims);
+            }
             vdims.reserve(ndims);
             for (int i = 0; i < ndims; i++)
             {
@@ -98,9 +104,20 @@ void H5Dataspace::getAccessibleAttribute(const std::string & _name, const int po
     std::string lower(_name);
     std::transform(_name.begin(), _name.end(), lower.begin(), tolower);
 
-    if (lower == "dimensions")
+    if (lower == "dims")
     {
-        std::vector<unsigned int> dims = getDims();
+        std::vector<unsigned int> dims = getDims(true);
+        err = createMatrixOfUnsignedInteger32(pvApiCtx, pos, 1, dims.size(), &(dims[0]));
+        if (err.iErr)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create an array of integer on the stack."));
+        }
+
+        return;
+    }
+    else if (lower == "extents")
+    {
+        std::vector<unsigned int> dims = getDims(false);
         err = createMatrixOfUnsignedInteger32(pvApiCtx, pos, 1, dims.size(), &(dims[0]));
         if (err.iErr)
         {
@@ -182,6 +199,42 @@ std::string H5Dataspace::dump(std::map<haddr_t, std::string> & alreadyVisited, c
     return os.str();
 }
 
+std::string H5Dataspace::getStringDims() const
+{
+    H5S_class_t _class = H5Sget_simple_extent_type(space);
+    switch (_class)
+    {
+        case H5S_SCALAR:
+            return "[1 x 1]";
+        case H5S_SIMPLE:
+        {
+            const std::vector<unsigned int> dims = getDims(true);
+            std::ostringstream os;
+
+            if (dims.size() == 1)
+            {
+                os << "[1 x " << dims[0] << "]";
+                return os.str();
+            }
+
+            os << "[";
+            for (unsigned int i = 0; i < dims.size() - 1; i++)
+            {
+                os << dims[i] << " x ";
+            }
+            os << dims[dims.size() - 1] << "]";
+
+            return os.str();
+        }
+        case H5S_NULL:
+            return "[]";
+        case H5S_NO_CLASS:
+            return "?";
+        default:
+            return std::string(_("unknown dataspace"));
+    }
+}
+
 std::string H5Dataspace::toString(unsigned int indentLevel) const
 {
     std::ostringstream os;
@@ -189,14 +242,13 @@ std::string H5Dataspace::toString(unsigned int indentLevel) const
     std::string type = getTypeName();
 
     os << H5Object::getIndentString(indentLevel) << "HDF5 Dataspace" << std::endl
-       << indentString << _("Filename") << ": " << getParent().getFile().getFileName() << std::endl
-       << indentString << _("Name") << ": " << getName() << std::endl
-       << indentString << _("Path") << ": " << getCompletePath() << std::endl
-       << indentString << _("Type") << ": " << getTypeName();
+       << indentString << "Filename" << ": " << getParent().getFile().getFileName() << std::endl
+       << indentString << "Path" << ": " << getCompletePath() << std::endl
+       << indentString << "Type" << ": " << type;
 
     if (type == "simple")
     {
-        os << std::endl << indentString << _("Dimensions") << ": [1 x " << getDims().size() << "]";
+        os << std::endl << indentString << _("Dimensions") << ": [1 x " << getDims(true).size() << "]";
     }
 
     return os.str();

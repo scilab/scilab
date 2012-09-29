@@ -146,14 +146,20 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
         {
             obj->getAccessibleAttribute(_field, nbIn + 1, pvApiCtx);
         }
+        else if (obj->isReference())
+        {
+            H5ReferenceData * ref = reinterpret_cast<H5ReferenceData *>(obj);
+            H5Object & robj = ref->getReferencesObject(nbIn - 1, index);
+            robj.createOnScilabStack(nbIn + 1, pvApiCtx);
+        }
         else
         {
-            if (obj->isReference())
+            if (index)
             {
-                H5ReferenceData * ref = reinterpret_cast<H5ReferenceData *>(obj);
-                H5Object & robj = ref->getReferencesObject(nbIn - 1, index);
-                robj.createOnScilabStack(nbIn + 1, pvApiCtx);
+                delete[] index;
             }
+            Scierror(999, gettext("%s: Invalid field.\n"), fname);
+            return 0;
         }
     }
     catch (std::exception & e)

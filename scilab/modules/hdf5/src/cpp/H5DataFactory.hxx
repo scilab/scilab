@@ -36,35 +36,13 @@ class H5DataFactory
 
 public:
 
-    static H5Data & getData(H5Object & parent, const hid_t obj, const bool isAttribute);
-
     static H5Data & getData(H5Object & parent, const hid_t obj, H5Dataspace * space, hsize_t * selectdims, const bool isAttribute);
 
 private:
 
-    static H5Data & getData(H5Object & parent, const hsize_t totalSize, const hid_t type, hsize_t ndims, hsize_t * dims, void * data, const hsize_t stride, const size_t offset, const bool dataOwner = false);
+    static H5Data & getObjectData(H5Object & parent, const hsize_t totalSize, const hsize_t dataSize, const hid_t type, hsize_t ndims, hsize_t * dims, const hsize_t arank, const hsize_t * adims, void * data, const hsize_t stride, const size_t offset, const bool dataOwner);
 
-    static H5Data & getIntegerData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
-
-    static H5Data & getFloatingData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
-
-    static H5StringData & getStringData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
-
-    static H5TimeData & getTimeData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
-
-    static H5Data & getBitfieldData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
-
-    static H5OpaqueData & getOpaqueData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
-
-    static H5Data & getCompoundData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
-
-    static H5ReferenceData & getReferenceData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
-
-    static H5EnumData & getEnumData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
-
-    //static H5VlenData & getVlenData(H5Object & parent, const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, const bool isAttribute);
-
-    static void getNativeData(const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, hsize_t * totalSize, hsize_t * dataSize, hsize_t * ndims, hsize_t ** dims, void ** data, const bool isAttribute);
+    static void getNativeData(const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, hsize_t * totalSize, hsize_t * dataSize, hsize_t * ndims, hsize_t ** dims, hsize_t * arank, hsize_t ** adims, void ** data, const bool isAttribute);
 };
 }
 

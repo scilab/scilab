@@ -15,7 +15,7 @@
 namespace org_modules_hdf5
 {
 
-H5StringData::H5StringData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _stringSize, const hsize_t _ndims, const hsize_t * _dims, char * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Data(_parent, _totalSize, _stringSize, _ndims, _dims, _data, _stride == -1 ? _stringSize : _stride, _offset, _dataOwner)
+H5StringData::H5StringData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _stringSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, char * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Data(_parent, _totalSize, _stringSize, _ndims, _dims, _arank, _adims, _data, _stride == -1 ? _stringSize : _stride, _offset, _dataOwner)
 {
     char * __data = static_cast<char *>(_data);
     transformedData = new char*[totalSize];
@@ -38,7 +38,7 @@ H5StringData::H5StringData(H5Object & _parent, const hsize_t _totalSize, const h
     }
 }
 
-H5StringData::H5StringData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _stringSize, const hsize_t _ndims, const hsize_t * _dims, char ** _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Data(_parent, _totalSize, _stringSize, _ndims, _dims, _data, _stride == -1 ? _stringSize : _stride, _offset, _dataOwner), transformedData(0)
+H5StringData::H5StringData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _stringSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, char ** _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Data(_parent, _totalSize, _stringSize, _ndims, _dims, _arank, _adims, _data, _stride == -1 ? _stringSize : _stride, _offset, _dataOwner), transformedData(0)
 {
 
 }

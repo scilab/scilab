@@ -109,21 +109,13 @@ void H5Dataset::getAccessibleAttribute(const std::string & _name, const int pos,
     SciErr err;
     std::string lower(_name);
 
-    try
-    {
-        H5Attribute * attr = new H5Attribute(*const_cast<H5Dataset *>(this), _name);
-        attr->createOnScilabStack(pos, pvApiCtx);
-
-        return;
-    }
-    catch (const H5Exception & e) { }
-
     std::transform(_name.begin(), _name.end(), lower.begin(), tolower);
 
     if (lower == "attributes")
     {
-        const H5AttributesList & attrs = const_cast<H5Dataset *>(this)->getAttributes();
-        attrs.createOnScilabStack(pos, pvApiCtx);
+        std::vector<std::string> names;
+        getNames(*this, names, ATTRIBUTE);
+        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
 
         return;
     }
@@ -159,6 +151,16 @@ void H5Dataset::getAccessibleAttribute(const std::string & _name, const int pos,
         layout.createOnScilabStack(pos, pvApiCtx);
 
         return;
+    }
+    else
+    {
+        try
+        {
+            H5Object & obj = H5Object::getObject(*const_cast<H5Dataset *>(this), _name);
+            obj.createOnScilabStack(pos, pvApiCtx);
+            return;
+        }
+        catch (const H5Exception & e) { }
     }
 
     H5Object::getAccessibleAttribute(_name, pos, pvApiCtx);
@@ -208,7 +210,7 @@ std::string H5Dataset::dump(std::map<haddr_t, std::string> & alreadyVisited, con
 void H5Dataset::printLsInfo(std::ostringstream & os) const
 {
     const H5Dataspace & space = const_cast<H5Dataset *>(this)->getSpace();
-    std::vector<unsigned int> dims = space.getDims();
+    std::vector<unsigned int> dims = space.getDims(true);
     std::string str(getName());
     H5Object::getResizedString(str);
 
@@ -243,10 +245,7 @@ std::string H5Dataset::ls() const
 void H5Dataset::ls(std::vector<std::string> & name, std::vector<std::string> & type) const
 {
     herr_t err;
-    OpDataGetLs opdata;
-    opdata.parent = const_cast<H5Dataset *>(this);
-    opdata.name = &name;
-    opdata.type = &type;
+    OpDataGetLs opdata(const_cast<H5Dataset *>(this), &name, &type);
     hsize_t idx = 0;
 
     err = H5Aiterate(dataset, H5_INDEX_NAME, H5_ITER_INC, &idx, H5Object::getLsAttributes, &opdata);
@@ -264,11 +263,11 @@ std::string H5Dataset::toString(const unsigned int indentLevel) const
     const H5AttributesList & attrs = const_cast<H5Dataset *>(this)->getAttributes();
 
     os << H5Object::getIndentString(indentLevel) << "HDF5 Dataset" << std::endl
-       << indentString << _("Filename") << ": " << getParent().getFile().getFileName() << std::endl
-       << indentString << _("Name") << ": " << getName() << std::endl
-       << indentString << _("Path") << ": " << getCompletePath() << std::endl
-       << indentString << _("Elements type") << ": " << type.getTypeName() << std::endl
-       << indentString << _("Attributes") << ": [1 x " << attrs.getSize() << "]";
+       << indentString << "Filename" << ": " << getParent().getFile().getFileName() << std::endl
+       << indentString << "Name" << ": " << getName() << std::endl
+       << indentString << "Path" << ": " << getCompletePath() << std::endl
+       << indentString << "Type" << ": " << type.getTypeName() << std::endl
+       << indentString << "Attributes" << ": [1 x " << attrs.getSize() << "]";
 
     delete &type;
     delete &attrs;

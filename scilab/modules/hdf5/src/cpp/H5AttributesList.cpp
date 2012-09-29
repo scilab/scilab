@@ -118,7 +118,7 @@ std::string H5AttributesList::toString(const unsigned int indentLevel) const
     std::string indentString = H5Object::getIndentString(indentLevel);
 
     os << indentString << _("Filename") << ": " << getFile().getFileName() << std::endl
-       << indentString << _("Attributes") << ": [1 x " << getSize() << "]";
+       << indentString << _("Number of elements") << ": " << getSize();
 
     return os.str();
 }

@@ -27,7 +27,7 @@ class H5CompoundData : public H5BasicData<char>
 
 public:
 
-    H5CompoundData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const unsigned int _nfields, std::string * _fieldsname, H5Data ** _fieldsvalue, char * _data, const bool _dataOwner) : H5BasicData(_parent, _totalSize, _dataSize, _ndims, _dims, _data, -1, 0, _dataOwner), nfields(_nfields), fieldsname(_fieldsname), fieldsvalue(_fieldsvalue)
+    H5CompoundData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, const unsigned int _nfields, std::string * _fieldsname, H5Data ** _fieldsvalue, char * _data, const bool _dataOwner) : H5BasicData(_parent, _totalSize, _dataSize, _ndims, _dims, _arank, _adims, _data, -1, 0, _dataOwner), nfields(_nfields), fieldsname(_fieldsname), fieldsvalue(_fieldsvalue)
     {
 
     }
@@ -35,6 +35,10 @@ public:
     virtual ~H5CompoundData()
     {
         delete[] fieldsname;
+        for (unsigned int i = 0; i < nfields; i++)
+        {
+            delete fieldsvalue[i];
+        }
         delete[] fieldsvalue;
     }
 

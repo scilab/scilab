@@ -128,14 +128,18 @@ std::string H5Attribute::toString(const unsigned int indentLevel) const
     std::ostringstream os;
     const std::string indentString = H5Object::getIndentString(indentLevel + 1);
     const H5Type & type = const_cast<H5Attribute *>(this)->getDataType();
+    const H5Dataspace & space = const_cast<H5Attribute *>(this)->getSpace();
 
     os << H5Object::getIndentString(indentLevel) << "HDF5 Attribute" << std::endl
-       << indentString << _("Filename") << ": " << getFile().getFileName() << std::endl
-       << indentString << _("Attribute name") << ": " << getName() << std::endl
-       << indentString << _("Attribute path") << ": " << getCompletePath() << std::endl
-       << indentString << _("Value class") << ": " << type.getClassName();
+       << indentString << "Filename" << ": " << getFile().getFileName() << std::endl
+       << indentString << "Name" << ": " << getName() << std::endl
+       << indentString << "Parent path" << ": " << getParent().getCompletePath() << std::endl
+       << indentString << "Type" << ": " << type.getTypeName() << std::endl
+       << indentString << "Dataspace" << ": " << space.getTypeName() << std::endl
+       << indentString << "Data" << ": " << space.getStringDims() << std::endl;
 
     delete &type;
+    delete &space;
 
     return os.str();
 }

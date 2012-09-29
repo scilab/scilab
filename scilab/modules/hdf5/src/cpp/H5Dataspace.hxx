@@ -29,11 +29,12 @@ public:
     ~H5Dataspace();
 
     virtual hid_t getH5Id();
-    virtual std::vector<unsigned int> getDims() const;
+    virtual std::vector<unsigned int> getDims(const bool b) const;
     virtual std::string getTypeName() const;
 
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const;
     virtual std::string toString(const unsigned int indentLevel) const;
+    virtual std::string getStringDims() const;
 
     virtual void getAccessibleAttribute(const std::string & name, const int pos, void * pvApiCtx) const;
 

@@ -10,7 +10,6 @@
  *
  */
 
-#include <set>
 #include <string>
 
 extern "C"
@@ -42,7 +41,8 @@ int sci_h5rm(char *fname, unsigned long fname_len)
     SciErr err;
     int * addr = 0;
     char * str = 0;
-    std::string name;
+    char ** strs = 0;
+    int row, col;
     std::string file;
     const int nbIn = nbInputArgument(pvApiCtx);
 
@@ -68,6 +68,12 @@ int sci_h5rm(char *fname, unsigned long fname_len)
     }
     else
     {
+        if (nbIn == 1)
+        {
+            Scierror(999, gettext("%s: Wrong number of input arguments: 2 expected.\n"), fname, 1);
+            return 0;
+        }
+
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
@@ -94,32 +100,36 @@ int sci_h5rm(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+        if (!isStringType(pvApiCtx, addr))
         {
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
-        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
+        if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &strs) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
-
-        name = std::string(str);
-        freeAllocatedSingleString(str);
     }
 
     try
     {
         if (hobj)
         {
-            HDF5Scilab::deleteObject(*hobj, name);
-            H5VariableScope::removeIdAndDelete(hobj->getScilabId());
+            if (strs)
+            {
+                HDF5Scilab::deleteObject(*hobj, row * col, const_cast<const char **>(strs));
+            }
+            else
+            {
+                HDF5Scilab::deleteObject(*hobj, std::string(""));
+                H5VariableScope::removeIdAndDelete(hobj->getScilabId());
+            }
         }
         else
         {
-            HDF5Scilab::deleteObject(file, name);
+            HDF5Scilab::deleteObject(file, row * col, const_cast<const char **>(strs));
         }
     }
     catch (const std::exception & e)

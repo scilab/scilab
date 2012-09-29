@@ -77,6 +77,7 @@ public:
     virtual void getAccessibleAttribute(const std::string & name, const int pos, void * pvApiCtx) const;
 
     static void createGroup(H5Object & parent, const std::string & name);
+    static void createGroup(H5Object & parent, const int size, const char ** names);
 
 private :
 

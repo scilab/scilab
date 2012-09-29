@@ -31,98 +31,73 @@ int sci_h5open(char *fname, unsigned long fname_len)
     SciErr err;
     int * addr = 0;
     char * str = 0;
+    char * expandedPath = 0;
     std::string path;
-    std::string access;
-    std::string name;
-    char * args[3];
+    std::string access = "a";
     const int nbIn = nbInputArgument(pvApiCtx);
 
     CheckOutputArgument(pvApiCtx, 1, 1);
-    CheckInputArgument(pvApiCtx, 1, 3);
+    CheckInputArgument(pvApiCtx, 1, 2);
 
-    for (int i = 1; i <= nbIn; i++)
+    err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
+    if (err.iErr)
     {
-        err = getVarAddressFromPosition(pvApiCtx, i, &addr);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
+    }
+
+    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+    {
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        return 0;
+    }
+
+    if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
+
+    expandedPath = expandPathVariable(str);
+    path = std::string(expandedPath);
+    FREE(expandedPath);
+    freeAllocatedSingleString(str);
+
+    if (nbIn == 2)
+    {
+        err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
         {
-            for (int j = 0; j < i; j++)
-            {
-                freeAllocatedSingleString(args[j]);
-            }
-            printError(&err, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            for (int j = 0; j < i; j++)
-            {
-                freeAllocatedSingleString(args[j]);
-            }
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, i);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
-        if (getAllocatedSingleString(pvApiCtx, addr, args + i - 1) != 0)
+        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
-            for (int j = 0; j < i; j++)
-            {
-                freeAllocatedSingleString(args[j]);
-            }
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
-    }
 
-    str = expandPathVariable(args[0]);
-    path = std::string(str);
-    FREE(str);
+        if (!H5File::checkFileAccess(str))
+        {
+            Scierror(999, _("%s: Invalid access mode: %s.\n"), fname, str);
+            freeAllocatedSingleString(str);
+            return 0;
+        }
 
-    switch (nbIn)
-    {
-        case 1:
-            access = "a";
-            name = "/";
-            break;
-        case 2:
-            if (H5File::checkFileAccess(args[1]))
-            {
-                access = std::string(args[1]);
-                name = "/";
-            }
-            else
-            {
-                access = "a";
-                name = std::string(args[1]);
-            }
-            break;
-        case 3:
-            if (H5File::checkFileAccess(args[1]))
-            {
-                access = std::string(args[1]);
-                name = std::string(args[2]);
-            }
-            else if (H5File::checkFileAccess(args[2]))
-            {
-                name = std::string(args[1]);
-                access = std::string(args[2]);
-            }
-            else
-            {
-                name = std::string(args[1]);
-                access = "a";
-            }
-    }
-
-    for (int i = 0; i < nbIn; i++)
-    {
-        freeAllocatedSingleString(args[i]);
+        access = std::string(str);
+        freeAllocatedSingleString(str);
     }
 
     try
     {
-        h5file = new H5File(path, name, access);
+        h5file = new H5File(path, "/", access);
     }
     catch (const std::exception & e)
     {

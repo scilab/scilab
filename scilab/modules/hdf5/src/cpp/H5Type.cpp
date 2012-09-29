@@ -1614,7 +1614,9 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
                 os << "[" << (unsigned int)dims[i] << "]";
             }
 
-            os << H5Type(*const_cast<H5Type *>(this), super).dump(alreadyVisited, 0) << " }";
+            os << " " << getNameFromType(super) << " }";
+
+            H5Tclose(super);
             delete[] dims;
             break;
         default:
@@ -1651,13 +1653,13 @@ std::string H5Type::toString(const unsigned int indentLevel) const
     std::ostringstream os;
     std::string indentString = H5Object::getIndentString(indentLevel);
 
-    os << indentString << _("Filename") << ": " << getFile().getFileName() << std::endl
-       << indentString << _("Name") << ": " << name << std::endl
-       << indentString << _("Class name") << ": " << getClassName() << std::endl
-       << indentString << _("Type name") << ": " << getTypeName() << std::endl
-       << indentString << _("Type size") << ": " << getTypeSize() << std::endl
-       << indentString << _("Native type name") << ": " << getNativeTypeName() << std::endl
-       << indentString << _("Native type size") << ": " << getNativeTypeSize();
+    os << indentString << "Filename" << ": " << getFile().getFileName() << std::endl
+       << indentString << "Name" << ": " << name << std::endl
+       << indentString << "Class" << ": " << getClassName() << std::endl
+       << indentString << "Type" << ": " << getTypeName() << std::endl
+       << indentString << "Size" << ": " << getTypeSize() << std::endl
+       << indentString << "Nativetype" << ": " << getNativeTypeName() << std::endl
+       << indentString << "Nativesize" << ": " << getNativeTypeSize();
 
     return os.str();
 }

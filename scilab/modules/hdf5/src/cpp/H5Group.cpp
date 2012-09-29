@@ -17,6 +17,7 @@
 #include "H5DatasetsList.hxx"
 #include "H5TypesList.hxx"
 #include "H5Link.hxx"
+#include "H5BasicData.hxx"
 
 namespace org_modules_hdf5
 {
@@ -118,41 +119,69 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
     SciErr err;
     std::string lower(_name);
 
-    try
-    {
-        H5Object & obj = H5Object::getObject(*const_cast<H5Group *>(this), _name);
-        obj.createOnScilabStack(pos, pvApiCtx);
-        return;
-    }
-    catch (const H5Exception & e) { }
-
     std::transform(_name.begin(), _name.end(), lower.begin(), tolower);
 
     if (lower == "attributes")
     {
-        const H5AttributesList & attrs = const_cast<H5Group *>(this)->getAttributes();
-        attrs.createOnScilabStack(pos, pvApiCtx);
+        std::vector<std::string> names;
+        getNames(*this, names, ATTRIBUTE);
+        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
 
         return;
     }
     else if (lower == "groups")
     {
-        const H5GroupsList & groups = const_cast<H5Group *>(this)->getGroups();
-        groups.createOnScilabStack(pos, pvApiCtx);
+        std::vector<std::string> names;
+        getNames(*this, names, GROUP);
+        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
 
         return;
     }
     else if (lower == "datasets")
     {
-        const H5DatasetsList & sets = const_cast<H5Group *>(this)->getDatasets();
-        sets.createOnScilabStack(pos, pvApiCtx);
+        std::vector<std::string> names;
+        getNames(*this, names, DATASET);
+        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
 
         return;
     }
     else if (lower == "types")
     {
-        const H5TypesList & types = const_cast<H5Group *>(this)->getTypes();
-        types.createOnScilabStack(pos, pvApiCtx);
+        std::vector<std::string> names;
+        getNames(*this, names, TYPE);
+        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+
+        return;
+    }
+    else if (lower == "externals")
+    {
+        std::vector<std::string> names;
+        getNames(*this, names, EXTERNAL);
+        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+
+        return;
+    }
+    else if (lower == "softs")
+    {
+        std::vector<std::string> names;
+        getNames(*this, names, SOFT);
+        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+
+        return;
+    }
+    else if (lower == "danglings")
+    {
+        std::vector<std::string> names;
+        getNames(*this, names, DANGLING);
+        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+
+        return;
+    }
+    else if (lower == "hards")
+    {
+        std::vector<std::string> names;
+        getNames(*this, names, HARD);
+        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
 
         return;
     }
@@ -186,6 +215,16 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
 
         return;
     }
+    else
+    {
+        try
+        {
+            H5Object & obj = H5Object::getObject(*const_cast<H5Group *>(this), _name);
+            obj.createOnScilabStack(pos, pvApiCtx);
+            return;
+        }
+        catch (const H5Exception & e) { }
+    }
 
     H5Object::getAccessibleAttribute(_name, pos, pvApiCtx);
 }
@@ -193,10 +232,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
 void H5Group::ls(std::vector<std::string> & name, std::vector<std::string> & type) const
 {
     herr_t err;
-    OpDataGetLs opdata;
-    opdata.parent = const_cast<H5Group *>(this);
-    opdata.name = &name;
-    opdata.type = &type;
+    OpDataGetLs opdata(const_cast<H5Group *>(this), &name, &type);
     hsize_t idx = 0;
 
     err = H5Literate(group, H5_INDEX_NAME, H5_ITER_INC, &idx, getLsInfo, &opdata);
@@ -217,14 +253,8 @@ herr_t H5Group::getLsInfo(hid_t g_id, const char * name, const H5L_info_t * info
 {
     H5O_info_t oinfo;
     herr_t err;
-    H5Object * hobj = 0;
     hid_t obj;
     OpDataGetLs & opdata = *(OpDataGetLs *)op_data;
-
-    if (obj < 0)
-    {
-        return (herr_t) - 1;
-    }
 
     switch (info->type)
     {
@@ -237,10 +267,14 @@ herr_t H5Group::getLsInfo(hid_t g_id, const char * name, const H5L_info_t * info
             opdata.type->push_back("external");
             break;
         case H5L_TYPE_HARD:
-            obj = H5Oopen(g_id, name, H5P_DEFAULT);
+            obj = H5Oopen_by_addr(g_id, info->u.address);
+            if (obj < 0)
+            {
+                return (herr_t) - 1;
+            }
+
             err = H5Oget_info(obj, &oinfo);
             H5Oclose(obj);
-
             if (err < 0)
             {
                 return (herr_t) - 1;
@@ -401,71 +435,47 @@ std::string H5Group::toString(const unsigned int indentLevel) const
 {
     std::ostringstream os;
     std::string indentString = H5Object::getIndentString(indentLevel + 1);
-    const H5GroupsList & groups = const_cast<H5Group *>(this)->getGroups();
-    const H5DatasetsList & datasets = const_cast<H5Group *>(this)->getDatasets();
-    const H5TypesList & types = const_cast<H5Group *>(this)->getTypes();
-    const H5AttributesList & attrs = const_cast<H5Group *>(this)->getAttributes();
+    OpDataCount opdata(false);
+    H5Object::count(*this, opdata);
 
     os << H5Object::getIndentString(indentLevel) << "HDF5 Group" << std::endl
-       << indentString << _("Filename") << ": " << getFile().getFileName() << std::endl
-       << indentString << _("Name") << ": " << getName() << std::endl
-       << indentString << _("Path") << ": " << getCompletePath() << std::endl
-       << indentString << _("Attributes") << ": [1 x " << attrs.getSize() << "]" << std::endl
-       << indentString << _("Groups") << ": [1 x " << groups.getSize() << "]" << std::endl
-       << indentString << _("Datasets") << ": [1 x " << datasets.getSize() << "]" << std::endl
-       << indentString << _("Types") << ": [1 x " << types.getSize() << "]" << std::endl
-       << indentString << _("Links") << ": [" << getLinksSize() << " x 3]";
-
-    delete &groups;
-    delete &datasets;
-    delete &types;
-    delete &attrs;
+       << indentString << "Filename" << ": " << getFile().getFileName() << std::endl
+       << indentString << "Name" << ": " << getBaseName() << std::endl
+       << indentString << "Path" << ": " << getCompletePath() << std::endl
+       << indentString << "Attributes" << ": [1 x " << getAttributesNumber() << "]" << std::endl
+       << indentString << "Groups" << ": [1 x " << opdata.group << "]" << std::endl
+       << indentString << "Datasets" << ": [1 x " << opdata.dataset << "]" << std::endl
+       << indentString << "Types" << ": [1 x " << opdata.type << "]" << std::endl
+       << indentString << "Externals" << ": [1 x " << opdata.external << "]" << std::endl
+       << indentString << "Softs" << ": [1 x " << opdata.soft << "]";
 
     return os.str();
 }
 
 void H5Group::createGroup(H5Object & parent, const std::string & name)
 {
+    const char * _name = name.c_str();
+    createGroup(parent, 1, &_name);
+}
+
+void H5Group::createGroup(H5Object & parent, const int size, const char ** names)
+{
     hid_t obj;
-    hid_t lcpl;
-    hid_t loc;
-    H5Object * hobj = 0;
+    hid_t loc = parent.getH5Id();
 
-    if (parent.isFile())
+    for (unsigned int i = 0; i < (unsigned int)size; i++)
     {
-        hobj = &reinterpret_cast<H5File *>(&parent)->getRoot();
-        loc = hobj->getH5Id();
-    }
-    else
-    {
-        loc = parent.getH5Id();
-    }
-
-    if (H5Lexists(loc, name.c_str(), H5P_DEFAULT) > 0)
-    {
-        if (hobj)
+        if (H5Lexists(loc, names[i], H5P_DEFAULT) > 0)
         {
-            delete hobj;
+            throw H5Exception(__LINE__, __FILE__, _("The group already exists: %s."), names[i]);
         }
-        throw H5Exception(__LINE__, __FILE__, _("The group already exists: %s."), name.c_str());
+
+        obj = H5Gcreate(loc, names[i], H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+        if (obj < 0)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create the group: %s."), names[i]);
+        }
+        H5Gclose(obj);
     }
-
-    lcpl = H5Pcreate(H5P_LINK_CREATE);
-    H5Pset_create_intermediate_group(lcpl, 1);
-
-    obj = H5Gcreate(loc, name.c_str(), lcpl, H5P_DEFAULT, H5P_DEFAULT);
-
-    if (hobj)
-    {
-        delete hobj;
-    }
-
-    H5Pclose(lcpl);
-    if (obj < 0)
-    {
-        throw H5Exception(__LINE__, __FILE__, _("Cannot create the group: %s."), name.c_str());
-    }
-
-    H5Gclose(obj);
 }
 }

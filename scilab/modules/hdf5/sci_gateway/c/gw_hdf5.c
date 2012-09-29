@@ -53,6 +53,7 @@ static gw_generic_table Tab[] =
     {sci_h5mount, "h5mount"},
     {sci_h5umount, "h5umount"},
     {sci_h5mv, "h5mv"},
+    {sci_h5get, "h5get"},
 };
 /*--------------------------------------------------------------------------*/
 int gw_hdf5(void)

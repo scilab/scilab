@@ -73,7 +73,13 @@ public:
 
     static void deleteObject(const std::string & file, const std::string & name);
 
-    static void deleteObject(H5Object & parent, const std::string & name);
+    static void deleteObject(const std::string & file, const int size, const char ** names);
+
+    static void deleteObject(const H5Object & parent, const std::string & name);
+
+    static void deleteObject(const H5Object & parent, const int size, const char ** names);
+
+    static void getObject(H5Object & parent, const std::string & location, int position, void * pvApiCtx);
 
     static void createLink(H5Object & parent, const std::string & name, const std::string & targetPath, const bool hard);
 
@@ -109,9 +115,9 @@ public:
 
     static void createGroup(const std::string & file, const std::string & name);
 
-    static void createGroup(H5Object & parent, const std::vector<std::string> & names);
+    static void createGroup(H5Object & parent, const int size, const char ** names);
 
-    static void createGroup(const std::string & file, const std::vector<std::string> & names);
+    static void createGroup(const std::string & file, const int size, const char ** names);
 
     template <typename T, typename U>
     static U & create(H5Object & parent, const std::string & name, const unsigned int rank, const hsize_t * dims, const hsize_t * maxdims, T * data, const hid_t targetType, const unsigned int size, const double * start, const double * stride, const double * count, const double * block)
@@ -122,7 +128,6 @@ public:
         hid_t type;
         hid_t targettype;
         herr_t err;
-        H5Object * loc = 0;
         hsize_t * newdims = 0;
         bool mustDelete = false;
         H5T_conv_t conv;
@@ -133,15 +138,6 @@ public:
         if (rank > __SCILAB_HDF5_MAX_DIMS__)
         {
             throw H5Exception(__LINE__, __FILE__, _("Invalid rank, must be in the interval [0, %d]."), __SCILAB_HDF5_MAX_DIMS__);
-        }
-
-        if (parent.isFile())
-        {
-            loc = &reinterpret_cast<H5File *>(&parent)->getRoot();
-        }
-        else
-        {
-            loc = &parent;
         }
 
         type = H5Type::getBaseType(data);
@@ -222,7 +218,7 @@ public:
 
         try
         {
-            obj = U::create(*loc, name, type, targettype, srcspace, targetspace, data);
+            obj = U::create(parent, name, type, targettype, srcspace, targetspace, data);
             H5Tclose(type);
             H5Sclose(srcspace);
             if (targetspace >= 0)
@@ -241,7 +237,7 @@ public:
             throw;
         }
 
-        return *new U(*loc, obj, name);
+        return *new U(parent, obj, name);
     }
 
     template <typename T, typename U>
@@ -283,11 +279,11 @@ public:
     template <typename T>
     static void createObjectFromStack(const std::string & file, const std::string & location, const std::string & name, const std::string & targetType, const unsigned int size, const double * start, const double * stride, const double * count, const double * block, const double * maxdims, void * pvApiCtx, int * addr, const int rhsPosition)
     {
-        H5File & src = *new H5File(file, location, "r+");
+        H5File & src = *new H5File(file, "/", "r+");
 
         try
         {
-            createObjectFromStack<T>(src, "", name, targetType, size, start, stride, count, block, maxdims, pvApiCtx, addr, rhsPosition);
+            createObjectFromStack<T>(src, location, name, targetType, size, start, stride, count, block, maxdims, pvApiCtx, addr, rhsPosition);
             delete &src;
         }
         catch (const H5Exception & e)
@@ -308,7 +304,6 @@ public:
         int row;
         int col;
         int type;
-        H5Object * robj = 0;
         H5Object * hobj = 0;
 
         if (maxdims)
@@ -324,15 +319,7 @@ public:
             throw H5Exception(__LINE__, __FILE__, _("Can not get the type of input argument #%d."), rhsPosition);
         }
 
-        if (obj.isFile())
-        {
-            robj = &reinterpret_cast<H5File *>(&obj)->getRoot();
-            hobj = (location.empty() || location == ".") ? robj : &H5Object::getObject(*robj, location);
-        }
-        else
-        {
-            hobj = (location.empty() || location == ".") ? &obj : &H5Object::getObject(obj, location);
-        }
+        hobj = H5Object::isEmptyPath(location) ? &obj : &H5Object::getObject(obj, location);
 
         try
         {
@@ -502,11 +489,7 @@ public:
         }
         catch (const H5Exception & e)
         {
-            if (obj.isFile())
-            {
-                delete robj;
-            }
-            else if (!location.empty() && location != ".")
+            if (!H5Object::isEmptyPath(location))
             {
                 delete hobj;
             }
@@ -514,11 +497,7 @@ public:
             throw;
         }
 
-        if (obj.isFile())
-        {
-            delete robj;
-        }
-        else if (!location.empty() && location != ".")
+        if (!H5Object::isEmptyPath(location))
         {
             delete hobj;
         }

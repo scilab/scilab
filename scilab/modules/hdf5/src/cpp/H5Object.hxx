@@ -14,6 +14,7 @@
 #define __H5OBJECT_HXX__
 
 #define H5_NO_DEPRECATED_SYMBOLS
+#undef H5_USE_16_API
 
 #include <hdf5.h>
 
@@ -61,6 +62,8 @@ class H5Object
 
 public :
 
+    enum FilterType {HARD, SOFT, EXTERNAL, DANGLING, GROUP, DATASET, TYPE, ATTRIBUTE};
+
     H5Object(H5Object & _parent);
     H5Object(H5Object & _parent, const std::string & _name);
     virtual ~H5Object();
@@ -69,6 +72,7 @@ public :
 
     virtual hid_t getH5Id() const;
     virtual H5AttributesList & getAttributes();
+    virtual hsize_t getAttributesNumber() const;
 
     virtual H5O_info_t getInfo() const
     {
@@ -202,6 +206,7 @@ public :
     }
     H5File & getFile() const;
 
+    virtual void getNames(const H5Object & obj, std::vector<std::string> & names, FilterType type) const;
     virtual void createOnScilabStack(int pos, void * pvApiCtx) const;
     virtual void createInScilabList(int * list, int stackPos, int pos, void * pvApiCtx) const;
     bool isRoot() const
@@ -243,14 +248,62 @@ public :
     static H5Object & getObject(H5Object & parent, const std::string & name);
     static void getLinksInfo(const H5Object & obj, std::vector<std::string> & linksName, std::vector<std::string> & types, std::vector<std::string> & linksType);
 
+    inline static bool isEmptyPath(const std::string & path)
+    {
+        return path.empty() || path == ".";
+    }
+
+    inline static bool isEmptyPath(const char * path)
+    {
+        return path[0] == '\0' || (path[0] == '.' && path[1] == '\0');
+    }
+
 protected :
 
-    typedef struct
+    class OpDataGetLs
     {
+    public:
         H5Object * parent;
         std::vector<std::string> * name;
         std::vector<std::string> * type;
-    } OpDataGetLs;
+
+        OpDataGetLs(H5Object * _parent, std::vector<std::string> * _name, std::vector<std::string> * _type) : parent(_parent), name(_name), type(_type) { }
+    };
+
+    class OpDataCount
+    {
+    public:
+        unsigned int soft;
+        unsigned int external;
+        unsigned int hard;
+        unsigned int dangling;
+        unsigned int group;
+        unsigned int dataset;
+        unsigned int type;
+        const bool followLink;
+
+        OpDataCount(const bool _followLink) : soft(0), external(0), hard(0), dangling(0), group(0), dataset(0), type(0), followLink(_followLink) { }
+    };
+
+    class OpDataFilter
+    {
+    public:
+        std::vector<std::string> * name;
+        FilterType type;
+        const bool followLink;
+
+        OpDataFilter(std::vector<std::string> * _name, FilterType _type, const bool _followLink) : name(_name), type(_type), followLink(_followLink) { }
+    };
+
+    class OpDataSoftLinkFilter
+    {
+    public:
+        std::vector<std::string> * name;
+        std::vector<std::string> * value;
+        FilterType type;
+
+        OpDataSoftLinkFilter(std::vector<std::string> * _name, std::vector<std::string> * _value, FilterType _type) : name(_name), value(_value), type(_type) { }
+    };
 
     const std::string name;
     std::set<H5Object *> children;
@@ -263,18 +316,26 @@ protected :
         if (!locked) children.erase(child);
     }
 
+    static void count(const H5Object & obj, OpDataCount & opdata);
+    static herr_t countIterator(hid_t g_id, const char * name, const H5L_info_t * info, void * op_data);
+    static herr_t filterAttributesIterator(hid_t location_id, const char * attr_name, const H5A_info_t * ainfo, void * op_data);
+    static herr_t filterIterator(hid_t g_id, const char * name, const H5L_info_t * info, void * op_data);
+    static herr_t filterSoftLinkIterator(hid_t g_id, const char * name, const H5L_info_t * info, void * op_data);
     static herr_t getLsAttributes(hid_t location_id, const char * attr_name, const H5A_info_t * ainfo, void * op_data);
 
 private :
 
     H5Object() : parent(*this) { }
 
-    typedef struct
+    class LinksInfo
     {
+    public:
         std::vector<std::string> * name;
         std::vector<std::string> * type;
-        std::vector<std::string> * linktype;
-    } LinksInfo_;
+        std::vector<std::string> * linkType;
+
+        LinksInfo(std::vector<std::string> * _name, std::vector<std::string> * _type, std::vector<std::string> * _linkType) : name(_name), type(_type), linkType(_linkType) { }
+    };
 
     static herr_t iterateGetInfo(hid_t g_id, const char * name, const H5L_info_t * info, void * op_data);
 };

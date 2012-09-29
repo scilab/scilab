@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5open" xml:lang="en">
+    <refnamediv>
+        <refname>h5open</refname>
+        <refpurpose>Open an HDF5 file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            h5open(filename [, access])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a string giving the filename</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>access</term>
+                <listitem>
+                    <para>access mode</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Open an HDF5 file in using the access mode (by default "a").</para>
+        <para>The access mode is one of the five values:</para>
+        <simplelist type="inline">
+            <member>
+                "r": read only, the file must exist.
+            </member>
+            
+            <member>
+                "r+": read/write, the file must exist.
+            </member>
+            
+            <member>
+                "w": create file, truncate if exists.
+            </member>
+            
+            <member>
+                "w-": create file, fail if exists.
+            </member>
+            
+            <member>
+                "a": read/write if exists, create otherwise (default).
+            </member>
+            
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x=1:10;
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+
+// Open the created file
+a=h5open(TMPDIR + "/x.sod");
+
+// Dump the file content
+h5dump(a);
+
+// list the contents of the root element.
+h5ls(a)
+
+// Get the SOD version
+a.root.SCILAB_sod_version.data
+
+// or if the name contains 'invalid' chars
+a.root("SCILAB_sod_version").data
+
+// Get the content of the dataset x
+a.root.x.data
+
+// Free all
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

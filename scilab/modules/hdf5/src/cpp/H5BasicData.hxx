@@ -22,14 +22,24 @@
         SciErr err;                                                     \
         if (list)                                                       \
         {                                                               \
+            if (rows == 0 || cols == 0)                                 \
+            {                                                           \
+                createMatrixOfDoubleInList(pvApiCtx, position, list, listPosition, 0, 0, 0); \
+                return;                                                 \
+            }                                                           \
             err = createMatrixOf##NAME##InList(pvApiCtx, position, list, listPosition, rows, cols, ptr); \
         }                                                               \
         else                                                            \
         {                                                               \
+            if (rows == 0 || cols == 0)                                 \
+            {                                                           \
+                createEmptyMatrix(pvApiCtx, position);                  \
+                return;                                                 \
+            }                                                           \
             err = createMatrixOf##NAME(pvApiCtx, position, rows, cols, ptr); \
         }                                                               \
         if (err.iErr)                                                   \
-        {								\
+        {                                                               \
             throw H5Exception(__LINE__, __FILE__, "Cannot allocate memory"); \
         }                                                               \
     }
@@ -46,7 +56,7 @@
             err = allocMatrixOf##NAME(pvApiCtx, position, rows, cols, ptr); \
         }                                                               \
         if (err.iErr)                                                   \
-        {								\
+        {                                                               \
             throw H5Exception(__LINE__, __FILE__, "Cannot allocate memory"); \
         }                                                               \
     }
@@ -67,7 +77,7 @@ protected:
 
 public:
 
-    H5BasicData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, T * _data, const hsize_t _stride = -1, const size_t _offset = 0, const bool _dataOwner = true) : H5Data(_parent, _totalSize, _dataSize, _ndims, _dims, static_cast<void *>(_data), _stride, _offset, _dataOwner), transformedData(0)
+    H5BasicData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, T * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Data(_parent, _totalSize, _dataSize, _ndims, _dims, _arank, _adims, static_cast<void *>(_data), _stride, _offset, _dataOwner), transformedData(0)
     {
 
     }
@@ -82,7 +92,20 @@ public:
 
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
-        os << static_cast<T *>(getData())[pos];
+        if (adims)
+        {
+            os << "[ ";
+            const hsize_t _pos = pos * dataSize;
+            for (unsigned int i = 0; i < atotalSize - 1; i++)
+            {
+                os << static_cast<T *>(getData())[_pos + i] << ", ";
+            }
+            os << static_cast<T *>(getData())[_pos + atotalSize - 1] << " ]";
+        }
+        else
+        {
+            os << static_cast<T *>(getData())[pos];
+        }
     }
 
     virtual void copyData(T * dest) const
@@ -149,28 +172,40 @@ public:
     {
         SciErr err;
         T * newData = 0;
+        hsize_t _ndims = ndims;
+        hsize_t _totalSize = totalSize;
+        hsize_t * _dims = const_cast<hsize_t *>(dims);
 
-        if (ndims == 0)
+        if (adims)
+        {
+            _ndims += arank;
+            _totalSize *= atotalSize;
+            _dims = new hsize_t[_ndims];
+            memcpy(_dims, dims, sizeof(hsize_t) * ndims);
+            memcpy(_dims + ndims, adims, sizeof(hsize_t) * arank);
+        }
+
+        if (_ndims == 0)
         {
             create(pvApiCtx, lhsPosition, 1, 1, static_cast<T *>(getData()), parentList, listPosition);
         }
-        else if (ndims == 1)
+        else if (_ndims == 1)
         {
-            alloc(pvApiCtx, lhsPosition, 1, *dims, parentList, listPosition, &newData);
+            alloc(pvApiCtx, lhsPosition, 1, *_dims, parentList, listPosition, &newData);
             copyData(newData);
         }
         else
         {
-            if (ndims == 2)
+            if (_ndims == 2)
             {
-                alloc(pvApiCtx, lhsPosition, dims[0], dims[1], parentList, listPosition, &newData);
-                H5DataConverter::C2FHypermatrix(2, dims, 0, static_cast<T *>(getData()), newData);
+                alloc(pvApiCtx, lhsPosition, _dims[0], _dims[1], parentList, listPosition, &newData);
+                H5DataConverter::C2FHypermatrix(2, _dims, 0, static_cast<T *>(getData()), newData);
             }
             else
             {
                 int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition);
-                alloc(pvApiCtx, lhsPosition, 1, totalSize, list, 3, &newData);
-                H5DataConverter::C2FHypermatrix(ndims, dims, totalSize, static_cast<T *>(getData()), newData);
+                alloc(pvApiCtx, lhsPosition, 1, _totalSize, list, 3, &newData);
+                H5DataConverter::C2FHypermatrix(_ndims, _dims, _totalSize, static_cast<T *>(getData()), newData);
             }
         }
     }
@@ -178,6 +213,23 @@ public:
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
     {
         return H5DataConverter::dump(alreadyVisited, indentLevel, ndims, dims, *this);
+    }
+
+    static void putStringVectorOnStack(std::vector<std::string> & strs, const int rows, const int cols, const int pos, void * pvApiCtx)
+    {
+        if (rows * cols != strs.size())
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Invalid dimensions."));
+        }
+
+        SciErr err;
+        std::vector<const char *> _strs;
+        _strs.reserve(strs.size());
+        for (unsigned int i = 0; i < strs.size(); i++)
+        {
+            _strs.push_back(strs[i].c_str());
+        }
+        create(pvApiCtx, pos, rows, cols, const_cast<char **>(&(_strs[0])), 0, 0);
     }
 
     __SCILAB_ALLOCATORS_CREATORS__(double, Double)
