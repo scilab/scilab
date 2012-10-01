@@ -13,20 +13,11 @@
 package org.scilab.modules.gui.datatip;
 
 import org.scilab.modules.gui.datatip.DatatipCommon;
-
-import java.util.ArrayList;
-
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-
 import org.scilab.modules.gui.editor.AxesHandler;
-
 import org.scilab.modules.renderer.CallRenderer;
 
-import org.scilab.modules.gui.datatip.DatatipCreate;
 
 /**
  * Orientate the datatip for "upper left", "upper right", "lower left" or "lower right" according to the quadrant position.
@@ -48,6 +39,33 @@ public class DatatipOrientation {
                 setOrientation(datatip, seg);
             }
         }
+    }
+
+    /**
+     * Setup the datatip orientation according with the mouse movement.
+     *
+     * @param datatip the datatip uid
+     */
+    public static void setOrientation(String datatip, Integer lastClick[], Integer[] curClick) {
+        int dx = curClick[0] - lastClick[0];
+        int dy = curClick[1] - lastClick[1];
+
+        Integer finalOrientation = 0;
+
+        if (dx > 0) {
+            if (dy < 0) {
+                finalOrientation = 1;
+            } else {
+                finalOrientation = 3;
+            }
+        } else {
+            if (dy < 0) {
+                finalOrientation = 0;
+            } else {
+                finalOrientation = 2;
+            }
+        }
+        GraphicController.getController().setProperty(datatip, __GO_DATATIP_ORIENTATION__, finalOrientation);
     }
 
     /**
