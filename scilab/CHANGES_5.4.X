@@ -1,15 +1,22 @@
                     Changes between version 5.4.0 and 5.4.1
                     =======================================
 
+Xcos
+====
+
+* Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
+
+* Bug #11919 fixed - DLSS block with empty matrix as parameters made Scilab crash.
+
+
 Bug fixes
 ==========
 
 * Bug #8883 fixed - In some cases, Scilab build from sources was looking for
                    libraries at the wrong place.
 
-* Bug #10660 fixed - model2blk and callblk crashed scilab on 64 bit platform.
-
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
+
 
 
                     Changes between version 5.3.3 and 5.4.0
