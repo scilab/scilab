@@ -628,7 +628,7 @@ AM_CFLAGS = $(SCI_CFLAGS)
 AM_CXXFLAGS = $(SCI_CXXFLAGS)
 AM_FFLAGS = $(SCI_FFLAGS)
 AM_LDFLAGS = $(SCI_LDFLAGS)
-changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X
+changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X  CHANGES_5.5.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
 	$(am__append_1)
 scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_2)
