@@ -31,6 +31,10 @@ import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 import java.awt.Dimension;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.gui.datatip.DatatipOrientation;
+
 /**
  * Datatip text drawer
  *
@@ -182,6 +186,19 @@ public class DatatipTextDrawer extends TextManager {
 
         /* Set the computed coordinates */
         datatip.setCorners(coordinates);
+    }
+
+    public void update(String id, String property) {
+        if (__GO_DATATIP_AUTOORIENTATION__.equals(property)) {
+            Boolean b = (Boolean)GraphicController.getController().getProperty(id, __GO_DATATIP_AUTOORIENTATION__);
+            if (b != null && b == true) {
+                /* update orientation*/
+                DatatipOrientation.setOrientation(id);
+            }
+        }
+        if (!__GO_POSITION__.equals(property) && !__GO_FONT_ANGLE__.equals(property)) {
+            dispose(id);
+        }
     }
 
 }
