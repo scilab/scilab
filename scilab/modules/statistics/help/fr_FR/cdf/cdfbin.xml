@@ -82,4 +82,23 @@
             Texas.
         </para>
     </refsection>
-</refentry>
+	    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+	S = 0:1:10;
+	Pr  = 0.3 * ones(S);
+	Ompr  = 1-Pr;
+	Xn = 10*ones(S);
+	[p,q]=cdfbin('PQ',S,Xn,Pr,Ompr);
+	plot2d2("gnn",[0:10]',p,5,"111","Repartition",[0,0,10,1])
+   ]]></programlisting>
+        <scilab:image>
+	S = 0:1:10;
+	Pr  = 0.3 * ones(S);
+	Ompr  = 1-Pr;
+	Xn = 10*ones(S);
+	[p,q]=cdfbin('PQ',S,Xn,Pr,Ompr);
+	plot2d2("gnn",[0:10]',p,5,"111","Repartition",[0,0,10,1])
+        </scilab:image>
+    </refsection>
+	</refentry>
