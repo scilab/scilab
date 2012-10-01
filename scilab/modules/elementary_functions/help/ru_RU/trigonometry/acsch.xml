@@ -36,7 +36,7 @@
         </para>
         <para>
             Используются следующие равенства:
-            <code>acsch(z) == -acsch(-z) ==  asinh(1/z) == csgn(%i+1/z)*asech(-i*z)-%i*%pi/2 == %i*acsc(%i*z)</literal>.
+            <code>acsch(z) == -acsch(-z) ==  asinh(1/z) == csgn(%i+1/z)*asech(-i*z)-%i*%pi/2 == %i*acsc(%i*z)</code>.
         </para>
     </refsection>
     <refsection>
