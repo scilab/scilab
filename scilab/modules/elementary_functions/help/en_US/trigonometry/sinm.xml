@@ -17,15 +17,15 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>t=sinm(x)</synopsis>
+        <synopsis>t = sinm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>real or complex square matrices.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,7 +33,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>sinm(x)</literal> is matrix sine of x matrix.
+            <code>sinm(x)</code> is matrix sine of <varname>x</varname> matrix.
         </para>
     </refsection>
     <refsection>

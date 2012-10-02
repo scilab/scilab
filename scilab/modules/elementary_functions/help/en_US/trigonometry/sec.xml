@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Ajouter ici d'éventuels commentaires sur le fichier XML
--->
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="sec" xml:lang="en">
     <refnamediv>
         <refname>sec</refname>
-        <refpurpose>Compute the element-wise secant of the argument.</refpurpose>
+        <refpurpose>computes the element-wise secant of the argument</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -17,22 +25,23 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Real or complex array.</para>
+                    <para>a real or complex array.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>Real or complex array.</para>
+                    <para>a real or complex array.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Compute the element-wise secant of the argument. The secant is a
-            periodic function defined as 1/cos. For real data the results are real and
-            in <literal>]-%inf -1] U [1 %inf[</literal>.
+        <para>
+            The <function>sec</function> function computes the element-wise secant of the argument. The secant is a
+            periodic function defined as <latex>1/\cos(x)</latex>. For real data the results are real and
+            in <latex>]-\infty -1] \cup [1 \infty[</latex>.
         </para>
     </refsection>
     <refsection>
@@ -65,7 +74,7 @@ plot(x,sec(x))
     <refsection>
         <title>Used Functions</title>
         <para>
-            This function uses the <literal>cos</literal> function.
+            This function uses the <latex>cos</latex> function.
         </para>
     </refsection>
 </refentry>

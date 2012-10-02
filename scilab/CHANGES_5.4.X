@@ -1,3 +1,16 @@
+                    Changes between version 5.4.0 and 5.4.1
+                    =======================================
+
+Bug fixes
+==========
+
+* Bug #8883 fixed - In some cases, Scilab build from sources was looking for
+                   libraries at the wrong place.
+
+* Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
+
+
+
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
 

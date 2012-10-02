@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>t=acosm(x)</synopsis>
+        <synopsis>t = acosm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественная или комплексная квадратная матрица.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественная или комплексная квадратная матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,10 +39,10 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>t</literal> - это арккосинус матрицы <literal>x</literal>.
+            <varname>t</varname> - это арккосинус матрицы <varname>x</varname>.
             Используется метод диагонализации. Для несимметричных матриц результат может быть неточным. 
             Используется формула: 
-            <literal>t=-%i*logm(x+%i*sqrtm(eye()-x*x))</literal>
+            <code>t=-%i*logm(x+%i*sqrtm(eye()-x*x))</code>.
         </para>
     </refsection>
     <refsection>

@@ -25,14 +25,14 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Вещественный или комплексный массив</para>
+                    <para>вещественный или комплексный массив.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>Вещественный или комплексный массив тех же размеров, что и
-                        <literal>x</literal>
+                    <para>вещественный или комплексный массив тех же размеров, что и
+                        <varname>x</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -41,10 +41,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Для вектора или матрицы 
-            For a vector or a matrix <literal>x</literal> <literal>sind(x)</literal> является синусом 
-            его элементов в предположении, что они заданы в градусах. Результы <literal>[-1 1]</literal>.
-            Для целочисленных <literal>n</literal>, <literal>sind(n*180)</literal> равен точно 0.
+            Для вектора или матрицы <varname>x</varname> <code>sind(x)</code> является синусом
+            его элементов в предположении, что они заданы в градусах. Результаты <literal>[-1 1]</literal>.
+            Для целочисленных <literal>n</literal>, <code>sind(n*180)</code> равен точно нулю.
         </para>
     </refsection>
     <refsection>

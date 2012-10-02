@@ -17,22 +17,24 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>t=tanhm(x)</synopsis>
+        <synopsis>t = tanhm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,t</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>real or complex square matrices.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>tanhm is the matrix hyperbolic tangent of the matrix x.</para>
+        <para>
+            <code>tanhm(x)</code> is the matrix hyperbolic tangent of the matrix <varname>x</varname>.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

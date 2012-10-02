@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>t=tand(x)</synopsis>
+        <synopsis>t = tand(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real vector or matrix</para>
+                    <para>a real vector or matrix.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>real vector or matrix</para>
+                    <para>a real vector or matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,8 +39,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            The elements of <literal>t</literal> are the tangent of the elements
-            of <literal>x</literal> (in degree).
+            The elements of <varname>t</varname> are the tangent of the elements
+            of <varname>x</varname> (in degree).
         </para>
     </refsection>
     <refsection>

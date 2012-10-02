@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Ajouter ici d'éventuels commentaires sur le fichier XML
--->
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sech" xml:lang="ru">
     <refnamediv>
         <refname>sech</refname>
@@ -18,13 +26,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Вещественный или комплексный массив.</para>
+                    <para>вещественный или комплексный массив.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>Вещественный или комплексный массив.</para>
+                    <para>вещественный или комплексный массив.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,10 +41,17 @@
         <title>Описание</title>
         <para>
             Поэлементно вычисляет гиперболический секанс аргумента.
-            Гиперболический секанс определяется как  1/cosh. 
+            Гиперболический секанс определяется как <latex>1/\cosh(x)</latex>.
             Для вещественных данных результаты вещественны и лежат
-            на интервале <literal> [0 1]</literal>.
+            на интервале <literal>[0 1]</literal>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Образец</title>
+        <scilab:image>
+            x=linspace(-10,10,1000)
+            plot(x,sech(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Примеры</title>

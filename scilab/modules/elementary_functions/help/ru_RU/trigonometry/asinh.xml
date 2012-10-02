@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественный или комплексный вектор/матрица</para>
+                    <para>вещественный или комплексный вектор/матрица.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>вещественный или комплексный вектор/матрица</para>
+                    <para>вещественный или комплексный вектор/матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,8 +39,15 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы <literal>t</literal> являются гиперболическим арксинусом соответствующих элементов <literal>x</literal>. Область определения ]-1,i[.
+            Элементы <varname>t</varname> являются гиперболическим арксинусом соответствующих элементов <varname>x</varname>. Область определения <literal>]-1,i[</literal>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Sample</title>
+        <scilab:image>
+            x=-60:1:60
+            plot(x,asinh(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Примеры</title>
