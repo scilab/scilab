@@ -16,6 +16,7 @@ import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.Mark;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
@@ -37,22 +38,23 @@ public class Segs extends VectField {
      * @param propertyName the property name
      * @return the property enum
      */
-    public Object getPropertyFromName(String propertyName) {
-        if (propertyName.equals(__GO_SEGS_COLORS__)) {
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+        case __GO_SEGS_COLORS__ :
             return SegsProperty.COLORS;
-        } else if (propertyName.equals(__GO_MARK_MODE__)) {
+        case __GO_MARK_MODE__ :
             return Mark.MarkPropertyType.MODE;
-        } else if (propertyName.equals(__GO_MARK_STYLE__)) {
+        case __GO_MARK_STYLE__ :
             return Mark.MarkPropertyType.STYLE;
-        } else if (propertyName.equals(__GO_MARK_SIZE_UNIT__)) {
+        case __GO_MARK_SIZE_UNIT__ :
             return Mark.MarkPropertyType.SIZEUNIT;
-        } else if (propertyName.equals(__GO_MARK_SIZE__)) {
+        case __GO_MARK_SIZE__ :
             return Mark.MarkPropertyType.SIZE;
-        } else if (propertyName.equals(__GO_MARK_FOREGROUND__)) {
+        case __GO_MARK_FOREGROUND__ :
             return Mark.MarkPropertyType.FOREGROUND;
-        } else if (propertyName.equals(__GO_MARK_BACKGROUND__)) {
+        case __GO_MARK_BACKGROUND__ :
             return Mark.MarkPropertyType.BACKGROUND;
-        } else {
+        default :
             return super.getPropertyFromName(propertyName);
         }
     }
@@ -291,8 +293,8 @@ public class Segs extends VectField {
     /**
      * @return Type as String
      */
-    public String getType() {
-        return "Segs";
+    public Integer getType() {
+        return GraphicObjectProperties.__GO_SEGS__;
     }
 
 }

@@ -33,6 +33,11 @@ x=[0:0.1:2*%pi]';
 plot2d(sin(x))
 xgrid(2)
  ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(sin(x))
+            xgrid(2)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

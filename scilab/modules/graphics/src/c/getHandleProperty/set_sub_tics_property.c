@@ -38,7 +38,8 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 {
     BOOL status = FALSE;
     int result = 0;
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
     char* axisSubticksPropertiesNames[3] = {__GO_X_AXIS_SUBTICKS__, __GO_Y_AXIS_SUBTICKS__, __GO_Z_AXIS_SUBTICKS__};
 
     if ( !( valueType == sci_matrix ) )
@@ -47,13 +48,13 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
         return SET_PROPERTY_ERROR ;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * Type test required as the Axis object stores subticks as a single int
      * whereas Axes maintain a 3-element int vector.
      */
-    if (strcmp(type, __GO_AXIS__) == 0)
+    if (type == __GO_AXIS__)
     {
         int nbTicks = (int) getDoubleFromStack(stackPointer);
 
@@ -69,7 +70,7 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
             return SET_PROPERTY_ERROR;
         }
     }
-    else if (strcmp(type, __GO_AXES__) == 0)
+    else if (type == __GO_AXES__)
     {
         int autoSubticks;
         int i;

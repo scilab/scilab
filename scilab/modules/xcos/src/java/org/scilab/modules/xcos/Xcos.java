@@ -37,6 +37,7 @@ import javax.swing.SwingUtilities;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.core.Scilab;
+import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
@@ -53,6 +54,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.actions.ExternalAction;
+import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
@@ -1135,6 +1137,15 @@ public final class Xcos {
     @Deprecated
     public static void xcosDiagramClose(final String[] uid) {
         throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Inform Xcos the simulator has just started
+     *
+     */
+    @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
+    public static void xcosSimulationStarted() {
+        GraphActionManager.setEnable(StopAction.class, true);
     }
 
     /**

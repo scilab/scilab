@@ -26,5 +26,5 @@
 %inline %{
     extern void ScilabNativeView__createObject(char* pstId);
     extern void ScilabNativeView__deleteObject(char* pstId);
-    extern void ScilabNativeView__updateObject(char* pstId, char* pstProperty);
+    extern void ScilabNativeView__updateObject(char* pstId, int iProperty);
     %}

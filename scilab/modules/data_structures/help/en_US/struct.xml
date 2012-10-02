@@ -17,22 +17,22 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>st=struct(field1,value1,field2,value2...)</synopsis>
+        <synopsis>st = struct(field1, value1, field2, value2, ...)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>field1, field2, ..</term>
+                <term>field1, field2, ...</term>
                 <listitem>
-                    <para>strings represents the fields names</para>
+                    <para>strings representing the fields names.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>value1, value2, ..</term>
+                <term>value1, value2, ...</term>
                 <listitem>
-                    <para>all data type (double, char, int, ...), represents the fields
-                        values
+                    <para>
+                        all data type (<literal>double</literal>, <literal>char</literal>, <literal>int</literal>, ...), representing the fields values.
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,27 +40,28 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>This function returns a struct with the fields names
-            <literal>fields1</literal>, <literal>field2</literal>, ..., and the fields values
-            corresponding <literal>value1</literal>, <literal>value2</literal>, ...
+        <para>
+            This function returns a struct with the fields names
+            <varname>fields1</varname>, <varname>field2</varname>, ..., and the fields values
+            corresponding <varname>value1</varname>, <varname>value2</varname>, ...
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// create a struct date
+        <programlisting role="example"><![CDATA[
+//create a struct date
 date_st=struct('day',25,'month' ,'DEC','year',2006)
-
+ 
 //change the month
 date_st.month='AUG';
-
-// change the year
+ 
+//change the year
 date_st.year=1973;
-
+ 
 //change the day
 date_st.day=19;
-
-// add a new field
+ 
+//add a new field
 date_st.semaine=32
  ]]></programlisting>
     </refsection>

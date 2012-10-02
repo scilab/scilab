@@ -37,19 +37,20 @@
 /*------------------------------------------------------------------------*/
 int set_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
     BOOL status = FALSE;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_UICONTROL__) == 0 || strcmp(type, __GO_FIGURE__) == 0)
+    if (type == __GO_UICONTROL__ || type == __GO_FIGURE__)
     {
         return SetUicontrolPosition(pobjUID, stackPointer, valueType, nbRow, nbCol);
     }
 
     /* Type test required since a position set requires a 3-element, and 2-element vector
     for respectively the Label and Legend */
-    if (strcmp(type, __GO_LABEL__) == 0)
+    if (type == __GO_LABEL__)
     {
         double* values = stk( stackPointer );
         double* currentPosition;
@@ -74,7 +75,7 @@ int set_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
         }
 
     }
-    else if (strcmp(type, __GO_LEGEND__) == 0)
+    else if (type == __GO_LEGEND__)
     {
         double * values = stk( stackPointer );
 

@@ -200,6 +200,8 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\c\sci_dct.c" />
+    <ClCompile Include="sci_gateway\c\sci_dst.c" />
     <ClCompile Include="src\c\callfftw.c" />
     <ClCompile Include="src\c\DllmainFttw.c" />
     <ClCompile Include="src\c\fftw_utilities.c" />
@@ -213,6 +215,7 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="sci_gateway\c\sci_get_fftw_wisdom.c" />
     <ClCompile Include="sci_gateway\c\sci_loadfftwlibrary.c" />
     <ClCompile Include="sci_gateway\c\sci_set_fftw_wisdom.c" />
+    <ClCompile Include="src\c\sci_data_utilities.c" />
     <ClCompile Include="src\c\with_fftw.c" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +226,7 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="src\c\fftwlibname.h" />
     <ClInclude Include="includes\gw_fftw.h" />
     <ClInclude Include="includes\with_fftw.h" />
+    <ClInclude Include="src\c\sci_data_utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\fftw.rc" />

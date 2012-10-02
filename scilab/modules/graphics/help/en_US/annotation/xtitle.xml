@@ -68,13 +68,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            plot3d() ;
-            xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 plot3d() ;
@@ -89,6 +82,11 @@ mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi
 
 xtitle( 'My surface is blue', 'X axis', '$Y axis$', mathml );
  ]]></programlisting>
+        <scilab:image>
+            plot3d() ;
+            xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

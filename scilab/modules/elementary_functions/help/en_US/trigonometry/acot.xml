@@ -19,26 +19,27 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Real or complex array.</para>
+                    <para>a real or complex array.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>Real or complex array.</para>
+                    <para>a real or complex array.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Computes the element-wise inverse cotangeant of the argument. For
+        <para>
+            Computes the element-wise inverse cotangeant of the argument. For
             real argument the result is real.
         </para>
         <para>
-            The following equalities hold: <literal>acot(z) =
+            The following equalities hold: <code>acot(z) =
                 %pi-acot(-z)=%pi/2-atan(z)=%i*acoth(%i*z)+%pi/2*(1-csgn(z+%i))
-            </literal>
+            </code>.
         </para>
     </refsection>
     <refsection>

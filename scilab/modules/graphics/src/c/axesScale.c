@@ -110,13 +110,14 @@ int sciZoom3D(char * subwinUID, const double zoomBox[6])
 /*------------------------------------------------------------------------------*/
 int sciZoomRect(char* objUID, const double zoomRect[4])
 {
-    char *pstType = NULL;
-    getGraphicObjectProperty(objUID, __GO_TYPE__, jni_string, (void **) &pstType);
-    if (strcmp(pstType, __GO_FIGURE__) == 0)
+    int iType = -1;
+    int *piType = &iType;
+    getGraphicObjectProperty(objUID, __GO_TYPE__, jni_int, (void **) &piType);
+    if (piType == __GO_FIGURE__)
     {
         return sciFigureZoom2D(objUID, zoomRect);
     }
-    else if (strcmp(pstType, __GO_AXES__) == 0)
+    else if (piType == __GO_AXES__)
     {
         return sciZoom2D(objUID, zoomRect);
     }
@@ -134,7 +135,7 @@ int sciFigureZoom2D(char* figureUID, const double zoomRect[4])
 
     char** children = NULL;
 
-    getGraphicObjectProperty(figureUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &pChildrenCount); 
+    getGraphicObjectProperty(figureUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &pChildrenCount);
 
     if ((pChildrenCount != NULL) && (childrenCount > 0))
     {
@@ -219,7 +220,8 @@ void sciUnzoomSubwin(char* subwinUID)
  */
 void sciUnzoomFigure(char* figureUID)
 {
-  char* pstType = NULL;
+  int iType = -1;
+  int *piType = &iType;
   char** pstChildrenUID = NULL;
 
   int i = 0;
@@ -235,10 +237,12 @@ void sciUnzoomFigure(char* figureUID)
 
     for (i = 0; i < childrenCount; i++)
     {
-      getGraphicObjectProperty(pstChildrenUID[i], __GO_TYPE__, jni_string, (void **) &pstType);
-      if (strcmp(pstType, __GO_AXES__) == 0)
-        setGraphicObjectProperty(pstChildrenUID[i], __GO_ZOOM_ENABLED__, (void **) &zoomEnabled, jni_bool, 1);
+      getGraphicObjectProperty(pstChildrenUID[i], __GO_TYPE__, jni_int, (void **) &piType);
+      if (iType == __GO_AXES__)
+      {
+          setGraphicObjectProperty(pstChildrenUID[i], __GO_ZOOM_ENABLED__, (void **) &zoomEnabled, jni_bool, 1);
       }
+    }
   }
 }
 /*------------------------------------------------------------------------------*/
@@ -250,17 +254,18 @@ void sciUnzoomFigure(char* figureUID)
 void sciUnzoomArray(char* objectsUID[], int nbObjects)
 {
   /* object type */
-  char* pstType = NULL;
+  int iType = -1;
+  int *piType = &iType;
   int i = 0;
   for (i = 0; i < nbObjects; i++)
   {
-    getGraphicObjectProperty(objectsUID[i], __GO_TYPE__, jni_string, (void **) &pstType);
-    if (strcmp(pstType, __GO_FIGURE__) == 0)
+    getGraphicObjectProperty(objectsUID[i], __GO_TYPE__, jni_int, (void **) &piType);
+    if (iType == __GO_FIGURE__)
     {
       /* Unzoom all subwindows of the figure */
       sciUnzoomFigure(objectsUID[i]);
     }
-    else if (strcmp(pstType, __GO_AXES__) == 0)
+    else if (iType == __GO_AXES__)
     {
       /* Unzoom the axes */
       sciUnzoomSubwin(objectsUID[i]);

@@ -39,8 +39,15 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы <literal>t</literal> являются значениями гиперболического арккосинуса соответствующих элементов  <literal>x</literal>. Область определения <latex>]1,+\infty)</latex>.
+            Элементы <varname>t</varname> являются значениями гиперболического арккосинуса соответствующих элементов  <varname>x</varname>. Область определения <latex>]1,+\infty)</latex>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Образец</title>
+        <scilab:image>
+            x=-360:1:360
+            plot(x,acosh(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Примеры</title>

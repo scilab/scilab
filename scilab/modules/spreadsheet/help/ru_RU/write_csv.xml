@@ -147,7 +147,7 @@
       write_csv(A, TMPDIR + '/datas.tsv');
       
       //значения, разделённые запятыми
-      write_csv(A, TMPDIR + '/datas.csv', ';'); 
+      write_csv(A, TMPDIR + '/data.csv', ';'); 
       
      ]]></programlisting>
         

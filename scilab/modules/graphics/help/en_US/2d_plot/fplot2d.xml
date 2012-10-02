@@ -81,9 +81,25 @@
 deff("[y]=f(x)","y=sin(x)+cos(x)")
 x=[0:0.1:10]*%pi/10;
 fplot2d(x,f)
+ ]]></programlisting>
+        <scilab:image>
+            deff("[y]=f(x)","y=sin(x)+cos(x)")
+            x=[0:0.1:10]*%pi/10;
+            fplot2d(x,f)
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[ 
 clf();
+deff("[y]=f(x)","y=sin(x)+cos(x)")
+x=[0:0.1:10]*%pi/10;
+fplot2d(x,f)
 fplot2d(1:10,'parab')
  ]]></programlisting>
+        <scilab:image>
+            deff("[y]=f(x)","y=sin(x)+cos(x)")
+            x=[0:0.1:10]*%pi/10;
+            fplot2d(1:10,'parab')
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

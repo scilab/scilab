@@ -34,7 +34,7 @@ int SetConsoleShowHiddenHandles(void* _pvCtx, char *pobjUID, size_t stackPointer
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, const_cast < char *>(__GO_SHOWHIDDENHANDLES__), &b, jni_bool, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_SHOWHIDDENHANDLES__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {

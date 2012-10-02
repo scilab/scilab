@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-24 20:27+0000\n"
+"PO-Revision-Date: 2012-09-03 18:44+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16043)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -110,7 +110,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor řetězce.\n"
 
-msgid "a graphical environnement is needed."
+msgid "a graphical environment is needed."
 msgstr "je vyžadováno grafické prostředí."
 
 #, c-format

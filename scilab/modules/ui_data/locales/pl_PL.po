@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: pl\n"
 
 #, c-format
@@ -183,6 +183,9 @@ msgstr "Edycja"
 msgid "Refresh the variable "
 msgstr ""
 
+msgid "Scilab Help"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopiuj"
 
@@ -332,6 +335,12 @@ msgstr "Edytuj za pomocą domyślnej aplikacji"
 
 msgid "Open with default application"
 msgstr "Otwórz w aplikacji domyślnej"
+
+msgid "Previous directory"
+msgstr ""
+
+msgid "Next directory"
+msgstr ""
 
 msgid "Scilab type:"
 msgstr "Typ Scilab:"

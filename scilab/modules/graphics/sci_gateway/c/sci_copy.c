@@ -38,7 +38,8 @@ int sci_copy(char *fname, unsigned long fname_len)
     char *pobjUID = NULL, *psubwinparenttargetUID = NULL, *pcopyobjUID = NULL;
     int m1 = 0, n1 = 0, l1 = 0, l2 = 0;
     int numrow = 0, numcol = 0, outindex = 0, lw = 0;
-    char* pstType = NULL;
+    int iType = -1;
+    int *piType = &iType;
     int isPolyline = 0;
 
     CheckRhs(1, 2);
@@ -61,18 +62,18 @@ int sci_copy(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&pstType);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(pstType, __GO_TEXT__) != 0 &&
-            strcmp(pstType, __GO_ARC__) != 0 &&
-            strcmp(pstType, __GO_POLYLINE__) != 0 &&
-            strcmp(pstType, __GO_RECTANGLE__))
+    if (piType != __GO_TEXT__ &&
+        piType != __GO_ARC__ &&
+        piType != __GO_POLYLINE__ &&
+        piType != __GO_RECTANGLE__)
     {
         C2F(overload)(&lw, "copy", 4);
         return 0;
     }
 
-    if (strcmp(pstType, __GO_POLYLINE__) == 0)
+    if (piType == __GO_POLYLINE__)
     {
         isPolyline = 1;
     }
@@ -92,9 +93,9 @@ int sci_copy(char *fname, unsigned long fname_len)
             return 0;
         }
         // Check Parent is an of type Axes.
-        getGraphicObjectProperty(psubwinparenttargetUID, __GO_TYPE__, jni_string, (void **)&pstType);
+        getGraphicObjectProperty(psubwinparenttargetUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-        if (strcmp(pstType, __GO_AXES__) != 0)
+        if (iType != __GO_AXES__)
         {
             Scierror(999, _("%s: Parent entity for destination should be an axes.\n"), fname);
             return 0;

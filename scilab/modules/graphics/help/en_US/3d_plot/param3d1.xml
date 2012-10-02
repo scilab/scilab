@@ -228,10 +228,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>param3d1();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 xset('window',20) // create a window number 20
@@ -252,6 +248,7 @@ curve2 = h.children(2);
 curve2.foreground = 6;
 curve2.mark_style = 2;
  ]]></programlisting>
+        <scilab:image>param3d1();</scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

@@ -17,13 +17,20 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>t=tanh(x)</synopsis>
+        <synopsis>t = tanh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы <literal>t</literal> являются гиперболическим тангенсом элементов <literal>x</literal>.
+            Элементы <varname>t</varname> являются гиперболическим тангенсом элементов <varname>x</varname>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Образец</title>
+        <scilab:image>
+            x=-%pi:0.01:%pi;
+            plot(x,tanh(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Примеры</title>

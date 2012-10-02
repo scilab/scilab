@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>y=sqrtm(x)</synopsis>
+        <synopsis>y = sqrtm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>a real or complex square matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,9 +33,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>y=sqrt(x)</literal> is the matrix square root of the
-            <literal>x</literal> matrix (<literal>x=y^2</literal>). Result may not be
-            accurate if <literal>x</literal> is not symmetric.
+            <code>y = sqrtm(x)</code> is the matrix square root of the
+            <varname>x</varname> matrix (<literal>x=y^2</literal>). Result may not be
+            accurate if <varname>x</varname> is not symmetric.
         </para>
     </refsection>
     <refsection>

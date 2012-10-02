@@ -51,7 +51,7 @@ TARGETDIR=locales/
 TARGETDIR_MACROS=locales_macros/
 HEADER_TEMPLATE=$SCI/modules/localization/data/header.pot
 GUI_FILES="etc/*.x*l"
-PREFERENCE_FILES="src/*.xsl"
+PREFERENCE_FILES="src/xslt/*.xsl"
 FAKE_C_FILE=scilab_fake_localization_file.c
 TIMEZONE="+0100"
 # Gettext arg
@@ -68,7 +68,7 @@ process_XML_files() {
 	sed  -e '/tooltiptext/!s/.*//'  -e 's/.*tooltiptext="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $GUI_FILES >> $FAKE_C_FILE
 	sed -e 's/.*_(\([^"]*\)).*/gettext("\1")/' $GUI_FILES >> $FAKE_C_FILE
     fi
-    if test -n "$(ls PREFERENCE_FILES 2>/dev/null)"; then
+    if test -n "$(ls $PREFERENCE_FILES 2>/dev/null)"; then
 	sed -e 's/.*_(\([^"]*\)).*/gettext("\1")/' $PREFERENCE_FILES  >> $FAKE_C_FILE
     fi
 }

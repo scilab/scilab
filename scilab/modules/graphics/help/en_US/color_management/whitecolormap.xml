@@ -43,20 +43,17 @@
         <para>This colormap is completely white</para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image> 
-            f = scf();
-            plot3d1();
-            f.color_map = whitecolormap(32);
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 f = scf();
 plot3d1();
 f.color_map = whitecolormap(32);
  ]]></programlisting>
+        <scilab:image> 
+            f = scf();
+            plot3d1();
+            f.color_map = whitecolormap(32);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

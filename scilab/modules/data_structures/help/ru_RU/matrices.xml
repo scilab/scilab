@@ -7,8 +7,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Matrices are basic objects defined in Scilab.
-            They can be defined as follows:
+            Матрицы являются основными объектами, определёнными в Scilab'е.
+            Они могут определяться следующим образом:
         </para>
         <programlisting role="no-scilab-exec"><![CDATA[ 
 E=[e11,e12,...,e1n;

@@ -34,19 +34,15 @@ NgonData::~NgonData(void)
 
 }
 
-int NgonData::getPropertyFromName(char const* propertyName)
+int NgonData::getPropertyFromName(int propertyName)
 {
-
-    if (strcmp(propertyName, __GO_DATA_MODEL_NUM_GONS__) == 0)
+    switch (propertyName)
     {
+    case __GO_DATA_MODEL_NUM_GONS__ :
         return NUM_GONS;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__) == 0)
-    {
+    case __GO_DATA_MODEL_NUM_VERTICES_PER_GON__ :
         return NUM_VERTICES_PER_GON;
-    }
-    else
-    {
+    default :
         return Data3D::getPropertyFromName(propertyName);
     }
 

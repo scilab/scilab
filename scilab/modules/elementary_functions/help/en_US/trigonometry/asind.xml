@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>t=asind(x)</synopsis>
+        <synopsis>t = asind(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -26,18 +26,15 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        real vector/matrix. Elements must be in <literal>[-1
-                            1]
-                        </literal>
-                        .
+                        a real vector/matrix. Elements must be in <literal>[-1 1]</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>real vector/matrix with same dimensions as
-                        <literal>x</literal>
+                    <para>a real vector/matrix with same dimensions as
+                        <varname>x</varname>
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,9 +43,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            The entries of <literal>t</literal> are sine inverse of the
-            corresponding entries of <literal>x</literal>. Definition domain is [-1,
-            1]. The results are in [-90 90];
+            The entries of <varname>t</varname> are sine inverse of the
+            corresponding entries of <varname>x</varname>. Definition domain is <literal>[-1 1]</literal>.
+            The results are in <literal>[-90 90]</literal>.
         </para>
     </refsection>
     <refsection>

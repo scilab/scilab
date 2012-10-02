@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-30 09:50+0000\n"
+"PO-Revision-Date: 2012-09-21 09:30+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: fr\n"
 
 #, c-format
@@ -125,8 +125,8 @@ msgstr "Fermer tout"
 msgid "Close All But This"
 msgstr "Fermer tout sauf le document actif"
 
-msgid "Exit"
-msgstr "Quitter"
+msgid "Exit Scinotes"
+msgstr "Quitter SciNotes"
 
 msgid "Edit"
 msgstr "Édition"
@@ -251,6 +251,18 @@ msgstr "Encodage du fichier actuel"
 msgid "Line Endings"
 msgstr "Fin de lignes"
 
+msgid "Preferences"
+msgstr "Préférences"
+
+msgid "Set font"
+msgstr "Définir la police"
+
+msgid "Set colors"
+msgstr "Définir les couleurs"
+
+msgid "Scinotes General settings"
+msgstr "Paramètres généraux de SciNotes"
+
 msgid "Auto-completion on"
 msgstr "Complétion automatique sur"
 
@@ -310,7 +322,7 @@ msgstr "Enregistrer et exécuter tous les fichiers"
 msgid "?"
 msgstr "?"
 
-msgid "SciNotes help"
+msgid "Scinotes help"
 msgstr "Aide de SciNotes"
 
 msgid "Help on ;Help on selection"
@@ -337,7 +349,7 @@ msgstr "Enregistrement automatique"
 msgid "Editor"
 msgstr "Éditeur"
 
-msgid "Use SciNotes"
+msgid "Use Scinotes"
 msgstr "Utiliser SciNotes"
 
 msgid "External editor: "
@@ -350,9 +362,6 @@ msgstr ""
 
 msgid "Scilab command: "
 msgstr "Commande Scilab : "
-
-msgid "SciNotes General settings"
-msgstr "Paramètres de base de Scinotes"
 
 msgid "Restore previous session on start-up"
 msgstr "Restaurer la session précédente au démarrage"
@@ -531,6 +540,9 @@ msgstr "Une erreur s'est produite pendant l'exécution du code avec FOP"
 msgid "An error occurred when printing"
 msgstr "Une erreur s'est produite pendant l'impression"
 
+msgid "Exit"
+msgstr "Quitter"
+
 msgid "Tools"
 msgstr "Outils"
 
@@ -626,6 +638,9 @@ msgstr "Évaluer depuis le début..."
 
 msgid "Execute File Into Scilab"
 msgstr "Exécuter le fichier dans Scilab"
+
+msgid "SciNotes help"
+msgstr "Aide de SciNotes"
 
 msgid "Help on the current keyword"
 msgstr "Aide sur le mot-clé actuel"

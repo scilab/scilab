@@ -43,7 +43,7 @@ import org.junit.*;
  */
 public class testGraphicObject {
 
-    public static final String NONEXISTING_PROP_NAME = "NonExistingProperty";
+    public static final int NONEXISTING_PROP = Integer.MAX_VALUE;
 
     @Test
     public void simpleTest() throws NullPointerException {
@@ -74,7 +74,7 @@ public class testGraphicObject {
 
         assert arcVisible.equals(arcVisibleRet);
 
-        Object nonExistingProp = (Object) controller.getProperty(arcID, NONEXISTING_PROP_NAME);
+        Object nonExistingProp = (Object) controller.getProperty(arcID, NONEXISTING_PROP);
 
         assert nonExistingProp == null;
 

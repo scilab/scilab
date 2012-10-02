@@ -116,7 +116,8 @@ int xs2file(char * fname, ExportFileType fileType )
         /* check given handle */
         if (iType1 == sci_handles)
         {
-            char* pstHandleType = NULL;
+            int iHandleType = -1;
+            int* piHandleType = &iHandleType;
             GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1);
             if (m1*n1 != 1)
             {
@@ -131,9 +132,9 @@ int xs2file(char * fname, ExportFileType fileType )
                 return 1;
             }
 
-            getGraphicObjectProperty(figureUID, __GO_TYPE__, jni_string, (void**)&pstHandleType);
+            getGraphicObjectProperty(figureUID, __GO_TYPE__, jni_int, (void**)&piHandleType);
 
-            if (strcmp(pstHandleType, __GO_FIGURE__))
+            if (iHandleType != __GO_FIGURE__)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"), fname, 1, "Figure");
                 return 1;

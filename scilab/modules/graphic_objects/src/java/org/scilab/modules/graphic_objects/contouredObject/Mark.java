@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.contouredObject;
 
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+
 /**
  * Mark class
  * @author Manuel JULIACHS
@@ -133,8 +135,12 @@ public class Mark {
 	/**
 	 * @param size the size to set
 	 */
-	public void setSize(Integer size) {
+	public UpdateStatus setSize(Integer size) {
+		if (this.size == size) {
+		    return UpdateStatus.NoChange;
+		}
 		this.size = size;
+		return UpdateStatus.Success;
 	}
 
 	/**
@@ -147,8 +153,12 @@ public class Mark {
 	/**
 	 * @param mode the mode to set
 	 */
-	public void setMode(Boolean mode) {
+	public UpdateStatus setMode(Boolean mode) {
+		if (this.mode == mode) {
+		    return UpdateStatus.NoChange;
+		}
 		this.mode = mode;
+		return UpdateStatus.Success;
 	}
 
 	/**
@@ -161,8 +171,12 @@ public class Mark {
 	/**
 	 * @param style the style to set
 	 */
-	public void setStyle(Integer style) {
+	public UpdateStatus setStyle(Integer style) {
+		if (this.style == style) {
+		    return UpdateStatus.NoChange;
+		}
 		this.style = style;
+		return UpdateStatus.Success;
 	}
 	
 }

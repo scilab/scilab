@@ -343,10 +343,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>plot3d();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // simple plot using z=f(x,y)
@@ -418,6 +414,7 @@ TL.color = [c;c+1;c+2;c+3];
 h.data = TL;
 h.color_flag=3; // interpolated shading mode
  ]]></programlisting>
+        <scilab:image>plot3d();</scilab:image>
         <para>We can use the plot3d function to plot a set of patches (triangular,
             quadrangular, etc).
         </para>

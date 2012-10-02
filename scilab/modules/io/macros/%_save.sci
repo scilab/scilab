@@ -732,7 +732,7 @@ function [] = %_save(%__filename__, varargin)
 
         for %__i__ = 1:size(fields, "*")
             if fields(%__i__) == "children" then
-                returneduimenu(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__))($:-1:1));
+                returneduimenu(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__)));
             else
                 returneduimenu(fields(%__i__)) = h(fields(%__i__));
             end
@@ -752,7 +752,7 @@ function [] = %_save(%__filename__, varargin)
 
         for %__i__ = 1:size(fields, "*")
             if fields(%__i__) == "children" then
-                returneduicontextmenu(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__))($:-1:1));
+                returneduicontextmenu(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__)));
             else
                 returneduicontextmenu(fields(%__i__)) = h(fields(%__i__));
             end
@@ -798,7 +798,7 @@ function [] = %_save(%__filename__, varargin)
 
         for %__i__ = 1:size(fields, "*")
             if fields(%__i__) == "children" then
-                returneduicontrol(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__))($:-1:1));
+                returneduicontrol(fields(%__i__)) = extractMatrixHandle(h(fields(%__i__)));
             else
                 returneduicontrol(fields(%__i__)) = h(fields(%__i__));
             end

@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>y=cotd(x)</synopsis>
+        <synopsis>y = cotd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,14 +25,14 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Real array.</para>
+                    <para>a real array.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>Real array with same dimensions as
-                        <literal>x</literal>.
+                    <para>a real array with same dimensions as
+                        <varname>x</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -41,14 +41,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            The entries of <literal>y</literal> are the cotangents of the
-            corresponding entries of <literal>x</literal> supposed to be given in
-            degree. <literal>t=cos(x)./sin(x)</literal>. For entries equal to
+            The entries of <varname>y</varname> are the cotangents of the
+            corresponding entries of <varname>x</varname> supposed to be given in
+            degree. <code>t=cos(x)./sin(x)</code>. For entries equal to
             <literal>n*180</literal> with <literal>n</literal> integers the results
-            are infinite, whereas <literal>cotg(n*%pi)</literal> is large but finite
-            because <literal>%pi</literal> cannot be represented exactly. For entries
+            are infinite, whereas <code>cotg(n*%pi)</code> is large but finite
+            because <constant>%pi</constant> cannot be represented exactly. For entries
             equal to <literal>n*90</literal> with <literal>n</literal> integers and
-            odd the results are exactly 0.
+            odd the results are exactly <literal>0</literal>.
         </para>
     </refsection>
     <refsection>

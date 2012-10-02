@@ -175,12 +175,12 @@ __post_indent() {
     git add "$file"
 }
 
-COMMON_ASTYLE_ARGS="--pad-header -n --pad-oper --indent-col1-comments --indent-switches --indent=spaces=4"
+COMMON_ASTYLE_ARGS="--pad-header --suffix=none --pad-oper --indent-col1-comments --indent-switches --indent=spaces=4 --add-brackets --formatted"
 
 # Indent the file with `astyle' if this is a C/CPP file
 __indent_C() {
     __pre_indent || return 1
-    $ASTYLE $COMMON_ASTYLE_ARGS --style=linux -A1 "$file" || return 2
+    $ASTYLE $COMMON_ASTYLE_ARGS --style=bsd "$file" || return 2
     __post_indent || return 3
     return 0
 }

@@ -40,9 +40,12 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot(filt_sinc(100,0.1))
  ]]></programlisting>
+        <scilab:image>
+            plot(filt_sinc(100,0.1))
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

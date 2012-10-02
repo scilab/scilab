@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>t=asinm(x)</synopsis>
+        <synopsis>t = asinm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественная или комплексная квадратная матрица.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественная или комплексная квадратная матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,7 +39,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>t</literal> является арксинусом матрицы <literal>x</literal>. Используется метод 
+            <varname>t</varname> является арксинусом матрицы <varname>x</varname>. Используется метод
             диагонализации. Для несимметричных матриц результат может быть неточным.
         </para>
     </refsection>

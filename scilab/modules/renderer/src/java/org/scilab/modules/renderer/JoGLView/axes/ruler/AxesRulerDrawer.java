@@ -584,7 +584,7 @@ public class AxesRulerDrawer {
         this.rulerDrawerManager.disposeAll();
     }
 
-    public void update(String id, String property) {
+    public void update(String id, int property) {
         this.rulerDrawerManager.update(id, property);
     }
 

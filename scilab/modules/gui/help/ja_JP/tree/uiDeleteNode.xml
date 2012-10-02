@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="uiDeleteNode">
+    <refnamediv>
+        <refname>uiDeleteNode</refname>
+        <refpurpose> ツリーを削除 </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>delTree = uiDeleteNode(tree, node)</synopsis>
+        <synopsis>delTree = uiDeleteNode(tree, position)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>入力パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>tree</term>
+                <listitem>
+                    <para>削除元のツリー</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>node</term>
+                <listitem>
+                    <para>削除対象のノード</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>position</term>
+                <listitem>
+                    <para>文字列, 削除するノードの位置</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>出力パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>delTree</term>
+                <listitem>
+                    <para>削除したノードを含まないツリー</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ツリーからノード(サブツリー)を削除します.
+            'Node1', 'Node2' および 'Node3'という名前の
+            3つのノードを有してする場合,各位置は 1.1, 1.2, および 1.3となります.
+            位置 1.2 にあるノード('Node2')を削除すると,
+            'Node 3'が位置1.2に引き上げられます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// ツリー生成時にノード(サブツリー)を作成する必要があります
+leaf11 = uiCreateNode('leaf 1.1', 'iconLeaf1.1', 'callbackLeaf1.1')
+leaf12 = uiCreateNode('leaf 1.2', 'iconLeaf1.2', 'callbackLeaf1.2')
+leaf31 = uiCreateNode('leaf 3.1', 'iconLeaf3.1', 'callbackLeaf3.1')
+leaf32 = uiCreateNode('leaf 3.2', 'iconLeaf3.2', 'callbackLeaf3.2')
+node1 = uiCreateNode('Node 1', 'iconNode1', 'callbackNode1')
+node2 = uiCreateNode('Node 2', 'iconNode2', 'callbackNode2')
+node3 = uiCreateNode('Node 3', 'iconNode3', 'callbackNode3')
+root = uiCreateNode('Root', 'iconRoot', 'callbackRoot')
+
+treeNode1 = uiCreateTree(node1, leaf11, leaf12)
+treeNode3 = uiCreateTree(node3, leaf31, leaf32)
+treeRoot = uiCreateTree(root, treeNode1, node2, treeNode3)
+
+// 'node2'を削除
+treeDel = uiDeleteNode(treeRoot, node2)
+uiDisplayTree(treeDel)
+
+// 位置'3.2'におけるノードを削除
+treeDel = uiDeleteNode(treeRoot, '3.2')
+uiDisplayTree(treeDel)
+
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uiCreateNode">uiCreateNode</link>
+            </member>
+            <member>
+                <link linkend="uiCreateTree">uiCreateTree</link>
+            </member>
+            <member>
+                <link linkend="uiDisplayTree">uiDisplayTree</link>
+            </member>
+            <member>
+                <link linkend="uiDumpTree">uiDumpTree</link>
+            </member>
+            <member>
+                <link linkend="uiInsertNode">uiInsertNode</link>
+            </member>
+            <member>
+                <link linkend="uiConcatTree">uiConcatTree</link>
+            </member>
+            <member>
+                <link linkend="uiEqualsTree">uiEqualsTree</link>
+            </member>
+            <member>
+                <link linkend="uiFindNode">uiFindNode</link>
+            </member>
+            <member>
+                <link linkend="uiGetParentNode">uiGetParentNode</link>
+            </member>
+            <member>
+                <link linkend="uiGetChildrenNode">uiGetChildrenNode</link>
+            </member>
+            <member>
+                <link linkend="uiGetNodePosition">uiGetNodePosition</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

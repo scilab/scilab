@@ -199,7 +199,7 @@ public class Export {
             DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
             DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
                     @Override
-                    public void updateObject(String id, String property) {
+                    public void updateObject(String id, int property) {
                         // Don't update during the export
                     }
                 };
@@ -298,7 +298,7 @@ public class Export {
                 joglCanvas = (JoGLCanvas) JoGLCanvasFactory.createCanvas(dims[0], dims[1]);
                 DrawerVisitor visitor = new DrawerVisitor(null, joglCanvas, figure) {
                         @Override
-                        public void updateObject(String id, String property) {
+                        public void updateObject(String id, int property) {
                             // Don't update during the export
                         }
 

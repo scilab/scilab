@@ -59,7 +59,7 @@ function  generatePoFile(LANGUAGE)
 
   if (List_files <> []) then
     if newest([DEST_FILE_MO; List_files]) <> 1 then
-      cmdline_msgcat = PATH_GETTEXT_TOOLS + filesep() + "msgcat -o " + DEST_FILE_PO + " " + strcat("""" + List_files + """", " ");
+      cmdline_msgcat = PATH_GETTEXT_TOOLS + filesep() + "msgcat --use-first -o " + DEST_FILE_PO + " " + strcat("""" + List_files + """", " ");
       unix(cmdline_msgcat);
       cmline_msgfmt = PATH_GETTEXT_TOOLS + filesep() + "msgfmt --statistics -o " + DEST_FILE_MO + " " + DEST_FILE_PO;
       unix(cmline_msgfmt);

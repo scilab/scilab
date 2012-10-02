@@ -60,7 +60,6 @@
                     <action key="OSSCKEY U" description="_(Delete whole line)" name="console-del-whole-line"/>
                     <action key="OSSCKEY ESCAPE" description="_(Delete whole line)" name="console-del-whole-line"/>
                     <action key="OSSCKEY W" description="_(Delete last word)" name="console-del-last-word"/>
-                    <action key="OSSCKEY X" description="_(Delete last word)" name="console-del-last-word"/>
                     <action key="PAGE_UP" description="_(Previous console page)" name="console-prev-page"/>
                     <action key="PAGE_DOWN" description="_(Next console page)" name="console-next-page"/>
                     <action key="ENTER" description="_(Validate input)" name="console-enter"/>

@@ -19,7 +19,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            y = bitcmp(x,n)
+            y = bitcmp(x, bitnum)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -29,23 +29,23 @@
                 <term>x :</term>
                 <listitem>
                     <para>
-                        a m-by-n matrix of doubles
-                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-                        or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
                         Must contain positive integer values.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>n :</term>
+                <term>bitnum :</term>
                 <listitem>
                     <para>
-                        a m-by-n matrix of doubles
-                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-                        or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
-                        The input <literal>n</literal> must be in the range 1,2,...,bitmax
-                        where bitmax is the maximum number of bits in x.
-                        Must contain positive integer values.
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
+                        The input <literal>n</literal> must be in the range 1, 2, ..., <literal>bitmax</literal>
+                        where <literal>bitmax</literal> is the maximum number of bits in <varname>x</varname>.
+                        <varname>bitnum</varname> must contain positive integer values.
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,9 +53,9 @@
                 <term>y :</term>
                 <listitem>
                     <para>
-                        a m-by-n matrix of doubles
-                        or a m1-by-m2-by-...-by-mm hypermatrix of  doubles
-                        or a m-by-n matrix of unsigned integers.
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of  doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers.
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,17 +64,17 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given an unsigned integer <literal>x</literal>, this function returns the unsigned integer
+            Given an unsigned integer <varname>x</varname>, this function returns the unsigned integer <varname>y</varname>
             which is the integer corresponding to the complementary of the binary
-            form of <literal>x</literal>.
+            form of <varname>x</varname>.
         </para>
         <para>
-            The integer <literal>n</literal> sets the maximum number of bits.
+            The integer <varname>bitnum</varname> sets the maximum number of bits.
         </para>
         <para>
-            If the bits number of the <literal>x</literal> binary representation is less than the
-            bitmax number (8,16 or 32) then the bits '1' are added to the
-            complementary in order to have bitmax number (8, 16 or 32) for the
+            If the bits number of the <varname>x</varname> binary representation is less than the
+            <literal>bitmax</literal> number (8,16 or 32) then the bits <literal>'1'</literal> are added to the
+            complementary in order to have <literal>bitmax</literal> number (8, 16 or 32) for the
             complementary.
         </para>
     </refsection>

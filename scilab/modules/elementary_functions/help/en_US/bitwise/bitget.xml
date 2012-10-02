@@ -19,8 +19,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            y = bitget(x,pos)
-            
+            y = bitget(x, pos)            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,9 +29,9 @@
                 <term>x :</term>
                 <listitem>
                     <para>
-                        a m-by-n matrix of doubles
-                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-                        or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
                         Must contain positive integer values.
                     </para>
                 </listitem>
@@ -41,11 +40,11 @@
                 <term>pos :</term>
                 <listitem>
                     <para>
-                        a m-by-n matrix of doubles
-                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-                        or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
-                        The input <literal>pos</literal> must be in the range 1,2,...,bitmax
-                        where bitmax is the maximum number of bits in x.
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
+                        The input <varname>pos</varname> must be in the range 1, 2, ..., <literal>bitmax</literal>
+                        where <literal>bitmax</literal> is the maximum number of bits in <varname>x</varname>.
                         Must contain positive integer values.
                     </para>
                 </listitem>
@@ -54,9 +53,9 @@
                 <term>y :</term>
                 <listitem>
                     <para>
-                        a m-by-n matrix of doubles
-                        or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-                        or a m-by-n matrix of unsigned integers.
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers.
                     </para>
                 </listitem>
             </varlistentry>
@@ -65,8 +64,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given an unsigned integer <literal>x</literal>, this function returns an unsigned integer
-            (0 or 1) which is the bit number <literal>pos</literal> from the representation binary of <literal>x</literal>.
+            Given an unsigned integer <varname>x</varname>, this function returns an unsigned integer <varname>y</varname>
+            (<literal>0</literal> or <literal>1</literal>) which is the bit number <varname>pos</varname> from the representation binary of <varname>x</varname>.
         </para>
     </refsection>
     <refsection>

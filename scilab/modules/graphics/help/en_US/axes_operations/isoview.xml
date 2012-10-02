@@ -46,13 +46,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            isoview(-1,1,-1,1)
-            plot2d(sin(t),cos(t),1,"001")      
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 t=[0:0.1:2*%pi]';
@@ -63,6 +56,11 @@ plot2d(sin(t),cos(t),1,"001")
 
 plot2d(sin(t),cos(t),frameflag=4)
  ]]></programlisting>
+        <scilab:image>
+            t=[0:0.1:2*%pi]';
+            isoview(-1,1,-1,1)
+            plot2d(sin(t),cos(t),1,"001")
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

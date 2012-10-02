@@ -43,10 +43,10 @@
 <path value="/usr/lib64/java/"/>
 
 <!-- RedHat put JNI on /usr/%{libdir}/%{name} instead of /usr/lib/jni -->
-<path value="/usr/lib/jogl/"/>
-<path value="/usr/lib64/jogl/"/>
-<path value="/usr/lib/gluegen/"/>
-<path value="/usr/lib64/gluegen/"/>
+<path value="/usr/lib/jogl2/"/>
+<path value="/usr/lib64/jogl2/"/>
+<path value="/usr/lib/gluegen2/"/>
+<path value="/usr/lib64/gluegen2/"/>
 
 <!-- Some distributions (like openSUSE) put gluegen-rt in /usr/lib instead pf /usr/lib/jni -->
 <path value="/usr/lib" />

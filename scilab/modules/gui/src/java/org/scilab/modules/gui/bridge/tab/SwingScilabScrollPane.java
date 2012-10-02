@@ -120,10 +120,10 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
     }
 
     @Override
-    public void updateObject(String id, String property) {
+    public void updateObject(String id, int property) {
         // Watch figure.auto_resize = "on" | "off"
         if (figure.getIdentifier().equals(id)) {
-            if (property.equals(__GO_AUTORESIZE__)) {
+            if (property == __GO_AUTORESIZE__) {
                 Boolean autoResize = (Boolean) GraphicController.getController().getProperty(id, property);
                 if (autoResize) {
                     // hide scroll bars
@@ -136,14 +136,14 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
                 }
             }
 
-            if ( property.equals(__GO_AXES_SIZE__)) {
+            if ( property == __GO_AXES_SIZE__) {
                 Dimension d = new Dimension(figure.getAxesSize()[0], figure.getAxesSize()[1]);
                 comp.setPreferredSize(d);
                 comp.setSize(d);
                 canvas.setBounds(0, 0, figure.getAxesSize()[0], figure.getAxesSize()[1]);
             }
 
-            if (property.equals(__GO_BACKGROUND__)) {
+            if (property == __GO_BACKGROUND__) {
                 canvas.setBackground(ColorFactory.createColor(figure.getColorMap(), figure.getBackground()));
             }
         }

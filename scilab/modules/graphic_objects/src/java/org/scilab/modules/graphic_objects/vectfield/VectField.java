@@ -41,36 +41,37 @@ public abstract class VectField extends GraphicClippableObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_ARROWS__)) {
+	public Object getPropertyFromName(int propertyName) {
+	    switch (propertyName) {
+	    case __GO_ARROWS__ :
 			return VectFieldProperty.ARROWS;
-		} else if (propertyName.equals(__GO_NUMBER_ARROWS__)) {
+	    case __GO_NUMBER_ARROWS__ :
 			return VectFieldProperty.NUMBERARROWS;
-		} else if (propertyName.equals(__GO_BASE__)) {
+	    case __GO_BASE__ :
 			return Arrow.ArrowProperty.BASE;
-		} else if (propertyName.equals(__GO_BASE_X__)) {
+	    case __GO_BASE_X__ :
 			return Arrow.ArrowProperty.BASEX;
-		} else if (propertyName.equals(__GO_BASE_Y__)) {
+	    case __GO_BASE_Y__ :
 			return Arrow.ArrowProperty.BASEY;
-		} else if (propertyName.equals(__GO_BASE_Z__)) {
+	    case __GO_BASE_Z__ :
 			return Arrow.ArrowProperty.BASEZ;
-		} else if (propertyName.equals(__GO_DIRECTION__)) {
+	    case __GO_DIRECTION__ :
 			return Arrow.ArrowProperty.DIRECTION;
-		} else if (propertyName.equals(__GO_DIRECTION_X__)) {
+	    case __GO_DIRECTION_X__ :
 			return Arrow.ArrowProperty.DIRECTIONX;
-		} else if (propertyName.equals(__GO_DIRECTION_Y__)) {
+	    case __GO_DIRECTION_Y__ :
 			return Arrow.ArrowProperty.DIRECTIONY;
-		} else if (propertyName.equals(__GO_DIRECTION_Z__)) {
+	    case __GO_DIRECTION_Z__ :
 			return Arrow.ArrowProperty.DIRECTIONZ;
-		} else if (propertyName.equals(__GO_ARROW_SIZE__)) {
+	    case __GO_ARROW_SIZE__ :
 			return Arrow.ArrowProperty.ARROWSIZE;
-		} else if (propertyName.equals(__GO_LINE_MODE__)) {
+	    case __GO_LINE_MODE__ :
 			return Line.LinePropertyType.MODE;
-		} else if (propertyName.equals(__GO_LINE_STYLE__)) {
+	    case __GO_LINE_STYLE__ :
 			return Line.LinePropertyType.LINESTYLE;
-		} else if (propertyName.equals(__GO_LINE_THICKNESS__)) {
+	    case __GO_LINE_THICKNESS__ :
 			return Line.LinePropertyType.THICKNESS;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}

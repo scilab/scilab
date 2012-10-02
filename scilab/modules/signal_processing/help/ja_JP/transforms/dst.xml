@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 1997   - INRIA
+* Copyright (C) 2012 - Serge Steer - INRIA
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          xmlns:svg="http://www.w3.org/2000/svg" 
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+          xmlns:db="http://docbook.org/ns/docbook" 
+          xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dst">
+    <refnamediv>
+        <refname>dst</refname>
+        <refpurpose>離散サイン変換.</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="idst">
+        <refname>idst</refname>
+        <refpurpose>逆離散サイン変換.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>X=dst(A [,sign] [,option])
+            X=dst(A,sign,selection [,option])
+            X=dst(A,sign,dims,incr [,option])
+            X=idst(A [,option])
+            X=idst(A,selection [,option])
+            X=idst(A,dims,incr [,option])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        実数/複素ベクトルまたは実数/複素配列
+                        (ベクトル, 行列または N-D 配列).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <literal>A</literal>と同じ大きさの
+                    実数または複素配列.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sign</term>
+                <listitem>
+                    整数.値は <literal>1</literal>または
+                    <literal>-1</literal>となります.
+                    順方向または逆変換を選択します.
+                    デフォルト値は<literal>-1</literal>
+                    (順方向変換)です.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>selection</term>
+                <listitem>
+                    <literal>A</literal>の各配列次元への添字を有する
+                    ベクトル. 詳細は説明を参照ください.
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    整数値を有する正の数値ベクトル, または正の整数のベクトル.
+                    詳細は説明を参照ください.
+                    <para>
+                        各要素は
+                        <literal>A</literal>の要素の総数の約数となります.
+                    </para>
+                    <para>
+                        各要素の積は<literal>A</literal>の要素の総数よりも
+                        小さな値とする必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>incr</term>
+                <listitem>
+                    整数値を有する正の数値ベクトル, または正の整数のベクトル.
+                    詳細は説明を参照ください.
+                    <para>
+                        <literal>incr</literal> は,
+                        <literal>dims</literal>の要素数と同じにする
+                        必要があります.
+                    </para>
+                    <para>
+                        各要素は,<literal>A</literal>の要素の総数の約数とする
+                        必要があります.
+                    </para>
+                    <para>
+                        <literal>incr</literal> の要素は,
+                        厳密に昇順とする必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>option</term>
+                <listitem>
+                    文字列. 値は,順方向変換の場合,
+                    <literal>"dst1"</literal>, <literal>"dst2"</literal>,
+                    <literal>"dst4"</literal> または <literal>"dst"</literal>,
+                    逆変換の場合は <literal>"dst1"</literal>,
+                    <literal>"dst3"</literal>, <literal>"dst4"</literal> または
+                    <literal>"idst"</literal> です.  
+                    デフォルト値は,順方向変換の場合に<literal>"dct"</literal>,
+                    逆変換の場合に<literal>"idct"</literal>です.
+                    詳細は説明を参照ください.
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title> 
+        <refsection>
+            <title>変換の説明</title> 
+            <para>
+                この関数は,
+                パラメータ値<literal>option</literal>で指定したシフト量を用いて
+                順方向または逆方向の1次元またはN次元離散サイン変換を
+                行います:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <literal>"dst1"</literal>の場合, この関数は
+                        正規化しないDST-I変換を計算します.
+                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) = 2\sum_{i=1}^{n} {A(i) \cos\frac{\pi i k}{n+1}},
+                            k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <literal>"dst2"</literal>の場合, この関数は
+                        正規化しないDST-II変換を計算します.
+                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) =2 \sum_{i=1}^{n} {A(i) \cos\frac{\pi ( i
+                            -1/2) k}{n}}, k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <literal>"dst3"</literal>の場合, この関数は
+                        正規化しないDST-III変換を計算します.
+                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) = (-1)^{k-1}X(n)+ 2 \sum_{i=1}^{n-1} {A(i) \cos\frac{\pi  i (k-1/2)}{n}}, k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+                
+                
+                <listitem>
+                    <para>
+                        <literal>"dst4"</literal>の場合, この関数は
+                        正規化しないDST-IV変換を計算します.
+                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) =2 \sum_{i=1}^{n} {A(i) \cos\frac{\pi (i
+                            -1/2)(k-1/2)}{n}}, k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <literal>"dst"</literal>の場合, この関数は
+                        正規化されたDST-I変換を計算します.
+                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) = \sum_{i=1}^n {A(i) \cos\frac{\pi i k} {n+1}},
+                            k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+                
+                <listitem>
+                    <para>
+                        <literal>"idst"</literal>の場合, この関数は
+                        正規化されたDST-I変換を計算します.
+                        長さ<latex>$n$</latex> のベクトルの1次元変換は以下のようになります:
+                    </para>
+                    <para>
+                        <latex>
+                            $X(k) = \frac{2}{n+1} \sum_{i=1}^n {A(i) \cos\frac{\pi i k}
+                            {n+1}}, k=1\ldots n$
+                        </latex>
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                多次元のDST変換は,一般に,配列の各次元方向の1次元変換の分離可能な積です.
+                正規化しない変換の場合,順方向変換の後に逆方向多次元変換を行うと,元の配列が各次元の大きさの積で拡大されたものとなります.
+            </para>
+            
+        </refsection>
+        <refsection>
+            <title>構文の説明</title>
+            <variablelist>
+                <varlistentry>
+                    <term>短縮構文</term>
+                    <listitem>
+                        <variablelist>
+                            <varlistentry>
+                                <term>順方向</term>
+                                <listitem>
+                                    <para>
+                                        <literal>X=dst(A,-1 [,option])</literal> または
+                                        <literal>X=dst(A [,option])</literal> により,
+                                        オプション値を指定した順方向変換が得られます.
+                                        デフォルトは,正規化された
+                                        DST-I順方向変換です.
+                                    </para>
+                                    <para>
+                                        <literal>A</literal>がベクトルの場合
+                                        (1より大きい次元が1つだけの場合),
+                                        1次元の変換が行われ,
+                                        その他の場合にはn次元変換が行われます.
+                                    </para>
+                                    <para>
+                                        (引数<literal>-1</literal>は"inverse"ではなく,
+                                        指数の符号を意味します).
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>逆方向</term>
+                                <listitem>
+                                    <para>
+                                        <literal>X=dst(A,1 [,option])</literal>または
+                                        <literal>X=idst(A [,option])</literal>は
+                                        逆変換を行います.
+                                    </para>
+                                    <para>
+                                        <literal>A</literal>がベクトルの場合
+                                        (1より大きい次元が1つだけの場合),
+                                        1次元の変換が行われ,
+                                        その他の場合にはn次元変換が行われます.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+                
+                <varlistentry>
+                    <term>指定した次元方向のDSTの長い構文</term>
+                    <listitem>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <literal>X=dst(A,sign,selection [,option])</literal>
+                                    により,
+                                    選択した次元方向の<literal>A</literal>の"スライス"の
+                                    順方向または逆方向dstを
+                                    効率的に計算することができます.
+                                </para>
+                                <para>
+                                    例えば, <literal>A</literal> が3次元配列の場合,
+                                    <literal>X=dst(A,-1,2)</literal> は以下と等価になります:
+                                </para>
+                                <programlisting role=""><![CDATA[ 
+            for i1=1:size(A,1),
+              for i3=1:size(A,3),
+                X(i1,:,i3)=dst(A(i1,:,i3),-1);
+              end
+            end
+            ]]></programlisting>
+                                <para>
+                                    そして <literal>X=dst(A,-1,[1 3])</literal> は
+                                    以下と等価になります:
+                                </para>
+                                <programlisting role=""><![CDATA[ 
+            for i2=1:size(A,2),
+              X(:,i2,:)=dst(A(:,i2,:),-1);
+            end
+            ]]></programlisting>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>X=dst(A,sign,dims,incr)</literal> は
+                                    古い構文であり,この方法でも
+                                    指定した次元方向の<literal>A</literal>のスライスの
+                                    順方向または逆方向のdctを行うことができます.
+                                </para>
+                                <para>
+                                    例えば,<literal>A</literal>が
+                                    <literal>n1*n2*n3</literal> 個の要素を有する配列の場合,
+                                    <literal>X=dst(A,-1,n1,1)</literal> は
+                                    <literal>X=dst(matrix(A,[n1,n2,n3]),-1,1)</literal>
+                                    と等価で,
+                                    <literal>X=dst(A,-1,[n1 n3],[1 n1*n2])</literal>
+                                    は
+                                    <literal>X=dst(matrix(A,[n1,n2,n3]),-1,[1,3])</literal>
+                                    と等価です.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>dstを最適化</title>
+            <para>
+                注意: 
+                この関数は直近のパラメータをメモリに保持し,2回目に再利用します.
+                これにより(同じパラメータで)連続的にコールした場合の
+                計算時間が著しく改善されます.
+            </para>
+            <para> 
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>, 
+                <link linkend="set_fftw_wisdom">set_fftw_wisdom</link> 関数により
+                dstを更に最適化することができます.
+            </para>
+        </refsection>
+    </refsection>
+    <refsection>
+        <title>アルゴリズム</title>
+        <para>
+            この関数は <ulink url="http://www.fftw.org/">fftw3</ulink>ライブラリ
+            を実行します.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+            <member>
+                <link linkend="dct">dct</link>
+            </member>
+            <member>
+                <link linkend="fftw_flags">fftw_flags</link>
+            </member>
+            <member>
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>
+            Matteo Frigo and Steven G. Johnson, "FFTW Documentation" <ulink
+    url="http://www.fftw.org/#documentation">http://www.fftw.org/#documentation</ulink>
+        </para>
+    </refsection>
+</refentry>

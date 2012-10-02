@@ -10,36 +10,47 @@
  *
  */
 
+#include "ScilabView.hxx"
+#include "SwingView.hxx"
+#include "Driver.hxx"
+
 extern "C"
 {
 #include "getScilabJavaVM.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
+#include "deleteGraphicObject.h"
 
 #include "gw_graphic_export.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 }
-
-#include "ScilabView.hxx"
-#include "SwingView.hxx"
-#include "Driver.hxx"
 
 /*--------------------------------------------------------------------------*/
 int sci_xend(char * fname, unsigned long fname_len)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
 
-    char const* uid = ScilabView::getCurrentFigure();
+    const char* pstCurrentFigureReference = ScilabView::getCurrentFigure();
 
-    if (uid)
+    if (pstCurrentFigureReference != NULL)
     {
-        char * ret = org_scilab_modules_graphic_export::Driver::end(getScilabJavaVM(), uid);
-        ScilabView::deleteObject(uid);
+        char* uid = strdup(pstCurrentFigureReference);
 
-        if (*ret != '\0')
+        if (uid)
         {
-            Scierror(999, _("%s: An error occurred: %s\n"), fname, ret);
-            return 0;
+            char * ret = org_scilab_modules_graphic_export::Driver::end(getScilabJavaVM(), uid);
+
+            deleteGraphicObject(uid);
+            free(uid);
+
+            if (*ret != '\0')
+            {
+                Scierror(999, _("%s: An error occurred: %s\n"), fname, ret);
+                return 0;
+            }
         }
     }
 

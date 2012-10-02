@@ -77,34 +77,36 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.SwingUtilities;
+
 /**
  * @author Pierre Lando
  */
 public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     /** Set of properties changed during a draw if auto-ticks is on for X axis. */
-    private static final Set<String> X_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> X_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                                                                                        GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
                                                                                        GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
                                                                                        GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
                                                                                        ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Y axis. */
-    private static final Set<String> Y_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> Y_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                                                                                        GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
                                                                                        GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
                                                                                        GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
                                                                                        ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Z axis. */
-    private static final Set<String> Z_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> Z_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                                                                                        GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
                                                                                        GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
                                                                                        GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
                                                                                        ));
 
     /** Set of figure properties for witch a change doesn't lead to a redraw */
-    private static final Set<String> SILENT_FIGURE_PROPERTIES = new HashSet<String>(Arrays.asList(new String[] {
+    private static final Set<Integer> SILENT_FIGURE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                 GraphicObjectProperties.__GO_ROTATION_TYPE__,
                 GraphicObjectProperties.__GO_INFO_MESSAGE__,
                 GraphicObjectProperties.__GO_FIGURE_NAME__,
@@ -112,7 +114,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 GraphicObjectProperties.__GO_POSITION__,
                 GraphicObjectProperties.__GO_SIZE__,
                 GraphicObjectProperties.__GO_ID__
-            }));
+            ));
 
     private static final boolean DEBUG_MODE = false;
 
@@ -466,77 +468,79 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(final Polyline polyline) {
-        if (polyline.isValid() && polyline.getVisible()) {
-            axesDrawer.enableClipping(currentAxes, polyline.getClipProperty());
-            try {
-                DefaultGeometry geometry = new DefaultGeometry();
+        synchronized (polyline) {
+            if (polyline.isValid() && polyline.getVisible()) {
+                axesDrawer.enableClipping(currentAxes, polyline.getClipProperty());
+                try {
+                    DefaultGeometry geometry = new DefaultGeometry();
 
-                geometry.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
-                geometry.setIndices(dataManager.getIndexBuffer(polyline.getIdentifier()));
-                geometry.setWireIndices(dataManager.getWireIndexBuffer(polyline.getIdentifier()));
+                    geometry.setVertices(dataManager.getVertexBuffer(polyline.getIdentifier()));
+                    geometry.setIndices(dataManager.getIndexBuffer(polyline.getIdentifier()));
+                    geometry.setWireIndices(dataManager.getWireIndexBuffer(polyline.getIdentifier()));
 
-                final int style = polyline.getPolylineStyle();
-                if (style == 1 || style == 2 || style == 4 || style == 5) {
-                    geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_STRIP);
-                } else {
-                    geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
-                }
-
-                geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
-                geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
-
-                geometry.setPolygonOffsetMode(currentAxes.getCamera().getView() == ViewType.VIEW_3D);
-
-                /* Interpolated color rendering is used only for basic polylines for now. */
-                Appearance appearance = new Appearance();
-
-                if (polyline.getInterpColorMode() && style == 1) {
-                    geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(polyline.getIdentifier()));
-                    appearance.setTexture(getColorMapTexture());
-                } else {
-                    geometry.setColors(null);
-                }
-
-                appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
-                appearance.setLineWidth(polyline.getLineThickness().floatValue());
-                appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
-
-                if (!polyline.getInterpColorMode() || style != 1) {
-                    int fillColor;
-
-                    /*
-                     * The line color is used as fill color for the filled patch polyline style
-                     * whereas the background color is used for all the other styles.
-                     */
-                    if (style == 5) {
-                        fillColor = polyline.getLineColor();
+                    final int style = polyline.getPolylineStyle();
+                    if (style == 1 || style == 2 || style == 4 || style == 5) {
+                        geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS_STRIP);
                     } else {
-                        fillColor = polyline.getBackground();
+                        geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                     }
 
-                    appearance.setFillColor(ColorFactory.createColor(colorMap, fillColor));
-                }
+                    geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
+                    geometry.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
 
-                drawingTools.draw(geometry, appearance);
+                    geometry.setPolygonOffsetMode(currentAxes.getCamera().getView() == ViewType.VIEW_3D);
 
-                if (style == 4) {
-                    arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
-                                           polyline.getLineThickness(), false, false, polyline.getLineColor(), true);
-                }
+                    /* Interpolated color rendering is used only for basic polylines for now. */
+                    Appearance appearance = new Appearance();
 
-                if (polyline.getMarkMode()) {
-                    Texture sprite = markManager.getMarkSprite(polyline, colorMap);
-                    ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
-                    drawingTools.draw(sprite, AnchorPosition.CENTER, positions);
+                    if (polyline.getInterpColorMode() && style == 1) {
+                        geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(polyline.getIdentifier()));
+                        appearance.setTexture(getColorMapTexture());
+                    } else {
+                        geometry.setColors(null);
+                    }
+
+                    appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+                    appearance.setLineWidth(polyline.getLineThickness().floatValue());
+                    appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
+
+                    if (!polyline.getInterpColorMode() || style != 1) {
+                        int fillColor;
+
+                        /*
+                         * The line color is used as fill color for the filled patch polyline style
+                         * whereas the background color is used for all the other styles.
+                         */
+                        if (style == 5) {
+                            fillColor = polyline.getLineColor();
+                        } else {
+                            fillColor = polyline.getBackground();
+                        }
+
+                        appearance.setFillColor(ColorFactory.createColor(colorMap, fillColor));
+                    }
+
+                    drawingTools.draw(geometry, appearance);
+
+                    if (style == 4) {
+                        arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
+                                               polyline.getLineThickness(), false, false, polyline.getLineColor(), true);
+                    }
+
+                    if (polyline.getMarkMode()) {
+                        Texture sprite = markManager.getMarkSprite(polyline, colorMap);
+                        ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions);
+                    }
+                } catch (ObjectRemovedException e) {
+                    invalidate(polyline, e);
+                } catch (OutOfMemoryException e) {
+                    invalidate(polyline, e);
+                } catch (SciRendererException e) {
+                    invalidate(polyline, e);
                 }
-            } catch (ObjectRemovedException e) {
-                invalidate(polyline, e);
-            } catch (OutOfMemoryException e) {
-                invalidate(polyline, e);
-            } catch (SciRendererException e) {
-                invalidate(polyline, e);
+                axesDrawer.disableClipping(polyline.getClipProperty());
             }
-            axesDrawer.disableClipping(polyline.getClipProperty());
         }
     }
 
@@ -821,11 +825,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     @Override
-    public void updateObject(String id, String property) {
+    public void updateObject(String id, int property) {
         try {
             if (needUpdate(id, property)) {
                 GraphicController.getController().setProperty(id, GraphicObjectProperties.__GO_VALID__, true);
-                if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
+                if (GraphicObjectProperties.__GO_COLORMAP__ == property && figure.getIdentifier().equals(id)) {
                     labelManager.disposeAll();
                     dataManager.disposeAllColorBuffers();
                     dataManager.disposeAllTextureCoordinatesBuffers();
@@ -844,7 +848,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     fecDrawer.update(id, property);
                 }
 
-                if (GraphicObjectProperties.__GO_ANTIALIASING__.equals(property)) {
+                if (GraphicObjectProperties.__GO_ANTIALIASING__ == property) {
                     canvas.setAntiAliasingLevel(figure.getAntialiasing());
                 }
 
@@ -853,7 +857,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
             }
 
-            if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__.equals(property) && !isImmediateDrawing(id)) {
+            if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property && !isImmediateDrawing(id)) {
                 canvas.waitImage();
             }
 
@@ -870,14 +874,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @param property the changed property.
      * @return true id the given changed property make the figure out of date.
      */
-    private boolean needUpdate(String id, String property) {
+    private boolean needUpdate(String id, int property) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
-        String objectType = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-        if ((property != null) && (object != null) && isFigureChild(id)
-            && !objectType.equals(GraphicObjectProperties.__GO_UICONTROL__)
-            && !objectType.equals(GraphicObjectProperties.__GO_UIMENU__)) {
+        int objectType = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        if ((object != null) && isFigureChild(id)
+            && objectType != GraphicObjectProperties.__GO_UICONTROL__
+            && objectType !=GraphicObjectProperties.__GO_UIMENU__) {
 
-            if (GraphicObjectProperties.__GO_VALID__.equals(property)) {
+            if (GraphicObjectProperties.__GO_VALID__ == property) {
                 return false;
             }
 
@@ -936,7 +940,17 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (object instanceof Figure && visitorMap.containsKey(id)) {
             visitorMap.remove(id);
             GraphicController.getController().unregister(this);
-            canvas.destroy();
+            if (SwingUtilities.isEventDispatchThread()) {
+                canvas.destroy();
+            } else {
+                try {
+                    SwingUtilities.invokeAndWait(new Runnable() {
+                            public void run() {
+                                canvas.destroy();
+                            }
+                        });
+                } catch (Exception e) { }
+            }
         } else {
             if (isImmediateDrawing(id)) {
                 canvas.redraw();

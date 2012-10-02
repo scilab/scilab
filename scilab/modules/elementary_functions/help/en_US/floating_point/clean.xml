@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>a numerical matrix (scalar, polynomial, sparse...)</para>
+                    <para>a numerical matrix (scalar, polynomial, sparse, ...).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>epsa,epsr</term>
+                <term>epsa, epsr</term>
                 <listitem>
-                    <para>real numbers. Cleaning tolerances (default values resp. 1.d-10 and 1.d-10)</para>
+                    <para>real numbers. Cleaning tolerances (default values resp. <literal>1.d-10</literal> and <literal>1.d-10</literal>).</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -40,17 +40,17 @@
         <title>Description</title>
         <para>
             This function eliminates (i.e. set to zero) all the coefficients
-            with absolute value &lt; <literal>epsa</literal> or relative value &lt; <literal>epsr</literal>
-            (relative means relative w.r.t. 1-norm of coefficients)
+            with absolute value &lt; <varname>epsa</varname> or relative value &lt; <varname>epsr</varname>
+            (relative means relative w.r.t. <literal>1-norm</literal> of coefficients)
             in a polynomial (possibly matrix polynomial or rational
             matrix).
         </para>
         <para>
-            Default  values are <literal>epsa=1.d-10</literal> and <literal>epsr=1.d-10;</literal>
+            Default  values are <varname>epsa</varname><literal>=1.d-10</literal> and <varname>epsr</varname><literal>=1.d-10;</literal>
         </para>
         <para>
-            For a constant (non polynomial) matrix <literal>clean(A,epsa)</literal> sets to zero all
-            entries of <literal>A</literal> smaller than <literal>epsa</literal>.
+            For a constant (non-polynomial) matrix <code>clean(A,epsa)</code> sets to zero all
+            entries of <literal>A</literal> smaller than <varname>epsa</varname>.
         </para>
     </refsection>
     <refsection>

@@ -380,6 +380,7 @@ cd ..
     <ClInclude Include="..\..\includes\setformat.h" />
     <ClInclude Include="..\..\includes\setieee.h" />
     <ClInclude Include="..\..\includes\setlines.h" />
+    <ClInclude Include="..\..\includes\stackTypeVariable.h" />
     <ClInclude Include="backtrace.h" />
     <ClInclude Include="banier.h" />
     <ClInclude Include="..\..\includes\BOOL.h" />

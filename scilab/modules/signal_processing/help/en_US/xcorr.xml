@@ -198,8 +198,14 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
             <programlisting role="example">t = linspace(0, 100, 2000);
                 y = 0.8 * sin(t) + 0.8 * sin(2 * t);
                 [c, ind] = xcorr(y, "biased");
-                plot(ind, c)    
+                plot(ind, c)
             </programlisting>
+            <scilab:image>
+                t = linspace(0, 100, 2000);
+                y = 0.8 * sin(t) + 0.8 * sin(2 * t);
+                [c, ind] = xcorr(y, "biased");
+                plot(ind, c)    
+            </scilab:image>
         </refsection>
         <refsection>
             <title>See Also</title>

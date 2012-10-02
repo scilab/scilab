@@ -19,12 +19,14 @@ using namespace org_scilab_modules_gui_bridge;
 int SetUicontrolString(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    char* objectStyle = NULL;
-    char* type = NULL;
+    int objectStyle = -1;
+    int *piObjectStyle = &objectStyle;
+    int type = -1;
+    int *piType = &type;
 
     // Check type
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_TYPE__), jni_string, (void**) &type);
-    if (strcmp(type, __GO_UICONTROL__) != 0)
+    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**) &piType);
+    if (type != __GO_UICONTROL__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
         return SET_PROPERTY_ERROR;
@@ -38,8 +40,8 @@ int SetUicontrolString(void* _pvCtx, char* sciObjUID, size_t stackPointer, int v
     }
 
     // Check size according to uicontrol style
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_STYLE__), jni_string, (void**) &objectStyle);
-    if ((strcmp(objectStyle, __GO_UI_LISTBOX__) == 0) || (strcmp(objectStyle, __GO_UI_POPUPMENU__)) == 0)
+    getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
+    if (objectStyle == __GO_UI_LISTBOX__ || objectStyle == __GO_UI_POPUPMENU__)
     {
         // Value can be string or a string vector
         if (nbCol > 1 && nbRow > 1)
@@ -48,7 +50,7 @@ int SetUicontrolString(void* _pvCtx, char* sciObjUID, size_t stackPointer, int v
             return SET_PROPERTY_ERROR;
         }
     }
-    else if (strcmp(objectStyle, __GO_UI_TABLE__) != 0) // All other styles except 'Table'
+    else if (objectStyle != __GO_UI_TABLE__) // All other styles except 'Table'
     {
         // Value must be only one string
         if (nbCol * nbRow > 1)
@@ -58,14 +60,14 @@ int SetUicontrolString(void* _pvCtx, char* sciObjUID, size_t stackPointer, int v
         }
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_STRING_COLNB__), &nbCol, jni_int, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_STRING_COLNB__, &nbCol, jni_int, 1);
     if (status == FALSE)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_STRING__), getStringMatrixFromStack(stackPointer), jni_string_vector, nbRow * nbCol);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_STRING__, getStringMatrixFromStack(stackPointer), jni_string_vector, nbRow * nbCol);
 
     if (status == TRUE)
     {

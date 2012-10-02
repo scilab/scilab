@@ -43,6 +43,7 @@ typedef struct fftw_plan_st
     fftw_plan p;
     guru_dim_struct gdim;
     unsigned flags;
+    fftw_r2r_kind *kind;
 } FFTW_Plan_struct;
 
 
@@ -51,18 +52,20 @@ typedef struct fftw_plan_st
 fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
     double *ri, double *ii,
     double *ro, double *io,
-                      unsigned flags, int isn, int *errflag);
+    unsigned flags, int isn, fftw_r2r_kind *kind,int *errflag);
 
 int FreeFFTWPlan(FFTW_Plan_struct *Sci_Plan);
 
-int CheckGuruDims(guru_dim_struct *gdim1,
-    guru_dim_struct *gdim2);
+int CheckGuruDims(guru_dim_struct *gdim1, guru_dim_struct *gdim2);
+int CheckKindArray(fftw_r2r_kind *kind1, fftw_r2r_kind *kind2, int rank);
 
 void ExecuteFFTWPlan(enum Plan_Type type, const fftw_plan p, double *ri, double *ii,double *ro, double *io);
 
 int is_real(double *Ar,double *Ai, int ndims, int *dims);
 int check_array_symmetry(double *Ar,double *Ai, guru_dim_struct gdim);
 int complete_array(double *Ar,double *Ai, guru_dim_struct gdim);
+int dct_scale_array(double *Ar,double *Ai, guru_dim_struct gdim, int isn);
+int dst_scale_array(double *Ar,double *Ai, guru_dim_struct gdim, int isn);
 
 unsigned int getCurrentFftwFlags(void);
 void setCurrentFftwFlags(unsigned int newFftwFlags);

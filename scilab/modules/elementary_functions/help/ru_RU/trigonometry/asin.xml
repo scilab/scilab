@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественный или комплексный вектор/матрица</para>
+                    <para>вещественный или комплексный вектор/матрица.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>вещественный или комплексный вектор/матрица</para>
+                    <para>вещественный или комплексный вектор/матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,8 +39,15 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы <literal>t</literal> являются арксинусом соответствующих элементов  <literal>x</literal>. Область определения [-1, 1].
+            Элементы <varname>t</varname> являются арксинусом соответствующих элементов  <varname>x</varname>. Область определения <literal>[-1, 1]</literal>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Образец</title>
+        <scilab:image>
+            x = -%pi/2:.05:%pi/2;
+            plot(x,asin(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Примеры</title>

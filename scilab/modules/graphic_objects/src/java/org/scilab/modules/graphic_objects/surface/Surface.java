@@ -51,16 +51,17 @@ public abstract class Surface extends ClippableContouredObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_SURFACE_MODE__)) {
+	public Object getPropertyFromName(int propertyName) {
+		switch (propertyName) {
+		case __GO_SURFACE_MODE__ :
 			return SurfaceProperty.SURFACEMODE;
-		} else if (propertyName.equals(__GO_COLOR_MODE__)) {
+		case __GO_COLOR_MODE__ :
 			return SurfaceProperty.COLORMODE;
-		} else if (propertyName.equals(__GO_COLOR_FLAG__)) {
+		case __GO_COLOR_FLAG__ :
 			return SurfaceProperty.COLORFLAG;
-		} else if (propertyName.equals(__GO_HIDDEN_COLOR__)) {
+		case __GO_HIDDEN_COLOR__ :
 			return SurfaceProperty.HIDDENCOLOR;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}

@@ -73,17 +73,21 @@ for i=1:5, B(i,:) = B(i,:)/R(i); end // apply the row scaling
 B(p,q) - L*U  // must be a (quasi) nul matrix
 
 umf_ludel(Lup) // clear memory
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
 
 // the same with a complex matrix
 A = sparse( [ 2+%i  3+2*%i  0      0    0;
-              3-%i  0       4+%i   0    6-3*%i; 
-              0    -1+%i   -3+6*%i 2-%i 0; 
-              0     0       1-5*%i 0    0; 
+              3-%i  0       4+%i   0    6-3*%i;
+              0    -1+%i   -3+6*%i 2-%i 0;
+              0     0       1-5*%i 0    0;
               0     4       2-%i   0    1] );
 Lup = umf_lufact(A);
 [L,U,p,q,R] = umf_luget(Lup);
 B = A;
-for i=1:5, B(i,:) = B(i,:)/R(i); end // apply the row scaling
+for i=1:5
+  B(i,:) = B(i,:)/R(i)
+end // apply the row scaling
 B(p,q) - L*U  // must be a (quasi) nul matrix
 
 umf_ludel(Lup) // clear memory

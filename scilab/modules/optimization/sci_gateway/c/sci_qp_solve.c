@@ -43,7 +43,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
     static int b = 0, mbis = 0;
     static int me = 0, pipo = 0;
     static int x = 0, iter = 0, iact = 0, nact = 0, crval = 0, ierr = 0;
-    int next = 0, r = 0;
+    int r = 0;
     static int lw = 0,  k = 0;
     static SciSparse Sp;
     static int issparse = 0;
@@ -57,7 +57,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
 
     /* RhsVar: qp_solve(Q,p,C,b,me) */
     /*                1,2,3,4,5   */
-    next = Rhs + 1;
+
     /*   Variable 1 (Q)   */
     GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &n, &nbis, &Q);
     CheckSquare(1, n, nbis);
@@ -97,11 +97,10 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
     }
 
     /* Lhs variables: x, iact, iter, crval */
-    next = Rhs;
-    CreateVar(next + 1, MATRIX_OF_DOUBLE_DATATYPE, &n, &un, &x);
-    CreateVar(next + 2, MATRIX_OF_INTEGER_DATATYPE, &m, &un, &iact);
-    CreateVar(next + 3, MATRIX_OF_INTEGER_DATATYPE, &deux, &un, &iter);
-    CreateVar(next + 4, MATRIX_OF_DOUBLE_DATATYPE, &un, &un, &crval);
+    CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &n, &un, &x);
+    CreateVar(Rhs + 2, MATRIX_OF_INTEGER_DATATYPE, &m, &un, &iact);
+    CreateVar(Rhs + 3, MATRIX_OF_INTEGER_DATATYPE, &deux, &un, &iter);
+    CreateVar(Rhs + 4, MATRIX_OF_DOUBLE_DATATYPE, &un, &un, &crval);
 
     r = Min(n, m);
     lw =  2 * n + r * (r + 5) / 2 + 2 * m + 1;
@@ -162,7 +161,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
 
     if (ierr == 0)
     {
-        for (k = 0; k < Lhs; k++) LhsVar(1 + k) = next + 1 + k;
+        for (k = 0; k < Lhs; k++) LhsVar(1 + k) = Rhs + 1 + k;
         PutLhsVar();
     }
     else if (ierr == 1)

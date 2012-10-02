@@ -29,7 +29,8 @@ int sci_uiwait(char *fname, unsigned long fname_len)
     long hdl = 0;
 
     char *pObjUID = NULL;
-    char *pObjType = NULL;
+    int iObjType = -1;
+    int *piObjType = &iObjType;
 
     CheckRhs(1, 1);
     CheckLhs(0, 1);
@@ -45,8 +46,8 @@ int sci_uiwait(char *fname, unsigned long fname_len)
         hdl = (unsigned long)*hstk(stkAdr);
         pObjUID = (char*)getObjectFromHandle(hdl);
 
-        getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_string, (void **)&pObjType);
-        if (strcmp(pObjType, __GO_UICONTEXTMENU__) == 0)
+        getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_int, (void **)&piObjType);
+        if (iObjType == __GO_UICONTEXTMENU__)
         {
             result = uiWaitContextMenu(pObjUID);
         }

@@ -34,7 +34,7 @@ function black(varargin)
 
 //To plot the grid of iso-gain and iso-phase of y/(1+y) use abaque()
 //%Example
-//  s=poly(0,'s")
+//  s=poly(0,"s")
 //  h=syslin("c",(s**2+2*0.9*10*s+100)/(s**2+2*0.3*10.1*s+102.01))
 //  nicholschart();
 //  black(h,0.01,100,"(s**2+2*0.9*10*s+100)/(s**2+2*0.3*10.1*s+102.01)")
@@ -124,18 +124,18 @@ function black(varargin)
   kf=1
   phi1=phi+5*ones(phi);
 
-  kk=1;p0=[phi(:,kk) d(:,kk)];ks=1;dst=0;
+  kk=1;p0=[phi(:,kk) d(:,kk)];ks=1;Dst=0;
   dx=max(%eps,xmx-xmn);
   dy=max(%eps,ymx-ymn);
   dx2=dx^2;dy2=dy^2
 
   while kk<n
     kk=kk+1
-    dst=dst+min(sqrt(((phi(:,kk-1)-phi(:,kk))^2)/dx2+((d(:,kk-1)-d(:,kk))^2)/dy2))
-    if dst>0.2 then
+    Dst=Dst+min(sqrt(((phi(:,kk-1)-phi(:,kk))^2)/dx2+((d(:,kk-1)-d(:,kk))^2)/dy2))
+    if Dst>0.2 then
       if min(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
         ks=[ks kk]
-        dst=0
+        Dst=0
       end
     end
   end

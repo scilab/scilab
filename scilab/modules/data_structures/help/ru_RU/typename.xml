@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="typename">
+    <refnamediv>
+        <refname>typename</refname>
+        <refpurpose>связывает имя и тип переменной</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[types [ [,names]]=typename()
+            typename(name, type)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>types</term>
+                <listitem>
+                    <para>вектор-столбец целочисленных значений: коды типов каждого из определённых типов данных.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>вектор-столбец строк: имена, связанные с кодами типов.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>целое число: код типа нового типа данных.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>строковое значение: имя, связанное с кодом типа.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Перегрузка функции и оператора позволяет использовать формальное имя, связанное с типами данных для того, чтобы формировать имя функции перегрузки (см. <link linkend="overloading">перегрузку</link>). Функция <function>typename</function> может быть использована для управления этими формальными именами для жёстко запрограммированных типов данных (типы данных, запрограммированных с помощью <literal>tlist</literal> или <literal>mlist</literal>, определяются по-другому, см. <link linkend="overloading">перегрузку</link>).
+        </para>
+        <para>
+            В случае вызова без аргументов с правой стороны, функция <function>typename</function> вернёт информацию по определённым типам данных.
+        </para>
+        <para>
+            В случае вызова с аргументами с правой стороны, функция <function>typename</function> свяжет имя и код типа данных.
+        </para>
+        <para>
+            <code>typename('',type)</code> удаляет тип данных, указанный по его коду <literal>type</literal> из таблицы известных типов данных.
+        </para>
+        <para>Максимальное число определённых типов 50.</para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="type">type</link>
+            </member>
+            <member>
+                <link linkend="typeof">typeof</link>
+            </member>
+            <member>
+                <link linkend="overloading">перегрузка</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

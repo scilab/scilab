@@ -16,6 +16,9 @@ assert_checkequal(status, 1);
 exec("TMPDIR/xcos_toolbox_skeleton/builder.sce");
 Building macros...
 -- Creation of [xcos_toolbox_skeletonlib] (Macros) --
+genlib: Processing file: TBX_SUM_c.sci
+genlib: Processing file: TBX_MUT_STYLE.sci
+genlib: Regenerate names and lib
 Building blocks...
 Building sources...
    Generate a loader file
@@ -53,9 +56,7 @@ Start Xcos toolbox skeleton
 	Load gateways
 	Load help
 	Load demos
-test_run("TMPDIR/xcos_toolbox_skeleton/", [], "no_summary");
-   TMPDIR = TMPDIR
-
+test_run("TMPDIR/xcos_toolbox_skeleton/", [], "short_summary");
    001/001 - [TMPDIR/xcos_toolbox_skeleton/] : 
 
    001/001 - [TMPDIR/xcos_toolbox_skeleton/] tbx_sum............passed
@@ -64,4 +65,3 @@ test_run("TMPDIR/xcos_toolbox_skeleton/", [], "no_summary");
    --------------------------------------------------------------------------
    Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
    --------------------------------------------------------------------------
-

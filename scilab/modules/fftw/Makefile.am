@@ -36,6 +36,7 @@ if FFTW
 FFTW_C_SOURCES = src/c/callfftw.c \
 src/c/fftwlibname.c \
 src/c/fftw_utilities.c \
+src/c/sci_data_utilities.c \
 src/c/with_fftw.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
@@ -46,8 +47,9 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 	sci_gateway/c/sci_loadfftwlibrary.c \
 	sci_gateway/c/sci_get_fftw_wisdom.c \
 	sci_gateway/c/sci_set_fftw_wisdom.c \
-	sci_gateway/c/sci_fftw_forget_wisdom.c
-
+	sci_gateway/c/sci_fftw_forget_wisdom.c \
+	sci_gateway/c/sci_dct.c \
+	sci_gateway/c/sci_dst.c 
 
 #### fftw : Conf files ####
 libscifftw_la_root_DATA =  license.txt 

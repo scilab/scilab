@@ -95,6 +95,7 @@ Z(91:100,:) = A;
 scf();
 hist3d(Z);
  ]]></programlisting>
+        <scilab:image>hist3d();</scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

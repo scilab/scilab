@@ -125,7 +125,7 @@ public class ScilabTextureManager {
         }
 
         @Override
-        public void updateObject(String id, String property) {
+        public void updateObject(String id, int property) {
             if (isValid() && identifier.equals(id)) {
                 // TODO check Property.
                 updateData();

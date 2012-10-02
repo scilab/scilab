@@ -19,5 +19,5 @@
 // create a waitbar and a progression bar and close them
 win1=waitbar('This is an example');
 win2=progressionbar('HELLO!');
-winclose([win1,win2]);
+delete([win1,win2]);
 

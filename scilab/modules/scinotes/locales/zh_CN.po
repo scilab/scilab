@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: \n"
 
 #, c-format
@@ -117,8 +117,8 @@ msgstr "关闭所有文档"
 msgid "Close All But This"
 msgstr "关闭其他文档"
 
-msgid "Exit"
-msgstr "退出"
+msgid "Exit Scinotes"
+msgstr ""
 
 msgid "Edit"
 msgstr "编辑"
@@ -243,6 +243,18 @@ msgstr "当前文件编码"
 msgid "Line Endings"
 msgstr "行结束符"
 
+msgid "Preferences"
+msgstr ""
+
+msgid "Set font"
+msgstr ""
+
+msgid "Set colors"
+msgstr ""
+
+msgid "Scinotes General settings"
+msgstr ""
+
 msgid "Auto-completion on"
 msgstr ""
 
@@ -300,8 +312,8 @@ msgstr "保存并执行所有文件"
 msgid "?"
 msgstr "？"
 
-msgid "SciNotes help"
-msgstr "SciNotes帮助"
+msgid "Scinotes help"
+msgstr ""
 
 msgid "Help on ;Help on selection"
 msgstr "帮助关于；所选内容帮助"
@@ -327,7 +339,7 @@ msgstr ""
 msgid "Editor"
 msgstr ""
 
-msgid "Use SciNotes"
+msgid "Use Scinotes"
 msgstr ""
 
 msgid "External editor: "
@@ -337,9 +349,6 @@ msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 msgid "Scilab command: "
-msgstr ""
-
-msgid "SciNotes General settings"
 msgstr ""
 
 msgid "Restore previous session on start-up"
@@ -516,6 +525,9 @@ msgstr "使用FOP导出代码时发生错误"
 msgid "An error occurred when printing"
 msgstr "打印出错"
 
+msgid "Exit"
+msgstr "退出"
+
 msgid "Tools"
 msgstr "工具"
 
@@ -611,6 +623,9 @@ msgstr "从头开始运行..."
 
 msgid "Execute File Into Scilab"
 msgstr "载入Scilab执行"
+
+msgid "SciNotes help"
+msgstr "SciNotes帮助"
 
 msgid "Help on the current keyword"
 msgstr "当前关键字帮助"

@@ -95,6 +95,8 @@ xsetech([0,0.5,1.0,0.5])
 // l'échelle est [0,0,1,1] par défaut 
 // on la change avec l'argument rect de plot2d 
 plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[ 
 // 4 dessins sur une seule fenêtre
 clf()
 xset("font",2,0)
@@ -104,17 +106,43 @@ xsetech([0.5,0.5,0.5,0.5]); grayplot()
 xsetech([0,0.5,0.5,0.5]); histplot()
 // retour aux valeurs par défaut 
 xsetech([0,0,1,1])
+ ]]></programlisting>
+        <scilab:image>
+            xset("font",2,0)
+            xsetech([0,0,0.5,0.5]); plot3d()
+            xsetech([0.5,0,0.5,0.5]); plot2d()
+            xsetech([0.5,0.5,0.5,0.5]); grayplot()
+            xsetech([0,0.5,0.5,0.5]); histplot()
+            // retour aux valeurs par défaut 
+            xsetech([0,0,1,1])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+
 // Un dessin avec arect change
 clf()
 xset("default")
 xsetech(arect=[0,0,0,0]) 
 x=1:0.1:10;plot2d(x',sin(x)')
+ ]]></programlisting>
+        <scilab:image>
+            clf()
+            xset("default")
+            xsetech(arect=[0,0,0,0]) 
+            x=1:0.1:10;plot2d(x',sin(x)')
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 clf()
 xsetech(arect=[1/8,1/8,1/16,1/4])
 x=1:0.1:10;plot2d(x',sin(x)')
 clf()
 xset("default")
  ]]></programlisting>
+        <scilab:image>
+            xsetech(arect=[1/8,1/8,1/16,1/4])
+            x=1:0.1:10;plot2d(x',sin(x)')
+            clf()
+            xset("default")
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

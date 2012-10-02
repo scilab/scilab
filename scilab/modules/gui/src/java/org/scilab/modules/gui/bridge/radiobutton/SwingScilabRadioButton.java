@@ -263,7 +263,7 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
      * @param property property name
      * @param value property value
      */
-    public void update(String property, Object value) {
+    public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
     }
 }

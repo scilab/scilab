@@ -49,7 +49,7 @@ int SetUicontrolRelief(void* _pvCtx, char* sciObjUID, size_t stackPointer, int v
           return SET_PROPERTY_ERROR;
       }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_RELIEF__), relief, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_RELIEF__, relief, jni_string, 1);
 
     if (status == TRUE)
     {

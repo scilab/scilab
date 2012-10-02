@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// 
+//
 // <-- CLI SHELL MODE -->
 //
 // <-- Non-regression test for bug 10556 -->
@@ -13,8 +13,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=10556
 //
 // <-- Short Description -->
-// readxls produced wrong results 
-// 
+// readxls produced wrong results
+//
 
 spreadsheet = readxls(SCI + "/modules/spreadsheet/tests/nonreg_tests/bug_10556.xls");
 assert_checkequal(size(spreadsheet(1)), [12 10]);

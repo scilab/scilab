@@ -17,11 +17,10 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>In the previous versions of Scilab, there was no clear or easy way to extend Scilab or to use it as an embedded application.</para>
-        <para>Since Scilab 5.2.0, these issues have been tackled by API Scilab. Its provides a new consistent, documented and easy way API.
+        <para>Since Scilab 5.2.0, Scilab provides a consistent, documented and easy way API.
         </para>
         <para>This API provides functions to read/write data from/to Scilab memory.</para>
-        <para>  It provides many advantages:</para>
+        <para>It provides many advantages:</para>
         <itemizedlist>
             <listitem>
                 <para>Management of all Scilab data types</para>

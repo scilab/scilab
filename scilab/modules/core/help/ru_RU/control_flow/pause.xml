@@ -23,7 +23,7 @@
             изменены.
         </para>
         <para>
-            Команда <literal>pause</literal> чрезвычайна полезна в процессе отладки.
+            Команда <literal>pause</literal> чрезвычайно полезна в процессе отладки.
         </para>
         <para>
             Это режим прекращается командой <literal>abort</literal>.

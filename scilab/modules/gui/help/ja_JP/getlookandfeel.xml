@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="getlookandfeel">
+    <refnamediv>
+        <refname>getlookandfeel</refname>
+        <refpurpose>現在のデフォルトのルックアンドフィールを取得.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>lnf=getlookandfeel()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>lnf</term>
+                <listitem>
+                    <para>現在のルックアンドフィールを表す文字列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bok</term>
+                <listitem>
+                    <para>論理値.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>現在のルックアンドフィールを取得します.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+currentlnf = getlookandfeel();
+
+// CDE/Motifのルックアンドフィール
+setlookandfeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel")
+
+sleep(3000);
+
+// métalのルックアンドフィール
+setlookandfeel("javax.swing.plaf.metal.MetalLookAndFeel")
+
+sleep(3000);
+
+setlookandfeel(currentlnf)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getinstalledlookandfeels">getinstalledlookandfeels</link>
+            </member>
+            <member>
+                <link linkend="setlookandfeel">setlookandfeel</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
