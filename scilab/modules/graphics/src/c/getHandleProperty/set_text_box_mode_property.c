@@ -68,7 +68,6 @@ int set_text_box_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, int v
         return SET_PROPERTY_ERROR;
     }
 
-    FREE(_pvData);
     status[0] = setGraphicObjectProperty(pobjUID, __GO_TEXT_BOX_MODE__, &textBoxMode, jni_int, 1);
     status[1] = setGraphicObjectProperty(pobjUID, __GO_AUTO_DIMENSIONING__, &autoSize, jni_bool, 1);
 

@@ -12,7 +12,7 @@
  */
 
 #include "gw_gui.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "CallMessageBox.h"
 #include "getPropertyAssignedValue.h"
@@ -21,6 +21,14 @@
 /*--------------------------------------------------------------------------*/
 int sci_x_mdialog(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
+
+    int* piAddrlabelsAdr = NULL;
+    int* piAddrlineLabelsAdr = NULL;
+    int* piAddrdefaultValuesAdr = NULL;
+    int* piAddrcolumnLabelsAdr = NULL;
+    double* emptyMatrixAdr = NULL;
+
     int nbRow = 0, nbCol = 0;
     int nbRowDefaultValues = 0, nbColDefaultValues = 0;
     int nbRowLineLabels = 0, nbColLineLabels = 0;
@@ -36,15 +44,25 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
     int userValueSize = 0;
     char **userValue = NULL;
 
-    int emptyMatrixAdr = 0;
-
-    CheckRhs(3, 4);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 3, 4);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     /* READ THE LABELS */
-    if (VarType(1) == sci_strings)
+    if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
     {
-        GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &labelsAdr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrlabelsAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of string at position 1.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddrlabelsAdr, &nbRow, &nbCol, &labelsAdr))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            return 1;
+        }
     }
     else
     {
@@ -59,19 +77,33 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
     setMessageBoxTitle(messageBoxID, _("Scilab Multiple Values Request"));
     /* Message */
     setMessageBoxMultiLineMessage(messageBoxID, labelsAdr, nbCol * nbRow);
-    freeArrayOfString(labelsAdr, nbCol * nbRow);
+    freeAllocatedMatrixOfString(nbRow, nbCol, labelsAdr);
 
     /* READ THE LINE LABELS */
     if (VarType(2) ==  sci_strings)
     {
-        GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRowLineLabels, &nbColLineLabels, &lineLabelsAdr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrlineLabelsAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of string at position 2.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddrlineLabelsAdr, &nbRowLineLabels, &nbColLineLabels, &lineLabelsAdr))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+            return 1;
+        }
+
         if (nbRow != 1 && nbCol != 1)
         {
+            freeAllocatedMatrixOfString(nbRowLineLabels, nbColLineLabels, lineLabelsAdr);
             Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 2);
             return FALSE;
         }
         setMessageBoxLineLabels(messageBoxID, lineLabelsAdr, nbColLineLabels * nbRowLineLabels);
-        freeArrayOfString(lineLabelsAdr, nbColLineLabels * nbRowLineLabels);
+        freeAllocatedMatrixOfString(nbRowLineLabels, nbColLineLabels, lineLabelsAdr);
     }
     else
     {
@@ -82,33 +114,62 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
     /* READ THE COLUMN LABELS or DEFAULT VALUES */
     if (VarType(3) ==  sci_strings)
     {
-        if (Rhs == 3)
+        if (nbInputArgument(pvApiCtx) == 3)
         {
-            GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &nbRowDefaultValues, &nbColDefaultValues, &defaultValuesAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrdefaultValuesAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 3.
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddrdefaultValuesAdr, &nbRowDefaultValues, &nbColDefaultValues, &defaultValuesAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+                return 1;
+            }
+
             if ((nbRowDefaultValues != nbRowLineLabels) || (nbColDefaultValues != nbColLineLabels))
             {
+                freeAllocatedMatrixOfString(nbRowDefaultValues, nbColDefaultValues, defaultValuesAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: It must have same dimensions that argument #%d.\n"), fname, 3, 2);
                 return FALSE;
             }
 
             if (nbRowDefaultValues != 1 && nbColDefaultValues != 1)
             {
+                freeAllocatedMatrixOfString(nbRowDefaultValues, nbColDefaultValues, defaultValuesAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
                 return FALSE;
             }
             setMessageBoxDefaultInput(messageBoxID, defaultValuesAdr, nbColDefaultValues * nbRowDefaultValues);
-            freeArrayOfString(defaultValuesAdr, nbColDefaultValues * nbRowDefaultValues);
+            freeAllocatedMatrixOfString(nbRowDefaultValues, nbColDefaultValues, defaultValuesAdr);
         }
         else
         {
-            GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &nbRowColumnLabels, &nbColColumnLabels, &columnLabelsAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrcolumnLabelsAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 3.
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddrcolumnLabelsAdr, &nbRowColumnLabels, &nbColColumnLabels, &columnLabelsAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+                return 1;
+            }
+
             if (nbRow != 1 && nbCol != 1)
             {
+                freeAllocatedMatrixOfString(nbRowColumnLabels, nbColColumnLabels, columnLabelsAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
                 return FALSE;
             }
             setMessageBoxColumnLabels(messageBoxID, columnLabelsAdr, nbColColumnLabels * nbRowColumnLabels);
-            freeArrayOfString(columnLabelsAdr, nbColColumnLabels * nbRowColumnLabels);
+            freeAllocatedMatrixOfString(nbRowColumnLabels, nbColColumnLabels, columnLabelsAdr);
         }
     }
     else
@@ -117,12 +178,26 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
         return FALSE;
     }
 
-    if (Rhs == 4)
+    if (nbInputArgument(pvApiCtx) == 4)
     {
         /* READ  DEFAULT VALUES */
         if (VarType(4) ==  sci_strings)
         {
-            GetRhsVar(4, MATRIX_OF_STRING_DATATYPE, &nbRowDefaultValues, &nbColDefaultValues, &defaultValuesAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddrdefaultValuesAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 4.
+            // DO NOT FORGET TO RELEASE MEMORY via freeAllocatedMatrixOfString(nbRowDefaultValues, nbColDefaultValues, defaultValuesAdr).
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddrdefaultValuesAdr, &nbRowDefaultValues, &nbColDefaultValues, &defaultValuesAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 4);
+                return 1;
+            }
+
             if ((nbRowDefaultValues != nbRowLineLabels * nbColLineLabels) || (nbColDefaultValues != nbRowColumnLabels * nbColColumnLabels))
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"), fname, 4, nbRowLineLabels * nbColLineLabels, nbRowColumnLabels * nbColColumnLabels);
@@ -147,7 +222,15 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
     {
         nbRow = 0;
         nbCol = 0;
-        CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &emptyMatrixAdr);
+        // YOU MUST REMOVE YOUR VARIABLE DECLARATION "int emptyMatrixAdr".
+        sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &emptyMatrixAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
+
     }
     else
     {
@@ -155,16 +238,16 @@ int sci_x_mdialog(char *fname, unsigned long fname_len)
         nbCol = 1;
         nbRowDefaultValues = nbColLineLabels * nbRowLineLabels;
         nbColDefaultValues = 1;
-        if (Rhs == 4)
+        if (nbInputArgument(pvApiCtx) == 4)
         {
             nbColDefaultValues = nbColColumnLabels * nbRowColumnLabels;
         }
-        CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRowDefaultValues, &nbColDefaultValues, userValue);
+        CreateVarFromPtr(nbInputArgument(pvApiCtx) + 1, MATRIX_OF_STRING_DATATYPE, &nbRowDefaultValues, &nbColDefaultValues, userValue);
         /* TO DO : delete of userValue */
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return TRUE;
 }
 /*--------------------------------------------------------------------------*/

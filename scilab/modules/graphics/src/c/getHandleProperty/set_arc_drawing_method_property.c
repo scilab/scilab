@@ -57,7 +57,6 @@ int set_arc_drawing_method_property(void* _pvCtx, char* pobjUID, void* _pvData, 
     }
 
     status = setGraphicObjectProperty(pobjUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
-
     if (status == TRUE)
     {
         return SET_PROPERTY_SUCCEED;

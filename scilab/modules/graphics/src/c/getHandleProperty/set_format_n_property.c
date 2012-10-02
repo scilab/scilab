@@ -47,7 +47,6 @@ int set_format_n_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
     format = (char*)_pvData;
 
     status = setGraphicObjectProperty(pobjUID, __GO_FORMATN__, format, jni_string, 1);
-    FREE(_pvData);
     if (status == TRUE)
     {
         return SET_PROPERTY_SUCCEED;

@@ -58,7 +58,6 @@ int set_mark_size_unit_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
 
     }
 
-    FREE(_pvData);
     status = setGraphicObjectProperty(pobjUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
 
     if (status == TRUE)

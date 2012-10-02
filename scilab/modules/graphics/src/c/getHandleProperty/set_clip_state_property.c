@@ -62,7 +62,6 @@ int set_clip_state_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    FREE(_pvData);
     status = setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     if (status == TRUE)

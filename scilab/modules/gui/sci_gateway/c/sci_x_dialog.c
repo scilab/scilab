@@ -12,7 +12,7 @@
  */
 
 #include "gw_gui.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "CallMessageBox.h"
 #include "Scierror.h"
@@ -21,6 +21,12 @@
 /*--------------------------------------------------------------------------*/
 int sci_x_dialog(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
+
+    int* piAddrlabelsAdr = NULL;
+    int* piAddrinitialValueAdr = NULL;
+    double* emptyMatrixAdr = NULL;
+
     int nbRow = 0, nbCol = 0;
 
     int messageBoxID = 0;
@@ -32,14 +38,24 @@ int sci_x_dialog(char *fname, unsigned long fname_len)
     int userValueSize = 0;
     char **userValue = NULL;
 
-    int emptyMatrixAdr = 0;
+    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    CheckRhs(1, 2);
-    CheckLhs(0, 1);
-
-    if (VarType(1) == sci_strings)
+    if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
     {
-        GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &labelsAdr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrlabelsAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of string at position 1.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddrlabelsAdr, &nbRow, &nbCol, &labelsAdr))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            return 1;
+        }
     }
     else
     {
@@ -54,13 +70,25 @@ int sci_x_dialog(char *fname, unsigned long fname_len)
     setMessageBoxTitle(messageBoxID, _("Scilab Input Value Request"));
     /* Message */
     setMessageBoxMultiLineMessage(messageBoxID, labelsAdr, nbCol * nbRow);
-    freeArrayOfString(labelsAdr, nbCol * nbRow);
+    freeAllocatedMatrixOfString(nbRow, nbCol, labelsAdr);
 
-    if (Rhs == 2)
+    if (nbInputArgument(pvApiCtx) == 2)
     {
         if (VarType(2) ==  sci_strings)
         {
-            GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &initialValueAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrinitialValueAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 2.
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddrinitialValueAdr, &nbRow, &nbCol, &initialValueAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                return 1;
+            }
         }
         else
         {
@@ -69,7 +97,7 @@ int sci_x_dialog(char *fname, unsigned long fname_len)
         }
 
         setMessageBoxInitialValue(messageBoxID, initialValueAdr, nbCol * nbRow);
-        freeArrayOfString(initialValueAdr, nbCol * nbRow);
+        freeAllocatedMatrixOfString(nbRow, nbCol, initialValueAdr);
     }
 
     /* Display it and wait for a user input */
@@ -81,21 +109,26 @@ int sci_x_dialog(char *fname, unsigned long fname_len)
     {
         nbRow = 0;
         nbCol = 0;
-        CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &emptyMatrixAdr);
+
+        sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &emptyMatrixAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
     }
     else
     {
         userValue = getMessageBoxValue(messageBoxID);
 
-
         nbCol = 1;
-        CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &userValueSize, &nbCol, userValue);
+        CreateVarFromPtr(nbInputArgument(pvApiCtx) + 1, MATRIX_OF_STRING_DATATYPE, &userValueSize, &nbCol, userValue);
         /* TO DO : delete of userValue */
-
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return TRUE;
 }
 /*--------------------------------------------------------------------------*/

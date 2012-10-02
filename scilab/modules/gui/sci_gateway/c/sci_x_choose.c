@@ -12,7 +12,7 @@
  */
 
 #include "gw_gui.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "CallMessageBox.h"
 #include "Scierror.h"
@@ -20,6 +20,13 @@
 /*--------------------------------------------------------------------------*/
 int sci_x_choose(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
+
+    int* piAddritemsAdr = NULL;
+    int* piAddrmessageAdr = NULL;
+    int* piAddrbuttonLabelAdr = NULL;
+    double* userValueAdr = NULL;
+
     int nbRow = 0, nbCol = 0;
     int nbRowItems = 0, nbColItems = 0;
 
@@ -30,15 +37,26 @@ int sci_x_choose(char *fname, unsigned long fname_len)
 
     char **messageAdr = NULL;
 
-    int userValueAdr = 0;
     int userValue = 0;
 
-    CheckRhs(2, 3);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 2, 3);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if (VarType(1) == sci_strings)
+    if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
     {
-        GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRowItems, &nbColItems, &itemsAdr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddritemsAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of string at position 1.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddritemsAdr, &nbRowItems, &nbColItems, &itemsAdr))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            return 1;
+        }
     }
     else
     {
@@ -46,9 +64,22 @@ int sci_x_choose(char *fname, unsigned long fname_len)
         return FALSE;
     }
 
-    if (VarType(2) == sci_strings)
+    if ((checkInputArgumentType(pvApiCtx, 2, sci_strings)))
     {
-        GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &messageAdr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrmessageAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of string at position 2.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddrmessageAdr, &nbRow, &nbCol, &messageAdr))
+        {
+            freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+            return 1;
+        }
     }
     else
     {
@@ -63,18 +94,34 @@ int sci_x_choose(char *fname, unsigned long fname_len)
     setMessageBoxTitle(messageBoxID, _("Scilab Choose Message"));
     /* Message */
     setMessageBoxMultiLineMessage(messageBoxID, messageAdr, nbCol * nbRow);
+    freeAllocatedMatrixOfString(nbRow, nbCol, messageAdr);
     /* ListBox Items */
     setMessageBoxListBoxItems(messageBoxID, itemsAdr, nbColItems * nbRowItems);
+    freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
     /* Modality */
     setMessageBoxModal(messageBoxID, TRUE);
 
-    if (Rhs == 3)
+    if (nbInputArgument(pvApiCtx) == 3)
     {
         if (VarType(3) ==  sci_strings)
         {
-            GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &buttonLabelAdr);
-            if (nbRow * nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrbuttonLabelAdr);
+            if (sciErr.iErr)
             {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 3.
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddrbuttonLabelAdr, &nbRow, &nbCol, &buttonLabelAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+                return 1;
+            }
+
+            if (nbRow*nbCol != 1)
+            {
+                freeAllocatedMatrixOfString(nbRow, nbCol, buttonLabelAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
                 return FALSE;
             }
@@ -86,6 +133,7 @@ int sci_x_choose(char *fname, unsigned long fname_len)
         }
 
         setMessageBoxButtonsLabels(messageBoxID, buttonLabelAdr, nbCol * nbRow);
+        freeAllocatedMatrixOfString(nbRow, nbCol, buttonLabelAdr);
     }
 
     /* Display it and wait for a user input */
@@ -96,11 +144,19 @@ int sci_x_choose(char *fname, unsigned long fname_len)
 
     nbRow = 1;
     nbCol = 1;
-    CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &userValueAdr);
-    *stk(userValueAdr) = userValue;
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &userValueAdr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
+
+    *userValueAdr = userValue;
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return TRUE;
 }
 /*--------------------------------------------------------------------------*/

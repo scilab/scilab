@@ -56,7 +56,6 @@ int set_rotation_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
         return SET_PROPERTY_ERROR;
     }
 
-    FREE(_pvData);
     status = setGraphicObjectProperty(pobjUID, __GO_ROTATION_TYPE__, &rotationStyle, jni_int, 1);
 
     if (status == TRUE)

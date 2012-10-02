@@ -72,16 +72,16 @@ int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
         }
 
 
-        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 1, &iRows, &iCols, NULL, NULL);
+        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, NULL, NULL);
         if (iRows * iCols != 1)
         {
             Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
             return SET_PROPERTY_ERROR;
         }
 
-        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 1, &iRows, &iCols, &iLen, NULL);
-        cbString = (char*)MALLOC(sizeof(char) * iLen);
-        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 1, &iRows, &iCols, &iLen, &cbString);
+        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, NULL);
+        cbString = (char*)MALLOC(sizeof(char) * (iLen + 1));
+        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, &cbString);
     }
     else
     {
@@ -96,11 +96,6 @@ int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
     }
 
     status = setGraphicObjectProperty(pobjUID, __GO_CALLBACK__, cbString, jni_string, 1);
-
-    if (cbString)
-    {
-        FREE(cbString);
-    }
 
     if (status != TRUE)
     {
