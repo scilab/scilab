@@ -14,6 +14,7 @@
 package org.scilab.modules.graphic_objects.datatip;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
@@ -88,17 +89,18 @@ public class Datatip extends Text {
     /**
      * Convert the property name to the DatatipObjectProperty enum.
      */
-    public Object getPropertyFromName(String propertyName) {
-        if (propertyName.equals(__GO_DATATIP_DATA__)) {
-            return DatatipObjectProperty.TIP_DATA;
-        } else if (propertyName.equals(__GO_DATATIP_ORIENTATION__)) {
-            return DatatipObjectProperty.TIP_ORIENTATION;
-        } else if (propertyName.equals(__GO_DATATIP_3COMPONENT__)) {
-            return DatatipObjectProperty.TIP_3COMPONENT;
-        } else if (propertyName.equals(__GO_DATATIP_AUTOORIENTATION__)) {
-            return DatatipObjectProperty.TIP_AUTOORIENTATION;
-        } else {
-            return super.getPropertyFromName(propertyName);
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+            case __GO_DATATIP_DATA__:
+                return DatatipObjectProperty.TIP_DATA;
+            case __GO_DATATIP_ORIENTATION__:
+                return DatatipObjectProperty.TIP_ORIENTATION;
+            case __GO_DATATIP_3COMPONENT__:
+                return DatatipObjectProperty.TIP_3COMPONENT;
+            case __GO_DATATIP_AUTOORIENTATION__:
+                return DatatipObjectProperty.TIP_AUTOORIENTATION;
+            default:
+                return super.getPropertyFromName(propertyName);
         }
     }
 
@@ -204,7 +206,7 @@ public class Datatip extends Text {
 
     /**
      * If true set the Z component to be displayed.
-     * @param useZ True to enable display the Z component, false to disable. 
+     * @param useZ True to enable display the Z component, false to disable.
      */
     public void setUse3Component(Boolean useZ) {
         use3component = useZ;
@@ -240,15 +242,15 @@ public class Datatip extends Text {
     }
 
     @Override
-    public Double[] getPosition(){
+    public Double[] getPosition() {
         return getTipData();
     }
 
     /**
      * @return Type as String
      */
-    public String getType() {
-        return "Datatip";
+    public Integer getType() {
+        return GraphicObjectProperties.__GO_DATATIPS__;
     }
 
 }

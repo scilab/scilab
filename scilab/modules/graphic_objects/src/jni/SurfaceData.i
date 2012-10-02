@@ -28,11 +28,11 @@
 
 
 %{
-extern char * createObject3dData(char *obj, char *newObj, char *type);
+extern char * createObject3dData(char *obj, char *newObj, int type);
 extern double pickSurface(char * uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
 %}
 
-char * createObject3dData(char *obj, char *newObj, char *type);
+char * createObject3dData(char *obj, char *newObj, int type);
 double pickSurface(char * uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
 
 

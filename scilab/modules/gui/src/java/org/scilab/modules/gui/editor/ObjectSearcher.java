@@ -31,8 +31,8 @@ import java.util.*;
 public class ObjectSearcher {
 
     private List<String> objects = new ArrayList<String>();
-    private String type;
-    private String[] types;
+    private Integer type;
+    private Integer[] types;
 
     /**
     * Search for the given object type.
@@ -40,7 +40,7 @@ public class ObjectSearcher {
     * @param objType    Object type.
     * @return             A vector with the uid of the objects found.
     */
-    public String[] search( String rootUid, String objType) {
+    public String[] search( String rootUid, int objType) {
 
         type = objType;
         objects.clear();
@@ -63,11 +63,11 @@ public class ObjectSearcher {
     * @param type Object type.
     * @return The first parent found with the given type, or null if none is found.
     */
-    public String searchParent(String uid, String type) {
+    public String searchParent(String uid, Integer type) {
 
         if (uid != null) {
             String parent = (String)GraphicController.getController().getProperty( uid, GraphicObjectProperties.__GO_PARENT__);
-            if (type == (String)GraphicController.getController().getProperty(parent, GraphicObjectProperties.__GO_TYPE__)) {
+            if (type == (Integer)GraphicController.getController().getProperty(parent, GraphicObjectProperties.__GO_TYPE__)) {
                 return parent;
             } else {
                 return searchParent(parent, type);
@@ -82,7 +82,7 @@ public class ObjectSearcher {
         String[] childUid = (String[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN__);
 
         for (Integer i = 0; i < childCount; ++i ) {
-            String objType = (String)GraphicController.getController().getProperty(childUid[i], GraphicObjectProperties.__GO_TYPE__);
+            Integer objType = (Integer)GraphicController.getController().getProperty(childUid[i], GraphicObjectProperties.__GO_TYPE__);
             if ( objType == type ) {
                 objects.add( childUid[i] );
             } else {
@@ -97,7 +97,7 @@ public class ObjectSearcher {
         String[] childUid = (String[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN__);
 
         for (Integer i = 0; i < childCount; ++i ) {
-            String objType = (String)GraphicController.getController().getProperty(childUid[i], GraphicObjectProperties.__GO_TYPE__);
+            Integer objType = (Integer)GraphicController.getController().getProperty(childUid[i], GraphicObjectProperties.__GO_TYPE__);
 
             boolean found = false;
 
@@ -114,7 +114,7 @@ public class ObjectSearcher {
         }
     }
 
-    public String[] searchMultiple(String root, String[] objTypes) {
+    public String[] searchMultiple(String root, Integer[] objTypes) {
 
         types = objTypes;
         objects.clear();

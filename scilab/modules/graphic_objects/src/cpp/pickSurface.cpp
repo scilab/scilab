@@ -32,35 +32,35 @@ public:
 
     Vec3(): x(0), y(0), z(0) {}
     Vec3(double _x, double _y, double _z): x(_x), y(_y), z(_z) {}
-    
-    Vec3 operator - (Vec3 v) 
+
+    Vec3 operator - (Vec3 v)
     {
         return Vec3( x - v.x, y - v.y, z - v.z );
     }
 
-    Vec3 operator + (Vec3 v) 
+    Vec3 operator + (Vec3 v)
     {
         return Vec3( x + v.x, y + v.y, z + v.z );
     }
 
-    Vec3 operator * (double s) 
+    Vec3 operator * (double s)
     {
-        return Vec3( x*s, y*s, z*s );
+        return Vec3( x * s, y * s, z * s );
     }
 
-    Vec3 operator / (double s) 
+    Vec3 operator / (double s)
     {
-        return Vec3( x/s, y/s, z/s );
+        return Vec3( x / s, y / s, z / s );
     }
 
     double dot(Vec3 v)
     {
-        return x*v.x + y*v.y + z*v.z;
+        return x * v.x + y * v.y + z * v.z;
     }
 
     Vec3 cross(Vec3 v)
     {
-        return Vec3(y*v.z - z*v.y, z*v.x - x*v.z, x*v.y - y*v.x);
+        return Vec3(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
     }
 
     Vec3& normalize()
@@ -72,9 +72,9 @@ public:
         }
         else
         {
-            x/=d;
-            y/=d;
-            z/=d;
+            x /= d;
+            y /= d;
+            z /= d;
         }
         return *this;
     }
@@ -92,8 +92,8 @@ public:
 };
 
 int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, Vec3 &ret);
-void QuadTestAndSaveZ(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point, 
-                        double mx, double my,double mz,double mw,double &retZ);
+void QuadTestAndSaveZ(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point,
+                      double mx, double my, double mz, double mw, double &retZ);
 
 /*
  * Given a ray (point(x, y,z) + direction(dx, dy, dz))
@@ -108,7 +108,7 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
     double* Y = NULL;
     double* Z = NULL;
 
-    char *type;
+    int type;
     double lastZ = 2.0;
 
     Vec3 direction = Vec3(dx, dy, dz);
@@ -138,7 +138,7 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
 
 
     getGraphicObjectProperty(uid, __GO_TYPE__, jni_string, (void**) &type);
-    if (strcmp(type, __GO_PLOT3D__) == 0)
+    if (type == __GO_PLOT3D__)
     {
 
         int numX = 0;
@@ -155,20 +155,20 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
          * A point (x, y, z)  at (n,m) is given by
          * (X[n], Y[m], Z[n][m]) where X, Y are vectors and Z a matrix.
          */
-        for (int i = 0; i < (numX-1); ++i)
+        for (int i = 0; i < (numX - 1); ++i)
         {
-            for (int j = 0; j < (numY-1); ++j)
+            for (int j = 0; j < (numY - 1); ++j)
             {
-                Vec3 P0 = Vec3(X[i],   Y[j],   Z[i + j*numX]);
-                Vec3 P1 = Vec3(X[i+1], Y[j],   Z[(i+1) + j*numX]);
-                Vec3 P2 = Vec3(X[i+1], Y[j+1], Z[(i+1) + (j+1)*numX]);
-                Vec3 P3 = Vec3(X[i],   Y[j+1], Z[i + (j+1)*numX]);
+                Vec3 P0 = Vec3(X[i],   Y[j],   Z[i + j * numX]);
+                Vec3 P1 = Vec3(X[i + 1], Y[j],   Z[(i + 1) + j * numX]);
+                Vec3 P2 = Vec3(X[i + 1], Y[j + 1], Z[(i + 1) + (j + 1) * numX]);
+                Vec3 P3 = Vec3(X[i],   Y[j + 1], Z[i + (j + 1) * numX]);
 
                 QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
             }
         }
-    } 
-    else if (strcmp(type, __GO_FAC3D__) == 0)
+    }
+    else if (type == __GO_FAC3D__)
     {
         int ng = 0, nvg = 0;
         int *png = &ng, *pnvg = &nvg;
@@ -183,23 +183,23 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
         /*
          * Fac3d data model is made by gons
          * each gon should be a quad
-         * ordered in the vector 
+         * ordered in the vector
          * X = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
          * Y = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
          * Z = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
          * where a point is given by (x, y, z)
          */
-        for (int i = 0; i < ng*nvg; i+= nvg)
+        for (int i = 0; i < ng * nvg; i += nvg)
         {
             Vec3 P0 = Vec3(X[i],   Y[i],   Z[i]);
-            Vec3 P1 = Vec3(X[i+1], Y[i+1], Z[i+1]);
-            Vec3 P2 = Vec3(X[i+2], Y[i+2], Z[i+2]);
-            Vec3 P3 = Vec3(X[i+3], Y[i+3], Z[i+3]);
+            Vec3 P1 = Vec3(X[i + 1], Y[i + 1], Z[i + 1]);
+            Vec3 P2 = Vec3(X[i + 2], Y[i + 2], Z[i + 2]);
+            Vec3 P3 = Vec3(X[i + 3], Y[i + 3], Z[i + 3]);
 
             QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
         }
     }
-    if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    if (type == __GO_GRAYPLOT__)
     {
 
         int numX = 0;
@@ -215,9 +215,9 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
          */
 
         Vec3 P0 = Vec3(X[0],      Y[0],      0);
-        Vec3 P1 = Vec3(X[numX-1], Y[0],      0);
-        Vec3 P2 = Vec3(X[numX-1], Y[numY-1], 0);
-        Vec3 P3 = Vec3(X[0],      Y[numY-1], 0);
+        Vec3 P1 = Vec3(X[numX - 1], Y[0],      0);
+        Vec3 P2 = Vec3(X[numX - 1], Y[numY - 1], 0);
+        Vec3 P3 = Vec3(X[0],      Y[numY - 1], 0);
 
         QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
     }
@@ -232,7 +232,7 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
  * algorithm propose by Tomas Möller and Ben Trumbore.
  * Calculate barycentric cordinates (u, v) and test if
  * 0 <= u <= 1 && 0 <= v <= 1 && (u + v) <= 1, then the
- * intersection point is inside the triangle. 
+ * intersection point is inside the triangle.
  */
 int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, Vec3 &ret)
 {
@@ -246,21 +246,27 @@ int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, Vec3 &ret)
     det = Edge1.dot(pVec);
 
     if (det > -EPS && det < EPS)
+    {
         return 0;
+    }
 
-    inv_det = 1/det;
+    inv_det = 1 / det;
 
     tVec = P0 - V1;
     u = tVec.dot(pVec) * inv_det;
 
     if (u < 0.0 || u > 1.0)
+    {
         return 0;
+    }
 
     qVec = tVec.cross(Edge1);
     v = Dir.dot(qVec) * inv_det;
 
-    if (v < 0.0 || (u+v) > 1.0)
+    if (v < 0.0 || (u + v) > 1.0)
+    {
         return 0;
+    }
 
     t = Edge2.dot(qVec) * inv_det;
     ret = P0 + Dir * t;
@@ -275,8 +281,8 @@ bool isInViewBox(double * bounds, Vec3 point)
             bounds[4] <= point.z && bounds[5] >= point.z);
 }
 
-void QuadTestAndSaveZ(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point, 
-                        double mx, double my,double mz,double mw,double &retZ)
+void QuadTestAndSaveZ(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point,
+                      double mx, double my, double mz, double mw, double &retZ)
 {
     Vec3 ret;
 
@@ -289,7 +295,7 @@ void QuadTestAndSaveZ(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 d
             /* ray intersects the triangle, then we project only the Z cordinate
              * and store the nearest projected Z.
              */
-            double curZ = ret.x*mx + ret.y*my + ret.z*mz + mw;
+            double curZ = ret.x * mx + ret.y * my + ret.z * mz + mw;
             retZ = retZ < curZ ? retZ : curZ;
         }
     }
@@ -298,7 +304,7 @@ void QuadTestAndSaveZ(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 d
     {
         if (isInViewBox(bounds, ret))
         {
-            double curZ = ret.x*mx + ret.y*my + ret.z*mz + mw;
+            double curZ = ret.x * mx + ret.y * my + ret.z * mz + mw;
             retZ = retZ < curZ ? retZ : curZ;
         }
     }

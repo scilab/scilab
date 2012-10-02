@@ -53,12 +53,12 @@ public class PolylineHandler {
     */
     public void deleteAll(String uid) {
 
-        String type = (String)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
+        Integer type = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
         Integer childCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
         String[] child = (String[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN__);
         if (type == GraphicObjectProperties.__GO_AXES__) {
             for (Integer i = 0; i < childCount; ++i) {
-                String cType = (String)GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
+                Integer cType = (Integer)GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
                 if (cType != GraphicObjectProperties.__GO_LABEL__) {
                     CommonHandler.delete(child[i]);
                 } else {

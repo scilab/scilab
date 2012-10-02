@@ -418,7 +418,7 @@ public class EntityPicker {
         Vector3d Dir = v0.minus(v1).getNormalized();
 
 
-        String[] types = {GraphicObjectProperties.__GO_PLOT3D__, GraphicObjectProperties.__GO_FAC3D__, GraphicObjectProperties.__GO_GRAYPLOT__};
+        Integer[] types = {GraphicObjectProperties.__GO_PLOT3D__, GraphicObjectProperties.__GO_FAC3D__, GraphicObjectProperties.__GO_GRAYPLOT__};
         String[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
         double Z = 2.0;
         String picked = null;
@@ -445,7 +445,7 @@ public class EntityPicker {
         }
 
         curAxes = AxesHandler.getAxesFromUid(axes);
-        String[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIP__); 
+        String[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIPS__);
 
         if (datatips != null) {
 
@@ -474,10 +474,10 @@ public class EntityPicker {
                 int finalSize = (unit == 1) ? (8 + 2 * size) : size;
                 finalSize /= 2;
 
-                if ((Math.abs(point[0] - c2d[0]) <= dx*finalSize) && (Math.abs(point[1] - c2d[1]) <= dy*finalSize)) {
+                if ((Math.abs(point[0] - c2d[0]) <= dx * finalSize) && (Math.abs(point[1] - c2d[1]) <= dy * finalSize)) {
                     return datatips[i];
                 }
-            
+
             }
         }
 

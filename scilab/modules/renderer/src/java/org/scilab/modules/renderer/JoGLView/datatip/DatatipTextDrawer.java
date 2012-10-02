@@ -31,10 +31,6 @@ import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 import java.awt.Dimension;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-import org.scilab.modules.gui.datatip.DatatipOrientation;
-
 /**
  * Datatip text drawer
  *
@@ -95,7 +91,7 @@ public class DatatipTextDrawer extends TextManager {
         Vector3d delta = new Vector3d(finalSize, finalSize, 0);
         /* set up the text position according to the datatip orientation*/
         if (datatip.getOrientation() == 2 ||
-            datatip.getOrientation() == 3) {
+                datatip.getOrientation() == 3) {
             cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
             delta = delta.setY(-finalSize);
         }
@@ -106,9 +102,9 @@ public class DatatipTextDrawer extends TextManager {
         }
 
         cornerPositions[0] = cornerPositions[0].plus(delta);
-	cornerPositions[1] = cornerPositions[1].plus(delta);
+        cornerPositions[1] = cornerPositions[1].plus(delta);
         /* The Text object's rotation direction convention is opposite to the standard one, its angle is expressed in radians. */
-        drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, cornerPositions[0], -180.0*datatip.getFontAngle()/Math.PI);
+        drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, cornerPositions[0], -180.0 * datatip.getFontAngle() / Math.PI);
 
         drawingTools.getTransformationManager().useSceneCoordinate();
 
@@ -168,7 +164,7 @@ public class DatatipTextDrawer extends TextManager {
             }
 
             cornerPositions[0] = cornerPositions[0].plus(delta);
-	    cornerPositions[1] = cornerPositions[1].plus(delta);
+            cornerPositions[1] = cornerPositions[1].plus(delta);
 
 
             if (datatip.getTextBoxMode() == 2) {
@@ -187,18 +183,4 @@ public class DatatipTextDrawer extends TextManager {
         /* Set the computed coordinates */
         datatip.setCorners(coordinates);
     }
-
-    public void update(String id, String property) {
-        if (__GO_DATATIP_AUTOORIENTATION__.equals(property)) {
-            Boolean b = (Boolean)GraphicController.getController().getProperty(id, __GO_DATATIP_AUTOORIENTATION__);
-            if (b != null && b == true) {
-                /* update orientation*/
-                DatatipOrientation.setOrientation(id);
-            }
-        }
-        if (!__GO_POSITION__.equals(property) && !__GO_FONT_ANGLE__.equals(property)) {
-            dispose(id);
-        }
-    }
-
 }

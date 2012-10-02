@@ -85,9 +85,9 @@ public class DatatipCreate {
 
             if (polylineInterp.equals("d_i")) {
                 Double[] pos = DatatipCommon.Interpolate(coordDoubleXY[0], seg);
-                position = new double[]{pos[0], pos[1], 0.0};
+                position = new double[] {pos[0], pos[1], 0.0};
             } else {
-                position = new double[]{seg.x0, seg.y0, 0.0};
+                position = new double[] {seg.x0, seg.y0, 0.0};
             }
 
             insertPoint (polylineUid, position[0], position[1]);
@@ -110,8 +110,8 @@ public class DatatipCreate {
 
         String[] childrenUid = (String[]) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_CHILDREN__);
         for (int i = 0 ; i < childrenUid.length ; i++) {
-            String objType = (String) GraphicController.getController().getProperty(childrenUid[i], GraphicObjectProperties.__GO_TYPE__);
-            if (objType == GraphicObjectProperties.__GO_DATATIP__) {
+            Integer objType = (Integer)GraphicController.getController().getProperty(childrenUid[i], GraphicObjectProperties.__GO_TYPE__);
+            if (objType == GraphicObjectProperties.__GO_DATATIPS__) {
                 GraphicController.getController().removeRelationShipAndDelete(childrenUid[i]);
             }
         }
@@ -272,7 +272,7 @@ public class DatatipCreate {
     */
     public static String askToCreateObject() {
 
-        String newDatatip = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_DATATIP__));
+        String newDatatip = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_DATATIPS__));
         return newDatatip;
     }
 

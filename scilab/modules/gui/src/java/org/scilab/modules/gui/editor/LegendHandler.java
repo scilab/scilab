@@ -42,7 +42,7 @@ public class LegendHandler {
         Integer childCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
         String[] child = (String[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN__);
         for (Integer i = 0; i < childCount; i++) {
-            String type = (String)GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
+            Integer type = (Integer)GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
             if (type == GraphicObjectProperties.__GO_LEGEND__) {
                 return child[i];
             }

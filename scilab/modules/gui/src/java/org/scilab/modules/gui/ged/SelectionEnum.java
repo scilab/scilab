@@ -31,19 +31,20 @@ public enum SelectionEnum {
     AXES_OR_FIGURE;
 
     public static SelectionEnum objectToEnum(String uid) {
-        String type = (String) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
-        if (type == GraphicObjectProperties.__GO_POLYLINE__) {
-            return POLYLINE;
-        } else if (type == GraphicObjectProperties.__GO_LEGEND__) {
-            return LEGEND;
-        } else if (type == GraphicObjectProperties.__GO_PLOT3D__) {
-            return PLOT3D;
-        } else if (type == GraphicObjectProperties.__GO_FAC3D__) {
-            return FAC3D;
-        } else if (type == GraphicObjectProperties.__GO_GRAYPLOT__) {
-            return GRAYPLOT;
-        } else {
-            return null;
+        Integer type = (Integer) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
+        switch (type) {
+            case GraphicObjectProperties.__GO_POLYLINE__:
+                return POLYLINE;
+            case GraphicObjectProperties.__GO_LEGEND__:
+                return LEGEND;
+            case GraphicObjectProperties.__GO_PLOT3D__:
+                return PLOT3D;
+            case GraphicObjectProperties.__GO_FAC3D__:
+                return FAC3D;
+            case GraphicObjectProperties.__GO_GRAYPLOT__:
+                return GRAYPLOT;
+            default:
+                return null;
         }
     }
 }

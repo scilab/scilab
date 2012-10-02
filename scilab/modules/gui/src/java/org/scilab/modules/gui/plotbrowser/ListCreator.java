@@ -65,7 +65,7 @@ public class ListCreator {
             public void mousePressed(MouseEvent e) {
                 if (e.getX() < 20) {
                     int index = list.locationToIndex(e.getPoint());
-                    if(index != -1) {
+                    if (index != -1) {
                         JCheckBox checkbox = getCheckbox(index);
                         checkbox.setSelected(!checkbox.isSelected());
                         setVisible(!checkbox.isSelected(), uids.get(index));
@@ -84,15 +84,15 @@ public class ListCreator {
         for (int i = 0; i < axes.length; i++) {
 
             String title = (String) GraphicController.getController()
-                                   .getProperty(axes[i], GraphicObjectProperties.__GO_TITLE__);
+                           .getProperty(axes[i], GraphicObjectProperties.__GO_TITLE__);
 
             String[] text = (String[]) GraphicController.getController()
-                               .getProperty(title, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+                            .getProperty(title, GraphicObjectProperties.__GO_TEXT_STRINGS__);
 
             cbArray.add(new JCheckBox(text[0].isEmpty() ? MessagesPlotBrowser.axis : text[0]));
             uids.add(axes[i]);
 
-            String[] line = instanceObject.search(axes[i], "Polyline");
+            String[] line = instanceObject.search(axes[i], GraphicObjectProperties.__GO_POLYLINE_STYLE__);
             if (line != null) {
                 for (int j = 0; j < line.length; j++) {
                     cbArray.add(new JCheckBox(MessagesPlotBrowser.polyline));
@@ -100,7 +100,7 @@ public class ListCreator {
                 }
             }
 
-            String[] grayplot = instanceObject.search(axes[i], "Grayplot");
+            String[] grayplot = instanceObject.search(axes[i], GraphicObjectProperties.__GO_GRAYPLOT__);
             if (grayplot != null) {
                 for (int j = 0; j < grayplot.length; j++) {
                     cbArray.add(new JCheckBox(MessagesPlotBrowser.surface));
@@ -108,7 +108,7 @@ public class ListCreator {
                 }
             }
 
-            String[] fac3d = instanceObject.search(axes[i], "Fac3d");
+            String[] fac3d = instanceObject.search(axes[i], GraphicObjectProperties.__GO_FAC3D__);
             if (fac3d != null) {
                 for (int j = 0; j < fac3d.length; j++) {
                     cbArray.add(new JCheckBox(MessagesPlotBrowser.surface));
@@ -116,7 +116,7 @@ public class ListCreator {
                 }
             }
 
-            String[] plot3d = instanceObject.search(axes[i], "Plot3d");
+            String[] plot3d = instanceObject.search(axes[i], GraphicObjectProperties.__GO_PLOT3D__);
             if (plot3d != null) {
                 for (int j = 0; j < plot3d.length; j++) {
                     cbArray.add(new JCheckBox(MessagesPlotBrowser.surface));
@@ -143,9 +143,9 @@ public class ListCreator {
     * Loads the current status of objects.
     */
     private void getVisible() {
-        for (int index = 0; index < cbArray.size(); index++){
+        for (int index = 0; index < cbArray.size(); index++) {
             boolean isVisible = (Boolean) GraphicController.getController()
-                    .getProperty(uids.get(index), GraphicObjectProperties.__GO_VISIBLE__);
+                                .getProperty(uids.get(index), GraphicObjectProperties.__GO_VISIBLE__);
             JCheckBox checkboxAxis = getCheckbox(index);
             checkboxAxis.setSelected(!isVisible);
         }
@@ -158,7 +158,7 @@ public class ListCreator {
     */
     public void setVisible(boolean status, String objectID) {
         GraphicController.getController()
-                .setProperty(objectID, GraphicObjectProperties.__GO_VISIBLE__, status);
+        .setProperty(objectID, GraphicObjectProperties.__GO_VISIBLE__, status);
     }
 
     /**

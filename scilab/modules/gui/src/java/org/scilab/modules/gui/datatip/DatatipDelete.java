@@ -33,7 +33,7 @@ public class DatatipDelete {
 
         Double[] datatipPosition = (Double[]) GraphicController.getController().getProperty(datatipUid, GraphicObjectProperties.__GO_DATATIP_DATA__);
 
-        double[] graphCoordDouble = new double[]{0.0, 0.0, 0.0};
+        double[] graphCoordDouble = new double[] {0.0, 0.0, 0.0};
         graphCoordDouble[0] = datatipPosition[0];
         graphCoordDouble[1] = datatipPosition[1];
         graphCoordDouble[2] = datatipPosition[2];
@@ -52,12 +52,11 @@ public class DatatipDelete {
     */
     public static void datatipRemoveProgramIndex (String polylineUid, int indexRemove) {
 
-        String[] datatips = (new ObjectSearcher()).search(polylineUid, GraphicObjectProperties.__GO_DATATIP__);
+        String[] datatips = (new ObjectSearcher()).search(polylineUid, GraphicObjectProperties.__GO_DATATIPS__);
 
         if (datatips != null) {
             /* use index from 1 .. lenght (like scilab vectors)*/
-            if (indexRemove >= 1 && indexRemove <= datatips.length)
-            {
+            if (indexRemove >= 1 && indexRemove <= datatips.length) {
                 Double[] datatipPosition = (Double[]) GraphicController.getController().getProperty(datatips[indexRemove - 1], GraphicObjectProperties.__GO_DATATIP_DATA__);
                 GraphicController.getController().removeRelationShipAndDelete(datatips[indexRemove - 1]);
                 removePoint (polylineUid, datatipPosition[0], datatipPosition[1]);
@@ -95,15 +94,15 @@ public class DatatipDelete {
         int xSkip = -1;
         int ySkip = -1;
         if (numDatatips > 0) {
-            int allocArray = (2*numDatatips) - 2;
+            int allocArray = (2 * numDatatips) - 2;
             Double[] newDatatips = new Double[allocArray];
             if (allocArray == 0) {
                 GraphicController.getController().setProperty(polylineUid, GraphicObjectProperties.__GO_DATATIPS__, newDatatips);
             } else {
                 for (int i = 0 ; i < currentDatatips.length ; i++) {
-                    if (currentDatatips[i] == coordX && currentDatatips[i+numDatatips] == coordY) {
+                    if (currentDatatips[i] == coordX && currentDatatips[i + numDatatips] == coordY) {
                         xSkip = i;
-                        ySkip = i+numDatatips;
+                        ySkip = i + numDatatips;
                         break;
                     }
                 }

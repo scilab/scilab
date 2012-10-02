@@ -133,7 +133,7 @@ public class CommonHandler {
         String ret = null;
         dup = GraphicController.getController().cloneObject(uid);
         GraphicController.getController().setGraphicObjectRelationship("", dup);
-        String typeName = (String)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
+        Integer typeName = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
 
         if (typeName == GraphicObjectProperties.__GO_POLYLINE__) {
             ret = PolylineData.createPolylineData(uid, dup);
@@ -158,7 +158,7 @@ public class CommonHandler {
      */
     public static void insert(String axes, String uid) {
 
-        String typeName = (String)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
+        Integer typeName = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
 
         if (typeName == GraphicObjectProperties.__GO_POLYLINE__) {
             String newCompound = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_COMPOUND__));
@@ -218,9 +218,9 @@ public class CommonHandler {
      * @param figure figure unique identifier.
      */
     public static void unhideAll(String figure) {
-        String[] types = {GraphicObjectProperties.__GO_POLYLINE__, GraphicObjectProperties.__GO_PLOT3D__,
-                          GraphicObjectProperties.__GO_FAC3D__, GraphicObjectProperties.__GO_GRAYPLOT__
-                         };
+        Integer[] types = {GraphicObjectProperties.__GO_POLYLINE__, GraphicObjectProperties.__GO_PLOT3D__,
+                           GraphicObjectProperties.__GO_FAC3D__, GraphicObjectProperties.__GO_GRAYPLOT__
+                          };
         String[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
         if (objs != null) {
             for (int i = 0; i < objs.length; ++i) {

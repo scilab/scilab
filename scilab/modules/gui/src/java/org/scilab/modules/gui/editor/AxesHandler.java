@@ -200,10 +200,9 @@ public class AxesHandler {
      */
     private static boolean isBlank(String objectID) {
 
-        String type = (String)GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_TYPE__);
+        Integer type = (Integer)GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_TYPE__);
         boolean flag = (Boolean) GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_VISIBLE__);
         if (flag) {
-
             if (type != GraphicObjectProperties.__GO_LABEL__ && type != GraphicObjectProperties.__GO_COMPOUND__) {
                 return flag;
             } else if (type == GraphicObjectProperties.__GO_COMPOUND__) {
