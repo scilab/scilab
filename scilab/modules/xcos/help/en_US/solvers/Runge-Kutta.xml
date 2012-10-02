@@ -127,8 +127,7 @@
             <emphasis>
                 10<superscript>-3</superscript>
             </emphasis>
-            , rounding errors sometimes come into play as we approach 
-            <emphasis>
+            , rounding errors sometimes come into play as we approach <emphasis>
                 4*10<superscript>-4</superscript>
             </emphasis>
             . Indeed, the interval splitting cannot be done properly and we get capricious results.
@@ -148,7 +147,7 @@
 loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
-scs_m.props.tol(6) = 4;
+scs_m.props.tol(6) = 5;
 scs_m.props.tol(7) = 10^-2;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
 ]]></scilab:image>
@@ -165,7 +164,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
       scs_m.props.tf = 10000;
 
       // Select the solver Runge-Kutta and set the precision
-      scs_m.props.tol(6) = 4;
+      scs_m.props.tol(6) = 5;
       scs_m.props.tol(7) = 10^-2;
 
       // Start the timer, launch the simulation and display time
@@ -183,7 +182,7 @@ Time for Runge-Kutta :
             ]]></screen>
         </para>
         <para>
-            Now, in the following script, we compare the time difference between the methods by running the example with the five solvers in turn :
+            Now, in the following script, we compare the time difference between Runge-Kutta and Sundials by running the example with the five solvers in turn :
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integRK.sce">
                 Open the script
             </link>
@@ -221,6 +220,9 @@ Time for Runge-Kutta :
             </member>
             <member>
                 <link linkend="IDA">IDA</link>
+            </member>
+            <member>
+                <link linkend="LSodar">LSodar</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>

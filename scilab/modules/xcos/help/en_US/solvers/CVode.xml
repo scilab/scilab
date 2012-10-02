@@ -191,6 +191,7 @@
 loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
+scs_m.props.tol(6) = 1;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
 ]]></scilab:image>
         </para>
@@ -206,7 +207,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
       scs_m.props.tf = 10000;
 
       // Select the solver BDF / Newton
-      scs_m.props.tol(6) = 0;
+      scs_m.props.tol(6) = 1;
 
       // Start the timer, launch the simulation and display time
       tic();
@@ -253,6 +254,9 @@ Time for Adams / Functional :
         <simplelist type="inline">
             <member>
                 <link linkend="IDA">IDA</link>
+            </member>
+            <member>
+                <link linkend="LSodar">LSodar</link>
             </member>
             <member>
                 <link linkend="RK">Runge-Kutta 4(5)</link>

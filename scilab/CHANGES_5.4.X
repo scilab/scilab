@@ -53,6 +53,8 @@ Xcos
 
 * Update the Palette icons and the rendering of some blocks.
 
+* Add a new ODE solver : LSodar. Automatically switches methods to efficiently solve both stiff and nonstiff problems. Includes a rootfinding feature.
+
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
 
