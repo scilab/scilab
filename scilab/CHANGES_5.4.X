@@ -4,6 +4,8 @@
 Bug fixes
 ==========
 
+* Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
+
 
 
                     Changes between version 5.3.3 and 5.4.0
