@@ -896,9 +896,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    # Provide known paths where distribs/OS can store JNI libs
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
-                   LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jogl2 -L/usr/lib64/jogl2"               # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
-                   AC_CHECK_LIB([jogl_desktop], [glTexParameterf], [JOGL2_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl_desktop. Will try against -ljogl2 -lGL])])
+                   AC_CHECK_LIB([jogl_desktop], [glTexParameterf], [JOGL2_LIBS="-ljogl_desktop"],[AC_MSG_WARN([Could not link against -ljogl_desktop. Will try against -ljogl_desktop -lGL])])
                    if test -z "$JOGL2_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
                        # purpose to disable the cache
@@ -925,10 +925,10 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                    # Provide known paths where distribs/OS can store JNI libs
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
-                   LDFLAGS="$LDFLAGS -L/usr/lib/gluegen -L/usr/lib64/gluegen"           # RedHat
+                   LDFLAGS="$LDFLAGS -L/usr/lib/gluegen2 -L/usr/lib64/gluegen2"         # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    symbol="Java_jogamp_common_jvm_JVMUtil_initialize"
-                   AC_CHECK_LIB([gluegen2-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
+                   AC_CHECK_LIB([gluegen2-rt], [$symbol], [GLUEGEN2_RT_LIBS="-lgluegen2-rt"],
                    [AC_MSG_ERROR([libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
                    [-ldl])
                    LDFLAGS=$LDFLAGS_save
