@@ -262,6 +262,9 @@ Time for Adams / Functional :
                 <link linkend="RK">Runge-Kutta 4(5)</link>
             </member>
             <member>
+                <link linkend="DoPri">Dormand-Price 4(5)</link>
+            </member>
+            <member>
                 <link linkend="ode">ode</link>
             </member>
             <member>

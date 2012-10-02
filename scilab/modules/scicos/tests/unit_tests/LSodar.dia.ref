@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2012 - Scilab Enterprises
+// Copyright (C) 2012 - Scilab Enterprises - Paul Bignier
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -12,10 +12,10 @@ loadScicos();
 loadXcosLibs();
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/LSodar_test.zcos"));
 // Set solver to LSodar + run LSodar + save results
-scs_m.props.tol(6) = 0;											// Set solver to LSodar
-try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end;	// Run LSodar
-lsodarval = res.values;		// Results
-time = res.time;			// Time
+scs_m.props.tol(6) = 0;                                         // Set solver to LSodar
+try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end; // Run LSodar
+lsodarval = res.values;  // Results
+time = res.time;         // Time
 // Set solver to CVode BDF/Newton + run + save results
 scs_m.props.tol(6) = 1;
 try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end;
