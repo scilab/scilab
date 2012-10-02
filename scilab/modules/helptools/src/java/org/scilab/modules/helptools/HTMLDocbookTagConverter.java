@@ -88,6 +88,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected String prependToProgramListing;
     protected String currentId;
     protected String indexFilename = "index" /*UUID.randomUUID().toString()*/ + ".html";
+    protected String language;
 
     protected boolean isToolbox;
     protected final GenerationType type;
@@ -104,7 +105,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @param isToolbox is true when compile a toolbox' help
      * @param urlBase the base url for external link
      */
-    public HTMLDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase, GenerationType type) throws IOException, SAXException {
+    public HTMLDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase, String language, GenerationType type) throws IOException, SAXException {
         super(inName);
 
         this.version = version;
@@ -120,37 +121,38 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         this.urlBase = urlBase;
         this.linkToTheWeb = urlBase != null && !urlBase.equals("scilab://");
         this.isToolbox = isToolbox;
+        this.language = language;
         this.type = type;
         if (isToolbox) {// we generate a toolbox's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
-                    public String getLink(String id) {
-                        if (id.length() > 0 && id.charAt(0) == '%') {
-                            id = id.replace("%", "percent");
-                        }
-                        String link = mapId.get(id);
-                        if (link == null) {
-                            return HTMLDocbookTagConverter.this.urlBase + id;
-                        } else {
-                            return link;
-                        }
+                public String getLink(String id) {
+                    if (id.length() > 0 && id.charAt(0) == '%') {
+                        id = id.replace("%", "percent");
                     }
-                });
+                    String link = mapId.get(id);
+                    if (link == null) {
+                        return HTMLDocbookTagConverter.this.urlBase + id;
+                    } else {
+                        return link;
+                    }
+                }
+            });
         } else {// we generate Scilab's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
-                    public String getLink(String id) {
-                        if (id.length() > 0 && id.charAt(0) == '%') {
-                            id = id.replace("%", "percent");
-                        }
-                        return mapId.get(id);
+                public String getLink(String id) {
+                    if (id.length() > 0 && id.charAt(0) == '%') {
+                        id = id.replace("%", "percent");
                     }
-                });
+                    return mapId.get(id);
+                }
+            });
         }
 
         xmlLexer = new XMLLexer();
         cLexer = new CLexer();
         javaLexer = new JavaLexer();
         File tpl = new File(template);
-        templateHandler = new TemplateHandler(this, tpl);
+        templateHandler = new TemplateHandler(this, tpl, language);
         ImageConverter.registerExternalImageConverter(LaTeXImageConverter.getInstance(type));
         ImageConverter.registerExternalImageConverter(MathMLImageConverter.getInstance(type));
         ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance(type));

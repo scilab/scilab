@@ -41,9 +41,9 @@ void ScilabNativeView__deleteObject(char const*pstId)
     ScilabView::deleteObject(pstId);
 }
 
-void ScilabNativeView__updateObject(char const* pstId, char const* pstProperty)
+void ScilabNativeView__updateObject(char const* pstId, int iProperty)
 {
-    ScilabView::updateObject(pstId, pstProperty);
+    ScilabView::updateObject(pstId, iProperty);
 }
 
 /**
@@ -104,10 +104,11 @@ int ScilabView::getNbFigure(void)
 void ScilabView::createObject(char const* pstId)
 {
     //std::cerr << "[ScilabView] ++ createObject UID=" << pstId << std::endl;
-    char *pstType = NULL;
+    int iType = -1;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(pstId, __GO_TYPE__, jni_string, (void **)&pstType);
-    if (pstType != NULL && strcmp(pstType, __GO_FIGURE__) == 0)
+    getGraphicObjectProperty(pstId, __GO_TYPE__, jni_int, (void **)&piType);
+    if (iType != -1 && iType == __GO_FIGURE__)
     {
         m_figureList[pstId] = -1;
         setCurrentFigure(pstId);
@@ -120,15 +121,16 @@ void ScilabView::createObject(char const* pstId)
 void ScilabView::deleteObject(char const* pstId)
 {
     //std::cerr << "[ScilabView] -- deleteObject UID=" << pstId << std::endl;
-    char *pstType = NULL;
+    int iType = -1;
+    int *piType = &iType;
     char *pstParentUID = NULL;
 
-    getGraphicObjectProperty(pstId, __GO_TYPE__, jni_string, (void **)&pstType);
+    getGraphicObjectProperty(pstId, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
     ** If deleting a figure, remove from figure list.
     */
-    if (pstType != NULL && strcmp(pstType, __GO_FIGURE__) == 0)
+    if (iType != -1 && iType == __GO_FIGURE__)
     {
         m_figureList.erase(pstId);
     }
@@ -170,14 +172,14 @@ void ScilabView::deleteObject(char const* pstId)
     deleteDataObject(pstId);
 }
 
-void ScilabView::updateObject(char const* pstId, char const* pstProperty)
+void ScilabView::updateObject(char const* pstId, int iProperty)
 {
     //std::cerr << "[ScilabView] == updateObject UID=" << pstId << " PROPERTY=" << pstProperty << std::endl;
 
     /*
      ** Take care of update if the value update is ID and object type is a Figure I manage.
      */
-    if (strcmp(pstProperty, __GO_ID__) == 0 && m_figureList.find(pstId) != m_figureList.end())
+    if (iProperty == __GO_ID__ && m_figureList.find(pstId) != m_figureList.end())
     {
         int iNewId = 0;
         int *piNewId = &iNewId;

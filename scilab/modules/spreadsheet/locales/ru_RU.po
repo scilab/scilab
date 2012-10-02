@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-01-06 01:36+0000\n"
+"PO-Revision-Date: 2012-09-19 14:06+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: ru\n"
 
 #, c-format
@@ -65,6 +65,174 @@ msgstr ""
 #, c-format
 msgid "%s: End of file.\n"
 msgstr "%s: Конец файла.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка распределения памяти.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидался тип double.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of double expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица значений типа "
+"double.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A matrix of double, with integer "
+"values, expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалась матрица "
+"целочисленных значений типа double.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' , '%s', '%s' '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось '%s', '%s' , '%s', "
+"'%s' '%s' или '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось значение от 1 до 17 "
+"типа double.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' ,'%s' , '%s', '%s', '%s', "
+"'%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось '%s', '%s' ,'%s' , "
+"'%s', '%s', '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица строковых "
+"значений.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: Ожидалось четыре элемента.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A column or row vector expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: Ожидался вектор-столбец или "
+"вектор-строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Inconsistent range.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер входного аргумента №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось строковое значение "
+"'%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Неверное значение входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: separator and decimal must have different values.\n"
+msgstr "%s: разделитель и десятичная точка должны иметь разные значения.\n"
+
+#, c-format
+msgid "%s: can not convert data.\n"
+msgstr "%s: не удалось преобразовать данные.\n"
+
+#, c-format
+msgid "%s: %s does not exist.\n"
+msgstr "%s: %s не существует.\n"
+
+#, c-format
+msgid "%s: can not open file %s.\n"
+msgstr "%s: не удалось открыть файл %s.\n"
+
+#, c-format
+msgid "%s: can not read file %s: Error in the column structure\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not read file %s.\n"
+msgstr "%s: не удалось прочитать файл %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not read text: Error in the column structure\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not read text.\n"
+msgstr "%s: не удалось прочитать текст.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array of strings "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d:ожидалсся массив строк размером 1 "
+"на n или m на 1.\n"
+
+#, c-format
+msgid "%s: Not supported format %s.\n"
+msgstr "%s: Неподдерживаемый формат %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of string or a matrix of "
+"real expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица строк или матрица "
+"вещественных значений.\n"
+
+#, c-format
+msgid "%s: error.\n"
+msgstr "%s: ошибка.\n"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -245,24 +413,3 @@ msgstr "Электронная таблица"
 
 msgid "Read a xls file"
 msgstr "Прочитать xls-файл"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: file %s does not exist.\n"
-msgstr "%s: файл %s не существует.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался «%s» или «%s».\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"

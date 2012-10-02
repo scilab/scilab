@@ -640,7 +640,7 @@ function save_graphichandle(h,fd)
     c=h.children;
     n=size(c,"*")
     mput(n,"il",fd)
-    for k=1:n
+    for k=n:-1:1
       save_graphichandle(c(k),fd)
     end
     
@@ -650,7 +650,7 @@ function save_graphichandle(h,fd)
     c=h.children;
     n=size(c,"*")
     mput(n,"il",fd)
-    for k=1:n
+    for k=n:-1:1
       save_graphichandle(c(k),fd)
     end
     

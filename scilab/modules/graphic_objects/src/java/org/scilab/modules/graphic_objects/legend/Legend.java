@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.ClippableTextObject;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
@@ -100,18 +101,19 @@ public class Legend extends ClippableTextObject {
      * @param propertyName the property name
      * @return the property enum
      */
-    public Object getPropertyFromName(String propertyName) {
-        if (propertyName.equals(__GO_LINKS__)) {
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+        case __GO_LINKS__ :
             return LegendProperty.LINKS;
-        } else if (propertyName.equals(__GO_LINKS_COUNT__)) {
+        case __GO_LINKS_COUNT__ :
             return LegendProperty.LINKSCOUNT;
-        } else if (propertyName.equals(__GO_LEGEND_LOCATION__)) {
+        case __GO_LEGEND_LOCATION__ :
             return LegendProperty.LEGENDLOCATION;
-        } else if (propertyName.equals(__GO_POSITION__)) {
+        case __GO_POSITION__ :
             return LegendProperty.POSITION;
-        } else if (propertyName.equals(__GO_SIZE__)) {
+        case __GO_SIZE__ :
             return LegendProperty.SIZE;
-        } else {
+        default :
             return super.getPropertyFromName(propertyName);
         }
     }
@@ -193,7 +195,6 @@ public class Legend extends ClippableTextObject {
      * @return the valid links
      */
     public String[] getValidLinks() {
-        int numValidLinks = 0;
         ArrayList <String> validLinks = new ArrayList<String>(0);
 
         for (int i = 0; i < links.size(); i++) {
@@ -201,7 +202,6 @@ public class Legend extends ClippableTextObject {
 
             if (object != null) {
                 validLinks.add(links.get(i));
-                numValidLinks++;
             }
         }
 
@@ -274,7 +274,6 @@ public class Legend extends ClippableTextObject {
      * @return the valid text strings
      */
     public String[] getValidTextStrings() {
-        int numValidLinks = 0;
         ArrayList <String> validStrings = new ArrayList<String>(0);
 
         /* Text strings are stored in reverse order relative to links. */
@@ -283,7 +282,6 @@ public class Legend extends ClippableTextObject {
 
             if (object != null) {
                 validStrings.add(text[i].getText());
-                numValidLinks++;
             }
         }
 
@@ -338,8 +336,8 @@ public class Legend extends ClippableTextObject {
     /**
      * @return Type as String
      */
-    public String getType() {
-        return "Legend";
+    public Integer getType() {
+        return GraphicObjectProperties.__GO_LEGEND__;
     }
 
 }

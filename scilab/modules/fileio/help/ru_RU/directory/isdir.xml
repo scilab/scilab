@@ -42,7 +42,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <function>r = isdir(path)</function> проверяет является ли путь <varname>path</varname> путём до директории.
+            <code>r = isdir(path)</code> проверяет является ли путь <varname>path</varname> путём до директории.
         </para>
     </refsection>
     <refsection>

@@ -33,7 +33,7 @@ class RulerDrawerManager {
     /**
      * Set of properties that affect ruler sprites.
      */
-    private static final Set<String> SPRITE_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> SPRITE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_FONT_SIZE__,
             GraphicObjectProperties.__GO_FONT_COLOR__,
             GraphicObjectProperties.__GO_FONT_STYLE__,
@@ -86,7 +86,7 @@ class RulerDrawerManager {
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, String property) {
+    public void update(String id, int property) {
 
         /**
          * If update affect {@see Axes} ruler sprites, we clear the corresponding {@see RulerSpriteManager}.

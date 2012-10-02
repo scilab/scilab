@@ -166,8 +166,7 @@
             <varlistentry>
                 <term>-nb</term>
                 <listitem>
-                    <para>si cette option est présente la bannière d'acceuil de Scilab
-                        n'est pas affichée.
+                    <para>si cette option est présente le message de chargement de Scilab n'est pas affiché.
                     </para>
                 </listitem>
             </varlistentry>

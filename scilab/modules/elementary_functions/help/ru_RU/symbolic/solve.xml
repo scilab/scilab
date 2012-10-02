@@ -17,15 +17,15 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>[x]=solve(A,b)</synopsis>
+        <synopsis>[x] = solve(A, b)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>A,b,x</term>
+                <term>A, b, x</term>
                 <listitem>
-                    <para>матрица (соответственно, вектроры) символьных строк</para>
+                    <para>матрица (соответственно, векторы) символьных строк.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,7 +33,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Решает уравнение <literal>A*x = b</literal>, где <literal>A</literal> является верхней треугольной матрицей, составленной из символьных строк.
+            Инструкция <code>x = solve(A, b)</code> решает уравнение <literal>A*x = b</literal>, где <literal>A</literal> является верхней треугольной матрицей,
+            составленной из символьных строк.
         </para>
     </refsection>
     <refsection>

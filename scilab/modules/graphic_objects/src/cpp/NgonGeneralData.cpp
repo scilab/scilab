@@ -47,41 +47,27 @@ NgonGeneralData::~NgonGeneralData(void)
     }
 }
 
-int NgonGeneralData::getPropertyFromName(char const* propertyName)
+int NgonGeneralData::getPropertyFromName(int propertyName)
 {
-    if (strcmp(propertyName, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__) == 0)
+    switch (propertyName)
     {
+    case __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__ :
         return NUM_ELEMENTS_ARRAY;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_COORDINATES__) == 0)
-    {
+    case __GO_DATA_MODEL_COORDINATES__ :
         return COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_X__) == 0)
-    {
+    case __GO_DATA_MODEL_X__ :
         return X_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Y__) == 0)
-    {
+    case __GO_DATA_MODEL_Y__ :
         return Y_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Z__) == 0)
-    {
+    case __GO_DATA_MODEL_Z__ :
         return Z_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_COLORS__) == 0)
-    {
+    case __GO_DATA_MODEL_COLORS__ :
         return COLORS;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_NUM_COLORS__) == 0)
-    {
+    case __GO_DATA_MODEL_NUM_COLORS__ :
         return NUM_COLORS;
-    }
-    else
-    {
+    default :
         return NgonData::getPropertyFromName(propertyName);
     }
-
 }
 
 int NgonGeneralData::setDataProperty(int property, void const* value, int numElements)

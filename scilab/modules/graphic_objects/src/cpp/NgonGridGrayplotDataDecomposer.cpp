@@ -52,7 +52,6 @@ void NgonGridGrayplotDataDecomposer::fillColors(char* id, float* buffer, int buf
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &z);
 
-    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &parent);
     getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
 
     /* Temporary: to avoid getting a null parent_figure property when the object is built */

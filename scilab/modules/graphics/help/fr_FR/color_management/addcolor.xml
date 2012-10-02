@@ -51,6 +51,13 @@ h = gcf();
 h.color_map = jetcolormap(16);
 addcolor(name2rgb('grey')/255);
   ]]></programlisting>
+        <scilab:image> 
+            plot3d();
+            h = gcf();
+            h.color_map = jetcolormap(16);
+            addcolor(name2rgb('grey')/255);
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

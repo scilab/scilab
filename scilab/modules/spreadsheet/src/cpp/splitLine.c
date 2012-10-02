@@ -15,9 +15,9 @@
 #include "csv_strsubst.h"
 #include "MALLOC.h"
 /* ==================================================================== */
-char **splitLine(const char *str, const char *sep, int *toks, char meta)
+char **splitLineCSV(const char *str, const char *sep, int *toks, char meta)
 {
-#define emptyfield "__EMPTY_FIELD_CSV__"
+#define EMPTYFIELD "__EMPTY_FIELD_CSV__"
     char **retstr = NULL;
     const char *idx = NULL;
     const char *end = NULL;
@@ -32,14 +32,14 @@ char **splitLine(const char *str, const char *sep, int *toks, char meta)
     char *substitutedstring = NULL;
 
     sprintf(tokenstring_to_search, "%s%s", sep, sep);
-    sprintf(tokenreplacement_string, "%s%s%s", sep, emptyfield, sep);
+    sprintf(tokenreplacement_string, "%s%s%s", sep, EMPTYFIELD, sep);
     substitutedstring = csv_strsubst(str, tokenstring_to_search, tokenreplacement_string);
     if (strncmp(substitutedstring, sep, strlen(sep)) == 0)
     {
         char *tmp = NULL;
-        size_t l = strlen(substitutedstring) + strlen(emptyfield) + strlen(sep) + 1;
+        size_t l = strlen(substitutedstring) + strlen(EMPTYFIELD) + strlen(sep) + 1;
         tmp = (char*)MALLOC(sizeof(char) * l);
-        sprintf(tmp, "%s%s%s", emptyfield, sep, &substitutedstring[1]);
+        sprintf(tmp, "%s%s%s", EMPTYFIELD, sep, &substitutedstring[1]);
         FREE(substitutedstring);
         substitutedstring = tmp;
     }
@@ -47,9 +47,9 @@ char **splitLine(const char *str, const char *sep, int *toks, char meta)
     if (substitutedstring[strlen(substitutedstring) - 1] == sep[0])
     {
         char *tmp = NULL;
-        size_t l = strlen(substitutedstring) + strlen(emptyfield) + 1;
+        size_t l = strlen(substitutedstring) + strlen(EMPTYFIELD) + 1;
         tmp = (char*)MALLOC(sizeof(char) * l);
-        sprintf(tmp, "%s%s", substitutedstring, emptyfield);
+        sprintf(tmp, "%s%s", substitutedstring, EMPTYFIELD);
         FREE(substitutedstring);
         substitutedstring = tmp;
 
@@ -99,7 +99,7 @@ char **splitLine(const char *str, const char *sep, int *toks, char meta)
                         }
                         memcpy(retstr[curr_str], (idx - len), len);
                         retstr[curr_str][len] = 0;
-                        if (strcmp(retstr[curr_str], emptyfield) == 0)
+                        if (strcmp(retstr[curr_str], EMPTYFIELD) == 0)
                         {
                             strcpy(retstr[curr_str], "");
                         }
@@ -154,7 +154,7 @@ char **splitLine(const char *str, const char *sep, int *toks, char meta)
 
         memcpy(retstr[curr_str], (idx - len), len);
         retstr[curr_str][len] = 0;
-        if (strcmp(retstr[curr_str], emptyfield) == 0)
+        if (strcmp(retstr[curr_str], EMPTYFIELD) == 0)
         {
             strcpy(retstr[curr_str], "");
         }

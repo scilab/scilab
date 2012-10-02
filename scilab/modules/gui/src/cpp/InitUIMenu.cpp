@@ -40,7 +40,8 @@ using namespace org_scilab_modules_gui_bridge;
 int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     char const* pstCurrentFigure = NULL;
-    char * parentType = NULL;
+    int parentType = -1;
+    int *piParentType = &parentType;
     char const* pParentUID = NULL;
 
     double *value = NULL;
@@ -95,18 +96,15 @@ int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, 
         pParentUID = getObjectFromHandle(getHandleFromStack(stackPointer));
         if (pParentUID != NULL)
         {
-            getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
-            if ((strcmp(parentType, __GO_FIGURE__) == 0) || (strcmp(parentType, __GO_UIMENU__) == 0)
-                    || (strcmp(parentType, __GO_UICONTEXTMENU__) == 0))
+            getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+            if (parentType == __GO_FIGURE__ || parentType == __GO_UIMENU__
+                || parentType == __GO_UICONTEXTMENU__)
             {
                 setGraphicObjectRelationship(pParentUID, pobjUID);
-                releaseGraphicObjectProperty(__GO_TYPE__, parentType, jni_string, 1);
             }
             else
             {
                 Scierror(999, const_cast < char *>(_("%s: Wrong type for parent: Figure or uimenu handle expected.\n")), "SetMenuParent");
-
-                releaseGraphicObjectProperty(__GO_TYPE__, parentType, jni_string, 1);
                 return SET_PROPERTY_ERROR;
             }
         }

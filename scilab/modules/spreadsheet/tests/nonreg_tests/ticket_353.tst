@@ -10,7 +10,7 @@
 //
 // <-- Short Description -->
 // The csvRead function does not manage the range.
-// =============================================================================
+// =================================g============================================
 path = SCI+"/modules/spreadsheet/tests/unit_tests/";
 
 //
@@ -44,21 +44,25 @@ expected = [
 ];
 assert_checkequal ( r , expected );
 //
-// Unconsistent range: C2 < C1
+// Inconsistent range: C2 < C1
 instr = "r = csvRead(fullfile(path,""K_1.csv""), [], [], ""string"" , [] , [], [2 3 3 2] );";
-assert_checkerror ( instr , "csvRead: Wrong value for input argument #7: Unconsistent range." );
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: Inconsistent range.\n"), "csvRead", 7);
+assert_checkerror ( instr , refMsg );
 //
-// Unconsistent range: R2 < R1
+// Inconsistent range: R2 < R1
 instr = "r = csvRead(fullfile(path,""K_1.csv""), [], [], ""string"" , [] , [], [3 1 2 2] );";
-assert_checkerror ( instr , "csvRead: Wrong value for input argument #7: Unconsistent range." );
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: Inconsistent range.\n"), "csvRead", 7);
+assert_checkerror ( instr , refMsg );
 //
 // Non-integer indice
 instr="r = csvRead(fullfile(path,""K_1.csv""), [], [], ""string"" , [] , [], [2 1 1.5 2] );";
-assert_checkerror ( instr , "csvRead: Wrong value for input argument #7: A matrix of double, with integer values, expected." );
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A matrix of double, with integer values, expected.\n"), "csvRead", 7);
+assert_checkerror ( instr , refMsg );
 //
 // Infinite indice
 instr="r = csvRead(fullfile(path,""K_1.csv""), [], [], ""string"" , [] , [], [2 1 %inf 2] );";
-assert_checkerror ( instr , "csvRead: Wrong value for input argument #7: A matrix of double, with integer values, expected." );
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A matrix of double, with integer values, expected.\n"), "csvRead", 7);
+assert_checkerror ( instr , refMsg );
 //
 // Row indice larger than actual number of rows: string case
 r = csvRead(fullfile(path,"K_1.csv"), [], [], "string" , [] , [], [2 1 999 2] );

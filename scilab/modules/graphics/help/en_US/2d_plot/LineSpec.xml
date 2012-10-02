@@ -308,32 +308,45 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>x=1:0.1:10; // Init.
-            plot(x,sin(x),'r.-&gt;')
-            t=0:%pi/20:2*%pi;
-            plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 x=1:0.1:10; // Init.
 plot(x,sin(x),'r.->') // plots a dash-dotted line with a right-pointing triangle centered on each points.
+ ]]></programlisting>
+        <scilab:image>
+            x=1:0.1:10;
+            plot(x,sin(x),'r.->')
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 clf();
-
+x=1:0.1:10;
 // If you specify a marker wihtout a line style, only the marker is drawn
 plot(x,sin(x),'d') // plots a dash-dotted line with a right-pointing triangle centered on each points.
-
+ ]]></programlisting>
+        <scilab:image>
+            x=1:0.1:10;
+            plot(x,sin(x),'d')
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 x=1:10; // Init.
 // combinations' order does not matter
 plot(x,x.*x,'*cya--') 
-
+ ]]></programlisting>
+        <scilab:image>
+            x=1:10;
+            plot(x,x.*x,'*cya--')
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 //multiple plots with different LineSpecs
 clf();
 t=0:%pi/20:2*%pi;
 plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
  ]]></programlisting>
+        <scilab:image>x=1:0.1:10;
+            plot(x,sin(x),'r.-&gt;')
+            t=0:%pi/20:2*%pi;
+            plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

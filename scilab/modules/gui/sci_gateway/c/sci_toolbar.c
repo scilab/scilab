@@ -40,7 +40,8 @@ int sci_toolbar(char *fname, unsigned long l)
     int figNum = -2;
 
     char *pParentUID = NULL;
-    char *pParentType = NULL;
+    int iParentType = -1;
+    int *piParentType = &iParentType;
 
     CheckRhs(1, 2);
     CheckLhs(0, 1);
@@ -97,14 +98,12 @@ int sci_toolbar(char *fname, unsigned long l)
             return FALSE;
         }
 
-        getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&pParentType);
-        if (strcmp(pParentType, __GO_FIGURE__) != 0)
+        getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+        if (iParentType == __GO_FIGURE__)
         {
-            FREE(pParentType);
             Scierror(999, _("%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"), fname, 1);
             return FALSE;
         }
-        free(pParentType);
     }
     else
     {

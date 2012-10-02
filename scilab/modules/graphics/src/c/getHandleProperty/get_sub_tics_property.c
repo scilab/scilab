@@ -34,20 +34,21 @@
 /*------------------------------------------------------------------------*/
 int get_sub_tics_property(void* _pvCtx, char* pobjUID)
 {
-    char* type;
+    int iType = -1;
+    int *piType = &iType;
     int iSubTicks = 0;
     int* piSubTicks = &iSubTicks;
 
     /*Dj.A 17/12/2003*/
     /* modified jb Silvy 01/2006 */
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * Type test required as the Axis object stores subticks as a single int
      * whereas Axes maintain a 3-element int vector.
      */
-    if (strcmp(type, __GO_AXIS__) == 0)
+    if (iType == __GO_AXIS__)
     {
         getGraphicObjectProperty(pobjUID, __GO_SUBTICKS__, jni_int, (void**)&piSubTicks);
 
@@ -59,7 +60,7 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
 
         return sciReturnDouble(_pvCtx, iSubTicks);
     }
-    else if (strcmp(type, __GO_AXES__) == 0)
+    else if (iType == __GO_AXES__)
     {
         double sub_ticks[3];
         int iView = 0;

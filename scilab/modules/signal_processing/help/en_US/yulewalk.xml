@@ -94,7 +94,8 @@ xtitle('Obtained Frequency Response (Magnitude)')
             H=[0,0,1,1,0,0];
             Hz=yulewalk(8,f,H);
             fs=1000;
-            fhz = f*fs/2; 
+            fhz = f*fs/2;
+            [frq,repf]=repfreq(Hz,0:0.001:0.5);
             plot2d(fs*frq',abs(repf'));
             xtitle('Obtained Frequency Response (Magnitude)')
         </scilab:image>

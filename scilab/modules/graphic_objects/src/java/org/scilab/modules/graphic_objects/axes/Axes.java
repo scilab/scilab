@@ -214,162 +214,163 @@ public class Axes extends GraphicObject {
      * @param propertyName the property name
      * @return the property enum
      */
-    public Object getPropertyFromName(String propertyName) {
-        if (propertyName.equals(__GO_X_AXIS_VISIBLE__)) {
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+        case __GO_X_AXIS_VISIBLE__ :
             return AxesProperty.XAXISVISIBLE;
-        } else if (propertyName.equals(__GO_X_AXIS_REVERSE__)) {
+        case __GO_X_AXIS_REVERSE__ :
             return AxesProperty.XAXISREVERSE;
-        } else if (propertyName.equals(__GO_X_AXIS_GRID_COLOR__)) {
+        case __GO_X_AXIS_GRID_COLOR__ :
             return AxesProperty.XAXISGRIDCOLOR;
-        } else if (propertyName.equals(__GO_X_AXIS_LABEL__)) {
+        case __GO_X_AXIS_LABEL__ :
             return AxesProperty.XAXISLABEL;
-        } else if (propertyName.equals(__GO_X_AXIS_LOCATION__)) {
+        case __GO_X_AXIS_LOCATION__ :
             return AxesProperty.XAXISLOCATION;
-        } else if (propertyName.equals(__GO_X_AXIS_LOG_FLAG__)) {
+        case __GO_X_AXIS_LOG_FLAG__ :
             return AxesProperty.XAXISLOGFLAG;
-        } else if (propertyName.equals(__GO_X_AXIS_TICKS__)) {
+        case __GO_X_AXIS_TICKS__ :
             return AxesProperty.XAXISTICKS;
-        } else if (propertyName.equals(__GO_X_AXIS_AUTO_TICKS__)) {
+        case __GO_X_AXIS_AUTO_TICKS__ :
             return AxesProperty.XAXISAUTOTICKS;
-        } else if (propertyName.equals(__GO_X_AXIS_NUMBER_TICKS__)) {
+        case __GO_X_AXIS_NUMBER_TICKS__ :
             return AxesProperty.XAXISNUMBERTICKS;
-        } else if (propertyName.equals(__GO_X_AXIS_TICKS_LOCATIONS__)) {
+        case __GO_X_AXIS_TICKS_LOCATIONS__:
             return AxesProperty.XAXISTICKSLOCATIONS;
-        } else if (propertyName.equals(__GO_X_AXIS_TICKS_LABELS__)) {
+        case __GO_X_AXIS_TICKS_LABELS__ :
             return AxesProperty.XAXISTICKSLABELS;
-        } else if (propertyName.equals(__GO_X_AXIS_SUBTICKS__)) {
+        case __GO_X_AXIS_SUBTICKS__ :
             return AxesProperty.XAXISSUBTICKS;
-        } else if (propertyName.equals(__GO_Y_AXIS_VISIBLE__)) {
+        case __GO_Y_AXIS_VISIBLE__ :
             return AxesProperty.YAXISVISIBLE;
-        } else if (propertyName.equals(__GO_Y_AXIS_REVERSE__)) {
+        case __GO_Y_AXIS_REVERSE__ :
             return AxesProperty.YAXISREVERSE;
-        } else if (propertyName.equals(__GO_Y_AXIS_GRID_COLOR__)) {
+        case __GO_Y_AXIS_GRID_COLOR__ :
             return AxesProperty.YAXISGRIDCOLOR;
-        } else if (propertyName.equals(__GO_Y_AXIS_LABEL__)) {
+        case __GO_Y_AXIS_LABEL__ :
             return AxesProperty.YAXISLABEL;
-        } else if (propertyName.equals(__GO_Y_AXIS_LOCATION__)) {
+        case __GO_Y_AXIS_LOCATION__ :
             return AxesProperty.YAXISLOCATION;
-        } else if (propertyName.equals(__GO_Y_AXIS_LOG_FLAG__)) {
+        case __GO_Y_AXIS_LOG_FLAG__ :
             return AxesProperty.YAXISLOGFLAG;
-        } else if (propertyName.equals(__GO_Y_AXIS_TICKS__)) {
+        case __GO_Y_AXIS_TICKS__ :
             return AxesProperty.YAXISTICKS;
-        } else if (propertyName.equals(__GO_Y_AXIS_AUTO_TICKS__)) {
+        case __GO_Y_AXIS_AUTO_TICKS__ :
             return AxesProperty.YAXISAUTOTICKS;
-        } else if (propertyName.equals(__GO_Y_AXIS_NUMBER_TICKS__)) {
+        case __GO_Y_AXIS_NUMBER_TICKS__ :
             return AxesProperty.YAXISNUMBERTICKS;
-        } else if (propertyName.equals(__GO_Y_AXIS_TICKS_LOCATIONS__)) {
+        case __GO_Y_AXIS_TICKS_LOCATIONS__ :
             return AxesProperty.YAXISTICKSLOCATIONS;
-        } else if (propertyName.equals(__GO_Y_AXIS_TICKS_LABELS__)) {
+        case __GO_Y_AXIS_TICKS_LABELS__ :
             return AxesProperty.YAXISTICKSLABELS;
-        } else if (propertyName.equals(__GO_Y_AXIS_SUBTICKS__)) {
+        case __GO_Y_AXIS_SUBTICKS__ :
             return AxesProperty.YAXISSUBTICKS;
-        } else if (propertyName.equals(__GO_Z_AXIS_VISIBLE__)) {
+        case __GO_Z_AXIS_VISIBLE__ :
             return AxesProperty.ZAXISVISIBLE;
-        } else if (propertyName.equals(__GO_Z_AXIS_REVERSE__)) {
+        case __GO_Z_AXIS_REVERSE__ :
             return AxesProperty.ZAXISREVERSE;
-        } else if (propertyName.equals(__GO_Z_AXIS_GRID_COLOR__)) {
+        case __GO_Z_AXIS_GRID_COLOR__ :
             return AxesProperty.ZAXISGRIDCOLOR;
-        } else if (propertyName.equals(__GO_Z_AXIS_LABEL__)) {
+        case __GO_Z_AXIS_LABEL__ :
             return AxesProperty.ZAXISLABEL;
-        } else if (propertyName.equals(__GO_Z_AXIS_LOCATION__)) {
+        case __GO_Z_AXIS_LOCATION__ :
             return AxesProperty.ZAXISLOCATION;
-        } else if (propertyName.equals(__GO_Z_AXIS_LOG_FLAG__)) {
+        case __GO_Z_AXIS_LOG_FLAG__ :
             return AxesProperty.ZAXISLOGFLAG;
-        } else if (propertyName.equals(__GO_Z_AXIS_TICKS__)) {
+        case __GO_Z_AXIS_TICKS__ :
             return AxesProperty.ZAXISTICKS;
-        } else if (propertyName.equals(__GO_Z_AXIS_AUTO_TICKS__)) {
+        case __GO_Z_AXIS_AUTO_TICKS__ :
             return AxesProperty.ZAXISAUTOTICKS;
-        } else if (propertyName.equals(__GO_Z_AXIS_NUMBER_TICKS__)) {
+        case __GO_Z_AXIS_NUMBER_TICKS__ :
             return AxesProperty.ZAXISNUMBERTICKS;
-        } else if (propertyName.equals(__GO_Z_AXIS_TICKS_LOCATIONS__)) {
+        case __GO_Z_AXIS_TICKS_LOCATIONS__ :
             return AxesProperty.ZAXISTICKSLOCATIONS;
-        } else if (propertyName.equals(__GO_Z_AXIS_TICKS_LABELS__)) {
+        case __GO_Z_AXIS_TICKS_LABELS__ :
             return AxesProperty.ZAXISTICKSLABELS;
-        } else if (propertyName.equals(__GO_Z_AXIS_SUBTICKS__)) {
+        case __GO_Z_AXIS_SUBTICKS__ :
             return AxesProperty.ZAXISSUBTICKS;
-        } else if (propertyName.equals(__GO_AUTO_SUBTICKS__)) {
+        case __GO_AUTO_SUBTICKS__ :
             return AxesProperty.AUTOSUBTICKS;
-        } else if (propertyName.equals(__GO_FONT_STYLE__)) {
+        case __GO_FONT_STYLE__ :
             return AxesProperty.FONT_STYLE;
-        } else if (propertyName.equals(__GO_FONT_SIZE__)) {
+        case __GO_FONT_SIZE__ :
             return AxesProperty.FONT_SIZE;
-        } else if (propertyName.equals(__GO_FONT_COLOR__)) {
+        case __GO_FONT_COLOR__ :
             return AxesProperty.FONT_COLOR;
-        } else if (propertyName.equals(__GO_FONT_FRACTIONAL__)) {
+        case __GO_FONT_FRACTIONAL__ :
             return AxesProperty.FONT_FRACTIONAL;
-        } else if (propertyName.equals(__GO_GRID_POSITION__)) {
+        case __GO_GRID_POSITION__ :
             return AxesProperty.GRIDPOSITION;
-        } else if (propertyName.equals(__GO_TITLE__)) {
+        case __GO_TITLE__ :
             return AxesProperty.TITLE;
-        } else if (propertyName.equals(__GO_AUTO_CLEAR__)) {
+        case __GO_AUTO_CLEAR__ :
             return AxesProperty.AUTOCLEAR;
-        } else if (propertyName.equals(__GO_FILLED__)) {
+        case __GO_FILLED__ :
             return AxesProperty.FILLED;
-        } else if (propertyName.equals(__GO_BACKGROUND__)) {
+        case __GO_BACKGROUND__ :
             return AxesProperty.BACKGROUND;
-        } else if (propertyName.equals(__GO_VIEW__)) {
+        case __GO_VIEW__ :
             return Camera.CameraProperty.VIEW;
-        } else if (propertyName.equals(__GO_ISOVIEW__)) {
+        case __GO_ISOVIEW__ :
             return Camera.CameraProperty.ISOVIEW;
-        } else if (propertyName.equals(__GO_CUBE_SCALING__)) {
+        case __GO_CUBE_SCALING__ :
             return Camera.CameraProperty.CUBESCALING;
-        } else if (propertyName.equals(__GO_ROTATION_ANGLES__)) {
+        case __GO_ROTATION_ANGLES__ :
             return Camera.CameraProperty.ROTATIONANGLES;
-        } else if (propertyName.equals(__GO_ROTATION_ANGLES_3D__)) {
+        case __GO_ROTATION_ANGLES_3D__ :
             return Camera.CameraProperty.ROTATIONANGLES3D;
-        } else if (propertyName.equals(__GO_BOX_TYPE__)) {
+        case __GO_BOX_TYPE__ :
             return Box.BoxProperty.BOX;
-        } else if (propertyName.equals(__GO_HIDDEN_AXIS_COLOR__)) {
+        case __GO_HIDDEN_AXIS_COLOR__ :
             return Box.BoxProperty.HIDDENAXISCOLOR;
-        } else if (propertyName.equals(__GO_TIGHT_LIMITS__)) {
+        case __GO_TIGHT_LIMITS__ :
             return Box.BoxProperty.TIGHTLIMITS;
-        } else if (propertyName.equals(__GO_DATA_BOUNDS__)) {
+        case __GO_DATA_BOUNDS__ :
             return Box.BoxProperty.DATABOUNDS;
-        } else if (propertyName.equals(__GO_REAL_DATA_BOUNDS__)) {
+        case __GO_REAL_DATA_BOUNDS__ :
             return Box.BoxProperty.REALDATABOUNDS;
-        } else if (propertyName.equals(__GO_ZOOM_ENABLED__)) {
+        case __GO_ZOOM_ENABLED__ :
             return Box.BoxProperty.ZOOMENABLED;
-        } else if (propertyName.equals(__GO_ZOOM_BOX__)) {
+        case __GO_ZOOM_BOX__ :
             return Box.BoxProperty.ZOOMBOX;
-        } else if (propertyName.equals(__GO_AUTO_SCALE__)) {
+        case __GO_AUTO_SCALE__ :
             return Box.BoxProperty.AUTOSCALE;
-        } else if (propertyName.equals(__GO_FIRST_PLOT__)) {
+        case __GO_FIRST_PLOT__ :
             return Box.BoxProperty.FIRSTPLOT;
-        } else if (propertyName.equals(__GO_MARGINS__)) {
+        case __GO_MARGINS__ :
             return AxesProperty.MARGINS;
-        } else if (propertyName.equals(__GO_AXES_BOUNDS__)) {
+        case __GO_AXES_BOUNDS__ :
             return AxesProperty.AXESBOUNDS;
-        } else if (propertyName.equals(__GO_HIDDEN_COLOR__)) {
+        case __GO_HIDDEN_COLOR__ :
             return AxesProperty.HIDDENCOLOR;
-        } else if (propertyName.equals(__GO_LINE_MODE__)) {
+        case __GO_LINE_MODE__ :
             return LinePropertyType.MODE;
-        } else if (propertyName.equals(__GO_LINE_STYLE__)) {
+        case __GO_LINE_STYLE__ :
             return LinePropertyType.LINESTYLE;
-        } else if (propertyName.equals(__GO_LINE_THICKNESS__)) {
+        case __GO_LINE_THICKNESS__ :
             return LinePropertyType.THICKNESS;
-        } else if (propertyName.equals(__GO_LINE_COLOR__)) {
+        case __GO_LINE_COLOR__ :
             return LinePropertyType.COLOR;
-        } else if (propertyName.equals(__GO_MARK_MODE__)) {
+        case __GO_MARK_MODE__ :
             return MarkPropertyType.MODE;
-        } else if (propertyName.equals(__GO_MARK_STYLE__)) {
+        case __GO_MARK_STYLE__ :
             return MarkPropertyType.STYLE;
-        } else if (propertyName.equals(__GO_MARK_SIZE_UNIT__)) {
+        case __GO_MARK_SIZE_UNIT__ :
             return MarkPropertyType.SIZEUNIT;
-        } else if (propertyName.equals(__GO_MARK_SIZE__)) {
+        case __GO_MARK_SIZE__ :
             return MarkPropertyType.SIZE;
-        } else if (propertyName.equals(__GO_MARK_FOREGROUND__)) {
+        case __GO_MARK_FOREGROUND__ :
             return MarkPropertyType.FOREGROUND;
-        } else if (propertyName.equals(__GO_MARK_BACKGROUND__)) {
+        case __GO_MARK_BACKGROUND__ :
             return MarkPropertyType.BACKGROUND;
-        } else if (propertyName.equals(__GO_CLIP_STATE__)) {
+        case __GO_CLIP_STATE__ :
             return ClippablePropertyType.CLIPSTATE;
-        } else if (propertyName.equals(__GO_CLIP_BOX__)) {
+        case __GO_CLIP_BOX__ :
             return ClippablePropertyType.CLIPBOX;
-        } else if (propertyName.equals(__GO_CLIP_BOX_SET__)) {
+        case __GO_CLIP_BOX_SET__ :
             return ClippablePropertyType.CLIPBOXSET;
-        } else if (propertyName.equals(__GO_ARC_DRAWING_METHOD__)) {
+        case __GO_ARC_DRAWING_METHOD__ :
             return ArcProperty.ARCDRAWINGMETHOD;
-        } else {
+        default :
             return super.getPropertyFromName(propertyName);
         }
     }
@@ -2013,7 +2014,7 @@ public class Axes extends GraphicObject {
                 if (figure.getRotationAsEnum().equals(Figure.RotationType.MULTIPLE)) {
                     for (String child : figure.getChildren()) {
                         if (child != null) {
-                            if (GraphicObjectProperties.__GO_AXES__.equals(controller.getProperty(child, GraphicObjectProperties.__GO_TYPE__))) {
+                            if (GraphicObjectProperties.__GO_AXES__ == ((Integer) controller.getProperty(child, GraphicObjectProperties.__GO_TYPE__))) {
                                 controller.setProperty(
                                     child,
                                     GraphicObjectProperties.__GO_ROTATION_ANGLES__,
@@ -2142,8 +2143,8 @@ public class Axes extends GraphicObject {
     /**
      * @return Type as String
      */
-    public String getType() {
-        return "Axes";
+    public Integer getType() {
+        return GraphicObjectProperties.__GO_AXES__;
     }
 
 }

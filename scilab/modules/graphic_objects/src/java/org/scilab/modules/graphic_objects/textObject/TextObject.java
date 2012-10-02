@@ -75,22 +75,23 @@ public abstract class TextObject extends ContouredObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_FORMATTED_TEXT__)) {
+	public Object getPropertyFromName(int propertyName) {
+		switch (propertyName) {
+		case __GO_FORMATTED_TEXT__ :
 			return TextObjectProperty.TEXT;
-		} else if (propertyName.equals(__GO_TEXT_ARRAY_DIMENSIONS__)) {
+		case __GO_TEXT_ARRAY_DIMENSIONS__ :
 			return TextObjectProperty.TEXT_ARRAY_DIMENSIONS;
-		} else if (propertyName.equals(__GO_TEXT_STRINGS__)) {
+		case __GO_TEXT_STRINGS__ :
 			return FormattedText.FormattedTextProperty.TEXT;
-		} else if (propertyName.equals(__GO_FONT_STYLE__)) {
+		case __GO_FONT_STYLE__ :
 			return Font.FontProperty.STYLE;
-		} else if (propertyName.equals(__GO_FONT_SIZE__)) {
+		case __GO_FONT_SIZE__ :
 			return Font.FontProperty.SIZE;
-		} else if (propertyName.equals(__GO_FONT_COLOR__)) {
+		case __GO_FONT_COLOR__ :
 			return Font.FontProperty.COLOR;
-		} else if (propertyName.equals(__GO_FONT_FRACTIONAL__)) {
+		case __GO_FONT_FRACTIONAL__ :
 			return Font.FontProperty.FRACTIONAL;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}

@@ -105,7 +105,7 @@ public final class GraphicModel {
      * @param property property name
      * @return property value
      */
-    public Object getProperty(String id, String property) {
+    public Object getProperty(String id, int property) {
         GraphicObject object = allObjects.get(id);
 
         if (object != null) {
@@ -122,7 +122,7 @@ public final class GraphicModel {
      * @param value property value
      * @return true if the property has been set, false otherwise
      */
-    public UpdateStatus setProperty(String id, String property, Object value) {
+    public UpdateStatus setProperty(String id, int property, Object value) {
         GraphicObject object = allObjects.get(id);
         if (object != null) {
             synchronized (object) {

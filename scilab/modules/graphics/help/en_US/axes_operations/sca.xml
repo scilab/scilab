@@ -40,27 +40,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            
-            clf()
-            a1=newaxes(); 
-            a1.axes_bounds=[0,0,1.0,0.5];
-            t=0:0.1:20;
-            plot(t,acosh(t),'r')
-            a2=newaxes();
-            a2.axes_bounds=[0,0.5,1.0,0.5];
-            x=0:0.1:4;
-            plot(x,sinh(x))
-            sca(a1);
-            plot(t,asinh(t),'g')
-            legend(['acosh','asinh'])
-            sca(a2); 
-            legend('sinh')
-            
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 clf()
@@ -79,6 +58,25 @@ legend(['acosh','asinh'])
 sca(a2); //make second axes current
 legend('sinh')
  ]]></programlisting>
+        <scilab:image>
+            
+            clf()
+            a1=newaxes(); 
+            a1.axes_bounds=[0,0,1.0,0.5];
+            t=0:0.1:20;
+            plot(t,acosh(t),'r')
+            a2=newaxes();
+            a2.axes_bounds=[0,0.5,1.0,0.5];
+            x=0:0.1:4;
+            plot(x,sinh(x))
+            sca(a1);
+            plot(t,asinh(t),'g')
+            legend(['acosh','asinh'])
+            sca(a2); 
+            legend('sinh')
+            
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

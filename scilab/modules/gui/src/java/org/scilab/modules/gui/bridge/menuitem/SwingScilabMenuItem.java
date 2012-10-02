@@ -450,7 +450,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
      * @param property property name
      * @param value property value
      */
-    public void update(String property, Object value) {
+    public void update(int property, Object value) {
         SwingViewMenu.update(this, property, value);
     }
 }

@@ -294,11 +294,11 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
     }
 
     /**
-     * Generic update method
-     * @param property property name
-     * @param value property value
-     */
-    public void update(String property, Object value) {
-        SwingViewWidget.update(this, property, value);
-    }
+	 * Generic update method
+	 * @param property property name
+	 * @param value property value
+	 */
+	public void update(int property, Object value) {
+		SwingViewWidget.update(this, property, value);
+	}
 }

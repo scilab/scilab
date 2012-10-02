@@ -49,7 +49,7 @@ public :
      * @param[in] propertyName the property name
      * @return the property identifier
      */
-    virtual int getPropertyFromName(char const* propertyName);
+    virtual int getPropertyFromName(int propertyName);
 
     /**
      * Sets a data property

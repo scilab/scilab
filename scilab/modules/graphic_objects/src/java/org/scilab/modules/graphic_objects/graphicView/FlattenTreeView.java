@@ -15,7 +15,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.uimenu.Uimenu;
 
 public class FlattenTreeView extends TreeView {
     private static FlattenTreeView me;
@@ -62,7 +61,7 @@ public class FlattenTreeView extends TreeView {
         }        
     }
     
-    public void updateObject(String id, String property) {
+    public void updateObject(String id, int property) {
         
     }
 }

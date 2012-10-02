@@ -46,10 +46,10 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-        #if !defined(byte) | !defined(_MSC_VER) /* Defined anyway with Visual */
-                typedef signed char byte;
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
+            #include <Windows.h>
         #else
-                #pragma message("Byte has been redefined elsewhere. Some problems can happen")
+            typedef signed char byte;
         #endif
 
 
@@ -78,26 +78,26 @@ JavaVM * jvm;
 protected:
 jmethodID voiddeleteGraphicObjectjstringjava_lang_StringID; // cache method id
 jmethodID jstringcloneGraphicObjectjstringjava_lang_StringID; // cache method id
-jmethodID jstringaskGraphicObjectjstringjava_lang_StringID; // cache method id
+jmethodID jstringaskGraphicObjectjintintID; // cache method id
 jmethodID voidsetGraphicObjectRelationshipjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
 jmethodID voidremoveRelationShipAndDeletejstringjava_lang_StringID; // cache method id
-jmethodID jstringgetGraphicObjectPropertyAsStringjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID jobjectArray_getGraphicObjectPropertyAsStringVectorjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID jstringgetGraphicObjectPropertyAsStringjstringjava_lang_StringjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjintintjstringjava_lang_StringID; // cache method id
+jmethodID jobjectArray_getGraphicObjectPropertyAsStringVectorjstringjava_lang_StringjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_StringjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
 jclass stringArrayClass;
-jmethodID jdoublegetGraphicObjectPropertyAsDoublejstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjdoubledoubleID; // cache method id
-jmethodID jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjdoubleArray_doubledoubleID; // cache method id
-jmethodID jintgetGraphicObjectPropertyAsIntegerjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjintintID; // cache method id
-jmethodID jintArray_getGraphicObjectPropertyAsIntegerVectorjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjintArray_intintID; // cache method id
-jmethodID jintgetGraphicObjectPropertyAsBooleanjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjbooleanbooleanID; // cache method id
-jmethodID jintArray_getGraphicObjectPropertyAsBooleanVectorjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_Stringjstringjava_lang_StringjbooleanArray_booleanbooleanID; // cache method id
+jmethodID jdoublegetGraphicObjectPropertyAsDoublejstringjava_lang_StringjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_StringjintintjdoubledoubleID; // cache method id
+jmethodID jdoubleArray_getGraphicObjectPropertyAsDoubleVectorjstringjava_lang_StringjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_StringjintintjdoubleArray_doubledoubleID; // cache method id
+jmethodID jintgetGraphicObjectPropertyAsIntegerjstringjava_lang_StringjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_StringjintintjintintID; // cache method id
+jmethodID jintArray_getGraphicObjectPropertyAsIntegerVectorjstringjava_lang_StringjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_StringjintintjintArray_intintID; // cache method id
+jmethodID jintgetGraphicObjectPropertyAsBooleanjstringjava_lang_StringjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_StringjintintjbooleanbooleanID; // cache method id
+jmethodID jintArray_getGraphicObjectPropertyAsBooleanVectorjstringjava_lang_StringjintintID; // cache method id
+jmethodID jbooleansetGraphicObjectPropertyjstringjava_lang_StringjintintjbooleanArray_booleanbooleanID; // cache method id
 jmethodID voidregisterScilabViewID; // cache method id
 jmethodID voidunregisterScilabViewID; // cache method id
 jmethodID jstringgetConsoleIdentifierID; // cache method id
@@ -165,43 +165,43 @@ static void deleteGraphicObject(JavaVM * jvm_, char const* id);
 
 static char* cloneGraphicObject(JavaVM * jvm_, char const* id);
 
-static char* askGraphicObject(JavaVM * jvm_, char const* typeName);
+static char* askGraphicObject(JavaVM * jvm_, int typeName);
 
 static void setGraphicObjectRelationship(JavaVM * jvm_, char const* parentId, char const* childId);
 
 static void removeRelationShipAndDelete(JavaVM * jvm_, char const* id);
 
-static char* getGraphicObjectPropertyAsString(JavaVM * jvm_, char const* id, char const* propertyName);
+static char* getGraphicObjectPropertyAsString(JavaVM * jvm_, char const* id, int propertyName);
 
-static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, char const* propertyName, char const* value);
+static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, int propertyName, char const* value);
 
-static char** getGraphicObjectPropertyAsStringVector(JavaVM * jvm_, char const* id, char const* propertyName);
+static char** getGraphicObjectPropertyAsStringVector(JavaVM * jvm_, char const* id, int propertyName);
 
-static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, char const* propertyName, char const* const* value, int valueSize);
+static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, int propertyName, char const* const* value, int valueSize);
 
-static double getGraphicObjectPropertyAsDouble(JavaVM * jvm_, char const* id, char const* propertyName);
+static double getGraphicObjectPropertyAsDouble(JavaVM * jvm_, char const* id, int propertyName);
 
-static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, char const* propertyName, double value);
+static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, int propertyName, double value);
 
-static double* getGraphicObjectPropertyAsDoubleVector(JavaVM * jvm_, char const* id, char const* propertyName);
+static double* getGraphicObjectPropertyAsDoubleVector(JavaVM * jvm_, char const* id, int propertyName);
 
-static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, char const* propertyName, double const* value, int valueSize);
+static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, int propertyName, double const* value, int valueSize);
 
-static int getGraphicObjectPropertyAsInteger(JavaVM * jvm_, char const* id, char const* propertyName);
+static int getGraphicObjectPropertyAsInteger(JavaVM * jvm_, char const* id, int propertyName);
 
-static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, char const* propertyName, int value);
+static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, int propertyName, int value);
 
-static int* getGraphicObjectPropertyAsIntegerVector(JavaVM * jvm_, char const* id, char const* propertyName);
+static int* getGraphicObjectPropertyAsIntegerVector(JavaVM * jvm_, char const* id, int propertyName);
 
-static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, char const* propertyName, int const* value, int valueSize);
+static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, int propertyName, int const* value, int valueSize);
 
-static int getGraphicObjectPropertyAsBoolean(JavaVM * jvm_, char const* id, char const* propertyName);
+static int getGraphicObjectPropertyAsBoolean(JavaVM * jvm_, char const* id, int propertyName);
 
-static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, char const* propertyName, bool value);
+static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, int propertyName, bool value);
 
-static int* getGraphicObjectPropertyAsBooleanVector(JavaVM * jvm_, char const* id, char const* propertyName);
+static int* getGraphicObjectPropertyAsBooleanVector(JavaVM * jvm_, char const* id, int propertyName);
 
-static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, char const* propertyName, bool const* value, int valueSize);
+static bool setGraphicObjectProperty(JavaVM * jvm_, char const* id, int propertyName, bool const* value, int valueSize);
 
 static void registerScilabView(JavaVM * jvm_);
 

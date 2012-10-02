@@ -54,15 +54,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image> 
-            plot3d();
-            h = gcf();
-            h.color_map = jetcolormap(16);
-            addcolor(name2rgb('grey')/255);
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 plot3d();
@@ -70,6 +61,13 @@ h = gcf();
 h.color_map = jetcolormap(16);
 addcolor(name2rgb('grey')/255);
  ]]></programlisting>
+        <scilab:image> 
+            plot3d();
+            h = gcf();
+            h.color_map = jetcolormap(16);
+            addcolor(name2rgb('grey')/255);
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

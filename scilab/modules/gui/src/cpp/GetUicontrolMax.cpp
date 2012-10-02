@@ -19,7 +19,7 @@ int GetUicontrolMax(void* _pvCtx, char *sciObjUID)
     double maxValue = 0;
     double* pdblMaxValue = &maxValue;
 
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_MAX__), jni_double, (void**) &pdblMaxValue);
+    getGraphicObjectProperty(sciObjUID, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
 
     if (pdblMaxValue == NULL)
     {

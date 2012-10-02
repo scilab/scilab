@@ -54,22 +54,33 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>plot2d3();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // compare the following with plot2d1
 x=[0:0.1:2*%pi]';
 plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 clf()
+x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();
 e.children(1).polyline_style=3;
 e.children(2).polyline_style=3;
 e.children(3).polyline_style=3;
  ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+            e=gce();
+            e.children(1).polyline_style=3;
+            e.children(2).polyline_style=3;
+            e.children(3).polyline_style=3;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

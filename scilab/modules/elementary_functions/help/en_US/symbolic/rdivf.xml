@@ -13,19 +13,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="rdivf">
     <refnamediv>
         <refname>rdivf</refname>
-        <refpurpose> right symbolic division</refpurpose>
+        <refpurpose>right symbolic division</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>["r"]=ldivf("d","c")</synopsis>
+        <synopsis>[r] = rdivf(d, c)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>"d","c","r"  </term>
+                <term>d, c, r </term>
                 <listitem>
-                    <para>strings</para>
+                    <para>character strings.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,16 +33,17 @@
     <refsection>
         <title>Description</title>
         <para>
-            returns the string <literal>"c/d"</literal>
-            Trivial simplifications such as <literal>"c/1" = "c"</literal> are performed.
+          <code>r=rdivf("d", "c")</code> returns the string <varname>r</varname> which is
+          <literal>"c/d"</literal>. Trivial simplifications such as <literal>"c/1" = "c"</literal> are performed.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-ldivf('c','d')
-ldivf('1','2')
-ldivf('a','0')
+rdivf('c','d')
+rdivf('1','2')
+rdivf('0','a')
+rdivf('a','0') //Caution...
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

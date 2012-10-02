@@ -19,7 +19,7 @@ int GetUicontrolPosition(void* _pvCtx, char *sciObjUID)
   double* position = NULL;
   int status = FALSE;
 
-  getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_POSITION__), jni_double_vector, (void**) &position);
+  getGraphicObjectProperty(sciObjUID, __GO_POSITION__, jni_double_vector, (void**) &position);
 
   if (position == NULL)
   {

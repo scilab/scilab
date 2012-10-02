@@ -29,7 +29,7 @@ import java.util.Set;
 class FecDrawer {
 
     /** Set of properties that affect the texture. */
-    private static final Set<String> TEXTURE_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> TEXTURE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                 GraphicObjectProperties.__GO_Z_BOUNDS__,
                 GraphicObjectProperties.__GO_DATA_MODEL__,
                 GraphicObjectProperties.__GO_COLOR_RANGE__,
@@ -124,7 +124,7 @@ class FecDrawer {
      * @param id the given object id.
      * @param property the changed property.
      */
-    public void update(String id, String property) {
+    public void update(String id, int property) {
         if (TEXTURE_PROPERTIES.contains(property)) {
             Texture texture = textureMap.get(id);
             if (texture != null) {

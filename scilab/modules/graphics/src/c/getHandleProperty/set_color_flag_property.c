@@ -39,7 +39,8 @@
 /*------------------------------------------------------------------------*/
 int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
     int flagcolor = (int) getDoubleFromStack( stackPointer );
 
     if ( !( valueType == sci_matrix ) )
@@ -54,9 +55,9 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_PLOT3D__) == 0)
+    if (type == __GO_PLOT3D__)
     {
         if ( flagcolor < 0 || flagcolor > 1 )
         {
@@ -68,7 +69,7 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
 
         return SET_PROPERTY_SUCCEED;
     }
-    else if (strcmp(type, __GO_FAC3D__) == 0)
+    else if (type == __GO_FAC3D__)
     {
         if ( flagcolor < 0 || flagcolor > 4 )
         {

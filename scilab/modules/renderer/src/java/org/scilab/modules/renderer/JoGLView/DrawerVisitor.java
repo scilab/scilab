@@ -88,28 +88,28 @@ import javax.swing.SwingUtilities;
 public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     /** Set of properties changed during a draw if auto-ticks is on for X axis. */
-    private static final Set<String> X_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> X_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                                                                                        GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
                                                                                        GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
                                                                                        GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
                                                                                        ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Y axis. */
-    private static final Set<String> Y_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> Y_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                                                                                        GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
                                                                                        GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
                                                                                        GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
                                                                                        ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Z axis. */
-    private static final Set<String> Z_AXIS_TICKS_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> Z_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                                                                                        GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
                                                                                        GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
                                                                                        GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
                                                                                        ));
 
     /** Set of figure properties for witch a change doesn't lead to a redraw */
-    private static final Set<String> SILENT_FIGURE_PROPERTIES = new HashSet<String>(Arrays.asList(new String[] {
+    private static final Set<Integer> SILENT_FIGURE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                 GraphicObjectProperties.__GO_ROTATION_TYPE__,
                 GraphicObjectProperties.__GO_INFO_MESSAGE__,
                 GraphicObjectProperties.__GO_FIGURE_NAME__,
@@ -117,7 +117,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 GraphicObjectProperties.__GO_POSITION__,
                 GraphicObjectProperties.__GO_SIZE__,
                 GraphicObjectProperties.__GO_ID__
-            }));
+            ));
 
     private static final boolean DEBUG_MODE = false;
 
@@ -853,11 +853,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     @Override
-    public void updateObject(String id, String property) {
+    public void updateObject(String id, int property) {
         try {
             if (needUpdate(id, property)) {
                 GraphicController.getController().setProperty(id, GraphicObjectProperties.__GO_VALID__, true);
-                if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
+                if (GraphicObjectProperties.__GO_COLORMAP__ == property && figure.getIdentifier().equals(id)) {
                     labelManager.disposeAll();
                     dataManager.disposeAllColorBuffers();
                     dataManager.disposeAllTextureCoordinatesBuffers();
@@ -878,7 +878,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     datatipTextDrawer.update(id, property);
                 }
 
-                if (GraphicObjectProperties.__GO_ANTIALIASING__.equals(property)) {
+                if (GraphicObjectProperties.__GO_ANTIALIASING__ == property) {
                     canvas.setAntiAliasingLevel(figure.getAntialiasing());
                 }
 
@@ -887,7 +887,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
             }
 
-            if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__.equals(property) && !isImmediateDrawing(id)) {
+            if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property && !isImmediateDrawing(id)) {
                 canvas.waitImage();
             }
 
@@ -904,14 +904,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @param property the changed property.
      * @return true id the given changed property make the figure out of date.
      */
-    private boolean needUpdate(String id, String property) {
+    private boolean needUpdate(String id, int property) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
-        String objectType = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-        if ((property != null) && (object != null) && isFigureChild(id)
-            && !objectType.equals(GraphicObjectProperties.__GO_UICONTROL__)
-            && !objectType.equals(GraphicObjectProperties.__GO_UIMENU__)) {
+        int objectType = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        if ((object != null) && isFigureChild(id)
+            && objectType != GraphicObjectProperties.__GO_UICONTROL__
+            && objectType !=GraphicObjectProperties.__GO_UIMENU__) {
 
-            if (GraphicObjectProperties.__GO_VALID__.equals(property)) {
+            if (GraphicObjectProperties.__GO_VALID__ == property) {
                 return false;
             }
 

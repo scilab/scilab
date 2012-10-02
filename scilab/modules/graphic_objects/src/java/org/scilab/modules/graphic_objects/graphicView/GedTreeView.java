@@ -61,13 +61,13 @@ public class GedTreeView extends TreeView {
         }
     }
     
-    public void updateObject(String id, String property) {
+    public void updateObject(String id, int property) {
         
         DefaultMutableTreeNode objectNode = allObjects.get(id);
         /*
          * Update parent property
          */
-        if (objectNode != null && property.equals(GraphicObjectProperties.__GO_PARENT__))
+        if (objectNode != null && property == GraphicObjectProperties.__GO_PARENT__)
         {
             DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode) objectNode.getParent();
             

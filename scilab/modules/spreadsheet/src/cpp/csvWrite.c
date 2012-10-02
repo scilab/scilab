@@ -34,7 +34,7 @@
 #define DEFAULT_CSV_WRITE_STRING_FORMAT "%s"
 #define DEFAULT_CSV_WRITE_DOUBLE_FORMAT "%.lg"
 #define PlusStr "+"
-#define LessStr "+"
+#define LessStr "-"
 #define ComplexStr "i"
 #define EMPTY_STRING ""
 #if _MSC_VER

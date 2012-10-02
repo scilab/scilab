@@ -6,7 +6,7 @@ flexdock.jar=${thirdparty.dir}/flexdock-1.2.0.jar
 
 jgraphx.jar=${thirdparty.dir}/jgraphx.jar
 
-scirenderer.jar=${thirdparty.dir}/scirenderer-0.5.8.jar
+scirenderer.jar=${thirdparty.dir}/scirenderer-1.0.2.jar
 
 jogl2.jar=${thirdparty.dir}/jogl2.jar
 
@@ -18,9 +18,9 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.7.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-1.0.0.jar
 
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.7.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.0.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-5.3-all.jar
 

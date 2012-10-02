@@ -91,7 +91,8 @@ static char * getZoomedObject(const char * fname)
     int nbCol = 0;
     size_t stackPointer = 0;
     char *res = NULL;
-    char *pstType = NULL;
+    int iType = -1;
+    int *piType = &iType;
     /* if a handle is specified it must be the first input argument */
     GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
 
@@ -110,9 +111,9 @@ static char * getZoomedObject(const char * fname)
         return NULL;
     }
 
-    getGraphicObjectProperty(res, __GO_TYPE__, jni_string, (void **)&pstType);
+    getGraphicObjectProperty(res, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(pstType, __GO_FIGURE__) != 0 && strcmp(pstType, __GO_AXES__) != 0)
+    if (iType != __GO_FIGURE__ && iType != __GO_AXES__)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"), fname, 1);
         return NULL;

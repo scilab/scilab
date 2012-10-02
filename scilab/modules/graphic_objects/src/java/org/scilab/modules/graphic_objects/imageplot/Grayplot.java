@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.imageplot;
 
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -65,8 +66,8 @@ public class Grayplot extends Imageplot {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_DATA_MAPPING__)) {
+	public Object getPropertyFromName(int propertyName) {
+		if (propertyName == __GO_DATA_MAPPING__) {
 			return GrayplotProperty.DATAMAPPING;
 		} else {
 			return super.getPropertyFromName(propertyName);
@@ -133,8 +134,8 @@ public class Grayplot extends Imageplot {
 	/**
 	 * @return Type as String
 	 */
-	public String getType() {
-		return "Grayplot";
+	public Integer getType() {
+		return GraphicObjectProperties.__GO_GRAYPLOT__;
 	}
 
 }

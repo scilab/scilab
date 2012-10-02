@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="clean">
+    <refnamediv>
+        <refname>clean</refname>
+        <refpurpose>
+          очищает матрицы (округление малых значений до нуля)    </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>числовая матрица (скаляр, полином, разрежённая, ...).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>epsa, epsr</term>
+                <listitem>
+                    <para>
+                      вещественные числа. Допустимые отклонения для  очистки (значения по умолчанию соответственно <literal>1.d-10</literal> и <literal>1.d-10</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция исключает (то есть устанавливает равными нулю) все коэффициенты с абсолютным значением &lt; <varname>epsa</varname> относительным значением &lt; <varname>epsr</varname>
+            ("относительное" значит относительно <literal>1-norm</literal> коэффициентов) в полиномах (матрицах полиномов или матрицах рациональных значений).
+        </para>
+        <para>
+            Значения по умолчанию:  <varname>epsa</varname><literal>=1.d-10</literal> и <varname>epsr</varname><literal>=1.d-10;</literal>
+        </para>
+        <para>
+            Для матрицы констант (не полиномиальных значений) <code>clean(A,epsa)</code> устанавливает равными нулю все элементы <literal>A</literal> меньшие, чем <varname>epsa</varname>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+x=poly(0,'x');
+w=[x,1,2+x;3+x,2-x,x^2;1,2,3+x]/3;
+w*inv(w)
+clean(w*inv(w))
+ ]]></programlisting>
+    </refsection>
+</refentry>
+ 

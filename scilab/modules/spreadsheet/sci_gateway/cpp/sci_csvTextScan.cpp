@@ -102,7 +102,7 @@ int sci_csvTextScan(char *fname)
                 FREE(iRange);
                 iRange = NULL;
             }
-            Scierror(999, _("%s: Wrong value for input argument #%d: Unconsistent range.\n"), fname, 5);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Inconsistent range.\n"), fname, 5);
             return 0;
         }
     }
@@ -428,8 +428,13 @@ int sci_csvTextScan(char *fname)
             }
             break;
 
-            case CSV_READ_READLINES_ERROR:
             case CSV_READ_COLUMNS_ERROR:
+            {
+                Scierror(999, _("%s: can not read text: Error in the column structure\n"), fname);
+            }
+            break;
+
+            case CSV_READ_READLINES_ERROR:
             case CSV_READ_ERROR:
             {
                 Scierror(999, _("%s: can not read text.\n"), fname);

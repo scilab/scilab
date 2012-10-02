@@ -102,7 +102,7 @@ int sci_csvRead(char *fname)
                 FREE(iRange);
                 iRange = NULL;
             }
-            Scierror(999, _("%s: Wrong value for input argument #%d: Unconsistent range.\n"), fname, 7);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Inconsistent range.\n"), fname, 7);
             return 0;
         }
     }
@@ -180,7 +180,11 @@ int sci_csvRead(char *fname)
     {
         int iErr = 0;
         conversion = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 4, fname, getCsvDefaultConversion(), &iErr);
-        if (iErr) return 0;
+        if (iErr)
+        {
+            FREE(regexp);
+            return 0;
+        }
         if (!((strcmp(conversion, CONVTOSTR) == 0) || (strcmp(conversion, CONVTODOUBLE) == 0)))
         {
             if (regexp)
@@ -534,8 +538,13 @@ int sci_csvRead(char *fname)
             }
             break;
 
-            case CSV_READ_READLINES_ERROR:
             case CSV_READ_COLUMNS_ERROR:
+            {
+                Scierror(999, _("%s: can not read file %s: Error in the column structure\n"), fname, filename);
+            }
+            break;
+
+            case CSV_READ_READLINES_ERROR:
             case CSV_READ_ERROR:
             {
                 Scierror(999, _("%s: can not read file %s.\n"), fname, filename);

@@ -260,22 +260,6 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            a=get("current_axes");
-            a.data_bounds=[0,0;1,1];
-            a.axes_visible = 'on' ;
-            
-            xstring(0,0,"Scilab is not esilaB",0,0)
-            
-            t=get("hdl") 
-            
-            t.font_foreground=6; 
-            t.font_size=5;
-            t.font_style=5;
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 a=get("current_axes");
@@ -304,6 +288,19 @@ t.text=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml]
 
 
  ]]></programlisting>
+        <scilab:image>
+            a=get("current_axes");
+            a.data_bounds=[0,0;1,1];
+            a.axes_visible = 'on' ;
+            
+            xstring(0,0,"Scilab is not esilaB",0,0)
+            
+            t=get("hdl") 
+            
+            t.font_foreground=6; 
+            t.font_size=5;
+            t.font_style=5;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

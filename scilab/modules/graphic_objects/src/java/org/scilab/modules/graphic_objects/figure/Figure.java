@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.figure;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ANTIALIASING__;
@@ -398,50 +399,51 @@ public class Figure extends GraphicObject {
      * @param propertyName the property name
      * @return the property enum
      */
-    public Object getPropertyFromName(String propertyName) {
-        if (propertyName.equals(__GO_POSITION__)) {
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+        case __GO_POSITION__ :
             return FigureDimensionsProperty.POSITION;
-        } else if (propertyName.equals(__GO_SIZE__)) {
+        case __GO_SIZE__ :
             return FigureDimensionsProperty.SIZE;
-        } else if (propertyName.equals(__GO_AUTORESIZE__)) {
+        case __GO_AUTORESIZE__ :
             return CanvasProperty.AUTORESIZE;
-        } else if (propertyName.equals(__GO_VIEWPORT__)) {
+        case __GO_VIEWPORT__ :
             return CanvasProperty.VIEWPORT;
-        } else if (propertyName.equals(__GO_AXES_SIZE__)) {
+        case __GO_AXES_SIZE__ :
             return CanvasProperty.AXESSIZE;
-        } else if (propertyName.equals(__GO_NAME__)) {
+        case __GO_NAME__ :
             return FigureNameProperty.NAME;
-        } else if (propertyName.equals(__GO_ID__)) {
+        case __GO_ID__ :
             return FigureNameProperty.ID;
-        } else if (propertyName.equals(__GO_INFO_MESSAGE__)) {
+        case __GO_INFO_MESSAGE__ :
             return FigureProperty.INFOMESSAGE;
-        } else if (propertyName.equals(__GO_COLORMAP__)) {
+        case __GO_COLORMAP__ :
             return FigureProperty.COLORMAP;
-        } else if (propertyName.equals(__GO_COLORMAP_SIZE__)) {
+        case __GO_COLORMAP_SIZE__ :
             return FigureProperty.COLORMAPSIZE;
-        } else if (propertyName.equals(__GO_PIXMAP__)) {
+        case __GO_PIXMAP__ :
             return RenderingModeProperty.PIXMAP;
-        } else if (propertyName.equals(__GO_PIXEL_DRAWING_MODE__)) {
+        case __GO_PIXEL_DRAWING_MODE__ :
             return RenderingModeProperty.PIXELDRAWINGMODE;
-        } else if (propertyName.equals(__GO_ANTIALIASING__)) {
+        case __GO_ANTIALIASING__ :
             return RenderingModeProperty.ANTIALIASING;
-        } else if (propertyName.equals(__GO_IMMEDIATE_DRAWING__)) {
+        case __GO_IMMEDIATE_DRAWING__ :
             return RenderingModeProperty.IMMEDIATEDRAWING;
-        } else if (propertyName.equals(__GO_BACKGROUND__)) {
+        case __GO_BACKGROUND__ :
             return FigureProperty.BACKGROUND;
-        } else if (propertyName.equals(__GO_EVENTHANDLER_NAME__)) {
+        case __GO_EVENTHANDLER_NAME__ :
             return EventHandlerProperty.EVENTHANDLER;
-        } else if (propertyName.equals(__GO_EVENTHANDLER_ENABLE__)) {
+        case __GO_EVENTHANDLER_ENABLE__ :
             return EventHandlerProperty.EVENTHANDLERENABLE;
-        } else if (propertyName.equals(__GO_TAG__)) {
+        case __GO_TAG__ :
             return FigureProperty.TAG;
-        } else if (propertyName.equals(__GO_ROTATION_TYPE__)) {
+        case __GO_ROTATION_TYPE__ :
             return FigureProperty.ROTATIONTYPE;
-        } else if (propertyName.equals(__GO_RESIZEFCN__)) {
+        case __GO_RESIZEFCN__ :
             return FigureProperty.RESIZEFCN;
-        } else if (propertyName.equals(__GO_CLOSEREQUESTFCN__)) {
+        case __GO_CLOSEREQUESTFCN__ :
             return FigureProperty.CLOSEREQUESTFCN;
-        } else {
+        default :
             return super.getPropertyFromName(propertyName);
         }
     }
@@ -954,8 +956,8 @@ public class Figure extends GraphicObject {
     /**
      * @return Type as String
      */
-    public String getType() {
-        return "Figure";
+    public Integer getType() {
+        return GraphicObjectProperties.__GO_FIGURE__;
     }
 
 }

@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественная или комплексная квадратная матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,9 +33,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>y=sqrt(x)</literal> является матричным квадратным корнем из матрицы 
-            <literal>x</literal> (<literal>x=y^2</literal>). Результат может быть неточным,
-            если матрица <literal>x</literal> не симметричная.
+            <literal>y=sqrtm(x)</literal> является матричным квадратным корнем из матрицы
+            <varname>x</varname> (<literal>x=y^2</literal>). Результат может быть неточным,
+            если матрица <varname>x</varname> не симметричная.
         </para>
     </refsection>
     <refsection>

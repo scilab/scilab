@@ -51,6 +51,11 @@ plot2d([-100,500],[-100,600],[-1,-1],"022")
 x=0:100:200;
 xnumb(x,500*ones(x),[10,20,35],1)
  ]]></programlisting>
+        <scilab:image>
+            plot2d([-100,500],[-100,600],[-1,-1],"022")
+            x=0:100:200;
+            xnumb(x,500*ones(x),[10,20,35],1)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

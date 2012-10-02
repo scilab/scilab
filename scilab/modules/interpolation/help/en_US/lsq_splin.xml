@@ -133,6 +133,29 @@ plot2d(xd,[ye yd ys],style=[2 -2 3], ...
 xtitle("a least square spline")
 show_window()
  ]]></programlisting>
+        <scilab:image>
+            a = 0; b = 2*%pi;
+            sigma = 0.1;  // standard deviation of the gaussian noise
+            m = 200;       // number of experimental points
+            xd = linspace(a,b,m)';
+            yd = sin(xd) + grand(xd,"nor",0,sigma);
+            
+            n = 6; // number of breakpoints
+            x = linspace(a,b,n)';
+            
+            // compute the spline
+            [y, d] = lsq_splin(xd, yd, x);  // use equal weights
+            
+            // plotting
+            ye = sin(xd);
+            ys = interp(xd, x, y, d);
+            clf()
+            plot2d(xd,[ye yd ys],style=[2 -2 3], ...
+            leg="exact function@experimental measures (gaussian perturbation)@fitted spline")
+            xtitle("a least square spline")
+            show_window()
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

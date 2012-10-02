@@ -166,7 +166,8 @@ int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
 /* set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3) */
 int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
 {
-    char* type;
+    int type = -1;
+    int *piType = &type;
 
     int m1, n1, m2, n2, m3, n3;
     int m3n, n3n;
@@ -250,9 +251,9 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
         izcol = 0;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_FAC3D__) == 0)
+    if (type == __GO_FAC3D__)
     {
         isFac3d = 1;
     }
@@ -426,11 +427,12 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
 /*--------------------------------------------------------------------------*/
 int set_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-    char* type;
+    int type = -1;
+    int *piType = &type;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_CHAMP__) == 0)
+    if (type == __GO_CHAMP__)
     {
         AssignedList* tlist = NULL;
         int status = -1;
@@ -452,7 +454,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valu
         destroyAssignedList( tlist );
         return status;
     }
-    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    else if (type == __GO_GRAYPLOT__)
     {
         AssignedList * tlist = NULL;
         int status = -1;
@@ -474,7 +476,7 @@ int set_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valu
         destroyAssignedList( tlist );
         return status;
     }
-    else if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
+    else if (type == __GO_FAC3D__ || type == __GO_PLOT3D__)
     {
         AssignedList * tlist = NULL;
         int status = -1;

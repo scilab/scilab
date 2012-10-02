@@ -474,8 +474,8 @@ public class TextManager {
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, String property) {
-        if (!__GO_POSITION__.equals(property) && !__GO_FONT_ANGLE__.equals(property)) {
+    public void update(String id, int property) {
+        if (!(__GO_POSITION__ == property) && !(__GO_FONT_ANGLE__ == property)) {
             dispose(id);
         }
     }

@@ -148,78 +148,79 @@ public abstract class GraphicObject implements Cloneable {
      * @param typeName the property name
      * @return the type enum
      */
-    public static Type getTypeFromName(String typeName) {
-        if (typeName.equals(__GO_ARC__)) {
+    public static Type getTypeFromName(int typeName) {
+        switch (typeName) {
+        case __GO_ARC__ :
             return Type.ARC;
-        } else if (typeName.equals(__GO_AXES__)) {
+        case __GO_AXES__ :
             return Type.AXES;
-        } else if (typeName.equals(__GO_AXESMODEL__)) {
+        case __GO_AXESMODEL__ :
             return Type.AXESMODEL;
-        } else if (typeName.equals(__GO_AXIS__)) {
+        case __GO_AXIS__ :
             return Type.AXIS;
-        } else if (typeName.equals(__GO_CHAMP__)) {
+        case __GO_CHAMP__ :
             return Type.CHAMP;
-        } else if (typeName.equals(__GO_COMPOUND__)) {
+        case __GO_COMPOUND__ :
             return Type.COMPOUND;
-        } else if (typeName.equals(__GO_FAC3D__)) {
+        case __GO_FAC3D__ :
             return Type.FAC3D;
-        } else if (typeName.equals(__GO_FEC__)) {
+        case __GO_FEC__ :
             return Type.FEC;
-        } else if (typeName.equals(__GO_FIGURE__)) {
+        case __GO_FIGURE__ :
             return Type.FIGURE;
-        } else if (typeName.equals(__GO_FIGUREMODEL__)) {
+        case __GO_FIGUREMODEL__ :
             return Type.FIGUREMODEL;
-        } else if (typeName.equals(__GO_GRAYPLOT__)) {
+        case __GO_GRAYPLOT__ :
             return Type.GRAYPLOT;
-        } else if (typeName.equals(__GO_LABEL__)) {
+        case __GO_LABEL__ :
             return Type.LABEL;
-        } else if (typeName.equals(__GO_LEGEND__)) {
+        case __GO_LEGEND__ :
             return Type.LEGEND;
-        } else if (typeName.equals(__GO_MATPLOT__)) {
+        case __GO_MATPLOT__ :
             return Type.MATPLOT;
-        } else if (typeName.equals(__GO_PLOT3D__)) {
+        case __GO_PLOT3D__ :
             return Type.PLOT3D;
-        } else if (typeName.equals(__GO_POLYLINE__)) {
+        case __GO_POLYLINE__ :
             return Type.POLYLINE;
-        } else if (typeName.equals(__GO_RECTANGLE__)) {
+        case __GO_RECTANGLE__ :
             return Type.RECTANGLE;
-        } else if (typeName.equals(__GO_SEGS__)) {
+        case __GO_SEGS__ :
             return Type.SEGS;
-        } else if (typeName.equals(__GO_TEXT__)) {
+        case __GO_TEXT__ :
             return Type.TEXT;
-        } else if (typeName.equals(__GO_UI_CHECKBOX__)) {
+        case __GO_UI_CHECKBOX__ :
             return Type.CHECKBOX;
-        } else if (typeName.equals(__GO_UI_EDIT__)) {
+        case __GO_UI_EDIT__ :
             return Type.EDIT;
-        } else if (typeName.equals(__GO_UI_FRAME__)) {
+        case __GO_UI_FRAME__ :
             return Type.FRAME;
-        } else if (typeName.equals(__GO_UI_IMAGE__)) {
+        case __GO_UI_IMAGE__ :
             return Type.IMAGE;
-        } else if (typeName.equals(__GO_UI_LISTBOX__)) {
+        case __GO_UI_LISTBOX__ :
             return Type.LISTBOX;
-        } else if (typeName.equals(__GO_UI_POPUPMENU__)) {
+        case __GO_UI_POPUPMENU__ :
             return Type.POPUPMENU;
-        } else if (typeName.equals(__GO_UI_PUSHBUTTON__)) {
+        case __GO_UI_PUSHBUTTON__ :
             return Type.PUSHBUTTON;
-        } else if (typeName.equals(__GO_UI_RADIOBUTTON__)) {
+        case __GO_UI_RADIOBUTTON__ :
             return Type.RADIOBUTTON;
-        } else if (typeName.equals(__GO_UI_SLIDER__)) {
+        case __GO_UI_SLIDER__ :
             return Type.SLIDER;
-        } else if (typeName.equals(__GO_UI_TABLE__)) {
+        case __GO_UI_TABLE__ :
             return Type.TABLE;
-        } else if (typeName.equals(__GO_UI_TEXT__)) {
+        case __GO_UI_TEXT__ :
             return Type.UITEXT;
-        } else if (typeName.equals(__GO_UIMENU__)) {
+        case __GO_UIMENU__ :
             return Type.UIMENU;
-        } else if (typeName.equals(__GO_UICONTEXTMENU__)) {
+        case __GO_UICONTEXTMENU__ :
             return Type.UICONTEXTMENU;
-        } else if (typeName.equals(__GO_PROGRESSIONBAR__)) {
+        case __GO_PROGRESSIONBAR__ :
             return Type.PROGRESSIONBAR;
-        } else if (typeName.equals(__GO_WAITBAR__)) {
+        case __GO_WAITBAR__ :
             return Type.WAITBAR;
-        } else if (typeName.equals(__GO_DATATIP__)) {
+        case __GO_DATATIP__:
             return Type.DATATIP;
-        } else {
+        default :
             return Type.UNKNOWNOBJECT;
         }
     }
@@ -229,48 +230,47 @@ public abstract class GraphicObject implements Cloneable {
      * @param propertyName the property name
      * @return the property enum
      */
-    public Object getPropertyFromName(String propertyName) {
-        if (propertyName.equals(__GO_PARENT__)) {
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+        case __GO_PARENT__ :
             return  GraphicObjectPropertyType.PARENT;
-        } else if (propertyName.equals(__GO_CHILDREN__)) {
+        case __GO_CHILDREN__ :
             return GraphicObjectPropertyType.CHILDREN;
-        } else if (propertyName.equals(__GO_CHILDREN_COUNT__)) {
+        case __GO_CHILDREN_COUNT__ :
             return GraphicObjectPropertyType.CHILDREN_COUNT;
-        } else if (propertyName.equals(__GO_HIDDEN__)) {
+        case __GO_HIDDEN__ :
             return GraphicObjectPropertyType.HIDDEN;
-        } else if (propertyName.equals(__GO_VISIBLE__)) {
+        case __GO_VISIBLE__ :
             return GraphicObjectPropertyType.VISIBLE;
-        } else if (propertyName.equals(__GO_USER_DATA__)) {
+        case __GO_USER_DATA__ :
             return GraphicObjectPropertyType.USERDATA;
-        } else if (propertyName.equals(__GO_USER_DATA_SIZE__)) {
+        case __GO_USER_DATA_SIZE__ :
             return GraphicObjectPropertyType.USERDATASIZE;
-        } else if (propertyName.equals(__GO_REFERENCED__)) {
+        case __GO_REFERENCED__ :
             return GraphicObjectPropertyType.REFERENCED;
-        } else if (propertyName.equals(__GO_VALID__)) {
+        case __GO_VALID__ :
             return GraphicObjectPropertyType.VALID;
-        } else if (propertyName.equals(__GO_PARENT_FIGURE__)) {
+        case __GO_PARENT_FIGURE__ :
             return GraphicObjectPropertyType.PARENT_FIGURE;
-        } else if (propertyName.equals(__GO_PARENT_AXES__)) {
+        case __GO_PARENT_AXES__ :
             return GraphicObjectPropertyType.PARENT_AXES;
-        } else if (propertyName.equals(__GO_PARENT_AXES__)) {
-            return GraphicObjectPropertyType.PARENT_AXES;
-        } else if (propertyName.equals(__GO_HAS_LEGEND_CHILD__)) {
+        case __GO_HAS_LEGEND_CHILD__ :
             return GraphicObjectPropertyType.HASLEGENDCHILD;
-        } else if (propertyName.equals(__GO_LEGEND_CHILD__)) {
+        case __GO_LEGEND_CHILD__ :
             return GraphicObjectPropertyType.LEGENDCHILD;
-        } else if (propertyName.equals(__GO_SELECTED_CHILD__)) {
+        case __GO_SELECTED_CHILD__ :
             return GraphicObjectPropertyType.SELECTEDCHILD;
-        } else if (propertyName.equals(__GO_TYPE__)) {
+        case __GO_TYPE__ :
             return GraphicObjectPropertyType.TYPE;
-        }  else if (propertyName.equals(__GO_DATA_MODEL__)) {
+        case __GO_DATA_MODEL__ :
             return GraphicObjectPropertyType.DATA;
-        }  else if (propertyName.equals(__GO_TAG__)) {
+        case __GO_TAG__ :
             return GraphicObjectPropertyType.TAG;
-        }  else if (propertyName.equals(__GO_CALLBACK__)) {
+        case __GO_CALLBACK__ :
             return GraphicObjectPropertyType.CALLBACK;
-        }  else if (propertyName.equals(__GO_CALLBACKTYPE__)) {
+        case __GO_CALLBACKTYPE__ :
             return GraphicObjectPropertyType.CALLBACKTYPE;
-        }  else {
+        default:
             //System.err.println("[ERROR] Unknown Property : "+propertyName+" !!!!!!!!!!");
             return GraphicObjectPropertyType.UNKNOWNPROPERTY;
         }
@@ -642,11 +642,7 @@ public abstract class GraphicObject implements Cloneable {
      * Each type should name itself
      * @return Type as String
      */
-    // TODO : Should be public abstract.
-    //public abstract String getType();
-    public String getType() {
-        return "???";
-    }
+    public abstract Integer getType();
 
     /**
      * isValid method

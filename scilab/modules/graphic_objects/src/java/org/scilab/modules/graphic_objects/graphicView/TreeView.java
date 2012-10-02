@@ -90,7 +90,7 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener{
 
     public abstract void createObject(String id);
     public abstract void deleteObject(String id) ;
-    public abstract void updateObject(String id, String property);
+    public abstract void updateObject(String id, int property);
     
     /*
      * Inner class to wrap GraphicObject in a Node.

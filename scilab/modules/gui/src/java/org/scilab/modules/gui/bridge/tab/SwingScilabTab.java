@@ -1393,12 +1393,12 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @param value the property value
      * @see org.scilab.modules.gui.SwingViewObject#update(java.lang.String, java.lang.Object)
      */
-    public void update(String property, Object value) {
-        if (property.equals(__GO_NAME__)) {
+    public void update(int property, Object value) {
+        if (property == __GO_NAME__) {
             String name = ((String) value);
             Integer figureId = (Integer) GraphicController.getController().getProperty(getId(), __GO_ID__);
             updateTitle(name, figureId);
-        } else if (property.equals(__GO_ID__)) {
+        } else if (property == __GO_ID__) {
             /* Update title */
             Integer figureId = ((Integer) value);
             String name = (String) GraphicController.getController().getProperty(getId(), __GO_NAME__);
@@ -1422,13 +1422,13 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             /* Update menus callbacks */
             String[] children = (String[]) GraphicController.getController().getProperty(getId(), __GO_CHILDREN__);
             updateChildrenCallbacks(children, figureId);
-        } else if (property.equals(__GO_SIZE__)) {
+        } else if (property == __GO_SIZE__) {
             Integer[] size = (Integer[]) value;
             SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(new Size(size[0], size[1]));
-        } else if (property.equals(__GO_POSITION__)) {
+        } else if (property == __GO_POSITION__) {
             Integer[] position = (Integer[]) value;
             SwingScilabWindow.allScilabWindows.get(parentWindowId).setPosition(new Position(position[0], position[1]));
-        } else if (property.equals(__GO_AXES_SIZE__)) {
+        } else if (property == __GO_AXES_SIZE__) {
             Integer[] axesSize = (Integer[]) value;
             Dimension oldAxesSize = getContentPane().getSize();
             if (
@@ -1442,12 +1442,12 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
                 SwingScilabWindow.allScilabWindows.get(parentWindowId).setDims(
                     new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
             }
-        } else if (property.equals(__GO_INFO_MESSAGE__)) {
+        } else if (property == __GO_INFO_MESSAGE__) {
             getInfoBar().setText((String) value);
-        } else if (property.equals(__GO_EVENTHANDLER_ENABLE__)) {
+        } else if (property == __GO_EVENTHANDLER_ENABLE__) {
             Boolean enabled = (Boolean) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_ENABLE__);
             setEventHandlerEnabled(enabled);
-        } else if (property.equals(__GO_EVENTHANDLER_NAME__)) {
+        } else if (property == __GO_EVENTHANDLER_NAME__) {
             String eventHandlerName = (String) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_NAME__);
             setEventHandler(eventHandlerName);
         }
@@ -1460,11 +1460,11 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     private void updateChildrenCallbacks(String[] children, int parentFigureId) {
         for (int kChild = 0; kChild < children.length; kChild++) {
-            String childType = (String) GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
-            if (childType.equals(__GO_UIMENU__)
-                || childType.equals(__GO_UIPARENTMENU__)
-                || childType.equals(__GO_UICHILDMENU__)
-                || childType.equals(__GO_UICHECKEDMENU__)) {
+            int childType = (Integer) GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
+            if (childType == __GO_UIMENU__
+                    || childType == __GO_UIPARENTMENU__
+                    || childType == __GO_UICHILDMENU__
+                    || childType == __GO_UICHECKEDMENU__) {
                 String cb = (String) GraphicController.getController().getProperty(children[kChild], __GO_CALLBACK__);
                 SwingView.getFromId(children[kChild]).update(__GO_CALLBACK__, replaceFigureID(cb, parentFigureId));
                 String[] menuChildren = (String[]) GraphicController.getController().getProperty(children[kChild], __GO_CHILDREN__);

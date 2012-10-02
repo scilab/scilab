@@ -24,6 +24,8 @@ FTTW_SCILAB_IMPEXP int sci_fftwlibraryisloaded(char *fname,unsigned long fname_l
 FTTW_SCILAB_IMPEXP int sci_get_fftw_wisdom(char *fname,unsigned long fname_len);
 FTTW_SCILAB_IMPEXP int sci_loadfftwlibrary(char *fname,unsigned long fname_len);
 FTTW_SCILAB_IMPEXP int sci_set_fftw_wisdom(char *fname,unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_dct(char *fname,unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_dst(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_FFTW__ */
 /*--------------------------------------------------------------------------*/

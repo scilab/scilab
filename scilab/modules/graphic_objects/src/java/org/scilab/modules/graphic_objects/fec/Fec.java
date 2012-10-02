@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects.fec;
 
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -56,14 +57,15 @@ public class Fec extends ClippableContouredObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_Z_BOUNDS__)) {
+	public Object getPropertyFromName(int propertyName) {
+		switch (propertyName) {
+		case __GO_Z_BOUNDS__ :
 			return FecProperty.ZBOUNDS;
-		} else if (propertyName.equals(__GO_OUTSIDE_COLOR__)) {
+		case __GO_OUTSIDE_COLOR__ :
 			return FecProperty.OUTSIDECOLOR;
-		} else if (propertyName.equals(__GO_COLOR_RANGE__)) {
+		case __GO_COLOR_RANGE__ :
 			return FecProperty.COLORRANGE;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}
@@ -165,8 +167,8 @@ public class Fec extends ClippableContouredObject {
 	/**
 	 * @return Type as String
 	 */
-	public String getType() {
-		return "Fec";
+	public Integer getType() {
+		return GraphicObjectProperties.__GO_FEC__;
 	}
 
 }

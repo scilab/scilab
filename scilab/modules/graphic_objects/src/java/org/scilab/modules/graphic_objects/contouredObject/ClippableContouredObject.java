@@ -45,16 +45,17 @@ public abstract class ClippableContouredObject extends ContouredObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_CLIP_PROPERTY__)) {
+	public Object getPropertyFromName(int propertyName) {
+		switch (propertyName) {
+		case __GO_CLIP_PROPERTY__ :
 			return ClippableContouredObjectPropertyType.CLIPPROPERTY;
-		} else if (propertyName.equals(__GO_CLIP_STATE__)) {
+		case __GO_CLIP_STATE__ :
 			return ClippablePropertyType.CLIPSTATE;
-		} else if (propertyName.equals(__GO_CLIP_BOX__)) {
+		case __GO_CLIP_BOX__ :
 			return ClippablePropertyType.CLIPBOX;
-		} else if (propertyName.equals(__GO_CLIP_BOX_SET__)) {
+		case __GO_CLIP_BOX_SET__ :
 			return ClippablePropertyType.CLIPBOXSET;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}

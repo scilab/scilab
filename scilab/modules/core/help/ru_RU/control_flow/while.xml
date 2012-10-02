@@ -11,20 +11,20 @@
             <literal>"end"</literal>.
         </para>
         <para>
-            <literal>while expr ,instructions,...[,else instructions], end</literal>
+            <literal>while expr ,инструкции,...[,else инструкции], end</literal>
         </para>
         <para>
-            <literal>while expr do instructions,...[,else instructions], end</literal>
+            <literal>while expr do инструкции,...[,else инструкции], end</literal>
         </para>
         <para>
-            <literal>while expr then instructions,...[,else instructions], end</literal>
+            <literal>while expr then инструкции,...[,else инструкции], end</literal>
         </para>
         <para>Примечания:</para>
         <itemizedlist>
             <listitem>
                 <para>
                     Единственное ограничение состоит в том, что каждое ключевое слово <literal>then</literal> 
-                    или <literal>do</literal> должны быть в той же самой строке, что и ключевое слово 
+                    или <literal>do</literal> должно быть в той же самой строке, что и ключевое слово
                     <literal>while</literal>.
                 </para>
             </listitem>
@@ -38,8 +38,8 @@
             </listitem>
             <listitem>
                 <para>
-                    Необязательная конструкция <literal>,else instructions</literal> позволяет 
-                    указывать инструкции <literal>instructions</literal>, которые исполняются когда выражение  
+                    Необязательная конструкция <literal>[,else инструкции]</literal> позволяет
+                    указывать инструкции <literal>инструкции</literal>, которые исполняются когда выражение
                     <literal>expr</literal> становится ложным.
                 </para>
             </listitem>

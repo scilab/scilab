@@ -13,7 +13,6 @@
 package org.scilab.modules.graphic_objects.uicontrol.edit;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SUNKEN_RELIEF__;
 
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
@@ -28,7 +27,7 @@ public class Edit extends Uicontrol {
     public Edit() {
         super();
         setStyle(__GO_UI_EDIT__);
-        setRelief(__GO_UI_SUNKEN_RELIEF__);
+        setRelief(SUNKEN_RELIEF);
     }
 
 }

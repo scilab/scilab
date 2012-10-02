@@ -25,6 +25,8 @@
             return in <literal>s</literal> all libraries in the Scilab environment.
         </para>
         <para>libraries are scanned from the lastest loaded to the first one.</para>
+        <para>Only macro libraries will be returned. For a module without any macros (ie, a module with only native code), it will not be displayed on the list.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

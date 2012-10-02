@@ -49,7 +49,8 @@ int sci_Legend( char * fname, unsigned long fname_len )
     char * psubwinUID = NULL;
     char * pFigureUID = NULL;
     sciLegendPlace location;
-    char * type = NULL;
+    int type = -1;
+    int *piType = &type;
     char **Str = NULL;
     char * legendUID = NULL;
 
@@ -136,9 +137,9 @@ int sci_Legend( char * fname, unsigned long fname_len )
             return 0;
         }
 
-        getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+        getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-        if (strcmp(type, __GO_POLYLINE__) != 0)
+        if (type != __GO_POLYLINE__)
         {
             freeArrayOfString(Str, n);
             FREE(tabofhandles);

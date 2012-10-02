@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="tlist">
+    <refnamediv>
+        <refname>tlist</refname>
+        <refpurpose>объект Scilab'а и определение типизированного списка</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>tlist(typ, a1, ..., an)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>typ</term>
+                <listitem>
+                    <para>
+                        символьная строка или вектор символьных строк.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ai</term>
+                <listitem>
+                    <para>
+                        любой объект Scilab'а (<literal>matrix</literal>, <literal>list</literal>,
+                        <literal>string</literal>, ...).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>tlist(typ, a1, ..., an)</literal> создаёт типизированный список <literal>tlist</literal> с элементами <varname>ai</varname>. Аргумент <varname>typ</varname> определяет тип списка. Такой типизированный список позволяет пользователю определять новые операции, действующие над этими объектами через функции Scilab-а. Единственная разница между <literal>tlist</literal> и <literal>list</literal> состоит в значении типа (16 вместо 15).
+        </para>
+        <para>
+            <code>typ(1)</code> определяет тип списка (символьная строка, используемая для определения запрограммированных действий).
+        </para>
+        <para>
+            Если определено это, то <code>typ(i)</code> может дать <literal>(i+1)</literal>-тому элементу формальное имя.
+        </para>
+        <para>
+            Стандартные операции, определённые над списками <literal>list</literal> работают и типизированными списками <literal>tlist</literal>:
+        </para>
+        <para>
+            извлечение:
+        </para>
+        <para>
+            <literal>[x, y, z, ...]=l(v)</literal>, где <literal>v</literal> - вектор индексов;
+            <literal>[x, y, z]=l(:)</literal> извлекает все элементы.
+        </para>
+        <para>
+            вставка:
+        </para>
+        <para>
+            <literal>l(i)=a</literal>
+        </para>
+        <para>
+            удаление:
+        </para>
+        <para>
+            <code>l(i)=null()</code> удаляет <literal>i</literal>-тый
+            элемент типизированного списка <literal>l</literal>.
+            <note>
+                Заметьте, что семантика инструкции <code>l.x=null()</code> не определена, а определение может быть дано через механизм  <link linkend="overloading">перегрузки</link>.
+            </note>
+        </para>
+        <para>
+            вывод на экран.
+        </para>
+        <para>
+            Более того, если <code>typ(2:n+1)</code> определены, то пользователь может обращаться к элементам по их именам.
+        </para>
+        <para>
+            Ниже приводятся примеры, где используются <literal>tlist</literal>.
+        </para>
+        <para>
+            Линейные системы представляются особыми типизированными списками, например, линейная система <literal>[A,B,C,D]</literal> представляется типизированным списком  <code>Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c')</code>
+            и этот особый список можно создать с помощью функции <function>syslin</function>.
+        </para>
+        <para>
+            <code>Sys(2)</code>, <code>Sys('A')</code> или <code>Sys.A</code> является матрицей состояний, а <code>Sys('dt')</code> или <code>Sys.dt</code> является временн<emphasis role="bold" >о</emphasis>й областью.
+        </para>
+        <para>
+            Матрица рациональных значений <literal>H</literal> представляется типизированным списком
+            <code>H=rlist(Num,Den,[])</code>, где <literal>Num</literal> и <literal>Den</literal> являются матрицами полиномов, а линейная система непрерывного времени с передаточной матрицей <literal>H</literal> может быть создана с помощью <code>syslin('c',H)</code>.
+        </para>
+        <para>
+            <code>H(2)</code>, <code>H('num')</code> или <code>H.num</code> является числителем передаточной матрицы.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+// tlist creation
+t = tlist(["listtype","field1","field2"], [], []);
+t.field1(1) = 10;
+t.field1(2) = 20;
+t.field2(1) = "Scilab";
+t.field2(2) = "tlist";
+t.field2(3) = "пример";
+ 
+// Отображение содержимого полей
+disp(t.field1)
+disp(t.field2)
+ 
+// Общее отображение типизированного списка
+disp(t)
+ 
+// Перегрузка отображения для этого типа типизированного списка
+function %listtype_p(mytlist)
+  f = fieldnames(mytlist);
+ 
+  // typeof(mytlist) <=> f(1)
+  mprintf("Отображение типизированного списка типа: %s\n", typeof(mytlist));
+ 
+  mprintf("\n");
+ 
+  mprintf("-- Поле ''%s'' --\n", f(1));
+  mprintf("Содержимое: %s\n", sci2exp(mytlist(f(1))));
+ 
+  mprintf("\n");
+ 
+  mprintf("-- Поле ''%s'' --\n", f(2));
+  mprintf("Содержимое: %s\n", sci2exp(mytlist(f(2))));
+endfunction
+ 
+// Отображение с помощью функции перегрузки
+disp(t)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="percent">процент</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

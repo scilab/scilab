@@ -362,8 +362,8 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * @param property property name
      * @param value property value
      */
-    public void update(String property, Object value) {
-        if (property.equals(__GO_CHILDREN__)) {
+    public void update(int property, Object value) {
+        if (property == __GO_CHILDREN__) {
             setVisibleAndLocation();
             pack();
         }

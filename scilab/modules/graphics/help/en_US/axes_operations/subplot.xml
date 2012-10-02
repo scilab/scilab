@@ -51,20 +51,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            subplot(221)
-            plot2d()
-            subplot(222)
-            plot3d()
-            subplot(2,2,3)
-            param3d()
-            subplot(2,2,4)
-            hist3d()
-            
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 subplot(221)
@@ -76,6 +62,17 @@ param3d()
 subplot(2,2,4)
 hist3d()
  ]]></programlisting>
+        <scilab:image>
+            subplot(221)
+            plot2d()
+            subplot(222)
+            plot3d()
+            subplot(2,2,3)
+            param3d()
+            subplot(2,2,4)
+            hist3d()
+            
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

@@ -45,14 +45,7 @@
             varying from blue, lightblue, green, yellow, orange then red
         </para>
     </refsection>
-    <refsection>
-        <title>Sample</title>
-        <scilab:image> 
-            f = scf();
-            plot3d1();
-            f.color_map = jetcolormap(32);
-        </scilab:image>
-    </refsection>
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
@@ -60,6 +53,11 @@ f = scf();
 plot3d1();
 f.color_map = jetcolormap(32);
  ]]></programlisting>
+        <scilab:image> 
+            f = scf();
+            plot3d1();
+            f.color_map = jetcolormap(32);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

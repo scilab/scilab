@@ -66,7 +66,7 @@ public class LegendDrawer {
     /**
      * Set of properties that affect the legend sprite
      */
-    private static final Set<String> SPRITE_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> SPRITE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                                                                                  GraphicObjectProperties.__GO_FONT_SIZE__,
                                                                                  GraphicObjectProperties.__GO_FONT_COLOR__,
                                                                                  GraphicObjectProperties.__GO_FONT_STYLE__,
@@ -568,7 +568,7 @@ public class LegendDrawer {
      * @param id the legend id.
      * @param property the property to update.
      */
-    public void update(String id, String property) {
+    public void update(String id, int property) {
         if (textureMap.containsKey(id)) {
             if (SPRITE_PROPERTIES.contains(property)) {
                 dispose(id);

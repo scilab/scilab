@@ -58,7 +58,8 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     double* pdblData = NULL;
     double* pdblDataY = NULL;
     double* pdblDataZ = NULL;
-    char* pstType = NULL;
+    int iType = -1;
+    int* piType = &iType;
 
     double* dataX = NULL;
     double* dataY = NULL;
@@ -76,10 +77,10 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     char **pstChildrenUID = NULL;
 
     // Get type
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&pstType);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     // If a Figure, neither the object nor its children are moved.
-    if ((strcmp(pstType, __GO_FIGURE__) == 0))
+    if (iType == __GO_FIGURE__)
     {
         Scierror(999, _("This object can not be moved.\n"));
         return -1;
@@ -98,7 +99,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
     }
 
     // Arc.
-    if (strcmp(pstType, __GO_ARC__) == 0)
+    if (iType == __GO_ARC__)
     {
         getGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&pdblData);
         pdblData[0] += x;
@@ -109,7 +110,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
     // Fac3d.
-    else if (strcmp(pstType, __GO_FAC3D__) == 0)
+    else if (iType == __GO_FAC3D__)
     {
         int iNumVPG = 0;
         int* piNumVPG = &iNumVPG;
@@ -134,7 +135,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
     // Fec.
-    else if (strcmp(pstType, __GO_FEC__) == 0)
+    else if (iType == __GO_FEC__)
     {
         getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, (void**)&piNum);
         getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, (void **)&pdblData);
@@ -151,7 +152,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
     // Grayplot.
-    else if (strcmp(pstType, __GO_GRAYPLOT__) == 0)
+    else if (iType == __GO_GRAYPLOT__)
     {
         getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void**)&piNumX);
         getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**)&piNumY);
@@ -186,7 +187,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
     // Matplot.
-    else if (strcmp(pstType, __GO_MATPLOT__) == 0)
+    else if (iType == __GO_MATPLOT__)
     {
         double zShift = 0.0;
         double* pdZShift = &zShift;
@@ -238,7 +239,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         }
     }
     // Polyline.
-    else if (strcmp(pstType, __GO_POLYLINE__) == 0)
+    else if (iType == __GO_POLYLINE__)
     {
         getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**)&piNum);
 
@@ -277,7 +278,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
     // Plot3d.
-    else if (strcmp(pstType, __GO_PLOT3D__) == 0)
+    else if (iType == __GO_PLOT3D__)
     {
         getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void**)&piNumX);
         getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**)&piNumY);
@@ -310,7 +311,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
     // Champ.
-    else if (strcmp(pstType, __GO_CHAMP__) == 0)
+    else if (iType == __GO_CHAMP__)
     {
         int *champDimensions = NULL;
 
@@ -346,7 +347,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
     // Label.
-    else if (strcmp(pstType, __GO_LABEL__) == 0)
+    else if (iType == __GO_LABEL__)
     {
         getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **)&pdblData);
         pdblData[0] += x;
@@ -357,7 +358,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
     // Rectangle.
-    else if (strcmp(pstType, __GO_RECTANGLE__) == 0)
+    else if (iType == __GO_RECTANGLE__)
     {
         getGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&pdblData);
         pdblData[0] += x;
@@ -368,7 +369,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
     // Segs.
-    else if (strcmp(pstType, __GO_SEGS__) == 0)
+    else if (iType == __GO_SEGS__)
     {
         double* pdblDirection = NULL;
 
@@ -396,7 +397,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
     // Text.
-    else if (strcmp(pstType, __GO_TEXT__) == 0)
+    else if (iType == __GO_TEXT__)
     {
         getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **)&pdblData);
         pdblData[0] += x;
@@ -407,7 +408,7 @@ static int moveObj(char* pobjUID, double displacement[], int displacementSize)
         return 0;
     }
 
-    if ((strcmp(pstType, __GO_AXES__) == 0) || (strcmp(pstType, __GO_COMPOUND__) == 0))
+    if (iType == __GO_AXES__ || iType == __GO_COMPOUND__)
     {
         // Children already moved: Done.
         return 0;

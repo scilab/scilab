@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="squeeze">
     <refnamediv>
         <refname>squeeze</refname>
-        <refpurpose>Remove singleton dimensions of a hypermatrix</refpurpose>
+        <refpurpose>removes singleton dimensions of a hypermatrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -25,21 +25,23 @@
             <varlistentry>
                 <term>hypIn</term>
                 <listitem>
-                    <para>hypermatrix or matrix of constant type.</para>
+                    <para>a hypermatrix or matrix of constant type.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>hypOut</term>
                 <listitem>
-                    <para>hypermatrix or matrix of constant type.</para>
+                    <para>a hypermatrix or matrix of constant type.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para> Remove singleton dimensions of a hypermatrix, that is any dimension for
-            which the size is 1. If the input is a matrix, it is unaffected.
+        <para>
+          The <function>squeeze</function> function removes singleton dimensions of a
+          hypermatrix, that is any dimension for which the size is <literal>1</literal>. If
+          the input <varname>hypIn</varname> is a matrix, it is unaffected.
         </para>
     </refsection>
     <refsection>

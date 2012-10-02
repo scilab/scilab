@@ -22,7 +22,8 @@ int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, in
     double *position = NULL;
     int nbValues = 0;
     BOOL status = FALSE;
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
 
     if (valueType == sci_strings)
     {
@@ -58,10 +59,10 @@ int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, in
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_string, (void**)&type);
+    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**)&piType);
 
     /* Figure position set as an uicontrol one */
-    if (strcmp(type, __GO_FIGURE__) == 0)
+    if (type == __GO_FIGURE__)
     {
         int figurePosition[2];
         int figureSize[2];
@@ -81,7 +82,7 @@ int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, in
     }
     else
     {
-        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_POSITION__), position, jni_double_vector, 4);
+        status = setGraphicObjectProperty(sciObjUID, __GO_POSITION__, position, jni_double_vector, 4);
     }
 
     if (valueType == sci_strings)

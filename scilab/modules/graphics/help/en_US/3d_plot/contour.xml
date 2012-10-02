@@ -315,25 +315,46 @@ plot2d(x(im)',y(jm)',-9,"000")
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>contour();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 t=linspace(-%pi,%pi,30);
 function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
-
 contour(t,t,my_surface,10)
+ ]]></programlisting>
+        <scilab:image>
+            t=linspace(-%pi,%pi,30);
+            function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
+            contour(t,t,my_surface,10)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+t=linspace(-%pi,%pi,30);
 // changing the format of the printing of the levels
 xset("fpf","%.1f")
 clf()
+function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
 contour(t,t,my_surface,10)
+ ]]></programlisting>
+        <scilab:image>
+            t=linspace(-%pi,%pi,30);
+            // changing the format of the printing of the levels
+            xset("fpf","%.1f")
+            clf()
+            function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
+            contour(t,t,my_surface,10)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // 3D
-clf()
+t=linspace(-%pi,%pi,30);
+function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
 z=feval(t,t,my_surface);
 plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
  ]]></programlisting>
+        <scilab:image>
+            t=linspace(-%pi,%pi,30);
+            function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
+            z=feval(t,t,my_surface);
+            plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

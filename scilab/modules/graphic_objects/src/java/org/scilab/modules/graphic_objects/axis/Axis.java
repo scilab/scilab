@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.axis;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.Font;
 
@@ -104,42 +105,43 @@ public class Axis extends ClippableContouredObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_TICKS_DIRECTION__)) {
+	public Object getPropertyFromName(int propertyName) {
+		switch (propertyName) {
+		case __GO_TICKS_DIRECTION__ :
 			return AxisProperty.TICKSDIRECTION;
-		} else if (propertyName.equals(__GO_X_NUMBER_TICKS__)) {
+		case __GO_X_NUMBER_TICKS__ :
 			return AxisProperty.XNUMBERTICKS;
-		} else if (propertyName.equals(__GO_Y_NUMBER_TICKS__)) {
+		case __GO_Y_NUMBER_TICKS__ :
 			return AxisProperty.YNUMBERTICKS;
-		} else if (propertyName.equals(__GO_X_TICKS_COORDS__)) {
+		case __GO_X_TICKS_COORDS__ :
 			return AxisProperty.XTICKSCOORDS;
-		} else if (propertyName.equals(__GO_Y_TICKS_COORDS__)) {
+		case __GO_Y_TICKS_COORDS__ :
 			return AxisProperty.YTICKSCOORDS;
-		} else if (propertyName.equals(__GO_TICKS_COLOR__)) {
+		case __GO_TICKS_COLOR__ :
 			return AxisProperty.TICKSCOLOR;
-		} else if (propertyName.equals(__GO_TICKS_SEGMENT__)) {
+		case __GO_TICKS_SEGMENT__ :
 			return AxisProperty.TICKSSEGMENT;
-		} else if (propertyName.equals(__GO_TICKS_STYLE__)) {
+		case __GO_TICKS_STYLE__ :
 			return AxisProperty.TICKSSTYLE;
-		} else if (propertyName.equals(__GO_SUBTICKS__)) {
+		case __GO_SUBTICKS__ :
 			return AxisProperty.SUBTICKS;
-		} else if (propertyName.equals(__GO_NUMBER_TICKS_LABELS__)) {
+		case __GO_NUMBER_TICKS_LABELS__ :
 			return AxisProperty.NUMBERTICKSLABELS;
-		} else if (propertyName.equals(__GO_TICKS_LABELS__)) {
+		case __GO_TICKS_LABELS__ :
 			return AxisProperty.TICKSLABELS;
-		} else if (propertyName.equals(__GO_FORMATN__)) {
+		case __GO_FORMATN__ :
 			return AxisProperty.FORMATN;
-		} else if (propertyName.equals(__GO_FONT__)) {
+		case __GO_FONT__ :
 			return AxisProperty.FONT;
-		} else if (propertyName.equals(__GO_FONT_STYLE__)) {
+		case __GO_FONT_STYLE__ :
 			return Font.FontProperty.STYLE;
-		} else if (propertyName.equals(__GO_FONT_SIZE__)) {
+		case __GO_FONT_SIZE__ :
 			return Font.FontProperty.SIZE;
-		} else if (propertyName.equals(__GO_FONT_COLOR__)) {
+		case __GO_FONT_COLOR__ :
 			return Font.FontProperty.COLOR;
-		} else if (propertyName.equals(__GO_FONT_FRACTIONAL__)) {
+		case __GO_FONT_FRACTIONAL__ :
 			return Font.FontProperty.FRACTIONAL;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}
@@ -529,8 +531,8 @@ public class Axis extends ClippableContouredObject {
 	/**
 	 * @return Type as String
 	 */
-	public String getType() {
-		return "Axis";
+	public Integer getType() {
+		return GraphicObjectProperties.__GO_AXIS__;
 	}
 
 }

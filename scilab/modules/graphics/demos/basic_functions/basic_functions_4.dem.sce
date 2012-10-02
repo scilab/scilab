@@ -11,7 +11,7 @@ function demo_basic_function4()
 
   my_handle             = scf(100001);
   clf(my_handle,"reset");
-  demo_viewCode("basic_functions_4.dem.sce");
+  
 
   my_plot_desc          = "General functions";
   my_handle.figure_name = my_plot_desc;
@@ -40,6 +40,7 @@ function demo_basic_function4()
   "show_window();";]
   messagebox(["[IV.2] Creating window number 0";expr],"modal");
   execstr(expr);
+  demo_viewCode("basic_functions_4.dem.sce");
 
 endfunction
 

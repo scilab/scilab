@@ -34,7 +34,7 @@ public class Waitbar extends Uibar {
      * @return waitbar
      * @see org.scilab.modules.graphic_objects.graphicObject.GraphicObject#getType()
      */
-    public String getType() {
+    public Integer getType() {
         return __GO_WAITBAR__;
     }
 

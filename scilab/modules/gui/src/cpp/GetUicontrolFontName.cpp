@@ -19,7 +19,7 @@ int GetUicontrolFontName(void* _pvCtx, char *sciObjUID)
     char* fontName = NULL;
     int status = 0;
 
-    getGraphicObjectProperty(sciObjUID,  const_cast<char*>(__GO_UI_FONTNAME__), jni_string, (void**) &fontName);
+    getGraphicObjectProperty(sciObjUID, __GO_UI_FONTNAME__, jni_string, (void**) &fontName);
 
     if (fontName == NULL)
     {

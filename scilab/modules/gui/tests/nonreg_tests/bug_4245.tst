@@ -21,13 +21,13 @@ winId=progressionbar('Do something');
 // Check that the icon of the window open with a progressbar in it is a Scilab icon
 
 // Now enter:
-winclose(winId);
+delete(winId);
 
 // Enter:
 winId=waitbar('This is an example');
 // Check that the icon of the window open with a waitbar in it is a Scilab icon
 
 // Now enter:
-winclose(winId);
+delete(winId);
 
 

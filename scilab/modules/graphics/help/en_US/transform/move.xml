@@ -63,16 +63,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            plot3d();
-            a=gca();
-            p=a.children(1);
-            t=[1,0,-1.25];
-            move(p,t);      
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 plot3d();
@@ -81,6 +71,14 @@ p=a.children(1);
 t=[1,0,-1.25];
 move(p,t);
  ]]></programlisting>
+        <scilab:image>
+            plot3d();
+            a=gca();
+            p=a.children(1);
+            t=[1,0,-1.25];
+            move(p,t);      
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

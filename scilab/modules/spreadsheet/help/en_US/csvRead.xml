@@ -161,6 +161,9 @@
             non-numeric fields within the .csv (e.g. strings) are converted into
             NaN.
         </para>
+        
+        <para>csvRead is able to handle both UTF-8 and ASCII text files.
+        </para>
     </refsection>
     
     <refsection>

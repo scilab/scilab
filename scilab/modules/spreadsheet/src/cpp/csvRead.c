@@ -260,6 +260,7 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
             result->pstrComments = NULL;
             result->nbComments = 0;
         }
+        FREE(cleanedLines);
         return result;
     }
     else
@@ -285,6 +286,10 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
             result->pstrValues = cellsStrings;
             result->pstrComments = NULL;
             result->nbComments = 0;
+        }
+        else
+        {
+            FREE(cellsStrings);
         }
     }
     else
@@ -361,18 +366,10 @@ static int getNumbersOfColumnsInLine(const char *line, const char *separator)
     {
         int i = 0;
         int nbTokens = 0;
-        char **splittedStr = splitLine(line, separator, &nbTokens, 0);
+        char **splittedStr = splitLineCSV(line, separator, &nbTokens, 0);
         if (splittedStr)
         {
-            if (nbTokens > 0)
-            {
-                if ( (nbTokens > 1) && ((int)strlen(splittedStr[nbTokens - 1]) == 0) )
-                {
-                    nbTokens--;
-                }
-            }
             freeArrayOfString(splittedStr, nbTokens);
-
             return nbTokens;
         }
         else
@@ -406,20 +403,10 @@ static char **getStringsFromLines(const char **lines, int sizelines,
         for (i = 0; i < sizelines; i++)
         {
             int nbTokens = 0;
-            char **lineStrings = splitLine(lines[i], separator, &nbTokens, 0);
+            char **lineStrings = splitLineCSV(lines[i], separator, &nbTokens, 0);
             int j = 0;
 
-            if (lineStrings)
-            {
-                if (nbTokens > 0)
-                {
-                    if ((nbTokens > 1) && ((int)strlen(lineStrings[nbTokens - 1]) == 0))
-                    {
-                        nbTokens--;
-                    }
-                }
-            }
-            else
+            if (lineStrings == NULL)
             {
                 lineStrings = (char**)MALLOC(sizeof(char*) * 1);
                 lineStrings[0] = strdup(lines[i]);
@@ -428,13 +415,14 @@ static char **getStringsFromLines(const char **lines, int sizelines,
 
             if (m != nbTokens)
             {
-                freeArrayOfString(results, m * n);
+                freeArrayOfString(results, nbTokens * n);
                 FREE(lineStrings);
                 return NULL;
             }
 
             for (j = 0; j < m; j++)
             {
+
                 if (decimal)
                 {
                     results[i + n * j] = strdup(lineStrings[j]);

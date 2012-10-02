@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2796
 //
 // <-- Short Description -->
-// There is a variable named k equals to à 1 when a function f is evaluated when
+// There is a variable named k equals to 1 when a function f is evaluated when
 // plotting with plot(x,f).
 
 k = 42;

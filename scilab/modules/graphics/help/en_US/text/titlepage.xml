@@ -38,17 +38,16 @@
             with a font as big as possible.
         </para>
     </refsection>
-    <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            titlepage("This is the title of the page");
-        </scilab:image>
-    </refsection>
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 titlepage("This is the title of the page");
  ]]></programlisting>
+        <scilab:image>
+            titlepage("This is the title of the page");
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
