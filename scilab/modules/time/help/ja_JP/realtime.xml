@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="realtime">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="realtime">
     <refnamediv xml:id="realtimeinit">
         <refname>realtimeinit</refname>
         <refpurpose>時間の単位を設定</refpurpose>
@@ -66,14 +66,35 @@
         <programlisting role="example"><![CDATA[ 
 realtimeinit(1/2);//時間の単位を 0.5秒に設定s
 realtime(0);// カレントの時刻を 0に設定
-for k=1:10,realtime(k);mprintf('current time is '+string(k/2)+'sec .\r\n');end
- 
-//次の命令では2秒毎にドットを出力
- realtimeinit(2); realtime(0);for k=1:10,realtime(k);mprintf('.\r\n');end
+for k=1:10
+  realtime(k);
+  mprintf('current time is '+string(k/2)+'sec .\r\n');
+end
 
-realtimeinit(1);realtime(0);
-dt=getdate('s'); realtime(10);   getdate('s')-dt
+//次の命令では2秒毎にドットを出力
+realtimeinit(2);
+realtime(0);
+for k=1:10
+  realtime(k);
+  mprintf('.\r\n');
+end
+
+realtimeinit(1);
+realtime(0);
+dt=getdate('s');
+realtime(10);
+getdate('s')-dt
  ]]></programlisting>
+        <programlisting role="example"><![CDATA[ 
+realtimeinit(1);
+realtime(0);
+t1 = now()
+datevec(t1)
+realtime(10);
+t1 = now()
+datevec(t1)
+ ]]></programlisting>
+        
     </refsection>
     <refsection role="see also">
         <title>参照</title>

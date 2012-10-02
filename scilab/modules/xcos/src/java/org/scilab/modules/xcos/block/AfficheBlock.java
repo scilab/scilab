@@ -69,6 +69,7 @@ public final class AfficheBlock extends BasicBlock {
     /**
      * Update the value of the associated block
      */
+    @SuppressWarnings(value = { "serial" })
     private static class UpdateValueListener implements ActionListener, Serializable {
         private AfficheBlock block;
         private String[][] data;
@@ -144,6 +145,7 @@ public final class AfficheBlock extends BasicBlock {
 
     /**
      * Update the style according to the values of the expression
+    @SuppressWarnings(value = { "serial" })
      */
     private static final class UpdateStyle implements PropertyChangeListener, Serializable {
         /**

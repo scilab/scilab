@@ -12,7 +12,6 @@
 
 package org.scilab.modules.graphic_objects.uicontrol.popupmenu;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FLAT_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
 
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
@@ -23,12 +22,12 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 public class PopupMenu extends Uicontrol {
 
     /**
-	 * Constructor
-	 */
-	public PopupMenu() {
-		super();
-		setStyle(__GO_UI_POPUPMENU__);
-        setRelief(__GO_UI_FLAT_RELIEF__);
-	}
+     * Constructor
+     */
+    public PopupMenu() {
+        super();
+        setStyle(__GO_UI_POPUPMENU__);
+        setRelief(FLAT_RELIEF);
+    }
 
 }

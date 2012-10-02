@@ -152,25 +152,3 @@ if ~Check(a,b) then pause,end
 if ~Check(a,b,c) then pause,end
 if ~Check(a,b,c,d) then pause,end
 
-//test save/load macro
-function a = toto(x,y)
-    a = x + y;
-endfunction
-
-ref = toto(3*5, 9*3);
-save(TMPDIR + "/savemacro.sod", "toto");
-clear toto;
-load(TMPDIR + "/savemacro.sod");
-assert_checkequal(toto(3*5, 9*3), ref);
-assert_checkequal(type(toto), 13);
-
-clear toto;
-deff("a = toto(x,y)", "a = x + y;", "n");
-save(TMPDIR + "/savemacro.sod", "toto");
-clear toto;
-load(TMPDIR + "/savemacro.sod");
-assert_checkequal(toto(3*5, 9*3), ref);
-assert_checkequal(type(toto), 11);
-
-
-

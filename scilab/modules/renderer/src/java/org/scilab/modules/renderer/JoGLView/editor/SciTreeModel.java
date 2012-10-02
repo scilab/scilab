@@ -41,7 +41,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
     public Object getChild(Object parent, int index) {
         if (parent instanceof String) {
             String id = (String) parent;
-            Object children =  GraphicController.getController().getProperty(id, "Children");
+            Object children =  GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__);
             if (children instanceof String[]) {
                 if (index >= 0 && index < ((String[]) children).length) {
                     return ((String[]) children)[index];
@@ -54,7 +54,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
     public int getChildCount(Object parent) {
         if (parent instanceof String) {
             String id = (String) parent;
-            Object children =  GraphicController.getController().getProperty(id, "Children");
+            Object children =  GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__);
             if (children instanceof String[]) {
                 return ((String[]) children).length;
             }
@@ -76,7 +76,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
             childId = (String) child;
             if (parent instanceof String) {
                 String id = (String) parent;
-                Object children =  GraphicController.getController().getProperty(id, "Children");
+                Object children =  GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__);
                 if (children instanceof String[]) {
                     for (int i = 0 ; i < ((String[]) children).length ; i++) {
                         if (((String[]) children)[i].equals(childId)) {
@@ -97,7 +97,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
         listeners.remove(TreeModelListener.class, l);
     }
 
-    public void updateObject(String id, String property) {
+    public void updateObject(String id, int property) {
         Vector<String> path = getPath(id);
         if (path != null) {
             for (TreeModelListener listener : listeners.getListeners(TreeModelListener.class)) {

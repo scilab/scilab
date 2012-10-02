@@ -28,11 +28,12 @@ int SetUicontrolUnits(void* _pvCtx, char *sciObjUID, size_t stackPointer, int va
     /* Units can be points, normalized, inches, centimeters or pixels */
     BOOL status = FALSE;
     char* units = NULL;
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
 
     /* Handle must be a uicontrol */
-    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_string, (void**) &type);
-    if (strcmp(type, __GO_UICONTROL__) != 0)
+    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**) &piType);
+    if (type != __GO_UICONTROL__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Units");
         return SET_PROPERTY_ERROR;

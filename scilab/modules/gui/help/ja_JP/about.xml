@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="about">
+    <refnamediv>
+        <refname>about</refname>
+        <refpurpose>ダイアログボックス "about scilab" を表示</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>about()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>ダイアログボックス"about scilab"を表示します.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+about()
+ ]]></programlisting>
+    </refsection>
+</refentry>

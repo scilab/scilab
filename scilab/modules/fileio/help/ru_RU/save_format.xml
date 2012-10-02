@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="save_format" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="save_format" xml:lang="ru">
     <refnamediv>
         <refname>save_format</refname>
         <refpurpose>формат файлов, созданных функцией "save"</refpurpose>
@@ -22,7 +22,7 @@
             Переменные сохраняются Scilab'ом с помощью функции <link linkend="save">save</link> в следующем формате:
         </para>
         <para>
-            каждая запись переменной добавляется в файл последовательно. Запись переменной начинается с 6-ти чисел типа длинное целое, хранящих имя переменной в кодированном формате (см. раздел Примечания ниже), после чего следует тип переменной (длинное цело), затем, в зависимости от него, следует:
+            каждая запись переменной добавляется в файл последовательно. Запись переменной начинается с 6-ти чисел типа длинное целое, хранящих имя переменной в кодированном формате (см. раздел Примечания ниже), после чего следует тип переменной (длинное целое), затем, в зависимости от него, следует:
         </para>
         <variablelist>
             <varlistentry>

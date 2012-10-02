@@ -10,22 +10,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="definedfields">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="definedfields">
     <refnamediv>
         <refname>definedfields</refname>
-        <refpurpose> return index of list's defined fields</refpurpose>
+        <refpurpose>returns an index of list's defined fields</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>k=definedfields(l)</synopsis>
+        <synopsis>k = definedfields(lst)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>l</term>
+                <term>lst</term>
                 <listitem>
-                    <para>a list , tlist or mlist variable.</para>
+                    <para>a list, tlist or mlist variable.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -39,22 +39,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            If <literal>l</literal> is a  <literal>list</literal>  <literal>tlist</literal>
-            <literal>mlist</literal>  <literal>k=definedfields(l)</literal> returns in
-            <literal>k</literal> the indices of the defined list fields. This
-            function is useful because indexing undefined fields produces an
-            error.
+            If <varname>lst</varname> is a <literal>list</literal>, a <literal>tlist</literal>, a <literal>mlist</literal> <code>k = definedfields(lst)</code> returns in  <varname>k</varname> the indices of the defined list fields. This function is useful because indexing undefined fields produces an error.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-l=list(1);l(3)=5
-k=definedfields(l)
-
+lst=list(1);lst(3)=5
+k=definedfields(lst)
+ 
 t=tlist('x');t(5)=4
 definedfields(t)
-
+ 
 m=mlist(['m','a','b']);m.b='sdfgfgd'
 definedfields(m)
  ]]></programlisting>

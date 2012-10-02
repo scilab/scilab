@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="svplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="svplot">
     <refnamediv>
         <refname>svplot</refname>
         <refpurpose> singular-value sigma-plot</refpurpose>
@@ -87,11 +87,11 @@ xgrid(12)
 xtitle("Singular values plot","(Rd/sec)", "Db");
  ]]></programlisting>
         <scilab:image>
-x=logspace(-3,3);
-y=svplot(ssrand(2,2,4),x);
-clf();plot2d1("oln",x',20*log(y')/log(10));
-xgrid(12)
-xtitle("Singular values plot","(Rd/sec)", "Db");
+            x=logspace(-3,3);
+            y=svplot(ssrand(2,2,4),x);
+            clf();plot2d1("oln",x',20*log(y')/log(10));
+            xgrid(12)
+            xtitle("Singular values plot","(Rd/sec)", "Db");
         </scilab:image>
     </refsection>
 </refentry>

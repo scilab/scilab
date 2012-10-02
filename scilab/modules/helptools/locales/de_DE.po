@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-02-28 12:13+0000\n"
-"Last-Translator: Daniel Dietrich <Unknown>\n"
+"PO-Revision-Date: 2012-08-30 21:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: de\n"
 
 #, c-format
@@ -126,11 +126,11 @@ msgid "%s: Reading from directory %s\n"
 msgstr "%s: lese aus Verzeichnis %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s to %s\n"
+msgid "%s: Processing of file: %s to %s\n"
 msgstr "%s: verarbeite Datei: %s zu %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s\n"
+msgid "%s: Processing of file: %s\n"
 msgstr "%s: verarbeite Datei: %s\n"
 
 #, c-format

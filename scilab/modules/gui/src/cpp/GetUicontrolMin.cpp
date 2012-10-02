@@ -19,7 +19,7 @@ int GetUicontrolMin(void* _pvCtx, char *sciObjUID)
     double minValue = 0;
     double* pdblMinValue = &minValue;
 
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_MIN__), jni_double, (void**) &pdblMinValue);
+    getGraphicObjectProperty(sciObjUID, __GO_UI_MIN__, jni_double, (void**) &pdblMinValue);
 
     if (pdblMinValue == NULL)
     {

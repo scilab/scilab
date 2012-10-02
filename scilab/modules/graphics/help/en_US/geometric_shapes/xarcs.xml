@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xarcs">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xarcs">
     <refnamediv>
         <refname>xarcs</refname>
         <refpurpose> draw parts of a set of ellipses</refpurpose>
@@ -51,19 +51,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
-            arcs=[-1.0 0.0 0.5;
-            1.0 0.0 0.5;
-            0.5 1.0 0.5;
-            0.5 0.5 1.0;
-            0.0 0.0 0.0;
-            180*64 360*64 90*64];
-            xarcs(arcs,[1,2,3])
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
@@ -75,6 +62,17 @@ arcs=[-1.0 0.0 0.5; // upper left x
        180*64 360*64 90*64]; // angle 2
 xarcs(arcs,[1,2,3])
  ]]></programlisting>
+        <scilab:image>
+            plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
+            arcs=[-1.0 0.0 0.5;
+            1.0 0.0 0.5;
+            0.5 1.0 0.5;
+            0.5 0.5 1.0;
+            0.0 0.0 0.0;
+            180*64 360*64 90*64];
+            xarcs(arcs,[1,2,3])
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-08-02 19:52+0000\n"
+"PO-Revision-Date: 2012-09-19 20:29+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
@@ -730,6 +730,10 @@ msgstr "Špatný typ vlastnosti '%s': Očekáván reálný skalár.\n"
 msgid "Wrong size for '%s' property: A Real scalar expected.\n"
 msgstr "Špatná velikost vlastnosti '%s': Očekáván reálný skalár.\n"
 
+#, c-format
+msgid "Wrong value for '%s' property: %d, %d, %d or %d expected.\n"
+msgstr "Špatná hodnota pro vlastnost '%s': Očekáváno %d, %d, %d nebo %d.\n"
+
 msgid "Children property can not be modified directly.\n"
 msgstr "Podřazená vlastnost nemůže být měněna přímo.\n"
 
@@ -948,6 +952,9 @@ msgstr "%s: vektor y není monotónní.\n"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Grafický modul Scilab není nainstalován.\n"
+
+msgid "Press Return to continue ... \n"
+msgstr ""
 
 msgid "Computing in progress..."
 msgstr "Probíhá výpočet..."

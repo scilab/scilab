@@ -33,7 +33,8 @@
 /** @name Text Alignment
  * Text alignement enum.
  */
-typedef enum {
+typedef enum
+{
     ALIGN_NONE = 0,
     ALIGN_LEFT = 1,
     ALIGN_CENTER = 2,
@@ -76,7 +77,7 @@ GRAPHICS_IMPEXP char *allocateText(char * pparentsubwinUID,
                                    double y,
                                    BOOL autoSize,
                                    double userSize[2],
-                                   BOOL centerPos,
+                                   int  centerPos,
                                    int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align);
 
 GRAPHICS_IMPEXP char *ConstructText(char * pparentsubwinUID, char **text, int nbRow, int nbCol, double x,

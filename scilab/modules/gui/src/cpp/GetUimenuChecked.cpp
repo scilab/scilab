@@ -17,7 +17,7 @@ int GetUimenuChecked(void* _pvCtx, char *pObjUID)
     int checked = 0;
     int *piChecked = &checked;
 
-    getGraphicObjectProperty(pObjUID, const_cast < char *>(__GO_UI_CHECKED__), jni_bool, (void **)&piChecked);
+    getGraphicObjectProperty(pObjUID, __GO_UI_CHECKED__, jni_bool, (void **)&piChecked);
 
     if (piChecked == NULL)
     {

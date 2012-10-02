@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-02 18:57+0000\n"
+"PO-Revision-Date: 2012-09-19 10:34+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: uk\n"
 
 #, c-format
@@ -536,8 +536,140 @@ msgstr "Перетворити одинарні лапки на подвійні
 msgid "Line numbering"
 msgstr "Нумерування рядків"
 
-msgid "Save diagram"
-msgstr "Зберегти діаграму"
+msgid "Set the SciNotes font"
+msgstr "Встановити шрифт SciNotes"
+
+msgid "Set the SciNotes colors"
+msgstr "Встановити кольори SciNotes"
+
+msgid "New diagram"
+msgstr "Створити діаграму"
+
+msgid "Open file in Scilab current directory"
+msgstr "Відкрити файл у поточному каталозі Scilab"
+
+msgid "Export"
+msgstr "Експортувати"
+
+msgid "Quit Xcos"
+msgstr "Вийти з Xcos"
+
+msgid "Invert selection"
+msgstr "Інвертувати вибір"
+
+msgid "Block Parameters"
+msgstr "Параметри блоку"
+
+msgid "Region to superblock"
+msgstr "Ділянку у суперблок"
+
+msgid "Zoom In"
+msgstr "Збільшити"
+
+msgid "Zoom Out"
+msgstr "Зменшити"
+
+msgid "Fit diagram to view"
+msgstr "Масштаб діаграми за розмірами області перегляду"
+
+msgid "Normal 100%"
+msgstr "Звичайний 100%"
+
+msgid "Palette browser"
+msgstr "Перегляд палітри"
+
+msgid "Diagram browser"
+msgstr "Перегляд діаграми"
+
+msgid "Viewport"
+msgstr "Демонстраційне вікно"
+
+msgid "Details"
+msgstr "Подробиці"
+
+msgid "Setup"
+msgstr "Налаштування"
+
+msgid "Execution trace and Debug"
+msgstr "Трасування виконання та діагностика"
+
+msgid "Set Context"
+msgstr "Вказати контекст"
+
+msgid "Compile"
+msgstr "Зібрати"
+
+msgid "Start"
+msgstr "Запустити"
+
+msgid "Stop"
+msgstr "Зупинити"
+
+msgid "Rotate"
+msgstr "Обертати"
+
+msgid "Flip"
+msgstr "Перевернути"
+
+msgid "Mirror"
+msgstr "Віддзеркалити"
+
+msgid "Show/Hide shadow"
+msgstr "Показати/Сховати тінь"
+
+msgid "Left"
+msgstr "Ліворуч"
+
+msgid "Center"
+msgstr "За центром"
+
+msgid "Right"
+msgstr "Праворуч"
+
+msgid "Top"
+msgstr "Вгору"
+
+msgid "Middle"
+msgstr "Посередині"
+
+msgid "Bottom"
+msgstr "Вниз"
+
+msgid "Border Color"
+msgstr "Колір рамки"
+
+msgid "Fill Color"
+msgstr "Колір заповнення"
+
+msgid "Horizontal"
+msgstr "Горизонтальне"
+
+msgid "Straight"
+msgstr "Просте"
+
+msgid "Vertical"
+msgstr "Вертикальне"
+
+msgid "Diagram background"
+msgstr "Тло діаграми"
+
+msgid "Grid"
+msgstr "Сітка"
+
+msgid "Code generation"
+msgstr "Створення коду"
+
+msgid "Xcos Help"
+msgstr "Довідка з Xcos"
+
+msgid "Block Help"
+msgstr "Довідка щодо блоку"
+
+msgid "Xcos Demos"
+msgstr "Демонстрації Xcos"
+
+msgid "About Xcos"
+msgstr "Про Xcos"
 
 msgid "Save variable"
 msgstr "Зберегти змінну"

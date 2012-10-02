@@ -25,4 +25,4 @@ end
 // Check you see the bar
 
 // Close the waitbar
-winclose(winId);
+delete(winId);

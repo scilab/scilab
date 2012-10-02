@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="leastsq" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="leastsq" xml:lang="en">
     <refnamediv>
         <refname>leastsq</refname>
         <refpurpose>Solves non-linear least squares problems</refpurpose>
@@ -438,14 +438,49 @@ xsup = [%inf, %inf];
 //    (allows only 40 function calls, 8 iterations and set epsg=0.01, epsf=0.1)
 [f,xopt, gopt] = leastsq(1,list(myfun,tm,ym,wm),mydfun,x0,"ar",40,8,0.01,0.1)
  ]]></programlisting>
+        <scilab:image>
+            
+            function y = yth(t, x)
+            y  = x(1)*exp(-x(2)*t) 
+            endfunction  
+            
+            m = 10;
+            tm = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5]';
+            ym = [0.79, 0.59, 0.47, 0.36, 0.29, 0.23, 0.17, 0.15, 0.12, 0.08]';
+            wm = ones(m,1); 
+            
+            x0 = [1.5 ; 0.8];
+            
+            function e = myfun(x, tm, ym, wm)
+            e = wm.*( yth(tm, x) - ym )
+            endfunction
+            
+            function g = mydfun(x, tm, ym, wm)
+            v = wm.*exp(-x(2)*tm)
+            g = [v , -x(1)*tm.*v]
+            endfunction
+            
+            [f,xopt, gopt] = leastsq(list(myfun,tm,ym,wm),x0)
+            
+            [f,xopt, gopt] = leastsq(list(myfun,tm,ym,wm),mydfun,x0)
+            
+            tt = linspace(0,1.1*max(tm),100)';
+            yy = yth(tt, xopt);
+            scf();
+            plot(tm, ym, "kx")
+            plot(tt, yy, "b-")
+            legend(["measure points", "fitted curve"]);
+            xtitle("a simple fit with leastsq")
+            
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Examples with compiled functions</title>
         <para>
-            Now we want to define fun and dfun in Fortran, then in C. 
+            Now we want to define fun and dfun in Fortran, then in C.
             Note that the "compile and link to scilab" method used here
-            is believed to be OS independent (but there are some requirements, 
-            in particular you need a C and a fortran compiler, and they must 
+            is believed to be OS independent (but there are some requirements,
+            in particular you need a C and a fortran compiler, and they must
             be compatible with the ones used to build your scilab binary).
         </para>
         <para>

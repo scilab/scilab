@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="taucs_chget">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="taucs_chget">
     <refnamediv>
         <refname>taucs_chget</refname>
         <refpurpose> retrieve the Cholesky factorization at the scilab level  </refpurpose>
@@ -52,24 +52,26 @@ A(p,p) = Ct' * Ct
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// Example #1 : a small linear test system 
+        <programlisting role="example"><![CDATA[
+// Example #1 : a small linear test system
 A = sparse( [ 2 -1  0  0  0;
-             -1  2 -1  0  0; 
-              0 -1  2 -1  0; 
-              0  0 -1  2 -1; 
+             -1  2 -1  0  0;
+              0 -1  2 -1  0;
+              0  0 -1  2 -1;
               0  0  0 -1  2] );
 Cp = taucs_chfact(A);
 [Ct, p] = taucs_chget(Cp);
 full(A(p,p) - Ct'*Ct)  // this must be near the null matrix
 taucs_chdel(Cp)
-
+ ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[
 // Example #2 a real example
 stacksize(3000000)  // the last PlotSparse need memory
 // first load a sparse matrix
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
 // compute the factorisation
-Cptr = taucs_chfact(A); 
+Cptr = taucs_chfact(A);
 // retrieve the factor at scilab level
 [Ct, p] = taucs_chget(Cptr);
 // plot the initial matrix
@@ -89,6 +91,12 @@ cnz_exact = nnz(Ct)
 // do not forget to clear memory
 taucs_chdel(Cptr)
  ]]></programlisting>
+        <scilab:image>
+            [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+            Cptr = taucs_chfact(A);
+            [Ct, p] = taucs_chget(Cptr);
+            PlotSparse(A) ; xtitle("Initial matrix A (bcsstk24.rsa)")
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

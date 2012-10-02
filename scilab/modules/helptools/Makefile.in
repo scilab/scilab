@@ -563,6 +563,7 @@ schema/extendedStyle.xsl
 libscihelptools_la_data_pagesdir = $(mydatadir)/data/pages
 libscihelptools_la_data_pages_DATA = data/pages/error.html \
 data/pages/homepage-en_US.html \
+data/pages/homepage-ru_RU.html \
 data/pages/homepage-fr_FR.html \
 data/pages/ban-en_US.png \
 data/pages/ban-fr_FR.png

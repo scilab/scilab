@@ -35,6 +35,7 @@ import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
  * Action to register favorite directories
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class RegisterFavoriteDirsAction extends DefaultAction {
 
     private static MenuItem addDir;
@@ -65,12 +66,12 @@ public final class RegisterFavoriteDirsAction extends DefaultAction {
         final Menu favoriteDirs = ScilabMenu.createMenu();
         ((SwingScilabMenu) favoriteDirs.getAsSimpleMenu()).addMenuListener(new MenuListener() {
 
-                public void menuCanceled(MenuEvent e) { }
-                public void menuDeselected(MenuEvent e) { }
-                public void menuSelected(MenuEvent e) {
-                    updateFavoriteDirsMenu(favoriteDirs, editor);
-                }
-            });
+            public void menuCanceled(MenuEvent e) { }
+            public void menuDeselected(MenuEvent e) { }
+            public void menuSelected(MenuEvent e) {
+                updateFavoriteDirsMenu(favoriteDirs, editor);
+            }
+        });
 
         favoriteDirs.setText(label1);
         addDir = AddDirectoryAction.createMenu(favoriteDirs, label2, editor, null);
@@ -87,8 +88,8 @@ public final class RegisterFavoriteDirsAction extends DefaultAction {
      */
     public static MenuItem createMenu(SciNotes editor, String path) {
         return createMenu(path, null, new DefaultAction("", editor) {
-                public void doAction() { }
-            }, null);
+            public void doAction() { }
+        }, null);
     }
 
     /**
@@ -115,6 +116,7 @@ public final class RegisterFavoriteDirsAction extends DefaultAction {
     /**
      * Inner class to handle the action which consists to add a new directory
      */
+    @SuppressWarnings(value = { "serial" })
     static class AddDirectoryAction extends DefaultAction {
 
         private Menu menu;
@@ -140,12 +142,12 @@ public final class RegisterFavoriteDirsAction extends DefaultAction {
             fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             fileChooser.setAcceptAllFileFilterUsed(false);
             if (fileChooser.showOpenDialog(getEditor()) == JFileChooser.APPROVE_OPTION) {
-                 File path = fileChooser.getSelectedFile();
-                 if (path == null || path.isFile()) {
-                     path = fileChooser.getCurrentDirectory();
-                 }
-                 ConfigSciNotesManager.saveFavoriteDirectory(path.getPath());
-                 updateFavoriteDirsMenu(menu, getEditor());
+                File path = fileChooser.getSelectedFile();
+                if (path == null || path.isFile()) {
+                    path = fileChooser.getCurrentDirectory();
+                }
+                ConfigSciNotesManager.saveFavoriteDirectory(path.getPath());
+                updateFavoriteDirsMenu(menu, getEditor());
             }
         }
 
@@ -164,6 +166,7 @@ public final class RegisterFavoriteDirsAction extends DefaultAction {
 
     /**
      * Inner class to handle the action which consists to remove a directory
+    @SuppressWarnings(value = { "serial" })
      */
     static class RmDirectoryAction extends DefaultAction {
 

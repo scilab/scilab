@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="param3d1" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="param3d1" xml:lang="en">
     <refnamediv>
         <refname>param3d1</refname>
         <refpurpose>3D plot of parametric curves</refpurpose>
@@ -228,10 +228,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>param3d1();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 xset('window',20) // create a window number 20
@@ -252,6 +248,7 @@ curve2 = h.children(2);
 curve2.foreground = 6;
 curve2.mark_style = 2;
  ]]></programlisting>
+        <scilab:image>param3d1();</scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

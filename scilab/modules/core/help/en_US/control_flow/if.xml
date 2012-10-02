@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="if">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="if">
     <refnamediv>
         <refname>if</refname>
         <refpurpose>keyword for conditional execution</refpurpose>
@@ -46,7 +46,7 @@
         </para>
         <para>
             The  <literal>expri</literal> are expressions with numeric or boolean
-            values. If <literal>expri</literal> is a nonscalar value then the condition is true only if
+            values. If <literal>expri</literal> is a non-scalar value then the condition is true only if
             all entries of this value are true or different from zero.
         </para>
         <para>

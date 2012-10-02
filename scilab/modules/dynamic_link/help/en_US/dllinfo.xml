@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="dllinfo" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dllinfo" xml:lang="en">
     <refnamediv>
         <refname>dllinfo</refname>
         <refpurpose>provides information about the format and symbols provided in
@@ -60,20 +60,20 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-if getos() == 'Windows' then
-  filename = SCI+'\bin\libscilab.dll';
+if getos() == "Windows" then
+  filename = SCI + "\bin\api_scilab.dll";
 
-  dllinfolist = dllinfo(filename,'machine');
-  mprintf('Machine destination of %s: %s\n',dllinfolist(1),dllinfolist(2));
+  dllinfolist = dllinfo(filename, "machine");
+  mprintf("Machine destination of %s: %s\n", dllinfolist(1), dllinfolist(2));
 
-  dllinfolist = dllinfo(filename,'imports');
-  mprintf('Dlls dependencies of %s:\n',filename);
+  dllinfolist = dllinfo(filename, "imports");
+  mprintf("Dlls dependencies of %s:\n", filename);
   for i=1:size(dllinfolist)
-    mprintf('%s\n',dllinfolist(i)(1));
+    mprintf("%s\n",dllinfolist(i)(1));
   end
 
-  dllinfolist = dllinfo(filename,'exports');
-  mprintf('Dll exports of %s:\n',filename);
+  dllinfolist = dllinfo(filename, "exports");
+  mprintf("Dll exports of %s:\n", filename);
   disp(dllinfolist);
 end
  ]]></programlisting>

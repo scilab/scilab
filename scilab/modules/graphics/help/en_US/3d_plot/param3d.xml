@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="param3d" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="param3d" xml:lang="en">
     <refnamediv>
         <refname>param3d</refname>
         <refpurpose>3D plot of a parametric curve</refpurpose>
@@ -217,10 +217,7 @@
             Enter the command <literal>param3d()</literal> to see a demo.
         </para>
     </refsection>
-    <refsection>
-        <title>Sample</title>
-        <scilab:image>param3d();</scilab:image>
-    </refsection>
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
@@ -234,6 +231,17 @@ e.foreground=color('red');
 a=gca(); //the handle on the axes
 a.rotation_angles=[10 70];
  ]]></programlisting>
+        <scilab:image>
+            t=0:0.1:5*%pi;
+            param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
+            
+            e=gce() //the handle on the 3D polyline
+            
+            e.foreground=color('red');
+            
+            a=gca(); //the handle on the axes
+            a.rotation_angles=[10 70];
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

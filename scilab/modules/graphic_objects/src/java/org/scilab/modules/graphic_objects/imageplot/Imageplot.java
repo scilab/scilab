@@ -41,12 +41,13 @@ public abstract class Imageplot extends ClippableContouredObject {
      * @param propertyName the property name
      * @return the property enum
      */
-    public Object getPropertyFromName(String propertyName) {
-        if (propertyName.equals(__GO_MATPLOT_SCALE__)) {
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+        case __GO_MATPLOT_SCALE__ :
             return ImageplotProperty.SCALE;
-        } else if (propertyName.equals(__GO_MATPLOT_TRANSLATE__)) {
+        case __GO_MATPLOT_TRANSLATE__ :
             return ImageplotProperty.TRANSLATE;
-        } else {
+        default :
             return super.getPropertyFromName(propertyName);
         }
     }

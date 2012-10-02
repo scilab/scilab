@@ -21,7 +21,7 @@ public interface GraphicView extends EventListener {
      * has been updated.
      * @param id
      */
-    void updateObject(String id, String property);
+    void updateObject(String id, int property);
     
     /**
      * Notify an object with ID : id

@@ -70,8 +70,7 @@ PWD = pwd();
 
 // Startup message  ===================================================
 if (sciargs()<>"-nb") & ~fromjava() & ~fromc() then
-  banner();
-  write(%io(2),[" ";" ";gettext("Startup execution:")]);
+  write(%io(2),[" ";gettext("Startup execution:")]);
   write(%io(2),gettext("  loading initial environment"));
 end
 

@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the font size of an uicontrol
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,12 +19,12 @@ int GetUicontrolFontSize(void* _pvCtx, char *sciObjUID)
     double fontSize = 0;
     double* pdblFontSize = &fontSize;
 
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTSIZE__), jni_double, (void**) &pdblFontSize);
+    getGraphicObjectProperty(sciObjUID, __GO_UI_FONTSIZE__, jni_double, (void**) &pdblFontSize);
 
     if (pdblFontSize == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "FontSize");
-        return FALSE; 
+        return FALSE;
     }
     else
     {

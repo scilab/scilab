@@ -109,7 +109,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     int iH5File = 0;
     if (bAppendMode)
     {
-        iH5File = openHDF5File(pstFileName);
+        iH5File = openHDF5File(pstFileName, bAppendMode);
         if (iH5File < 0)
         {
             iH5File = createHDF5File(pstFileName);

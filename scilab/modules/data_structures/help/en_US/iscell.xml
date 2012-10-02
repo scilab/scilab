@@ -10,10 +10,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="iscell" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="iscell" xml:lang="en">
     <refnamediv>
         <refname>iscell</refname>
-        <refpurpose>Check if a variable is a cell array</refpurpose>
+        <refpurpose>checks if a variable is a cell array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Scilab variable</para>
+                    <para>a Scilab variable.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>bool</term>
                 <listitem>
-                    <para>A boolean</para>
+                    <para>a boolean.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,17 +39,17 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>iscell(x)</literal> returns true if x is a cell array
-            and false otherwise.
+            <code>iscell(x)</code> returns <constant>%t</constant>if
+            <varname>x</varname> is a cell array and <constant>%f</constant> otherwise.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 iscell(1)
-
+ 
 iscell(cell())
-
+ 
 c = cell(1,2);
 c(1).entries="Scilab";
 c(2).entries=datenum();

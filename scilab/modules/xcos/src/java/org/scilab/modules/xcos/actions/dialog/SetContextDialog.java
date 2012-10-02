@@ -80,6 +80,7 @@ public class SetContextDialog extends JDialog {
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        ScilabSwingUtilities.closeOnEscape(this);
 
         initComponents();
     }
@@ -99,7 +100,7 @@ public class SetContextDialog extends JDialog {
         }
 
         JScrollPane contextAreaScroll = new JScrollPane(contextArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                                                        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         JButton cancelButton = new JButton(XcosMessages.CANCEL);
         JButton okButton = new JButton(XcosMessages.OK);
@@ -158,11 +159,11 @@ public class SetContextDialog extends JDialog {
          * The cancel button just exit without doing anything
          */
         cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+            });
 
         /*
          * The ok button parse the contextArea, reconstruct the real context and
@@ -170,32 +171,32 @@ public class SetContextDialog extends JDialog {
          */
         okButton.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    final String[] context = contextArea.getText().split(SHARED_NEW_LINE);
-                    parameters.setContext(context);
-
-                    /*
-                     * Validate the context
-                     */
-                    final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-                    if (handler == null) {
-                        return;
-                    }
+                @Override
+                public void actionPerformed(ActionEvent e) {
                     try {
-                        handler.writeContext(context);
-                        ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
-                    } finally {
-                        handler.release();
-                    }
+                        final String[] context = contextArea.getText().split(SHARED_NEW_LINE);
+                        parameters.setContext(context);
 
-                    dispose();
-                } catch (PropertyVetoException e2) {
-                    Logger.getLogger(SetContextAction.class.getName()).severe(e2.toString());
+                        /*
+                         * Validate the context
+                         */
+                        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+                        if (handler == null) {
+                            return;
+                        }
+                        try {
+                            handler.writeContext(context);
+                            ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
+                        } finally {
+                            handler.release();
+                        }
+
+                        dispose();
+                    } catch (PropertyVetoException e2) {
+                        Logger.getLogger(SetContextAction.class.getName()).severe(e2.toString());
+                    }
                 }
-            }
-        });
+            });
     }
 }
 // CSON: ClassDataAbstractionCoupling

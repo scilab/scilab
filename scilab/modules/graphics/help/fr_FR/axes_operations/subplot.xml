@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="subplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="subplot">
     <refnamediv>
         <refname>subplot</refname>
         <refpurpose> divise une fenêtre graphique en sous-fenêtres  </refpurpose>
@@ -52,6 +52,16 @@ param3d()
 subplot(2,2,4)
 hist3d()
  ]]></programlisting>
+        <scilab:image>
+            subplot(221)
+            plot2d()
+            subplot(222)
+            plot3d()
+            subplot(2,2,3)
+            param3d()
+            subplot(2,2,4)
+            hist3d()
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

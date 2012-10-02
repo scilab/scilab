@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-04-08 14:37+0000\n"
+"PO-Revision-Date: 2012-09-18 23:28+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: ru\n"
 
 #, c-format
@@ -169,10 +169,69 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «d» или «i».\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидались разреженные "
 "векторы.\n"
+
+#, c-format
+msgid "%s: Wrong size of input argument: %d expected.\n"
+msgstr "%s: Неверный размер входного аргумента: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась разрежённая матрица.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ['r' 'c' 'm'] expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось ['r' 'c' 'm'].\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: Ожидался тот же размер, что и у  "
+"входного аргумента №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A sparse matrix or a character "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась разрежённая матрица или "
+"символ.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d (List element: %d): A sparse matrix "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d (Элемент списка: %d): ожидалась "
+"разрежённая матрица.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d (List element: %d): Same size as input "
+"argument #%d expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d (Элемент списка: %d): ожидался "
+"тот  же размер, что и у входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -519,8 +578,3 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Неверный размер входных параметров: ожидался совместимый размер.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"

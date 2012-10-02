@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="findobj">
+    <refnamediv>
+        <refname>findobj</refname>
+        <refpurpose>指定したプロパティを有するオブジェクトを探す</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            h =  findobj(propertyName, propertyValue)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>propertyName</term>
+                <listitem>
+                    <para>文字列,探すプロパティ名 (大文字小文字を区別しない).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>propertyValue</term>
+                <listitem>
+                    <para>
+                        探すプロパティが一致する値を指定する文字列
+                        (大文字小文字を区別する).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>見つかったオブジェクトのハンドル.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            このルーチンは,現在,
+            'tag'プロパティが既知のオブジェクトを探す際に使用されています.
+            このルーチンは,
+            <emphasis role="italic">propertyName</emphasis>が
+            <emphasis role="italic">propertyValue</emphasis>に等しい
+            最初に見つかったオブジェクトのハンドルを返します.
+            そのようなオブジェクトが存在しない場合,
+            この関数は空の行列を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// 図を作成
+h=figure();
+// 図にテキストを表示
+uicontrol(h, "style","text", ...
+             "string","This is a figure", ...
+             "position",[50 70 100 100], ...
+             "fontsize",15, ...
+             "tag","Alabel");
+// "tag" の値が"Alabel"であるオブジェクトを探す
+lab=findobj("tag","Alabel");
+disp("The text of the label is """+lab.string+"""");
+// 図を閉じる
+close();
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uimenu">uimenu</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -55,6 +56,7 @@ import org.scilab.modules.ui_data.actions.CompiledFunctionFilteringAction;
 import org.scilab.modules.ui_data.actions.DoubleFilteringAction;
 import org.scilab.modules.ui_data.actions.FunctionLibFilteringAction;
 import org.scilab.modules.ui_data.actions.GraphicHandlesFilteringAction;
+import org.scilab.modules.ui_data.actions.HelpAction;
 import org.scilab.modules.ui_data.actions.ImplicitPolynomialFilteringAction;
 import org.scilab.modules.ui_data.actions.IntegerFilteringAction;
 import org.scilab.modules.ui_data.actions.IntrinsicFunctionFilteringAction;
@@ -92,11 +94,11 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
     private MenuBar menuBar;
     private Menu fileMenu;
+    private Menu helpMenu;
     private Menu filterMenu;
     private CheckBoxMenuItem filterDoubleCheckBox;
     private CheckBoxMenuItem filterPolynomialCheckBox;
     private CheckBoxMenuItem filterScilabVarCheckBox;
-    private CheckBoxMenuItem filterUserVarCheckBox;
     private CheckBoxMenuItem filterBooleanCheckBox;
     private CheckBoxMenuItem filterSparseCheckBox;
     private CheckBoxMenuItem filterSparseBoolCheckBox;
@@ -123,7 +125,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
      * Create a JTable with data Model.
      * @param columnsName : Titles of JTable columns.
      */
-    public SwingScilabVariableBrowser(String[] columnsName) {
+    public SwingScilabVariableBrowser(String[] columnsName, int[] aligment) {
         super(UiDataMessages.VARIABLE_BROWSER, VARBROWSERUUID);
 
         setAssociatedXMLIDForHelp("browsevar");
@@ -134,6 +136,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         ToolBar toolBar = ScilabToolBar.createToolBar();
         toolBar.add(RefreshAction.createButton(UiDataMessages.REFRESH));
         toolBar.addSeparator();
+        toolBar.add(HelpAction.createButton(UiDataMessages.HELP));
         filteringButton = ScilabVarFilteringButtonAction.createButton("Show/hide Scilab variable");
         //        toolBar.add(filteringButton);
         addToolBar(toolBar);
@@ -195,6 +198,15 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         table.setCellSelectionEnabled(true);
 
         table.setBackground(Color.WHITE);
+        if (table.getGridColor().equals(Color.WHITE)) {
+            table.setGridColor(new Color(128, 128, 128));
+        }
+        table.setShowHorizontalLines(true);
+        table.setShowVerticalLines(true);
+
+        for (int i = 0; i < aligment.length; i++) {
+            align(table, columnsName[i], aligment[i]);
+        }
 
         JScrollPane scrollPane = new JScrollPane(table);
         setContentPane(scrollPane);
@@ -239,6 +251,18 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         this.updateRowFiltering();
     }
 
+    private static void align(JTable table, String name, int alignment) {
+        if (alignment != -1) {
+            DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+            renderer.setHorizontalAlignment(alignment);
+            try {
+                TableColumn col = table.getColumn(name);
+                if (col != null) {
+                    col.setCellRenderer(renderer);
+                }
+            } catch (IllegalArgumentException e) { }
+        }
+    }
 
     /**
      * Update the display after filtering
@@ -264,7 +288,6 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
         rowSorter.setRowFilter(compoundRowFilter);
         table.setRowSorter(rowSorter);
-
     }
 
     /**
@@ -375,12 +398,15 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         fileMenu = ScilabMenu.createMenu();
         fileMenu.setText(UiDataMessages.FILE);
         fileMenu.setMnemonic('F');
+        fileMenu.add(RefreshAction.createMenuItem(UiDataMessages.REFRESH));
+        fileMenu.addSeparator();
         fileMenu.add(CloseAction.createMenu());
 
         menuBar.add(fileMenu);
 
         filterMenu = ScilabMenu.createMenu();
         filterMenu.setText(UiDataMessages.FILTER);
+        filterMenu.setMnemonic('I');
 
         filterScilabVarCheckBox = ScilabVarFilteringAction.createCheckBoxMenu();
         filterScilabVarCheckBox.setChecked(true);
@@ -455,6 +481,12 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         filterMenu.add(filterImplicitPolynomialCheckBox);
 
         menuBar.add(filterMenu);
+
+        helpMenu = ScilabMenu.createMenu();
+        helpMenu.setText("?");
+        helpMenu.setMnemonic('?');
+        helpMenu.add(HelpAction.createMenuItem(UiDataMessages.HELP));
+        menuBar.add(helpMenu);
     }
 
 

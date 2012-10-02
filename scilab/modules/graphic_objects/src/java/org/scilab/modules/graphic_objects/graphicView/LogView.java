@@ -30,7 +30,7 @@ public class LogView implements GraphicView {
     }
     
     public void createObject(String id) {
-       String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
+       int objectType = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
        System.out.println("+++"+id+" Object Created type is "+objectType+".");
     }
 
@@ -39,7 +39,7 @@ public class LogView implements GraphicView {
 
     }
 
-    public void updateObject(String id, String property) {
+    public void updateObject(String id, int property) {
         System.out.println("==="+id+" Object Property " + property + " Updated.");
     }
 

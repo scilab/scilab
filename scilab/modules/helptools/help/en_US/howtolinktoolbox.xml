@@ -11,7 +11,7 @@
  *
  -->
 <!-- This document was created with Syntext Serna Free. -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="how_to_link_toolbox_help">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="how_to_link_toolbox_help">
     <refnamediv>
         <refname>Link toolbox help with Scilab one</refname>
         <refpurpose>How to make hyperlink in toolbox help pointing to Scilab's items</refpurpose>
@@ -44,7 +44,7 @@
         <title>Examples</title>
         <programlisting role="xml"><![CDATA[
     <?xml version="1.0" encoding="UTF-8"?>
-    <refentry version="5.0-subset Scilab"
+    <refentry xmlns:scilab="http://www.scilab.org"
               xmlns="http://docbook.org/ns/docbook"
               xmlns:html="http://www.w3.org/1999/xhtml"
               xmlns:db="http://docbook.org/ns/docbook">

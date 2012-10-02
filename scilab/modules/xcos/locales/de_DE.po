@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:33+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-09-02 18:39+0000\n"
+"Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: de\n"
 
 #, c-format
@@ -47,11 +47,8 @@ msgstr "Horizontal"
 msgid "Vertical"
 msgstr "Vertikal"
 
-msgid "Simulation"
-msgstr "Simulation"
-
 msgid "No trace nor debug printing"
-msgstr "Drucke weder Spur noch Fehlersuche"
+msgstr "Weder Trace- noch Debug-Ausgabe"
 
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
@@ -61,7 +58,22 @@ msgid "Per block execution trace and Debug block calls"
 msgstr "Durch Block Ausführung Spur und suche Fehler in den Block Aufrufen"
 
 msgid "Debug block calls without trace"
-msgstr "suche Fehler in den Blockaufrufen ohne Spur"
+msgstr "Debug-Block-Aufrufe ohne Trace"
+
+msgid "Number of recently opened files to display: "
+msgstr "Anzahl kürzlich geöffneter Dateien anzeigen: "
+
+msgid "Default file format"
+msgstr "Default Datenformat"
+
+msgid "Link Style"
+msgstr "Stil des Links"
+
+msgid "Diagram background"
+msgstr "Diagramm-Hintergrund"
+
+msgid "Grid"
+msgstr "Raster"
 
 msgid "Default simulation settings"
 msgstr ""
@@ -70,7 +82,7 @@ msgid "Final integration time"
 msgstr "Finale Integrationszeit"
 
 msgid "Real time scaling"
-msgstr "reelle Zeitskalierung"
+msgstr "\"Echt-Zeit\"-Skalierung"
 
 msgid "Integrator absolute tolerance"
 msgstr "Absolute Toleranz des Integrators"
@@ -85,10 +97,10 @@ msgid "Max integration time interval"
 msgstr "Maximales Zeitintervall der Integration"
 
 msgid "Solver kind"
-msgstr ""
+msgstr "Gleichungslöser"
 
 msgid "Maximum step size (0 means no limit)"
-msgstr ""
+msgstr "Maximale Schrittweite (0 bedeutet unbegrenzt)"
 
 msgid "Default trace settings"
 msgstr ""
@@ -104,6 +116,9 @@ msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: einen Zeichenkettenvektor "
 "erwartet.\n"
 
+msgid "a graphical environment is needed."
+msgstr ""
+
 #, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
@@ -111,17 +126,6 @@ msgid ""
 msgstr ""
 "Kann die jgraphx-Bibliothek nicht laden. \n"
 "Erwartete Version %s ; Erhaltene Version %s."
-
-#, c-format
-msgid ""
-"Unable to load the hdf5-java (jhdf5) library. \n"
-"Expecting version %s ; Getting version %s ."
-msgstr ""
-"Kann die hdf5-java (jhdf5)-Bibliothek nicht laden. \n"
-"Erwartete Version %s ; Erhaltene Version %s."
-
-msgid "Unable to load the native HDF5 library."
-msgstr "Kann die native HDF5-Bibliothek nicht laden."
 
 #, c-format
 msgid ""
@@ -423,6 +427,9 @@ msgstr "Details"
 msgid "Show parent diagram"
 msgstr "Zeige übergeordnetes Diagramm"
 
+msgid "Simulation"
+msgstr "Simulation"
+
 msgid "Setup"
 msgstr "Einstellungen"
 
@@ -455,12 +462,6 @@ msgstr "Spiegel"
 
 msgid "Show/Hide shadow"
 msgstr "Schatten anzeigen/verbergen"
-
-msgid "Grid"
-msgstr "Raster"
-
-msgid "Diagram background"
-msgstr "Diagramm-Hintergrund"
 
 msgid "Bold"
 msgstr "Fett"
@@ -556,7 +557,7 @@ msgid "Signal Routing"
 msgstr "Signal Routing"
 
 msgid "Commonly Used Blocks"
-msgstr "Üblicherweise verwendete Blöcke"
+msgstr "Häufig verwendete Blöcke"
 
 msgid "User-Defined Functions"
 msgstr "Benutzerdefinierte Funktionen"
@@ -720,9 +721,6 @@ msgstr "Füllfarbe"
 
 msgid "Text Color"
 msgstr "Textfarbe"
-
-msgid "Link Style"
-msgstr "Stil des Links"
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""

@@ -22,7 +22,7 @@
 ** Retrieve Graphic object property from Model.
 ** Specify type expected as parameter for JNI.
 */
-GRAPHIC_OBJECTS_IMPEXP void getGraphicObjectProperty(char const* _pstID, char const* _pstName, enum _ReturnType_ _returnType, void **_pvData);
+GRAPHIC_OBJECTS_IMPEXP void getGraphicObjectProperty(char const* _pstID, const int _iName, enum _ReturnType_ _returnType, void **_pvData);
 
 /**
  * @brief release a Graphic object property from the Model.
@@ -36,6 +36,6 @@ GRAPHIC_OBJECTS_IMPEXP void getGraphicObjectProperty(char const* _pstID, char co
  * @param _returnType the property type descriptor
  * @param numElements size of the _pvData argument
  */
-GRAPHIC_OBJECTS_IMPEXP void releaseGraphicObjectProperty(char const* _pstName, void * _pvData, enum _ReturnType_ _returnType, int numElements);
+GRAPHIC_OBJECTS_IMPEXP void releaseGraphicObjectProperty(const int _iName, void * _pvData, enum _ReturnType_ _returnType, int numElements);
 
 #endif /* !__GETGRAPHICOBJECTPROPERTY_H__ */

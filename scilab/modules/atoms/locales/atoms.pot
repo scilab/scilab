@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-23 17:35+0100\n"
+"Revision-Date: 2012-09-28 10:25+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -730,14 +730,14 @@ msgid "\t - '%s - %s' is needed by '%s'\n"
 msgstr ""
 
 #
-# File: macros/atomsLoad.sci, line: 334
-# File: macros/atomsLoad.sci, line: 337
+# File: macros/atomsLoad.sci, line: 333
+# File: macros/atomsLoad.sci, line: 336
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr ""
 
 #
-# File: macros/atomsLoad.sci, line: 344
+# File: macros/atomsLoad.sci, line: 343
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr ""
@@ -871,14 +871,14 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: macros/atomsSetConfig.sci, line: 73
+# File: macros/atomsSetConfig.sci, line: 74
 #, c-format
 msgid ""
 "%s: Wrong value for input configuration argument: True or False expected.\n"
 msgstr ""
 
 #
-# File: macros/atomsSetConfig.sci, line: 83
+# File: macros/atomsSetConfig.sci, line: 84
 #, c-format
 msgid "%s: Wrong key for input configuration argument.\n"
 msgstr ""
@@ -1283,25 +1283,25 @@ msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 139
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 176
 #, c-format
 msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 149
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 186
 #, c-format
 msgid "%s: gzip not found.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 158
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 195
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 226
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 263
 #, c-format
 msgid "%s: save ('%s') has failed.\n"
 msgstr ""

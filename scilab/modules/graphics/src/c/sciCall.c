@@ -41,6 +41,7 @@
 
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
+#include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
@@ -80,8 +81,13 @@ void Objrect ( double * x         ,
 
     /* check if the auto_clear property is on and then erase everything */
     checkRedrawing();
-    newObjUID = ConstructRectangle(psubwinUID , *x, *y, *height, *width,
-                                   foreground, background, isfilled, isline);
+    /*newObjUID = ConstructRectangle(psubwinUID , *x, *y, *height, *width,
+      foreground, background, isfilled, isline);*/
+
+    newObjUID = constructRectangles(psubwinUID, *x, *y, *height, *width,
+                                    foreground == NULL ? -1 : *foreground,
+                                    background == NULL ? -1 : *background,
+                                    (int)isfilled, (int)isline);
 
     if (newObjUID == NULL)
     {
@@ -283,7 +289,7 @@ void Objstring( char            ** fname      ,
                 BOOL               autoSize   ,
                 double             userSize[2],
                 long             * hdl        ,
-                BOOL               centerPos  ,
+                int                centerPos  ,
                 int              * foreground ,
                 int              * background ,
                 BOOL               isboxed    ,
@@ -639,27 +645,27 @@ void Objplot3d ( char    * fname ,
         /* compute and merge new specified bounds with data bounds */
         switch (iflag[1])
         {
-            case 0:  /* do not change data bounds */
-                break;
-            case 1 :
-            case 3 :
-            case 5 :
-            case 7 : /* Force data bounds=ebox */
-                drect[0] = ebox[0]; /*xmin*/
-                drect[2] = ebox[2]; /*ymin*/
-                drect[1] = ebox[1]; /*xmax*/
-                drect[3] = ebox[3]; /*ymax*/
-                drect[4] = ebox[4]; /*zmin*/
-                drect[5] = ebox[5]; /*zmax*/
-                break;
-            case 2 :
-            case 4 :
-            case 6 :
-            case 8:/* Force data bounds to the x and y bounds */
-                getDrect(x, (*m1) * (*n1), &drect[0], &drect[1], dataBounds[0], dataBounds[1]);
-                getDrect(y, (*m2) * (*n2), &drect[2], &drect[3], dataBounds[2], dataBounds[3]);
-                getDrect(z, (*m3) * (*n3), &drect[4], &drect[5], dataBounds[4], dataBounds[5]);
-                break;
+        case 0:  /* do not change data bounds */
+            break;
+        case 1 :
+        case 3 :
+        case 5 :
+        case 7 : /* Force data bounds=ebox */
+            drect[0] = ebox[0]; /*xmin*/
+            drect[2] = ebox[2]; /*ymin*/
+            drect[1] = ebox[1]; /*xmax*/
+            drect[3] = ebox[3]; /*ymax*/
+            drect[4] = ebox[4]; /*zmin*/
+            drect[5] = ebox[5]; /*zmax*/
+            break;
+        case 2 :
+        case 4 :
+        case 6 :
+        case 8:/* Force data bounds to the x and y bounds */
+            getDrect(x, (*m1) * (*n1), &drect[0], &drect[1], dataBounds[0], dataBounds[1]);
+            getDrect(y, (*m2) * (*n2), &drect[2], &drect[3], dataBounds[2], dataBounds[3]);
+            getDrect(z, (*m3) * (*n3), &drect[4], &drect[5], dataBounds[4], dataBounds[5]);
+            break;
         }
 
         /* merge data bounds and drect */
@@ -687,8 +693,8 @@ void Objplot3d ( char    * fname ,
     }
 
     /* =================================================
-    * Analyze arguments to find entity type
-    * ================================================= */
+     * Analyze arguments to find entity type
+     * ================================================= */
 
     if (*isfac == 1)
     {
@@ -736,8 +742,8 @@ void Objplot3d ( char    * fname ,
     }
 
     /* =================================================
-    * Construct the Entities
-    * ================================================= */
+     * Construct the Entities
+     * ================================================= */
 
     /*Distinction here between SCI_PARAM3D1 and others*/
     if ( typeof3d != SCI_PARAM3D1 )
@@ -837,10 +843,10 @@ void Objplot3d ( char    * fname ,
         for (i = 0; i < *n; ++i)
         {
             /* F.Leray Pb here: In fact we do not create a Surface but one or several 3D Polylines
-            Pb comes when wanting to access the fields "surface_color" or "flag" for example
-            in function sciSet (cf. matdes.c).
-            Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
-            Question 2: Is "flag" obsolete and replaced by "color_mode"?*/
+               Pb comes when wanting to access the fields "surface_color" or "flag" for example
+               in function sciSet (cf. matdes.c).
+               Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
+               Question 2: Is "flag" obsolete and replaced by "color_mode"?*/
 
             if ((*n > 0) && (zcol != (double *)NULL))
             {
@@ -848,17 +854,17 @@ void Objplot3d ( char    * fname ,
                 {
                     int intzcol = (int) zcol[i];
                     pNewPolylineUID = ConstructPolyline
-                                      (currentSubwinUID,
-                                       &(x[*m * i]), &(y[*m * i]), &(z[*m * i]), 0, *m, 1,
-                                       &intzcol, NULL, NULL, NULL, NULL, TRUE, FALSE, FALSE, FALSE);
+                        (currentSubwinUID,
+                         &(x[*m * i]), &(y[*m * i]), &(z[*m * i]), 0, *m, 1,
+                         &intzcol, NULL, NULL, NULL, NULL, TRUE, FALSE, FALSE, FALSE);
                 }
                 else
                 {
                     int intzcol = (int) - zcol[i];
                     pNewPolylineUID = ConstructPolyline
-                                      (currentSubwinUID,
-                                       &(x[*m * i]), &(y[*m * i]), &(z[*m * i]), 0, *m, 1,
-                                       NULL, NULL, &intzcol, NULL, NULL, FALSE, FALSE, TRUE, FALSE);
+                        (currentSubwinUID,
+                         &(x[*m * i]), &(y[*m * i]), &(z[*m * i]), 0, *m, 1,
+                         NULL, NULL, &intzcol, NULL, NULL, FALSE, FALSE, TRUE, FALSE);
                 }
             }
             else
@@ -906,8 +912,8 @@ void Objplot3d ( char    * fname ,
     }
 
     /* =================================================
-    * Redraw Figure
-    * ================================================= */
+     * Redraw Figure
+     * ================================================= */
 
     // subwin has been modified
 
@@ -946,8 +952,8 @@ void Objdrawaxis ( char     dir    ,
     checkRedrawing();
 
     pobjUID = ConstructAxis(
-                  psubwinUID,
-                  dir, tics, x, *nx, y, *ny, val, subint, format, font, textcol, ticscol, flag, seg, nb_tics_labels);
+        psubwinUID,
+        dir, tics, x, *nx, y, *ny, val, subint, format, font, textcol, ticscol, flag, seg, nb_tics_labels);
 
     if (pobjUID == NULL)
     {

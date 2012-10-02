@@ -19,7 +19,7 @@ int GetUiobjectEnable(void* _pvCtx, char *pObjUID)
     int enable = 0;
     int* piEnable = &enable;
 
-    getGraphicObjectProperty(pObjUID, const_cast<char*>(__GO_UI_ENABLE__), jni_bool, (void**) &piEnable);
+    getGraphicObjectProperty(pObjUID, __GO_UI_ENABLE__, jni_bool, (void**) &piEnable);
 
     if (piEnable == NULL)
     {

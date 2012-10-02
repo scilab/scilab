@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="setlookandfeel">
+    <refnamediv>
+        <refname>setlookandfeel</refname>
+        <refpurpose>現在のルックアンドフィールのデフォルト値を設定.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>bok=setlookandfeel()
+            bok=setlookandfeel(lnf)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>lnf</term>
+                <listitem>
+                    <para>ルックアンドフィールを指定する文字列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bok</term>
+                <listitem>
+                    <para>論理値.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>現在のルックアンドフィールのデフォルト値を設定します.</para>
+        <para>パラメータを指定せずにsetlookandfeel()をコールすると,
+            システムのルックアンドフィールのデフォルト値を設定します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+currentlnf = getlookandfeel();
+
+// クラシックなルックアンドフィール
+setlookandfeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel")
+
+// Windowsのルックアンドフィール
+setlookandfeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel")
+
+sleep(3000);
+
+// CDE/Motifのルックアンドフィール
+setlookandfeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel")
+
+sleep(3000);
+
+// GTK+のルックアンドフィール
+setlookandfeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel")
+
+sleep(3000);
+
+// métalのルックアンドフィール
+setlookandfeel("javax.swing.plaf.metal.MetalLookAndFeel")
+
+sleep(3000);
+
+// Macintoshのルックアンドフィール
+setlookandfeel("it.unitn.ing.swing.plaf.macos.MacOSLookAndFeel")
+
+// システムでデフォルトのルックアンドフィール
+
+setlookandfeel()
+
+sleep(3000);
+
+// 前のルックアンドフィールに戻す
+setlookandfeel(currentlnf)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getinstalledlookandfeels">getinstalledlookandfeels</link>
+            </member>
+            <member>
+                <link linkend="getlookandfeel">getlookandfeel</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

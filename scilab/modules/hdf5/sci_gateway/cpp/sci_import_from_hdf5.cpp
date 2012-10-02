@@ -72,7 +72,7 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 
     //open hdf5 file
     pstExpandedFilename = expandPathVariable(pstFilename);
-    int iFile = openHDF5File(pstExpandedFilename);
+    int iFile = openHDF5File(pstExpandedFilename, 0);
     if (iFile < 0)
     {
         Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFilename);
@@ -931,6 +931,7 @@ static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int *_piAddres
 
     piNbItemRow = (int *)MALLOC(iRows * sizeof(int));
     piColPos = (int *)MALLOC(iNbItem * sizeof(int));
+
     iRet = readBooleanSparseMatrix(_iDatasetId, iRows, iCols, iNbItem, piNbItemRow, piColPos);
     if (iRet)
     {
@@ -953,7 +954,10 @@ static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int *_piAddres
     }
 
     FREE(piNbItemRow);
-    FREE(piColPos);
+    if(piColPos)
+    {
+        FREE(piColPos);
+    }
 
     if (iRet)
     {

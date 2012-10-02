@@ -56,32 +56,40 @@ public final class SwingViewMenu {
      * @param property the property name
      * @param value the property value
      */
-    public static void update(Widget uimenu, String property, Object value) {
+    public static void update(Widget uimenu, int property, Object value) {
         String uid = ((SwingViewObject) uimenu).getId();
-        if (property.equals(__GO_CALLBACK__)) {
+        switch (property) {
+        case __GO_CALLBACK__ :
             int cbType = (Integer) GraphicController.getController().getProperty(uid, __GO_CALLBACKTYPE__);
             uimenu.setCallback(CommonCallBack.createCallback((String) value, cbType, uid));
-        } else if (property.equals(__GO_CALLBACKTYPE__)) {
+            break;
+        case __GO_CALLBACKTYPE__ :
             String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
             uimenu.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, uid));
-        } else if (property.equals(__GO_UI_CHECKED__)) {
+            break;
+        case __GO_UI_CHECKED__ :
             if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
                 ((SwingScilabCheckBoxMenuItem) uimenu).setChecked((Boolean) value);
             }
-        } else if (property.equals(__GO_UI_ENABLE__)) {
+            break;
+        case __GO_UI_ENABLE__ :
             uimenu.setEnabled((Boolean) value);
-        } else if (property.equals(__GO_VISIBLE__)) {
+            break;
+        case __GO_VISIBLE__ :
             uimenu.setVisible((Boolean) value);
-        } else if (property.equals(__GO_UI_FOREGROUNDCOLOR__)) {
+            break;
+        case __GO_UI_FOREGROUNDCOLOR__ :
             Double[] allColors = ((Double[]) value);
             uimenu.setForeground(new Color((int) (allColors[0] * COLORS_COEFF),
                                            (int) (allColors[1] * COLORS_COEFF),
                                            (int) (allColors[2] * COLORS_COEFF)));
-        } else if (property.equals(__GO_UI_ICON__)) {
+            break;
+        case __GO_UI_ICON__ :
             if (!((String) value).equals("")) {
                 ((SwingScilabMenuItem) uimenu).setIcon(new ImageIcon(ScilabSwingUtilities.findIcon((String) value, "16x16")));
             }
-        } else if (property.equals(__GO_UI_LABEL__)) {
+            break;
+        case __GO_UI_LABEL__ :
             String newText = (String) value;
             String label = newText;
 
@@ -118,7 +126,8 @@ public final class SwingViewMenu {
 
             // Set the text after relacing all && (display a & in the label) by &
             uimenu.setText(label.replaceAll("&&", "&"));
-        } else if (property.equals(__GO_UI_MNEMONIC__)) {
+            break;
+        case __GO_UI_MNEMONIC__ :
             String mnemonic = (String) value;
             if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
                 ((SwingScilabCheckBoxMenuItem) uimenu).setMnemonic(mnemonic.charAt(0));
@@ -127,7 +136,8 @@ public final class SwingViewMenu {
             } else if (uimenu instanceof SwingScilabMenu) {
                 ((SwingScilabMenu) uimenu).setMnemonic(mnemonic.charAt(0));
             }
-        } else if (property.equals(__GO_UI_ACCELERATOR__)) {
+            break;
+        case __GO_UI_ACCELERATOR__ :
             String accelerator = (String) value;
             if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
                 ((SwingScilabCheckBoxMenuItem) uimenu).setAccelerator(ScilabKeyStroke.getKeyStroke(accelerator));
@@ -136,6 +146,7 @@ public final class SwingViewMenu {
             } else if (uimenu instanceof SwingScilabMenu) {
                 ((SwingScilabMenu) uimenu).setAccelerator(ScilabKeyStroke.getKeyStroke(accelerator));
             }
+            break;
         }
     }
 }

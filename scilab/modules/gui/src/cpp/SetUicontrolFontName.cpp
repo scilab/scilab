@@ -29,7 +29,7 @@ int SetUicontrolFontName(void* _pvCtx, char* sciObjUID, size_t stackPointer, int
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTNAME__), getStringFromStack(stackPointer), jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTNAME__, getStringFromStack(stackPointer), jni_string, 1);
 
     if (status == TRUE)
     {

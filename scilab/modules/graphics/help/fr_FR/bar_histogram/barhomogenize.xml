@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="barhomogenize">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="barhomogenize">
     <refnamediv>
         <refname>barhomogenize</refname>
         <refpurpose>homogeneise toutes les barres contenues dans les axes courrants de travail</refpurpose>
@@ -83,6 +83,27 @@ xtitle('stacked homogenisation')
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,'yellow');bar(x,y2);
 barhomogenize('stacked',1);
+]]></programlisting>
+        <scilab:image>
+            subplot(2,3,1)
+            xtitle('ex1: creation of 1 yellow bar and  3 bars')
+            x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
+            bar(x,y1,'yellow');bar(x,y2);
+            // homogeneisation des 4 barres avec l'option style fixée à 'grouped' (par défaut)
+            subplot(2,3,2)
+            xtitle('grouped homogenisation')
+            x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
+            bar(x,y1,'yellow');bar(x,y2);
+            barhomogenize();
+            // homogeneisation des 4 barres avec l'option style fixée à 'stacked'
+            subplot(2,3,3)
+            xtitle('stacked homogenisation')
+            x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
+            bar(x,y1,'yellow');bar(x,y2);
+            barhomogenize('stacked',1);
+            
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 
 // Deuxieme exemple
 // creation d'une barre (i.e une polyline de type polyline_style=6, avec un appel à la fonction bar) et deux polylines (i.e 2 polylines de type polyline_style=1, avec un appel à la fonction plot)
@@ -113,6 +134,38 @@ barhomogenize();
 //barhomogenize('stacked',0.5);
 //barhomogenize('stacked',1);
  ]]></programlisting>
+        <scilab:image>
+            
+            // Deuxieme exemple
+            // creation d'une barre (i.e une polyline de type polyline_style=6, avec un appel à la fonction bar) et deux polylines (i.e 2 polylines de type polyline_style=1, avec un appel à la fonction plot)
+            subplot(2,3,4)
+            xtitle('ex2: creation of 1 bar and 2 polylines')
+            x=1:10; y=sin(x)/2;
+            bar(x,y,'red')
+            x1=1:10;y1=[sin(x);cos(x)]
+            plot(x1,y1)
+            // modification du type polyline_style à 6 de la deuxieme polyline construite par plot (cette polyline devient une barre)
+            subplot(2,3,5)
+            xtitle('transformation of the second polyline to bar')
+            x=1:10; y=sin(x)/2;
+            bar(x,y,'red')
+            x1=1:10;y1=[sin(x);cos(x)]
+            plot(x1,y1)
+            e=gce(); e2=e.children(2); e2.polyline_style=6;
+            // homogeneisation de la première barre (construite par appel à la fonction bar) et de la deuxieme barre (issue de la modification). 
+            subplot(2,3,6)
+            xtitle('grouped homogenisation')
+            x=1:10; y=sin(x)/2;
+            bar(x,y,'red')
+            x1=1:10;y1=[sin(x);cos(x)]
+            plot(x1,y1)
+            e=gce(); e2=e.children(2); e2.polyline_style=6;
+            barhomogenize();
+            // change the style and the width
+            //barhomogenize('stacked',0.5);
+            //barhomogenize('stacked',1);
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

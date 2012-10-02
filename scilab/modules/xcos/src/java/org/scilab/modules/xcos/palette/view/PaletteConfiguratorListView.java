@@ -24,13 +24,15 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Implement the edit category view
  */
+@SuppressWarnings(value = { "serial" })
 public class PaletteConfiguratorListView extends JTable {
     private static final String[] COLUMN_TITLE = { XcosMessages.ENABLE,
-            XcosMessages.PAL_NAME };
+                                  XcosMessages.PAL_NAME
+                                                 };
 
     /**
      * Construct a new view with model
-     * 
+     *
      * @param model
      *            the model
      */
@@ -42,12 +44,13 @@ public class PaletteConfiguratorListView extends JTable {
     /**
      * The default model
      */
+    @SuppressWarnings(value = { "serial" })
     public static class PaletteListModel extends AbstractTableModel {
         private final Category category;
 
         /**
          * Default constructor with data
-         * 
+         *
          * @param category
          *            the data
          */
@@ -148,7 +151,7 @@ public class PaletteConfiguratorListView extends JTable {
          */
         @Override
         public void setValueAt(final Object aValue, final int rowIndex,
-                final int columnIndex) {
+                               final int columnIndex) {
             final PaletteNode p = category.getNode().get(rowIndex);
 
             if (columnIndex == 0) {

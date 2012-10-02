@@ -33,7 +33,7 @@
 int set_callback_type_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
-    double callbackType = 0.0;
+    int callbackType = 0;
 
     if ( !( valueType == sci_matrix ) )
     {
@@ -46,7 +46,14 @@ int set_callback_type_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
         return SET_PROPERTY_ERROR;
     }
 
-    callbackType = getDoubleFromStack(stackPointer);
+    callbackType = (int) getDoubleFromStack(stackPointer);
+
+    /* Check the value */
+    if (callbackType < -1 || callbackType > 2)
+    {
+        Scierror(999, _("Wrong value for '%s' property: %d, %d, %d or %d expected.\n"), "callback_type", -1, 0, 1, 2);
+        return SET_PROPERTY_ERROR;
+    }
 
     status = setGraphicObjectProperty(pobjUID, __GO_CALLBACKTYPE__, &callbackType, jni_int, 1);
 

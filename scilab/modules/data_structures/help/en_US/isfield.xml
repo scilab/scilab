@@ -10,14 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="isfield">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="isfield">
     <refnamediv>
         <refname>isfield</refname>
-        <refpurpose>Checks if the given fieldname exists in the structure</refpurpose>
+        <refpurpose>checks if the given fieldname exists in the structure</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>bool = isfield(s,fieldname)</synopsis>
+        <synopsis>bool = isfield(s, fieldname)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,19 +25,19 @@
             <varlistentry>
                 <term>s</term>
                 <listitem>
-                    <para>A struct array</para>
+                    <para>a struct array.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fieldname</term>
                 <listitem>
-                    <para>A matrix of strings</para>
+                    <para>a matrix of strings.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>bool</term>
                 <listitem>
-                    <para>A matrix of boolean.</para>
+                    <para>a matrix of boolean.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,18 +45,17 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function returns true if the specified structure "s" includes the field
-            "field", regardless of the corresponding value.
+            This function returns <constant>%t</constant> if the specified structure <varname>s</varname> includes the field <varname>fieldname</varname>, regardless of the corresponding value.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 s = struct("field_1",123,"field_2",456,"field_4",789)
-
+ 
 // Single Fieldname Syntax
 isfield( s , "field_1"  )
-
+ 
 // Multiple Fieldname Syntax
 isfield( s , [ "field_1" "field_2" ; "field_3" "field_4" ] )
  ]]></programlisting>

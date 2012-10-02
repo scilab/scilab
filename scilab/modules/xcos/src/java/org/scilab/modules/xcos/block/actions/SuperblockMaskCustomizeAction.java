@@ -53,6 +53,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Customize the mask of the {@link SuperBlock}.
  */
+@SuppressWarnings(value = { "serial" })
 public final class SuperblockMaskCustomizeAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.CUSTOMIZE;
@@ -123,6 +124,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
      * class is tightly coupled to Swing
      */
     // CSOFF: ClassDataAbstractionCoupling
+    @SuppressWarnings(value = { "serial" })
     private class CustomizeFrame extends JFrame {
 
         private final CustomizeFrameControler controler;

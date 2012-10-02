@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="cshep2d" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cshep2d" xml:lang="en">
     <refnamediv>
         <refname>cshep2d</refname>
         <refpurpose>bidimensional cubic shepard (scattered)
@@ -79,6 +79,25 @@ xtitle("Cubic Shepard Interpolation of cos(x)cos(y) with randomly chosen interpo
 legends("interpolation points",-9,1)
 show_window()
  ]]></programlisting>
+        <scilab:image>
+            n = 150; // nb of interpolation points
+            xy = grand(n,2,"unf",0,2*%pi);
+            z = cos(xy(:,1)).*cos(xy(:,2));
+            xyz = [xy z];
+            tl_coef = cshep2d(xyz);
+            
+            // evaluation on a grid
+            m = 30;
+            xx = linspace(0,2*%pi,m);
+            [X,Y] = ndgrid(xx,xx);
+            Z = eval_cshep2d(X,Y, tl_coef);
+            clf()
+            plot3d(xx,xx,Z,flag=[2 6 4])
+            param3d1(xy(:,1),xy(:,2),list(z,-9), flag=[0 0])
+            xtitle("Cubic Shepard Interpolation of cos(x)cos(y) with randomly chosen interpolation points")
+            legends("interpolation points",-9,1)
+            show_window()
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

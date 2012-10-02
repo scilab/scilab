@@ -10,18 +10,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="api_scilab" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_scilab" xml:lang="en">
     <refnamediv>
         <refname>api_scilab</refname>
         <refpurpose>api_scilab is the Scilab interface to read/write data from/to Scilab memory </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>In the previous versions of Scilab, there was no clear or easy way to extend Scilab or to use it as an embedded application.</para>
-        <para>Since Scilab 5.2.0, these issues have been tackled by API Scilab. Its provides a new consistent, documented and easy way API.
+        <para>Since Scilab 5.2.0, Scilab provides a consistent, documented and easy way API.
         </para>
         <para>This API provides functions to read/write data from/to Scilab memory.</para>
-        <para>  It provides many advantages:</para>
+        <para>It provides many advantages:</para>
         <itemizedlist>
             <listitem>
                 <para>Management of all Scilab data types</para>

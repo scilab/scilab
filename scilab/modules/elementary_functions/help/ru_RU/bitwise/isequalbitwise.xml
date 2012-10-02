@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="isequalbitwise" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isequalbitwise" xml:lang="ru">
     <refnamediv>
         <refname>isequalbitwise</refname>
         <refpurpose>побитовое сравнение переменных</refpurpose>
@@ -27,13 +27,13 @@
             <varlistentry>
                 <term>a, b , ...</term>
                 <listitem>
-                    <para>переменные любого типа</para>
+                    <para>переменные любого типа.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>логическое значение</para>
+                    <para>логическое значение.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -41,17 +41,19 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>isequalbitwise</literal> сравнивает свои аргументы. Если все они равны, 
-            то функция возвращает <literal>%t</literal> в противном случает она 
-            возвращает <literal>%f</literal>.
+            <function>isequalbitwise</function> сравнивает свои аргументы. Если все они равны,
+            то функция возвращает <constant>%t</constant> в противном случае она
+            возвращает <constant>%f</constant>.
         </para>
         <para>
             Когда сравниваются списки, структуры и т. п. то сравнение производится
             рекурсивно, в порядке следования полей.
         </para>
-        <para>      Данные с плавающей запятой сравниваются в соответствии с правилами IEEE, 
-            т.е.значения NaN не равны, double(1) и int32(1) не равны. См. 
-            <link linkend="isequal">isequal</link> для сравнений IEEE.
+        <para>
+            Данные с плавающей запятой сравниваются в соответствии с правилами IEEE, 
+            т.е. значения <constant>%nan</constant> не равны, <code>double(1)</code> и
+            <code>int32(1)</code> не равны. См. <link linkend="isequal">isequal</link> для
+            сравнений IEEE.
         </para>
     </refsection>
     <refsection>

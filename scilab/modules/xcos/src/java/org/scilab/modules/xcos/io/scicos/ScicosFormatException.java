@@ -29,6 +29,7 @@ public abstract class ScicosFormatException extends Exception {
      * Used when the {@link Element} cannot be used to decode/encode the
      * instance.
      */
+    @SuppressWarnings(value = { "serial" })
     public static class WrongElementException extends ScicosFormatException {
 
         /**
@@ -43,6 +44,7 @@ public abstract class ScicosFormatException extends Exception {
 
     /**
      * Used when the expected data cannot be casted safely.
+    @SuppressWarnings(value = { "serial" })
      */
     public static class WrongTypeException extends ScicosFormatException {
 
@@ -72,7 +74,7 @@ public abstract class ScicosFormatException extends Exception {
 
         /**
          * Constructor with field.
-         * 
+         *
          * @param fields
          *            the field list
          * @param index
@@ -80,11 +82,12 @@ public abstract class ScicosFormatException extends Exception {
          */
         public WrongTypeException(List<String> fields, int index) {
             super(String.format(UNABLE_TO_DECODE_INVALID_FIELD, fields.get(0),
-                    fields.get(index)));
+                                fields.get(index)));
         }
     }
 
     /**
+    @SuppressWarnings(value = { "serial" })
      * Used when the expected data are not well formatted.
      */
     public static class WrongStructureException extends ScicosFormatException {
@@ -97,7 +100,7 @@ public abstract class ScicosFormatException extends Exception {
 
         /**
          * Constructor with a field.
-         * 
+         *
          * @param field
          *            the erroneous field
          */
@@ -107,7 +110,7 @@ public abstract class ScicosFormatException extends Exception {
 
         /**
          * Constructor with field descriptor.
-         * 
+         *
          * @param fields
          *            the erroneous fields
          */
@@ -116,6 +119,7 @@ public abstract class ScicosFormatException extends Exception {
         }
     }
 
+    @SuppressWarnings(value = { "serial" })
     /**
      * Used when the data doesn't have a valid version number.
      */
@@ -124,7 +128,7 @@ public abstract class ScicosFormatException extends Exception {
 
         /**
          * Default constructor
-         * 
+         *
          * @param wrongVersion
          *            the wrong version number.
          */
@@ -159,7 +163,7 @@ public abstract class ScicosFormatException extends Exception {
 
     /**
      * {@link ScicosFormatException} with message and cause.
-     * 
+     *
      * @param message
      *            the message to be printed
      * @param cause
@@ -171,7 +175,7 @@ public abstract class ScicosFormatException extends Exception {
 
     /**
      * {@link ScicosFormatException} with cause.
-     * 
+     *
      * @param cause
      *            the cause
      */

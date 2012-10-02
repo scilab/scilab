@@ -64,7 +64,8 @@ static int getScalarFromStack(int paramIndex, char * funcName, double * res)
 /*--------------------------------------------------------------------------*/
 int sci_stringbox( char * fname, unsigned long fname_len )
 {
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
     char* parentAxes = NULL;
     double* textCorners = NULL;
     int two   = 2;
@@ -106,9 +107,9 @@ int sci_stringbox( char * fname, unsigned long fname_len )
             return 0 ;
         }
 
-        getGraphicObjectProperty(pTextUID, __GO_TYPE__, jni_string, (void **)&type);
+        getGraphicObjectProperty(pTextUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-        if (strcmp(type, __GO_LABEL__) != 0 && strcmp(type, __GO_TEXT__) != 0)
+        if (type != __GO_LABEL__ && type != __GO_TEXT__)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
             return 0;

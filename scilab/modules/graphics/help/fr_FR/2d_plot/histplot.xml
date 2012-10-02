@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="histplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="histplot">
     <refnamediv>
         <refname>histplot</refname>
         <refpurpose>dessine un histogramme</refpurpose>
@@ -94,6 +94,11 @@ clf();histplot(20,d,normalization=%f)
 clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=5)
 clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]); 
 ]]></programlisting>
+                <scilab:image>
+                    d=rand(1,10000,'normal'); 
+                    clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]);
+                </scilab:image>
+                
             </member>
             <member>
                 Exemple #2: histogramme d'un échantillon de loi binomiale B(6,0.5)
@@ -108,6 +113,18 @@ subplot(2,1,2)
 histplot(c, d, normalization=%f, style=5)
 xtitle("l''histogramme non normalisé")
 ]]></programlisting>
+                <scilab:image localized="true">
+                    d = grand(1000,1,"bin", 6, 0.5);
+                    c = linspace(-0.5,6.5,8);
+                    clf()
+                    subplot(2,1,1)
+                    histplot(c, d, style=2)
+                    xtitle("l''histogramme normalisé")
+                    subplot(2,1,2)
+                    histplot(c, d, normalization=%f, style=5)
+                    xtitle("l''histogramme non normalisé")
+                </scilab:image>
+                
             </member>
             <member>
                 Exemple #3: histogramme d'un échantillon de loi exponentielle E(lambda)
@@ -121,6 +138,16 @@ x = linspace(0,max(Xmax),100)';
 plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
 legend(["histogramme d''un échantillon E(lambda)" "densité exacte"]);
 ]]></programlisting>
+                <scilab:image localized="true">
+                    lambda = 2;
+                    X = grand(100000,1,"exp", 1/lambda);
+                    Xmax = max(X);
+                    clf()
+                    histplot(40, X, style=2)
+                    x = linspace(0,max(Xmax),100)';
+                    plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
+                    legend(["histogramme d''un échantillon E(lambda)" "densité exacte"]);
+                </scilab:image>
             </member>
         </simplelist>
     </refsection>

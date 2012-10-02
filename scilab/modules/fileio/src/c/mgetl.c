@@ -182,6 +182,7 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                             {
                                 *nbLinesOut = 0;
                                 *ierr = MGETL_MEMORY_ALLOCATION_ERROR;
+                                FREE(nbLines);
                                 return NULL;
                             }
                         }

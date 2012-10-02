@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-07 03:29+0000\n"
+"PO-Revision-Date: 2012-09-04 13:51+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -54,9 +54,6 @@ msgstr "水平"
 msgid "Vertical"
 msgstr "垂直"
 
-msgid "Simulation"
-msgstr "シミュレーション"
-
 msgid "No trace nor debug printing"
 msgstr "トレースもデバッグ出力も行ないません"
 
@@ -68,6 +65,21 @@ msgstr "ブロック毎の実行トレースとデバッグブロックコール
 
 msgid "Debug block calls without trace"
 msgstr "トレースなしのデバッグブロックコール"
+
+msgid "Number of recently opened files to display: "
+msgstr "表示用に最近開いたファイルの数: "
+
+msgid "Default file format"
+msgstr "デフォルトのファイル形式"
+
+msgid "Link Style"
+msgstr "結合方法"
+
+msgid "Diagram background"
+msgstr "ダイアグラムの背景"
+
+msgid "Grid"
+msgstr "グリッド"
 
 msgid "Default simulation settings"
 msgstr "シミュレーション設定のデフォルト値"
@@ -107,22 +119,14 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定�
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列のベクトルを指定してください.\n"
 
+msgid "a graphical environment is needed."
+msgstr "グラフィック環境が必要です."
+
 #, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
 msgstr "jgraphxライブラリを読み込めません."
-
-#, c-format
-msgid ""
-"Unable to load the hdf5-java (jhdf5) library. \n"
-"Expecting version %s ; Getting version %s ."
-msgstr ""
-"hdf5-java (jhdf5) ライブラリをロードできません.\n"
-"バージョン %s が必要です;　バージョン %s 取得中."
-
-msgid "Unable to load the native HDF5 library."
-msgstr "ネーティブな HDF5ライブラリをロードできません."
 
 #, c-format
 msgid ""
@@ -418,6 +422,9 @@ msgstr "詳細"
 msgid "Show parent diagram"
 msgstr "親ダイアグラムを表示"
 
+msgid "Simulation"
+msgstr "シミュレーション"
+
 msgid "Setup"
 msgstr "設定"
 
@@ -450,12 +457,6 @@ msgstr "反転"
 
 msgid "Show/Hide shadow"
 msgstr "影の表示/非表示"
-
-msgid "Grid"
-msgstr "グリッド"
-
-msgid "Diagram background"
-msgstr "ダイアグラムの背景"
 
 msgid "Bold"
 msgstr "ボールド体"
@@ -699,9 +700,6 @@ msgstr "色を塗る"
 
 msgid "Text Color"
 msgstr "テキストの色"
-
-msgid "Link Style"
-msgstr "結合方法"
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr "デバッグレベル設定 (0,1,2,3) <br/>scicos_debug(n)を実行します"

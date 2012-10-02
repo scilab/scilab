@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mfscanf" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mfscanf" xml:lang="ru">
     <refnamediv>
         <refname>mfscanf</refname>
         <refpurpose>
@@ -54,7 +54,7 @@
                         записи оставшихся операндов. Операнд <varname>format</varname> 
                         следует, как можно ближе синтаксису операндов формата C-функции 
                         <function>printf</function>, как описано в
-                        <link linkend="scanf_conversion">scanf_conversion</link>.
+                        <link linkend="scanf_conversion">преобразовании в scanf</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -128,7 +128,7 @@
             <varname>str</varname>.
         </para>
         <para>
-            Необязательный аргумента<varname>niter</varname> определяет сколько раз 
+            Необязательный аргумент <varname>niter</varname> определяет сколько раз
             использовать формат. Одна итерация формирует одну строку в выходной 
             матрице. Если <code>niter==-1</code>, то функция выполняет итерации до 
             конца файла. Значение <varname>niter</varname> по умолчанию равно 1.
@@ -151,14 +151,14 @@
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[ 
 //----------------------------------------------------------
-//--    Простое использование                                        --
+//--              Простое использование                   --
 //----------------------------------------------------------
 s='1 1.3'  // строка
 [n,a,b]=msscanf(s,"%i %e")
 L=msscanf(s,"%i %e")
  
 //----------------------------------------------------------
-//--    Примеры форматов
+//--               Примеры форматов                       --
 //----------------------------------------------------------
  
 msscanf(" 12\n",'%c%c%c%c') // сканирование символов

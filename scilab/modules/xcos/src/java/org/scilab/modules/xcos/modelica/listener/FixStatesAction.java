@@ -23,12 +23,13 @@ import org.scilab.modules.xcos.modelica.ModelicaMessages;
 /**
  * Fix the state of the current model.
  */
+@SuppressWarnings(value = { "serial" })
 public final class FixStatesAction extends AbstractAction {
     private final ModelicaController controller;
 
     /**
      * Default constructor
-     * 
+     *
      * @param controller
      *            the associated controller
      */
@@ -42,7 +43,7 @@ public final class FixStatesAction extends AbstractAction {
     /**
      * Update the not fixed derivatives variable to 0.0 and not fixed state
      * variables to 1.0
-     * 
+     *
      * @param e
      *            the event
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)

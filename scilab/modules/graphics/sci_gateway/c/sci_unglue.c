@@ -40,7 +40,8 @@ int sci_unglue(char *fname,unsigned long fname_len)
 
     int iOne = 1;
     char *pobjUID = NULL;
-    char *pstObjectType = NULL;
+    int iObjectType = -1;
+    int *piObjectType = &iObjectType;
     char *pstParentUID = NULL;
     char **pstChildrenUID = NULL;
     int iChildrenCount = 0;
@@ -60,9 +61,9 @@ int sci_unglue(char *fname,unsigned long fname_len)
         return 0;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&pstObjectType);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piObjectType);
 
-    if (pstObjectType != NULL && strcmp(pstObjectType, __GO_COMPOUND__) == 0)
+    if (piObjectType != -1 && iObjectType == __GO_COMPOUND__)
     {
         // Retrieve number of children.
         getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);

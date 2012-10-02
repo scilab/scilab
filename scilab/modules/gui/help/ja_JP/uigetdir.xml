@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="uigetdir">
+    <refnamediv>
+        <refname>uigetdir</refname>
+        <refpurpose>ディレクトリを選択するダイアログ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>directory = uigetdir()
+            directory = uigetdir(start_path [,title])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>start_path</term>
+                <listitem>
+                    <para>
+                        選択用の初期ディレクトリを指定する文字列.
+                        デフォルトでuigetdirはカレントのワーキングディレクトリを
+                        使用します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>title</term>
+                <listitem>
+                    <para>uigetdirウインドウの表題.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>directory</term>
+                <listitem>
+                    <para>
+                        ユーザが"Ok"を実行した場合はユーザが選択した
+                        ディレクトリ,
+                        ユーザがキャンセルした場合は " "文字列.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ディレクトリを選択するダイアログウインドウを作成します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+uigetdir()
+uigetdir("SCI/modules/")
+uigetdir("SCI/modules/", "Choose a directory")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uigetfile">uigetfile</link>
+            </member>
+            <member>
+                <link linkend="uiputfile">uiputfile</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

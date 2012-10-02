@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="errcatch">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="errcatch">
     <refnamediv>
         <refname>errcatch</refname>
         <refpurpose> error trapping</refpurpose>
@@ -94,7 +94,7 @@
         </para>
         <para/>
         <para>
-            The <literal>errcatch</literal> actions apply to the current evalution
+            The <literal>errcatch</literal> actions apply to the current evaluation
             context (<literal>function</literal>, <literal>exec</literal>, <literal>pause</literal>) 
             and all the sub-levels. A  second <literal>errcatch</literal> call in a sub-level hides the 
             initial one for this sub-level. If a second <literal>errcatch</literal> call is made at the

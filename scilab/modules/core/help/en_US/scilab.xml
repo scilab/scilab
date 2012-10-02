@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scilab" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scilab" xml:lang="en">
     <refnamediv>
         <refname>scilab</refname>
         <refpurpose>Main script to start Scilab and miscellaneous
@@ -46,7 +46,7 @@
             <varlistentry>
                 <term>-debug</term>
                 <listitem>
-                    <para>Start Scilab under the debugguer gdb (Unix/Linux/Mac OS X only).</para>
+                    <para>Start Scilab under the debugger gdb (Unix/Linux/Mac OS X only).</para>
                     <para>
                         Define the variable <literal>SCILAB_GDB_OPT</literal> to add custom options to
                         gdb.
@@ -126,7 +126,7 @@
                     <para>
                         Other possible <literal>lang</literal> values are
                         <literal>'fr'</literal> for french and <literal>'en'</literal> for
-                        english for compatibility reasons. The default language is english.
+                        English for compatibility reasons. The default language is English.
                         This default value is fixed the <literal>scilab.start</literal>
                         file.
                     </para>
@@ -153,8 +153,7 @@
             <varlistentry>
                 <term>-nb</term>
                 <listitem>
-                    <para>If this option is present then the scilab welcome banner is
-                        not displayed.
+                    <para>If this option is present then the Scilab loading message not displayed.
                     </para>
                 </listitem>
             </varlistentry>

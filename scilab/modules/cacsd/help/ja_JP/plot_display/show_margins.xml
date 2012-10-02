@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="show_margins">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="show_margins">
     <refnamediv>
         <refname>show_margins</refname>
         <refpurpose>ゲイン余裕/位相余裕とそれぞれの交差周波数を表示する</refpurpose>
@@ -54,10 +54,10 @@ show_margins(h)
 show_margins(h,'nyquist')
  ]]></programlisting>
         <scilab:image>
-h=syslin('c',0.02909+0.11827*%s+0.12823*%s^2+0.35659*%s^3+0.256*%s^4+0.1*%s^5,..
-             0.0409+0.1827*%s+1.28225*%s^2+3.1909*%s^3+2.56*%s^4+%s^5);
-show_margins(h)
-show_margins(h,'nyquist')
+            h=syslin('c',0.02909+0.11827*%s+0.12823*%s^2+0.35659*%s^3+0.256*%s^4+0.1*%s^5,..
+            0.0409+0.1827*%s+1.28225*%s^2+3.1909*%s^3+2.56*%s^4+%s^5);
+            show_margins(h)
+            show_margins(h,'nyquist')
         </scilab:image>
         <programlisting role="example"><![CDATA[
 //discrete case
@@ -66,9 +66,9 @@ show_margins(h)
 show_margins(h,'nyquist')
  ]]></programlisting>
         <scilab:image>
-h = syslin(0.1,0.01547+0.01599*%z ,%z^2-1.81*%z+0.9048)
-show_margins(h)
-show_margins(h,'nyquist')
+            h = syslin(0.1,0.01547+0.01599*%z ,%z^2-1.81*%z+0.9048)
+            show_margins(h)
+            show_margins(h,'nyquist')
         </scilab:image>
     </refsection>
     <refsection role="see also">

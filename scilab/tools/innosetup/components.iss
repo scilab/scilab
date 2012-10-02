@@ -91,6 +91,10 @@ Name: {#COMPN_SCINOTES}; Description:{cm:DescriptionSciNotes}; Types: default fu
 ;
 Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: default full custom; Flags: fixed;
 ;
+Name: {#COMPN_EXTERNAL_OBJECTS}; Description: {cm:DescriptionExternalObjects}; Types: default full custom; Flags: fixed;
+;
+Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: default full custom; Flags: fixed;
+;
 Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: default full custom cli;
 ;
 Name: {#COMPN_MKL_CPU_LIBRARY}; Description:{cm:DescriptionMKLLibrary}; Flags: exclusive
@@ -118,7 +122,6 @@ Name: {#COMPN_COMPATFUNCTIONS}; Description: {cm:DescriptionCompatFunctions}; Ty
 Name: {#COMPN_M2SCI}; Description: {cm:DescriptionM2sci}; Types: default full custom;
 Name: {#COMPN_MATIO}; Description: {cm:DescriptionMatio}; Types: default full custom;
 ;
-Name: {#COMPN_EXTERNAL_OBJECTS}; Description: {cm:DescriptionExternalObjects}; Types: default full custom;
 Name: {#COMPN_SOUND}; Description: {cm:DescriptionSound}; Types: default full custom;
 Name: {#COMPN_RANDLIB}; Description: {cm:DescriptionRandlib}; Types: default full custom;
 ;
@@ -129,7 +132,6 @@ Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: default full c
 ;
 Name: {#COMPN_SPREADSHEET}; Description: {cm:DescriptionSpreadsheet}; Types: default full custom;
 ;
-Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: default full custom;
 Name: {#COMPN_MODULES_MANAGER}; Description: {cm:DescriptionModulesManager}; Types: default full custom;
 ;
 #ifndef SCILAB_F2C

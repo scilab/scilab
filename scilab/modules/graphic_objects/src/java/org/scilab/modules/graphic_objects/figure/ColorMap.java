@@ -12,7 +12,6 @@
 
 package org.scilab.modules.graphic_objects.figure;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;

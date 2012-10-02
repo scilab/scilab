@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="text_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="text_properties">
     <refnamediv>
         <refname>text_properties</refname>
         <refpurpose>description of the Text entity
@@ -260,22 +260,6 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            a=get("current_axes");
-            a.data_bounds=[0,0;1,1];
-            a.axes_visible = 'on' ;
-            
-            xstring(0,0,"Scilab is not esilaB",0,0)
-            
-            t=get("hdl") 
-            
-            t.font_foreground=6; 
-            t.font_size=5;
-            t.font_style=5;
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 a=get("current_axes");
@@ -304,6 +288,19 @@ t.text=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml]
 
 
  ]]></programlisting>
+        <scilab:image>
+            a=get("current_axes");
+            a.data_bounds=[0,0;1,1];
+            a.axes_visible = 'on' ;
+            
+            xstring(0,0,"Scilab is not esilaB",0,0)
+            
+            t=get("hdl") 
+            
+            t.font_foreground=6; 
+            t.font_size=5;
+            t.font_style=5;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

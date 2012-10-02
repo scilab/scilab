@@ -152,9 +152,9 @@ extern "C"
     int m_out = 1;
     int n_out = 1;
     
-    createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, m_out, n_out, &dOut);
+    createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m_out, n_out, &dOut);
     
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + + 1; 
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1; 
 
     return 0;
 	}

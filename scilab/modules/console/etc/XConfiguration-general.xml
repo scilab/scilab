@@ -60,7 +60,6 @@
                     <action key="OSSCKEY U" description="_(Delete whole line)" name="console-del-whole-line"/>
                     <action key="OSSCKEY ESCAPE" description="_(Delete whole line)" name="console-del-whole-line"/>
                     <action key="OSSCKEY W" description="_(Delete last word)" name="console-del-last-word"/>
-                    <action key="OSSCKEY X" description="_(Delete last word)" name="console-del-last-word"/>
                     <action key="PAGE_UP" description="_(Previous console page)" name="console-prev-page"/>
                     <action key="PAGE_DOWN" description="_(Next console page)" name="console-next-page"/>
                     <action key="ENTER" description="_(Validate input)" name="console-enter"/>
@@ -176,6 +175,8 @@
                     <action key="" description="_(Close all but this)" name="scinotes-close-all-but"/>
                     <action key="" description="_(Convert quote to double quote)" name="scinotes-double-quote"/>
                     <action key="" description="_(Line numbering)" name="scinotes-line-numbering"/>
+                    <action key="" description="_(Set the SciNotes font)" name="scinotes-set-font"/>
+                    <action key="" description="_(Set the SciNotes colors)" name="scinotes-set-colors"/>
                 </action-folder>
                 <action-folder name="Xcos" xconf-uid="xcos">
                     <!-- File -->

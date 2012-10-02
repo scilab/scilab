@@ -109,15 +109,15 @@ public final class SciDocMain {
             String urlBase = null;
 
             if (format.equalsIgnoreCase("javahelp")) {
-                converter = new JavaHelpDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, "scilab://");
+                converter = new JavaHelpDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, "scilab://", language);
             } else {
                 if (isToolbox) {
                     urlBase = conf.getWebSiteURL() + language + "/";
                 }
                 if (format.equalsIgnoreCase("html")) {
-                    converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase, HTMLDocbookTagConverter.GenerationType.HTML);
+                    converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase, language, HTMLDocbookTagConverter.GenerationType.HTML);
                 } else if (format.equalsIgnoreCase("web")) {
-                    converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase, HTMLDocbookTagConverter.GenerationType.WEB);
+                    converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase, language, HTMLDocbookTagConverter.GenerationType.WEB);
                 } else if (format.equalsIgnoreCase("chm")) {
                     converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, conf.getWebSiteURL(), isToolbox, urlBase, language);
                 }
@@ -127,6 +127,10 @@ public final class SciDocMain {
             converter.registerExternalXMLHandler(HTMLSVGHandler.getInstance(outputDirectory, imagedir));
             converter.registerExternalXMLHandler(HTMLScilabHandler.getInstance(outputDirectory, imagedir));
             converter.convert();
+
+            HTMLMathMLHandler.clean();
+            HTMLSVGHandler.clean();
+            HTMLScilabHandler.clean();
 
             fileToExec = ScilabImageConverter.getFileWithScilabCode();
 

@@ -10,7 +10,7 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="nyquist" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="nyquist" xml:lang="ja">
     <refnamediv>
         <refname>nyquist</refname>
         <refpurpose>ナイキスト線図</refpurpose>
@@ -189,16 +189,16 @@
     datatipSetOrientation(tip,"upper left");
     ]]></programlisting>
         <para>
-          <scilab:image>
-    s=poly(0,'s')
-    h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
-    h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
-    clf();    nyquist(h1)
-    ax=gca();
-    h_h=ax.children($).children(2);//hのナイキスト線図のハンドル
-    tip=datatipCreate(h_h,[1.331,0.684]);
-    datatipSetOrientation(tip,"upper left");
-          </scilab:image>
+            <scilab:image>
+                s=poly(0,'s')
+                h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+                h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+                clf();    nyquist(h1)
+                ax=gca();
+                h_h=ax.children($).children(2);//hのナイキスト線図のハンドル
+                tip=datatipCreate(h_h,[1.331,0.684]);
+                datatipSetOrientation(tip,"upper left");
+            </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[
     //ナイキスト線図のグリッドによるホール図
@@ -215,17 +215,17 @@
     Leg.legend_location="in_upper_left";
     ]]></programlisting>
         <para>
-          <scilab:image>
-    s=poly(0,'s');
-    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
-    tau=0.2;xsi=1.2;
-    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
-    clf();
-    nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
-    hallchart(colors=color('light gray')*[1 1])
-    ax=gca();Leg=ax.children(1);
-    Leg.legend_location="in_upper_left";
-          </scilab:image>
+            <scilab:image>
+                s=poly(0,'s');
+                Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+                tau=0.2;xsi=1.2;
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+                clf();
+                nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
+                hallchart(colors=color('light gray')*[1 1])
+                ax=gca();Leg=ax.children(1);
+                Leg.legend_location="in_upper_left";
+            </scilab:image>
         </para>
     </refsection>
     <refsection role="see also">

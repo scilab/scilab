@@ -113,7 +113,8 @@ int get3ddata(char *pobjUID)
 {
     char *variable_tlist_color[] = {"3d","x","y","z","color"};
     char *variable_tlist[] = {"3d","x","y","z"};
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
     double* colors = NULL;
     double* dataX = NULL;
     double* dataY = NULL;
@@ -125,7 +126,7 @@ int get3ddata(char *pobjUID)
 
     returnedList * tList = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
     getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
@@ -138,7 +139,7 @@ int get3ddata(char *pobjUID)
         /* Add 'variable' tlist items to stack */
         tList = createReturnedList( 4, variable_tlist_color );
 
-        if (strcmp(type, __GO_FAC3D__) == 0)
+        if (type == __GO_FAC3D__)
         {
             int numColors = 0;
             int *piNumColors = &numColors;
@@ -173,7 +174,7 @@ int get3ddata(char *pobjUID)
         /* Add 'variable' tlist items to stack */
         tList = createReturnedList( 3, variable_tlist );
 
-        if (strcmp(type, __GO_FAC3D__) == 0)
+        if (type == __GO_FAC3D__)
         {
             getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void **)&piNbRow);
             getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void **)&piNbCol);
@@ -182,7 +183,7 @@ int get3ddata(char *pobjUID)
             addMatrixToReturnedList(tList, dataY, nbRow, nbCol);
             addMatrixToReturnedList(tList, dataZ, nbRow, nbCol);
         }
-        else if (strcmp(type, __GO_PLOT3D__) == 0)
+        else if (type == __GO_PLOT3D__)
         {
             int* xDimensions;
             int* yDimensions;
@@ -206,23 +207,22 @@ int get3ddata(char *pobjUID)
 /*------------------------------------------------------------------------*/
 int get_data_property(void* _pvCtx, char* pobjUID)
 {
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
+    switch (type)
     {
+    case __GO_FAC3D__ :
+    case __GO_PLOT3D__ :
         return get3ddata(pobjUID);
-    }
-    else if (strcmp(type, __GO_CHAMP__) == 0)
-    {
+    case __GO_CHAMP__ :
         return getchampdata(pobjUID);
-    }
-    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
-    {
+    case __GO_GRAYPLOT__ :
         return getgrayplotdata(pobjUID);
-    }
-    else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
+    default :
+        /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
     {
         int nbRow  =  0;
         int nbCol  =  0;
@@ -255,6 +255,6 @@ int get_data_property(void* _pvCtx, char* pobjUID)
 
         return status;
     }
-
+    }
 }
 /*------------------------------------------------------------------------*/

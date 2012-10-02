@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="matrices">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2012 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="matrices">
     <refnamediv>
         <refname>matrices</refname>
-        <refpurpose> Scilab object, matrices in Scilab</refpurpose>
+        <refpurpose>Scilab objects, matrices in Scilab</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -10,7 +21,7 @@
             Matrices are basic objects defined in Scilab.
             They can be defined as follows:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 E=[e11,e12,...,e1n;
    e21,e22,...,e2n;
         ....
@@ -26,7 +37,7 @@ E=[e11,e12,...,e1n;
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 E=[1,2;3,4]
 E=[%T,%F;1==1,1~=1]
 s=poly(0,'s');
@@ -55,6 +66,9 @@ E=['A11','A12';'A21','A22']
             </member>
             <member>
                 <link linkend="hypermatrices">hypermatrices</link>
+            </member>
+            <member>
+                <link linkend="testmatrix">testmatrix</link>
             </member>
         </simplelist>
     </refsection>

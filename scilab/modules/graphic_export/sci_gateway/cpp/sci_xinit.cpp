@@ -10,6 +10,9 @@
  *
  */
 
+
+#include "Driver.hxx"
+
 extern "C"
 {
 #include "getScilabJavaVM.h"
@@ -21,8 +24,6 @@ extern "C"
 
 #include "gw_graphic_export.h"
 }
-
-#include "Driver.hxx"
 
 /*--------------------------------------------------------------------------*/
 int sci_xinit(char * fname, unsigned long fname_len)

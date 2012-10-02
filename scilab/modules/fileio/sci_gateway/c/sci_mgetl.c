@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -23,7 +23,7 @@
 #include "freeArrayOfString.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
-int sci_mgetl(char *fname,unsigned long fname_len)
+int sci_mgetl(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -39,7 +39,7 @@ int sci_mgetl(char *fname,unsigned long fname_len)
         int *piAddressVarTwo = NULL;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
@@ -51,7 +51,7 @@ int sci_mgetl(char *fname,unsigned long fname_len)
             double dValue = 0.;
             if (!isScalar(pvApiCtx, piAddressVarTwo))
             {
-                Scierror(999,_("%s: Wrong size for input argument #%d: Integer expected.\n"), fname, 2);
+                Scierror(999, _("%s: Wrong size for input argument #%d: Integer expected.\n"), fname, 2);
                 return 0;
             }
 
@@ -61,19 +61,19 @@ int sci_mgetl(char *fname,unsigned long fname_len)
             }
             else
             {
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
         }
         else
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: Integer expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Integer expected.\n"), fname, 2);
             return 0;
         }
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -90,7 +90,7 @@ int sci_mgetl(char *fname,unsigned long fname_len)
 
         if (!isScalar(pvApiCtx, piAddressVarOne))
         {
-            Scierror(999,_("%s: Wrong size for input argument #%d: String or logical unit expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: String or logical unit expected.\n"), fname, 1);
             return 0;
         }
 
@@ -107,12 +107,16 @@ int sci_mgetl(char *fname,unsigned long fname_len)
                 {
                     int fd = GetIdFromFilename(expandedFileName);
                     fileDescriptor = fd;
-                    if (expandedFileName) {FREE(expandedFileName); expandedFileName = NULL;}
+                    if (expandedFileName)
+                    {
+                        FREE(expandedFileName);
+                        expandedFileName = NULL;
+                    }
                     bCloseFile = FALSE;
                 }
                 else
                 {
-                    #define READ_ONLY_TEXT_MODE "rt"
+#define READ_ONLY_TEXT_MODE "rt"
                     int fd = 0;
                     int f_swap = 0;
                     double res = 0.0;
@@ -125,49 +129,74 @@ int sci_mgetl(char *fname,unsigned long fname_len)
                     {
                         case MOPEN_NO_ERROR:
                             fileDescriptor = fd;
-                            if (expandedFileName) {FREE(expandedFileName); expandedFileName = NULL;}
+                            if (expandedFileName)
+                            {
+                                FREE(expandedFileName);
+                                expandedFileName = NULL;
+                            }
                             break;
                         case MOPEN_NO_MORE_LOGICAL_UNIT:
+                        {
+                            Scierror(66, _("%s: Too many files opened!\n"), fname);
+                            if (expandedFileName)
                             {
-                                Scierror(66, _("%s: Too many files opened!\n"), fname);
-                                if (expandedFileName) {FREE(expandedFileName); expandedFileName = NULL;}
-                                return 0;
+                                FREE(expandedFileName);
+                                expandedFileName = NULL;
                             }
-                            break;
+                            return 0;
+                        }
+                        break;
                         case MOPEN_CAN_NOT_OPEN_FILE:
+                        {
+                            Scierror(999, _("%s: Cannot open file %s.\n"), fname, expandedFileName);
+                            if (expandedFileName)
                             {
-                                Scierror(999, _("%s: Cannot open file %s.\n"), fname, expandedFileName);
-                                if (expandedFileName) {FREE(expandedFileName); expandedFileName = NULL;}
-                                return 0;
+                                FREE(expandedFileName);
+                                expandedFileName = NULL;
                             }
-                            break;
+                            return 0;
+                        }
+                        break;
                         case MOPEN_NO_MORE_MEMORY:
+                        {
+                            if (expandedFileName)
                             {
-                                if (expandedFileName) {FREE(expandedFileName); expandedFileName = NULL;}
-                                Scierror(999, _("%s: No more memory.\n"), fname);
-                                return 0;
+                                FREE(expandedFileName);
+                                expandedFileName = NULL;
                             }
-                            break;
+                            Scierror(999, _("%s: No more memory.\n"), fname);
+                            return 0;
+                        }
+                        break;
                         case MOPEN_INVALID_FILENAME:
+                        {
+                            Scierror(999, _("%s: invalid filename %s.\n"), fname, expandedFileName);
+                            if (expandedFileName)
                             {
-                                Scierror(999, _("%s: invalid filename %s.\n"), fname, expandedFileName);
-                                if (expandedFileName) {FREE(expandedFileName); expandedFileName = NULL;}
-                                return 0;
+                                FREE(expandedFileName);
+                                expandedFileName = NULL;
                             }
-                            break;
-                        case MOPEN_INVALID_STATUS: default:
+                            return 0;
+                        }
+                        break;
+                        case MOPEN_INVALID_STATUS:
+                        default:
+                        {
+                            if (expandedFileName)
                             {
-                                if (expandedFileName) {FREE(expandedFileName); expandedFileName = NULL;}
-                                Scierror(999, _("%s: invalid status.\n"), fname);
-                                return 0;
+                                FREE(expandedFileName);
+                                expandedFileName = NULL;
                             }
-                            break;
+                            Scierror(999, _("%s: invalid status.\n"), fname);
+                            return 0;
+                        }
+                        break;
                     }
                 }
             }
             else
             {
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
         }
@@ -188,13 +217,13 @@ int sci_mgetl(char *fname,unsigned long fname_len)
                 fd = GetFileOpenedInScilab(fileDescriptor);
                 if (fd == NULL)
                 {
-                    Scierror(245,_("%s: No input file associated to logical unit %d.\n"), fname, fileDescriptor);
+                    Scierror(245, _("%s: No input file associated to logical unit %d.\n"), fname, fileDescriptor);
                     return 0;
                 }
             }
             else
             {
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
         }
@@ -205,10 +234,9 @@ int sci_mgetl(char *fname,unsigned long fname_len)
         {
             double dErrClose = 0.;
             C2F(mclose)(&fileDescriptor, &dErrClose);
-            bCloseFile = FALSE;
         }
 
-        switch(iErrorMgetl)
+        switch (iErrorMgetl)
         {
             case MGETL_NO_ERROR:
             {
@@ -216,7 +244,7 @@ int sci_mgetl(char *fname,unsigned long fname_len)
                 {
                     if (createEmptyMatrix(pvApiCtx, Rhs + 1) != 0)
                     {
-                        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         return 0;
                     }
                 }
@@ -226,7 +254,7 @@ int sci_mgetl(char *fname,unsigned long fname_len)
                     int n = 1;
 
                     sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m, n, wcReadedStrings);
-                    if(sciErr.iErr)
+                    if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         Scierror(17, _("%s: Memory allocation error.\n"), fname);
@@ -245,7 +273,7 @@ int sci_mgetl(char *fname,unsigned long fname_len)
                 {
                     if (createEmptyMatrix(pvApiCtx, Rhs + 1) != 0)
                     {
-                        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         return 0;
                     }
                 }
@@ -255,7 +283,7 @@ int sci_mgetl(char *fname,unsigned long fname_len)
                     int n = 1;
 
                     sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m, n, wcReadedStrings);
-                    if(sciErr.iErr)
+                    if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         Scierror(17, _("%s: Memory allocation error.\n"), fname);
@@ -274,7 +302,7 @@ int sci_mgetl(char *fname,unsigned long fname_len)
                     freeArrayOfString(wcReadedStrings, numberOfLinesReaded);
                     wcReadedStrings = NULL;
                 }
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
             break;
@@ -286,7 +314,7 @@ int sci_mgetl(char *fname,unsigned long fname_len)
                     freeArrayOfString(wcReadedStrings, numberOfLinesReaded);
                     wcReadedStrings = NULL;
                 }
-                Scierror(999,_("%s: error.\n"), fname);
+                Scierror(999, _("%s: error.\n"), fname);
                 return 0;
             }
             break;
@@ -297,7 +325,7 @@ int sci_mgetl(char *fname,unsigned long fname_len)
     }
     else
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: String or logical unit expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String or logical unit expected.\n"), fname, 1);
     }
 
     return 0;

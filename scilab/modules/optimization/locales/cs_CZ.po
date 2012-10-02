@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-06 19:41+0000\n"
+"PO-Revision-Date: 2012-08-24 20:26+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 
 #, c-format
 msgid ""
@@ -149,11 +149,14 @@ msgstr "Výpočet optimálních parametrů"
 msgid "Running optimization ...\n"
 msgstr "Spouštím optimalizaci ...\n"
 
+msgid "No"
+msgstr "Ne"
+
 msgid "View Code?"
 msgstr "Zobrazit kód?"
 
-msgid "YesNo"
-msgstr "AnoNe"
+msgid "Yes"
+msgstr "Ano"
 
 msgid "fminsearch - Rosenbrock"
 msgstr "fminsearch - Rosenbrock"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="lsq_splin" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lsq_splin" xml:lang="en">
     <refnamediv>
         <refname>lsq_splin</refname>
         <refpurpose>weighted least squares cubic spline fitting</refpurpose>
@@ -133,6 +133,29 @@ plot2d(xd,[ye yd ys],style=[2 -2 3], ...
 xtitle("a least square spline")
 show_window()
  ]]></programlisting>
+        <scilab:image>
+            a = 0; b = 2*%pi;
+            sigma = 0.1;  // standard deviation of the gaussian noise
+            m = 200;       // number of experimental points
+            xd = linspace(a,b,m)';
+            yd = sin(xd) + grand(xd,"nor",0,sigma);
+            
+            n = 6; // number of breakpoints
+            x = linspace(a,b,n)';
+            
+            // compute the spline
+            [y, d] = lsq_splin(xd, yd, x);  // use equal weights
+            
+            // plotting
+            ye = sin(xd);
+            ys = interp(xd, x, y, d);
+            clf()
+            plot2d(xd,[ye yd ys],style=[2 -2 3], ...
+            leg="exact function@experimental measures (gaussian perturbation)@fitted spline")
+            xtitle("a least square spline")
+            show_window()
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

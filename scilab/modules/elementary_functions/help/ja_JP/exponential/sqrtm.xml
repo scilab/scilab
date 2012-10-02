@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sqrtm" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sqrtm" xml:lang="ja">
     <refnamediv>
         <refname>sqrtm</refname>
         <refpurpose>行列の平方根</refpurpose>
@@ -33,7 +33,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>y=sqrt(x)</literal> は行列<literal>x</literal>の
+            <literal>y=sqrtm(x)</literal> は行列<literal>x</literal>の
             平方根行列となります(<literal>x=y^2</literal>).
             <literal>x</literal> が対称でない場合, 結果は不正確となる可能性があります.
         </para>

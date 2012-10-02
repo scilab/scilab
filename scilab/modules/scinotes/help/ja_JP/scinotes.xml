@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scinotes" xml:lang="ja">
+    <refnamediv>
+        <refname>scinotes</refname>
+        <refpurpose>Scinotes: Scilab組込みテキストエディタ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            scinotes()
+            scinotes(file)
+            scinotes([file1, file2])
+            scinotes(file, line_number)
+            scinotes(file, line_number, macro_name)
+            scinotes([file1, file2], [line_number1, line_number2])
+            scinotes(file, 'readonly')
+            scinotes([file1, file2], 'readonly')
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>file</term>
+                <listitem>
+                    <para>文字列, 開こうとするファイル.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[file1, file2]</term>
+                <listitem>
+                    <para>文字列の行列, 開こうとするファイル.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>line_number</term>
+                <listitem>
+                    <para>整数, ファイルを開く際にハイライト表示する行の番号.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>macro_name</term>
+                <listitem>
+                    <para>文字列, 関数 macro_nameの定義位置に相対的な行番号</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>[line_number1, line_number2]</term>
+                <listitem>
+                    <para>整数の行列, 各開かれたファイルでハイライト表示される行.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>Scinotes</literal> は,組込みScilabテキストエディタです.
+        </para>
+        <para>
+            Scilabメインウィンドウの最上部の"Editor"ボタンを押すか,
+            Scilabコマンドラインで<literal>editor()</literal>を入力する
+            ことにより,新規テキストバッファを開始することができます.
+            上記以外の呼び出し手順で起動された場合,特定のファイルを開くことができます
+            (パラメータを指定しない場合,空のファイルをエディタで開きます).
+        </para>
+        <para>
+            重ねて起動すると,既に開かれたエディタにファイルが追加されます.
+        </para>
+        <para>
+            オプション'readonly'を指定すると, ファイルは読込モードで開かれ,修正できません.
+        </para>
+        <para>
+            ほとんど全ての編集動作についてキーボードショートカットが定義されており,
+            メニューのエントリで知ることができます.
+        </para>
+        <para/>
+        <para>Scinotes は以下のどれかの方法で起動できます :</para>
+        <itemizedlist>
+            <listitem>
+                <para>アプリケーションメニューから. アプリケーション =&gt;
+                    Editor を選択してください.
+                </para>
+            </listitem>
+            <listitem>
+                <para>コマンドラインから:</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>scinotes()</para>
+                    </listitem>
+                    <listitem>
+                        <para>scinotes(file)</para>
+                    </listitem>
+                    <listitem>
+                        <para>scinotes([file1, file2])</para>
+                    </listitem>
+                    <listitem>
+                        <para>scinotes(file, line_number)</para>
+                    </listitem>
+                    <listitem>
+                        <para>scinotes([file1, file2], [line_number1, line_number2])</para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>メニューとショートカット</title>
+        <itemizedlist>
+            <listitem>
+                <para>メニューファイル</para>
+                <informaltable border="1">
+                    <tr>
+                        <td>
+                            <para>コマンド</para>
+                        </td>
+                        <td>
+                            <para>ショートカット</para>
+                        </td>
+                        <td>
+                            <para>説明</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>新規...</td>
+                        <td>&lt;CTRL-N&gt;</td>
+                        <td>
+                            <para>ファイルを新たに開く</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>開く...</td>
+                        <td>&lt;CTRL-O&gt;</td>
+                        <td>
+                            <para>既存のファイルを開く</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>最近のファイル</td>
+                        <td/>
+                        <td>
+                            <para>最近開かれたファイルを表示</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>保存</td>
+                        <td>&lt;CTRL-S&gt;</td>
+                        <td>
+                            <para>ファイルを保存する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>名前を指定して保存...</td>
+                        <td>&lt;CTRL-MAJ-S&gt;</td>
+                        <td>
+                            <para>名前を指定してファイルを保存する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ページ設定</td>
+                        <td/>
+                        <td>
+                            <para>印刷用にページを設定する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>印刷プレビュー</td>
+                        <td>&lt;CTRL-MAJ-P&gt;</td>
+                        <td>
+                            <para>プレビューウィンドウを開く</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>印刷...</td>
+                        <td>&lt;CTRL-P&gt;</td>
+                        <td>
+                            <para>ファイルを印刷する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>閉じる</td>
+                        <td>&lt;CTRL-W&gt;</td>
+                        <td>
+                            <para>ファイルを閉じる</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>終了</td>
+                        <td>&lt;CTRL-Q&gt;</td>
+                        <td>
+                            <para>エディタを終了する</para>
+                        </td>
+                    </tr>
+                </informaltable>
+            </listitem>
+            <listitem>
+                <para>編集メニュー</para>
+                <informaltable border="1">
+                    <tr>
+                        <td>
+                            <para>コマンド</para>
+                        </td>
+                        <td>
+                            <para>ショートカット</para>
+                        </td>
+                        <td>
+                            <para>説明</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>取り消す</td>
+                        <td>&lt;CTRL-Z&gt;</td>
+                        <td>
+                            <para>操作を取り消す</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>やり直す</td>
+                        <td>&lt;CTRL-Y&gt;</td>
+                        <td>
+                            <para>操作をやり直す</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>切り取る</td>
+                        <td>&lt;CTRL-X&gt;</td>
+                        <td>
+                            <para>選択部を切り取る</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>コピー</td>
+                        <td>&lt;CTRL-C&gt;</td>
+                        <td>
+                            <para>選択部をコピーする</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>貼付け</td>
+                        <td>&lt;CTRL-V&gt;</td>
+                        <td>
+                            <para>選択部を貼り付ける</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>全て選択</td>
+                        <td>&lt;CTRL-A&gt;</td>
+                        <td>
+                            <para>文書全体を選択する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>削除</td>
+                        <td/>
+                        <td>
+                            <para>選択部を削除する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>選択部をコメントアウトする</td>
+                        <td>&lt;CTRL-D&gt;</td>
+                        <td>
+                            <para>選択された行をコメントアウトする</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>選択部をコメントから外す</td>
+                        <td>&lt;CTRL-MAJ-D&gt;</td>
+                        <td>
+                            <para>選択された行をコメントから外す</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>選択部の空白をタブに変換</td>
+                        <td>&lt;TAB&gt;</td>
+                        <td>
+                            <para>選択された行の空白をタブに変換する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>選択部のタブ変換を解除する</td>
+                        <td>&lt;MAJ-TAB&gt;</td>
+                        <td>
+                            <para>選択された行のタブ変換を解除する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>インデント</td>
+                        <td>&lt;CTRL-I&gt;</td>
+                        <td>
+                            <para>選択された行をインデントする</para>
+                        </td>
+                    </tr>
+                </informaltable>
+            </listitem>
+            <listitem>
+                <para>検索メニュー</para>
+                <informaltable border="1">
+                    <tr>
+                        <td>
+                            <para>コマンド</para>
+                        </td>
+                        <td>
+                            <para>ショートカット</para>
+                        </td>
+                        <td>
+                            <para>説明</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>検索/置換</td>
+                        <td>&lt;CTRL-F&gt;</td>
+                        <td>
+                            <para>要素を検索または置換する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>指定行に移動</td>
+                        <td>&lt;CTRL-G&gt;</td>
+                        <td>
+                            <para>指定行に移動する</para>
+                        </td>
+                    </tr>
+                </informaltable>
+            </listitem>
+            <listitem>
+                <para>表示メニュー</para>
+                <informaltable border="1">
+                    <tr>
+                        <td>
+                            <para>コマンド</para>
+                        </td>
+                        <td>
+                            <para>ショートカット</para>
+                        </td>
+                        <td>
+                            <para>説明</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ツールバーを表示/隠す</td>
+                        <td/>
+                        <td>
+                            <para>ツールバーを表示または隠すオプション</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>カレント行をハイライト表示</td>
+                        <td>&lt;CTRL-J&gt;</td>
+                        <td>
+                            <para>カレント行をハイライト表示する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>行番号</td>
+                        <td>&lt;CTRL-B&gt;</td>
+                        <td>
+                            <para>文書の行番号を表示する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>色を指定...</td>
+                        <td/>
+                        <td>
+                            <para>文書の色を指定する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>フォントを指定...</td>
+                        <td/>
+                        <td>
+                            <para>文書のフォントを設定する</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>デフォルトフォントをリセット</td>
+                        <td/>
+                        <td>
+                            <para>文書のデフォルトフォント設定をリセットする</para>
+                        </td>
+                    </tr>
+                </informaltable>
+            </listitem>
+            <listitem>
+                <para>文書メニュー</para>
+                <informaltable border="1">
+                    <tr>
+                        <td>
+                            <para>コマンド</para>
+                        </td>
+                        <td>
+                            <para>ショートカット</para>
+                        </td>
+                        <td>
+                            <para>説明</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>構文型</td>
+                        <td/>
+                        <td>
+                            <para>構文型設定(デフォルト型はScilab)</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>エンコーディング</td>
+                        <td/>
+                        <td>
+                            <para>エンコーディング設定 (デフォルト型は UTF-8エンコーディング)
+                            </para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>色付け</td>
+                        <td/>
+                        <td>
+                            <para>文書を色付けする</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>自動インデント</td>
+                        <td/>
+                        <td>
+                            <para>自動インデントをアクティブにする</para>
+                        </td>
+                    </tr>
+                </informaltable>
+            </listitem>
+            <listitem>
+                <para>実行メニュー</para>
+                <informaltable border="1">
+                    <tr>
+                        <td>
+                            <para>コマンド</para>
+                        </td>
+                        <td>
+                            <para>ショートカット</para>
+                        </td>
+                        <td>
+                            <para>説明</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Scilabにロード</td>
+                        <td>&lt;CTRL-L&gt;</td>
+                        <td>
+                            <para>文書全体をScilabコンソールにロードする</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>選択部を評価</td>
+                        <td/>
+                        <td>
+                            <para>選択部をScilabコンソールにロードする</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Scilabで実行</td>
+                        <td>&lt;CTRL-E&gt;</td>
+                        <td>
+                            <para>ファイルが存在する場合, そのファイルの内容を実行する</para>
+                        </td>
+                    </tr>
+                </informaltable>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>注意</title>
+        <variablelist>
+            <varlistentry>
+                <term>文書 :</term>
+                <listitem>
+                    <para>デフォルトのテキストの色付けはScilab構文の色付けです.
+                    </para>
+                    <para>
+                        <literal>自動インデント</literal> モードでは,(リターン操作後に)
+                        Scilab構文に基づき行をインデントします.
+                    </para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// パラメータなしでエディタを起動
+scinotes();
+    
+// ファイル名を指定してエディタを起動
+scinotes('SCI/modules/time/macros/datenum.sci');
+    
+// ファイル名の行列を指定してエディタを起動
+scinotes(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.sci']);
+    
+// ファイル名とハイライト表示する行を指定してエディタを起動
+scinotes('SCI/modules/time/macros/datenum.sci', 5);
+
+// ファイル名とハイライト表示する行を指定してエディタを起動
+scinotes('SCI/modules/time/macros/datenum.sci', 8, 'datenum');
+
+// ファイル名の行列と対応するハイライト表示する行の行列を指定してエディタを起動
+// ファイル名の行列とハイライト表示する行の行列は同じ大きさにします
+scinotes(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.sci'], [5,10]);
+ ]]></programlisting>
+    </refsection>
+</refentry>

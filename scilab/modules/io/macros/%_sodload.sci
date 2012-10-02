@@ -41,6 +41,9 @@ function %_sodload(%__filename__, varargin)
             for i = definedfields(varValue)
                 if typeof(varValue(i)) == "ScilabMatrixHandle" then
                     varValue(i) = createMatrixHandle(varValue(i));
+                elseif typeof(varValue(i)) == "ScilabMacro" then
+                    //convert tlist to macro
+                    varValue(i) = createMacro(varValue(i), "function");
                 elseif isList(varValue(i)) then
                     varValue(i) = parseList(varValue(i));
                 else
@@ -53,6 +56,9 @@ function %_sodload(%__filename__, varargin)
                 fieldValue = getfield(kField, varValue);
                 if typeof(fieldValue) == "ScilabMatrixHandle" then
                     fieldValue = createMatrixHandle(fieldValue);
+                elseif typeof(fieldValue) == "ScilabMacro" then
+                    //convert tlist to macro
+                    fieldValue = createMacro(fieldValue, "function");
                 elseif isList(fieldValue) then
                     fieldValue = parseList(fieldValue);
                 end
@@ -811,7 +817,6 @@ function %_sodload(%__filename__, varargin)
 
     //multiple output variables to prevent listinfile prints
     [%__variableList__, %__varB__, %__varC__, %__varD__] = listvarinfile(%__filename__);
-
     //
     if size(varargin) <> 0 then
         for i = 1:size(varargin)

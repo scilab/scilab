@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -24,6 +24,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 /**
  * Selection management
  */
+@SuppressWarnings(value = { "serial" })
 public final class InvertSelectionAction extends VertexSelectionDependantAction {
     /** Name of the action */
     public static final String NAME = ScilabGraphMessages.INVERT_SELECTION;
@@ -50,7 +51,7 @@ public final class InvertSelectionAction extends VertexSelectionDependantAction 
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
         return createMenu(scilabGraph, InvertSelectionAction.class);
     }
-    
+
     /**
      * Action associated
      * @param e the event
@@ -64,7 +65,7 @@ public final class InvertSelectionAction extends VertexSelectionDependantAction 
         if (comp.isEditing()) {
             return;
         }
-        
+
         Object[] all = graph.getSelectionCells();
         graph.selectAll();
         graph.removeSelectionCells(all);

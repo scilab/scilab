@@ -68,7 +68,8 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp \
 	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
 	sci_gateway/cpp/sci_xcosUpdateBlock.cpp \
-	sci_gateway/cpp/sci_loadXcos.cpp
+	sci_gateway/cpp/sci_loadXcos.cpp \
+	sci_gateway/cpp/sci_xcosSimulationStarted.cpp
 
 libscixcos_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
@@ -150,6 +151,7 @@ images/blocks/HYSTHERESIS.svg \
 images/blocks/IdealTransformer.svg \
 images/blocks/Inductor.svg \
 images/blocks/INTEGRAL.svg \
+images/blocks/Modelica.svg \
 images/blocks/NMOS.svg \
 images/blocks/NPN.svg \
 images/blocks/PerteDP.svg \
@@ -164,10 +166,13 @@ images/blocks/RAMP.svg \
 images/blocks/Resistor.svg \
 images/blocks/SampleCLK.svg \
 images/blocks/SATURATION.svg \
+images/blocks/sawtooth.svg \
 images/blocks/Self_Switch_off.svg \
 images/blocks/Self_Switch_on.svg \
 images/blocks/SELF_SWITCH.svg \
+images/blocks/SINUS_f.svg \
 images/blocks/SourceP.svg \
+images/blocks/SQUARE_WAVE_f.svg \
 images/blocks/STEP_FUNCTION.svg \
 images/blocks/SUM.svg \
 images/blocks/SUPER.svg \

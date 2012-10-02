@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="surf">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="surf">
     <refnamediv>
         <refname>surf</refname>
         <refpurpose>3D surface plot</refpurpose>
@@ -212,10 +212,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>surf();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // Z initialisation 
@@ -304,6 +300,7 @@ surf(axfig10,Z,'ydat',[100:109],'marker','d','markerfac','green','markeredg','ye
 
 xdel(winsid())
  ]]></programlisting>
+        <scilab:image>surf();</scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

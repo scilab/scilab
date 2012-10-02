@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isstruct" xml:lang="ru">
+    <refnamediv>
+        <refname>isstruct</refname>
+        <refpurpose>проверяет: является ли переменная массивом-структурой</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>bool = isstruct(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>переменная Scilab'а.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bool</term>
+                <listitem>
+                    <para>логическое значение.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>isstruct(x)</code> возвращает <constant>%t</constant>, если
+            <varname>x</varname> является массивом-структурой, и <constant>%f</constant> - в противном случае.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+isstruct(1)
+ 
+isstruct(cell())
+ 
+isstruct(struct("name","Scilab", "version", getversion()))
+ 
+info.name="Scilab";
+info.function="isstruct";
+info.module="help";
+isstruct(info)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="struct">struct</link>
+            </member>
+            <member>
+                <link linkend="iscell">iscell</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

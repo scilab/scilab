@@ -60,6 +60,7 @@ import org.scilab.modules.scinotes.utils.SciNotesCompletionWindow;
 /**
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class SciNotesCompletionAction extends CompletionAction {
 
     private SciNotes editor;
@@ -112,14 +113,14 @@ public final class SciNotesCompletionAction extends CompletionAction {
         MenuItem menu = ScilabMenuItem.createMenuItem();
         menu.setText(label);
         ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).addActionListener(new ActionListener() {
-                private SciNotesCompletionAction action;
-                public void actionPerformed(ActionEvent actionEvent) {
-                    if (action == null) {
-                        action = new SciNotesCompletionAction(editor);
-                    }
-                    action.actionPerformed(actionEvent);
+            private SciNotesCompletionAction action;
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (action == null) {
+                    action = new SciNotesCompletionAction(editor);
                 }
-            });
+                action.actionPerformed(actionEvent);
+            }
+        });
 
         if (key != null) {
             ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(key);

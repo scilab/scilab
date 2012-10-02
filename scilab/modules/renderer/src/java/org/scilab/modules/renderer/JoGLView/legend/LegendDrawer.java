@@ -66,14 +66,14 @@ public class LegendDrawer {
     /**
      * Set of properties that affect the legend sprite
      */
-    private static final Set<String> SPRITE_PROPERTIES = new HashSet<String>(Arrays.asList(
-                GraphicObjectProperties.__GO_FONT_SIZE__,
-                GraphicObjectProperties.__GO_FONT_COLOR__,
-                GraphicObjectProperties.__GO_FONT_STYLE__,
-                GraphicObjectProperties.__GO_FONT_FRACTIONAL__,
-                GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__,
-                GraphicObjectProperties.__GO_TEXT_STRINGS__
-            ));
+    private static final Set<Integer> SPRITE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
+                                                                                 GraphicObjectProperties.__GO_FONT_SIZE__,
+                                                                                 GraphicObjectProperties.__GO_FONT_COLOR__,
+                                                                                 GraphicObjectProperties.__GO_FONT_STYLE__,
+                                                                                 GraphicObjectProperties.__GO_FONT_FRACTIONAL__,
+                                                                                 GraphicObjectProperties.__GO_TEXT_ARRAY_DIMENSIONS__,
+                                                                                 GraphicObjectProperties.__GO_TEXT_STRINGS__
+                                                                                 ));
 
     /** The height of a bar relative to the height difference between two lines */
     private static final float BAR_HEIGHT = 0.5f;
@@ -371,7 +371,7 @@ public class LegendDrawer {
         float [] lineVertexData = new float[] {0.25f, 0.75f, Z_FRONT, 1.0f,
                                                0.5f, 0.75f, Z_FRONT, 1.0f,
                                                0.75f, 0.75f, Z_FRONT, 1.0f
-                                              };
+        };
 
         double normSpriteMargin = 0.0;
 
@@ -403,7 +403,7 @@ public class LegendDrawer {
                                               0.75f, 0.75f, Z_FRONT, 1.0f,
                                               0.25f, 1.00f, Z_FRONT, 1.0f,
                                               0.75f, 1.00f, Z_FRONT, 1.0f
-                                             };
+        };
 
         float barHeight = BAR_HEIGHT * deltaHeight;
 
@@ -540,10 +540,10 @@ public class LegendDrawer {
                  * To do: adjust arrow size to correct this.
                  */
                 visitor.getArrowDrawer().drawArrows(polyline.getParentAxes(), barVertices, rectangleOutlineIndices,
-                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor);
+                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor, false);
             } else {
                 visitor.getArrowDrawer().drawArrows(polyline.getParentAxes(), lineVertices, lineIndices,
-                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor);
+                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor, false);
             }
         }
 
@@ -564,7 +564,7 @@ public class LegendDrawer {
      * @param id the legend id.
      * @param property the property to update.
      */
-    public void update(String id, String property) {
+    public void update(String id, int property) {
         if (textureMap.containsKey(id)) {
             if (SPRITE_PROPERTIES.contains(property)) {
                 dispose(id);

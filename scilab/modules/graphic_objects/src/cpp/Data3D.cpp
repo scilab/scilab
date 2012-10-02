@@ -28,7 +28,7 @@ Data3D::~Data3D(void)
 
 }
 
-int Data3D::getPropertyFromName(char const* propertyName)
+int Data3D::getPropertyFromName(int propertyName)
 {
     return UNKNOWN_DATA_PROPERTY;
 }

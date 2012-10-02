@@ -67,13 +67,50 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
   if (atomsGetConfig("offLine") == "True" | atomsGetConfig("offline") == "True") then
     if isfile(atomsPath("system", "session") + "/DESCRIPTION_archives") then
       this_description = atomsDESCRIPTIONread(atomsPath("system","session") + "/DESCRIPTION_archives");
+      
+      inst_description_files = [ ..
+      atomsPath("system","allusers") + "DESCRIPTION_installed" "" ; ..
+      atomsPath("system","user")   + "DESCRIPTION_installed" "" ; ..
+      atomsPath("system","session")  + "DESCRIPTION_installed" "" ; ..
+      atomsPath("system","session")  + "DESCRIPTION_archives"  "" ];
+      
+      for i=1:size(inst_description_files(:,1),"*")
+    
+          file_out    = inst_description_files(i,1);
+          this_repository = inst_description_files(i,2);
+    
+          if ~isfile(file_out) then
+            continue;
+          end
+    
+          // Read the download description file
+          // ----------------------------------------
+          if this_repository <> "" then
+            additional("repository") = this_repository;
+          else
+            additional = struct();
+          end
+    
+          installed_description = atomsDESCRIPTIONread(file_out,additional);
+      
+          this_description  = atomsDESCRIPTIONcat(installed_description,this_description);
+
+      end
+
       packages = this_description('packages');
       categories_flat = this_description('categories_flat');
       categories = this_description('categories');
-      save(packages_path, packages, categories, categories_flat);
+
+      global %_atoms_cache; // /!\ Do not rename this variable. Name is tracked/ignored by Variable Browser
+      %_atoms_cache(1) = packages;
+      %_atoms_cache(2) = categories;
+      %_atoms_cache(3) = categories_flat;
+
     else
       load(packages_path, "packages", "categories", "categories_flat");
+
     end
+
     return
   end
 

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-07-22 14:55+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2012-09-12 12:22+0000\n"
+"Last-Translator: Vladimir <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 
 msgid "overflow error"
 msgstr "ошибка переполнения"
@@ -261,7 +261,7 @@ msgid "Integer matrix multiplication"
 msgstr "Умножение матриц целочисленных значений."
 
 msgid "JK flip-flop"
-msgstr ""
+msgstr "JK-триггер"
 
 msgid "The 'Initial Value' must be 0 or 1 of type int8"
 msgstr "'Начальное значение' должно быть 0 или 1 типа int8"
@@ -328,7 +328,7 @@ msgid "Shift Type"
 msgstr "Тип сдвига"
 
 msgid "SR flip-flop"
-msgstr ""
+msgstr "SR-триггер"
 
 msgid "Invalid masked block."
 msgstr ""
@@ -355,10 +355,10 @@ msgid "Domain"
 msgstr ""
 
 msgid "PDE Specification"
-msgstr ""
+msgstr "Спецификация ДРЧП"
 
 msgid "PDE Expression:"
-msgstr ""
+msgstr "Выражение ДРЧП:"
 
 msgid "Display"
 msgstr ""
@@ -448,6 +448,14 @@ msgstr ""
 msgid "Regular output port"
 msgstr ""
 
+#, c-format
+msgid "Feature %s is obsolete."
+msgstr ""
+
+#, c-format
+msgid "Please use %s instead."
+msgstr ""
+
 msgid "Write to output file"
 msgstr "Запись в файл вывода"
 
@@ -497,7 +505,7 @@ msgid "Directory '%s' does not exist"
 msgstr "Каталог '%s' не существует"
 
 msgid "Input Format"
-msgstr ""
+msgstr "Формат ввода"
 
 msgid "You must enclose the format's string between parentheses."
 msgstr "Вы должны поместить строку формата между скобками."
@@ -548,7 +556,7 @@ msgid "&nbsp; Do not start if 'Initialisation Time' is negative"
 msgstr "&nbsp; Не запускать, если 'Время инициализации' отрицательно"
 
 msgid "Initialisation Time"
-msgstr ""
+msgstr "Время инициализации"
 
 msgid "Period"
 msgstr ""

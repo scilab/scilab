@@ -145,6 +145,7 @@ public final class IncrementalSearchAction extends DefaultAction {
     /**
      * Inner class to have an incremental search field.
      */
+    @SuppressWarnings(value = { "serial" })
     class SearchField extends JPanel implements FocusListener, KeyListener {
 
         private String text;
@@ -162,23 +163,23 @@ public final class IncrementalSearchAction extends DefaultAction {
             field.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
             field.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), TAB);
             field.getActionMap().put(TAB, new AbstractAction() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        getEditor().getTextPane().requestFocus();
-                    }
-                });
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    getEditor().getTextPane().requestFocus();
+                }
+            });
             JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
             panelButtons.add(new CloseButton());
             panelButtons.add(new TopBotButtons(true));
             panelButtons.add(new TopBotButtons(false));
             JCheckBox check = new JCheckBox(SciNotesMessages.EXACT);
             check.addItemListener(new ItemListener() {
-                    @Override
-                    public void itemStateChanged(ItemEvent e) {
-                        exact = e.getStateChange() == ItemEvent.SELECTED;
-                        changeText();
-                    }
-                });
+                @Override
+                public void itemStateChanged(ItemEvent e) {
+                    exact = e.getStateChange() == ItemEvent.SELECTED;
+                    changeText();
+                }
+            });
             panelButtons.add(check);
             add(panelButtons, BorderLayout.WEST);
             add(field, BorderLayout.CENTER);
@@ -313,6 +314,7 @@ public final class IncrementalSearchAction extends DefaultAction {
         /**
          * Inner class for the close-buttons
          */
+        @SuppressWarnings(value = { "serial" })
         class CloseButton extends JButton {
 
             /**
@@ -327,16 +329,17 @@ public final class IncrementalSearchAction extends DefaultAction {
                 setBorderPainted(false);
                 setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
                 addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            hideField();
-                        }
-                    });
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        hideField();
+                    }
+                });
             }
         }
 
         /**
          * Inner class for the top-bot-buttons
+        @SuppressWarnings(value = { "serial" })
          */
         class TopBotButtons extends JButton {
 
@@ -353,37 +356,37 @@ public final class IncrementalSearchAction extends DefaultAction {
                 setBorderPainted(false);
                 setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
                 addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            ScilabEditorPane sep = getEditor().getTextPane();
-                            int pos = sep.getSelectionStart();
-                            int start;
-                            String str = field.getText();
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        ScilabEditorPane sep = getEditor().getTextPane();
+                        int pos = sep.getSelectionStart();
+                        int start;
+                        String str = field.getText();
 
-                            ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
-                            String txt = doc.getText();
+                        ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
+                        String txt = doc.getText();
+                        if (!exact) {
+                            txt = txt.toLowerCase();
+                        }
+
+                        if (str != null) {
                             if (!exact) {
-                                txt = txt.toLowerCase();
+                                str = str.toLowerCase();
                             }
-
-                            if (str != null) {
-                                if (!exact) {
-                                    str = str.toLowerCase();
-                                }
-                                if (top) {
-                                    start = txt.lastIndexOf(str, pos - 1);
-                                } else {
-                                    start = txt.indexOf(str, pos + 1);
-                                }
-                                if (start != -1) {
-                                    sep.select(start, start + str.length());
-                                    field.setForeground(Color.BLACK);
-                                } else {
-                                    field.setForeground(Color.RED);
-                                }
+                            if (top) {
+                                start = txt.lastIndexOf(str, pos - 1);
+                            } else {
+                                start = txt.indexOf(str, pos + 1);
+                            }
+                            if (start != -1) {
+                                sep.select(start, start + str.length());
+                                field.setForeground(Color.BLACK);
+                            } else {
+                                field.setForeground(Color.RED);
                             }
                         }
-                    });
+                    }
+                });
             }
         }
     }

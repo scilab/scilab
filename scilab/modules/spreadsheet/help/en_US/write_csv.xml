@@ -10,98 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="write_csv" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="write_csv" xml:lang="en">
     <refnamediv>
         <refname>write_csv</refname>
-        <refpurpose>writes comma-separated value file</refpurpose>
+        <refpurpose>
+            writes comma-separated value fileOutclassed by <link linkend="csvWrite">csvWrite</link>
+        </refpurpose>
     </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>write_csv(M, filename [,sep, dec])</synopsis>
-    </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>filename</term>
-                <listitem>
-                    <para>a character string. The file path.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>M</term>
-                <listitem>
-                    <para>a matrix of strings.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>sep</term>
-                <listitem>
-                    <para>
-                        column separator mark, by default a tabulation: <literal>ascii(9)</literal> or
-                        <literal>"\t"</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dec</term>
-                <listitem>
-                    <para>
-                        decimal mark <literal>'.'</literal> or <literal>','</literal>. By default: <literal>','</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>write_csv(M, filename)</literal> writes matrix <literal>M</literal> into file 
-            <literal>filename</literal> as tab-separated values. The <literal>filename</literal> input is a string.
-        </para>
-        <para>If the file 'filename' already exists, it is overwritten.</para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example">// save a matrix as csv file format
-            A = [1:10] * 0.1;
-            write_csv(A, TMPDIR + '/data.tsv');
-            
-            // read as text
-            mgetl(TMPDIR + '/data.tsv')
-            
-            //tab-separated values
-            r = read_csv(TMPDIR + '/data.tsv', ascii(9));
-            r = strsubst(r, ',' , '.');
-            evstr(r)
-            
-            A = [1:10] * 0.1; 
-            write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
-            mgetl(TMPDIR+'/foo.csv')
-            
-            //tab-separated values
-            write_csv(A, TMPDIR + '/datas.tsv');
-            
-            //coma-separated values
-            write_csv(A, TMPDIR + '/datas.csv', ';'); 
-            
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="read_csv">read_csv</link>
-            </member>
-            <member>
-                <link linkend="evstr">evstr</link>
-            </member>
-            <member>
-                <link linkend="mgetl">mgetl</link>
-            </member>
-            <member>
-                <link linkend="format">format</link>
-            </member>
-        </simplelist>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <link linkend="csvRead">csvWrite</link> provide a better replacement of write_csv.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
+

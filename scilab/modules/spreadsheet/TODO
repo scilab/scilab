@@ -1,0 +1,2 @@
+* Merge csvIsnum => isnum
+* Get ride of helper functions sci_gateway/cpp/gw_csv_helpers.cpp

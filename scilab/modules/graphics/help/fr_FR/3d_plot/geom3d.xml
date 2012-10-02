@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="geom3d">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="geom3d">
     <refnamediv>
         <refname>geom3d</refname>
         <refpurpose>projection 3D vers 2D après une instruction
@@ -52,5 +52,11 @@ fplot3d(t,t,surface,35,45,"X@Y@Z")
 // which can be drawn using geom3d and xpoly
 [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
  ]]></programlisting>
+        <scilab:image>deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
+            t=%pi*(-10:10)/10;
+            fplot3d(t,t,surface,35,45,"X@Y@Z")
+            [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
+        </scilab:image>
+        
     </refsection>
 </refentry>

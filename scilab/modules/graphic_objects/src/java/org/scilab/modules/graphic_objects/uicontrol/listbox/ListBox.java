@@ -12,7 +12,6 @@
 
 package org.scilab.modules.graphic_objects.uicontrol.listbox;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FLAT_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
 
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
@@ -28,7 +27,7 @@ public class ListBox extends Uicontrol {
     public ListBox() {
         super();
         setStyle(__GO_UI_LISTBOX__);
-        setRelief(__GO_UI_FLAT_RELIEF__);
+        setRelief(FLAT_RELIEF);
 
         // Default value is the min value
         Double[] value = new Double[1];

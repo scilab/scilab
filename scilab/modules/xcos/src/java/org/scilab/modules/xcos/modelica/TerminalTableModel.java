@@ -29,13 +29,15 @@ import org.scilab.modules.xcos.modelica.model.Terminal;
 /**
  * Implement a table model for a {@link Terminal} list
  */
+@SuppressWarnings(value = { "serial" })
 public final class TerminalTableModel extends AbstractTableModel {
     /**
      * Specialized event with a before commit flag.
-     * 
+     *
      * On each modification, this event is fired twice; one before the change
      * (beforeCommit == true) and one after the change (beforeCommit == false).
      */
+    @SuppressWarnings(value = { "serial" })
     public static final class TerminalTableModelEvent extends TableModelEvent {
         private final boolean beforeCommit;
 
@@ -54,7 +56,7 @@ public final class TerminalTableModel extends AbstractTableModel {
          *            the before commit flag
          */
         public TerminalTableModelEvent(TerminalTableModel source, int firstRow,
-                int lastRow, int column, int type, boolean beforeCommit) {
+                                       int lastRow, int column, int type, boolean beforeCommit) {
             super(source, firstRow, lastRow, column, type);
             this.beforeCommit = beforeCommit;
         }
@@ -70,9 +72,9 @@ public final class TerminalTableModel extends AbstractTableModel {
          *            before commit status
          */
         public TerminalTableModelEvent(TerminalTableModel terminalTableModel,
-                int rowIndex, int columnIndex, boolean beforeCommit) {
+                                       int rowIndex, int columnIndex, boolean beforeCommit) {
             this(terminalTableModel, rowIndex, rowIndex, columnIndex, UPDATE,
-                    beforeCommit);
+                 beforeCommit);
         }
 
         /**
@@ -96,12 +98,12 @@ public final class TerminalTableModel extends AbstractTableModel {
      * Pass {@link TerminalAccessor} change events to {@link TableModelEvent}.
      */
     private static class ModelChangeListener implements
-            TerminalAccessor.ChangeListener {
+        TerminalAccessor.ChangeListener {
         private final TerminalTableModel model;
 
         /**
          * Default Constructor
-         * 
+         *
          * @param model
          *            the model
          */
@@ -115,16 +117,16 @@ public final class TerminalTableModel extends AbstractTableModel {
         @Override
         public void change(ChangeEvent event) {
             final TerminalAccessor source = (TerminalAccessor) event
-                    .getSource();
+                                            .getSource();
             final Terminal terminal = event.getTerminal();
 
             final int columnIndex = Arrays.asList(TerminalAccessor.values())
-                    .indexOf(source);
+                                    .indexOf(source);
             final int rowIndex = model.getTerminals().indexOf(terminal);
             if (rowIndex < model.getRowCount()
                     && columnIndex < model.getColumnCount()) {
                 model.fireTableChanged(new TableModelEvent(model, rowIndex,
-                        rowIndex, columnIndex));
+                                       rowIndex, columnIndex));
             }
         }
 
@@ -248,9 +250,9 @@ public final class TerminalTableModel extends AbstractTableModel {
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         fireTableChanged(new TerminalTableModelEvent(this, rowIndex,
-                columnIndex, true));
+                         columnIndex, true));
         values()[columnIndex].setData(aValue, terminals.get(rowIndex));
         fireTableChanged(new TerminalTableModelEvent(this, rowIndex,
-                columnIndex, false));
+                         columnIndex, false));
     }
 }

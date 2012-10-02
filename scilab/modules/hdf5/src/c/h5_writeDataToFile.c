@@ -1544,23 +1544,31 @@ int writeBooleanSparseMatrix(int _iFile, char *_pstDatasetName, int _iRows, int 
     }
 
     pstColPath = createPathName(pstGroupName, 1);
-    status = writeInteger32Matrix(_iFile, pstColPath, 1, &_iNbItem, _piColPos);
-    if (status < 0)
+    if(_iNbItem != 0)
     {
-        FREE(pstRowPath);
-        FREE(pstColPath);
-        FREE(pstGroupName);
-        return -1;
+        status = writeInteger32Matrix(_iFile, pstColPath, 1, &_iNbItem, _piColPos);
+        if (status < 0)
+        {
+            FREE(pstRowPath);
+            FREE(pstColPath);
+            FREE(pstGroupName);
+            return -1;
+        }
+
+        status = H5Rcreate(&pDataRef[1], _iFile, pstColPath, H5R_OBJECT, -1);
+        if (status < 0)
+        {
+            FREE(pstRowPath);
+            FREE(pstColPath);
+            FREE(pstGroupName);
+            return -1;
+        }
+    }
+    else
+    {
+        dims[0] = 1;
     }
 
-    status = H5Rcreate(&pDataRef[1], _iFile, pstColPath, H5R_OBJECT, -1);
-    if (status < 0)
-    {
-        FREE(pstRowPath);
-        FREE(pstColPath);
-        FREE(pstGroupName);
-        return -1;
-    }
 
     //FREE group names
     FREE(pstRowPath);

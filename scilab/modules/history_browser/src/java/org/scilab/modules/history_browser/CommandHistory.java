@@ -28,6 +28,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.ExpandVetoException;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
@@ -64,6 +65,7 @@ import org.scilab.modules.localization.Messages;
  * @author Vincent COUVERT
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class CommandHistory extends SwingScilabTab implements SimpleTab {
 
     public static final String COMMANDHISTORYUUID = "856207f6-0a60-47a0-b9f4-232feedd4bf4";
@@ -74,7 +76,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
     private static final String SESSION_BEGINNING = "// -- ";
     private static final String SESSION_ENDING = " -- //";
 
-    private static JTree scilabHistoryTree;
+    private static HistoryTree scilabHistoryTree;
     private static DefaultMutableTreeNode scilabHistoryRootNode;
     private static DefaultMutableTreeNode currentSessionNode;
     private static DefaultTreeModel scilabHistoryTreeModel;
@@ -211,9 +213,18 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
                         modelLoaded = true;
                     }
 
-                    for (int i = 0; i < scilabHistoryTree.getRowCount(); i++) {
-                        scilabHistoryTree.expandRow(i);
+                    final Object root = scilabHistoryTreeModel.getRoot();
+                    final TreePath pathRoot = new TreePath(root);
+                    final int N = scilabHistoryTreeModel.getChildCount(root);
+                    scilabHistoryTree.mustFire = false;
+                    for (int i = 0; i < N; i++) {
+                        Object o = scilabHistoryTreeModel.getChild(root, i);
+                        if (!scilabHistoryTreeModel.isLeaf(o)) {
+                            scilabHistoryTree.expandPath(pathRoot.pathByAddingChild(o));
+                        }
                     }
+                    scilabHistoryTree.mustFire = true;
+                    scilabHistoryTree.fireTreeExpanded(pathRoot);
 
                     WindowsConfigurationManager.restorationFinished(getBrowserTab());
                     scrollAtBottom();
@@ -500,11 +511,13 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
         }
     }
 
+    @SuppressWarnings(value = { "serial" })
     static class HistoryTree extends JTree {
 
         private boolean first = true;
         private Color defaultColor;
         private Color sessionColor = new Color(1, 168, 1);
+        boolean mustFire = true;
 
         HistoryTree(TreeModel model) {
             super(model);
@@ -527,6 +540,18 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
                     return this;
                 }
             });
+        }
+
+        public void fireTreeExpanded(TreePath path) {
+            if (mustFire) {
+                super.fireTreeExpanded(path);
+            }
+        }
+
+        public void fireTreeWillExpand(TreePath path) throws ExpandVetoException {
+            if (mustFire) {
+                super.fireTreeWillExpand(path);
+            }
         }
 
         public void paint(final Graphics g) {

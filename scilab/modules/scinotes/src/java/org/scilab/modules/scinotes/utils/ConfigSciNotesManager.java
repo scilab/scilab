@@ -2726,7 +2726,7 @@ public final class ConfigSciNotesManager {
 
         ((Element) recent).setAttribute(attrib, new Boolean(state).toString());
 
-        root.appendChild((Node) recent);
+        root.appendChild(recent);
 
         /* Save changes */
         writeDocument();

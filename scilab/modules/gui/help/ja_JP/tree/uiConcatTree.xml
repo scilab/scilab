@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="uiConcatTree">
+    <refnamediv>
+        <refname>uiConcatTree</refname>
+        <refpurpose>ツリーを結合 </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>concatenatedTree = uiConcatTree(tree1, tree2)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>入力パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>tree1, tree2</term>
+                <listitem>
+                    <para>ツリー型</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>出力パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>concatenatedTree</term>
+                <listitem>
+                    <para>ツリー, tree1 および tree2を結合したもの</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            最初のツリーを２番目のツリーに結合したツリーを返します.
+            結合したものは,最初のツリーの親のレベルに置かれます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// ツリー作成前に nodes(subTrees) を作成する必要があります
+leaf11 = uiCreateNode('leaf 1.1', 'iconLeaf1.1', 'callbackLeaf1.1')
+leaf12 = uiCreateNode('leaf 1.2', 'iconLeaf1.2', 'callbackLeaf1.2')
+leaf21 = uiCreateNode('leaf 2.1', 'iconLeaf2.1', 'callbackLeaf2.1')
+leaf22 = uiCreateNode('leaf 2.2', 'iconLeaf2.2', 'callbackLeaf2.2')
+node1 = uiCreateNode('Node 1', 'iconNode1', 'callbackNode1')
+node2 = uiCreateNode('Node 2', 'iconNode2', 'callbackNode2')
+root = uiCreateNode('Root', 'iconRoot', 'callbackRoot')
+
+myTree1 = uiCreateTree(node1, leaf11, leaf12)
+myTree2 = uiCreateTree(node2, leaf21, leaf22)
+
+concatTree = uiConcatTree(myTree1, myTree2)
+
+uiDisplayTree(concatTree)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uiCreateNode">uiCreateNode</link>
+            </member>
+            <member>
+                <link linkend="uiCreateTree">uiCreateTree</link>
+            </member>
+            <member>
+                <link linkend="uiDisplayTree">uiDisplayTree</link>
+            </member>
+            <member>
+                <link linkend="uiDumpTree">uiDumpTree</link>
+            </member>
+            <member>
+                <link linkend="uiInsertNode">uiInsertNode</link>
+            </member>
+            <member>
+                <link linkend="uiDeleteNode">uiDeleteNode</link>
+            </member>
+            <member>
+                <link linkend="uiEqualsTree">uiEqualsTree</link>
+            </member>
+            <member>
+                <link linkend="uiFindNode">uiFindNode</link>
+            </member>
+            <member>
+                <link linkend="uiGetParentNode">uiGetParentNode</link>
+            </member>
+            <member>
+                <link linkend="uiGetChildrenNode">uiGetChildrenNode</link>
+            </member>
+            <member>
+                <link linkend="uiGetNodePosition">uiGetNodePosition</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

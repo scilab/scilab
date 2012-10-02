@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-08-07 03:27+0000\n"
+"PO-Revision-Date: 2012-08-24 14:23+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: ja\n"
 
 msgid "overflow error"
@@ -441,6 +441,14 @@ msgstr "陰的出力ポート"
 
 msgid "Regular output port"
 msgstr "標準出力ポート"
+
+#, c-format
+msgid "Feature %s is obsolete."
+msgstr "機能 %s は廃止されています."
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "代わりに %s を使用してください."
 
 msgid "Write to output file"
 msgstr "出力ファイルに書込む"

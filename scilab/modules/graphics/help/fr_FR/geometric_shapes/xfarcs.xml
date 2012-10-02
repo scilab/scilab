@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xfarcs">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xfarcs">
     <refnamediv>
         <refname>xfarcs</refname>
         <refpurpose> remplit des secteurs angulaires d'ellipses  </refpurpose>
@@ -54,6 +54,16 @@ arcs=[-1.0 0.0 0.5; // abscisse du coin superieur gauche
        180*64 360*64 90*64]; // angle 2
 xfarcs(arcs,[1,2,3])
  ]]></programlisting>
+        <scilab:image>
+            plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
+            arcs=[-1.0 0.0 0.5; 
+            1.0 0.0 0.5; 
+            0.5 1.0 0.5; 
+            0.5 0.5 1.0; 
+            0.0 0.0 0.0; 
+            180*64 360*64 90*64]; 
+            xfarcs(arcs,[1,2,3])
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="abinv">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="abinv">
     <refnamediv>
         <refname>abinv</refname>
         <refpurpose>  AB 不変部分空間</refpurpose>
@@ -265,8 +265,9 @@ X0=X(:,dimR+1:dimV); spec(X0'*(A+B*F)*X0)
 trzeros(Sys)
 spec(A+B*F)   //nr=2 evals at -1 and noc-dimV=2 evals at -2.
 clean(ss2tf(Sys*Z))
-
-// 2nd Example
+ ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[ 
 nx=6;ny=3;nu=2;
 A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B=[1,2;0,3;0,4;0,5;0,0;0,0];
 C=[zeros(ny,ny),eye(ny,ny)];D=[0,1;0,2;0,3];

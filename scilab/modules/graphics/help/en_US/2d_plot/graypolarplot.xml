@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="graypolarplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="graypolarplot">
     <refnamediv>
         <refname>graypolarplot</refname>
         <refpurpose>Polar 2D plot of a surface using
@@ -213,15 +213,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>rho=1:0.1:4;theta=(0:0.02:1)*2*%pi;
-            z=30+round(theta'*(1+rho^2));
-            f=gcf();
-            f.color_map= hotcolormap(128);
-            graypolarplot(theta,rho,z)
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 rho=1:0.1:4;theta=(0:0.02:1)*2*%pi;
@@ -230,5 +221,11 @@ f=gcf();
 f.color_map= hotcolormap(128);
 clf();graypolarplot(theta,rho,z)
  ]]></programlisting>
+        <scilab:image>rho=1:0.1:4;theta=(0:0.02:1)*2*%pi;
+            z=30+round(theta'*(1+rho^2));
+            f=gcf();
+            f.color_map= hotcolormap(128);
+            graypolarplot(theta,rho,z)
+        </scilab:image>
     </refsection>
 </refentry>

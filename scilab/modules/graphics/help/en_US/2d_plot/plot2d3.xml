@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="plot2d3">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="plot2d3">
     <refnamediv>
         <refname>plot2d3</refname>
         <refpurpose>2D plot (vertical
@@ -54,22 +54,33 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>plot2d3();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // compare the following with plot2d1
 x=[0:0.1:2*%pi]';
 plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 clf()
+x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();
 e.children(1).polyline_style=3;
 e.children(2).polyline_style=3;
 e.children(3).polyline_style=3;
  ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+            e=gce();
+            e.children(1).polyline_style=3;
+            e.children(2).polyline_style=3;
+            e.children(3).polyline_style=3;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

@@ -25,6 +25,6 @@ GRAPHIC_OBJECTS_IMPEXP void deleteGraphicObject(char *_sId);
 ** Ask Controller to delete a data object
 ** referenced by the given _sId.
 */
-GRAPHIC_OBJECTS_IMPEXP void deleteDataObject(char *_sId);
+GRAPHIC_OBJECTS_IMPEXP void deleteDataObject(char const *_sId);
 
 #endif /* !__DELETEGRAPHICOBJECT_H__ */

@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.textObject;
 
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -120,24 +121,25 @@ public class Text extends ClippableTextObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_FONT_ANGLE__)) {
+	public Object getPropertyFromName(int propertyName) {
+		switch (propertyName) {
+		case __GO_FONT_ANGLE__ :
 			return TextProperty.FONTANGLE;
-		} else if (propertyName.equals(__GO_POSITION__)) {
+		case __GO_POSITION__ :
 			return TextProperty.POSITION;
-		} else if (propertyName.equals(__GO_CORNERS__)) {
+		case __GO_CORNERS__ :
 			return TextProperty.CORNERS;
-		} else if (propertyName.equals(__GO_ALIGNMENT__)) {
+		case __GO_ALIGNMENT__ :
 			return TextProperty.ALIGNMENT;
-		} else if (propertyName.equals(__GO_BOX__)) {
+		case __GO_BOX__ :
 			return TextProperty.BOX;
-		} else if (propertyName.equals(__GO_TEXT_BOX__)) {
+		case __GO_TEXT_BOX__ :
 			return TextProperty.TEXTBOX;
-		} else if (propertyName.equals(__GO_TEXT_BOX_MODE__)) {
+		case __GO_TEXT_BOX_MODE__ :
 			return TextProperty.TEXTBOXMODE;
-		} else if (propertyName.equals(__GO_AUTO_DIMENSIONING__)) {
+		case __GO_AUTO_DIMENSIONING__ :
 			return TextProperty.AUTODIMENSIONING;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}
@@ -389,8 +391,8 @@ public class Text extends ClippableTextObject {
 	/**
 	 * @return Type as String
 	 */
-	public String getType() {
-		return "Text";
+	public Integer getType() {
+		return GraphicObjectProperties.__GO_TEXT__;
 	}
 
 }

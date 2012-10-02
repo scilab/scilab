@@ -16,6 +16,7 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 
 /**
@@ -60,5 +61,16 @@ public final class HelpAction extends DefaultAction {
      */
     public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
         return createMenu(label, null, new HelpAction(label, editor), key);
+    }
+
+    /**
+     * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
+     * @param editor SciNotes
+     * @return PushButton
+     */
+    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new HelpAction(tooltip, editor));
     }
 }

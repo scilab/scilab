@@ -73,9 +73,9 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  *
  */
 public class ScilabEditorPane extends JEditorPane implements Highlighter.HighlightPainter,
-    CaretListener, MouseListener,
-    MouseMotionListener, Cloneable,
-    KeyListener {
+                                                  CaretListener, MouseListener,
+                                                  MouseMotionListener, Cloneable,
+                                                  KeyListener {
 
     private static final long serialVersionUID = 4322071415211939097L;
 
@@ -130,7 +130,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private Color saveHighlightColor;
     private boolean hasBeenSaved;
     private boolean saveHighlightEnable;
-    
+
     private EventListenerList kwListeners = new EventListenerList();
     private Map<Integer, Object> highlightedWords = new HashMap<Integer, Object>();
 
@@ -164,32 +164,32 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         enableMatchingOpeners(SciNotesOptions.getSciNotesDisplay().highlightBrackets);
         setFocusable(true);
         addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                updateInfosWhenFocused();
-                if (ScilabEditorPane.this.editor != null) {
-                    NavigatorWindow nav = ScilabEditorPane.this.editor.getNavigator();
-                    if (nav != null) {
-                        nav.update((ScilabDocument) getDocument());
+                public void focusGained(FocusEvent e) {
+                    updateInfosWhenFocused();
+                    if (ScilabEditorPane.this.editor != null) {
+                        NavigatorWindow nav = ScilabEditorPane.this.editor.getNavigator();
+                        if (nav != null) {
+                            nav.update((ScilabDocument) getDocument());
+                        }
                     }
                 }
-            }
 
-            public void focusLost(FocusEvent e) {
-                ((ScilabDocument) getDocument()).setFocused(false);
-            }
-        });
+                public void focusLost(FocusEvent e) {
+                    ((ScilabDocument) getDocument()).setFocused(false);
+                }
+            });
 
         addKeywordListener(new KeywordAdapter.MouseOverAdapter() {
-            public void caughtKeyword(KeywordEvent e) {
-                if (ScilabLexerConstants.isClickable(e.getType())) {
-                    if (ctrlHit) {
-                        setCursor(HANDCURSOR);
-                        hand = true;
-                        try {
-                            String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
-                            if (ScilabLexerConstants.isClickable(e.getType())) {
-                                String text;
-                                switch (e.getType()) {
+                public void caughtKeyword(KeywordEvent e) {
+                    if (ScilabLexerConstants.isClickable(e.getType())) {
+                        if (ctrlHit) {
+                            setCursor(HANDCURSOR);
+                            hand = true;
+                            try {
+                                String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
+                                if (ScilabLexerConstants.isClickable(e.getType())) {
+                                    String text;
+                                    switch (e.getType()) {
                                     case ScilabLexerConstants.URL :
                                         text = SciNotesMessages.OPENURL;
                                         break;
@@ -204,77 +204,77 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                                         break;
                                     default :
                                         text = null;
-                                }
+                                    }
 
-                                if (text != null && ScilabEditorPane.this.editor != null) {
-                                    ScilabEditorPane.this.editor.getInfoBar().setText(text + url);
-                                    infoBarChanged = true;
+                                    if (text != null && ScilabEditorPane.this.editor != null) {
+                                        ScilabEditorPane.this.editor.getInfoBar().setText(text + url);
+                                        infoBarChanged = true;
+                                    }
                                 }
+                            } catch (BadLocationException ex) { }
+                        } else if (ScilabEditorPane.this.editor != null) {
+                            ScilabEditorPane.this.editor.getInfoBar().setText(SciNotesMessages.CLICKABLE_URL);
+                            infoBarChanged = true;
+                            if (hand) {
+                                setCursor(TEXTCURSOR);
+                                hand = false;
                             }
-                        } catch (BadLocationException ex) { }
-                    } else if (ScilabEditorPane.this.editor != null) {
-                        ScilabEditorPane.this.editor.getInfoBar().setText(SciNotesMessages.CLICKABLE_URL);
-                        infoBarChanged = true;
+                        }
+                    } else {
                         if (hand) {
                             setCursor(TEXTCURSOR);
                             hand = false;
                         }
-                    }
-                } else {
-                    if (hand) {
-                        setCursor(TEXTCURSOR);
-                        hand = false;
-                    }
-                    if (infoBarChanged && ScilabEditorPane.this.editor != null) {
-                        ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
-                        infoBarChanged = false;
-                    }
-                    if (ScilabLexerConstants.isLaTeX(e.getType())) {
-                        try {
-                            int start = e.getStart();
-                            int end = start + e.getLength();
-                            String exp = ((ScilabDocument) getDocument()).getText(start, e.getLength());
-                            int height = edComponent.getScrollPane().getHeight() + edComponent.getScrollPane().getVerticalScrollBar().getValue();
-                            ScilabLaTeXViewer.displayExpression(ScilabEditorPane.this, height, exp, start, end);
-                        } catch (BadLocationException ex) { }
-                    } else {
-                        ScilabLaTeXViewer.removeLaTeXViewer(ScilabEditorPane.this);
+                        if (infoBarChanged && ScilabEditorPane.this.editor != null) {
+                            ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
+                            infoBarChanged = false;
+                        }
+                        if (ScilabLexerConstants.isLaTeX(e.getType())) {
+                            try {
+                                int start = e.getStart();
+                                int end = start + e.getLength();
+                                String exp = ((ScilabDocument) getDocument()).getText(start, e.getLength());
+                                int height = edComponent.getScrollPane().getHeight() + edComponent.getScrollPane().getVerticalScrollBar().getValue();
+                                ScilabLaTeXViewer.displayExpression(ScilabEditorPane.this, height, exp, start, end);
+                            } catch (BadLocationException ex) { }
+                        } else {
+                            ScilabLaTeXViewer.removeLaTeXViewer(ScilabEditorPane.this);
+                        }
                     }
                 }
-            }
-        });
+            });
 
         addKeywordListener(new KeywordAdapter.MouseClickedAdapter() {
-            public void caughtKeyword(KeywordEvent e) {
-                if (ctrlHit && ScilabLexerConstants.isClickable(e.getType())) {
-                    try {
-                        hand = false;
-                        ctrlHit = false;
-                        infoBarChanged = false;
-                        setCursor(TEXTCURSOR);
-                        if (ScilabEditorPane.this.editor != null) {
-                            ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
-                        }
-                        String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
-                        if (ScilabLexerConstants.URL == e.getType() || ScilabLexerConstants.MAIL == e.getType()) {
-                            WebBrowser.openUrl(url);
-                        } else if (ScilabLexerConstants.isOpenable(e.getType())) {
-                            OpenSourceFileOnKeywordAction.openSource(ScilabEditorPane.this, url);
-                        }
-                    } catch (BadLocationException ex) { }
+                public void caughtKeyword(KeywordEvent e) {
+                    if (ctrlHit && ScilabLexerConstants.isClickable(e.getType())) {
+                        try {
+                            hand = false;
+                            ctrlHit = false;
+                            infoBarChanged = false;
+                            setCursor(TEXTCURSOR);
+                            if (ScilabEditorPane.this.editor != null) {
+                                ScilabEditorPane.this.editor.getInfoBar().setText(infoBar);
+                            }
+                            String url = ((ScilabDocument) getDocument()).getText(e.getStart(), e.getLength());
+                            if (ScilabLexerConstants.URL == e.getType() || ScilabLexerConstants.MAIL == e.getType()) {
+                                WebBrowser.openUrl(url);
+                            } else if (ScilabLexerConstants.isOpenable(e.getType())) {
+                                OpenSourceFileOnKeywordAction.openSource(ScilabEditorPane.this, url);
+                            }
+                        } catch (BadLocationException ex) { }
+                    }
                 }
-            }
-        });
+            });
 
         getScrollPane().addMouseWheelListener(new MouseWheelListener() {
-            public void mouseWheelMoved(MouseWheelEvent e) {
-                if ((OS.get() == OS.MAC && e.isMetaDown()) || e.isControlDown()) {
-                    int n = e.getWheelRotation();
-                    SciNotes.updateFontSize(n);
-                    e.consume();
+                public void mouseWheelMoved(MouseWheelEvent e) {
+                    if ((OS.get() == OS.MAC && e.isMetaDown()) || e.isControlDown()) {
+                        int n = e.getWheelRotation();
+                        SciNotes.updateFontSize(n);
+                        e.consume();
+                    }
                 }
-            }
-        });
+            });
 
         addKeyListener(this);
         setTransferHandler(new CopyAsHTMLAction.HTMLTransferHandler());
@@ -410,8 +410,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void keyPressed(KeyEvent e) {
         // Workaround for bug 7238
         if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
-                && e.getKeyCode() == KeyEvent.VK_DELETE
-                && e.getKeyChar() != KeyEvent.VK_DELETE) {
+            && e.getKeyCode() == KeyEvent.VK_DELETE
+            && e.getKeyChar() != KeyEvent.VK_DELETE) {
             e.setKeyCode(KeyEvent.VK_DECIMAL);
             ctrlHit = false;
         } else if (mousePoint != null && e.getKeyCode() == KeyEvent.VK_CONTROL) {
@@ -516,11 +516,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void init(final int pos) {
         SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                requestFocus();
-                setCaretPosition(pos);
-            }
-        });
+                public void run() {
+                    requestFocus();
+                    setCaretPosition(pos);
+                }
+            });
     }
 
     /**
@@ -691,10 +691,14 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         trailingWhite = null;
         enableMatchingKeywords(false);
         enableMatchingOpeners(false);
-        matchLR.desactivateMouseOver();
-        matchLR = null;
-        matchRL.desactivateMouseOver();
-        matchRL = null;
+        if (matchLR != null) {
+            matchLR.desactivateMouseOver();
+            matchLR = null;
+        }
+        if (matchRL != null) {
+            matchRL.desactivateMouseOver();
+            matchRL = null;
+        }
     }
 
     /**
@@ -761,28 +765,28 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void scrollTextToPos(final int pos, final boolean setCaret, final boolean centered) {
         SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    if (setCaret) {
-                        setCaretPosition(pos);
-                    }
-                    JScrollBar scrollbar = edComponent.getScrollPane().getVerticalScrollBar();
-                    Rectangle rect = modelToView(pos);
-                    if (centered) {
-                        int value = scrollbar.getValue();
-                        int h = scrollbar.getHeight();
-                        if (rect.y < value || rect.y > value + h) {
-                            scrollbar.setValue(Math.max(0, rect.y - h / 2));
+                public void run() {
+                    try {
+                        if (setCaret) {
+                            setCaretPosition(pos);
                         }
-                    } else {
-                        if (rect.y > scrollbar.getMaximum()) {
-                            scrollbar.setMaximum(rect.y);
+                        JScrollBar scrollbar = edComponent.getScrollPane().getVerticalScrollBar();
+                        Rectangle rect = modelToView(pos);
+                        if (centered) {
+                            int value = scrollbar.getValue();
+                            int h = scrollbar.getHeight();
+                            if (rect.y < value || rect.y > value + h) {
+                                scrollbar.setValue(Math.max(0, rect.y - h / 2));
+                            }
+                        } else {
+                            if (rect.y > scrollbar.getMaximum()) {
+                                scrollbar.setMaximum(rect.y);
+                            }
+                            scrollbar.setValue(rect.y);
                         }
-                        scrollbar.setValue(rect.y);
-                    }
-                } catch (BadLocationException e) { }
-            }
-        });
+                    } catch (BadLocationException e) { }
+                }
+            });
     }
 
     /**
@@ -806,20 +810,20 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (lineNumber >= 1 && lineNumber <= root.getElementCount()) {
             final int pos = root.getElement(lineNumber - 1).getStartOffset();
             SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    scrollTextToPos(pos, setCaret, centered);
-                    if (highlight) {
-                        saveHighlightContourColor = highlightContourColor;
-                        highlightContourColor = null;
-                        saveHighlightColor = highlightColor;
-                        highlightColor = Color.YELLOW;
-                        saveHighlightEnable = highlightEnable;
-                        hasBeenSaved = true;
-                        enableHighlightedLine(false);
-                        enableHighlightedLine(true);
+                    public void run() {
+                        scrollTextToPos(pos, setCaret, centered);
+                        if (highlight) {
+                            saveHighlightContourColor = highlightContourColor;
+                            highlightContourColor = null;
+                            saveHighlightColor = highlightColor;
+                            highlightColor = Color.YELLOW;
+                            saveHighlightEnable = highlightEnable;
+                            hasBeenSaved = true;
+                            enableHighlightedLine(false);
+                            enableHighlightedLine(true);
+                        }
                     }
-                }
-            });
+                });
         }
     }
 
@@ -1104,9 +1108,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 }
 
                 if (highlightedWords.size() > 1) {
-		    if (editor != null) {
-			editor.getInfoBar().setText(String.format(SciNotesMessages.OCCURENCES_FOUND, Integer.toString(highlightedWords.size())));
-		    }
+                    if (editor != null) {
+                        editor.getInfoBar().setText(String.format(SciNotesMessages.OCCURENCES_FOUND, Integer.toString(highlightedWords.size())));
+                    }
                     search = true;
                 }
                 removeHighlightOnPosition(getSelectionStart());
@@ -1443,17 +1447,17 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             final Caret caret = new SciNotesCaret(this);
             setCaretColor(getCaretColor());
             SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    int blinkRate = 500;
-                    Object o = UIManager.get("TextComponent.caretBlinkRate");
-                    if ((o != null) && (o instanceof Integer)) {
-                        Integer rate = (Integer) o;
-                        blinkRate = rate.intValue();
+                    public void run() {
+                        int blinkRate = 500;
+                        Object o = UIManager.get("TextComponent.caretBlinkRate");
+                        if ((o != null) && (o instanceof Integer)) {
+                            Integer rate = (Integer) o;
+                            blinkRate = rate.intValue();
+                        }
+                        caret.setBlinkRate(blinkRate);
+                        caret.setVisible(true);
                     }
-                    caret.setBlinkRate(blinkRate);
-                    caret.setVisible(true);
-                }
-            });
+                });
             super.setCaret(caret);
         } else {
             super.setCaret(c);

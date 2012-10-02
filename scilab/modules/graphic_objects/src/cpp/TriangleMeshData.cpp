@@ -57,42 +57,27 @@ TriangleMeshData::~TriangleMeshData(void)
 
 }
 
-int TriangleMeshData::getPropertyFromName(char const* propertyName)
+int TriangleMeshData::getPropertyFromName(int propertyName)
 {
-    if (strcmp(propertyName, __GO_DATA_MODEL_NUM_VERTICES__) == 0)
+    switch (propertyName)
     {
+    case __GO_DATA_MODEL_NUM_VERTICES__ :
         return NUM_VERTICES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_NUM_INDICES__) == 0)
-    {
+    case __GO_DATA_MODEL_NUM_INDICES__ :
         return NUM_INDICES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_X__) == 0)
-    {
+    case __GO_DATA_MODEL_X__ :
         return X_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Y__) == 0)
-    {
+    case __GO_DATA_MODEL_Y__ :
         return Y_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Z__) == 0)
-    {
+    case __GO_DATA_MODEL_Z__ :
         return Z_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_COORDINATES__) == 0)
-    {
+    case __GO_DATA_MODEL_COORDINATES__ :
         return COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_INDICES__) == 0)
-    {
+    case __GO_DATA_MODEL_INDICES__ :
         return INDICES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_VALUES__) == 0)
-    {
+    case __GO_DATA_MODEL_VALUES__ :
         return VALUES;
-    }
-    else
-    {
+    default :
         return Data3D::getPropertyFromName(propertyName);
     }
 

@@ -43,7 +43,7 @@ int SetUicontrolFontWeight(void* _pvCtx, char *sciObjUID, size_t stackPointer, i
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTWEIGHT__), fontWeight, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTWEIGHT__, fontWeight, jni_string, 1);
 
     if (status == TRUE)
     {

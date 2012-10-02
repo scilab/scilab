@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-03 14:52+0000\n"
+"PO-Revision-Date: 2012-08-24 14:20+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: ja\n"
 
 #, c-format
@@ -30,8 +30,8 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: ファイル %s を開けません.\n"
 
 #, c-format
-msgid "%s: Wrong hdf5 file format version. Expected: %d from file: %d\n"
-msgstr "%s: hdf5ファイル形式のバージョンが間違っています.  仕様値: %d, ファイルの値: %d\n"
+msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
+msgstr "%s:  SODファイル形式のバージョンが間違っています. 仕様値: %d 指定値: %d\n"
 
 #, c-format
 msgid "%s: Variable '%s' already exists in file '%s'."
@@ -56,6 +56,10 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を�
 #, c-format
 msgid "%s: Unable to open file: %s\n"
 msgstr "%s: ファイルをオープンできません: %s\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
+msgstr "%s:  SODファイル形式のバージョンが間違っています. 仕様上の最大値: %d 指定値: %d\n"
 
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"

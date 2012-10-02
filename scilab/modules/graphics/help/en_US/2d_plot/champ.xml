@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="champ">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="champ">
     <refnamediv>
         <refname>champ</refname>
         <refpurpose>2D vector field plot</refpurpose>
@@ -102,17 +102,25 @@
     </refsection>
     <refsection>
         <title>Sample</title>
-        <scilab:image>champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2);</scilab:image>
+        
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // using rect as plot boundaries 
 champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
+ ]]></programlisting>
+        <scilab:image>
+            champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // using (x,y) to get boundaries 
 clf()
 champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
  ]]></programlisting>
+        <scilab:image>
+            champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

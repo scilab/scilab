@@ -223,6 +223,15 @@ public final class ConfigurationManager {
         List<DocumentType> files = getSettings().getRecent();
 
         /*
+         * Update recently opened file list so as it match the Xcos preferences
+         */
+        final int numberOfRecentlyOpen = XcosOptions.getPreferences().getNumberOfRecentlyOpen();
+        final int diffRecentlyOpen = files.size() - numberOfRecentlyOpen;
+        for (int i = 0; i < diffRecentlyOpen; i++) {
+            files.remove(files.size() - 1);
+        }
+
+        /*
          * Create the url
          */
         String url;
@@ -270,9 +279,8 @@ public final class ConfigurationManager {
         } else {
             // Element not found, remove the last element if
             // there is no more place.
-            final int numberOfRecentlyOpen = XcosOptions.getPreferences().getNumberOfRecentlyOpen();
-            if (files.size() == numberOfRecentlyOpen) {
-                oldElement = files.remove(numberOfRecentlyOpen - 1);
+            if ((files.size() == numberOfRecentlyOpen) && (files.size() > 0)) {
+                oldElement = files.remove(files.size() - 1);
             }
         }
 
@@ -382,7 +390,10 @@ public final class ConfigurationManager {
      * @return the loaded diagram or null on error
      */
     public XcosDiagram loadDiagram(DocumentType doc) {
-        final File f = getFile(doc);
+        File f = getFile(doc);
+        if (f != null && !f.exists()) {
+            f = null;
+        }
 
         XcosDiagram graph;
         try {

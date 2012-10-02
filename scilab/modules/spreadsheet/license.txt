@@ -50,3 +50,29 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 POSSIBILITY OF SUCH DAMAGE.
 
+
+Various files:
+==============
+
+Some files are published under a double license GPL V3 / CeCILL.
+
+Files: sci_gateway/cpp/gw_csv_helpers.cpp
+sci_gateway/cpp/sci_csvStringToDouble.cpp
+sci_gateway/cpp/gw_csv_helpers.h
+sci_gateway/cpp/sci_csvWrite.cpp
+sci_gateway/cpp/sci_csvTextScan.cpp
+sci_gateway/cpp/gw_csv_tools.h
+sci_gateway/cpp/sci_csvRead.cpp
+sci_gateway/cpp/sci_csvDefault.cpp
+sci_gateway/cpp/sci_csvIsnum.cpp
+src/cpp/stringToComplex.h
+src/cpp/stringsToDoubles.h
+src/cpp/stringToComplex.c
+src/cpp/stringToDouble.c
+src/cpp/stringsToDoubles.c
+src/cpp/stringToDouble.h
+
+
+Copyright: Allan Cornet - 2012
+
+License: GPL V3

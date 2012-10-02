@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="getfont" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="getfont" xml:lang="en">
     <refnamediv>
         <refname>getfont</refname>
         <refpurpose>
@@ -72,13 +72,6 @@
             character.
         </para>
     </refsection>
-    <!--  <refsection>
-    <title>Sample</title>
-    <scilab:image>
-      [fId,fSize]=getfont();
-      xset("font",fId,fSize)
-    </scilab:image>
-  </refsection>-->
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
@@ -87,6 +80,13 @@ xset("font",fId,fSize)
 plot2d(0,0,rect=[0 0 10 10],axesflag=0)
 xstring(5,5,"string")
  ]]></programlisting>
+        <!--  
+    <scilab:image>
+      [fId,fSize]=getfont();
+      xset("font",fId,fSize)
+    </scilab:image>
+-->
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

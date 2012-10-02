@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="bode" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="bode" xml:lang="en">
     <refnamediv>
         <refname>bode</refname>
         <refpurpose>Bode plot</refpurpose>
@@ -143,11 +143,11 @@ h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 clf();bode(h,0.01,100);
  ]]></programlisting>
         <para>
-          <scilab:image>
-s=poly(0,'s')
-h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-clf();bode(h,0.01,100);
-          </scilab:image>
+            <scilab:image>
+                s=poly(0,'s')
+                h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+                clf();bode(h,0.01,100);
+            </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[ 
 s=poly(0,'s')
@@ -159,15 +159,15 @@ h2=syslin('c',num/den);
 clf();bode([h1;h2],0.01,100,['h1';'h2'])
  ]]></programlisting>
         <para>
-          <scilab:image>
-s=poly(0,'s')
-h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
-num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
-den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
-h2=syslin('c',num/den);
-
-clf();bode([h1;h2],0.01,100,['h1';'h2'])
-          </scilab:image>
+            <scilab:image>
+                s=poly(0,'s')
+                h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+                num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+                den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
+                h2=syslin('c',num/den);
+                
+                clf();bode([h1;h2],0.01,100,['h1';'h2'])
+            </scilab:image>
         </para>
     </refsection>
     <refsection role="see also">

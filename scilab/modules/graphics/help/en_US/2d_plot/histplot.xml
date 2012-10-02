@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="histplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="histplot">
     <refnamediv>
         <refname>histplot</refname>
         <refpurpose>plot a histogram</refpurpose>
@@ -95,10 +95,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>histplot();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <simplelist>
             <member>
@@ -128,7 +124,7 @@ subplot(2,1,2)
 histplot(c, d, normalization=%f, style=5)
 xtitle("non normalized histogram")
 ]]></programlisting>
-                <scilab:image>
+                <scilab:image localized="true">
                     d = grand(1000,1,"bin", 6, 0.5);
                     c = linspace(-0.5,6.5,8);
                     clf()
@@ -152,7 +148,8 @@ x = linspace(0,max(Xmax),100)';
 plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
 legend(["exponential random sample histogram" "exact density curve"]);
 ]]></programlisting>
-                <scilab:image>
+                <scilab:image localized="true">
+                    
                     lambda = 2;
                     X = grand(100000,1,"exp", 1/lambda);
                     Xmax = max(X);

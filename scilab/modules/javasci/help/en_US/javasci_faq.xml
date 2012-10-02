@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="javasci_faq_v2" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="javasci_faq_v2" xml:lang="en">
     <refnamediv>
         <refname>javasci FAQ</refname>
         <refpurpose>The frequently asked questions for Javasci v2</refpurpose>
@@ -21,8 +21,9 @@
             <qandaentry>
                 <question>
                     <para>Running an application based on javasci, I get the error
-                        Exception in thread "main" java.lang.NoClassDefFoundError:
-                        org/scilab/modules/javasci/Scilab
+                        <emphasis role="italic">Exception in thread "main" java.lang.NoClassDefFoundError:
+                            org/scilab/modules/javasci/Scilab
+                        </emphasis>
                     </para>
                 </question>
                 <answer>
@@ -48,10 +49,24 @@
                 <answer>
                     <para>
                         If the error is something like: <emphasis role="italic">java.lang.UnsatisfiedLinkError: /path/to/scilab/lib/scilab/libscilab.so.0.0.0: libsciparameters.so.5: cannot open shared object file: No such file or directory</emphasis>, try to set LD_LIBRARY_PATH to the path where Scilab native libraries are.
-                        
                     </para>
                 </answer>
             </qandaentry>
+            <qandaentry>
+                <question>
+                    <para>A Javasci program fails to start with:
+                        <emphasis role="italic">An exception occurred: Auto detection of SCI failed.
+                            Could not retrieve the variable SCI
+                        </emphasis>
+                    </para>
+                </question>
+                <answer>
+                    <para>
+                        SCI should be set to <emphasis role="italic">scilab-X.Y.Z/share/scilab/ under GNU/Linux</emphasis>, <emphasis role="italic">scilab-X.Y.Z/Contents/MacOS/share/scilab/</emphasis> under Mac OS X and <emphasis role="italic">scilab-X.Y.Z/</emphasis> under Windows.
+                    </para>
+                </answer>
+            </qandaentry>
+            
             <qandaentry>
                 <question>
                     <para>I try to plot a graphic but the graphic never appears.</para>
@@ -88,7 +103,7 @@
                 </question>
                 <answer>
                     <para><literal>
-                            atomsLoad: An error occurred while loading 'module-0.0.2':	link : Library could not be loaded: /path/2.0-1/sci_gateway/c/../../src/cpp/libmy.so: undefined symbol: scirun_
+                            <emphasis role="italic">atomsLoad: An error occurred while loading 'module-0.0.2':	link : Library could not be loaded: /path/2.0-1/sci_gateway/c/../../src/cpp/libmy.so: undefined symbol: scirun_</emphasis>
                         </literal>
                         There are two potential solutions. First is to fix the module itself to build with the library providing the symbol. The second is to define the missing declared library with <literal>LD_PRELOAD=/path/to/the/lib/providing/the/symbol/libmy.so</literal>
                     </para>

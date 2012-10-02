@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-23 17:35+0100\n"
+"Revision-Date: 2012-09-28 10:25+0100\n"
 
 # File: sci_gateway/c/sci_qld.c, line: 62
 #, c-format
@@ -61,21 +61,21 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 110
-# File: sci_gateway/c/sci_qp_solve.c, line: 134
-# File: sci_gateway/c/sci_qp_solve.c, line: 142
+# File: sci_gateway/c/sci_qp_solve.c, line: 109
+# File: sci_gateway/c/sci_qp_solve.c, line: 133
+# File: sci_gateway/c/sci_qp_solve.c, line: 141
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 170
+# File: sci_gateway/c/sci_qp_solve.c, line: 169
 #, c-format
 msgid "%s: The minimization problem has no solution.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 174
+# File: sci_gateway/c/sci_qp_solve.c, line: 173
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr ""

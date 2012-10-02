@@ -10,14 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lcm">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="lcm">
     <refnamediv>
         <refname>lcm</refname>
         <refpurpose> least common multiple</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[pp,fact]=lcm(p)</synopsis>
+        <synopsis>[pp, fact] = lcm(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,19 +25,22 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para/>
+                    <para>
+                        a polynomial row vector <literal>p = [p1, ..., pn]</literal> or
+                        an integer row vector (type equal to 8).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fact</term>
                 <listitem>
-                    <para>polynomial vector or integer vector (type equal to 8)</para>
+                    <para>a polynomial vector or an integer vector (type equal to 8).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>pp</term>
                 <listitem>
-                    <para>polynomial or integer</para>
+                    <para>a polynomial or an integer.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,13 +48,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>pp=lcm(p)</literal> computes the lcm <literal>pp</literal> of polynomial vector <literal>p</literal>.
+            <code>pp=lcm(p)</code> computes the lcm <varname>pp</varname> of polynomial vector <varname>p</varname>.
         </para>
         <para>
-            <literal>[pp,fact]=lcm(p)</literal> computes in addition the vector <literal>fact</literal> such that:
+            <code>[pp, fact]=lcm(p)</code> computes in addition the vector <varname>fact</varname> such that:
         </para>
         <para>
-            <literal>p.*fact=pp*ones(p)</literal>
+            <code>p.*fact=pp*ones(p)</code>.
         </para>
     </refsection>
     <refsection>

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: pl\n"
 
 #, c-format
@@ -162,10 +162,60 @@ msgstr ""
 "%s: Niepoprawna wartość argumentu wejściowego nr %d: oczekiwane ['d' 'i'].\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano '%s' lub "
+"'%s' .\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwany wektor "
 "rzadki.\n"
+
+#, c-format
+msgid "%s: Wrong size of input argument: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ['r' 'c' 'm'] expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A sparse matrix or a character "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d (List element: %d): A sparse matrix "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d (List element: %d): Same size as input "
+"argument #%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -537,9 +587,3 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego: Niekompatybilny "
 "rozmiar.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano '%s' lub "
-"'%s' .\n"

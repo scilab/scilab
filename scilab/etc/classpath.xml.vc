@@ -61,7 +61,7 @@ The option is "disableUnderMode" and can be:
 	<load on="Xcos"/>
 </path>
 
-<path value="$SCILAB/thirdparty/scirenderer-0.5.6.jar" load="onUse">
+<path value="$SCILAB/thirdparty/scirenderer-1.0.2.jar" load="onUse">
     <load on="graphics"/>
     <load on="graphic_ojects"/>
     <load on="Xcos"/>
@@ -82,7 +82,7 @@ The option is "disableUnderMode" and can be:
 	<load on="xcos_mathml_rendering"/>
 </path>
 
-<path value="$SCILAB/thirdparty/jlatexmath-fop-0.9.7.jar" load="onUse">
+<path value="$SCILAB/thirdparty/jlatexmath-fop-1.0.0.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>
@@ -126,7 +126,7 @@ The option is "disableUnderMode" and can be:
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
-<path value="$SCILAB/thirdparty/jlatexmath-0.9.7.jar" load="onUse">
+<path value="$SCILAB/thirdparty/jlatexmath-1.0.0.jar" load="onUse">
   	<load on="documentationGeneration"/>
 	<load on="graphics_latex_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>

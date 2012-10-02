@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * CellRenderer for integer type
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabIntegerRenderer extends DefaultTableCellRenderer {
 
     /**

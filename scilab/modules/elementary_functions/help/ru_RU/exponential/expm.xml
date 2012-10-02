@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="expm">
+    <refnamediv>
+        <refname>expm</refname>
+        <refpurpose>квадратная матрица экспоненциальной функции</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>expm(X)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>
+                      квадратная матрица с вещественными или комплексными элементами.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Если <varname>X</varname> - квадратная матрица, то <literal>expm(X)</literal> - это матрица:
+        </para>
+        <para>
+            <literal>expm(X) = I + X + X^2 /2 + ...</literal>
+        </para>
+        <para>
+            Вычисление выполняется диагонализация первого блока <varname>X</varname>
+            а затем применяя аппроксимацию Паде к каждому блоку.
+        </para>
+        <para>
+          Аппроксимация Паде — классический метод рациональной аппроксимации аналитических функций, названный по имени французского математика Анри Паде. 
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+X=[1 2;3 4]
+expm(X)
+logm(expm(X))    
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="logm">logm</link>
+            </member>
+            <member>
+                <link linkend="bdiag">bdiag</link>
+            </member>
+            <member>
+                <link linkend="coff">coff</link>
+            </member>
+            <member>
+                <link linkend="log">log</link>
+            </member>
+            <member>
+                <link linkend="exp">exp</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

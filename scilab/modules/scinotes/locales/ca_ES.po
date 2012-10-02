@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: ca\n"
 
 #, c-format
@@ -120,8 +120,8 @@ msgstr "Tanca-ho tot"
 msgid "Close All But This"
 msgstr "Tanca-ho tot excepte això"
 
-msgid "Exit"
-msgstr "Surt"
+msgid "Exit Scinotes"
+msgstr ""
 
 msgid "Edit"
 msgstr "Edita"
@@ -246,6 +246,18 @@ msgstr ""
 msgid "Line Endings"
 msgstr "Finals de línia"
 
+msgid "Preferences"
+msgstr ""
+
+msgid "Set font"
+msgstr ""
+
+msgid "Set colors"
+msgstr ""
+
+msgid "Scinotes General settings"
+msgstr ""
+
 msgid "Auto-completion on"
 msgstr ""
 
@@ -303,8 +315,8 @@ msgstr ""
 msgid "?"
 msgstr "?"
 
-msgid "SciNotes help"
-msgstr "Ajuda de SciNotes"
+msgid "Scinotes help"
+msgstr ""
 
 msgid "Help on ;Help on selection"
 msgstr ""
@@ -330,7 +342,7 @@ msgstr ""
 msgid "Editor"
 msgstr ""
 
-msgid "Use SciNotes"
+msgid "Use Scinotes"
 msgstr ""
 
 msgid "External editor: "
@@ -340,9 +352,6 @@ msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 msgid "Scilab command: "
-msgstr ""
-
-msgid "SciNotes General settings"
 msgstr ""
 
 msgid "Restore previous session on start-up"
@@ -519,6 +528,9 @@ msgstr ""
 msgid "An error occurred when printing"
 msgstr ""
 
+msgid "Exit"
+msgstr "Surt"
+
 msgid "Tools"
 msgstr "Eines"
 
@@ -614,6 +626,9 @@ msgstr "Avalua des del principi..."
 
 msgid "Execute File Into Scilab"
 msgstr "Executa el fitxer a l'Scilab"
+
+msgid "SciNotes help"
+msgstr "Ajuda de SciNotes"
 
 msgid "Help on the current keyword"
 msgstr "Ajuda de la paraula actual"

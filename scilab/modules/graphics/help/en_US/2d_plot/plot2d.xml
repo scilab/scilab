@@ -12,7 +12,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="plot2d" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="plot2d" xml:lang="en">
     <refnamediv>
         <refname>plot2d</refname>
         <refpurpose>2D plot</refpurpose>
@@ -663,46 +663,111 @@
         </itemizedlist>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>plot2d();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // x initialisation 
 x=[0:0.1:2*%pi]';
 //simple plot
 plot2d(sin(x));
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(sin(x));
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,sin(x));
 //multiple plot
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x));
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // multiple plot giving the dimensions of the frame
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5]);
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5]);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 //multiple plot with captions and given tics + style
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
        [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2]);
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
+            [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2]);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // isoview
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,sin(x),1,frameflag= 4);
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x),1,frameflag= 4);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // scale 
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,sin(x),1,frameflag= 6);
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x),1,frameflag= 6);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // auto scaling with previous plots + style
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,sin(x),-1);
 plot2d(x,2*sin(x),12); 
 plot2d(2*x,cos(x),3);
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x),-1);
+            plot2d(x,2*sin(x),12); 
+            plot2d(2*x,cos(x),3);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // axis on the right 
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x,sin(x),leg="sin(x)");
 a=gca(); // Handle on axes entity 
 a.y_location ="right"; 
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x),leg="sin(x)");
+            a=gca(); // Handle on axes entity 
+            a.y_location ="right"; 
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+
 // axis centered at (0,0) 
 clf();
+x=[0:0.1:2*%pi]';
 plot2d(x-4,sin(x),1,leg="sin(x)");
 a=gca(); // Handle on axes entity
 a.x_location = "origin"; 
@@ -721,6 +786,30 @@ leg.font_style = 9;
 leg.line_mode = "on";
 a.isoview='off';
  ]]></programlisting>
+        <scilab:image>
+            
+            // axis centered at (0,0) 
+            clf();
+            x=[0:0.1:2*%pi]';
+            plot2d(x-4,sin(x),1,leg="sin(x)");
+            a=gca(); // Handle on axes entity
+            a.x_location = "origin"; 
+            a.y_location = "origin"; 
+            // Some operations on entities created by plot2d ...
+            a=gca();
+            a.isoview='on'; 
+            a.children // list the children of the axes.
+            // There are a compound made of two polylines and a legend 
+            poly1= a.children(1).children(1); //store polyline handle into poly1 
+            poly1.foreground = 4; // another way to change the style...
+            poly1.thickness = 3;  // ...and the tickness of a curve.
+            poly1.clip_state='off'; // clipping control
+            leg = a.children(2); // store legend handle into leg
+            leg.font_style = 9; 
+            leg.line_mode = "on";
+            a.isoview='off';
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

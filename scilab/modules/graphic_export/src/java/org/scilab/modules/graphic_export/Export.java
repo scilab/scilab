@@ -199,7 +199,7 @@ public class Export {
             DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
             DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
                     @Override
-                    public void updateObject(String id, String property) {
+                    public void updateObject(String id, int property) {
                         // Don't update during the export
                     }
                 };
@@ -219,7 +219,8 @@ public class Export {
             }
         } else {
             DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
-            Canvas canvas = visitor.getCanvas();
+            G2DCanvas canvas = (G2DCanvas) visitor.getCanvas();
+            canvas.enableDraw();
             Exporter exporter = null;
             try {
                 canvas.redraw();
@@ -297,7 +298,7 @@ public class Export {
                 joglCanvas = (JoGLCanvas) JoGLCanvasFactory.createCanvas(dims[0], dims[1]);
                 DrawerVisitor visitor = new DrawerVisitor(null, joglCanvas, figure) {
                         @Override
-                        public void updateObject(String id, String property) {
+                        public void updateObject(String id, int property) {
                             // Don't update during the export
                         }
 
@@ -340,12 +341,8 @@ public class Export {
         params.setParamsOnGraphics(g2d);
 
         G2DCanvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
+        canvas.disableDraw();
         DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
-                @Override
-                public void updateObject(String id, String property) {
-                    // Don't update during the export
-                }
-
                 @Override
                 public void deleteObject(String id) {
                     // Don't delete during the export

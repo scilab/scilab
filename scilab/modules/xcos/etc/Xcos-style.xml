@@ -133,8 +133,8 @@
   <add as="CONST_m" extend="Print"/>
   <add as="CONST_f" extend="Print"/>
   <add as="CONST" extend="Print"/>
-  <add as="GENSQR_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Square wave&lt;BR&gt;         generator"/>
+  <add as="GENSQR_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SQUARE_WAVE_f.svg"/>
   </add>
   <add as="RAMP" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/RAMP.svg"/>
@@ -162,8 +162,8 @@
   <add as="READAU_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Read from .au&lt;BR&gt;         sound file"/>
   </add>
-  <add as="SAWTOOTH_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Sawtooth&lt;BR&gt;         generator"/>
+  <add as="SAWTOOTH_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/sawtooth.svg"/>
   </add>
   <add as="STEP_FUNCTION" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/STEP_FUNCTION.svg"/>
@@ -174,8 +174,8 @@
   <add as="CLOCK_c" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.svg"/>
   </add>
-  <add as="GENSIN_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Sinusoid&lt;BR&gt;         generator"/>
+  <add as="GENSIN_f" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/SINUS_f.svg"/>
   </add>
   <add as="IN_f" extend="blockWithLabel">
     <add as="shape" value="hexagon"/>
@@ -405,8 +405,8 @@
     <add as="displayedLabel" value="x  == %s&lt;br/&gt;x' == %s"/>
   </add>
   <!-- MODELICA -->
-  <add as="MBLOCK" extend="blockWithLabel">
-    <add as="displayedLabel" value="Modelica&lt;BR;&gt;         generic"/>
+  <add as="MBLOCK" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Modelica.svg"/>
   </add>
   <add as="FROMMO" extend="blockWithLabel">
     <add as="rounded" value="1"/>

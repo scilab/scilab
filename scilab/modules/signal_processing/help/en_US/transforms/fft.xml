@@ -16,7 +16,7 @@
           xmlns:svg="http://www.w3.org/2000/svg" 
           xmlns:mml="http://www.w3.org/1998/Math/MathML" 
           xmlns:db="http://docbook.org/ns/docbook" 
-          version="5.0-subset Scilab" xml:lang="en" xml:id="fft">
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="fft">
     <refnamediv>
         <refname>fft</refname>
         <refpurpose>fast Fourier transform.</refpurpose>
@@ -322,7 +322,7 @@ end
         <programlisting role="example"><![CDATA[ 
 //Frequency components of a signal
 //----------------------------------
-// build a noised signal sampled at 1000hz  containing to pure frequencies 
+// build a noised signal sampled at 1000hz  containing  pure frequencies 
 // at 50 and 70 Hz
 sample_rate=1000;
 t = 0:1/sample_rate:0.6;

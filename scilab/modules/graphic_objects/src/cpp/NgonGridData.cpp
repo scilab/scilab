@@ -61,50 +61,31 @@ NgonGridData::~NgonGridData(void)
     }
 }
 
-int NgonGridData::getPropertyFromName(char const* propertyName)
+int NgonGridData::getPropertyFromName(int propertyName)
 {
-    if (strcmp(propertyName, __GO_DATA_MODEL_NUM_X__) == 0)
+    switch (propertyName)
     {
+    case __GO_DATA_MODEL_NUM_X__ :
         return NUM_X;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_NUM_Y__) == 0)
-    {
+    case __GO_DATA_MODEL_NUM_Y__ :
         return NUM_Y;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_NUM_Z__) == 0)
-    {
+    case __GO_DATA_MODEL_NUM_Z__ :
         return NUM_Z;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_X_DIMENSIONS__) == 0)
-    {
+    case __GO_DATA_MODEL_X_DIMENSIONS__ :
         return X_DIMENSIONS;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Y_DIMENSIONS__) == 0)
-    {
+    case __GO_DATA_MODEL_Y_DIMENSIONS__ :
         return Y_DIMENSIONS;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_GRID_SIZE__) == 0)
-    {
+    case __GO_DATA_MODEL_GRID_SIZE__ :
         return GRID_SIZE;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_X__) == 0)
-    {
+    case __GO_DATA_MODEL_X__ :
         return X_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Y__) == 0)
-    {
+    case __GO_DATA_MODEL_Y__ :
         return Y_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Z__) == 0)
-    {
+    case __GO_DATA_MODEL_Z__ :
         return Z_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__) == 0)
-    {
+    case __GO_DATA_MODEL_Z_COORDINATES_SHIFT__ :
         return Z_COORDINATES_SHIFT;
-    }
-    else
-    {
+    default :
         return NgonData::getPropertyFromName(propertyName);
     }
 

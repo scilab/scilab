@@ -112,6 +112,7 @@ voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 voidupdateBlockjstringjava_lang_StringID=NULL;
+voidxcosSimulationStartedID=NULL;
 
 
 }
@@ -142,6 +143,7 @@ voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
 voidupdateBlockjstringjava_lang_StringID=NULL;
+voidxcosSimulationStartedID=NULL;
 
 
 }
@@ -430,6 +432,24 @@ throw GiwsException::JniBadAllocException(curEnv);
                          curEnv->CallStaticVoidMethod(cls, voidupdateBlockjstringjava_lang_StringID ,h5File_);
                         curEnv->DeleteLocalRef(h5File_);
 curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Xcos::xcosSimulationStarted (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidxcosSimulationStartedID = curEnv->GetStaticMethodID(cls, "xcosSimulationStarted", "()V" ) ;
+if (voidxcosSimulationStartedID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "xcosSimulationStarted");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidxcosSimulationStartedID );
+                        curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

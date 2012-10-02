@@ -24,12 +24,13 @@ import org.scilab.modules.xcos.palette.model.PaletteNode;
 /**
  * Wrap the PaletteNode on a specific model which handle the enable flag.
  */
+@SuppressWarnings(value = { "serial" })
 public class PaletteTreeModel extends DefaultTreeModel {
     private static final String ARG_EXCEPTION_MESSAGE = "The argument must be a PaletteNode instance";
 
     /**
      * {@link DefaultTreeModel} constructor
-     * 
+     *
      * @param root
      *            the associated node
      */
@@ -42,7 +43,7 @@ public class PaletteTreeModel extends DefaultTreeModel {
 
     /**
      * Return the real child count
-     * 
+     *
      * @param parent
      *            the parent node
      * @return the number of enabled children
@@ -73,7 +74,7 @@ public class PaletteTreeModel extends DefaultTreeModel {
 
     /**
      * Return the child at the enable dependant index
-     * 
+     *
      * @param parent
      *            the parent
      * @param index

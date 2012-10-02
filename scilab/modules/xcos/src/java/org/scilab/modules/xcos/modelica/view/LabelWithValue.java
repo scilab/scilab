@@ -20,10 +20,11 @@ import javax.swing.UIManager;
 /**
  * A panel with a title and a text label
  */
+@SuppressWarnings(value = { "serial" })
 public final class LabelWithValue extends JPanel {
     private static final int TEXT_DEFAULT_COLUMNS = 3;
     private static final Icon ERROR_ICON = (Icon) UIManager
-            .get("OptionPane.errorIcon");
+                                           .get("OptionPane.errorIcon");
     private static final Icon MESSAGE_ICON = (Icon) UIManager
             .get("OptionPane.informationIcon");
 
@@ -39,7 +40,7 @@ public final class LabelWithValue extends JPanel {
 
     /**
      * Constructor with title
-     * 
+     *
      * @param title
      *            the title
      */
@@ -49,7 +50,7 @@ public final class LabelWithValue extends JPanel {
 
     /**
      * Constructor with title and value.
-     * 
+     *
      * @param title
      *            the title
      * @param value
@@ -111,7 +112,7 @@ public final class LabelWithValue extends JPanel {
 
     /**
      * Set the number of column visible
-     * 
+     *
      * @param column
      *            the number of column visible
      */
@@ -121,7 +122,7 @@ public final class LabelWithValue extends JPanel {
 
     /**
      * Set the value editable
-     * 
+     *
      * @param b
      *            the status of the value
      */
@@ -131,7 +132,7 @@ public final class LabelWithValue extends JPanel {
 
     /**
      * Test if the value is editable
-     * 
+     *
      * @return the state
      */
     public boolean isEditable() {
@@ -140,7 +141,7 @@ public final class LabelWithValue extends JPanel {
 
     /**
      * Set or clear the error
-     * 
+     *
      * @param error
      *            true, if the error is set, false otherwise.
      */

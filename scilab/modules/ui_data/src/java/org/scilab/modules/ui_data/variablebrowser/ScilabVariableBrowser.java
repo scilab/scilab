@@ -47,9 +47,9 @@ public final class ScilabVariableBrowser implements VariableBrowser {
      */
     private ScilabVariableBrowser() {
         TextBox infobar = ScilabTextBox.createTextBox();
-        browserTab = new SwingScilabVariableBrowser(BrowseVar.COLUMNNAMES);
+        browserTab = new SwingScilabVariableBrowser(BrowseVar.COLUMNNAMES, BrowseVar.COLUMNSALIGNMENT);
         browserTab.addInfoBar(infobar);
-        ((SwingScilabVariableBrowser) browserTab).setTitle(UiDataMessages.VARIABLE_BROWSER);
+        browserTab.setTitle(UiDataMessages.VARIABLE_BROWSER);
     }
 
     public static SwingScilabVariableBrowser createVarBrowserTab() {
@@ -57,7 +57,7 @@ public final class ScilabVariableBrowser implements VariableBrowser {
             instance = new ScilabVariableBrowser();
         }
 
-        return (SwingScilabVariableBrowser) browserTab;
+        return browserTab;
     }
 
     /**
@@ -108,7 +108,7 @@ public final class ScilabVariableBrowser implements VariableBrowser {
                 window.setVisible(true);
             }
         } else {
-            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabVariableBrowser) browserTab);
+            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, browserTab);
             if (!update) {
                 window.setVisible(true);
                 window.toFront();

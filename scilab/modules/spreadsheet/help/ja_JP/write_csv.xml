@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="write_csv" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="write_csv" xml:lang="ja">
     <refnamediv>
         <refname>write_csv</refname>
         <refpurpose>カンマ区切り形式でファイルに書き込む</refpurpose>
@@ -84,7 +84,7 @@
             write_csv(A, TMPDIR + '/datas.tsv');
             
             //coma-separated values
-            write_csv(A, TMPDIR + '/datas.csv', ';');
+            write_csv(A, TMPDIR + '/data.csv', ';');
         </programlisting>
     </refsection>
     <refsection role="see also">

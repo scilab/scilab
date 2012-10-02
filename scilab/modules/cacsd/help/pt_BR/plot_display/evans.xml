@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="evans" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="evans" xml:lang="en">
     <refnamediv>
         <refname>evans</refname>
         <refpurpose>lugar geométrico das raízes Evans</refpurpose>
@@ -70,14 +70,14 @@
     [Kr,s]=krac2(H)
     ]]></programlisting>
         <para>
-          <scilab:image>
-    H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
-    clf();evans(H,100);sgrid()
-    [Ki,s]=kpure(H)
-    plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
-
-    [Kr,s]=krac2(H)
-          </scilab:image>
+            <scilab:image>
+                H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+                clf();evans(H,100);sgrid()
+                [Ki,s]=kpure(H)
+                plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
+                
+                [Kr,s]=krac2(H)
+            </scilab:image>
         </para>
     </refsection>
     <refsection>

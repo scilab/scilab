@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="legend" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="legend" xml:lang="en">
     <refnamediv>
         <refname>legend</refname>
         <refpurpose>draw graph legend</refpurpose>
@@ -157,28 +157,7 @@
             the mouse and press the left button to release it.
         </para>
     </refsection>
-    <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            
-            t=linspace(0,%pi,20);
-            a=gca();
-            a.data_bounds=[t(1) -1.8;t($) 1.8];
-            
-            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-5,2 3]);  
-            e=gce();
-            e1=e.children(1);
-            e1.thickness=2;
-            e1.polyline_style=4;
-            e1.arrow_size_factor = 1/2;
-            e.children(2).line_style=4;
-            e3=e.children(3);
-            e3.line_mode='on';
-            e3.mark_background=5;
-            
-            hl=legend(['cos(t)';'cos(2*t)';'cos(3*t)']);
-        </scilab:image>
-    </refsection>
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
@@ -199,6 +178,26 @@ e3.mark_background=5;
 
 hl=legend(['cos(t)';'cos(2*t)';'cos(3*t)']);
  ]]></programlisting>
+        <scilab:image>
+            
+            t=linspace(0,%pi,20);
+            a=gca();
+            a.data_bounds=[t(1) -1.8;t($) 1.8];
+            
+            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-5,2 3]);  
+            e=gce();
+            e1=e.children(1);
+            e1.thickness=2;
+            e1.polyline_style=4;
+            e1.arrow_size_factor = 1/2;
+            e.children(2).line_style=4;
+            e3=e.children(3);
+            e3.line_mode='on';
+            e3.mark_background=5;
+            
+            hl=legend(['cos(t)';'cos(2*t)';'cos(3*t)']);
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

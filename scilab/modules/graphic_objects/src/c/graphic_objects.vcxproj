@@ -258,6 +258,7 @@
     <ClCompile Include="..\cpp\dataModel.cpp" />
     <ClCompile Include="..\cpp\DecompositionUtils.cpp" />
     <ClCompile Include="..\cpp\deleteGraphicObject.cpp" />
+    <ClCompile Include="..\jni\GraphicObjectBuilder.cpp" />
     <ClCompile Include="..\jni\ScilabNativeView_wrap.c" />
     <ClCompile Include="DllmainGraphic_objects.c" />
     <ClCompile Include="..\cpp\Fac3DDecomposer.cpp" />
@@ -311,6 +312,7 @@
     <ClInclude Include="..\..\includes\PolylineDecomposer.hxx" />
     <ClInclude Include="..\..\includes\TriangleMeshData.hxx" />
     <ClInclude Include="..\..\includes\TriangleMeshFecDataDecomposer.hxx" />
+    <ClInclude Include="..\jni\GraphicObjectBuilder.hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jni\ScilabNativeView.i" />

@@ -61,6 +61,7 @@ public final class UiDataMessages {
 
     public static final String EDITION = Messages.gettext("Edition");
     public static final String REFRESH = Messages.gettext("Refresh the variable ");
+    public static final String HELP = Messages.gettext("Scilab Help");
     public static final String COPY = Messages.gettext("Copy");
     public static final String PASTE = Messages.gettext("Paste");
     public static final String CUT = Messages.gettext("Cut");
@@ -121,6 +122,9 @@ public final class UiDataMessages {
     public static final String LOADINSCILAB = Messages.gettext("Load in Scilab");
     public static final String EDITWITHDEFAULT = Messages.gettext("Edit with default application");
     public static final String OPENWITHDEFAULT = Messages.gettext("Open with default application");
+
+    public static final String PREVIOUSDIR = Messages.gettext("Previous directory");
+    public static final String NEXTDIR = Messages.gettext("Next directory");
 
     /** This class is a static singleton, thus it must not be instantiated */
     private UiDataMessages() { }

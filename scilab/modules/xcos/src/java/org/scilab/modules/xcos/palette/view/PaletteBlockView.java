@@ -28,6 +28,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 /**
  * The palette block view
  */
+@SuppressWarnings(value = { "serial" })
 public final class PaletteBlockView extends JLabel {
 
     private static final Dimension PREFERRED_SIZE = new Dimension(

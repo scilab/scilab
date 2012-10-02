@@ -51,7 +51,8 @@ int sci_show_window( char *fname, unsigned long fname_len )
         int nbRow        = 0 ;
         int nbCol        = 0 ;
         size_t stackPointer = 0 ;
-        char *type = NULL;
+        int type = -1;
+        int *piType = &type;
 
         if ( ( paramType == sci_handles ) )
         {
@@ -72,8 +73,8 @@ int sci_show_window( char *fname, unsigned long fname_len )
                 return -1 ;
             }
 
-            getGraphicObjectProperty(pFigureUID, __GO_TYPE__, jni_string, (void **) &type);
-            if (strcmp(type, __GO_FIGURE__) != 0)
+            getGraphicObjectProperty(pFigureUID, __GO_TYPE__, jni_int, (void **) &piType);
+            if (type != __GO_FIGURE__)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"), fname, 1, "Figure");
                 return -1 ;

@@ -10,6 +10,8 @@
  *
  */
 
+#include <iostream>
+
 #include "NgonGeneralData.hxx"
 #include "DataProperties.hxx"
 
@@ -45,41 +47,27 @@ NgonGeneralData::~NgonGeneralData(void)
     }
 }
 
-int NgonGeneralData::getPropertyFromName(char const* propertyName)
+int NgonGeneralData::getPropertyFromName(int propertyName)
 {
-    if (strcmp(propertyName, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__) == 0)
+    switch (propertyName)
     {
+    case __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__ :
         return NUM_ELEMENTS_ARRAY;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_COORDINATES__) == 0)
-    {
+    case __GO_DATA_MODEL_COORDINATES__ :
         return COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_X__) == 0)
-    {
+    case __GO_DATA_MODEL_X__ :
         return X_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Y__) == 0)
-    {
+    case __GO_DATA_MODEL_Y__ :
         return Y_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Z__) == 0)
-    {
+    case __GO_DATA_MODEL_Z__ :
         return Z_COORDINATES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_COLORS__) == 0)
-    {
+    case __GO_DATA_MODEL_COLORS__ :
         return COLORS;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_NUM_COLORS__) == 0)
-    {
+    case __GO_DATA_MODEL_NUM_COLORS__ :
         return NUM_COLORS;
-    }
-    else
-    {
+    default :
         return NgonData::getPropertyFromName(propertyName);
     }
-
 }
 
 int NgonGeneralData::setDataProperty(int property, void const* value, int numElements)
@@ -188,10 +176,7 @@ void NgonGeneralData::setData(double const* data, int numElements)
         coordinates = new double[3 * numElements];
     }
 
-    for (int i = 0; i < 3 * numElements; i++)
-    {
-        coordinates[i] = data[i];
-    }
+    memcpy(coordinates, data, 3 * numElements * sizeof(double));
 }
 
 void NgonGeneralData::setDataX(double const* data, int numElements)
@@ -199,12 +184,7 @@ void NgonGeneralData::setDataX(double const* data, int numElements)
     double* xCoordinates = NULL;
 
     xCoordinates = coordinates;
-
-    for (int i = 0; i < numElements; i++)
-    {
-        xCoordinates[i] = data[i];
-    }
-
+    memcpy(xCoordinates, data, numElements * sizeof(double));
 }
 
 void NgonGeneralData::setDataY(double const* data, int numElements)
@@ -212,12 +192,7 @@ void NgonGeneralData::setDataY(double const* data, int numElements)
     double* yCoordinates;
 
     yCoordinates = &coordinates[numGons * numVerticesPerGon];
-
-    for (int i = 0; i < numElements; i++)
-    {
-        yCoordinates[i] = data[i];
-    }
-
+    memcpy(yCoordinates, data, numElements * sizeof(double));
 }
 
 void NgonGeneralData::setDataZ(double const* data, int numElements)
@@ -225,12 +200,7 @@ void NgonGeneralData::setDataZ(double const* data, int numElements)
     double* zCoordinates = NULL;
 
     zCoordinates = &coordinates[2 * numGons * numVerticesPerGon];
-
-    for (int i = 0; i < numElements; i++)
-    {
-        zCoordinates[i] = data[i];
-    }
-
+    memcpy(zCoordinates, data, numElements * sizeof(double));
 }
 
 int NgonGeneralData::getNumElements(void)
@@ -337,11 +307,7 @@ void NgonGeneralData::setColors(double const* colors, int numElements)
     {
         return;
     }
-
-    for (int i = 0; i < numElements; i++)
-    {
-        colorValues[i] = colors[i];
-    }
+    memcpy(colorValues, colors, numElements * sizeof(double));
 }
 
 int NgonGeneralData::getNumColors(void)

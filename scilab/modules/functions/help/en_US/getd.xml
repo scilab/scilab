@@ -10,10 +10,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getd">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="getd">
     <refnamediv>
         <refname>getd</refname>
-        <refpurpose> getting all functions defined in a directory</refpurpose>
+        <refpurpose>Load all functions defined in a directory</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -25,7 +25,10 @@
             <varlistentry>
                 <term>path</term>
                 <listitem>
-                    <para>Scilab string. The directory pathname</para>
+                    <para>A string. The directory pathname</para>
+                    <para>
+                        "." if <link linkend="getd">getd</link> is called without input argument or if <literal>path</literal> is an empty string.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,8 +36,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            loads all <literal>.sci</literal> files (containing Scilab functions) defined in
+            Loads all <literal>.sci</literal> files (containing Scilab functions) defined in
             the <literal>path</literal> directory.
+        </para>
+        <para>
+            If the file does not contain a function, the script will be executed.
         </para>
     </refsection>
     <refsection>

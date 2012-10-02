@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="interp" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp" xml:lang="en">
     <refnamediv>
         <refname>interp</refname>
         <refpurpose>cubic spline evaluation function</refpurpose>
@@ -171,7 +171,33 @@ subplot(3,1,3)
 plot2d(xx, [yy2k yy2f])
 legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
 xtitle("spline interpolation (second derivatives)")
-
+ ]]></programlisting>
+        <scilab:image>
+            a = -8; b = 8;
+            x = linspace(a,b,20)';
+            y = sinc(x);
+            dk = splin(x,y);  // not_a_knot
+            df = splin(x,y, "fast");
+            xx = linspace(a,b,800)';
+            [yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
+            [yyf, yy1f, yy2f] = interp(xx, x, y, df); 
+            clf()
+            subplot(3,1,1)
+            plot2d(xx, [yyk yyf])
+            plot2d(x, y, style=-9)
+            legends(["not_a_knot spline","fast sub-spline","interpolation points"],...
+            [1 2 -9], "ur",%f)
+            xtitle("spline interpolation")
+            subplot(3,1,2)
+            plot2d(xx, [yy1k yy1f])
+            legends(["not_a_knot spline","fast sub-spline"], [1 2], "ur",%f)
+            xtitle("spline interpolation (derivatives)")
+            subplot(3,1,3)
+            plot2d(xx, [yy2k yy2f])
+            legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
+            xtitle("spline interpolation (second derivatives)")
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // here is an example showing the different extrapolation possibilities
 x = linspace(0,1,11)';
 y = cosh(x-0.5);
@@ -185,6 +211,19 @@ clf()
 plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
 xtitle(" different way to evaluate a spline outside its domain")
  ]]></programlisting>
+        <scilab:image>
+            x = linspace(0,1,11)';
+            y = cosh(x-0.5);
+            d = splin(x,y);
+            xx = linspace(-0.5,1.5,401)';
+            yy0 = interp(xx,x,y,d,"C0");
+            yy1 = interp(xx,x,y,d,"linear");
+            yy2 = interp(xx,x,y,d,"natural");
+            yy3 = interp(xx,x,y,d,"periodic");  
+            clf()
+            plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
+            xtitle(" different way to evaluate a spline outside its domain")
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

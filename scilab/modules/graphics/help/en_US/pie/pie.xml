@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="pie">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="pie">
     <refnamediv>
         <refname>pie</refname>
         <refpurpose>draw a pie</refpurpose>
@@ -66,12 +66,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // First example : one input argument  x=[1 2 5]
@@ -98,6 +92,9 @@ pie([5 9 4 6 3],[0 1 0 1 0]);
 scf(2);
 pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
  ]]></programlisting>
+        <scilab:image>
+            pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

@@ -37,7 +37,7 @@ public class MainDataLoader {
     /**
      * The names of Java-based objects.
      */
-    private static final Set<String> JAVA_OBJECTS = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> JAVA_OBJECTS = new HashSet<Integer>(Arrays.asList(
             GraphicObjectProperties.__GO_ARC__,
             GraphicObjectProperties.__GO_CHAMP__,
             GraphicObjectProperties.__GO_RECTANGLE__,
@@ -81,7 +81,7 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int getDataSize(String id) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+            Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
             if (type == null) {
                 throw (new ObjectRemovedException(id));
@@ -107,7 +107,7 @@ public class MainDataLoader {
      */
     public static void fillVertices(String id, FloatBuffer buffer, int elementsSize,
             int coordinateMask, double[] scale, double[] translation, int logMask) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+            Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
             
             if (type == null) {
                 throw (new ObjectRemovedException(id));
@@ -128,7 +128,7 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static void fillColors(String id, FloatBuffer buffer, int elementsSize) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+            Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
             
             if (type == null) {
                 throw (new ObjectRemovedException(id));
@@ -148,7 +148,7 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int getIndicesSize(String id) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
             
             if (type == null) {
                 throw (new ObjectRemovedException(id));
@@ -170,7 +170,7 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int fillIndices(String id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
             if (type == null) {
                 throw (new ObjectRemovedException(id));
@@ -190,7 +190,7 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int getWireIndicesSize(String id) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
             
             if (type == null) {
@@ -213,7 +213,7 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int fillWireIndices(String id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
             if (type == null) {
                 throw (new ObjectRemovedException(id));

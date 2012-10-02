@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="title">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="title">
     <refnamediv>
         <refname>title</refname>
         <refpurpose>display a title on a graphic
@@ -112,13 +112,6 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
-            
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // display a title with several properties 
@@ -137,6 +130,11 @@ title('my title','rotation',90);
 // We can do all these modifications with just the below instruction:
 title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
  ]]></programlisting>
+        <scilab:image>
+            title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
+            
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

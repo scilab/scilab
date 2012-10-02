@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="contourf" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="contourf" xml:lang="en">
     <refnamediv>
         <refname>contourf</refname>
         <refpurpose>filled level curves of a surface on a 2D plot</refpurpose>
@@ -49,7 +49,7 @@
                                     the number of level curves equally spaced from zmin to zmax as
                                     follows:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
@@ -57,7 +57,7 @@ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
                                     <literal>zmax</literal> levels are not drawn (generically they
                                     are reduced to points) but they can be added with
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 [im,jm] = find(z == zmin);     // or zmax 
 plot2d(x(im)',y(jm)',-9,"000")
  ]]></programlisting>
@@ -110,14 +110,14 @@ plot2d(x(im)',y(jm)',-9,"000")
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>contourf();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
-
+ ]]></programlisting>
+        <scilab:image>
+            contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 function z=peaks(x,y)
 x1=x(:).*.ones(1,size(y,'*'));
 y1=y(:)'.*.ones(size(x,'*'),1);
@@ -148,6 +148,34 @@ xset('fpf','');
 clf();
 contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
  ]]></programlisting>
+        <scilab:image>
+            function z=peaks(x,y)
+            x1=x(:).*.ones(1,size(y,'*'));
+            y1=y(:)'.*.ones(size(x,'*'),1);
+            z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ... 
+            - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ... 
+            - 1/3*exp(-(x1+1).^2 - y1.^2) 
+            endfunction
+            
+            function z=peakit()
+            x=-4:0.1:4;y=x;z=peaks(x,y);
+            endfunction
+            
+            z=peakit();
+            
+            levels=[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8];
+            m=size(levels,'*');
+            n = fix(3/8*m);
+            r = [(1:n)'/n; ones(m-n,1)];
+            g = [zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
+            b = [zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
+            h = [r g b];
+            xset('colormap',h);
+            xset('fpf',' ');
+            clf();
+            contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8],0*ones(1,m))
+            
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

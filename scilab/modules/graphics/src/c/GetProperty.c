@@ -122,17 +122,21 @@ BOOL sciisTextEmpty(char* identifier)
 /**MAJ pour le 3D DJ.Abdemouche 2003**/
 double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 {
-    char* type = NULL;
+    int iType = -1;
+    int *piType = &iType;
     double *tab = NULL;
     int i = 0;
 
-    getGraphicObjectProperty(pthis, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pthis, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * Object type determined by string comparisons
      * Required as we have no better way to do this for the moment
      */
-    if (strcmp(type, __GO_FIGURE__) == 0)
+
+    switch (iType)
+    {
+    case __GO_FIGURE__ :
     {
         int* figurePosition = NULL;
         int* axesSize = NULL;
@@ -156,7 +160,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
         return tab;
     }
-    else if (strcmp(type, __GO_POLYLINE__) == 0)
+    case __GO_POLYLINE__ :
     {
         char* parentAxes = NULL;
         double* dataX = NULL;
@@ -252,7 +256,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
         }
         return tab;
     }
-    else if (strcmp(type, __GO_RECTANGLE__) == 0)
+    case __GO_RECTANGLE__ :
     {
         char* parentAxes = NULL;
         double* upperLeftPoint = NULL;
@@ -298,7 +302,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
         }
         return (double*)tab;
     }
-    else if (strcmp(type, __GO_ARC__) == 0)
+    case __GO_ARC__ :
     {
         char* parentAxes = NULL;
         double* upperLeftPoint = NULL;
@@ -358,11 +362,11 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
         return (double*)tab;
     }
-    else if (strcmp(type, __GO_COMPOUND__) == 0)
+    case __GO_COMPOUND__ :
     {
         return (double*)NULL;
     }
-    else if (strcmp(type, __GO_TEXT__) == 0)
+    case __GO_TEXT__ :
     {
         char* parentAxes = NULL;
         double* textPosition = NULL;
@@ -395,7 +399,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
         return (double*)tab;
     }
-    else if (strcmp(type, __GO_SEGS__) == 0)
+    case __GO_SEGS__ :
     {
         int iView = 0;
         int* piView = &iView;
@@ -452,19 +456,14 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
         return (double*)tab;
     }
-    else if (strcmp(type, __GO_FAC3D__) == 0)
+    case __GO_FAC3D__ :
+    case __GO_PLOT3D__ :
     {
         *numrow = -1;
         *numcol = -1;
         return (double*) NULL;
     }
-    else if (strcmp(type, __GO_PLOT3D__) == 0)
-    {
-        *numrow = -1;
-        *numcol = -1;
-        return (double*) NULL;
-    }
-    else if (strcmp(type, __GO_MATPLOT__) == 0)
+    case __GO_MATPLOT__ :
     {
         int nx = 0;
         int *piNx = &nx;
@@ -499,7 +498,7 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
         return (double*)tab;
     }
-    else if (strcmp(type, __GO_FEC__) == 0)
+    case __GO_FEC__ :
     {
         double* coordinates = NULL;
         double* values = NULL;
@@ -531,36 +530,16 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
         return (double*)tab;
     }
-    else if (strcmp(type, __GO_LEGEND__) == 0)
+    case __GO_LEGEND__ :
+    case __GO_AXES__ :
+    case __GO_LABEL__ :
+    default :
     {
         *numrow = -2;
         *numcol = -2;
         return (double*)NULL;
     }
-    else if (strcmp(type, __GO_AXES__) == 0)
-    {
-        *numrow = -2;
-        *numcol = -2;
-        return (double*)NULL;
     }
-    /* F.Leray 28.05.04 */
-    else if (strcmp(type, __GO_LABEL__) == 0)
-    {
-        *numrow = -2;
-        *numcol = -2;
-        return (double*)NULL;
-    }
-    else
-    {
-        *numrow = -2;
-        *numcol = -2;
-        return (double*)NULL;
-    }
-
-    /*
-     * Deactivated for now
-     * Same as the else condition
-     */
 #if 0
 case SCI_UIMENU:
 #endif
@@ -635,11 +614,12 @@ void sciGetLogFlags(char * pObjUID, char flags[3])
 */
 void sciGet2dViewCoordinate(char * pObjUID, const double userCoords3D[3], double userCoords2D[2])
 {
-    char *type = NULL;
+    int iType = -1;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_AXES__) == 0)
+    if (iType == __GO_AXES__)
     {
         sciGetJava2dViewCoordinates(pObjUID, userCoords3D, userCoords2D);
     }
@@ -659,11 +639,12 @@ void sciGet2dViewCoordinate(char * pObjUID, const double userCoords3D[3], double
 */
 void sciGet2dViewCoordFromPixel(char * pObjUID, const int pixelCoords[2], double userCoords2D[2])
 {
-    char *type = NULL;
+    int iType = -1;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_AXES__) == 0)
+    if (iType == __GO_AXES__)
     {
         sciGetJava2dViewCoordFromPixel(pObjUID, pixelCoords, userCoords2D);
     }
@@ -683,11 +664,12 @@ void sciGet2dViewCoordFromPixel(char * pObjUID, const int pixelCoords[2], double
 */
 void sciGet2dViewPixelCoordinates(char * pObjUID, const double userCoords2D[2], int pixelCoords[2])
 {
-    char *type = NULL;
+    int iType = -1;
+    char *piType = &iType;
 
-    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_AXES__) == 0)
+    if (iType == __GO_AXES__)
     {
         /* create a 3d user coord */
         double userCoord3D[3] = {userCoords2D[0], userCoords2D[1], 0.0};
@@ -707,11 +689,12 @@ void sciGet2dViewPixelCoordinates(char * pObjUID, const double userCoords2D[2], 
 */
 void sciGetViewingArea(char * pObjUID, int * xPos, int * yPos, int * width, int * height)
 {
-    char *type = NULL;
+    int iType = -1;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_AXES__) == 0)
+    if (iType == __GO_AXES__)
     {
         sciGetJavaViewingArea(pObjUID, xPos, yPos, width, height);
     }

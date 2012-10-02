@@ -46,6 +46,7 @@ public class ScilabContext implements ViewFactory {
     public static final String COLORSPATH = "//colors/body/syntax-highlighting-colors/item";
     public static final String SYSTEMFONTPATH = "//fonts/body/fonts";
     public static final String FONTPATH = "//fonts/body/fonts/item";
+    public static final String XCONFFONTPATH = "//fonts/body/fonts/item[@xconf-uid=\"scinotes-font\"]";
 
     /**
      * Contains the colors of the different tokens

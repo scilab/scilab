@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="modulo" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="en">
     <refnamediv>
         <refname>modulo</refname>
         <refpurpose>symmetric arithmetic remainder modulo m</refpurpose>
@@ -44,28 +44,28 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>modulo</literal> computes <literal>i = n (modulo
+            <function>modulo</function> computes <code>i = n (modulo
                 m)
-            </literal>
-            i.e. remainder of <literal>n</literal> divided by
-            <literal>m</literal> (<literal>n</literal> and <literal>m</literal>
+            </code>
+            i.e. remainder of <varname>n</varname> divided by
+            <varname>m</varname> (<varname>n</varname> and <varname>m</varname>
             are integers).
         </para>
         <para>
-            <literal>i = n - m .* int (n ./ m)</literal>. Here the answer may be negative
-            if <literal>n</literal> or <literal>m</literal> are negative.
+            <code>i = n - m .* int (n ./ m)</code>. Here the answer may be negative
+            if <varname>n</varname> or <varname>m</varname> are negative.
         </para>
         <para>
-            <literal>pmodulo</literal> computes <literal>i = n - m .* floor (n
+            <function>pmodulo</function> computes <code>i = n - m .* floor (n
                 ./ m)
-            </literal>
-            ,the answer is positive or zero.
+            </code>
+            , the answer is positive or zero.
         </para>
         <para>
-            <literal>modulo(x,0)</literal> returns an error message: "Division by zero...". With ieee(2), <literal>modulo(x,0)</literal> returns %nan.
+            <code>modulo(x,0)</code> returns an error message: "Division by zero...". With ieee(2), <code>modulo(x,0)</code> returns <constant>%nan</constant>.
         </para>
         <para>
-            <literal>pmodulo(x,0)</literal> returns an error message: "Division by zero...". With ieee(2), <literal>pmodulo(x,0)</literal> returns %nan.
+            <code>pmodulo(x,0)</code> returns an error message: "Division by zero...". With ieee(2), <code>pmodulo(x,0)</code> returns <constant>%nan</constant>.
         </para>
     </refsection>
     <refsection>

@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="plzr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="plzr">
     <refnamediv>
         <refname>plzr</refname>
         <refpurpose> pole-zero plot</refpurpose>
@@ -39,8 +39,7 @@
             <literal>sl</literal> (<literal>syslin</literal> list)
         </para>
     </refsection>
-    <!--  <refsection>
-    <title>Sample</title>
+    <!--  
     <scilab:image localized="true">
       s=poly(0,'s');
       n=[1+s   2+3*s+4*s^2        5; 0        1-s             s];
@@ -48,7 +47,7 @@
       h=syslin('c',n./d); 
       plzr(h);
     </scilab:image>
-  </refsection>-->
+-->
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
