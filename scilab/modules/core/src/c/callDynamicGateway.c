@@ -19,6 +19,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "sciprint.h"
+#include "FileExist.h"
 #include "localization.h"
 #include "setgetSCIpath.h"
 #include "getshortpathname.h"
@@ -70,6 +71,15 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 
         if (*hlib == NULL) /* Load of the hardcoded path to the lib failed */
         {
+
+            if (FileExist(pathToLib)) {
+                /* It fails but the file exists */
+                char *previousError = GetLastDynLibError();
+                if (previousError != NULL)
+                {
+                    sciprint("A previous error has been detected while loading %s: %s\n", dynLibName, previousError);
+                }
+            }
 
             /* Under Linux/Unix, load thanks to dlopen on the system.
              * In the binary, the LD_LIBRARY_PATH is declared in the startup script (ie bin/scilab*)
