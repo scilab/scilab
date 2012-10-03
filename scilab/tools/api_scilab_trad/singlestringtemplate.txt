@@ -1,0 +1,15 @@
+	//get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, @POSITION@, \&piAddr@POSITION@);
+	if(sciErr.iErr)
+	{
+		printError(\&sciErr, 0);
+		return 1;
+	}//@MYMARK@
+
+        // Retrieve a single string at position @POSITION@
+			iRet = getAllocatedSingleString(pvApiCtx, piAddr@POSITION@, @VAR@char);
+			if(iRet)
+			{
+				freeAllocatedSingleString(pstData);
+				return iRet;
+			}

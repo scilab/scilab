@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "api_scilab.h"
 #include "xs2file.h"
 #include "stack-c.h"
 #include "GetProperty.h"
@@ -39,56 +40,81 @@ static BOOL isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/
 int xs2file(char * fname, ExportFileType fileType )
 {
+    int *piAddr1;
+    int *piAddr2;
+    int *piAddr3;
+    int *piLen;
+    int i;
+    SciErr sciErr;
+    int iType1 = 0;
+
     /* Check input and output sizes */
-    CheckLhs(0, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     if (isVectorialExport(fileType) || fileType == JPG_EXPORT)
     {
-        CheckRhs(2, 3);
+        CheckInputArgument(pvApiCtx, 2, 3);
     }
     else
     {
-        CheckRhs(2, 2);
+        CheckInputArgument(pvApiCtx, 2, 2);
     }
 
-    if (GetType(1) != sci_matrix && GetType(1) != sci_handles)
+    //get variable address of the input argument
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }//
+
+    sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (iType1 != sci_matrix && iType1 != sci_handles)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: An integer or a handle expected.\n"), fname, 1);
-        LhsVar(1) = 0;
-        PutLhsVar();
-        return 0;
+        return 1;
     }
 
-    if ( (GetType(2) == sci_strings) )
+    //get variable address of the input argument
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if ( (isStringType(pvApiCtx, piAddr2)) )
     {
         char **fileName = NULL;
         char *real_filename = NULL;
         float jpegCompressionQuality = 0.95f;
         ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
         int m1 = 0, n1 = 0, l1 = 0;
-        int figurenum = -1;
+        double figurenum = -1;
         char* figureUID = NULL;
         char *status = NULL;
 
-        /* get handle by figure number */
-        if (GetType(1) == sci_matrix)
-        {
-            GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
-            if (m1*n1 != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
-                return 0;
-            }
 
-            figurenum = *istk(l1);
+        /* get handle by figure number */
+        if (iType1 == sci_matrix)
+        {
+            getScalarDouble(pvApiCtx, piAddr1, &figurenum);
+
             if (!sciIsExistingFigure(figurenum))
             {
-                Scierror(999, "%s: Input argument #%d must be a valid figure_id.\n", fname, 1);
-                return 0;
+                Scierror(999, _("%s: Wrong value for input argument #%d: A valid figure_id expected.\n"), fname, 1);
+                return 1;
             }
             figureUID = getFigureFromIndex(figurenum);
         }
+
         /* check given handle */
-        if (GetType(1) == sci_handles)
+        if (iType1 == sci_handles)
         {
             int iHandleType = -1;
             int* piHandleType = &iHandleType;
@@ -96,14 +122,14 @@ int xs2file(char * fname, ExportFileType fileType )
             if (m1*n1 != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
-                return 0;
+                return 1;
             }
 
             figureUID = getObjectFromHandle(getHandleFromStack(l1));
             if (figureUID == NULL)
             {
-                Scierror(999, _("%s: Input argument #%d must be a valid handle.\n"), fname, 1);
-                return 0;
+                Scierror(999, _("%s: Wrong type for input argument #%d: Graphic handle expected.\n"), fname, 1);
+                return 1;
             }
 
             getGraphicObjectProperty(figureUID, __GO_TYPE__, jni_int, (void**)&piHandleType);
@@ -111,15 +137,54 @@ int xs2file(char * fname, ExportFileType fileType )
             if (iHandleType != __GO_FIGURE__)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"), fname, 1, "Figure");
-                return 0;
+                return 1;
             }
         }
 
         /* get file name */
-        GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &fileName);
+
+        //get variable address
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }//MYMARK2
+
+        //fisrt call to retrieve dimensions
+        sciErr = getMatrixOfString(pvApiCtx, piAddr2, &m1, &n1, NULL, NULL);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        piLen = (int*)malloc(sizeof(int) * m1 * n1);
+
+        //second call to retrieve length of each string
+        sciErr = getMatrixOfString(pvApiCtx, piAddr2, &m1, &n1, piLen, NULL);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        fileName = (char**)malloc(sizeof(char*) * m1 * n1);
+        for (i = 0 ; i < m1 * n1 ; i++)
+        {
+            fileName[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+        }
+
+        //third call to retrieve data
+        sciErr = getMatrixOfString(pvApiCtx, piAddr2, &m1, &n1, piLen, fileName);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
         if (m1*n1 == 1)
         {
-            if (Rhs == 3)
+            if (nbInputArgument(pvApiCtx) == 3)
             {
                 int nbCol = 0;
                 int nbRow = 0;
@@ -129,14 +194,53 @@ int xs2file(char * fname, ExportFileType fileType )
 
                     char **sciOrientation = NULL;
 
-                    if (GetType(3) != sci_strings)
+                    //get variable address
+                    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 1;
+                    }//MYMARK3
+
+                    if (!isStringType(pvApiCtx, piAddr3))
                     {
                         freeArrayOfString(fileName, m1 * n1);
                         Scierror(999, _("%s: Wrong type for input argument #%d: Single character string expected.\n"), fname, 3);
-                        return 0;
+                        return 1;
                     }
 
-                    GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &sciOrientation);
+
+                    //fisrt call to retrieve dimensions
+                    sciErr = getMatrixOfString(pvApiCtx, piAddr3, &nbRow, &nbCol, NULL, NULL);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+
+                    piLen = (int*)malloc(sizeof(int) * nbRow * nbCol);
+
+                    //second call to retrieve length of each string
+                    sciErr = getMatrixOfString(pvApiCtx, piAddr3, &nbRow, &nbCol, piLen, NULL);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+
+                    sciOrientation = (char**)malloc(sizeof(char*) * nbRow * nbCol);
+                    for (i = 0 ; i < nbRow * nbCol ; i++)
+                    {
+                        sciOrientation[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+                    }
+
+                    //third call to retrieve data
+                    sciErr = getMatrixOfString(pvApiCtx, piAddr3, &nbRow, &nbCol, piLen, sciOrientation);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
                     if (nbRow*nbCol == 1)
                     {
                         /* Value should be 'landscape' or 'portrait' but check only the first character */
@@ -156,7 +260,7 @@ int xs2file(char * fname, ExportFileType fileType )
                             freeArrayOfString(fileName, m1 * n1);
                             freeArrayOfString(sciOrientation, nbRow * nbCol);
                             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "portrait", "landscape");
-                            return 0;
+                            return 1;
                         }
                     }
                     else
@@ -164,20 +268,29 @@ int xs2file(char * fname, ExportFileType fileType )
                         freeArrayOfString(fileName, m1 * n1);
                         freeArrayOfString(sciOrientation, nbRow * nbCol);
                         Scierror(999, _("%s: Wrong size for input argument #%d: Single character string expected.\n"), fname, 3);
-                        return 0;
+                        return 1;
                     }
                 }
                 else
                 {
-                    int quality = 0;
-                    GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &quality);
-                    if (nbRow != 1 || nbCol != 1 || *stk(quality) < 0 || *stk(quality) > 1)
+                    double quality = 0;
+                    //get variable address of the input argument
+                    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+
+                    getScalarDouble(pvApiCtx, piAddr3, &quality);
+
+                    if (quality < 0 || quality > 1)
                     {
                         freeArrayOfString(fileName, m1 * n1);
                         Scierror(999, _("%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"), fname, 3);
-                        return 0;
+                        return 1;
                     }
-                    jpegCompressionQuality = (float) * stk(quality);
+                    jpegCompressionQuality = (float) quality;
                 }
             }
 
@@ -199,24 +312,24 @@ int xs2file(char * fname, ExportFileType fileType )
             if (strlen(status) != 0)
             {
                 Scierror(999, _("%s: %s\n"), fname, status);
-                return 0;
+                return 1;
             }
         }
         else
         {
             freeArrayOfString(fileName, m1 * n1);
             Scierror(999, _("%s: Wrong size for input argument #%d: Single character string expected.\n"), fname, 2);
-            return 0;
+            return 1;
         }
     }
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Single character string expected.\n"), fname, 2);
-        return 0;
+        return 1;
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

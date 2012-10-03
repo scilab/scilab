@@ -195,7 +195,7 @@ int sci_strindex(char *fname, unsigned long fname_len)
             /* We use pcre library */
             for (x = 0; x < m2n2; ++x)
             {
-                w = pcre_private(Strings_Input1[0], Strings_Input2[x], &Output_Start, &Output_End);
+                w = pcre_private(Strings_Input1[0], Strings_Input2[x], &Output_Start, &Output_End, NULL, NULL);
                 if ( w == PCRE_FINISHED_OK)
                 {
                     char *partStr = strdup(Strings_Input1[0]);
