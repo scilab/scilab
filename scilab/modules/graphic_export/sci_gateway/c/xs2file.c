@@ -123,7 +123,6 @@ int xs2file(char * fname, ExportFileType fileType )
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                assignment discards qualifiers from pointer target type
                 Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
                 return 1;
             }
