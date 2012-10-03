@@ -27,13 +27,20 @@ char **splitLineCSV(const char *str, const char *sep, int *toks, char meta)
     int curr_str = 0;
     char last_char = 0xFF;
 
-    char tokenstring_to_search[64] = ",,";
-    char tokenreplacement_string[64] = ",,";
+    /* Usually, it should be ,, or ;; */
+    char tokenstring_to_search[64] = "";
+    /* Previous item will be replaced by ;__EMPTY_FIELD_CSV__; */
+    char tokenreplacement_string[64] = "";
     char *substitutedstring = NULL;
 
     sprintf(tokenstring_to_search, "%s%s", sep, sep);
     sprintf(tokenreplacement_string, "%s%s%s", sep, EMPTYFIELD, sep);
     substitutedstring = csv_strsubst(str, tokenstring_to_search, tokenreplacement_string);
+    /* in a string like foo;bar;;;, replace all the ;;, not only the first and last one */
+    while (strstr(substitutedstring, tokenstring_to_search) != NULL) {
+        substitutedstring = csv_strsubst(substitutedstring, tokenstring_to_search, tokenreplacement_string);
+    }
+
     if (strncmp(substitutedstring, sep, strlen(sep)) == 0)
     {
         char *tmp = NULL;
