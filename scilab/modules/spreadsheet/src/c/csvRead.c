@@ -636,7 +636,7 @@ static char **extractComments(const char **lines, int nbLines,
     {
         int Output_Start = 0;
         int Output_End = 0;
-        pcre_error_code answer = pcre_private((char*)lines[i], (char*)regexpcomments, &Output_Start, &Output_End);
+        pcre_error_code answer = pcre_private((char*)lines[i], (char*)regexpcomments, &Output_Start, &Output_End, NULL, NULL);
 
         if ( (answer == CAN_NOT_COMPILE_PATTERN) || (answer == DELIMITER_NOT_ALPHANUMERIC))
         {
@@ -681,7 +681,7 @@ static char **removeComments(const char **lines, int nbLines,
     {
         int Output_Start = 0;
         int Output_End = 0;
-        pcre_error_code answer = pcre_private((char*)lines[i], (char*)regexpcomments, &Output_Start, &Output_End);
+        pcre_error_code answer = pcre_private((char*)lines[i], (char*)regexpcomments, &Output_Start, &Output_End, NULL, NULL);
         if ( answer == PCRE_FINISHED_OK )
         {
             FREE((char*)lines[i]);
