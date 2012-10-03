@@ -392,9 +392,18 @@ static char **getStringsFromLines(const char **lines, int sizelines,
 {
     char **results = NULL;
 
-    if (lines == NULL) return NULL;
-    if (separator == NULL) return NULL;
-    if (m == 0 || n == 0) return NULL;
+    if (lines == NULL)
+    {
+        return NULL;
+    }
+    if (separator == NULL)
+    {
+        return NULL;
+    }
+    if (m == 0 || n == 0)
+    {
+        return NULL;
+    }
 
     results = (char**) MALLOC(sizeof(char*) * (m * n));
     if (results)
@@ -619,7 +628,7 @@ static char **extractComments(const char **lines, int nbLines,
     {
         int Output_Start = 0;
         int Output_End = 0;
-        pcre_error_code answer = pcre_private((char*)lines[i], (char*)regexpcomments, &Output_Start, &Output_End);
+        pcre_error_code answer = pcre_private((char*)lines[i], (char*)regexpcomments, &Output_Start, &Output_End, NULL, NULL);
 
         if ( (answer == CAN_NOT_COMPILE_PATTERN) || (answer == DELIMITER_NOT_ALPHANUMERIC))
         {
@@ -664,7 +673,7 @@ static char **removeComments(const char **lines, int nbLines,
     {
         int Output_Start = 0;
         int Output_End = 0;
-        pcre_error_code answer = pcre_private((char*)lines[i], (char*)regexpcomments, &Output_Start, &Output_End);
+        pcre_error_code answer = pcre_private((char*)lines[i], (char*)regexpcomments, &Output_Start, &Output_End, NULL, NULL);
         if ( answer == PCRE_FINISHED_OK )
         {
             FREE((char*)lines[i]);
