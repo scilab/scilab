@@ -17,9 +17,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "api_scilab.h"
 #include "xs2file.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "GetProperty.h"
 #include "IsAScalar.h"
 #include "localization.h"
@@ -40,13 +39,13 @@ static BOOL isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/
 int xs2file(char * fname, ExportFileType fileType )
 {
-    int *piAddr1;
-    int *piAddr2;
-    int *piAddr3;
-    int *piLen;
-    int i;
     SciErr sciErr;
-    int iType1 = 0;
+
+    int* piAddrl1 = NULL;
+    int* piAddrfileName = NULL;
+    int* piAddrsciOrientation = NULL;
+    int* piAddrquality = NULL;
+    double* quality = NULL;
 
     /* Check input and output sizes */
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -59,76 +58,86 @@ int xs2file(char * fname, ExportFileType fileType )
         CheckInputArgument(pvApiCtx, 2, 2);
     }
 
-    //get variable address of the input argument
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 1;
-    }//
-
-    sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 1;
-    }
-
-    if (iType1 != sci_matrix && iType1 != sci_handles)
+    if ((!checkInputArgumentType(pvApiCtx, 1, sci_matrix)) && (!checkInputArgumentType(pvApiCtx, 1, sci_handles)))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: An integer or a handle expected.\n"), fname, 1);
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
         return 1;
     }
 
-    //get variable address of the input argument
-    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 1;
-    }
-
-    if ( (isStringType(pvApiCtx, piAddr2)) )
+    if ( (checkInputArgumentType(pvApiCtx, 2, sci_strings)) )
     {
         char **fileName = NULL;
         char *real_filename = NULL;
         float jpegCompressionQuality = 0.95f;
         ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
-        int m1 = 0, n1 = 0, l1 = 0;
-        double figurenum = -1;
+        int m1 = 0, n1 = 0;
+        int figurenum = -1;
         char* figureUID = NULL;
         char *status = NULL;
 
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
 
         /* get handle by figure number */
-        if (iType1 == sci_matrix)
+        if (checkInputArgumentType(pvApiCtx, 1, sci_matrix))
         {
-            getScalarDouble(pvApiCtx, piAddr1, &figurenum);
+            // Retrieve a matrix of double at position 1.
+            int* l1 = NULL;
+            sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                return 1;
+            }
 
+            if (m1*n1 != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
+                return 1;
+            }
+
+            figurenum = *l1;
             if (!sciIsExistingFigure(figurenum))
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A valid figure_id expected.\n"), fname, 1);
+                Scierror(999, "%s: Input argument #%d must be a valid figure_id.\n", fname, 1);
                 return 1;
             }
             figureUID = getFigureFromIndex(figurenum);
         }
-
         /* check given handle */
-        if (iType1 == sci_handles)
+        else if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
             int iHandleType = -1;
             int* piHandleType = &iHandleType;
-            GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1);
+            long long* l1 = NULL;
+
+            // Retrieve a matrix of handle at position 1.
+            sciErr = getMatrixOfHandle(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                assignment discards qualifiers from pointer target type
+                Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+                return 1;
+            }
+
             if (m1*n1 != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
                 return 1;
             }
 
-            figureUID = getObjectFromHandle(getHandleFromStack(l1));
+            figureUID = getObjectFromHandle((unsigned long) * l1);
             if (figureUID == NULL)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Graphic handle expected.\n"), fname, 1);
+                Scierror(999, _("%s: Input argument #%d must be a valid handle.\n"), fname, 1);
                 return 1;
             }
 
@@ -140,48 +149,27 @@ int xs2file(char * fname, ExportFileType fileType )
                 return 1;
             }
         }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar or figure handle expected.\n"), fname, 1);
+            return 1;
+        }
 
         /* get file name */
-
-        //get variable address
-        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 1;
-        }//MYMARK2
-
-        //fisrt call to retrieve dimensions
-        sciErr = getMatrixOfString(pvApiCtx, piAddr2, &m1, &n1, NULL, NULL);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrfileName);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 1;
         }
 
-        piLen = (int*)malloc(sizeof(int) * m1 * n1);
-
-        //second call to retrieve length of each string
-        sciErr = getMatrixOfString(pvApiCtx, piAddr2, &m1, &n1, piLen, NULL);
-        if (sciErr.iErr)
+        // Retrieve a matrix of string at position 2.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddrfileName, &m1, &n1, &fileName))
         {
-            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
             return 1;
         }
 
-        fileName = (char**)malloc(sizeof(char*) * m1 * n1);
-        for (i = 0 ; i < m1 * n1 ; i++)
-        {
-            fileName[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
-        }
-
-        //third call to retrieve data
-        sciErr = getMatrixOfString(pvApiCtx, piAddr2, &m1, &n1, piLen, fileName);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 1;
-        }
         if (m1*n1 == 1)
         {
             if (nbInputArgument(pvApiCtx) == 3)
@@ -194,103 +182,84 @@ int xs2file(char * fname, ExportFileType fileType )
 
                     char **sciOrientation = NULL;
 
-                    //get variable address
-                    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
-                    if (sciErr.iErr)
+                    if ((!checkInputArgumentType(pvApiCtx, 3, sci_strings)))
                     {
-                        printError(&sciErr, 0);
-                        return 1;
-                    }//MYMARK3
-
-                    if (!isStringType(pvApiCtx, piAddr3))
-                    {
-                        freeArrayOfString(fileName, m1 * n1);
+                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         Scierror(999, _("%s: Wrong type for input argument #%d: Single character string expected.\n"), fname, 3);
                         return 1;
                     }
 
-
-                    //fisrt call to retrieve dimensions
-                    sciErr = getMatrixOfString(pvApiCtx, piAddr3, &nbRow, &nbCol, NULL, NULL);
+                    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrsciOrientation);
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         return 1;
                     }
 
-                    piLen = (int*)malloc(sizeof(int) * nbRow * nbCol);
-
-                    //second call to retrieve length of each string
-                    sciErr = getMatrixOfString(pvApiCtx, piAddr3, &nbRow, &nbCol, piLen, NULL);
-                    if (sciErr.iErr)
+                    // Retrieve a matrix of string at position 3.
+                    if (getAllocatedMatrixOfString(pvApiCtx, piAddrsciOrientation, &nbRow, &nbCol, &sciOrientation))
                     {
-                        printError(&sciErr, 0);
+                        freeAllocatedMatrixOfString(m1, n1, fileName);
+                        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
                         return 1;
                     }
 
-                    sciOrientation = (char**)malloc(sizeof(char*) * nbRow * nbCol);
-                    for (i = 0 ; i < nbRow * nbCol ; i++)
-                    {
-                        sciOrientation[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
-                    }
-
-                    //third call to retrieve data
-                    sciErr = getMatrixOfString(pvApiCtx, piAddr3, &nbRow, &nbCol, piLen, sciOrientation);
-                    if (sciErr.iErr)
-                    {
-                        printError(&sciErr, 0);
-                        return 1;
-                    }
                     if (nbRow*nbCol == 1)
                     {
                         /* Value should be 'landscape' or 'portrait' but check only the first character */
                         /* for compatibility with Scilab 4*/
                         if (strcmp(sciOrientation[0], "landscape") == 0 || strcmp(sciOrientation[0], "l") == 0)
                         {
-                            freeArrayOfString(sciOrientation, nbRow * nbCol);
+                            freeAllocatedMatrixOfString(nbRow, nbCol, sciOrientation);
                             orientation = EXPORT_LANDSCAPE;
                         }
                         else if (strcmp(sciOrientation[0], "portrait") == 0 || strcmp(sciOrientation[0], "p") == 0)
                         {
-                            freeArrayOfString(sciOrientation, nbRow * nbCol);
+                            freeAllocatedMatrixOfString(nbRow, nbCol, sciOrientation);
                             orientation = EXPORT_PORTRAIT;
                         }
                         else
                         {
-                            freeArrayOfString(fileName, m1 * n1);
-                            freeArrayOfString(sciOrientation, nbRow * nbCol);
+                            freeAllocatedMatrixOfString(m1, n1, fileName);
+                            freeAllocatedMatrixOfString(nbRow, nbCol, sciOrientation);
                             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "portrait", "landscape");
                             return 1;
                         }
                     }
                     else
                     {
-                        freeArrayOfString(fileName, m1 * n1);
-                        freeArrayOfString(sciOrientation, nbRow * nbCol);
+                        freeAllocatedMatrixOfString(m1, n1, fileName);
+                        freeAllocatedMatrixOfString(nbRow, nbCol, sciOrientation);
                         Scierror(999, _("%s: Wrong size for input argument #%d: Single character string expected.\n"), fname, 3);
                         return 1;
                     }
                 }
                 else
                 {
-                    double quality = 0;
-                    //get variable address of the input argument
-                    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+                    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrquality);
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         return 1;
                     }
 
-                    getScalarDouble(pvApiCtx, piAddr3, &quality);
-
-                    if (quality < 0 || quality > 1)
+                    // Retrieve a matrix of double at position 3.
+                    sciErr = getMatrixOfDouble(pvApiCtx, piAddrquality, &nbRow, &nbCol, &quality);
+                    if (sciErr.iErr)
                     {
-                        freeArrayOfString(fileName, m1 * n1);
+                        freeAllocatedMatrixOfString(m1, n1, fileName);
+                        printError(&sciErr, 0);
+                        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                        return 1;
+                    }
+
+                    if (nbRow != 1 || nbCol != 1 || *quality < 0 || *quality > 1)
+                    {
+                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         Scierror(999, _("%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"), fname, 3);
                         return 1;
                     }
-                    jpegCompressionQuality = (float) quality;
+                    jpegCompressionQuality = (float) * quality;
                 }
             }
 
@@ -306,7 +275,7 @@ int xs2file(char * fname, ExportFileType fileType )
                 FREE(real_filename);
                 real_filename = NULL;
             }
-            freeArrayOfString(fileName, m1 * n1);
+            freeAllocatedMatrixOfString(m1, n1, fileName);
 
             /* treat errors */
             if (strlen(status) != 0)
@@ -317,7 +286,7 @@ int xs2file(char * fname, ExportFileType fileType )
         }
         else
         {
-            freeArrayOfString(fileName, m1 * n1);
+            freeAllocatedMatrixOfString(m1, n1, fileName);
             Scierror(999, _("%s: Wrong size for input argument #%d: Single character string expected.\n"), fname, 2);
             return 1;
         }
