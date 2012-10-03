@@ -116,13 +116,13 @@ int sci_umfpack(char* fname, unsigned long l)
     void* Numeric   = NULL;
     int* Wi         = NULL;
     double* W       = NULL;
+    char* pStr      = NULL;
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 3, 3);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
     /* First get arg #2 : a string of length 1 */
-    char* pStr = NULL;
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
     if (sciErr.iErr)
     {
@@ -243,8 +243,14 @@ int sci_umfpack(char* fname, unsigned long l)
     /* allocate memory for umfpack_di_wsolve usage or umfpack_zi_wsolve usage*/
     Wi = (int*)MALLOC(mA * sizeof(int));
 
-    if (A.it == 1) mW = 10 * mA;
-    else mW = 5 * mA;
+    if (A.it == 1)
+    {
+        mW = 10 * mA;
+    }
+    else
+    {
+        mW = 5 * mA;
+    }
 
     W = (double*)MALLOC(mW * sizeof(double));
 
