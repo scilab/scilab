@@ -10,6 +10,7 @@
  *
  */
 
+#include "MALLOC.h"
 #include "api_scilab.h"
 #include "gw_io.h"
 #include "stack-c.h"
@@ -50,7 +51,7 @@ int sci_host(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        piLen = (int*)malloc(sizeof(int) * m1 * n1);
+        piLen = (int*)MALLOC(sizeof(int) * m1 * n1);
 
         //second call to retrieve length of each string
         sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, NULL);
@@ -60,10 +61,10 @@ int sci_host(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        Str = (char**)malloc(sizeof(char*) * m1 * n1);
+        Str = (char**)MALLOC(sizeof(char*) * m1 * n1);
         for (i = 0 ; i < m1 * n1 ; i++)
         {
-            Str[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+            Str[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
         }
 
         //third call to retrieve data
@@ -83,7 +84,6 @@ int sci_host(char *fname, unsigned long fname_len)
         else
         {
             int stat = 0;
-
             C2F(systemc)(Str[0], &stat);
             /* Create the matrix as return of the function */
             iRet = createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, stat);
@@ -95,7 +95,6 @@ int sci_host(char *fname, unsigned long fname_len)
 
             AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
             ReturnArguments(pvApiCtx);
-
         }
     }
     else
