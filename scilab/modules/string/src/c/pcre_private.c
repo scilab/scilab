@@ -154,7 +154,10 @@ static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
             max = mid;
             mid = (min + mid) / 2;
         }
-        else break;    /* Some other error */
+        else
+        {
+            break;    /* Some other error */
+        }
     }
 
     extra->flags &= ~flag;
@@ -230,8 +233,14 @@ pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Star
         LOOP_PCRE_TST = TRUE;
         p = strdup(INPUT_PAT);
         back_p = p;
-        while (isspace(*p)) p++;
-        if (*p == 0) continue;
+        while (isspace(*p))
+        {
+            p++;
+        }
+        if (*p == 0)
+        {
+            continue;
+        }
         /* In-line pattern (the usual case). Get the delimiter and seek the end of
         the pattern; if is isn't complete, read more. */
 
@@ -261,8 +270,14 @@ pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Star
 
         while (*pp != 0)
         {
-            if (*pp == '\\' && pp[1] != 0) pp++;
-            else if (*pp == delimiter) break;
+            if (*pp == '\\' && pp[1] != 0)
+            {
+                pp++;
+            }
+            else if (*pp == delimiter)
+            {
+                break;
+            }
             pp++;
         }
 
@@ -284,7 +299,10 @@ pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Star
                 FREE(back_p);
                 back_p = NULL;
             }
-            if (offsets) FREE(offsets);
+            if (offsets)
+            {
+                FREE(offsets);
+            }
             return CAN_NOT_COMPILE_PATTERN;
         }
 
@@ -292,7 +310,10 @@ pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Star
         the pattern end with backslash. This is purely to provide a way
         of testing for the error message when a pattern ends with backslash. */
 
-        if (pp[1] == '\\') *pp++ = '\\';
+        if (pp[1] == '\\')
+        {
+            *pp++ = '\\';
+        }
 
         /* Terminate the pattern at the delimiter, and save a copy of the pattern
         for callouts. */
@@ -376,7 +397,10 @@ pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Star
                             FREE(buffer);
                             buffer = NULL;
                         }
-                        if (offsets) FREE(offsets);
+                        if (offsets)
+                        {
+                            FREE(offsets);
+                        }
                         return UTF8_NOT_SUPPORTED;
                     }
                     options |= PCRE_UTF8;
@@ -389,7 +413,10 @@ pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Star
                     ppp = pp;
                     /* The '\r' test here is so that it works on Windows. */
                     /* The '0' test is just in case this is an unterminated line. */
-                    while (*ppp != 0 && *ppp != '\n' && *ppp != '\r' && *ppp != ' ') ppp++;
+                    while (*ppp != 0 && *ppp != '\n' && *ppp != '\r' && *ppp != ' ')
+                    {
+                        ppp++;
+                    }
                     *ppp = 0;
                     if (setlocale(LC_CTYPE, (const char *)pp) == NULL)
                     {
@@ -400,13 +427,22 @@ pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Star
                     pp = ppp;
                     break;
                 case '>':
-                    while (*pp != 0) pp++;
-                    while (isspace(pp[-1])) pp--;
+                    while (*pp != 0)
+                    {
+                        pp++;
+                    }
+                    while (isspace(pp[-1]))
+                    {
+                        pp--;
+                    }
                     *pp = 0;
                     break;
                 case '<':
                 {
-                    while (*pp++ != '>');
+                    while (*pp++ != '>')
+                    {
+                        ;
+                    }
                 }
                 break;
                 case '\r':                      /* So that it works in Windows */
@@ -490,7 +526,10 @@ SKIP_DATA:
             callout_fail_count = 999999;
             callout_fail_id = -1;
 
-            if (extra != NULL) extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT | PCRE_EXTRA_MATCH_LIMIT_RECURSION);
+            if (extra != NULL)
+            {
+                extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT | PCRE_EXTRA_MATCH_LIMIT_RECURSION);
+            }
             p = buffer;
             bptr = q = buffer;
             while ((c = *p++) != 0)
@@ -534,7 +573,9 @@ SKIP_DATA:
                         case '7':
                             c -= '0';
                             while (i++ < 2 && isdigit(*p) && *p != '8' && *p != '9')
+                            {
                                 c = c * 8 + *p++ - '0';
+                            }
                             break;
                         case 'x':
                             /* Ordinary \x */
@@ -549,7 +590,10 @@ SKIP_DATA:
                             p--;
                             continue;
                         case '>':
-                            while (isdigit(*p)) start_offset = start_offset * 10 + *p++ - '0';
+                            while (isdigit(*p))
+                            {
+                                start_offset = start_offset * 10 + *p++ - '0';
+                            }
                             continue;
                         case 'A':  /* Option setting */
                             options |= PCRE_ANCHORED;
@@ -560,13 +604,19 @@ SKIP_DATA:
                         case 'C':
                             if (isdigit(*p))    /* Set copy string */
                             {
-                                while (isdigit(*p)) n = n * 10 + *p++ - '0';
+                                while (isdigit(*p))
+                                {
+                                    n = n * 10 + *p++ - '0';
+                                }
                                 copystrings |= 1 << n;
                             }
                             else if (isalnum(*p))
                             {
                                 char *npp = copynamesptr;
-                                while (isalnum(*p)) *npp++ = *p++;
+                                while (isalnum(*p))
+                                {
+                                    *npp++ = *p++;
+                                }
                                 *npp++ = 0;
                                 *npp = 0;
                                 pcre_get_stringnumber(re, (char *)copynamesptr);
@@ -585,13 +635,17 @@ SKIP_DATA:
                                 callout_fail_id = 0;
                                 p++;
                                 while (isdigit(*p))
+                                {
                                     callout_fail_id = callout_fail_id * 10 + *p++ - '0';
+                                }
                                 callout_fail_count = 0;
                                 if (*p == '!')
                                 {
                                     p++;
                                     while (isdigit(*p))
+                                    {
                                         callout_fail_count = callout_fail_count * 10 + *p++ - '0';
+                                    }
                                 }
                             }
                             else if (*p == '*')
@@ -603,7 +657,10 @@ SKIP_DATA:
                                     sign = -1;
                                     p++;
                                 }
-                                while (isdigit(*p)) callout_data = callout_data * 10 + *p++ - '0';
+                                while (isdigit(*p))
+                                {
+                                    callout_data = callout_data * 10 + *p++ - '0';
+                                }
                                 callout_data *= sign;
                                 callout_data_set = 1;
                             }
@@ -611,13 +668,19 @@ SKIP_DATA:
                         case 'G':
                             if (isdigit(*p))
                             {
-                                while (isdigit(*p)) n = n * 10 + *p++ - '0';
+                                while (isdigit(*p))
+                                {
+                                    n = n * 10 + *p++ - '0';
+                                }
                                 getstrings |= 1 << n;
                             }
                             else if (isalnum(*p))
                             {
                                 char *npp = getnamesptr;
-                                while (isalnum(*p)) *npp++ = *p++;
+                                while (isalnum(*p))
+                                {
+                                    *npp++ = *p++;
+                                }
                                 *npp++ = 0;
                                 *npp = 0;
                                 pcre_get_stringnumber(re, (char *)getnamesptr);
@@ -633,21 +696,33 @@ SKIP_DATA:
                             options |= PCRE_NOTEMPTY;
                             continue;
                         case 'O':
-                            while (isdigit(*p)) n = n * 10 + *p++ - '0';
+                            while (isdigit(*p))
+                            {
+                                n = n * 10 + *p++ - '0';
+                            }
                             if (n > size_offsets_max)
                             {
                                 size_offsets_max = n;
-                                if (offsets) FREE(offsets);
+                                if (offsets)
+                                {
+                                    FREE(offsets);
+                                }
                                 use_offsets = offsets = (int *)MALLOC(size_offsets_max * sizeof(int));
                             }
                             use_size_offsets = n;
-                            if (n == 0) use_offsets = NULL;   /* Ensures it can't write to it */
+                            if (n == 0)
+                            {
+                                use_offsets = NULL;    /* Ensures it can't write to it */
+                            }
                             continue;
                         case 'P':
                             options |= PCRE_PARTIAL;
                             continue;
                         case 'Q':
-                            while (isdigit(*p)) n = n * 10 + *p++ - '0';
+                            while (isdigit(*p))
+                            {
+                                n = n * 10 + *p++ - '0';
+                            }
                             if (extra == NULL)
                             {
                                 extra = (pcre_extra *)MALLOC(sizeof(pcre_extra));
@@ -657,7 +732,10 @@ SKIP_DATA:
                             extra->match_limit_recursion = n;
                             continue;
                         case 'q':
-                            while (isdigit(*p)) n = n * 10 + *p++ - '0';
+                            while (isdigit(*p))
+                            {
+                                n = n * 10 + *p++ - '0';
+                            }
                             if (extra == NULL)
                             {
                                 extra = (pcre_extra *)MALLOC(sizeof(pcre_extra));
@@ -682,7 +760,10 @@ SKIP_DATA:
                             continue;
                         case '<':
                         {
-                            while (*p++ != '>');
+                            while (*p++ != '>')
+                            {
+                                ;
+                            }
                         }
                         continue;
                     }
@@ -795,9 +876,11 @@ SKIP_DATA:
                             {
                                 char* pstSubstring = NULL;
                                 pcre_get_substring(bptr, use_offsets, count, i + 1, &pstSubstring);
-                                (*_pstCapturedString)[i] = strdup(pstSubstring);
+                                if (pstSubstring != NULL)
+                                {
+                                    (*_pstCapturedString)[i] = strdup(pstSubstring);
+                                }
                                 pcre_free_substring(pstSubstring);
-                                //sciprint("substring %d : %s\n", i + 1, (*_pstCapturedString)[i]);
                             }
                         }
                     }
@@ -849,15 +932,27 @@ SKIP_DATA:
                         {
                             *Output_Start = use_offsets[i];
                             *Output_End = use_offsets[i + 1];
-                            if (buffer) FREE(buffer);
+                            if (buffer)
+                            {
+                                FREE(buffer);
+                            }
 
                             /* use_offsets = offsets no need to free use_offsets if we free offsets */
-                            if (offsets) FREE(offsets);
+                            if (offsets)
+                            {
+                                FREE(offsets);
+                            }
 
                             /* "re" allocated by pcre_compile (better to use free function associated)*/
-                            if (re) (*pcre_free)(re);
+                            if (re)
+                            {
+                                (*pcre_free)(re);
+                            }
 
-                            if (extra) FREE(extra);
+                            if (extra)
+                            {
+                                FREE(extra);
+                            }
                             if (tables)
                             {
                                 /* "tables" allocated by pcre_maketables (better to use free function associated to pcre)*/
@@ -930,7 +1025,10 @@ SKIP_DATA:
                                 FREE(buffer);
                                 buffer = NULL;
                             }
-                            if (offsets) FREE(offsets);
+                            if (offsets)
+                            {
+                                FREE(offsets);
+                            }
                             if (p)
                             {
                                 FREE(back_p);
@@ -973,7 +1071,10 @@ SKIP_DATA:
                 }
 
                 /* If not /g or /G we are done */
-                if (!do_g && !do_G) break;
+                if (!do_g && !do_G)
+                {
+                    break;
+                }
 
                 /* If we have matched an empty string, first check to see if we are at
                 the end of the subject. If so, the /g loop is over. Otherwise, mimic
@@ -986,13 +1087,19 @@ SKIP_DATA:
 
                 if (use_offsets[0] == use_offsets[1])
                 {
-                    if (use_offsets[0] == len) break;
+                    if (use_offsets[0] == len)
+                    {
+                        break;
+                    }
                     g_notempty = PCRE_NOTEMPTY | PCRE_ANCHORED;
                 }
 
                 /* For /g, update the start offset, leaving the rest alone */
 
-                if (do_g) start_offset = use_offsets[1];
+                if (do_g)
+                {
+                    start_offset = use_offsets[1];
+                }
                 /* For /G, update the pointer and length */
                 else
                 {
