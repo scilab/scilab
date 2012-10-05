@@ -30,6 +30,25 @@
         <para>
             <literal>resume</literal> est équivalent à <literal>return</literal>.
         </para>
+        <para>
+            Note: l'utilisation de cette fonctionnalité peut complexifier le code. A la place, la syntaxe <code>function b = foo()</code> est recommendée.
+        </para>
+    </refsection>
+    
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+function foo(a)
+         a=a+1
+         b=resume(a)
+         c=52
+endfunction
+
+foo(42);
+assert_checkequal(b,43);
+// c n'exite pas
+
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
