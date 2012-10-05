@@ -31,7 +31,9 @@
             <literal>resume</literal> est équivalent à <literal>return</literal>.
         </para>
         <para>
-            Note: l'utilisation de cette fonctionnalité peut complexifier le code. A la place, la syntaxe <code>function b = foo()</code> est recommendée.
+            <note>
+                Note: l'utilisation de cette fonctionnalité peut complexifier le code. A la place, la syntaxe <code>function b = foo()</code> est recommendée.
+            </note>
         </para>
     </refsection>
     

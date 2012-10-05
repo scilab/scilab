@@ -48,6 +48,26 @@
         <para>
             Инструкция <literal>resume</literal> эквивалентна инструкции <literal>return</literal>.
         </para>
+        <para>
+            <note>
+                Примечание: Использование этой возможности может усложнить код. Вместо этого рекомендуется синтаксис <code>function b = foo()</code>.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+function foo(a)
+         a=a+1
+         b=resume(a)
+         c=52
+endfunction
+
+foo(42);
+assert_checkequal(b,43);
+// c не существует
+
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
