@@ -49,8 +49,8 @@ public class DatatipCommon {
 
         if (dataX != null) {
             for (int i = 0; i < dataX.length - 1; ++i) {
-                double min = Math.min(dataX[i], dataX[i+1]);
-                double max = Math.max(dataX[i], dataX[i+1]);
+                double min = Math.min(dataX[i], dataX[i + 1]);
+                double max = Math.max(dataX[i], dataX[i + 1]);
 
                 if (x >= min && x <= max) {
                     index = i;
@@ -58,7 +58,7 @@ public class DatatipCommon {
                 }
             }
             if (index == -1) {
-            /* x out of polyline bounds, return the closest segment bound*/
+                /* x out of polyline bounds, return the closest segment bound*/
 
                 double min = Math.min(dataX[0], dataX[dataX.length - 1]);
                 double max = Math.max(dataX[0], dataX[dataX.length - 1]);
@@ -70,7 +70,7 @@ public class DatatipCommon {
                     index = (max == dataX[0]) ? 0 : (dataX.length - 2);
                 }
             }
-            return new Segment(index, dataX[index], dataX[index+1], dataY[index], dataY[index+1]);
+            return new Segment(index, dataX[index], dataX[index + 1], dataY[index], dataY[index + 1]);
         }
         return null;
     }
@@ -88,16 +88,16 @@ public class DatatipCommon {
             if (xDiff != 0.0) {
                 double ca = (seg.y1 - seg.y0) / xDiff;
                 double y = seg.y0 + ca * (x - seg.x0);
-                return new Double[]{x, y, 0.0};
+                return new Double[] {x, y, 0.0};
             } else {
                 /*angular coeficent -> inf, return the first point*/
-                return new Double[]{seg.x0, seg.y0, 0.0};
+                return new Double[] {seg.x0, seg.y0, 0.0};
             }
         } else {
             if (seg.pointIndex == 0) {
-                return new Double[]{seg.x0, seg.y0, 0.0};
+                return new Double[] {seg.x0, seg.y0, 0.0};
             } else {
-                return new Double[]{seg.x1, seg.y1, 0.0};
+                return new Double[] {seg.x1, seg.y1, 0.0};
             }
         }
     }
@@ -107,7 +107,7 @@ public class DatatipCommon {
      */
     public static String getParentPolyline(String datatip) {
         String parent = (String)GraphicController.getController().getProperty(datatip, __GO_PARENT__);
-        String parentType = (String)GraphicController.getController().getProperty(parent, __GO_TYPE__);
+        Integer parentType = (Integer)GraphicController.getController().getProperty(parent, __GO_TYPE__);
         if (parentType.equals(__GO_POLYLINE__)) {
             return parent;
         } else {
@@ -116,12 +116,12 @@ public class DatatipCommon {
     }
 
     /*
-     * Given a pixel coordinate return the transformed axis coordinate 
+     * Given a pixel coordinate return the transformed axis coordinate
      */
     public static double[] getTransformedPosition(String figure, Integer[] pos) {
 
         String axes = AxesHandler.clickedAxes(figure, pos);
-        double[] position = {1.0*pos[0], 1.0*pos[1], 0.0};
+        double[] position = {1.0 * pos[0], 1.0 * pos[1], 0.0};
         return CallRenderer.get2dViewFromPixelCoordinates(axes, position);
     }
 }

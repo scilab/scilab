@@ -42,7 +42,6 @@ getJxgetmouseXCoordinate
 getJxgetmouseMouseButtonNumber
 CallJxgetmouse
 CallJxgetmouseWithOptions
-CallDatatipCreateField
 setMenuParent
 SetUicontrolPosition
 SetConsoleShowHiddenHandles

@@ -134,8 +134,7 @@ src/jni/ScilabDisplayTree.cpp \
 src/jni/EditorManager.cpp \
 src/jni/StartGED.cpp \
 src/jni/DatatipFunctions.cpp \
-src/jni/StartPlotBrowser.cpp \
-src/cpp/CallDatatipCreateField.cpp
+src/jni/StartPlotBrowser.cpp
 
 GIWS_WRAPPERS = \
 src/jni/SwingView.giws.xml \

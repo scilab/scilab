@@ -11,9 +11,9 @@
  *
  */
 
-#include "EditorManager.hxx"
 #include "GiwsException.hxx"
 #include "ScilabView.hxx"
+#include "EditorManager.hxx"
 
 extern "C"
 {
@@ -51,7 +51,7 @@ int sci_useeditor(char *fname, unsigned long fname_len)
 
     if (m1 * n1 != 1)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname, m1*n1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname, m1 * n1);
         return FALSE;
     }
 
@@ -88,7 +88,7 @@ int sci_useeditor(char *fname, unsigned long fname_len)
         }
 
     }
-    catch(const GiwsException::JniException & e)
+    catch (const GiwsException::JniException & e)
     {
         Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
         return FALSE;

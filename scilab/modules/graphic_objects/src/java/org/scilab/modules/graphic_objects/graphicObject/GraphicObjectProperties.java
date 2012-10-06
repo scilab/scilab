@@ -356,12 +356,11 @@ public class GraphicObjectProperties {
     public static final int __GO_UI_MESSAGE__ =             295;
     public static final int __GO_UI_MESSAGE_SIZE__ =        296;
 
-    public static final int __GO_DATATIPS__ =               297;
-    public static final int __GO_DATATIPS_SIZE__ =          298;
-    public static final int __GO_DATATIP_DATA__ =           299;
-    public static final int __GO_DATATIP_ORIENTATION__ =    300;
-    public static final int __GO_DATATIP_3COMPONENT__ =     301;
-    public static final int __GO_DATATIP_AUTOORIENTATION__ =     302;
+    public static final int __GO_DATATIP__ =               297;
+    public static final int __GO_DATATIP_DATA__ =           298;
+    public static final int __GO_DATATIP_ORIENTATION__ =    299;
+    public static final int __GO_DATATIP_3COMPONENT__ =     300;
+    public static final int __GO_DATATIP_AUTOORIENTATION__ =     301;
 
 
 }

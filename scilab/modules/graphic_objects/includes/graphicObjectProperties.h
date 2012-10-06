@@ -355,12 +355,11 @@
 #define __GO_UI_MESSAGE__                  295
 #define __GO_UI_MESSAGE_SIZE__             296
 
-#define __GO_DATATIPS__                    297
-#define __GO_DATATIPS_SIZE__               298
-#define __GO_DATATIP_DATA__                299
-#define __GO_DATATIP_ORIENTATION__         300
-#define __GO_DATATIP_3COMPONENT__          301
-#define __GO_DATATIP_AUTOORIENTATION__          302
+#define __GO_DATATIP__                    297
+#define __GO_DATATIP_DATA__                298
+#define __GO_DATATIP_ORIENTATION__         299
+#define __GO_DATATIP_3COMPONENT__          300
+#define __GO_DATATIP_AUTOORIENTATION__          301
 
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

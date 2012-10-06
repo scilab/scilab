@@ -83,7 +83,7 @@ public class ObjectSearcher {
 
         for (Integer i = 0; i < childCount; ++i ) {
             Integer objType = (Integer)GraphicController.getController().getProperty(childUid[i], GraphicObjectProperties.__GO_TYPE__);
-            if ( objType == type ) {
+            if (objType.equals(type)) {
                 objects.add( childUid[i] );
             } else {
                 getObjects(childUid[i]);
@@ -102,7 +102,7 @@ public class ObjectSearcher {
             boolean found = false;
 
             for (Integer j = 0; j < types.length; ++j) {
-                if (objType == types[j]) {
+                if (objType.equals(types[j])) {
                     objects.add(childUid[i]);
                     found = true;
                     break;

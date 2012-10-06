@@ -86,7 +86,6 @@ function %h_p(h)
                 "y_shift = "+bys
                 "z_shift = "+bzs
                 "bar_width = "+sci2exp(h.bar_width)
-                "datatips = matrix "+strcat(string(size(h.datatips)),'x')
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box)
                 "user_data = "+fmtuser_data(u)

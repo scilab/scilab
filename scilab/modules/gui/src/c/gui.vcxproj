@@ -218,7 +218,6 @@
     <ClCompile Include="..\cpp\CallFontChooser.cpp" />
     <ClCompile Include="..\cpp\CallHelpBrowser.cpp" />
     <ClCompile Include="..\cpp\CallJuigetfile.cpp" />
-    <ClCompile Include="..\cpp\CallDatatipCreateField.cpp" />
     <ClCompile Include="..\cpp\CallJxclick.cpp" />
     <ClCompile Include="..\cpp\CallJxgetmouse.cpp" />
     <ClCompile Include="..\cpp\CallMessageBox.cpp" />
@@ -402,7 +401,6 @@
     <ClInclude Include="..\..\includes\CallJuigetfile.h" />
     <ClInclude Include="..\..\includes\CallJuigetfile.hxx" />
     <ClInclude Include="..\..\includes\CallJxclick.h" />
-    <ClInclude Include="..\..\includes\CallDatatipCreateField.h" />
     <ClInclude Include="..\..\includes\CallJxgetmouse.h" />
     <ClInclude Include="..\..\includes\CallMessageBox.h" />
     <ClInclude Include="..\..\includes\ContextMenu.h" />
@@ -472,7 +470,6 @@
     <ClInclude Include="..\cpp\CallHelpBrowser.hxx" />
     <ClInclude Include="..\cpp\CallJxclick.hxx" />
     <ClInclude Include="..\cpp\CallJxgetmouse.hxx" />
-    <ClInclude Include="..\cpp\CallDatatipCreateField.hxx" />
     <ClInclude Include="..\cpp\CallMainWindow.hxx" />
     <ClInclude Include="..\cpp\CallMessageBox.hxx" />
     <ClInclude Include="..\cpp\ContextMenu.hxx" />

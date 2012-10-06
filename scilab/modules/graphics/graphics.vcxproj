@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -227,7 +227,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_background_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_bar_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_bar_width_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_datatips_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_type_property.c" />
@@ -448,7 +447,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_background_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_bar_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_bar_width_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_datatips_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_callback_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_callback_type_property.c" />

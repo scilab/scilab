@@ -92,7 +92,6 @@ int sci_datatipcreate(char *fname, unsigned long fname_len)
             /* Create Datatip Using "datatip_handle = datatipCreate(polyline_handle,pt)" */
 
             datatip_handler = DatatipCreate::createDatatipProgramCoord(getScilabJavaVM(), (char*)pstFigureUID, pdblReal, 2);
-            //char* DatatipCreate::createDatatipProgramCoord (JavaVM * jvm_, char const* polylineUid, double const* coordDoubleXY, int coordDoubleXYSize);
         }
 
     }

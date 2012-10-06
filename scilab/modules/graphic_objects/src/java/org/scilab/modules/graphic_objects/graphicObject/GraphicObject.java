@@ -218,7 +218,7 @@ public abstract class GraphicObject implements Cloneable {
                 return Type.PROGRESSIONBAR;
             case __GO_WAITBAR__ :
                 return Type.WAITBAR;
-            case __GO_DATATIPS__:
+            case __GO_DATATIP__:
                 return Type.DATATIP;
             default :
                 return Type.UNKNOWNOBJECT;

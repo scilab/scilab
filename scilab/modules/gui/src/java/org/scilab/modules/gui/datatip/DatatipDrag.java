@@ -53,8 +53,6 @@ public class DatatipDrag {
             if (AutoOrientation) {
                 DatatipOrientation.setOrientation(datatipUid, seg);
             }
-
-            DatatipMove.updateDatatipsField(parentPolyline, oldPos[0], oldPos[1], newPos[0], newPos[1]);
         }
     }
 

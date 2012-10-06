@@ -291,9 +291,6 @@ function save_graphichandle(h,fd)
     
     mput( h.bar_width, 'dl', fd ) ; // bar_width
 
-    mput(size(h.datatips,'*'),'il',fd); // datatips
-    mput(h.datatips,'dl',fd);
-
     mput(length(h.clip_state),characterFormat,fd); // clip_state
     mput(ascii(h.clip_state),characterFormat,fd);
     if h.clip_state=='on' then

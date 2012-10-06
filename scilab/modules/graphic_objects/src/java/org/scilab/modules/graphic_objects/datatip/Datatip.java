@@ -250,7 +250,7 @@ public class Datatip extends Text {
      * @return Type as String
      */
     public Integer getType() {
-        return GraphicObjectProperties.__GO_DATATIPS__;
+        return GraphicObjectProperties.__GO_DATATIP__;
     }
 
 }

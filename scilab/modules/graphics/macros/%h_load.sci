@@ -581,7 +581,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       bar_width = mget( 1, 'dl', fd ) ; // bar_width
     end
 
-    datatips=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3) // datatips
 
     clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // clip_state
 

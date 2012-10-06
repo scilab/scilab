@@ -4,10 +4,6 @@
             <parameter name="polylineUid" type="String"/>
             <parameter name="coordDoubleXY" type="double[]"/>
         </method>
-        <method name="createDatatipField" returnType="double[]" modifier="static">
-            <parameter name="polylineUid" type="String"/>
-            <parameter name="coordDoubleXY" type="double[]"/>
-        </method>
         <method name="createDatatipProgramIndex" returnType="String" modifier="static">
             <parameter name="polylineUid" type="String"/>
             <parameter name="indexPoint" type="int"/>

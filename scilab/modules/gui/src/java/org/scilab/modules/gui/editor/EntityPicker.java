@@ -445,7 +445,8 @@ public class EntityPicker {
         }
 
         curAxes = AxesHandler.getAxesFromUid(axes);
-        String[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIPS__);
+        String[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIP__);
+
 
         if (datatips != null) {
 
@@ -455,7 +456,6 @@ public class EntityPicker {
             pix_pos[0] += 1.0;
             pix_pos[1] += 1.0;
             double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pix_pos);
-
             double dx = Math.abs(c2d[0] - c2d2[0]);
             double dy = Math.abs(c2d[1] - c2d2[1]);
 
@@ -463,6 +463,7 @@ public class EntityPicker {
 
                 Double[] tip_pos = (Double[])GraphicController.getController().getProperty(datatips[i], GraphicObjectProperties.__GO_DATATIP_DATA__);
                 double point[] = {tip_pos[0], tip_pos[1], tip_pos[2]};
+
 
                 if (needTransform) {
                     point = transformPoint(curAxes, tip_pos[0], tip_pos[1], tip_pos[2]);
@@ -480,7 +481,6 @@ public class EntityPicker {
 
             }
         }
-
         return null;
     }
 }
