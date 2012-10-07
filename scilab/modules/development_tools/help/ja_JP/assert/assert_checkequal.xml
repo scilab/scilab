@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkequal" xml:lang="ja">
+    <refnamediv>
+        <refname>assert_checkequal</refname>
+        <refpurpose>計算値と予測値が等しいことを確認する.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            assert_checkequal ( computed , expected )
+            flag = assert_checkequal ( computed , expected )
+            [flag,errmsg] = assert_checkequal ( computed , expected )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>computed:</term>
+                <listitem>
+                    <para>計算結果</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>expected :</term>
+                <listitem>
+                    <para>予測された結果</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag :</term>
+                <listitem>
+                    <para>1行1列の論理値行列で, 計算値が予測値と等しい場合に%t,そうでない場合に%f
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>errmsg :</term>
+                <listitem>
+                    <para>1行1列の文字列行列で,エラーメッセージ.
+                        flag==%t の場合, errormsg==""となります. 
+                        flag==%f の場合, errmsgにはエラーメッセージが出力されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            computedとexpectedが等しい場合,そのまま実行されます.
+        </para>
+        <para>
+            入力引数の型が共に1 (すなわち実数行列)の場合,
+            nan以外の値が等しいことが確認されます.
+        </para>
+        <para>
+            まず実部を確認し,それが等しい場合に虚部を確認します.
+        </para>
+        <para>
+            比較がcomputedがexpectedに等しくないことを示す場合,
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        errmsg出力変数が使用されない場合,エラーが生成され,
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        errmsg出力変数が使用される場合,エラーは生成されません.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// 成功するテスト
+assert_checkequal ( %T , %T );
+flag = assert_checkequal ( list() , list() );
+[flag , errmsg] = assert_checkequal ( [%T %F], [%T %F] );
+assert_checkequal ( %nan , %nan );
+
+// 失敗するテスト
+assert_checkequal ( %F , %T );
+flag = assert_checkequal ( %F , %T );
+// エラーは発生しません :
+[flag , errmsg] = assert_checkequal ( %F , %T )
+assert_checkequal ( [1 2], [3 4] )
+assert_checkequal ( 1 , [2 3] )
+assert_checkequal ( 1 , "b" )
+
+   ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
+    </refsection>
+</refentry>

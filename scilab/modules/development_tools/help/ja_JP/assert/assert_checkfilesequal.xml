@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkfilesequal" xml:lang="ja">
+    <refnamediv>
+        <refname>assert_checkfilesequal</refname>
+        <refpurpose>2つのファイルが等しいことを確認する.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            flag = assert_checkfilesequal ( filecomp , fileref )
+            flag = assert_checkfilesequal ( filecomp , fileref , compfun )
+            [flag,errmsg] = assert_checkfilesequal ( ... )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>filecomp :</term>
+                <listitem>
+                    <para> 1行1列の文字列行列, 計算されたファイル.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fileref :</term>
+                <listitem>
+                    <para> 1行1列の文字列行列, 基準ファイル.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>compfun :</term>
+                <listitem>
+                    <para> 関数またはリスト, 
+                        比較用関数 (デフォルト:compfun = []). 
+                        比較用関数が使用されない場合,
+                        等価演算子 "==" が使用されます.
+                        詳細については以下を参照ください.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag :</term>
+                <listitem>
+                    <para> 
+                        1行1列の論理値行列,
+                        computedがexpectedに近い場合に %t, 
+                        そうでない場合に %f
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>errmsg :</term>
+                <listitem>
+                    <para>
+                        1行1列の文字列行列, エラーメッセージ.
+                        flag==%t の場合, errmsg="".
+                        flag==%f の場合, errmsgにエラーメッセージが代入されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ファイルが等しい場合,そのまま実行されます.
+            filecompまたはfilerefが存在しない場合,エラーが発生します.
+            ファイルの内容が等しくない場合,エラーが発生します.
+        </para>
+        <para>
+            ファイルが等しくない場合,
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        出力変数errmsgが使用されない場合,エラーが発生し,
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        出力変数errmsgが使用された場合,エラーは発生しません.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            比較用関数compfunが関数の場合,
+            ヘッダareequal = compfun ( txtcomp , txtref )を有する必要があります.
+            ただし, txtcomp は computed ファイルの内容,
+            txtref は基準ファイルの内容,
+            areequalは論理値です.
+            2つの内容が等しい場合,論理値areequalはtrueとなります.
+            compfunがリストの場合,リスト(cf,a1,a2,...)とする必要があります.
+            ただし, cf は比較関数で, 引数 a1, a2 がcfの呼び出し手順の最後に
+            自動的に付加されます.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+//
+// テスト用のデータを準備
+// fileref1 : 3行分のテキスト
+// filecomp1 : == fileref1
+// filecomp2 : <> fileref1
+fileref1 = fullfile(TMPDIR,"fileref.txt");
+txt1 = [
+"Line #1"
+"Line #2"
+"Line #3"
+];
+fd = mopen(fileref1,"w");
+mputl(txt1,fd);
+mclose(fd);
+filecomp1 = fullfile(TMPDIR,"filecomp1.txt");
+fd = mopen(filecomp1,"w");
+mputl(txt1,fd);
+mclose(fd);
+filecomp2 = fullfile(TMPDIR,"filecomp2.txt");
+txt2 = [
+"Line #1"
+"Line #4"
+"Line #3"
+];
+fd = mopen(filecomp2,"w");
+mputl(txt2,fd);
+mclose(fd);
+
+// パスするテスト
+flag = assert_checkfilesequal ( filecomp1 , fileref1 )
+[flag,errmsg] = assert_checkfilesequal ( filecomp1 , fileref1 )
+
+// 失敗: filecomp2 <> fileref1
+// エラーが発生
+flag = assert_checkfilesequal ( filecomp2 , fileref1 )
+// エラーは発生しない
+[flag,errmsg] = assert_checkfilesequal ( filecomp2 , fileref1 )
+
+// テスト用のデータを準備
+// fileref2 == filecomp3, コメント行を無視した場合
+// fileref2 <> filecomp4, コメント行を無視した場合
+// コメントはファイルの異なる位置に挿入されることに注意してください:
+// ある時は先頭, ある時は中央.
+fileref2 = fullfile(TMPDIR,"fileref2.txt");
+txt = [
+"// bla 2"
+"Line #1"
+"// bla 2"
+"Line #2"
+"Line #3"
+];
+fd = mopen(fileref2,"w");
+mputl(txt,fd);
+mclose(fd);
+filecomp3 = fullfile(TMPDIR,"filecomp3.txt");
+txt = [
+"Line #1"
+"// bla 5168"
+"Line #2"
+"Line #3"
+"// bla oups"
+];
+fd = mopen(filecomp3,"w");
+mputl(txt,fd);
+mclose(fd);
+filecomp4 = fullfile(TMPDIR,"filecomp4.txt");
+txt = [
+"// bla 3"
+"Line #1"
+"Line #4"
+"// bla 5168"
+"Line #3"
+"// bla oups"
+];
+fd = mopen(filecomp4,"w");
+mputl(txt,fd);
+mclose(fd);
+
+// コメント行を無視する比較用関数でテスト
+function otxt = myfilter ( itxt )
+nr = size(itxt,"r")
+// 形式 "// blabla" のコメント行用のパターン
+pattern = "/\/\/.*/"
+k = 1
+for i = 1 : nr
+start = regexp(itxt(i),pattern)
+if ( start == [] ) then
+otxt(k) = itxt(i)
+k = k + 1
+end
+end
+endfunction
+function areequal = mycompfun ( ctxt , etxt )
+ctxt = myfilter ( ctxt )
+etxt = myfilter ( etxt )
+areequal = ( ctxt == etxt )
+endfunction
+//
+// パスするテスト
+[flag,errmsg] = assert_checkfilesequal ( filecomp3 , fileref2 , mycompfun )
+// 失敗するテスト
+[flag,errmsg] = assert_checkfilesequal ( filecomp4 , fileref2 , mycompfun )
+
+   ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
