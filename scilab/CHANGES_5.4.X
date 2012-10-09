@@ -11,6 +11,8 @@ Xcos
 
 * Bug #11919 fixed - DLSS block with empty matrix as parameters made Scilab crash.
 
+* Bug #11963 fixed - input port in superblock was corrupted
+
 
 Bug fixes
 ==========
