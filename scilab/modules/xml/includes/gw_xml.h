@@ -73,6 +73,7 @@ int sci_xmlAsText(char *fname, unsigned long fname_len);
 int sci_xmlRemove(char *fname, unsigned long fname_len);
 int sci_xmlSetAttributes(char *fname, unsigned long fname_len);
 int sci_xmlName(char *fname, unsigned long fname_len);
+int sci_xmlAppend(char *fname, unsigned long fname_len);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_XML_H__ */
