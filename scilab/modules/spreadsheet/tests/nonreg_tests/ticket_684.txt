@@ -1,0 +1,43 @@
+42,0,0,0,0
+1,Agen,44.1,0,0
+2,Ajaccio,41.6,0,0
+3,Alençon,48.3,0,0
+4,Angers,47.5,0,0
+5,Bastia,42.5,0,0
+6,Besançon,47.2,0,0
+7,Biarritz,43.3,0,0
+8,Bordeaux,44.5,0,0
+9,Boulogne sur Mer,50.4,0,0
+10,Bourg Saint Maurice,45.4,0,0
+11,Brest,48.3,0,0
+12,Caen,49.1,0,0
+13,Carcassonne,43.1,0,0
+14,Chambéry,45.4,0,0
+15,Clermont-Ferrand,45.4,0,0
+16,Dijon,47.2,0,0
+17,Embrun,44.3,0,0
+18,Gourdon,44.5,0,0
+19,Grenoble,45.1,0,0
+20,La Rochelle,46.1,0,0
+21,Lille,50.3,0,0
+22,Limoges,45.5,0,0
+23,Lyon,45.4,0,0
+24,Marseille,43.3,0,0
+25,Millau,44.1,0,0
+26,MontdeMarsan,44,0,0
+27,Montelimar,44.4,0,0
+28,Montpellier,43.4,0,0
+29,Nancy,48.4,0,0
+30,Nantes,47.2,0,0
+31,Nice,43.4,0,0
+32,Orleans,47.6,0,0
+33,Paris Montsouris,48.9,0,0
+34,Pau,43.3,0,0
+35,Perpignan,42.4,0,0
+36,Poitiers,46.4,0,0
+37,Reims,49.2,0,0
+38,Rennes,48,0,0
+39,Saint-Etienne,45.3,0,0
+40,Strasbourg,48.3,0,0
+41,Toulon,43.1,0,0
+42,Toulouse,43.4,0,0

@@ -38,11 +38,11 @@
 #include "getHandleProperty.h"
 #include "CurrentFigure.h"
 /*--------------------------------------------------------------------------*/
-int xgetg( char * str, char * str1, int * len,int  lx0,int lx1);
+int xgetg( char * str, char * str1, int * len, int  lx0, int lx1);
 /*--------------------------------------------------------------------------*/
 int sci_xget(char *fname, void *pvApiCtx)
 {
-    int flagx = 0, x2 = 0, m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, l3 = 0, i = 0;
+    int x2 = 0, m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, l3 = 0, i = 0;
     int one = 1;
 
     BOOL keyFound = FALSE;
@@ -53,15 +53,15 @@ int sci_xget(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    CheckRhs(1,2);
-    CheckLhs(0,1);
+    CheckRhs(1, 2);
+    CheckLhs(0, 1);
 
-    GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+    GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
 
     /* check if key is valid */
-    for (i=0; i < NUMSETFONC ; i++)
+    for (i = 0; i < NUMSETFONC ; i++)
     {
-        if ( strcmp(cstk(l1),KeyTab_[i]) == 0 )
+        if ( strcmp(cstk(l1), KeyTab_[i]) == 0 )
         {
             keyFound = TRUE ;
             break ;
@@ -74,25 +74,24 @@ int sci_xget(char *fname, void *pvApiCtx)
         return -1;
     }
 
-    if (Rhs == 2) {
-        GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
-        CheckScalar(2,m2,n2);
-        flagx = (int)  *stk(l2); }
-    else
-        flagx = 0;
+    if (Rhs == 2)
+    {
+        GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+        CheckScalar(2, m2, n2);
+    }
 
-    if ( strcmp(cstk(l1),"fpf") == 0 || strcmp(cstk(l1),"auto clear") == 0)
+    if ( strcmp(cstk(l1), "fpf") == 0 || strcmp(cstk(l1), "auto clear") == 0)
     {
         int bufl;
         /*     special case for global variables set */
-        xgetg( cstk(l1),C2F(cha1).buf,&bufl,m1,bsiz);
-        CreateVar(Rhs+1,STRING_DATATYPE,&bufl,&one,&l3);
-        strncpy(cstk(l3),C2F(cha1).buf,bufl);
-        LhsVar(1)=Rhs+1;
+        xgetg( cstk(l1), C2F(cha1).buf, &bufl, m1, bsiz);
+        CreateVar(Rhs + 1, STRING_DATATYPE, &bufl, &one, &l3);
+        strncpy(cstk(l3), C2F(cha1).buf, bufl);
+        LhsVar(1) = Rhs + 1;
         PutLhsVar();
         return 0;
     }
-    else if ( strcmp(cstk(l1),"colormap") == 0)
+    else if ( strcmp(cstk(l1), "colormap") == 0)
     {
         char *pobjUID = NULL;
         // Force figure creation if none exists.
@@ -106,7 +105,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if ( strcmp(cstk(l1),"mark") == 0)
+    else if ( strcmp(cstk(l1), "mark") == 0)
     {
         char *pobjUID = (char*)getOrCreateDefaultSubwin();
         int iMarkStyle = 0;
@@ -126,7 +125,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if ( strcmp(cstk(l1),"mark size") == 0)
+    else if ( strcmp(cstk(l1), "mark size") == 0)
     {
         char *pobjUID = (char*)getOrCreateDefaultSubwin();
         get_mark_size_property(pvApiCtx, pobjUID);
@@ -136,7 +135,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if ( strcmp(cstk(l1),"line style") == 0)
+    else if ( strcmp(cstk(l1), "line style") == 0)
     {
         get_line_style_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
@@ -144,7 +143,7 @@ int sci_xget(char *fname, void *pvApiCtx)
         PutLhsVar();
         return 0;
     }
-    else if(strcmp(cstk(l1),"clipping") == 0)
+    else if (strcmp(cstk(l1), "clipping") == 0)
     {
         double *clipBox = NULL;
         char* pobjUID = (char*)getOrCreateDefaultSubwin();
@@ -156,7 +155,7 @@ int sci_xget(char *fname, void *pvApiCtx)
         PutLhsVar();
         return 0;
     }
-    else if(strcmp(cstk(l1),"font")==0)
+    else if (strcmp(cstk(l1), "font") == 0)
     {
         char *pobjUID = (char*)getOrCreateDefaultSubwin();
         double dblFontSize = 0;
@@ -177,7 +176,7 @@ int sci_xget(char *fname, void *pvApiCtx)
         PutLhsVar();
         return 0;
     }
-    else if(strcmp(cstk(l1),"font size")==0)
+    else if (strcmp(cstk(l1), "font size") == 0)
     {
         double dblFontSize = 0;
         double* pdblFontSize = &dblFontSize;
@@ -189,7 +188,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"dashes")==0)
+    else if (strcmp(cstk(l1), "dashes") == 0)
     {
         int iLineStyle = 0;
         int* piLineStyle = &iLineStyle;
@@ -202,7 +201,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"hidden3d")==0)
+    else if (strcmp(cstk(l1), "hidden3d") == 0)
     {
         get_hidden_color_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
@@ -211,7 +210,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"window")== 0 || strcmp(cstk(l1),"figure") == 0)
+    else if (strcmp(cstk(l1), "window") == 0 || strcmp(cstk(l1), "figure") == 0)
     {
         int iFigureId = 0;
         int* piFigureId = &iFigureId;
@@ -223,7 +222,7 @@ int sci_xget(char *fname, void *pvApiCtx)
         PutLhsVar();
         return 0;
     }
-    else if(strcmp(cstk(l1),"thickness") == 0)
+    else if (strcmp(cstk(l1), "thickness") == 0)
     {
         get_thickness_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
@@ -232,7 +231,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"wdim") == 0 || strcmp(cstk(l1),"wpdim") == 0)
+    else if (strcmp(cstk(l1), "wdim") == 0 || strcmp(cstk(l1), "wpdim") == 0)
     {
         int *piFigureSize = NULL;
         double pdblFigureSize[2];
@@ -248,7 +247,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"wpos") == 0)
+    else if (strcmp(cstk(l1), "wpos") == 0)
     {
         int *piFigurePosition = NULL;
         double pdblFigurePosition[2];
@@ -264,7 +263,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"viewport") == 0)
+    else if (strcmp(cstk(l1), "viewport") == 0)
     {
         int* viewport = NULL;
         double pdblViewport[2];
@@ -280,7 +279,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"background") == 0)
+    else if (strcmp(cstk(l1), "background") == 0)
     {
         get_background_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
@@ -289,9 +288,9 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(   strcmp(cstk(l1),"color") == 0
-               || strcmp(cstk(l1),"foreground") == 0
-               || strcmp(cstk(l1),"pattern") == 0)
+    else if (   strcmp(cstk(l1), "color") == 0
+                || strcmp(cstk(l1), "foreground") == 0
+                || strcmp(cstk(l1), "pattern") == 0)
     {
         get_foreground_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
@@ -300,7 +299,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"lastpattern") == 0)
+    else if (strcmp(cstk(l1), "lastpattern") == 0)
     {
         int iNumColors = 0;
         int* piNumColors = &iNumColors;
@@ -315,7 +314,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"line mode") == 0)
+    else if (strcmp(cstk(l1), "line mode") == 0)
     {
         int iLineMode = 0;
         int* lineMode = &iLineMode;
@@ -329,7 +328,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"pixmap") == 0)
+    else if (strcmp(cstk(l1), "pixmap") == 0)
     {
         int iPixmap = 0;
         int *piPixmap = &iPixmap;
@@ -343,7 +342,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"white") == 0)
+    else if (strcmp(cstk(l1), "white") == 0)
     {
         int iNumColors = 0;
         int* piNumColors = &iNumColors;
@@ -359,7 +358,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if(strcmp(cstk(l1),"wresize") == 0)
+    else if (strcmp(cstk(l1), "wresize") == 0)
     {
         // autoresize property
         int iAutoResize = 0;
@@ -375,7 +374,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if( strcmp(cstk(l1),"clipgrf") == 0 )
+    else if ( strcmp(cstk(l1), "clipgrf") == 0 )
     {
         /* clip_state : 0 = off, 1 = on */
         int iClipState = 0;
@@ -389,7 +388,7 @@ int sci_xget(char *fname, void *pvApiCtx)
 
         return 0;
     }
-    else if( strcmp(cstk(l1),"clipoff") == 0 )
+    else if ( strcmp(cstk(l1), "clipoff") == 0 )
     {
         int iClipState = 0;
         int* piClipState = &iClipState;
@@ -418,14 +417,14 @@ int sci_xget(char *fname, void *pvApiCtx)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int xgetg( char * str, char * str1, int * len,int  lx0,int lx1)
+int xgetg( char * str, char * str1, int * len, int  lx0, int lx1)
 {
-    if ( strcmp(str,"fpf") == 0)
+    if ( strcmp(str, "fpf") == 0)
     {
-        strncpy(str1,getFPF(),32);
-        *len= (int) strlen(str1);
+        strncpy(str1, getFPF(), 32);
+        *len = (int) strlen(str1);
     }
-    else if ( strcmp(str,"auto clear")==0)
+    else if ( strcmp(str, "auto clear") == 0)
     {
         int iAutoClear = 0;
         int* piAutoClear = &iAutoClear;
@@ -433,13 +432,13 @@ int xgetg( char * str, char * str1, int * len,int  lx0,int lx1)
         getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, jni_bool, (void **)&piAutoClear);
         if (iAutoClear == 1)
         {
-            strncpy(str1,"on",2);
-            *len=2;
+            strncpy(str1, "on", 2);
+            *len = 2;
         }
         else
         {
-            strncpy(str1,"off",3);
-            *len=3;
+            strncpy(str1, "off", 3);
+            *len = 3;
         }
     }
     return 0;

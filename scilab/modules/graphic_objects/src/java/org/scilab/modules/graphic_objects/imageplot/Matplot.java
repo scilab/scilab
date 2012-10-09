@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.imageplot;
 
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
@@ -35,8 +36,8 @@ public class Matplot extends Imageplot {
     /**
 	 * @return Type as String
 	 */
-	public String getType() {
-		return "Matplot";
+	public Integer getType() {
+		return GraphicObjectProperties.__GO_MATPLOT__;
 	}
 
 }

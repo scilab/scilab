@@ -20,6 +20,6 @@ for j=0:0.1:1,
   realtime(3*j);
   waitbar(j,winId);
 end
-winclose(winId);
+delete(winId);
 if execstr("waitbar(1,winId);", "errcatch")==0 then bugmes();quit;end
 if execstr("waitbar(""This is an example"",winId);", "errcatch")==0 then bugmes();quit;end

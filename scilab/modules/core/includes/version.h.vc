@@ -28,7 +28,6 @@ void disp_scilab_version(void);
 #define SCI_VERSION SCI_VERSION_STRING
 #define DEFAULT_SCI_VERSION_MESSAGE L"scilab-branch-YaSp"
 
-
 #endif
 /*--------------------------------------------------------------------------*/
 

@@ -11,15 +11,15 @@
  */
 
 #include <string.h>
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "gw_special_functions.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-extern double F2C(dgammacody)(double *);
-extern double F2C(betaln)(double *, double *);
+extern double C2F(dgammacody)(double *);
+extern double C2F(betaln)(double *, double *);
 /*--------------------------------------------------------------------------*/
-int sci_beta(char *fname,unsigned long fname_len)
+int sci_beta(char *fname, void* pvApiCtx)
 {
     /*
     *   z = beta(x, y)
@@ -33,55 +33,102 @@ int sci_beta(char *fname,unsigned long fname_len)
     *   The switch limit have been set by using the gp-pari software.
     *
     */
-    int mx = 0, nx = 0, itx = 0, lx = 0, lxc = 0, my = 0, ny = 0, ity = 0, ly = 0, lyc = 0, lz = 0, i = 0;
+    int mx = 0, nx = 0, itx = 0, lx = 0, lxc = 0, my = 0, ny = 0;
+    int ity = 0, ly = 0, lyc = 0, lz = 0, i = 0;
     double *x = NULL, *y = NULL, *z = NULL, xpy = 0.;
     double switch_limit = 2;
 
-    CheckLhs(1,1);
-    CheckRhs(2,2);
+    SciErr sciErr;
 
-    GetRhsCVar(1,MATRIX_OF_DOUBLE_DATATYPE, &itx, &mx, &nx, &lx, &lxc);
-    x = stk(lx);
+    double* pdblX = NULL;
+    double* pdblY = NULL;
+    double* pdblZ = NULL;
 
-    GetRhsCVar(2,MATRIX_OF_DOUBLE_DATATYPE, &ity, &my, &ny, &ly, &lyc);
-    y = stk(ly);
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
 
-    CheckSameDims(1,2,mx,nx,my,ny);
+    int nbInputArg = nbInputArgument(pvApiCtx);
 
-    if ( (itx == 1)  ||  (ity == 1) )
+    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    /* get X */
+    //get variable address of the input argument
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d or #%d: No complex input argument expected.\n"), fname, 1, 2);
-        return 0;
-    };
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-    for ( i = 0 ; i < mx*nx ; i++ )
+    if (isVarComplex(pvApiCtx, piAddr1))
     {
-        if ( (x[i] <= 0.0)  ||  (y[i] <= 0.0) )
+        Scierror(999, _("%s: Wrong type for input argument #%d: No complex input argument expected.\n"), fname, 1);
+        return 1;
+    }
+
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &mx, &nx, &pdblX);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    /* get Y */
+    //get variable address of the input argument
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (isVarComplex(pvApiCtx, piAddr2))
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: No complex input argument expected.\n"), fname, 2);
+        return 1;
+    }
+
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &my, &ny, &pdblY);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (mx != my || nx != ny)
+    {
+        Scierror(999, _("%s: arguments #%d and #%d have incompatible dimensions.\n"), fname, 1, 2);
+        return 1;
+    }
+
+    for ( i = 0 ; i < mx * nx ; i++ )
+    {
+        if ( (pdblX[i] <= 0.0)  ||  (pdblY[i] <= 0.0) )
         {
-            Scierror(999,_("%s: Wrong value for input arguments: Must be > %d.\n"), fname,0);
-            return 0;
+            Scierror(999, _("%s: Wrong value for input arguments: Must be > %d.\n"), fname, 0);
+            return 1;
         }
     }
 
-    CreateVar(Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lz); 
-    z = stk(lz);
+    allocMatrixOfDouble(pvApiCtx, nbInputArg + 1, mx, nx, &pdblZ);
 
-    for ( i = 0 ; i < mx*nx ; i++ )
+    for ( i = 0 ; i < mx * nx ; i++ )
     {
-        xpy = x[i] + y[i];
+        xpy = pdblX[i] + pdblY[i];
 
         if ( xpy <= switch_limit )
         {
-            z[i] = F2C(dgammacody)(&x[i]) * F2C(dgammacody)(&y[i]) / F2C(dgammacody)(&xpy);
+            pdblZ[i] = C2F(dgammacody)(&pdblX[i]) * C2F(dgammacody)(&pdblY[i]) / C2F(dgammacody)(&xpy);
         }
         else
         {
-            z[i] = exp(F2C(betaln)(&x[i], &y[i]));
+            pdblZ[i] = exp(C2F(betaln)(&pdblX[i], &pdblY[i]));
         }
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArg + 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -15,5 +15,8 @@
 // 	  in english)
 // <-- FRENCH IMPOSED -->
 
-TclCMD="TCL_EvalStr(""destroy .t;pack [text .t];set ts [expr 12/[tk scaling]];.t conf -tabs $ts;.t cget -tabs"")";
-if execstr(TclCMD, "errcatch")<>0 then pause; end
+if getos() <> "Darwin" then
+    TclCMD="TCL_EvalStr(""destroy .t;pack [text .t];set ts [expr 12/[tk scaling]];.t conf -tabs $ts;.t cget -tabs"")";
+    if execstr(TclCMD, "errcatch")<>0 then pause; end
+  end
+  

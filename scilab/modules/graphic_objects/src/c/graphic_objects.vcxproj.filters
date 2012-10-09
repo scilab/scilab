@@ -146,6 +146,9 @@
     <ClCompile Include="..\cpp\MatPlotDecomposer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\GraphicObjectBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\CallGraphicController.hxx">
@@ -272,6 +275,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\TriangleMeshFecData.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\GraphicObjectBuilder.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

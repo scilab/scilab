@@ -44,7 +44,7 @@ int SetUicontrolHorizontalAlignment(void* _pvCtx, char* sciObjUID, size_t stackP
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_HORIZONTALALIGNMENT__), alignment, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_HORIZONTALALIGNMENT__, alignment, jni_string, 1);
 
     if (status == TRUE)
     {

@@ -5,8 +5,7 @@
 
 ### SOURCES ###
 
-
-API_SCILAB_CPP_SOURCES = \
+API_SCILAB_CXX_SOURCES = \
     src/cpp/api_boolean.cpp \
     src/cpp/api_boolean_sparse.cpp \
     src/cpp/api_common.cpp \
@@ -17,27 +16,15 @@ API_SCILAB_CPP_SOURCES = \
     src/cpp/api_sparse.cpp \
     src/cpp/api_string.cpp \
     src/cpp/api_pointer.cpp \
-    src/cpp/api_error.cpp \
-    src/cpp/overload.cpp
+    src/cpp/api_handle.cpp \
+    src/cpp/overload.cpp \
+    src/cpp/api_error.cpp
 
-
-libsciapi_scilab_la_CFLAGS= \
-    -I$(srcdir)/includes/ \
-    -I$(srcdir)/src/c/ \
-    -I$(top_srcdir)/modules/core/includes \
-    -I$(top_srcdir)/modules/call_scilab/includes \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
-    -I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/string/includes \
-    -I$(top_srcdir)/modules/types/includes \
-    -I$(top_srcdir)/modules/symbol/includes \
-    -I$(top_srcdir)/modules/ast/includes \
-    -I$(top_srcdir)/modules/operations/includes
 
 libsciapi_scilab_la_CPPFLAGS= \
     -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
     -I$(top_srcdir)/modules/core/includes \
     -I$(top_srcdir)/modules/call_scilab/includes \
     -I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -51,6 +38,7 @@ libsciapi_scilab_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/libs/dynamiclibrary/includes
 
+
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciapi_scilab.la
 else
@@ -60,11 +48,11 @@ endif
 
 libsciapi_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CPP_SOURCES)
+libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CXX_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libsciapi_scilab_la_SOURCES)
-INCLUDE_FLAGS = $(libsciapi_scilab_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciapi_scilab_la_CPPFLAGS)
 
 libsciapi_scilab_la_LIBADD =
 #
@@ -76,7 +64,7 @@ modulename=api_scilab
 
 #### api_scilab : Conf files ####
 libsciapi_scilab_la_rootdir = $(mydatadir)
-libsciapi_scilab_la_root_DATA =  license.txt 
+libsciapi_scilab_la_root_DATA =  license.txt
 
 
 #### api_scilab : init scripts ####
@@ -97,6 +85,7 @@ includes/api_pointer.h \
 includes/api_poly.h \
 includes/api_sparse.h \
 includes/api_string.h \
+includes/api_handle.h \
 includes/api_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am

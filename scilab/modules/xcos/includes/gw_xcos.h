@@ -37,6 +37,7 @@ XCOS_IMPEXP int sci_xcosConfigureXmlFile(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosAddToolsMenu(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosUpdateBlock(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_loadXcos(char *fname, void *pvApiCtx);
+XCOS_IMPEXP int sci_xcosSimulationStarted(char *fname, void *pvApiCtx);
 
 /*--------------------------------------------------------------------------*/
 /**

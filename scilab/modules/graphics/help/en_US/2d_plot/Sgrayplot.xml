@@ -275,10 +275,6 @@ _____________
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>Sgrayplot();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // example #1

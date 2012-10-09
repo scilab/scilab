@@ -40,14 +40,14 @@ using namespace types;
 /*------------------------------------------------------------------------*/
 typedef struct grep_results
 {
-	int sizeArraysMax;
-	int currentLength;
-	int *values;
-	int *positions;
+    int sizeArraysMax;
+    int currentLength;
+    int *values;
+    int *positions;
 } GREPRESULTS;
 /*------------------------------------------------------------------------*/
-static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char **Inputs_param_two,int mn_two);
-static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char **Inputs_param_two,int mn_two);
+static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two);
+static int GREP_OLD(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two);
 /*------------------------------------------------------------------------*/
 
 Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
@@ -55,49 +55,50 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
     bool bRegularExpression = false;
 
     //check input paramters
-    if(in.size() < 2 || in.size() > 3)
+    if (in.size() < 2 || in.size() > 3)
     {
-        Scierror(999,_("%s: Wrong number of input arguments: %d or %d expected.\n"), "grep", 2, 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "grep", 2, 3);
         return Function::Error;
     }
 
-    if(in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 0)
+    if (in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 0)
     {
         Double *pD = Double::Empty();
         out.push_back(pD);
         return Function::OK;
     }
 
-    if(in.size() == 3)
-    {//"r" for regular expression
-        if(in[2]->isString() == false)
+    if (in.size() == 3)
+    {
+        //"r" for regular expression
+        if (in[2]->isString() == false)
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 3);
             return Function::Error;
         }
 
         String* pS = in[2]->getAs<types::String>();
-        if(pS->getSize() != 1)
+        if (pS->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "grep", 3);
             return Function::Error;
         }
 
-        if(pS->get(0)[0] == 'r')
+        if (pS->get(0)[0] == 'r')
         {
             bRegularExpression = true;
         }
     }
 
-    if(in[0]->isString() == false)
+    if (in[0]->isString() == false)
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 1);
         return Function::Error;
     }
 
-    if(in[1]->isString() == false)
+    if (in[1]->isString() == false)
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 2);
         return Function::Error;
     }
 
@@ -105,36 +106,36 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
     String* pS2 = in[1]->getAs<types::String>();
 
 
-    for(int i = 0 ; i < pS2->getSize() ; i++)
+    for (int i = 0 ; i < pS2->getSize() ; i++)
     {
-        if(wcslen(pS2->get(i)) == 0)
+        if (wcslen(pS2->get(i)) == 0)
         {
-			Scierror(249,_("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"), "grep", 2);
+            Scierror(249, _("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"), "grep", 2);
             return Function::Error;
         }
     }
 
-	GREPRESULTS grepresults;
-	int code_error_grep = GREP_OK;
+    GREPRESULTS grepresults;
+    int code_error_grep = GREP_OK;
 
-	grepresults.currentLength = 0;
-	grepresults.sizeArraysMax = 0;
-	grepresults.positions = NULL;
-	grepresults.values = NULL;
+    grepresults.currentLength = 0;
+    grepresults.sizeArraysMax = 0;
+    grepresults.positions = NULL;
+    grepresults.values = NULL;
 
     char** pStr1 = (char**)MALLOC(sizeof(char*) * pS1->getSize());
-    for(int i = 0 ; i < pS1->getSize() ; i++)
+    for (int i = 0 ; i < pS1->getSize() ; i++)
     {
         pStr1[i] = wide_string_to_UTF8(pS1->get(i));
     }
 
     char** pStr2 = (char**)MALLOC(sizeof(char*) * pS2->getSize());
-    for(int i = 0 ; i < pS2->getSize() ; i++)
+    for (int i = 0 ; i < pS2->getSize() ; i++)
     {
         pStr2[i] = wide_string_to_UTF8(pS2->get(i));
     }
 
-    if(bRegularExpression)
+    if (bRegularExpression)
     {
         code_error_grep = GREP_NEW(&grepresults, pStr1, pS1->getSize(), pStr2, pS2->getSize());
     }
@@ -145,10 +146,10 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
 
     switch (code_error_grep)
     {
-    case GREP_OK :
+        case GREP_OK :
         {
             Double* pD1 = NULL;
-            if(grepresults.currentLength == 0)
+            if (grepresults.currentLength == 0)
             {
                 pD1 = Double::Empty();
             }
@@ -167,7 +168,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
             if (_iRetCount == 2)
             {
                 Double* pD2 = NULL;
-                if(grepresults.currentLength == 0)
+                if (grepresults.currentLength == 0)
                 {
                     pD2 = Double::Empty();
                 }
@@ -184,28 +185,44 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
                 out.push_back(pD2);
             }
 
-            if (grepresults.values) {FREE(grepresults.values); grepresults.values = NULL;}
-            if (grepresults.positions) {FREE(grepresults.positions); grepresults.positions = NULL;}
+            if (grepresults.values)
+            {
+                FREE(grepresults.values);
+                grepresults.values = NULL;
+            }
+            if (grepresults.positions)
+            {
+                FREE(grepresults.positions);
+                grepresults.positions = NULL;
+            }
         }
         break;
 
-    case MEMORY_ALLOC_ERROR :
+        case MEMORY_ALLOC_ERROR :
         {
-            if (grepresults.values) {FREE(grepresults.values); grepresults.values = NULL;}
-            if (grepresults.positions) {FREE(grepresults.positions); grepresults.positions = NULL;}
-            Scierror(999,_("%s: No more memory.\n"), "grep");
+            if (grepresults.values)
+            {
+                FREE(grepresults.values);
+                grepresults.values = NULL;
+            }
+            if (grepresults.positions)
+            {
+                FREE(grepresults.positions);
+                grepresults.positions = NULL;
+            }
+            Scierror(999, _("%s: No more memory.\n"), "grep");
             return Function::Error;
         }
         break;
     }
 
-    for(int i = 0 ; i < pS1->getSize() ; i++)
+    for (int i = 0 ; i < pS1->getSize() ; i++)
     {
         FREE(pStr1[i]);
     }
     FREE(pStr1);
 
-    for(int i = 0 ; i < pS2->getSize() ; i++)
+    for (int i = 0 ; i < pS2->getSize() ; i++)
     {
         FREE(pStr2[i]);
     }
@@ -269,87 +286,110 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
 //	return 0;
 //}
 /*-----------------------------------------------------------------------------------*/
-static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char **Inputs_param_two,int mn_two)
+static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two)
 {
-	int x = 0,y = 0;
-	char *save=NULL;
-	pcre_error_code answer = PCRE_FINISHED_OK;
-	for (x = 0; x <  mn_one ;x++)
-	{
-		results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
-	}
+    int x = 0, y = 0;
+    char *save = NULL;
+    pcre_error_code answer = PCRE_FINISHED_OK;
+    for (x = 0; x <  mn_one ; x++)
+    {
+        results->sizeArraysMax = results->sizeArraysMax + (int)strlen(Inputs_param_one[x]);
+    }
 
-	results->values = (int *)MALLOC(sizeof(int)*(3*results->sizeArraysMax+1));
-	results->positions = (int *)MALLOC(sizeof(int)*(3*results->sizeArraysMax+1));
+    results->values = (int *)MALLOC(sizeof(int) * (3 * results->sizeArraysMax + 1));
+    results->positions = (int *)MALLOC(sizeof(int) * (3 * results->sizeArraysMax + 1));
 
-	if ( (results->values == NULL) || (results->positions == NULL) )
-	{
-		if (results->values) {FREE(results->values);results->values = NULL;}
-		if (results->positions) {FREE(results->positions);results->positions = NULL;}
-		return MEMORY_ALLOC_ERROR;
-	}
+    if ( (results->values == NULL) || (results->positions == NULL) )
+    {
+        if (results->values)
+        {
+            FREE(results->values);
+            results->values = NULL;
+        }
+        if (results->positions)
+        {
+            FREE(results->positions);
+            results->positions = NULL;
+        }
+        return MEMORY_ALLOC_ERROR;
+    }
 
-	results->currentLength = 0;
-	for ( y = 0; y < mn_one; ++y)
-	{
-		for ( x = 0; x < mn_two; ++x)
-		{
-			int Output_Start = 0;
-			int Output_End = 0;
-			save = os_strdup(Inputs_param_two[x]);
-			answer = pcre_private(Inputs_param_one[y],save,&Output_Start,&Output_End);
+    results->currentLength = 0;
+    for ( y = 0; y < mn_one; ++y)
+    {
+        for ( x = 0; x < mn_two; ++x)
+        {
+            int Output_Start = 0;
+            int Output_End = 0;
+            save = os_strdup(Inputs_param_two[x]);
+            answer = pcre_private(Inputs_param_one[y], save, &Output_Start, &Output_End, NULL, NULL);
 
-			if ( answer == PCRE_FINISHED_OK )
-			{
-				if (results->currentLength < results->sizeArraysMax)
-				{
-					results->values[results->currentLength] = y+1;
-					results->positions[results->currentLength] = x+1;
-					results->currentLength++;
-				}
-			}
-			else
-			{
-				pcre_error("grep",answer);
-			}
-			if (save) {FREE(save);save=NULL;}
-		}
-	}
+            if ( answer == PCRE_FINISHED_OK )
+            {
+                if (results->currentLength < results->sizeArraysMax)
+                {
+                    results->values[results->currentLength] = y + 1;
+                    results->positions[results->currentLength] = x + 1;
+                    results->currentLength++;
+                }
+            }
+            else
+            {
+                pcre_error("grep", answer);
+            }
+            if (save)
+            {
+                FREE(save);
+                save = NULL;
+            }
+        }
+    }
 
-	if (results->currentLength > results->sizeArraysMax) results->currentLength = results->sizeArraysMax;
+    if (results->currentLength > results->sizeArraysMax)
+    {
+        results->currentLength = results->sizeArraysMax;
+    }
 
-	return GREP_OK;
+    return GREP_OK;
 }
 /*-----------------------------------------------------------------------------------*/
-static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char **Inputs_param_two,int mn_two)
+static int GREP_OLD(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two)
 {
-	int x = 0,y = 0;
+    int x = 0, y = 0;
 
-	results->values = (int *)MALLOC(sizeof(int)*(mn_one*mn_two+1));
-	results->positions = (int *)MALLOC(sizeof(int)*(mn_one*mn_two+1));
+    results->values = (int *)MALLOC(sizeof(int) * (mn_one * mn_two + 1));
+    results->positions = (int *)MALLOC(sizeof(int) * (mn_one * mn_two + 1));
 
-	for (y = 0; y < mn_one; ++y)
-	{
-		for (x = 0; x < mn_two; ++x)
-		{
-			wchar_t* wcInputOne = to_wide_string(Inputs_param_one[y]);
-			wchar_t* wcInputTwo = to_wide_string(Inputs_param_two[x]);
+    for (y = 0; y < mn_one; ++y)
+    {
+        for (x = 0; x < mn_two; ++x)
+        {
+            wchar_t* wcInputOne = to_wide_string(Inputs_param_one[y]);
+            wchar_t* wcInputTwo = to_wide_string(Inputs_param_two[x]);
 
-			if (wcInputOne && wcInputTwo)
-			{
-				if (wcsstr(wcInputOne,wcInputTwo) != NULL)
-				{
-					results->values[results->currentLength] = y+1;
-					results->positions[results->currentLength] = x+1;
-					results->currentLength++;
-				}
-			}
+            if (wcInputOne && wcInputTwo)
+            {
+                if (wcsstr(wcInputOne, wcInputTwo) != NULL)
+                {
+                    results->values[results->currentLength] = y + 1;
+                    results->positions[results->currentLength] = x + 1;
+                    results->currentLength++;
+                }
+            }
 
-			if (wcInputOne) {FREE(wcInputOne); wcInputOne = NULL;}
-			if (wcInputTwo) {FREE(wcInputTwo); wcInputTwo = NULL;}
-		}
-	}
-	return GREP_OK;
+            if (wcInputOne)
+            {
+                FREE(wcInputOne);
+                wcInputOne = NULL;
+            }
+            if (wcInputTwo)
+            {
+                FREE(wcInputTwo);
+                wcInputTwo = NULL;
+            }
+        }
+    }
+    return GREP_OK;
 }
 /*-----------------------------------------------------------------------------------*/
 //static int sci_grep_common(char *fname,BOOL new_grep)

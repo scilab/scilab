@@ -60,8 +60,10 @@ int sci_delete(char *fname, unsigned long fname_len)
     int *piHidden = &iHidden;
 
     char *pstParentUID = NULL;
-    char *pstParentType = NULL;
-    char *pstObjType = NULL;
+    int iParentType = -1;
+    int *piParentType = &iParentType;
+    int iObjType = -1;
+    int *piObjType = &iObjType;
 
     CheckRhs(0, 1);
     CheckLhs(0, 1);
@@ -167,16 +169,16 @@ int sci_delete(char *fname, unsigned long fname_len)
         }
 
         /* Object type */
-        getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&pstObjType);
-        if (strcmp(pstObjType, __GO_AXES__) == 0)
+        getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piObjType);
+        if (iObjType == __GO_AXES__)
         {
             /* Parent object */
             getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&pstParentUID);
             /* Parent type */
-            getGraphicObjectProperty(pstParentUID, __GO_TYPE__, jni_string, (void **)&pstParentType);
+            getGraphicObjectProperty(pstParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
         }
 
-        if (strcmp(pstObjType, __GO_LABEL__) == 0)
+        if (iObjType == __GO_LABEL__)
         {
             Scierror(999, _("A Label object cannot be deleted.\n"));
             return 0;
@@ -190,21 +192,22 @@ int sci_delete(char *fname, unsigned long fname_len)
          ** All figure must have at least one axe child.
          ** If the last one is removed, add a new default one.
          */
-        if ((strcmp(pstObjType, __GO_AXES__) == 0) && (strcmp(pstParentType, __GO_FIGURE__) == 0))
+        if (iObjType == __GO_AXES__ && iParentType == __GO_FIGURE__)
         {
             int iChild = 0;
             int iChildCount = 0;
             int *piChildCount = &iChildCount;
             char **pstChildren = NULL;
-            char *pstChildType = NULL;
+            int iChildType = -1;
+            int *piChildType = &iChildType;
             int iAxesFound = 0;
 
             getGraphicObjectProperty(pstParentUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildCount);
             getGraphicObjectProperty(pstParentUID, __GO_CHILDREN__, jni_string_vector, (void **)&pstChildren);
             for (iChild = 0; iChild < iChildCount; iChild++)
             {
-                getGraphicObjectProperty(pstChildren[iChild], __GO_TYPE__, jni_string, (void **)&pstChildType);
-                if (strcmp(pstChildType, __GO_AXES__) == 0)
+                getGraphicObjectProperty(pstChildren[iChild], __GO_TYPE__, jni_int, (void **)&piChildType);
+                if (iChildType == __GO_AXES__)
                 {
                     if (strcmp(getCurrentSubWin(), pstTemp) == 0) // Current axes has been deleted
                     {

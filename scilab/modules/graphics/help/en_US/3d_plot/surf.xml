@@ -212,10 +212,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>surf();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // Z initialisation 
@@ -304,6 +300,7 @@ surf(axfig10,Z,'ydat',[100:109],'marker','d','markerfac','green','markeredg','ye
 
 xdel(winsid())
  ]]></programlisting>
+        <scilab:image>surf();</scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

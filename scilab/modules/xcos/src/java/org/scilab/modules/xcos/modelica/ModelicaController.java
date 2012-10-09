@@ -148,6 +148,7 @@ public final class ModelicaController {
             dialog.setVisible(true);
             dialog.pack();
             dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            ScilabSwingUtilities.closeOnEscape(dialog);
         } catch (JAXBException e) {
             Logger.getLogger(ModelicaController.class.getName()).severe(e.toString());
         }

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:33+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-09-02 18:39+0000\n"
+"Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: de\n"
 
 #, c-format
@@ -48,7 +48,7 @@ msgid "Vertical"
 msgstr "Vertikal"
 
 msgid "No trace nor debug printing"
-msgstr "Drucke weder Spur noch Fehlersuche"
+msgstr "Weder Trace- noch Debug-Ausgabe"
 
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
@@ -58,13 +58,13 @@ msgid "Per block execution trace and Debug block calls"
 msgstr "Durch Block Ausführung Spur und suche Fehler in den Block Aufrufen"
 
 msgid "Debug block calls without trace"
-msgstr "suche Fehler in den Blockaufrufen ohne Spur"
+msgstr "Debug-Block-Aufrufe ohne Trace"
 
 msgid "Number of recently opened files to display: "
-msgstr ""
+msgstr "Anzahl kürzlich geöffneter Dateien anzeigen: "
 
 msgid "Default file format"
-msgstr ""
+msgstr "Default Datenformat"
 
 msgid "Link Style"
 msgstr "Stil des Links"
@@ -82,7 +82,7 @@ msgid "Final integration time"
 msgstr "Finale Integrationszeit"
 
 msgid "Real time scaling"
-msgstr "reelle Zeitskalierung"
+msgstr "\"Echt-Zeit\"-Skalierung"
 
 msgid "Integrator absolute tolerance"
 msgstr "Absolute Toleranz des Integrators"
@@ -97,10 +97,10 @@ msgid "Max integration time interval"
 msgstr "Maximales Zeitintervall der Integration"
 
 msgid "Solver kind"
-msgstr ""
+msgstr "Gleichungslöser"
 
 msgid "Maximum step size (0 means no limit)"
-msgstr ""
+msgstr "Maximale Schrittweite (0 bedeutet unbegrenzt)"
 
 msgid "Default trace settings"
 msgstr ""
@@ -116,7 +116,7 @@ msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: einen Zeichenkettenvektor "
 "erwartet.\n"
 
-msgid "a graphical environnement is needed."
+msgid "a graphical environment is needed."
 msgstr ""
 
 #, c-format
@@ -557,7 +557,7 @@ msgid "Signal Routing"
 msgstr "Signal Routing"
 
 msgid "Commonly Used Blocks"
-msgstr "Üblicherweise verwendete Blöcke"
+msgstr "Häufig verwendete Blöcke"
 
 msgid "User-Defined Functions"
 msgstr "Benutzerdefinierte Funktionen"

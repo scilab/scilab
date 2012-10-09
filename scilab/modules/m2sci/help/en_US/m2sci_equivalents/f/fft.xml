@@ -47,18 +47,42 @@ fft(A,-1[,...])
                 <term>Y = fft(X)</term>
                 <listitem>
                     <para>
-                        If X is a vector then Scilab equivalent for Matlab <emphasis role="bold">fft(X)</emphasis> is <emphasis role="bold">fft(X,-1)</emphasis>. If <emphasis role="bold">X</emphasis> is a matrix then Scilab equivalent for Matlab <emphasis role="bold">fft(X)</emphasis> is <emphasis role="bold">fft(X,-1,2,1)</emphasis>. 
+                        If X is a vector then Scilab equivalent for
+                        Matlab <emphasis role="bold">fft(X)</emphasis>
+                        is <emphasis role="bold">fft(X)</emphasis> or
+                        <emphasis role="bold">fft(X,-1)</emphasis>. If
+                        <emphasis role="bold">X</emphasis> is a matrix
+                        then Scilab equivalent for Matlab <emphasis
+                        role="bold">fft(X)</emphasis> is <emphasis
+                        role="bold">fft(X,-1,1)</emphasis>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Y = fft(X,n) / Y = fft(X,n,dim) / Y = fft(X,[],dim)</term>
+                <term>Y = fft(X,n) /Y = fft(X,n,dim) / Y = fft(X,[],dim)</term>
                 <listitem>
                     <para>
-                        There is no Scilab equivalent for all these Matlab uses of <emphasis role="bold">fft</emphasis>, in these cases, use <emphasis role="bold">mtlb_fft</emphasis> instead.
+                        The Scilab <emphasis
+                        role="bold">fft</emphasis> function does not
+                        handle The padding or trunction specified by
+                        <emphasis role="bold">n</emphasis>. It can  be
+                        done before the call to <emphasis
+                        role="bold">fft</emphasis>: one can use:
+                        <emphasis role="bold">if n&gt;size(x,'*') then
+                        x($:n)=0 else x=x(1:n);end;fft(x)</emphasis>
+                        or for simplicity call the <emphasis
+                        role="bold">mtlb_fft</emphasis> emulation
+                        function.
                     </para>
+                    <para>
+                      The <emphasis
+                        role="bold">Y = fft(X,[],dim)</emphasis> Matlab syntax is equivalent to <emphasis
+                        role="bold">Y = fft(X,dim) </emphasis> Scilab syntax.
+                    </para>
+
                 </listitem>
             </varlistentry>
+           
         </variablelist>
     </refsection>
 </refentry>

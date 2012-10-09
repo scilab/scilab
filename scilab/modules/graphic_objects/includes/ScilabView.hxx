@@ -22,7 +22,7 @@ extern "C"
 {
     void ScilabNativeView__createObject(char const* pstId);
     void ScilabNativeView__deleteObject(char const* pstId);
-    void ScilabNativeView__updateObject(char const* pstId, char const* pstProperty);
+    void ScilabNativeView__updateObject(char const* pstId, int iProperty);
 }
 
 class GRAPHIC_OBJECTS_IMPEXP ScilabView
@@ -34,11 +34,14 @@ private :
     // Define type for easy manipulation.
     typedef std::map<std::string, long>  __handleList;
     typedef __handleList::iterator          __handleList_iterator;
+    typedef std::map<long, std::string>  __uidList;
+    typedef __uidList::iterator          __uidList_iterator;
     typedef std::map<std::string, int>    __figureList;
     typedef __figureList::iterator          __figureList_iterator;
 
     static __figureList                     m_figureList;
     static __handleList                     m_handleList;
+    static __uidList                        m_uidList;
     static long                             m_topHandleValue;
     static std::string                      m_currentFigure;
     static std::string                      m_currentObject;
@@ -49,7 +52,7 @@ private :
 public :
     static void   createObject(char const* pstId);
     static void   deleteObject(char const* pstId);
-    static void   updateObject(char const* pstId, char const* pstProperty);
+    static void   updateObject(char const* pstId, int iProperty);
 
     static int    getNbFigure(void);
     static void   getFiguresId(int ids[]);

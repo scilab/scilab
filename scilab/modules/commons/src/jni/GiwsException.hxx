@@ -42,10 +42,10 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <stdlib.h>
 #include <jni.h>
 
-        #if defined(_MSC_VER)
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
             #include <Windows.h>
         #else
-            typedef unsigned char byte;
+            typedef signed char byte;
         #endif
 #include <exception>
 

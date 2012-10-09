@@ -37,7 +37,7 @@ public final class CallGraphicController {
         return GraphicController.getController().cloneObject(id);
     }
 
-    public static String askGraphicObject(String typeName) {
+    public static String askGraphicObject(int typeName) {
         return GraphicController.getController().askObject(GraphicObject.getTypeFromName(typeName));
     }
 
@@ -45,27 +45,27 @@ public final class CallGraphicController {
         GraphicController.getController().deleteObject(id);
     }
 
-    private static boolean setGraphicObjectProperty(String id, String propertyName, Object value) {
+    private static boolean setGraphicObjectProperty(String id, int propertyName, Object value) {
         return GraphicController.getController().setProperty(id, propertyName, value);
     }
 
-    private static Object getGraphicObjectProperty(String id, String propertyName) {
+    private static Object getGraphicObjectProperty(String id, int propertyName) {
         return GraphicController.getController().getProperty(id, propertyName);
     }
 
-    public static boolean setGraphicObjectProperty(String id, String propertyName, String value) {
+    public static boolean setGraphicObjectProperty(String id, int propertyName, String value) {
         return setGraphicObjectProperty(id, propertyName, (Object) value);
     }
 
-    public static boolean setGraphicObjectProperty(String id, String propertyName, String[] value) {
+    public static boolean setGraphicObjectProperty(String id, int propertyName, String[] value) {
         return setGraphicObjectProperty(id, propertyName, (Object) value);
     }
 
-    public static boolean setGraphicObjectProperty(String id, String propertyName, double value) {
+    public static boolean setGraphicObjectProperty(String id, int propertyName, double value) {
         return setGraphicObjectProperty(id, propertyName, (Object) new Double(value));
     }
 
-    public static boolean setGraphicObjectProperty(String id, String propertyName, double[] value) {
+    public static boolean setGraphicObjectProperty(String id, int propertyName, double[] value) {
         Double[] array = new Double[value.length];
 
         for (int i = 0; i < value.length; i++) {
@@ -76,11 +76,11 @@ public final class CallGraphicController {
     }
 
 
-    public static boolean setGraphicObjectProperty(String id, String propertyName, int value) {
+    public static boolean setGraphicObjectProperty(String id, int propertyName, int value) {
         return setGraphicObjectProperty(id, propertyName, (Object) new Integer(value));
     }
 
-    public static boolean setGraphicObjectProperty(String id, String propertyName, int[] value) {
+    public static boolean setGraphicObjectProperty(String id, int propertyName, int[] value) {
         Integer[] array = new Integer[value.length];
 
         for (int i = 0; i < value.length; i++) {
@@ -90,11 +90,11 @@ public final class CallGraphicController {
         return setGraphicObjectProperty(id, propertyName, (Object) array);
     }
 
-    public static boolean setGraphicObjectProperty(String id, String propertyName, boolean value) {
+    public static boolean setGraphicObjectProperty(String id, int propertyName, boolean value) {
         return setGraphicObjectProperty(id, propertyName, (Object) new Boolean(value));
     }
 
-    public static boolean setGraphicObjectProperty(String id, String propertyName, boolean[] value) {
+    public static boolean setGraphicObjectProperty(String id, int propertyName, boolean[] value) {
         Boolean[] array = new Boolean[value.length];
 
         for (int i = 0; i < value.length; i++) {
@@ -104,19 +104,19 @@ public final class CallGraphicController {
         return setGraphicObjectProperty(id, propertyName, (Object) array);
     }
 
-    public static String getGraphicObjectPropertyAsString(String id, String propertyName) {
+    public static String getGraphicObjectPropertyAsString(String id, int propertyName) {
         return (String) getGraphicObjectProperty(id, propertyName);
     }
 
-    public static String[] getGraphicObjectPropertyAsStringVector(String id, String propertyName) {
+    public static String[] getGraphicObjectPropertyAsStringVector(String id, int propertyName) {
         return (String[]) getGraphicObjectProperty(id, propertyName);
     }
 
-    public static double getGraphicObjectPropertyAsDouble(String id, String propertyName) {
+    public static double getGraphicObjectPropertyAsDouble(String id, int propertyName) {
         return (Double) getGraphicObjectProperty(id, propertyName);
     }
 
-    public static double[] getGraphicObjectPropertyAsDoubleVector(String id, String propertyName) {
+    public static double[] getGraphicObjectPropertyAsDoubleVector(String id, int propertyName) {
         Double[] tmp = (Double[]) getGraphicObjectProperty(id, propertyName);
 
         if (tmp == null) {
@@ -132,11 +132,11 @@ public final class CallGraphicController {
         return result;
     }
 
-    public static int getGraphicObjectPropertyAsInteger(String id, String propertyName) {
+    public static int getGraphicObjectPropertyAsInteger(String id, int propertyName) {
         return (Integer) getGraphicObjectProperty(id, propertyName);
     }
 
-    public static int[] getGraphicObjectPropertyAsIntegerVector(String id, String propertyName) {
+    public static int[] getGraphicObjectPropertyAsIntegerVector(String id, int propertyName) {
         Integer[] tmp = (Integer[]) getGraphicObjectProperty(id, propertyName);
 
         if (tmp == null) {
@@ -152,17 +152,17 @@ public final class CallGraphicController {
         return result;
     }
 
-    public static int getGraphicObjectPropertyAsBoolean(String id, String propertyName) {
+    public static int getGraphicObjectPropertyAsBoolean(String id, int propertyName) {
         int result;
 
         Boolean tmpValue = (Boolean) getGraphicObjectProperty(id, propertyName);
 
-        result = tmpValue ? 1 : 0;
+        result = Boolean.TRUE.equals(tmpValue) ? 1 : 0;
 
         return result;
     }
 
-    public static int[] getGraphicObjectPropertyAsBooleanVector(String id, String propertyName) {
+    public static int[] getGraphicObjectPropertyAsBooleanVector(String id, int propertyName) {
         Boolean[] tmp = (Boolean[]) getGraphicObjectProperty(id, propertyName);
 
         if (tmp == null) {

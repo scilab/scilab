@@ -61,7 +61,7 @@ public class SciNotesConfiguration implements XConfigurationListener {
                 autosave = path.contains(SciNotesOptions.AUTOSAVEPATH);
                 colors = path.contains(ScilabContext.COLORSPATH);
                 systemfont = path.contains(ScilabContext.SYSTEMFONTPATH);
-                font = path.contains(ScilabContext.FONTPATH);
+                font = path.contains(ScilabContext.XCONFFONTPATH);
                 keymap = path.contains(SciNotesOptions.KEYMAPPATH);
                 header = path.contains(SciNotesOptions.HEADERPATH);
             }

@@ -18,17 +18,17 @@ import java.lang.annotation.Target;
 /**
  * Annotation used to specify that this method is exported to JNI via giws.
  */
-@Target(ElementType.METHOD)
+@Target( { ElementType.METHOD, ElementType.CONSTRUCTOR })
 public @interface ScilabExported {
-	/**
-	 * The module where the giws file and generated implementations are
-	 * presents, eg "xcos" for SCI/modules/xcos/src/jni/Xcos.giws.xml .
-	 */
-	String module();
+    /**
+     * The module where the giws file and generated implementations are
+     * presents, eg "xcos" for SCI/modules/xcos/src/jni/Xcos.giws.xml .
+     */
+    String module();
 
-	/**
-	 * Giws file name, eg "Xcos.giws.xml" for
-	 * SCI/modules/xcos/src/jni/Xcos.giws.xml .
-	 */
-	String filename();
+    /**
+     * Giws file name, eg "Xcos.giws.xml" for
+     * SCI/modules/xcos/src/jni/Xcos.giws.xml .
+     */
+    String filename();
 }

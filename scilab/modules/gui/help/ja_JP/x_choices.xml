@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="x_choices">
+    <refnamediv>
+        <refname>x_choices</refname>
+        <refpurpose>トグルボタンにより選択を行う対話的Xwindow</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>rep=x_choices(title,items)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>title</term>
+                <listitem>
+                    <para>文字列のベクトル, ポップアップウインドウの表題.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>items</term>
+                <listitem>
+                    <para>
+                        項目のリスト <literal>items=list(item1,...,itemn)</literal>, ただし,各 <literal>item</literal> はそれ自体以下の型のリストです:
+                        <literal>item=list('label',default_choice,choices)</literal>. 
+                        <literal>default_choice</literal> は
+                        エントリのトグルのデフォルト値を指定する整数で,
+                        <literal>choices</literal> は選択肢を指定する文字列の
+                        行ベクトルです.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rep</term>
+                <listitem>
+                    <para>
+                        各要素が選択されたトグルの番号を
+                        表す整数ベクトルです.
+                        ユーザが"cancel"ボタンを指定した場合,
+                        <literal>rep</literal>は<literal>[]</literal>
+                        に設定されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            トグルリストから要素を選択し,
+            選択された要素を<literal>rep</literal>に返します.
+        </para>
+        <para>
+            例を表示するには<literal>x_choices()</literal>を入力してください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+l1  = list('choice 1',1,['toggle c1','toggle c2','toggle c3']);
+l2  = list('choice 2',2,['toggle d1','toggle d2','toggle d3']);
+l3  = list('choice 3',3,['toggle e1','toggle e2']);
+rep = x_choices('Toggle Menu',list(l1,l2,l3));
+ ]]></programlisting>
+    </refsection>
+</refentry>

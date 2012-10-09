@@ -29,97 +29,88 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-// TODO: switch using the Type
-
-
 int getTextureWidth(char* id)
 {
-  char* type = NULL;
-  getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
-  if (strcmp(type, __GO_MATPLOT__) == 0)
-  {
-    return MatPlotDecomposer::getTextureWidth(id);
-  }
-  else
-  {
-    return 0;
-  }
+    int iType = 0;
+    int *piType = &iType;
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::getTextureWidth(id);
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 int getTextureHeight(char* id)
 {
-  char* type = NULL;
-  getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
-  if (strcmp(type, __GO_MATPLOT__) == 0)
-  {
-    return MatPlotDecomposer::getTextureHeight(id);
-  }
-  else
-  {
-    return 0;
-  }
+    int iType = 0;
+    int *piType = &iType;
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::getTextureHeight(id);
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 int fillTextureData(char* id, unsigned char* buffer, int bufferLength)
 {
-  char* type = NULL;
-  getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
-  if (strcmp(type, __GO_MATPLOT__) == 0)
-  {
-    return MatPlotDecomposer::fillTextureData(id, buffer, bufferLength);
-  }
-  else
-  {
-    return 0;
-  }
+    int iType = 0;
+    int *piType = &iType;
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::fillTextureData(id, buffer, bufferLength);
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 int fillSubTextureData(char* id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height)
 {
-  char* type = NULL;
-  getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
-  if (strcmp(type, __GO_MATPLOT__) == 0)
-  {
-    return MatPlotDecomposer::fillTextureData(id, buffer, bufferLength, x, y, width, height);
-  }
-  else
-  {
-    return 0;
-  }
+    int iType = 0;
+    int *piType = &iType;
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::fillTextureData(id, buffer, bufferLength, x, y, width, height);
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 int getDataSize(char* id)
 {
-    char* type = NULL;
+    int iType = 0;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
 
-    if (strcmp(type, __GO_FAC3D__) == 0)
+    switch (iType)
     {
+    case __GO_FAC3D__ :
         return Fac3DDecomposer::getDataSize(id);
-    }
-    else if (strcmp(type, __GO_FEC__) == 0)
-    {
+    case __GO_FEC__ :
         return TriangleMeshFecDataDecomposer::getDataSize(id);
-    }
-    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
-    {
+    case __GO_GRAYPLOT__ :
         return NgonGridGrayplotDataDecomposer::getDataSize(id);
-    }
-    else if (strcmp(type, __GO_MATPLOT__) == 0)
-    {
+    case __GO_MATPLOT__ :
         return NgonGridMatplotDataDecomposer::getDataSize(id);
-    }
-    else if (strcmp(type, __GO_PLOT3D__) == 0)
-    {
+    case __GO_PLOT3D__ :
         return Plot3DDecomposer::getDataSize(id);
-    }
-    else if (strcmp(type, __GO_POLYLINE__) == 0)
-    {
+    case __GO_POLYLINE__ :
         return PolylineDecomposer::getDataSize(id);
-    }
-    else
-    {
+    default :
         return 0;
     }
 
@@ -127,203 +118,178 @@ int getDataSize(char* id)
 
 void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
-    char* type = NULL;
+    int iType = 0;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
 
-    if (strcmp(type, __GO_FAC3D__) == 0)
+    switch (iType)
     {
+    case __GO_FAC3D__ :
         Fac3DDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-    }
-    else if (strcmp(type, __GO_FEC__) == 0)
-    {
+        break;
+    case __GO_FEC__ :
         TriangleMeshFecDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-    }
-    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
-    {
+        break;
+    case __GO_GRAYPLOT__ :
         NgonGridGrayplotDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-    }
-    else if (strcmp(type, __GO_MATPLOT__) == 0)
-    {
+        break;
+    case __GO_MATPLOT__ :
         NgonGridMatplotDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-    }
-    else if (strcmp(type, __GO_PLOT3D__) == 0)
-    {
+        break;
+    case __GO_PLOT3D__ :
         Plot3DDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-    }
-    else if (strcmp(type, __GO_POLYLINE__) == 0)
-    {
+        break;
+    case __GO_POLYLINE__ :
         PolylineDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+        break;
     }
 }
 
 void fillTextureCoordinates(char* id, float* BUFF, int bufferLength)
 {
-    char* type = NULL;
+    int iType = 0;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
 
-    if (strcmp(type, __GO_FAC3D__) == 0)
+    switch (iType)
     {
+    case __GO_FAC3D__ :
         Fac3DDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
-    }
-    else if (strcmp(type, __GO_FEC__) == 0)
-    {
+        break;
+    case __GO_FEC__ :
         TriangleMeshFecDataDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
-    }
-    else if (strcmp(type, __GO_POLYLINE__) == 0)
-    {
+        break;
+    case __GO_POLYLINE__ :
         PolylineDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
+        break;
     }
 }
 
 void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
 {
-    char* type = NULL;
+    int iType = 0;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
 
-    if (strcmp(type, __GO_FEC__) == 0)
+    switch (iType)
     {
+    case __GO_FEC__ :
         TriangleMeshFecDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
-    }
-    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
-    {
+        break;
+    case __GO_GRAYPLOT__ :
         NgonGridGrayplotDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
-    }
-    else if (strcmp(type, __GO_MATPLOT__) == 0)
-    {
+        break;
+    case __GO_MATPLOT__ :
         NgonGridMatplotDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
-    }
-    else if (strcmp(type, __GO_PLOT3D__) == 0)
-    {
+        break;
+    case __GO_PLOT3D__ :
         Plot3DDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
-    }
-    else if (strcmp(type, __GO_POLYLINE__) == 0)
-    {
+        break;
+    case __GO_POLYLINE__ :
         PolylineDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+        break;
     }
 }
 
 
 int getIndicesSize(char* id)
 {
-    char* type = NULL;
+    int iType = 0;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
 
-    if (strcmp(type, __GO_FAC3D__) == 0)
+    switch (iType)
     {
+    case __GO_FAC3D__ :
         return Fac3DDecomposer::getIndicesSize(id);
-    }
-    else if (strcmp(type, __GO_FEC__) == 0)
-    {
+    case __GO_FEC__ :
         return TriangleMeshFecDataDecomposer::getIndicesSize(id);
-    }
-    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
-    {
+    case __GO_GRAYPLOT__ :
         return NgonGridGrayplotDataDecomposer::getIndicesSize(id);
-    }
-    else if (strcmp(type, __GO_MATPLOT__) == 0)
-    {
+    case __GO_MATPLOT__ :
         return NgonGridMatplotDataDecomposer::getIndicesSize(id);
-    }
-    else if (strcmp(type, __GO_PLOT3D__) == 0)
-    {
+    case __GO_PLOT3D__ :
         return Plot3DDecomposer::getIndicesSize(id);
-    }
-    else if (strcmp(type, __GO_POLYLINE__) == 0)
-    {
+    case __GO_POLYLINE__ :
         return PolylineDecomposer::getIndicesSize(id);
+    default :
+        return 0;
     }
-
-    return 0;
 }
 
 
 int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
-    char* type = NULL;
+    int iType = 0;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
 
-    if (strcmp(type, __GO_FAC3D__) == 0)
+    switch (iType)
     {
+    case __GO_FAC3D__ :
         return Fac3DDecomposer::fillIndices(id, buffer, bufferLength, logMask);
-    }
-    else if (strcmp(type, __GO_FEC__) == 0)
-    {
+    case __GO_FEC__ :
         return TriangleMeshFecDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
-    }
-    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
-    {
+    case __GO_GRAYPLOT__ :
         return NgonGridGrayplotDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
-    }
-    else if (strcmp(type, __GO_MATPLOT__) == 0)
-    {
+    case __GO_MATPLOT__ :
         return NgonGridMatplotDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
-    }
-    else if (strcmp(type, __GO_PLOT3D__) == 0)
-    {
+    case __GO_PLOT3D__ :
         return Plot3DDecomposer::fillIndices(id, buffer, bufferLength, logMask);
-    }
-    else if (strcmp(type, __GO_POLYLINE__) == 0)
-    {
+    case __GO_POLYLINE__ :
         return PolylineDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+    default :
+        return 0;
     }
-
-    return 0;
 }
 
 int getWireIndicesSize(char* id)
 {
-    char* type = NULL;
-    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
+    int iType = 0;
+    int *piType = &iType;
 
-    if (strcmp(type, __GO_FAC3D__) == 0)
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    switch (iType)
     {
+    case __GO_FAC3D__ :
         return Fac3DDecomposer::getWireIndicesSize(id);
-    }
-    else if (strcmp(type, __GO_FEC__) == 0)
-    {
+    case __GO_FEC__ :
         return TriangleMeshFecDataDecomposer::getWireIndicesSize(id);
-    }
-    else if (strcmp(type, __GO_PLOT3D__) == 0)
-    {
+    case __GO_PLOT3D__ :
         return Plot3DDecomposer::getWireIndicesSize(id);
-    }
-    else if (strcmp(type, __GO_POLYLINE__) == 0)
-    {
+    case __GO_POLYLINE__ :
         return PolylineDecomposer::getWireIndicesSize(id);
+    default :
+        return 0;
     }
-
-    return 0;
 }
 
 int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
-    char* type = NULL;
+    int iType = 0;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
 
-    if (strcmp(type, __GO_FAC3D__) == 0)
+    switch (iType)
     {
+    case __GO_FAC3D__ :
         return Fac3DDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
-    }
-    else if (strcmp(type, __GO_FEC__) == 0)
-    {
+    case __GO_FEC__ :
         return TriangleMeshFecDataDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
-    }
-    else if (strcmp(type, __GO_PLOT3D__) == 0)
-    {
+    case __GO_PLOT3D__ :
         return Plot3DDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
-    }
-    else if (strcmp(type, __GO_POLYLINE__) == 0)
-    {
+    case __GO_POLYLINE__ :
         return PolylineDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
+    default :
+        return 0;
     }
-
-    return 0;
 }
 
 int getMarkIndicesSize(char* id)

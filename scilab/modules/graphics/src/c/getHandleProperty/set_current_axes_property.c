@@ -41,7 +41,8 @@ int set_current_axes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, 
 {
     char * curAxesUID   = NULL;
     char * parentFigureUID = NULL;
-    char * type = NULL;
+    int type = -1;
+    int *piType = &type;
 
     if (pobjUID != NULL)
     {
@@ -64,9 +65,9 @@ int set_current_axes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, 
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(curAxesUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(curAxesUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_AXES__) != 0)
+    if (type != __GO_AXES__)
     {
         Scierror(999, _("Wrong value for '%s' property: Must be a handle on axes.\n"), "current_axes");
         return SET_PROPERTY_ERROR;

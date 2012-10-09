@@ -27,6 +27,18 @@
             la fenêtre graphique courante, avec la police la plus grande possible.
         </para>
     </refsection>
+    
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+titlepage("Ceci est le titre de la page");
+ ]]></programlisting>
+        <scilab:image>
+            titlepage("Ceci est le titre de la page");
+        </scilab:image>
+        
+    </refsection>
+    
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-01 16:39+0000\n"
+"PO-Revision-Date: 2012-09-18 23:24+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: ru\n"
 
 #, c-format
@@ -121,8 +121,8 @@ msgstr "Закрыть все"
 msgid "Close All But This"
 msgstr "Закрыть другие"
 
-msgid "Exit"
-msgstr "Выход"
+msgid "Exit Scinotes"
+msgstr "Выйти из Scinotes"
 
 msgid "Edit"
 msgstr "Правка"
@@ -247,6 +247,18 @@ msgstr "Текущая кодировка файла"
 msgid "Line Endings"
 msgstr "Конец строки"
 
+msgid "Preferences"
+msgstr "Настройки"
+
+msgid "Set font"
+msgstr "Установить шрифт"
+
+msgid "Set colors"
+msgstr "Установить цвета"
+
+msgid "Scinotes General settings"
+msgstr "Общие настройки Scinotes"
+
 msgid "Auto-completion on"
 msgstr "Автодополнение включить"
 
@@ -272,7 +284,7 @@ msgid "Window"
 msgstr "Окно"
 
 msgid "Copy tab in new window"
-msgstr "Скопировать вкладку в новое окне"
+msgstr "Скопировать вкладку в новое окно"
 
 msgid "Detach tab in new window"
 msgstr "Отделить вкладку в новое окно"
@@ -305,8 +317,8 @@ msgstr "Сохранить и выполнить все файлы"
 msgid "?"
 msgstr "Справка"
 
-msgid "SciNotes help"
-msgstr "Справка по SciNotes"
+msgid "Scinotes help"
+msgstr "Справка по Scinotes"
 
 msgid "Help on ;Help on selection"
 msgstr "Справка по ;Справка по выделенному"
@@ -334,8 +346,8 @@ msgstr "Автосохранение"
 msgid "Editor"
 msgstr "Редактор"
 
-msgid "Use SciNotes"
-msgstr "Использовать SciNotes"
+msgid "Use Scinotes"
+msgstr "Использовать Scinotes"
 
 msgid "External editor: "
 msgstr "Внешний редактор: "
@@ -345,9 +357,6 @@ msgstr "(Не забудьте помещать в кавычки путь, со
 
 msgid "Scilab command: "
 msgstr "Scilab-команда: "
-
-msgid "SciNotes General settings"
-msgstr "Общие настройки SciNotes"
 
 msgid "Restore previous session on start-up"
 msgstr "Восстанавливать предыдущую сессию при запуске"
@@ -524,6 +533,9 @@ msgstr "Произошла ошибка при экспортировании к
 msgid "An error occurred when printing"
 msgstr "Произошла ошибка при печати"
 
+msgid "Exit"
+msgstr "Выход"
+
 msgid "Tools"
 msgstr "Инструменты"
 
@@ -619,6 +631,9 @@ msgstr "Вычислить до текущей позиции"
 
 msgid "Execute File Into Scilab"
 msgstr "Выполнить файл в Scilab"
+
+msgid "SciNotes help"
+msgstr "Справка по SciNotes"
 
 msgid "Help on the current keyword"
 msgstr "Справка по выделенной команде"
@@ -772,7 +787,7 @@ msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
 "Are you sure to continue ?"
 msgstr ""
-"Этот файл очень длинный. Было бы лучше \"Выполнить файл в Scilab''е\".\n"
+"Этот файл очень длинный. Было бы лучше \"Выполнить файл в Scilab'е\".\n"
 "Продолжить?"
 
 msgid "Enter line number"

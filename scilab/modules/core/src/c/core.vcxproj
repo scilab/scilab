@@ -421,6 +421,9 @@ cd ..
     <ProjectReference Include="..\..\..\gui\src\c\gui.vcxproj">
       <Project>{45ca5b12-7601-4968-ae16-16069fd1a152}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\hdf5\src\c\hdf5.vcxproj">
+      <Project>{a824ea62-af07-4f43-9036-0e63990556bd}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\history_manager\src\c\history_manager.vcxproj">
       <Project>{1b98dc87-44f5-48ae-b5d0-29dd8ad86f5e}</Project>
     </ProjectReference>

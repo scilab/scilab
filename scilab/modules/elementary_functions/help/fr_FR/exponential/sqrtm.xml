@@ -22,7 +22,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>y=sqrt(x)</literal> est la racine carrée matricielle de la
+            <literal>y=sqrtm(x)</literal> est la racine carrée matricielle de la
             matrice <literal>x</literal> (<literal>x=y^2</literal>) Le résultat peut
             être imprécis si <literal>x</literal> n'est pas symétrique.
         </para>

@@ -606,7 +606,7 @@ if test $IS_SCILAB_BINARY -eq 1; then
     TCL_LIBRARY="$SCIBINARYBASE/thirdparty/tcl8.5"
     Tk_LIBRARY="$SCIBINARYBASE/thirdparty/tk8.5"
     LD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-    DOCBOOK_ROOT="$SCI/thirdparty/docbook"
+    DOCBOOK_ROOT="$SCI/../../thirdparty/docbook"
     PATH="$PATH:$SCI/modules/scicos/"
 
     export DOCBOOK_ROOT
@@ -831,7 +831,7 @@ do_help()
     echo     "                    -e and -f arguments are mutually exclusive."
     echo     "  -l Lang         : set the current language. Lang can be equal to fr or en."
     echo     "  -mem N          : set the initial stacksize, for use with -ns argument."
-    echo     "  -nb             : do not display the Scilab banner at starting time."
+    echo     "  -nb             : do not display Scilab loading message at starting time."
     echo     "  -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
     echo     "  -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
     echo     "  -noatomsautoload: do not load ATOMS installed module."

@@ -68,7 +68,7 @@ int SetUicontrolBackgroundColor(void* _pvCtx, char* sciObjUID, size_t stackPoint
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_BACKGROUNDCOLOR__), allColors, jni_double_vector, 3);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_BACKGROUNDCOLOR__, allColors, jni_double_vector, 3);
 
     if (valueType == sci_strings)
     {

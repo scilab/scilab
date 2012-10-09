@@ -17,11 +17,10 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>In the previous versions of Scilab, there was no clear or easy way to extend Scilab or to use it as an embedded application.</para>
-        <para>Since Scilab 5.2.0, these issues have been tackled by API Scilab. Its provides a new consistent, documented and easy way API.
+        <para>Since Scilab 5.2.0, Scilab provides a consistent, documented and easy way API.
         </para>
         <para>This API provides functions to read/write data from/to Scilab memory.</para>
-        <para>  It provides many advantages:</para>
+        <para>It provides many advantages:</para>
         <itemizedlist>
             <listitem>
                 <para>Management of all Scilab data types</para>
@@ -50,7 +49,8 @@
         <para>Usually, this API is used to extend Scilab capabilities but can be used in other contexts</para>
         <itemizedlist>
             <listitem>
-                <para>Libraires or C/C++ functions: Many librairies have been developed on the free/Open source or proprietary markets. This library can be loaded and used in a high level language like Scilab. API Scilab provides the capabilities to interact with such libraries.
+                <para>
+                    Libraires or C/C++ functions: Many librairies have been developed on the free/Open source or proprietary markets. This library can be loaded and used in a high level language like Scilab. API Scilab provides the capabilities to interact with such libraries.
                 </para>
             </listitem>
             <listitem>
@@ -66,34 +66,41 @@
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revdescription>Add some functions/macros in replacement of stack functions/macros
+                <revdescription>
+                    Add some functions/macros in replacement of stack functions/macros
                     <itemizedlist>
-                        <listitem>nbInputArgument
+                        <listitem>
+                            nbInputArgument
                             <para>
                                 Replaces <literal>Rhs</literal>
                             </para>
                         </listitem>
-                        <listitem>nbOutputArgument
+                        <listitem>
+                            nbOutputArgument
                             <para>
                                 Replaces <literal>Lhs</literal>
                             </para>
                         </listitem>
-                        <listitem>AssignOutputVariable
+                        <listitem>
+                            AssignOutputVariable
                             <para>
                                 Replaces <literal>LhsVar</literal>
                             </para>
                         </listitem>
-                        <listitem>ReturnArguments
+                        <listitem>
+                            ReturnArguments
                             <para>
                                 Replaces <literal>PutLhsVar</literal>
                             </para>
                         </listitem>
-                        <listitem>CheckInputArgument
+                        <listitem>
+                            CheckInputArgument
                             <para>
                                 Replaces <literal>CheckRhs</literal>
                             </para>
                         </listitem>
-                        <listitem>CheckOutputArgument
+                        <listitem>
+                            CheckOutputArgument
                             <para>
                                 Replaces <literal>CheckLhs</literal>
                             </para>
@@ -104,6 +111,20 @@
                         <literal>isListType</literal>, <literal>isNamedListType</literal>, <literal>isTListType</literal>, <literal>isNamedTListType</literal>, <literal>isMListType</literal>,
                         <literal>isNamedMListType</literal>
                     </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Add functions to manage handles
+                    <itemizedlist>
+                        <listitem>getMatrixOfHandle</listitem>
+                        <listitem>allocMatrixOfHandle</listitem>
+                        <listitem>createMatrixOfHandle</listitem>
+                        <listitem>isHandleType</listitem>
+                        <listitem>getScalarHandle</listitem>
+                        <listitem>createScalarHandle</listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>
@@ -179,6 +200,12 @@
             </member>
             <member>
                 <link linkend="String_management_writing_API">String management writing API</link>
+            </member>
+            <member>
+                <link linkend="handle_reading_API">handle reading API</link>,
+            </member>
+            <member>
+                <link linkend="handle_writing_API">handle writing API</link>,
             </member>
         </simplelist>
     </refsection>

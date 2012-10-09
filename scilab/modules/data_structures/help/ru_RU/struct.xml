@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="struct">
+    <refnamediv>
+        <refname>struct</refname>
+        <refpurpose>создаёт структуру</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>st = struct(field1, value1, field2, value2, ...)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>field1, field2, ...</term>
+                <listitem>
+                    <para>строки, представляющие имена полей.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>value1, value2, ...</term>
+                <listitem>
+                    <para>
+                        все типы данных (<literal>double</literal>, <literal>char</literal>, <literal>int</literal>, ...), представляющие значения полей.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция возвращает структуру с именами полей 
+            <varname>fields1</varname>, <varname>field2</varname>, ..., и значениями полей, соответственно, <varname>value1</varname>, <varname>value2</varname>, ...
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+//создадим структуру данных
+date_st=struct('day',25,'month' ,'DEC','year',2006)
+ 
+//изменим месяц
+date_st.month='AUG';
+ 
+//изменим год
+date_st.year=1973;
+ 
+//изменим день
+date_st.day=19;
+ 
+//добавим новое поле
+date_st.semaine=32
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cell">cell</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

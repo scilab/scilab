@@ -21,7 +21,7 @@ int GetUicontrolValue(void* _pvCtx, char *sciObjUID)
     double* pdblValue = NULL;
     int status = 0;
 
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_VALUE_SIZE__), jni_int, (void**) &piValueSize);
+    getGraphicObjectProperty(sciObjUID, __GO_UI_VALUE_SIZE__, jni_int, (void**) &piValueSize);
 
     if (piValueSize == NULL)
     {
@@ -36,7 +36,7 @@ int GetUicontrolValue(void* _pvCtx, char *sciObjUID)
         }
         else
         {
-            getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_VALUE__), jni_double_vector, (void**) &pdblValue);
+            getGraphicObjectProperty(sciObjUID, __GO_UI_VALUE__, jni_double_vector, (void**) &pdblValue);
 
             if (pdblValue == NULL)
             {

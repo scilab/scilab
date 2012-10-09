@@ -39,7 +39,7 @@ int sci_newaxes( char * fname, unsigned long fname_len )
     CheckRhs(0, 0);
     CheckLhs(0, 1);
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    getOrCreateDefaultSubwin();
 
     if ((psubwinUID = (char*)ConstructSubWin (getCurrentFigure())) != NULL)
     {

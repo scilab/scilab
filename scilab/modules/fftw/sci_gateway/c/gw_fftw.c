@@ -29,7 +29,9 @@ static gw_generic_table Tab[] =
 { sci_fftw_flags,"fftw_flags"},
 { sci_get_fftw_wisdom,"get_fftw_wisdom"},
 { sci_set_fftw_wisdom,"set_fftw_wisdom"},
-{ sci_fftw_forget_wisdom,"fftw_forget_wisdom"}
+{ sci_fftw_forget_wisdom,"fftw_forget_wisdom"},
+{ sci_dct,"dct"},
+{ sci_dst,"dst"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_fftw(void)

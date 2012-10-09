@@ -23,17 +23,18 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,t</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>a real or complex square matrices</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>asinhm is the matrix hyperbolic inverse sine of the matrix x. Uses
-            the formula <literal>t=logm(x+sqrtm(x*x+eye()))</literal>. Results may be
+        <para>
+            <function>asinhm</function> is the matrix hyperbolic inverse sine of the matrix <varname>x</varname>. Uses
+            the formula <code>t = logm(x+sqrtm(x*x+eye()))</code>. Results may be
             not reliable for non-symmetric matrix.
         </para>
     </refsection>

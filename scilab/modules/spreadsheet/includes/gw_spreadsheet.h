@@ -13,13 +13,16 @@
 
 #ifndef __GW_SPREADSHEET_H__
 #define __GW_SPREADSHEET_H__
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "dynlib_spreadsheet.h"
-/*--------------------------------------------------------------------------*/ 
-SPREADSHEET_IMPEXP int gw_spreadsheet(void);
-/*--------------------------------------------------------------------------*/ 
-SPREADSHEET_IMPEXP int sci_xls_read(char *fname,unsigned long fname_len);
-SPREADSHEET_IMPEXP int sci_xls_open(char *fname,unsigned long fname_len);
-/*--------------------------------------------------------------------------*/ 
+#include "c_gateway_prototype.h"
+/*--------------------------------------------------------------------------*/
+C_GATEWAY_PROTOTYPE(sci_csvDefault);
+C_GATEWAY_PROTOTYPE(sci_csvIsnum);
+C_GATEWAY_PROTOTYPE(sci_csvRead);
+C_GATEWAY_PROTOTYPE(sci_csvStringToDouble);
+C_GATEWAY_PROTOTYPE(sci_csvTextScan);
+C_GATEWAY_PROTOTYPE(sci_csvWrite);
+/*--------------------------------------------------------------------------*/
 #endif /*  __GW_SPREADSHEET_H__ */
 /*--------------------------------------------------------------------------*/

@@ -55,19 +55,27 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>plot2d2();</scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // plots a step function of value i on the segment [i,i+1]
 // the last segment is not drawn
 plot2d2([1:4],[1:4],1,"111","step function",[0,0,5,5])
+ ]]></programlisting>
+        <scilab:image>
+            plot2d2([1:4],[1:4],1,"111","step function",[0,0,5,5])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // compare the following with plot2d
 x=[0:0.1:2*%pi]';
 clf()
 plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+x=[0:0.1:2*%pi]';
 clf();
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();
@@ -75,6 +83,14 @@ e.children(1).polyline_style=2;
 e.children(2).polyline_style=2;
 e.children(3).polyline_style=2;
  ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+            e=gce();
+            e.children(1).polyline_style=2;
+            e.children(2).polyline_style=2;
+            e.children(3).polyline_style=2;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="x_choose">
+    <refnamediv>
+        <refname>x_choose</refname>
+        <refpurpose>対話的な選択ウインドウ (モーダルダイアログ)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[num]=x_choose(items,title [,button])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>items</term>
+                <listitem>
+                    <para>文字列の列ベクトル,  選択する項目</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>title</term>
+                <listitem>
+                    <para>文字列の列ベクトル, ダイアログのコメント</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>button</term>
+                <listitem>
+                    <para>文字列, ボタンに表示する文字列. デフォルト値は'Cancel'です</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>num</term>
+                <listitem>
+                    <para>整数, 選択した項目番号または0
+                        (ダイアログで"Cancel"ボタンが選択された場合)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            選択した項目の数を<literal>num</literal>に返します.
+        </para>
+        <para>
+            警告: このダイアログはScilab 5.0より以前はモーダルでは
+            ありませんでしたが,
+            下位互換性を維持するためには
+            x_choose_modelessを使用してください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+n = x_choose(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
+n = x_choose(['item1';'item2';'item3'],['that is a comment'],'Return')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="x_choose_modeless">x_choose_modeless</link>
+            </member>
+            <member>
+                <link linkend="x_choices">x_choices</link>
+            </member>
+            <member>
+                <link linkend="x_mdialog">x_mdialog</link>
+            </member>
+            <member>
+                <link linkend="getvalue">getvalue</link>
+            </member>
+            <member>
+                <link linkend="unix_g">unix_g</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

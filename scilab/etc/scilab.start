@@ -33,7 +33,6 @@ PWD = pwd();
 // Startup message  ===================================================
 //if (sciargs()<>"-nb") & ~fromjava() & ~fromc() then
 if sciargs() <> "-nb" then
-    banner();
   printf("\n\n%s\n", gettext("Startup execution:"));
   printf(gettext("  loading initial environment") + "\n");
 end

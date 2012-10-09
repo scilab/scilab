@@ -11,3 +11,4 @@ curl
 gettext
 diff
 xmlindent
+astyle

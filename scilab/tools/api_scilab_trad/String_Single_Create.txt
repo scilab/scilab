@@ -1,0 +1,6 @@
+\1if (createSingleString(pvApiCtx, \2, \5))\6
+\1{
+\1    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+\1    return 1;
+\1}
+

@@ -333,3 +333,28 @@ begin
   CreateTheWizardPages;
 end;
 //------------------------------------------------------------------------------
+//convert Boolean expresion in string ( debug function )
+function BoolToStr(Value : Boolean) : String;
+begin
+  if Value then
+    result := 'true'
+  else
+    result := 'false';
+end;
+//------------------------------------------------------------------------------
+//check user rights
+function IsAdminUser(): Boolean;
+begin
+  Result := (IsAdminLoggedOn or IsPowerUserLoggedOn);
+end;
+//------------------------------------------------------------------------------
+//returns default install path ( take care of user rights )
+function DefDirRoot(Param: String): String;
+begin
+  if IsAdminUser then
+    //program files path
+    Result := ExpandConstant('{pf}')
+  else
+    //local app data path
+    Result := ExpandConstant('{localappdata}')
+end;

@@ -19,6 +19,14 @@
  Don't touch if you do not know what you are doing
 -->
 <module name="spreadsheet">
-    <gateway name="sci_xls_open"  function="xls_open"   type="1" />
-    <gateway name="sci_xls_read"  function="xls_read"   type="1" />
+    <gateway name="sci_xls_open"            function="xls_open"             type="1" />
+    <gateway name="sci_xls_read"            function="xls_read"             type="1" />
+    <gateway name="sci_csvDefault"          function="csvDefault"           type="0" />
+    <gateway name="sci_csvIsnum"            function="csvIsnum"             type="0" />
+    <gateway name="sci_csvRead"             function="csvRead"              type="0" />
+    <gateway name="sci_csvStringToDouble"   function="csvStringToDouble"    type="0" />
+    <gateway name="sci_csvTextScan"         function="csvTextScan"          type="0" />
+    <gateway name="sci_csvWrite"            function="csvWrite"             type="0" />
+    <gateway name="sci_write_csv"           function="write_csv"            type="0" />
+    <gateway name="sci_read_csv"            function="read_csv"             type="0" />
 </module>

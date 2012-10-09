@@ -112,13 +112,6 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
-            
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // display a title with several properties 
@@ -137,6 +130,11 @@ title('my title','rotation',90);
 // We can do all these modifications with just the below instruction:
 title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
  ]]></programlisting>
+        <scilab:image>
+            title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
+            
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

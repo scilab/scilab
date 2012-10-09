@@ -678,6 +678,7 @@ src/cpp/displaytree.cpp \
 src/jni/ScilabDisplayTree.cpp
 
 GIWS_WRAPPERS = \
+src/jni/SwingView.giws.xml \
 src/jni/CallScilabBridge.giws.xml \
 src/jni/Jxclick.giws.xml \
 src/jni/Jxgetmouse.giws.xml \

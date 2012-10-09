@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -97,13 +97,44 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="convstr.h">
+    <None Include="core_import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="localization_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="string_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\string.iss" />
+    <None Include="..\..\sci_gateway\string_gateway.xml" />
+    <None Include="linpack_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\locales\string.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="System_env_Import.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="string.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stringsstrrev.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\cvstr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_string_gw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getfastcode.h">
@@ -113,15 +144,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\InitializeString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="isalphanum.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="isdigit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="isletter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\men_Sutils.h">
@@ -142,25 +164,61 @@
     <ClInclude Include="..\..\includes\os_wcsicmp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\os_wcstok.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\pcre_private.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\scistrtostr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\stricmp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\string_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\StringConvert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\stringToDouble.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\strsubst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="convstr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateEmptystr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="isalphanum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="isdigit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="isletter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="partfunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pcre_error.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pcre_private.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\scistrtostr.h">
+    <ClInclude Include="pcre_internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="setScilabCharactersCodes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\stricmp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\StringConvert.h">
+    <ClInclude Include="strcatfunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stringsCompare.h">
@@ -169,67 +227,18 @@
     <ClInclude Include="stringsstrrev.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\cpp\stripblanks.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="strsplitfunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\strsubst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tokens.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\os_wcstok.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre_internal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="strcatfunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ucp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\code2str.h">
+    <ClInclude Include="..\cpp\stripblanks.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="localization_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="string_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="System_env_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="..\..\Makefile.am" />
-    <None Include="..\..\string.iss" />
-    <None Include="..\..\sci_gateway\string_gateway.xml" />
-    <None Include="..\..\locales\string.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="linpack_f_Import.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="..\..\locales\string.pot">
-      <Filter>localization</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="string.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />

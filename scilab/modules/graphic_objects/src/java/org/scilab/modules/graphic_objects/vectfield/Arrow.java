@@ -64,14 +64,15 @@ public class Arrow extends ContouredObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_BASE__)) {
+	public Object getPropertyFromName(int propertyName) {
+		switch (propertyName) {
+		case __GO_BASE__ :
 			return ArrowProperty.BASE;
-		} else if (propertyName.equals(__GO_DIRECTION__)) {
+		case __GO_DIRECTION__ :
 			return ArrowProperty.DIRECTION;
-		} else if (propertyName.equals(__GO_ARROW_SIZE__)) {
+		case __GO_ARROW_SIZE__ :
 			return ArrowProperty.ARROWSIZE;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}
@@ -170,5 +171,9 @@ public class Arrow extends ContouredObject {
 		this.direction[1] = direction[1];
 		this.direction[2] = direction[2];
 	}
+
+    public Integer getType() {
+        return -1;
+    }
 
 }

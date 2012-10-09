@@ -86,6 +86,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_loadXcos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosSimulationStarted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_xcos.h">

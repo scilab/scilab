@@ -782,15 +782,16 @@ int ComputeC_format(char * pobjUID, char * c_format)
     double *y = NULL;
     double* tmpx = NULL;
     double* tmpy = NULL;
-    char* type = NULL;
+    int iType = -1;
+    int *piType = &iType;
     int  xpassed = 0, ypassed = 0, Nx = 0, Ny = 0, x3, y3;
     char* parentAxesID = NULL;
     int logFlag = 0;
     int* piLogFlag = &logFlag;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_AXIS__) != 0)
+    if (iType != __GO_AXIS__)
     {
         Scierror(999, _("Error: ComputeFormat must be used with AXIS objects\n"));
         return -1;

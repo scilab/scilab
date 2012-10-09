@@ -1,8 +1,10 @@
 /*
- *   Copyright Bruno Pinçon, ESIAL-IECN, Inria CORIDA project 
+ *   Copyright Bruno Pinçon, ESIAL-IECN, Inria CORIDA project
  *   <bruno.pincon@iecn.u-nancy.fr>
- *   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do 
+ *   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do
  *                 Espírito Santo, Brazil. <frasson@ele.ufes.br>.
+ *
+ *  Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  *
  * PURPOSE: Scilab interfaces routines onto the UMFPACK sparse solver
  * (Tim Davis) and onto the TAUCS snmf choleski solver (Sivan Teledo)
@@ -47,9 +49,9 @@
   |    p  : the permutation                                     |
   |                                                             |
   +------------------------------------------------------------*/
+#include "api_scilab.h"
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
-#include "stack-c.h"
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "Scierror.h"
@@ -57,65 +59,95 @@
 
 extern CellAdr *ListCholFactors;
 
-int sci_taucs_chget(char* fname, unsigned long l)
+int sci_taucs_chget(char* fname, void* pvApiCtx)
 {
+    SciErr sciErr;
+    int nnz = 0, i = 0, pl_miss = 0, it_flag = 0;
+    int* lp = NULL;
+    taucs_handle_factors * pC;
+    taucs_ccs_matrix * C;
+    int* piAddr1 = NULL;
+    void* pvPtr = NULL;
 
-	int mC_ptr, nC_ptr, lC_ptr;
-	taucs_handle_factors * pC;
-	taucs_ccs_matrix * C;
-	SciSparse S;
-	int one = 1, nnz, lp, i, pl_miss, it_flag;
+    /* Check numbers of input/output arguments */
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 3);
 
-	/* Check numbers of input/output arguments */
-	CheckRhs(1,1); CheckLhs(1,3);
+    /* get the pointer to the Choleski factorisation handle */
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-	/* get the pointer to the Choleski factorisation handle */
-	GetRhsVar(1,SCILAB_POINTER_DATATYPE, &mC_ptr, &nC_ptr, &lC_ptr);
-	pC = (taucs_handle_factors *) ((unsigned long int) *stk(lC_ptr));
+    sciErr = getPointer(pvApiCtx, piAddr1, &pvPtr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-	/* Check if the pointer is a valid ref to ... */
-	if (! IsAdrInList( (Adr)pC, ListCholFactors, &it_flag) )
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: Must be a valid reference to a Cholesky factorisation"),fname,1);
-			return 0;
-		};
+    pC = (taucs_handle_factors *)pvPtr;
 
-	C = taucs_supernodal_factor_to_ccs(pC->C);
-	if (! C) 
-	{
-		Scierror(999,_("%s: No more memory.\n"),fname);
-		return 0;
-	};
+    /* Check if the pointer is a valid ref to ... */
+    if (! IsAdrInList( (Adr)pC, ListCholFactors, &it_flag) )
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be a valid reference to a Cholesky factorisation"), fname, 1);
+        return 1;
+    }
 
-	/* set up S fields */
-	nnz = 0;
-	for (i = 0 ; i < C->m ; i++)
-		{
-			C->colptr[i] = C->colptr[i+1] - C->colptr[i];
-			nnz += C->colptr[i];
-		}
-	for ( i = 0 ; i < nnz ; i++ )
-		C->rowind[i]++;
-  
-	S.m = C->m ; S.n = C->n; S.it = 0; S.nel = nnz;
-	S.R = C->values; S.I = NULL; 
-	S.icol = C->rowind; S.mnel = C->colptr;
-  
-	if (! test_size_for_sparse(2 , S.m, S.it, S.nel, &pl_miss))
-	{
-		taucs_ccs_free(C); 
-		Scierror(999,_("%s: No more memory : increase stacksize %d supplementary words needed.\n"),fname, pl_miss);
-		return 0;
-	}
-	CreateVarFromPtr(2,SPARSE_MATRIX_DATATYPE,&S.m,&S.n,&S);  
-	taucs_ccs_free(C); 
-  
-	/* now p */
-	CreateVar(3,MATRIX_OF_INTEGER_DATATYPE, &(S.m), &one, &lp); 
-	for  (i = 0 ; i < S.m ; i++) *istk(lp+i) = pC->p[i]+1;
+    C = taucs_supernodal_factor_to_ccs(pC->C);
+    if (! C)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 1;
+    }
 
-	LhsVar(1) = 2;
-	LhsVar(2) = 3;
-	PutLhsVar();
-	return 0;
+    /* set up S fields */
+    nnz = 0;
+    for (i = 0 ; i < C->m ; i++)
+    {
+        C->colptr[i] = C->colptr[i + 1] - C->colptr[i];
+        nnz += C->colptr[i];
+    }
+
+    for ( i = 0 ; i < nnz ; i++ )
+    {
+        C->rowind[i]++;
+    }
+
+    if (! test_size_for_sparse(2 , C->m, 0, nnz, &pl_miss)) // 0 for real
+    {
+        taucs_ccs_free(C);
+        Scierror(999, _("%s: No more memory : increase stacksize %d supplementary words needed.\n"), fname, pl_miss);
+        return 1;
+    }
+
+    sciErr = createSparseMatrix(pvApiCtx, 2, C->m, C->n, nnz, C->colptr, C->rowind, C->values);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    /* now p */
+    sciErr = allocMatrixOfDoubleAsInteger(pvApiCtx, 3, C->m, 1, &lp);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    for (i = 0 ; i < C->m ; i++)
+    {
+        lp[i] = pC->p[i] + 1;
+    }
+
+    taucs_ccs_free(C);
+
+    AssignOutputVariable(pvApiCtx, 1) = 2;
+    AssignOutputVariable(pvApiCtx, 2) = 3;
+    ReturnArguments(pvApiCtx);
+    return 0;
 }

@@ -10,7 +10,7 @@ function demo_contourf2()
 
   my_handle             = scf(100001);
   clf(my_handle,"reset");
-  demo_viewCode("contourf2.dem.sce");
+  
 
 
   function z=peaks(x,y)
@@ -40,9 +40,15 @@ function demo_contourf2()
   
   contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8],0*ones(1,m))
   xset('fpf','');
+  halt(_("Press Return to continue ... \n"));
+  
+  if is_handle_valid(my_handle) == %f then
+      return;
+  end
 
   clf();
   contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
+  demo_viewCode("contourf2.dem.sce");
 
 endfunction
 

@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>a real or complex square matrix.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>a real or complex square matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,9 +39,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>atanhm(x)</literal> is the matrix hyperbolic tangent
-            inverse of matrix <literal>x</literal>. Results may be inaccurate if
-            <literal>x</literal> is not symmetric.
+            <code>atanhm(x)</code> is the matrix hyperbolic tangent
+            inverse of matrix <varname>x</varname>. Results may be inaccurate if
+            <varname>x</varname> is not symmetric.
         </para>
     </refsection>
     <refsection>

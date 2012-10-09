@@ -36,6 +36,11 @@ plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xset("color",5)
 xfrect(-1,1,2,2)
  ]]></programlisting>
+        <scilab:image>
+            plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+            xset("color",5)
+            xfrect(-1,1,2,2)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.surface;
 
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -64,8 +65,8 @@ public class Fac3d extends Surface {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_DATA_MAPPING__)) {
+	public Object getPropertyFromName(int propertyName) {
+		if (propertyName == __GO_DATA_MAPPING__) {
 			return Fac3dProperty.DATAMAPPING;
 		} else {
 			return super.getPropertyFromName(propertyName);
@@ -132,8 +133,8 @@ public class Fac3d extends Surface {
 	/**
 	 * @return Type as String
 	 */
-	public String getType() {
-		return "Fac3d";
+	public Integer getType() {
+		return GraphicObjectProperties.__GO_FAC3D__;
 	}
 
 }

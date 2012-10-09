@@ -110,6 +110,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         defaultWinAttributes.put("y", new Integer(DEFAULTY));
         defaultWinAttributes.put("height", new Integer(DEFAULTHEIGHT));
         defaultWinAttributes.put("width", new Integer(DEFAULTWIDTH));
+        defaultWinAttributes.put("state", new Integer(SwingScilabWindow.NORMAL));
         /*java.awt.Toolkit.getDefaultToolkit().addAWTEventListener(new java.awt.event.AWTEventListener() {
           public void eventDispatched(java.awt.AWTEvent e) {
           System.out.println(e);
@@ -237,7 +238,8 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                                                                "x", (int) window.getLocation().getX(),
                                                                "y", (int) window.getLocation().getY(),
                                                                "width", (int) window.getSize().getWidth(),
-                                                               "height", (int) window.getSize().getHeight()
+                                                               "height", (int) window.getSize().getHeight(),
+                                                               "state", window.getExtendedState()
             });
         LayoutNode layoutNode = window.getDockingPort().exportLayout();
         LayoutNodeSerializer serializer = new LayoutNodeSerializer();
@@ -286,6 +288,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
             attrs.put("height", int.class);
             attrs.put("width", int.class);
+            attrs.put("state", int.class);
             ScilabXMLUtilities.readNodeAttributes(win, attrs);
         } else {
             attrs.putAll(defaultWinAttributes);
@@ -306,6 +309,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         }
 
         window.setSize(((Integer) attrs.get("width")).intValue(), ((Integer) attrs.get("height")).intValue());
+        window.setExtendedState(((Integer) attrs.get("state")).intValue());
 
         return window;
     }

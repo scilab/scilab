@@ -19,13 +19,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Вещественный массив.</para>
+                    <para>вещественный массив.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>Вещественный или комплексный массив.</para>
+                    <para>вещественный или комплексный массив.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -35,6 +35,14 @@
         <para>
             Вычисляет поэлементно арккосеканс аргумента. Возвращает результат в градусах. Для вещественного аргумента с абсолютным значением больше 1 результат вещественный.
         </para>
+    </refsection>
+    <refsection>
+        <title>Sample</title>
+        <scilab:image>
+            x=linspace(1,20,200);
+            x=[-x($:-1:1) %nan x];
+            plot(x,acscd(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Примеры</title>

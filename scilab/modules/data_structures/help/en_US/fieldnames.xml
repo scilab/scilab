@@ -40,8 +40,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>fieldnames</literal> function returns field names
-            of a tlist, mlist or struct. <literal>fieldnames</literal>
+            The <function>fieldnames</function> function returns field names
+            of a <literal>tlist</literal>, <literal>mlist</literal> or <literal>struct</literal>. <function>fieldnames</function>
             does not work on cells.
         </para>
     </refsection>

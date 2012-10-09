@@ -3,6 +3,7 @@
 * Copyright (C) 2006/2007 - INRIA - Alan LAYEC
 * Copyright (C) 2007 - INRIA - Allan CORNET
 * Copyright (C) 2012 - DIGITEO - Allan CORNET
+* Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -13,6 +14,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "api_scilab.h"
 #include "fftw_utilities.h"
 #include "MALLOC.h"
 #include "gw_fftw.h"
@@ -20,7 +22,6 @@
 #include "freeArrayOfString.h"
 #include "Scierror.h"
 #include "os_strdup.h"
-#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 /* fftw_flags function.
 *
@@ -42,16 +43,19 @@
 *  (default is FFTW_ESTIMATE)
 */
 /*--------------------------------------------------------------------------*/
-int sci_fftw_flags(char *fname, unsigned long fname_len)
+int sci_fftw_flags(char *fname,  void* pvApiCtx)
 {
     /* declaration of variables to store scilab parameters address */
-    static int l1 = 0, m1 = 0, n1 = 0;
-    SciIntMat M1;
+    static int m1 = 0, n1 = 0;
+
     char **Str1 = NULL;
-
-    static int l2 = 0, m2 = 0, n2 = 0;
-
     char **Str3 = NULL;
+
+    unsigned int uiVar1 = 0;
+    int* piDataOut = NULL;
+    int* piAddr1 = NULL;
+    int* piLen = NULL;
+    int iType = 0;
 
     /* please update me ! */
     static int nb_flag = 22;
@@ -117,69 +121,164 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
 
     int i = 0, j = 0;
 
-    CheckRhs(0, 1);
+    SciErr sciErr;
+    CheckInputArgument(pvApiCtx, 0, 1);
 
-    if (Rhs == 0)
+    if (nbInputArgument(pvApiCtx) == 0)
     {
         // nothing
     }
     else
     {
-        switch(VarType(1))
+        //get variable address of the input argument
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+        if (sciErr.iErr)
         {
-        case sci_ints:
+            printError(&sciErr, 0);
+            return 1;
+        }
 
-            /* int */
-            GetRhsVar(1, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m1, &n1, &M1);
-            CheckDims(1, m1, n1, 1, 1);
-            setCurrentFftwFlags(((int *)M1.D)[0]);
-            break;
-        case sci_matrix:
-            /* double */
-            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-            CheckDims(1, m1, n1, 1, 1);
-            setCurrentFftwFlags((int)*stk(l1));
-            break;
-        case sci_strings:
-            /* string */
-            GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &Str1);
-            for (j = 0; j < m1 * n1; j++)
+        getVarType(pvApiCtx, piAddr1, &iType);
+        switch (iType)
+        {
+            case sci_ints:
             {
-                for (i = 0; i < nb_flag; i++)
+                /* int */
+                int iPrecision = 0;
+                int* pi32Data = NULL;
+                unsigned int* pui32Data = NULL;
+
+                getMatrixOfIntegerPrecision(pvApiCtx, piAddr1, &iPrecision);
+                if (iPrecision != SCI_INT32 && iPrecision != SCI_UINT32)
                 {
-                    if (strcmp(Str1[j], Str[i]) == 0) break;
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A int32 expected.\n"), fname, 1);
+                    return 1;
                 }
 
-                if (i == nb_flag)
+                if (iPrecision == SCI_INT32)
                 {
-                    freeArrayOfString(Str1, m1 * n1);
-                    Scierror(999, _("%s: Wrong values for input argument #%d: FFTW flag expected.\n"), fname, 1);
-                    return 0;
+                    sciErr = getMatrixOfInteger32(pvApiCtx, piAddr1, &m1, &n1, &pi32Data);
+                    uiVar1 = (unsigned int)pi32Data[0];
                 }
                 else
                 {
-                    if (i > 0)
+                    sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, piAddr1, &m1, &n1, &pui32Data);
+                    uiVar1 = pui32Data[0];
+                }
+
+                if (sciErr.iErr)
+                {
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    printError(&sciErr, 0);
+                    return 1;
+                }
+                break;
+            }
+            case sci_matrix:
+            {
+                /* double */
+                double* pdblData = NULL;
+                sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &pdblData);
+                if (sciErr.iErr)
+                {
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    printError(&sciErr, 0);
+                    return 1;
+                }
+
+                uiVar1 = (unsigned int)pdblData[0];
+                break;
+            }
+            case sci_strings:
+            {
+                /* string */
+                //fisrt call to retrieve dimensions
+                sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, NULL, NULL);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 1;
+                }
+
+                piLen = (int*)malloc(sizeof(int) * m1 * n1);
+
+                //second call to retrieve length of each string
+                sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, NULL);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 1;
+                }
+
+                Str1 = (char**)malloc(sizeof(char*) * m1 * n1);
+                for (i = 0 ; i < m1 * n1 ; i++)
+                {
+                    Str1[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+                }
+
+                //third call to retrieve data
+                sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, Str1);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 1;
+                }
+
+                for (j = 0; j < m1 * n1; j++)
+                {
+                    for (i = 0; i < nb_flag; i++)
                     {
-                        flagv = ( flagv | (1U << (i - 1)) );
+                        if (strcmp(Str1[j], Str[i]) == 0)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (i == nb_flag)
+                    {
+                        freeArrayOfString(Str1, m1 * n1);
+                        Scierror(999, _("%s: Wrong values for input argument #%d: FFTW flag expected.\n"), fname, 1);
+                        return 0;
+                    }
+                    else
+                    {
+                        if (i > 0)
+                        {
+                            flagv = ( flagv | (1U << (i - 1)) );
+                        }
                     }
                 }
-            }
-            setCurrentFftwFlags(flagv);
-            freeArrayOfString(Str1, m1 * n1);
-            break;
 
-        default:
-            Scierror(53, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
-            return 0;
+                uiVar1 = (unsigned int)flagv;
+                freeArrayOfString(Str1, m1 * n1);
+                m1 = 1;
+                n1 = 1;
+                break;
+            }
+            default:
+                Scierror(53, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
+                return 1;
         }
+
+        if (m1 != 1 || n1 != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, 1, 1, 1);
+            return 1;
+        }
+
+        setCurrentFftwFlags(uiVar1);
     }
 
     /* return value of Sci_Plan.flags in position 2 */
-    m2 = 1;
-    n2 = m2;
-    l2 = I_INT32;
-    CreateVar(Rhs + 2, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m2, &n2, &l2);
-    *istk(l2) = (int) getCurrentFftwFlags();
+    sciErr = allocMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 2, 1, 1, &piDataOut);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 1;
+    }
+
+    piDataOut[0] = (int) getCurrentFftwFlags();
 
     /*Test for only FFTW_MEASURE*/
     if (getCurrentFftwFlags() == 0)
@@ -188,27 +287,27 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
         if ((Str3 = (char **)MALLOC(sizeof(char *))) == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
-            return 0;
+            return 1;
         }
 
         Str3[0] = os_strdup(Str[0]);
         if (Str3[0] == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
-            return 0;
+            return 1;
         }
     }
     else
     {
         j = 0;
-        for (i = 1;i < nb_flag; i++)
+        for (i = 1; i < nb_flag; i++)
         {
-            if((getCurrentFftwFlags() & flagt[i]) == flagt[i])
+            if ((getCurrentFftwFlags() & flagt[i]) == flagt[i])
             {
                 j++;
                 if (Str3)
                 {
-                    Str3 = (char **)REALLOC(Str3,sizeof(char *) * j);
+                    Str3 = (char **)REALLOC(Str3, sizeof(char *) * j);
                 }
                 else
                 {
@@ -218,7 +317,7 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
                 if ( Str3 == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
-                    return 0;
+                    return 1;
                 }
 
                 Str3[j - 1] = os_strdup(Str[i]);
@@ -226,19 +325,25 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
                 {
                     freeArrayOfString(Str3, j);
                     Scierror(999, _("%s: No more memory.\n"), fname);
-                    return 0;
+                    return 1;
                 }
             }
         }
     }
 
-    n1 = 1;
-    CreateVarFromPtr(Rhs + 3, MATRIX_OF_STRING_DATATYPE, &j, &n1, Str3);
-    freeArrayOfString(Str3, j);
+    /* Create the string matrix as return of the function */
+    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 3, j, 1, Str3);
+    freeArrayOfString(Str3, j); // Data have been copied into Scilab memory
+    if (sciErr.iErr)
+    {
+        freeArrayOfString(Str3, j); // Make sure everything is cleanup in case of error
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-    LhsVar(1) = Rhs + 2;
-    LhsVar(2) = Rhs + 3;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 2;
+    AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 3;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

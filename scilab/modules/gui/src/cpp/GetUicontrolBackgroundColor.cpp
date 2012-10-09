@@ -19,7 +19,7 @@ int GetUicontrolBackgroundColor(void* _pvCtx, char *sciObjUID)
     double *tmp = NULL;
     int status = 0;
 
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_BACKGROUNDCOLOR__), jni_double_vector, (void **) &tmp);
+    getGraphicObjectProperty(sciObjUID, __GO_UI_BACKGROUNDCOLOR__, jni_double_vector, (void **) &tmp);
 
     if (tmp == NULL)
     {

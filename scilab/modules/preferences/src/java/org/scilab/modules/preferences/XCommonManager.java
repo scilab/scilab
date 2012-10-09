@@ -142,34 +142,34 @@ public abstract class XCommonManager {
     static {
         factory = ScilabTransformerFactory.newInstance();
         factory.setURIResolver(new URIResolver() {
-            public Source resolve(String href, String base) throws TransformerException {
-                if (href.startsWith("$SCI")) {
-                    href = href.replace("$SCI", SCI);
-                    base = null;
+                public Source resolve(String href, String base) throws TransformerException {
+                    if (href.startsWith("$SCI")) {
+                        href = href.replace("$SCI", SCI);
+                        base = null;
+                    }
+
+                    try {
+                        File baseDir = null;
+                        if (base != null && !base.isEmpty()) {
+                            baseDir = new File(new URI(base)).getParentFile();
+                        }
+                        File f;
+                        if (baseDir != null) {
+                            f = new File(baseDir, href);
+                        } else {
+                            f = new File(href);
+                        }
+
+                        if (f.exists() && f.canRead()) {
+                            return new StreamSource(f);
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
+                    throw new TransformerException("Cannot find the file " + href + "::" + base);
                 }
-
-                try {
-                    File baseDir = null;
-                    if (base != null && !base.isEmpty()) {
-                        baseDir = new File(new URI(base)).getParentFile();
-                    }
-                    File f;
-                    if (baseDir != null) {
-                        f = new File(baseDir, href);
-                    } else {
-                        f = new File(href);
-                    }
-
-                    if (f.exists() && f.canRead()) {
-                        return new StreamSource(f);
-                    }
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
-
-                throw new TransformerException("Cannot find the file " + href + "::" + base);
-            }
-        });
+            });
     }
 
     /**
@@ -276,10 +276,10 @@ public abstract class XCommonManager {
         List<File> list = new ArrayList<File>();
         File modulesDir = new File(SCI + "/modules/");
         File[] modules = modulesDir.listFiles(new FileFilter() {
-            public boolean accept(File f) {
-                return f.isDirectory();
-            }
-        });
+                public boolean accept(File f) {
+                    return f.isDirectory();
+                }
+            });
 
         for (File module : modules) {
             File etc = new File(module, "/etc/");
@@ -306,10 +306,10 @@ public abstract class XCommonManager {
             buffer.append("<xsl:import href=\"").append(SCI).append("/modules/preferences/src/xslt/XConfiguration.xsl").append("\"/>\n");
 
             FilenameFilter filter = new FilenameFilter() {
-                public boolean accept(File dir, String name) {
-                    return name.endsWith(".xsl") && name.startsWith("XConfiguration");
-                }
-            };
+                    public boolean accept(File dir, String name) {
+                        return name.endsWith(".xsl") && name.startsWith("XConfiguration");
+                    }
+                };
 
             // Include standard Scilab xsl files
             for (File etc : etcs) {
@@ -326,10 +326,10 @@ public abstract class XCommonManager {
             // Include toolboxes xsl files
             List<ScilabPreferences.ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
             filter = new FilenameFilter() {
-                public boolean accept(File dir, String name) {
-                    return name.endsWith(".xsl");
-                }
-            };
+                    public boolean accept(File dir, String name) {
+                        return name.endsWith(".xsl");
+                    }
+                };
             for (ScilabPreferences.ToolboxInfos i : infos) {
                 File etc = new File(i.getPrefFile()).getParentFile();
                 File[] xsls = etc.listFiles(filter);
@@ -421,6 +421,42 @@ public abstract class XCommonManager {
     }
 
     /**
+     * Get the real path from an abstract path: scinotes/header will be converted into 8/2
+     * @param name abstract path
+     * @return real path
+     */
+    public static String getPath(String name) {
+        String[] ids = name.split("/");
+        Element element = document.getDocumentElement();
+        String path = "";
+        for (int i = 0; i < ids.length; i++) {
+            int index = 1;
+            NodeList childNodes = element.getChildNodes();
+            Node node = null;
+            int len = childNodes.getLength();
+            int j = 0;
+            for (; j < len; j++) {
+                node = childNodes.item(j);
+                String nodeName = node.getNodeName();
+                if (nodeName.equalsIgnoreCase(ids[i])) {
+                    path += index + "/";
+                    element = (Element) node;
+                    break;
+                }
+                if (!node.getNodeName().equals("#text") && !node.getNodeName().equals("#comment")) {
+                    index++;
+                }
+            }
+
+            if (j == len) {
+                System.err.println("Invalid path: " + name);
+                return "1/";
+            }
+        }
+        return path;
+    }
+
+    /**
      * Interpret action.
      * @param action : to be interpreted.
      * @param source : component source of the action (only class is needed).
@@ -443,6 +479,9 @@ public abstract class XCommonManager {
                 Element element = getElementByContext(context);
                 String value = getAttribute(action, "value");
                 String attribute = getAttribute(action, "set");
+                if (attribute.equals("path") && context.equals("/") && !Character.isDigit(value.charAt(0))) {
+                    value = getPath(value);
+                }
                 if (element != null) {
                     element.setAttribute(attribute, value);
                     XConfiguration.addModifiedPath(getNodePath(element));
@@ -674,10 +713,10 @@ public abstract class XCommonManager {
             return NAV;
         }
 
-	String response = attr.getNodeValue();
-	if (response.startsWith("_(") && response.endsWith(")")) {
-	    response = Messages.gettext(response.substring(2, response.length() - 1));
-	}
+        String response = attr.getNodeValue();
+        if (response.startsWith("_(") && response.endsWith(")")) {
+            response = Messages.gettext(response.substring(2, response.length() - 1));
+        }
 
         return response;
     }

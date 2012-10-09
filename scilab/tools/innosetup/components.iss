@@ -93,6 +93,10 @@ Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: full; Fla
 ;
 Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: full;
 ;
+Name: {#COMPN_EXTERNAL_OBJECTS}; Description: {cm:DescriptionExternalObjects}; Types: full; Flags: fixed;
+;
+Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: default full custom; Flags: fixed;
+;
 Name: {#COMPN_MKL_CPU_LIBRARY}; Description:{cm:DescriptionMKLLibrary}; Flags: exclusive
 ;
 #ifndef SCILAB_X64

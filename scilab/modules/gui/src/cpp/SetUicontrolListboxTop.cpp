@@ -66,7 +66,7 @@ int SetUicontrolListboxTop(void* _pvCtx, char* sciObjUID, size_t stackPointer, i
       valueTab[0] = value;
   }
 
-  status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_LISTBOXTOP__), valueTab, jni_int_vector, valueSize);
+  status = setGraphicObjectProperty(sciObjUID, __GO_UI_LISTBOXTOP__, valueTab, jni_int_vector, valueSize);
 
   delete[] valueTab;
 

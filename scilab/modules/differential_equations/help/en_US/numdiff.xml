@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>g=numdiff(fun,x [,dx])</synopsis>
+        <synopsis>g = numdiff(fun, x [,dx])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -34,23 +34,23 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>vector, the argument of the function
-                        <literal>fun</literal>
+                    <para>a vector, the argument of the function
+                        <varname>fun</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>dx</term>
                 <listitem>
-                    <para>vector, the finite difference step. Default value is
-                        <literal>dx=sqrt(%eps)*(1+1d-3*abs(x))</literal>
+                    <para>a vector, the finite difference step. Default value is
+                        <code>dx=sqrt(%eps)*(1+1d-3*abs(x))</code>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>g</term>
                 <listitem>
-                    <para>vector, the estimated gradient</para>
+                    <para>a vector, the estimated gradient.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -58,24 +58,24 @@
     <refsection>
         <title>Description</title>
         <para>
-            given a function <literal>fun(x)</literal> from
-            <literal>R^n</literal> to <literal>R^p</literal> computes the matrix
-            <literal>g</literal> such as
+            Given a function <code>fun(x)</code> from
+            <code>R^n</code> to <code>R^p</code> computes the matrix
+            <varname>g</varname> such as
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 g(i,j) = (df_i)/(dx_j)
  ]]></programlisting>
         <para>using finite difference methods.
             Uses an order 1 formula.
         </para>
         <para>
-            Without parameters, the function fun calling sequence is
-            <literal>y=fun(x)</literal>, and numdiff can be called as
-            <literal>g=numdiff(fun,x)</literal>. Else the function fun calling
-            sequence must be <literal>y=fun(x,param_1,pararm_2,..,param_q)</literal>.
-            If parameters <literal>param_1,param_2,..param_q</literal> exist then
-            <literal>numdiff</literal> can be called as follow
-            <literal>g=numdiff(list(fun,param_1,param_2,..param_q),x)</literal>.
+            Without parameters, the function <varname>fun</varname> calling sequence is
+              <code>y=fun(x)</code>, and <function>numdiff</function> can be called as
+            <code>g=numdiff(fun,x)</code>. Else the function <varname>fun</varname> calling
+            sequence must be <literal>y = fun(x, param_1, pararm_2, ..., param_q)</literal>.
+            If parameters <literal>param_1, param_2, ..., param_q</literal> exist then
+            <function>numdiff</function> can be called as follow
+            <literal>g=numdiff(list(fun, param_1, param_2, ..., param_q), x)</literal>.
         </para>
         <para>
             See the 
@@ -87,7 +87,7 @@ g(i,j) = (df_i)/(dx_j)
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // example 1 (without parameters)
-// myfun is a function from R^2 to R :   (x(1),x(2)) |--> myfun(x) 
+// myfun is a function from R^2 to R: (x(1),x(2)) |--> myfun(x)
 function f=myfun(x)
   f=x(1)*x(1)+x(1)*x(2)
 endfunction
@@ -95,12 +95,13 @@ endfunction
 x=[5 8]
 g=numdiff(myfun,x)
 
-// The exact gradient (i.e derivate belong x(1) :first component and derivate belong x(2): second component) is  
+// The exact gradient (i.e derivate belong x(1): first component
+// and derivate belong x(2): second component) is
 exact=[2*x(1)+x(2)  x(1)]
 
 //example 2 (with parameters)
-// myfun is a function from R to R:  x(1) |--> myfun(x) 
-// myfun contains 3 parameters, a, b, c
+// myfun is a function from R to R: x(1) |--> myfun(x)
+// myfun contains 3 parameters: a, b, c
 function  f=myfun(x,a,b,c)
   f=(x+a)^c+b
 endfunction

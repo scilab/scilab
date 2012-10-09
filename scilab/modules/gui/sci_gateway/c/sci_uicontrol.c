@@ -70,8 +70,10 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
     int lw = 0;
     char *propertyPart = NULL;
 
-    char *parentType = NULL;
-    char *parentStyle = NULL;
+    int iParentType = -1;
+    int *piParentType = &iParentType;
+    int iParentStyle = -1;
+    int *piParentStyle = &iParentStyle;
     char const* pstCurrentFigure = NULL;
 
     CheckLhs(0, 1);
@@ -90,6 +92,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
             pstCurrentFigure = createNewFigureWithAxes();
         }
         setGraphicObjectRelationship(pstCurrentFigure, (char*)getObjectFromHandle(GraphicHandle));
+        pUicontrol = (char*)getObjectFromHandle(GraphicHandle);
     }
     else if (Rhs == 1)
     {
@@ -114,13 +117,13 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
             pParentUID = (char*)getObjectFromHandle((long) * hstk(stkAdr));
             if (pParentUID != NULL)
             {
-                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
-                if (strcmp(parentType, __GO_UICONTROL__) == 0)  /* Focus management */
+                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+                if (iParentType == __GO_UICONTROL__)  /* Focus management */
                 {
                     GraphicHandle = (long) * hstk(stkAdr);
                     requestFocus(pParentUID);
                 }
-                else if ((strcmp(parentType, __GO_FIGURE__) == 0) || (strcmp(parentType, __GO_UIMENU__) == 0))  /* PushButton creation */
+                else if (iParentType == __GO_FIGURE__ || iParentType == __GO_UIMENU__)  /* PushButton creation */
                 {
                     /* Create a new pushbutton */
                     GraphicHandle = getHandle(CreateUIControl(NULL));
@@ -140,7 +143,6 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                              "Figure", "Uimenu");
                     return FALSE;
                 }
-                free(parentType);
             }
             else
             {
@@ -148,6 +150,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                          "Uimenu");
                 return FALSE;
             }
+            pUicontrol = (char*)getObjectFromHandle(GraphicHandle);
         }
     }
     else
@@ -195,11 +198,11 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                                      "Frame uicontrol");
                             return FALSE;
                         }
-                        getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
-                        if (strcmp(parentType, __GO_FIGURE__) != 0)
+                        getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+                        if (iParentType != __GO_FIGURE__)
                         {
-                            getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_string, (void **)&parentStyle);
-                            if ((strcmp(parentType, __GO_UICONTROL__) != 0) || (strcmp(parentStyle, __GO_UI_FRAME__) != 0))
+                            getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
+                            if (iParentType != __GO_UICONTROL__ || iParentStyle != __GO_UI_FRAME__)
                             {
                                 Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                                          "Frame uicontrol");
@@ -239,11 +242,11 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                              "Frame uicontrol");
                     return FALSE;
                 }
-                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
-                if (strcmp(parentType, __GO_FIGURE__) != 0)
+                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+                if (iParentType != __GO_FIGURE__)
                 {
-                    getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_string, (void **)&parentStyle);
-                    if ((strcmp(parentType, __GO_UICONTROL__) != 0) || (strcmp(parentStyle, __GO_UI_FRAME__) != 0))
+                    getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
+                    if (iParentType != __GO_UICONTROL__ || iParentStyle != __GO_UI_FRAME__)
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                                  "Frame uicontrol");
@@ -355,7 +358,6 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 pstCurrentFigure = createNewFigureWithAxes();
             }
             setGraphicObjectRelationship(pstCurrentFigure, graphicObjectUID);
-            // TODO Remove following code and called functions in src/cpp/*.cpp
         }
 
         /* Read and set all properties */
@@ -419,6 +421,31 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 }
             }
         }
+    }
+
+    if ((Rhs < 2) || (propertiesValuesIndices[24] == NOT_FOUND))    /* Visible property not set */
+    {
+        /* Force the uicontrol to be visible because is invisible by default in the model (See bug #10346) */
+        int b = (int)TRUE;
+        setGraphicObjectProperty(pUicontrol, __GO_VISIBLE__, &b, jni_bool, 1);
+    }
+
+    if ((Rhs < 2) || (propertiesValuesIndices[14] == NOT_FOUND))    /* SliderStep property not set */
+    {
+        /* Set SliderStep property to [1/100*(Max-Min) 1/10*(Max-Min)] */
+        double maxValue = 0;
+        double* pdblMaxValue = &maxValue;
+        double minValue = 0;
+        double* pdblMinValue = &minValue;
+        double pdblStep[2];
+
+        getGraphicObjectProperty(pUicontrol, __GO_UI_MIN__, jni_double, (void**) &pdblMinValue);
+        getGraphicObjectProperty(pUicontrol, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
+
+        pdblStep[0] = 0.01 * (maxValue - minValue);
+        pdblStep[1] = 0.1 * (maxValue - minValue);
+
+        setGraphicObjectProperty(pUicontrol, __GO_UI_SLIDERSTEP__, pdblStep, jni_double_vector, 2);
     }
 
     FREE(propertiesValuesIndices);

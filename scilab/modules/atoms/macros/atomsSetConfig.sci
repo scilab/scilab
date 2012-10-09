@@ -55,7 +55,8 @@ function nbChanges = atomsSetConfig(field, value)
 
     if element == "offLine" then
       // Prior to version 5.4.0, offline was called Offline
-      element = "offline"
+      field(i) = "offline";
+      element = "offline";
     end
 
     if element == "useProxy" ..

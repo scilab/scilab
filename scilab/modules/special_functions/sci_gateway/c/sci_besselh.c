@@ -12,168 +12,255 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "api_scilab.h"
 #include "gw_special_functions.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "msgs.h"
 #include "zbeshv.h"
+#include "MALLOC.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_besselh(char *fname,unsigned long fname_len)
+int sci_besselh(char *fname, void* pvApiCtx)
 {
-    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, it2 = 0, l2 = 0, l2i = 0, mr = 0;
-    int nr = 0, itr = 0, lr = 0, li = 0, lwr = 0, rhs1 = 0, lwi = 0;
-    int r1 = 0, r2 = 0, na = 0, nx = 0, kode = 0, lpos = 0;
+    int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
+    int rhs1 = 0, nw = 0;
+    int na = 0, nx = 0, kode = 0, nbInputArg = 0;
     int un = 1, ierr = 0;
     int K = 0;
 
-    int *Lstk    = C2F(vstk).lstk-1;
+    double* pdbl1   = NULL;
+    double* pdbl2   = NULL;
+    double* pdblXR  = NULL;
+    double* pdblXI  = NULL;
 
-    CheckRhs(2, 4);
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
+    int* piAddr4 = NULL;
+    int* piAddrX = NULL;
+
+    double *lr  = NULL;
+    double *li  = NULL;
+    double *lwr = NULL;
+    double *lwi = NULL;
+
+    SciErr sciErr;
+
+    CheckInputArgument(pvApiCtx, 2, 4);
+
+    nbInputArg = nbInputArgument(pvApiCtx);
+    rhs1 = nbInputArg;
+
     kode = 1;
-    rhs1 = Rhs;
-    if (Rhs == 4) 
-    { 
+    if (nbInputArg == 4)
+    {
         /* normalized bessel required */
-        GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);CheckScalar(1,m1,n1);
-        kode = (int)*stk(l1)+1;
+        //get variable address of the input argument
+        double* l1 = NULL;
+        sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr4);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddr4, &m1, &n1, &l1);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        if (m1*n1 != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 4);
+            return 1;
+        }
+
+        kode = (int)l1[0] + 1;
         rhs1--;
     }
-    K = 1; 
-    if (Rhs > 2) 
-    { 
+
+    K = 1;
+    if (nbInputArgument(pvApiCtx) > 2)
+    {
         /* normalized bessel required */
-        GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);CheckScalar(1,m1,n1);
-        K = (int)*stk(l1);
+        //get variable address of the input argument
+        double* l1 = NULL;
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m1, &n1, &l1);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        if (m1*n1 != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+            return 1;
+        }
+
+        K = (int)l1[0];
     }
 
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1); /* get alpha */
-    r1 = l1 > Lstk[Bot]; /* true if the variable has been passed by reference */
+    /* get alpha */
+    //get variable address of the input argument
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-    GetRhsCVar(rhs1,MATRIX_OF_DOUBLE_DATATYPE,&it2,&m2,&n2,&l2,&l2i); /* get x */
-    r2 = l2 > Lstk[Bot];/* true if the variable has been passed by reference */
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &pdbl1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-    if (m1*n1 == 0) 
-    { 
+    if (m1*n1 == 0)
+    {
         /*besselh([],x) */
-        LhsVar(1) = 1;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = 1;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
-    if (m2*n2 == 0) 
+
+    /* get x */
+    //get variable address of the input argument
+    sciErr = getVarAddressFromPosition(pvApiCtx, rhs1, &piAddrX);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddrX, &m2, &n2, &pdblXR, &pdblXI);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (m2*n2 == 0)
     {
         /*besselh(alpha,[]) */
-        LhsVar(1) = rhs1;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = rhs1;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
-    itr = 1;
-    lpos = Rhs;
-    if(it2 == 0) 
+    // if X is real, create imaginary part
+    if (pdblXI == NULL)
     {
-        int i = 0;
-        CreateVar(lpos+1,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2i);
-        for (i=0;i<m2*n2;i++) *stk(l2i+i) = 0.0;
-        lpos = lpos + 1;
+        int iSize = m2 * n2 * sizeof(double);
+        pdblXI = (double*)MALLOC(iSize);
+        memset(pdblXI, 0x00, iSize);
     }
-    if (m1*n1 == 1) 
-    { 
+
+    if (m1 * n1 == 1)
+    {
         /*bessely(scalar,matrix) */
-        double wr[3],wi[3];
-        double *xr = stk(l2);
-        double *xi = stk(l2i);
-        double *alpha = stk(l1);
+        double wr[3], wi[3];
         double *yr = NULL;
         double *yi = NULL;
 
-        mr = m2;
-        nr = n2;    
-        CreateCVar(lpos+1,MATRIX_OF_DOUBLE_DATATYPE,&itr,&mr,&nr,&lr,&li);
-        yr = stk(lr);
-        yi = stk(li);
-
-        nx = m2*n2;
+        nx = m2 * n2;
         na = 1;
 
-        zbeshv(xr, xi, &nx, alpha, &na, &kode, &K, yr, yi, wr, wi, &ierr);
-        LhsVar(1) = lpos + 1;
-    }
-    else if (m2*n2 == 1) 
-    { 
-        /* bessely(matrix,scalar) */
-        int llwr = 0, llwi = 0, nw = 0;
-        mr = m1;
-        nr = n1;   
-        CreateCVar(lpos+1,MATRIX_OF_DOUBLE_DATATYPE,&itr,&mr,&nr,&lr,&li);
-        nx = 1;
-        na = m1*n1;
-        nw = 3*na;
-        CreateCVar(lpos+2,MATRIX_OF_DOUBLE_DATATYPE,&itr,&nx,&nw,&llwr,&llwi);
-        zbeshv (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,&K,stk(lr),stk(li),stk(llwr),stk(llwi),&ierr);
-        LhsVar(1) = lpos + 1;
-    }
-    else if ((m1==1 && n2==1)|| (n1==1 && m2==1)) 
-    { 
-        /* bessely(row,col) or bessely(col,row) */
-        int lun = 1, nw = 0;
-        mr = m2*n2;
-        nr = m1*n1;
-        CreateCVar(lpos+1,MATRIX_OF_DOUBLE_DATATYPE,&itr,&mr,&nr,&lr,&li);
-        nx = m2*n2;
-        na = m1*n1;
-        nw = 3*na;
-        CreateCVar(lpos+2,MATRIX_OF_DOUBLE_DATATYPE,&itr,&lun,&nw,&lwr,&lwi);
-        zbeshv (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,&K, stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+        allocComplexMatrixOfDouble(pvApiCtx, nbInputArg + 1, m2, n2, &yr, &yi);
 
-        LhsVar(1) = lpos + 1;
+        zbeshv(pdblXR, pdblXI, &nx, pdbl1, &na, &kode, &K, yr, yi, wr, wi, &ierr);
     }
-    else 
-    { 
-        /* element wise case */
-        double wr[2],wi[2];
-        CheckDimProp(1,2,m1*n1!=m2*n2) 
-            mr = m2;
-        nr = n2;  
-        CreateCVar(lpos+1,MATRIX_OF_DOUBLE_DATATYPE,&itr,&mr,&nr,&lr,&li);
-        LhsVar(1) = lpos + 1;
-        nx = mr * nr;
-        na = -1;
-        zbeshv (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,&K,stk(lr),stk(li),wr,wi,&ierr);
-    }
-    if (ierr == 2) 
+    else if (m2*n2 == 1)
     {
-        if ( C2F(errgst).ieee == 0) 
-        { 
-            ierr = 69;
-            SciError(ierr);
-        }
-        else if (C2F(errgst).ieee == 1) 
-        {
-            ierr = 63;
-            C2F(msgs)(&ierr,&un);
-        }
+        /* bessely(matrix,scalar) */
+        nx = 1;
+        na = m1 * n1;
+        nw = 3 * na;
+
+        allocComplexMatrixOfDouble(pvApiCtx, nbInputArg + 1, m1, n1, &lr, &li);
+        allocComplexMatrixOfDouble(pvApiCtx, nbInputArg + 2, nx, nw, &lwr, &lwi);
+
+        zbeshv (pdblXR, pdblXI, &nx, pdbl1, &na, &kode, &K, lr, li, lwr, lwi, &ierr);
     }
-    else if (ierr == 3) 
+    else if ((m1 == 1 && n2 == 1) || (n1 == 1 && m2 == 1))
+    {
+        /* bessely(row,col) or bessely(col,row) */
+        nx = m2 * n2;
+        na = m1 * n1;
+        nw = 3 * na;
+
+        allocComplexMatrixOfDouble(pvApiCtx, nbInputArg + 1, m2 * n2, m1 * n1, &lr, &li);
+        allocComplexMatrixOfDouble(pvApiCtx, nbInputArg + 2, 1, nw, &lwr, &lwi);
+
+        zbeshv (pdblXR, pdblXI, &nx, pdbl1, &na, &kode, &K, lr, li, lwr, lwi, &ierr);
+    }
+    else
+    {
+        /* element wise case */
+        double wr[2], wi[2];
+        if (m1 * n1 != m2 * n2)
+        {
+            Scierror(999, _("%s: arguments #%d and #%d have incompatible dimensions.\n"), fname, 1, 2);
+            return 1;
+        }
+
+        nx = m2 * n2;
+        na = -1;
+
+        allocComplexMatrixOfDouble(pvApiCtx, nbInputArg + 1, m2, n2, &lr, &li);
+
+        zbeshv (pdblXR, pdblXI, &nx, pdbl1, &na, &kode, &K, lr, li, wr, wi, &ierr);
+    }
+
+    if (isVarComplex(pvApiCtx, piAddrX) == 0)
+    {
+        FREE(pdblXI);
+    }
+
+    if (ierr == 2)
+    {
+        // FIX ME
+        //        if ( C2F(errgst).ieee == 0)
+        //        {
+        //            ierr = 69;
+        //            SciError(ierr);
+        //        }
+        //        else if (C2F(errgst).ieee == 1)
+        //        {
+        //            ierr = 63;
+        //            C2F(msgs)(&ierr, &un);
+        //        }
+    }
+    else if (ierr == 3)
     {
         /* inaccurate result */
         ierr = 4;
-        C2F(msgs)(&ierr,&un);
+        C2F(msgs)(&ierr, &un);
     }
-    else if (ierr == 4 || ierr == 5) 
+    else if (ierr == 4 || ierr == 5)
     {
-        if ( C2F(errgst).ieee==0) 
-        { 
-            ierr = 69;
-            SciError(ierr);
-        }
-        else if ( C2F(errgst).ieee==1) 
-        {
-            ierr = 107;
-            C2F(msgs)(&ierr,&un);
-        }
+        // FIX ME
+        //        if ( C2F(errgst).ieee == 0)
+        //        {
+        //            ierr = 69;
+        //            SciError(ierr);
+        //        }
+        //        else if ( C2F(errgst).ieee == 1)
+        //        {
+        //            ierr = 107;
+        //            C2F(msgs)(&ierr, &un);
+        //        }
     }
 
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArg + 1;
+    ReturnArguments(pvApiCtx);
     return 0;
-}  
+}
 /*--------------------------------------------------------------------------*/

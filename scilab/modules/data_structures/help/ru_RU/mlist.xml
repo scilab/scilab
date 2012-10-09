@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="mlist">
+    <refnamediv>
+        <refname>mlist</refname>
+        <refpurpose>объект Scilab'а, определение матричноориентированного типизированного списка
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>mlist(typ, a1, ..., an)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>typ</term>
+                <listitem>
+                    <para>вектор символьных строк.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ai</term>
+                <listitem>
+                    <para>
+                        любой объект Scilab'а (матрица, список, строка, ...).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Объект <link linkend="mlist">mlist</link> очень похож на объект <link linkend="tlist">tlist</link>.
+            Единственное отличие касается синтаксиса <link linkend="extraction">выделения</link> и
+            <link linkend="insertion">вставки</link>:
+            если <literal>M</literal> является <literal>mlist</literal>'ом, то для любого индекса <literal>i</literal>, который не является именем поля, <literal>M(i)</literal> более не является <literal>i</literal>-тым полем списка.
+        </para>
+        <para>
+            Семантика синтаксиса выделения и вставки должна задаваться
+            функцией <link linkend="overloading">перегрузки</link>.
+        </para>
+        <para>
+            Функция перегрузки для синтаксиса выделения <literal>b=a(i1, ..., in)</literal>
+            имеет следующую последовательность вызова: <literal>b=%&lt;тип_a&gt;_e_(i1, ..., in, a)</literal>.
+        </para>
+        <para>и синтаксис
+            <literal>[x1, ..., xm]=a(i1, ..., in)</literal> имеет следующую последовательность вызова:
+            <literal>[x1, ..., xm]=%&lt;тип_a&gt;_e_(i1, ..., in,a)</literal>.
+        </para>
+        <para/>
+        <para>
+            Функция перегрузки, связанная с синтаксисом вставки
+            <literal>a(i1, ..., in)=b</literal> имеет следующую последовательность вызова:
+            <literal>a=%&lt;тип_b&gt;_i_&lt;тип_a&gt;(i1, ..., in, b, a)</literal>.
+        </para>
+        <para/>
+        <para>
+            Поля <literal>mlist</literal>'а должны тогда обозначаться по их
+            именам. Они также могут обрабатываться с помощью функций
+            <function>getfield</function> и <function>setfield</function>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
+
+//определение вывода на экран
+function %V_p(M),disp(M.name+':'+string(M.value)),endfunction
+ 
+//определение операции выделения
+function r=%V_e(varargin)
+  M=varargin($)
+  r=mlist(['V','name','value'],M.name(varargin(1:$-1)),M.value(varargin(1:$-1)))
+endfunction
+
+M(2,:) // вторая строка  M
+M.value
+ 
+//определение операции вставки
+function M=%V_i_V(varargin)
+  M=varargin($)
+  N=varargin($-1)
+  M.value(varargin(1:$-2))=N.value
+  M.name(varargin(1:$-2))=N.name
+endfunction
+M(1,1)=M(2,2)
+ 
+function M=%s_i_V(varargin) //вставка обычной матрицы в матрицу V
+  M=varargin($)
+  N=varargin($-1)
+  M.value(varargin(1:$-2))=N
+  M.name(varargin(1:$-2))=emptystr(N)
+endfunction
+M(1,1)=44
+ 
+// в случае tlist'а
+M=tlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
+M(2)
+M(2)='a'+string([1 2;3 4])
+ 
+M('name')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="overloading">перегрузка</link>
+            </member>
+            <member>
+                <link linkend="getfield">getfield</link>
+            </member>
+            <member>
+                <link linkend="setfield">setfield</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

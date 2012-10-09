@@ -56,12 +56,7 @@ libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 # All the sources needed by libscirenderer.la
 libscirenderer_la_SOURCES = $(RENDERER_CXX_SOURCES)
 
-SWIG_WRAPPERS = src/jni/FigureScilabCall.i
-
 BUILT_SOURCES=
-if SWIG
-  BUILT_SOURCES+=swig
-endif
 
 # For the code check (splint)
 INCLUDE_FLAGS = $(libscirenderer_la_CPPFLAGS)

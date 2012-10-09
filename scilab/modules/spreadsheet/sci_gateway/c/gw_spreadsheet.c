@@ -19,8 +19,16 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{sci_xls_open,"xls_open"},
-	{sci_xls_read,"xls_read"}
+    {NULL, ""}, // "xls_open"
+    {NULL, ""}, // "xls_read"
+    {NULL, ""}, // "csvDefault"
+    {NULL, ""}, // "csvIsnum"
+    {NULL, ""}, // "csvRead"
+    {NULL, ""}, // "csvStringToDouble"
+    {NULL, ""}, // "csvTextScan"
+    {NULL, ""}, // "csvWrite"
+    {NULL, ""}, // "write_csv"
+    {NULL, ""} // "read_csv"
 };
 /*--------------------------------------------------------------------------*/
 int gw_spreadsheet(void)

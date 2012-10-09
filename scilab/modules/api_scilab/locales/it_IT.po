@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-31 13:51+0000\n"
+"PO-Revision-Date: 2012-09-27 17:40+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16043)\n"
 "Language: it\n"
 
 #, c-format
@@ -45,7 +45,7 @@ msgid "%s: Unable to create %s named \"%s\""
 msgstr "%s: Impossibile creare %s chiamato \"%s\""
 
 msgid "matrix of boolean"
-msgstr "matrice di booleani"
+msgstr "matrice di valori booleani"
 
 #, c-format
 msgid "%s: Unable to get variable \"%s\""
@@ -76,34 +76,47 @@ msgstr "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+"almeno %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi al "
+"più %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: era atteso da %d a %d\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi almeno "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi al più "
+"%d.\n"
 
 #, c-format
 msgid "%s: matrix argument excepted"
@@ -287,10 +300,10 @@ msgstr "matrice di stringhe"
 
 #, c-format
 msgid "%s: Unable to convert to wide string #%d"
-msgstr ""
+msgstr "%s: Impossibile convertire in stringa estesa %d"
 
 msgid "matrix of wide string"
-msgstr "matrice di stringhe grandi"
+msgstr "matrice di stringhe estese"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"

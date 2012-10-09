@@ -39,7 +39,7 @@ using namespace types;
 
 Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out)
 {
-	wchar_t wcType          = WCHAR_S;
+    wchar_t wcType          = WCHAR_S;
     wchar_t* pwstInput      = NULL;
     wchar_t* pwstPattern    = NULL;
 
@@ -51,62 +51,62 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
     int* piEnd              = NULL;
     int iOccurs             = 0;
 
-    if(in.size() < 2 || in.size() > 3)
+    if (in.size() < 2 || in.size() > 3)
     {
-        ScierrorW(999,_W("%ls: Wrong number of input arguments: %d or %d expected.\n"), L"regexp", 2, 3);
+        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d or %d expected.\n"), L"regexp", 2, 3);
         return Function::Error;
     }
 
     // check output parameters
-    if(_iRetCount < 1 || _iRetCount > 3)
+    if (_iRetCount < 1 || _iRetCount > 3)
     {
-        ScierrorW(999,_W("%ls: Wrong number of output arguments: %d expected.\n"), L"regexp", 1);
+        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"regexp", 1);
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Single string expected.\n"), L"regexp", 1);
         return Function::Error;
     }
     pwstInput = in[0]->getAs<types::String>()->get(0);
 
-    if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
+    if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Single string expected.\n"), L"regexp", 2);
         return Function::Error;
     }
     pwstPattern = in[1]->getAs<types::String>()->get(0);
 
-    if(in.size() == 3)
+    if (in.size() == 3)
     {
-        if(in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
+        if (in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Single string expected.\n"), L"regexp", 3);
             return Function::Error;
         }
 
-        if(in[2]->getAs<types::String>()->get(0)[0] != WSTR_ONCE)
+        if (in[2]->getAs<types::String>()->get(0)[0] != WSTR_ONCE)
         {
-           ScierrorW(999,_W("%ls: Wrong type for input argument #%d: '%ls' expected.\n"), L"regexp", 3, L"o");
-           return Function::Error;
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: '%ls' expected.\n"), L"regexp", 3, L"o");
+            return Function::Error;
         }
         wcType = WSTR_ONCE;
     }
 
     //input is empty
-    if(wcslen(pwstInput) == 0)
+    if (wcslen(pwstInput) == 0)
     {
-        Double* pStart = new Double(0,0);
+        Double* pStart = new Double(0, 0);
         out.push_back(pStart);
-        if(_iRetCount > 1)
+        if (_iRetCount > 1)
         {
-            Double* pEnd = new Double(0,0);
+            Double* pEnd = new Double(0, 0);
             out.push_back(pEnd);
 
-            if(_iRetCount > 2)
+            if (_iRetCount > 2)
             {
-                String* pS = new String(0,0);
+                String* pS = new String(0, 0);
                 out.push_back(pS);
             }
         }
@@ -118,31 +118,32 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
 
     do
     {
-        iPcreStatus = wide_pcre_private(pwstInput + iStep, pwstPattern, &iStart, &iEnd);
-        if(iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd)
+        iPcreStatus = wide_pcre_private(pwstInput + iStep, pwstPattern, &iStart, &iEnd, NULL, NULL);
+        if (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd)
         {
             piStart[iOccurs]    = iStart + iStep;
             piEnd[iOccurs++]    = iEnd + iStep;
             iStep               += iEnd;
         }
-        else if(iPcreStatus != NO_MATCH)
+        else if (iPcreStatus != NO_MATCH)
         {
             pcre_error("regexp", iPcreStatus);
             delete[] piStart;
             delete[] piEnd;
             return Function::Error;
         }
-    }while(iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd && wcType != WSTR_ONCE);
+    }
+    while (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd && wcType != WSTR_ONCE);
 
-    if(iOccurs == 0)
+    if (iOccurs == 0)
     {
         out.push_back(Double::Empty());
-        if(_iRetCount > 1)
+        if (_iRetCount > 1)
         {
             out.push_back(Double::Empty());
         }
 
-        if(_iRetCount > 2)
+        if (_iRetCount > 2)
         {
             out.push_back(new String(L""));
         }
@@ -152,36 +153,36 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
     Double* pStart = new Double(1, iOccurs);
     double* pdblStart = pStart->getReal();
 
-    for(int i = 0 ; i < iOccurs ; i++)
+    for (int i = 0 ; i < iOccurs ; i++)
     {
         pdblStart[i] = piStart[i] + 1; //one indexed
     }
 
     out.push_back(pStart);
 
-    if(_iRetCount > 1)
+    if (_iRetCount > 1)
     {
         Double* pEnd = new Double(1, iOccurs);
         double* pdblEnd = pEnd->getReal();
-        for(int i = 0 ; i < iOccurs ; i++)
+        for (int i = 0 ; i < iOccurs ; i++)
         {
             pdblEnd[i]   = piEnd[i];
         }
         out.push_back(pEnd);
     }
 
-    if(_iRetCount == 3)
+    if (_iRetCount == 3)
     {
         String *pS = NULL;
-        if(iOccurs == 0)
+        if (iOccurs == 0)
         {
-            pS = new String(1,1);
+            pS = new String(1, 1);
             pS->set(0, L"");
         }
         else
         {
             pS = new String(iOccurs, 1);
-            for(int i = 0 ; i < iOccurs ; i++)
+            for (int i = 0 ; i < iOccurs ; i++)
             {
                 wchar_t* pwstTemp = new wchar_t[piEnd[i] - piStart[i] + 1];
                 wcsncpy(pwstTemp, pwstInput + piStart[i], piEnd[i] - piStart[i]);

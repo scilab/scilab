@@ -22,15 +22,15 @@ static BOOL loadedDepVectorialExport = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-  {sci_xs2bmp,"xs2bmp"},
-  {sci_xs2gif,"xs2gif"},
-  {sci_xs2jpg,"xs2jpg"},
-  {sci_xs2png,"xs2png"},
-  {sci_xs2ppm,"xs2ppm"},
-  {sci_xs2eps,"xs2eps"},
-  {sci_xs2pdf,"xs2pdf"},
-  {sci_xs2svg,"xs2svg"},
-  {sci_xs2ps,"xs2ps"}
+  {NULL, "xs2bmp"}, //sci_xs2bmp
+  {NULL, "xs2gif"}, //sci_xs2gif
+  {NULL, "xs2jpg"}, //sci_xs2jpg
+  {NULL, "xs2png"}, //sci_xs2png
+  {NULL, "xs2ppm"}, //sci_xs2ppm
+  {NULL, "xs2eps"}, //sci_xs2eps
+  {NULL, "xs2pdf"}, //sci_xs2pdf
+  {NULL, "xs2svg"}, //sci_xs2svg
+  {NULL, "xs2ps"}   //sci_xs2ps
 };
 /*--------------------------------------------------------------------------*/
 int gw_graphic_export(void)

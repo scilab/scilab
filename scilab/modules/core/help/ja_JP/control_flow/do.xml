@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="do">
+    <refnamediv>
+        <refname>do</refname>
+        <refpurpose> ループ用の言語キーワード</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>for</literal> または   <literal>while</literal>
+            　　命令の内部で使用することができます.
+            　　ループ変数の定義と命令を分離するために使用されます.
+        </para>
+    </refsection>
+    
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+      i = 0
+      while i<5 do
+          disp("i");
+          i = i + 1;
+      end
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+n=5;
+for i = 1:n do
+    for j = 1:n do
+        a(i,j) = 1/(i+j-1);
+    end;
+end
+
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="for">for</link>
+            </member>
+            <member>
+                <link linkend="while">while</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

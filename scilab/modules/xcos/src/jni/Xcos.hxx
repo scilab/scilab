@@ -46,10 +46,10 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-        #if defined(_MSC_VER)
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
             #include <Windows.h>
         #else
-            typedef unsigned char byte;
+            typedef signed char byte;
         #endif
 
 
@@ -85,6 +85,7 @@ jmethodID voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID; //
 jmethodID voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
 jmethodID voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
 jmethodID voidupdateBlockjstringjava_lang_StringID; // cache method id
+jmethodID voidxcosSimulationStartedID; // cache method id
 
 
 
@@ -159,6 +160,8 @@ static void xcosDiagramClose(JavaVM * jvm_, char const* const* UID, int UIDSize)
 static void addToolsMenu(JavaVM * jvm_, char const* label, char const* command);
 
 static void updateBlock(JavaVM * jvm_, char const* h5File);
+
+static void xcosSimulationStarted(JavaVM * jvm_);
 
 
                         /**

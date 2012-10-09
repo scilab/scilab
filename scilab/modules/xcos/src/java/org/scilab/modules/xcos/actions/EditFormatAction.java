@@ -37,6 +37,7 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
@@ -546,6 +547,7 @@ public final class EditFormatAction extends DefaultAction {
             super(f, true);
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             setLocationRelativeTo(f);
+            ScilabSwingUtilities.closeOnEscape(this);
 
             initComponents();
         }

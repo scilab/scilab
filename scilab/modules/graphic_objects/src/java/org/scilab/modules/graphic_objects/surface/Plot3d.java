@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.surface;
 
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
@@ -37,8 +38,8 @@ public class Plot3d extends Surface {
     /**
 	 * @return Type as String
 	 */
-	public String getType() {
-		return "Plot3d";
+	public Integer getType() {
+		return GraphicObjectProperties.__GO_PLOT3D__;
 	}
 
 }

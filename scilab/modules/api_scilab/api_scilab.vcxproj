@@ -267,6 +267,7 @@ cd .. &gt;nul
     <ClCompile Include="src\cpp\api_common.cpp" />
     <ClCompile Include="src\cpp\api_double.cpp" />
     <ClCompile Include="src\cpp\api_error.cpp" />
+    <ClCompile Include="src\cpp\api_handle.cpp" />
     <ClCompile Include="src\cpp\api_int.cpp" />
     <ClCompile Include="src\cpp\api_list.cpp" />
     <ClCompile Include="src\cpp\api_pointer.cpp" />
@@ -282,7 +283,9 @@ cd .. &gt;nul
     <ClInclude Include="includes\api_common.h" />
     <ClInclude Include="includes\api_double.h" />
     <ClInclude Include="includes\api_error.h" />
+    <ClInclude Include="includes\api_handle.h" />
     <ClInclude Include="includes\api_int.h" />
+    <ClInclude Include="includes\api_internal_handle.h" />
     <ClInclude Include="src\cpp\api_internal_boolean.h" />
     <ClInclude Include="src\cpp\api_internal_boolean_sparse.h" />
     <ClInclude Include="src\cpp\api_internal_common.h" />

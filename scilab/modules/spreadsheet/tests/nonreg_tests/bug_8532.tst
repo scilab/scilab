@@ -19,11 +19,10 @@
 A = 1:50;
 mputl(strcat(string(A),ascii(9)+" "), TMPDIR + '/foo.csv');
 
-if execstr("B = read_csv(TMPDIR + ""/foo.csv"", ["" "", ""\t""]);", "errcatch") <> 10000 then pause, end
+if execstr("B = read_csv(TMPDIR + ""/foo.csv"", ["" "", ""\t""]);", "errcatch") <> 999 then pause, end
 msg = lasterror();
-if msg <> msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "read_csv", 2) then pause, end
+if msg <> msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "read_csv", 2) then pause, end
 
 if execstr("B1 = read_csv(TMPDIR + ""/foo.csv"", ""\t"");", "errcatch") <> 0 then pause, end
-if execstr("B2 = read_csv(TMPDIR + ""/foo.csv"", "" "");", "errcatch") <> 0 then pause, end
-if or(evstr(B1) <> evstr(B2)) then pause, end
-if or(A <> evstr(B2)) then pause, end
+assert_checkequal(A,evstr(B1));
+

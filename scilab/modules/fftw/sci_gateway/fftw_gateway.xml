@@ -39,4 +39,6 @@
 <PRIMITIVE gatewayId="51" primitiveId="6" primitiveName="get_fftw_wisdom" />
 <PRIMITIVE gatewayId="51" primitiveId="7" primitiveName="set_fftw_wisdom" />
 <PRIMITIVE gatewayId="51" primitiveId="8" primitiveName="fftw_forget_wisdom" />
+<PRIMITIVE gatewayId="51" primitiveId="9" primitiveName="dct" />
+<PRIMITIVE gatewayId="51" primitiveId="10" primitiveName="dst" />
 </GATEWAY>

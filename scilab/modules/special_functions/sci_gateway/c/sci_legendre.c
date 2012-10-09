@@ -11,10 +11,12 @@
  */
 
 #include <string.h>
+#include "api_scilab.h"
+#include "MALLOC.h"
 #include "gw_special_functions.h"
-#include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 extern void C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2,
                         double *x, int *id, double *pqa, int *ipqa, int *ierror);
@@ -22,7 +24,7 @@ extern void C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2,
 static double return_an_inf(void);
 static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax);
 /*--------------------------------------------------------------------------*/
-int sci_legendre(char *fname, unsigned long fname_len)
+int sci_legendre(char *fname, void* pvApiCtx)
 {
     /*
     *   Interface onto the (Slatec) dxleg.f code.
@@ -44,59 +46,144 @@ int sci_legendre(char *fname, unsigned long fname_len)
     *    AUTHOR
     *       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
     */
-    int it = 0, lc = 0, mM = 0, nM = 0, lM = 0, m1 = 0, m2 = 0, mN = 0, nN = 0;
-    int lN = 0, n1 = 0, n2 = 0, mx = 0, nx = 0, lx = 0, mnx = 0, ms = 0, ns = 0, ls = 0;
-    int M_is_scalar = 0, N_is_scalar = 0, normalised = 0, MNp1 = 0, lpqa = 0, lipqa = 0, *ipqa = NULL;
-    double *x = NULL, xx = 0., dnu1 = 0., *pqa = NULL;
+    int it = 0, lc = 0, mM = 0, nM = 0, m1 = 0, m2 = 0, mN = 0, nN = 0;
+    int n1 = 0, n2 = 0, mx = 0, nx = 0, mnx = 0, ms = 0, ns = 0;
+    int M_is_scalar = 0, N_is_scalar = 0, normalised = 0, MNp1 = 0, *ipqa = NULL;
+    double xx = 0., dnu1 = 0.;
     int id = 0, ierror = 0, i = 0, j = 0, nudiff = 0;
 
-    CheckLhs(1, 1);
-    CheckRhs(3, 4);
-    GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &mN, &nN, &lN);
+    SciErr sciErr;
 
-    if ( ! verify_cstr(stk(lN), mN * nN, &n1, &n2) )
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
+    int* piAddr3 = NULL;
+    int* piAddr4 = NULL;
+
+    int nbInputArg = nbInputArgument(pvApiCtx);
+
+    double* pdblN   = NULL;
+    double* pdblM   = NULL;
+    double* pdblX   = NULL;
+    double* pdblPQA = NULL;
+    int* piPQA      = NULL;
+
+    CheckInputArgument(pvApiCtx, 3, 4);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    /* get N */
+    //get variable address of the input argument
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
     {
-        Scierror(999, _("%s: Wrong type for first input argument.\n"), fname);
-        return 0;
-    };
-
-    if ( mN == 1 && nN == 1) N_is_scalar = 1;
-
-    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &mM, &nM, &lM);
-    if ( ! verify_cstr(stk(lM), mM * nM, &m1, &m2) )
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
-        return 0;
+        printError(&sciErr, 0);
+        return 1;
     }
 
-    if ( mM == 1 && nM == 1) M_is_scalar = 1;
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &mN, &nN, &pdblN);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (verify_cstr(pdblN, mN * nN, &n1, &n2) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for first input argument.\n"), fname);
+        return 1;
+    }
+
+    if ( mN == 1 && nN == 1)
+    {
+        N_is_scalar = 1;
+    }
+
+    /* get M */
+    //get variable address of the input argument
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &mM, &nM, &pdblM);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (verify_cstr(pdblM, mM * nM, &m1, &m2) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
+        return 1;
+    }
+
+    if ( mM == 1 && nM == 1)
+    {
+        M_is_scalar = 1;
+    }
 
     if ( ! M_is_scalar  &&  ! N_is_scalar )
     {
         Scierror(999, _("%s: Only one of arg1 and arg2 may be a vector.\n"), fname);
-        return 0;
-    };
+        return 1;
+    }
 
-    GetRhsCVar(3, MATRIX_OF_DOUBLE_DATATYPE, &it, &mx, &nx, &lx, &lc);
-    if ( it != 0 )
+    /* get X */
+    //get variable address of the input argument
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+    if (sciErr.iErr)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 3);
-        return 0;
-    };
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (isVarComplex(pvApiCtx, piAddr3))
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: No complex input argument expected.\n"), fname, 3);
+        return 1;
+    }
+
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &mx, &nx, &pdblX);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
     mnx = mx * nx;
-    x = stk(lx);
+
     for ( i = 0 ; i < mnx ; i++ )
-        if ( ! (fabs(x[i]) < 1.0) )
+    {
+        if ((fabs(pdblX[i]) < 1.0) == 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) expected.\n"), fname, 3, -1, 1);
-            return 0;
-        };
+            return 1;
+        }
+    }
 
-    if ( Rhs == 4 )
+    if ( nbInputArg == 4 )
     {
-        GetRhsVar(4, STRING_DATATYPE, &ms, &ns, &ls);
-        if ( strcmp(cstk(ls), "norm") == 0)
+        //get variable address
+        int iRet = 0;
+        char* lschar = NULL;
+        sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr4);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a single string at position 4
+        iRet = getAllocatedSingleString(pvApiCtx, piAddr4, &lschar);
+        if (iRet)
+        {
+            freeAllocatedSingleString(lschar);
+            return iRet;
+        }
+
+        if ( strcmp(lschar, "norm") == 0)
         {
             normalised = 1;
         }
@@ -112,10 +199,8 @@ int sci_legendre(char *fname, unsigned long fname_len)
 
     MNp1 = Max (n2 - n1, m2 - m1) + 1;
 
-    CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &MNp1, &mnx, &lpqa);
-    pqa = stk(lpqa);
-    CreateVar(Rhs + 2, MATRIX_OF_INTEGER_DATATYPE, &MNp1, &mnx, &lipqa);
-    ipqa = istk(lipqa);
+    allocMatrixOfDouble(pvApiCtx, nbInputArg + 1, MNp1, mnx, &pdblPQA);
+    piPQA = (int*)MALLOC(MNp1 * mnx * sizeof(int));
 
     if ( normalised )
     {
@@ -131,9 +216,8 @@ int sci_legendre(char *fname, unsigned long fname_len)
 
     for ( i = 0 ; i < mnx ; i++ )
     {
-        xx = fabs(x[i]); /* dxleg computes only for x in [0,1) */
-        F2C(dxlegf) (&dnu1, &nudiff, &m1, &m2, &xx, &id,
-                     stk(lpqa + i * MNp1), istk(lipqa + i * MNp1), &ierror);
+        xx = fabs(pdblX[i]); /* dxleg computes only for x in [0,1) */
+        C2F(dxlegf) (&dnu1, &nudiff, &m1, &m2, &xx, &id, pdblPQA + i * MNp1, piPQA + i * MNp1, &ierror);
         if ( ierror != 0 )
         {
             if ( ierror == 207 ) /* @TODO what is 207 ? */
@@ -145,7 +229,7 @@ int sci_legendre(char *fname, unsigned long fname_len)
                 Scierror(999, _("%s: error number %d\n"), fname, ierror);
             }
             return 0;
-        };
+        }
     }
 
     /*  dxlegf returns the result under a form (pqa,ipqa) (to
@@ -155,39 +239,43 @@ int sci_legendre(char *fname, unsigned long fname_len)
     */
     for ( i = 0 ; i < mnx * MNp1 ; i++ )
     {
-        if ( ipqa[i] < 0 )
+        if ( piPQA[i] < 0 )
         {
-            pqa[i] = 0.0;
+            pdblPQA[i] = 0.0;
         }
-        if ( ipqa[i] > 0 )
+
+        if ( piPQA[i] > 0 )
         {
-            pqa[i] = pqa[i] * return_an_inf(); /* pqa[i] * Inf  to have the sign */
+            pdblPQA[i] = pdblPQA[i] * return_an_inf(); /* pqa[i] * Inf  to have the sign */
         }
     }
+
+    FREE(piPQA);
 
     /* complete the result by odd/even symmetry for negative x */
     for ( i = 0 ; i < mnx ; i++ )
     {
-        if ( x[i] < 0.0 )
+        if ( pdblX[i] < 0.0 )
         {
             if ( (n1 + m1) % 2 == 1 )
             {
                 for ( j = 0 ; j < MNp1 ; j += 2 )
                 {
-                    pqa[i * MNp1 + j] = -pqa[i * MNp1 + j];
+                    pdblPQA[i * MNp1 + j] = -pdblPQA[i * MNp1 + j];
                 }
             }
             else
             {
                 for ( j = 1 ; j < MNp1 ; j += 2 )
                 {
-                    pqa[i * MNp1 + j] = -pqa[i * MNp1 + j];
+                    pdblPQA[i * MNp1 + j] = -pdblPQA[i * MNp1 + j];
                 }
             }
         }
     }
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArg + 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

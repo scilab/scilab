@@ -1309,6 +1309,34 @@ int checkNamedVarType(void *_pvCtx, const char *_pstName, int _iType)
 }
 
 /*--------------------------------------------------------------------------*/
+int getInputArgumentType(void* _pvCtx, int _iVar)
+{
+    SciErr sciErr;
+    int* piAddr = NULL;
+    int iType = 0;
+
+    sciErr = getVarAddressFromPosition(_pvCtx, _iVar, &piAddr);
+    if(sciErr.iErr)
+    {
+        return 0;
+    }
+
+    sciErr = getVarType(_pvCtx, piAddr, &iType);
+    if(sciErr.iErr)
+    {
+        return 0;
+    }
+
+    return iType;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkInputArgumentType(void* _pvCtx, int _iVar, int _iType)
+{
+    return getInputArgumentType(_pvCtx, _iVar) == _iType;
+}
+
+/*--------------------------------------------------------------------------*/
 int isEmptyMatrix(void *_pvCtx, int *_piAddress)
 {
     if (checkVarType(_pvCtx, _piAddress, sci_matrix))

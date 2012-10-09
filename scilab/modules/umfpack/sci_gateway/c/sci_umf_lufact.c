@@ -1,8 +1,10 @@
 /*
- *   Copyright Bruno Pinçon, ESIAL-IECN, Inria CORIDA project 
+ *   Copyright Bruno Pinçon, ESIAL-IECN, Inria CORIDA project
  *   <bruno.pincon@iecn.u-nancy.fr>
- *   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do 
+ *   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do
  *                 Espírito Santo, Brazil. <frasson@ele.ufes.br>.
+ *
+ *  Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  *
  * PURPOSE: Scilab interfaces routines onto the UMFPACK sparse solver
  * (Tim Davis) and onto the TAUCS snmf choleski solver (Sivan Teledo)
@@ -54,9 +56,9 @@
   |      Require mA, nA  > 0                                    |
   |                                                             |
   +------------------------------------------------------------*/
+#include "api_scilab.h"
 #include "gw_umfpack.h"
 #include "sciumfpack.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "taucs_scilab.h"
@@ -69,89 +71,153 @@ CellAdr *ListCholFactors = NULL;
 
 /* RAJOUTER un controle sur la taille du pivot */
 
-int sci_umf_lufact(char* fname,unsigned long l)
+int sci_umf_lufact(char* fname, void* pvApiCtx)
 {
-	int mA, nA, stat, one=1;
-	SciSparse AA;
-	CcsSparse A;
+    SciErr sciErr;
+    int stat = 0;
+    SciSparse AA;
+    CcsSparse A;
 
-	/* umfpack stuff */
-	double *Control = (double *) NULL, *Info = (double *) NULL;
-	void *Symbolic, *Numeric;
-  
-	/* Check numbers of input/output arguments */
-	CheckRhs(1,1);  CheckLhs(1,1);
+    int mA              = 0; // rows
+    int nA              = 0; // cols
+    int iNbItem         = 0;
+    int* piNbItemRow    = NULL;
+    int* piColPos       = NULL;
+    double* pdblSpReal  = NULL;
+    double* pdblSpImg   = NULL;
 
-	/* get A the sparse matrix to factorize */ 
-	GetRhsVar(1, SPARSE_MATRIX_DATATYPE, &mA, &nA, &AA);
-	if (nA <= 0 || mA <= 0 )  
-	{
-		Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname,1);
-		return 0;
-	};
-   
-	SciSparseToCcsSparse(2, &AA, &A);
+    /* umfpack stuff */
+    double* Control = NULL;
+    double* Info    = NULL;
+    void* Symbolic  = NULL;
+    void* Numeric   = NULL;
 
-	/* symbolic factorisation */
-	if (A.it == 1)
-		stat = umfpack_zi_symbolic(nA, mA, A.p, A.irow, A.R, A.I, &Symbolic, Control, Info);
-	else
-		stat = umfpack_di_symbolic(nA, mA, A.p, A.irow, A.R, &Symbolic, Control, Info);
+    int* piAddr1 = NULL;
+    int iComplex = 0;
 
-	if ( stat != UMFPACK_OK ) 
-	{
-		Scierror(999,_("%s: An error occurred: %s: %s\n"),fname,_("symbolic factorization"),UmfErrorMes(stat));
-		return 0;
-	};
-  
-	/* numeric factorisation */
-	if (A.it == 1)
-		stat = umfpack_zi_numeric(A.p, A.irow, A.R, A.I, Symbolic, &Numeric, Control, Info);
-	else
-		stat = umfpack_di_numeric(A.p, A.irow, A.R, Symbolic, &Numeric, Control, Info);
+    /* Check numbers of input/output arguments */
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-	if (A.it == 1) 
-		umfpack_zi_free_symbolic(&Symbolic); 
-	else
-		umfpack_di_free_symbolic(&Symbolic);
+    /* get A the sparse matrix to factorize */
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-	if ( stat != UMFPACK_OK  &&  stat != UMFPACK_WARNING_singular_matrix ) 
-	{
-		Scierror(999,_("%s: An error occurred: %s: %s\n"),fname,_("symbolic factorization"),UmfErrorMes(stat));
-		return 0;
-	};
+    if (isVarComplex(pvApiCtx, piAddr1))
+    {
+        iComplex = 1;
+        sciErr = getComplexSparseMatrix(pvApiCtx, piAddr1, &mA, &nA, &iNbItem, &piNbItemRow, &piColPos, &pdblSpReal, &pdblSpImg);
+    }
+    else
+    {
+        sciErr = getSparseMatrix(pvApiCtx, piAddr1, &mA, &nA, &iNbItem, &piNbItemRow, &piColPos, &pdblSpReal);
+    }
 
-	if ( stat == UMFPACK_WARNING_singular_matrix  &&  mA == nA ) 
-	{
-		if (getWarningMode())
-		{
-			sciprint("\n%s:%s\n",_("Warning"),_("The (square) matrix appears to be singular."));
-		}
-	}
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-	/*  add the pointer in the list ListNumeric  */
-	if (! AddAdrToList(Numeric, A.it, &ListNumeric))
-	{ 
-		/* AddAdrToList return 0 if malloc have failed : as it is just
-		   for storing 2 pointers this is unlikely to occurs but ... */
-		if (A.it == 1) 
-		{
-			umfpack_zi_free_numeric(&Numeric);
-		}
-		else
-		{
-			umfpack_di_free_numeric(&Numeric);
-		}
-		
-		Scierror(999,_("%s: An error occurred: %s\n"),fname,_("no place to store the LU pointer in ListNumeric."));
-		return 0;
-	};
+    // fill struct sparse
+    AA.m     = mA;
+    AA.n     = nA;
+    AA.it    = iComplex;
+    AA.nel   = iNbItem;
+    AA.mnel  = piNbItemRow;
+    AA.icol  = piColPos;
+    AA.R     = pdblSpReal;
+    AA.I     = pdblSpImg;
 
-	/* create the scilab object to store the pointer onto the LU factors */
-	CreateVarFromPtr(3,SCILAB_POINTER_DATATYPE,&one,&one, Numeric);
+    if (nA <= 0 || mA <= 0)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
+        return 1;
+    }
 
-	/* return the pointer */
-	LhsVar(1) = 3;
-	PutLhsVar();
-	return 0;
+    SciSparseToCcsSparse(2, &AA, &A);
+
+    /* symbolic factorisation */
+    if (A.it == 1)
+    {
+        stat = umfpack_zi_symbolic(nA, mA, A.p, A.irow, A.R, A.I, &Symbolic, Control, Info);
+    }
+    else
+    {
+        stat = umfpack_di_symbolic(nA, mA, A.p, A.irow, A.R, &Symbolic, Control, Info);
+    }
+
+    if (stat != UMFPACK_OK)
+    {
+        Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("symbolic factorization"), UmfErrorMes(stat));
+        return 1;
+    }
+
+    /* numeric factorisation */
+    if (A.it == 1)
+    {
+        stat = umfpack_zi_numeric(A.p, A.irow, A.R, A.I, Symbolic, &Numeric, Control, Info);
+    }
+    else
+    {
+        stat = umfpack_di_numeric(A.p, A.irow, A.R, Symbolic, &Numeric, Control, Info);
+    }
+
+    if (A.it == 1)
+    {
+        umfpack_zi_free_symbolic(&Symbolic);
+    }
+    else
+    {
+        umfpack_di_free_symbolic(&Symbolic);
+    }
+
+    if ( stat != UMFPACK_OK  &&  stat != UMFPACK_WARNING_singular_matrix )
+    {
+        Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("symbolic factorization"), UmfErrorMes(stat));
+        return 1;
+    }
+
+    if ( stat == UMFPACK_WARNING_singular_matrix  &&  mA == nA )
+    {
+        if (getWarningMode())
+        {
+            sciprint("\n%s:%s\n", _("Warning"), _("The (square) matrix appears to be singular."));
+        }
+    }
+
+    /*  add the pointer in the list ListNumeric  */
+    if (! AddAdrToList(Numeric, A.it, &ListNumeric))
+    {
+        /* AddAdrToList return 0 if malloc have failed : as it is just
+           for storing 2 pointers this is unlikely to occurs but ... */
+        if (A.it == 1)
+        {
+            umfpack_zi_free_numeric(&Numeric);
+        }
+        else
+        {
+            umfpack_di_free_numeric(&Numeric);
+        }
+
+        Scierror(999, _("%s: An error occurred: %s\n"), fname, _("no place to store the LU pointer in ListNumeric."));
+        return 1;
+    }
+
+    /* create the scilab object to store the pointer onto the LU factors */
+    sciErr = createPointer(pvApiCtx, 3, Numeric);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    /* return the pointer */
+    AssignOutputVariable(pvApiCtx, 1) = 3;
+    ReturnArguments(pvApiCtx);
+    return 0;
 }

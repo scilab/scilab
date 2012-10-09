@@ -11,11 +11,11 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6734
 //
 // <-- Short Description -->
-//  
+//
 // read_csv function contains erroneous error message.
 
-ierr = execstr("M = read_csv(''blaat.txt'')", "errcatch");
-if ierr <> 10000 then pause,end
+ierr = execstr("M = read_csv(''doesnotexist.txt'')", "errcatch");
+assert_checkequal(ierr,999)
 L = lasterror();
-if grep(L(1),"read_csv") == [] then pause,end
+assert_checkequal(grep(L(1),"doesnotexist.txt"), 1);
 

@@ -72,13 +72,6 @@
             character.
         </para>
     </refsection>
-    <!--  <refsection>
-    <title>Sample</title>
-    <scilab:image>
-      [fId,fSize]=getfont();
-      xset("font",fId,fSize)
-    </scilab:image>
-  </refsection>-->
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
@@ -87,6 +80,13 @@ xset("font",fId,fSize)
 plot2d(0,0,rect=[0 0 10 10],axesflag=0)
 xstring(5,5,"string")
  ]]></programlisting>
+        <!--  
+    <scilab:image>
+      [fId,fSize]=getfont();
+      xset("font",fId,fSize)
+    </scilab:image>
+-->
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

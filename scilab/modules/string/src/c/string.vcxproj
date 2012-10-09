@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -284,40 +284,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="tokens.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\os_wcstok.h" />
-    <ClInclude Include="convstr.h" />
-    <ClInclude Include="..\..\includes\cvstr.h" />
-    <ClInclude Include="..\..\includes\dynlib_string.h" />
-    <ClInclude Include="..\..\includes\getfastcode.h" />
-    <ClInclude Include="..\..\includes\gw_string.h" />
-    <ClInclude Include="..\..\includes\InitializeString.h" />
-    <ClInclude Include="isalphanum.h" />
-    <ClInclude Include="isdigit.h" />
-    <ClInclude Include="isletter.h" />
-    <ClInclude Include="..\..\includes\men_Sutils.h" />
-    <ClInclude Include="..\..\includes\os_strdup.h" />
-    <ClInclude Include="..\..\includes\os_stricmp.h" />
-    <ClInclude Include="..\..\includes\os_swprintf.h" />
-    <ClInclude Include="..\..\includes\os_wcsdup.h" />
-    <ClInclude Include="..\..\includes\os_wcsicmp.h" />
-    <ClInclude Include="partfunction.h" />
-    <ClInclude Include="pcre_error.h" />
-    <ClInclude Include="pcre_internal.h" />
-    <ClInclude Include="pcre_private.h" />
-    <ClInclude Include="..\..\includes\scistrtostr.h" />
-    <ClInclude Include="setScilabCharactersCodes.h" />
-    <ClInclude Include="..\..\includes\stricmp.h" />
-    <ClInclude Include="..\..\includes\StringConvert.h" />
-    <ClInclude Include="strcatfunction.h" />
-    <ClInclude Include="stringsCompare.h" />
-    <ClInclude Include="stringsstrrev.h" />
-    <ClInclude Include="..\cpp\stripblanks.hxx" />
-    <ClInclude Include="strsplitfunction.h" />
-    <ClInclude Include="..\..\includes\strsubst.h" />
-    <ClInclude Include="tokens.h" />
-    <ClInclude Include="ucp.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\locales\string.pot" />
     <None Include="core_import.def" />
     <None Include="linpack_f_Import.def" />
@@ -360,6 +326,45 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\cvstr.h" />
+    <ClInclude Include="..\..\includes\dynlib_string.h" />
+    <ClInclude Include="..\..\includes\dynlib_string_gw.h" />
+    <ClInclude Include="..\..\includes\getfastcode.h" />
+    <ClInclude Include="..\..\includes\gw_string.h" />
+    <ClInclude Include="..\..\includes\InitializeString.h" />
+    <ClInclude Include="..\..\includes\men_Sutils.h" />
+    <ClInclude Include="..\..\includes\os_strdup.h" />
+    <ClInclude Include="..\..\includes\os_stricmp.h" />
+    <ClInclude Include="..\..\includes\os_swprintf.h" />
+    <ClInclude Include="..\..\includes\os_wcsdup.h" />
+    <ClInclude Include="..\..\includes\os_wcsicmp.h" />
+    <ClInclude Include="..\..\includes\os_wcstok.h" />
+    <ClInclude Include="..\..\includes\pcre_private.h" />
+    <ClInclude Include="..\..\includes\scistrtostr.h" />
+    <ClInclude Include="..\..\includes\stricmp.h" />
+    <ClInclude Include="..\..\includes\StringConvert.h" />
+    <ClInclude Include="..\..\includes\stringToDouble.h" />
+    <ClInclude Include="..\..\includes\string_gw.hxx" />
+    <ClInclude Include="..\..\includes\strsubst.h" />
+    <ClInclude Include="..\cpp\stripblanks.hxx" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="convstr.h" />
+    <ClInclude Include="CreateEmptystr.h" />
+    <ClInclude Include="isalphanum.h" />
+    <ClInclude Include="isdigit.h" />
+    <ClInclude Include="isletter.h" />
+    <ClInclude Include="partfunction.h" />
+    <ClInclude Include="pcre_error.h" />
+    <ClInclude Include="pcre_internal.h" />
+    <ClInclude Include="setScilabCharactersCodes.h" />
+    <ClInclude Include="strcatfunction.h" />
+    <ClInclude Include="stringsCompare.h" />
+    <ClInclude Include="stringsstrrev.h" />
+    <ClInclude Include="strsplitfunction.h" />
+    <ClInclude Include="tokens.h" />
+    <ClInclude Include="ucp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -68,12 +68,6 @@
     <ClCompile Include="dspmat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dspmax.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dspmin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dspms.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -345,9 +339,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_spmatrix.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_spmax.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_symfcti.c">

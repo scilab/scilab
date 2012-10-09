@@ -20,9 +20,9 @@
 extern "C" {
 #endif
 
- /*api list error*/
+    /*api list error*/
 
- /*common error 1 - 99*/
+    /*common error 1 - 99*/
 #define API_ERROR_INVALID_POINTER                           1
 #define API_ERROR_INVALID_TYPE                              2
 #define API_ERROR_NOT_MATRIX_TYPE                           3
@@ -53,7 +53,7 @@ extern "C" {
 #define API_ERROR_IS_NAMED_SQUARE                           71
 #define API_ERROR_CHECK_NAMED_VAR_DIMENSION                 72
 
- /*double errors 101 - 199*/
+    /*double errors 101 - 199*/
 #define API_ERROR_GET_DOUBLE                                101
 #define API_ERROR_GET_ZDOUBLE                               102
 #define API_ERROR_ALLOC_DOUBLE                              103
@@ -69,7 +69,7 @@ extern "C" {
 #define API_ERROR_CREATE_SCALAR_FROM_INTEGER                120
 #define API_ERROR_CREATE_MATRIX_FROM_INTEGER                121
 
- /*poly errors 201 - 299*/
+    /*poly errors 201 - 299*/
 #define API_ERROR_GET_POLY_VARNAME                          201
 #define API_ERROR_GET_POLY                                  202
 #define API_ERROR_CREATE_POLY                               203
@@ -81,7 +81,7 @@ extern "C" {
 #define API_ERROR_GET_ALLOC_MATRIX_POLY                     211
 #define API_ERROR_GET_ALLOC_NAMED_MATRIX_POLY               212
 
- /*boolean errors 401 - 499*/
+    /*boolean errors 401 - 499*/
 #define API_ERROR_GET_BOOLEAN                               401
 #define API_ERROR_CREATE_BOOLEAN                            402
 #define API_ERROR_CREATE_NAMED_BOOLEAN                      403
@@ -89,7 +89,7 @@ extern "C" {
 #define API_ERROR_CREATE_SCALAR_BOOLEAN                     405
 #define API_ERROR_CREATE_NAMED_SCALAR_BOOLEAN               406
 
- /*sparse errors 501 - 599*/
+    /*sparse errors 501 - 599*/
 #define API_ERROR_GET_SPARSE                                501
 #define API_ERROR_ALLOC_SPARSE                              502
 #define API_ERROR_CREATE_SPARSE                             504
@@ -98,7 +98,7 @@ extern "C" {
 #define API_ERROR_GET_ALLOC_SPARSE                          507
 #define API_ERROR_GET_NAMED_ALLOC_SPARSE                    508
 
- /*boolean sparse errors 601 - 699*/
+    /*boolean sparse errors 601 - 699*/
 #define API_ERROR_GET_BOOLEAN_SPARSE                        601
 #define API_ERROR_ALLOC_BOOLEAN_SPARSE                      602
 #define API_ERROR_FILL_BOOLEAN_SPARSE                       603
@@ -110,9 +110,9 @@ extern "C" {
 #define API_ERROR_GET_ALLOC_BOOLEAN_SPARSE                  611
 #define API_ERROR_GET_NAMED_ALLOC_BOOLEAN_SPARSE            612
 
- /*matlab sparse errors 701 - 799*/
+    /*matlab sparse errors 701 - 799*/
 
- /*ints errors 801 - 899*/
+    /*ints errors 801 - 899*/
 #define API_ERROR_GET_INT                                   802
 #define API_ERROR_CREATE_INT                                803
 #define API_ERROR_ALLOC_INT                                 804
@@ -123,7 +123,13 @@ extern "C" {
 #define API_ERROR_CREATE_SCALAR_INT                         809
 #define API_ERROR_CREATE_NAMED_SCALAR_INT                   810
 
- /*strings errors 1001 - 1099*/
+    /*handles errors 901 - 999*/
+#define API_ERROR_GET_HANDLE                                902
+#define API_ERROR_CREATE_HANDLE                             903
+#define API_ERROR_GET_SCALAR_HANDLE                         907
+#define API_ERROR_CREATE_SCALAR_HANDLE                      909
+
+    /*strings errors 1001 - 1099*/
 #define API_ERROR_GET_STRING                                1001
 #define API_ERROR_INVALID_SUBSTRING_POINTER                 1002
 #define API_ERROR_CREATE_STRING                             1003
@@ -146,7 +152,7 @@ extern "C" {
 #define API_ERROR_CREATE_NAMED_SINGLE_STRING                1021
 #define API_ERROR_CREATE_NAMED_SINGLE_WIDE_STRING           1022
 
- /*list errors 1501 - 1599*/
+    /*list errors 1501 - 1599*/
 #define API_ERROR_LIST_ITEM_NUMBER                          1501
 #define API_ERROR_INVALID_LIST_TYPE                         1502
 #define API_ERROR_GET_ITEM_ADDRESS                          1503
@@ -161,7 +167,7 @@ extern "C" {
 #define API_ERROR_NON_ORDERED_INSERTION                     1512
 #define API_ERROR_ALLOC_IN_LIST                             1513
 #define API_ERROR_CREATE_VOID_IN_LIST                       1514
- /*double in list*/
+    /*double in list*/
 #define API_ERROR_GET_DOUBLE_IN_LIST                        1520
 #define API_ERROR_ALLOC_DOUBLE_IN_LIST                      1521
 #define API_ERROR_CREATE_ZDOUBLE_IN_LIST                    1523
@@ -170,14 +176,14 @@ extern "C" {
 #define API_ERROR_CREATE_DOUBLE_IN_NAMED_LIST               1526
 #define API_ERROR_READ_DOUBLE_IN_NAMED_LIST                 1527
 
- /*string in list*/
+    /*string in list*/
 #define API_ERROR_GET_STRING_IN_LIST                        1530
 #define API_ERROR_FILL_STRING_IN_LIST                       1531
 #define API_ERROR_CREATE_STRING_IN_LIST                     1532
 #define API_ERROR_CREATE_STRING_IN_NAMED_LIST               1534
 #define API_ERROR_READ_STRING_IN_NAMED_LIST                 1535
 
- /*boolean in list*/
+    /*boolean in list*/
 #define API_ERROR_GET_BOOLEAN_IN_LIST                       1540
 #define API_ERROR_CREATE_BOOLEAN_IN_LIST                    1541
 #define API_ERROR_ALLOC_BOOLEAN_IN_LIST                     1542
@@ -185,14 +191,14 @@ extern "C" {
 #define API_ERROR_CREATE_BOOLEAN_IN_NAMED_LIST              1544
 #define API_ERROR_READ_BOOLEAN_IN_NAMED_LIST                1545
 
- /*poly in list*/
+    /*poly in list*/
 #define API_ERROR_GET_POLY_IN_LIST                          1550
 #define API_ERROR_CREATE_POLY_IN_LIST                       1551
 #define API_ERROR_FILL_POLY_IN_LIST                         1552
 #define API_ERROR_CREATE_POLY_IN_NAMED_LIST                 1553
 #define API_ERROR_READ_POLY_IN_NAMED_LIST                   1554
 
- /*int in list*/
+    /*int in list*/
 #define API_ERROR_FILL_INT_IN_LIST                          1560
 #define API_ERROR_ALLOC_INT_IN_LIST                         1561
 #define API_ERROR_CREATE_INT_IN_LIST                        1562
@@ -200,38 +206,38 @@ extern "C" {
 #define API_ERROR_CREATE_INT_IN_NAMED_LIST                  1564
 #define API_ERROR_READ_INT_IN_NAMED_LIST                    1565
 
- /*sparse in list*/
+    /*sparse in list*/
 #define API_ERROR_FILL_SPARSE_IN_LIST                       1570
 #define API_ERROR_CREATE_SPARSE_IN_LIST                     1571
 #define API_ERROR_CREATE_SPARSE_IN_NAMED_LIST               1572
 #define API_ERROR_GET_SPARSE_IN_LIST                        1573
 #define API_ERROR_READ_SPARSE_IN_NAMED_LIST                 1574
 
- /*boolean sparse in list*/
+    /*boolean sparse in list*/
 #define API_ERROR_FILL_BOOLEAN_SPARSE_IN_LIST               1580
 #define API_ERROR_CREATE_BOOLEAN_SPARSE_IN_LIST             1581
 #define API_ERROR_CREATE_BOOLEAN_SPARSE_IN_NAMED_LIST       1582
 #define API_ERROR_GET_BOOLEAN_SPARSE_IN_LIST                1583
 #define API_ERROR_READ_BOOLEAN_SPARSE_IN_NAMED_LIST         1584
 
- /*pointer in list*/
+    /*pointer in list*/
 #define API_ERROR_GET_POINTER_IN_LIST                       1590
 #define API_ERROR_CREATE_POINTER_IN_NAMED_LIST              1591
 #define API_ERROR_READ_POINTER_IN_NAMED_LIST                1592
 #define API_ERROR_CREATE_POINTER_IN_LIST                    1593
 
-/*pointer errors 12801 - 12899*/
+    /*pointer errors 12801 - 12899*/
 #define API_ERROR_GET_POINTER                               12801
 #define API_ERROR_ALLOC_POINTER                             12803
 #define API_ERROR_CREATE_POINTER                            12804
 #define API_ERROR_CREATE_NAMED_POINTER                      12805
 #define API_ERROR_READ_POINTER                              12806
 
-/* error functions*/
-int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int iNeeded);
-int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...);
-int printError(SciErr* _psciErr, int _iLastMsg);
-char* getErrorMessage(SciErr _sciErr);
+    /* error functions*/
+    int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int iNeeded);
+    int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...);
+    int printError(SciErr* _psciErr, int _iLastMsg);
+    char* getErrorMessage(SciErr _sciErr);
 
 #ifdef __cplusplus
 }

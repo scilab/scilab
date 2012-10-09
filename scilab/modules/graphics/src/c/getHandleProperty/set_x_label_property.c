@@ -34,10 +34,12 @@
 /*------------------------------------------------------------------------*/
 int set_x_label_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-    char* type = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    int iType = -1;
+    int* piType = &iType;
 
-    if (strcmp(type, __GO_AXES__) != 0)
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+
+    if (iType ==__GO_AXES__)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_label");
         return SET_PROPERTY_ERROR;

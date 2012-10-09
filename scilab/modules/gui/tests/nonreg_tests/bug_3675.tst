@@ -16,8 +16,6 @@
 // <-- Short Description -->
 //    Scilab 5.0.2 has issues when saving/loading gui (uicontrols,figure...)
 
-warning("off");
-
 f=figure();
 
 h = uicontrol(f,"style","listbox", ..
@@ -37,17 +35,16 @@ set(h, "string", "un|mot|accentué");
 set(h, "value", [1 3]);
 
 // save
-save(TMPDIR + filesep() + "bug_3675.bin")
+save(TMPDIR + filesep() + "bug_3675.bin", "f", "h", "h2", "figure")
 
 // close the figure
 delete(f);
 
+assert_checkequal(size(winsid(), "*"), 0); // Check that saving the 'figure' function does not open a figure.
+
 // load and redisplay
+warning("off"); // Avoid warning about 'figure' function redefinition
 load(TMPDIR + filesep() + "bug_3675.bin");
 
 listbox = findobj("tag", "listbox_bug_3675");
-if or(get(listbox, "string") <> ["un","mot","accentué"]) then pause; end
-
-
-
-
+assert_checkequal(get(listbox, "string"), ["un","mot","accentué"]);

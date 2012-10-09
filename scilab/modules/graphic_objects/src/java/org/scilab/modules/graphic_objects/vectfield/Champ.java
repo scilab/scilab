@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.vectfield;
 
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.utils.Utils;
 
@@ -53,22 +54,23 @@ public class Champ extends VectField {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_CHAMP_DIMENSIONS__)) {
+	public Object getPropertyFromName(int propertyName) {
+		switch (propertyName) {
+		case __GO_CHAMP_DIMENSIONS__ :
 			return ChampProperty.DIMENSIONS;
-		} else if (propertyName.equals(__GO_BASE_X__)) {
+		case __GO_BASE_X__ :
 			return Arrow.ArrowProperty.BASEX;
-		} else if (propertyName.equals(__GO_BASE_Y__)) {
+		case __GO_BASE_Y__ :
 			return Arrow.ArrowProperty.BASEY;
-		} else if (propertyName.equals(__GO_COLORED__)) {
+		case __GO_COLORED__ :
 			return ChampProperty.COLORED;
-		} else if (propertyName.equals(__GO_BOUNDING_BOX__)) {
+		case __GO_BOUNDING_BOX__ :
 			return ChampProperty.BOUNDINGBOX;
-		} else if (propertyName.equals(__GO_MAX_LENGTH__)) {
+		case __GO_MAX_LENGTH__ :
 			return ChampProperty.MAXLENGTH;
-		} else if (propertyName.equals(__GO_MAX_USABLE_LENGTH__)) {
+		case __GO_MAX_USABLE_LENGTH__ :
 			return ChampProperty.MAXUSABLELENGTH;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}
@@ -261,8 +263,8 @@ public class Champ extends VectField {
 	/**
 	 * @return Type as String
 	 */
-	public String getType() {
-		return "Champ";
+	public Integer getType() {
+		return GraphicObjectProperties.__GO_CHAMP__;
 	}
 
 	/**

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="setfield">
+    <refnamediv>
+        <refname>setfield</refname>
+        <refpurpose>внесение поля списка</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>setfield(i, x, l)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>матрица всевозможного типа.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>l</term>
+                <listitem>
+                    <para>
+                        переменная типа <literal>list</literal>, <literal>tlist</literal> или <literal>mlist</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i</term>
+                <listitem>
+                    <para>
+                        индекс поля, см. справку по <link linkend="insertion">вставке</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция является эквивалентом синтаксиса <code>l(i)=x</code>
+            для вставки поля с той лишь разницей, что она также применима к объектам <literal>mlist</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+l=list(1,'qwerw',%s)
+l(1)='Изменён'
+l(0)='Добавлен'
+l(6)=['ещё один';'добавлен']
+ 
+a=hypermat([2,2,2],rand(1:2^3));// гиперматрицы кодируются с помощью mlist-ов
+setfield(3,1:8,a);a // установка значения поля равным 1:8
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="insertion">вставка</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

@@ -17,15 +17,15 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[t]=cotg(x)</synopsis>
+        <synopsis>[t] = cotg(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,t</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>real or complex vectors/matrices</para>
+                    <para>real or complex vectors/matrices.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,9 +33,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            The  elements  of  <literal>t</literal> are  the  cotangents
-            of  the corresponding entries of <literal>x</literal>.
-            <literal>t=cos(x)./sin(x)</literal>
+            The  elements  of  <varname>t</varname> are  the  cotangents
+            of  the corresponding entries of <varname>x</varname>:
+            <code>t=cos(x)./sin(x)</code>.
         </para>
     </refsection>
     <refsection>

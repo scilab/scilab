@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Allan CORNET
+* Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -12,27 +13,32 @@
 
 #include "callfftw.h"
 #include "gw_fftw.h"
-#include "stack-c.h"
-/*--------------------------------------------------------------------------*/
-int sci_disposefftwlibrary(char *fname,unsigned long fname_len)
-{
-    static int l1,n1;
+#include "localization.h"
+#include "api_scilab.h"
 
-    n1=1;
-    if ( DisposeFFTWLibrary() )
+/*--------------------------------------------------------------------------*/
+int sci_disposefftwlibrary(char *fname, void* pvApiCtx)
+{
+    int iErr;
+
+    if (DisposeFFTWLibrary())
     {
-        CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-        *istk(l1)=(int)(TRUE);
+        iErr = createScalarBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1); // true
     }
     else
     {
-        CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-        *istk(l1)=(int)(FALSE);
+        iErr = createScalarBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 0); // false
     }
 
-    LhsVar(1)=Rhs+1;
-    PutLhsVar();
+    if (iErr)
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return iErr;
+    }
 
-    return(0);
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

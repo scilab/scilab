@@ -27,8 +27,8 @@ int GetUicontrolTooltipString(void* _pvCtx, char *sciObjUID)
     int *piNbStrings = &iNbStrings;
     char **pstString = NULL;
 
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_TOOLTIPSTRING_SIZE__), jni_int, (void **) &piNbStrings);
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_TOOLTIPSTRING__), jni_string_vector, (void **) &pstString);
+    getGraphicObjectProperty(sciObjUID, __GO_UI_TOOLTIPSTRING_SIZE__, jni_int, (void **) &piNbStrings);
+    getGraphicObjectProperty(sciObjUID, __GO_UI_TOOLTIPSTRING__, jni_string_vector, (void **) &pstString);
 
     if (pstString != NULL)
     {

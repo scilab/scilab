@@ -102,17 +102,25 @@
     </refsection>
     <refsection>
         <title>Sample</title>
-        <scilab:image>champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2);</scilab:image>
+        
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 // using rect as plot boundaries 
 champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
+ ]]></programlisting>
+        <scilab:image>
+            champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // using (x,y) to get boundaries 
 clf()
 champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
  ]]></programlisting>
+        <scilab:image>
+            champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

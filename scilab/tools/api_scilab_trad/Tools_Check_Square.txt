@@ -1,0 +1,7 @@
+\1//CheckSquare
+\1if (\3 != \4)
+\1{
+\1    Scierror(999, _("%s: Wrong size for input argument #%d: A square matrix expected.\n"), fname, \2);
+\1    return 1;
+\1}
+

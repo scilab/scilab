@@ -35,7 +35,7 @@ int SetUicontrolFontSize(void* _pvCtx, char* sciObjUID, size_t stackPointer, int
 
     fontSize = getDoubleFromStack(stackPointer);
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTSIZE__), &fontSize, jni_double, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTSIZE__, &fontSize, jni_double, 1);
 
     if (status == TRUE)
     {

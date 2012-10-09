@@ -149,6 +149,18 @@ int gw_dynamic_xcos(void)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+/* scinotes module */
+#define SCINOTES_MODULE_NAME "scinotes"
+static DynLibHandle hSciNotesLib = NULL;
+static PROC_GATEWAY ptr_gw_scinotes = NULL;
+static char* dynlibname_scinotes = NULL;
+static char* gatewayname_scinotes = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_scinotes(void)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
 /* graphic_exports module */
 #define GRAPHIC_EXPORT_MODULE_NAME "graphic_export"
 static DynLibHandle hGraphic_exportLib = NULL;
@@ -235,6 +247,7 @@ int gw_dynamic_external_objects(void)
 /*--------------------------------------------------------------------------*/
 void freeAllDynamicGateways(void)
 {
+
 }
 /*--------------------------------------------------------------------------*/
 

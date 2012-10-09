@@ -52,7 +52,8 @@ int sci_uimenu(char *fname, void *pvApiCtx)
 
     char *pstCurrentFigure = NULL;
 
-    char *parentType = NULL;
+    int iParentType = -1;
+    int *piParentType = &iParentType;
 
     /* Create a new menu */
     GraphicHandle = getHandle(CreateUimenu());
@@ -94,8 +95,8 @@ int sci_uimenu(char *fname, void *pvApiCtx)
             pParentUID = (char*)getObjectFromHandle((long) * hstk(stkAdr));
             if (pParentUID != NULL)
             {
-                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
-                if ((strcmp(parentType, __GO_FIGURE__) != 0) && (strcmp(parentType, __GO_UIMENU__) != 0))
+                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+                if (iParentType == __GO_FIGURE__ && iParentType == __GO_UIMENU__)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"), fname, 1, "Figure", "Uimenu");
                     return FALSE;

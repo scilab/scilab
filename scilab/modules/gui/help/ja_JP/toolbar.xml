@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="toolbar">
+    <refnamediv>
+        <refname>toolbar</refname>
+        <refpurpose>ツールバーを表示または隠す</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>state1=toolbar(winnum,state2)
+            state1=toolbar(winnum)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>state1</term>
+                <listitem>
+                    <para>ツールバーの 'on' または 'off'の状態</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>winum</term>
+                <listitem>
+                    <para>ウインドウ番号 (-1: Scilabコンソールウインドウ)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>state2</term>
+                <listitem>
+                    <para>'on' または 'off' はツールバーの状態を設定</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>ツールバーを表示または隠します.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+toolbar(-1,'off')
+state=toolbar(-1,'on')
+
+plot3d();
+h=gcf();
+toolbar(h.figure_id,'off')
+ ]]></programlisting>
+    </refsection>
+</refentry>

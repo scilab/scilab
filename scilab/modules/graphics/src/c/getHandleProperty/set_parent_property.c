@@ -38,13 +38,16 @@
 int set_parent_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     char *pstParentUID = NULL;
-    char *pstParentType = NULL;
-    char *pstParentStyle = NULL;
-    char *pstObjType = NULL;
+    int iParentType = -1;
+    int *piParentType = &iParentType;
+    int iParentStyle = -1;
+    int *piParentStyle = &iParentStyle;
+    int iObjType = -1;
+    int *piObjType = &iObjType;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&pstObjType);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piObjType);
 
-    if (strcmp(pstObjType, __GO_UICONTROL__) == 0)
+    if (iObjType == __GO_UICONTROL__)
     {
         if (valueType == sci_handles)
         {
@@ -67,12 +70,12 @@ int set_parent_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int va
             return SET_PROPERTY_ERROR;
         }
 
-        getGraphicObjectProperty(pstParentUID, __GO_TYPE__, jni_string, (void **)&pstParentType);
+        getGraphicObjectProperty(pstParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
 
-        if (strcmp(pstParentType, __GO_FIGURE__) != 0)
+        if (iParentType != __GO_FIGURE__)
         {
-            getGraphicObjectProperty(pstParentUID, __GO_STYLE__, jni_string, (void **)&pstParentStyle);
-            if ((strcmp(pstParentType, __GO_UICONTROL__) != 0) || (strcmp(pstParentStyle, __GO_UI_FRAME__) != 0))
+            getGraphicObjectProperty(pstParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
+            if (iParentType != __GO_UICONTROL__ || iParentStyle != __GO_UI_FRAME__)
             {
                 Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
                 return SET_PROPERTY_ERROR;
@@ -83,7 +86,7 @@ int set_parent_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int va
         return SET_PROPERTY_SUCCEED;
     }
 
-    if (strcmp(pstObjType, __GO_UIMENU__) == 0)
+    if (iObjType == __GO_UIMENU__)
     {
         if ((valueType != sci_handles) && (valueType != sci_matrix))    /* sci_matrix used for adding menus in console menu */
         {
