@@ -290,6 +290,9 @@ Bug fixes
 
 * Bug #11965 fixed - Export to SVG converted texts in shapes.
 
+* Bug #11969 fixed - Only the first line was executed when code was piped under
+                     Linux.
+
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
 
@@ -297,6 +300,9 @@ Bug fixes
 
 * Bug #11980 fixed - csim returned an error message in some cases: "Submatrix
                      incorrectly defined".
+
+* Bug #11971 fixed - Canceling "Open File" action launched from icon in the
+                    toolbar opened SciNotes anyway.
 
 * Bug #11981 fixed - Smooth french help page had a wrong declaration
                      (colonnes => lignes).
