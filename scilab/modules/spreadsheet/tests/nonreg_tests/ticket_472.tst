@@ -11,6 +11,8 @@
 // <-- Short Description -->
 // csvRead, csvTextScan cannot ignore blank lines.
 // =============================================================================
+
+warning("off");
 txt = ["my data 1";"";"my data 2"];
 ref_res = ["my data 1";"my data 2"];
 

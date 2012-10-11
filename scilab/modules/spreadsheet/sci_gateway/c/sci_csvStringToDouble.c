@@ -13,15 +13,12 @@
  *
  */
 #include <string.h>
-#include "gw_csv_tools.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
-extern "C" {
 #include "freeArrayOfString.h"
-};
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -29,8 +26,9 @@ extern "C" {
 #include "csvDefault.h"
 #include "gw_csv_helpers.h"
 #include "csv_complex.h"
+
 // =============================================================================
-int sci_csvStringToDouble(char *fname)
+int sci_csvStringToDouble(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int iErr = 0;
@@ -52,11 +50,17 @@ int sci_csvStringToDouble(char *fname)
     else /* Rhs == 2 */
     {
         bConvertToNan = (BOOL)csv_getArgumentAsScalarBoolean(pvApiCtx, 2, fname, &iErr);
-        if (iErr) return 0;
+        if (iErr)
+        {
+            return 0;
+        }
     }
 
     pStringValues = csv_getArgumentAsMatrixOfString(pvApiCtx, 1, fname, &m1, &n1, &iErr);
-    if (iErr) return 0;
+    if (iErr)
+    {
+        return 0;
+    }
 
     ptrCsvComplexArray = stringsToCsvComplexArray((const char**)pStringValues, m1 * n1, getCsvDefaultDecimal(), bConvertToNan, &ierr);
 

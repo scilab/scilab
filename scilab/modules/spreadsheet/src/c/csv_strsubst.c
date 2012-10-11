@@ -11,7 +11,7 @@
  */
 #include <string.h>
 #ifndef _MSC_VER
-#include <cstddef>
+#include <stddef.h>
 #endif
 #include "csv_strsubst.h"
 #include "MALLOC.h"
@@ -27,9 +27,18 @@ char *csv_strsubst(const char *input_string, const char *string_to_search, const
     size_t string_to_searchlen = 0;
     size_t count = 0, resultlen = 0, replacement_stringlen = 0;
 
-    if (input_string == NULL) return NULL;
-    if (string_to_search == NULL) return strdup(input_string);
-    if (replacement_string == NULL) return strdup(input_string);
+    if (input_string == NULL)
+    {
+        return NULL;
+    }
+    if (string_to_search == NULL)
+    {
+        return strdup(input_string);
+    }
+    if (replacement_string == NULL)
+    {
+        return strdup(input_string);
+    }
 
     string_to_searchlen = strlen(string_to_search);
     replacement_stringlen = strlen(replacement_string);
@@ -47,7 +56,10 @@ char *csv_strsubst(const char *input_string, const char *string_to_search, const
         resultlen = strlen(input_string);
     }
 
-    if (resultlen + 1 > 0) result = (char*)CALLOC(resultlen + 1, sizeof(char));
+    if (resultlen + 1 > 0)
+    {
+        result = (char*)CALLOC(resultlen + 1, sizeof(char));
+    }
     if (result)
     {
         for (r = result, p = input_string; (q = strstr(p, string_to_search)) != NULL; p = q + string_to_searchlen)

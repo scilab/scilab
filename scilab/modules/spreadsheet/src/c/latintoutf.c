@@ -85,7 +85,10 @@ char *latintoutf(char *_inString)
             int i = 0;
 
             outString = (char*)MALLOC(((len * 3) + 1) * sizeof(char));
-            if (outString == NULL) return NULL;
+            if (outString == NULL)
+            {
+                return NULL;
+            }
             strcpy(outString, EMPTYSTR);
 
             for (i = 0; i < len; i++)
@@ -93,8 +96,14 @@ char *latintoutf(char *_inString)
                 unsigned char *outUtfChar = NULL;
                 unsigned char inAnsiChar = 0;
 
-                if (_inString[i] < 0) inAnsiChar = 256 + _inString[i];
-                else inAnsiChar = _inString[i];
+                if (_inString[i] < 0)
+                {
+                    inAnsiChar = 256 + _inString[i];
+                }
+                else
+                {
+                    inAnsiChar = _inString[i];
+                }
 
                 if (inAnsiChar < 128)
                 {

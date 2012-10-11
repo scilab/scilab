@@ -20,7 +20,10 @@ double *stringsToDoubles(const char **pSTRs, int nbElements,
     double *dValues = NULL;
 
     *ierr = STRINGTODOUBLE_ERROR;
-    if (nbElements <= 0) return NULL;
+    if (nbElements <= 0)
+    {
+        return NULL;
+    }
 
     if (pSTRs == NULL)
     {

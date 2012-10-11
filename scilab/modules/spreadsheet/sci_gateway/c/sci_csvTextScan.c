@@ -13,85 +13,87 @@
  *
  */
 #include <string.h>
-#include <stdio.h>
-
-#include "gw_csv_tools.h"
+#include "gw_spreadsheet.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "localization.h"
-extern "C" {
-#include "freeArrayOfString.h"
-};
 #include "MALLOC.h"
-#include "csvRead.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
 #include "stringToComplex.h"
 #include "csvDefault.h"
-#include "csv_complex.h"
-#include "gw_csv_helpers.h"
+#include "csvRead.h"
 #include "getRange.h"
-/* ==================================================================== */
+#include "gw_csv_helpers.h"
+
+// =============================================================================
 #define CONVTOSTR "string"
 #define CONVTODOUBLE "double"
-/* ==================================================================== */
-/* csvRead(filename, separator, decimal, conversion, substitute, range)*/
-/* ==================================================================== */
-int sci_csvRead(char *fname)
+// =============================================================================
+int sci_csvTextScan(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int iErr = 0;
+    int i = 0;
 
-    char *filename = NULL;
+    int *piAddressVarOne = NULL;
+    int m1 = 0, n1 = 0;
+    int iType1 = 0;
+
+    char **text = NULL;
+    int *lengthText = NULL;
+    int nbLines = 0;
+
     char *separator = NULL;
     char *decimal = NULL;
     char *conversion = NULL;
+
+    double * dRealValues = NULL;
+
     int *iRange = NULL;
     int haveRange = 0;
 
-    char **toreplace = NULL;
-    int nbElementsToReplace = 0;
-
-    char *regexp = NULL;
-
     csvResult *result = NULL;
 
-    double *dRealValues = NULL;
+    CheckRhs(1, 5);
+    CheckLhs(1, 1);
 
-    CheckRhs(1, 7);
-    CheckLhs(1, 2);
-
-    if (Rhs == 7)
+    if (Rhs == 5)
     {
-        int m7 = 0, n7 = 0;
+        int m5 = 0, n5 = 0;
 
-        iRange = csv_getArgumentAsMatrixofIntFromDouble(pvApiCtx, 7, fname, &m7, &n7, &iErr);
-        if (iErr) return 0;
+        iRange = csv_getArgumentAsMatrixofIntFromDouble(pvApiCtx, 5, fname, &m5, &n5, &iErr);
+        if (iErr)
+        {
+            return 0;
+        }
 
-        if ((m7 * n7 != SIZE_RANGE_SUPPORTED) )
+        if ((m5 * n5 != SIZE_RANGE_SUPPORTED) )
         {
             if (iRange)
             {
                 FREE(iRange);
                 iRange = NULL;
             }
-            Scierror(999, _("%s: Wrong size for input argument #%d: Four entries expected.\n"), fname, 7);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Four entries expected.\n"), fname, 5);
             return 0;
         }
 
-        if ((m7 != 1) && (n7 != 1))
+        if ((m5 != 1) && (n5 != 1))
         {
             if (iRange)
             {
                 FREE(iRange);
                 iRange = NULL;
             }
-            Scierror(999, _("%s: Wrong size for input argument #%d: A column or row vector expected.\n"), fname, 7);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A column or row vector expected.\n"), fname, 5);
             return 0;
         }
 
-        if (isValidRange(iRange, m7 * n7))
+        if (isValidRange(iRange, m5 * n5))
         {
             haveRange = 1;
         }
@@ -102,145 +104,60 @@ int sci_csvRead(char *fname)
                 FREE(iRange);
                 iRange = NULL;
             }
-            Scierror(999, _("%s: Wrong value for input argument #%d: Inconsistent range.\n"), fname, 7);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Inconsistent range.\n"), fname, 5);
             return 0;
         }
-    }
-
-
-    if (Rhs >= 6)
-    {
-        regexp = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 6, fname, getCsvDefaultCommentsRegExp(), &iErr);
-        if (regexp)
-        {
-            if (strcmp(regexp, "") == 0)
-            {
-                FREE(regexp);
-                regexp = NULL;
-            }
-        }
-        if (iErr) return 0;
-    }
-    else
-    {
-        regexp = strdup(getCsvDefaultCommentsRegExp());
-        if (regexp)
-        {
-            if (strcmp(regexp, "") == 0)
-            {
-                FREE(regexp);
-                regexp = NULL;
-            }
-        }
-    }
-
-    if (Rhs >= 5)
-    {
-        if (csv_isEmpty(pvApiCtx, 5))
-        {
-            toreplace = NULL;
-            nbElementsToReplace = 0;
-        }
-        else
-        {
-            int m5 = 0, n5 = 0;
-            toreplace = csv_getArgumentAsMatrixOfString(pvApiCtx, 5, fname, &m5, &n5, &iErr);
-            if (iErr)
-            {
-                if (regexp)
-                {
-                    FREE(regexp);
-                    regexp = NULL;
-                }
-                return 0;
-            }
-
-            if (n5 != 2)
-            {
-                if (regexp)
-                {
-                    FREE(regexp);
-                    regexp = NULL;
-                }
-                freeArrayOfString(toreplace, m5 * n5);
-                toreplace = NULL;
-                Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 5);
-                return 0;
-            }
-            nbElementsToReplace = m5;
-        }
-    }
-    else
-    {
-        toreplace = NULL;
-        nbElementsToReplace = 0;
     }
 
     if (Rhs >= 4)
     {
-        int iErr = 0;
         conversion = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 4, fname, getCsvDefaultConversion(), &iErr);
         if (iErr)
         {
-            FREE(regexp);
+            if (iRange)
+            {
+                FREE(iRange);
+                iRange = NULL;
+            }
             return 0;
         }
+
         if (!((strcmp(conversion, CONVTOSTR) == 0) || (strcmp(conversion, CONVTODOUBLE) == 0)))
         {
-            if (regexp)
+            if (iRange)
             {
-                FREE(regexp);
-                regexp = NULL;
-            }
-            if (toreplace)
-            {
-                freeArrayOfString(toreplace, nbElementsToReplace * 2);
-                toreplace = NULL;
+                FREE(iRange);
+                iRange = NULL;
             }
             if (conversion)
             {
                 FREE(conversion);
                 conversion = NULL;
             }
+
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"), fname, 4, "double", "string");
             return 0;
         }
     }
     else
     {
-        /* read_csv is using a 'string' conversion while csvRead is doing
-           a 'double' conversion */
-        if (strcmp(fname, "read_csv") == 0)
-        {
-            conversion = (char*)MALLOC((strlen("string") + 1) * sizeof(char));
-            strcpy(conversion, "string");
-        }
-        else
-        {
-            conversion = strdup(getCsvDefaultConversion());
-        }
+        conversion = strdup(getCsvDefaultConversion());
     }
 
     if (Rhs >= 3)
     {
-        int iErr = 0;
         decimal = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 3, fname, getCsvDefaultDecimal(), &iErr);
         if (iErr)
         {
-            if (regexp)
+            if (iRange)
             {
-                FREE(regexp);
-                regexp = NULL;
+                FREE(iRange);
+                iRange = NULL;
             }
             if (conversion)
             {
                 FREE(conversion);
                 conversion = NULL;
-            }
-            if (toreplace)
-            {
-                freeArrayOfString(toreplace, nbElementsToReplace * 2);
-                toreplace = NULL;
             }
             return 0;
         }
@@ -252,29 +169,23 @@ int sci_csvRead(char *fname)
 
     if (Rhs >= 2)
     {
-        int iErr = 0;
         separator = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 2, fname, getCsvDefaultSeparator(), &iErr);
         if (iErr)
         {
-            if (regexp)
+            if (iRange)
             {
-                FREE(regexp);
-                regexp = NULL;
-            }
-            if (toreplace)
-            {
-                freeArrayOfString(toreplace, nbElementsToReplace * 2);
-                toreplace = NULL;
-            }
-            if (conversion)
-            {
-                FREE(conversion);
-                conversion = NULL;
+                FREE(iRange);
+                iRange = NULL;
             }
             if (decimal)
             {
                 FREE(decimal);
                 decimal = NULL;
+            }
+            if (conversion)
+            {
+                FREE(conversion);
+                conversion = NULL;
             }
             return 0;
         }
@@ -284,78 +195,84 @@ int sci_csvRead(char *fname)
         separator = strdup(getCsvDefaultSeparator());
     }
 
-    if (strcmp(separator, "\\t") == 0)
+    if (!csv_isRowVector(pvApiCtx, 1) &&
+            !csv_isColumnVector(pvApiCtx, 1) &&
+            !csv_isScalar(pvApiCtx, 1))
     {
-        /* In Scilab, if the user is providing \t as separator, transform it to a real
-           tab. Example: read_csv(filename,"\t");
-        */
-        strcpy(separator, "\t");
-    }
-
-
-    filename = csv_getArgumentAsString(pvApiCtx, 1, fname, &iErr);
-    if (iErr)
-    {
-        if (regexp)
+        if (iRange)
         {
-            FREE(regexp);
-            regexp = NULL;
-        }
-        if (toreplace)
-        {
-            freeArrayOfString(toreplace, nbElementsToReplace * 2);
-            toreplace = NULL;
+            FREE(iRange);
+            iRange = NULL;
         }
         if (separator)
         {
             FREE(separator);
             separator = NULL;
         }
+        if (decimal)
+        {
+            FREE(decimal);
+            decimal = NULL;
+        }
         if (conversion)
         {
             FREE(conversion);
             conversion = NULL;
+        }
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
+        return 0;
+    }
+
+    text = csv_getArgumentAsMatrixOfString(pvApiCtx, 1, fname, &m1, &n1, &iErr);
+    if (iErr)
+    {
+        if (iRange)
+        {
+            FREE(iRange);
+            iRange = NULL;
+        }
+        if (separator)
+        {
+            FREE(separator);
+            separator = NULL;
         }
         if (decimal)
         {
             FREE(decimal);
             decimal = NULL;
         }
+        if (conversion)
+        {
+            FREE(conversion);
+            conversion = NULL;
+        }
         return 0;
     }
 
-    result = csvRead(filename, separator, decimal, (const char**)toreplace, nbElementsToReplace * 2, regexp);
-    if (regexp)
+    nbLines = m1 * n1;
+    result = csvTextScan((const char**)text, nbLines, separator, decimal);
+
+    if (text)
     {
-        FREE(regexp);
-        regexp = NULL;
+        if (separator)
+        {
+            FREE(separator);
+            separator = NULL;
+        }
+        freeArrayOfString(text, nbLines);
+        text = NULL;
     }
-    if (toreplace)
-    {
-        freeArrayOfString(toreplace, nbElementsToReplace * 2);
-        toreplace = NULL;
-    }
+
     if (separator)
     {
         FREE(separator);
         separator = NULL;
-    }
-    if (decimal)
-    {
-        FREE(decimal);
-        decimal = NULL;
     }
 
     if (result)
     {
         switch (result->err)
         {
-            case CSV_READ_REGEXP_ERROR:
-            {
-                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 6);
-            }
-            break;
-
             case CSV_READ_SEPARATOR_DECIMAL_EQUAL:
             {
                 Scierror(999, _("%s: separator and decimal must have different values.\n"), fname);
@@ -381,6 +298,7 @@ int sci_csvRead(char *fname)
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         }
+
                     }
                     else
                     {
@@ -391,19 +309,23 @@ int sci_csvRead(char *fname)
                 {
                     stringToComplexError ierr = STRINGTOCOMPLEX_ERROR;
                     csv_complexArray *ptrCsvComplexArray = stringsToCsvComplexArray((const char**)result->pstrValues, result->m * result->n, decimal, TRUE, &ierr);
-
                     if (ptrCsvComplexArray == NULL)
                     {
                         freeCsvResult(result);
-                        if (filename)
+                        if (decimal)
                         {
-                            FREE(filename);
-                            filename = NULL;
+                            FREE(decimal);
+                            decimal = NULL;
                         }
                         if (conversion)
                         {
                             FREE(conversion);
                             conversion = NULL;
+                        }
+                        if (iRange)
+                        {
+                            FREE(iRange);
+                            iRange = NULL;
                         }
                         if (ierr == STRINGTOCOMPLEX_ERROR)
                         {
@@ -454,9 +376,9 @@ int sci_csvRead(char *fname)
                                 {
                                     sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrCsvComplexArray->realPart);
                                 }
-                                freeCsvComplexArray(ptrCsvComplexArray);
-                                ptrCsvComplexArray = NULL;
                             }
+                            freeCsvComplexArray(ptrCsvComplexArray);
+                            ptrCsvComplexArray = NULL;
                         }
                         break;
 
@@ -475,15 +397,20 @@ int sci_csvRead(char *fname)
                 if (sciErr.iErr)
                 {
                     freeCsvResult(result);
-                    if (filename)
+                    if (decimal)
                     {
-                        FREE(filename);
-                        filename = NULL;
+                        FREE(decimal);
+                        decimal = NULL;
                     }
                     if (conversion)
                     {
                         FREE(conversion);
                         conversion = NULL;
+                    }
+                    if (iRange)
+                    {
+                        FREE(iRange);
+                        iRange = NULL;
                     }
                     printError(&sciErr, 0);
                     Scierror(17, _("%s: Memory allocation error.\n"), fname);
@@ -492,43 +419,8 @@ int sci_csvRead(char *fname)
                 else
                 {
                     LhsVar(1) = Rhs + 1;
-
-                    if (Lhs == 2)
-                    {
-                        sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
-                        if (sciErr.iErr)
-                        {
-                            freeCsvResult(result);
-                            if (filename)
-                            {
-                                FREE(filename);
-                                filename = NULL;
-                            }
-                            if (conversion)
-                            {
-                                FREE(conversion);
-                                conversion = NULL;
-                            }
-                            printError(&sciErr, 0);
-                            Scierror(17, _("%s: Memory allocation error.\n"), fname);
-                            return 0;
-                        }
-                        LhsVar(2) = Rhs + 2;
-                    }
                     PutLhsVar();
                 }
-            }
-            break;
-
-            case CSV_READ_FILE_NOT_EXIST:
-            {
-                Scierror(999, _("%s: %s does not exist.\n"), fname, filename);
-            }
-            break;
-
-            case CSV_READ_MOPEN_ERROR:
-            {
-                Scierror(999, _("%s: can not open file %s.\n"), fname, filename);
             }
             break;
 
@@ -540,14 +432,14 @@ int sci_csvRead(char *fname)
 
             case CSV_READ_COLUMNS_ERROR:
             {
-                Scierror(999, _("%s: can not read file %s: Error in the column structure\n"), fname, filename);
+                Scierror(999, _("%s: can not read text: Error in the column structure\n"), fname);
             }
             break;
 
             case CSV_READ_READLINES_ERROR:
             case CSV_READ_ERROR:
             {
-                Scierror(999, _("%s: can not read file %s.\n"), fname, filename);
+                Scierror(999, _("%s: can not read text.\n"), fname);
             }
             break;
         }
@@ -557,17 +449,22 @@ int sci_csvRead(char *fname)
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
     }
     freeCsvResult(result);
-    if (filename)
+    if (decimal)
     {
-        FREE(filename);
-        filename = NULL;
+        FREE(decimal);
+        decimal = NULL;
     }
     if (conversion)
     {
         FREE(conversion);
         conversion = NULL;
     }
+    if (iRange)
+    {
+        FREE(iRange);
+        iRange = NULL;
+    }
 
     return 0;
 }
-/* ==================================================================== */
+// =============================================================================
