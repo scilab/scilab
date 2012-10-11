@@ -4,6 +4,8 @@
 Xcos
 ====
 
+* Bug #10434 fixed - loadXcosLibs changed the predef value.
+
 * Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
 
 * Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
