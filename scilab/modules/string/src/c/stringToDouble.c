@@ -21,9 +21,7 @@
 #include "stringToDouble.h"
 #include "core_math.h"
 #include "MALLOC.h"
-#ifdef  _MSC_VER
 #include "os_strdup.h"
-#endif
 #ifndef _MSC_VER
 #ifndef stricmp
 #define stricmp strcasecmp
@@ -41,7 +39,7 @@ static double returnNAN(void);
 static char* replace_D_By_E(const char* _pst)
 {
     //find and replace d and D by E for compatibility with strtod Linux/Mac
-    char* pstReturn = strdup(_pst);
+    char* pstReturn = os_strdup(_pst);
     char* pstFind = pstReturn;
     do
     {

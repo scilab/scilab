@@ -28,6 +28,7 @@ extern "C"
 #include "Scierror.h"
 #include "charEncoding.h"
 #include "os_strdup.h"
+#include "freeArrayOfString.h"
 }
 /*------------------------------------------------------------------------*/
 #define WCHAR_S L's'
@@ -51,6 +52,10 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
     int* piEnd              = NULL;
     int iOccurs             = 0;
 
+    /*for captured sub strings*/
+    wchar_t*** pwstCapturedString = NULL;
+    int* piCapturedStringCount = NULL;
+
     if (in.size() < 2 || in.size() > 3)
     {
         ScierrorW(999, _W("%ls: Wrong number of input arguments: %d or %d expected.\n"), L"regexp", 2, 3);
@@ -58,9 +63,9 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
     }
 
     // check output parameters
-    if (_iRetCount < 1 || _iRetCount > 3)
+    if (_iRetCount < 1 || _iRetCount > 4)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"regexp", 1);
+        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d to %d expected.\n"), L"regexp", 1, 4);
         return Function::Error;
     }
 
@@ -116,9 +121,12 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
     piStart     = new int[wcslen(pwstInput)];
     piEnd       = new int[wcslen(pwstInput)];
 
+    pwstCapturedString = (wchar_t***)MALLOC(sizeof(wchar_t**) * wcslen(pwstInput));
+    piCapturedStringCount = (int*)MALLOC(sizeof(int) * wcslen(pwstInput));
+
     do
     {
-        iPcreStatus = wide_pcre_private(pwstInput + iStep, pwstPattern, &iStart, &iEnd, NULL, NULL);
+        iPcreStatus = wide_pcre_private(pwstInput + iStep, pwstPattern, &iStart, &iEnd, &pwstCapturedString[iOccurs], &piCapturedStringCount[iOccurs]);
         if (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd)
         {
             piStart[iOccurs]    = iStart + iStep;
@@ -147,6 +155,11 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         {
             out.push_back(new String(L""));
         }
+
+        if (_iRetCount > 3)
+        {
+            out.push_back(new String(L""));
+        }
         return Function::OK;
     }
 
@@ -171,7 +184,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         out.push_back(pEnd);
     }
 
-    if (_iRetCount == 3)
+    if (_iRetCount > 2)
     {
         String *pS = NULL;
         if (iOccurs == 0)
@@ -193,6 +206,54 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         }
         out.push_back(pS);
     }
+
+    if(_iRetCount > 3)
+    {
+        //find max occurrences
+        int iMax = 0;
+        for(int i = 0 ; i < iOccurs ; i++)
+        {
+            iMax = Max(iMax, piCapturedStringCount[i]);
+        }
+
+        String* pS = NULL;
+        if(iOccurs == 0 || iMax == 0)
+        {
+            pS = new String(L"");
+        }
+        else
+        {
+            int index = 0;
+            pS = new String(iOccurs, iMax);
+            for(int i = 0 ; i < iMax ; i++)
+            {
+                for(int j = 0 ; j < iOccurs ; j++)
+                {
+                    if(i < piCapturedStringCount[j])
+                    {
+                        pS->set(index, pwstCapturedString[j][i]);
+                    }
+                    else
+                    {
+                        pS->set(index, L"");
+                    }
+
+                    index++;
+                }
+            }
+
+        }
+        out.push_back(pS);
+
+        for(int i = 0 ; i < iOccurs ; i++)
+        {
+            freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
+        }
+
+        FREE(pwstCapturedString);
+        FREE(piCapturedStringCount);
+    }
+
     delete[] piStart;
     delete[] piEnd;
     return Function::OK;
