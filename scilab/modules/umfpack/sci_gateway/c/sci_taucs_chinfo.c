@@ -57,6 +57,7 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "localization.h"
+#include "Scierror.h"
 
 extern CellAdr *ListCholFactors;
 

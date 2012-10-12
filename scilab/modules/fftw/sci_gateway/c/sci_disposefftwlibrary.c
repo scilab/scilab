@@ -15,6 +15,7 @@
 #include "gw_fftw.h"
 #include "localization.h"
 #include "api_scilab.h"
+#include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_disposefftwlibrary(char *fname, unsigned long fname_len)

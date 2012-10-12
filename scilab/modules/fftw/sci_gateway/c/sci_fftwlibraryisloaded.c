@@ -14,6 +14,7 @@
 #include "gw_fftw.h"
 #include "api_scilab.h"
 #include "localization.h"
+#include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_fftwlibraryisloaded(char *fname, unsigned long fname_len)
