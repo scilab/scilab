@@ -25,7 +25,7 @@
 #define COMPN_EQUDIF 'scilab\differential_equations'
 #define COMPN_STATS 'scilab\statistics'
 ;
-; by
+; by default
 #define COMPN_JVM_MODULE 'scilab\JVM_MODULE'
 #define COMPN_JRE 'JRE_1_6'
 
@@ -91,11 +91,11 @@ Name: {#COMPN_SCINOTES}; Description:{cm:DescriptionSciNotes}; Types: full; Flag
 ;
 Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: full; Flags: fixed;
 ;
-Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: full;
-;
 Name: {#COMPN_EXTERNAL_OBJECTS}; Description: {cm:DescriptionExternalObjects}; Types: full; Flags: fixed;
 ;
-Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: default full custom; Flags: fixed;
+Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: full; Flags: fixed;
+;
+Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: full;
 ;
 Name: {#COMPN_MKL_CPU_LIBRARY}; Description:{cm:DescriptionMKLLibrary}; Flags: exclusive
 ;
@@ -122,7 +122,6 @@ Name: {#COMPN_COMPATFUNCTIONS}; Description: {cm:DescriptionCompatFunctions}; Ty
 Name: {#COMPN_M2SCI}; Description: {cm:DescriptionM2sci}; Types: full;
 Name: {#COMPN_MATIO}; Description: {cm:DescriptionMatio}; Types: full;
 ;
-Name: {#COMPN_EXTERNAL_OBJECTS}; Description: {cm:DescriptionExternalObjects}; Types: full;
 Name: {#COMPN_SOUND}; Description: {cm:DescriptionSound}; Types:  full ;
 Name: {#COMPN_RANDLIB}; Description: {cm:DescriptionRandlib}; Types:  full ;
 ;
@@ -133,7 +132,6 @@ Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: full;
 ;
 Name: {#COMPN_SPREADSHEET}; Description: {cm:DescriptionSpreadsheet}; Types: full;
 ;
-Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: full;
 Name: {#COMPN_MODULES_MANAGER}; Description: {cm:DescriptionModulesManager}; Types: full;
 ;
 #ifndef SCILAB_F2C
@@ -143,6 +141,7 @@ Name: {#COMPN_PARALLEL}; Description: {cm:DescriptionParallel}; Types: full;
 Name: {#COMPN_PARAMETERS}; Description: {cm:DescriptionParametersTlbx}; Types: full;
 Name: {#COMPN_GENETICALGORITHMS}; Description: {cm:DescriptionGeneticTlbx}; Types: full;
 Name: {#COMPN_SIMANNEALING}; Description: {cm:DescriptionSimulAnnealingTlbx}; Types: full;
+;
 ;
 Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full ; ExtraDiskSpaceRequired: {#TESTS_SIZE}
 Name: {#COMPN_TOOLBOX_SKELETON}; Description: {cm:DescriptionTlbxSkeleton}; Types: full;
