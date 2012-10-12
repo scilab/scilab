@@ -54,7 +54,6 @@ SciErr getMatrixOfHandle(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
     {
         *_pllHandle = (long long*)(_piAddress + 4);
     }
-    intersci_.ntypes[getRhsFromAddress(_pvCtx, _piAddress) - 1] = 'h';
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/

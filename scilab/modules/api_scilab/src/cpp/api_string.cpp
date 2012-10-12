@@ -103,9 +103,6 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
         sum += _piLength[i];
         _pstStrings[i][_piLength[i]] = 0;
     }
-
-    intersci_.ntypes[getRhsFromAddress(_pvCtx, _piAddress) - 1] = 'S';
-
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/

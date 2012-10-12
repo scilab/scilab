@@ -13,7 +13,6 @@
 * still available and supported in Scilab 6.
 */
 
-#include <stdio.h>
 #include "api_scilab.h"
 #include "api_internal_common.h"
 #include "api_internal_double.h"
@@ -61,9 +60,6 @@ SciErr getComplexZMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, in
     }
 
     *_pdblZ	= oGetDoubleComplexFromPointer(pdblReal, pdblImg, *_piRows * *_piCols);
-
-    int iRhs = getRhsFromAddress(_pvCtx, _piAddress);
-    C2F(intersci).ntypes[iRhs - 1] = 'd';
     return sciErr;
 }
 
@@ -83,15 +79,6 @@ SciErr getMatrixOfDoubleAsInteger(void* _pvCtx, int* _piAddress, int* _piRows, i
 
     //Warning we overwrite double by int !!!!
     C2F(entier)(&iSize, pdblReal, *_piReal);
-    int iRhs = getRhsFromAddress(_pvCtx, _piAddress);
-    //C2F(intersci).ntypes[iRhs - 1] = 'd';
-    //C2F(intersci).iwhere[iRhs - 1] = *Lstk(iRhs + Top - Rhs);
-    //C2F(intersci).lad[iRhs - 1] = *lr;
-    C2F(intersci).ntypes[iRhs - 1] = 'i';
-    C2F(intersci).iwhere[iRhs - 1] = *Lstk(Top - Rhs + iRhs);
-    int iSCIAddress = iadr(*Lstk(Top - Rhs + iRhs)) + 4;
-    C2F(intersci).lad[iRhs - 1] = iSCIAddress;
-    printf("good : %d\n", iSCIAddress);
     return sciErr;
 }
 
@@ -114,8 +101,6 @@ SciErr getComplexMatrixOfDoubleAsInteger(void* _pvCtx, int* _piAddress, int* _pi
     //Warning we overwrite double by int !!!!
     C2F(entier)(&iSize, pdblReal, *_piReal);
     C2F(entier)(&iSize, pdblImg, *_piImg);
-
-    intersci_.ntypes[getRhsFromAddress(_pvCtx, _piAddress) - 1] = 'i';
     return sciErr;
 }
 
@@ -153,9 +138,6 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int
     {
         *_pdblImg	= (double*)(_piAddress + 4) + *_piRows * *_piCols;
     }
-
-    intersci_.ntypes[getRhsFromAddress(_pvCtx, _piAddress) - 1] = 'd';
-
     return sciErr;
 }
 
