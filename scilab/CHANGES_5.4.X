@@ -8,6 +8,8 @@ Xcos
 
 * Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
 
+* Bug #11821 fixed - Running XcosPalAdd example from help led to deadlock
+
 * Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
                      Scilab crash.
 
