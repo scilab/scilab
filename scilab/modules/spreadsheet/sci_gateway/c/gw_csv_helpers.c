@@ -293,7 +293,10 @@ int csv_isRowVector(void* _pvCtx, int _iVar)
     SciErr sciErr;
     int *piAddressVar = NULL;
     sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddressVar);
-    if (sciErr.iErr) return 0;
+    if (sciErr.iErr)
+    {
+        return 0;
+    }
     return isRowVector(pvApiCtx, piAddressVar);
 }
 // =============================================================================
@@ -302,7 +305,10 @@ int csv_isColumnVector(void* _pvCtx, int _iVar)
     SciErr sciErr;
     int *piAddressVar = NULL;
     sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddressVar);
-    if (sciErr.iErr) return 0;
+    if (sciErr.iErr)
+    {
+        return 0;
+    }
     return isColumnVector(pvApiCtx, piAddressVar);
 }
 // =============================================================================
@@ -311,7 +317,10 @@ int csv_isScalar(void* _pvCtx, int _iVar)
     SciErr sciErr;
     int *piAddressVar = NULL;
     sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddressVar);
-    if (sciErr.iErr) return 0;
+    if (sciErr.iErr)
+    {
+        return 0;
+    }
     return isScalar(pvApiCtx, piAddressVar);
 }
 // =============================================================================
@@ -321,13 +330,19 @@ int csv_isDoubleScalar(void* _pvCtx, int _iVar)
     int *piAddressVar = NULL;
 
     sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddressVar);
-    if (sciErr.iErr) return 0;
+    if (sciErr.iErr)
+    {
+        return 0;
+    }
 
     if (csv_isScalar(_pvCtx, _iVar))
     {
         int iType = 0;
         sciErr = getVarType(pvApiCtx, piAddressVar, &iType);
-        if (sciErr.iErr) return 0;
+        if (sciErr.iErr)
+        {
+            return 0;
+        }
 
         if (isVarComplex(pvApiCtx, piAddressVar) == 0)
         {
@@ -346,7 +361,10 @@ int csv_isEmpty(void* _pvCtx, int _iVar)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        if (sciErr.iErr) return 0;
+        if (sciErr.iErr)
+        {
+            return 0;
+        }
     }
 
     return isEmptyMatrix(pvApiCtx, piAddressVar);

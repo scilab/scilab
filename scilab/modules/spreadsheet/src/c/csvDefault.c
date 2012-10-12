@@ -99,31 +99,61 @@ const char *getCsvDefaultCsvIgnoreBlankLine(void)
 // =============================================================================
 int setCsvDefaultSeparator(const char *separator)
 {
-    if (initializeCsvDefaultValues()) return 1;
-    if (separator == NULL) return 1;
+    if (initializeCsvDefaultValues())
+    {
+        return 1;
+    }
+    if (separator == NULL)
+    {
+        return 1;
+    }
 
-    if (strcmp(separator, getCsvDefaultDecimal()) == 0) return 1;
+    if (strcmp(separator, getCsvDefaultDecimal()) == 0)
+    {
+        return 1;
+    }
 
-    if (defaultCsvSeparator) FREE(defaultCsvSeparator);
+    if (defaultCsvSeparator)
+    {
+        FREE(defaultCsvSeparator);
+    }
     defaultCsvSeparator = strdup(separator);
-    if (defaultCsvSeparator == NULL) return 1;
+    if (defaultCsvSeparator == NULL)
+    {
+        return 1;
+    }
 
     return 0;
 }
 // =============================================================================
 int setCsvDefaultDecimal(const char *decimal)
 {
-    if (initializeCsvDefaultValues()) return 1;
-    if (decimal == NULL) return 1;
+    if (initializeCsvDefaultValues())
+    {
+        return 1;
+    }
+    if (decimal == NULL)
+    {
+        return 1;
+    }
 
     /* decimal separator supported . and , */
     if ((strcmp(decimal, CSV_DECIMAL_MODE_1) == 0) ||
             (strcmp(decimal, CSV_DECIMAL_MODE_2) == 0))
     {
-        if (strcmp(decimal, getCsvDefaultSeparator()) == 0) return 1;
-        if (defaultCsvDecimal) FREE(defaultCsvDecimal);
+        if (strcmp(decimal, getCsvDefaultSeparator()) == 0)
+        {
+            return 1;
+        }
+        if (defaultCsvDecimal)
+        {
+            FREE(defaultCsvDecimal);
+        }
         defaultCsvDecimal = strdup(decimal);
-        if (defaultCsvDecimal == NULL) return 1;
+        if (defaultCsvDecimal == NULL)
+        {
+            return 1;
+        }
         return 0;
     }
     return 1;
@@ -131,15 +161,27 @@ int setCsvDefaultDecimal(const char *decimal)
 // =============================================================================
 int setCsvDefaultConversion(const char *conversion)
 {
-    if (initializeCsvDefaultValues()) return 1;
-    if (conversion == NULL) return 1;
+    if (initializeCsvDefaultValues())
+    {
+        return 1;
+    }
+    if (conversion == NULL)
+    {
+        return 1;
+    }
 
     if ((strcmp(conversion, CSV_CONVERSION_MODE_1) == 0) ||
             (strcmp(conversion, CSV_CONVERSION_MODE_2) == 0))
     {
-        if (defaultCsvConversion) FREE(defaultCsvConversion);
+        if (defaultCsvConversion)
+        {
+            FREE(defaultCsvConversion);
+        }
         defaultCsvConversion = strdup(conversion);
-        if (defaultCsvConversion) return 0;
+        if (defaultCsvConversion)
+        {
+            return 0;
+        }
     }
 
     return 1;
@@ -147,27 +189,51 @@ int setCsvDefaultConversion(const char *conversion)
 // =============================================================================
 int setCsvDefaultPrecision(const char *precision)
 {
-    if (initializeCsvDefaultValues()) return 1;
-    if (precision == NULL) return 1;
+    if (initializeCsvDefaultValues())
+    {
+        return 1;
+    }
+    if (precision == NULL)
+    {
+        return 1;
+    }
     if (checkCsvWriteFormat(precision) == 0)
     {
-        if (defaultCsvPrecision) FREE(defaultCsvPrecision);
+        if (defaultCsvPrecision)
+        {
+            FREE(defaultCsvPrecision);
+        }
         defaultCsvPrecision = strdup(precision);
-        if (defaultCsvPrecision) return 0;
+        if (defaultCsvPrecision)
+        {
+            return 0;
+        }
     }
     return 1;
 }
 // =============================================================================
 int setCsvDefaultCsvIgnoreBlankLine(const char *blankMode)
 {
-    if (initializeCsvDefaultValues()) return 1;
-    if (blankMode == NULL) return 1;
+    if (initializeCsvDefaultValues())
+    {
+        return 1;
+    }
+    if (blankMode == NULL)
+    {
+        return 1;
+    }
     if ((strcmp(blankMode, CSV_IGNORE_BLANK_LINE_MODE_1) == 0) ||
             (strcmp(blankMode, CSV_IGNORE_BLANK_LINE_MODE_2) == 0))
     {
-        if (defaultCsvIgnoreBlankLine) FREE(defaultCsvIgnoreBlankLine);
+        if (defaultCsvIgnoreBlankLine)
+        {
+            FREE(defaultCsvIgnoreBlankLine);
+        }
         defaultCsvIgnoreBlankLine = strdup(blankMode);
-        if (defaultCsvIgnoreBlankLine) return 0;
+        if (defaultCsvIgnoreBlankLine)
+        {
+            return 0;
+        }
     }
     return 1;
 }
@@ -276,10 +342,19 @@ int setCsvDefaultReset(void)
 // =============================================================================
 int setCsvDefaultCommentsRegExp(const char *commentsRegExp)
 {
-    if (initializeCsvDefaultValues()) return 1;
-    if (commentsRegExp == NULL) return 1;
+    if (initializeCsvDefaultValues())
+    {
+        return 1;
+    }
+    if (commentsRegExp == NULL)
+    {
+        return 1;
+    }
 
-    if (strcmp(commentsRegExp, getCsvDefaultCommentsRegExp()) == 0) return 1;
+    if (strcmp(commentsRegExp, getCsvDefaultCommentsRegExp()) == 0)
+    {
+        return 1;
+    }
 
     if (defaultCsvCommentsRegExp)
     {
@@ -289,17 +364,29 @@ int setCsvDefaultCommentsRegExp(const char *commentsRegExp)
 
     defaultCsvCommentsRegExp = strdup(commentsRegExp);
 
-    if (defaultCsvDecimal == NULL) return 1;
+    if (defaultCsvDecimal == NULL)
+    {
+        return 1;
+    }
 
     return 0;
 }
 // =============================================================================
 int setCsvDefaultEOL(const char *eol)
 {
-    if (initializeCsvDefaultValues()) return 1;
-    if (eol == NULL) return 1;
+    if (initializeCsvDefaultValues())
+    {
+        return 1;
+    }
+    if (eol == NULL)
+    {
+        return 1;
+    }
 
-    if (strcmp(eol, getCsvDefaultEOL()) == 0) return 0;
+    if (strcmp(eol, getCsvDefaultEOL()) == 0)
+    {
+        return 0;
+    }
 
     if (defaultCsvEOL)
     {
@@ -309,17 +396,29 @@ int setCsvDefaultEOL(const char *eol)
 
     defaultCsvEOL = strdup(eol);
 
-    if (defaultCsvEOL == NULL) return 1;
+    if (defaultCsvEOL == NULL)
+    {
+        return 1;
+    }
 
     return 0;
 }
 // =============================================================================
 int setCsvDefaultEncoding(const char *encoding)
 {
-    if (initializeCsvDefaultValues()) return 1;
-    if (encoding == NULL) return 1;
+    if (initializeCsvDefaultValues())
+    {
+        return 1;
+    }
+    if (encoding == NULL)
+    {
+        return 1;
+    }
 
-    if (strcmp(encoding, getCsvDefaultEncoding()) == 0) return 1;
+    if (strcmp(encoding, getCsvDefaultEncoding()) == 0)
+    {
+        return 1;
+    }
 
     if ((strcmp(encoding, DEFAULT_CSV_ENCODING_MODE1) != 0) &&
             (strcmp(encoding, DEFAULT_CSV_ENCODING_MODE2) != 0))
@@ -335,7 +434,10 @@ int setCsvDefaultEncoding(const char *encoding)
 
     defaultCsvEncoding = strdup(encoding);
 
-    if (defaultCsvEncoding == NULL) return 1;
+    if (defaultCsvEncoding == NULL)
+    {
+        return 1;
+    }
 
     return 0;
 }

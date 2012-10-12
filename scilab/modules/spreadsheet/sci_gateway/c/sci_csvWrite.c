@@ -14,26 +14,24 @@
  */
 #include <string.h>
 #include <stdio.h>
-#include "gw_csv_tools.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "csvWrite.h"
 #include "localization.h"
-extern "C" {
 #include "freeArrayOfString.h"
-};
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
 #include "csvDefault.h"
 #include "checkCsvWriteFormat.h"
 #include "gw_csv_helpers.h"
+
 // =============================================================================
 // csvWrite(M, filename[, separator, decimal, precision]) */
 // with M string or double (not complex)
 // =============================================================================
-int sci_csvWrite(char *fname)
+int sci_csvWrite(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int iErr = 0;
@@ -70,7 +68,10 @@ int sci_csvWrite(char *fname)
         int m6 = 0;
         int n6 = 0;
         pHeadersLines = csv_getArgumentAsMatrixOfString(pvApiCtx, 6, fname, &m6, &n6, &iErr);
-        if (iErr) return 0;
+        if (iErr)
+        {
+            return 0;
+        }
         isOnlyRowOrCol = ((m6 > 1) && (n6 == 1)) || ((m6 == 1) && (n6 > 1)) || ((m6 == 1) && (n6 == 1));
         if (!isOnlyRowOrCol)
         {
@@ -128,7 +129,10 @@ int sci_csvWrite(char *fname)
         else
         {
             precisionFormat = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 5, fname, getCsvDefaultPrecision(), &iErr);
-            if (iErr) return 0;
+            if (iErr)
+            {
+                return 0;
+            }
             if (checkCsvWriteFormat(precisionFormat))
             {
                 Scierror(999, _("%s: Not supported format %s.\n"), fname, precisionFormat);

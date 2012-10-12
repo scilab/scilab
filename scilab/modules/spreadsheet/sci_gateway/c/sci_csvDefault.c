@@ -12,22 +12,23 @@
  * This code is also published under the GPL v3 license.
  *
  */
+
 #include <string.h>
 #include <stdio.h>
-#include "gw_csv_tools.h"
+#include "gw_spreadsheet.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
-extern "C" {
 #include "freeArrayOfString.h"
-};
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
 #include "csvDefault.h"
 #include "gw_csv_helpers.h"
+
+
 // =============================================================================
 #define SEPARATOR_FIELDNAME "separator"
 #define DECIMAL_FIELDNAME "decimal"
@@ -52,7 +53,7 @@ static int sci_csvDefault_no_rhs(char *fname);
 static int sci_csvDefault_one_rhs(char *fname);
 static int sci_csvDefault_two_rhs(char *fname);
 // =============================================================================
-int sci_csvDefault(char *fname)
+int sci_csvDefault(char *fname, unsigned long fname_len)
 {
     Rhs = Max(0, Rhs);
     CheckRhs(0, 2);
@@ -152,7 +153,10 @@ static int sci_csvDefault_one_rhs(char *fname)
     char *fieldvalue = NULL;
 
     fieldname = csv_getArgumentAsString(pvApiCtx, 1, fname, &iErr);
-    if (iErr) return 0;
+    if (iErr)
+    {
+        return 0;
+    }
 
     if (strcmp(fieldname, SEPARATOR_FIELDNAME) == 0)
     {
@@ -271,7 +275,10 @@ static int sci_csvDefault_two_rhs(char *fname)
     int  ifieldvalue = 0;
 
     fieldname = csv_getArgumentAsString(pvApiCtx, 1, fname, &iErr);
-    if (iErr) return 0;
+    if (iErr)
+    {
+        return 0;
+    }
 
     if (strcmp(fieldname, PRECISION_FIELDNAME) == 0)
     {

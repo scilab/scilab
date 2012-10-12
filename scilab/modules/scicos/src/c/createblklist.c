@@ -28,6 +28,7 @@
 /*--------------------------------------------------------------------------*/
 extern void str2sci(char** x,int n,int m); /* core/src/c/str2sci.h */
 extern void C2F(itosci)();
+extern void C2F(dtosci)();
 extern int C2F(scierr)();
 extern void C2F(vvtosci)();
 extern int C2F(mktlist)(); 
@@ -126,8 +127,17 @@ int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp)
 	if (C2F(scierr)()!=0) return 0;
 
 	/* 3 - funpt */
-	C2F(itosci)(&Blocks[0].funpt,(j=1,&j),(k=1,&k));
-	if (C2F(scierr)()!=0) return 0;
+	if (sizeof(voidg) >= sizeof(double))
+	{
+		// store N double values as the function pointer value
+		j = sizeof(voidg) / sizeof(double);
+	}
+	else
+	{
+		// push at least one double
+		j = 1;
+	}
+	C2F(dtosci)(&Blocks[0].funpt, &j, (k = 1, &k));
 
 	/* 4 - type */
 	C2F(itosci)(&Blocks[0].type,(j=1,&j),(k=1,&k));

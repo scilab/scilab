@@ -12,14 +12,16 @@
  * This code is also published under the GPL v3 license.
  *
  */
-#include "gw_csv_tools.h"
+
+#include "gw_spreadsheet.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "csvIsnum.h"
 #include "MALLOC.h"
+
 // =============================================================================
-int sci_csvIsnum(char *fname)
+int sci_csvIsnum(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;

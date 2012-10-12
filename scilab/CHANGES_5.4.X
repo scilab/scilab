@@ -1,6 +1,21 @@
                     Changes between version 5.4.0 and 5.4.1
                     =======================================
 
+Xcos
+====
+
+* Bug #10434 fixed - loadXcosLibs changed the predef value.
+
+* Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
+
+* Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
+                     Scilab crash.
+
+* Bug #11919 fixed - DLSS block with empty matrix as parameters made Scilab crash.
+
+* Bug #11963 fixed - input port in superblock was corrupted
+
+
 Bug fixes
 ==========
 
@@ -9,6 +24,11 @@ Bug fixes
 
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
+* Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
+                    containing a \E.
+
+* Bug #11971 fixed - Canceling "Open File" action launched from icon in the
+                    toolbar opened SciNotes anyway.
 
 
                     Changes between version 5.3.3 and 5.4.0
