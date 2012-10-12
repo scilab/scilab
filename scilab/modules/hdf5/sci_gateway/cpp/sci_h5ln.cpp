@@ -274,11 +274,11 @@ int sci_h5ln(char *fname, unsigned long fname_len)
             {
                 if (destFile.empty())
                 {
-                    HDF5Scilab::createLink(*hobj, linkName, destFile, destName);
+                    HDF5Scilab::createLink(*hobj, linkName, destName, hard);
                 }
                 else
                 {
-                    HDF5Scilab::createLink(*hobj, linkName, destName, hard);
+                    HDF5Scilab::createLink(*hobj, linkName, destFile, destName);
                 }
             }
         }

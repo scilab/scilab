@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5objects" xml:lang="en">
+    <refnamediv>
+        <refname>H5 Objects</refname>
+        <refpurpose>Describe the properties of the different H5 objects</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="H5File">H5 File</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="H5Group">H5 Group</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="H5Dataset">H5 Dataset</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="H5Dataspace">H5 Dataspace</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="H5Attribute">H5Attribute</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="H5Type">H5 Type</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="H5Reference">H5 Reference</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>H5 objects have some accessible properties. All the properties name are case insensitive (except for the path or objects names).</para>
+    </refsection>
+    <refsection id="H5File">
+        <title>H5 File</title>
+        <para>The following properties can be accessed:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">name</emphasis>: the filename;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">size</emphasis>: the file size;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">version</emphasis>: the HDF5 library version;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">root</emphasis>: the root group "/".
+                    </para>
+                </listitem>
+            </itemizedlist>
+            If the field name starts with '/', then the it is considered as a apath and the returned value is the H5 object corresponding to this path.
+        </para>
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+
+// a is a file
+h5isFile(a)
+
+// Access to the properties
+a.name, a.size, a.version, a.root
+
+// Open the dataset x
+a("/x")
+
+// Free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    
+    <refsection id="H5Group">
+        <title>H5 Group</title>
+        <para>The following properties can be accessed:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">attributes</emphasis>: the attributes names;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">groups</emphasis>: the subgroups names;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">datasets</emphasis>: the datasets names;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">types</emphasis>: the types names;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">externals</emphasis>: the external links names;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">softs</emphasis>: the soft links names;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">danglings</emphasis>: the dangling links names;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">hards</emphasis>: the hard links names;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">links</emphasis>: the links names and types;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">name</emphasis>: the group name;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">path</emphasis>: the group path.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            If the field name is not in the previous list, then it is considered as a local path to another H5 object.
+        </para>
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+root = a.root;
+
+// root is a group
+h5isGroup(root)
+
+// Access to the properties
+root.name, root.path, root.datasets, root.attributes
+
+// Open the dataset x
+dset_x = root.x
+
+// Free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    
+    <refsection id="H5Dataset">
+        <title>H5 Dataset</title>
+        <para>The following properties can be accessed:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">attributes</emphasis>: the attributes names;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">type</emphasis>: the dataset type;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">dataspace</emphasis>: the dataset space;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">data</emphasis>: the dataset data;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">name</emphasis>: the group name;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">path</emphasis>: the group path.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            If the field name is not in the previous list, then it is considered as an attribute name.
+        </para>
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+dset_x = a.root.x;
+
+// dset_x is a dataset
+h5isSet(dset_x)
+
+// Access to the properties
+dset_x.attributes, dset_x.type, dset_x.dataspace, dset_x.data
+
+// Open the attribute x
+attr_x = dset_x.SCILAB_Class
+
+// Free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    
+    <refsection id="H5Dataspace">
+        <title>H5 Dataspace</title>
+        <para>The following properties can be accessed:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">dims</emphasis>: the dataspace dimensions;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">extents</emphasis>: the dataspace max dimensions;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">type</emphasis>: the dataspace type: "scalar", "simple" or "null";
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">name</emphasis>: the parent name.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">path</emphasis>: the parent path.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+dspace_x = a.root.x.dataspace;
+
+// dspace_x is a space
+h5isSpace(dspace_x)
+
+// Access to the properties
+dspace_x.dims, dspace_x.extents, dspace_x.type
+
+// Free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    
+    <refsection id="H5Attribute">
+        <title>H5 Attribute</title>
+        <para>The following properties can be accessed:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">type</emphasis>: the attribute type;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">dataspace</emphasis>: the attribute dataspace;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">data</emphasis>: the attribute data;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">name</emphasis>: the attribute name.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">path</emphasis>: the parent path.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+attr_x = a.root.x.SCILAB_Class;
+
+// attr_x is an attribute
+h5isAttr(attr_x)
+
+// Access to the properties
+attr_x.type, attr_x.dataspace, attr_x.data
+
+// Free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    
+    <refsection id="H5Type">
+        <title>H5 Type</title>
+        <para>The following properties can be accessed:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">class</emphasis>: the type class;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">type</emphasis>: the type name;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">size</emphasis>: the size in bytes;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">nativetype</emphasis>: the native type associated with this type;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">nativesize</emphasis>: the size of the native type.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">name</emphasis>: the parent name.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">path</emphasis>: the parent path.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+type_x = a.root.x.type;
+
+// type_x is a type
+h5isType(type_x)
+
+// Access to the properties
+type_x.class, type_x.type, type_x.size, type_x.nativetype, type_x.nativesize, 
+
+// Free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    
+    <refsection id="H5Reference">
+        <title>H5 Reference</title>
+        <para>H5 Reference object wrap an hypermatrix object where elements are a reference to an H5 object.</para>
+        <programlisting role="example"><![CDATA[
+x = list([1 2;3 4], "Hello", uint32(123));
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+dims_x = a.root.x.dataspace.dims
+ref_x = a.root.x.data;
+
+// ref_x is a reference
+h5isRef(ref_x)
+
+// Get the 3 elements
+x1 = ref_x(1), x2 = ref_x(2), x3 = ref_x(3) 
+
+// Get the data
+x1.data, x2.data, x3.data
+
+// Free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5attr">h5attr</link>
+            </member>
+            <member>
+                <link linkend="h5close">h5close</link>
+            </member>
+            <member>
+                <link linkend="h5cp">h5cp</link>
+            </member>
+            <member>
+                <link linkend="h5dataset">h5dataset</link>
+            </member>
+            <member>
+                <link linkend="h5dump">h5dump</link>
+            </member>
+            <member>
+                <link linkend="h5exists">h5exists</link>
+            </member>
+            <member>
+                <link linkend="h5flush">h5flush</link>
+            </member>
+            <member>
+                <link linkend="h5get">h5get</link>
+            </member>
+            <member>
+                <link linkend="h5group">h5group</link>
+            </member>
+            <member>
+                <link linkend="h5isAttr">h5isAttr</link>
+            </member>
+            <member>
+                <link linkend="h5isFile">h5isFile</link>
+            </member>
+            <member>
+                <link linkend="h5isGroup">h5isGroup</link>
+            </member>
+            <member>
+                <link linkend="h5isRef">h5isRef</link>
+            </member>
+            <member>
+                <link linkend="h5isSet">h5isSet</link>
+            </member>
+            <member>
+                <link linkend="h5isSpace">h5isSpace</link>
+            </member>
+            <member>
+                <link linkend="h5isType">h5isType</link>
+            </member>
+            <member>
+                <link linkend="h5label">h5label</link>
+            </member>
+            <member>
+                <link linkend="h5ln">h5ln</link>
+            </member>
+            <member>
+                <link linkend="h5ls">h5ls</link>
+            </member>
+            <member>
+                <link linkend="h5mount">h5mount</link>
+            </member>
+            <member>
+                <link linkend="h5mv">h5mv</link>
+            </member>
+            <member>
+                <link linkend="h5open">h5open</link>
+            </member>
+            <member>
+                <link linkend="h5readattr">h5read</link>
+            </member>
+            <member>
+                <link linkend="h5rm">h5rm</link>
+            </member>
+            <member>
+                <link linkend="h5umount">h5umount</link>
+            </member>
+            <member>
+                <link linkend="h5write">h5write</link>
+            </member>
+            <member>
+                <link linkend="h5writeattr">h5writeattr</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

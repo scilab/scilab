@@ -85,6 +85,42 @@ public:
             delete[] _dims;
         }
     }
+
+    class VlenInfo
+    {
+        const hid_t space;
+        const hid_t type;
+        const bool isString;
+
+    public:
+        VlenInfo(const hid_t _space, const hid_t _type, const bool _isString) : space(_space), type(_type), isString(_isString) { }
+
+        virtual ~VlenInfo()
+        {
+            if (space)
+            {
+                H5Sclose(space);
+            }
+            if (type)
+            {
+                H5Tclose(type);
+            }
+        }
+
+        hid_t getSpace() const
+        {
+            return space;
+        }
+        hid_t getType() const
+        {
+            return type;
+        }
+        bool isString() const
+        {
+            return isString;
+        }
+    };
+
 };
 }
 

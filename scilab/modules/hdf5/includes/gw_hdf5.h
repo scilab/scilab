@@ -31,6 +31,7 @@ HDF5_SCILAB_IMPEXP int sci_percent_H5Object_e(char *fname, unsigned long fname_l
 HDF5_SCILAB_IMPEXP int sci_h5group(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5rm(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5dataset(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5write(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5attr(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5ln(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5readattr(char *fname, unsigned long fname_len);
@@ -48,6 +49,8 @@ HDF5_SCILAB_IMPEXP int sci_h5mount(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5umount(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5mv(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5get(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5label(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5exists(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_HDF5_H__ */
 /*--------------------------------------------------------------------------*/

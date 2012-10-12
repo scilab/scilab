@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5ln" xml:lang="en">
+    <refnamediv>
+        <refname>h5ln</refname>
+        <refpurpose>Link an object to another one</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            h5ln(obj, linkname, destobj [, hard])
+            h5ln(obj, linkname, destname [, hard])
+            h5ln(obj, linkname, destfile, destname)
+            h5ln(filename, location, linkname, destname [, hard])
+            h5ln(filename, location, linkname, destfile, destname)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>linkname</term>
+                <listitem>
+                    <para>a string giving the link name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>destobj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>destfile</term>
+                <listitem>
+                    <para>a string giving the destination filename</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hard</term>
+                <listitem>
+                    <para>a boolean</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a string giving the filename</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>location</term>
+                <listitem>
+                    <para>a string giving the location in the file</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Create a hard or a soft or an external link. When destfile is given, it is always an external link. By default hard is set to false so, by default a soft link is created.</para>
+        <para>Soft links can be created even if the target does not exist.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// We create a HDF5 file
+a = h5open(TMPDIR + "/test.h5");
+b = h5open(TMPDIR + "/test1.h5");
+
+// We create a group and a dataset
+h5group(a, "Grp_1");
+h5write(a.root.Grp_1, "Dset_1", [1 2 ; 3 4]);
+h5group(b, "BGrp");
+h5write(b("/BGrp"), "BDset", 11:18);
+h5close(b)
+
+// We create a second group and add a link
+h5group(a, "Grp_2");
+h5ln(a, "Hard_Link", "/Grp_1/Dset_1", %t)
+h5ln(a, "Soft_Link", "/Grp_1/Dset_1")
+h5ln(a, "External_Link", TMPDIR  +"/test1.h5", "/BGrp")
+
+// We check
+h5dump(a)
+
+// Check the external link
+a.root.External_Link.BDset.data
+
+// We have finish so we free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5open">h5open</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

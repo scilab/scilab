@@ -57,6 +57,7 @@ sci_gateway/cpp/sci_percent_H5Object_e.cpp \
 sci_gateway/cpp/sci_h5group.cpp \
 sci_gateway/cpp/sci_h5rm.cpp \
 sci_gateway/cpp/sci_h5dataset.cpp \
+sci_gateway/cpp/sci_h5write.cpp \
 sci_gateway/cpp/sci_h5attr.cpp \
 sci_gateway/cpp/sci_h5ln.cpp \
 sci_gateway/cpp/sci_h5readattr.cpp \
@@ -66,7 +67,9 @@ sci_gateway/cpp/sci_h5isfoo.cpp \
 sci_gateway/cpp/sci_h5mount.cpp \
 sci_gateway/cpp/sci_h5umount.cpp \
 sci_gateway/cpp/sci_h5mv.cpp \
-sci_gateway/cpp/sci_h5get.cpp
+sci_gateway/cpp/sci_h5get.cpp \
+sci_gateway/cpp/sci_h5label.cpp \
+sci_gateway/cpp/sci_h5exists.cpp
 
 if GIWS
 BUILT_SOURCES=giws
@@ -102,7 +105,7 @@ noinst_LTLIBRARIES += libscihdf5-algo.la
 
 # When Scilab is built with HDF5, we need some libraries for a workaround
 
-libscihdf5_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
+libscihdf5_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS) -lhdf5_hl
 
 libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES) $(HDF5_CXX_SOURCES)
 libscihdf5_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES)

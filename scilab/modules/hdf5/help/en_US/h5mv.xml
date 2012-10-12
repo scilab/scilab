@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5mv" xml:lang="en">
+    <refnamediv>
+        <refname>h5mv</refname>
+        <refpurpose>Move an object</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            h5mv(srcobj [, srcloc], destobj [, destloc])
+            h5mv(srcobj [, srcloc], destfile, destloc)
+            h5mv(srcfile, srcloc, destobj [, destloc])
+            h5mv(srcfile, srcloc, destfile, destloc)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>srcobj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>destobj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>srcloc</term>
+                <listitem>
+                    <para>a string giving the source location</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>destloc</term>
+                <listitem>
+                    <para>a string giving the destination location</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>srcfile</term>
+                <listitem>
+                    <para>a string the source filename</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>destfile</term>
+                <listitem>
+                    <para>a string giving the destination filename</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Move an object to another place (same file or not). This command is equivalent to <code>h5cp</code> followed by <code>h5rm</code>
+        </para>
+        <para>Before to move a newly created object, you must flush the file.</para> 
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// We create a HDF5 file
+a = h5open(TMPDIR + "/test.h5");
+b = h5open(TMPDIR + "/test1.h5");
+
+// We create a group and a dataset
+h5group(a, "Grp_1");
+h5write(a.root.Grp_1, "Dset_1", [1 2 ; 3 4]);
+
+// We flush the file to be sure that the modifications
+// will be taken into account when the move will occur
+h5flush(a);
+
+// Create a group and a dataset in b
+h5group(b, "BGrp");
+h5write(b("/BGrp"), "BDset", 11:18);
+h5close(b)
+
+// Now we copy Dset_1 to Dset_2 located under root
+h5mv(a.root.Grp_1, "Dset_1", a, "Dset_2")
+
+// Copy BDset to a dataset under Grp_1
+h5mv(TMPDIR  +"/test1.h5", "/BGrp/BDset", a.root.Grp_1)
+
+// We have finish so we free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5open">h5open</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5cp">h5cp</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5rm">h5rm</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5flush">h5flush</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

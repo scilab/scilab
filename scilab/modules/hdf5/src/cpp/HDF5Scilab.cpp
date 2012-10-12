@@ -318,9 +318,18 @@ void HDF5Scilab::deleteObject(const H5Object & parent, const int size, const cha
     }
 }
 
-void HDF5Scilab::getObject(H5Object & parent, const std::string & location, int position, void * pvApiCtx)
+void HDF5Scilab::getObject(H5Object & parent, const std::string & location, const bool isAttr, int position, void * pvApiCtx)
 {
-    H5Object * obj = &H5Object::getObject(parent, location);
+    H5Object * obj = 0;
+    try
+    {
+        obj = &H5Object::getObject(parent, location, isAttr);
+    }
+    catch (const H5Exception & e)
+    {
+        H5BasicData<double>::create(pvApiCtx, position, 0, 0, (double *)0, 0, 0);
+        return;
+    }
 
     try
     {
@@ -440,7 +449,32 @@ void HDF5Scilab::copy(H5Object & src, const std::string & slocation, H5Object & 
     std::string name;
     herr_t err;
 
-    name = H5Object::isEmptyPath(dlocation) ? sobj->getBaseName() : dlocation;
+    if (H5Object::isEmptyPath(dlocation))
+    {
+        std::string bname = sobj->getBaseName();
+        if (slocation.empty())
+        {
+            name = bname;
+        }
+        else
+        {
+            std::string::size_type pos = slocation.find_last_of('/');
+            if (pos == std::string::npos)
+            {
+                name = slocation;
+            }
+            else
+            {
+                name = slocation.substr(pos + 1);
+            }
+        }
+    }
+    else
+    {
+        name = dlocation;
+    }
+
+    //src.getFile().flush(true);
 
     if (sobj->isAttribute())
     {
@@ -448,6 +482,7 @@ void HDF5Scilab::copy(H5Object & src, const std::string & slocation, H5Object & 
         try
         {
             attr->copy(*dobj, name);
+            return;
         }
         catch (const H5Exception & e)
         {
@@ -463,8 +498,6 @@ void HDF5Scilab::copy(H5Object & src, const std::string & slocation, H5Object & 
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot copy object."));
     }
-
-    dest.getFile().flush(true);
 }
 
 void HDF5Scilab::copy(H5Object & src, const std::string & slocation, const std::string & dfile, const std::string & dlocation)
@@ -616,6 +649,99 @@ void HDF5Scilab::createGroup(const std::string & file, const int size, const cha
     delete _file;
 }
 
+void HDF5Scilab::label(const std::string & filename, const std::string & location, const unsigned int size, const unsigned int * dim, const char ** names)
+{
+    H5File * file = new H5File(filename, "/", "r+");
+
+    try
+    {
+        label(*file, location, size, dim, names);
+    }
+    catch (const H5Exception & e)
+    {
+        delete file;
+        throw;
+    }
+
+    delete file;
+}
+
+void HDF5Scilab::label(H5Object & obj, const std::string & location, const unsigned int size, const unsigned int * dim, const char ** names)
+{
+    H5Object & hobj = H5Object::isEmptyPath(location) ? obj : H5Object::getObject(obj, location);
+    if (hobj.isDataset())
+    {
+        try
+        {
+            reinterpret_cast<H5Dataset *>(&hobj)->label(size, dim, names);
+        }
+        catch (const H5Exception & e)
+        {
+            if (!H5Object::isEmptyPath(location))
+            {
+                delete &hobj;
+            }
+        }
+    }
+    else
+    {
+        if (!H5Object::isEmptyPath(location))
+        {
+            delete &hobj;
+        }
+        throw H5Exception(__LINE__, __FILE__, _("Can only label a dataset"));
+    }
+
+    if (!H5Object::isEmptyPath(location))
+    {
+        delete &hobj;
+    }
+}
+
+int * HDF5Scilab::exists(H5Object & obj, const unsigned int size, const char ** locations, const char ** attrNames)
+{
+    const hid_t loc = obj.getH5Id();
+    const bool isfile = obj.isFile();
+    int * res = new int[size];
+
+    if (attrNames)
+    {
+        if ((isfile && (!strcmp(*locations, "/") || !strcmp(*locations, ".") || **locations == '\0')) || H5Lexists(loc, *locations, H5P_DEFAULT) > 0)
+        {
+            const hid_t _loc = H5Oopen(loc, *locations, H5P_DEFAULT);
+            if (_loc < 0)
+            {
+                memset(res, 0, sizeof(int) * size);
+                return res;
+            }
+
+            for (unsigned int i = 0; i < size; i++)
+            {
+                res[i] = H5Aexists(_loc, attrNames[i]) > 0 ? 1 : 0;
+            }
+            H5Oclose(_loc);
+        }
+    }
+    else
+    {
+        for (unsigned int i = 0; i < size; i++)
+        {
+            res[i] = ((isfile && (!strcmp(locations[i], "/") || !strcmp(locations[i], ".") || *(locations[i]) == '\0')) || H5Lexists(loc, locations[i], H5P_DEFAULT) > 0) ? 1 : 0;
+        }
+    }
+
+    return res;
+}
+
+int * HDF5Scilab::exists(const std::string & filename, const unsigned int size, const char ** locations, const char ** attrNames)
+{
+    H5File * file = new H5File(filename, "/", "r");
+    int * ret = exists(*file, size, locations, attrNames);
+    delete file;
+
+    return ret;
+}
+
 bool HDF5Scilab::checkType(const H5Object & obj, const H5ObjectType type)
 {
     switch (type)
@@ -674,6 +800,185 @@ void HDF5Scilab::umount(H5Object & obj, const std::string & location)
     if (err < 0)
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot unmount the file at location: %s"), location.c_str());
+    }
+}
+
+void HDF5Scilab::getScilabData(hid_t * type, unsigned int * ndims, hsize_t ** dims, void ** data, bool * mustDelete, bool * mustDeleteContent, const bool flip, int rhsPosition, void * pvApiCtx)
+{
+    SciErr err;
+    int * addr = 0;
+    int row;
+    int col;
+    int _type;
+
+    *mustDelete = false;
+    *mustDeleteContent = false;
+
+    err = getVarAddressFromPosition(pvApiCtx, rhsPosition, &addr);
+    if (err.iErr)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Can not read input argument #%d."), rhsPosition);
+    }
+
+    err = getVarType(pvApiCtx, addr, &_type);
+    if (err.iErr)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Can not get the type of input argument #%d."), rhsPosition);
+    }
+
+    switch (_type)
+    {
+        case sci_matrix :
+        {
+            double * mat = 0;
+
+            if (isVarComplex(pvApiCtx, addr))
+            {
+                throw H5Exception(__LINE__, __FILE__, _("Complex datatype not handled for now."));
+            }
+            else
+            {
+                err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, &mat);
+                if (err.iErr)
+                {
+                    throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                }
+                *type = H5Type::getBaseType(mat);
+                *ndims = 2;
+                *dims = new hsize_t[*ndims];
+                (*dims)[0] = flip ? col : row;
+                (*dims)[1] = flip ? row : col;
+                *data = mat;
+            }
+            break;
+        }
+        case sci_ints :
+        {
+            int prec = 0;
+            void * ints = 0;
+
+            err = getMatrixOfIntegerPrecision(pvApiCtx, addr, &prec);
+            if (err.iErr)
+            {
+                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+            }
+
+            switch (prec)
+            {
+                case SCI_INT8 :
+                    err = getMatrixOfInteger8(pvApiCtx, addr, &row, &col, (char **)(&ints));
+                    if (err.iErr)
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                    }
+                    *type = H5Type::getBaseType((char *)ints);
+                    break;
+                case SCI_UINT8 :
+                    err = getMatrixOfUnsignedInteger8(pvApiCtx, addr, &row, &col, (unsigned char **)(&ints));
+                    if (err.iErr)
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                    }
+                    *type = H5Type::getBaseType((unsigned char *)ints);
+                    break;
+                case SCI_INT16 :
+                    err = getMatrixOfInteger16(pvApiCtx, addr, &row, &col, (short **)(&ints));
+                    if (err.iErr)
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                    }
+                    *type = H5Type::getBaseType((short *)ints);
+                    break;
+                case SCI_UINT16 :
+                    err = getMatrixOfUnsignedInteger16(pvApiCtx, addr, &row, &col, (unsigned short **)(&ints));
+                    if (err.iErr)
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                    }
+                    *type = H5Type::getBaseType((unsigned short *)ints);
+                    break;
+                case SCI_INT32 :
+                    err = getMatrixOfInteger32(pvApiCtx, addr, &row, &col, (int**)(&ints));
+                    if (err.iErr)
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                    }
+                    *type = H5Type::getBaseType((int *)ints);
+                    break;
+                case SCI_UINT32 :
+                    err = getMatrixOfUnsignedInteger32(pvApiCtx, addr, &row, &col, (unsigned int **)(&ints));
+                    if (err.iErr)
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                    }
+                    *type = H5Type::getBaseType((unsigned int *)ints);
+                    break;
+
+#ifdef __SCILAB_INT64__
+                case SCI_INT64 :
+                    err = getMatrixOfInteger64(pvApiCtx, addr, &row, &col, (long long **)(&ints));
+                    if (err.iErr)
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                    }
+                    *type = H5Type::getBaseType((long long *)ints);
+                    break;
+                case SCI_UINT64 :
+                    err = getMatrixOfUnsignedInteger64(pvApiCtx, addr, &row, &col, (unsigned long long **)(&ints));
+                    if (err.iErr)
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                    }
+                    *type = H5Type::getBaseType((unsigned long long *)ints);
+                    break;
+#endif
+            }
+
+            *ndims = 2;
+            *dims = new hsize_t[*ndims];
+            (*dims)[0] = flip ? col : row;
+            (*dims)[1] = flip ? row : col;
+            *data = ints;
+            break;
+        }
+        case sci_strings :
+        {
+            char ** matS = 0;
+            if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &matS))
+            {
+                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+            }
+            *type = H5Type::getBaseType((char **)matS);
+            *ndims = 2;
+            *dims = new hsize_t[*ndims];
+            (*dims)[0] = flip ? col : row;
+            (*dims)[1] = flip ? row : col;
+            *data = matS;
+            *mustDelete = true;
+            *mustDeleteContent = true;
+            break;
+        }
+        case sci_boolean :
+        {
+            int * matB;
+
+            err = getMatrixOfBoolean(pvApiCtx, addr, &row, &col, &matB);
+            if (err.iErr)
+            {
+                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+            }
+            *type = H5Type::getBaseType((int *)matB);
+            *ndims = 2;
+            *dims = new hsize_t[*ndims];
+            (*dims)[0] = flip ? col : row;
+            (*dims)[1] = flip ? row : col;
+            *data = matB;
+            break;
+        }
+        default :
+        {
+            throw H5Exception(__LINE__, __FILE__, _("%s: Datatype not handled for now."));
+        }
     }
 }
 }

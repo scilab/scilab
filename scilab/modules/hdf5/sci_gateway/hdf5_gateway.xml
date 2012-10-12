@@ -62,4 +62,6 @@
     <PRIMITIVE gatewayId="62" primitiveId="31" primitiveName="h5umount" />
     <PRIMITIVE gatewayId="62" primitiveId="32" primitiveName="h5mv" />
     <PRIMITIVE gatewayId="62" primitiveId="33" primitiveName="h5get" />
+    <PRIMITIVE gatewayId="62" primitiveId="34" primitiveName="h5label" />
+    <PRIMITIVE gatewayId="62" primitiveId="35" primitiveName="h5exists" />
 </GATEWAY>

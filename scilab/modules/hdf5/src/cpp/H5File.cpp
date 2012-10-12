@@ -22,11 +22,9 @@ extern "C"
 namespace org_modules_hdf5
 {
 
-void H5File::init()
+void H5File::init(const hid_t fapl)
 {
     bool opened;
-    hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
-    H5Pset_fclose_degree(fapl, H5F_CLOSE_STRONG);
 
 #if !defined(__HDF5ERROR_PRINT__)
     H5Eset_auto(H5E_DEFAULT, 0, 0);
@@ -37,12 +35,10 @@ void H5File::init()
         case RDONLY:
             if (!FileExist(const_cast<char *>(filename.c_str())) || H5Fis_hdf5(filename.c_str()) <= 0)
             {
-                H5Pclose(fapl);
                 throw H5Exception(__LINE__, __FILE__, _("Invalid hdf5 file: %s"), filename.c_str());
             }
 
             file = H5Fopen(filename.c_str(), H5F_ACC_RDONLY, fapl);
-            H5Pclose(fapl);
             if (file < 0)
             {
                 throw H5Exception(__LINE__, __FILE__, _("Cannot open the given hdf5 file: %s"), filename.c_str());
@@ -53,12 +49,10 @@ void H5File::init()
         case RDWR:
             if (!FileExist(const_cast<char *>(filename.c_str())) || H5Fis_hdf5(filename.c_str()) <= 0)
             {
-                H5Pclose(fapl);
                 throw H5Exception(__LINE__, __FILE__, _("Invalid hdf5 file: %s"), filename.c_str());
             }
 
             file = H5Fopen(filename.c_str(), H5F_ACC_RDWR, fapl);
-            H5Pclose(fapl);
             if (file < 0)
             {
                 throw H5Exception(__LINE__, __FILE__, _("Cannot open the given hdf5 file: %s"), filename.c_str());
@@ -68,7 +62,6 @@ void H5File::init()
             break;
         case TRUNC:
             file = H5Fcreate(filename.c_str(), H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
-            H5Pclose(fapl);
             if (file < 0)
             {
                 throw H5Exception(__LINE__, __FILE__, _("Cannot create the given hdf5 file: %s"), filename.c_str());
@@ -77,7 +70,6 @@ void H5File::init()
             break;
         case EXCL:
             file = H5Fcreate(filename.c_str(), H5F_ACC_EXCL, H5P_DEFAULT, fapl);
-            H5Pclose(fapl);
             if (file < 0)
             {
                 throw H5Exception(__LINE__, __FILE__, _("Cannot create the given hdf5 file: %s"), filename.c_str());
@@ -89,7 +81,6 @@ void H5File::init()
                 if (H5Fis_hdf5(filename.c_str()) > 0)
                 {
                     file = H5Fopen(filename.c_str(), H5F_ACC_RDWR, fapl);
-                    H5Pclose(fapl);
                     if (file < 0)
                     {
                         throw H5Exception(__LINE__, __FILE__, _("Cannot open the given hdf5 file: %s"), filename.c_str());
@@ -99,14 +90,12 @@ void H5File::init()
                 }
                 else
                 {
-                    H5Pclose(fapl);
                     throw H5Exception(__LINE__, __FILE__, _("Cannot append the file (not HDF5): %s"), filename.c_str());
                 }
             }
             else
             {
                 file = H5Fcreate(filename.c_str(), H5F_ACC_EXCL, H5P_DEFAULT, fapl);
-                H5Pclose(fapl);
                 if (file < 0)
                 {
                     throw H5Exception(__LINE__, __FILE__, _("Cannot create the given hdf5 file: %s"), filename.c_str());
@@ -114,7 +103,6 @@ void H5File::init()
             }
             break;
         default:
-            H5Pclose(fapl);
             throw H5Exception(__LINE__, __FILE__, _("Invalid flag."));
     }
 
@@ -127,8 +115,108 @@ void H5File::init()
 
 H5File::H5File(const std::string & _filename, const std::string & _path, const std::string & access) : H5Object(H5Object::getRoot()), filename(_filename), path(_path), flags(getFlags(access))
 {
-    init();
+    hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
+    H5Pset_fclose_degree(fapl, H5F_CLOSE_STRONG);
+
+    try
+    {
+        init(fapl);
+        H5Pclose(fapl);
+    }
+    catch (const H5Exception & e)
+    {
+        H5Pclose(fapl);
+        throw;
+    }
 }
+
+H5File::H5File(const std::string & _filename, const std::string & _path, const std::string & access, const std::string & driver) : H5Object(H5Object::getRoot()), filename(_filename), path(_path), flags(getFlags(access))
+{
+    hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
+    H5Pset_fclose_degree(fapl, H5F_CLOSE_STRONG);
+
+    if (driver == "stdio")
+    {
+        H5Pset_fapl_stdio(fapl);
+    }
+    else if (driver == "sec2")
+    {
+        H5Pset_fapl_sec2(fapl);
+    }
+
+    try
+    {
+        init(fapl);
+        H5Pclose(fapl);
+    }
+    catch (const H5Exception & e)
+    {
+        H5Pclose(fapl);
+        throw;
+    }
+}
+
+H5File::H5File(const std::string & _filename, const std::string & _path, const std::string & access, const bool backingStore, const size_t blockSize) : H5Object(H5Object::getRoot()), filename(_filename), path(_path), flags(getFlags(access))
+{
+    herr_t err;
+    hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
+    H5Pset_fclose_degree(fapl, H5F_CLOSE_STRONG);
+
+    err = H5Pset_fapl_core(fapl, blockSize, (hbool_t)backingStore);
+    if (err < 0)
+    {
+        H5Pclose(fapl);
+        throw H5Exception(__LINE__, __FILE__, _("Cannot set \'core\' as driver."));
+    }
+
+    try
+    {
+        init(fapl);
+        H5Pclose(fapl);
+    }
+    catch (const H5Exception & e)
+    {
+        H5Pclose(fapl);
+        throw;
+    }
+}
+
+H5File::H5File(const std::string & _filename, const std::string & _path, const std::string & access, const hsize_t memberSize) : H5Object(H5Object::getRoot()), filename(_filename), path(_path), flags(getFlags(access))
+{
+    herr_t err;
+    hid_t fapl;
+    hid_t fapl2;
+
+    if (filename.find("%d") == std::string::npos)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Invalid filename: must contain a '%d'."));
+    }
+
+    fapl = H5Pcreate(H5P_FILE_ACCESS);
+    H5Pset_fclose_degree(fapl, H5F_CLOSE_STRONG);
+    fapl2 = H5Pcreate(H5P_FILE_ACCESS);
+    H5Pset_fclose_degree(fapl2, H5F_CLOSE_STRONG);
+
+    err = H5Pset_fapl_family(fapl, memberSize, fapl2);
+    H5Pclose(fapl2);
+    if (err < 0)
+    {
+        H5Pclose(fapl);
+        throw H5Exception(__LINE__, __FILE__, _("Cannot set \'family\' as driver."));
+    }
+
+    try
+    {
+        init(fapl);
+        H5Pclose(fapl);
+    }
+    catch (const H5Exception & e)
+    {
+        H5Pclose(fapl);
+        throw;
+    }
+}
+
 
 H5File::~H5File()
 {

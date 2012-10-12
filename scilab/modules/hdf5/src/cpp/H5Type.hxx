@@ -59,57 +59,57 @@ public:
 
     static std::string getNameFromType(hid_t type);
 
-    static hid_t getBaseType(double * data)
+    inline static hid_t getBaseType(double * data)
     {
         return H5Tcopy(H5T_NATIVE_DOUBLE);
     }
 
-    static hid_t getBaseType(float * data)
+    inline static hid_t getBaseType(float * data)
     {
         return H5Tcopy(H5T_NATIVE_FLOAT);
     }
 
-    static hid_t getBaseType(char * data)
+    inline static hid_t getBaseType(char * data)
     {
         return H5Tcopy(H5T_NATIVE_CHAR);
     }
 
-    static hid_t getBaseType(unsigned char * data)
+    inline static hid_t getBaseType(unsigned char * data)
     {
         return H5Tcopy(H5T_NATIVE_UCHAR);
     }
 
-    static hid_t getBaseType(short * data)
+    inline static hid_t getBaseType(short * data)
     {
         return H5Tcopy(H5T_NATIVE_SHORT);
     }
 
-    static hid_t getBaseType(unsigned short * data)
+    inline static hid_t getBaseType(unsigned short * data)
     {
         return H5Tcopy(H5T_NATIVE_USHORT);
     }
 
-    static hid_t getBaseType(int * data)
+    inline static hid_t getBaseType(int * data)
     {
         return H5Tcopy(H5T_NATIVE_INT);
     }
 
-    static hid_t getBaseType(unsigned int * data)
+    inline static hid_t getBaseType(unsigned int * data)
     {
         return H5Tcopy(H5T_NATIVE_UINT);
     }
 
-    static hid_t getBaseType(long * data)
+    inline static hid_t getBaseType(long * data)
     {
         return H5Tcopy(H5T_NATIVE_LONG);
     }
 
-    static hid_t getBaseType(unsigned long * data)
+    inline static hid_t getBaseType(unsigned long * data)
     {
         return H5Tcopy(H5T_NATIVE_ULONG);
     }
 
-    static hid_t getBaseType(char ** data)
+    inline static hid_t getBaseType(char ** data)
     {
         hid_t type = H5Tcopy(H5T_C_S1);
         herr_t err = H5Tset_size(type, H5T_VARIABLE);
@@ -265,6 +265,7 @@ private:
         nameToType.insert(std::pair<std::string, hid_t>("H5T_MIPS_B16", H5T_MIPS_B16));
         nameToType.insert(std::pair<std::string, hid_t>("H5T_MIPS_B32", H5T_MIPS_B32));
         nameToType.insert(std::pair<std::string, hid_t>("H5T_MIPS_B64", H5T_MIPS_B64));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_STD_REF_OBJ", H5T_STD_REF_OBJ));
         /*
                         nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D32BE", H5T_UNIX_D32BE));
                         nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D32LE", H5T_UNIX_D32LE));

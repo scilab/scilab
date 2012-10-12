@@ -18,7 +18,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            h5open(filename [, access])
+            obj = h5open(filename [, access])
+            obj = h5open(filename, access, driver [, driver_options...])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,7 +34,25 @@
             <varlistentry>
                 <term>access</term>
                 <listitem>
-                    <para>access mode</para>
+                    <para>A string giving the access mode to use</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>driver</term>
+                <listitem>
+                    <para>A string giving the driver name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>driver_options</term>
+                <listitem>
+                    <para>A boolean or a double depending of the driver value</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>A H5Object corresponding to the open file</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -46,33 +65,51 @@
             <member>
                 "r": read only, the file must exist.
             </member>
-            
             <member>
                 "r+": read/write, the file must exist.
             </member>
-            
             <member>
                 "w": create file, truncate if exists.
             </member>
-            
             <member>
                 "w-": create file, fail if exists.
             </member>
-            
             <member>
                 "a": read/write if exists, create otherwise (default).
             </member>
-            
+        </simplelist>
+        <para>Several drivers can be used:</para>
+        <simplelist type="inline">
+            <member>
+                "sec2": Unbuffered, using standard POSIX functions.
+            </member>
+            <member>
+                "stdio": Uses functions from the standard C stdio.h to perform I/O.
+            </member>
+            <member>
+                "core": Uses a file in memory (improves read/write). This driver has two options:
+                <simplelist type="inline">
+                    <member>
+                        backingStore: a boolean, if %T (default), the changes are saved in the real file. 
+                    </member>
+                    <member>
+                        blockSize: a double: increment (in bytes) to use to increase buffer size (default 64K).
+                    </member>
+                </simplelist>
+            </member>
+            <member>
+                "family": Allow to split the file when its size is greater than the option memberSize (a double, by default 2^31 -1). The filename must contain a %d which will be used to generate the family filenames.
+            </member>
         </simplelist>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-x=1:10;
+x = 1:10;
 save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
 
 // Open the created file
-a=h5open(TMPDIR + "/x.sod");
+a = h5open(TMPDIR + "/x.sod");
 
 // Dump the file content
 h5dump(a);
@@ -89,7 +126,11 @@ a.root("SCILAB_sod_version").data
 // Get the content of the dataset x
 a.root.x.data
 
-// Free all
+// it is possible to open the dataset directly with its path
+// Subgroups or datasets are separated with '/'
+a("/x")
+
+// Free the resources
 h5close(a);
     ]]></programlisting>
     </refsection>
@@ -97,6 +138,7 @@ h5close(a);
         <title>See Also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="h5close">h5close</link>
             </member>
         </simplelist>
     </refsection>

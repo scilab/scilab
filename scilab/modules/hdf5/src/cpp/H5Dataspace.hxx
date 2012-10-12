@@ -46,13 +46,13 @@ public:
     }
 
     template <typename T>
-    hsize_t * select(const unsigned int size, const T * start, const T * stride, const T * count, const T * block, const bool revert = true) const
+    hsize_t * select(const unsigned int size, const T * start, const T * stride, const T * count, const T * block) const
     {
-        return select(space, size, start, stride, count, block, revert);
+        return select(space, size, start, stride, count, block);
     }
 
     template <typename T>
-    static hsize_t * select(const hid_t space, const unsigned int size, const T * start, const T * stride, const T * count, const T * block, const bool revert = true)
+    static hsize_t * select(const hid_t space, const unsigned int size, const T * start, const T * stride, const T * count, const T * block)
     {
         if (!start)
         {
@@ -72,27 +72,13 @@ public:
         hsize_t * hblock = new hsize_t[size];
         hsize_t * dims = new hsize_t[size];
 
-        if (revert)
+        for (unsigned int i = 0; i < size; i++)
         {
-            for (unsigned int i = 0; i < size; i++)
-            {
-                hstart[i] = (hsize_t)start[size - 1 - i] - 1;
-                hstride[i] = stride ? (hsize_t)stride[size - 1 - i] : 1;
-                hblock[i] = block ? (hsize_t)block[size - 1 - i] : 1;
-                hcount[i] = (hsize_t)count[size - 1 - i];
-                dims[i] = hblock[i] * hcount[i];
-            }
-        }
-        else
-        {
-            for (unsigned int i = 0; i < size; i++)
-            {
-                hstart[i] = (hsize_t)start[i] - 1;
-                hstride[i] = stride ? (hsize_t)stride[i] : 1;
-                hblock[i] = block ? (hsize_t)block[i] : 1;
-                hcount[i] = (hsize_t)count[i];
-                dims[i] = hblock[i] * hcount[i];
-            }
+            hstart[i] = (hsize_t)start[i] - 1;
+            hstride[i] = stride ? (hsize_t)stride[i] : 1;
+            hblock[i] = block ? (hsize_t)block[i] : 1;
+            hcount[i] = (hsize_t)count[i];
+            dims[i] = hblock[i] * hcount[i];
         }
 
         err = H5Sselect_hyperslab(space, H5S_SELECT_SET, hstart, hstride, hcount, hblock);

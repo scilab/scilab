@@ -45,9 +45,21 @@ H5StringData::H5StringData(H5Object & _parent, const hsize_t _totalSize, const h
 
 H5StringData::~H5StringData()
 {
+
     if (transformedData)
     {
         delete[] transformedData;
+    }
+    else
+    {
+        char ** _data = reinterpret_cast<char **>(getData());
+        for (hsize_t i = 0; i < totalSize; i++)
+        {
+            if (_data[i])
+            {
+                free(_data[i]);
+            }
+        }
     }
 }
 
@@ -65,7 +77,15 @@ void * H5StringData::getData() const
 
 void H5StringData::printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
 {
-    os << "\"" << static_cast<char **>(getData())[pos] << "\"";
+    char * str = static_cast<char **>(getData())[pos];
+    if (str)
+    {
+        os << "\"" << str << "\"";
+    }
+    else
+    {
+        os << "NULL";
+    }
 }
 
 void H5StringData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition) const

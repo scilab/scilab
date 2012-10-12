@@ -145,13 +145,13 @@ void H5Dataset::getAccessibleAttribute(const std::string & _name, const int pos,
 
         return;
     }
-    else if (lower == "layout")
+    /*else if (lower == "layout")
     {
         const H5Dataset::H5Layout & layout = const_cast<H5Dataset *>(this)->getLayout();
         layout.createOnScilabStack(pos, pvApiCtx);
 
         return;
-    }
+    }*/
     else
     {
         try
@@ -164,6 +164,30 @@ void H5Dataset::getAccessibleAttribute(const std::string & _name, const int pos,
     }
 
     H5Object::getAccessibleAttribute(_name, pos, pvApiCtx);
+}
+
+void H5Dataset::label(const unsigned int size, const unsigned int * dim, const char ** names) const
+{
+    hsize_t dims[__SCILAB_HDF5_MAX_DIMS__];
+    unsigned int ndims;
+    hid_t space = H5Dget_space(dataset);
+    if (space < 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Cannot get the dataspace associated with dataset named %s."), name.c_str());
+    }
+
+    ndims = H5Sget_simple_extent_dims(space, (hsize_t *)dims, 0);
+    H5Sclose(space);
+
+    for (unsigned int i = 0; i < size; i++)
+    {
+        if (dim[i] > ndims)
+        {
+
+            throw H5Exception(__LINE__, __FILE__, _("Only %d dimensions."), ndims);
+        }
+        H5DSset_label(dataset, dim[i], names[i]);
+    }
 }
 
 std::string H5Dataset::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
@@ -275,6 +299,16 @@ std::string H5Dataset::toString(const unsigned int indentLevel) const
     return os.str();
 }
 
+bool H5Dataset::isChunked() const
+{
+    hid_t plist = H5Dget_create_plist(dataset);
+    H5D_layout_t layout = H5Pget_layout(plist);
+    bool chunked = layout == H5D_CHUNKED;
+    H5Pclose(plist);
+
+    return chunked;
+}
+
 hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data, const bool chunked)
 {
     herr_t err;
@@ -287,17 +321,109 @@ hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t ty
         {
             throw H5Exception(__LINE__, __FILE__, _("Cannot open the dataset: %s"), name.c_str());
         }
+
+        if (targetspace > 0)
+        {
+            hid_t space = H5Dget_space(dataset);
+            if (space < 0)
+            {
+                throw H5Exception(__LINE__, __FILE__, _("Cannot get the dataspace associated with dataset named %s."), name.c_str());
+            }
+
+            hsize_t * dims = 0;
+            hsize_t * ddims = 0;
+            hsize_t * maxdims = 0;
+            hsize_t * dmaxdims = 0;
+
+            try
+            {
+                herr_t err;
+                int ndims = H5Sget_simple_extent_ndims(space);
+                int dndims = H5Sget_simple_extent_ndims(targetspace);
+                hsize_t * dims = new hsize_t[ndims];
+                hsize_t * ddims = new hsize_t[dndims];
+                hsize_t * maxdims = new hsize_t[ndims];
+                hsize_t * dmaxdims = new hsize_t[dndims];
+
+                H5Sget_simple_extent_dims(space, dims, maxdims);
+                H5Sget_simple_extent_dims(targetspace, ddims, dmaxdims);
+                H5Sclose(space);
+
+                if (ndims != dndims)
+                {
+                    throw H5Exception(__LINE__, __FILE__, _("Invalid dimensions."));
+                }
+                else
+                {
+                    for (unsigned int i = 0; i < ndims; i++)
+                    {
+                        if (maxdims[i] != dmaxdims[i])
+                        {
+                            throw H5Exception(__LINE__, __FILE__, _("Cannot modify maximaum dimensions."));
+                        }
+                        if (ddims[i] > dims[i])
+                        {
+                            err = H5Dset_extent(dataset, ddims);
+                            if (err < 0)
+                            {
+                                throw H5Exception(__LINE__, __FILE__, _("Cannot modify dimension %d."), i);
+                            }
+                            break;
+                        }
+                    }
+                }
+
+                delete[] dims;
+                delete[] ddims;
+                delete[] maxdims;
+                delete[] dmaxdims;
+
+            }
+            catch (const H5Exception & e)
+            {
+                delete[] dims;
+                delete[] ddims;
+                delete[] maxdims;
+                delete[] dmaxdims;
+                throw;
+            }
+        }
     }
     else
     {
-        dataset = H5Dcreate(loc.getH5Id(), name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+        if (chunked)
+        {
+            herr_t err;
+            int ndims = H5Sget_simple_extent_ndims(targetspace);
+            hsize_t * dims = new hsize_t[ndims];
+
+            H5Sget_simple_extent_dims(targetspace, dims, 0);
+            hid_t dcpl = H5Pcreate(H5P_DATASET_CREATE);
+            H5Pset_layout(dcpl, H5D_CHUNKED);
+            err = H5Pset_chunk(dcpl, ndims, dims);
+            delete[] dims;
+
+            if (err < 0)
+            {
+                H5Pclose(dcpl);
+                throw H5Exception(__LINE__, __FILE__, _("Cannot set the chunk dimensions: %s"), name.c_str());
+            }
+
+            dataset = H5Dcreate(loc.getH5Id(), name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, dcpl, H5P_DEFAULT);
+            H5Pclose(dcpl);
+        }
+        else
+        {
+            dataset = H5Dcreate(loc.getH5Id(), name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+        }
+
         if (dataset < 0)
         {
             throw H5Exception(__LINE__, __FILE__, _("Cannot create the dataset: %s"), name.c_str());
         }
     }
 
-    err = H5Dwrite(dataset, type, srcspace, H5S_ALL, H5P_DEFAULT, data);
+    err = H5Dwrite(dataset, type, srcspace, targetspace == -1 ? H5S_ALL : targetspace, H5P_DEFAULT, data);
     if (err < 0)
     {
         throw H5Exception(__LINE__, __FILE__, _("Cannot write data in the dataset."));

@@ -28,10 +28,12 @@ class H5File : public H5Object
     const FileAccess flags;
     hid_t file;
 
-
 public :
 
     H5File(const std::string & _filename, const std::string & _path, const std::string & access = "a");
+    H5File(const std::string & _filename, const std::string & _path, const std::string & access, const std::string & driver);
+    H5File(const std::string & _filename, const std::string & _path, const std::string & access, const bool backingStore, const size_t blockSize);
+    H5File(const std::string & _filename, const std::string & _path, const std::string & access, const hsize_t memberSize);
 
     ~H5File();
 
@@ -77,7 +79,7 @@ public :
 
 private :
 
-    void init();
+    void init(const hid_t fapl);
 
     static FileAccess getFlags(const std::string & access)
     {

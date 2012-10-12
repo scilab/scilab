@@ -52,7 +52,7 @@ public :
     virtual std::string toString(const unsigned int indentLevel) const;
 
     static hid_t create(const hid_t loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data);
-    static hid_t create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data);
+    static hid_t create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data, const bool chunked = false);
     static void copy(const hid_t src, const hid_t dest, const std::string & name);
 };
 }

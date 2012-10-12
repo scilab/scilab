@@ -48,9 +48,11 @@ public :
     H5Data & getData(H5Dataspace & space, hsize_t * dims);
     H5Dataspace & getSpace();
     H5Type & getDataType();
+    bool isChunked() const;
+
+    void label(const unsigned int size, const unsigned int * dim, const char ** name) const;
 
     virtual void getAccessibleAttribute(const std::string & name, const int pos, void * pvApiCtx) const;
-
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const;
     virtual std::string toString(const unsigned int indentLevel) const;
     virtual std::string ls() const;

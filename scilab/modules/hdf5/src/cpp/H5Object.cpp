@@ -264,36 +264,102 @@ H5Object & H5Object::getObject(H5Object & parent, const std::string & name)
     herr_t err;
     H5Object * obj = 0;
 
-    if (H5Lexists(loc, name.c_str(), H5P_DEFAULT) <= 0)
+    if (parent.isFile() && name == "/")
     {
-        if (H5Aexists(loc, name.c_str()) <= 0)
+        obj = &reinterpret_cast<H5File *>(&parent)->getRoot();
+    }
+    else
+    {
+        if (H5Lexists(loc, name.c_str(), H5P_DEFAULT) <= 0)
+        {
+            if (H5Aexists(loc, name.c_str()) <= 0)
+            {
+                throw H5Exception(__LINE__, __FILE__, _("Invalid name: %s."), name.c_str());
+            }
+
+            return *new H5Attribute(parent, name);
+        }
+
+        err = H5Oget_info_by_name(loc, name.c_str(), &info, H5P_DEFAULT);
+
+        if (err < 0)
         {
             throw H5Exception(__LINE__, __FILE__, _("Invalid name: %s."), name.c_str());
         }
 
-        return *new H5Attribute(parent, name);
+        switch (info.type)
+        {
+            case H5O_TYPE_GROUP:
+                obj = new H5Group(parent, name);
+                break;
+            case H5O_TYPE_DATASET:
+                obj = new H5Dataset(parent, name);
+                break;
+            case H5O_TYPE_NAMED_DATATYPE:
+                obj = new H5Type(parent, name);
+                break;
+            default:
+                throw H5Exception(__LINE__, __FILE__, _("Invalid HDF5 object"));
+        }
     }
 
-    err = H5Oget_info_by_name(loc, name.c_str(), &info, H5P_DEFAULT);
+    return *obj;
+}
 
-    if (err < 0)
+H5Object & H5Object::getObject(H5Object & parent, const std::string & name, const bool isAttr)
+{
+    hid_t loc = parent.getH5Id();
+    H5O_info_t info;
+    herr_t err;
+    H5Object * obj = 0;
+
+    if (parent.isFile() && name == "/")
     {
-        throw H5Exception(__LINE__, __FILE__, _("Invalid name: %s."), name.c_str());
+        if (isAttr)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Invalid name: %s."), name.c_str());
+        }
+
+        obj = &reinterpret_cast<H5File *>(&parent)->getRoot();
     }
-
-    switch (info.type)
+    else if (isAttr)
     {
-        case H5O_TYPE_GROUP:
-            obj = new H5Group(parent, name);
-            break;
-        case H5O_TYPE_DATASET:
-            obj = new H5Dataset(parent, name);
-            break;
-        case H5O_TYPE_NAMED_DATATYPE:
-            obj = new H5Type(parent, name);
-            break;
-        default:
-            throw H5Exception(__LINE__, __FILE__, _("Invalid HDF5 object"));
+        if (H5Aexists(loc, name.c_str()) > 0)
+        {
+            obj = new H5Attribute(parent, name);
+        }
+        else
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Invalid name: %s."), name.c_str());
+        }
+    }
+    else
+    {
+        if (H5Lexists(loc, name.c_str(), H5P_DEFAULT) <= 0)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Invalid name: %s."), name.c_str());
+        }
+
+        err = H5Oget_info_by_name(loc, name.c_str(), &info, H5P_DEFAULT);
+        if (err < 0)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Invalid name: %s."), name.c_str());
+        }
+
+        switch (info.type)
+        {
+            case H5O_TYPE_GROUP:
+                obj = new H5Group(parent, name);
+                break;
+            case H5O_TYPE_DATASET:
+                obj = new H5Dataset(parent, name);
+                break;
+            case H5O_TYPE_NAMED_DATATYPE:
+                obj = new H5Type(parent, name);
+                break;
+            default:
+                throw H5Exception(__LINE__, __FILE__, _("Invalid HDF5 object"));
+        }
     }
 
     return *obj;

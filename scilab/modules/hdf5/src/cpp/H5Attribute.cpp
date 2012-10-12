@@ -149,7 +149,7 @@ void H5Attribute::copy(H5Object & parent, const std::string & name)
     H5Attribute::copy(this->getH5Id(), parent.getH5Id(), name);
 }
 
-hid_t H5Attribute::create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data)
+hid_t H5Attribute::create(H5Object & loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data, const bool chunked)
 {
     return create(loc.getH5Id(), name, type, targettype, srcspace, targetspace, data);
 }

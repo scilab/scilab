@@ -153,23 +153,15 @@ int sci_h5attr(char *fname, unsigned long fname_len)
         freeAllocatedSingleString(str);
     }
 
-    err = getVarAddressFromPosition(pvApiCtx, 4, &addr);
-    if (err.iErr)
-    {
-        printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
-        return 0;
-    }
-
     try
     {
         if (hobj)
         {
-            HDF5Scilab::createObjectFromStack<H5Attribute>(*hobj, location, name, targetType, 0, 0, 0, 0, 0, 0, pvApiCtx, addr, 4);
+            HDF5Scilab::createObjectFromStack<H5Attribute>(*hobj, location, name, true, pvApiCtx, 4, 0, 0, 0, 0, 0, 0, targetType, 0, 0, 0, 0, 0, 0, 0);
         }
         else
         {
-            HDF5Scilab::createObjectFromStack<H5Attribute>(file, location, name, targetType, 0, 0, 0, 0, 0, 0, pvApiCtx, addr, 4);
+            HDF5Scilab::createObjectFromStack<H5Attribute>(file, location, name, true, pvApiCtx, 4, 0, 0, 0, 0, 0, 0, targetType, 0, 0, 0, 0, 0, 0, 0);
         }
     }
     catch (const H5Exception & e)

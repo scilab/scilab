@@ -17,6 +17,7 @@
 #undef H5_USE_16_API
 
 #include <hdf5.h>
+#include <hdf5_hl.h>
 
 #undef H5_NO_DEPRECATED_SYMBOLS
 
@@ -246,6 +247,7 @@ public :
 
     static H5Object & getObject(H5Object & parent, hid_t obj);
     static H5Object & getObject(H5Object & parent, const std::string & name);
+    static H5Object & getObject(H5Object & parent, const std::string & name, const bool isAttr);
     static void getLinksInfo(const H5Object & obj, std::vector<std::string> & linksName, std::vector<std::string> & types, std::vector<std::string> & linksType);
 
     inline static bool isEmptyPath(const std::string & path)
@@ -325,7 +327,7 @@ protected :
 
 private :
 
-    H5Object() : parent(*this) { }
+    H5Object() : parent(*this), locked(false), scilabId(-1) { }
 
     class LinksInfo
     {

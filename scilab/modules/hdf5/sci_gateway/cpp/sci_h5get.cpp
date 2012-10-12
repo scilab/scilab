@@ -28,20 +28,23 @@ using namespace org_modules_hdf5;
   List the content of an object.
   Scilab prototype:
   - h5get(obj, name)
+  - h5get(obj, name, isAttr)
 /*
 
 /*--------------------------------------------------------------------------*/
-int sci_h5get(char *fname, unsigned long fname_len)
+int sci_h5get(char * fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
     SciErr err;
     int * addr = 0;
     char * str = 0;
     std::string name;
+    bool isAttr = false;;
+    int _isAttr;
     const int nbIn = nbInputArgument(pvApiCtx);
 
     CheckOutputArgument(pvApiCtx, 1, 1);
-    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckInputArgument(pvApiCtx, 2, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -89,9 +92,34 @@ int sci_h5get(char *fname, unsigned long fname_len)
     name = std::string(str);
     freeAllocatedSingleString(str);
 
+    if (nbIn == 3)
+    {
+        err = getVarAddressFromPosition(pvApiCtx, 3, &addr);
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+            return 0;
+        }
+
+        if (!isBooleanType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 3);
+            return 0;
+        }
+
+        if (getScalarBoolean(pvApiCtx, addr, &_isAttr) != 0)
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
+
+        isAttr = _isAttr != 0;
+    }
+
     try
     {
-        HDF5Scilab::getObject(*hobj, name, nbIn + 1, pvApiCtx);
+        HDF5Scilab::getObject(*hobj, name, isAttr, nbIn + 1, pvApiCtx);
     }
     catch (const std::exception & e)
     {

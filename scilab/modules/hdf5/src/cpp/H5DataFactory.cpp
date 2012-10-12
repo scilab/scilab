@@ -255,6 +255,10 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * 
     if (isAttribute)
     {
         H5Sget_simple_extent_dims(_space, *dims, 0);
+        for (unsigned int i = 0; i < *ndims; i++)
+        {
+            *totalSize *= (*dims)[i];
+        }
     }
     else
     {

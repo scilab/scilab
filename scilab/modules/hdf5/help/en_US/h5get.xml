@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5get" xml:lang="en">
+    <refnamediv>
+        <refname>h5get</refname>
+        <refpurpose>Get a named object</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            nobj = h5get(obj, location [, isAttr])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>location</term>
+                <listitem>
+                    <para>a string giving the location</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>isAttr</term>
+                <listitem>
+                    <para>a boolean to indicate that an attribute must be got</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nobj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Get the object with the given location under obj. If isAttr is %T, an is returned (if it exists), by default isAttr is %F.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = ["Hello" "World"; "Salut" "Monde"];
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+
+// Open the created file
+a = h5open(TMPDIR + "/x.sod");
+
+// Get the root object, this equivalent to a.root or a("/")
+r = h5get(a, "/")
+
+// Get the dataset "x"
+x = h5get(a, "/x") // or h5get(a.root, "x")
+x.data
+
+// Get an unexisting dataset
+y = h5get(a.root, "blahblah")
+
+// Get an attribute
+attr = h5get(a.root, "SCILAB_scilab_version", %t)
+attr.data
+
+// We close all
+h5close(a)
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5open">h5open</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
