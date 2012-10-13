@@ -33,6 +33,10 @@ Bug fixes
                     toolbar opened SciNotes anyway.
 
 
+* Bug #11981 fixed - Smooth french help page had a wrong declaration
+                     (colonnes => lignes).
+
+
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
 
