@@ -33,4 +33,5 @@
     <PRIMITIVE gatewayId="72" primitiveId="9" primitiveName="MPI_Irecv"/>
     <PRIMITIVE gatewayId="72" primitiveId="10" primitiveName="MPI_Isend"/>
     <PRIMITIVE gatewayId="72" primitiveId="11" primitiveName="MPI_Wait"/>
+    <PRIMITIVE gatewayId="72" primitiveId="12" primitiveName="MPI_Bcast"/>
 </GATEWAY>
