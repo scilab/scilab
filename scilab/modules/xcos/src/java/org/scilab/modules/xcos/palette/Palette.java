@@ -12,9 +12,6 @@
 
 package org.scilab.modules.xcos.palette;
 
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
-
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -27,7 +24,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.Scilab;
@@ -413,37 +409,32 @@ public final class Palette {
     }
 
     /**
-     * Generate a palette block image from a block saved instance (need a valid
-     * style).
+     * Generate a palette block image from a block instance stored into scilab
+     * (need a valid style).
      *
-     * @param blockName
-     *            the block name
      * @param iconPath
      *            the output file path use to save the palette block.
-     * @throws IOException
-     *             in case of write errors
+     * @throws Exception
+     *             on error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void generatePaletteIcon(final String blockName, final String iconPath) throws IOException {
-        BasicBlock block;
-
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        if (handler == null) {
+    public static void generatePaletteIcon(final String iconPath) throws Exception {
+        /*
+         * If the env. is headless does nothing
+         */
+        if (GraphicsEnvironment.isHeadless()) {
+            LOG.warning("Headless environment detected, do not generate icons");
             return;
         }
 
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
         try {
-            synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(blockName, "define"));
-            block = handler.readBlock();
-        } catch (ScicosFormatException e) {
-            throw new IOException(e);
-        } catch (InterpreterException e) {
-            throw new IOException(e);
+            final BasicBlock block = handler.readBlock();
+
+            generateIcon(block, iconPath);
         } finally {
             handler.release();
         }
-
-        generateIcon(block, iconPath);
 
         if (LOG.isLoggable(Level.FINEST)) {
             LOG.finest(iconPath + " updated.");
