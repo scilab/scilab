@@ -10,15 +10,15 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5isGroup" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5isCompound" xml:lang="en">
     <refnamediv>
-        <refname>h5isGroup</refname>
-        <refpurpose>Check if the HDF5 object is a group</refpurpose>
+        <refname>h5isCompound</refname>
+        <refpurpose>Check if the HDF5 object is a compound object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            b = h5isGroup(obj)
+            b = h5isCompound(obj)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -40,23 +40,23 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Check if an HDF5 object is a group object.</para>
+        <para>Check if an HDF5 object is a compound object.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // Create a SOD file which an HDF5 one
-x = 1:10;
+x = (1:10) + %i*(20:29);
 save(TMPDIR + "/x.sod", "x");
 
 // Open the file
 a = h5open(TMPDIR + "/x.sod", "r");
 
 // Test
-h5isGroup(a)
+h5isCompound(a)
 
-// Test against root
-h5isGroup(a.root)
+// Test against root.x.data
+h5isCompound(a.root.x.data)
 
 // We close all
 h5close(a)
@@ -92,11 +92,6 @@ h5close(a)
         <simplelist type="inline">
             <member>
                 <link linkend="h5isRef">h5isRef</link>
-            </member>
-        </simplelist>
-        <simplelist type="inline">
-            <member>
-                <link linkend="h5isArray">h5isCompound</link>
             </member>
         </simplelist>
         <simplelist type="inline">

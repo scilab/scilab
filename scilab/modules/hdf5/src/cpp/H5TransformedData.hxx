@@ -28,11 +28,11 @@ protected:
 
 public:
 
-    H5TransformedData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, T * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Data(_parent, _totalSize, _dataSize, _ndims, _dims, _arank, _adims, _data, _stride, _offset, _dataOwner)
+    H5TransformedData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, T * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Data(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner)
     {
         transformedData = new U[totalSize];
 
-        if (stride == -1)
+        if (stride == 0)
         {
             for (unsigned int i = 0; i < (unsigned int)totalSize; i++)
             {

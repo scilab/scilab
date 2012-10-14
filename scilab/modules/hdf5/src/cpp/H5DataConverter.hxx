@@ -38,6 +38,9 @@ public:
         std::string indent = H5Object::getIndentString(indentLevel);
         unsigned int pos = 0;
 
+        os.setf(std::ios::fixed, std::ios::floatfield);
+        os.precision(1);
+
         os << indent << "DATA {" << std::endl;
         printData(indentLevel, indent + "(", os, ndims, dims, &pos, obj, line);
         os << indent << "}" << std::endl;

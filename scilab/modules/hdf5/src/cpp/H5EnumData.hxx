@@ -26,7 +26,7 @@ class H5EnumData : public H5BasicData<unsigned int>
 
 public:
 
-    H5EnumData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, unsigned int * _data, const int _nmembers, const std::string * _names, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData(_parent, _totalSize, _dataSize, _ndims, _dims, _arank, _adims, _data, _stride, _offset, _dataOwner), nmembers(_nmembers), names(_names)
+    H5EnumData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, unsigned int * _data, const int _nmembers, const std::string * _names, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData<unsigned int>(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner), nmembers(_nmembers), names(_names)
     {
 
     }

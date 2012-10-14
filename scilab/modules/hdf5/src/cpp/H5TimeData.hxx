@@ -23,9 +23,8 @@ class H5TimeData : public H5BasicData<char>
 
 public:
 
-    H5TimeData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, char * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData(_parent, _totalSize, _dataSize, _ndims, _dims, _arank, _adims, _data, _stride, _offset, _dataOwner)
+    H5TimeData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, char * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData<char>(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner)
     {
-        //dims[ndims - 1] = dataSize;
     }
 
     virtual ~H5TimeData()

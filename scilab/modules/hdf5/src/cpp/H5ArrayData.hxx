@@ -10,30 +10,33 @@
  *
  */
 
-#ifndef __H5VLENDATA_HXX__
-#define __H5VLENDATA_HXX__
+#ifndef __H5ARRAYDATA_HXX__
+#define __H5ARRAYDATA_HXX__
 
 #include "H5BasicData.hxx"
 
 namespace org_modules_hdf5
 {
 
-class H5VlenData : public H5BasicData<char>
+class H5ArrayData : public H5BasicData<char>
 {
 
     const hsize_t * cumprod;
     hid_t type;
+    hsize_t atotalSize;
+    hsize_t andims;
     hsize_t baseSize;
+    hsize_t * adims;
 
 public:
 
-    H5VlenData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, char * _data, hid_t vlenType, const hsize_t stride, const size_t offset, const bool _dataOwner);
+    H5ArrayData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, char * _data, hid_t arrayType, const hsize_t stride, const size_t offset, const bool _dataOwner);
 
-    virtual ~H5VlenData();
+    virtual ~H5ArrayData();
 
     virtual H5Object & getData(const unsigned int size, const unsigned int * index) const;
 
-    virtual bool isVlen() const;
+    virtual bool isArray() const;
 
     virtual std::string toString(const unsigned int indentLevel) const;
 
@@ -50,4 +53,4 @@ public:
 };
 }
 
-#endif // __H5VLENDATA_HXX__
+#endif // __H5ARRAYDATA_HXX__

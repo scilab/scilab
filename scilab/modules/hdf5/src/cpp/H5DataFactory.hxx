@@ -21,10 +21,11 @@
 #include "H5BitfieldData.hxx"
 #include "H5ReferenceData.hxx"
 #include "H5CompoundData.hxx"
+#include "H5ArrayData.hxx"
 #include "H5OpaqueData.hxx"
 #include "H5TransformedData.hxx"
 #include "H5EnumData.hxx"
-//#include "H5VlenData.hxx"
+#include "H5VlenData.hxx"
 #include "H5CharData.hxx"
 #include "H5UnsignedCharData.hxx"
 
@@ -38,11 +39,11 @@ public:
 
     static H5Data & getData(H5Object & parent, const hid_t obj, H5Dataspace * space, hsize_t * selectdims, const bool isAttribute);
 
+    static H5Data & getObjectData(H5Object & parent, const hsize_t totalSize, const hsize_t dataSize, const hid_t type, const hsize_t ndims, const hsize_t * dims, void * data, const hsize_t stride, const size_t offset, const bool dataOwner);
+
 private:
 
-    static H5Data & getObjectData(H5Object & parent, const hsize_t totalSize, const hsize_t dataSize, const hid_t type, hsize_t ndims, hsize_t * dims, const hsize_t arank, const hsize_t * adims, void * data, const hsize_t stride, const size_t offset, const bool dataOwner);
-
-    static void getNativeData(const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, hsize_t * totalSize, hsize_t * dataSize, hsize_t * ndims, hsize_t ** dims, hsize_t * arank, hsize_t ** adims, void ** data, const bool isAttribute);
+    static void getNativeData(const hid_t obj, const hid_t space, hsize_t * selectdims, const hid_t type, hsize_t * totalSize, hsize_t * dataSize, hsize_t * ndims, hsize_t ** dims, void ** data, const bool isAttribute);
 };
 }
 

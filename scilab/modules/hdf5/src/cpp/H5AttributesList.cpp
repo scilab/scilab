@@ -16,17 +16,17 @@
 namespace org_modules_hdf5
 {
 
-H5AttributesList::H5AttributesList(H5Object & _parent) : H5ListObject(_parent) { }
+H5AttributesList::H5AttributesList(H5Object & _parent) : H5ListObject<H5Attribute>(_parent) { }
 
-H5AttributesList::H5AttributesList(H5Object & _parent, const unsigned int _size, const unsigned int * _index) : H5ListObject(_parent, _size, _index) { }
+H5AttributesList::H5AttributesList(H5Object & _parent, const unsigned int _size, const unsigned int * _index) : H5ListObject<H5Attribute>(_parent, _size, _index) { }
 
 H5AttributesList::~H5AttributesList() { }
 
 const unsigned int H5AttributesList::getSize() const
 {
-    if (H5ListObject::indexList)
+    if (H5ListObject<H5Attribute>::indexList)
     {
-        return H5ListObject::indexSize;
+        return H5ListObject<H5Attribute>::indexSize;
     }
     else
     {
@@ -73,9 +73,9 @@ H5Attribute & H5AttributesList::getObject(const int pos, const bool checkPos)
         }
     }
 
-    if (H5ListObject::indexList)
+    if (H5ListObject<H5Attribute>::indexList)
     {
-        _pos = H5ListObject::indexList[pos];
+        _pos = H5ListObject<H5Attribute>::indexList[pos];
     }
 
     attr = H5Aopen_by_idx(parent.getH5Id(), ".", H5_INDEX_NAME, H5_ITER_NATIVE, (hsize_t)_pos, H5P_DEFAULT, H5P_DEFAULT);

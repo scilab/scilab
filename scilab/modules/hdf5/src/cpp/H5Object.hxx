@@ -123,6 +123,26 @@ public :
         return false;
     }
 
+    virtual bool isCompound() const
+    {
+        return false;
+    }
+
+    virtual bool isArray() const
+    {
+        return false;
+    }
+
+    virtual bool isVlen() const
+    {
+        return false;
+    }
+
+    virtual bool mustDelete() const
+    {
+        return true;
+    }
+
     virtual haddr_t getAddr() const
     {
         return getInfo().addr;
@@ -132,6 +152,31 @@ public :
     {
         return name;
     }
+
+    virtual H5Object & getData(const unsigned int size, const unsigned int * index) const
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Cannot retrieve numeric index."));
+    }
+
+    virtual H5Object & getData(const unsigned int size, const double * index) const
+    {
+        unsigned int * _index = new unsigned int[size];
+        for (unsigned int i = 0; i < size; i++)
+        {
+            _index[i] = (unsigned int)(index[i] - 1);
+        }
+
+        try
+        {
+            return getData(size, _index);
+        }
+        catch (const H5Exception & e)
+        {
+            delete[] _index;
+            throw;
+        }
+    }
+
 
     virtual const std::string getBaseName() const
     {
@@ -210,6 +255,19 @@ public :
     virtual void getNames(const H5Object & obj, std::vector<std::string> & names, FilterType type) const;
     virtual void createOnScilabStack(int pos, void * pvApiCtx) const;
     virtual void createInScilabList(int * list, int stackPos, int pos, void * pvApiCtx) const;
+
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
+    {
+        if (parentList)
+        {
+            createInScilabList(parentList, lhsPosition, listPosition, pvApiCtx);
+        }
+        else
+        {
+            createOnScilabStack(lhsPosition, pvApiCtx);
+        }
+    }
+
     bool isRoot() const
     {
         return this == &root;
@@ -249,6 +307,18 @@ public :
     static H5Object & getObject(H5Object & parent, const std::string & name);
     static H5Object & getObject(H5Object & parent, const std::string & name, const bool isAttr);
     static void getLinksInfo(const H5Object & obj, std::vector<std::string> & linksName, std::vector<std::string> & types, std::vector<std::string> & linksType);
+
+    inline static hsize_t * getCumProd(const hsize_t ndims, const hsize_t * dims)
+    {
+        hsize_t * ret = new hsize_t[ndims];
+        ret[0] = 1;
+        for (unsigned int i = 1; i < ndims; i++)
+        {
+            ret[i] *= ret[i - 1];
+        }
+
+        return ret;
+    }
 
     inline static bool isEmptyPath(const std::string & path)
     {

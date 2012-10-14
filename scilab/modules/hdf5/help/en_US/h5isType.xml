@@ -94,6 +94,21 @@ h5close(a)
                 <link linkend="h5isRef">h5isRef</link>
             </member>
         </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5isArray">h5isCompound</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5isArray">h5isArray</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5isVlen">h5isVlen</link>
+            </member>
+        </simplelist>
     </refsection>
     <refsection>
         <title>History</title>

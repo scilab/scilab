@@ -26,10 +26,11 @@ class H5ReferenceData : public H5BasicData<char>
 {
 
     const bool datasetReference;
+    const hsize_t * cumprod;
 
 public:
 
-    H5ReferenceData(H5Object & _parent, const bool _datasetReference, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, char * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner);
+    H5ReferenceData(H5Object & _parent, const bool _datasetReference, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, char * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner);
     virtual ~H5ReferenceData();
 
     bool isReference() const
@@ -40,9 +41,7 @@ public:
 
     H5Object ** getReferencesObject() const;
 
-    H5Object & getReferencesObject(const unsigned int size, const unsigned int * index) const;
-
-    H5Object & getReferencesObject(const unsigned int size, const double * index) const;
+    virtual H5Object & getData(const unsigned int size, const unsigned int * index) const;
 
     virtual std::string toString(const unsigned int indentLevel) const;
 
@@ -50,7 +49,10 @@ public:
 
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const;
 
-    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const;
+    virtual bool mustDelete() const
+    {
+        return false;
+    }
 
     static void deleteReferencesObjects(H5Object ** objs, const unsigned int size);
 };

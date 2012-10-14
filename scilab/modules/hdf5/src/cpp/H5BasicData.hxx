@@ -77,9 +77,9 @@ protected:
 
 public:
 
-    H5BasicData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, T * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Data(_parent, _totalSize, _dataSize, _ndims, _dims, _arank, _adims, static_cast<void *>(_data), _stride, _offset, _dataOwner), transformedData(0)
+    H5BasicData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, T * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Data(_parent, _totalSize, _dataSize, _ndims, _dims, static_cast<void *>(_data), _stride, _offset, _dataOwner), transformedData(0)
     {
-
+        //std::cout << totalSize << ", " << stride << ", " << offset << std::endl;
     }
 
     virtual ~H5BasicData()
@@ -92,27 +92,14 @@ public:
 
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
-        if (adims)
-        {
-            os << "[ ";
-            const hsize_t _pos = pos * dataSize;
-            for (unsigned int i = 0; i < atotalSize - 1; i++)
-            {
-                os << static_cast<T *>(getData())[_pos + i] << ", ";
-            }
-            os << static_cast<T *>(getData())[_pos + atotalSize - 1] << " ]";
-        }
-        else
-        {
-            os << static_cast<T *>(getData())[pos];
-        }
+        os << static_cast<T *>(getData())[pos];
     }
 
     virtual void copyData(T * dest) const
     {
         if (dest)
         {
-            if (stride == -1)
+            if (stride == 0)
             {
                 memcpy(static_cast<void *>(dest), data, totalSize * dataSize);
             }
@@ -149,9 +136,9 @@ public:
         }
     }
 
-    virtual void * getData() const
+    inline virtual void * getData() const
     {
-        if (stride == -1)
+        if (stride == 0)
         {
             return data;
         }
@@ -175,15 +162,6 @@ public:
         hsize_t _ndims = ndims;
         hsize_t _totalSize = totalSize;
         hsize_t * _dims = const_cast<hsize_t *>(dims);
-
-        if (adims)
-        {
-            _ndims += arank;
-            _totalSize *= atotalSize;
-            _dims = new hsize_t[_ndims];
-            memcpy(_dims, dims, sizeof(hsize_t) * ndims);
-            memcpy(_dims + ndims, adims, sizeof(hsize_t) * arank);
-        }
 
         if (_ndims == 0)
         {

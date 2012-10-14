@@ -50,14 +50,12 @@ inline static int sci_h5isfoo(const HDF5Scilab::H5ObjectType type, char * fname,
         hobj = HDF5Scilab::getH5Object(addr, pvApiCtx);
         if (!hobj)
         {
-            Scierror(999, _("%s: Invalid H5Object.\n"), fname);
-            return 0;
+            goto finish;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A H5Object expected.\n"), fname, 1);
-        return 0;
+        goto finish;
     }
 
     try
@@ -66,9 +64,10 @@ inline static int sci_h5isfoo(const HDF5Scilab::H5ObjectType type, char * fname,
     }
     catch (const std::exception & e)
     {
-        Scierror(999, _("%s: %s\n"), fname, e.what());
-        return 0;
+
     }
+
+finish:
 
     if (createScalarBoolean(pvApiCtx, nbIn + 1, ok ? 1 : 0))
     {
@@ -127,5 +126,20 @@ int sci_h5isRef(char * fname, unsigned long fname_len)
 int sci_h5isList(char * fname, unsigned long fname_len)
 {
     return sci_h5isfoo(HDF5Scilab::H5LIST, fname, fname_len);
+}
+/*--------------------------------------------------------------------------*/
+int sci_h5isCompound(char * fname, unsigned long fname_len)
+{
+    return sci_h5isfoo(HDF5Scilab::H5COMPOUND, fname, fname_len);
+}
+/*--------------------------------------------------------------------------*/
+int sci_h5isArray(char * fname, unsigned long fname_len)
+{
+    return sci_h5isfoo(HDF5Scilab::H5ARRAY, fname, fname_len);
+}
+/*--------------------------------------------------------------------------*/
+int sci_h5isVlen(char * fname, unsigned long fname_len)
+{
+    return sci_h5isfoo(HDF5Scilab::H5VLEN, fname, fname_len);
 }
 /*--------------------------------------------------------------------------*/

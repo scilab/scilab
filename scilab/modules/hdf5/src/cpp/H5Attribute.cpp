@@ -108,17 +108,38 @@ std::string H5Attribute::dump(std::map<haddr_t, std::string> & alreadyVisited, c
     std::ostringstream os;
     const H5Type & type = const_cast<H5Attribute *>(this)->getDataType();
     const H5Dataspace & space = const_cast<H5Attribute *>(this)->getSpace();
-    const H5Data & data = const_cast<H5Attribute *>(this)->getData();
+    H5Data * data = 0;
+
+    try
+    {
+	data = &const_cast<H5Attribute *>(this)->getData();
+    }
+    catch (const H5Exception & e)
+    {
+
+    }
 
     os << H5Object::getIndentString(indentLevel) << "ATTRIBUTE \"" << getName() << "\" {" << std::endl
        << type.dump(alreadyVisited, indentLevel + 1)
-       << space.dump(alreadyVisited, indentLevel + 1)
-       << data.dump(alreadyVisited, indentLevel + 1)
-       << H5Object::getIndentString(indentLevel) << "}" << std::endl;
+       << space.dump(alreadyVisited, indentLevel + 1);
+    
+    if (data)
+    {
+	os << data->dump(alreadyVisited, indentLevel + 1);
+    }
+    else
+    {
+	os << H5Object::getIndentString(indentLevel + 1) << _("Error in retrieving data.") << std::endl;
+    }
+
+    os << H5Object::getIndentString(indentLevel) << "}" << std::endl;
 
     delete &type;
     delete &space;
-    delete &data;
+    if (data)
+    {
+	delete data;
+    }
 
     return os.str();
 }

@@ -64,4 +64,8 @@
     <PRIMITIVE gatewayId="62" primitiveId="33" primitiveName="h5get" />
     <PRIMITIVE gatewayId="62" primitiveId="34" primitiveName="h5label" />
     <PRIMITIVE gatewayId="62" primitiveId="35" primitiveName="h5exists" />
+    <PRIMITIVE gatewayId="62" primitiveId="36" primitiveName="h5isCompound" />
+    <PRIMITIVE gatewayId="62" primitiveId="37" primitiveName="%H5Object_fieldnames" />
+    <PRIMITIVE gatewayId="62" primitiveId="38" primitiveName="h5isArray" />
+    <PRIMITIVE gatewayId="62" primitiveId="39" primitiveName="h5isVlen" />
 </GATEWAY>

@@ -23,7 +23,7 @@ class H5Bitfield1Data : public H5BasicData<unsigned char>
 
 public:
 
-    H5Bitfield1Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, unsigned char * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData(_parent, _totalSize, _dataSize, _ndims, _dims, _arank, _adims, _data, _stride, _offset, _dataOwner)
+    H5Bitfield1Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, unsigned char * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData<unsigned char>(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner)
     {
 
     }
@@ -44,7 +44,7 @@ class H5Bitfield2Data : public H5BasicData<unsigned short>
 
 public:
 
-    H5Bitfield2Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, unsigned short * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData(_parent, _totalSize, _dataSize, _ndims, _dims, _arank, _adims, _data, _stride, _offset, _dataOwner)
+    H5Bitfield2Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, unsigned short * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData<unsigned short>(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner)
     {
 
     }
@@ -66,7 +66,7 @@ class H5Bitfield4Data : public H5BasicData<unsigned int>
 
 public:
 
-    H5Bitfield4Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, unsigned int * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData(_parent, _totalSize, _dataSize, _ndims, _dims, _arank, _adims, _data, _stride, _offset, _dataOwner)
+    H5Bitfield4Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, unsigned int * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData<unsigned int>(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner)
     {
 
     }
@@ -90,7 +90,7 @@ class H5Bitfield8Data : public H5BasicData<unsigned long>
 
 public:
 
-    H5Bitfield8Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, unsigned long * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData(_parent, _totalSize, _dataSize, _ndims, _dims, _arank, _adims, _data, _stride, _offset, _dataOwner)
+    H5Bitfield8Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, unsigned long * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData<unsigned long>(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner)
     {
 
     }

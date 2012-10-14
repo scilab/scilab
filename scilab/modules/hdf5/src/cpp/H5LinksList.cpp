@@ -14,7 +14,7 @@
 
 namespace org_modules_hdf5
 {
-H5LinksList::H5LinksList(H5Object & _parent) : H5ListObject(_parent) { }
+H5LinksList::H5LinksList(H5Object & _parent) : H5ListObject<H5Object>(_parent) { }
 
 H5LinksList::~H5LinksList() { }
 

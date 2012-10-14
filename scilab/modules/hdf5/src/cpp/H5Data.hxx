@@ -28,24 +28,15 @@ protected:
     const hsize_t dataSize;
     const hsize_t ndims;
     const hsize_t * dims;
-    const hsize_t arank;
-    const hsize_t * adims;
-    hsize_t atotalSize;
     const hsize_t stride;
     const size_t offset;
     const bool dataOwner;
 
 public:
 
-    H5Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, void * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Object(_parent), totalSize(_totalSize), dataSize(_dataSize), ndims(_ndims), dims(_dims), arank(_arank), adims(_adims), data(_data), stride(_stride), offset(_offset), dataOwner(_dataOwner), atotalSize(1)
+    H5Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, void * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5Object(_parent), totalSize(_totalSize), dataSize(_dataSize), ndims(_ndims), dims(_dims), data(_data), stride(_stride), offset(_offset), dataOwner(_dataOwner)
     {
-        if (adims)
-        {
-            for (unsigned int i = 0; i < arank; i++)
-            {
-                atotalSize *= adims[i];
-            }
-        }
+
     }
 
     virtual ~H5Data()
@@ -54,21 +45,15 @@ public:
         {
             delete[] dims;
             delete[] static_cast<char *>(data);
-            if (adims)
-            {
-                delete[] adims;
-            }
         }
     }
 
-    virtual void * getData() const
+    inline virtual void * getData() const
     {
         return data;
     }
 
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const {  }
-
-    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const = 0;
 
 protected:
 

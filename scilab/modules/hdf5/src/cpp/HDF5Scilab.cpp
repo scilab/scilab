@@ -198,7 +198,7 @@ void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsign
                 throw;
             }
 
-            if (!data->isReference())
+            if (data->mustDelete())
             {
                 delete data;
             }
@@ -762,6 +762,12 @@ bool HDF5Scilab::checkType(const H5Object & obj, const H5ObjectType type)
             return obj.isReference();
         case H5LIST:
             return obj.isList();
+        case H5COMPOUND:
+            return obj.isCompound();
+        case H5ARRAY:
+            return obj.isArray();
+        case H5VLEN:
+            return obj.isVlen();
         default:
             return false;
     }

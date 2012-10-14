@@ -35,7 +35,7 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
     char * field = 0;
     std::string _field;
     int fieldtype;
-    double  * index = 0;
+    unsigned int * index = 0;
     const int nbIn = nbInputArgument(pvApiCtx);
 
     CheckOutputArgument(pvApiCtx, 1, 1);
@@ -83,7 +83,8 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
     }
     else
     {
-        index = new double[nbIn - 1];
+        double d;
+        index = new unsigned int[nbIn - 1];
 
         for (unsigned int i = 1; i <= nbIn - 1; i++)
         {
@@ -95,13 +96,13 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
                 return 0;
             }
 
-            if (getScalarDouble(pvApiCtx, addr, index + i - 1) != 0)
+            if (getScalarDouble(pvApiCtx, addr, &d) != 0)
             {
                 delete[] index;
                 Scierror(999, _("%s: No more memory.\n"), fname);
                 return 0;
             }
-            index[i - 1]--;
+            index[i - 1] = (unsigned int)(d - 1);
         }
     }
 
@@ -146,21 +147,27 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
         {
             obj->getAccessibleAttribute(_field, nbIn + 1, pvApiCtx);
         }
-        else if (obj->isReference())
-        {
-            H5ReferenceData * ref = reinterpret_cast<H5ReferenceData *>(obj);
-            H5Object & robj = ref->getReferencesObject(nbIn - 1, index);
-            robj.createOnScilabStack(nbIn + 1, pvApiCtx);
-        }
         else
         {
-            if (index)
-            {
-                delete[] index;
-            }
-            Scierror(999, gettext("%s: Invalid field.\n"), fname);
-            return 0;
+            H5Object & robj = obj->getData(nbIn - 1, index);
+            //robj.createOnScilabStack(nbIn + 1, pvApiCtx);
+            robj.toScilab(pvApiCtx, nbIn + 1);
         }
+        /*        else if (obj->isReference())
+                {
+                    H5ReferenceData * ref = reinterpret_cast<H5ReferenceData *>(obj);
+                    H5Object & robj = ref->getReferencesObject(nbIn - 1, index);
+                    robj.createOnScilabStack(nbIn + 1, pvApiCtx);
+        	    }
+                else
+                {
+                    if (index)
+                    {
+                        delete[] index;
+                    }
+                    Scierror(999, gettext("%s: Invalid field.\n"), fname);
+                    return 0;
+        	    }*/
     }
     catch (std::exception & e)
     {

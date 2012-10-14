@@ -728,6 +728,63 @@ std::string H5Type::getNameFromType(hid_t type)
     }
 }
 
+void H5Type::printComplexNameFromType(std::ostringstream & os, const unsigned int indentLevel, const hid_t type)
+{
+    std::string indent = H5Object::getIndentString(indentLevel);
+    if (H5Tget_class(type) == H5T_COMPOUND)
+    {
+        unsigned int nmembers = H5Tget_nmembers(type);
+
+        os << indent << "H5T_COMPOUND {" << std::endl;
+
+        for (unsigned int i = 0; i < nmembers; i++)
+        {
+            char * mname = H5Tget_member_name(type, i);
+            hid_t mtype = H5Tget_member_type(type, i);
+
+            os << indent;
+            H5Type::printComplexNameFromType(os, indentLevel + 1, mtype);
+            os << " \"" << mname << "\";" << std::endl;
+            os << std::endl;
+
+            free(mname);
+        }
+
+        os << indent << "}";
+    }
+    else if (H5Tget_class(type) == H5T_ARRAY)
+    {
+        hid_t super = H5Tget_super(type);
+        unsigned int ndims = H5Tget_array_ndims(type);
+        hsize_t * dims = new hsize_t[ndims];
+        H5Tget_array_dims(type, dims);
+
+        os << indent << "H5T_ARRAY { ";
+
+        for (unsigned int i = 0; i < ndims; i++)
+        {
+            os << "[" << (unsigned int)dims[i] << "]";
+        }
+
+        os << " ";
+        H5Type::printComplexNameFromType(os, indentLevel + 1, super);
+        os <<  " }";
+        H5Tclose(super);
+    }
+    else if (H5Tget_class(type) == H5T_VLEN)
+    {
+        hid_t super = H5Tget_super(type);
+        os << indent << "H5T_VLEN { ";
+        H5Type::printComplexNameFromType(os, indentLevel + 1, super);
+        os << " }";
+        H5Tclose(super);
+    }
+    else
+    {
+        os << getNameFromType(type);
+    }
+}
+
 void H5Type::getAccessibleAttribute(const std::string & _name, const int pos, void * pvApiCtx) const
 {
     SciErr err;
@@ -1507,8 +1564,9 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
                 char * mname = H5Tget_member_name(type, i);
                 hid_t mtype = H5Tget_member_type(type, i);
 
-                os << indent << H5Type(*const_cast<H5Type *>(this), mtype).getTypeName()
-                   << " " << "\"" << mname << "\";" << std::endl;
+                os << indent;
+                H5Type::printComplexNameFromType(os, indentLevel + 1, mtype);
+                os << " \"" << mname << "\";" << std::endl;
 
                 free(mname);
             }
@@ -1597,9 +1655,12 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
             os << H5Object::getIndentString(indentLevel) << "}";
             break;
         case H5T_VLEN:
-            os << "H5T_VLEN { " << std::endl
-               << H5Type(*const_cast<H5Type *>(this), H5Tget_super(type)).dump(alreadyVisited, indentLevel + 1)
-               << H5Object::getIndentString(indentLevel) << "}";
+            super = H5Tget_super(type);
+            os << "H5T_VLEN { ";
+
+            H5Type::printComplexNameFromType(os, indentLevel + 1, super);
+
+            os << " }";
             break;
         case H5T_ARRAY:
             super = H5Tget_super(type);
@@ -1614,7 +1675,9 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
                 os << "[" << (unsigned int)dims[i] << "]";
             }
 
-            os << " " << getNameFromType(super) << " }";
+            os << " ";
+            H5Type::printComplexNameFromType(os, indentLevel + 1, super);
+            os << " }";
 
             H5Tclose(super);
             delete[] dims;

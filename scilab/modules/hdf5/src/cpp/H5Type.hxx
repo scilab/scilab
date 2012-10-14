@@ -58,6 +58,7 @@ public:
     virtual std::string ls() const;
 
     static std::string getNameFromType(hid_t type);
+    static void printComplexNameFromType(std::ostringstream & os, const unsigned int indentLevel, const hid_t type);
 
     inline static hid_t getBaseType(double * data)
     {

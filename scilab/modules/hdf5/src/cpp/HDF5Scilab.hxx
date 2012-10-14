@@ -50,7 +50,10 @@ public:
         H5SPACE,
         H5TYPE,
         H5REFERENCE,
-        H5LIST
+        H5LIST,
+        H5COMPOUND,
+        H5ARRAY,
+        H5VLEN
     };
 
     static int getH5ObjectId(int * mlist, void * pvApiCtx);

@@ -138,7 +138,7 @@ void H5Dataset::getAccessibleAttribute(const std::string & _name, const int pos,
         const H5Data & data = const_cast<H5Dataset *>(this)->getData();
         data.toScilab(pvApiCtx, pos);
 
-        if (!data.isReference())
+        if (data.mustDelete())
         {
             delete &data;
         }
@@ -211,20 +211,42 @@ std::string H5Dataset::dump(std::map<haddr_t, std::string> & alreadyVisited, con
     const H5Type & type = const_cast<H5Dataset *>(this)->getDataType();
     const H5Dataspace & space = const_cast<H5Dataset *>(this)->getSpace();
     const H5AttributesList & attrs = const_cast<H5Dataset *>(this)->getAttributes();
-    const H5Data & data = const_cast<H5Dataset *>(this)->getData();
     const H5Dataset::H5Layout & layout = const_cast<H5Dataset *>(this)->getLayout();
+
+    H5Data * data = 0;
+
+    try
+    {
+	data = &const_cast<H5Dataset *>(this)->getData();
+    }
+    catch (const H5Exception & e)
+    {
+
+    }
 
     os << H5Object::getIndentString(indentLevel) << "DATASET \"" << getName() << "\" {" << std::endl
        << type.dump(alreadyVisited, indentLevel + 1)
        << space.dump(alreadyVisited, indentLevel + 1)
-       << layout.dump(alreadyVisited, indentLevel + 1)
-       << data.dump(alreadyVisited, indentLevel + 1)
-       << attrs.dump(alreadyVisited, indentLevel + 1)
+       << layout.dump(alreadyVisited, indentLevel + 1);
+    
+    if (data)
+    {
+	os << data->dump(alreadyVisited, indentLevel + 1);
+    }
+    else
+    {
+	os << H5Object::getIndentString(indentLevel + 1) << _("Error in retrieving data.") << std::endl;
+    }
+
+    os << attrs.dump(alreadyVisited, indentLevel + 1)
        << H5Object::getIndentString(indentLevel) << "}" << std::endl;
 
     delete &type;
     delete &space;
-    delete &data;
+    if (data)
+    {
+	delete data;
+    }
     delete &attrs;
     delete &layout;
 

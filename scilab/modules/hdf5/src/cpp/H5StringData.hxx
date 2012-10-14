@@ -27,9 +27,9 @@ protected:
 
 public:
 
-    H5StringData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _stringSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, char * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner);
+    H5StringData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _stringSize, const hsize_t _ndims, const hsize_t * _dims, char * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner);
 
-    H5StringData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _stringSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, char ** _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner);
+    H5StringData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _stringSize, const hsize_t _ndims, const hsize_t * _dims, char ** _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner);
 
     virtual ~H5StringData();
 

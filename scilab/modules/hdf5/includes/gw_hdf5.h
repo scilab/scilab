@@ -51,6 +51,10 @@ HDF5_SCILAB_IMPEXP int sci_h5mv(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5get(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5label(char *fname, unsigned long fname_len);
 HDF5_SCILAB_IMPEXP int sci_h5exists(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5isCompound(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_percent_H5Object_fieldnames(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5isArray(char *fname, unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_h5isVlen(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_HDF5_H__ */
 /*--------------------------------------------------------------------------*/

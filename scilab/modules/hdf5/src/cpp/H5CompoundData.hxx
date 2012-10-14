@@ -13,7 +13,6 @@
 #ifndef __H5COMPOUNDDATA_HXX__
 #define __H5COMPOUNDDATA_HXX__
 
-#include "H5Data.hxx"
 #include "H5BasicData.hxx"
 
 namespace org_modules_hdf5
@@ -21,109 +20,64 @@ namespace org_modules_hdf5
 
 class H5CompoundData : public H5BasicData<char>
 {
-    const unsigned int nfields;
-    const std::string * fieldsname;
-    H5Data ** fieldsvalue;
-
 public:
 
-    H5CompoundData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, const hsize_t _arank, const hsize_t * _adims, const unsigned int _nfields, std::string * _fieldsname, H5Data ** _fieldsvalue, char * _data, const bool _dataOwner) : H5BasicData(_parent, _totalSize, _dataSize, _ndims, _dims, _arank, _adims, _data, -1, 0, _dataOwner), nfields(_nfields), fieldsname(_fieldsname), fieldsvalue(_fieldsvalue)
-    {
+    H5CompoundData(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, char * _data, hid_t compoundType, const hsize_t stride, const size_t offset, const bool _dataOwner);
 
+    virtual ~H5CompoundData();
+
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const;
+
+    virtual void getAccessibleAttribute(const std::string & _name, const int pos, void * pvApiCtx) const;
+
+    virtual H5Data & getData(const std::string fieldname) const;
+
+    virtual H5Object & getData(const unsigned int size, const unsigned int * index) const;
+
+    virtual bool isCompound() const;
+
+    virtual std::string toString(const unsigned int indentLevel) const;
+
+    virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const;
+
+    virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const;
+
+    virtual void getFieldNames(const int position, void * pvApiCtx);
+
+    virtual bool mustDelete() const
+    {
+        return false;
     }
 
-    virtual ~H5CompoundData()
+protected:
+    class FieldInfo
     {
-        delete[] fieldsname;
-        for (unsigned int i = 0; i < nfields; i++)
-        {
-            delete fieldsvalue[i];
-        }
-        delete[] fieldsvalue;
-    }
 
-    H5Data & getData(const std::string fieldname) const
-    {
-        for (unsigned int i = 0; i < nfields; i++)
+    public:
+
+        const hid_t type;
+        const hsize_t size;
+        const size_t offset;
+        const std::string name;
+
+        FieldInfo(const hid_t _type, const hsize_t _size, const size_t _offset, const std::string _name) : type(_type), size(_size), offset(_offset), name(_name) { }
+
+        ~FieldInfo()
         {
-            if (fieldname == fieldsname[i])
+            if (type)
             {
-                return *fieldsvalue[i];
+                H5Tclose(type);
             }
         }
+    };
 
-        throw H5Exception(__LINE__, __FILE__, _("Invalid field name: %s"), fieldname.c_str());
-    }
+private:
 
-    virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
-    {
-        return H5DataConverter::dump(alreadyVisited, indentLevel, ndims, dims, *this, false);
-    }
-
-    virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
-    {
-        os << "{" << std::endl;
-        std::string indent = H5Object::getIndentString(indentLevel + 2);
-        for (unsigned int i = 0; i < nfields - 1; i++)
-        {
-            os << indent;
-            fieldsvalue[i]->printData(os, pos, indentLevel + 2);
-            os << ", " << std::endl;
-        }
-        os << indent;
-        fieldsvalue[nfields - 1]->printData(os, pos, indentLevel + 2);
-        os << std::endl << H5Object::getIndentString(indentLevel + 1) << "}";
-    }
-
-    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
-    {
-        // TODO: gerer le cas ndims=0 (cas SCALAR)
-
-        static int structdims[2] = { 1, 1 };
-        const char ** _fieldsname = new const char *[nfields + 2];
-        SciErr err;
-        int * scilabStruct = 0;
-
-        _fieldsname[0] = "st";
-        _fieldsname[1] = "dims";
-        for (int i = 0; i < nfields; i++)
-        {
-            _fieldsname[i + 2] = fieldsname[i].c_str();
-        }
-
-        if (parentList)
-        {
-            err = createMListInList(pvApiCtx, lhsPosition, parentList, listPosition, nfields + 1, &scilabStruct);
-        }
-        else
-        {
-            err = createMList(pvApiCtx, lhsPosition, nfields + 2, &scilabStruct);
-        }
-
-        if (err.iErr)
-        {
-            delete[] _fieldsname;
-            throw H5Exception(__LINE__, __FILE__, _("Cannot create a struct on the stack"));
-        }
-
-        err = createMatrixOfStringInList(pvApiCtx, lhsPosition, scilabStruct, 1, 1, nfields + 2, _fieldsname);
-        delete[] _fieldsname;
-        if (err.iErr)
-        {
-            throw H5Exception(__LINE__, __FILE__, _("Cannot create a struct on the stack"));
-        }
-
-        err = createMatrixOfInteger32InList(pvApiCtx, lhsPosition, scilabStruct, 2, 1, 2, structdims);
-        if (err.iErr)
-        {
-            throw H5Exception(__LINE__, __FILE__, _("Cannot create a struct on the stack"));
-        }
-
-        for (int i = 0; i < nfields; i++)
-        {
-            fieldsvalue[i]->toScilab(pvApiCtx, lhsPosition, scilabStruct, i + 3);
-        }
-    }
+    const hsize_t * cumprod;
+    unsigned int nfields;
+    std::map<std::string, FieldInfo *> * infos;
+    FieldInfo ** fieldinfos;
+    const hid_t type;
 };
 }
 

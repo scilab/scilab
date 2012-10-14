@@ -39,7 +39,10 @@ HDF5_CXX_SOURCES = src/cpp/H5Attribute.cpp \
 		   src/cpp/H5Link.cpp \
 		   src/cpp/HDF5Scilab.cpp \
 		   src/cpp/H5StringData.cpp \
-		   src/cpp/H5ReferenceData.cpp
+		   src/cpp/H5ReferenceData.cpp \
+		   src/cpp/H5CompoundData.cpp \
+		   src/cpp/H5ArrayData.cpp \
+		   src/cpp/H5VlenData.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
@@ -69,7 +72,8 @@ sci_gateway/cpp/sci_h5umount.cpp \
 sci_gateway/cpp/sci_h5mv.cpp \
 sci_gateway/cpp/sci_h5get.cpp \
 sci_gateway/cpp/sci_h5label.cpp \
-sci_gateway/cpp/sci_h5exists.cpp
+sci_gateway/cpp/sci_h5exists.cpp \
+sci_gateway/cpp/sci_percent_H5Object_fieldnames.cpp
 
 if GIWS
 BUILT_SOURCES=giws
