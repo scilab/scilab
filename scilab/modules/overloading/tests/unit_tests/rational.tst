@@ -11,7 +11,7 @@ s=poly(0,'s');
 h=1/(2*s);
 if or(size(h)<>[1 1]) then pause,end
 if h.num<>1|h.den<>2*s then pause,end
-h=1./(2*s);
+h=1/(2*s);
 if h.num<>1|h.den<>2*s then pause,end
 
 //basic operations with 2D matrices
