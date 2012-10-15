@@ -10,7 +10,7 @@
 *
 */
 
-#define H5_USE_16_API
+#define H5_NO_DEPRECATED_SYMBOLS
 
 #ifndef _MSC_VER
 #include <sys/time.h>
@@ -30,7 +30,7 @@
 
 //#define TIME_DEBUG
 
-static herr_t find_attr_by_name(hid_t loc_id, const char *name, void *data)
+static herr_t find_attr_by_name(hid_t loc_id, const char *name, const H5A_info_t *ainfo, void *data)
 {
     return !strcmp(name, (const char *)data);
 }
@@ -41,33 +41,35 @@ Operator function.  Prints the name and type of the object
 being examined.
 
 ************************************************************/
-static herr_t op_func(hid_t loc_id, const char *name, void *operator_data)
+static herr_t op_func(hid_t loc_id, const char *name, const H5L_info_t *info, void *operator_data)
 {
-    H5G_stat_t statbuf;
+    H5O_info_t oinfo;
     herr_t status = 0;
     int *pDataSetId = (int*)operator_data;
+    hid_t obj = H5Oopen(loc_id, name, H5P_DEFAULT);
+    if (obj < 0)
+    {
+        return -1;
+    }
 
     /*
      * Get type of the object and return only datasetId
      * through operator_data.
      */
-    status = H5Gget_objinfo(loc_id, name, 0, &statbuf);
+    status = H5Oget_info(obj, &oinfo);
     if (status < 0)
     {
+        H5Oclose(obj);
         return -1;
     }
 
-    switch (statbuf.type)
+    if (oinfo.type == H5O_TYPE_DATASET)
     {
-        case H5G_GROUP:
-            break;
-        case H5G_DATASET:
-            *pDataSetId = H5Dopen(loc_id, name);
-            break;
-        case H5G_TYPE:
-            break;
-        default:
-            break;
+        *pDataSetId = obj;
+    }
+    else
+    {
+        H5Oclose(obj);
     }
 
     return 0;
@@ -78,8 +80,9 @@ static int readIntAttribute(int _iDatasetId, const char *_pstName)
     hid_t iAttributeId;
     herr_t status;
     int iVal = -1;
+    hsize_t n = 0;
 
-    if (H5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void *)_pstName))
+    if (H5Aiterate(_iDatasetId, H5_INDEX_NAME, H5_ITER_NATIVE, &n, find_attr_by_name, (void *)_pstName) > 0)
     {
         iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
         if (iAttributeId < 0)
@@ -112,10 +115,11 @@ static char* readAttribute(int _iDatasetId, const char *_pstName)
     herr_t status;
     hsize_t dims[1];
     size_t iDim;
+    hsize_t n = 0;
 
     char *pstValue = NULL;
 
-    if (H5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void *)_pstName))
+    if (H5Aiterate(_iDatasetId, H5_INDEX_NAME, H5_ITER_NATIVE, &n, find_attr_by_name, (void *)_pstName) > 0)
     {
         iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
         if (iAttributeId < 0)
@@ -240,18 +244,18 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
     hid_t data_type;
     H5T_class_t data_class;
     hid_t space = H5Dget_space(_iDatasetId);
-    if(space < 0)
+    if (space < 0)
     {
         return -1;
     }
 
     data_type = H5Dget_type(_iDatasetId);
     data_class = H5Tget_class(data_type);
-    if(data_class == H5T_COMPOUND) 
+    if (data_class == H5T_COMPOUND)
     {
         *_iComplex = 1;
     }
-    else if(data_class == H5T_REFERENCE)
+    else if (data_class == H5T_REFERENCE)
     {
         *_iComplex = isComplexData(_iDatasetId);
     }
@@ -261,24 +265,25 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
     }
 
     *_iDims = H5Sget_simple_extent_ndims(space);
-    if(*_iDims < 0)
+    if (*_iDims < 0)
     {
         H5Sclose(space);
         return -1;
     }
 
-    if(_piDims != 0)
+    if (_piDims != 0)
     {
         int i = 0;
         hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) * *_iDims);
-        if(H5Sget_simple_extent_dims(space, dims, NULL) < 0)
+        if (H5Sget_simple_extent_dims(space, dims, NULL) < 0)
         {
             return -1;
         }
 
         //reverse dimensions
-        for(i = 0 ; i < *_iDims ; i++)
-        {//reverse dimensions to improve rendering in external tools
+        for (i = 0 ; i < *_iDims ; i++)
+        {
+            //reverse dimensions to improve rendering in external tools
             _piDims[i] = (int)dims[*_iDims - 1 - i];
             iSize *= _piDims[i];
         }
@@ -367,6 +372,7 @@ int getVariableNames(int _iFile, char **pstNameList)
     hsize_t iCount = 0;
     herr_t status = 0;
     int iNbItem = 0;
+    H5O_info_t oinfo;
 
     status = H5Gget_num_objs(_iFile, &iCount);
     if (status != 0)
@@ -376,7 +382,13 @@ int getVariableNames(int _iFile, char **pstNameList)
 
     for (i = 0; i < iCount; i++)
     {
-        if (H5Gget_objtype_by_idx(_iFile, i) == H5G_DATASET)
+        status = H5Oget_info_by_idx(_iFile, "/", H5_INDEX_NAME, H5_ITER_NATIVE, i, &oinfo, H5P_DEFAULT);
+        if (status < 0)
+        {
+            return 0;
+        }
+
+        if (oinfo.type == H5O_TYPE_DATASET)
         {
             if (pstNameList != NULL)
             {
@@ -394,18 +406,19 @@ int getVariableNames(int _iFile, char **pstNameList)
 
 int getDataSetIdFromName(int _iFile, char *_pstName)
 {
-    return H5Dopen(_iFile, _pstName);
+    return H5Dopen(_iFile, _pstName, H5P_DEFAULT);
 }
 
 int getDataSetId(int _iFile)
 {
     herr_t status = 0;
     int iDatasetId = 0;
+    hsize_t idx = 0;
 
     /*
      * Begin iteration.
      */
-    status = H5Giterate(_iFile, "/", NULL, op_func, &iDatasetId);
+    status = H5Literate(_iFile, H5_INDEX_NAME, H5_ITER_NATIVE, &idx, op_func, &iDatasetId);
     if (status < 0)
     {
         return -1;
@@ -501,7 +514,7 @@ int readDoubleComplexMatrix(int _iDatasetId, double *_pdblReal, double *_pdblImg
         return -1;
     }
 
-    
+
     vGetPointerFromDoubleComplex(pData, iSize, _pdblReal, _pdblImg);
     FREE(pData);
     status = H5Dclose(_iDatasetId);
@@ -624,7 +637,7 @@ int readCommonPolyMatrix(int _iDatasetId, char *_pstVarname, int _iComplex, int 
     herr_t status;
     int iSize = 1;
 
-    for(i = 0 ; i < _iDims ; i++)
+    for (i = 0 ; i < _iDims ; i++)
     {
         iSize *= _piDims[i];
     }
@@ -948,7 +961,7 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
         return -1;
     }
 
-    if(_iNbItem != 0)
+    if (_iNbItem != 0)
     {
         //read cols data
         obj = H5Rdereference(_iDatasetId, H5R_OBJECT, &pRef[1]);

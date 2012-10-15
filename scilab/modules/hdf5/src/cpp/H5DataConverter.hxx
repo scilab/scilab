@@ -13,7 +13,6 @@
 #ifndef __H5DATACONVERTER_HXX__
 #define __H5DATACONVERTER_HXX__
 
-#include <hdf5.h>
 #include "H5Exception.hxx"
 #include "H5Object.hxx"
 #include "H5Data.hxx"
