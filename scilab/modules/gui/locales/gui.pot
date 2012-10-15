@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-09-28 10:25+0100\n"
+"Revision-Date: 2012-10-15 10:34+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 73
 #, c-format
@@ -1284,133 +1284,134 @@ msgid "Colors"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 822
+# File: scilab_fake_localization_file.c, line: 827
 msgid "Desktop color"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 833
+# File: scilab_fake_localization_file.c, line: 835
+# File: scilab_fake_localization_file.c, line: 849
 msgid "Use system color"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 851
+# File: scilab_fake_localization_file.c, line: 885
 msgid "Text "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 858
+# File: scilab_fake_localization_file.c, line: 899
 msgid "Background "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 865
+# File: scilab_fake_localization_file.c, line: 913
 msgid "Cursor "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 877
+# File: scilab_fake_localization_file.c, line: 937
 msgid "Syntax highlighting colors"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 893
+# File: scilab_fake_localization_file.c, line: 969
 msgid "Keyword color "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 905
+# File: scilab_fake_localization_file.c, line: 993
 msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 912
+# File: scilab_fake_localization_file.c, line: 1007
 msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 919
+# File: scilab_fake_localization_file.c, line: 1021
 msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 926
+# File: scilab_fake_localization_file.c, line: 1035
 msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 954
+# File: scilab_fake_localization_file.c, line: 1085
 msgid "Fonts"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 989
+# File: scilab_fake_localization_file.c, line: 1120
 msgid "Desktop font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 993
+# File: scilab_fake_localization_file.c, line: 1124
 msgid "Use system font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1009
+# File: scilab_fake_localization_file.c, line: 1140
 msgid "Desktop text font: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1025
+# File: scilab_fake_localization_file.c, line: 1156
 msgid "Custom font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1039
+# File: scilab_fake_localization_file.c, line: 1170
 msgid "Fonts to use:"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1042
+# File: scilab_fake_localization_file.c, line: 1173
 msgid "Desktop text font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1048
+# File: scilab_fake_localization_file.c, line: 1179
 msgid "Custom:"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1252
+# File: scilab_fake_localization_file.c, line: 1383
 msgid "Web"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1268
+# File: scilab_fake_localization_file.c, line: 1399
 msgid "Web browser and mailer"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1270
+# File: scilab_fake_localization_file.c, line: 1401
 msgid "Use default web browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1276
+# File: scilab_fake_localization_file.c, line: 1407
 msgid "Command for web browser: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1291
-# File: scilab_fake_localization_file.c, line: 1322
+# File: scilab_fake_localization_file.c, line: 1422
+# File: scilab_fake_localization_file.c, line: 1453
 msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1301
+# File: scilab_fake_localization_file.c, line: 1432
 msgid "Use default mailer"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1307
+# File: scilab_fake_localization_file.c, line: 1438
 msgid "Command for mailer: "
 msgstr ""
 
