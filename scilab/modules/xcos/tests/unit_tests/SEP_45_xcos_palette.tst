@@ -5,12 +5,11 @@
 
 // <-- NOT FIXED -->
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // Check the API of all xcos palette management methods, see SEP_45_xcos_palette.odt
 
-loadXcosLibs;
 
 exportedFile = TMPDIR + "/palette.sod";
 palettePath = ["My special palettes" "My sum palettes" "My sum palette"];

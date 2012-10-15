@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 11821 -->
 //
@@ -13,7 +13,6 @@
 //
 // <-- Short Description -->
 // Running XcosPalAdd example from help led to deadlock  
-loadXcosLibs();
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, "SUM_f");
 pal = xcosPalAddBlock(pal, "BIGSOM_f");

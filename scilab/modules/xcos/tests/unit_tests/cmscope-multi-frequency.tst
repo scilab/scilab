@@ -5,12 +5,11 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 // <-- TEST WITH GRAPHIC -->
 
 // <-- NO CHECK REF -->
 
-loadXcosLibs();
 
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cmscope-multi-frequency.zcos"));
 xcos_simulate(scs_m, 4);

@@ -16,8 +16,11 @@
 //
 
 write(TMPDIR+'/bug_10434.predef', predef());
-
+prot=funcprot();
+funcprot(0);
 loadXcosLibs();
+funcprot(prot);
+
 clear();
 
 assert_checktrue(isdef("xcos_simulate"));

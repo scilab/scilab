@@ -6,12 +6,12 @@
 // ============================================================================
 //
 // <-- ENGLISH IMPOSED -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // Blocks must have valid dimensions for their settings.
 // Some dimensions were not coherents between theirs "set" and "define" method.
 
-loadXcosLibs(); loadScicos();
 
 defaultlibs = ["Branching",
                "Electrical",

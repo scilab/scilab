@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 11919 -->
 //
@@ -15,8 +15,6 @@
 // <-- Short Description -->
 // dsslti4 crash Scilab when used without input or output
 
-loadXcosLibs();
-loadScicos();
 
 
 function model = create_test_dlss_blk(x0, A, B, C, D, in, out)

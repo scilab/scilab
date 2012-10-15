@@ -3,12 +3,11 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // White-box test for the xcosPal macro.
 
-loadXcosLibs();
 
 name = "My palette";
 exec(SCI + "/modules/scicos/palettes/Lookup_Tables.cosf", -1); // getting an scs_m

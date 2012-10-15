@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 // <-- LONG TIME EXECUTION -->
 //
 // <-- Non-regression test for bug 7537 -->
@@ -17,7 +17,6 @@
 // block instance may contains superblocks with wrong versions. Check that
 // no errors are thrown when adding them to a diagram.
 
-loadXcosLibs();
 
 scs_m = scicos_diagram();
 

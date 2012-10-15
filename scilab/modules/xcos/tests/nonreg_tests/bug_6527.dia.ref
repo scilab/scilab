@@ -13,7 +13,6 @@
 // <-- Short Description -->
 // multiple instance of the same variable when exporting via "to workspace"
 thispath = get_absolute_file_path("bug_6527.tst");
-loadScicosLibs();
 importXcosDiagram(SCI+"/modules/xcos/tests/nonreg_tests/bug_6527.xcos");
 Info = scicos_simulate(scs_m,list());
 names = who('local');

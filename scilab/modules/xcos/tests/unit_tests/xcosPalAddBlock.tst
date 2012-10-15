@@ -3,7 +3,7 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 // <-- ENGLISH IMPOSED -->
 //
 // <-- Short Description -->
@@ -12,7 +12,6 @@
 //
 // Init
 //
-loadXcosLibs;
 iconPath = SCI + "/modules/xcos/images/palettes/NPN.png";
 stylePath = SCI + "/modules/xcos/images/blocks/NPN.svg";
 scs_m = SUM_f("define");

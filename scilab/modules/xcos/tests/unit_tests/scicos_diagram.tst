@@ -3,12 +3,11 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // Check scicos_diagram
 
-loadXcosLibs(), loadScicos();
 
 function assert_check_diagram(scs_m)
     

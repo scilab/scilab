@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- NO CHECK REF -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 6776 -->
 //
@@ -15,7 +15,6 @@
 // <-- Short Description -->
 // the non-empty block.doc field was not cleared on loading.
 //
-loadXcosLibs();
 // Check that importScicosDiagram perform block.doc clearing
 scs_m = importScicosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/Antrieb3.cos");
 obj = scs_m.objs(1);

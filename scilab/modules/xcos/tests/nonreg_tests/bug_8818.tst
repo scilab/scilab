@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8818 -->
 //
@@ -15,7 +15,6 @@
 // <-- Short Description -->
 // Modelica exponential format was wrong.
 //
-loadXcosLibs();
 
 scs_m = MBLOCK("define");
 
