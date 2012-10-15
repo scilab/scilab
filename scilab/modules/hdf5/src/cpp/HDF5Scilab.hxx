@@ -463,7 +463,7 @@ public:
     {
         if (!data)
         {
-            return 0;
+            return;
         }
 
         for (unsigned int i = 0; i < size / 2; i++)
