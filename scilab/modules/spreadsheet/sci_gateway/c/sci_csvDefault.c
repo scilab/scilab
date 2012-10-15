@@ -236,7 +236,7 @@ static int sci_csvDefault_one_rhs(char *fname)
     }
     else
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' , '%s', '%s' '%s' or '%s' expected.\n"), fname, 1, SEPARATOR_FIELDNAME, DECIMAL_FIELDNAME, CONVERSION_FIELDNAME, COMMENTSREGEXP_FIELDNAME, EOL_FIELDNAME, BLANK_FIELDNAME);
+        Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), fname, 1, SEPARATOR_FIELDNAME, DECIMAL_FIELDNAME, CONVERSION_FIELDNAME, COMMENTSREGEXP_FIELDNAME, EOL_FIELDNAME, BLANK_FIELDNAME);
         if (fieldname)
         {
             FREE(fieldname);
@@ -314,7 +314,7 @@ static int sci_csvDefault_two_rhs(char *fname)
                     FREE(fieldname);
                     fieldname = NULL;
                 }
-                Scierror(999, _("%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"), fname, 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A double (value %d to %d) expected.\n"), fname, 2, 1, 17);
                 return 0;
             }
 
@@ -408,7 +408,7 @@ static int sci_csvDefault_two_rhs(char *fname)
     }
     else
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' ,'%s' , '%s', '%s', '%s', '%s' or '%s' expected.\n"), fname, 1, SEPARATOR_FIELDNAME, DECIMAL_FIELDNAME, CONVERSION_FIELDNAME, PRECISION_FIELDNAME, COMMENTSREGEXP_FIELDNAME, EOL_FIELDNAME, ENCODING_FIELDNAME, BLANK_FIELDNAME);
+        Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s' , '%s', '%s', '%s', '%s' or '%s' expected.\n"), fname, 1, SEPARATOR_FIELDNAME, DECIMAL_FIELDNAME, CONVERSION_FIELDNAME, PRECISION_FIELDNAME, COMMENTSREGEXP_FIELDNAME, EOL_FIELDNAME, ENCODING_FIELDNAME, BLANK_FIELDNAME);
         if (fieldname)
         {
             FREE(fieldname);
