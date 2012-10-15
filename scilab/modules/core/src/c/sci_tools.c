@@ -91,7 +91,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "sci_tools.h"
 #include "MALLOC.h" /* MALLOC */
 
 #include "localization.h"
