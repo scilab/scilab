@@ -31,7 +31,7 @@
             <listitem>
                 <para>
                     When inserting data into a character string matrix: due to the fact that character string matrices
-                    in Matlab can be adressed as any other matrix (each character can be adressed), insertion in such a type of
+                    in Matlab can be addressed as any other matrix (each character can be adressed), insertion in such a type of
                     matrix does not differ from other. But in Scilab it can't be done so...<literal>mtlb_is</literal> is an alternative.
                 </para>
             </listitem>
