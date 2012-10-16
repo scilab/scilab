@@ -43,18 +43,20 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
     {
         types::Double* pDblIn = in[0]->getAs<types::Double>();
 
-        if (pDblIn->isComplex() == false)
-        {
-            out.push_back(types::Double::Empty());
-            return types::Function::OK;
-        }
-
         int iSize = pDblIn->getSize();
         int iOne = 1;
 
         types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
 
-        C2F(dcopy)(&iSize, pDblIn->getImg(), &iOne, pDblOut->getReal(), &iOne);
+        if (pDblIn->isComplex() == false)
+        {
+            memset(pDblOut->get(), 0x00, iSize * sizeof(double));
+        }
+        else
+        {
+            C2F(dcopy)(&iSize, pDblIn->getImg(), &iOne, pDblOut->getReal(), &iOne);
+        }
+
 
         out.push_back(pDblOut);
     }
@@ -91,7 +93,9 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
 
         if (pPolyIn->isComplex() == false)
         {
-            out.push_back(pPolyOut);
+            types::Double* pDblOut = new types::Double(pPolyIn->getDims(), pPolyIn->getDimsArray());
+            memset(pDblOut->get(), 0x00, pDblOut->getSize() * sizeof(double));
+            out.push_back(pDblOut);
             return types::Function::OK;
         }
 
