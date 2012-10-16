@@ -24,28 +24,30 @@
 #include "localization.h"
 #include "Scierror.h"
 /*------------------------------------------------------------------------*/
-int sci_param3d( char * fname, unsigned long fname_len )
+int sci_param3d(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int izcol = 0, isfac = 0;
     static double  ebox_def[6] = { 0, 1, 0, 1, 0, 1};
-    double *ebox = ebox_def ;
+    double *ebox = ebox_def;
     static int iflag_def[3] = {1, 2, 4};
     int iflag[3], *ifl = NULL, ix1 = 0, one = 1;
-    double  alpha_def = 35.0 , theta_def = 45.0 ;
+    double  alpha_def = 35.0 , theta_def = 45.0;
     double *alpha = &alpha_def, *theta = &theta_def;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0;
     int m3n = 0, n3n = 0; /* F.Leray 19.03.04*/
 
-    static rhs_opts opts[] = { { -1, "alpha", "?", 0, 0, 0},
-        { -1, "ebox", "?", 0, 0, 0},
-        { -1, "flag", "?", 0, 0, 0},
-        { -1, "leg", "?", 0, 0, 0},
-        { -1, "theta", "?", 0, 0, 0},
-        { -1, NULL, NULL, 0, 0}
+    static rhs_opts opts[] =
+    {
+        { -1, "alpha", -1, 0, 0, NULL},
+        { -1, "ebox", -1, 0, 0, NULL},
+        { -1, "flag", -1, 0, 0, NULL},
+        { -1, "leg", -1, 0, 0, NULL},
+        { -1, "theta", -1, 0, 0, NULL},
+        { -1, NULL, -1, 0, 0, NULL}
     };
 
-    char * labels = NULL ;
+    char * labels = NULL;
 
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
@@ -63,12 +65,12 @@ int sci_param3d( char * fname, unsigned long fname_len )
 
     CheckInputArgument(pvApiCtx, 3, 8);
 
-    if ( get_optionals(fname, opts) == 0)
+    if (getOptionals(pvApiCtx, fname, opts) == 0)
     {
         ReturnArguments(pvApiCtx);
         return 0;
     }
-    if ( FirstOpt() < 4)
+    if (FirstOpt() < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 4);
         return(0);
@@ -146,17 +148,17 @@ int sci_param3d( char * fname, unsigned long fname_len )
     }
 
 
-    GetOptionalDoubleArg(fname, 4, "theta", &theta, 1, opts);
-    GetOptionalDoubleArg(fname, 5, "alpha", &alpha, 1, opts);
-    GetLabels(fname, 6, opts, &labels);
+    GetOptionalDoubleArg(pvApiCtx, fname, 4, "theta", &theta, 1, opts);
+    GetOptionalDoubleArg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts);
+    GetLabels(pvApiCtx, fname, 6, opts, &labels);
 
     iflag_def[1] = 8;
     ifl = &(iflag_def[1]);
-    GetOptionalIntArg(fname, 7, "flag", &ifl, 2, opts);
+    GetOptionalIntArg(pvApiCtx, fname, 7, "flag", &ifl, 2, opts);
     iflag[0] = iflag_def[0];
     iflag[1] = ifl[0];
     iflag[2] = ifl[1];
-    GetOptionalDoubleArg(fname, 8, "ebox", &ebox, 6, opts);
+    GetOptionalDoubleArg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts);
 
     getOrCreateDefaultSubwin();
 

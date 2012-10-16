@@ -36,7 +36,7 @@
 #include "CurrentSubwin.h"
 #include "sci_types.h"
 /*--------------------------------------------------------------------------*/
-int sci_show_window( char *fname, unsigned long fname_len )
+int sci_show_window(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -50,12 +50,12 @@ int sci_show_window( char *fname, unsigned long fname_len )
     CheckInputArgument(pvApiCtx, 0, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if ( nbInputArgument(pvApiCtx) == 1 )
+    if (nbInputArgument(pvApiCtx) == 1)
     {
         /* the window to show is specified */
         int paramType    = getInputArgumentType(pvApiCtx, 1);
-        int nbRow        = 0 ;
-        int nbCol        = 0 ;
+        int nbRow        = 0;
+        int nbCol        = 0;
 
         int type = -1;
         int *piType = &type;
@@ -67,7 +67,7 @@ int sci_show_window( char *fname, unsigned long fname_len )
             return 1;
         }
 
-        if ( ( paramType == sci_handles ) )
+        if ((paramType == sci_handles))
         {
             /* by tis handle */
             // Retrieve a matrix of handle at position  1.
@@ -80,10 +80,10 @@ int sci_show_window( char *fname, unsigned long fname_len )
             }
 
 
-            if ( nbRow * nbCol != 1 )
+            if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"), fname, 1, "Figure");
-                return -1 ;
+                return -1;
             }
 
             pFigureUID = (char*)getObjectFromHandle((long int)(*llstackPointer));
@@ -91,18 +91,18 @@ int sci_show_window( char *fname, unsigned long fname_len )
             if (pFigureUID == NULL)
             {
                 Scierror(999, _("%s: Handle does not or no longer exists.\n"), fname);
-                return -1 ;
+                return -1;
             }
 
             getGraphicObjectProperty(pFigureUID, __GO_TYPE__, jni_int, (void **) &piType);
             if (type != __GO_FIGURE__)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"), fname, 1, "Figure");
-                return -1 ;
+                return -1;
             }
 
         }
-        else if ( ( paramType == sci_matrix ) )
+        else if ((paramType == sci_matrix))
         {
             /* by its number */
             int winNum = 0;
@@ -115,10 +115,10 @@ int sci_show_window( char *fname, unsigned long fname_len )
                 return 1;
             }
 
-            if ( nbRow * nbCol != 1 )
+            if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"), fname, 1, "Figure");
-                return -1 ;
+                return -1;
             }
             winNum = (int) * pdblstackPointer;
             pFigureUID = (char*)getFigureFromIndex(winNum);
@@ -148,10 +148,10 @@ int sci_show_window( char *fname, unsigned long fname_len )
     }
 
     /* Check that the requested figure really exists */
-    if ( pFigureUID == NULL )
+    if (pFigureUID == NULL)
     {
         Scierror(999, _("%s: '%s' handle does not or no longer exists.\n"), fname, "Figure");
-        return -1 ;
+        return -1;
     }
 
     /* Actually show the window */

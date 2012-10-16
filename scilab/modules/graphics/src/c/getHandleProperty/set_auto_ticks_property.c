@@ -35,38 +35,38 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_auto_ticks_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_auto_ticks_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status[3];
     BOOL autoTicks = FALSE;
     char ** values = NULL;
     int mSize = nbRow * nbCol;
 
-    char* axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
+    int axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
 
-    if ( !( valueType == sci_strings ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "auto_ticks");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    values = getStringMatrixFromStack( stackPointer );
+    values = (char**)_pvData;
 
-    if ( mSize == 1 )
+    if (mSize == 1)
     {
         /* only one parameter to set the value for every axes.*/
-        if ( strcmp( values[0], "off" ) == 0 )
+        if (strcmp(values[0], "off") == 0)
         {
             autoTicks = FALSE;
         }
-        else if ( strcmp( values[0], "on" ) == 0 )
+        else if (strcmp(values[0], "on") == 0)
         {
             autoTicks = TRUE;
         }
         else
         {
             Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "auto_ticks", "on", "off");
-            return SET_PROPERTY_ERROR ; ;
+            return SET_PROPERTY_ERROR ;;
         }
 
         status[0] = setGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[0], &autoTicks, jni_bool, 1);
@@ -83,9 +83,9 @@ int set_auto_ticks_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
             return SET_PROPERTY_ERROR;
         }
     }
-    else if ( mSize == 2 || mSize == 3)
+    else if (mSize == 2 || mSize == 3)
     {
-        int i ;
+        int i;
         BOOL autoTicks[3];
         int iAutoTicks = 0;
         int *piAutoTicks = &iAutoTicks;
@@ -106,20 +106,20 @@ int set_auto_ticks_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
         getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[2], jni_bool, (void **)&piAutoTicks);
         autoTicks[2] = iAutoTicks;
 
-        for ( i = 0; i < mSize; i++ )
+        for (i = 0; i < mSize; i++)
         {
-            if ( strcmp(values[i], "off") == 0 )
+            if (strcmp(values[i], "off") == 0)
             {
                 autoTicks[i] = FALSE;
             }
-            else if ( strcmp(values[i], "on") == 0 )
+            else if (strcmp(values[i], "on") == 0)
             {
                 autoTicks[i] = TRUE;
             }
             else
             {
                 Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "auto_ticks", "on", "off");
-                return SET_PROPERTY_ERROR ;
+                return SET_PROPERTY_ERROR;
             }
         }
 
@@ -140,8 +140,8 @@ int set_auto_ticks_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     else
     {
         Scierror(999, _("Wrong size for '%s' property: At most %d elements expected.\n"), "auto_ticks", 3);
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
-    return SET_PROPERTY_ERROR ;
+    return SET_PROPERTY_ERROR;
 }
 /*------------------------------------------------------------------------*/

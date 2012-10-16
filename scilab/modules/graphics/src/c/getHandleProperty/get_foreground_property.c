@@ -40,7 +40,7 @@ int get_foreground_property(void* _pvCtx, char* pobjUID)
 
     if (piLineColor == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"foreground");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "foreground");
         return -1;
     }
 

@@ -51,10 +51,10 @@ int sci_xclick(char *fname, unsigned long fname_len)
     int iFigureId = 0;
     int *piFigureId = &iFigureId;
 
-    CheckInputArgument(pvApiCtx, -1, 1) ;
-    CheckOutputArgument(pvApiCtx, 1, 5) ;
+    CheckInputArgument(pvApiCtx, -1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 5);
 
-    //iflag = ( nbInputArgument(pvApiCtx) >= 1) ? 1 :0;
+    //iflag = (nbInputArgument(pvApiCtx) >= 1) ? 1 :0;
 
     // Select current figure or create it
     getOrCreateDefaultSubwin();

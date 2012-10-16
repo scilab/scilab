@@ -37,54 +37,54 @@
 /*------------------------------------------------------------------------*/
 int get_auto_ticks_property(void* _pvCtx, char* pobjUID)
 {
-  char * auto_ticks[3]  = { NULL, NULL, NULL };
-  char* axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
-  int iAutoTicks = 0;
-  int* piAutoTicks = &iAutoTicks;
+    char * auto_ticks[3]  = { NULL, NULL, NULL };
+    int axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
+    int iAutoTicks = 0;
+    int* piAutoTicks = &iAutoTicks;
 
-  int i = 0;
-  int j = 0;
-  int status = -1;
+    int i = 0;
+    int j = 0;
+    int status = -1;
 
-  for ( i = 0 ; i < 3 ; i++ )
-  {
-      getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[i], jni_bool, (void **)&piAutoTicks);
+    for (i = 0 ; i < 3 ; i++)
+    {
+        getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[i], jni_bool, (void **)&piAutoTicks);
 
-      if (piAutoTicks == NULL)
-      {
-          Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks");
-          return -1;
-      }
+        if (piAutoTicks == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_ticks");
+            return -1;
+        }
 
-      if (iAutoTicks)
-      {
-          auto_ticks[i] = strdup("on");
-      }
-      else
-      {
-          auto_ticks[i] = strdup("off");
-      }
+        if (iAutoTicks)
+        {
+            auto_ticks[i] = strdup("on");
+        }
+        else
+        {
+            auto_ticks[i] = strdup("off");
+        }
 
-      if (auto_ticks[i] == NULL)
-      {
-          for ( j = 0 ; j < i ; j++ )
-          {
-              FREE(auto_ticks[j]);
-          }
+        if (auto_ticks[i] == NULL)
+        {
+            for (j = 0 ; j < i ; j++)
+            {
+                FREE(auto_ticks[j]);
+            }
 
-          Scierror(999, _("%s: No more memory.\n"),"get_auto_ticks_property");
-          return -1;
-      }
+            Scierror(999, _("%s: No more memory.\n"), "get_auto_ticks_property");
+            return -1;
+        }
 
-  }
+    }
 
-  status = sciReturnRowStringVector(_pvCtx, auto_ticks, 3);
+    status = sciReturnRowStringVector(_pvCtx, auto_ticks, 3);
 
-  for ( i = 0 ; i < 3 ; i++ )
-  {
-      FREE( auto_ticks[i] );
-  }
+    for (i = 0 ; i < 3 ; i++)
+    {
+        FREE(auto_ticks[i]);
+    }
 
-  return status ;
+    return status;
 }
 /*------------------------------------------------------------------------*/

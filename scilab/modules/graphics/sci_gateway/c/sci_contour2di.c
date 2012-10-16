@@ -24,7 +24,7 @@
 #include "localization.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_contour2di( char * fname, unsigned long fname_len )
+int sci_contour2di(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int flagx = 0, nz = 10; /* default number of level curves : 10 */

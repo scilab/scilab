@@ -33,7 +33,7 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xrect( char *fname, unsigned long fname_len )
+int sci_xrect(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -73,7 +73,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
         return 1;
     }
 
-    switch ( nbInputArgument(pvApiCtx) )
+    switch (nbInputArgument(pvApiCtx))
     {
         case 1 :
             //CheckLength
@@ -98,7 +98,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
                          NULL, &foreground, TRUE, FALSE, &hdl);
             }
 
-            if ( hdl < 0 )
+            if (hdl < 0)
             {
                 break;
             }
@@ -196,7 +196,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
                          NULL, &foreground, TRUE, FALSE, &hdl);
             }
 
-            if ( hdl < 0 )
+            if (hdl < 0)
             {
                 break;
             }
@@ -204,10 +204,10 @@ int sci_xrect( char *fname, unsigned long fname_len )
             break;
         default :
             Scierror(999, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), fname, 1, 4);
-            break ;
+            break;
     }
 
-    if ( hdl > 0 )
+    if (hdl > 0)
     {
         setGraphicObjectRelationship(psubwinUID, getObjectFromHandle(hdl));
         AssignOutputVariable(pvApiCtx, 1) = 0;

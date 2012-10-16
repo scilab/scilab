@@ -39,29 +39,29 @@ int get_x_location_property(void* _pvCtx, char* pobjUID)
 
     if (piLocation == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_location");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "x_location");
         return -1;
     }
 
     if (iLocation == 0)
     {
-        return sciReturnString(_pvCtx, "bottom" );
+        return sciReturnString(_pvCtx, "bottom");
     }
     else if (iLocation == 1)
     {
-        return sciReturnString(_pvCtx, "top" );
+        return sciReturnString(_pvCtx, "top");
     }
     else if (iLocation == 2)
     {
-        return sciReturnString(_pvCtx, "middle" );
+        return sciReturnString(_pvCtx, "middle");
     }
     else if (iLocation == 3)
     {
-        return sciReturnString(_pvCtx, "origin" );
+        return sciReturnString(_pvCtx, "origin");
     }
     else
     {
-        Scierror(999, _("Wrong value for '%s' property.\n"),"x_location");
+        Scierror(999, _("Wrong value for '%s' property.\n"), "x_location");
         return -1;
     }
 

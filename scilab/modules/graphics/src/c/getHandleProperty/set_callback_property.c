@@ -27,9 +27,10 @@
 #include "SetPropertyStatus.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-int set_callback_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     // Callback must be only one character string
 
@@ -38,46 +39,49 @@ int set_callback_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     int cbType = 0;
 
     int strNbRow = 0, strNbCol = 0;
-    int typeNbRow = 0, typeNbCol = 0;
-    int typeStackPointer = 0, stringStackPointer = 0;
+    int iRows = 0, iCols = 0;
+    double* pdblData = NULL;
 
     if (valueType == sci_strings)
     {
-        if (nbCol != 1) {
+        if (nbCol != 1)
+        {
             Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
             return SET_PROPERTY_ERROR;
         }
-        cbString = getStringFromStack(stackPointer);
+        cbString = (char*)_pvData;
     }
     else if (valueType == sci_list)
     {
+        int iLen = 0;
         if (nbRow * nbCol != 2)
         {
             Scierror(999, _("Wrong size for '%s' property: a 2-item list expected.\n"), "Callback");
             return SET_PROPERTY_ERROR;
         }
 
-        GetListRhsVar((int)stackPointer, 1, MATRIX_OF_DOUBLE_DATATYPE, &typeNbRow, &typeNbCol, &typeStackPointer);
-        if (typeNbRow * typeNbCol !=1)
+        getMatrixOfDoubleInList(pvApiCtx, (int*)_pvData, 1, &iRows, &iCols, &pdblData);
+        if (iRows * iCols != 1)
         {
             Scierror(999, _("Wrong size for '%s' property: A real expected.\n"), "callback_type");
             return SET_PROPERTY_ERROR;
         }
         else
         {
-            cbType = (int) (*stk(typeStackPointer));
+            cbType = (int)pdblData[0];
         }
 
-        GetListRhsVar((int)stackPointer, 2, STRING_DATATYPE, &strNbRow, &strNbCol, &stringStackPointer);
-        if (strNbCol !=1)
+
+        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 1, &iRows, &iCols, NULL, NULL);
+        if (iRows * iCols != 1)
         {
             Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
             return SET_PROPERTY_ERROR;
         }
-        else
-        {
-            cbString = cstk(stringStackPointer);
-        }
+
+        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 1, &iRows, &iCols, &iLen, NULL);
+        cbString = (char*)MALLOC(sizeof(char) * iLen);
+        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 1, &iRows, &iCols, &iLen, &cbString);
     }
     else
     {
@@ -93,22 +97,23 @@ int set_callback_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 
     status = setGraphicObjectProperty(pobjUID, __GO_CALLBACK__, cbString, jni_string, 1);
 
+    if (cbString)
+    {
+        FREE(cbString);
+    }
+
     if (status != TRUE)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "Callback");
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_CALLBACKTYPE__, &cbType, jni_int, 1);
-
-    if (status == TRUE)
-    {
-        return SET_PROPERTY_SUCCEED;
-    }
-    else
+    if (setGraphicObjectProperty(pobjUID, __GO_CALLBACKTYPE__, &cbType, jni_int, 1) == FALSE)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "callback_type");
         return SET_PROPERTY_ERROR;
     }
+
+    return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

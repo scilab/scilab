@@ -15,7 +15,7 @@
 
 #include "SetUicontrolBackgroundColor.hxx"
 #include "stack-c.h"
-int SetUicontrolBackgroundColor(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolBackgroundColor(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Color can be [R, G, B] or "R|G|B" */
 
@@ -33,7 +33,7 @@ int SetUicontrolBackgroundColor(void* _pvCtx, char* sciObjUID, size_t stackPoint
         }
 
         allColors = new double[3];
-        nbValues = sscanf(getStringFromStack(stackPointer), "%lf|%lf|%lf", &allColors[0], &allColors[1], &allColors[2]);
+        nbValues = sscanf((char*)_pvData, "%lf|%lf|%lf", &allColors[0], &allColors[1], &allColors[2]);
 
         if (nbValues != 3)
         {
@@ -52,7 +52,7 @@ int SetUicontrolBackgroundColor(void* _pvCtx, char* sciObjUID, size_t stackPoint
             return SET_PROPERTY_ERROR;
         }
 
-        allColors = stk(stackPointer);
+        allColors = (double*)_pvData;
 
     }
     else

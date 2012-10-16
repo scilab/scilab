@@ -32,7 +32,7 @@
 #define MAX_MARK_STYLE 14
 
 /*------------------------------------------------------------------------*/
-int set_mark_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_mark_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int status1 = 0;
 
@@ -42,15 +42,15 @@ int set_mark_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     int markMode = 1;
     int markStyle = 0;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "mark_style");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    markStyle = (int) getDoubleFromStack(stackPointer);
+    markStyle = (int)((double*)_pvData)[0];
 
-    if (markStyle < 0 || markStyle > MAX_MARK_STYLE )
+    if (markStyle < 0 || markStyle > MAX_MARK_STYLE)
     {
         Scierror(999, _("Wrong value for '%s' property: Must be between %d and %d.\n"), "mark_style", 0, MAX_MARK_STYLE);
         return SET_PROPERTY_ERROR;
@@ -69,6 +69,6 @@ int set_mark_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
         status1 = SET_PROPERTY_ERROR;
     }
 
-    return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 );
+    return sciSetFinalStatus((SetPropertyStatus)status1, (SetPropertyStatus)status2);
 }
 /*------------------------------------------------------------------------*/

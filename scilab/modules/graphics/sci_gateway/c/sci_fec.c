@@ -32,26 +32,28 @@ int sci_fec(char *fname, unsigned long fname_len)
     SciErr sciErr;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, mn1 = 0;
 
-    static rhs_opts opts[] = { { -1, "colminmax", "?", 0, 0, 0},
-        { -1, "colout", "?", 0, 0, 0},
-        { -1, "leg", "?", 0, 0, 0},
-        { -1, "mesh", "?", 0, 0, 0},
-        { -1, "nax", "?", 0, 0, 0},
-        { -1, "rect", "?", 0, 0, 0},
-        { -1, "strf", "?", 0, 0, 0},
-        { -1, "zminmax", "?", 0, 0, 0},
-        { -1, NULL, NULL, 0, 0}
-    } ;
+    static rhs_opts opts[] =
+    {
+        { -1, "colminmax", -1, 0, 0, NULL},
+        { -1, "colout", -1, 0, 0, NULL},
+        { -1, "leg", -1, 0, 0, NULL},
+        { -1, "mesh", -1, 0, 0, NULL},
+        { -1, "nax", -1, 0, 0, NULL},
+        { -1, "rect", -1, 0, 0, NULL},
+        { -1, "strf", -1, 0, 0, NULL},
+        { -1, "zminmax", -1, 0, 0, NULL},
+        { -1, NULL, -1, 0, 0, NULL}
+    };
 
-    char* strf      = NULL ;
-    char* legend    = NULL ;
-    double* rect    = NULL ;
-    double* zminmax = NULL ;
-    int* colminmax  = NULL ;
-    int* nax        = NULL ;
-    int* colOut     = NULL ;
-    BOOL flagNax    = FALSE ;
-    BOOL withMesh   = FALSE ;
+    char* strf      = NULL;
+    char* legend    = NULL;
+    double* rect    = NULL;
+    double* zminmax = NULL;
+    int* colminmax  = NULL;
+    int* nax        = NULL;
+    int* colOut     = NULL;
+    BOOL flagNax    = FALSE;
+    BOOL withMesh   = FALSE;
 
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
@@ -71,13 +73,13 @@ int sci_fec(char *fname, unsigned long fname_len)
 
     CheckInputArgument(pvApiCtx, 4, 12);
 
-    if ( get_optionals(fname, opts) == 0)
+    if (getOptionals(pvApiCtx, fname, opts) == 0)
     {
         ReturnArguments(pvApiCtx);
         return 0;
     }
 
-    if ( FirstOpt() < 5)
+    if (FirstOpt() < 5)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 5);
         return -1;
@@ -173,29 +175,29 @@ int sci_fec(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    GetStrf(fname, 5, opts, &strf);
-    GetLegend(fname, 6, opts, &legend);
-    GetRect(fname, 7, opts, &rect);
-    GetNax(8, opts, &nax, &flagNax);
-    GetZminmax(fname, 9, opts, &zminmax);
-    GetColminmax(fname, 10, opts, &colminmax);
-    GetColOut(fname, 11, opts, &colOut);
-    GetWithMesh(fname, 12, opts, &withMesh);
+    GetStrf(pvApiCtx, fname, 5, opts, &strf);
+    GetLegend(pvApiCtx, fname, 6, opts, &legend);
+    GetRect(pvApiCtx, fname, 7, opts, &rect);
+    GetNax(pvApiCtx, 8, opts, &nax, &flagNax);
+    GetZminmax(pvApiCtx, fname, 9, opts, &zminmax);
+    GetColminmax(pvApiCtx, fname, 10, opts, &colminmax);
+    GetColOut(pvApiCtx, fname, 11, opts, &colOut);
+    GetWithMesh(pvApiCtx, fname, 12, opts, &withMesh);
 
     getOrCreateDefaultSubwin();
 
-    if ( isDefStrf ( strf ) )
+    if (isDefStrf (strf))
     {
         char strfl[4];
 
         strcpy(strfl, DEFSTRFN);
 
         strf = strfl;
-        if ( !isDefRect( rect ))
+        if (!isDefRect(rect))
         {
             strfl[1] = '7';
         }
-        if ( !isDefLegend( legend ) )
+        if (!isDefLegend(legend))
         {
             strfl[0] = '1';
         }

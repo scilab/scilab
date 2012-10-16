@@ -37,7 +37,7 @@ int get_callback_type_property(void* _pvCtx, char* pobjUID)
 
     if (piCallbackType == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"callback_type");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "callback_type");
         return FALSE;
     }
 

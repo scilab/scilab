@@ -33,18 +33,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_hidden_axis_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_hidden_axis_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int haColor = 0;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "hidden_axis_color");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    haColor = (int) getDoubleFromStack( stackPointer );
+    haColor = (int) ((double*)_pvData)[0];
 
     status = setGraphicObjectProperty(pobjUID, __GO_HIDDEN_AXIS_COLOR__, &haColor, jni_int, 1);
 

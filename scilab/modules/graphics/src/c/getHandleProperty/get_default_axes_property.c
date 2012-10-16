@@ -38,6 +38,6 @@ int get_default_axes_property(void* _pvCtx, char* pobjUID)
         return -1;
     }
 
-  return sciReturnHandle(_pvCtx, getHandle(getAxesModel()));
+    return sciReturnHandle(_pvCtx, getHandle(getAxesModel()));
 }
 /*--------------------------------------------------------------------------*/

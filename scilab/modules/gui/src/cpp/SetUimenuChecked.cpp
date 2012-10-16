@@ -12,12 +12,12 @@
 
 #include "SetUimenuChecked.hxx"
 
-int SetUimenuChecked(void* _pvCtx, char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUimenuChecked(void* _pvCtx, char *pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status = FALSE;
 
-    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "Checked");
+    b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "Checked");
     if (b == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;

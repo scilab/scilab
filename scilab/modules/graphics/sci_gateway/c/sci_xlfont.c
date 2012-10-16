@@ -29,7 +29,7 @@ static int xlfont_no_rhs(char * fname);
 static int xlfont_one_rhs(char * fname);
 static int xlfont_n_rhs(char * fname);
 /*--------------------------------------------------------------------------*/
-int sci_xlfont( char * fname, unsigned long fname_len )
+int sci_xlfont(char * fname, unsigned long fname_len)
 {
     CheckInputArgument(pvApiCtx, 0, 4);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -68,7 +68,7 @@ static int xlfont_no_rhs(char * fname)
 
     freeArrayOfString(fontsname, nbElements);
 
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1 ;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);
     return 0;
 }
@@ -97,7 +97,7 @@ static int xlfont_one_rhs(char * fname)
             return 1;
         }
 
-        if ( strcmp(strl1, "AVAILABLE_FONTS") == 0)
+        if (strcmp(strl1, "AVAILABLE_FONTS") == 0)
         {
             int nbElements = 0;
             char **fontsname = getAvailableFontsName(&nbElements);
@@ -114,7 +114,7 @@ static int xlfont_one_rhs(char * fname)
 
             freeArrayOfString(fontsname, nbElements);
             freeAllocatedSingleString(strl1);
-            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1 ;
+            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
             ReturnArguments(pvApiCtx);
             return 0;
         }
@@ -122,7 +122,7 @@ static int xlfont_one_rhs(char * fname)
         {
             resetFontManager();
             freeAllocatedSingleString(strl1);
-            AssignOutputVariable(pvApiCtx, 1) = 0 ;
+            AssignOutputVariable(pvApiCtx, 1) = 0;
             ReturnArguments(pvApiCtx);
             return 0;
         }
@@ -143,10 +143,10 @@ static int xlfont_one_rhs(char * fname)
                     return 1;
                 }
 
-                l1[0] = fontID ;
+                l1[0] = fontID;
 
                 freeAllocatedSingleString(strl1);
-                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1 ;
+                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
                 ReturnArguments(pvApiCtx);
                 return 0;
             }
@@ -165,10 +165,10 @@ static int xlfont_one_rhs(char * fname)
                     return 1;
                 }
 
-                l1[0] = (double)fontID ;
+                l1[0] = fontID;
 
                 freeAllocatedSingleString(strl1);
-                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1 ;
+                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
                 ReturnArguments(pvApiCtx);
                 return 0;
             }
@@ -195,12 +195,12 @@ static int xlfont_n_rhs(char * fname)
     BOOL isBold = FALSE;
     BOOL isItalic = FALSE;
 
-    if ( nbInputArgument(pvApiCtx) == 3 )
+    if (nbInputArgument(pvApiCtx) == 3)
     {
         int m3 = 0, n3 = 0;
         int* piAddrl3 = NULL;
         int* l3 = NULL;
-        if ((!checkInputArgumentType(pvApiCtx, 3, sci_boolean)) )
+        if ((!checkInputArgumentType(pvApiCtx, 3, sci_boolean)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
             return 0;
@@ -225,12 +225,12 @@ static int xlfont_n_rhs(char * fname)
         isBold = (BOOL) * l3;
     }
 
-    if ( nbInputArgument(pvApiCtx) == 4 )
+    if (nbInputArgument(pvApiCtx) == 4)
     {
         int m4 = 0, n4 = 0;
         int* piAddrl4 = NULL;
         int* l4 = NULL;
-        if ((!checkInputArgumentType(pvApiCtx, 4, sci_boolean)) )
+        if ((!checkInputArgumentType(pvApiCtx, 4, sci_boolean)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
             return 0;
@@ -295,7 +295,7 @@ static int xlfont_n_rhs(char * fname)
             return 1;
         }
 
-        if ( (m2 == 1) && (n2 == 1) )
+        if ((m2 == 1) && (n2 == 1))
         {
             int fontIndex = (int)l2[0];
             char *fontname = strl1;
@@ -305,7 +305,7 @@ static int xlfont_n_rhs(char * fname)
                 return 0;
             }
 
-            if ( (nbInputArgument(pvApiCtx) == 2) && FileExist(fontname) )
+            if ((nbInputArgument(pvApiCtx) == 2) && FileExist(fontname))
             {
                 int Id = changeFontFromFilename(fontIndex, fontname);
                 m1 = 1;
@@ -319,12 +319,12 @@ static int xlfont_n_rhs(char * fname)
                     return 1;
                 }
 
-                l1[0] = Id ;
+                l1[0] = Id;
 
-                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1 ;
+                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
                 ReturnArguments(pvApiCtx);
             }
-            else if ( isAvailableFontsName(fontname) )
+            else if (isAvailableFontsName(fontname))
             {
                 int Id = changeFontWithProperty(fontIndex, fontname, isBold, isItalic);
                 m1 = 1;
@@ -340,7 +340,7 @@ static int xlfont_n_rhs(char * fname)
 
                 l1[0] = Id;
 
-                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1 ;
+                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
                 ReturnArguments(pvApiCtx);
             }
             else
@@ -357,13 +357,13 @@ static int xlfont_n_rhs(char * fname)
     }
     else
     {
-        if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)) )
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
             return 0;
         }
 
-        if ((checkInputArgumentType(pvApiCtx, 2, sci_matrix)) )
+        if ((checkInputArgumentType(pvApiCtx, 2, sci_matrix)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Non-negative int expected.\n"), fname, 2);
             return 0;

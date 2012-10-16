@@ -33,12 +33,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_zoom_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_zoom_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int iType = -1;
     int *piType = &iType;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "zoom_box");
         return SET_PROPERTY_ERROR;
@@ -53,15 +53,15 @@ int set_zoom_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     }
 
     /* We must have a 4x1 matrix */
-    if ( nbRow * nbCol == 6 )
+    if (nbRow * nbCol == 6)
     {
-        return sciZoom3D(pobjUID, stk(stackPointer));
+        return sciZoom3D(pobjUID, (double*)_pvData);
     }
-    else if ( nbRow * nbCol == 4)
+    else if (nbRow * nbCol == 4)
     {
-        return sciZoom2D(pobjUID, stk(stackPointer));
+        return sciZoom2D(pobjUID, (double*)_pvData);
     }
-    else if ( nbCol * nbRow == 0 )
+    else if (nbCol * nbRow == 0)
     {
         sciUnzoomSubwin(pobjUID);
     }

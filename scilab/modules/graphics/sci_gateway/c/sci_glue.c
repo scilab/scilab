@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 #include "CurrentObject.h"
 /*--------------------------------------------------------------------------*/
-int sci_glue( char * fname, unsigned long fname_len )
+int sci_glue(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -45,7 +45,7 @@ int sci_glue( char * fname, unsigned long fname_len )
     long long* outindex = NULL;
 
     int numrow = 0, numcol = 0, n = 0, cx1 = 1;
-    long *handelsvalue = NULL ;
+    long *handelsvalue = NULL;
     int i = 0;
 
     char *pstCompoundUID = NULL;

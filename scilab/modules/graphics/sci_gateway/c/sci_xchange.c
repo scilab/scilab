@@ -25,7 +25,7 @@
 #define VIEWING_RECT_SIZE 4
 
 /*--------------------------------------------------------------------------*/
-int sci_xchange( char * fname, unsigned long fname_len )
+int sci_xchange(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -43,8 +43,8 @@ int sci_xchange( char * fname, unsigned long fname_len )
     int one  = 1;
     int * xPixCoords = NULL;
     int * yPixCoords = NULL;
-    double * xCoords = NULL;
-    double * yCoords = NULL;
+    double* xCoords = NULL;
+    double* yCoords = NULL;
     int viewingRect[VIEWING_RECT_SIZE];
 
     CheckInputArgument(pvApiCtx, 3, 3);
@@ -65,7 +65,7 @@ int sci_xchange( char * fname, unsigned long fname_len )
     }
 
     /* Convert coordinates */
-    if ( strcmp(l3Input, "i2f") == 0)
+    if (strcmp(l3Input, "i2f") == 0)
     {
         int* l1 = NULL;
         int* l2 = NULL;
@@ -142,7 +142,7 @@ int sci_xchange( char * fname, unsigned long fname_len )
         xCoords = (l3);
         yCoords = (l4);
 
-        convertPixelCoordsToUserCoords(xPixCoords, yPixCoords, xCoords, yCoords, m1 * n1, viewingRect );
+        convertPixelCoordsToUserCoords(xPixCoords, yPixCoords, xCoords, yCoords, m1 * n1, viewingRect);
     }
     else
     {

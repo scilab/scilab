@@ -30,27 +30,27 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_isoview_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_isoview_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-	BOOL status = FALSE;
-	int b =  (int)FALSE;
+    BOOL status = FALSE;
+    int b =  (int)FALSE;
 
-	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "isoview");
-	if(b == NOT_A_BOOLEAN_VALUE)
+    b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "isoview");
+    if (b == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
     }
 
-	status = setGraphicObjectProperty(pobjUID, __GO_ISOVIEW__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_ISOVIEW__, &b, jni_bool, 1);
 
-	if (status == TRUE)
-	{
-		return SET_PROPERTY_SUCCEED;
-	}
-	else
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"isoview") ;
-		return SET_PROPERTY_ERROR;
-	}
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "isoview");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

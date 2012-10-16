@@ -39,7 +39,7 @@ int get_font_foreground_property(void* _pvCtx, char* pobjUID)
 
     if (fontColor == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"font_foreground");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_foreground");
         return -1;
     }
 

@@ -119,7 +119,7 @@ unsigned long getHandleFromStack(size_t stackPointer)
 }
 
 /*--------------------------------------------------------------------------*/
-int callSetProperty(void* _pvCtx, char *pObj, size_t stackPointer, int valueType, int nbRow, int nbCol, char *propertyName)
+int callSetProperty(void* _pvCtx, char *pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char * propertyName)
 {
     return -1;
 }

@@ -43,9 +43,9 @@
 #include "sciprint.h"
 
 /*--------------------------------------------------------------------------*/
-int xsetg(char * str, char * str1, int lx0, int lx1) ;
+int xsetg(char * str, char * str1, int lx0, int lx1);
 /*--------------------------------------------------------------------------*/
-int sci_xset( char *fname, unsigned long fname_len )
+int sci_xset(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -59,7 +59,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     int m1 = 0, m2 = 0, xm[5], xn[5], x[5] = {0, 0, 0, 0, 0}, i = 0, v = 0;
     double  xx[5] = {0.0, 0.0, 0.0, 0.0, 0.0};
     char * subwinUID = NULL;
-    BOOL keyFound = FALSE ;
+    BOOL keyFound = FALSE;
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
@@ -85,16 +85,16 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
 
 
-    for ( i = 0 ; i < NUMSETFONC ; i++ )
+    for (i = 0 ; i < NUMSETFONC ; i++)
     {
-        if ( strcmp(l1, KeyTab_[i]) == 0 )
+        if (strcmp(l1, KeyTab_[i]) == 0)
         {
-            keyFound = TRUE ;
-            break ;
+            keyFound = TRUE;
+            break;
         }
     }
 
-    if ( !keyFound )
+    if (!keyFound)
     {
         Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, (l1));
         return 0;
@@ -102,7 +102,7 @@ int sci_xset( char *fname, unsigned long fname_len )
 
     /* Allan CORNET Avril 2004 */
     /* Bloque la commande xset('window') sans numero de fenetre */
-    if (nbInputArgument(pvApiCtx) == 1 && (strcmp((l1), "window") == 0) )
+    if (nbInputArgument(pvApiCtx) == 1 && (strcmp((l1), "window") == 0))
     {
         Scierror(999, _("%s : '%s' must be set\n"), fname, "window-number");
         return 0;
@@ -137,7 +137,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         xsetg((l1), "void", m1, 4L);
     }
 
-    for ( i = 2 ; i <= nbInputArgument(pvApiCtx) ; i++ )
+    for (i = 2 ; i <= nbInputArgument(pvApiCtx) ; i++)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddrlr);
         if (sciErr.iErr)
@@ -162,7 +162,7 @@ int sci_xset( char *fname, unsigned long fname_len )
     if (strcmp((l1), "wdim") == 0 || strcmp((l1), "wpdim") == 0)
     {
         /* Xwindows limits dimensions to 2^16 */
-        if ( (x[0] > 65535) || (x[1] > 65535))
+        if ((x[0] > 65535) || (x[1] > 65535))
         {
             x[0] = Min(x[0], 65535);
             x[1] = Min(x[1], 65535);
@@ -219,14 +219,14 @@ int sci_xset( char *fname, unsigned long fname_len )
         setGraphicObjectProperty(subwinUID, __GO_CLIP_BOX__, xx, jni_double_vector, 4);
         setGraphicObjectProperty(subwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
     }
-    else if ( strcmp((l1), "colormap") == 0)
+    else if (strcmp((l1), "colormap") == 0)
     {
         char *pFigureUID = NULL;
         getOrCreateDefaultSubwin();
         pFigureUID = (char*)getCurrentFigure();
         setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, (lr), jni_double_vector, *xm * (*xn));
     }
-    else if ( strcmp((l1), "mark size") == 0)
+    else if (strcmp((l1), "mark size") == 0)
     {
         int markSize = (int) xx[0];
         int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
@@ -235,7 +235,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
     }
-    else if ( strcmp((l1), "mark") == 0)
+    else if (strcmp((l1), "mark") == 0)
     {
         int markStyle = (int) xx[0];
         int markSize = (int) xx[1];
@@ -252,13 +252,13 @@ int sci_xset( char *fname, unsigned long fname_len )
         setGraphicObjectProperty(subwinUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
     }
-    else if ( strcmp((l1), "font size") == 0)
+    else if (strcmp((l1), "font size") == 0)
     {
         double fontSize = xx[0];
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
     }
-    else if ( strcmp((l1), "default") == 0 )
+    else if (strcmp((l1), "default") == 0)
     {
         // default color map
         unsigned short defcolors[] =
@@ -392,26 +392,26 @@ int sci_xset( char *fname, unsigned long fname_len )
         setGraphicObjectProperty(pFigureUID, __GO_PARENT__, "", jni_string, 1);
 
     }
-    else if ( strcmp((l1), "clipgrf") == 0 )
+    else if (strcmp((l1), "clipgrf") == 0)
     {
         int clipState = 1;
         /* special treatement for xset("cligrf") */
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, &clipState, jni_int, 1);
     }
-    else if ( strcmp((l1), "clipoff") == 0 )
+    else if (strcmp((l1), "clipoff") == 0)
     {
         int clipState = 0;
         /* special treatement for xset("clipoff") */
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_CLIP_STATE__, &clipState, jni_int, 1);
     }
-    else if ( strcmp((l1), "hidden3d") == 0 )
+    else if (strcmp((l1), "hidden3d") == 0)
     {
         /* special treatement for xset("hidden3d") */
         int hiddenColor = (int) x[0];
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
     }
-    else if ( strcmp((l1), "font") == 0)
+    else if (strcmp((l1), "font") == 0)
     {
         int fontStyle = (int) xx[0];
         double fontSize = xx[1];
@@ -424,7 +424,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
     }
-    else if ( strcmp((l1), "window") == 0 || strcmp((l1), "figure") == 0 )
+    else if (strcmp((l1), "window") == 0 || strcmp((l1), "figure") == 0)
     {
         // Find if window already exists, if not create a new one
         int iID = x[0];
@@ -437,51 +437,51 @@ int sci_xset( char *fname, unsigned long fname_len )
         }
         setCurrentFigure(pFigureUID);
     }
-    else if (( strcmp((l1), "foreground") == 0) || (strcmp((l1), "color") == 0) || ( strcmp((l1), "pattern") == 0) )
+    else if ((strcmp((l1), "foreground") == 0) || (strcmp((l1), "color") == 0) || (strcmp((l1), "pattern") == 0))
     {
         int iColor = (int) x[0];
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_COLOR__, &iColor, jni_int, 1);
     }
-    else if ( strcmp((l1), "background") == 0)
+    else if (strcmp((l1), "background") == 0)
     {
         int iColor = (int) x[0];
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_BACKGROUND__, &iColor, jni_int, 1);
     }
-    else if ( strcmp((l1), "thickness") == 0)
+    else if (strcmp((l1), "thickness") == 0)
     {
         sciSetLineWidth((char*)getOrCreateDefaultSubwin(), x[0]);
     }
-    else if ( strcmp((l1), "line style") == 0)
+    else if (strcmp((l1), "line style") == 0)
     {
         int lineStyle = (int) x[0];
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
     }
-    else if ( strcmp((l1), "mark") == 0)
+    else if (strcmp((l1), "mark") == 0)
     {
         int markMode = 1;
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_MARK_MODE__, &markMode, jni_bool, 1);
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_MARK_STYLE__, x, jni_int, 1);
     }
-    else if ( strcmp((l1), "colormap") == 0)
+    else if (strcmp((l1), "colormap") == 0)
     {
         getOrCreateDefaultSubwin();
         setGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP__, (lr), jni_double_vector, xm[0] * xn[0]);
     }
-    else if ( strcmp((l1), "dashes") == 0)
+    else if (strcmp((l1), "dashes") == 0)
     {
         int lineStyle = (int) x[0];
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
     }
-    else if ( strcmp((l1), "wresize") == 0)
+    else if (strcmp((l1), "wresize") == 0)
     {
         int iAutoResizeMode = x[0];
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTORESIZE__, &iAutoResizeMode, jni_bool, 1);
     }
-    else if ( strcmp((l1), "wpos") == 0)
+    else if (strcmp((l1), "wpos") == 0)
     {
         int figurePosition[2];
         if (nbInputArgument(pvApiCtx) != 2)
@@ -495,7 +495,7 @@ int sci_xset( char *fname, unsigned long fname_len )
         figurePosition[1] = x[1];
         setGraphicObjectProperty(getCurrentFigure(), __GO_POSITION__, figurePosition, jni_int_vector, 2);
     }
-    else if ( strcmp((l1), "wpdim") == 0 || strcmp((l1), "wdim") == 0)
+    else if (strcmp((l1), "wpdim") == 0 || strcmp((l1), "wdim") == 0)
     {
         int figureSize[2];
         if (nbInputArgument(pvApiCtx) != 2 && nbInputArgument(pvApiCtx) != 3)
@@ -509,14 +509,14 @@ int sci_xset( char *fname, unsigned long fname_len )
         figureSize[1] = x[1];
         setGraphicObjectProperty(getCurrentFigure(), __GO_SIZE__, figureSize, jni_int_vector, 2);
     } /*Ajout A.Djalel le 10/11/03 */
-    else if ( strcmp((l1), "pixmap") == 0)
+    else if (strcmp((l1), "pixmap") == 0)
     {
         int iPixmapMode = x[0];
         getOrCreateDefaultSubwin();
 
         setGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, &iPixmapMode, jni_bool, 1);
     }
-    else if ( strcmp((l1), "wshow") == 0)
+    else if (strcmp((l1), "wshow") == 0)
     {
         if (getWarningMode())
         {
@@ -569,11 +569,11 @@ int sci_xset( char *fname, unsigned long fname_len )
 /*--------------------------------------------------------------------------*/
 int xsetg(char * str, char * str1, int lx0, int lx1)
 {
-    if ( strcmp(str, "fpf") == 0)
+    if (strcmp(str, "fpf") == 0)
     {
         strcpy(getFPF(), str1);
     }
-    else if ( strcmp(str, "auto clear") == 0)
+    else if (strcmp(str, "auto clear") == 0)
     {
         int bAutoClear = (int) FALSE;
 
@@ -584,7 +584,7 @@ int xsetg(char * str, char * str1, int lx0, int lx1)
 
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, &bAutoClear, jni_bool, 1);
     }
-    else if ( strcmp(str, "default") == 0)
+    else if (strcmp(str, "default") == 0)
     {
         getFPF()[0] = '\0';
     }

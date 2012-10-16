@@ -17,7 +17,8 @@ src/cpp/api_sparse.cpp \
 src/cpp/api_string.cpp \
 src/cpp/api_pointer.cpp \
 src/cpp/api_handle.cpp \
-src/cpp/api_error.cpp
+src/cpp/api_error.cpp \
+src/cpp/api_optional.cpp
 
 
 libsciapi_scilab_la_CPPFLAGS=-I$(srcdir)/includes/ \

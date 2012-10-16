@@ -45,7 +45,7 @@ int sci_exportUI(char * fname, unsigned long fname_len)
             Scierror(999, _("%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
         }
 
-        pstFigureUID = getObjectFromHandle((unsigned long) * (hstk(stackPointer)));
+        pstFigureUID = (char*)getObjectFromHandle((unsigned long) * (hstk(stackPointer)));
 
         getGraphicObjectProperty(pstFigureUID, __GO_TYPE__, jni_int, (void **)&piHandleType);
         if (iHandleType == __GO_FIGURE__)

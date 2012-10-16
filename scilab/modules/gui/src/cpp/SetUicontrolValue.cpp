@@ -18,7 +18,7 @@
 #include "SetUicontrolValue.hxx"
 #include "stack-c.h"
 
-int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolValue(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     double *value = NULL;
     double* truncatedValue = NULL;
@@ -53,7 +53,7 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int va
             return SET_PROPERTY_ERROR;
         }
 
-        value = stk(stackPointer);
+        value = (double*)_pvData;
         valueSize = nbCol * nbRow;
     }
     else if (valueType == sci_strings) // Ascendant compatibility
@@ -67,7 +67,7 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int va
 
         value = new double[1];
         valueSize = 1;
-        nbValues = sscanf(getStringFromStack(stackPointer), "%lf", &value[0]);
+        nbValues = sscanf((char*)_pvData, "%lf", &value[0]);
 
         if (nbValues != 1)
         {

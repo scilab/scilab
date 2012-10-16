@@ -36,19 +36,19 @@
 #define DEFAULT_ANGLE 0.0
 
 /*--------------------------------------------------------------------------*/
-static int getScalarFromStack(int paramIndex, char * funcName, double * res);
+static int getScalarFromStack(int paramIndex, char * funcName, double* res);
 /*--------------------------------------------------------------------------*/
-static int getScalarFromStack(int paramIndex, char * funcName, double * res)
+static int getScalarFromStack(int paramIndex, char * funcName, double* res)
 {
     SciErr sciErr;
     int m = 0;
     int n = 0;
     int* piAddrstackPointer = NULL;
     double* stackPointer = NULL;
-    if ((!checkInputArgumentType(pvApiCtx, paramIndex, sci_matrix)) )
+    if ((!checkInputArgumentType(pvApiCtx, paramIndex, sci_matrix)))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), funcName, paramIndex);
-        return -1 ;
+        return -1;
     }
 
     /* get the handle */
@@ -69,17 +69,17 @@ static int getScalarFromStack(int paramIndex, char * funcName, double * res)
     }
 
 
-    if ( m * n != 1 )
+    if (m * n != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: Real scalar expected.\n"), funcName, paramIndex);
-        return -1 ;
+        return -1;
     }
 
     *res = *stackPointer;
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int sci_stringbox( char * fname, unsigned long fname_len )
+int sci_stringbox(char * fname, unsigned long fname_len)
 {
 
     SciErr sciErr;
@@ -98,9 +98,9 @@ int sci_stringbox( char * fname, unsigned long fname_len )
     int four  = 4;
     double corners[4][2]; /* the four edges of the boundingRect */
 
-    /* The function should be called with stringbox( handle ) */
-    CheckInputArgument(pvApiCtx,  1, 6 );
-    CheckOutputArgument(pvApiCtx,  0, 1 );
+    /* The function should be called with stringbox(handle) */
+    CheckInputArgument(pvApiCtx,  1, 6);
+    CheckOutputArgument(pvApiCtx,  0, 1);
 
     if (nbInputArgument(pvApiCtx) == 1)
     {
@@ -109,10 +109,10 @@ int sci_stringbox( char * fname, unsigned long fname_len )
         /* A text handle should be specified */
 
         char * pTextUID = NULL;
-        if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)) )
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
-            return 0 ;
+            return 0;
         }
 
         /* get the handle */
@@ -132,19 +132,19 @@ int sci_stringbox( char * fname, unsigned long fname_len )
             return 1;
         }
 
-        if ( m * n != 1 )
+        if (m * n != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
-            return 0 ;
+            return 0;
         }
 
         /* Get the handle and check that this is a text handle */
         pTextUID = (char*)getObjectFromHandle((long int) * stackPointer);
 
-        if ( pTextUID == NULL )
+        if (pTextUID == NULL)
         {
             Scierror(999, _("%s: The handle is not valid.\n"), fname);
-            return 0 ;
+            return 0;
         }
 
         getGraphicObjectProperty(pTextUID, __GO_TYPE__, jni_int, (void **)&piType);
@@ -181,7 +181,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
     else if (nbInputArgument(pvApiCtx) == 2)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d or %d to %d expected.\n"), fname, 1, 3, 6);
-        return 0 ;
+        return 0;
     }
     else
     {
@@ -201,10 +201,10 @@ int sci_stringbox( char * fname, unsigned long fname_len )
         getGraphicObjectProperty(parentSubwinUID, __GO_FONT_SIZE__, jni_double, (void **)&pfontSize);
 
         /* Check that first argument is a string */
-        if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)) )
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: 2D array of strings expected.\n"), fname, 1);
-            return 0 ;
+            return 0;
         }
         sciErr = getVarAddressFromPosition(pvApiCtx,  1, &piAddrstackPointer);
         if (sciErr.iErr)
@@ -292,7 +292,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
     pdblStackPointer[6] = corners[2][0];
     pdblStackPointer[7] = corners[2][1];
 
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1 ;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);
     return 0;
 }

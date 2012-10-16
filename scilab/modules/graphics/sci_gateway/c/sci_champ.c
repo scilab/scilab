@@ -42,18 +42,18 @@ int sci_champ_G(char *fname,
 {
     SciErr sciErr;
     double arfact_def = 1.0;
-    double * arfact = &arfact_def;
+    double* arfact = &arfact_def;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0;
     static rhs_opts opts[] =
     {
-        { -1, "arfact", "?", 0, 0, 0},
-        { -1, "rect", "?", 0, 0, 0},
-        { -1, "strf", "?", 0, 0, 0},
-        { -1, NULL, NULL, 0, 0}
+        { -1, "arfact", -1, 0, 0, NULL},
+        { -1, "rect", -1, 0, 0, NULL},
+        { -1, "strf", -1, 0, 0, NULL},
+        { -1, NULL, -1, 0, 0, NULL}
     };
 
-    char   * strf = NULL ;
-    double * rect = NULL ;
+    char   * strf = NULL;
+    double* rect = NULL;
 
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
@@ -65,8 +65,8 @@ int sci_champ_G(char *fname,
     double* l3 = NULL;
     double* l4 = NULL;
 
-    CheckInputArgument(pvApiCtx, -1, 7) ;
-    CheckOutputArgument(pvApiCtx, 0, 1) ;
+    CheckInputArgument(pvApiCtx, -1, 7);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
@@ -79,12 +79,12 @@ int sci_champ_G(char *fname,
         return 0;
     }
 
-    if (get_optionals(fname, opts) == 0)
+    if (getOptionals(pvApiCtx, fname, opts) == 0)
     {
         return 0;
     }
 
-    if ( FirstOpt() < 5 )
+    if (FirstOpt() < 5)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 5);
         return -1;
@@ -186,24 +186,24 @@ int sci_champ_G(char *fname,
         return 0;
     }
 
-    GetOptionalDoubleArg(fname, 5, "arfact", &arfact, 1, opts);
-    GetRect(fname, 6, opts, &rect);
-    GetStrf(fname, 7, opts, &strf);
+    GetOptionalDoubleArg(pvApiCtx, fname, 5, "arfact", &arfact, 1, opts);
+    GetRect(pvApiCtx, fname, 6, opts, &rect);
+    GetStrf(pvApiCtx, fname, 7, opts, &strf);
 
     getOrCreateDefaultSubwin();
 
-    if ( isDefStrf( strf ) )
+    if (isDefStrf(strf))
     {
         char strfl[4];
         strcpy(strfl, DEFSTRFN);
         strf = strfl;
-        if ( !isDefRect( rect ) )
+        if (!isDefRect(rect))
         {
             strf[1] = '5';
         }
     }
 
-    (*func)((l1 ), (l2 ), (l3 ), (l4 ), &m3, &n3, strf, rect, arfact, 4L);
+    (*func)((l1), (l2), (l3), (l4), &m3, &n3, strf, rect, arfact, 4L);
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     return 0;

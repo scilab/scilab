@@ -39,7 +39,7 @@ int get_colored_property(void* _pvCtx, char* pobjUID)
 
     if (piColored == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"colored");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "colored");
         return -1;
     }
 

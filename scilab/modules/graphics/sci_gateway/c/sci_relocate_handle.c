@@ -25,7 +25,7 @@
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 
-int sci_relocate_handle( char * fname, unsigned long fname_len )
+int sci_relocate_handle(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -42,14 +42,14 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
     int parentRow = 0;
     int i = 0;
 
-    long children = 0 ;
+    long children = 0;
     char* childrenID = NULL;
-    long parent = 0 ;
+    long parent = 0;
     char* parentID = NULL;
 
-    /* the function should be called with relocate_handle( handle, parent_handle ) */
-    CheckInputArgument(pvApiCtx, 2, 2) ;
-    CheckOutputArgument(pvApiCtx, 0, 1) ;
+    /* the function should be called with relocate_handle(handle, parent_handle) */
+    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
 
     sciErr = getVarAddressFromPosition(pvApiCtx,  1, &piAddrhandleStkIndex);
@@ -68,7 +68,7 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
         return 1;
     }
 
-    nbHandle = handleRow * handleCol ;
+    nbHandle = handleRow * handleCol;
     sciErr = getVarAddressFromPosition(pvApiCtx,  2, &piAddrparentStkIndex);
     if (sciErr.iErr)
     {
@@ -89,7 +89,7 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
     if (parentCol * parentRow != 1)
     {
         Scierror(999, _("%s: Handles must be relocated under a single parent.\n"), fname);
-        return 0 ;
+        return 0;
     }
 
     parent = (long) * (parentStkIndex);
@@ -110,10 +110,10 @@ int sci_relocate_handle( char * fname, unsigned long fname_len )
         return 1;
     }
 
-    *(outIndex) = *(handleStkIndex) ;
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1 ;
+    *(outIndex) = *(handleStkIndex);
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);
-    return 0 ;
+    return 0;
 
 }
 /*--------------------------------------------------------------------------*/

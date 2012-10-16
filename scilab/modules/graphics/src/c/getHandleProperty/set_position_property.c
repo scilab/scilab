@@ -35,7 +35,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int type = -1;
     int *piType = &type;
@@ -45,14 +45,14 @@ int set_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 
     if (type == __GO_UICONTROL__ || type == __GO_FIGURE__)
     {
-        return SetUicontrolPosition(pobjUID, stackPointer, valueType, nbRow, nbCol);
+        return SetUicontrolPosition(pobjUID, _pvData, valueType, nbRow, nbCol);
     }
 
     /* Type test required since a position set requires a 3-element, and 2-element vector
     for respectively the Label and Legend */
     if (type == __GO_LABEL__)
     {
-        double* values = stk( stackPointer );
+        double* values = (double*)_pvData;
         double* currentPosition;
         double labelPosition[3];
 
@@ -77,7 +77,7 @@ int set_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     }
     else if (type == __GO_LEGEND__)
     {
-        double * values = stk( stackPointer );
+        double* values = (double*)_pvData;
 
         status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, values, jni_double_vector, 2);
 

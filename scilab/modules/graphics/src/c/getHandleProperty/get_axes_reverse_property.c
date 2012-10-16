@@ -35,54 +35,54 @@
 /*------------------------------------------------------------------------*/
 int get_axes_reverse_property(void* _pvCtx, char* pobjUID)
 {
-  char* axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};
-  char * axes_reverse[3]  = { NULL, NULL, NULL };
-  int iAxesReverse = 0;
-  int* piAxesReverse = &iAxesReverse;
+    int axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};
+    char * axes_reverse[3]  = { NULL, NULL, NULL };
+    int iAxesReverse = 0;
+    int* piAxesReverse = &iAxesReverse;
 
-  int i = 0;
-  int j = 0;
-  int status = -1;
+    int i = 0;
+    int j = 0;
+    int status = -1;
 
-  for ( i = 0 ; i < 3 ; i++ )
-  {
-      getGraphicObjectProperty(pobjUID, axesReversePropertiesNames[i], jni_bool, (void **)&piAxesReverse);
+    for (i = 0 ; i < 3 ; i++)
+    {
+        getGraphicObjectProperty(pobjUID, axesReversePropertiesNames[i], jni_bool, (void **)&piAxesReverse);
 
-      if (piAxesReverse == NULL)
-      {
-          Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_reverse");
-          return -1;
-      }
+        if (piAxesReverse == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_reverse");
+            return -1;
+        }
 
-      if (iAxesReverse)
-      {
-          axes_reverse[i] = strdup("on");
-      }
-      else
-      {
-          axes_reverse[i] = strdup("off");
-      }
+        if (iAxesReverse)
+        {
+            axes_reverse[i] = strdup("on");
+        }
+        else
+        {
+            axes_reverse[i] = strdup("off");
+        }
 
-      if (axes_reverse[i] == NULL)
-      {
-          for ( j = 0 ; j < i ; j++ )
-          {
-              FREE(axes_reverse[j]);
-          }
+        if (axes_reverse[i] == NULL)
+        {
+            for (j = 0 ; j < i ; j++)
+            {
+                FREE(axes_reverse[j]);
+            }
 
-          Scierror(999, _("%s: No more memory.\n"),"get_axes_reverse_property");
-          return -1;
-      }
+            Scierror(999, _("%s: No more memory.\n"), "get_axes_reverse_property");
+            return -1;
+        }
 
-  }
+    }
 
-  status = sciReturnRowStringVector(_pvCtx, axes_reverse, 3);
+    status = sciReturnRowStringVector(_pvCtx, axes_reverse, 3);
 
-  for ( i = 0 ; i < 3 ; i++ )
-  {
-      FREE( axes_reverse[i] );
-  }
+    for (i = 0 ; i < 3 ; i++)
+    {
+        FREE(axes_reverse[i]);
+    }
 
-  return status;
+    return status;
 }
 /*------------------------------------------------------------------------*/

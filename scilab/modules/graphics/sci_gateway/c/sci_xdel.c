@@ -43,7 +43,7 @@ int sci_xdel(char *fname, unsigned long fname_len)
     if (nbInputArgument(pvApiCtx) >= 1)
     {
         int i = 0;
-        double * windowNumbers = NULL;
+        double* windowNumbers = NULL;
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
         if (sciErr.iErr)
         {
@@ -74,7 +74,7 @@ int sci_xdel(char *fname, unsigned long fname_len)
 
         for (i = 0; i < m1 * n1 ; i++)
         {
-            sciDeleteWindow( (int) windowNumbers[i] ) ;
+            sciDeleteWindow((int) windowNumbers[i]);
         }
     }
     else

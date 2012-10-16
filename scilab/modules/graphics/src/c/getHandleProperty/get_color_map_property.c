@@ -39,7 +39,7 @@ int get_color_map_property(void* _pvCtx, char* pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_COLORMAP_SIZE__, jni_int, (void **)&piCmapSize);
     getGraphicObjectProperty(pobjUID, __GO_COLORMAP__, jni_double_vector, (void **)&pdblColorMap);
-    if ( pdblColorMap == NULL )
+    if (pdblColorMap == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_map");
         return -1;

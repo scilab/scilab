@@ -33,15 +33,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_interp_color_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_interp_color_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int b =  (int)FALSE;
     int iInterpColorVectorSet = 0;
     int* piInterpColorVectorSet = &iInterpColorVectorSet;
 
-    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "interp_color_mode");
-    if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+    b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "interp_color_mode");
+    if (b == NOT_A_BOOLEAN_VALUE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
 
     if (b == TRUE)
     {
@@ -49,7 +52,7 @@ int set_interp_color_mode_property(void* _pvCtx, char* pobjUID, size_t stackPoin
 
         if (piInterpColorVectorSet == NULL)
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_mode");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "interp_color_mode");
             return SET_PROPERTY_ERROR;
         }
 
@@ -68,7 +71,7 @@ int set_interp_color_mode_property(void* _pvCtx, char* pobjUID, size_t stackPoin
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "interp_color_mode");
         return SET_PROPERTY_ERROR;
     }
 }

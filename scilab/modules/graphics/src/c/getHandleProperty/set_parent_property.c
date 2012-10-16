@@ -35,7 +35,7 @@
 #include "FigureList.h"
 
 /*------------------------------------------------------------------------*/
-int set_parent_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_parent_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     char *pstParentUID = NULL;
     int iParentType = -1;
@@ -51,11 +51,11 @@ int set_parent_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int va
     {
         if (valueType == sci_handles)
         {
-            pstParentUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer));
+            pstParentUID = (char*)getObjectFromHandle((long)((long long*)_pvData)[0]);
         }
         else if (valueType == sci_matrix)
         {
-            pstParentUID = (char*)getFigureFromIndex((int)getDoubleMatrixFromStack(stackPointer)[0]);
+            pstParentUID = (char*)getFigureFromIndex((int)((double*)_pvData)[0]);
         }
         else
         {
@@ -95,7 +95,7 @@ int set_parent_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int va
         }
         else
         {
-            return setMenuParent(pobjUID, stackPointer, valueType, nbRow, nbCol);
+            return setMenuParent(pobjUID, _pvData, valueType, nbRow, nbCol);
         }
     }
     else

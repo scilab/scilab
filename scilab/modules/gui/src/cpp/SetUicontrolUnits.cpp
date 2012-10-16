@@ -23,7 +23,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolUnits(void* _pvCtx, char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolUnits(void* _pvCtx, char *sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Units can be points, normalized, inches, centimeters or pixels */
     BOOL status = FALSE;
@@ -41,20 +41,20 @@ int SetUicontrolUnits(void* _pvCtx, char *sciObjUID, size_t stackPointer, int va
 
     if (valueType == sci_strings)
     {
-        if(nbCol != 1 || nbRow == 0)
+        if (nbCol != 1 || nbRow == 0)
         {
             /* Wrong string size */
             Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Units", "points", "normalized", "inches", "centimeters", "pixels");
             return SET_PROPERTY_ERROR;
         }
 
-        units = getStringFromStack(stackPointer);
+        units = (char*)_pvData;
 
         if (stricmp(units, "points") != 0
-            && stricmp(units, "normalized") != 0
-            && stricmp(units, "inches") != 0
-            && stricmp(units, "centimeters") != 0
-            && stricmp(units, "pixels") != 0)
+                && stricmp(units, "normalized") != 0
+                && stricmp(units, "inches") != 0
+                && stricmp(units, "centimeters") != 0
+                && stricmp(units, "pixels") != 0)
         {
             /* Wrong string value */
             Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Units", "points", "normalized", "inches", "centimeters", "pixels");

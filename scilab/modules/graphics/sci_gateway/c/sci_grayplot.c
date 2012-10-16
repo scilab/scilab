@@ -27,7 +27,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_grayplot( char *fname, unsigned long fname_len )
+int sci_grayplot(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int frame_def = 8;
@@ -35,18 +35,20 @@ int sci_grayplot( char *fname, unsigned long fname_len )
     int axes_def = 1;
     int *axes = &axes_def;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0;
-    static rhs_opts opts[] = { { -1, "axesflag", "?", 0, 0, 0},
-        { -1, "frameflag", "?", 0, 0, 0},
-        { -1, "nax", "?", 0, 0, 0},
-        { -1, "rect", "?", 0, 0, 0},
-        { -1, "strf", "?", 0, 0, 0},
-        { -1, NULL, NULL, 0, 0}
+    static rhs_opts opts[] =
+    {
+        { -1, "axesflag", -1, 0, 0, NULL},
+        { -1, "frameflag", -1, 0, 0, NULL},
+        { -1, "nax", -1, 0, 0, NULL},
+        { -1, "rect", -1, 0, 0, NULL},
+        { -1, "strf", -1, 0, 0, NULL},
+        { -1, NULL, -1, 0, 0, NULL}
     };
 
-    char   * strf    = NULL  ;
-    double * rect    = NULL  ;
-    int    * nax     = NULL  ;
-    BOOL     flagNax = FALSE ;
+    char   * strf    = NULL ;
+    double* rect    = NULL ;
+    int    * nax     = NULL ;
+    BOOL     flagNax = FALSE;
 
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
@@ -63,13 +65,13 @@ int sci_grayplot( char *fname, unsigned long fname_len )
     }
     CheckInputArgument(pvApiCtx, 3, 7);
 
-    if ( get_optionals(fname, opts) == 0)
+    if (getOptionals(pvApiCtx, fname, opts) == 0)
     {
         ReturnArguments(pvApiCtx);
-        return 0 ;
+        return 0;
     }
 
-    if ( FirstOpt() < 4)
+    if (FirstOpt() < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
                  fname, 1, 4);
@@ -162,30 +164,30 @@ int sci_grayplot( char *fname, unsigned long fname_len )
     }
 
 
-    GetStrf(fname, 4, opts, &strf);
-    GetRect(fname, 5, opts, &rect);
-    GetNax(6, opts, &nax, &flagNax);
+    GetStrf(pvApiCtx, fname, 4, opts, &strf);
+    GetRect(pvApiCtx, fname, 5, opts, &rect);
+    GetNax(pvApiCtx, 6, opts, &nax, &flagNax);
 
     getOrCreateDefaultSubwin();
 
-    if ( isDefStrf( strf ) )
+    if (isDefStrf(strf))
     {
         char strfl[4];
 
         strcpy(strfl, DEFSTRFN);
 
         strf = strfl;
-        if ( !isDefRect( rect ) )
+        if (!isDefRect(rect))
         {
             strfl[1] = '7';
         }
 
-        GetOptionalIntArg(fname, 7, "frameflag", &frame, 1, opts);
+        GetOptionalIntArg(pvApiCtx, fname, 7, "frameflag", &frame, 1, opts);
         if (frame != &frame_def)
         {
             strfl[1] = (char)(*frame + 48);
         }
-        GetOptionalIntArg(fname, 7, "axesflag", &axes, 1, opts);
+        GetOptionalIntArg(pvApiCtx, fname, 7, "axesflag", &axes, 1, opts);
         if (axes != &axes_def)
         {
             strfl[2] = (char)(*axes + 48);

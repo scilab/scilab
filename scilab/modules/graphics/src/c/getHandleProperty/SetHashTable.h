@@ -26,12 +26,12 @@
  * create the fill hash table already filled for set functions
  * this use the singleton pattern since only one hashtable is useful.
  */
-GRAPHICS_IMPEXP SetPropertyHashTable * createScilabSetHashTable( void ) ;
+GRAPHICS_IMPEXP SetPropertyHashTable * createScilabSetHashTable(void);
 
 /**
  * Delete the scilab set hashtable
  */
-GRAPHICS_IMPEXP void destroyScilabSetHashTable( void ) ;
+GRAPHICS_IMPEXP void destroyScilabSetHashTable(void);
 
 /**
  * call the function which the property propertyName of object pObj
@@ -39,6 +39,6 @@ GRAPHICS_IMPEXP void destroyScilabSetHashTable( void ) ;
  *         -1 if an error occurred in the get function
  *          1 if the property was not found
  */
-GRAPHICS_IMPEXP int callSetProperty(void* _pvCtx, char *pObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName ) ;
+GRAPHICS_IMPEXP int callSetProperty(void* _pvCtx, char *pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char * propertyName);
 
 #endif /* _SET_HASH_TABLE_H_ */

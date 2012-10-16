@@ -112,7 +112,7 @@ int gw_graphics(void)
     }
 
     pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
-    if ( getScilabMode() != SCILAB_NWNI )
+    if (getScilabMode() != SCILAB_NWNI)
     {
         if (!loadedDep)
         {
@@ -123,7 +123,7 @@ int gw_graphics(void)
     }
     else
     {
-        if ( (strcmp(Tab[Fin - 1].name, "set") == 0 ||
+        if ((strcmp(Tab[Fin - 1].name, "set") == 0 ||
                 strcmp(Tab[Fin - 1].name, "delete") == 0 ||
                 strcmp(Tab[Fin - 1].name, "get") == 0) &&
                 (getInputArgumentType(pvApiCtx, 1) == sci_tlist || getInputArgumentType(pvApiCtx, 1) == sci_mlist))

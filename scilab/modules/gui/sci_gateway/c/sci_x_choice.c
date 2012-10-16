@@ -83,7 +83,7 @@ int sci_x_choice(char *fname, unsigned long fname_len)
     setMessageBoxTitle(messageBoxID, _("Scilab Choices Request"));
 
     /* Message */
-    setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)labelsAdr), nbCol * nbRow);
+    setMessageBoxMultiLineMessage(messageBoxID, labelsAdr, nbCol * nbRow);
     freeArrayOfString(labelsAdr, nbRow * nbCol);
 
     /* READ THE LABELS */
@@ -96,7 +96,7 @@ int sci_x_choice(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
             return FALSE;
         }
-        setMessageBoxLineLabels(messageBoxID, getStringMatrixFromStack((size_t)lineLabelsAdr), nbColLineLabels * nbRowLineLabels);
+        setMessageBoxLineLabels(messageBoxID, lineLabelsAdr, nbColLineLabels * nbRowLineLabels);
         freeArrayOfString(lineLabelsAdr, nbRowLineLabels * nbColLineLabels);
     }
     else

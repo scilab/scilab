@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_z_label_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_z_label_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int iType = -1;
     int* piType = &iType;
@@ -42,7 +42,7 @@ int set_z_label_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int v
 
     if (iType == __GO_AXES__)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_label");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_label");
         return SET_PROPERTY_ERROR;
     }
 

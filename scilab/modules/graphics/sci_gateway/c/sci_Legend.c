@@ -39,7 +39,7 @@
 #define DEF_LEGEND_LOCATION "in_upper_right"
 
 /*--------------------------------------------------------------------------*/
-int sci_Legend( char * fname, unsigned long fname_len )
+int sci_Legend(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -67,8 +67,8 @@ int sci_Legend( char * fname, unsigned long fname_len )
     CheckInputArgument(pvApiCtx, 2, 3);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
-
-    GetMatrixdims(1, &numrow, &numcol);
+    getVarAddressFromPosition(pvApiCtx, 1 , &piAddrl1);
+    getVarDimension(pvApiCtx, piAddrl1, &numrow, &numcol);
     n = numrow * numcol;
     if (numrow == 0 || numcol == 0)
     {
@@ -85,20 +85,14 @@ int sci_Legend( char * fname, unsigned long fname_len )
         return 0;
     }
 
-    GetMatrixdims(2, &m2, &n2);
-    if (m2*n2 != n)
+    getVarAddressFromPosition(pvApiCtx, 2 , &piAddrStr);
+    getVarDimension(pvApiCtx, piAddrStr, &m2, &n2);
+    if (m2 * n2 != n)
     {
         Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"), fname, 1, 2);
         return 1;
     }
 
-
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 1;
-    }
 
     // Retrieve a matrix of handle at position 1.
     sciErr = getMatrixOfHandle(pvApiCtx, piAddrl1, &numrow, &numcol, &l1);
@@ -106,13 +100,6 @@ int sci_Legend( char * fname, unsigned long fname_len )
     {
         printError(&sciErr, 0);
         Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
-        return 1;
-    }
-
-    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrStr);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
         return 1;
     }
 
