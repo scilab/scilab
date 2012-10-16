@@ -31,17 +31,28 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     GenericType::RealType TypeL = _pLeftOperand->getType();
     GenericType::RealType TypeR = _pRightOperand->getType();
 
+    if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
+    if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
     /*
     ** DOUBLE / DOUBLE
     */
-    if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Double *pR  = _pRightOperand->getAs<Double>();
 
         int iResult = RDivideDoubleByDouble(pL, pR, (Double**)&pResult);
-        if(iResult)
-        {//manage errors
+        if (iResult)
+        {
+            //manage errors
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
         return pResult;
@@ -50,14 +61,15 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     /*
     ** POLY / DOUBLE
     */
-    else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+    else if (TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
     {
         Polynom *pL = _pLeftOperand->getAs<types::Polynom>();
         Double *pR  = _pRightOperand->getAs<Double>();
 
         int iResult = RDividePolyByDouble(pL, pR, (Polynom**)&pResult);
-        if(iResult)
-        {//manage errors
+        if (iResult)
+        {
+            //manage errors
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
 
@@ -67,14 +79,15 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     /*
     ** DOUBLE / POLY
     */
-    else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
+    else if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Polynom *pR = _pRightOperand->getAs<types::Polynom>();
 
         int iResult = RDivideDoubleByPoly(pL, pR, (Polynom**)&pResult);
-        if(iResult)
-        {//manage errors
+        if (iResult)
+        {
+            //manage errors
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
         return pResult;
@@ -92,17 +105,28 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
     GenericType::RealType TypeL = _pLeftOperand->getType();
     GenericType::RealType TypeR = _pRightOperand->getType();
 
+    if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
+    if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
     /*
     ** DOUBLE / DOUBLE
     */
-    if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Double *pR  = _pRightOperand->getAs<Double>();
 
         int iResult = DotRDivideDoubleByDouble(pL, pR, (Double**)&pResult);
-        if(iResult)
-        {//manage errors
+        if (iResult)
+        {
+            //manage errors
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
         return pResult;
@@ -117,20 +141,14 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
 int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubleOut)
 {
     //check finite values of _pDouble1 and _pDouble2
-    if(isDoubleFinite(_pDouble1) == false || isDoubleFinite(_pDouble2) == false)
+    if (isDoubleFinite(_pDouble1) == false || isDoubleFinite(_pDouble2) == false)
     {
         return 2;
     }
 
-    if(_pDouble1->isEmpty() || _pDouble2->isEmpty())
+    if (_pDouble2->isScalar())
     {
-        //return an empty matrix of double
-        *_pDoubleOut = Double::Empty();
-        return 0;
-    }
-
-    if(_pDouble2->isScalar())
-    {//[] / x
+        //[] / x
         int iErr        = 0;
         int iInc1       = 1;
         int iInc2       = 0;
@@ -139,42 +157,47 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
 
         *_pDoubleOut    = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), bComplex1 || bComplex2);
 
-        if(bComplex1 == false && bComplex2 == false)
-        {// Real1 \ Real2 -> Real2 / Real1
+        if (bComplex1 == false && bComplex2 == false)
+        {
+            // Real1 \ Real2 -> Real2 / Real1
             iErr = iRightDivisionRealMatrixByRealMatrix(
-                _pDouble1->get(), iInc1, 
-                _pDouble2->get(), iInc2, 
-                (*_pDoubleOut)->get(), 1, _pDouble1->getSize());
+                       _pDouble1->get(), iInc1,
+                       _pDouble2->get(), iInc2,
+                       (*_pDoubleOut)->get(), 1, _pDouble1->getSize());
         }
-        else if(bComplex1 == false && bComplex2 == true)
-        {// Real \ Complex -> Complex / Real
+        else if (bComplex1 == false && bComplex2 == true)
+        {
+            // Real \ Complex -> Complex / Real
             iErr = iRightDivisionRealMatrixByComplexMatrix(
-                _pDouble1->get(), iInc1, 
-                _pDouble2->get(), _pDouble2->getImg(), iInc2, 
-                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1, _pDouble1->getSize());
+                       _pDouble1->get(), iInc1,
+                       _pDouble2->get(), _pDouble2->getImg(), iInc2,
+                       (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1, _pDouble1->getSize());
         }
-        else if(bComplex1 == true && bComplex2 == false)
-        {// Complex \ Real -> Real / Complex
+        else if (bComplex1 == true && bComplex2 == false)
+        {
+            // Complex \ Real -> Real / Complex
             iErr = iRightDivisionComplexMatrixByRealMatrix(
-                _pDouble1->get(), _pDouble1->getImg(), iInc1, 
-                _pDouble2->get(), iInc2,
-                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1, _pDouble1->getSize());
+                       _pDouble1->get(), _pDouble1->getImg(), iInc1,
+                       _pDouble2->get(), iInc2,
+                       (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1, _pDouble1->getSize());
         }
-        else if(bComplex1 == true && bComplex2 == true)
-        {// Complex \ Complex
+        else if (bComplex1 == true && bComplex2 == true)
+        {
+            // Complex \ Complex
             iErr = iRightDivisionComplexMatrixByComplexMatrix(
-                _pDouble1->get(), _pDouble1->getImg(), iInc1,
-                _pDouble2->get(), _pDouble2->getImg(), iInc2, 
-                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1, _pDouble1->getSize());
+                       _pDouble1->get(), _pDouble1->getImg(), iInc1,
+                       _pDouble2->get(), _pDouble2->getImg(), iInc2,
+                       (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1, _pDouble1->getSize());
         }
 
         return 0;
     }
 
-    if(_pDouble1->isScalar())
+    if (_pDouble1->isScalar())
     {
-        if(_pDouble2->getDims() > 2)
-        {//not managed, call overload
+        if (_pDouble2->getDims() > 2)
+        {
+            //not managed, call overload
             return 0;
         }
 
@@ -189,11 +212,11 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         pdblTemp = new Double(iRowResult, iRowResult, _pDouble1->isComplex());
         pdblTemp->setZeros();
 
-        if(_pDouble1->isComplex())
+        if (_pDouble1->isComplex())
         {
             dblSavedR = _pDouble1->getReal()[0];
             dblSavedI = _pDouble1->getImg()[0];
-            for(int i = 0 ; i < iRowResult ; i++)
+            for (int i = 0 ; i < iRowResult ; i++)
             {
                 pdblTemp->set(i, i, dblSavedR);
                 pdblTemp->setImg(i, i, dblSavedI);
@@ -202,7 +225,7 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         else
         {
             dblSavedR = _pDouble1->getReal()[0];
-            for(int i = 0 ; i < iRowResult ; i++)
+            for (int i = 0 ; i < iRowResult ; i++)
             {
                 pdblTemp->set(i, i, dblSavedR);
             }
@@ -210,7 +233,7 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
 
         *_pDoubleOut = new Double(iRowResult, iColResult, _pDouble1->isComplex() || _pDouble2->isComplex());
 
-        if((*_pDoubleOut)->isComplex())
+        if ((*_pDoubleOut)->isComplex())
         {
             double dblRcond = 0;
             iRightDivisionOfComplexMatrix(
@@ -230,13 +253,14 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         return 0;
     }
 
-    if(_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getCols() != _pDouble2->getCols())
-    {//not managed
+    if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getCols() != _pDouble2->getCols())
+    {
+        //not managed
         return 1;
     }
 
     *_pDoubleOut = new Double(_pDouble1->getRows(), _pDouble2->getRows(), _pDouble1->isComplex() || _pDouble2->isComplex());
-    if((*_pDoubleOut)->isComplex())
+    if ((*_pDoubleOut)->isComplex())
     {
         double dblRcond = 0;
         iRightDivisionOfComplexMatrix(
@@ -279,37 +303,37 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
     }
     else */
 
-    if(bScalar2)
+    if (bScalar2)
     {
         double dblDivR = _pDouble->get(0);
-        double dblDivI= _pDouble->getImg(0);
+        double dblDivI = _pDouble->getImg(0);
 
         (*_pPolyOut) = _pPoly->clone()->getAs<Polynom>();
-        if(_pDouble->isComplex())
+        if (_pDouble->isComplex())
         {
             (*_pPolyOut)->setComplex(true);
         }
 
-        for(int i = 0 ; i < _pPoly->getSize() ; i++)
+        for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
             bool bComplex1 = _pPoly->isComplex();
             bool bComplex2 = _pDouble->isComplex();
 
             Double* pC = (*_pPolyOut)->get(i)->getCoef();
 
-            if(bComplex1 == false && bComplex2 == false)
+            if (bComplex1 == false && bComplex2 == false)
             {
                 iRightDivisionRealMatrixByRealMatrix(pC->get(), 1, &dblDivR, 0, pC->get(), 1, pC->getSize());
             }
-            else if(bComplex1 == true && bComplex2 == false)
+            else if (bComplex1 == true && bComplex2 == false)
             {
                 iRightDivisionComplexMatrixByRealMatrix(pC->get(), pC->getImg(), 1, &dblDivR, 0, pC->get(), pC->getImg(), 1, pC->getSize());
             }
-            else if(bComplex1 == false && bComplex2 == true)
+            else if (bComplex1 == false && bComplex2 == true)
             {
                 iRightDivisionRealMatrixByComplexMatrix(pC->get(), 1, &dblDivR, &dblDivI, 0, pC->get(), pC->getImg(), 1, pC->getSize());
             }
-            else if(bComplex1 == true && bComplex2 == true)
+            else if (bComplex1 == true && bComplex2 == true)
             {
                 iRightDivisionComplexMatrixByComplexMatrix(pC->get(), pC->getImg(), 1, &dblDivR, &dblDivI, 0, pC->get(), pC->getImg(), 1, pC->getSize());
             }
@@ -318,41 +342,42 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
         return 0;
     }
 
-    if(bScalar1)
+    if (bScalar1)
     {
         //in this case, we have to create a temporary square polinomial matrix
         iRowResult = _pDouble->getCols();
         iColResult = _pDouble->getRows();
 
         piRank = new int[iRowResult * iRowResult];
-        for(int i = 0 ; i < iRowResult * iRowResult ; i++)
+        for (int i = 0 ; i < iRowResult * iRowResult ; i++)
         {
             piRank[i] = _pPoly->getMaxRank();
         }
 
         pTemp = new Polynom(_pPoly->getVariableName(), iRowResult, iRowResult, piRank);
-        if(bComplex1 || bComplex2)
+        if (bComplex1 || bComplex2)
         {
             pTemp->setComplex(true);
         }
 
         Double *pdblData = _pPoly->get(0)->getCoef();
-        for(int i = 0 ; i < iRowResult ; i++)
+        for (int i = 0 ; i < iRowResult ; i++)
         {
-            pTemp->setCoef(i,i, pdblData);
+            pTemp->setCoef(i, i, pdblData);
         }
     }
 
     (*_pPolyOut) = new Polynom(_pPoly->getVariableName(), iRowResult, iColResult, piRank);
     delete[] piRank;
-    if(bComplex1 || bComplex2)
+    if (bComplex1 || bComplex2)
     {
         (*_pPolyOut)->setComplex(true);
     }
 
-    if(bScalar2)
-    {//[p] * cst
-        for(int i = 0 ; i < _pPoly->getSize() ; i++)
+    if (bScalar2)
+    {
+        //[p] * cst
+        for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
             SinglePoly *pPolyIn   = _pPoly->get(i);
             double* pRealIn  = pPolyIn->getCoef()->getReal();
@@ -362,55 +387,55 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
             double* pRealOut = pPolyOut->getCoef()->getReal();
             double* pImgOut  = pPolyOut->getCoef()->getImg();
 
-            if(bComplex1 == false && bComplex2 == false)
+            if (bComplex1 == false && bComplex2 == false)
             {
                 iRightDivisionRealMatrixByRealMatrix(
                     pRealIn, 1,
-                    _pDouble->getReal(), 0, 
+                    _pDouble->getReal(), 0,
                     pRealOut, 1, pPolyOut->getRank());
             }
-            else if(bComplex1 == false && bComplex2 == true)
+            else if (bComplex1 == false && bComplex2 == true)
             {
                 iRightDivisionRealMatrixByComplexMatrix(
                     pRealIn, 1,
-                    _pDouble->getReal(), _pDouble->getImg(), 0, 
+                    _pDouble->getReal(), _pDouble->getImg(), 0,
                     pRealOut, pImgOut, 1, pPolyOut->getRank());
             }
-            else if(bComplex1 == true && bComplex2 == false)
+            else if (bComplex1 == true && bComplex2 == false)
             {
                 iRightDivisionComplexMatrixByRealMatrix(
                     pRealIn, pImgIn, 1,
-                    _pDouble->getReal(), 0, 
+                    _pDouble->getReal(), 0,
                     pRealOut, pImgOut, 1, pPolyOut->getRank());
             }
-            else if(bComplex1 == true && bComplex2 == true)
+            else if (bComplex1 == true && bComplex2 == true)
             {
                 iRightDivisionComplexMatrixByComplexMatrix(
                     pRealIn, pImgIn, 1,
-                    _pDouble->getReal(), _pDouble->getImg(), 0, 
+                    _pDouble->getReal(), _pDouble->getImg(), 0,
                     pRealOut, pImgOut, 1, pPolyOut->getRank());
             }
         }
     }
-    else if(bScalar1)
+    else if (bScalar1)
     {
         Double *pResultCoef = new Double(iRowResult, iColResult, (*_pPolyOut)->isComplex());
         double *pReal    = pResultCoef->getReal();
         double *pImg    = pResultCoef->getImg();
 
-        for(int i = 0 ; i < pTemp->get(0)->getRank() ; i++)
+        for (int i = 0 ; i < pTemp->get(0)->getRank() ; i++)
         {
             Double *pCoef    = pTemp->extractCoef(i);
             Double *pResultCoef = new Double(iRowResult, iColResult, pCoef->isComplex());
             double *pReal    = pResultCoef->getReal();
             double *pImg    = pResultCoef->getImg();
 
-            if(bComplex1 == false && bComplex2 == false)
+            if (bComplex1 == false && bComplex2 == false)
             {
                 double dblRcond = 0;
                 iRightDivisionOfRealMatrix(
                     pCoef->getReal(), iRowResult, iRowResult,
-                    _pDouble->getReal(), _pDouble->getRows(), _pDouble->getCols(), 
+                    _pDouble->getReal(), _pDouble->getRows(), _pDouble->getCols(),
                     pReal, iRowResult, iColResult, &dblRcond);
             }
             else
@@ -418,7 +443,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
                 double dblRcond = 0;
                 iRightDivisionOfComplexMatrix(
                     pCoef->getReal(), pCoef->getImg(), iRowResult, iRowResult,
-                    _pDouble->getReal(), _pDouble->getImg(), _pDouble->getRows(), _pDouble->getCols(), 
+                    _pDouble->getReal(), _pDouble->getImg(), _pDouble->getRows(), _pDouble->getCols(),
                     pReal, pImg, iRowResult, iColResult, &dblRcond);
             }
 
@@ -444,18 +469,14 @@ int DotRDivideDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDo
     bool bScalar2   = _pDouble2->isScalar();
 
     //check finite values of _pDouble1 and _pDouble2
-    if(isDoubleFinite(_pDouble1) == false || isDoubleFinite(_pDouble2) == false)
+    if (isDoubleFinite(_pDouble1) == false || isDoubleFinite(_pDouble2) == false)
     {
         return 2;
     }
 
-    if(_pDouble1->isEmpty() || _pDouble2->isEmpty())
+    if (bScalar1)
     {
-        //return an empty matrix of double
-        *_pDoubleOut = Double::Empty();
-    }
-    else if(bScalar1)
-    {//x ./ Y
+        //x ./ Y
         int iInc1       = 0;
         int iInc2       = 1;
         int iIncOut     = 1;
@@ -463,37 +484,42 @@ int DotRDivideDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDo
 
         *_pDoubleOut    = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), bComplex1 || bComplex2);
 
-        if(bComplex1 == false && bComplex2 == false)
-        {// r ./ R
+        if (bComplex1 == false && bComplex2 == false)
+        {
+            // r ./ R
             iErr = iRightDivisionRealMatrixByRealMatrix(
-                _pDouble1->getReal(), iInc1, 
-                _pDouble2->getReal(), iInc2, 
-                (*_pDoubleOut)->getReal(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), iInc1,
+                       _pDouble2->getReal(), iInc2,
+                       (*_pDoubleOut)->getReal(), iIncOut, iSizeResult);
         }
-        else if(bComplex1 == false && bComplex2 == true)
-        {// r ./ C
+        else if (bComplex1 == false && bComplex2 == true)
+        {
+            // r ./ C
             iErr = iRightDivisionRealMatrixByComplexMatrix(
-                _pDouble1->getReal(), iInc1, 
-                _pDouble2->getReal(), _pDouble2->getImg(), iInc2, 
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), iInc1,
+                       _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
+                       (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
         }
-        else if(bComplex1 == true && bComplex2 == false)
-        {// c ./ R
+        else if (bComplex1 == true && bComplex2 == false)
+        {
+            // c ./ R
             iErr = iRightDivisionComplexMatrixByRealMatrix(
-                _pDouble1->getReal(), _pDouble1->getImg(), iInc1, 
-                _pDouble2->getReal(), iInc2,
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
+                       _pDouble2->getReal(), iInc2,
+                       (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
         }
-        else if(bComplex1 == true && bComplex2 == true)
-        {// c ./ C
+        else if (bComplex1 == true && bComplex2 == true)
+        {
+            // c ./ C
             iErr = iRightDivisionComplexMatrixByComplexMatrix(
-                _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
-                _pDouble2->getReal(), _pDouble2->getImg(), iInc2, 
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
+                       _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
+                       (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
         }
     }
-    else if(bScalar2)
-    {//X ./ y
+    else if (bScalar2)
+    {
+        //X ./ y
         int iInc1       = 1;
         int iInc2       = 0;
         int iIncOut     = 1;
@@ -501,51 +527,56 @@ int DotRDivideDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDo
 
         *_pDoubleOut    = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), bComplex1 || bComplex2);
 
-        if(bComplex1 == false && bComplex2 == false)
-        {// r ./ R
+        if (bComplex1 == false && bComplex2 == false)
+        {
+            // r ./ R
             iErr = iRightDivisionRealMatrixByRealMatrix(
-                _pDouble1->getReal(), iInc1, 
-                _pDouble2->getReal(), iInc2, 
-                (*_pDoubleOut)->getReal(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), iInc1,
+                       _pDouble2->getReal(), iInc2,
+                       (*_pDoubleOut)->getReal(), iIncOut, iSizeResult);
         }
-        else if(bComplex1 == false && bComplex2 == true)
-        {// r ./ C
+        else if (bComplex1 == false && bComplex2 == true)
+        {
+            // r ./ C
             iErr = iRightDivisionRealMatrixByComplexMatrix(
-                _pDouble1->getReal(), iInc1, 
-                _pDouble2->getReal(), _pDouble2->getImg(), iInc2, 
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), iInc1,
+                       _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
+                       (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
         }
-        else if(bComplex1 == true && bComplex2 == false)
-        {// c ./ R
+        else if (bComplex1 == true && bComplex2 == false)
+        {
+            // c ./ R
             iErr = iRightDivisionComplexMatrixByRealMatrix(
-                _pDouble1->getReal(), _pDouble1->getImg(), iInc1, 
-                _pDouble2->getReal(), iInc2,
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
+                       _pDouble2->getReal(), iInc2,
+                       (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
         }
-        else if(bComplex1 == true && bComplex2 == true)
-        {// c ./ C
+        else if (bComplex1 == true && bComplex2 == true)
+        {
+            // c ./ C
             iErr = iRightDivisionComplexMatrixByComplexMatrix(
-                _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
-                _pDouble2->getReal(), _pDouble2->getImg(), iInc2, 
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
+                       _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
+                       (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
         }
     }
     else
-    {//X ./ Y
+    {
+        //X ./ Y
         //check dimension compatibilities ( same number of dimension and same size for each dimension
         int iDims1      = _pDouble1->getDims();
         int* piDims1    = _pDouble1->getDimsArray();
         int iDims2      = _pDouble2->getDims();
         int* piDims2    = _pDouble2->getDimsArray();
 
-        if(iDims1 != iDims2)
+        if (iDims1 != iDims2)
         {
             return 1;
         }
 
-        for(int i = 0 ; i < iDims1 ; i++)
+        for (int i = 0 ; i < iDims1 ; i++)
         {
-            if(piDims1[i] != piDims2[i])
+            if (piDims1[i] != piDims2[i])
             {
                 return 1;
             }
@@ -561,33 +592,37 @@ int DotRDivideDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDo
 
         *_pDoubleOut    = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), bComplex1 || bComplex2);
 
-        if(bComplex1 == false && bComplex2 == false)
-        {// r ./ R
+        if (bComplex1 == false && bComplex2 == false)
+        {
+            // r ./ R
             iErr = iRightDivisionRealMatrixByRealMatrix(
-                _pDouble1->getReal(), iInc1, 
-                _pDouble2->getReal(), iInc2, 
-                (*_pDoubleOut)->getReal(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), iInc1,
+                       _pDouble2->getReal(), iInc2,
+                       (*_pDoubleOut)->getReal(), iIncOut, iSizeResult);
         }
-        else if(bComplex1 == false && bComplex2 == true)
-        {// r ./ C
+        else if (bComplex1 == false && bComplex2 == true)
+        {
+            // r ./ C
             iErr = iRightDivisionRealMatrixByComplexMatrix(
-                _pDouble1->getReal(), iInc1, 
-                _pDouble2->getReal(), _pDouble2->getImg(), iInc2, 
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), iInc1,
+                       _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
+                       (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
         }
-        else if(bComplex1 == true && bComplex2 == false)
-        {// c ./ R
+        else if (bComplex1 == true && bComplex2 == false)
+        {
+            // c ./ R
             iErr = iRightDivisionComplexMatrixByRealMatrix(
-                _pDouble1->getReal(), _pDouble1->getImg(), iInc1, 
-                _pDouble2->getReal(), iInc2,
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
+                       _pDouble2->getReal(), iInc2,
+                       (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
         }
-        else if(bComplex1 == true && bComplex2 == true)
-        {// c ./ C
+        else if (bComplex1 == true && bComplex2 == true)
+        {
+            // c ./ C
             iErr = iRightDivisionComplexMatrixByComplexMatrix(
-                _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
-                _pDouble2->getReal(), _pDouble2->getImg(), iInc2, 
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+                       _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
+                       _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
+                       (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
         }
     }
     return iErr;

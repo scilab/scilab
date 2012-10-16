@@ -32,16 +32,26 @@ InternalType *GenericDotTimes(InternalType *_pLeftOperand, InternalType *_pRight
 {
     InternalType *pResult = NULL;
 
+    if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
+    if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
     /*
     ** DOUBLE .* DOUBLE
     */
-    if(_pLeftOperand->isDouble() && _pRightOperand->isDouble())
+    if (_pLeftOperand->isDouble() && _pRightOperand->isDouble())
     {
         Double *pL   = _pLeftOperand->getAs<Double>();
         Double *pR   = _pRightOperand->getAs<Double>();
 
         int iResult = DotMultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -52,13 +62,13 @@ InternalType *GenericDotTimes(InternalType *_pLeftOperand, InternalType *_pRight
     /*
     ** SPARSE .* SPARSE
     */
-    if(_pLeftOperand->isSparse() && _pRightOperand->isSparse())
+    if (_pLeftOperand->isSparse() && _pRightOperand->isSparse())
     {
         Sparse *pL   = _pLeftOperand->getAs<Sparse>();
         Sparse *pR   = _pRightOperand->getAs<Sparse>();
 
         int iResult = DotMultiplySparseBySparse(pL, pR, (Sparse**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -69,13 +79,13 @@ InternalType *GenericDotTimes(InternalType *_pLeftOperand, InternalType *_pRight
     /*
     ** SPARSE .* DOUBLE
     */
-    if(_pLeftOperand->isSparse() && _pRightOperand->isDouble())
+    if (_pLeftOperand->isSparse() && _pRightOperand->isDouble())
     {
         Sparse *pL   = _pLeftOperand->getAs<Sparse>();
         Double *pR   = _pRightOperand->getAs<Double>();
 
         int iResult = DotMultiplySparseByDouble(pL, pR, (GenericType**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -86,13 +96,13 @@ InternalType *GenericDotTimes(InternalType *_pLeftOperand, InternalType *_pRight
     /*
     ** DOUBLE .* SPARSE
     */
-    if(_pLeftOperand->isDouble() && _pRightOperand->isSparse())
+    if (_pLeftOperand->isDouble() && _pRightOperand->isSparse())
     {
         Double *pL   = _pLeftOperand->getAs<Double>();
         Sparse *pR   = _pRightOperand->getAs<Sparse>();
 
         int iResult = DotMultiplyDoubleBySparse(pL, pR, (GenericType**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -113,16 +123,26 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     GenericType::RealType TypeL = _pLeftOperand->getType();
     GenericType::RealType TypeR = _pRightOperand->getType();
 
+    if (TypeL == GenericType::RealDouble && _pLeftOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
+    if (TypeR == GenericType::RealDouble && _pRightOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
     /*
     ** DOUBLE * DOUBLE
     */
-    if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
     {
         Double *pL   = _pLeftOperand->getAs<Double>();
         Double *pR   = _pRightOperand->getAs<Double>();
 
         int iResult = MultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -133,13 +153,13 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** DOUBLE * POLY
     */
-    else if(TypeL == InternalType::RealDouble && TypeR == InternalType::RealPoly)
+    else if (TypeL == InternalType::RealDouble && TypeR == InternalType::RealPoly)
     {
         Double *pL   = _pLeftOperand->getAs<Double>();
         Polynom *pR     = _pRightOperand->getAs<types::Polynom>();
 
         int iResult = MultiplyDoubleByPoly(pL, pR, (Polynom**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -150,13 +170,13 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** POLY * DOUBLE
     */
-    else if(TypeL == InternalType::RealPoly && TypeR == InternalType::RealDouble)
+    else if (TypeL == InternalType::RealPoly && TypeR == InternalType::RealDouble)
     {
         Polynom *pL          = _pLeftOperand->getAs<types::Polynom>();
         Double *pR              = _pRightOperand->getAs<Double>();
 
         int iResult = MultiplyPolyByDouble(pL, pR, (Polynom**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -167,13 +187,13 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** POLY * POLY
     */
-    else if(TypeL == InternalType::RealPoly && TypeR == InternalType::RealPoly)
+    else if (TypeL == InternalType::RealPoly && TypeR == InternalType::RealPoly)
     {
         Polynom *pL          = _pLeftOperand->getAs<types::Polynom>();
         Polynom *pR          = _pRightOperand->getAs<types::Polynom>();
 
         int iResult = MultiplyPolyByPoly(pL, pR, (Polynom**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -184,13 +204,13 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** SPARSE * SPARSE
     */
-    if(TypeL == GenericType::RealSparse && TypeR == GenericType::RealSparse)
+    if (TypeL == GenericType::RealSparse && TypeR == GenericType::RealSparse)
     {
         Sparse *pL   = _pLeftOperand->getAs<Sparse>();
         Sparse *pR   = _pRightOperand->getAs<Sparse>();
 
         int iResult = MultiplySparseBySparse(pL, pR, (Sparse**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -201,13 +221,13 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** DOUBLE * SPARSE
     */
-    if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealSparse)
+    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealSparse)
     {
         Double *pL   = _pLeftOperand->getAs<Double>();
         Sparse *pR   = _pRightOperand->getAs<Sparse>();
 
         int iResult = MultiplyDoubleBySparse(pL, pR, (GenericType**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -218,13 +238,13 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** SPARSE * DOUBLE
     */
-    if(TypeL == GenericType::RealSparse && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::RealSparse && TypeR == GenericType::RealDouble)
     {
         Sparse *pL   = _pLeftOperand->getAs<Sparse>();
         Double *pR   = _pRightOperand->getAs<Double>();
 
         int iResult = MultiplySparseByDouble(pL, pR, (GenericType**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -241,22 +261,22 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
 
 int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut)
 {
-    if(_pDouble1->isScalar())
+    if (_pDouble1->isScalar())
     {
         bool bComplex1  = _pDouble1->isComplex();
         bool bComplex2  = _pDouble2->isComplex();
 
         (*_pDoubleOut) = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), bComplex1 | bComplex2);
 
-        if(bComplex1 == false && bComplex2 == false)
+        if (bComplex1 == false && bComplex2 == false)
         {
             iMultiRealScalarByRealMatrix(_pDouble1->get(0), _pDouble2->get(), _pDouble2->getSize(), 1, (*_pDoubleOut)->get());
         }
-        else if(bComplex1 == false && bComplex2 == true)
+        else if (bComplex1 == false && bComplex2 == true)
         {
             iMultiRealScalarByComplexMatrix(_pDouble1->get(0), _pDouble2->get(), _pDouble2->getImg(), _pDouble2->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
         }
-        else if(bComplex1 == true && bComplex2 == false)
+        else if (bComplex1 == true && bComplex2 == false)
         {
             iMultiComplexScalarByRealMatrix(_pDouble1->get(0), _pDouble1->getImg(0), _pDouble2->get(), _pDouble2->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
         }
@@ -267,33 +287,35 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
 
         return 0;
     }
-    
-    if(_pDouble2->isScalar())
+
+    if (_pDouble2->isScalar())
     {
         bool bComplex1  = _pDouble1->isComplex();
         bool bComplex2  = _pDouble2->isComplex();
 
         (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), bComplex1 | bComplex2);
 
-        if(bComplex1 == false && bComplex2 == false)
-        {//Real Matrix by Real Scalar
+        if (bComplex1 == false && bComplex2 == false)
+        {
+            //Real Matrix by Real Scalar
             iMultiRealScalarByRealMatrix(_pDouble2->get(0), _pDouble1->get(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get());
         }
-        else if(bComplex1 == false && bComplex2 == true)
-        {//Real Matrix by Scalar Complex
+        else if (bComplex1 == false && bComplex2 == true)
+        {
+            //Real Matrix by Scalar Complex
             iMultiComplexScalarByRealMatrix(_pDouble2->get(0), _pDouble2->getImg(0), _pDouble1->get(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
         }
-        else if(bComplex1 == true && bComplex2 == false)
+        else if (bComplex1 == true && bComplex2 == false)
         {
-            iMultiRealScalarByComplexMatrix(_pDouble2->get(0,0), _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+            iMultiRealScalarByComplexMatrix(_pDouble2->get(0, 0), _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
         }
         else //if(bComplex1 == true && bComplex2 == true)
         {
-            iMultiComplexScalarByComplexMatrix(_pDouble2->get(0,0), _pDouble2->getImg(0,0), _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+            iMultiComplexScalarByComplexMatrix(_pDouble2->get(0, 0), _pDouble2->getImg(0, 0), _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
         }
     }
-    
-    if(_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getCols() != _pDouble2->getRows())
+
+    if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getCols() != _pDouble2->getRows())
     {
         return 0;
     }
@@ -302,29 +324,33 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
     bool bComplex2  = _pDouble2->isComplex();
     (*_pDoubleOut) = new Double(_pDouble1->getRows(), _pDouble2->getCols(), bComplex1 | bComplex2);
 
-    if(bComplex1 == false && bComplex2 == false)
-    {//Real Matrix by Real Matrix
+    if (bComplex1 == false && bComplex2 == false)
+    {
+        //Real Matrix by Real Matrix
         iMultiRealMatrixByRealMatrix(
             _pDouble1->get(), _pDouble1->getRows(), _pDouble1->getCols(),
             _pDouble2->get(), _pDouble2->getRows(), _pDouble2->getCols(),
             (*_pDoubleOut)->get());
     }
-    else if(bComplex1 == false && bComplex2 == true)
-    {//Real Matrix by Matrix Complex
+    else if (bComplex1 == false && bComplex2 == true)
+    {
+        //Real Matrix by Matrix Complex
         iMultiRealMatrixByComplexMatrix(
             _pDouble1->get(), _pDouble1->getRows(), _pDouble1->getCols(),
             _pDouble2->get(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getCols(),
             (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
     }
-    else if(bComplex1 == true && bComplex2 == false)
-    {//Complex Matrix by Real Matrix
+    else if (bComplex1 == true && bComplex2 == false)
+    {
+        //Complex Matrix by Real Matrix
         iMultiComplexMatrixByRealMatrix(
             _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
             _pDouble2->get(), _pDouble2->getRows(), _pDouble2->getCols(),
             (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
     }
     else //if(bComplex1 == true && bComplex2 == true)
-    {//Complex Matrix by Complex Matrix
+    {
+        //Complex Matrix by Complex Matrix
         iMultiComplexMatrixByComplexMatrix(
             _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
             _pDouble2->get(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getCols(),
@@ -340,18 +366,18 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
     bool bScalar1   = _pDouble1->isScalar();
     bool bScalar2   = _pDouble2->isScalar();
 
-    if(bScalar1)
+    if (bScalar1)
     {
         (*_pDoubleOut) = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), _pDouble1->isComplex() | _pDouble2->isComplex());
-        if(bComplex1 == false && bComplex2 == false)
+        if (bComplex1 == false && bComplex2 == false)
         {
             iMultiRealScalarByRealMatrix(_pDouble1->get(0), _pDouble2->get(), _pDouble2->getSize(), 1, (*_pDoubleOut)->get());
         }
-        else if(bComplex1 == false && bComplex2 == true)
+        else if (bComplex1 == false && bComplex2 == true)
         {
             iMultiRealScalarByComplexMatrix(_pDouble1->get(0), _pDouble2->get(), _pDouble2->getImg(), _pDouble2->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
         }
-        else if(bComplex1 == true && bComplex2 == false)
+        else if (bComplex1 == true && bComplex2 == false)
         {
             iMultiComplexScalarByRealMatrix(_pDouble1->get(0), _pDouble1->getImg(0), _pDouble2->get(), _pDouble2->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
         }
@@ -363,18 +389,20 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
         return 0;
     }
 
-    if(bScalar2)
+    if (bScalar2)
     {
         (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), _pDouble1->isComplex() | _pDouble2->isComplex());
-        if(bComplex1 == false && bComplex2 == false)
-        {//Real Matrix by Real Scalar
+        if (bComplex1 == false && bComplex2 == false)
+        {
+            //Real Matrix by Real Scalar
             iMultiRealScalarByRealMatrix(_pDouble2->get(0), _pDouble1->get(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get());
         }
-        else if(bComplex1 == false && bComplex2 == true)
-        {//Real Matrix by Scalar Complex
+        else if (bComplex1 == false && bComplex2 == true)
+        {
+            //Real Matrix by Scalar Complex
             iMultiComplexScalarByRealMatrix(_pDouble2->get(0), _pDouble2->getImg(0), _pDouble1->get(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
         }
-        else if(bComplex1 == true && bComplex2 == false)
+        else if (bComplex1 == true && bComplex2 == false)
         {
             iMultiRealScalarByComplexMatrix(_pDouble2->get(0), _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
         }
@@ -384,7 +412,7 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
         }
     }
 
-    if(_pDouble1->getDims() != _pDouble2->getDims())
+    if (_pDouble1->getDims() != _pDouble2->getDims())
     {
         return 1;
     }
@@ -392,24 +420,24 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
     int* piDims1 = _pDouble1->getDimsArray();
     int* piDims2 = _pDouble2->getDimsArray();
 
-    for(int i = 0 ; i < _pDouble1->getDims() ; i++)
+    for (int i = 0 ; i < _pDouble1->getDims() ; i++)
     {
-        if(piDims1[i] != piDims2[i])
+        if (piDims1[i] != piDims2[i])
         {
             return 0;
         }
     }
 
     (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), _pDouble1->isComplex() | _pDouble2->isComplex());
-    if(bComplex1 == false && bComplex2 == false)
+    if (bComplex1 == false && bComplex2 == false)
     {
         iDotMultiplyRealMatrixByRealMatrix(_pDouble1->get(), _pDouble2->get(), (*_pDoubleOut)->get(), _pDouble1->getSize(), 1);
     }
-    else if(bComplex1 == false && bComplex2 == true)
+    else if (bComplex1 == false && bComplex2 == true)
     {
         iDotMultiplyRealMatrixByComplexMatrix(_pDouble1->get(), _pDouble2->get(), _pDouble2->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize(), 1);
     }
-    else if(bComplex1 == true && bComplex2 == false)
+    else if (bComplex1 == true && bComplex2 == false)
     {
         iDotMultiplyComplexMatrixByRealMatrix(_pDouble1->get(), _pDouble1->getImg(), _pDouble2->get(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize(), 1);
     }
@@ -427,22 +455,22 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
     bool bScalar1   = _pDouble->isScalar();
     bool bScalar2   = _pPoly->isScalar();
 
-    if(_pDouble->isScalar())
+    if (_pDouble->isScalar())
     {
         int* piRank = new int[_pPoly->getSize()];
-        for(int i = 0 ; i < _pPoly->getSize() ; i++)
+        for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
             piRank[i] = _pPoly->get(i)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly->getVariableName(), _pPoly->getDims(), _pPoly->getDimsArray(), piRank);
         delete[] piRank;
-        if(bComplex1 || bComplex2)
+        if (bComplex1 || bComplex2)
         {
             (*_pPolyOut)->setComplex(true);
         }
 
-        for(int i = 0 ; i < _pPoly->getSize() ; i++)
+        for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
             SinglePoly *pPolyIn     = _pPoly->get(i);
             double* pRealIn         = pPolyIn->getCoef()->get();
@@ -452,19 +480,19 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
             double* pRealOut        = pPolyOut->getCoef()->get();
             double* pImgOut         = pPolyOut->getCoef()->getImg();
 
-            if(bComplex1 == false && bComplex2 == false)
+            if (bComplex1 == false && bComplex2 == false)
             {
                 iMultiRealScalarByRealMatrix(_pDouble->get(0), pRealIn, 1, pPolyIn->getRank(), pRealOut);
             }
-            else if(bComplex1 == false && bComplex2 == true)
+            else if (bComplex1 == false && bComplex2 == true)
             {
                 iMultiRealScalarByComplexMatrix(_pDouble->get(0), pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
-            else if(bComplex1 == true && bComplex2 == false)
+            else if (bComplex1 == true && bComplex2 == false)
             {
                 iMultiComplexScalarByRealMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
-            else if(bComplex1 == true && bComplex2 == true)
+            else if (bComplex1 == true && bComplex2 == true)
             {
                 iMultiComplexScalarByComplexMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
@@ -473,17 +501,17 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
         return 0;
     }
 
-    if(_pPoly->isScalar())
+    if (_pPoly->isScalar())
     {
         int* piRank = new int[_pDouble->getSize()];
-        for(int i = 0 ; i < _pDouble->getSize() ; i++)
+        for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
             piRank[i] = _pPoly->get(0)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly->getVariableName(), _pDouble->getDims(), _pDouble->getDimsArray(), piRank);
         delete[] piRank;
-        if(bComplex1 || bComplex2)
+        if (bComplex1 || bComplex2)
         {
             (*_pPolyOut)->setComplex(true);
         }
@@ -495,25 +523,25 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
         double* pRealIn     = pPolyIn->getCoef()->get();
         double* pImgIn      = pPolyIn->getCoef()->getImg();
 
-        for(int i = 0 ; i < _pDouble->getSize() ; i++)
+        for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
             SinglePoly *pPolyOut    = (*_pPolyOut)->get(i);
             double* pRealOut        = pPolyOut->getCoef()->get();
             double* pImgOut         = pPolyOut->getCoef()->getImg();
 
-            if(bComplex1 == false && bComplex2 == false)
+            if (bComplex1 == false && bComplex2 == false)
             {
                 iMultiRealScalarByRealMatrix(pDoubleR[i], pRealIn, 1, pPolyIn->getRank(), pRealOut);
             }
-            else if(bComplex1 == false && bComplex2 == true)
+            else if (bComplex1 == false && bComplex2 == true)
             {
                 iMultiRealScalarByComplexMatrix(pDoubleR[i], pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
-            else if(bComplex1 == true && bComplex2 == false)
+            else if (bComplex1 == true && bComplex2 == false)
             {
                 iMultiComplexScalarByRealMatrix(pDoubleR[i], pDoubleI[i], pRealIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
-            else if(bComplex1 == true && bComplex2 == true)
+            else if (bComplex1 == true && bComplex2 == true)
             {
                 iMultiComplexScalarByComplexMatrix(pDoubleR[i], pDoubleI[i], pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
@@ -522,20 +550,20 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
         return 0;
     }
 
-    if(_pPoly->getDims() > 2 || _pDouble->getDims() > 2 || _pDouble->getCols() != _pPoly->getRows())
+    if (_pPoly->getDims() > 2 || _pDouble->getDims() > 2 || _pDouble->getCols() != _pPoly->getRows())
     {
         return 1;
     }
 
     int* piRank = new int[_pDouble->getRows() * _pPoly->getCols()];
-    for(int i = 0 ; i < _pDouble->getRows() * _pPoly->getCols() ; i++)
+    for (int i = 0 ; i < _pDouble->getRows() * _pPoly->getCols() ; i++)
     {
         piRank[i] = _pPoly->getMaxRank();
     }
 
     (*_pPolyOut) = new Polynom(_pPoly->getVariableName(), _pDouble->getRows(), _pPoly->getCols(), piRank);
     delete[] piRank;
-    if(bComplex1 || bComplex2)
+    if (bComplex1 || bComplex2)
     {
         (*_pPolyOut)->setComplex(true);
     }
@@ -543,30 +571,30 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
     Double *pCoef = _pPoly->getCoef();
     Double *pTemp = new Double(_pDouble->getRows(), pCoef->getCols(), bComplex1 || bComplex2);
 
-    if(bComplex1 == false && bComplex2 == false)
+    if (bComplex1 == false && bComplex2 == false)
     {
         iMultiRealMatrixByRealMatrix(_pDouble->get(), _pDouble->getRows(), _pDouble->getCols(),
-            pCoef->get(), pCoef->getRows(), pCoef->getCols(),
-            pTemp->get());
+                                     pCoef->get(), pCoef->getRows(), pCoef->getCols(),
+                                     pTemp->get());
     }
-    else if(bComplex1 == false && bComplex2 == true)
+    else if (bComplex1 == false && bComplex2 == true)
     {
         iMultiRealMatrixByComplexMatrix(_pDouble->get(), _pDouble->getRows(), _pDouble->getCols(),
-            pCoef->get(), pCoef->getImg(), pCoef->getRows(), pCoef->getCols(),
-            pTemp->get(), pTemp->getImg());
+                                        pCoef->get(), pCoef->getImg(), pCoef->getRows(), pCoef->getCols(),
+                                        pTemp->get(), pTemp->getImg());
 
     }
-    else if(bComplex1 == true && bComplex2 == false)
+    else if (bComplex1 == true && bComplex2 == false)
     {
         iMultiComplexMatrixByRealMatrix(_pDouble->get(), _pDouble->getImg(), _pDouble->getRows(), _pDouble->getCols(),
-            pCoef->get(), pCoef->getRows(), pCoef->getCols(),
-            pTemp->get(), pTemp->getImg());
+                                        pCoef->get(), pCoef->getRows(), pCoef->getCols(),
+                                        pTemp->get(), pTemp->getImg());
     }
     else //if(bComplex1 == true && bComplex2 == true)
     {
         iMultiComplexMatrixByComplexMatrix(_pDouble->get(), _pDouble->getImg(), _pDouble->getRows(), _pDouble->getCols(),
-            pCoef->get(), pCoef->getImg(), pCoef->getRows(), pCoef->getCols(),
-            pTemp->get(), pTemp->getImg());
+                                           pCoef->get(), pCoef->getImg(), pCoef->getRows(), pCoef->getCols(),
+                                           pTemp->get(), pTemp->getImg());
     }
 
     (*_pPolyOut)->setCoef(pTemp);
@@ -581,17 +609,17 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
     bool bScalar1   = _pPoly->isScalar();
     bool bScalar2   = _pDouble->isScalar();
 
-    if(bScalar1)
+    if (bScalar1)
     {
         int* piRank = new int[_pDouble->getSize()];
-        for(int i = 0 ; i < _pDouble->getSize() ; i++)
+        for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
             piRank[i] = _pPoly->get(0)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly->getVariableName(), _pDouble->getDims(), _pDouble->getDimsArray(), piRank);
         delete[] piRank;
-        if(bComplex1 || bComplex2)
+        if (bComplex1 || bComplex2)
         {
             (*_pPolyOut)->setComplex(true);
         }
@@ -603,25 +631,25 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
         double* pRealIn     = pPolyIn->getCoef()->get();
         double* pImgIn      = pPolyIn->getCoef()->getImg();
 
-        for(int i = 0 ; i < _pDouble->getSize() ; i++)
+        for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
             SinglePoly *pPolyOut    = (*_pPolyOut)->get(i);
             double* pRealOut        = pPolyOut->getCoef()->get();
             double* pImgOut         = pPolyOut->getCoef()->getImg();
 
-            if(bComplex1 == false && bComplex2 == false)
+            if (bComplex1 == false && bComplex2 == false)
             {
                 iMultiRealScalarByRealMatrix(pDoubleR[i], pRealIn, 1, pPolyIn->getRank(), pRealOut);
             }
-            else if(bComplex1 == false && bComplex2 == true)
+            else if (bComplex1 == false && bComplex2 == true)
             {
                 iMultiComplexScalarByRealMatrix(pDoubleR[i], pDoubleI[i], pRealIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
-            else if(bComplex1 == true && bComplex2 == false)
+            else if (bComplex1 == true && bComplex2 == false)
             {
                 iMultiRealScalarByComplexMatrix(pDoubleR[i], pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
-            else if(bComplex1 == true && bComplex2 == true)
+            else if (bComplex1 == true && bComplex2 == true)
             {
                 iMultiComplexScalarByComplexMatrix(pDoubleR[i], pDoubleI[i], pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
@@ -631,19 +659,19 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
     else if (bScalar2)
     {
         int* piRank = new int[_pPoly->getSize()];
-        for(int i = 0 ; i < _pPoly->getSize() ; i++)
+        for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
             piRank[i] = _pPoly->get(i)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly->getVariableName(), _pPoly->getDims(), _pPoly->getDimsArray(), piRank);
         delete[] piRank;
-        if(bComplex1 || bComplex2)
+        if (bComplex1 || bComplex2)
         {
             (*_pPolyOut)->setComplex(true);
         }
 
-        for(int i = 0 ; i < _pPoly->getSize() ; i++)
+        for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
             SinglePoly *pPolyIn = _pPoly->get(i);
             double* pRealIn     = pPolyIn->getCoef()->get();
@@ -653,19 +681,19 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
             double* pRealOut        = pPolyOut->getCoef()->get();
             double* pImgOut         = pPolyOut->getCoef()->getImg();
 
-            if(bComplex1 == false && bComplex2 == false)
+            if (bComplex1 == false && bComplex2 == false)
             {
                 iMultiRealScalarByRealMatrix(_pDouble->get(0), pRealIn, 1, pPolyIn->getRank(), pRealOut);
             }
-            else if(bComplex1 == false && bComplex2 == true)
+            else if (bComplex1 == false && bComplex2 == true)
             {
                 iMultiComplexScalarByRealMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
-            else if(bComplex1 == true && bComplex2 == false)
+            else if (bComplex1 == true && bComplex2 == false)
             {
                 iMultiRealScalarByComplexMatrix(_pDouble->get(0), pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
-            else if(bComplex1 == true && bComplex2 == true)
+            else if (bComplex1 == true && bComplex2 == true)
             {
                 iMultiComplexScalarByComplexMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
@@ -673,20 +701,20 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
         return 0;
     }
 
-    if(_pDouble->getDims() > 2 || _pPoly->getDims() > 2 || _pPoly->getCols() != _pDouble->getRows())
+    if (_pDouble->getDims() > 2 || _pPoly->getDims() > 2 || _pPoly->getCols() != _pDouble->getRows())
     {
         return 1;
     }
 
     int* piRank = new int[_pPoly->getRows() * _pDouble->getCols()];
-    for(int i = 0 ; i < _pPoly->getRows() * _pDouble->getCols() ; i++)
+    for (int i = 0 ; i < _pPoly->getRows() * _pDouble->getCols() ; i++)
     {
         piRank[i] = _pPoly->getMaxRank();
     }
 
     (*_pPolyOut) = new Polynom(_pPoly->getVariableName(), _pPoly->getRows(), _pDouble->getCols(), piRank);
     delete[] piRank;
-    if(bComplex1 || bComplex2)
+    if (bComplex1 || bComplex2)
     {
         (*_pPolyOut)->setComplex(true);
     }
@@ -695,16 +723,18 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
     //Distribution a la mano par appels a des sous-fonctions ( iMulti...ScalarBy...Scalar ) plus iAdd...To... )
 
     //for each line of _pPoly
-    for(int iRow1 = 0 ; iRow1 < _pPoly->getRows() ; iRow1++)
-    {//for each col of _pDouble
-        for(int iCol2 = 0 ; iCol2 < _pDouble->getCols() ; iCol2++)
-        {//for each rows of _pDouble / cols of _pPoly
-            for(int iRow2 = 0 ; iRow2 < _pDouble->getRows() ; iRow2++)
+    for (int iRow1 = 0 ; iRow1 < _pPoly->getRows() ; iRow1++)
+    {
+        //for each col of _pDouble
+        for (int iCol2 = 0 ; iCol2 < _pDouble->getCols() ; iCol2++)
+        {
+            //for each rows of _pDouble / cols of _pPoly
+            for (int iRow2 = 0 ; iRow2 < _pDouble->getRows() ; iRow2++)
             {
                 Double *pPolyCoef = _pPoly->get(iRow1, iRow2)->getCoef();
 
                 Double *pDouble = NULL;
-                if(bComplex2 == false)
+                if (bComplex2 == false)
                 {
                     pDouble = new Double(_pDouble->get(iRow2, iCol2));
                 }
@@ -720,20 +750,20 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
                 //Adjust size to allow vector multiplication
                 Double* pCoef = (*_pPolyOut)->get(iRow1, iCol2)->getCoef();
 
-                if(TimeDouble->getRows() > pCoef->getRows())
+                if (TimeDouble->getRows() > pCoef->getRows())
                 {
                     pCoef->resize(TimeDouble->getRows(), pCoef->getCols());
                 }
-                else if(TimeDouble->getRows() < pCoef->getRows())
+                else if (TimeDouble->getRows() < pCoef->getRows())
                 {
                     TimeDouble->resize(pCoef->getRows(), TimeDouble->getCols());
                 }
 
-                if(TimeDouble->getCols() > pCoef->getCols())
+                if (TimeDouble->getCols() > pCoef->getCols())
                 {
                     pCoef->resize(pCoef->getRows(), TimeDouble->getCols());
                 }
-                else if(TimeDouble->getCols() < pCoef->getCols())
+                else if (TimeDouble->getCols() < pCoef->getCols())
                 {
                     TimeDouble->resize(TimeDouble->getRows(), pCoef->getCols());
                 }
@@ -754,19 +784,20 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
     bool bComplex1  = _pPoly1->isComplex();
     bool bComplex2  = _pPoly2->isComplex();
 
-    if(_pPoly1->isScalar() && _pPoly2->isScalar())
-    {//poly1(0) * poly2(0)
+    if (_pPoly1->isScalar() && _pPoly2->isScalar())
+    {
+        //poly1(0) * poly2(0)
         int* piRank = new int[1];
         piRank[0] = _pPoly1->get(0)->getRank() + _pPoly2->get(0)->getRank() - 1;
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), 1, 1, piRank);
-        if(bComplex1 || bComplex2)
+        if (bComplex1 || bComplex2)
         {
             (*_pPolyOut)->setComplex(true);
         }
         delete[] piRank;
 
-        if(bComplex1 == false && bComplex2 == false)
+        if (bComplex1 == false && bComplex2 == false)
         {
             SinglePoly *pPoly1  = _pPoly1->get(0);
             SinglePoly *pPoly2  = _pPoly2->get(0);
@@ -779,7 +810,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 pPoly2->getCoef()->get(), pPoly2->getRank(),
                 pPolyOut->getCoef()->get(), pPolyOut->getRank());
         }
-        else if(bComplex1 == false && bComplex2 == true)
+        else if (bComplex1 == false && bComplex2 == true)
         {
             SinglePoly *pPoly1  = _pPoly1->get(0);
             SinglePoly *pPoly2  = _pPoly2->get(0);
@@ -792,7 +823,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 pPoly2->getCoef()->get(), pPoly2->getCoef()->getImg(), pPoly2->getRank(),
                 pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
         }
-        else if(bComplex1 == true && bComplex2 == false)
+        else if (bComplex1 == true && bComplex2 == false)
         {
             SinglePoly *pPoly1  = _pPoly1->get(0);
             SinglePoly *pPoly2  = _pPoly2->get(0);
@@ -805,7 +836,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 pPoly2->getCoef()->get(), pPoly2->getRank(),
                 pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
         }
-        else if(bComplex1 == true && bComplex2 == true)
+        else if (bComplex1 == true && bComplex2 == true)
         {
             SinglePoly *pPoly1   = _pPoly1->get(0);
             SinglePoly *pPoly2   = _pPoly2->get(0);
@@ -825,16 +856,17 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         return 0;
     }
 
-    if(_pPoly1->isScalar())
-    {//poly1(0) * poly2(n)
+    if (_pPoly1->isScalar())
+    {
+        //poly1(0) * poly2(n)
         int* piRank = new int[_pPoly2->getSize()];
-        for(int i = 0 ; i < _pPoly2->getSize() ; i++)
+        for (int i = 0 ; i < _pPoly2->getSize() ; i++)
         {
             piRank[i] = _pPoly1->get(0)->getRank() + _pPoly2->get(i)->getRank() - 1;
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly2->getDims(), _pPoly2->getDimsArray(), piRank);
-        if(bComplex1 || bComplex2)
+        if (bComplex1 || bComplex2)
         {
             (*_pPolyOut)->setComplex(true);
         }
@@ -842,9 +874,9 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
 
         SinglePoly *pPoly1  = _pPoly1->get(0);
-        if(bComplex1 == false && bComplex2 == false)
+        if (bComplex1 == false && bComplex2 == false)
         {
-            for(int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
+            for (int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
             {
                 SinglePoly *pPoly2  = _pPoly2->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
@@ -857,9 +889,9 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                     pPolyOut->getCoef()->get(), pPolyOut->getRank());
             }
         }
-        else if(bComplex1 == false && bComplex2 == true)
+        else if (bComplex1 == false && bComplex2 == true)
         {
-            for(int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
+            for (int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
             {
                 SinglePoly *pPoly2  = _pPoly2->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
@@ -872,9 +904,9 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                     pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
             }
         }
-        else if(bComplex1 == true && bComplex2 == false)
+        else if (bComplex1 == true && bComplex2 == false)
         {
-            for(int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
+            for (int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
             {
                 SinglePoly *pPoly2  = _pPoly2->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
@@ -887,10 +919,10 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                     pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
             }
         }
-        else if(bComplex1 == true && bComplex2 == true)
+        else if (bComplex1 == true && bComplex2 == true)
         {
             Double *pCoef1  = pPoly1->getCoef();
-            for(int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
+            for (int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
             {
                 SinglePoly *pPoly2   = _pPoly2->get(iPoly);
                 SinglePoly *pPolyOut  = (*_pPolyOut)->get(iPoly);
@@ -910,24 +942,25 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
     }
 
     if (_pPoly2->isScalar())
-    {//poly1(n) * poly2(0)
+    {
+        //poly1(n) * poly2(0)
         int* piRank = new int[_pPoly1->getSize()];
-        for(int i = 0 ; i < _pPoly1->getSize() ; i++)
+        for (int i = 0 ; i < _pPoly1->getSize() ; i++)
         {
             piRank[i] = _pPoly2->get(0)->getRank() * _pPoly1->get(i)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getDims(), _pPoly1->getDimsArray(), piRank);
-        if(bComplex1 || bComplex2)
+        if (bComplex1 || bComplex2)
         {
             (*_pPolyOut)->setComplex(true);
         }
         delete[] piRank;
 
         SinglePoly *pPoly2  = _pPoly2->get(0);
-        if(bComplex1 == false && bComplex2 == false)
+        if (bComplex1 == false && bComplex2 == false)
         {
-            for(int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
+            for (int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
             {
                 SinglePoly *pPoly1  = _pPoly1->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
@@ -940,9 +973,9 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                     pPolyOut->getCoef()->get(), pPolyOut->getRank());
             }
         }
-        else if(bComplex1 == false && bComplex2 == true)
+        else if (bComplex1 == false && bComplex2 == true)
         {
-            for(int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
+            for (int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
             {
                 SinglePoly *pPoly1  = _pPoly1->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
@@ -955,9 +988,9 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                     pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
             }
         }
-        else if(bComplex1 == true && bComplex2 == false)
+        else if (bComplex1 == true && bComplex2 == false)
         {
-            for(int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
+            for (int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
             {
                 SinglePoly *pPoly1  = _pPoly1->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
@@ -970,10 +1003,10 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                     pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
             }
         }
-        else if(bComplex1 == true && bComplex2 == true)
+        else if (bComplex1 == true && bComplex2 == true)
         {
             Double *pCoef2  = pPoly2->getCoef();
-            for(int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
+            for (int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
             {
                 SinglePoly *pPoly1   = _pPoly1->get(iPoly);
                 SinglePoly *pPolyOut  = (*_pPolyOut)->get(iPoly);
@@ -992,20 +1025,20 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         return 0;
     }
 
-    if(_pPoly1->getDims() > 2 || _pPoly2->getDims() > 2 || _pPoly1->getCols() != _pPoly2->getRows())
+    if (_pPoly1->getDims() > 2 || _pPoly2->getDims() > 2 || _pPoly1->getCols() != _pPoly2->getRows())
     {
         return 1;
     }
 
     // matrix by matrix
     int* piRank = new int[_pPoly1->getRows() * _pPoly2->getCols()];
-    for(int i = 0 ; i < _pPoly1->getRows() * _pPoly2->getCols() ; i++)
+    for (int i = 0 ; i < _pPoly1->getRows() * _pPoly2->getCols() ; i++)
     {
         piRank[i] = _pPoly1->getMaxRank() * _pPoly2->getMaxRank();
     }
 
     (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getRows(), _pPoly2->getCols(), piRank);
-    if(bComplex1 || bComplex2)
+    if (bComplex1 || bComplex2)
     {
         (*_pPolyOut)->setComplex(true);
     }
@@ -1013,19 +1046,19 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
     delete[] piRank;
 
 
-    if(bComplex1 == false && bComplex2 == false)
+    if (bComplex1 == false && bComplex2 == false)
     {
         double *pReal = NULL;
         SinglePoly *pTemp  = new SinglePoly(&pReal, (*_pPolyOut)->getMaxRank());
 
-        for(int iRow = 0 ; iRow < _pPoly1->getRows() ; iRow++)
+        for (int iRow = 0 ; iRow < _pPoly1->getRows() ; iRow++)
         {
-            for(int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
+            for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
                 SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
                 pResult->getCoef()->setZeros();
 
-                for(int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
+                for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
                     SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
                     SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
@@ -1045,20 +1078,20 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             }
         }
     }
-    else if(bComplex1 == false && bComplex2 == true)
+    else if (bComplex1 == false && bComplex2 == true)
     {
         double *pReal = NULL;
         double *pImg = NULL;
         SinglePoly *pTemp  = new SinglePoly(&pReal, &pImg, (*_pPolyOut)->getMaxRank());
 
-        for(int iRow = 0 ; iRow < _pPoly1->getRows() ; iRow++)
+        for (int iRow = 0 ; iRow < _pPoly1->getRows() ; iRow++)
         {
-            for(int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
+            for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
                 SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
                 pResult->getCoef()->setZeros();
 
-                for(int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
+                for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
                     SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
                     SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
@@ -1078,20 +1111,20 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             }
         }
     }
-    else if(bComplex1 == true && bComplex2 == false)
+    else if (bComplex1 == true && bComplex2 == false)
     {
         double *pReal = NULL;
         double *pImg = NULL;
         SinglePoly *pTemp  = new SinglePoly(&pReal, &pImg, (*_pPolyOut)->getMaxRank());
 
-        for(int iRow = 0 ; iRow < _pPoly1->getRows() ; iRow++)
+        for (int iRow = 0 ; iRow < _pPoly1->getRows() ; iRow++)
         {
-            for(int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
+            for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
                 SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
                 pResult->getCoef()->setZeros();
 
-                for(int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
+                for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
                     SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
                     SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
@@ -1111,20 +1144,20 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             }
         }
     }
-    else if(bComplex1 == true && bComplex2 == true)
+    else if (bComplex1 == true && bComplex2 == true)
     {
         double *pReal = NULL;
         double *pImg = NULL;
         SinglePoly *pTemp  = new SinglePoly(&pReal, &pImg, (*_pPolyOut)->getMaxRank());
 
-        for(int iRow = 0 ; iRow < _pPoly1->getRows() ; iRow++)
+        for (int iRow = 0 ; iRow < _pPoly1->getRows() ; iRow++)
         {
-            for(int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
+            for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
                 SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
                 pResult->getCoef()->setZeros();
 
-                for(int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
+                for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
                     SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
                     SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
@@ -1151,17 +1184,18 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
 int MultiplySparseBySparse(Sparse* _pSparse1, Sparse* _pSparse2, Sparse** _pSparseOut)
 {
-    if(_pSparse1->isScalar())
-    {//scalar * sp
+    if (_pSparse1->isScalar())
+    {
+        //scalar * sp
         Double* pDbl = NULL;
-        if(_pSparse1->isComplex())
+        if (_pSparse1->isComplex())
         {
-            std::complex<double> dbl = _pSparse1->getImg(0,0);
+            std::complex<double> dbl = _pSparse1->getImg(0, 0);
             pDbl = new Double(dbl.real(), dbl.imag());
         }
         else
         {
-            pDbl = new Double(_pSparse1->get(0,0));
+            pDbl = new Double(_pSparse1->get(0, 0));
         }
 
         MultiplyDoubleBySparse(pDbl, _pSparse2, (GenericType**)_pSparseOut);
@@ -1169,17 +1203,18 @@ int MultiplySparseBySparse(Sparse* _pSparse1, Sparse* _pSparse2, Sparse** _pSpar
         return 0;
     }
 
-    if(_pSparse2->isScalar())
-    {//sp * scalar
+    if (_pSparse2->isScalar())
+    {
+        //sp * scalar
         Double* pDbl = NULL;
-        if(_pSparse2->isComplex())
+        if (_pSparse2->isComplex())
         {
-            std::complex<double> dbl = _pSparse2->getImg(0,0);
+            std::complex<double> dbl = _pSparse2->getImg(0, 0);
             pDbl = new Double(dbl.real(), dbl.imag());
         }
         else
         {
-            pDbl = new Double(_pSparse2->get(0,0));
+            pDbl = new Double(_pSparse2->get(0, 0));
         }
 
         MultiplySparseByDouble(_pSparse1, pDbl, (GenericType**)_pSparseOut);
@@ -1187,7 +1222,7 @@ int MultiplySparseBySparse(Sparse* _pSparse1, Sparse* _pSparse2, Sparse** _pSpar
         return 0;
     }
 
-    if(_pSparse1->getCols() != _pSparse2->getRows())
+    if (_pSparse1->getCols() != _pSparse2->getRows())
     {
         return 1;
     }
@@ -1197,17 +1232,13 @@ int MultiplySparseBySparse(Sparse* _pSparse1, Sparse* _pSparse2, Sparse** _pSpar
 }
 
 int MultiplyDoubleBySparse(Double* _pDouble, Sparse *_pSparse, GenericType** _pOut)
-{//D * SP
-    if(_pDouble->isEmpty())
+{
+    //D * SP
+    if (_pDouble->isScalar())
     {
-        *_pOut = Double::Empty();
-        return 0;
-    }
-
-    if(_pDouble->isScalar())
-    {//d * SP -> SP
+        //d * SP -> SP
         Sparse* pOut = NULL;
-        if(_pDouble->isComplex())
+        if (_pDouble->isComplex())
         {
             std::complex<double> dbl(_pDouble->get(0), _pDouble->getImg(0));
             pOut = _pSparse->multiply(dbl);
@@ -1220,11 +1251,12 @@ int MultiplyDoubleBySparse(Double* _pDouble, Sparse *_pSparse, GenericType** _pO
         return 0;
     }
 
-    if(_pSparse->isScalar())
-    {//D * sp -> D .* d
+    if (_pSparse->isScalar())
+    {
+        //D * sp -> D .* d
         Double* pD = NULL;
 
-        if(_pSparse->isComplex())
+        if (_pSparse->isComplex())
         {
             std::complex<double> dbl(_pSparse->getImg(0, 0));
             pD = new Double(dbl.real(), dbl.imag());
@@ -1240,7 +1272,7 @@ int MultiplyDoubleBySparse(Double* _pDouble, Sparse *_pSparse, GenericType** _pO
         return 0;
     }
 
-    if(_pDouble->getCols() != _pSparse->getRows())
+    if (_pDouble->getCols() != _pSparse->getRows())
     {
         return 1;
     }
@@ -1259,31 +1291,32 @@ int MultiplyDoubleBySparse(Double* _pDouble, Sparse *_pSparse, GenericType** _pO
     Double* pOut = new Double(_pDouble->getRows(), _pSparse->getCols(), _pDouble->isComplex() | _pSparse->isComplex());
     pOut->setZeros();
 
-    if(_pDouble->isComplex() == false && _pSparse->isComplex() == false)
+    if (_pDouble->isComplex() == false && _pSparse->isComplex() == false)
     {
-        for(int i = 0 ; i < iNonZeros ; i++)
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
             double dbl = pValR[i];
 
-            for(int j = 0 ; j < _pDouble->getRows() ; j++)
+            for (int j = 0 ; j < _pDouble->getRows() ; j++)
             {
                 double dblVal = _pDouble->get(j, iRow) * dbl;
                 pOut->set(j, iCol, pOut->get(j, iCol) + dblVal);
             }
         }
     }
-    else if(_pDouble->isComplex() == false && _pSparse->isComplex() == true)
-    {//a * (b ci) -> ab ac
-        for(int i = 0 ; i < iNonZeros ; i++)
+    else if (_pDouble->isComplex() == false && _pSparse->isComplex() == true)
+    {
+        //a * (b ci) -> ab ac
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
             double dblR = pValR[i];
             double dblI = pValI[i];
 
-            for(int j = 0 ; j < _pDouble->getRows() ; j++)
+            for (int j = 0 ; j < _pDouble->getRows() ; j++)
             {
                 double dblValR = _pDouble->get(j, iRow) * dblR;
                 double dblValI = _pDouble->get(j, iRow) * dblI;
@@ -1292,15 +1325,16 @@ int MultiplyDoubleBySparse(Double* _pDouble, Sparse *_pSparse, GenericType** _pO
             }
         }
     }
-    else if(_pDouble->isComplex() == true && _pSparse->isComplex() == false)
-    {//(a bi) * c -> ac + bc
-        for(int i = 0 ; i < iNonZeros ; i++)
+    else if (_pDouble->isComplex() == true && _pSparse->isComplex() == false)
+    {
+        //(a bi) * c -> ac + bc
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
             double dblR = pValR[i];
 
-            for(int j = 0 ; j < _pDouble->getRows() ; j++)
+            for (int j = 0 ; j < _pDouble->getRows() ; j++)
             {
                 double dblValR = _pDouble->get(j, iRow) * dblR;
                 double dblValI = _pDouble->getImg(j, iRow) * dblR;
@@ -1309,16 +1343,16 @@ int MultiplyDoubleBySparse(Double* _pDouble, Sparse *_pSparse, GenericType** _pO
             }
         }
     }
-    else if(_pDouble->isComplex() == true && _pSparse->isComplex() == true)
+    else if (_pDouble->isComplex() == true && _pSparse->isComplex() == true)
     {
-        for(int i = 0 ; i < iNonZeros ; i++)
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
             double dblR = pValR[i];
             double dblI = pValI[i];
 
-            for(int j = 0 ; j < _pDouble->getRows() ; j++)
+            for (int j = 0 ; j < _pDouble->getRows() ; j++)
             {
                 double dblValR = _pDouble->get(j, iRow) * dblR - _pDouble->getImg(j, iRow) * dblI;
                 double dblValI = _pDouble->get(j, iRow) * dblI + _pDouble->getImg(j, iRow) * dblR;
@@ -1338,16 +1372,11 @@ int MultiplyDoubleBySparse(Double* _pDouble, Sparse *_pSparse, GenericType** _pO
 
 int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOut)
 {
-    if(_pDouble->isEmpty())
-    {//SP * [] -> []
-        *_pOut = Double::Empty();
-        return 0;
-    }
-
-    if(_pDouble->isScalar())
-    {//SP * d -> SP
+    if (_pDouble->isScalar())
+    {
+        //SP * d -> SP
         Sparse* pOut = NULL;
-        if(_pDouble->isComplex())
+        if (_pDouble->isComplex())
         {
             std::complex<double> dbl(_pDouble->get(0), _pDouble->getImg(0));
             pOut = _pSparse->multiply(dbl);
@@ -1360,11 +1389,12 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
         return 0;
     }
 
-    if(_pSparse->isScalar())
-    {//D * sp -> D .* d
+    if (_pSparse->isScalar())
+    {
+        //D * sp -> D .* d
         Double* pD = NULL;
 
-        if(_pSparse->isComplex())
+        if (_pSparse->isComplex())
         {
             std::complex<double> dbl(_pSparse->getImg(0, 0));
             pD = new Double(dbl.real(), dbl.imag());
@@ -1380,7 +1410,7 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
         return 0;
     }
 
-    if(_pSparse->getCols() != _pDouble->getRows())
+    if (_pSparse->getCols() != _pDouble->getRows())
     {
         return 1;
     }
@@ -1399,31 +1429,32 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
     Double* pOut = new Double(_pSparse->getRows(), _pDouble->getCols(), _pDouble->isComplex() | _pSparse->isComplex());
     pOut->setZeros();
 
-    if(_pDouble->isComplex() == false && _pSparse->isComplex() == false)
+    if (_pDouble->isComplex() == false && _pSparse->isComplex() == false)
     {
-        for(int i = 0 ; i < iNonZeros ; i++)
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow    = static_cast<int>(pRows[i]) - 1;
             int iCol    = static_cast<int>(pCols[i]) - 1;
             double dbl  = pValR[i];
 
-            for(int j = 0 ; j < _pDouble->getCols() ; j++)
+            for (int j = 0 ; j < _pDouble->getCols() ; j++)
             {
                 double dblVal = _pDouble->get(iCol, j) * dbl;
                 pOut->set(iRow, j, pOut->get(iRow, j) + dblVal);
             }
         }
     }
-    else if(_pDouble->isComplex() == false && _pSparse->isComplex() == true)
-    {//a * (b ci) -> ab ac
-        for(int i = 0 ; i < iNonZeros ; i++)
+    else if (_pDouble->isComplex() == false && _pSparse->isComplex() == true)
+    {
+        //a * (b ci) -> ab ac
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
             double dblR = pValR[i];
             double dblI = pValI[i];
 
-            for(int j = 0 ; j < _pDouble->getCols() ; j++)
+            for (int j = 0 ; j < _pDouble->getCols() ; j++)
             {
                 double dblValR = _pDouble->get(iCol, j) * dblR;
                 double dblValI = _pDouble->get(iCol, j) * dblI;
@@ -1432,15 +1463,16 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
             }
         }
     }
-    else if(_pDouble->isComplex() == true && _pSparse->isComplex() == false)
-    {//(a bi) * c -> ac + bc
-        for(int i = 0 ; i < iNonZeros ; i++)
+    else if (_pDouble->isComplex() == true && _pSparse->isComplex() == false)
+    {
+        //(a bi) * c -> ac + bc
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
             double dblR = pValR[i];
 
-            for(int j = 0 ; j < _pDouble->getCols() ; j++)
+            for (int j = 0 ; j < _pDouble->getCols() ; j++)
             {
                 double dblValR = _pDouble->get(iCol, j) * dblR;
                 double dblValI = _pDouble->getImg(iCol, j) * dblR;
@@ -1449,16 +1481,16 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
             }
         }
     }
-    else if(_pDouble->isComplex() == true && _pSparse->isComplex() == true)
+    else if (_pDouble->isComplex() == true && _pSparse->isComplex() == true)
     {
-        for(int i = 0 ; i < iNonZeros ; i++)
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
             double dblR = pValR[i];
             double dblI = pValI[i];
 
-            for(int j = 0 ; j < _pDouble->getCols() ; j++)
+            for (int j = 0 ; j < _pDouble->getCols() ; j++)
             {
                 double dblValR = _pDouble->get(iCol, j) * dblR - _pDouble->getImg(iCol, j) * dblI;
                 double dblValI = _pDouble->get(iCol, j) * dblI + _pDouble->getImg(iCol, j) * dblR;
@@ -1478,12 +1510,13 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
 
 int DotMultiplySparseBySparse(Sparse* _pSparse1, Sparse* _pSparse2, Sparse** _pOut)
 {
-    if(_pSparse1->isScalar() || _pSparse2->isScalar())
-    {//SP .* sp or sp .* SP
+    if (_pSparse1->isScalar() || _pSparse2->isScalar())
+    {
+        //SP .* sp or sp .* SP
         return MultiplySparseBySparse(_pSparse1, _pSparse2, _pOut);
     }
 
-    if(_pSparse1->getRows() != _pSparse2->getRows() || _pSparse1->getCols() != _pSparse2->getCols())
+    if (_pSparse1->getRows() != _pSparse2->getRows() || _pSparse1->getCols() != _pSparse2->getCols())
     {
         return 1;
     }
@@ -1495,23 +1528,17 @@ int DotMultiplySparseBySparse(Sparse* _pSparse1, Sparse* _pSparse2, Sparse** _pO
 
 int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType**  _pOut)
 {
-    if(_pDouble->isEmpty())
-    {
-        *_pOut = Double::Empty();
-        return 0;
-    }
-
-    if(_pDouble->isScalar())
+    if (_pDouble->isScalar())
     {
         return MultiplyDoubleBySparse(_pDouble, _pSparse, _pOut);
     }
 
-    if(_pSparse->isScalar())
+    if (_pSparse->isScalar())
     {
         return MultiplyDoubleBySparse(_pDouble, _pSparse, _pOut);
     }
 
-    if(_pSparse->getRows() != _pDouble->getRows() || _pSparse->getCols() != _pDouble->getCols())
+    if (_pSparse->getRows() != _pDouble->getRows() || _pSparse->getCols() != _pDouble->getCols())
     {
         return 1;
     }
@@ -1523,18 +1550,18 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
     _pSparse->outputRowCol(pRows);
     double* pCols = pRows + iNonZeros;
 
-    if(_pDouble->isComplex() == false && _pSparse->isComplex() == false)
+    if (_pDouble->isComplex() == false && _pSparse->isComplex() == false)
     {
-        for(int i = 0 ; i < iNonZeros ; i++)
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
             pOut->set(iRow, iCol, _pSparse->get(iRow, iCol) * _pDouble->get(iRow, iCol));
         }
     }
-    else if(_pDouble->isComplex() == false && _pSparse->isComplex() == true)
+    else if (_pDouble->isComplex() == false && _pSparse->isComplex() == true)
     {
-        for(int i = 0 ; i < iNonZeros ; i++)
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
@@ -1543,9 +1570,9 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
             pOut->set(iRow, iCol, newVal);
         }
     }
-    else if(_pDouble->isComplex() == true && _pSparse->isComplex() == false)
+    else if (_pDouble->isComplex() == true && _pSparse->isComplex() == false)
     {
-        for(int i = 0 ; i < iNonZeros ; i++)
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
@@ -1554,9 +1581,9 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
             pOut->set(iRow, iCol, newVal);
         }
     }
-    else if(_pDouble->isComplex() == true && _pSparse->isComplex() == true)
+    else if (_pDouble->isComplex() == true && _pSparse->isComplex() == true)
     {
-        for(int i = 0 ; i < iNonZeros ; i++)
+        for (int i = 0 ; i < iNonZeros ; i++)
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
