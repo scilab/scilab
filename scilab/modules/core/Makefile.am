@@ -76,7 +76,6 @@ src/c/backtrace.c \
 src/c/signal_mgmt.c \
 src/c/suspendProcess.c \
 src/c/windowsChangeManagement.c \
-src/c/setieee.c \
 src/c/setlines.c \
 src/c/setformat.c \
 src/c/InitializePreferences.c
@@ -189,7 +188,6 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_newfun.c \
 	sci_gateway/c/sci_dispbpt.c \
 	sci_gateway/c/sci_intppty.c \
-	sci_gateway/c/sci_ieee.c \
 	sci_gateway/c/sci_gstacksize.c \
 	sci_gateway/c/sci_funptr.c \
 	sci_gateway/c/sci_return.c \
@@ -215,7 +213,6 @@ GATEWAY_FORTRAN_SOURCES =  \
 sci_gateway/fortran/sci_f_mtlb_mode.f \
 sci_gateway/fortran/sci_f_dispbpt.f \
 sci_gateway/fortran/sci_f_intppty.f \
-sci_gateway/fortran/sci_f_ieee.f \
 sci_gateway/fortran/sci_f_macrovar.f \
 sci_gateway/fortran/sci_f_errcatch.f \
 sci_gateway/fortran/sci_f_setbpt.f \
@@ -248,7 +245,8 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_who.cpp \
 	sci_gateway/cpp/sci_stacksize.cpp \
 	sci_gateway/cpp/sci_format.cpp \
-	sci_gateway/cpp/sci_sciargs.cpp
+	sci_gateway/cpp/sci_sciargs.cpp \
+	sci_gateway/cpp/sci_ieee.cpp
 
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
@@ -281,7 +279,7 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/history_manager/includes/ \
 	-I$(top_srcdir)/modules/preferences/includes/ \
 	-I$(top_srcdir)/modules/external_objects/includes/ \
-    $(EIGEN_CPPFLAGS) \
+	$(EIGEN_CPPFLAGS) \
 	$(XML_FLAGS) \
 	$(AM_CPPFLAGS)
 

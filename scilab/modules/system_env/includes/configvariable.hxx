@@ -230,15 +230,15 @@ public :
     static void DecreasePauseLevel();
     static int getPauseLevel();
 
-// Dynamic Libraries
+    // Dynamic Libraries
 
-    typedef struct 
+    typedef struct
     {
         wchar_t* pwstLibraryName;   /** name of dynamic library **/
         unsigned long long hLib;        /** handle of the library **/
     } DynamicLibraryStr;
 
-    typedef struct 
+    typedef struct
     {
         wchar_t* pwstEntryPointName;    /** name of interface **/
         int iLibIndex;                  /** name of interface **/
@@ -307,6 +307,14 @@ private :
 public :
     static void setStartFinished(bool _bStartFinished);
     static bool getStartFinished();
+
+    // ieee
+private :
+    static int m_iIeee;
+
+public :
+    static void setIeee(int _iIeee);
+    static int getIeee();
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

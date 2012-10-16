@@ -51,5 +51,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"stacksize", &sci_stacksize, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"sciargs", &sci_sciargs, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"format", &sci_format, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"ieee", &sci_ieee, MODULE_NAME));
     return 1;
 }

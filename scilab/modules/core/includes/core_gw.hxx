@@ -20,8 +20,8 @@
 class CoreModule
 {
 private :
-    CoreModule(){};
-    ~CoreModule(){};
+    CoreModule() {};
+    ~CoreModule() {};
 public :
     CORE_GW_IMPEXP static int Load();
 };
@@ -52,5 +52,6 @@ CPP_GATEWAY_PROTOTYPE(sci_who);
 CPP_GATEWAY_PROTOTYPE(sci_stacksize);
 CPP_GATEWAY_PROTOTYPE(sci_sciargs);
 CPP_GATEWAY_PROTOTYPE(sci_format);
+CPP_GATEWAY_PROTOTYPE(sci_ieee);
 
 #endif /* __CORE_GW_HXX__ */

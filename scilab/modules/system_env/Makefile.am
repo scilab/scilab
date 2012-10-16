@@ -10,7 +10,7 @@
 ##
 ##
 
-SYSTEM_ENV_CPP_SOURCES 	= \
+SYSTEM_ENV_CPP_SOURCES = \
 	src/cpp/setenvvar.cpp \
 	src/cpp/sci_path.cpp \
 	src/cpp/sci_home.cpp \
@@ -21,7 +21,8 @@ SYSTEM_ENV_CPP_SOURCES 	= \
 	src/cpp/configvariable.cpp \
 	src/cpp/lasterror.cpp \
 	src/cpp/promptmode.cpp \
-    src/cpp/formatmode.cpp
+	src/cpp/formatmode.cpp \
+	src/cpp/sci_ieee.cpp
 
 pkglib_LTLIBRARIES = libscisystem_env.la
 
@@ -30,8 +31,8 @@ libscisystem_env_la_SOURCES = $(SYSTEM_ENV_CPP_SOURCES)
 libscisystem_env_la_CPPFLAGS = \
 	-I includes/ \
 	-I src/cpp \
-    -I $(top_srcdir)/libs/dynamiclibrary/includes/ \
-    -I $(top_srcdir)/libs/MALLOC/includes/ \
+	-I $(top_srcdir)/libs/dynamiclibrary/includes/ \
+	-I $(top_srcdir)/libs/MALLOC/includes/ \
 	-I $(top_srcdir)/modules/api_scilab/includes/ \
 	-I $(top_srcdir)/modules/ast/includes/ \
 	-I $(top_srcdir)/modules/symbol/includes/ \

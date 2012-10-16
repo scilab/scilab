@@ -182,6 +182,7 @@
     <ClCompile Include="src\cpp\lasterror.cpp" />
     <ClCompile Include="src\cpp\promptmode.cpp" />
     <ClCompile Include="src\cpp\sci_home.cpp" />
+    <ClCompile Include="src\cpp\sci_ieee.cpp" />
     <ClCompile Include="src\cpp\sci_mode.cpp" />
     <ClCompile Include="src\cpp\sci_path.cpp" />
     <ClCompile Include="src\cpp\sci_tmpdir.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="includes\lasterror.h" />
     <ClInclude Include="includes\promptmode.h" />
     <ClInclude Include="includes\sci_home.h" />
+    <ClInclude Include="includes\sci_ieee.h" />
     <ClInclude Include="includes\sci_mode.h" />
     <ClInclude Include="includes\sci_path.h" />
     <ClInclude Include="includes\sci_tmpdir.h" />

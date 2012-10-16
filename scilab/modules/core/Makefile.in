@@ -172,14 +172,13 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/eqid.c src/c/exitCodeValue.c src/c/getversion.c \
 	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
 	src/c/backtrace.c src/c/signal_mgmt.c src/c/suspendProcess.c \
-	src/c/windowsChangeManagement.c src/c/setieee.c \
-	src/c/setlines.c src/c/setformat.c \
-	src/c/InitializePreferences.c src/c/scimem64.c \
-	src/cpp/core_gw.cpp src/cpp/hashtable_core.cpp \
-	src/cpp/namstr.cpp src/cpp/search_functions.cpp \
-	src/cpp/demangle.cpp src/cpp/backtrace_print.cpp \
-	src/cpp/storeCommand.cpp src/cpp/banner.cpp \
-	src/cpp/with_module.cpp src/cpp/runner.cpp \
+	src/c/windowsChangeManagement.c src/c/setlines.c \
+	src/c/setformat.c src/c/InitializePreferences.c \
+	src/c/scimem64.c src/cpp/core_gw.cpp \
+	src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
+	src/cpp/search_functions.cpp src/cpp/demangle.cpp \
+	src/cpp/backtrace_print.cpp src/cpp/storeCommand.cpp \
+	src/cpp/banner.cpp src/cpp/with_module.cpp src/cpp/runner.cpp \
 	src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/allowptr.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
@@ -265,8 +264,7 @@ am__objects_2 = libscicore_algo_la-inffic.lo \
 	libscicore_algo_la-signal_mgmt.lo \
 	libscicore_algo_la-suspendProcess.lo \
 	libscicore_algo_la-windowsChangeManagement.lo \
-	libscicore_algo_la-setieee.lo libscicore_algo_la-setlines.lo \
-	libscicore_algo_la-setformat.lo \
+	libscicore_algo_la-setlines.lo libscicore_algo_la-setformat.lo \
 	libscicore_algo_la-InitializePreferences.lo $(am__objects_1)
 am__objects_3 = libscicore_algo_la-core_gw.lo \
 	libscicore_algo_la-hashtable_core.lo \
@@ -304,21 +302,20 @@ am__objects_6 = libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_delbpt.lo libscicore_la-sci_macr2lst.lo \
 	libscicore_la-sci_errclear.lo libscicore_la-sci_funcprot.lo \
 	libscicore_la-sci_newfun.lo libscicore_la-sci_dispbpt.lo \
-	libscicore_la-sci_intppty.lo libscicore_la-sci_ieee.lo \
-	libscicore_la-sci_gstacksize.lo libscicore_la-sci_funptr.lo \
-	libscicore_la-sci_return.lo libscicore_la-sci_clearfun.lo \
-	libscicore_la-sci_setbpt.lo libscicore_la-sci_what.lo \
-	libscicore_la-sci_predef.lo libscicore_la-sci_type.lo \
-	libscicore_la-sci_typename.lo libscicore_la-sci_mode.lo \
-	libscicore_la-sci_macr2tree.lo libscicore_la-sci_iserror.lo \
-	libscicore_la-sci_getdebuginfo.lo libscicore_la-sci_debug.lo \
-	libscicore_la-gw_core.lo libscicore_la-gw_user.lo \
-	libscicore_la-gw_user2.lo \
+	libscicore_la-sci_intppty.lo libscicore_la-sci_gstacksize.lo \
+	libscicore_la-sci_funptr.lo libscicore_la-sci_return.lo \
+	libscicore_la-sci_clearfun.lo libscicore_la-sci_setbpt.lo \
+	libscicore_la-sci_what.lo libscicore_la-sci_predef.lo \
+	libscicore_la-sci_type.lo libscicore_la-sci_typename.lo \
+	libscicore_la-sci_mode.lo libscicore_la-sci_macr2tree.lo \
+	libscicore_la-sci_iserror.lo libscicore_la-sci_getdebuginfo.lo \
+	libscicore_la-sci_debug.lo libscicore_la-gw_core.lo \
+	libscicore_la-gw_user.lo libscicore_la-gw_user2.lo \
 	libscicore_la-sci_getvariablesonstack.lo \
 	libscicore_la-sci_readgateway.lo libscicore_la-sci_comp.lo
 am__objects_7 = sci_f_mtlb_mode.lo sci_f_dispbpt.lo sci_f_intppty.lo \
-	sci_f_ieee.lo sci_f_macrovar.lo sci_f_errcatch.lo \
-	sci_f_setbpt.lo sci_f_delbpt.lo where.lo sci_f_iserror.lo
+	sci_f_macrovar.lo sci_f_errcatch.lo sci_f_setbpt.lo \
+	sci_f_delbpt.lo where.lo sci_f_iserror.lo
 am__objects_8 = libscicore_la-sci_getmodules.lo \
 	libscicore_la-sci_clear.lo libscicore_la-sci_banner.lo \
 	libscicore_la-sci_quit.lo libscicore_la-sci_exit.lo \
@@ -331,7 +328,8 @@ am__objects_8 = libscicore_la-sci_getmodules.lo \
 	libscicore_la-sci_error.lo libscicore_la-sci_pause.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_abort.lo \
 	libscicore_la-sci_who.lo libscicore_la-sci_stacksize.lo \
-	libscicore_la-sci_format.lo libscicore_la-sci_sciargs.lo
+	libscicore_la-sci_format.lo libscicore_la-sci_sciargs.lo \
+	libscicore_la-sci_ieee.lo
 am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -667,9 +665,9 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/intmacr2tree.c \
 	src/c/eqid.c src/c/exitCodeValue.c src/c/getversion.c \
 	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
 	src/c/backtrace.c src/c/signal_mgmt.c src/c/suspendProcess.c \
-	src/c/windowsChangeManagement.c src/c/setieee.c \
-	src/c/setlines.c src/c/setformat.c \
-	src/c/InitializePreferences.c $(am__append_1)
+	src/c/windowsChangeManagement.c src/c/setlines.c \
+	src/c/setformat.c src/c/InitializePreferences.c \
+	$(am__append_1)
 CORE_CPP_SOURCES = \
 src/cpp/core_gw.cpp \
 src/cpp/hashtable_core.cpp \
@@ -726,7 +724,6 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_newfun.c \
 	sci_gateway/c/sci_dispbpt.c \
 	sci_gateway/c/sci_intppty.c \
-	sci_gateway/c/sci_ieee.c \
 	sci_gateway/c/sci_gstacksize.c \
 	sci_gateway/c/sci_funptr.c \
 	sci_gateway/c/sci_return.c \
@@ -752,7 +749,6 @@ GATEWAY_FORTRAN_SOURCES = \
 sci_gateway/fortran/sci_f_mtlb_mode.f \
 sci_gateway/fortran/sci_f_dispbpt.f \
 sci_gateway/fortran/sci_f_intppty.f \
-sci_gateway/fortran/sci_f_ieee.f \
 sci_gateway/fortran/sci_f_macrovar.f \
 sci_gateway/fortran/sci_f_errcatch.f \
 sci_gateway/fortran/sci_f_setbpt.f \
@@ -785,7 +781,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_who.cpp \
 	sci_gateway/cpp/sci_stacksize.cpp \
 	sci_gateway/cpp/sci_format.cpp \
-	sci_gateway/cpp/sci_sciargs.cpp
+	sci_gateway/cpp/sci_sciargs.cpp \
+	sci_gateway/cpp/sci_ieee.cpp
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -1106,7 +1103,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-search_functions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-setPrecisionFPU.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-setformat.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-setieee.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-setlines.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-signal_mgmt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-stack1.Plo@am__quote@
@@ -1674,13 +1670,6 @@ libscicore_algo_la-windowsChangeManagement.lo: src/c/windowsChangeManagement.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-windowsChangeManagement.lo `test -f 'src/c/windowsChangeManagement.c' || echo '$(srcdir)/'`src/c/windowsChangeManagement.c
 
-libscicore_algo_la-setieee.lo: src/c/setieee.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-setieee.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-setieee.Tpo -c -o libscicore_algo_la-setieee.lo `test -f 'src/c/setieee.c' || echo '$(srcdir)/'`src/c/setieee.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-setieee.Tpo $(DEPDIR)/libscicore_algo_la-setieee.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setieee.c' object='libscicore_algo_la-setieee.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-setieee.lo `test -f 'src/c/setieee.c' || echo '$(srcdir)/'`src/c/setieee.c
-
 libscicore_algo_la-setlines.lo: src/c/setlines.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-setlines.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-setlines.Tpo -c -o libscicore_algo_la-setlines.lo `test -f 'src/c/setlines.c' || echo '$(srcdir)/'`src/c/setlines.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-setlines.Tpo $(DEPDIR)/libscicore_algo_la-setlines.Plo
@@ -1792,13 +1781,6 @@ libscicore_la-sci_intppty.lo: sci_gateway/c/sci_intppty.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_intppty.c' object='libscicore_la-sci_intppty.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_intppty.lo `test -f 'sci_gateway/c/sci_intppty.c' || echo '$(srcdir)/'`sci_gateway/c/sci_intppty.c
-
-libscicore_la-sci_ieee.lo: sci_gateway/c/sci_ieee.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_ieee.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_ieee.Tpo -c -o libscicore_la-sci_ieee.lo `test -f 'sci_gateway/c/sci_ieee.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ieee.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_ieee.Tpo $(DEPDIR)/libscicore_la-sci_ieee.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ieee.c' object='libscicore_la-sci_ieee.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_ieee.lo `test -f 'sci_gateway/c/sci_ieee.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ieee.c
 
 libscicore_la-sci_gstacksize.lo: sci_gateway/c/sci_gstacksize.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_gstacksize.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_gstacksize.Tpo -c -o libscicore_la-sci_gstacksize.lo `test -f 'sci_gateway/c/sci_gstacksize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gstacksize.c
@@ -2206,6 +2188,13 @@ libscicore_la-sci_sciargs.lo: sci_gateway/cpp/sci_sciargs.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_sciargs.lo `test -f 'sci_gateway/cpp/sci_sciargs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sciargs.cpp
 
+libscicore_la-sci_ieee.lo: sci_gateway/cpp/sci_ieee.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_ieee.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_ieee.Tpo -c -o libscicore_la-sci_ieee.lo `test -f 'sci_gateway/cpp/sci_ieee.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_ieee.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_ieee.Tpo $(DEPDIR)/libscicore_la-sci_ieee.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_ieee.cpp' object='libscicore_la-sci_ieee.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_ieee.lo `test -f 'sci_gateway/cpp/sci_ieee.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_ieee.cpp
+
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
 
@@ -2448,9 +2437,6 @@ sci_f_dispbpt.lo: sci_gateway/fortran/sci_f_dispbpt.f
 
 sci_f_intppty.lo: sci_gateway/fortran/sci_f_intppty.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_intppty.lo `test -f 'sci_gateway/fortran/sci_f_intppty.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_intppty.f
-
-sci_f_ieee.lo: sci_gateway/fortran/sci_f_ieee.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_ieee.lo `test -f 'sci_gateway/fortran/sci_f_ieee.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ieee.f
 
 sci_f_macrovar.lo: sci_gateway/fortran/sci_f_macrovar.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_macrovar.lo `test -f 'sci_gateway/fortran/sci_f_macrovar.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_macrovar.f

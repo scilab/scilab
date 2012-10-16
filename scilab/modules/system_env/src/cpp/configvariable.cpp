@@ -30,7 +30,7 @@ void ConfigVariable::setModuleList(std::list<std::wstring>& _pModule_list)
     m_ModuleList.clear();
 
     std::list<std::wstring>::iterator it;
-    for(it = _pModule_list.begin() ; it != _pModule_list.end() ; it++)
+    for (it = _pModule_list.begin() ; it != _pModule_list.end() ; it++)
     {
         m_ModuleList.push_back(*it);
     }
@@ -40,7 +40,7 @@ std::list<std::wstring> ConfigVariable::getModuleList()
 {
     std::list<std::wstring> moduleList;
     std::list<std::wstring>::iterator it;
-    for(it = m_ModuleList.begin() ; it != m_ModuleList.end() ; it++)
+    for (it = m_ModuleList.begin() ; it != m_ModuleList.end() ; it++)
     {
         moduleList.push_back(*it);
     }
@@ -293,7 +293,7 @@ void ConfigVariable::setLastErrorCall(void)
 
 void ConfigVariable::clearLastError(void)
 {
-    if(m_bLastErrorCall == false)
+    if (m_bLastErrorCall == false)
     {
         m_wstError          = L"";
         m_iError            = 0;
@@ -399,7 +399,7 @@ int ConfigVariable::m_iSilentError = 0;
 void ConfigVariable::setPromptMode(int _iPromptMode)
 {
     m_iPromptMode = _iPromptMode;
-    if(m_iPromptMode == 0)
+    if (m_iPromptMode == 0)
     {
         //m_iPromptMode = -1;
     }
@@ -412,10 +412,10 @@ int ConfigVariable::getPromptMode(void)
 
 bool ConfigVariable::isPromptShow(void)
 {
-    if( m_iPromptMode == 0 || 
-        m_iPromptMode == 1 || 
-        m_iPromptMode == 2 || 
-        m_iPromptMode == 3)
+    if ( m_iPromptMode == 0 ||
+            m_iPromptMode == 1 ||
+            m_iPromptMode == 2 ||
+            m_iPromptMode == 3)
     {
         return true;
     }
@@ -445,9 +445,9 @@ std::list<types::ThreadId *> ConfigVariable::m_threadList;
 types::ThreadId* ConfigVariable::getLastPausedThread()
 {
     std::list<types::ThreadId *>::reverse_iterator it;
-    for(it = m_threadList.rbegin() ; it != m_threadList.rend() ; it++)
+    for (it = m_threadList.rbegin() ; it != m_threadList.rend() ; it++)
     {
-        if((*it)->getStatus() == types::ThreadId::Paused)
+        if ((*it)->getStatus() == types::ThreadId::Paused)
         {
             return *it;
         }
@@ -458,9 +458,9 @@ types::ThreadId* ConfigVariable::getLastPausedThread()
 types::ThreadId* ConfigVariable::getLastRunningThread()
 {
     std::list<types::ThreadId *>::reverse_iterator it;
-    for(it = m_threadList.rbegin() ; it != m_threadList.rend() ; it++)
+    for (it = m_threadList.rbegin() ; it != m_threadList.rend() ; it++)
     {
-        if((*it)->getStatus() == types::ThreadId::Running)
+        if ((*it)->getStatus() == types::ThreadId::Running)
         {
             return *it;
         }
@@ -508,7 +508,7 @@ types::ThreadId* ConfigVariable::getThread(__threadKey _key)
 
     for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it)
     {
-        if((*it)->getKey() == _key)
+        if ((*it)->getKey() == _key)
         {
             return *it;
         }
@@ -535,10 +535,10 @@ void ConfigVariable::deleteThread(__threadKey _key)
     std::list<types::ThreadId *>::iterator it;
     for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it)
     {
-        if((*it)->getKey() == _key)
+        if ((*it)->getKey() == _key)
         {
             (*it)->DecreaseRef();
-            if((*it)->isDeletable())
+            if ((*it)->isDeletable())
             {
                 delete (*it);
                 (*it) = NULL;
@@ -608,9 +608,9 @@ ConfigVariable::EntryPointStr* ConfigVariable::getNewEntryPointStr()
 
 void ConfigVariable::setLibraryName(ConfigVariable::DynamicLibraryStr* _pDynamicLibrary, wchar_t* _pwstLibraryName)
 {
-    if(_pDynamicLibrary)
+    if (_pDynamicLibrary)
     {
-        if(_pDynamicLibrary->pwstLibraryName)
+        if (_pDynamicLibrary->pwstLibraryName)
         {
             FREE(_pDynamicLibrary->pwstLibraryName);
         }
@@ -620,9 +620,9 @@ void ConfigVariable::setLibraryName(ConfigVariable::DynamicLibraryStr* _pDynamic
 
 void ConfigVariable::setEntryPointName(ConfigVariable::EntryPointStr* _pEntryPoint, wchar_t* _pwstEntryPointName)
 {
-    if(_pEntryPoint)
+    if (_pEntryPoint)
     {
-        if(_pEntryPoint->pwstEntryPointName)
+        if (_pEntryPoint->pwstEntryPointName)
         {
             FREE(_pEntryPoint->pwstEntryPointName);
         }
@@ -633,9 +633,9 @@ void ConfigVariable::setEntryPointName(ConfigVariable::EntryPointStr* _pEntryPoi
 /* Dynamic libraries functions */
 int ConfigVariable::addDynamicLibrary(ConfigVariable::DynamicLibraryStr* _pDynamicLibrary)
 {
-    for(int i = 0 ; i < m_DynLibList.size() ; i++)
+    for (int i = 0 ; i < m_DynLibList.size() ; i++)
     {
-        if(m_DynLibList[i] == NULL)
+        if (m_DynLibList[i] == NULL)
         {
             m_DynLibList[i] = _pDynamicLibrary;
             return i;
@@ -648,15 +648,16 @@ int ConfigVariable::addDynamicLibrary(ConfigVariable::DynamicLibraryStr* _pDynam
 
 void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
 {
-    if(_iDynamicLibraryIndex < m_DynLibList.size())
+    if (_iDynamicLibraryIndex < m_DynLibList.size())
     {
         std::list<EntryPointStr*>::const_iterator it;
-        for(it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
-        {//clear all entry points linked to removed dynamic library
-            if((*it)->iLibIndex == _iDynamicLibraryIndex)
+        for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+        {
+            //clear all entry points linked to removed dynamic library
+            if ((*it)->iLibIndex == _iDynamicLibraryIndex)
             {
                 m_EntryPointList.remove(*it);
-                if(m_EntryPointList.size() == 0)
+                if (m_EntryPointList.size() == 0)
                 {
                     break;
                 }
@@ -668,7 +669,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
     }
 
     //clean dynamic library vector
-    while(m_DynLibList.size() != 0 && m_DynLibList.back() == NULL)
+    while (m_DynLibList.size() != 0 && m_DynLibList.back() == NULL)
     {
         m_DynLibList.pop_back();
     }
@@ -676,7 +677,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
 
 ConfigVariable::DynamicLibraryStr* ConfigVariable::getDynamicLibrary(int _iDynamicLibraryIndex)
 {
-    if(_iDynamicLibraryIndex < m_DynLibList.size())
+    if (_iDynamicLibraryIndex < m_DynLibList.size())
     {
         return m_DynLibList[_iDynamicLibraryIndex];
     }
@@ -685,9 +686,9 @@ ConfigVariable::DynamicLibraryStr* ConfigVariable::getDynamicLibrary(int _iDynam
 
 bool ConfigVariable::isDynamicLibrary(int _iDynamicLibraryIndex)
 {
-    if(_iDynamicLibraryIndex < m_DynLibList.size())
+    if (_iDynamicLibraryIndex < m_DynLibList.size())
     {
-        if(m_DynLibList[_iDynamicLibraryIndex] != NULL)
+        if (m_DynLibList[_iDynamicLibraryIndex] != NULL)
         {
             return true;
         }
@@ -697,7 +698,7 @@ bool ConfigVariable::isDynamicLibrary(int _iDynamicLibraryIndex)
 
 void ConfigVariable::addEntryPoint(ConfigVariable::EntryPointStr* _pEP)
 {
-    if(_pEP != NULL)
+    if (_pEP != NULL)
     {
         m_EntryPointList.push_back(_pEP);
     }
@@ -706,12 +707,12 @@ void ConfigVariable::addEntryPoint(ConfigVariable::EntryPointStr* _pEP)
 ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex)
 {
     std::list<EntryPointStr*>::const_iterator it;
-    for(it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+    for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
     {
         //by pass iLibIndex check if _iDynamicLibraryIndex == -1
-        if(_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
+        if (_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
         {
-            if(wcscmp((*it)->pwstEntryPointName, _pwstEntryPointName) == 0)
+            if (wcscmp((*it)->pwstEntryPointName, _pwstEntryPointName) == 0)
             {
                 return *it;
             }
@@ -724,7 +725,7 @@ std::vector<std::wstring> ConfigVariable::getEntryPointNameList()
 {
     std::vector<std::wstring> EntryPointNames;
     std::list<EntryPointStr*>::const_iterator it;
-    for(it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+    for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
     {
         EntryPointNames.push_back((*it)->pwstEntryPointName);
     }
@@ -742,13 +743,13 @@ std::list<ConfigVariable::EntryPointStr*>* ConfigVariable::getEntryPointList()
 }
 
 
-    // Command Line Arguments
+// Command Line Arguments
 std::vector<std::wstring> ConfigVariable::m_Args;
 
 void ConfigVariable::setCommandLineArgs(int _iArgs, char** _pstArgs)
 {
     m_Args.clear();
-    for(int i = 0 ; i < _iArgs ; i++)
+    for (int i = 0 ; i < _iArgs ; i++)
     {
         m_Args.push_back(to_wide_string(_pstArgs[i]));
     }
@@ -757,7 +758,7 @@ void ConfigVariable::setCommandLineArgs(int _iArgs, char** _pstArgs)
 wchar_t** ConfigVariable::getCommandLineArgs(int* _piCount)
 {
     wchar_t** pwstArgs = (wchar_t**)MALLOC(m_Args.size() * sizeof(wchar_t*));
-    for(int i = 0 ; i < m_Args.size() ; i++)
+    for (int i = 0 ; i < m_Args.size() ; i++)
     {
         pwstArgs[i] = os_wcsdup(m_Args[i].c_str());
     }
@@ -878,6 +879,25 @@ void ConfigVariable::setStartFinished(bool _bStartFinished)
 bool ConfigVariable::getStartFinished()
 {
     return m_bStartFinished;
+}
+/*
+** \}
+*/
+
+/*
+** ieee
+** \{
+*/
+int ConfigVariable::m_iIeee = 0;
+
+void ConfigVariable::setIeee(int _iIeee)
+{
+    m_iIeee = _iIeee;
+}
+
+int ConfigVariable::getIeee()
+{
+    return m_iIeee;
 }
 /*
 ** \}
