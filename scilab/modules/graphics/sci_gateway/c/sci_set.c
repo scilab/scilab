@@ -55,34 +55,47 @@ static int sciSet(void* _pvCtx, char *pobjUID, char *marker, size_t * value, int
  *-----------------------------------------------------------*/
 int sci_set(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
+
+    int* piAddr = NULL;
     int lw = 0;
     int isMatrixOfString = 0;
 
-    if ((VarType(1) == sci_mlist) || (VarType(1) == sci_tlist))
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
+    {
+        //error
+        return 1;
+    }
+
+    if (isMListType(pvApiCtx, piAddr) || isTListType(pvApiCtx, piAddr))
     {
         lw = 1 + Top - Rhs;
-        C2F(overload) (&lw, "set", 3);
+        OverLoad(lw);
         return 0;
     }
 
     CheckRhs(2, 3);
     CheckLhs(0, 1);
 
-    if (VarType(1) == sci_matrix)   /* tclsci handle */
+    if (isDoubleType(pvApiCtx, piAddr))   /* tclsci handle */
     {
         lw = 1 + Top - Rhs;
         /* call "set" for tcl/tk see tclsci/sci_gateway/c/sci_set.c */
-        C2F(overload) (&lw, "set", 3);
+        OverLoad(lw);
         return 0;
     }
     else                        /* others types */
     {
-        int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0;
+        int iRows1 = 0, iCols1 = 0 , m2 = 0, n2 = 0, l2 = 0;
+        void* pvData = NULL;
         int numrow3 = 0;
         int numcol3 = 0;
         size_t l3 = 0;
         unsigned long hdl;
         char *pobjUID = NULL;
+
+        int iType1 = 0;
 
         int valueType = 0;      /* type of the rhs */
 
@@ -106,21 +119,26 @@ int sci_set(char *fname, unsigned long fname_len)
         ptrindex[1] = 0;
 
         /*  set or create a graphic window */
-        switch (VarType(1))
+        sciErr = getVarType(pvApiCtx, piAddr, &iType1);
+        if (sciErr.iErr)
+        {
+            //error
+            return 1;
+        }
+        switch (iType1)
         {
             case sci_handles:
                 /* first is a scalar argument so it's a gset(hdl,"command",[param]) */
                 /* F.Leray; INFO: case 9 is considered for a matrix of graphic handles */
                 CheckRhs(3, 3);
-                GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1); /* Gets the Handle passed as argument */
-                if (m1 != 1 || n1 != 1)
+
+                if (getScalarHandle(pvApiCtx, piAddr, (long long*)&hdl))
                 {
                     lw = 1 + Top - Rhs;
-                    C2F(overload) (&lw, "set", 3);
+                    OverLoad(lw);
                     return 0;
                 }
 
-                hdl = (long) * hstk(l1);
                 pobjUID = (char*)getObjectFromHandle(hdl);
 
                 GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);   /* Gets the command name */
