@@ -20,7 +20,8 @@ src/fortran/zbesjg.f \
 src/fortran/zbeskg.f \
 src/fortran/zbesyg.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_dlgamma.c \
+GATEWAY_C_SOURCES = \
+sci_gateway/c/sci_dlgamma.c \
 sci_gateway/c/sci_bessely.c \
 sci_gateway/c/sci_beta.c \
 sci_gateway/c/sci_gamma.c \
@@ -32,11 +33,6 @@ sci_gateway/c/sci_besselk.c \
 sci_gateway/c/sci_calerf.c \
 sci_gateway/c/gw_special_functions.c \
 sci_gateway/c/sci_lgamma.c
-
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_dlgamma.f \
-sci_gateway/fortran/sci_f_lgamma.f \
-sci_gateway/fortran/sci_f_gamma.f \
-sci_gateway/fortran/sci_f_calerf.f
 
 # Includes need for the compilation
 libscispecial_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
@@ -55,7 +51,7 @@ noinst_LTLIBRARIES = libscispecial_functions-algo.la
 
 
 libscispecial_functions_algo_la_SOURCES = $(SPECIAL_FUNCTIONS_C_SOURCES) $(SPECIAL_FUNCTIONS_FORTRAN_SOURCES) $(SPECIAL_FUNCTIONS_CXX_SOURCES)
-libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
+libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscispecial_functions_algo_la_CPPFLAGS = $(libscispecial_functions_la_CPPFLAGS)
 
 # For the code check (splint)
@@ -70,7 +66,7 @@ modulename=special_functions
 
 #### special_functions : Conf files ####
 libscispecial_functions_la_rootdir = $(mydatadir)
-libscispecial_functions_la_root_DATA =  license.txt 
+libscispecial_functions_la_root_DATA =  license.txt
 
 
 

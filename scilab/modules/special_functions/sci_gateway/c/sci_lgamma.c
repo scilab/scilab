@@ -11,47 +11,68 @@
  *
  */
 
-#include <string.h>
 #include "gw_special_functions.h"
 #include "machine.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intslgamma)(char *id, unsigned long fname_len); /* fortran subroutine */
+extern double C2F(dlgama)();
 /*--------------------------------------------------------------------------*/
 int sci_lgamma(char *fname, unsigned long fname_len)
 {
-    if (Rhs == 1)
+    double* lX   = NULL;
+    int* piAddrX = NULL;
+
+    int iType1 = 0;
+    int MX = 0, NX = 0, i = 0;
+
+    nbInputArgument(pvApiCtx) = Max(0, nbInputArgument(pvApiCtx));
+
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrX);
+    if (sciErr.iErr)
     {
-        int *piAddressVarOne = NULL;
-        int iType1 = 0;
-        SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 1;
-        }
-
-        sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 1;
-        }
-
-        if ((iType1 == sci_list) ||
-                (iType1 == sci_tlist) ||
-                (iType1 == sci_mlist))
-        {
-            OverLoad(1);
-            return 0;
-        }
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 1;
     }
 
-    C2F(intslgamma)(fname, fname_len);
+    sciErr = getVarType(pvApiCtx, piAddrX, &iType1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 1;
+    }
+
+    if ((iType1 == sci_list) || (iType1 == sci_tlist) || (iType1 == sci_mlist))
+    {
+        OverLoad(1);
+        return 0;
+    }
+
+    if (isVarComplex(pvApiCtx, piAddrX))
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 1);
+        return 1;
+    }
+
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrX, &MX, &NX, &lX);
+    if (sciErr.iErr)
+    {
+        Scierror(999, _("%s: Wrong type for argument %d: A matrix expected.\n"), fname, 1);
+    }
+
+    for (i = 0; i < MX * NX; i++)
+    {
+        lX[i] = C2F(dlgama)(lX + i);
+    }
+
+    AssignOutputVariable(pvApiCtx, 1) = 1;
+    returnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
