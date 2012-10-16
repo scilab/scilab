@@ -8,13 +8,36 @@
 // <-- Short Description -->
 // White-box test for the xcosPal macro.
 
-
+fields=["name";"blockNames";"icons";"style"]
 name = "My palette";
 exec(SCI + "/modules/scicos/palettes/Lookup_Tables.cosf", -1); // getting an scs_m
 
-pal = xcosPal()
-pal = xcosPal(name)
-pal = xcosPal(scs_m)
-pal = xcosPal([], scs_m)
-pal = xcosPal(name, scs_m)
+pal = xcosPal();
+assert_checkequal(fieldnames(pal), fields);
+
+pal = xcosPal(name);
+assert_checkequal(fieldnames(pal), fields);
+assert_checkequal(pal.name, name);
+
+pal = xcosPal(scs_m);
+assert_checkequal(fieldnames(pal), fields);
+assert_checkequal(pal.name, "Lookup_Tables");
+assert_checkfalse(isempty(pal.blockNames));
+assert_checkequal(size(pal.blockNames), size(pal.icons));
+assert_checkequal(size(pal.blockNames), size(pal.style));
+
+pal = xcosPal([], scs_m);
+assert_checkequal(fieldnames(pal), fields);
+assert_checkequal(pal.name, "Lookup_Tables");
+assert_checkfalse(isempty(pal.blockNames));
+assert_checkequal(size(pal.blockNames), size(pal.icons));
+assert_checkequal(size(pal.blockNames), size(pal.style));
+
+pal = xcosPal(name, scs_m);
+assert_checkequal(fieldnames(pal), fields);
+// scs_m name will always be used
+assert_checkequal(pal.name, "Lookup_Tables");
+assert_checkfalse(isempty(pal.blockNames));
+assert_checkequal(size(pal.blockNames), size(pal.icons));
+assert_checkequal(size(pal.blockNames), size(pal.style));
 
