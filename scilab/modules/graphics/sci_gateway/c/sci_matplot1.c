@@ -28,7 +28,6 @@ int sci_matplot1( char * fname, unsigned long fname_len )
 {
     SciErr sciErr;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
-
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
 
