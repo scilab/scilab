@@ -7,8 +7,6 @@
 
 // <-- XCOS TEST -->
 //
-// <-- NOT FIXED -->
-//
 // <-- Non-regression test for bug 99927 -->
 //
 // <-- Bugzilla URL -->
