@@ -140,7 +140,9 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     {
         int iVersion = getSODFormatAttribute(iH5File);
         if (iVersion != -1 && iVersion != SOD_FILE_VERSION)
-        {//to update version must be the same
+        {
+            //to update version must be the same
+            closeHDF5File(iH5File);
             Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
             return 1;
         }
@@ -165,7 +167,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
 
                     if (strcmp(pstVarNameList[i], pstNameList[j]) == 0)
                     {
-
+                        closeHDF5File(iH5File);
                         Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'."), fname, pstVarNameList[i], pstNameList[0]);
                         return 1;
                     }
@@ -196,12 +198,14 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         //add or update scilab version and file version in hdf5 file
         if (updateScilabVersion(iH5File) < 0)
         {
+            closeHDF5File(iH5File);
             Scierror(999, _("%s: Unable to update Scilab version in \"%s\"."), fname, pstNameList[0]);
             return 1;
         }
 
         if (updateFileVersion(iH5File) < 0)
         {
+            closeHDF5File(iH5File);
             Scierror(999, _("%s: Unable to update HDF5 format version in \"%s\"."), fname, pstNameList[0]);
             return 1;
         }
@@ -264,88 +268,88 @@ static bool export_data(int _iH5File, int* _piVar, char* _pstName)
     switch (iType)
     {
         case sci_matrix :
-            {
-                bReturn = export_double(_iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_double(_iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_poly :
-            {
-                bReturn = export_poly(_iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_poly(_iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_boolean :
-            {
-                bReturn = export_boolean(_iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_boolean(_iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_sparse :
-            {
-                bReturn = export_sparse(_iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_sparse(_iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_boolean_sparse :
-            {
-                bReturn = export_boolean_sparse(_iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_boolean_sparse(_iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_matlab_sparse :
-            {
-                bReturn = export_matlab_sparse(_piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_matlab_sparse(_piVar, _pstName);
+            break;
+        }
         case sci_ints :
-            {
-                bReturn = export_ints(_iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_ints(_iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_handles :
-            {
-                bReturn = export_handles(_piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_handles(_piVar, _pstName);
+            break;
+        }
         case sci_strings :
-            {
-                bReturn = export_strings(_iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_strings(_iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_u_function :
-            {
-                bReturn = export_u_function(_piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_u_function(_piVar, _pstName);
+            break;
+        }
         case sci_c_function :
-            {
-                bReturn = export_c_function(_piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_c_function(_piVar, _pstName);
+            break;
+        }
         case sci_lib :
-            {
-                bReturn = export_lib(_piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_lib(_piVar, _pstName);
+            break;
+        }
         case sci_list :
         case sci_tlist :
         case sci_mlist :
-            {
-                bReturn = export_list(_iH5File, _piVar, _pstName, iType);
-                break;
-            }
+        {
+            bReturn = export_list(_iH5File, _piVar, _pstName, iType);
+            break;
+        }
         case sci_lufact_pointer :
-            {
-                bReturn = export_lufact_pointer(_piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_lufact_pointer(_piVar, _pstName);
+            break;
+        }
         case 0 : //void case to "null" items in list
-            {
-                bReturn = export_void(_iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_void(_iH5File, _piVar, _pstName);
+            break;
+        }
 
         default :
-            {
-                bReturn = false;
-                break;
-            }
+        {
+            bReturn = false;
+            break;
+        }
     }
     return bReturn;
 }
@@ -418,7 +422,9 @@ static bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType
         iRet = addItemInList(_iH5File, pvList, i, pstPathName);
         FREE(pstPathName);
         if (bReturn == false || iRet)
+        {
             return false;
+        }
     }
     iLevel--;
     closeList(_iH5File, pvList, _pstName, iItemNumber, _iVarType);
