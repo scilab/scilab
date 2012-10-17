@@ -35,6 +35,9 @@ Bug fixes
 
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
+* Bug #11474 fixed - save_format help page was still refering to the old save
+                     format. Use the SEP #64 content.
+
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
