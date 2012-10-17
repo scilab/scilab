@@ -17,10 +17,10 @@
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 if 2*2 == 4 then
-   disp("It works")
+   disp("Работает")
 end
 
 n=round(10*rand(1,1))
