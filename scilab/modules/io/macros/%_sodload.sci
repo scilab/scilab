@@ -126,6 +126,8 @@ function %_sodload(%__filename__, varargin)
             h = createuicontextmenu(item);
         case "uicontrol"
             h = createuicontrol(item);
+        case "Datatip"
+            h = createDatatip(item);
         else
             error("handle of type " + item.type + " unhandled");
             h = [];
@@ -318,14 +320,22 @@ function %_sodload(%__filename__, varargin)
         mark_mode = polylineProperties.mark_mode;
         fields(fields=="mark_mode") = [];
 
+        global %POLYLINE
+	%POLYLINE = h
+
         for i = 1:size(fields, "*")
             if fields(i) == "mark_style" then
                 set(h, "mark_style", polylineProperties.mark_style);
                 set(h, "mark_mode", mark_mode);
+            elseif fields(i) == "children" then
+                createMatrixHandle(polylineProperties(fields(i)));
             else
                 h(fields(i)) = polylineProperties(fields(i));
             end
         end
+
+        clearglobal %POLYLINE
+
     endfunction
 
     //
@@ -619,12 +629,12 @@ function %_sodload(%__filename__, varargin)
     function h = createLegend(legendProperties)
         global %LEG
         %LEG = legendProperties;
-        endfunction
+    endfunction
 
-        //
-        // TEXT
-        //
-        function h = createText(textProperties)
+    //
+    // TEXT
+    //
+    function h = createText(textProperties)
         fields = fieldnames(textProperties);
         fields(1) = [];
 
@@ -645,6 +655,28 @@ function %_sodload(%__filename__, varargin)
 
         for i = 1:size(fields, "*")
             set(h, fields(i), textProperties(fields(i)));
+        end
+    endfunction
+
+    //
+    // DATATIP
+    //
+    function h = createDatatip(datatipProperties)
+
+        fields = fieldnames(datatipProperties);
+        fields(1) = [];
+
+        h = datatipCreate(%POLYLINE, 0);
+
+        if datatipProperties.clip_state=="on" then
+            set(h, "clip_box", datatipProperties.clip_box)
+        end
+        set(h, "clip_state", datatipProperties.clip_state);
+        fields(fields=="clip_box") = [];
+        fields(fields=="clip_state") = [];
+
+        for i = 1:size(fields, "*")
+            set(h, fields(i), datatipProperties(fields(i)));
         end
     endfunction
 
