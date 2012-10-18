@@ -308,7 +308,7 @@ clean-tests:
 	fi
 
 clean-localization:
-	rm -rf $(top_srcdir)/locale/
+	rm -rf $(top_srcdir)/locale/*
 
 clean-generated:
 # Deleted junit + code coverage

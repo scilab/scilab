@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественная или комплексная квадратная матрица.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественная или комплексная квадратная матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,9 +39,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>atanhm(x)</literal> - матричный гиперболический арктангенс матрицы 
-            <literal>x</literal>. Результаты могут быть неточными, если 
-            <literal>x</literal> несимметричная матрица.
+            <code>atanhm(x)</code> - матричный гиперболический арктангенс матрицы
+            <varname>x</varname>. Результаты могут быть неточными, если
+            <varname>x</varname> - несимметричная матрица.
         </para>
     </refsection>
     <refsection>

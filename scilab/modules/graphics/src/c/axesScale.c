@@ -113,11 +113,11 @@ int sciZoomRect(char* objUID, const double zoomRect[4])
     int iType = -1;
     int *piType = &iType;
     getGraphicObjectProperty(objUID, __GO_TYPE__, jni_int, (void **) &piType);
-    if (piType == __GO_FIGURE__)
+    if (iType == __GO_FIGURE__)
     {
         return sciFigureZoom2D(objUID, zoomRect);
     }
-    else if (piType == __GO_AXES__)
+    else if (iType == __GO_AXES__)
     {
         return sciZoom2D(objUID, zoomRect);
     }

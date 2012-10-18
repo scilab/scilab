@@ -19,7 +19,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "GetProperty.h"
 #include "sciCall.h"
 #include "Scierror.h"
@@ -31,6 +31,8 @@
 #include "CurrentSubwin.h"
 
 /*--------------------------------------------------------------------------*/
+// get_optionals not yet managed
+/*--------------------------------------------------------------------------*/
 static int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
                     long unsigned int xl, int ypos, int yRow, int yCol, long unsigned int yl, int *ntics);
 
@@ -40,19 +42,20 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
     /** XXXXX : un point en suspens c'est le "S" ou une adresse est
      *  stockees ds un unsigned long : est ce sufisant ?
      */
-    static rhs_opts opts[] = {
-        {-1, "dir", "c", 0, 0, 0},
-        {-1, "fontsize", "i", 0, 0, 0},
-        {-1, "format_n", "c", 0, 0, 0},
-        {-1, "seg", "i", 0, 0, 0},
-        {-1, "sub_int", "i", 0, 0, 0},
-        {-1, "textcolor", "i", 0, 0, 0},
-        {-1, "tics", "c", 0, 0, 0},
-        {-1, "ticscolor", "i", 0, 0, 0},
-        {-1, "val", "S", 0, 0, 0},
-        {-1, "x", "d", 0, 0, 0},
-        {-1, "y", "d", 0, 0, 0},
-        {-1, NULL, NULL, 0, 0}
+    static rhs_opts opts[] =
+    {
+        { -1, "dir", "c", 0, 0, 0},
+        { -1, "fontsize", "i", 0, 0, 0},
+        { -1, "format_n", "c", 0, 0, 0},
+        { -1, "seg", "i", 0, 0, 0},
+        { -1, "sub_int", "i", 0, 0, 0},
+        { -1, "textcolor", "i", 0, 0, 0},
+        { -1, "tics", "c", 0, 0, 0},
+        { -1, "ticscolor", "i", 0, 0, 0},
+        { -1, "val", "S", 0, 0, 0},
+        { -1, "x", "d", 0, 0, 0},
+        { -1, "y", "d", 0, 0, 0},
+        { -1, NULL, NULL, 0, 0}
     };
 
     char *psubwinUID = NULL;
@@ -65,8 +68,8 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
 
     nopt = NumOpt();
 
-    CheckRhs(minrhs, maxrhs + nopt);
-    CheckLhs(minlhs, maxlhs);
+    CheckInputArgument(pvApiCtx, minrhs, maxrhs + nopt);
+    CheckOutputArgument(pvApiCtx, minlhs, maxlhs);
 
     if (get_optionals(fname, opts) == 0)
     {
@@ -78,12 +81,24 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
 
     if (opts[0].position != -1)
     {
-        CheckLength(opts[0].position, opts[0].m, 1);
+        //CheckLength
+        if (opts[0].m != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: %d expected.\n"), fname, opts[0].position, opts[0].m);
+            return 1;
+        }
+
         dir = *cstk(opts[0].l);
     }
     if (opts[1].position != -1)
     {
-        CheckScalar(opts[1].position, opts[1].m, opts[1].n);
+        //CheckScalar
+        if (opts[1].m != 1 || opts[1].n != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, opts[1].position);
+            return 1;
+        }
+
         fontsize = *istk(opts[1].l);
     }
     if (opts[2].position != -1)
@@ -94,31 +109,61 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
 
     if (opts[3].position != -1)
     {
-        CheckScalar(opts[3].position, opts[3].m, opts[3].n);
+        //CheckScalar
+        if (opts[3].m != 1 || opts[3].n != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, opts[3].position);
+            return 1;
+        }
+
         seg_flag = *istk(opts[3].l);
     }
 
     if (opts[4].position != -1)
     {
-        CheckScalar(opts[4].position, opts[4].m, opts[4].n);
+        //CheckScalar
+        if (opts[4].m != 1 || opts[4].n != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, opts[4].position);
+            return 1;
+        }
+
         sub_int = *istk(opts[4].l);
     }
 
     if (opts[5].position != -1)
     {
-        CheckScalar(opts[5].position, opts[5].m, opts[5].n);
+        //CheckScalar
+        if (opts[5].m != 1 || opts[5].n != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, opts[5].position);
+            return 1;
+        }
+
         textcolor = *istk(opts[5].l);
     }
 
     if (opts[6].position != -1)
     {
-        CheckLength(opts[6].position, opts[6].m, 1);
+        //CheckLength
+        if (opts[6].m != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: %d expected.\n"), fname, opts[6].position, opts[6].m);
+            return 1;
+        }
+
         tics = *cstk(opts[6].l);
     }
 
     if (opts[7].position != -1)
     {
-        CheckScalar(opts[7].position, opts[7].m, opts[7].n);
+        //CheckScalar
+        if (opts[7].m != 1 || opts[7].n != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, opts[7].position);
+            return 1;
+        }
+
         ticscolor = *istk(opts[7].l);
     }
 
@@ -170,45 +215,51 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
     /* compatibility test */
     switch (tics)
     {
-    case 'r':
-        if (check_xy(fname, dir, 3, opts[9].position, opts[9].m, opts[9].n, opts[9].l,
-                     opts[10].position, opts[10].m, opts[10].n, opts[10].l, &ntics) == 0)
-        {
-            PutLhsVar();
+        case 'r':
+            if (check_xy(fname, dir, 3, opts[9].position, opts[9].m, opts[9].n, opts[9].l,
+                         opts[10].position, opts[10].m, opts[10].n, opts[10].l, &ntics) == 0)
+            {
+                ReturnArguments(pvApiCtx);
+                return 0;
+            }
+            break;
+        case 'i':
+            if (check_xy(fname, dir, 4, opts[9].position, opts[9].m, opts[9].n, opts[9].l,
+                         opts[10].position, opts[10].m, opts[10].n, opts[10].l, &ntics) == 0)
+            {
+                ReturnArguments(pvApiCtx);
+                return 0;
+            }
+            break;
+        case 'v':
+            if (check_xy(fname, dir, -1, opts[9].position, opts[9].m, opts[9].n, opts[9].l,
+                         opts[10].position, opts[10].m, opts[10].n, opts[10].l, &ntics) == 0)
+            {
+                ReturnArguments(pvApiCtx);
+                return 0;
+            }
+            break;
+        default:
+            Scierror(999, _("%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"), fname, "tics", dir, "r", "v", "i");
             return 0;
-        }
-        break;
-    case 'i':
-        if (check_xy(fname, dir, 4, opts[9].position, opts[9].m, opts[9].n, opts[9].l,
-                     opts[10].position, opts[10].m, opts[10].n, opts[10].l, &ntics) == 0)
-        {
-            PutLhsVar();
-            return 0;
-        }
-        break;
-    case 'v':
-        if (check_xy(fname, dir, -1, opts[9].position, opts[9].m, opts[9].n, opts[9].l,
-                     opts[10].position, opts[10].m, opts[10].n, opts[10].l, &ntics) == 0)
-        {
-            PutLhsVar();
-            return 0;
-        }
-        break;
-    default:
-        Scierror(999, _("%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"), fname, "tics", dir, "r", "v", "i");
-        return 0;
     }
 
     if (val != NULL)
     {
-        CheckLength(opts[8].position, opts[8].m * opts[8].n, ntics);
+        //CheckLength
+        if (opts[8].m * opts[8].n != ntics)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: %d expected.\n"), fname, opts[8].position, opts[8].m * opts[8].n);
+            return 1;
+        }
+
         nb_tics_labels = opts[8].m * opts[8].n;
     }
 
     Objdrawaxis(dir, tics, x, &nx, y, &ny, val, sub_int, format, fontsize, textcolor, ticscolor, 'n', seg_flag, nb_tics_labels);
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 
@@ -218,51 +269,75 @@ static int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
 {
     switch (dir)
     {
-    case 'l':
-    case 'r':
-        /* x must be scalar */
-        if (xpos != -1)
-            CheckScalar(xpos, xm, xn);
-        /* y must be of size mn */
-        if (mn != -1)
-            CheckDims(ypos, yRow, yCol, 1, mn);
-        switch (mn)
-        {
-        case 3:
-            *ntics = (int)*stk(yl + 2) + 1;
+        case 'l':
+        case 'r':
+            /* x must be scalar */
+            if (xpos != -1)
+                //CheckScalar
+                if (xm != 1 || xn != 1)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, xpos);
+                    return 1;
+                }
+
+            /* y must be of size mn */
+            if (mn != -1)
+                //CheckDims
+                if (yRow != 1 || yCol != mn)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, ypos, 1, mn);
+                    return 1;
+                }
+
+            switch (mn)
+            {
+                case 3:
+                    *ntics = (int) * stk(yl + 2) + 1;
+                    break;
+                case 4:
+                    *ntics = (int) * stk(yl + 3) + 1;
+                    break;
+                case -1:
+                    *ntics = yRow * yCol;
+                    break;
+            }
             break;
-        case 4:
-            *ntics = (int)*stk(yl + 3) + 1;
+        case 'u':
+        case 'd':
+            /* y must be scalar */
+            if (ypos != -1)
+                //CheckScalar
+                if (yRow != 1 || yCol != 1)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, ypos);
+                    return 1;
+                }
+
+            /* x must be of size mn */
+            if (mn != -1)
+                //CheckDims
+                if (xm != 1 || xn != mn)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, xpos, 1, mn);
+                    return 1;
+                }
+
+            switch (mn)
+            {
+                case 3:
+                    *ntics = (int) * stk(xl + 2) + 1;
+                    break;
+                case 4:
+                    *ntics = (int) * stk(xl + 3) + 1;
+                    break;
+                case -1:
+                    *ntics = xm * xn;
+                    break;
+            }
             break;
-        case -1:
-            *ntics = yRow * yCol;
-            break;
-        }
-        break;
-    case 'u':
-    case 'd':
-        /* y must be scalar */
-        if (ypos != -1)
-            CheckScalar(ypos, yRow, yCol);
-        /* x must be of size mn */
-        if (mn != -1)
-            CheckDims(xpos, xm, xn, 1, mn);
-        switch (mn)
-        {
-        case 3:
-            *ntics = (int)*stk(xl + 2) + 1;
-            break;
-        case 4:
-            *ntics = (int)*stk(xl + 3) + 1;
-            break;
-        case -1:
-            *ntics = xm * xn;
-            break;
-        }
-        break;
-    default:
-        Scierror(999, "%s: Wrong value for %s '%c': '%s','%s','%s' and '%s' expected.\n", fname, "dir", dir, "u", "d", "r", "l");
-        return 0;
+        default:
+            Scierror(999, "%s: Wrong value for %s '%c': '%s','%s','%s' and '%s' expected.\n", fname, "dir", dir, "u", "d", "r", "l");
+            return 0;
     }
     return 1;
 }

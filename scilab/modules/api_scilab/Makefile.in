@@ -146,6 +146,7 @@ am__objects_1 = libsciapi_scilab_la-api_boolean.lo \
 	libsciapi_scilab_la-api_sparse.lo \
 	libsciapi_scilab_la-api_string.lo \
 	libsciapi_scilab_la-api_pointer.lo \
+	libsciapi_scilab_la-api_handle.lo \
 	libsciapi_scilab_la-api_error.lo
 am_libsciapi_scilab_la_OBJECTS = $(am__objects_1)
 libsciapi_scilab_la_OBJECTS = $(am_libsciapi_scilab_la_OBJECTS)
@@ -444,6 +445,7 @@ src/cpp/api_poly.cpp \
 src/cpp/api_sparse.cpp \
 src/cpp/api_string.cpp \
 src/cpp/api_pointer.cpp \
+src/cpp/api_handle.cpp \
 src/cpp/api_error.cpp
 
 libsciapi_scilab_la_CPPFLAGS = -I$(srcdir)/includes/ \
@@ -462,7 +464,7 @@ libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CXX_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(libsciapi_scilab_la_SOURCES)
-INCLUDE_FLAGS = $(libsciapi_scilab_la_CPPFLAGS) 
+INCLUDE_FLAGS = $(libsciapi_scilab_la_CPPFLAGS)
 libsciapi_scilab_la_LIBADD = 
 #
 
@@ -471,7 +473,7 @@ modulename = api_scilab
 
 #### api_scilab : Conf files ####
 libsciapi_scilab_la_rootdir = $(mydatadir)
-libsciapi_scilab_la_root_DATA = license.txt 
+libsciapi_scilab_la_root_DATA = license.txt
 
 #### api_scilab : init scripts ####
 libsciapi_scilab_la_etcdir = $(mydatadir)/etc
@@ -490,6 +492,7 @@ includes/api_pointer.h \
 includes/api_poly.h \
 includes/api_sparse.h \
 includes/api_string.h \
+includes/api_handle.h \
 includes/api_scilab.h
 
 
@@ -655,6 +658,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_common.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_double.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_error.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_handle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_list.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_pointer.Plo@am__quote@
@@ -752,6 +756,13 @@ libsciapi_scilab_la-api_pointer.lo: src/cpp/api_pointer.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/api_pointer.cpp' object='libsciapi_scilab_la-api_pointer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciapi_scilab_la-api_pointer.lo `test -f 'src/cpp/api_pointer.cpp' || echo '$(srcdir)/'`src/cpp/api_pointer.cpp
+
+libsciapi_scilab_la-api_handle.lo: src/cpp/api_handle.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciapi_scilab_la-api_handle.lo -MD -MP -MF $(DEPDIR)/libsciapi_scilab_la-api_handle.Tpo -c -o libsciapi_scilab_la-api_handle.lo `test -f 'src/cpp/api_handle.cpp' || echo '$(srcdir)/'`src/cpp/api_handle.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciapi_scilab_la-api_handle.Tpo $(DEPDIR)/libsciapi_scilab_la-api_handle.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/api_handle.cpp' object='libsciapi_scilab_la-api_handle.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciapi_scilab_la-api_handle.lo `test -f 'src/cpp/api_handle.cpp' || echo '$(srcdir)/'`src/cpp/api_handle.cpp
 
 libsciapi_scilab_la-api_error.lo: src/cpp/api_error.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciapi_scilab_la-api_error.lo -MD -MP -MF $(DEPDIR)/libsciapi_scilab_la-api_error.Tpo -c -o libsciapi_scilab_la-api_error.lo `test -f 'src/cpp/api_error.cpp' || echo '$(srcdir)/'`src/cpp/api_error.cpp

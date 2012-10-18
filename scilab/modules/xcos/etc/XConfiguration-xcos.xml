@@ -17,7 +17,7 @@
     </edition>
     <simulation title="Simulation">
         <body>
-            <xcos-simulation final-integration-time="1.0E05" real-time-scaling="0.0E00" integrator-absolute-tolerance="1.0E-06" integrator-relative-tolerance="1.0E-06" tolerance-on-time="1.0E-10" max-integration-interval="1.0E05" solver="2" max-step-size="0.0" trace="0">
+            <xcos-simulation final-integration-time="1.0E05" real-time-scaling="0.0E00" integrator-absolute-tolerance="1.0E-06" integrator-relative-tolerance="1.0E-06" tolerance-on-time="1.0E-10" max-integration-interval="1.00001E05" solver="2" max-step-size="0.0" trace="0">
                 <!-- Available solver values list from scicos -->
                 <!-- <solver code="0" description="lsodar - BDF - NEWTON "/> -->
                 <solver code="1" description="Sundials/CVODE - BDF - NEWTON"/>

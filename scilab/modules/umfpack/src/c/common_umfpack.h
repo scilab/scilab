@@ -2,19 +2,19 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 #ifndef __COMMON_UMFPACK_H__
 #define __COMMON_UMFPACK_H__
 
-
+#include "scisparse.h"
 
 /**
 * Comments ???
@@ -128,8 +128,8 @@ void residu_with_prec(SciSparse *A, double x[], double b[], double r[], double *
 * @param[in]
 * @return
 */
-void residu_with_prec_for_chol(SciSparse *A, double x[], double b[], double r[], 
-				      double *rn, int A_is_upper_triangular, long double wk[]);
+void residu_with_prec_for_chol(SciSparse *A, double x[], double b[], double r[],
+                               double *rn, int A_is_upper_triangular, long double wk[]);
 
 /**
 * Comments ???
@@ -142,10 +142,10 @@ void residu_with_prec_for_chol(SciSparse *A, double x[], double b[], double r[],
 * @param[in,out]
 * @return
 */
-void cmplx_residu_with_prec(SciSparse *A, 
-				   double xr[], double xi[],
-				   double br[], double bi[], 
-				   double rr[], double ri[],
-				   double *rn);
+void cmplx_residu_with_prec(SciSparse *A,
+                            double xr[], double xi[],
+                            double br[], double bi[],
+                            double rr[], double ri[],
+                            double *rn);
 
 #endif /* __COMMON_UMFPACK_H__ */

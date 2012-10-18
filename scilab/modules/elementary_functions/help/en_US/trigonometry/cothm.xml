@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[t]=cothm(x)</synopsis>
+        <synopsis>[t] = cothm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>square matrix (real or complex).</para>
+                    <para>a square matrix (real or complex).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>square matrix (real or complex).</para>
+                    <para>a square matrix (real or complex).</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,8 +39,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>cothm(x)</literal> is the matrix hyperbolic cotangent of
-            the square matrix x.
+            <code>cothm(x)</code> is the matrix hyperbolic cotangent of
+            the square matrix <varname>x</varname>.
         </para>
     </refsection>
     <refsection>

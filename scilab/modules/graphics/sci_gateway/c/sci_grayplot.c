@@ -18,6 +18,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
+#include "api_scilab.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
 #include "DefaultCommandArg.h"
@@ -28,60 +29,142 @@
 /*--------------------------------------------------------------------------*/
 int sci_grayplot( char *fname, unsigned long fname_len )
 {
-    int frame_def=8;
-    int *frame=&frame_def;
-    int axes_def=1;
-    int *axes=&axes_def;
-    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0;
-    static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
-                              {-1,"frameflag","?",0,0,0},
-                              {-1,"nax","?",0,0,0},
-                              {-1,"rect","?",0,0,0},
-                              {-1,"strf","?",0,0,0},
-                              {-1,NULL,NULL,0,0}};
+    SciErr sciErr;
+    int frame_def = 8;
+    int *frame = &frame_def;
+    int axes_def = 1;
+    int *axes = &axes_def;
+    int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0;
+    static rhs_opts opts[] = { { -1, "axesflag", "?", 0, 0, 0},
+        { -1, "frameflag", "?", 0, 0, 0},
+        { -1, "nax", "?", 0, 0, 0},
+        { -1, "rect", "?", 0, 0, 0},
+        { -1, "strf", "?", 0, 0, 0},
+        { -1, NULL, NULL, 0, 0}
+    };
 
     char   * strf    = NULL  ;
     double * rect    = NULL  ;
     int    * nax     = NULL  ;
     BOOL     flagNax = FALSE ;
 
-    if (Rhs <= 0)
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
+    int* piAddr3 = NULL;
+
+    double* l1 = NULL;
+    double* l2 = NULL;
+    double* l3 = NULL;
+
+    if (nbInputArgument(pvApiCtx) <= 0)
     {
         sci_demo(fname, fname_len);
         return 0;
     }
-    CheckRhs(3,7);
+    CheckInputArgument(pvApiCtx, 3, 7);
 
-    if ( get_optionals(fname,opts) == 0)
+    if ( get_optionals(fname, opts) == 0)
     {
-        PutLhsVar();
+        ReturnArguments(pvApiCtx);
         return 0 ;
     }
 
     if ( FirstOpt() < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
-                 fname,1, 4);
+                 fname, 1, 4);
         return -1;
     }
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-    CheckVector(1,m1,n1);
-    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
-    CheckVector(2,m2,n2);
-    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 1.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //CheckVector
+    if (m1 != 1 && n1 != 1)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 1);
+        return 1;
+    }
+
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 2.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //CheckVector
+    if (m2 != 1 && n2 != 1)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 2);
+        return 1;
+    }
+
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 3.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
     if (m3 * n3 == 0)
     {
-        LhsVar(1)=0;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
-    CheckDimProp(2,3,m2 * n2 != n3);
-    CheckDimProp(1,3,m1 * n1 != m3);
+    //CheckDimProp
+    if (m2 * n2 != n3)
+    {
+        Scierror(999, _("%s: Wrong size for input arguments: Incompatible sizes.\n"), fname);
+        return 1;
+    }
 
-    GetStrf(fname,4,opts,&strf);
-    GetRect(fname,5,opts,&rect);
-    GetNax(6,opts,&nax,&flagNax);
+    //CheckDimProp
+    if (m1 * n1 != m3)
+    {
+        Scierror(999, _("%s: Wrong size for input arguments: Incompatible sizes.\n"), fname);
+        return 1;
+    }
+
+
+    GetStrf(fname, 4, opts, &strf);
+    GetRect(fname, 5, opts, &rect);
+    GetNax(6, opts, &nax, &flagNax);
 
     getOrCreateDefaultSubwin();
 
@@ -89,30 +172,30 @@ int sci_grayplot( char *fname, unsigned long fname_len )
     {
         char strfl[4];
 
-        strcpy(strfl,DEFSTRFN);
+        strcpy(strfl, DEFSTRFN);
 
         strf = strfl;
         if ( !isDefRect( rect ) )
         {
-            strfl[1]='7';
+            strfl[1] = '7';
         }
 
-        GetOptionalIntArg(fname,7,"frameflag",&frame,1,opts);
-        if(frame != &frame_def)
+        GetOptionalIntArg(fname, 7, "frameflag", &frame, 1, opts);
+        if (frame != &frame_def)
         {
-            strfl[1] = (char)(*frame+48);
+            strfl[1] = (char)(*frame + 48);
         }
-        GetOptionalIntArg(fname,7,"axesflag",&axes,1,opts);
-        if(axes != &axes_def)
+        GetOptionalIntArg(fname, 7, "axesflag", &axes, 1, opts);
+        if (axes != &axes_def)
         {
-            strfl[2] = (char)(*axes+48);
+            strfl[2] = (char)(*axes + 48);
         }
     }
 
-    Objgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, strf, rect, nax, flagNax);
+    Objgrayplot ((l1), (l2), (l3), &m3, &n3, strf, rect, nax, flagNax);
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

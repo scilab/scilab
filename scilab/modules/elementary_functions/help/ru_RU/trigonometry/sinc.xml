@@ -39,11 +39,18 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Если <literal>x</literal> является вектором или матрицей, то 
-            <literal>t=sinc(x)</literal> являетеся таким вектором или матрицей, что 
-            <literal>t(i)=sin(x(i))/x(i)</literal>, если <literal>x(i)~=0</literal> и
-            <literal>t(i)=1</literal>, если <literal>x(i)==0.</literal>
+            Если <varname>x</varname> является вектором или матрицей, то
+            <code>t=sinc(x)</code> является таким вектором или матрицей, что
+            <code>t(i)=sin(x(i))/x(i)</code>, если <code>x(i)~=0</code> и
+            <code>t(i)=1</code>, если <code>x(i)==0.</code>
         </para>
+    </refsection>
+    <refsection>
+        <title>Образец</title>
+        <scilab:image>
+            x=linspace(-10,10,3000);
+            plot2d(x,sinc(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Примеры</title>

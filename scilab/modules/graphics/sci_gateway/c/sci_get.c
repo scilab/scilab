@@ -21,7 +21,6 @@
 #include "gw_graphics.h"
 /*--------------------------------------------------------------------------*/
 
-#include "stack-c.h"
 #include "HandleManagement.h"
 
 #include "GetHashTable.h"
@@ -53,8 +52,16 @@ int sciGet(void* _pvCtx, char *pobjUID, char *marker)
 /*--------------------------------------------------------------------------*/
 int sci_get(char *fname, unsigned long fname_len)
 {
-    int m1 = 0, n1 = 0, numrow2 = 0, numcol2 = 0, l2 = 0;
-    int l1 = 0;
+    SciErr sciErr;
+
+    int* piAddrl1 = NULL;
+    double* pdbll1 = NULL;
+    int* piAddrstkAdr = NULL;
+    long long* l1 = NULL;
+    int* piAddrl2 = NULL;
+    char* l2 = NULL;
+
+    int m1 = 0, n1 = 0;
     long hdl = 0;
 
     int lw = 0;
@@ -64,46 +71,74 @@ int sci_get(char *fname, unsigned long fname_len)
     char **stkAdr = NULL;
     int status = SET_PROPERTY_ERROR;
 
-    if ((VarType(1) == sci_mlist) || (VarType(1) == sci_tlist))
+    if (((checkInputArgumentType(pvApiCtx, 1, sci_mlist))) || ((checkInputArgumentType(pvApiCtx, 1, sci_tlist))))
     {
-        lw = 1 + Top - Rhs;
+        lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
         C2F(overload) (&lw, "get", 3);
         return 0;
     }
 
-    CheckRhs(1, 2);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     /*  set or create a graphic window */
 
     /*
      * The first input argument can be an ID or a marker (in this case, get returns the value of the current object */
-    switch (VarType(1))
+    switch (getInputArgumentType(pvApiCtx, 1))
     {
         case 1:                    /* tclsci handle */
-            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-            if ((int)*stk(l1) == 0) /* Root property */
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+            if (sciErr.iErr)
             {
-                if (Rhs == 1)
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 1.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &pdbll1);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                return 1;
+            }
+
+            if ((int)pdbll1[0] == 0) /* Root property */
+            {
+                if (nbInputArgument(pvApiCtx) == 1)
                 {
                     if (sciReturnHandle(pvApiCtx, getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
                     {
                         /* An error has occurred */
-                        PutLhsVar();
+                        ReturnArguments(pvApiCtx);
                         return 0;
                     }
-                    LhsVar(1) = Rhs + 1;
-                    PutLhsVar();
+                    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                    ReturnArguments(pvApiCtx);
                     return 0;
                 }
-                CheckRhs(2, 2);
-                if (VarType(2) == sci_strings)
+                CheckInputArgument(pvApiCtx, 2, 2);
+                if ((checkInputArgumentType(pvApiCtx, 2, sci_strings)))
                 {
-                    GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &stkAdr);
+                    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrstkAdr);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+
+                    // Retrieve a matrix of string at position 2.
+                    if (getAllocatedMatrixOfString(pvApiCtx, piAddrstkAdr, &m1, &n1, &stkAdr))
+                    {
+                        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                        return 1;
+                    }
+
 
                     if (m1 * n1 != 1)
                     {
-                        freeArrayOfString(stkAdr, m1 * n1);
+                        freeAllocatedMatrixOfString(m1, n1, stkAdr);
                         Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get", 2);
                         return SET_PROPERTY_ERROR;
                     }
@@ -113,53 +148,94 @@ int sci_get(char *fname, unsigned long fname_len)
                     if (status != SET_PROPERTY_SUCCEED) /* Return property */
                     {
                         Scierror(999, _("%s: Could not read property '%s' for root object.\n"), "get", stkAdr[0]);
-                        freeArrayOfString(stkAdr, m1 * n1);
+                        freeAllocatedMatrixOfString(m1, n1, stkAdr);
                         return FALSE;
                     }
-                    freeArrayOfString(stkAdr, m1 * n1);
+                    freeAllocatedMatrixOfString(m1, n1, stkAdr);
                 }
                 else
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get", 2);
                     return FALSE;
                 }
-                LhsVar(1) = Rhs + 1;
-                PutLhsVar();
+                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                ReturnArguments(pvApiCtx);
             }
             else                    /* tclsci handle: should no more happen */
             {
-                lw = 1 + Top - Rhs;
+                lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
                 C2F(overload) (&lw, "get", 3);
             }
             return 0;
             break;
         case sci_handles:          /* scalar argument (hdl + string) */
-            CheckRhs(2, 2);
-            GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1);
+            CheckInputArgument(pvApiCtx, 2, 2);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of handle at position 1.
+            sciErr = getMatrixOfHandle(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+                return 1;
+            }
+
             if (m1 != 1 || n1 != 1)
             {
-                lw = 1 + Top - Rhs;
+                lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
                 C2F(overload) (&lw, "get", 3);
                 return 0;
             }
-            GetRhsVar(2, STRING_DATATYPE, &numrow2, &numcol2, &l2);
-            hdl = (long) * hstk(l1); /* on recupere le pointeur d'objet par le handle */
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 2.
+            if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                return 1;
+            }
+
+            hdl = (long) * l1; /* on recupere le pointeur d'objet par le handle */
             break;
         case sci_strings:          /* string argument (string) */
-            CheckRhs(1, 1);
-            GetRhsVar(1, STRING_DATATYPE, &numrow2, &numcol2, &l2);
-            if (strcmp(cstk(l2), "default_figure") != 0 && strcmp(cstk(l2), "default_axes") != 0)
+            CheckInputArgument(pvApiCtx, 1, 1);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl2);
+            if (sciErr.iErr)
             {
-                if (strcmp(cstk(l2), "current_figure") == 0 || strcmp(cstk(l2), "current_axes") == 0 || strcmp(cstk(l2), "current_entity") == 0
-                        || strcmp(cstk(l2), "hdl") == 0 || strcmp(cstk(l2), "figures_id") == 0)
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 1.
+            if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                return 1;
+            }
+
+            if (strcmp((l2), "default_figure") != 0 && strcmp((l2), "default_axes") != 0)
+            {
+                if (strcmp((l2), "current_figure") == 0 || strcmp((l2), "current_axes") == 0 || strcmp((l2), "current_entity") == 0
+                        || strcmp((l2), "hdl") == 0 || strcmp((l2), "figures_id") == 0)
                 {
                     hdl = 0;
                 }
                 else
                 {
                     /* Test debug F.Leray 13.04.04 */
-                    if ((strcmp(cstk(l2), "children") != 0) && (strcmp(cstk(l2), "zoom_") != 0) && (strcmp(cstk(l2), "clip_box") != 0)
-                            && (strcmp(cstk(l2), "auto_") != 0))
+                    if ((strcmp((l2), "children") != 0) && (strcmp((l2), "zoom_") != 0) && (strcmp((l2), "clip_box") != 0)
+                            && (strcmp((l2), "auto_") != 0))
                     {
                         getOrCreateDefaultSubwin();
                         hdl = getHandle(getCurrentObject());
@@ -176,21 +252,22 @@ int sci_get(char *fname, unsigned long fname_len)
             }
             break;
         default:
-            lw = 1 + Top - Rhs;
+            lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
             C2F(overload) (&lw, "get", 3);
             return 0;
             break;
     }
-    /* cstk(l2) est la commande, l3 l'indice sur les parametres de la commande */
-    CheckLhs(0, 1);
+    /* (l2) est la commande, l3 l'indice sur les parametres de la commande */
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (hdl == 0)
     {
         /* No handle specified */
-        if (sciGet(pvApiCtx, NULL, cstk(l2)) != 0)
+        if (sciGet(pvApiCtx, NULL, (l2)) != 0)
         {
             /* An error has occurred */
-            PutLhsVar();
+            freeAllocatedSingleString(l2);
+            ReturnArguments(pvApiCtx);
             return 0;
         }
     }
@@ -200,23 +277,25 @@ int sci_get(char *fname, unsigned long fname_len)
         if (pobjUID != NULL)
         {
 
-            if (sciGet(pvApiCtx, pobjUID, cstk(l2)) != 0)
+            if (sciGet(pvApiCtx, pobjUID, (l2)) != 0)
             {
                 /* An error has occurred */
-                PutLhsVar();
+                freeAllocatedSingleString(l2);
+                ReturnArguments(pvApiCtx);
                 return 0;
             }
         }
         else
         {
             Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
+            freeAllocatedSingleString(l2);
             return 0;
         }
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
+    freeAllocatedSingleString(l2);
     return 0;
 }
 

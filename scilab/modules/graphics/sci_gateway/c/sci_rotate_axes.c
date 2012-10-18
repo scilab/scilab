@@ -1,3 +1,4 @@
+
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Fabrice Leray
@@ -29,34 +30,53 @@
 #include "getPropertyAssignedValue.h"
 #include "getGraphicObjectProperty.h"
 /*--------------------------------------------------------------------------*/
-int sci_rotate_axes(char *fname,unsigned long fname_len)
+int sci_rotate_axes(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
+
+    int* piAddrstackPointer = NULL;
+    long long* stackPointer = NULL;
+
     int nbRow = 0;
     int nbCol = 0;
-    size_t stackPointer = 0;
 
     char* pstrUID = NULL;
     int iType = -1;
     int *piType = &iType;
 
     /* check size of input and output */
-    CheckRhs(0,1);
-    CheckLhs(0,1);
+    CheckInputArgument(pvApiCtx, 0, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if(Rhs == 0)
+    if (nbInputArgument(pvApiCtx) == 0)
     {
         pstrUID = (char*)getCurrentFigure();
     }
     else
     {
         /* Get figure or subwin handle */
-        if (GetType(1) != sci_handles)
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Single Figure or Axes handle expected.\n"), fname, 1);
             return -1;
         }
 
-        GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrstackPointer);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of handle at position 1.
+        sciErr = getMatrixOfHandle(pvApiCtx, piAddrstackPointer, &nbRow, &nbCol, &stackPointer);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+            return 1;
+        }
+
 
         if (nbRow * nbCol != 1)
         {
@@ -64,7 +84,7 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
             return -1;
         }
 
-        pstrUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer));
+        pstrUID = (char*)getObjectFromHandle((long int) * stackPointer);
 
         getGraphicObjectProperty(pstrUID, __GO_TYPE__, jni_int, (void **)&piType);
         if (iType == __GO_AXES__)
@@ -75,14 +95,14 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
 
     if (pstrUID == NULL)
     {
-        Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
+        Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
         return -1;
     }
 
     setGraphicObjectProperty(pstrUID, __GO_INFO_MESSAGE__, "Right click and drag to rotate.", jni_string, 1);
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

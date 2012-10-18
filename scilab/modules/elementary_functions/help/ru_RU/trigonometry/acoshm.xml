@@ -17,15 +17,15 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>t=acoshm(x)</synopsis>
+        <synopsis>t = acoshm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x,t</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественная или комплексная квадратная матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,8 +33,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            acoshm - это матричный гиперболический арккосинус матрицы <literal>x</literal>. Использует формулу: 
-            <literal>t=logm(x+(x+eye())*sqrtm((x-eye())/(x+eye())))</literal>.
+            <function>acoshm</function> - это матричный гиперболический арккосинус матрицы
+            <varname>x</varname>. Использует формулу: <code>t=logm(x+(x+eye())*sqrtm((x-eye())/(x+eye())))</code>.
             Для несимметричных матриц результат может быть неточным.
         </para>
     </refsection>

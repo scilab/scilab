@@ -1,0 +1,7 @@
+\1//CheckOneDim
+\1if (\4 != \5)
+\1{
+\1    Scierror(999, _("%s: Wrong size for input arguments: Incompatible sizes.\n"), fname);
+\1    return 1;
+\1}
+

@@ -24,7 +24,9 @@
 [1+%i, 2]'
 [1+%i, 2].'
 x='This is a character string'
+x="This is another character string"
 'He said:''Good'''
+'He said:""Very Good""'
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

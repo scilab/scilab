@@ -1,0 +1,10 @@
+\1int* \5 = NULL; //@MOVE@
+\1// YOU MUST REMOVE YOUR VARIABLE DECLARATION "int \5".
+\1sciErr = allocMatrixOfBoolean(pvApiCtx, \2, \3, \4, &\5);\6
+\1if(sciErr.iErr)
+\1{
+\1    printError(&sciErr, 0);
+\1    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+\1    return 1;
+\1}
+

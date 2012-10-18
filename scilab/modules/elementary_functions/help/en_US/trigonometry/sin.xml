@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[t]=sin(x)</synopsis>
+        <synopsis>[t] = sin(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex vector or matrix</para>
+                    <para>a real or complex vector or matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,8 +33,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            For a vector or a matrix, <literal>sin(x)</literal> is the sine of
-            its elements. For matrix sine use <literal>sinm(X)</literal>
+            For a vector or a matrix, <code>sin(x)</code> is the sine of
+            its elements. For matrix sine use <code>sinm(x)</code>
             function.
         </para>
     </refsection>

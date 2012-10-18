@@ -4,6 +4,7 @@
 * Copyright (C) 2007 - INRIA - Allan CORNET
 * Copyright (C) 2012 - DIGITEO - Allan CORNET
 * Copyright (C) 2012 - INRIA - Serge STEER
+* Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -86,15 +87,15 @@ int sci_fftw(char *fname, unsigned long fname_len)
     ****************************************/
 
     /* check min/max lhs/rhs arguments of scilab function */
-    CheckRhs(1, 5);
-    CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 1, 5);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
+        return 1;
     }
 
     sciErr = getVarType(pvApiCtx, piAddr, &iTypeOne);
@@ -102,13 +103,13 @@ int sci_fftw(char *fname, unsigned long fname_len)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
+        return 1;
     }
 
     if ((iTypeOne == sci_list) || (iTypeOne == sci_tlist))
     {
         OverLoad(1);
-        return 0;
+        return 1;
     }
 
     if (iTypeOne == sci_mlist)
@@ -117,7 +118,7 @@ int sci_fftw(char *fname, unsigned long fname_len)
         if (!isHyperMatrixMlist(pvApiCtx, piAddr))
         {
             OverLoad(1);
-            return 0;
+            return 1;
         }
     }
 
@@ -127,7 +128,7 @@ int sci_fftw(char *fname, unsigned long fname_len)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, Rhs);
-        return 0;
+        return 1;
     }
 
     if (isStringType(pvApiCtx, piAddr))   /*  fftw(...,option); */
@@ -143,7 +144,7 @@ int sci_fftw(char *fname, unsigned long fname_len)
                     Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, Rhs, "\"symmetric\"", "\"nonsymmetric\"");
                     freeAllocatedSingleString(option);
                     option = NULL;
-                    return 0;
+                    return 1;
                 }
                 freeAllocatedSingleString(option);
                 option = NULL;
@@ -152,7 +153,7 @@ int sci_fftw(char *fname, unsigned long fname_len)
             else
             {
                  Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, Rhs, "\"symmetric\"", "\"nonsymmetric\"");
-                return 0;
+                return 1;
             }
         }
     }
@@ -169,13 +170,13 @@ int sci_fftw(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             Scierror(sciErr.iErr, getErrorMessage(sciErr));
-            return 0;
+            return 1;
         }
         /* check value of second rhs argument */
         if ((isn !=  FFTW_FORWARD) && (isn !=  FFTW_BACKWARD))
         {
             Scierror(53, _("%s: Wrong value for input argument #%d: %d or %d expected.\n"), fname, 2, FFTW_FORWARD, FFTW_BACKWARD);
-            return 0;
+            return 1;
         }
     }
 
@@ -183,9 +184,8 @@ int sci_fftw(char *fname, unsigned long fname_len)
     getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (!getArrayOfDouble(pvApiCtx, piAddr, &ndimsA, &dimsA, &Ar, &Ai))
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: Array of floating point numbers expected.\n"),
-                 fname, 1);
-        return 0;
+        Scierror(999, _("%s: Wrong type for argument #%d: Array of floating point numbers expected.\n"), fname, 1);
+        return 1;
     }
 
 

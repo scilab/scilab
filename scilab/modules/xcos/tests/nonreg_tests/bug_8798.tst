@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8789 -->
 //

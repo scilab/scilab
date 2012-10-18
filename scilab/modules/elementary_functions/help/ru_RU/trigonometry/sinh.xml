@@ -17,15 +17,15 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>[t]=sinh(x)</synopsis>
+        <synopsis>[t] = sinh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x,t</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>вещественные или комплексные векторы/матрицы</para>
+                    <para>вещественные или комплексные векторы/матрицы.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,8 +33,15 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы массива <literal>t</literal> являются гиперболическим синусом элементов массива <literal>x</literal>.
+            Элементы массива <varname>t</varname> являются гиперболическим синусом элементов массива <varname>x</varname>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Образец</title>
+        <scilab:image>
+            x=-%pi:0.01:%pi;
+            plot(x,sinh(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Примеры</title>

@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>ptd  </term>
                 <listitem>
-                    <para>vecteur réel à deux colonnes
+                    <para>vecteur réel à deux lignes
                     </para>
                 </listitem>
             </varlistentry>
@@ -39,7 +39,7 @@
             <varlistentry>
                 <term>pt  </term>
                 <listitem>
-                    <para>vecteur réel à deux colonnes
+                    <para>vecteur réel à deux lignes
                     </para>
                 </listitem>
             </varlistentry>

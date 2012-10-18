@@ -17,15 +17,15 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>[t]=cosh(x)</synopsis>
+        <synopsis>[t] = cosh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x,t</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>вещественные или комплексные векторы/матрицы</para>
+                    <para>вещественные или комплексные векторы/матрицы.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,7 +33,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы <literal>t</literal> являются гиперболическим косинусом соответствующих элементов <literal>x</literal>.
+            Элементы <varname>t</varname> являются гиперболическим косинусом соответствующих элементов <varname>x</varname>.
         </para>
     </refsection>
     <refsection>

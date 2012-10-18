@@ -48,7 +48,7 @@ static int sciSet(void* _pvCtx, char *pobjUID, char *marker, size_t * value, int
 }
 
 /*--------------------------------------------------------------------------*/
-
+//for YaSp => modify all "set properties" function (use stack pointer : value)
 /*-----------------------------------------------------------
  * sciset(choice-name,x1,x2,x3,x4,x5)
  * or   xset()

@@ -19,7 +19,7 @@
 
 #include <stdio.h>
 
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "gw_graphics.h"
 #include "Interaction.h"
 #include "localization.h"
@@ -30,19 +30,41 @@
 /*--------------------------------------------------------------------------*/
 int sci_move( char * fname, unsigned long fname_len )
 {
-    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0;
+    SciErr sciErr;
+
+    int* piAddrl3 = NULL;
+    char* l3 = NULL;
+    int* piAddrl1 = NULL;
+    long long* l1 = NULL;
+    int* piAddrl2 = NULL;
+    double* l2 = NULL;
+
+    int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     int nbDim = 2;
     BOOL alone = FALSE;
     char* pobjUID = NULL;
     double * moveVector = NULL;
 
-    CheckRhs(2, 3);
+    CheckInputArgument(pvApiCtx, 2, 3);
     /*  set or create a graphic window */
-    if (Rhs == 3)
+    if (nbInputArgument(pvApiCtx) == 3)
     {
         char * option = NULL;
-        GetRhsVar(3, STRING_DATATYPE, &m3, &n3, &l3);
-        option = getStringFromStack(l3);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrl3);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 3.
+        if (getAllocatedSingleString(pvApiCtx, piAddrl3, &l3))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            return 1;
+        }
+
+        option = l3;
         if (strcmp(option, "alone") == 0)
         {
             alone = TRUE;
@@ -50,35 +72,67 @@ int sci_move( char * fname, unsigned long fname_len )
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 3, "alone");
-            return 0;
+            return 1;
         }
+
+        freeAllocatedSingleString(l3);
     }
 
-    GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1); /* Gets the Handle passed as argument */
-    pobjUID = (char*)getObjectFromHandle(getHandleFromStack(l1));
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of handle at position 1.
+    sciErr = getMatrixOfHandle(pvApiCtx, piAddrl1, &m1, &n1, &l1); /* Gets the Handle passed as argument */
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+        return 1;
+    }
+
+    pobjUID = (char*)getObjectFromHandle((long int) * l1);
 
     if (pobjUID == NULL)
     {
         Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
-        return 0;
+        return 1;
     }
 
     /* Get [x,y] or [x,y,z] vector */
-    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 2.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        return 1;
+    }
+
     /* size of the vector, shoul dbe 2 or 3 */
     nbDim = m2 * n2;
     if (nbDim != 2 && nbDim != 3)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"), fname, 3, "[x y]", "[x,y,z]");
-        return 0;
+        return 1;
     }
-    moveVector = stk(l2);
+    moveVector = (l2);
 
     Objmove(pobjUID, moveVector, nbDim, alone);
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
-    return 1;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

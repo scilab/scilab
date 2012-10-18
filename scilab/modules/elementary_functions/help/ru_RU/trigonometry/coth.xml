@@ -17,13 +17,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>[t]=coth(x)</synopsis>
+        <synopsis>[t] = coth(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы <literal>t</literal> являются гиперболическим котангенсом соответствующих элементов 
-            <literal>x</literal>.
+            Элементы <varname>t</varname> являются гиперболическим котангенсом соответствующих элементов
+            <varname>x</varname>.
         </para>
     </refsection>
     <refsection>

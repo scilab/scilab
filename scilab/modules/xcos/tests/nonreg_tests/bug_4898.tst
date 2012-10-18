@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 4898 -->
 //
@@ -15,7 +15,6 @@
 // <-- Short Description -->
 // Block scifunc_block_m stored some list in model.ipar instead of model.opar.
 
-loadXcosLibs;
 
 // Check for a new block instantiation
 scs_m = scifunc_block_m("define", [], []);

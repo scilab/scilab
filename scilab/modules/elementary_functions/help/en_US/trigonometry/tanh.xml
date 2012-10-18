@@ -17,13 +17,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>t=tanh(x)</synopsis>
+        <synopsis>t = tanh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>
-            the elements of <literal>t</literal> are the hyperbolic tangents of
-            the elements of <literal>x.</literal>
+            The elements of <varname>t</varname> are the hyperbolic tangents of
+            the elements of <varname>x</varname>.
         </para>
     </refsection>
     <refsection>

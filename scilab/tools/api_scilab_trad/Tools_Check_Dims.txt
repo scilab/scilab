@@ -1,0 +1,7 @@
+\1//CheckDims
+\1if (\3 != \5 || \4 != \6)
+\1{
+\1    Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, \2, \5, \6);
+\1    return 1;
+\1}
+

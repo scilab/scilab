@@ -17,23 +17,24 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>t=coshm(x)</synopsis>
+        <synopsis>t = coshm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,t</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>real or complex square matrices.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>coshm is the matrix hyperbolic cosine of the matrix x.
-            <literal>t=(expm(x)+expm(-x))/2</literal>. Result may be inaccurate for
+        <para>
+            <code>coshm</code> is the matrix hyperbolic cosine of the matrix <varname>x</varname>.
+            <code>t=(expm(x)+expm(-x))/2</code>. Result may be inaccurate for
             nonsymmetric matrix.
         </para>
     </refsection>

@@ -19,11 +19,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -81,7 +81,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @GIWS_TRUE@am__append_1 = giws
-@GUI_TRUE@am__append_2 = libscigraphic_export.la 
+@GUI_TRUE@am__append_2 = libscigraphic_export.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_3 = java
@@ -142,13 +142,11 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigraphic_export_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscigraphic_export_algo_la_LIBADD =
-am__objects_1 = libscigraphic_export_algo_la-xs2file.lo
-am__objects_2 = libscigraphic_export_algo_la-exportToFile.lo \
+am__objects_1 = libscigraphic_export_algo_la-exportToFile.lo \
 	libscigraphic_export_algo_la-FileExporter.lo \
 	libscigraphic_export_algo_la-Driver.lo \
 	libscigraphic_export_algo_la-JOGLConstant.lo
-am_libscigraphic_export_algo_la_OBJECTS = $(am__objects_1) \
-	$(am__objects_2)
+am_libscigraphic_export_algo_la_OBJECTS = $(am__objects_1)
 libscigraphic_export_algo_la_OBJECTS =  \
 	$(am_libscigraphic_export_algo_la_OBJECTS)
 @GUI_TRUE@am_libscigraphic_export_algo_la_rpath =
@@ -158,7 +156,8 @@ am_libscigraphic_export_disable_la_OBJECTS =  \
 libscigraphic_export_disable_la_OBJECTS =  \
 	$(am_libscigraphic_export_disable_la_OBJECTS)
 libscigraphic_export_la_DEPENDENCIES = libscigraphic_export-algo.la
-am__objects_3 = libscigraphic_export_la-gw_graphic_export.lo \
+am__objects_2 = libscigraphic_export_la-gw_graphic_export.lo \
+	libscigraphic_export_la-xs2file.lo \
 	libscigraphic_export_la-sci_xs2bmp.lo \
 	libscigraphic_export_la-sci_xs2gif.lo \
 	libscigraphic_export_la-sci_xs2ppm.lo \
@@ -168,10 +167,10 @@ am__objects_3 = libscigraphic_export_la-gw_graphic_export.lo \
 	libscigraphic_export_la-sci_xs2eps.lo \
 	libscigraphic_export_la-sci_xs2pdf.lo \
 	libscigraphic_export_la-sci_xs2png.lo
-am__objects_4 = libscigraphic_export_la-sci_driver.lo \
+am__objects_3 = libscigraphic_export_la-sci_driver.lo \
 	libscigraphic_export_la-sci_xinit.lo \
 	libscigraphic_export_la-sci_xend.lo
-am_libscigraphic_export_la_OBJECTS = $(am__objects_3) $(am__objects_4)
+am_libscigraphic_export_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscigraphic_export_la_OBJECTS =  \
 	$(am_libscigraphic_export_la_OBJECTS)
 @GUI_TRUE@am_libscigraphic_export_la_rpath = -rpath $(pkglibdir)
@@ -476,7 +475,7 @@ modulename = graphic_export
 
 #### graphic_export : Conf files ####
 libscigraphic_export_la_rootdir = $(mydatadir)
-libscigraphic_export_la_root_DATA = license.txt 
+libscigraphic_export_la_root_DATA = license.txt
 
 #### graphic_export : init scripts ####
 libscigraphic_export_la_etcdir = $(mydatadir)/etc
@@ -488,10 +487,11 @@ src/jni/FileExporter.cpp \
 src/jni/Driver.cpp \
 src/jni/JOGLConstant.cpp
 
-GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c
 
 # List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_export.c \
+GATEWAY_C_SOURCES = \
+sci_gateway/c/gw_graphic_export.c \
+sci_gateway/c/xs2file.c \
 sci_gateway/c/sci_xs2bmp.c \
 sci_gateway/c/sci_xs2gif.c \
 sci_gateway/c/sci_xs2ppm.c \
@@ -529,12 +529,12 @@ libscigraphic_export_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 
 
 # All the sources needed by libscigraphic_export.la
-libscigraphic_export_algo_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GRAPHIC_EXPORT_CXX_SOURCES)
+libscigraphic_export_algo_la_SOURCES = $(GRAPHIC_EXPORT_CXX_SOURCES)
 libscigraphic_export_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscigraphic_export_algo_la_CPPFLAGS = $(libscigraphic_export_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
+CHECK_SRC = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la
 GIWS_WRAPPERS = src/jni/FileExporter.giws.xml \
@@ -557,7 +557,7 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 # the system)
 pkglib_LTLIBRARIES = libscigraphic_export-disable.la $(am__append_2)
 @GUI_TRUE@USEANT = 1
-@GUI_TRUE@noinst_LTLIBRARIES = libscigraphic_export-algo.la 
+@GUI_TRUE@noinst_LTLIBRARIES = libscigraphic_export-algo.la
 
 #### graphic_export : gateway declaration ####
 libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -729,7 +729,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-FileExporter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-JOGLConstant.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-exportToFile.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_algo_la-xs2file.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-gw_graphic_export.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-sci_driver.Plo@am__quote@
@@ -744,6 +743,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-sci_xs2ppm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-sci_xs2ps.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-sci_xs2svg.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-xs2file.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -766,13 +766,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscigraphic_export_algo_la-xs2file.lo: src/c/xs2file.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_export_algo_la-xs2file.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_algo_la-xs2file.Tpo -c -o libscigraphic_export_algo_la-xs2file.lo `test -f 'src/c/xs2file.c' || echo '$(srcdir)/'`src/c/xs2file.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_export_algo_la-xs2file.Tpo $(DEPDIR)/libscigraphic_export_algo_la-xs2file.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xs2file.c' object='libscigraphic_export_algo_la-xs2file.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphic_export_algo_la-xs2file.lo `test -f 'src/c/xs2file.c' || echo '$(srcdir)/'`src/c/xs2file.c
-
 libscigraphic_export_disable_la-nographic_export.lo: src/nographic_export/nographic_export.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_export_disable_la-nographic_export.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Tpo -c -o libscigraphic_export_disable_la-nographic_export.lo `test -f 'src/nographic_export/nographic_export.c' || echo '$(srcdir)/'`src/nographic_export/nographic_export.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Tpo $(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Plo
@@ -786,6 +779,13 @@ libscigraphic_export_la-gw_graphic_export.lo: sci_gateway/c/gw_graphic_export.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_graphic_export.c' object='libscigraphic_export_la-gw_graphic_export.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphic_export_la-gw_graphic_export.lo `test -f 'sci_gateway/c/gw_graphic_export.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphic_export.c
+
+libscigraphic_export_la-xs2file.lo: sci_gateway/c/xs2file.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_export_la-xs2file.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_la-xs2file.Tpo -c -o libscigraphic_export_la-xs2file.lo `test -f 'sci_gateway/c/xs2file.c' || echo '$(srcdir)/'`sci_gateway/c/xs2file.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_export_la-xs2file.Tpo $(DEPDIR)/libscigraphic_export_la-xs2file.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/xs2file.c' object='libscigraphic_export_la-xs2file.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphic_export_la-xs2file.lo `test -f 'sci_gateway/c/xs2file.c' || echo '$(srcdir)/'`sci_gateway/c/xs2file.c
 
 libscigraphic_export_la-sci_xs2bmp.lo: sci_gateway/c/sci_xs2bmp.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_export_la-sci_xs2bmp.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_la-sci_xs2bmp.Tpo -c -o libscigraphic_export_la-sci_xs2bmp.lo `test -f 'sci_gateway/c/sci_xs2bmp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2bmp.c

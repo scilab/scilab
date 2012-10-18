@@ -188,67 +188,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="sci_gateway\cpp\gw_csv_helpers.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_csvDefault.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_csvIsnum.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_csvRead.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_csvStringToDouble.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_csvTextScan.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_csvWrite.cpp" />
-    <ClCompile Include="src\cpp\checkCsvWriteFormat.c" />
-    <ClCompile Include="src\cpp\csv_complex.c" />
-    <ClCompile Include="src\cpp\csvDefault.c" />
-    <ClCompile Include="src\cpp\csvIsnum.c" />
-    <ClCompile Include="src\cpp\csvRead.c" />
-    <ClCompile Include="src\cpp\csv_strsubst.cpp" />
-    <ClCompile Include="src\cpp\csvWrite.c" />
-    <ClCompile Include="src\cpp\getRange.c" />
-    <ClCompile Include="src\cpp\latintoutf.c" />
-    <ClCompile Include="src\cpp\splitLine.c" />
-    <ClCompile Include="src\cpp\stringsToDoubles.c" />
-    <ClCompile Include="src\cpp\stringToComplex.c" />
-    <ClCompile Include="src\cpp\utftolatin.c" />
-    <ClCompile Include="src\c\ripole\bt-int.c" />
-    <ClCompile Include="src\c\ripole\bytedecoders.c" />
-    <ClCompile Include="src\c\DllmainSpreadsheet.c" />
-    <ClCompile Include="sci_gateway\c\gw_spreadsheet.c" />
-    <ClCompile Include="src\c\ripole\logger.c" />
-    <ClCompile Include="src\c\ripole\ole.c" />
-    <ClCompile Include="src\c\ripole\olestream-unwrap.c" />
-    <ClCompile Include="src\c\ripole\pldstr.c" />
-    <ClCompile Include="src\c\ripole\ripole.c" />
-    <ClCompile Include="sci_gateway\c\sci_xls_open.c" />
-    <ClCompile Include="sci_gateway\c\sci_xls_read.c" />
-    <ClCompile Include="src\c\xls.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="sci_gateway\cpp\gw_csv_helpers.h" />
-    <ClInclude Include="sci_gateway\cpp\gw_csv_tools.h" />
-    <ClInclude Include="src\cpp\checkCsvWriteFormat.h" />
-    <ClInclude Include="src\cpp\csv_complex.h" />
-    <ClInclude Include="src\cpp\csvDefault.h" />
-    <ClInclude Include="src\cpp\csvIsnum.h" />
-    <ClInclude Include="src\cpp\csvRead.h" />
-    <ClInclude Include="src\cpp\csv_strsubst.h" />
-    <ClInclude Include="src\cpp\csvWrite.h" />
-    <ClInclude Include="src\cpp\getRange.h" />
-    <ClInclude Include="src\cpp\latintoutf.h" />
-    <ClInclude Include="src\cpp\splitLine.h" />
-    <ClInclude Include="src\cpp\stringsToDoubles.h" />
-    <ClInclude Include="src\cpp\stringToComplex.h" />
-    <ClInclude Include="src\cpp\utftolatin.h" />
-    <ClInclude Include="src\c\ripole\bt-int.h" />
-    <ClInclude Include="src\c\ripole\bytedecoders.h" />
-    <ClInclude Include="includes\dynlib_spreadsheet.h" />
-    <ClInclude Include="includes\gw_spreadsheet.h" />
-    <ClInclude Include="src\c\ripole\logger.h" />
-    <ClInclude Include="src\c\ripole\ole.h" />
-    <ClInclude Include="src\c\ripole\olestream-unwrap.h" />
-    <ClInclude Include="src\c\ripole\pldstr.h" />
-    <ClInclude Include="src\c\ripole\ripole.h" />
-    <ClInclude Include="src\c\xls.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="src\c\spreadsheet.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +204,9 @@
     </ProjectReference>
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
     <ProjectReference Include="..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
@@ -285,6 +227,66 @@
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\dynlib_spreadsheet.h" />
+    <ClInclude Include="includes\gw_spreadsheet.h" />
+    <ClInclude Include="sci_gateway\c\gw_csv_helpers.h" />
+    <ClInclude Include="src\c\checkCsvWriteFormat.h" />
+    <ClInclude Include="src\c\csvDefault.h" />
+    <ClInclude Include="src\c\csvIsnum.h" />
+    <ClInclude Include="src\c\csvRead.h" />
+    <ClInclude Include="src\c\csvWrite.h" />
+    <ClInclude Include="src\c\csv_complex.h" />
+    <ClInclude Include="src\c\csv_strsubst.h" />
+    <ClInclude Include="src\c\getRange.h" />
+    <ClInclude Include="src\c\latintoutf.h" />
+    <ClInclude Include="src\c\ripole\bt-int.h" />
+    <ClInclude Include="src\c\ripole\bytedecoders.h" />
+    <ClInclude Include="src\c\ripole\logger.h" />
+    <ClInclude Include="src\c\ripole\ole.h" />
+    <ClInclude Include="src\c\ripole\olestream-unwrap.h" />
+    <ClInclude Include="src\c\ripole\pldstr.h" />
+    <ClInclude Include="src\c\ripole\ripole.h" />
+    <ClInclude Include="src\c\splitLine.h" />
+    <ClInclude Include="src\c\stringsToDoubles.h" />
+    <ClInclude Include="src\c\stringToComplex.h" />
+    <ClInclude Include="src\c\utftolatin.h" />
+    <ClInclude Include="src\c\xls.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sci_gateway\c\gw_csv_helpers.c" />
+    <ClCompile Include="sci_gateway\c\gw_spreadsheet.c" />
+    <ClCompile Include="sci_gateway\c\sci_csvDefault.c" />
+    <ClCompile Include="sci_gateway\c\sci_csvIsnum.c" />
+    <ClCompile Include="sci_gateway\c\sci_csvRead.c" />
+    <ClCompile Include="sci_gateway\c\sci_csvStringToDouble.c" />
+    <ClCompile Include="sci_gateway\c\sci_csvTextScan.c" />
+    <ClCompile Include="sci_gateway\c\sci_csvWrite.c" />
+    <ClCompile Include="sci_gateway\c\sci_xls_open.c" />
+    <ClCompile Include="sci_gateway\c\sci_xls_read.c" />
+    <ClCompile Include="src\c\checkCsvWriteFormat.c" />
+    <ClCompile Include="src\c\csvDefault.c" />
+    <ClCompile Include="src\c\csvIsnum.c" />
+    <ClCompile Include="src\c\csvRead.c" />
+    <ClCompile Include="src\c\csvWrite.c" />
+    <ClCompile Include="src\c\csv_complex.c" />
+    <ClCompile Include="src\c\csv_strsubst.c" />
+    <ClCompile Include="src\c\DllmainSpreadsheet.c" />
+    <ClCompile Include="src\c\getRange.c" />
+    <ClCompile Include="src\c\latintoutf.c" />
+    <ClCompile Include="src\c\ripole\bt-int.c" />
+    <ClCompile Include="src\c\ripole\bytedecoders.c" />
+    <ClCompile Include="src\c\ripole\logger.c" />
+    <ClCompile Include="src\c\ripole\ole.c" />
+    <ClCompile Include="src\c\ripole\olestream-unwrap.c" />
+    <ClCompile Include="src\c\ripole\pldstr.c" />
+    <ClCompile Include="src\c\ripole\ripole.c" />
+    <ClCompile Include="src\c\splitLine.c" />
+    <ClCompile Include="src\c\stringsToDoubles.c" />
+    <ClCompile Include="src\c\stringToComplex.c" />
+    <ClCompile Include="src\c\utftolatin.c" />
+    <ClCompile Include="src\c\xls.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

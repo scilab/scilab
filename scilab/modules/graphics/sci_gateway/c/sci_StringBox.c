@@ -20,7 +20,7 @@
 
 #include "gw_graphics.h"
 #include "Scierror.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "GetProperty.h"
 #include "StringBox.h"
 #include "localization.h"
@@ -40,17 +40,34 @@ static int getScalarFromStack(int paramIndex, char * funcName, double * res);
 /*--------------------------------------------------------------------------*/
 static int getScalarFromStack(int paramIndex, char * funcName, double * res)
 {
+    SciErr sciErr;
     int m = 0;
     int n = 0;
-    size_t stackPointer = 0;
-    if ( VarType(paramIndex) != sci_matrix )
+    int* piAddrstackPointer = NULL;
+    double* stackPointer = NULL;
+    if ((!checkInputArgumentType(pvApiCtx, paramIndex, sci_matrix)) )
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), funcName, paramIndex);
         return -1 ;
     }
 
     /* get the handle */
-    GetRhsVar( paramIndex, MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &stackPointer );
+    sciErr = getVarAddressFromPosition(pvApiCtx,  paramIndex, &piAddrstackPointer);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+
+    // Retrieve a matrix of double at position  paramIndex.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrstackPointer, &m, &n, &stackPointer);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), funcName,  paramIndex);
+        return -1;
+    }
+
 
     if ( m * n != 1 )
     {
@@ -58,40 +75,63 @@ static int getScalarFromStack(int paramIndex, char * funcName, double * res)
         return -1 ;
     }
 
-    *res = *(stk(stackPointer));
+    *res = *stackPointer;
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 int sci_stringbox( char * fname, unsigned long fname_len )
 {
+
+    SciErr sciErr;
+
+    int* piAddrstackPointer = NULL;
+    long long* stackPointer = NULL;
+    char** strStackPointer   = NULL;
+    double* pdblStackPointer = NULL;
+
     int type = -1;
     int *piType = &type;
+
     char* parentAxes = NULL;
     double* textCorners = NULL;
     int two   = 2;
     int four  = 4;
-    size_t stackPointer = 0;
     double corners[4][2]; /* the four edges of the boundingRect */
 
     /* The function should be called with stringbox( handle ) */
-    CheckRhs( 1, 6 );
-    CheckLhs( 0, 1 );
+    CheckInputArgument(pvApiCtx,  1, 6 );
+    CheckOutputArgument(pvApiCtx,  0, 1 );
 
-    if (Rhs == 1)
+    if (nbInputArgument(pvApiCtx) == 1)
     {
         int m;
         int n;
         /* A text handle should be specified */
 
         char * pTextUID = NULL;
-        if ( VarType(1) != sci_handles )
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)) )
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
             return 0 ;
         }
 
         /* get the handle */
-        GetRhsVar( 1, GRAPHICAL_HANDLE_DATATYPE, &m, &n, &stackPointer );
+        sciErr = getVarAddressFromPosition(pvApiCtx,  1, &piAddrstackPointer);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of handle at position  1.
+        sciErr = getMatrixOfHandle(pvApiCtx, piAddrstackPointer, &m, &n, &stackPointer);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname,  1);
+            return 1;
+        }
+
         if ( m * n != 1 )
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
@@ -99,7 +139,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
         }
 
         /* Get the handle and check that this is a text handle */
-        pTextUID = (char*)getObjectFromHandle(getHandleFromStack(stackPointer));
+        pTextUID = (char*)getObjectFromHandle((long int) * stackPointer);
 
         if ( pTextUID == NULL )
         {
@@ -138,7 +178,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
         corners[2][0] = textCorners[9];
         corners[2][1] = textCorners[10];
     }
-    else if (Rhs == 2)
+    else if (nbInputArgument(pvApiCtx) == 2)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d or %d to %d expected.\n"), fname, 1, 3, 6);
         return 0 ;
@@ -161,79 +201,99 @@ int sci_stringbox( char * fname, unsigned long fname_len )
         getGraphicObjectProperty(parentSubwinUID, __GO_FONT_SIZE__, jni_double, (void **)&pfontSize);
 
         /* Check that first argument is a string */
-        if ( VarType(1) != sci_strings )
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)) )
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: 2D array of strings expected.\n"), fname, 1);
             return 0 ;
         }
-        GetRhsVar( 1, MATRIX_OF_STRING_DATATYPE, &textNbRow, &textNbCol, &stackPointer );
+        sciErr = getVarAddressFromPosition(pvApiCtx,  1, &piAddrstackPointer);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of string at position  1.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddrstackPointer, &textNbRow, &textNbCol, &strStackPointer))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname,  1);
+            return 1;
+        }
+
         /* retrieve it */
-        text = getStringMatrixFromStack(stackPointer);
+        text = strStackPointer;
 
         /* Second and third arguments should be scalars */
         if (getScalarFromStack(2, fname, &xPos) < 0)
         {
-            freeArrayOfString(text, textNbRow * textNbCol);
-            return 0;
-        }
-        if (getScalarFromStack(3, fname, &yPos) < 0)
-        {
-            freeArrayOfString(text, textNbRow * textNbCol);
+            freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
             return 0;
         }
 
-        if (Rhs >= 4)
+        if (getScalarFromStack(3, fname, &yPos) < 0)
+        {
+            freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
+            return 0;
+        }
+
+        if (nbInputArgument(pvApiCtx) >= 4)
         {
             /* angle is defined */
             if (getScalarFromStack(4, fname, &angle) < 0)
             {
-                freeArrayOfString(text, textNbRow * textNbCol);
+                freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
                 return 0;
             }
         }
 
-        if (Rhs >= 5)
+        if (nbInputArgument(pvApiCtx) >= 5)
         {
             double fontIdD;
             /* font style is defined */
             if (getScalarFromStack(5, fname, &fontIdD) < 0)
             {
-                freeArrayOfString(text, textNbRow * textNbCol);
+                freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
                 return 0;
             }
             fontId = (int) fontIdD;
         }
 
-        if (Rhs >= 6)
+        if (nbInputArgument(pvApiCtx) >= 6)
         {
             /* font size is defined */
             if (getScalarFromStack(6, fname, &fontSize) < 0)
             {
-                freeArrayOfString(text, textNbRow * textNbCol);
+                freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
                 return 0;
             }
         }
 
         /* compute the box */
         getTextBoundingBox(text, textNbRow, textNbCol, xPos, yPos, angle, fontId, fontSize, corners);
-        freeArrayOfString(text, textNbRow * textNbCol);
+        freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
     }
 
 
     /* copy everything into the lhs */
-    stackPointer = 0; /* Fix for 64 bits: MSB of stackPointer has been set by GetRhsVar but are not reset by CreateVar */
-    CreateVar( Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &two, &four, &stackPointer );
-    *stk( stackPointer     )  = corners[1][0] ;
-    *stk( stackPointer + 1 )  = corners[1][1] ;
-    *stk( stackPointer + 2 )  = corners[0][0] ;
-    *stk( stackPointer + 3 )  = corners[0][1] ;
-    *stk( stackPointer + 4 )  = corners[3][0] ;
-    *stk( stackPointer + 5 )  = corners[3][1] ;
-    *stk( stackPointer + 6 )  = corners[2][0] ;
-    *stk( stackPointer + 7 )  = corners[2][1] ;
+    sciErr = allocMatrixOfDouble(pvApiCtx,  nbInputArgument(pvApiCtx) + 1, two, four, &pdblStackPointer);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
 
-    LhsVar( 1 ) = Rhs + 1 ;
-    PutLhsVar();
+    pdblStackPointer[0] = corners[1][0];
+    pdblStackPointer[1] = corners[1][1];
+    pdblStackPointer[2] = corners[0][0];
+    pdblStackPointer[3] = corners[0][1];
+    pdblStackPointer[4] = corners[3][0];
+    pdblStackPointer[5] = corners[3][1];
+    pdblStackPointer[6] = corners[2][0];
+    pdblStackPointer[7] = corners[2][1];
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1 ;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

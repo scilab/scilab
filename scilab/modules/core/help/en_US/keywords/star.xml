@@ -20,10 +20,44 @@
         </para>
         <para>
             <literal>A*.B</literal>  is an operator with no predefined meaning. It may be used
-            to define a new operator (see <link linkend="overloading">overloading</link>) with  the same 
-            precedence as <literal>*</literal> or <literal>/</literal>.
+            to define a new operator (see <link linkend="overloading">overloading</link>) with  the same precedence as <literal>*</literal> or <literal>/</literal>.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Basic numerical operations
+2 * 2 // 4
+2 * [%pi, %eps] // 6.2831853    4.441D-16
+rand(2,2) * rand(2)
+[1, 2; 3, 4] * [%pi,%eps; %e, %pi]
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Polynomial operations
+s=poly(0,"s");
+p=1+s+2*s^2;
+q=1+s+2*s^3;
+p * q
+//               2    3    4    5
+//    1 + 2s + 3s + 4s + 2s + 4s
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Rational
+s=poly(0,'s');
+W=[1/s,1/(s+1)];
+W' * W
+//    1           1          
+//    -         -----        
+//     2             2       
+//    s         s + s        
+//                           
+//      1           1        
+//    -----     ---------    
+//         2              2  
+//    s + s     1 + 2s + s   
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
