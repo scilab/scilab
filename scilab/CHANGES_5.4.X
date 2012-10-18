@@ -60,6 +60,8 @@ Bug fixes
 * Bug #11981 fixed - Smooth french help page had a wrong declaration
                      (colonnes => lignes).
 
+* Bug #11991 fixed - Under Windows, some empty lines were added by csvWrite.
+
 * Bug #11999 fixed - Blank lines ignored by default by csvRead / read_csv.
 
 
