@@ -54,7 +54,7 @@ h5dump(a);
 ds = a.root.x
 
 // Get the attribute 'SCILAB_Class'
-attr = ds.root.x.SCILAB_Class
+attr = ds.SCILAB_Class
 
 // Read its value
 attr.data
