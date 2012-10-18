@@ -16,7 +16,8 @@ warning("off");
 txt = ["my data 1";"";"my data 2"];
 ref_res = ["my data 1";"my data 2"];
 
-assert_checkequal(csvDefault('blank'), 'off');
+assert_checkequal(csvDefault('blank'), 'on');
+assert_checkequal(csvDefault('blank','off'), %t);
 ierr = execstr("res = csvTextScan(txt, [] , [], ""string"")", "errcatch");
 assert_checkequal(ierr, 999);
 

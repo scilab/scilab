@@ -36,7 +36,7 @@
 #define DEFAULT_CSV_ENCODING_MODE2 "iso-latin"
 #define CSV_IGNORE_BLANK_LINE_MODE_1 "off"
 #define CSV_IGNORE_BLANK_LINE_MODE_2 "on"
-#define DEFAULT_IGNORE_BLANK_LINE CSV_IGNORE_BLANK_LINE_MODE_1
+#define DEFAULT_IGNORE_BLANK_LINE CSV_IGNORE_BLANK_LINE_MODE_2
 // =============================================================================
 static char *defaultCsvSeparator = NULL;
 static char *defaultCsvDecimal = NULL;

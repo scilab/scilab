@@ -220,7 +220,7 @@
                     
                     <para>指定可能な値は "on", "off"です.</para>
                     
-                    <para>デフォルトでは, この値は "off"です.</para>
+                    <para>デフォルトでは, この値は "on"です.</para>
                 </listitem>
             </itemizedlist>
         </para>
