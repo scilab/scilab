@@ -30,6 +30,9 @@ Xcos
 Bug fixes
 ==========
 
+* Bug #3313 fixed - In the documentation, the title of a link was using the
+                    id instead of the title of the page.
+
 * Bug #8883 fixed - In some cases, Scilab build from sources was looking for
                    libraries at the wrong place.
 
