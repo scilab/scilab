@@ -73,7 +73,7 @@ int sci_h5write(char *fname, unsigned long fname_len)
     int inc = 0;
     int row, col;
     unsigned int size = 0;
-    unsigned int rhsBegin;
+    unsigned int rhsBegin = 0;
     const int nbIn = nbInputArgument(pvApiCtx);
 
     CheckOutputArgument(pvApiCtx, 1, 1);
@@ -170,59 +170,59 @@ int sci_h5write(char *fname, unsigned long fname_len)
         {
             rhsBegin = 4;
         }
-    }
 
-    for (unsigned int i = rhsBegin; i <= nbIn; i++)
-    {
-        err = getVarAddressFromPosition(pvApiCtx, i, &addr);
-        if (err.iErr)
+        for (unsigned int i = rhsBegin; i <= nbIn; i++)
         {
-            printError(&err, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
-            return 0;
-        }
-        if (isDoubleType(pvApiCtx, addr))
-        {
-            err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, dptrs[i - rhsBegin]);
-            if (row > 1 && col > 1)
+            err = getVarAddressFromPosition(pvApiCtx, i, &addr);
+            if (err.iErr)
             {
-                Scierror(999, _("%s: Bad dimensions for input argument #%d: a row or a column expected.\n"), fname, i);
+                printError(&err, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
                 return 0;
             }
-
-            if (row != 0 && col != 0)
+            if (isDoubleType(pvApiCtx, addr))
             {
-                if (size == 0)
+                err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, dptrs[i - rhsBegin]);
+                if (row > 1 && col > 1)
                 {
-                    size = row > col ? row : col;
-                }
-                else if (size != (row > col ? row : col))
-                {
-                    Scierror(999, _("%s: Bad dimensions for input argument #%d: the same size are expected.\n"), fname, i);
+                    Scierror(999, _("%s: Bad dimensions for input argument #%d: a row or a column expected.\n"), fname, i);
                     return 0;
+                }
+
+                if (row != 0 && col != 0)
+                {
+                    if (size == 0)
+                    {
+                        size = row > col ? row : col;
+                    }
+                    else if (size != (row > col ? row : col))
+                    {
+                        Scierror(999, _("%s: Bad dimensions for input argument #%d: the same size are expected.\n"), fname, i);
+                        return 0;
+                    }
+                }
+                else
+                {
+                    *(dptrs[i - rhsBegin]) = 0;
                 }
             }
             else
             {
-                *(dptrs[i - rhsBegin]) = 0;
+                Scierror(999, _("%s: Wrong type for input argument #%d: A row of doubles expected.\n"), fname, i);
+                return 0;
             }
         }
-        else
+
+        if (start && !count)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A row of doubles expected.\n"), fname, i);
+            Scierror(999, _("%s: Argument 'count' is missing.\n"), fname);
             return 0;
         }
-    }
 
-    if (start && !count)
-    {
-        Scierror(999, _("%s: Argument 'count' is missing.\n"), fname);
-        return 0;
-    }
-
-    for (unsigned int i = 0; i < 4; i++)
-    {
-        *hptrs[i] = HDF5Scilab::flipAndConvert(size, *dptrs[i]);
+        for (unsigned int i = 0; i < 4; i++)
+        {
+            *hptrs[i] = HDF5Scilab::flipAndConvert(size, *dptrs[i]);
+        }
     }
 
     try
