@@ -510,7 +510,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             hasExamples = false;
         }
         String rp = encloseContents("span", "refentry-description", refpurpose);
-        String str = encloseContents("li", encloseContents("a", new String[] {"href", fileName, "class", "refentry"}, currentId) + " &#8212; " + rp);
+        String str = encloseContents("li", encloseContents("a", new String[] {"href", fileName, "class", "refentry"}, refname) + " &#8212; " + rp);
         refpurpose = "";
         refname = "";
         currentId = null;
@@ -575,7 +575,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String str = encloseContents("ul", "list-chapter", contents);
         String title = encloseContents("h3", "title-part", partTitle);
         createHTMLFile(attributes.get("id"), fileName, partTitle, title + "\n" + str);
-
         str = encloseContents("li", encloseContents("a", new String[] {"href", fileName, "class", "part"}, partTitle) + "\n" + str);
         partTitle = "";
 
