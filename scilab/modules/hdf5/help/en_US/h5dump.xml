@@ -47,7 +47,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>This command is helpful to help to debug and check that all the programmer is making is ok.</para>
+        <para>Write the content of an H5 object in the standard output stream. Useful to help debugging and checking that everything is ok with the object.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

@@ -71,7 +71,7 @@ h5rm(a, names);
 // we check that all is ok
 a.root.groups
 
-// We have finish so we free all the resources
+// We have finished so we free all the resources
 h5close(a);
 
 // We can remove attributes too

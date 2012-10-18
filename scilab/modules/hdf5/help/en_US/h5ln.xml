@@ -74,7 +74,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Create a hard or a soft or an external link. When destfile is given, it is always an external link. By default hard is set to false so, by default a soft link is created.</para>
+        <para>Create a hard, soft or external link. When destfile is given, it is always an external link. By default hard is set to false, so by default a soft link is created.</para>
         <para>Soft links can be created even if the target does not exist.</para>
     </refsection>
     <refsection>
@@ -103,7 +103,7 @@ h5dump(a)
 // Check the external link
 a.root.External_Link.BDset.data
 
-// We have finish so we free all the resources
+// We have finished so we free all the resources
 h5close(a);
     ]]></programlisting>
     </refsection>

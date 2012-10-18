@@ -57,7 +57,7 @@ h5group(b, "Group_1");
 h5write(b, "Group_1/Dataset_1", [1 2;3 4]);
 
 // Mount b on a
-h5umount(a, "/mnt", b)
+h5mount(a, "/mnt", b)
 
 // Now we can modify or read b like if we were in a
 a.root.mnt.Group_1.Dataset_1.data

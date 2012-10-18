@@ -84,7 +84,7 @@
                     </para>
                 </listitem>
             </itemizedlist>
-            If the field name starts with '/', then the it is considered as a apath and the returned value is the H5 object corresponding to this path.
+            If the field name starts with '/', then it is considered as a path and the returned value is the H5 object corresponding to this path.
         </para>
         <programlisting role="example"><![CDATA[
 x = [1 2;3 4];

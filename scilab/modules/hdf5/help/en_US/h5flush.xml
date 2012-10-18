@@ -40,7 +40,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Flush all the buffers associated with a file. If local is %T, then only the file is flushed, else the entire virtual flie is flushed.</para>
+        <para>Flush all the buffers associated with a file. If local is %T, only the file is flushed, otherwise the entire virtual file is flushed.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -54,7 +54,7 @@ h5write(a, "MyDset", 1:100);
 // We flush the file
 h5flush(a);
 
-// We have finish so we free all the resources
+// We have finished so we free all the resources
 h5close(a);
     ]]></programlisting>
     </refsection>

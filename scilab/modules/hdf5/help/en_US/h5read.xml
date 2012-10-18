@@ -116,7 +116,7 @@ dx1 = h5read(a, "/x", [3 4], [5 3])
 // ...which is equivalent to
 dx(3:(3+5-1),4:(4+3-1))
 
-// We have finish so we free all the resources
+// We have finished so we free all the resources
 h5close(a);
     ]]></programlisting>
     </refsection>

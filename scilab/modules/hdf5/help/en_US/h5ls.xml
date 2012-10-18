@@ -70,7 +70,7 @@ h5ls(a)
 // We can see a dataset named x, list it
 h5ls(a.root.x) // a.root.x is equivalent to a("/x")
 
-// We have finish so we free all the resources
+// We have finished so we free all the resources
 h5close(a);
     ]]></programlisting>
     </refsection>

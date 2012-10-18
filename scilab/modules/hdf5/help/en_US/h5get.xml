@@ -52,7 +52,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Get the object with the given location under obj. If isAttr is %T, an is returned (if it exists), by default isAttr is %F.</para>
+        <para>Get the object with the given location under obj. If isAttr is %T, an H5 object is returned (if it exists), by default isAttr is %F.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

@@ -67,7 +67,8 @@
         <title>Description</title>
         <para>Create a new named attribute based on the Scilab data passed as argument.</para>
         <para>
-            It is possible to choose the target HDF5 type, it is a string like "H5T_MIPS_U32" or "H5T_STD_B64BE", it is possible to use the shortcut "MIPS_U32" or "STD_B64BE". An exhaustive list can be found in the <ulink url="http://www.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html">HDF5 manual</ulink>.
+            The target HDF5 type can be chosen in the list available in the <ulink url="http://www.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html">HDF5 manual</ulink>.
+            Examples of this HDF5 type are "H5T_MIPS_U32" or "H5T_STD_B64BE", but shortcuts as "MIPS_U32" or "STD_B64BE" can also be used.
         </para>
         <para>An attribute can be located in a group or in a dataset</para>
     </refsection>
@@ -95,7 +96,7 @@ h5attr(a, "/x", "My Dataset Attribute", int16(321));
 // Check
 h5dump(a.root.x)
 
-// We have finish so we free all the resources
+// We have finished so we free all the resources
 h5close(a);
     ]]></programlisting>
     </refsection>

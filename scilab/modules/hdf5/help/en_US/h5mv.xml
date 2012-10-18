@@ -68,9 +68,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            Move an object to another place (same file or not). This command is equivalent to <code>h5cp</code> followed by <code>h5rm</code>
+            Move an object to another place (same file or not). This command is equivalent to <code>h5cp</code> followed by <code>h5rm</code>.
         </para>
-        <para>Before to move a newly created object, you must flush the file.</para> 
+        <para>Before moving a newly created object, the file must be flushed.</para> 
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -98,7 +98,7 @@ h5mv(a.root.Grp_1, "Dset_1", a, "Dset_2")
 // Copy BDset to a dataset under Grp_1
 h5mv(TMPDIR  +"/test1.h5", "/BGrp/BDset", a.root.Grp_1)
 
-// We have finish so we free all the resources
+// We have finished so we free all the resources
 h5close(a);
     ]]></programlisting>
     </refsection>

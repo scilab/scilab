@@ -68,7 +68,7 @@
     <refsection>
         <title>Description</title>
         <para>Copy an object to another place (same file or not).</para>
-        <para>Before to copy a newly created object, you must flush the file.</para> 
+        <para>Before copying a newly created object, the file must be flushed.</para> 
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -99,7 +99,7 @@ h5cp(TMPDIR  +"/test1.h5", "/BGrp/BDset", a.root.Grp_1)
 // We can change the destination name
 h5cp(TMPDIR  +"/test1.h5", "/BGrp/BDset", a.root.Grp_1, "The Foo Dataset")
 
-// We have finish so we free all the resources
+// We have finished so we free all the resources
 h5close(a);
     ]]></programlisting>
     </refsection>

@@ -35,8 +35,8 @@
     <refsection>
         <title>Description</title>
         <para>Close an object and all its descendants. That allows to free all the memory associated to this object.</para>
-        <para>When a file is closed, all the associated buffers are flushed before.</para>
-        <para>With no argument, that close all the open objects.</para>
+        <para>All the buffers associated to the file are flushed before closing it.</para>
+        <para>With no arguments, all the opened objects are closed.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -54,7 +54,7 @@ h5dump(a);
 ds = a.root.x
 
 // Get the attribute 'SCILAB_Class'
-attr = a.root.x.SCILAB_Class
+attr = ds.root.x.SCILAB_Class
 
 // Read its value
 attr.data
@@ -62,14 +62,14 @@ attr.data
 // Get the data from ds
 d = ds.data
 
-// We have finish with the dataset
+// We have finished with the dataset
 h5close(ds)
 
 // attr has been open from ds so attr is now not available
 // ... so an error
 attr
 
-// We have finish so we free all the resources
+// We have finished so we free all the resources
 h5close(a);
     ]]></programlisting>
     </refsection>

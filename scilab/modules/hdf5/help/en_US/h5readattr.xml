@@ -64,16 +64,16 @@ save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones
 // Open the created file
 a = h5open(TMPDIR + "/x.sod");
 
-// Read an attribute of the group root
+// Read an attribute of the root group
 scilab_version = h5readattr(a, "/", "SCILAB_scilab_version")
 
-// and an other one
+// and another one
 sod_version = h5readattr(a.root, "SCILAB_sod_version")
 
 // and one from a dataset
 scilab_class = h5readattr(a.root.x, "SCILAB_Class")
 
-// We have finish so we free all the resources
+// We have finished so we free all the resources
 h5close(a);
     ]]></programlisting>
     </refsection>
