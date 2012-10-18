@@ -23,6 +23,8 @@
 #include "sciCall.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "MALLOC.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_plot2d1_1 (char *fname, unsigned long fname_len)
 {
@@ -350,6 +352,8 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
 
     Objplot2d (ptype, logFlags, (l1), (l2), &n1, &m1, style, strf, legend, rect, nax, flagNax);
 
+    // Allocated by sciGetStyle (get_style_arg function in GetCommandArg.c)
+    FREE(style);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

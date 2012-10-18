@@ -186,14 +186,20 @@ int sci_xstringb(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        // Retrieve a matrix of double at position 6.
+        // Retrieve a string at position 6.
+        if (isScalar(pvApiCtx, piAddrl6) == 0)
+        {
+            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 6);
+            return 1;
+        }
+
         if (getAllocatedSingleString(pvApiCtx, piAddrl6, &l6))
         {
             Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 6);
             return 1;
         }
 
-        if ( m6*n6 != 0 && strcmp((l6), "fill") == 0 )
+        if (strcmp(l6, "fill") == 0 )
         {
             autoSize = FALSE ;
             textBoxMode = 2;

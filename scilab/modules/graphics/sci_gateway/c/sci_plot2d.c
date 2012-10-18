@@ -27,6 +27,7 @@
 #include <sciprint.h>
 
 #include "BuildObjects.h"
+#include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
 int sci_plot2d( char * fname, unsigned long fname_len )
@@ -412,6 +413,9 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     getOrCreateDefaultSubwin();
 
     Objplot2d (1, logFlags, (l1), (l2), &n1, &m1, style, strf, legend, rect, nax, flagNax);
+
+    // Allocated by sciGetStyle (get_style_arg function in GetCommandArg.c)
+    FREE(style);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
