@@ -64,6 +64,9 @@ Bug fixes
 
 * Bug #11999 fixed - Blank lines ignored by default by csvRead / read_csv.
 
+* Bug #12003 fixed - Fix a typo in the spreadsheet module.
+
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
