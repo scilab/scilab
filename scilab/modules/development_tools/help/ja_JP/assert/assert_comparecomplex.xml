@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_comparecomplex" xml:lang="ja">
+    <refnamediv>
+        <refname>assert_comparecomplex</refname>
+        <refpurpose>許容誤差を指定して複素数を比較する.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            order = assert_comparecomplex ( a , b )
+            order = assert_comparecomplex ( a , b , reltol )
+            order = assert_comparecomplex ( a , b , reltol , abstol )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>a :</term>
+                <listitem>
+                    <para>
+                        1行1列のdouble行列,比較する最初の値
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b :</term>
+                <listitem>
+                    <para>
+                        1行1列のdouble行列,比較する2番目の値
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>reltol :</term>
+                <listitem>
+                    <para>
+                        1行1列のdouble行列,相対許容誤差 (デフォルト: reltol=sqrt(%eps)).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>abstol :</term>
+                <listitem>
+                    <para>
+                        1行1列のdouble行列,絶対許容誤差 (デフォルト: abstol=0).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>order :</term>
+                <listitem>
+                    <para> 
+                        1行1列のdouble行列,整数値,順番.
+                        aがbにほぼ等しい場合にorder=0,
+                        a &lt; bの場合に order=-1,
+                        a &gt; bの場合に order=+1.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            まず実部,次に虚部を比較します.
+            相対および絶対許容誤差による判定を組み合わせることで
+            数値的な問題を考慮します.
+        </para>
+        <para>
+            オプションの入力引数が空の行列に等しい場合,
+            そのデフォルト値に置換されます.
+        </para>
+        <para>
+            以下のアルゴリズムを使用します.
+        </para>
+        <para>
+            まず実部を比較します.それが等しい場合,
+            虚部を比較します.
+        </para>
+        <para>
+            IEEE値を処理し,順番を選択します: -%inf &lt; 0 &lt; %inf &lt; %nan.
+            どの値も特殊な値でない場合, 以下の条件を使用します:
+            <programlisting>
+                cond = ( abs(a-b) &lt;= reltol * max(abs(a),abs(b)) + abstol )
+            </programlisting>
+        </para>
+        <para>
+            このアルゴリズムはソート用アルゴリズムの中で使用される
+            よう設計されています.
+            これにより,
+            複素数のdoubleの行列を出力する関数の出力に関連した
+            移植性の問題を考慮することができます.
+            このアルゴリズムがソート用関数に組み込まれた場合,
+            順番をオペレーティング・システム,コンパイラまたは
+            (値ではなく)順番を変更する他の問題に依存させずに,
+            一貫してソートされた行列を出力することができるようになります.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// 実数値を比較
+assert_comparecomplex ( 1 , -1 ) // 1
+assert_comparecomplex ( -1 , 1 ) // -1
+assert_comparecomplex ( 1 , 1 ) // 0
+
+// 複素数を比較 #1
+assert_comparecomplex ( 1+2*%i , 1+3*%i ) // -1
+assert_comparecomplex ( 1+3*%i , 1+2*%i ) // 1
+assert_comparecomplex ( 1+2*%i , 1+2*%i ) // 0
+
+// 複素数を比較 #2
+assert_comparecomplex ( 1+%i , -1+%i ) // 1
+assert_comparecomplex ( -1+%i , 1+%i ) // -1
+assert_comparecomplex ( 1+%i , 1+%i ) // 0
+[order,msg] = assert_comparecomplex ( 1+%i , 1+%i )
+
+// 許容誤差を指定して比較: 等号の場合
+assert_comparecomplex ( 1.2345+%i , 1.2346+%i , %eps , 1.e-3 ) // 0
+assert_comparecomplex ( 1.2345+%i , 1.2346+%i , 1.e12*%eps , 0 ) // 0
+assert_comparecomplex ( 1+1.2345*%i , 1+1.2347*%i , %eps , 1.e-3 ) // 0
+assert_comparecomplex ( 1+1.2345*%i , 1+1.2347*%i , 1.e12*%eps , 0 ) // 0
+
+// より実際的なデータの比較
+x = [
+-0.123452 - 0.123454 * %i
+-0.123451 + 0.123453 * %i
+0.123458 - 0.123459 * %i
+0.123456 + 0.123457 * %i
+];
+// 上位4桁以下を考慮
+for i = 1 : size(x,"*")-1
+order = assert_comparecomplex ( x(i) , x(i+1) , 1.e-4 );
+mprintf("compare(x(%d),x(%d))=%d\n",i,i+1,order)
+end
+
+// バグ#415からのデータを比較
+x = [
+-1.9914145
+-1.895889
+-1.6923826
+-1.4815461
+-1.1302576
+-0.5652256 - 0.0655080 * %i
+-0.5652256 + 0.0655080 * %i
+0.3354023 - 0.1602902 * %i
+0.3354023 + 0.1602902 * %i
+1.3468911
+1.5040136
+1.846668
+1.9736772
+1.9798866
+];
+// 上位4桁以下を考慮
+for i = 1 : size(x,"*")-1
+order = assert_comparecomplex ( x(i) , x(i+1) , 1.e-5 );
+mprintf("compare(x(%d),x(%d))=%d\n",i,i+1,order)
+end
+
+   ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>http://gitweb.scilab.org/?p=scilab.git;a=blob;f=scilab/modules/polynomials/tests/nonreg_tests/bug_415.tst;h=0c716a3bed0dfb72c831972d19dbb0814dffde2b;hb=HEAD</para>
+        <para>http://gitweb.scilab.org/?p=scilab.git;a=blob_plain;f=scilab/modules/cacsd/tests/nonreg_tests/bug_68.tst;h=920d091d089b61bf961ea9e888b4d7d469942a14;hb=4ce3d4109dd752fce5f763be71ea639e09a12630</para>
+    </refsection>
+</refentry>

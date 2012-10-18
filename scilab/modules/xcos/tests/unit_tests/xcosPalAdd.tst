@@ -3,12 +3,11 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // White-box test for the xcosPalAdd macro.
 
-loadXcosLibs();
 
 prot = funcprot();
 funcprot(0);

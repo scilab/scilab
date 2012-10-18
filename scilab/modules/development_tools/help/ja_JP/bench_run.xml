@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bench_run" xml:lang="ja">
+    <refnamediv>
+        <refname>bench_run</refname>
+        <refpurpose>ベンチマークテストを実行</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            bench_run()
+            bench_run(module[,test_name[,options]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>module</term>
+                <listitem>
+                    <para>文字列ベクトル. モジュール名またはツールボックスの絶対パスを指定します.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>test_name</term>
+                <listitem>
+                    <para>文字列ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>options</term>
+                <listitem>
+                    <para>文字列ベクトル</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>list : モジュールで利用可能なベンチマークテストのリスト</para>
+                        </listitem>
+                        <listitem>
+                            <para>help : Scilabコンソールにいくつかの使用例を表示</para>
+                        </listitem>
+                        <listitem>
+                            <para>nb_run=value : ベンチマークテストを指定回数反復実行</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ベンチマークテストライブラリの .tst ファイルを探して実行し,実行時間に関する
+            レポートを表示します.
+            .tst ファイルはSCI+"/modules/*/tests/benchmark"ディレクトリで探されます.
+        </para>
+        <para>
+            テスト処理を制御しやすくするために,.tstファイルに特殊なタグを挿入できます.
+            これらのタグはScilabコメントとして記入します.
+        </para>
+        <para>利用可能なタグを以下に示します :</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    &lt;-- BENCH NB RUN : 10 --&gt;
+                    このテストは10回反復実行されます.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- BENCH START --&gt;
+                    &lt;-- BENCH END --&gt;
+                    ベンチマークの関心がある部分をこれらのタグで括りますThe 
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>bench_runを実行例をいくつか示します</para>
+        <programlisting role="example"><![CDATA[
+// 全てのテストを実行
+bench_run();
+bench_run([]);
+bench_run([],[]);
+
+// 1つまたは複数のモジュールをテスト
+bench_run('core');
+bench_run('core',[]);
+bench_run(['core','string']);
+
+// 指定したモジュールの1つまたは複数のテストを実行
+bench_run('core',['trycatch','opcode']);
+
+// オプションを指定
+bench_run([],[],'list');
+bench_run([],[],'help');
+bench_run([],[],'nb_run=2000');
+ ]]></programlisting>
+        <para>ベンチマークファイルの例. このファイルはファイル
+            SCI/modules/linear_algebra/tests/benchmarks/bench_chol.tstに対応します.
+        </para>
+        <programlisting role="example"><![CDATA[
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+//==============================================================================
+// Benchmark for chol function
+//==============================================================================
+
+// <-- BENCH NB RUN : 10 -->
+
+stacksize(30000000);
+
+a = 0;
+b = 0;
+a = rand(900, 900, 'n');
+a = a'*a;
+
+// <-- BENCH START -->
+b = chol(a);
+// <-- BENCH END -->
+ ]]></programlisting>
+        <para>テストの結果</para>
+        <programlisting role="example"><![CDATA[
+-->bench_run('linear_algebra','bench_chol')
+
+           For Loop (as reference) ...........................      143.00 ms [ 1000000 x]
+
+  001/001 - [linear_algebra] bench_chol ......................      130.60 ms [      10 x]
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="test_run">test_run</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

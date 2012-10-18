@@ -1,8 +1,15 @@
                     Changes between version 5.4.0 and 5.4.1
                     =======================================
 
+
+Improvements
+=============
+
+* A warning has been added for 1./x and 1.\x syntax clarification.
+
+
 Xcos
-====
+=====
 
 * Bug #10434 fixed - loadXcosLibs changed the predef value.
 
@@ -15,7 +22,9 @@ Xcos
 
 * Bug #11919 fixed - DLSS block with empty matrix as parameters made Scilab crash.
 
-* Bug #11963 fixed - input port in superblock was corrupted
+* Bug #11963 fixed - input port in superblock was corrupted.
+
+* Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
 
 
 Bug fixes
@@ -26,11 +35,19 @@ Bug fixes
 
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
+* Bug #11811 fixed - Fix a typo in the help page of Scinotes.
+
+* Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
+
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
 
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
+
+
+* Bug #11981 fixed - Smooth french help page had a wrong declaration
+                     (colonnes => lignes).
 
 
                     Changes between version 5.3.3 and 5.4.0

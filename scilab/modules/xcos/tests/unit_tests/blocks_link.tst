@@ -7,11 +7,11 @@
 // ============================================================================
 //
 // <-- ENGLISH IMPOSED -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // Check that the simulation function should exists.
 
-loadXcosLibs(); loadScicos();
 
 defaultlibs = ["Branching",
                "Linear",

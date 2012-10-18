@@ -5,14 +5,17 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- XCOS TEST -->
+//
 // <-- Non-regression test for bug 4715 -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=4715
 //
 // <-- Short Description -->
+// CLR and DLR blocks ignore context set by scicos_simulate
 // 
-// 
+
 importXcosDiagram(SCI+'/modules/xcos/tests/nonreg_tests/bug_4715.xcos');
 %scicos_context.a = 0.1;
 %scicos_context.b = 0.1;

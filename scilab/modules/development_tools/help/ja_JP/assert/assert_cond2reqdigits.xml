@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_cond2reqdigits" xml:lang="ja">
+    <refnamediv>
+        <refname>assert_cond2reqdigits</refname>
+        <refpurpose>指定した条件数に必要な桁数を提案する.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            d = assert_cond2reqdigits ( condition )
+            d = assert_cond2reqdigits ( condition , offset )
+            d = assert_cond2reqdigits ( condition , offset , b )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>condition :</term>
+                <listitem>
+                    <para>
+                        doubleの行列, 条件数.
+                        条件数は厳密に正とする必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>offset :</term>
+                <listitem>
+                    <para> 
+                        doubleの行列, 
+                        必要な基底bの桁数(デフォルト offset = 0).
+                        例えば, offset=-1 は必要な桁数よりも小さい数
+                        を出力します(必要な精度を減らす).
+                        offset=1は必要な桁数よりも大きな数を出力します
+                        (必要な精度を増やす).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b :</term>
+                <listitem>
+                    <para>doubleの行列, 整数値,  b (デフォルト: b = 10).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d :</term>
+                <listitem>
+                    <para>doubleの行列, 必要な桁数. 
+                        正の実数で, b=10の場合は0 から 15.95 の範囲,
+                        b=2の場合は0から53の範囲.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            条件数に基づき,対応する必要な桁数を返します.
+        </para>
+        <para>
+            オプションのパラメータが空の行列[]に等しい場合,
+            そのデフォルト値に置換されます.
+        </para>
+        <para>
+            この必要な桁数は単なる推奨値であることを強調しておきます.
+            代わりに,より小さいまたは大きな桁数を使用する
+            正当な理由がある場合がありえます.
+        </para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    悪条件の問題においても,
+                    正確な計算が可能な素晴らしいアルゴリズムがある場合を
+                    考えてみましょう.
+                    この場合,より高い精度(正のオフセット)が必要となります.
+                </listitem>
+                <listitem>
+                    性能と精度のトレードオフがあり,性能が勝る場合について
+                    考えてみましょう.
+                    この場合, より劣る精度(負のオフセット)が必要となります.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            スカラー入力引数は全て他の入力引数と同じ大きさのdoubleの
+            行列に展開されます.
+        </para>
+        <para>
+            アルゴリズムは以下のようになります.
+            条件の基底10の指数を計算し,オフセットを引きます.
+            この数は失われる桁数の予測値を表します.
+            これを範囲 [0,dmax] に投影します.
+            ただし, dmax -log10(2^(-53)) は doubleで最大実現可能な
+            桁数です.
+            dmaxと失われる桁数の差から
+            必要な桁数 d を計算します.
+            この結果,相対許容誤差は 10^-d となります.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+assert_cond2reqdigits ( 0 ) // 15.95459
+assert_cond2reqdigits ( 1 ) // 15.95459
+assert_cond2reqdigits ( 1.e1 ) // 14.95459
+assert_cond2reqdigits ( 1.e2 ) // 13.95459
+assert_cond2reqdigits ( 1.e3 ) // 12.95459
+assert_cond2reqdigits ( 1.e16 ) // 0
+assert_cond2reqdigits ( 1.e17 ) // 0
+assert_cond2reqdigits ( 1.e18 ) // 0
+
+// 行列入力.
+condition = [0,1,10,100,1000,1.D13,1.D14,1.D15,1.D16,1.D17,1.D18];
+assert_cond2reqdigits ( condition )
+
+// オフセットを使用
+// 負のオフセット : 必要な桁数を減らす (より低い精度を要求)
+assert_cond2reqdigits ( 1.e2 , [0 -1] ) // [13.95459    12.95459]
+// 正のオフセット : 必要な桁数を増やす (より高い精度を要求)
+// オフセットの影響を調べます.
+assert_cond2reqdigits ( 1.e2 , [0 1 2 3] ) // [13.95459    14.95459    15.95459    15.95459]
+// 負のオフセット (より低い精度を要求)
+// オフセットの影響を調べます.
+assert_cond2reqdigits ( 1.e14 , [0 -1 -2 -3] ) // [1.9545898    0.9545898    0.    0.]
+
+// 基底2を使用
+assert_cond2reqdigits ( 0     , [] , 2 ) // 53
+assert_cond2reqdigits ( 1     , [] , 2 ) // 53
+assert_cond2reqdigits ( 1.e1  , [] , 2 ) // 49.678072
+assert_cond2reqdigits ( 1.e2  , [] , 2 ) // 46.356144
+assert_cond2reqdigits ( 1.e3  , [] , 2 ) // 43.034216
+assert_cond2reqdigits ( 1.e16 , [] , 2 ) // 0
+assert_cond2reqdigits ( 1.e17 , [] , 2 ) // 0
+assert_cond2reqdigits ( 1.e18 , [] , 2 ) // 0
+
+// 条件に基づき必要な10進桁数をプロット
+condition = logspace(0,18,1000);
+d = assert_cond2reqdigits ( condition );
+plot(condition,d)
+h=gcf();
+h.children.log_flags="lnn";
+h.children.children.children.thickness=4;
+xt = h.children.x_ticks;
+xt.locations = 10^(0:2:18)';
+xt.labels = ["10^0";"10^2";"10^4";"10^6";"10^8";"10^10";"10^12";"10^14";"10^16";"10^18"];
+h.children.x_ticks=xt;
+xtitle("Number of required digits","Condition","Required decimal digits");
+
+// 条件に基づき必要な2進桁数をプロット
+condition = logspace(0,18,1000);
+d = assert_cond2reqdigits ( condition , [] , 2 );
+plot(condition,d)
+h=gcf();
+h.children.log_flags="lnn";
+h.children.children.children.thickness=4;
+xt = h.children.x_ticks;
+xt.locations = 10^(0:2:18)';
+xt.labels = ["10^0";"10^2";"10^4";"10^6";"10^8";"10^10";"10^12";"10^14";"10^16";"10^18"];
+h.children.x_ticks=xt;
+xtitle("Number of required digits","Condition","Required binary digits");
+d = assert_cond2reqdigits ( condition , +10 , 2 );
+plot(condition,d,"r")
+d = assert_cond2reqdigits ( condition , -10 , 2 );
+plot(condition,d,"g")
+legend(["Offset=0","Offset=+10","Offset=-10"]);
+
+   ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

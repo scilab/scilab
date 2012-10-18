@@ -5,7 +5,7 @@
 //
 // <-- INTERACTIVE TEST -->
 //
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // scilab argument did not manage .xcos files

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="assert_overview">
+    <refnamediv>
+        <refname>assertの概要</refname>
+        <refpurpose>assertモジュールの概要.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>目的</title>
+        <para>
+            このモジュールの目的は,ユニットテストのように
+            他の関数の動作を書くにする関数を提供することです.
+            数値計算アルゴリズムをより簡単にテストできることを目標にした
+            数値的な問題をテストする一貫性があるツールを使用することに
+            重点を置いています.
+            具体的には,2つの浮動小数点数を比較する関数を提供し,
+            ここではその2つの数値が"数値的にほぼ等しい"こと,
+            すなわち相対誤差が小さい,を確認することができます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>入門</title>
+        <para>
+            <literal>assert_checktrue</literal>関数により,
+            論理値の行列がtrueであることを確認できます.
+            以下のアサーションは失敗し,エラーを発生します.
+        </para>
+        <programlisting role="example"><![CDATA[
+assert_checktrue ( [%t %F] );
+   ]]></programlisting>
+        <para>
+            <literal>assert_checkequal</literal> 関数により,
+            2つの変数が等しいことを確認できます.
+            以下のアサーションは成功し,そのまま実行されます.
+        </para>
+        <programlisting role="example"><![CDATA[
+assert_checkequal ( %nan , %nan );
+   ]]></programlisting>
+        <para>
+            <literal>assert_checkalmostequal</literal>関数により,
+            計算結果が予測した結果に近いことを確認できます.
+            以下のスクリプトでは,<literal>computed=1.23456</literal>
+            が <literal>expected=1.23457</literal>に近いが,
+            最大限達成可能な精度に対して11桁が失われていることを確認します.
+        </para>
+        <programlisting role="example"><![CDATA[
+assert_checkalmostequal ( 1.23456 , 1.23457 , 1.e11*%eps );
+   ]]></programlisting>
+        <para>
+            このモジュールの特徴的な機能は,
+            全てのアサート関数が同じ出力引数を有することです.
+            この機能により,動作を統一でき,アサーションがうまくいかない場合の
+            エラーの管理がシンプルになります.
+            例えば,呼び出し手順が以下となる関数<literal>assert_checktrue</literal>
+            を見てみましょう:
+        </para>
+        <programlisting role="example"><![CDATA[
+flag = assert_checktrue ( condition )
+flag = assert_checktrue ( condition )
+[flag,errmsg] = assert_checktrue ( condition )
+   ]]></programlisting>
+        <para>
+            conditionのあるエントリがfalseの場合,
+            <itemizedlist>
+                <listitem><para>
+                        errmsg出力変数が使用されない場合,エラーが生成されます,
+                    </para>
+                </listitem>
+                <listitem><para>
+                        errmsg出力変数が使用された場合,エラーは生成されません.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            この動作の理由はスクリプト内(例:ユニットテスト)および
+            関数内の両方でアサーションを使用出来ることです.
+            例えば,典型的なユニットテストにおける以下の命令:
+        </para>
+        <programlisting role="example"><![CDATA[
+assert_checktrue ( 1+1==12 );
+   ]]></programlisting>
+        <para>
+            は予想通りにエラーを生成します.
+            次に,関数内にアサーションによる確認を挿入する場合を考えてみましょう.
+            アサーションが失敗したケースを管理することを考えます.
+            この場合,呼び出し手順<literal>assert_checktrue ( condition )</literal>
+            はエラーを生成し,実行を中断します.
+            <literal>assert_checktrue</literal>で生成されたエラーをキャッチすることで,
+            これを回避したい場合もありえます.
+            これには<literal>execstr</literal>を使用することが必要で,
+            以下のようなソースコードとなります.
+        </para>
+        <programlisting role="example"><![CDATA[
+function y = myfunction ( x )
+    ierr=execstr("assert_checktrue ( x==12 )","errcatch");
+    if ( ierr <> 0 ) then
+        error("Oups!")
+    end
+    y=x
+endfunction
+   ]]></programlisting>
+        <para>
+            この場合,エラー処理が簡単になる呼び出し手順
+            <literal>[flag,errmsg] = assert_checktrue ( condition )</literal>を
+            代わりに使用すると良いでしょう.
+        </para>
+        <programlisting role="example"><![CDATA[
+function y = myfunction2 ( x )
+    [flag,errmsg] = assert_checktrue ( x==12 )
+    if ( ~flag ) then
+        error("Oups!")
+    end
+    y=x
+endfunction
+   ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -3,13 +3,12 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // White-box test for the model2blk.
 
 
-loadXcosLibs(); loadScicos();
 
 blk = PROD_f('define');
 model = blk.model;

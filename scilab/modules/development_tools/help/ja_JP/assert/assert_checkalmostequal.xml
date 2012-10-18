@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkalmostequal" xml:lang="ja">
+    <refnamediv>
+        <refname>assert_checkalmostequal</refname>
+        <refpurpose>計算値と予測値が数値的に近いことを調べる.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            flag = assert_checkalmostequal ( computed , expected )
+            flag = assert_checkalmostequal ( computed , expected , reltol )
+            flag = assert_checkalmostequal ( computed , expected , reltol , abstol )
+            flag = assert_checkalmostequal ( computed , expected , reltol , abstol , comptype )
+            [flag,errmsg] = assert_checkalmostequal ( ... )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>computed:</term>
+                <listitem>
+                    <para> 
+                        doubleの行列, doubleの疎行列, または 
+                        doubleのハイパー行列, 計算結果
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>expected :</term>
+                <listitem>
+                    <para> 
+                        doubleの行列, doubleの疎行列, または 
+                        doubleのハイパー行列, 予測する結果
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>reltol :</term>
+                <listitem>
+                    <para> doubleの1行1列行列, 相対許容誤差 
+                        (デフォルト: reltol=sqrt(%eps)).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>abstol :</term>
+                <listitem>
+                    <para>
+                        doubleの1行1列行列, 絶対許容誤差 
+                        (デフォルト: abstol=0).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comptype :</term>
+                <listitem>
+                    <para> 
+                        文字列の1行1列行列, "matrix" または "element"
+                        (デフォルト: comptype="element").
+                        比較の型.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag :</term>
+                <listitem>
+                    <para>
+                        論理値の1行1列行列, 
+                        computed が expected に近い場合に %t,
+                        そうでない場合に %f
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>errmsg :</term>
+                <listitem>
+                    <para> 
+                        文字列の1行1列行列, エラーメッセージ.
+                        flag==%t の場合は errmsg="",
+                        flag==%f の場合 errmsg にはエラーメッセージが
+                        代入されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            doubleまたは複素数doubleの2つの行列, computed と expected が近い
+            場合にそのまま実行されます.
+            変数computedとexpectedを交換しても結果に影響しません.
+        </para>
+        <para>
+            オプションの入力引数に空の行列ｗ指定するとデフォルト値で
+            置換されます.
+        </para>
+        <para>
+            以下のようなアルゴリズムを使用します.
+            まず実部を比較します.実部が等しい場合,虚部を比較します.
+        </para>
+        <para>
+            使用される条件は相対および絶対許容誤差を組み合わせたものです:
+            <programlisting>
+                ( |e-c| &lt;= reltol * max(|e|,|c|) + abstol )
+            </programlisting>
+            comptype="matrix" の場合, ノルムが使用されます.
+            comptype="element" の場合, 
+            絶対値が使用され, 全ての条件が true の場合に2つの行列が
+            ほぼ等しいとみなされます.
+        </para>
+        <para>
+            デフォルトの comptype="matrix" オプションでは
+            行列全体についての比較が行われ,
+            行列の差のノルムが使用されます.
+            comptype="element"オプションは要素毎の比較,
+            すなわち,行列の全ての要素がほぼ等しいこと,を行います.
+            これら2つの比較方法の選択は注意して行う必要があります.
+            例えば,基本関数の出力を要素毎に確認する際には,
+            行列の要素を順番に比較する必要があるため,
+            "element" 比較型を選ぶ必要があります.
+        </para>
+        <para>
+            IEEE値 %inf, -%inf または %nan が行列の中に存在する場合,
+            そのIEEE値が行列の同じ添字にある場合にのみほぼ等しいと
+            みなされます.
+        </para>
+        <para>
+            デフォルトの比較は相対誤差にもとづいており,
+            8桁が共通であることを保障します.
+            これにより,計算結果の上位桁の数値をアサーションすることができます.
+        </para>
+        <para>
+            この処理は,変数computedとexpectedがdoubleの行列である場合にのみ
+            動作します.
+            その他の場合にはエラーが発生します.
+        </para>
+        <para>
+            比較がcomputedがexpectedにほぼ等しくないことを示す場合,
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        errmsg出力変数が使用されない場合,
+                        エラーが生成され,
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        errmsg出力変数が使用される場合,
+                        エラーは生成されません.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            値を比較する過程において,
+            %nan, +%inf, -%inf と残りの値を分割します.
+            nan値の比較はできません.
+            これが %nan 値がある場所の添字を比較する理由です.
+            無限大の値の差をとった場合,
+            %nan 値が生成されます.
+            これが +%inf 値がある場所の添字を比較する理由です.
+            -%inf 値の場合も同様です.
+            よって, nanおよび無限大を除く値が実際に比較されます.
+        </para>
+        <para>
+            デフォルトの comptype="element" オプションは
+            要素毎の比較,すなわち,
+            行列の全ての要素がほぼ等しいこと,を行います.
+            comptype="matrix" オプションは行列全体を比較し,
+            行列の差のノルムが使用されます.
+        </para>
+        <para>
+            一般に,相対許容誤差を機械イプシロン %eps の倍数に設定する
+            必要があります.
+            相対許容誤差は可能な範囲で最も小さい大きさとする必要が
+            あります. 
+            つまり, 可能な限り許容誤差を精度良く設定する必要があります.
+            相対許容誤差を設定する手順では,
+            以下の値を順番に使用することを推奨します :
+            0 (全ての桁が正しい), %eps, 10*%eps, 100*%eps, 1.e3*%eps, 1.e4*%eps, ...,
+            1.e17*%eps (全ての桁が正しくない).
+            この例としては以下を参照ください.
+        </para>
+        <para>
+            この関数は複素数を処理します.
+            まず入力引数の実部を比較します.
+            これが失敗した場合,ただちにリターンします.
+            成功した場合,入力引数の虚部が比較されます.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// 成功する比較.
+// 相対誤差 :
+assert_checkalmostequal ( 1 , 1 );
+assert_checkalmostequal ( 1 , 1 , %eps );
+assert_checkalmostequal ( ones(10,1) , ones(10,1) , %eps );
+// 絶対誤差 :
+assert_checkalmostequal ( 1.23456789123456789e-30 , 0 , 0 , 1.e-10 );
+assert_checkalmostequal ( [1 %nan], [1 %nan] , 0 , %eps );
+
+// 失敗する比較.
+// エラーメッセージを出力 :
+assert_checkalmostequal ( 1 , 2 , %eps );
+// エラーメッセージを出力 :
+flag = assert_checkalmostequal ( 1 , 2 , %eps )
+// エラーメッセージは出力されない :
+[flag,errmsg] = assert_checkalmostequal ( 1 , 2 , %eps )
+assert_checkalmostequal ( 1 , [2 3] , %eps );
+assert_checkalmostequal ( [%nan 1], [1 %nan] , %eps );
+assert_checkalmostequal ( 1 + 5 * %eps , 1 , %eps );
+assert_checkalmostequal ( 1.23456789123456789e-30 , 1.3e-30 , %eps );
+
+// expectedがゼロでない場合,
+// 相対誤差の許容値を %eps の倍数とする必要があります.
+// 以下のテストは成功し, 最大実現可能な精度に対して
+// 11桁以下が失われたことが示されます.
+assert_checkalmostequal ( 1.23456 , 1.23457 , 1.e11*%eps );
+
+// 相対および絶対許容誤差を交換できません.
+// 以下のテストはパスします: 予測値が0であるため,
+// 絶対許容誤差を使用します.
+assert_checkalmostequal ( 1.23456789e-30 , 0 , 0 , 1.e-10 );
+// 以下のテストは失敗します: 相対許容誤差を使用します.
+assert_checkalmostequal ( 0 , 1.23456789e-30 , 1.e-10 );
+
+// 許容誤差を可能な限りタイトに設定する必要があります.
+// 許容誤差が指定した数に対して小さすぎるため,以下のテストは失敗します.
+assert_checkalmostequal ( 1.23456 , 1.23457 , %eps );
+// 共通の桁数を取得します:
+assert_computedigits(1.23456 , 1.23457)
+// 5.09を返します...
+// 精度の判定を行い, 受け入れ可能であると結論付けます:
+assert_checkalmostequal ( 1.23456 , 1.23457 , 1.e-5 );
+
+// assert_checkalmostequalの実用的な使用例を示します.
+// ヒルバート行列に基づく,平均的に悪条件の線形方程式の
+// システムを解きます.
+n = 6;
+// 予測値を設定します.
+expected = ones(n,1);
+A = testmatrix("hilb",n);
+// 行列の条件数を計算します : ~10^8
+ceil(log10(cond(A)))
+// これは,理論的に失われる桁数が 8 であることを意味します,
+// 指定した A と expected から右辺が計算されます.
+b = A * expected;
+// この場合, 部分ピボット選択付きのガウスアルゴリズムが
+// 使用されます.
+computed = A\b;
+// 以下のテストは失敗します: いくつかの桁が失われます.
+assert_checkalmostequal(computed,expected,%eps)
+// 共通する実際の桁数を計算します: 10から12桁
+assert_computedigits(computed, expected)
+// この計算を受け入れます.
+// 以下のテストはパスします.
+assert_checkalmostequal(computed,expected,1.e5*%eps);
+
+// 以下の例は comptype="element" と "matrix" の差異を示します.
+// 以下のテストはパスしません.
+assert_checkalmostequal ( [1 1.e5] , [2 1.e5] , 1.e-3 )
+// 以下のテストは行列に基づく比較ではパスします.
+assert_checkalmostequal ( [1 1.e5] , [2 1.e5] , 1.e-3 , [] , "matrix" )
+
+// 以下のテストはパスします.
+// IEEE値を考慮することは容易ではありません.
+[flag,errmsg] = assert_checkalmostequal ( [1.2345 %inf -%inf %nan] , [1.2346 %inf -%inf %nan] , 1.e-4 )
+
+// この関数は複素数を考慮します.
+// 以下のテストはパスします.
+assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-3 , [], "element" );
+// 以下のテストは失敗します.
+assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-5 , [], "element" );
+
+   ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
