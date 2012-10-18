@@ -66,6 +66,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected HTMLDocbookLinkResolver.TreeId tree;
     protected Map<String, HTMLDocbookLinkResolver.TreeId> mapTreeId;
     protected Map<String, String> mapIdPurpose;
+    protected Map<String, String> mapIdRefname;
 
     protected TemplateHandler templateHandler;
 
@@ -117,6 +118,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         tree = resolver.getTree();
         mapTreeId = resolver.getMapTreeId();
         mapIdPurpose = resolver.getMapIdPurpose();
+        mapIdRefname = resolver.getMapIdRefname();
+
         scilabLexer = new ScilabLexer(primConf, macroConf);
         this.urlBase = urlBase;
         this.linkToTheWeb = urlBase != null && !urlBase.equals("scilab://");
@@ -961,6 +964,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         }
 
         Stack<DocbookElement> stack = getStack();
+        String refnameTarget = mapIdRefname.get(link);
+        String href = encloseContents("a", new String[] {"href", id, "class", "link"}, refnameTarget);
+
         int s = stack.size();
         if (s >= 3) {
             DocbookElement elem = stack.get(s - 3);
@@ -969,15 +975,15 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 if (role != null && role.equals("see also")) {
                     String purpose = mapIdPurpose.get(link);
                     if (purpose != null) {
-                        return encloseContents("a", new String[] {"href", id, "class", "link"}, contents) + " &#8212; " + purpose;
+                        return href + " &#8212; " + purpose;
                     } else {
-                        return encloseContents("a", new String[] {"href", id, "class", "link"}, contents);
+                        return href;
                     }
                 }
             }
         }
 
-        return encloseContents("a", new String[] {"href", id, "class", "link"}, contents);
+        return href;
     }
 
     /**
