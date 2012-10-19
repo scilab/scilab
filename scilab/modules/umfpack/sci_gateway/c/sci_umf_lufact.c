@@ -139,7 +139,7 @@ int sci_umf_lufact(char* fname, unsigned long l)
         return 1;
     }
 
-    SciSparseToCcsSparse(2, &AA, &A);
+    SciSparseToCcsSparse(&AA, &A);
 
     /* symbolic factorisation */
     if (A.it == 1)
@@ -153,6 +153,7 @@ int sci_umf_lufact(char* fname, unsigned long l)
 
     if (stat != UMFPACK_OK)
     {
+        freeCcsSparse(A);
         Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("symbolic factorization"), UmfErrorMes(stat));
         return 1;
     }
@@ -178,6 +179,7 @@ int sci_umf_lufact(char* fname, unsigned long l)
 
     if ( stat != UMFPACK_OK  &&  stat != UMFPACK_WARNING_singular_matrix )
     {
+        freeCcsSparse(A);
         Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("symbolic factorization"), UmfErrorMes(stat));
         return 1;
     }
@@ -204,12 +206,15 @@ int sci_umf_lufact(char* fname, unsigned long l)
             umfpack_di_free_numeric(&Numeric);
         }
 
+        freeCcsSparse(A);
         Scierror(999, _("%s: An error occurred: %s\n"), fname, _("no place to store the LU pointer in ListNumeric."));
         return 1;
     }
 
+    freeCcsSparse(A);
+
     /* create the scilab object to store the pointer onto the LU factors */
-    sciErr = createPointer(pvApiCtx, 3, Numeric);
+    sciErr = createPointer(pvApiCtx, 2, Numeric);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -217,7 +222,7 @@ int sci_umf_lufact(char* fname, unsigned long l)
     }
 
     /* return the pointer */
-    AssignOutputVariable(pvApiCtx, 1) = 3;
+    AssignOutputVariable(pvApiCtx, 1) = 2;
     ReturnArguments(pvApiCtx);
     return 0;
 }

@@ -127,11 +127,12 @@ int sci_taucs_chfact(char* fname, unsigned long l)
     A.R     = pdblSpReal;
     A.I     = pdblSpImg;
 
-    stat = spd_sci_sparse_to_taucs_sparse(2, &A, &B);
+    stat = spd_sci_sparse_to_taucs_sparse(&A, &B);
     if ( stat != A_PRIORI_OK )
     {
         if ( stat == MAT_IS_NOT_SPD )
         {
+            freeTaucsSparse(B);
             Scierror(999, _("%s: Wrong value for input argument #%d: Must be symmetric positive definite matrix."), fname, 1);
         }
         /* the message for the other problem (not enough memory in stk) is treated automaticaly */
@@ -142,6 +143,7 @@ int sci_taucs_chfact(char* fname, unsigned long l)
     taucs_ccs_genmmd(&B, &perm, &invperm);
     if ( !perm )
     {
+        freeTaucsSparse(B);
         Scierror(999, _("%s: No more memory.\n") , fname);
         return 1;
     }
@@ -149,6 +151,7 @@ int sci_taucs_chfact(char* fname, unsigned long l)
     /* apply permutation */
     PAPT = taucs_ccs_permute_symmetrically(&B, perm, invperm);
     FREE(invperm);
+    freeTaucsSparse(B);
 
     /* factor */
     C = taucs_ccs_factor_llt_mf(PAPT);
@@ -173,7 +176,7 @@ int sci_taucs_chfact(char* fname, unsigned long l)
     AddAdrToList((Adr) pC, 0, &ListCholFactors);  /* FIXME add a test here .. */
 
     /* create the scilab object to store the pointer onto the Chol handle */
-    sciErr = createPointer(pvApiCtx, 3, (void *)pC);
+    sciErr = createPointer(pvApiCtx, 2, (void *)pC);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -181,7 +184,7 @@ int sci_taucs_chfact(char* fname, unsigned long l)
     }
 
     /* return the pointer */
-    AssignOutputVariable(pvApiCtx, 1) = 3;
+    AssignOutputVariable(pvApiCtx, 1) = 2;
     ReturnArguments(pvApiCtx);
     return 0;
 }
