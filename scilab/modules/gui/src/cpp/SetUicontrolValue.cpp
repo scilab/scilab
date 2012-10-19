@@ -14,6 +14,7 @@
 
 #include <math.h>
 
+#include "GetUicontrolStyle.hxx"
 #include "SetUicontrolValue.hxx"
 #include "stack-c.h"
 
@@ -99,7 +100,7 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int va
      */
     if ((objectStyle == __GO_UI_POPUPMENU__ || objectStyle == __GO_UI_LISTBOX__) && truncated)
     {
-        sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be an integer, the value will be truncated.\n")), objectStyle);
+        sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be an integer, the value will be truncated.\n")), IntToStyle(objectStyle));
     }
 
     /*
@@ -112,7 +113,7 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int va
 
         if ((value[0] != minValue) && (value[0] != maxValue))
         {
-            sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), objectStyle, "Min", "Max");
+            sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), IntToStyle(objectStyle), "Min", "Max");
         }
 
     }
