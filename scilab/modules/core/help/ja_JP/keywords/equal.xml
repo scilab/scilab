@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="equal">
     <refnamediv>
         <refname>equal</refname>
-        <refpurpose> (=) 代入 , 比較,  等号</refpurpose>
+        <refpurpose>(=) 代入 , 比較,  等号</refpurpose>
     </refnamediv>
     <refsection>
         <title>説明</title>

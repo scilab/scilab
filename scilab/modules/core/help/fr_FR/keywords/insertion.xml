@@ -2,13 +2,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="insertion">
     <refnamediv>
         <refname>insertion</refname>
-        <refpurpose> insertion/modification dans une
+        <refpurpose>insertion/modification dans une
             variable  
         </refpurpose>
     </refnamediv>
     <refnamediv xml:id="affectation">
         <refname>affectation</refname>
-        <refpurpose> affectation partielle d'une variable  </refpurpose>
+        <refpurpose>affectation partielle d'une variable  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
