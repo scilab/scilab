@@ -45,6 +45,19 @@
             <literal>clear</literal> kills nonexistent variables as if they exist.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=2;
+b=3;
+c=4;
+clear a
+isdef("a") // F
+isdef("b") // T
+clear("b");
+isdef("b") // F
+        ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

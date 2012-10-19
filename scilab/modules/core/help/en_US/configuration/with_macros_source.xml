@@ -26,4 +26,13 @@
             <literal>%f</literal> if not.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+if with_macros_source() == %t then
+   disp("Scilab macro sources are installed");
+end
+ ]]></programlisting>
+    </refsection>
+    
 </refentry>

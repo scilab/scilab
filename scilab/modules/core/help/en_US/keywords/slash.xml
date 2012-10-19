@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="slash">
     <refnamediv>
         <refname>slash</refname>
-        <refpurpose> (/) right division and feed back</refpurpose>
+        <refpurpose> (/) right division and feed back (comments)</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -33,9 +33,17 @@
             cases dot is part of the number, not of the operator.
         </para>
         <para>
-            Comment <literal>//</literal> comments a line i.e. lines which begin by <literal>//</literal> 
+            Comment <literal>//</literal> comments a line i.e. lines which begin by <literal>//</literal>
             are ignored by the interpreter.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=4 / 2; // Should be 2
+a=2 ./ [2,4]; //     1.    0.5
+// Comments are good. They help to understand code
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

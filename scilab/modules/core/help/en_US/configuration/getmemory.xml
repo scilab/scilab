@@ -16,5 +16,16 @@
         <para>
             <literal>[free, total]=getmemory()</literal> returns free and total system memory  (kilo-octets).
         </para>
+        <para>
+            <note>Do not rely too much on this function. Due to various level of caching, free memory detection is a tricky thing under most modern operating systems.
+            </note>
+        </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+[a,b]=getmemory()
+ ]]></programlisting>
+    </refsection>
+    
 </refentry>

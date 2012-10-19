@@ -57,6 +57,15 @@
         <para>By default, the size of the stack is 100 000 000.</para>
         <para>On 64 bit platforms, maximum size of the stack is limited to 268 435 454.</para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+currentStackSize=stacksize();
+disp("Maximum stacksize: " + string(currentStackSize(1)))
+disp("Current usage: "+ string(currentStackSize(2)))
+
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

@@ -28,6 +28,20 @@
             This mode is killed by the command <literal>"abort"</literal>.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+ ]]></programlisting>
+    </refsection>
+    function c=foo(b)
+    a=42+b
+    disp("Thanks to the pause, you can investigate if ''a'' has the right value");
+    disp("Value can be changed too if needed.");
+    pause
+    c=a+2
+    endfunction
+    
+    foo(2)
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

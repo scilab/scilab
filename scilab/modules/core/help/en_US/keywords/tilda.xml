@@ -26,6 +26,13 @@
             elements of the boolean matrix <literal>m</literal>.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+a = %T
+~a == %F
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

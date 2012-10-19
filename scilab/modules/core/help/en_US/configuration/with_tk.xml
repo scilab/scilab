@@ -28,4 +28,12 @@
             interface or <literal>%f</literal> if not.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+if with_tk() == %t then
+   disp("Tk is available");
+end
+ ]]></programlisting>
+    </refsection>
 </refentry>

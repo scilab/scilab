@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="return">
     <refnamediv>
         <refname>return</refname>
-        <refpurpose> return or resume execution and copy some local variables</refpurpose>
+        <refpurpose>return or resume execution and copy some local variables</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -49,7 +49,28 @@
         <para>
             The statement <literal>resume</literal> is equivalent to <literal>return</literal>.
         </para>
+        <para>
+            <note>
+                Note: the usage of this feature can complexify the code. Instead, the syntax <code>function b = foo()</code> is recommended.
+            </note>
+        </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+function foo(a)
+         a=a+1
+         b=resume(a)
+         c=52
+endfunction
+
+foo(42);
+assert_checkequal(b,43);
+// c does not exist
+
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

@@ -27,5 +27,17 @@
             Returns <constant>%t</constant> if Scilab has been built with the Java interface
             or <constant>%f</constant> if not.
         </para>
+        <para>
+            <note>Note that this function will always return True under GNU/Linux or Mac OS X.</note>
+        </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+if with_javasci() == %t then
+   disp("javasci is available");
+end
+ ]]></programlisting>
+    </refsection>
+    
 </refentry>

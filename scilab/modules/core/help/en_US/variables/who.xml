@@ -36,6 +36,17 @@
             <literal>who('sorted')</literal> displays in alphabetical order all variables.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=1;
+b=2;
+[name, mem]=who("local");
+position=find(name=="a")
+mem(position) // Size used by a
+position=find(name=="d") // []
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

@@ -63,4 +63,13 @@
             </varlistentry>
         </variablelist>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+testmatrix('magi',3)
+testmatrix('frk',10)
+testmatrix('hilb',4)
+ ]]></programlisting>
+    </refsection>
+    
 </refentry>

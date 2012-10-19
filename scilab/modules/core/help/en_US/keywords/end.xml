@@ -11,6 +11,30 @@
             <literal>for, while, if, select</literal> must be terminated by <literal>end</literal>.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=42
+if a==42 then
+   disp("the answer to all questions")
+end
+
+i = 0
+while i<5
+   disp("i");
+   i = i + 1;
+end
+
+n=5;
+for i = 1:n
+    for j = 1:n
+        a(i,j) = 1/(i+j-1);
+    end;
+end
+
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

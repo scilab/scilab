@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="debug">
     <refnamediv>
         <refname>debug</refname>
-        <refpurpose>debugging level</refpurpose>
+        <refpurpose>Debugging level of Scilab internals</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -28,7 +28,23 @@
             defines various levels of debugging. This is targeted to the parser, not
             to Scilab scripts, and is for Scilab experts only.
         </para>
+        <para>
+            <note>The output of this function will change with Scilab 6.0.0.
+            </note>
+        </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+debug(3);
+2+2
+//  0.200E+01
+//+
+//  0.200E+01
+// eol
+ ]]></programlisting>
+    </refsection>
+    
     <refsection>
         <title>History</title>
         <revhistory>

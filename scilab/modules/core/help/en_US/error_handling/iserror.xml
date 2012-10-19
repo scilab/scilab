@@ -30,6 +30,17 @@
             <literal>n&gt;0</literal> is the error number ; all errors are tested with <literal>n&lt;0</literal>.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+errcatch(4,'continue') // trap undefined variable
+unknown
+iserror() // 1
+errclear()
+iserror() // 0
+        ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

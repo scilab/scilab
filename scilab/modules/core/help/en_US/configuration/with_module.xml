@@ -33,6 +33,16 @@
             Returns <literal>%t</literal> if a Scilab module <literal>module_name</literal> is installed or <literal>%f</literal> if not.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+withXML = with_module("xml");
+if withXML == %t then
+   disp("XML module enabled");
+end
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

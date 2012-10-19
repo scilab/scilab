@@ -35,4 +35,12 @@
             </revision>
         </revhistory>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+if with_texmacs() == %t then
+   disp("Texmacs is available");
+end
+ ]]></programlisting>
+    </refsection>
 </refentry>
