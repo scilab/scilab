@@ -8,7 +8,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>r=with_javasci()</synopsis>
+        <synopsis>r = with_javasci()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -24,8 +24,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Возвращает <literal>%t</literal>, если Scilab собран с Javaи-нтерфейсом, и 
-            <literal>%f</literal>, если нет.
+            Возвращает <constant>%t</constant>, если Scilab собран с Java-интерфейсом, и
+            <constant>%f</constant>, если нет.
         </para>
     </refsection>
 </refentry>
