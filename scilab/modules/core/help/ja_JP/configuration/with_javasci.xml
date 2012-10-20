@@ -25,7 +25,7 @@
         <title>説明</title>
         <para>
             Scilab　が Java インターフェイスと共に構築されている場合に
-            <literal>%t</literal>, それ以外の場合に <literal>%f</literal> 
+            <constant>%t</constant>, それ以外の場合に <constant>%f</constant>
             を返します. 
         </para>
     </refsection>
