@@ -116,23 +116,23 @@ bool parseFile = false;
 using symbol::Context;
 using std::string;
 
-void Add_i(void);
-void Add_pi(void);
-void Add_eps(void);
-void Add_e(void);
-void Add_s(void);
-void Add_z(void);
-void Add_true(void);
-void Add_false(void);
-void Add_Nan(void);
-void Add_Inf(void);
-void Add_WITH_DEMOS(void);      //temporary variable
-void Add_All_Variables(void);
+static void Add_i(void);
+static void Add_pi(void);
+static void Add_eps(void);
+static void Add_e(void);
+static void Add_s(void);
+static void Add_z(void);
+static void Add_true(void);
+static void Add_false(void);
+static void Add_Nan(void);
+static void Add_Inf(void);
+static void Add_WITH_DEMOS(void);      //temporary variable
+static void Add_All_Variables(void);
 
-void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool _bComplex);
-void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double * _pdblReal);
-void Add_Boolean_Constant(wstring _szName, bool _bBool);
-void Add_String_Constant(wstring _szName, const char *_pstString);
+static void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool _bComplex);
+static void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double * _pdblReal);
+static void Add_Boolean_Constant(wstring _szName, bool _bBool);
+static void Add_String_Constant(wstring _szName, const char *_pstString);
 
 int InitializeEnvironnement(void);
 bool execScilabStart(void);
@@ -828,7 +828,7 @@ int InitializeEnvironnement(void)
     return 0;
 }
 
-void Add_All_Variables(void)
+static void Add_All_Variables(void)
 {
     Add_pi();
     Add_eps();
@@ -843,12 +843,12 @@ void Add_All_Variables(void)
     Add_WITH_DEMOS();
 }
 
-void Add_WITH_DEMOS(void)
+static void Add_WITH_DEMOS(void)
 {
     Add_Boolean_Constant(L"WITH_DEMOS", false);
 }
 
-void Add_Nan(void)
+static void Add_Nan(void)
 {
     double dbl1 = 1.0;
     double dbl0 = dbl1 - dbl1;
@@ -856,7 +856,7 @@ void Add_Nan(void)
     Add_Double_Constant(L"%nan", dbl0 / dbl0, 0, false);
 }
 
-void Add_Inf(void)
+static void Add_Inf(void)
 {
     double dbl1 = 1.0;
     double dbl0 = dbl1 - dbl1;
@@ -864,37 +864,37 @@ void Add_Inf(void)
     Add_Double_Constant(L"%inf", dbl1 / dbl0, 0, false);
 }
 
-void Add_false(void)
+static void Add_false(void)
 {
     Add_Boolean_Constant(L"%f", false);
 }
 
-void Add_true(void)
+static void Add_true(void)
 {
     Add_Boolean_Constant(L"%t", true);
 }
 
-void Add_pi(void)
+static void Add_pi(void)
 {
     Add_Double_Constant(L"%pi", 3.1415926535897931159980, 0, false);
 }
 
-void Add_eps(void)
+static void Add_eps(void)
 {
     Add_Double_Constant(L"%eps", C2F(dlamch) ("p", 1L), 0, false);
 }
 
-void Add_e(void)
+static void Add_e(void)
 {
     Add_Double_Constant(L"%e", 2.71828182845904530, 0, false);
 }
 
-void Add_i(void)
+static void Add_i(void)
 {
     Add_Double_Constant(L"%i", 0, 1, true);
 }
 
-void Add_s(void)
+static void Add_s(void)
 {
     Double dblCoef(1, 2);
 
@@ -904,7 +904,7 @@ void Add_s(void)
     Add_Poly_Constant(L"%s", L"s", 2, &dblCoef);
 }
 
-void Add_z(void)
+static void Add_z(void)
 {
     Double dblCoef(1, 2);
 
@@ -914,7 +914,7 @@ void Add_z(void)
     Add_Poly_Constant(L"%z", L"z", 2, &dblCoef);
 }
 
-void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double * _pdbl)
+static void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double * _pdbl)
 {
     types::Polynom * pVar = new types::Polynom(_szPolyVar, 1, 1, &_iRank);
     SinglePoly *poPoly = pVar->get(0, 0);
@@ -923,7 +923,7 @@ void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double *
     Context::getInstance()->put(symbol::Symbol(_szName), *pVar);
 }
 
-void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool _bComplex)
+static void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool _bComplex)
 {
     types::Double * pVal = new types::Double(1, 1, _bComplex);
     pVal->set(0, 0, _dblReal);
@@ -931,13 +931,13 @@ void Add_Double_Constant(wstring _szName, double _dblReal, double _dblImg, bool 
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), *pVal);
 }
 
-void Add_Boolean_Constant(wstring _szName, bool _bBool)
+static void Add_Boolean_Constant(wstring _szName, bool _bBool)
 {
     types::Bool * pVal = new types::Bool(_bBool);
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), *pVal);
 }
 
-void Add_String_Constant(wstring _szName, const char *_pstString)
+static void Add_String_Constant(wstring _szName, const char *_pstString)
 {
     types::String * ps = new types::String(_pstString);
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), *ps);
