@@ -30,10 +30,16 @@ Xcos
 Bug fixes
 ==========
 
+* Bug #3313 fixed - In the documentation, the title of a link was using the
+                    id instead of the title of the page.
+
 * Bug #8883 fixed - In some cases, Scilab build from sources was looking for
                    libraries at the wrong place.
 
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
+
+* Bug #11474 fixed - save_format help page was still refering to the old save
+                     format. Use the SEP #64 content.
 
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 

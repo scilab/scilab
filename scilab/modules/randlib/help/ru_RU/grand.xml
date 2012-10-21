@@ -76,7 +76,7 @@
                 <term>X</term>
                 <listitem>
                     <para>
-                        матрица, у которой используются только её размеры (скажем <varname>m</varname>-на-<varname>n</varname>).
+                        матрица, у которой используются только её размеры (скажем <varname>m</varname> на <varname>n</varname>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -84,7 +84,7 @@
                 <term>Y</term>
                 <listitem>
                     <para>
-                        матрица размером <varname>m</varname> на <varname> n</varname>, элементы которой являются случайными числами двойной точности (double).
+                        матрица размером <varname>m</varname> на <varname>n</varname>, элементы которой являются случайными числами двойной точности (double).
                     </para>
                 </listitem>
             </varlistentry>
@@ -128,11 +128,11 @@
              ]]></programlisting>
         </para>
         <para>
-            формируют матрицу размером <literal>m</literal> на <literal>n</literal>,
+            формируют матрицу размером <varname>m</varname> на <varname>n</varname>,
             элементы которой являются случайными числами.
         </para>
         <para>
-            Последовательности вызова:
+            Последовательность вызова:
         </para>
         <para>
             <programlisting role="no-scilab-exec"><![CDATA[
@@ -251,7 +251,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>>экспоненциальное распределение</term>
+                <term>экспоненциальное распределение</term>
                 <listitem>
                     <para>
                         <code>Y = grand(m, n, "exp", Av)</code> формирует случайные реализации по экспоненциальному распределению с математическим

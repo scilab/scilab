@@ -8,7 +8,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>r=with_javasci()</synopsis>
+        <synopsis>r = with_javasci()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -24,8 +24,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            Returns <literal>%t</literal> if Scilab has been built with the Java interface
-            or <literal>%f</literal> if not.
+            Returns <constant>%t</constant> if Scilab has been built with the Java interface
+            or <constant>%f</constant> if not.
         </para>
     </refsection>
 </refentry>

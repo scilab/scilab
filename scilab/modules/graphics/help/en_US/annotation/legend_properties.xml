@@ -12,7 +12,7 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="legend_properties" xml:lang="en">
     <refnamediv>
-        <refname>legend_properties</refname>
+        <refname>Legend entity properties</refname>
         <refpurpose>description of the Legend entity properties.</refpurpose>
     </refnamediv>
     <refsection>
