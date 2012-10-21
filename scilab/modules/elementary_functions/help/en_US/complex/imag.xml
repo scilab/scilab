@@ -44,6 +44,17 @@
             numbers).
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+imag([1 %i 2])
+imag(1+0*%i)
+imag(2+3*%i)
+imag(1+%s)
+imag(sprand(3,3,0.1))
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
