@@ -11,6 +11,9 @@ Improvements
 Xcos
 =====
 
+* Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the 
+                     initial value behavioral.
+
 * Bug #10434 fixed - loadXcosLibs changed the predef value.
 
 * Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
