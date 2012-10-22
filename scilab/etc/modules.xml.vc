@@ -56,4 +56,5 @@
     <module name="special_functions" activate="yes"/>
     <module name="graphics" activate="yes"/>
     <module name="demo_tools" activate="yes"/>
+    <module name="graphic_export" activate="yes"/>
 </modules>
