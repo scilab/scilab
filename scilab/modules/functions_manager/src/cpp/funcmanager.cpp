@@ -321,6 +321,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"cacsd", &CacsdModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"sound", &SoundModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"umfpack", &UmfpackModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"optimization", &OptimizationModule::Load));
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
