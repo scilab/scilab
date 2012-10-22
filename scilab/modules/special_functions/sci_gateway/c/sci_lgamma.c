@@ -21,6 +21,7 @@ extern double C2F(dlgama)();
 /*--------------------------------------------------------------------------*/
 int sci_lgamma(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
     double* lX   = NULL;
     int* piAddrX = NULL;
 
@@ -32,7 +33,7 @@ int sci_lgamma(char *fname, unsigned long fname_len)
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
-    SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrX);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrX);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
