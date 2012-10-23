@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex vector or matrix.</para>
+                    <para>a real or complex vector or matrix.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>real vector or matrix.</para>
+                    <para>a real vector or matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,8 +39,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>imag(x)</literal> is the imaginary part of
-            <literal>x</literal>. (See <literal>%i</literal> to enter complex
+            <code>imag(x)</code> is the imaginary part of
+            <varname>x</varname>. (See <constant>%i</constant> to enter complex
             numbers).
         </para>
     </refsection>

@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex vector or matrix</para>
+                    <para>a real or complex vector or matrix</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>real matrix</para>
+                    <para>a real matrix</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,7 +39,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>real(x)</literal> is the real part of <literal>x</literal> (See <literal>%i</literal> to enter complex numbers).
+            <code>real(x)</code> is the real part of <varname>x</varname> (See <constant>%i</constant> to enter complex numbers).
         </para>
     </refsection>
     <refsection>
