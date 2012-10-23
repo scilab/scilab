@@ -29,6 +29,9 @@ Xcos
 
 * Bug #11963 fixed - input port in superblock was corrupted.
 
+* Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
+                     NullPointerException.
+
 * Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
 
 
