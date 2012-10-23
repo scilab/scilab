@@ -1,40 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="slash">
     <refnamediv>
-        <refname>слэш</refname>
-        <refpurpose>(/) правое деление и обратная связь</refpurpose>
+        <refname>слэш (косая черта)</refname>
+        <refpurpose>(/) правое деление и обратная связь (комментарий)</refpurpose>
     </refnamediv>
     <refsection>
         <title>Описание</title>
         <para>
-            Правое деление.  <literal>x=A / b</literal> является решением <literal>x*b=A</literal>.
+            Правое деление.  <code>x = A / b</code> является решением <code>x * b = A</code>.
         </para>
         <para>
-            <literal>b/a = (a' \ b')'</literal>.
+            <code>b/a = (a' \ b')'</code>.
         </para>
         <para>
-            <literal>a./  b</literal> является матрицей с элементами <literal>a(i,j)/ b(i,j)</literal>.
-            Если <literal>b</literal> -- скаляр (матрица размером <literal>1x1</literal>), то эта операция то же самое, что и <literal> a./b*ones(a)</literal>. Аналогично, если скаляром является <literal>a</literal>.
+            <code>a ./ b</code> является матрицей с элементами <literal>a(i,j)/ b(i,j)</literal>.
+            Если <literal>b</literal> -- скаляр (матрица размером <literal>1x1</literal>), то эта операция то же самое, что и <code>a ./ b * ones(a)</code>. Аналогично, если скаляром является <literal>a</literal>.
         </para>
         <para>
-            Заметьте, что <literal>123./b</literal> интерпретируется как <literal>(123.)/b</literal>. 
-            В таких случаях точка является частью числа, а не оператора.
+            <note>
+                Заметьте, что <code>123./b</code> интерпретируется как <code>(123.)/b</code>.
+                В таких случаях точка является частью числа, а не оператора.
+            </note>
         </para>
         <para>
             Обратный слэш ставят для левого деления.
         </para>
         <para>
-            Обратная связь системы.  <literal>S=G/.K</literal> вычисляет 
-            <literal>S=G*(eye()+K*G)^(-1)</literal> и этот оператор избегает проблему упрощения.
+            Обратная связь системы.  <code>S = G /. K</code> вычисляет
+            <code>S = G*(eye() + K*G)^(-1)</code> и этот оператор избегает проблему упрощения.
         </para>
         <para>
-            Заметьте, что <literal>G/.5</literal> интерпретируется как <literal>G/(.5)</literal>. 
-            В таких случаях точка интерпретируется как часть числа, а не оператора.
+            <note>
+                Заметьте, что <code>G/.5</code> интерпретируется как <code>G/(.5)</code>.
+                В таких случаях точка интерпретируется как часть числа, а не оператора.
+            </note>
         </para>
         <para>
-            Комментарий <literal>//</literal> комментирует строку, т. е. строки, которые начинаются с 
-            <literal>//</literal>, игнорируются интерпретатором.
+            Комментарий <code>//</code> комментирует строку, т. е. строки, которые начинаются с
+            <code>//</code>, игнорируются интерпретатором.
         </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+a=4 / 2; // Должно быть 2
+a=2 ./ [2,4]; //     1.    0.5
+// Комментарии - это хорошо. Они помогают понять код
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

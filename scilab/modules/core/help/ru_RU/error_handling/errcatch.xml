@@ -31,29 +31,29 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>errcatch</literal> указывает действие <literal>"action"</literal> 
+            <function>errcatch</function> указывает действие <literal>"action"</literal>
             (реакцию на ошибку), которое будет выполнено в случае возникновения ошибки типа  
-            <literal>n</literal>.      
+            <varname>n</varname>.      
         </para>
         <para>
-            <literal>n</literal> имеет следующие значения: 
+            <varname>n</varname> имеет следующие значения:
         </para>
         <para>
-            если <literal>n&gt;0</literal>, то <literal>n</literal> является номером ошибки, которую 
+            если <varname>n</varname><literal>&gt;0</literal>, то <varname>n</varname> является номером ошибки, которую
             требуется перехватить;
         </para>
         <para>
-            если <literal>n&lt;0</literal>, то будут перехватываться все ошибки.
+            если <varname>n</varname><literal>&lt;0</literal>, то будут перехватываться все ошибки.
         </para>
         <para>
-            <literal>action</literal> может быть одной из следующих символьных строк:
+            <varname>action</varname> может быть одной из следующих символьных строк:
         </para>
         <variablelist>
             <varlistentry>
                 <term>"pause"</term>
                 <listitem>
                     <para>
-                        пауза, выполняемая во время перехвата ошибки. Эта опция полезна в целях отладки. Используйте <literal>whereami()</literal> для получения информации о текущем контексте.
+                        пауза, выполняемая во время перехвата ошибки. Эта опция полезна в целях отладки. Используйте <code>whereami()</code> для получения информации о текущем контексте.
                     </para>
                 </listitem>
             </varlistentry>
@@ -90,24 +90,38 @@
             </varlistentry>
         </variablelist>
         <para>
-            <literal>option</literal> символьная строка <literal>'nomessage'</literal> для уничтожения 
+            <varname>option</varname> символьная строка <literal>'nomessage'</literal> для уничтожения
             сообщения об ошибке.
         </para>
         <para>
-            Для возврата в режим по умолчанию введите  <literal>errcatch(-1,"kill")</literal> или, аналогичное, <literal>errcatch(-1)</literal>. <literal>errcatch()</literal> является устаревшим эквивалентом для <literal>errcatch(-1)</literal>. 
+            Для возврата в режим по умолчанию введите  <code>errcatch(-1,"kill")</code> или, аналогичное, <code>errcatch(-1)</code>. <code>errcatch()</code> является устаревшим эквивалентом для <code>errcatch(-1)</code>.
         </para>
         <para>
-            Действия <literal>errcatch</literal> применимы в контексте текущего выполнения 
+            Действия <function>errcatch</function> применимы в контексте текущего выполнения
             (<literal>function</literal>, <literal>exec</literal>, <literal>pause</literal>) и всех 
-            подуровней. Второй вызов <literal>errcatch</literal> на подуровнях скрывает исходный вызов 
-            для этого подуровня. Если второй вызов <literal>errcatch</literal> сделан на том же самом 
+            подуровней. Второй вызов <function>errcatch</function> на подуровнях скрывает исходный вызов
+            для этого подуровня. Если второй вызов <function>errcatch</function> сделан на том же самом
             уровне, то действие первого вызова удаляется.
         </para>
         <para>
-            При вызове в контексте функции Scilab или <literal>exec</literal> 
-            <literal>errcatch</literal> автоматически сбрасывается при выходе из функции.
+            При вызове в контексте функции Scilab или <function>exec</function>
+            <function>errcatch</function> автоматически сбрасывается при выходе из функции.
         </para>
     </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+errcatch(144,"continue")
+2/"foo"
+disp(a) // Без перехвата ошибки эта строка не будет выполнена
+
+errcatch(-1,"kill") // Возвращение обратно в нормальный режим
+errcatch(144,"pause")
+2/"foo" // Вход в режим "пауза"
+
+errcatch(27,'continue','nomessage')
+b=2/0 // Сообщения об ошибке нет, но b не будет существовать
+ ]]></programlisting>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">

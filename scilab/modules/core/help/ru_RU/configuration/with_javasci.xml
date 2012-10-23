@@ -27,5 +27,20 @@
             Возвращает <constant>%t</constant>, если Scilab собран с Java-интерфейсом, и
             <constant>%f</constant>, если нет.
         </para>
+        <para>
+            <note>
+                Заметьте, что эта функция всегда будет возвращать <constant>%t</constant> в GNU/Linux или Mac OS X.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+if with_javasci() == %t then
+   disp("javasci доступен");
+else
+   disp("javasci не доступен");
+end
+ ]]></programlisting>
     </refsection>
 </refentry>

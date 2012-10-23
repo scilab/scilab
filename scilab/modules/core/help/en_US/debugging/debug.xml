@@ -6,15 +6,15 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>debug(level-int)
-            level-int=debug()
+        <synopsis>debug(level_int)
+            level_int = debug()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>level-int</term>
+                <term>level_int</term>
                 <listitem>
                     <para>integer (-1 to 4)</para>
                 </listitem>
@@ -24,12 +24,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            For the values 0,1,2,3,4 of <literal>level-int</literal> , <literal>debug</literal>
+            For the values 0,1,2,3,4 of <varname>level_int</varname>, <code>debug</code>
             defines various levels of debugging. This is targeted to the parser, not
             to Scilab scripts, and is for Scilab experts only.
         </para>
         <para>
-            <note>The output of this function will change with Scilab 6.0.0.
+            <note>
+                The output of this function will change with Scilab 6.0.0.
             </note>
         </para>
     </refsection>

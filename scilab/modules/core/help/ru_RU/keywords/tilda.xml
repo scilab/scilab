@@ -22,8 +22,15 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>~m</literal> даёт поэлементное отрицание элементов матрицы логических значений <literal>m</literal>.
+            <code>~m</code> даёт поэлементное отрицание элементов матрицы логических значений <code>m</code>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+a = %T
+~a == %F
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

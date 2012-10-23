@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[linenum,callername]=where()</synopsis>
+        <synopsis>[linenum, callername] = where()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,15 +28,15 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>[linenum,callername]=where()</literal> returns <literal>linenum</literal> and 
-            <literal>callername</literal> such as current instruction has been
-            called by the <literal>linenum(1)</literal> line of function 
-            <literal>callername(1)</literal>, <literal>callername(1)</literal> has been called by the 
-            <literal>linenum(2)</literal> line of function <literal>callername(2)</literal>
+            <code>[linenum, callername] = where()</code> returns <varname>linenum</varname> and
+            <varname>callername</varname> such as current instruction has been
+            called by the <code>linenum(1)</code> line of function
+            <code>callername(1)</code>, <code>callername(1)</code> has been called by the
+            <code>linenum(2)</code> line of function <code>callername(2)</code>
             and so on.
         </para>
         <para>
-            <literal>callername(i)</literal> is in general the name of a function but it may also be
+            <code>callername(i)</code> is in general the name of a function but it may also be
             <literal>"exec"</literal> or <literal>"execstr"</literal> if instruction lies in an
             exec file or an execstr instruction.
         </para>
@@ -45,7 +45,7 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 function foo()
-         [a,b]=where()
+         [a,b] = where()
          disp("Line:")
          disp(a);
          disp("Function:")

@@ -30,24 +30,24 @@
     <refsection>
         <title>Description</title>
         <para>
-            In a function <literal>return</literal> stops the execution of the function,
+            In a function <code>return</code> stops the execution of the function,
             <literal>[x1,..,xn]=return(a1,..,an)</literal> stops the execution of the function and put 
-            the local variables <literal>ai</literal> in calling environment under names
-            <literal>xi</literal>.
+            the local variables <varname>ai</varname> in calling environment under names
+            <varname>xi</varname>.
         </para>
         <para>
-            In <literal>pause</literal> mode, it allows to return to upper level.
+            In <code>pause</code> mode, it allows to return to upper level.
             <literal>[x1,..,xn]=return(a1,..,an)</literal> returns to upper level and put the local 
-            variables <literal>ai</literal> in calling environment under names <literal>xi</literal>.
+            variables <varname>ai</varname> in calling environment under names <varname>xi</varname>.
         </para>
         <para>
-            In an <literal>execstr</literal> called by a function 
+            In an <code>execstr</code> called by a function
             <literal>[x1,..,xn]=return(a1,..,an)</literal> stops the execution of the function and put 
-            the local variables <literal>ai</literal> in calling environment under names 
-            <literal>xi</literal>.
+            the local variables <varname>ai</varname> in calling environment under names
+            <varname>xi</varname>.
         </para>
         <para>
-            The statement <literal>resume</literal> is equivalent to <literal>return</literal>.
+            The statement <code>resume</code> is equivalent to <code>return</code>.
         </para>
         <para>
             <note>
@@ -65,7 +65,7 @@ function foo(a)
 endfunction
 
 foo(42);
-assert_checkequal(b,43);
+assert_checkequal(b,43)
 // c does not exist
 
  ]]></programlisting>

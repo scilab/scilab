@@ -11,11 +11,24 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>getmemory()</literal> возвращает свободную память системы (килобайты).
+            <code>getmemory()</code> возвращает свободную память системы (килобайты).
         </para>
         <para>
-            <literal>[free, total]=getmemory()</literal> возвращает свободную и общую системную память
+            <code>[free, total] = getmemory()</code> возвращает свободную и общую системную память
             (килобайты).
         </para>
+        <para>
+            <note>
+                Не слишком полагайтесь на эту функцию. Из-за различных уровней кэширования
+                обнаружение свободной памяти является непростой вещью в большинстве
+                современных операционных систем.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+[a,b]=getmemory()
+ ]]></programlisting>
     </refsection>
 </refentry>

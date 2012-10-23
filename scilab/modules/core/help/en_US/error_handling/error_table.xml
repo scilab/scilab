@@ -312,18 +312,19 @@
             name."
         </para>
         <para>
-            <note>Please avoid using this list since it might change in a future release</note>
+            <note>Please avoid using this list since it might change in a future release.</note>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
+    error(43);
+    // Display "Not implemented in scilab..."
+    error(42);
+    // Display "Incompatible input argument."
+    lasterror()
  ]]></programlisting>
     </refsection>
-    error(43);
-    error(42);
-    lasterror()
-    // Display "Not implemented in scilab..."
     
     <refsection role="see also">
         <title>See Also</title>

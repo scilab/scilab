@@ -26,24 +26,39 @@
         <title>Описание</title>
         <para>
             Эта команда уничтожает переменные, которые не защищены. Она удаляет
-            перечисленные переменные из окружения. Само по себе, без аргументов, <literal>clear</literal> 
+            перечисленные переменные из окружения. Само по себе, без аргументов, <code>clear</code>
             уничтожает все переменные за исключением переменных, защищённых с помощью 
-            <literal>predef</literal>. Таким образом, две команды <literal>predef(0)</literal> и 
-            <literal>clear</literal> уничтожают все переменные.
+            <code>predef</code>. Таким образом, две команды <code>predef(0)</code> и
+            <code>clear</code> уничтожают все переменные.
         </para>
         <para>
             Обычно защищёнными переменными являются стандартные библиотеки и переменные с префиксом процента.
         </para>
         <para>
-            Обратите внимание на особый синтаксис <literal>clear a b c</literal> и 
-            <literal>clear('a','b','c')</literal>, а не <literal>clear(a,b,c)</literal>. Обратите 
-            также внимание на то, что <literal>b=[]</literal> не уничтожает <literal>b</literal>, а
-            устанавливает <literal>b</literal> пустой матрицей.
+            <note>
+                Обратите внимание на особый синтаксис <code>clear a b c</code> и
+                <code>clear('a','b','c')</code>, а не <code>clear(a,b,c)</code>. Обратите
+                также внимание на то, что <code>a=[]</code> не уничтожает <varname>a</varname>, а
+                устанавливает <varname>a</varname> пустой матрицей.
+            </note>
         </para>
         <para>
-            Команда <literal>clear</literal> может работать с несуществующими переменными, т. е. 
-            <literal>clear</literal> уничтожает несуществующие переменные как если бы они существовали.
+            Команда <code>clear</code> может работать с несуществующими переменными, т. е.
+            <code>clear</code> уничтожает несуществующие переменные как если бы они существовали.
         </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+a=2;
+b=3;
+c=4;
+clear a
+isdef("a") // F
+isdef("b") // T
+clear("b");
+isdef("b") // F
+        ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

@@ -18,35 +18,35 @@
         <para>
             Utility function used for defining "oldest" variables as "protected".
             Protected variables cannot be killed. They are not saved 
-            by the <literal>'save'</literal> command. The "oldest" are those appearing last in
-            the <literal>who('get')</literal>.
+            by the <function>save</function> command. The "oldest" are those appearing last in
+            the <code>who('get')</code>.
         </para>
         <para>
-            <literal>predef()</literal> gets the number of protected variables.
+            <code>predef()</code> gets the number of protected variables.
         </para>
         <para>
-            <literal>predef('a[ll]')</literal> sets all the variables protected, it also return
+            <code>predef('a[ll]')</code> sets all the variables protected, it also return
             the old and new value of protected variables number.
         </para>
         <para>
-            <literal>predef('c[lear]')</literal> unprotect all but the last 7 variables, it also return
+            <code>predef('c[lear]')</code> unprotect all but the last 7 variables, it also return
             the old and new value of protected variables number.
         </para>
         <para>
-            <literal>predef(n)</literal> sets the <literal>max(n,7)</literal> last defined variables as protected, it also return
+            <code>predef(n)</code> sets the <code>max(n,7)</code> last defined variables as protected, it also return
             the old and new value of protected variables number.
         </para>
         <para>
-            <literal>predef('names')</literal> returns a vector of strings with the name of protected variables.
+            <code>predef('names')</code> returns a vector of strings with the name of protected variables.
         </para>
         <para>
-            <literal>predef('clear')</literal> removes the predefined variables from the list.
+            <code>predef('clear')</code> removes the predefined variables from the list.
         </para>
     </refsection>
     <refsection>
         <title>Remarks</title>
         <para>
-            Variable <literal>ans</literal> created automatically when expressions are not assigned is never protected by <literal>predef('all')</literal>.
+            Variable <literal>ans</literal> created automatically when expressions are not assigned is never protected by <code>predef('all')</code>.
         </para>
         <para>
             A number of protected variables are set in the start-up file <literal>SCI/etc/scilab.start</literal>.

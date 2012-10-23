@@ -8,7 +8,7 @@
         <title>Description</title>
         <para>
             Used at end of loops or conditionals.
-            <literal>for, while, if, select</literal> must be terminated by <literal>end</literal>.
+            <literal>for</literal>, <literal>while</literal>, <literal>if</literal>, <literal>select</literal> must be terminated by <literal>end</literal>.
         </para>
     </refsection>
     <refsection>

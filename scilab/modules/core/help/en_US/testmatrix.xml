@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[y]=testmatrix(name,n)</synopsis>
+        <synopsis>[y] = testmatrix(name, n)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -27,7 +27,7 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                        <literal>n</literal> x <literal>n</literal> matrix
+                        <varname>n</varname> x <varname>n</varname> matrix
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,7 +43,7 @@
                 <term>testmatrix('magi',n)</term>
                 <listitem>
                     <para>
-                        returns a magic square of size <literal>n</literal> x <literal>n</literal>.
+                        returns a magic square of size <varname>n</varname> x <varname>n</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -57,7 +57,7 @@
                 <term>testmatrix('hilb',n)</term>
                 <listitem>
                     <para>
-                        is the inverse of the <literal>n</literal> x <literal>n</literal> Hilbert matrix  <literal>(Hij= 1/(i+j-1))</literal>.
+                        is the inverse of the <varname>n</varname> x <varname>n</varname> Hilbert matrix  <literal>(Hij= 1/(i+j-1))</literal>.
                     </para>
                 </listitem>
             </varlistentry>

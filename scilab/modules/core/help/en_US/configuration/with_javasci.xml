@@ -36,6 +36,8 @@
         <programlisting role="example"><![CDATA[ 
 if with_javasci() == %t then
    disp("javasci is available");
+else
+   disp("javasci is not available");
 end
  ]]></programlisting>
     </refsection>

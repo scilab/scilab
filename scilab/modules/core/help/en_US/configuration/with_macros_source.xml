@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>r=with_macros_source()</synopsis>
+        <synopsis>r = with_macros_source()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

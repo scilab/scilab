@@ -15,7 +15,7 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>a,b,c...</term>
+                <term>a, b, c...</term>
                 <listitem>
                     <para>variables of any type and size, but not protected</para>
                 </listitem>
@@ -27,8 +27,8 @@
         <para>
             This command kills variables which are not protected.
             It removes the named variables from the environment.
-            By itself <literal>clear</literal> kills all the variables except the variables
-            protected by <literal>predef</literal>. Thus the two commands <literal>predef(0)</literal> and <literal>clear</literal>
+            By itself <code>clear</code> kills all the variables except the variables
+            protected by <code>predef</code>. Thus the two commands <code>predef(0)</code> and <code>clear</code>
             remove all the variables.
         </para>
         <para>
@@ -36,13 +36,15 @@
             the percent prefix.
         </para>
         <para>
-            Note the particular syntax <literal>clear a</literal> and <literal>clear('a')</literal>  
-            and not <literal>clear(a)</literal>. Note also that <literal>a=[]</literal> does not kill 
-            <literal>a</literal> but sets <literal>a</literal> to an empty matrix.
+            <note>
+                Note the particular syntax <code>clear a</code> and <code>clear('a')</code>
+                and not <code>clear(a)</code>. Note also that <code>a=[]</code> does not kill
+                <varname>a</varname> but sets <varname>a</varname> to an empty matrix.
+            </note>
         </para>
         <para>
-            The command <literal>clear</literal> can kill nonexistent variables, i. e. 
-            <literal>clear</literal> kills nonexistent variables as if they exist.
+            The command <code>clear</code> can kill nonexistent variables, i. e.
+            <code>clear</code> kills nonexistent variables as if they exist.
         </para>
     </refsection>
     <refsection>
