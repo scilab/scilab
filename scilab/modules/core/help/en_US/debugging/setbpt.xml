@@ -28,18 +28,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>setbpt</literal> interactively inserts a breakpoint in the
-            line number <literal>linenumb</literal> (default value is 1) of the
-            function <literal>macroname</literal>.
+            <function>setbpt</function> interactively inserts a breakpoint in the
+            line number <varname>linenumb</varname> (default value is 1) of the
+            function <varname>macroname</varname>.
         </para>
         <para>
-            <literal>linenumb</literal> can be a line or column vector of line
+            <varname>linenumb</varname> can be a line or column vector of line
             numbers, or a single scalar line number.
         </para>
         <para>
-            Line numbers in <literal>linenumb</literal> are
+            Line numbers in <varname>linenumb</varname> are
             <emphasis>physical</emphasis> line numbers in function
-            <literal>macroname</literal>. Note that Scilab versions before 5.0 used
+            <varname>macroname</varname>. Note that Scilab versions before 5.0 used
             <emphasis>logical</emphasis> line numbers. The difference between physical
             and logical line numbers is the number of <emphasis>continued
                 lines
@@ -62,10 +62,12 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-setbpt('foo'),setbpt('foo',10),dispbpt()
+setbpt('foo')
+setbpt('foo',10)
+dispbpt()
 delbpt()
-
-setbpt('foo',[1,2,5,6]),dispbpt()
+setbpt('foo',[1,2,5,6])
+dispbpt()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

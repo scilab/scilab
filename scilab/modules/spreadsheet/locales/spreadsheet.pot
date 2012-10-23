@@ -351,7 +351,7 @@ msgstr ""
 # File: src/c/csvRead.c, line: 360
 #, c-format
 msgid ""
-"%s: Unconsistency found in the columns. At line %d, found %d columns while "
+"%s: Inconsistency found in the columns. At line %d, found %d columns while "
 "the previous had %d.\n"
 msgstr ""
 

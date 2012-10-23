@@ -11,9 +11,14 @@ Improvements
 Xcos
 =====
 
+* Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the 
+                     initial value behavioral.
+
 * Bug #10434 fixed - loadXcosLibs changed the predef value.
 
 * Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
+
+* Bug #11775 fixed - xcos.tst crashed on Linux and MacOS X.
 
 * Bug #11821 fixed - Running XcosPalAdd example from help led to deadlock
 
@@ -54,6 +59,13 @@ Bug fixes
 
 * Bug #11981 fixed - Smooth french help page had a wrong declaration
                      (colonnes => lignes).
+
+* Bug #11991 fixed - Under Windows, some empty lines were added by csvWrite.
+
+* Bug #11999 fixed - Blank lines ignored by default by csvRead / read_csv.
+
+* Bug #12003 fixed - Fix a typo in the spreadsheet module.
+
 
 
                     Changes between version 5.3.3 and 5.4.0

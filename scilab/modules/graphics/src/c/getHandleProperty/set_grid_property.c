@@ -39,7 +39,7 @@ int set_grid_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
     int iGridColor = 0;
     int* piGridColor = &iGridColor;
     int gridStyles[3];
-    int gridColorPropertiesNames[3] = {__GO_X_AXIS_GRID_COLOR__, __GO_Y_AXIS_GRID_COLOR__, __GO_Z_AXIS_GRID_COLOR__};
+    int const gridColorPropertiesNames[3] = {__GO_X_AXIS_GRID_COLOR__, __GO_Y_AXIS_GRID_COLOR__, __GO_Z_AXIS_GRID_COLOR__};
 
     double* values = (double*)_pvData;
 

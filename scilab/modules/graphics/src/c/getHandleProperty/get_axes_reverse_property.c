@@ -35,7 +35,7 @@
 /*------------------------------------------------------------------------*/
 int get_axes_reverse_property(void* _pvCtx, char* pobjUID)
 {
-    int axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};
+    int const axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};
     char * axes_reverse[3]  = { NULL, NULL, NULL };
     int iAxesReverse = 0;
     int* piAxesReverse = &iAxesReverse;

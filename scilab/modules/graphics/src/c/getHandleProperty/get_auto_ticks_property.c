@@ -38,7 +38,7 @@
 int get_auto_ticks_property(void* _pvCtx, char* pobjUID)
 {
     char * auto_ticks[3]  = { NULL, NULL, NULL };
-    int axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
+    int const axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
     int iAutoTicks = 0;
     int* piAutoTicks = &iAutoTicks;
 

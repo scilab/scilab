@@ -135,6 +135,8 @@
                 </para>
                 <para>La sortie générée par le bloc jusqu'à ce que le temps de simulation
                     atteigne pour la première fois le temps donné sur l'entrée de retard.
+                    Si cette valeur n'est pas égale à y(τ), une approximation linéaire
+                    sera calculée entre la valeur initiale à t0 et la valeur à y(τ).
                 </para>
                 <para>Propriétés : Type 'vec' de taille 1.</para>
             </listitem>

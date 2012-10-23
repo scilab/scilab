@@ -8,33 +8,44 @@
         <title>Calling Sequence</title>
         <synopsis>who
             who()
-            names=who('local')
-            [names,mem]=who('local')
-            names=who('global')
-            [names,mem]=who('global')
+            names = who('local')
+            [names, mem] = who('local')
+            names = who('global')
+            [names, mem] = who('global')
             who('sorted')
-            names=who('local','sorted')
-            [names,mem]=who('local','sorted')
-            names=who('global','sorted')
-            [names,mem]=who('global','sorted')
+            names = who('local','sorted')
+            [names, mem] = who('local','sorted')
+            names = who('global','sorted')
+            [names, mem] = who('global','sorted')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>
-            <literal>who</literal> displays current variable names.
+            <code>who()</code> displays current variable names.
         </para>
         <para>
-            <literal>who('local')</literal> or <literal>who('get')</literal> returns current
+            <code>who('local')</code> or <code>who('get')</code> returns current
             variable names and memory used in double precision words.
         </para>
         <para>
-            <literal>who('global')</literal> returns global variable names and memory
+            <code>who('global')</code> returns global variable names and memory
             used in double precision words.
         </para>
         <para>
-            <literal>who('sorted')</literal> displays in alphabetical order all variables.
+            <code>who('sorted')</code> displays in alphabetical order all variables.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=1;
+b=2;
+[name, mem]=who("local");
+position=find(name=="a")
+mem(position) // Size used by a
+position=find(name=="d") // []
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

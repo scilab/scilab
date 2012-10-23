@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="tilda">
     <refnamediv>
         <refname>тильда</refname>
-        <refpurpose> (~) логическое НЕ</refpurpose>
+        <refpurpose>(~) логическое НЕ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
@@ -22,8 +22,15 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>~m</literal> даёт поэлементное отрицание элементов матрицы логических значений <literal>m</literal>.
+            <code>~m</code> даёт поэлементное отрицание элементов матрицы логических значений <code>m</code>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+a = %T
+~a == %F
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

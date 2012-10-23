@@ -5,7 +5,7 @@
     </info>
     <refnamediv>
         <refname>mtlb_mode</refname>
-        <refpurpose> switch Matlab like operations</refpurpose>
+        <refpurpose>switch Matlab like operations</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>

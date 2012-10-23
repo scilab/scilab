@@ -37,7 +37,7 @@
 int get_axes_visible_property(void* _pvCtx, char* pobjUID)
 {
     char * axes_visible[3]  = { NULL, NULL, NULL };
-    int axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
+    int  const axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
     int iAxesVisible = 0;
     int* piAxesVisible = &iAxesVisible;
 

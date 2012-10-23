@@ -159,7 +159,6 @@ GRAPHICS_IMPEXP void cloneMenus(char * pModelUID, char * pCloneUID)
         }
     }
     releaseGraphicObjectProperty(__GO_CHILDREN__, pChildren, jni_string_vector, iNbChildren);
-    releaseGraphicObjectProperty(__GO_CHILDREN_COUNT__, piNbChildren, jni_int, 1);
 }
 
 /**
@@ -259,7 +258,6 @@ char * allocateText(char * pparentsubwinUID,
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, piVisible, jni_bool, 1);
-    releaseGraphicObjectProperty(__GO_VISIBLE__, piVisible, jni_bool, 1);
 
     /* Clipping: to be checked for consistency */
     getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
@@ -268,11 +266,9 @@ char * allocateText(char * pparentsubwinUID,
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, piClipRegionSet, jni_bool, 1);
-    releaseGraphicObjectProperty(__GO_CLIP_BOX_SET__, piClipRegionSet, jni_bool, 1);
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, piClipState, jni_int, 1);
-    releaseGraphicObjectProperty(__GO_CLIP_STATE__, piClipState, jni_int, 1);
 
     /* Check if we should load LaTex / MathML Java libraries */
     loadTextRenderingAPI(text, nbRow, nbCol);

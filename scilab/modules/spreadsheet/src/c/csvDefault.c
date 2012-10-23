@@ -21,11 +21,7 @@
 #define DEFAULT_CSV_DECIMAL "."
 #define DEFAULT_CSV_PRECISION "%.17lg"
 #define DEFAULT_CSV_COMMENTS_REGEXP ""
-#ifdef _MSC_VER
-#define DEFAULT_CSV_EOL "\r\n"
-#else
 #define DEFAULT_CSV_EOL "\n"
-#endif
 #define CSV_DECIMAL_MODE_1 DEFAULT_CSV_DECIMAL
 #define CSV_DECIMAL_MODE_2 ","
 #define DEFAULT_CSV_CONVERSION "double"
@@ -36,7 +32,7 @@
 #define DEFAULT_CSV_ENCODING_MODE2 "iso-latin"
 #define CSV_IGNORE_BLANK_LINE_MODE_1 "off"
 #define CSV_IGNORE_BLANK_LINE_MODE_2 "on"
-#define DEFAULT_IGNORE_BLANK_LINE CSV_IGNORE_BLANK_LINE_MODE_1
+#define DEFAULT_IGNORE_BLANK_LINE CSV_IGNORE_BLANK_LINE_MODE_2
 // =============================================================================
 static char *defaultCsvSeparator = NULL;
 static char *defaultCsvDecimal = NULL;

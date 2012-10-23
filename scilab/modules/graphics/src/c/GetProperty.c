@@ -580,7 +580,7 @@ BOOL sciGetLegendDefined(char * pObjUID)
 */
 void sciGetLogFlags(char * pObjUID, char flags[3])
 {
-    int logflagPropertyNames[3] = {__GO_X_AXIS_LOG_FLAG__, __GO_Y_AXIS_LOG_FLAG__, __GO_Z_AXIS_LOG_FLAG__};
+    int const logflagPropertyNames[3] = {__GO_X_AXIS_LOG_FLAG__, __GO_Y_AXIS_LOG_FLAG__, __GO_Z_AXIS_LOG_FLAG__};
     int i = 0;
     int iLogFlag = 0;
     int* piLogFlag = &iLogFlag;
