@@ -28,7 +28,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>setbpt</literal> interactively inserts a breakpoint in the
+            <function>setbpt</function> interactively inserts a breakpoint in the
             line number <varname>linenumb</varname> (default value is 1) of the
             function <varname>macroname</varname>.
         </para>

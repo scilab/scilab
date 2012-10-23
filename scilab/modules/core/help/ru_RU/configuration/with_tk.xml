@@ -25,6 +25,7 @@
             Возвращает <constant>%t</constant>, если Scilab собран с TCL/TK-интерфейсом, и
             <constant>%f</constant>, если нет.
         </para>
+    </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[

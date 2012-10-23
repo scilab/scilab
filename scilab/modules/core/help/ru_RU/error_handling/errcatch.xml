@@ -122,6 +122,7 @@ errcatch(144,"pause")
 errcatch(27,'continue','nomessage')
 b=2/0 // Сообщения об ошибке нет, но b не будет существовать
  ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">

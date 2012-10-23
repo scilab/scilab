@@ -2,7 +2,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="with_texmacs" xml:lang="ru">
     <refnamediv>
         <refname>with_texmacs</refname>
-        <refpurpose>проверка: вызван ли Scilab TeXmacs'ом. <emphasize role="bold">Эта функция устарела.</emphasize> </refpurpose></refpurpose>
+        <refpurpose>
+            проверка: вызван ли Scilab TeXmacs'ом. <emphasis role="bold">Эта функция устарела.</emphasis> 
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
@@ -23,7 +25,7 @@
         <title>Описание</title>
         <para>
             Возвращает <literal>%t</literal>, если Scilab вызван TeXmacs'ом
-                (необходимо установить ATOMS-модуль: <code>atomsInstall('texmacs')</code>)
+            (необходимо установить ATOMS-модуль: <code>atomsInstall('texmacs')</code>)
         </para>
     </refsection>
     <refsection>
