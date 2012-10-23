@@ -159,7 +159,6 @@ GRAPHICS_IMPEXP void cloneMenus(char * pModelUID, char * pCloneUID)
         }
     }
     releaseGraphicObjectProperty(__GO_CHILDREN__, pChildren, jni_string_vector, iNbChildren);
-    releaseGraphicObjectProperty(__GO_CHILDREN_COUNT__, piNbChildren, jni_int, 1);
 }
 
 /**
@@ -259,7 +258,6 @@ char * allocateText(char * pparentsubwinUID,
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
     setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, piVisible, jni_bool, 1);
-    releaseGraphicObjectProperty(__GO_VISIBLE__, piVisible, jni_bool, 1);
 
     /* Clipping: to be checked for consistency */
     getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
@@ -268,11 +266,9 @@ char * allocateText(char * pparentsubwinUID,
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, piClipRegionSet, jni_bool, 1);
-    releaseGraphicObjectProperty(__GO_CLIP_BOX_SET__, piClipRegionSet, jni_bool, 1);
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
     setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, piClipState, jni_int, 1);
-    releaseGraphicObjectProperty(__GO_CLIP_STATE__, piClipState, jni_int, 1);
 
     /* Check if we should load LaTex / MathML Java libraries */
     loadTextRenderingAPI(text, nbRow, nbCol);
@@ -428,7 +424,6 @@ char * ConstructLegend(char * pparentsubwinUID, char **text, long long tabofhand
     if (parentType != __GO_AXES__)
     {
         Scierror(999, _("The parent has to be a SUBWIN\n"));
-        releaseGraphicObjectProperty(__GO_PARENT__, parentType, jni_string, 1);
         return (char *)NULL;
     }
 
@@ -957,7 +952,7 @@ char *ConstructSurface(char *pparentsubwinUID, sciTypeOf3D typeof3d,
     char *pobjUID = NULL;
     int parentType = -1;
     int *piParentType = &parentType;
-    char const* surfaceTypes[2] = { __GO_PLOT3D__, __GO_FAC3D__ };
+    int const surfaceTypes[2] = { __GO_PLOT3D__, __GO_FAC3D__ };
 
     double *clipRegion = NULL;
 
@@ -1148,7 +1143,7 @@ char *ConstructGrayplot(char *pparentsubwinUID, double *pvecx, double *pvecy, do
 {
     char *pobjUID = NULL;
 
-    char const* objectTypes[3] = { __GO_GRAYPLOT__, __GO_MATPLOT__, __GO_MATPLOT__ };
+    int const objectTypes[3] = { __GO_GRAYPLOT__, __GO_MATPLOT__, __GO_MATPLOT__ };
 
     int typeParent = -1;
     int *piTypeParent = &typeParent;
@@ -1872,10 +1867,10 @@ char *ConstructCompoundSeq(int number)
  */
 void ConstructLabel(char * pparentsubwinUID, char const* text, int type)
 {
-    char const* labelProperties[] = { __GO_X_AXIS_LABEL__, __GO_Y_AXIS_LABEL__, __GO_Z_AXIS_LABEL__, __GO_TITLE__ };
+    int const labelProperties[] = { __GO_X_AXIS_LABEL__, __GO_Y_AXIS_LABEL__, __GO_Z_AXIS_LABEL__, __GO_TITLE__ };
     int parentType = -1;
     int *piParentType = &parentType;
-    char *labelType = NULL;
+    int labelType = 0;
     char *modelLabelUID = NULL;
     char *pobjUID = NULL;
     int autoPosition = 0;
@@ -1895,7 +1890,7 @@ void ConstructLabel(char * pparentsubwinUID, char const* text, int type)
         return;
     }
 
-    labelType = (char*)labelProperties[type - 1];
+    labelType = labelProperties[type - 1];
 
     getGraphicObjectProperty(getAxesModel(), labelType, jni_string, (void **)&modelLabelUID);
 
