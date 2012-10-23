@@ -615,6 +615,10 @@ herr_t H5Object::filterIterator(hid_t g_id, const char * name, const H5L_info_t 
             opdata.name->push_back(name);
             return (herr_t)0;
         }
+        else
+        {
+            return (herr_t)0;
+        }
     }
 
     err = H5Oget_info(obj, &oinfo);
