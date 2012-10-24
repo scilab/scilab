@@ -24,7 +24,7 @@
 /**
  * Sets the datatip data.
  */
-int set_tip_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_tip_data_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double *tip_data;
@@ -42,10 +42,10 @@ int set_tip_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
         return SET_PROPERTY_ERROR;
     }
 
-    tip_data = getDoubleMatrixFromStack(stackPointer);
+    tip_data = (double*)_pvData;
 
 
-    status = setGraphicObjectProperty(pobjUID, __GO_DATATIP_DATA__, tip_data, jni_double_vector, 3);
+    status = setGraphicObjectProperty(pobj, __GO_DATATIP_DATA__, tip_data, jni_double_vector, 3);
 
     if (status == TRUE)
     {
@@ -63,7 +63,7 @@ int set_tip_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 /**
  * Sets the datatip oriantation.
  */
-int set_tip_orientation_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_tip_orientation_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int tip_orientation;
@@ -74,9 +74,9 @@ int set_tip_orientation_property(void* _pvCtx, char* pobjUID, size_t stackPointe
         return SET_PROPERTY_ERROR;
     }
 
-    tip_orientation = (int)getDoubleFromStack(stackPointer);
+    tip_orientation = (int)((double*)_pvData)[0];
 
-    status = setGraphicObjectProperty(pobjUID, __GO_DATATIP_ORIENTATION__, &tip_orientation, jni_int, 1);
+    status = setGraphicObjectProperty(pobj, __GO_DATATIP_ORIENTATION__, &tip_orientation, jni_int, 1);
 
     if (status == TRUE)
     {
@@ -92,15 +92,15 @@ int set_tip_orientation_property(void* _pvCtx, char* pobjUID, size_t stackPointe
 /**
  * Enable/disable the datatip Z component to be displayed.
  */
-int set_tip_3component_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_tip_3component_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    int use_z = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "tip_3component");
-    if(use_z == NOT_A_BOOLEAN_VALUE)
+    int use_z = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_3component");
+    if (use_z == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
     }
-    status = setGraphicObjectProperty(pobjUID, __GO_DATATIP_3COMPONENT__, &use_z, jni_bool, 1); 
+    status = setGraphicObjectProperty(pobj, __GO_DATATIP_3COMPONENT__, &use_z, jni_bool, 1);
 
     if (status == TRUE)
     {
@@ -117,15 +117,15 @@ int set_tip_3component_property(void* _pvCtx, char* pobjUID, size_t stackPointer
 /**
  * Enable/disable the datatip auto-orientation.
  */
-int set_tip_auto_orientation_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_tip_auto_orientation_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    int auto_orientation = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "tip_auto_orientation");
-    if(auto_orientation == NOT_A_BOOLEAN_VALUE)
+    int auto_orientation = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_auto_orientation");
+    if (auto_orientation == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
     }
-    status = setGraphicObjectProperty(pobjUID, __GO_DATATIP_AUTOORIENTATION__, &auto_orientation, jni_bool, 1); 
+    status = setGraphicObjectProperty(pobj, __GO_DATATIP_AUTOORIENTATION__, &auto_orientation, jni_bool, 1);
 
     if (status == TRUE)
     {
