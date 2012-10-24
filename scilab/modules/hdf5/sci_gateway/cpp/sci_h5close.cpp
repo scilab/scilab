@@ -38,6 +38,7 @@ int sci_h5close(char *fname, unsigned long fname_len)
     int id;
     SciErr err;
     int * addr = 0;
+    const int invalid = -1;
     const int nbIn = nbInputArgument(pvApiCtx);
 
     if (nbIn == 0)
@@ -58,8 +59,19 @@ int sci_h5close(char *fname, unsigned long fname_len)
 
             try
             {
-                id = HDF5Scilab::getH5ObjectId(addr, pvApiCtx);
-                H5VariableScope::removeIdAndDelete(id);
+                if (HDF5Scilab::isH5Object(addr, pvApiCtx))
+                {
+                    id = HDF5Scilab::getH5ObjectId(addr, pvApiCtx);
+                    H5VariableScope::removeIdAndDelete(id);
+
+                    /**
+                     * Very very crappy workaround to invalidate h5objects...
+                     * In this module, args are passed as reference (cf hdf5.start)
+                     * so modify mlist contents will have effect on Scilab side.
+                     * Why 28 ?? because it is the good value where the _id is located
+                     */
+                    addr[28] = invalid;
+                }
             }
             catch (std::exception & e)
             {
