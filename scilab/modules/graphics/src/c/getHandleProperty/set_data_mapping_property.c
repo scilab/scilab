@@ -61,7 +61,6 @@ int set_data_mapping_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
         return SET_PROPERTY_ERROR;
     }
 
-    FREE(_pvData);
     status = setGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, &dataMapping, jni_int, 1);
 
     if (status == TRUE)

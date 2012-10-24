@@ -35,21 +35,7 @@
 #include "localization.h"
 #include "stricmp.h"
 #include "api_scilab.h"
-/*--------------------------------------------------------------------------*/
-static int sciSet(void* _pvCtx, char *pobjUID, char *marker, void* value, int valueType, int *numrow, int *numcol);
-
-/*--------------------------------------------------------------------------*/
-/**
- * Sets the value to the object
- */
-static int sciSet(void* _pvCtx, char *pobjUID, char *marker, void* value, int valueType, int *numrow, int *numcol)
-{
-    return callSetProperty(_pvCtx, pobjUID, value, valueType, *numrow, *numcol, marker);
-}
-
-/*--------------------------------------------------------------------------*/
-//for YaSp => modify all "set properties" function (use stack pointer : value)
-/*-----------------------------------------------------------
+/*--------------------------------------------------------------------------
  * sciset(choice-name,x1,x2,x3,x4,x5)
  * or   xset()
  *-----------------------------------------------------------*/
@@ -73,8 +59,7 @@ int sci_set(char *fname, unsigned long fname_len)
 
     if (isMListType(pvApiCtx, piAddr1) || isTListType(pvApiCtx, piAddr1))
     {
-        lw = 1 + Top - Rhs;
-        OverLoad(lw);
+        OverLoad(1);
         return 0;
     }
 
@@ -83,9 +68,8 @@ int sci_set(char *fname, unsigned long fname_len)
 
     if (isDoubleType(pvApiCtx, piAddr1))   /* tclsci handle */
     {
-        lw = 1 + Top - Rhs;
         /* call "set" for tcl/tk see tclsci/sci_gateway/c/sci_set.c */
-        OverLoad(lw);
+        OverLoad(1);
         return 0;
     }
     else                        /* others types */
@@ -123,8 +107,7 @@ int sci_set(char *fname, unsigned long fname_len)
 
                 if (isScalar(pvApiCtx, piAddr1) == FALSE)
                 {
-                    lw = 1 + Top - Rhs;
-                    OverLoad(lw);
+                    OverLoad(1);
                     return 0;
                 }
 
@@ -165,22 +148,20 @@ int sci_set(char *fname, unsigned long fname_len)
                             strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
                             stricmp(pstProperty, "tooltipstring") != 0) /* Added for uicontrols */
                     {
-                        iRows3 = 1;
-                        iCols3 = 1;
                         getAllocatedSingleString(pvApiCtx, piAddr3, (char**)&_pvData);
-                        iCols3 = (int)strlen((char*)_pvData);
+                        iRows3 = (int)strlen((char*)_pvData);
+                        iCols3 = 1;
                     }
                     else
                     {
                         isMatrixOfString = 1;
                         getAllocatedMatrixOfString(pvApiCtx, piAddr3, &iRows3, &iCols3, (char***)&_pvData);
-                        //WARNING possible troubles !
                     }
                 }
                 else if (valueType == sci_list) /* Added for callbacks */
                 {
+                    iCols3 = 1;
                     getListItemNumber(pvApiCtx, piAddr3, &iRows3);
-                    //GetRhsVar(3, LIST_DATATYPE, &numrow3, &numcol3, &l3);
                     _pvData = (void*)piAddr3;         /* In this case l3 is the list position in stack */
                 }
                 break;
@@ -212,10 +193,9 @@ int sci_set(char *fname, unsigned long fname_len)
                     }
                     else
                     {
-                        iRows3 = 1;
-                        iCols3 = 1;
                         getAllocatedSingleString(pvApiCtx, piAddr2, (char**)&_pvData);
-                        iCols3 = (int)strlen((char*)_pvData);
+                        iRows3 = (int)strlen((char*)_pvData);
+                        iCols3 = 1;
                     }
                 }
                 break;
@@ -237,7 +217,20 @@ int sci_set(char *fname, unsigned long fname_len)
             }
 
             // Only set the property whitout doing anythig else.
-            setStatus = sciSet(pvApiCtx, pobjUID, pstProperty, _pvData, valueType, &iRows3, &iCols3);
+            //static int sciSet(void* _pvCtx, char *pobjUID, char *marker, void* value, int valueType, int *numrow, int *numcol)
+            setStatus = callSetProperty(pvApiCtx, pobjUID, _pvData, valueType, iRows3, iCols3, pstProperty);
+            if (valueType == sci_strings)
+            {
+                //free allacted data
+                if (isMatrixOfString == 1)
+                {
+                    freeAllocatedMatrixOfString(iRows3, iCols3, (char**)_pvData);
+                }
+                else
+                {
+                    freeAllocatedSingleString((char*)_pvData);
+                }
+            }
         }
         else
         {
@@ -279,7 +272,19 @@ int sci_set(char *fname, unsigned long fname_len)
 
                 if (bDoSet)
                 {
-                    sciSet(pvApiCtx, NULL, pstProperty, _pvData, valueType, &iRows3, &iCols3);
+                    setStatus = callSetProperty(pvApiCtx, NULL, _pvData, valueType, iRows3, iCols3, pstProperty);
+                    if (valueType == sci_strings)
+                    {
+                        //free allacted data
+                        if (isMatrixOfString == 1)
+                        {
+                            freeAllocatedMatrixOfString(iRows3, iCols3, (char**)_pvData);
+                        }
+                        else
+                        {
+                            freeAllocatedSingleString((char*)_pvData);
+                        }
+                    }
                 }
             }
             else

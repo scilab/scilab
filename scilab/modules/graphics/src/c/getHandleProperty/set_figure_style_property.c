@@ -56,7 +56,6 @@ int set_figure_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
 
     }
 
-    FREE(_pvData);
     return SET_PROPERTY_ERROR;
 }
 /*------------------------------------------------------------------------*/

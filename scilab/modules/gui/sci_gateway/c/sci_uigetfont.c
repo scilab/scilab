@@ -11,7 +11,7 @@
  */
 
 #include "gw_gui.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "CallFontChooser.h"
@@ -21,35 +21,54 @@
 /*--------------------------------------------------------------------------*/
 int sci_uigetfont(char *fname, unsigned long fname_len)
 {
-    int fontChooserID = 0;
+    SciErr sciErr;
 
-    int nbRow = 0, nbCol = 0;
+    int* piAddrfontNameAdr  = NULL;
+    int* piAddrfontSizeAdr  = NULL;
+    int* piAddrboldAdr      = NULL;
+    int* boldAdr            = NULL;
+    int* piAddritalicAdr    = NULL;
+    int* italicAdr          = NULL;
+    double* fontSizeAdr     = NULL;
+
+    int fontChooserID = 0;
+    int nbRow = 0;
+    int nbCol = 0;
 
     char **fontNameAdr = NULL;
-    int fontNameSize = 0;
-    int fontSizeAdr = 0;
-    int boldAdr = 0;
-    int italicAdr = 0;
+    int fontNameSize   = 0;
 
-    char *selectedFontName = NULL;
-    int selectedFontSize = 0;
-    BOOL selectedBold = FALSE;
-    BOOL selectedItalic = FALSE;
+    char *selectedFontName  = NULL;
+    int selectedFontSize    = 0;
+    BOOL selectedBold       = FALSE;
+    BOOL selectedItalic     = FALSE;
 
-
-    CheckRhs(0, 4);
-    CheckLhs(1, 4);
+    CheckInputArgument(pvApiCtx, 0, 4);
+    CheckOutputArgument(pvApiCtx, 1, 4);
 
     /* Default font name */
-    if (Rhs >= 1)
+    if (nbInputArgument(pvApiCtx) >= 1)
     {
-        if (VarType(1) == sci_strings)
+        if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
         {
-            GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &fontNameAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrfontNameAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 1.
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddrfontNameAdr, &nbRow, &nbCol, &fontNameAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+                return 1;
+            }
+
             fontNameSize = nbRow * nbCol;
             if (fontNameSize != 1)
             {
-                freeArrayOfString(fontNameAdr, fontNameSize);
+                freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
                 return FALSE;
             }
@@ -62,35 +81,65 @@ int sci_uigetfont(char *fname, unsigned long fname_len)
     }
 
     /* Default font size */
-    if (Rhs >= 2)
+    if (nbInputArgument(pvApiCtx) >= 2)
     {
-        if (VarType(2) == sci_matrix)
+        if ((checkInputArgumentType(pvApiCtx, 2, sci_matrix)))
         {
-            GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &fontSizeAdr);
-            if (nbRow * nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrfontSizeAdr);
+            if (sciErr.iErr)
             {
-                freeArrayOfString(fontNameAdr, fontNameSize);
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 2.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrfontSizeAdr, &nbRow, &nbCol, &fontSizeAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+                return 1;
+            }
+
+            if (nbRow*nbCol != 1)
+            {
+                freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 2);
                 return FALSE;
             }
         }
         else
         {
-            freeArrayOfString(fontNameAdr, fontNameSize);
+            freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 2);
             return FALSE;
         }
     }
 
     /* Is the default font bold ? */
-    if (Rhs >= 3)
+    if (nbInputArgument(pvApiCtx) >= 3)
     {
-        if (VarType(3) == sci_boolean)
+        if ((checkInputArgumentType(pvApiCtx, 3, sci_boolean)))
         {
-            GetRhsVar(3, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &boldAdr);
-            if (nbRow * nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrboldAdr);
+            if (sciErr.iErr)
             {
-                freeArrayOfString(fontNameAdr, fontNameSize);
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of boolean at position 3.
+            sciErr = getMatrixOfBoolean(pvApiCtx, piAddrboldAdr, &nbRow, &nbCol, &boldAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), fname, 3);
+                return 1;
+            }
+
+            if (nbRow*nbCol != 1)
+            {
+                freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 3);
                 return FALSE;
             }
@@ -98,21 +147,36 @@ int sci_uigetfont(char *fname, unsigned long fname_len)
         }
         else
         {
-            freeArrayOfString(fontNameAdr, fontNameSize);
+            freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
             return FALSE;
         }
     }
 
     /* Is the default font italic ? */
-    if (Rhs >= 4)
+    if (nbInputArgument(pvApiCtx) >= 4)
     {
-        if (VarType(4) == sci_boolean)
+        if ((checkInputArgumentType(pvApiCtx, 4, sci_boolean)))
         {
-            GetRhsVar(4, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &italicAdr);
-            if (nbRow * nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddritalicAdr);
+            if (sciErr.iErr)
             {
-                freeArrayOfString(fontNameAdr, fontNameSize);
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of boolean at position 4.
+            sciErr = getMatrixOfBoolean(pvApiCtx, piAddritalicAdr, &nbRow, &nbCol, &italicAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), fname, 4);
+                return 1;
+            }
+
+            if (nbRow*nbCol != 1)
+            {
+                freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 4);
                 return FALSE;
             }
@@ -120,7 +184,7 @@ int sci_uigetfont(char *fname, unsigned long fname_len)
         }
         else
         {
-            freeArrayOfString(fontNameAdr, fontNameSize);
+            freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 4);
             return FALSE;
         }
@@ -138,19 +202,19 @@ int sci_uigetfont(char *fname, unsigned long fname_len)
     /* Default size */
     if (fontSizeAdr != 0)
     {
-        setFontChooserFontSize(fontChooserID, (int)stk(fontSizeAdr)[0]);
+        setFontChooserFontSize(fontChooserID, (int)fontSizeAdr[0]);
     }
 
     /* Default bold */
     if (boldAdr != 0)
     {
-        setFontChooserBold(fontChooserID, istk(boldAdr)[0]);
+        setFontChooserBold(fontChooserID, boldAdr[0]);
     }
 
     /* Default italic */
     if (italicAdr != 0)
     {
-        setFontChooserItalic(fontChooserID, istk(italicAdr)[0]);
+        setFontChooserItalic(fontChooserID, italicAdr[0]);
     }
 
     /* Display it and wait for a user input */
@@ -170,70 +234,124 @@ int sci_uigetfont(char *fname, unsigned long fname_len)
 
         nbRow = 1;
         nbCol = 1;
-        if (Lhs >= 1)
+        if (nbOutputArgument(pvApiCtx) >= 1)
         {
-            CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &selectedFontName);
+            sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, (const char * const*) &selectedFontName);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
         }
 
-        if (Lhs >= 2)
+        if (nbOutputArgument(pvApiCtx) >= 2)
         {
-            CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &fontSizeAdr);
-            *stk(fontSizeAdr) = selectedFontSize;
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 2, nbRow, nbCol, &fontSizeAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+            *fontSizeAdr = selectedFontSize;
         }
 
-        if (Lhs >= 3)
+        if (nbOutputArgument(pvApiCtx) >= 3)
         {
-            CreateVar(Rhs + 3, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &boldAdr);
-            *istk(boldAdr) = selectedBold;
+            sciErr = allocMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 3, nbRow, nbCol, &boldAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+            *boldAdr = selectedBold;
         }
 
-        if (Lhs >= 4)
+        if (nbOutputArgument(pvApiCtx) >= 4)
         {
-            CreateVar(Rhs + 4, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &italicAdr);
-            *istk(italicAdr) = selectedItalic;
+            sciErr = allocMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 4, nbRow, nbCol, &italicAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+            *italicAdr = selectedItalic;
         }
     }
     else /* The user canceled */
     {
         nbRow = 0;
         nbCol = 0;
-        if (Lhs >= 1)
+        if (nbOutputArgument(pvApiCtx) >= 1)
         {
             /* Return "" as font name */
-            CreateVar(Rhs + 1, STRING_DATATYPE, &nbRow, &nbCol, &fontNameAdr);
+            char* fontNameEmpty = NULL;
+            if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow * nbCol, (const char**) &fontNameEmpty))
+            {
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
         }
 
-        if (Lhs >= 2)
+        if (nbOutputArgument(pvApiCtx) >= 2)
         {
             /* Return [] as font size */
-            CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &fontSizeAdr);
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 2, nbRow, nbCol, &fontSizeAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
         }
 
-        if (Lhs >= 3)
+        if (nbOutputArgument(pvApiCtx) >= 3)
         {
             /* Return [] as bold value */
-            CreateVar(Rhs + 3, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &boldAdr);
+            sciErr = allocMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 3, nbRow, nbCol, &boldAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
         }
 
-        if (Lhs >= 4)
+        if (nbOutputArgument(pvApiCtx) >= 4)
         {
             /* Return [] as italic value */
-            CreateVar(Rhs + 4, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &italicAdr);
+            sciErr = allocMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 4, nbRow, nbCol, &italicAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
         }
     }
 
-    /* TO DO delete [] selectedFontName */
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
+    AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
+    AssignOutputVariable(pvApiCtx, 4) = nbInputArgument(pvApiCtx) + 4;
 
-    LhsVar(1) = Rhs + 1;
-    LhsVar(2) = Rhs + 2;
-    LhsVar(3) = Rhs + 3;
-    LhsVar(4) = Rhs + 4;
+    if (selectedFontName)
+    {
+        freeAllocatedSingleString(selectedFontName);
+    }
 
     if (fontNameSize)
     {
-        freeArrayOfString(fontNameAdr, fontNameSize);
+        freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
     }
-    PutLhsVar();
+    ReturnArguments(pvApiCtx);
     return TRUE;
 }
 /*--------------------------------------------------------------------------*/

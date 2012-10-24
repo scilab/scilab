@@ -78,6 +78,7 @@ includes/api_poly.h \
 includes/api_sparse.h \
 includes/api_string.h \
 includes/api_handle.h \
+includes/api_optional.h \
 includes/api_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am

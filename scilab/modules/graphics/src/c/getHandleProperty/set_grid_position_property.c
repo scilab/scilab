@@ -55,7 +55,6 @@ int set_grid_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int v
         return SET_PROPERTY_ERROR;
     }
 
-    FREE(_pvData);
     status = setGraphicObjectProperty(pobjUID, __GO_GRID_POSITION__, &position, jni_int, 1);
 
     if (status == TRUE)
