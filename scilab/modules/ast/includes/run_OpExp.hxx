@@ -24,7 +24,7 @@ void visitprivate(const OpExp &e)
         /*getting what to assign*/
         e.left_get().accept(*this);
         InternalType *pITL = result_get();
-        if(is_single_result() == false)
+        if (is_single_result() == false)
         {
             std::wostringstream os;
             os << _W("Incompatible output argument.\n");
@@ -35,7 +35,7 @@ void visitprivate(const OpExp &e)
         /*getting what to assign*/
         e.right_get().accept(*this);
         InternalType *pITR = result_get();
-        if(is_single_result() == false)
+        if (is_single_result() == false)
         {
             std::wostringstream os;
             os << _W("Incompatible output argument.\n");
@@ -46,20 +46,20 @@ void visitprivate(const OpExp &e)
         GenericType::RealType TypeL = pITL->getType();
         GenericType::RealType TypeR = pITR->getType();
 
-        if(TypeL == GenericType::RealImplicitList)
+        if (TypeL == GenericType::RealImplicitList)
         {
             ImplicitList* pIL = pITL->getAs<ImplicitList>();
-            if(pIL->isComputable())
+            if (pIL->isComputable())
             {
                 pITL = pIL->extractFullMatrix();
                 TypeL = pITL->getType();
             }
         }
 
-        if(TypeR == GenericType::RealImplicitList)
+        if (TypeR == GenericType::RealImplicitList)
         {
             ImplicitList* pIL = pITR->getAs<ImplicitList>();
-            if(pIL->isComputable())
+            if (pIL->isComputable())
             {
                 pITR = pIL->extractFullMatrix();
                 TypeR = pITR->getType();
@@ -68,101 +68,101 @@ void visitprivate(const OpExp &e)
 
         InternalType *pResult   = NULL;
 
-        switch(e.oper_get())
+        switch (e.oper_get())
         {
-        case OpExp::plus :
+            case OpExp::plus :
             {
                 pResult = GenericPlus(pITL, pITR);
                 break;
             }
-        case OpExp::minus :
+            case OpExp::minus :
             {
                 pResult = GenericMinus(pITL, pITR);
                 break;
             }
-        case OpExp::times:
+            case OpExp::times:
             {
                 pResult = GenericTimes(pITL, pITR);
                 break;
             }
-        case OpExp::ldivide:
+            case OpExp::ldivide:
             {
                 break;
             }
-        case OpExp::rdivide:
+            case OpExp::rdivide:
             {
                 pResult = GenericRDivide(pITL, pITR);
                 break;
             }
-        case OpExp::dotrdivide :
+            case OpExp::dotrdivide :
             {
                 pResult = GenericDotRDivide(pITL, pITR);
                 break;
             }
-        case OpExp::dottimes :
+            case OpExp::dottimes :
             {
                 pResult = GenericDotTimes(pITL, pITR);
                 break;
             }
-        case OpExp::dotpower :
+            case OpExp::dotpower :
             {
                 pResult = GenericDotPower(pITL, pITR);
                 break;
             }
-        case OpExp::eq :
+            case OpExp::eq :
             {
                 pResult = GenericComparisonEqual(pITL, pITR);
                 break;
             }
-        case OpExp::ne :
+            case OpExp::ne :
             {
                 pResult = GenericComparisonNonEqual(pITL, pITR);
                 break;
             }
-        case OpExp::lt :
+            case OpExp::lt :
             {
                 pResult = GenericLess(pITL, pITR);
                 break;
             }
-        case OpExp::le :
+            case OpExp::le :
             {
                 pResult = GenericLessEqual(pITL, pITR);
                 break;
             }
-        case OpExp::gt :
+            case OpExp::gt :
             {
                 pResult = GenericGreater(pITL, pITR);
                 break;
             }
-        case OpExp::ge :
+            case OpExp::ge :
             {
                 pResult = GenericGreaterEqual(pITL, pITR);
                 break;
             }
-        case OpExp::power :
+            case OpExp::power :
             {
                 pResult = GenericPower(pITL, pITR);
                 break;
             }
-        case OpExp::krontimes :
+            case OpExp::krontimes :
             {
                 pResult = GenericKrontimes(pITL, pITR);
                 break;
             }
-        case OpExp::kronrdivide :
+            case OpExp::kronrdivide :
             {
                 pResult = GenericKronrdivide(pITL, pITR);
                 break;
             }
-        case OpExp::kronldivide :
+            case OpExp::kronldivide :
             {
                 pResult = GenericKronldivide(pITL, pITR);
                 break;
             }
-        default :
-            break;
+            default :
+                break;
         }
-        
+
         //overloading
         if (pResult == NULL)
         {
@@ -173,17 +173,17 @@ void visitprivate(const OpExp &e)
         result_set(pResult);
 
         //clear left and/or right operands
-        if(pITL->isDeletable())
+        if (pITL->isDeletable())
         {
             delete pITL;
         }
 
-        if(pITR->isDeletable())
+        if (pITR->isDeletable())
         {
             delete pITR;
         }
     }
-    catch(ScilabError error)
+    catch (ScilabError error)
     {
         result_clear();
         error.SetErrorLocation(e.location_get());
@@ -202,59 +202,57 @@ void visitprivate(const LogicalOpExp &e)
 
     InternalType *pResult = NULL;
 
-    if(TypeL != GenericType::RealBool)
+    if (TypeL != GenericType::RealBool)
     {
-        //TODO YaSp : Overloading %*_oper_*
         e.right_get().accept(*this);
         pITR = result_get();
-        switch(e.oper_get())
+        switch (e.oper_get())
         {
-        case LogicalOpExp::logicalShortCutOr :
-        case LogicalOpExp::logicalOr :
-            result_set(callOverload(e.oper_get(), pITL, pITR));
-            break;
-        case LogicalOpExp::logicalShortCutAnd :
-        case LogicalOpExp::logicalAnd :
-            result_set(callOverload(e.oper_get(), pITL, pITR));
-            break;
-        default :
-            break;
+            case LogicalOpExp::logicalShortCutOr :
+            case LogicalOpExp::logicalOr :
+            case LogicalOpExp::logicalShortCutAnd :
+            case LogicalOpExp::logicalAnd :
+                pResult = callOverload(e.oper_get(), pITL, pITR);
+                break;
+            default :
+                break;
         }
     }
     else
     {
         Bool *pL = pITL->getAs<types::Bool>();
-        switch(e.oper_get())
+        switch (e.oper_get())
         {
-        case LogicalOpExp::logicalShortCutOr :
+            case LogicalOpExp::logicalShortCutOr :
             {
                 int *piL	= pL->get();
                 bool iL     = true;
                 // Check if all values are true
                 // true || <something is always true>
-                for(int i = 0 ; i < pL->getSize() ; i++)
+                for (int i = 0 ; i < pL->getSize() ; i++)
                 {
-                    if(piL[i] == false)
+                    if (piL[i] == false)
                     {
                         iL = false;
                         break;
                     }
                 }
 
-                if(iL)
-                {//we don't need to look at ohers exp
+                if (iL)
+                {
+                    //we don't need to look at ohers exp
                     result_set(new Bool(true));
                     return;
                 }
                 // DO NOT break here, falling into normal Or if this can not be shotcutted.
             }
-        case LogicalOpExp::logicalOr :
+            case LogicalOpExp::logicalOr :
             {
                 e.right_get().accept(*this);
                 pITR = result_get();
                 GenericType::RealType TypeR = pITR->getType();
 
-                if(TypeR == GenericType::RealBool)
+                if (TypeR == GenericType::RealBool)
                 {
                     Bool *pR = pITR->getAs<types::Bool>();
                     int* piR = pR->get();
@@ -262,26 +260,28 @@ void visitprivate(const LogicalOpExp &e)
                     int* piB = NULL;
 
                     // M | scalar
-                    if(pR->getSize() == 1)
+                    if (pR->getSize() == 1)
                     {
                         pResult = new Bool(pL->getRows(), pL->getCols(), &piB);
-                        for(int i = 0 ; i < pL->getSize(); i++)
+                        for (int i = 0 ; i < pL->getSize(); i++)
                         {
                             piB[i] = (piR[0] == 1) || (piL[i] == 1);
                         }
                     }
-                    else if(pL->getSize() == 1)
-                    {// scalar | M
+                    else if (pL->getSize() == 1)
+                    {
+                        // scalar | M
                         pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                        for(int i = 0 ; i < pR->getSize(); i++)
+                        for (int i = 0 ; i < pR->getSize(); i++)
                         {
                             piB[i] = (piR[i] == 1) || (piL[0] == 1);
                         }
                     }
-                    else if(pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
-                    {// M | N (generic case)
+                    else if (pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
+                    {
+                        // M | N (generic case)
                         pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                        for(int i = 0 ; i < pL->getSize(); i++)
+                        for (int i = 0 ; i < pL->getSize(); i++)
                         {
                             piB[i] = (piR[i] == 1) || (piL[i] == 1);
                         }
@@ -300,14 +300,14 @@ void visitprivate(const LogicalOpExp &e)
                 }
                 break;
             }
-        case LogicalOpExp::logicalShortCutAnd :
+            case LogicalOpExp::logicalShortCutAnd :
             {
                 int *piL	= pL->get();
                 // Check if one value is false
                 // false && <something> is always false
-                for(int i = 0 ; i < pL->getSize() ; i++)
+                for (int i = 0 ; i < pL->getSize() ; i++)
                 {
-                    if(piL[i] == false)
+                    if (piL[i] == false)
                     {
                         result_set(new Bool(false));
                         return;
@@ -315,13 +315,13 @@ void visitprivate(const LogicalOpExp &e)
                 }
                 // DO NOT break here, falling into normal And if this can not be shotcutted.
             }
-        case LogicalOpExp::logicalAnd :
+            case LogicalOpExp::logicalAnd :
             {
                 e.right_get().accept(*this);
                 pITR = result_get();
                 GenericType::RealType TypeR = pITR->getType();
 
-                if(TypeR == GenericType::RealBool)
+                if (TypeR == GenericType::RealBool)
                 {
                     Bool *pR = pITR->getAs<types::Bool>();
                     int* piR = pR->get();
@@ -329,26 +329,28 @@ void visitprivate(const LogicalOpExp &e)
                     int* piB = NULL;
 
                     // M & scalar
-                    if(pR->getSize() == 1)
+                    if (pR->getSize() == 1)
                     {
                         pResult = new Bool(pL->getRows(), pL->getCols(), &piB);
-                        for(int i = 0 ; i < pL->getSize(); i++)
+                        for (int i = 0 ; i < pL->getSize(); i++)
                         {
                             piB[i] = (piR[0] == 1) && (piL[i] == 1);
                         }
                     }
-                    else if(pL->getSize() == 1)
-                    {// scalar & M
+                    else if (pL->getSize() == 1)
+                    {
+                        // scalar & M
                         pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                        for(int i = 0 ; i < pR->getSize(); i++)
+                        for (int i = 0 ; i < pR->getSize(); i++)
                         {
                             piB[i] = (piR[i] == 1) && (piL[0] == 1);
                         }
                     }
-                    else if(pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
-                    {// M & N (generic case)
+                    else if (pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
+                    {
+                        // M & N (generic case)
                         pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                        for(int i = 0 ; i < pL->getSize(); i++)
+                        for (int i = 0 ; i < pL->getSize(); i++)
                         {
                             piB[i] = (piR[i] == 1) && (piL[i] == 1);
                         }
@@ -368,7 +370,7 @@ void visitprivate(const LogicalOpExp &e)
                 break;
             }
 
-        default :
+            default :
             {
                 pResult = callOverload(e.oper_get(), pITL, pITR);
                 break;
@@ -376,12 +378,12 @@ void visitprivate(const LogicalOpExp &e)
         }
     }
 
-    if(pITL && pITL->isDeletable())
+    if (pITL && pITL->isDeletable())
     {
         delete pITL;
     }
 
-    if(pITR && pITR->isDeletable())
+    if (pITR && pITR->isDeletable())
     {
         delete pITR;
     }
