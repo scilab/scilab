@@ -11,7 +11,7 @@ Improvements
 Xcos
 =====
 
-* Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the 
+* Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
 
 * Bug #10434 fixed - loadXcosLibs changed the predef value.
@@ -55,6 +55,8 @@ Bug fixes
 
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
+
+* Bug #11962 fixed - event_handler may be called on wrong figure_id.
 
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
@@ -173,7 +175,7 @@ Graphics
 
 * Bug #8241 fixed - Graphical properties were not always inherited.
 
-* Bug #8250, #10567, #10614 fixed - Artefacts dropped on 
+* Bug #8250, #10567, #10614 fixed - Artefacts dropped on
                                     vectorial exports (EPS/PDF/SVG).
 
 * Bug #8705 fixed - Some specific graphics could not be saved.
@@ -1635,7 +1637,7 @@ Bug Fixes
 
 * Bug #9540 fixed - MKL Pentium 4 target was not downloaded by installer under Windows.
 
-* Bug #9542 fixed - Under Windows, during export operation, the file could be locked by 
+* Bug #9542 fixed - Under Windows, during export operation, the file could be locked by
                     another process.
 
 * Bug #9543 fixed - Scilab did not use the default DocumentBuilderFactory

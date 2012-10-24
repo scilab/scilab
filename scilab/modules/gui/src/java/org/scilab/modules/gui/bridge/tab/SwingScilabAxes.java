@@ -18,7 +18,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
@@ -63,7 +62,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	private SwingScilabCanvas graphicCanvas;
 
 	private int figureId;
-
+	
 	/**
 	 * Default constructor
 	 * @param figureId id of the displayed figure
@@ -180,8 +179,8 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @param funName the name of the Scilab function to call
 	 */
 	public void setEventHandler(String funName) {
-		disableEventHandler();
-		eventHandler = new ScilabEventListener(funName, getFigureId());
+		//disableEventHandler();
+		//eventHandler = new ScilabEventListener(funName, getFigureId());
 	}
 
 
