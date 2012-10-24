@@ -124,6 +124,20 @@ public class EntityPicker {
         double[] datay = (double[])PolylineData.getDataY(uid);
         int size = datax.length;
 
+        if (PolylineData.isXShiftSet(uid) != 0) {
+            double[] x_shift = (double[])PolylineData.getShiftX(uid);
+            for (int i = 0; i < size; ++i) {
+                datax[i] += x_shift[i];
+            }
+        }
+
+        if (PolylineData.isYShiftSet(uid) != 0) {
+            double[] y_shift = (double[])PolylineData.getShiftY(uid);
+            for (int i = 0; i < size; ++i) {
+                datay[i] += y_shift[i];
+            }
+        }
+
         double[] oldPoint = null;
         if (needTransform) {
             oldPoint = transformPoint(curAxes, datax[0], datay[0], 0.0);
@@ -180,6 +194,21 @@ public class EntityPicker {
 
         double[] datax = (double[])PolylineData.getDataX(uid);
         double[] datay = (double[])PolylineData.getDataY(uid);
+
+        if (PolylineData.isXShiftSet(uid) != 0) {
+            double[] x_shift = (double[])PolylineData.getShiftX(uid);
+            for (int i = 0; i < datax.length; ++i) {
+                datax[i] += x_shift[i];
+            }
+        }
+
+        if (PolylineData.isYShiftSet(uid) != 0) {
+            double[] y_shift = (double[])PolylineData.getShiftY(uid);
+            for (int i = 0; i < datay.length; ++i) {
+                datay[i] += y_shift[i];
+            }
+        }
+
         Integer size = CommonHandler.getMarkSize(uid);
         Integer unit = CommonHandler.getMarkSizeUnit(uid);
 
