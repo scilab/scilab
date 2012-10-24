@@ -47,6 +47,7 @@ public class SwingInspector extends SwingScilabTab {
     public static String icon_expand = imagepath + "16x16/actions/media-playback-start.png";
     public static String icon_expand_all = imagepath + "32x32/actions/tree-diagramm.png";
     public static String icon_collapse_all = imagepath + "32x32/actions/tree-diagramm-delete.png";
+    public static String icon_table = imagepath + "16x16/actions/table.png";
 
     /**
     * Constructor

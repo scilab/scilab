@@ -11,23 +11,29 @@
  */
 package org.scilab.modules.gui.ged.polyline;
 
-import javax.swing.JPanel;
+import java.awt.Dimension;
+import org.scilab.modules.gui.ged.ContentLayout;
 
 /**
  * Highest class - Prepares methods dependent on JPanel.
  * @author cardinot
  */
-public class Roof extends JPanel {
+public class Roof extends ContentLayout {
 
     /**
     * Build methods of overwriting.
     */
     public Roof() {
+        setPreferredSize(new Dimension(100, 800));
+        
         basePropertiesComponents();
+        dataPropertiesComponents();
+        positionComponents();
         styleComponents();
-        initLayout();
         dialogBackgroundColor();
-        dialogForegroungColor();
+        dialogForegroundColor();
+        dialogMarkBackground();
+        dialogMarkForeground();
     }
 
     /**
@@ -36,14 +42,19 @@ public class Roof extends JPanel {
     public void basePropertiesComponents() { };
 
     /**
+    * It has all the components of the section Base Properties.
+    */
+    public void dataPropertiesComponents() { };
+
+    /**
+    * It has all the components of the section Position.
+    */
+    public void positionComponents() { };
+
+    /**
     * It has all the components of the section Style/Appearance.
     */
     public void styleComponents() { };
-
-    /**
-    * Creates layout of all sections(Base Proprerties and Style/Appareance).
-    */
-    public void initLayout() { };
 
     /**
     * JDialog - Selection of background colors.
@@ -53,5 +64,15 @@ public class Roof extends JPanel {
     /**
     * JDialog - Selection of foreground colors.
     */
-    public void dialogForegroungColor() { };
+    public void dialogForegroundColor() { };
+
+    /**
+    * JDialog - Selection of mark background colors.
+    */
+    public void dialogMarkBackground() { };
+
+    /**
+    * JDialog - Selection of mark foreground colors.
+    */
+    public void dialogMarkForeground() { };
 }

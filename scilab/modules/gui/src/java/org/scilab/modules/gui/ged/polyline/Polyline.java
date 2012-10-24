@@ -17,7 +17,7 @@ package org.scilab.modules.gui.ged.polyline;
 *
 * @author Marcos Cardinot <mcardinot@gmail.com>
 */
-public class Polyline extends Layout {
+public class Polyline extends ColorDialog {
     /**
     * Initializes the components of the JPanel.
     *

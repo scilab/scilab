@@ -14,7 +14,7 @@ package org.scilab.modules.gui.ged.polyline;
 import org.scilab.modules.gui.ged.actions.ShowHide;
 
 /**
- * Manages the operation of the button show/hide for the current polyline.
+ * Manages the operation of the button show/hide for the polyline properties.
  *
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
@@ -23,6 +23,12 @@ public class HidePolyline {
         try {
             BaseProperties.pBaseProperties.setVisible(!hide);
             BaseProperties.bBaseProperties.setSelected(hide);
+
+            DataProperties.pDataProperties.setVisible(!hide);
+            DataProperties.bDataProperties.setSelected(hide);
+
+            Position.pPosition.setVisible(!hide);
+            Position.bPosition.setSelected(hide);
 
             Style.pStyle.setVisible(!hide);
             Style.bStyle.setSelected(hide);
@@ -34,13 +40,15 @@ public class HidePolyline {
      * Updates the button's icon in the toolbar
      */
     public static void checkAllButtons() {
-        boolean BP, SA;
+        boolean BP, DP, PS, SA;
         BP = BaseProperties.pBaseProperties.isVisible();
+        DP = DataProperties.pDataProperties.isVisible();
+        PS = Position.pPosition.isVisible();
         SA = Style.pStyle.isVisible();
-        if (BP && SA) {
+        if (BP && DP && PS && SA) {
             ShowHide.click = false;
             ShowHide.toggleButton();
-        } else if (!BP && !SA) {
+        } else if (!BP && !DP && !PS && !SA) {
             ShowHide.click = true;
             ShowHide.toggleButton();
         }

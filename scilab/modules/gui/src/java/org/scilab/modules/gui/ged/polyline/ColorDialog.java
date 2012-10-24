@@ -25,7 +25,6 @@ import javax.swing.LayoutStyle;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import org.scilab.modules.gui.editor.Editor;
 import org.scilab.modules.gui.editor.EditorManager;
 
 import org.scilab.modules.gui.ged.ColorMapHandler;
@@ -44,6 +43,14 @@ public class ColorDialog extends Style {
     protected static JColorChooser chooserFore;
     protected static JButton okFore;
     protected static Color choiceFore;
+
+    protected static JColorChooser chooserMarkBackground;
+    protected static JButton okMarkBackground;
+    protected static Color choiceMarkBackground;
+
+    protected static JColorChooser chooserMarkForeground;
+    protected static JButton okMarkForeground;
+    protected static Color choiceMarkForeground;
 
     /**
     * Receives and passes the objectID to the parent class.
@@ -80,20 +87,20 @@ public class ColorDialog extends Style {
         backcolorDialogLayout.setHorizontalGroup(
             backcolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(backcolorDialogLayout.createSequentialGroup()
-                      .addComponent(chooserBack, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                      .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(chooserBack, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(GroupLayout.Alignment.TRAILING, backcolorDialogLayout.createSequentialGroup()
-                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                      .addComponent(okBack)
-                      .addContainerGap())
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(okBack)
+                .addContainerGap())
         );
         backcolorDialogLayout.setVerticalGroup(
             backcolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(backcolorDialogLayout.createSequentialGroup()
-                      .addComponent(chooserBack, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                      .addComponent(okBack)
-                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(chooserBack, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(okBack)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 
@@ -101,7 +108,7 @@ public class ColorDialog extends Style {
     * JDialog - Selection of foreground colors.
     */
     @Override
-    public void dialogForegroungColor() {
+    public void dialogForegroundColor() {
         forecolorDialog = new JDialog();
         chooserFore = new JColorChooser();
         okFore = new JButton();
@@ -124,20 +131,108 @@ public class ColorDialog extends Style {
         forecolorDialogLayout.setHorizontalGroup(
             forecolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(forecolorDialogLayout.createSequentialGroup()
-                      .addComponent(chooserFore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                      .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(chooserFore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(GroupLayout.Alignment.TRAILING, forecolorDialogLayout.createSequentialGroup()
-                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                      .addComponent(okFore)
-                      .addContainerGap())
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(okFore)
+                .addContainerGap())
         );
         forecolorDialogLayout.setVerticalGroup(
             forecolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(forecolorDialogLayout.createSequentialGroup()
-                      .addComponent(chooserFore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                      .addComponent(okFore)
-                      .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(chooserFore, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(okFore)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+    }
+
+    /**
+    * JDialog - Selection of mark background colors.
+    */
+    @Override
+    public void dialogMarkBackground() {
+        markBackgroundDialog = new JDialog();
+        chooserMarkBackground = new JColorChooser();
+        okMarkBackground = new JButton();
+
+        markBackgroundDialog.setTitle(MessagesGED.choose_background_color);
+        markBackgroundDialog.setMinimumSize(new Dimension(670, 450));
+        markBackgroundDialog.setModal(true);
+        markBackgroundDialog.setResizable(false);
+
+        okMarkBackground.setText("OK");
+        okMarkBackground.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                okMarkBackgroundActionPerformed(evt);
+            }
+        });
+
+        //Position settings.
+        GroupLayout backcolorDialogLayout = new GroupLayout(markBackgroundDialog.getContentPane());
+        markBackgroundDialog.getContentPane().setLayout(backcolorDialogLayout);
+        backcolorDialogLayout.setHorizontalGroup(
+            backcolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(backcolorDialogLayout.createSequentialGroup()
+                .addComponent(chooserMarkBackground, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(GroupLayout.Alignment.TRAILING, backcolorDialogLayout.createSequentialGroup()
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(okMarkBackground)
+                .addContainerGap())
+        );
+        backcolorDialogLayout.setVerticalGroup(
+            backcolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(backcolorDialogLayout.createSequentialGroup()
+                .addComponent(chooserMarkBackground, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(okMarkBackground)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+    }
+
+    /**
+    * JDialog - Selection of mark foreground colors.
+    */
+    @Override
+    public void dialogMarkForeground() {
+        markForegroundDialog = new JDialog();
+        chooserMarkForeground = new JColorChooser();
+        okMarkForeground = new JButton();
+
+        markForegroundDialog.setTitle(MessagesGED.choose_foreground_color);
+        markForegroundDialog.setMinimumSize(new Dimension(670, 450));
+        markForegroundDialog.setModal(true);
+        markForegroundDialog.setResizable(false);
+
+        okMarkForeground.setText("OK");
+        okMarkForeground.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                okMarkForegroundActionPerformed(evt);
+            }
+        });
+
+        //Position settings.
+        GroupLayout backcolorDialogLayout = new GroupLayout(markForegroundDialog.getContentPane());
+        markForegroundDialog.getContentPane().setLayout(backcolorDialogLayout);
+        backcolorDialogLayout.setHorizontalGroup(
+            backcolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(backcolorDialogLayout.createSequentialGroup()
+                .addComponent(chooserMarkForeground, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(GroupLayout.Alignment.TRAILING, backcolorDialogLayout.createSequentialGroup()
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(okMarkForeground)
+                .addContainerGap())
+        );
+        backcolorDialogLayout.setVerticalGroup(
+            backcolorDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(backcolorDialogLayout.createSequentialGroup()
+                .addComponent(chooserMarkForeground, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(okMarkForeground)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 
@@ -174,13 +269,35 @@ public class ColorDialog extends Style {
     }
 
     /**
-    * Change the color of the object.
+    * Implement the action on the OK button to save the color chosen by the user.
     *
-    * @param scilabColor index of the color map.
+    * @param evt ActionEvent.
     */
-    private void setBackgroungColor(Integer scilabColor) {
-        GraphicController.getController()
-        .setProperty(currentpolyline, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
+    private void okMarkBackgroundActionPerformed(ActionEvent evt) {
+        choiceMarkBackground = chooserMarkBackground.getColor();
+        double red = choiceMarkBackground.getRed();
+        double green = choiceMarkBackground.getGreen();
+        double blue = choiceMarkBackground.getBlue();
+        Integer scilabColor = ColorMapHandler.getScilabColor(red, green, blue, parentFigure);
+        setMarkBackground(scilabColor);
+        cMarkBackground.setBackground(choiceMarkBackground);
+        markBackgroundDialog.dispose();
+    }
+
+    /**
+    * Implement the action on the OK button to save the color chosen by the user.
+    *
+    * @param evt ActionEvent.
+    */
+    private void okMarkForegroundActionPerformed(ActionEvent evt) {
+        choiceMarkForeground = chooserMarkForeground.getColor();
+        double red = choiceMarkForeground.getRed();
+        double green = choiceMarkForeground.getGreen();
+        double blue = choiceMarkForeground.getBlue();
+        Integer scilabColor = ColorMapHandler.getScilabColor(red, green, blue, parentFigure);
+        setMarkForeground(scilabColor);
+        cMarkForeground.setBackground(choiceMarkForeground);
+        markForegroundDialog.dispose();
     }
 
     /**
@@ -188,7 +305,37 @@ public class ColorDialog extends Style {
     *
     * @param scilabColor index of the color map.
     */
+    private void setBackgroungColor(Integer scilabColor) {
+        GraphicController.getController()
+              .setProperty(currentpolyline, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
+    }
+    
+    /**
+    * Change the color of the object.
+    *
+    * @param scilabColor index of the color map.
+    */
     private void setForegroundColor(Integer scilabColor) {
         EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
+    }
+
+    /**
+    * Change the color of the object.
+    *
+    * @param scilabColor index of the color map.
+    */
+    private void setMarkBackground(Integer scilabColor) {
+        GraphicController.getController().setProperty(
+                currentpolyline, GraphicObjectProperties.__GO_MARK_BACKGROUND__, scilabColor);
+    }
+
+    /**
+    * Change the color of the object.
+    *
+    * @param scilabColor index of the color map.
+    */
+    private void setMarkForeground(Integer scilabColor) {
+        GraphicController.getController().setProperty(
+                currentpolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
     }
 }

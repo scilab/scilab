@@ -36,6 +36,10 @@ public class MessagesGED {
     public static final String grayplot = Messages.gettext("Grayplot");
 
     //Base Properties - Labels
+    public static final String closed = Messages.gettext("Closed");
+    public static final String fill_mode = Messages.gettext("Fill Mode");
+    public static final String line_mode = Messages.gettext("Line Mode");
+    public static final String mark_mode = Messages.gettext("Mark Mode");
     public static final String visible = Messages.gettext("Visible");
     public static final String base_properties = Messages.gettext("Base Properties");
     public static final String on = Messages.gettext("On");
@@ -79,7 +83,21 @@ public class MessagesGED {
     public static final String font_color = Messages.gettext("Font Color");
     public static final String font_style = Messages.gettext("Font Style");
 
+    public static final String arrow_size_factor = Messages.gettext("Arrow Size Factor");
+    public static final String bar_width = Messages.gettext("Bar Width");
+    public static final String thickness = Messages.gettext("Thickness");
+    public static final String mark_background = Messages.gettext("Mark Background");
+    public static final String mark_foreground = Messages.gettext("Mark Foreground");
+    public static final String mark_size = Messages.gettext("Mark Size");
+    public static final String mark_style = Messages.gettext("Mark Style");
+
     //Data - Labels
+    public static final String data_properties = Messages.gettext("Data Properties");
+    public static final String clip_box = Messages.gettext("Clip Box");
+    public static final String upper_left = Messages.gettext("Upper-left");
+    public static final String point = Messages.gettext("Point");
+    public static final String clip_state = Messages.gettext("Clip State");
+    public static final String clipgrf = Messages.gettext("clipgrf");
     public static final String data = Messages.gettext("Data");
     public static final String figure_id = Messages.gettext("Figure ID");
     public static final String figure_name = Messages.gettext("Figure Name");
@@ -122,8 +140,14 @@ public class MessagesGED {
     //Position - Labels
     public static final String position = Messages.gettext("Position");
     public static final String axes_bounds = Messages.gettext("Axes Bounds");
+    public static final String mark_size_unit = Messages.gettext("Mark Size Unit");
+    public static final String shift = Messages.gettext("Shift");
     public static final String up = Messages.gettext("Up");
     public static final String width = Messages.gettext("Width");
     public static final String height = Messages.gettext("Height");
     public static final String margins = Messages.gettext("Margins");
+    public static final String tabulated = Messages.gettext("Tabulated");
+    public static final String x_shift = Messages.gettext("X Shift");
+    public static final String y_shift = Messages.gettext("Y Shift");
+    public static final String z_shift = Messages.gettext("Z Shift");
 }

@@ -20,8 +20,8 @@ import org.scilab.modules.gui.ged.axes.HideAxis;
 import org.scilab.modules.gui.ged.figure.HideFigure;
 import org.scilab.modules.gui.ged.legend.HideLegend;
 import org.scilab.modules.gui.ged.polyline.HidePolyline;
-import org.scilab.modules.gui.ged.surface.grayplot.HideGrayplot;
 import org.scilab.modules.gui.ged.surface.HideSurface;
+import org.scilab.modules.gui.ged.surface.grayplot.HideGrayplot;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
