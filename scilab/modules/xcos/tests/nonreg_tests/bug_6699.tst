@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 6699 -->
 //
@@ -15,7 +15,6 @@
 // <-- Short Description -->
 // The capacitor block doesn't define valid settings.
 
-loadXcosLibs();
 scs_m = Capacitor("define", [], []);
 
 // Stubbing the x_mdialog method

@@ -35,10 +35,10 @@ int get_event_handler_property(void* _pvCtx, char* pobjUID)
     char* eventHandler = NULL;
     getGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_NAME__, jni_string, (void **)&eventHandler);
 
-    if ( eventHandler == NULL )
+    if (eventHandler == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "event_handler") ;
-        return -1 ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "event_handler");
+        return -1;
     }
 
     return sciReturnString(_pvCtx, eventHandler);

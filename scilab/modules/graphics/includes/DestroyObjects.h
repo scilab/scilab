@@ -28,8 +28,8 @@
 
 #include "dynlib_graphics.h"
 
-GRAPHICS_IMPEXP void AllGraphWinDelete( void ) ;
+GRAPHICS_IMPEXP void AllGraphWinDelete(void);
 
-GRAPHICS_IMPEXP void sciDeleteWindow( int winNum ) ;
+GRAPHICS_IMPEXP void sciDeleteWindow(int winNum);
 
 #endif /* __SCI_DESTROY__ */

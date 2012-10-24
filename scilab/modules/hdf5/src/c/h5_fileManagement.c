@@ -2,7 +2,7 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010 - DIGITEO - Allan CORNET
 *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
-*  
+*
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
@@ -110,14 +110,17 @@ int openHDF5File(char *name, int _iAppendMode)
     /* Turn off error handling */
     H5Eset_auto2(H5E_DEFAULT, NULL, NULL);
 
-    if(_iAppendMode == 0)
-    {//read only
+    if (_iAppendMode == 0)
+    {
+        //read only
         file = H5Fopen(filename, H5F_ACC_RDONLY, H5P_DEFAULT);
     }
     else
-    {//read write to append
+    {
+        //read write to append
         file = H5Fopen(filename, H5F_ACC_RDWR, H5P_DEFAULT);
     }
+
     /* The following test will display the backtrace in case of error */
     /* Deactivated because displayed each time we call 'load' to open a non-HDF5 file */
     /*if (file < 0)
@@ -184,6 +187,12 @@ int isHDF5File(char* _pstFilename)
 void closeHDF5File(int file)
 {
     herr_t status					= 0;
+
+    /* printf("Open groups: %d\n", H5Fget_obj_count(file, H5F_OBJ_GROUP));
+    printf("Open datasets: %d\n", H5Fget_obj_count(file, H5F_OBJ_DATASET));
+    printf("Open datatypes: %d\n", H5Fget_obj_count(file, H5F_OBJ_DATATYPE));
+    printf("Open attributes: %d\n", H5Fget_obj_count(file, H5F_OBJ_ATTR));
+    printf("Open all (except the file itself): %d\n", H5Fget_obj_count(file, H5F_OBJ_ALL)  - 1);*/
 
     //	H5Fflush(file, H5F_SCOPE_GLOBAL);
     status = H5Fclose(file);

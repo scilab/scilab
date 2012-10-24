@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>r=with_tk()</synopsis>
+        <synopsis>r = with_tk()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -22,8 +22,18 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Возвращает <literal>%t</literal>, если Scilab собран с TCL/TK-интерфейсом, и  
-            <literal>%f</literal>, если нет.
+            Возвращает <constant>%t</constant>, если Scilab собран с TCL/TK-интерфейсом, и
+            <constant>%f</constant>, если нет.
         </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+if with_tk() == %t then
+   disp("Tk доступен");
+else
+   disp("Tk не доступен");
+end
+ ]]></programlisting>
     </refsection>
 </refentry>

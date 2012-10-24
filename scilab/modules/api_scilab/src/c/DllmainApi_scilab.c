@@ -13,8 +13,10 @@
 #include <stdio.h> 
 #include <windows.h> 
 /*--------------------------------------------------------------------------*/ 
-#pragma comment(lib,"../../bin/libintl.lib")
-#pragma comment(lib,"../../bin/blasplus.lib")
+#pragma comment(lib, "../../bin/libintl.lib")
+#pragma comment(lib, "../../bin/blasplus.lib")
+#pragma comment(lib, "../../bin/elementary_functions_f.lib")
+#pragma comment(lib, "../../bin/linpack_f.lib")
 /*--------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {

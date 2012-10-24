@@ -15,7 +15,7 @@
 #include "GetUicontrolStyle.hxx"
 #include "SetUicontrolMin.hxx"
 
-int SetUicontrolMin(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolMin(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     double minValue = 0.0;
     BOOL status = FALSE;
@@ -50,7 +50,7 @@ int SetUicontrolMin(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valu
     }
 
     /* Store the value in Scilab */
-    minValue = getDoubleFromStack(stackPointer);
+    minValue = ((double*)_pvData)[0];
 
     /*
      * For Checkboxes and Radiobuttons: display a warning if the value is neither equal to Min nor Max

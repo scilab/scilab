@@ -30,23 +30,23 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_callback_type_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_callback_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int callbackType = 0;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: A Real scalar expected.\n"), "callback_type");
         return SET_PROPERTY_ERROR;
     }
-    if (nbRow*nbCol != 1)
+    if (nbRow * nbCol != 1)
     {
         Scierror(999, _("Wrong size for '%s' property: A Real scalar expected.\n"), "callback_type");
         return SET_PROPERTY_ERROR;
     }
 
-    callbackType = (int) getDoubleFromStack(stackPointer);
+    callbackType = (int)((double*)_pvData)[0];
 
     /* Check the value */
     if (callbackType < -1 || callbackType > 2)

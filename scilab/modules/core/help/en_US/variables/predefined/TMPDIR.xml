@@ -37,6 +37,14 @@
             altering the <literal>TMPDIR</literal> system variable.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+ls TMPDIR
+ls(TMPDIR)
+cd(TMPDIR)
+        ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

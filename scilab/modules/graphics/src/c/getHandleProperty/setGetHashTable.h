@@ -28,12 +28,12 @@
 /**
  * Hide the real type of hashtable
  */
-typedef struct hashtable GetPropertyHashTable ;
+typedef struct hashtable GetPropertyHashTable;
 
 /**
 * Hide the real type of hashtable
 */
-typedef struct hashtable SetPropertyHashTable ;
+typedef struct hashtable SetPropertyHashTable;
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
@@ -42,7 +42,7 @@ typedef struct hashtable SetPropertyHashTable ;
  * The char* is the UID of the object to get the property from
  * The return value is 0 if the call was successful and -1 otherwise.
  */
-typedef int (*getPropertyFunc)(void*, char *) ;
+typedef int (*getPropertyFunc)(void*, char *);
 
 /**
 * Prototype of functions used to set a specific property of an handle.
@@ -51,52 +51,52 @@ typedef int (*getPropertyFunc)(void*, char *) ;
 * SET_PROPERTY_UNCHANGED if nothing was actually changed and SET_PROPERTY_ERROR if
 * an error occurred.
 */
-typedef int (*setPropertyFunc)(void*, char *, size_t, int, int, int ) ;
+typedef int (*setPropertyFunc)(void*, char *, void*, int, int, int);
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 /**
  * Create a new hashTable of get functions
  */
-GetPropertyHashTable * createGetHashTable( void ) ;
+GetPropertyHashTable * createGetHashTable(void);
 
 /**
  * destroy the hashtable and free the used resources.
  */
-void destroyGetHashTable( GetPropertyHashTable * hashTable ) ;
+void destroyGetHashTable(GetPropertyHashTable * hashTable);
 
 /**
  * Search for a key in a hashtable. if succeed, return the value needed. if failed, return NULL
  * @return The corresponding value if the key was found, NULL otherwise.
  */
-getPropertyFunc searchGetHashtable( GetPropertyHashTable * hashTable , char * key ) ;
+getPropertyFunc searchGetHashtable(GetPropertyHashTable * hashTable , char * key);
 
 /*
  * Insert a new element in the hashtable
  */
-int insertGetHashtable( GetPropertyHashTable * hashTable, char * key, getPropertyFunc value ) ;
+int insertGetHashtable(GetPropertyHashTable * hashTable, char * key, getPropertyFunc value);
 
 /*--------------------------------------------------------------------------*/
 /**
 * Create a new hashTable of set functions
 */
-GetPropertyHashTable * createSetHashTable( void ) ;
+GetPropertyHashTable * createSetHashTable(void);
 
 /**
 * destroy the hashtable and free the used resources.
 */
-void destroySetHashTable( SetPropertyHashTable * hashTable ) ;
+void destroySetHashTable(SetPropertyHashTable * hashTable);
 
 /**
 * Search for a key in a hashtable. if succeed, return the value needed. if failed, return NULL
 * @return The corresponding value if the key was found, NULL otherwise.
 */
-setPropertyFunc searchSetHashtable( SetPropertyHashTable * hashTable , char * key ) ;
+setPropertyFunc searchSetHashtable(SetPropertyHashTable * hashTable , char * key);
 
 /*
 * Insert a new element in the hashtable
 */
-int insertSetHashtable( SetPropertyHashTable * hashTable, char * key, setPropertyFunc value ) ;
+int insertSetHashtable(SetPropertyHashTable * hashTable, char * key, setPropertyFunc value);
 
 /*--------------------------------------------------------------------------*/
 

@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественная или комплексная квадратная матрица.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественная или комплексная квадратная матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,9 +39,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>atanm(x)</literal> - это матричный арктангенс матрицы <literal>x</literal>.
+            <code>atanm(x)</code> - это матричный арктангенс матрицы <varname>x</varname>.
             Результаты могут быть неточными, если 
-            <literal>x</literal> несимметричная матрица.
+            <varname>x</varname> - несимметричная матрица.
         </para>
     </refsection>
     <refsection>

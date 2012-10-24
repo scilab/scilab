@@ -31,6 +31,6 @@ int get_bar_layout_property(void* _pvCtx, char* pobjUID)
     //
     // FIXME
     //
-    return -1 ;
+    return -1;
 }
 /*------------------------------------------------------------------------*/

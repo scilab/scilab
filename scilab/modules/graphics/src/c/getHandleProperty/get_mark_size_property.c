@@ -39,7 +39,7 @@ int get_mark_size_property(void* _pvCtx, char* pobjUID)
 
     if (piMarkSize == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"mark_size");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_size");
         return -1;
     }
 

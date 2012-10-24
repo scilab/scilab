@@ -22,26 +22,26 @@
 #include "get_ticks_utils.h"
 #include "returnPropertyList.h"
 /*--------------------------------------------------------------------------------*/
-int buildTListForTicks( const double * locations, char * labels[], int nbTics )
+int buildTListForTicks(const double* locations, char * labels[], int nbTics)
 {
-  char * variable_tlist[] = {"ticks","locations","labels"};
+    char * variable_tlist[] = {"ticks", "locations", "labels"};
 
-  returnedList * tList = createReturnedList( 2, variable_tlist ) ;
+    returnedList * tList = createReturnedList(2, variable_tlist);
 
-  if (nbTics == 0)
-  {
-    // two empty matrices
-    addColVectorToReturnedList( tList, NULL, 0 ) ;
-    addColVectorToReturnedList( tList, NULL, 0 ) ;
-  }
-  else
-  {
-    addColVectorToReturnedList( tList, locations, nbTics ) ;
-    addStringColVectorToReturnedList( tList, labels, nbTics ) ;
-  }
+    if (nbTics == 0)
+    {
+        // two empty matrices
+        addColVectorToReturnedList(tList, NULL, 0);
+        addColVectorToReturnedList(tList, NULL, 0);
+    }
+    else
+    {
+        addColVectorToReturnedList(tList, locations, nbTics);
+        addStringColVectorToReturnedList(tList, labels, nbTics);
+    }
 
-  destroyReturnedList( tList ) ;
+    destroyReturnedList(tList);
 
-  return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------------*/

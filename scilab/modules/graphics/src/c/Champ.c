@@ -88,11 +88,11 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
     /* champ with color inherited from subwin */
     /* or champ1 (normed vector + color) is enabled */
-    int typeofchamp = ( colored == 0 ? 0 : 1 );
+    int typeofchamp = (colored == 0 ? 0 : 1);
 
     /* First create champ object */
     /* F.Leray Allocation de style[dim = Nbr1] */
-    if ((style = MALLOC ((*n1) * sizeof (int) )) == NULL)
+    if ((style = MALLOC ((*n1) * sizeof (int))) == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "champg");
         return;
@@ -131,9 +131,9 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
     setCurrentObject(newSegsUID);
 
-    if ( style != NULL )
+    if (style != NULL)
     {
-        FREE( style );
+        FREE(style);
         style = NULL;
     }
 

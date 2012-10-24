@@ -19,6 +19,16 @@
             taken into account.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+ls(SCIHOME)
+if ls(SCIHOME+"/scilab.ini") == [] & ls(SCIHOME+"/.scilab") == []
+   disp("No startup file defined");
+end
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

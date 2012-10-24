@@ -13,13 +13,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="st_deviation">
     <refnamediv>
         <refname>st_deviation</refname>
-        <refpurpose> standard deviation (row or
+        <refpurpose>standard deviation (row or
             column-wise) of vector/matrix entries
         </refpurpose>
     </refnamediv>
     <refnamediv xml:id="stdev">
         <refname>stdev</refname>
-        <refpurpose> standard deviation (row or column-wise) of vector/matrix entries</refpurpose>
+        <refpurpose>standard deviation (row or column-wise) of vector/matrix entries</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>

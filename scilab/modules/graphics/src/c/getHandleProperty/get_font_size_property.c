@@ -39,7 +39,7 @@ int get_font_size_property(void* _pvCtx, char* pobjUID)
 
     if (pdblFontSize == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"font_size");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_size");
         return -1;
     }
 

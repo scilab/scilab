@@ -75,7 +75,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
         }
         else if (messageAdr != NULL)
         {
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, getStringMatrixFromStack((size_t) messageAdr), jni_string_vector,
+            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector,
                                      nbColMessage * nbRowMessage);
             freeArrayOfString(messageAdr, nbColMessage * nbRowMessage);
         }
@@ -98,7 +98,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
 
             iValue = (int)(*(stk(fractionAdr)) * 100);
             setGraphicObjectProperty(pWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, getStringMatrixFromStack((size_t) messageAdr), jni_string_vector,
+            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector,
                                      nbColMessage * nbRowMessage);
             freeArrayOfString(messageAdr, nbColMessage * nbRowMessage);
         }
@@ -148,7 +148,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
                 return FALSE;
             }
 
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, getStringMatrixFromStack((size_t) messageAdr), jni_string_vector,
+            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector,
                                      nbColMessage * nbRowMessage);
             freeArrayOfString(messageAdr, nbColMessage * nbRowMessage);
         }
@@ -208,7 +208,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
         {
             iValue = (int)(*(stk(fractionAdr)) * 100);
             setGraphicObjectProperty(pWaitbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
-            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, getStringMatrixFromStack((size_t) messageAdr), jni_string_vector,
+            setGraphicObjectProperty(pWaitbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector,
                                      nbColMessage * nbRowMessage);
             freeArrayOfString(messageAdr, nbColMessage * nbRowMessage);
         }

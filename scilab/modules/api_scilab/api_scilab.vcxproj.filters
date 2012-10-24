@@ -63,6 +63,12 @@
     <ClCompile Include="src\c\DllmainApi_scilab.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\api_handle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_optional.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\api_boolean.h">
@@ -129,6 +135,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\dynlib_api_scilab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_handle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_internal_handle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_optional.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

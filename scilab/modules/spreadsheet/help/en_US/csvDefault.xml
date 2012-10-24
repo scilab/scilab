@@ -198,7 +198,7 @@
                     
                     <para>Possible values are "on", "off".</para>
                     
-                    <para>by default, this value is "off".</para>
+                    <para>by default, this value is "on".</para>
                 </listitem>
             </itemizedlist>
         </para>
@@ -239,6 +239,11 @@
                 <revnumber>5.4.0</revnumber>
                 <revremark>Function introduced. Based on the 'csv_readwrite' module.</revremark>
             </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>'blank' is enabled by default.</revremark>
+            </revision>
+            
         </revhistory>
     </refsection>
 </refentry>

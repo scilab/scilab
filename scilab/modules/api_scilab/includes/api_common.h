@@ -353,6 +353,21 @@ extern "C" {
     int checkVarDimension(void* _pvCtx, int* _piAddress, int _iRows, int _iCols);
 
     /**
+     * Check if type of variable
+     * @param[in] _iVar variable position
+     * @return 1 for true and 0 for false
+     */
+    int getInputArgumentType(void* _pvCtx, int _iVar);
+
+    /**
+     * Check if type of variable
+     * @param[in] _iVar variable position
+     * @param[in] _iType variable type to check
+     * @return 1 for true and 0 for false
+     */
+    int checkInputArgumentType(void* _pvCtx, int _iVar, int _iType);
+
+    /**
      * Check if a matrix is empty
      * @param[in] _piAddress variable address
      * @return 1 for true and 0 for false

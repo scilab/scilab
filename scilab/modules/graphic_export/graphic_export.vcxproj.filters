@@ -78,9 +78,6 @@
     <ClCompile Include="sci_gateway\c\sci_xs2svg.c">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\xs2file.c">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_driver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -91,6 +88,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\jni\Driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\xs2file.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

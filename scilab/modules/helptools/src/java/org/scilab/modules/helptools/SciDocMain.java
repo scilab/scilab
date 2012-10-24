@@ -14,6 +14,8 @@ package org.scilab.modules.helptools;
 
 import java.io.File;
 
+import org.xml.sax.SAXException;
+
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -166,6 +168,9 @@ public final class SciDocMain {
                 }
             }
 
+        } catch (SAXException e) {
+            System.err.println("An error occurred during the conversion:");
+            System.err.println(e.toString());
         } catch (Exception e) {
             System.err.println("An error occurred during the conversion:\n");
             e.printStackTrace();

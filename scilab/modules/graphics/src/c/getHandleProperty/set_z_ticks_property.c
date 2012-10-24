@@ -39,38 +39,38 @@
 
 /*------------------------------------------------------------------------*/
 /* @TODO: remove stackPointer, nbRow, nbCol which are used */
-int set_z_ticks_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_z_ticks_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL autoTicks = FALSE;
     BOOL status = FALSE;
-    AssignedList * tlist     = NULL ;
-    int            nbTicsRow = 0    ;
-    int            nbTicsCol = 0    ;
+    AssignedList * tlist     = NULL;
+    int            nbTicsRow = 0   ;
+    int            nbTicsCol = 0   ;
 
     double* userGrads = NULL;
     char** userLabels = NULL;
 
-    if ( !( valueType  == sci_tlist ))
+    if (valueType != sci_tlist)
     {
         Scierror(999, _("Wrong type for '%s' property: Typed list expected.\n"), "z_ticks");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    tlist = createTlistForTicks();
+    tlist = createTlistForTicks(_pvCtx);
 
-    if ( tlist == NULL )
+    if (tlist == NULL)
     {
         return SET_PROPERTY_ERROR;
     }
 
     /* locations */
-    userGrads = createCopyDoubleMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
+    userGrads = createCopyDoubleMatrixFromList(_pvCtx, tlist, &nbTicsRow, &nbTicsCol);
 
-    if ( userGrads == NULL && nbTicsRow == -1 )
+    if (userGrads == NULL && nbTicsRow == -1)
     {
         // if nbTicsRow = 0, it's just an empty matrix
         Scierror(999, _("%s: No more memory.\n"), "set_z_ticks_property");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
     /* Automatic ticks must be first deactivated in order to set user ticks */
@@ -92,9 +92,9 @@ int set_z_ticks_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int v
     // We need to check the size to not be 0 because an empty matrix is a matrix of double
     // and 'getCurrentStringMatrixFromList' expect a matrix of string (see bug 5148).
     // P.Lando
-    if ( nbTicsCol * nbTicsRow )
+    if (nbTicsCol * nbTicsRow)
     {
-        userLabels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
+        userLabels = getCurrentStringMatrixFromList(_pvCtx, tlist, &nbTicsRow, &nbTicsCol);
         /* Check if we should load LaTex / MathML Java libraries */
         loadTextRenderingAPI(userLabels, nbTicsCol, nbTicsRow);
 
@@ -113,7 +113,7 @@ int set_z_ticks_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int v
         FREE(userGrads);
     }
 
-    destroyAssignedList( tlist );
+    destroyAssignedList(tlist);
 
     return SET_PROPERTY_SUCCEED;
 

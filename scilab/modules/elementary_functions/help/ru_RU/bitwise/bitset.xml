@@ -19,8 +19,8 @@
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
         <synopsis>
-            y = bitset(x,pos)
-            y = bitset(x,pos,v)
+            y = bitset(x, pos)
+            y = bitset(x, pos, v)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,9 +30,9 @@
                 <term>x :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности (double) размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения. 
+                        матрица чисел двойной точности (<literal>double</literal>) размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. Должна содержать положительные целые значения.
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,11 +40,11 @@
                 <term>pos :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности (double) размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения. 
-                        Входная <literal>pos</literal> должна быть в диапазоне 1,2,...,bitmax
-                        где bitmax - максимальное количество битов в <literal>x</literal>.
+                        матрица чисел двойной точности (<literal>double</literal>) размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. Должна содержать положительные целые значения.
+                        Входная <varname>pos</varname> должна быть в диапазоне 1,2,...,<literal>bitmax</literal>
+                        где <literal>bitmax</literal> - максимальное количество битов в <varname>x</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,9 +52,9 @@
                 <term>v :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности (double) размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. По умолчанию v=1. Должна содержать положительные целые значения. 
+                        матрица чисел двойной точности (<literal>double</literal>) размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. По умолчанию <varname>v</varname><literal>=1</literal>. Должна содержать положительные целые значения.
                     </para>
                 </listitem>
             </varlistentry>
@@ -62,9 +62,9 @@
                 <term>y :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел размером m на n.
+                        матрица чисел двойной точности размером <literal>m</literal> на <literal>n</literal> 
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел размером <literal>m</literal> на <literal>n</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -73,7 +73,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Установка бита в определённой позиции.
+            Установка бита в определённой позиции <varname>pos</varname>.
         </para>
     </refsection>
     <refsection>

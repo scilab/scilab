@@ -41,7 +41,7 @@ int get_line_mode_property(void* _pvCtx, char* pobjUID)
 
     if (lineMode == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"line_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "line_mode");
         return -1;
     }
 

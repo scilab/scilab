@@ -22,19 +22,19 @@
 #include "InitObjects.h"
 #include "FigureList.h"
 
-static BOOL isGraphicModuleLoaded = FALSE ;
+static BOOL isGraphicModuleLoaded = FALSE;
 
 /*------------------------------------------------------------------------*/
-void loadGraphicModule( void )
+void loadGraphicModule(void)
 {
-    if ( isGraphicModuleLoaded )
+    if (isGraphicModuleLoaded)
     {
-        return ;
+        return;
     }
 
     /* Create hastable for get and set functions */
-    createScilabGetHashTable() ;
-    createScilabSetHashTable() ;
+    createScilabGetHashTable();
+    createScilabSetHashTable();
 
     /* Create hastable for handle storing */
     //getScilabHandleTab();
@@ -42,28 +42,28 @@ void loadGraphicModule( void )
     /* Create data for synchronization */
     //createGraphicSynchronizer();
 
-    C2F(graphicsmodels)() ;
+    C2F(graphicsmodels)();
 
     /* Register Scilab as a dedicated View */
     registerToController();
 
-    isGraphicModuleLoaded = TRUE ;
+    isGraphicModuleLoaded = TRUE;
 }
 /*------------------------------------------------------------------------*/
-void closeGraphicModule( void )
+void closeGraphicModule(void)
 {
-    if ( !isGraphicModuleLoaded )
+    if (!isGraphicModuleLoaded)
     {
-        return ;
+        return;
     }
 
     /* destroy all graphic windows */
-    AllGraphWinDelete() ;
+    AllGraphWinDelete();
 
     /* Unegister Scilab as a dedicated View */
     unregisterToController();
 
-    isGraphicModuleLoaded = FALSE ;
+    isGraphicModuleLoaded = FALSE;
 
 }
 /*------------------------------------------------------------------------*/

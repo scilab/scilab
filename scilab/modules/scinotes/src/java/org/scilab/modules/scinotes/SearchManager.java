@@ -137,6 +137,7 @@ public class SearchManager {
         String word = exp;
         if (word != null && !word.equals("")) {
             if (!useRegexp) {
+                word = word.replace("\\E", "\\E\\\\E\\Q");
                 word = "\\Q" + word + "\\E";
                 if (wholeWord) {
                     word = "\\b" + word + "\\b";
@@ -389,7 +390,9 @@ public class SearchManager {
             reader.close();
             int i = 0;
             if (len != -1) {
-                for (; i < len && buffer[i] != '\0'; i++);
+                for (; i < len && buffer[i] != '\0'; i++) {
+                    ;
+                }
             }
 
             return len != -1 && i != len;

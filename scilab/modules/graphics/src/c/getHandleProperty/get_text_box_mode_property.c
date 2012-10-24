@@ -41,7 +41,7 @@ int get_text_box_mode_property(void* _pvCtx, char* pobjUID)
 
     if (piTextBoxMode == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"text_box_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "text_box_mode");
         return -1;
     }
 

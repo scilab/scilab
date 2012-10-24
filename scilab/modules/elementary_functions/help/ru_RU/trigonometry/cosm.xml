@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>t=cosm(x)</synopsis>
+        <synopsis>t = cosm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественная или комплексная квадратная матрица</para>
+                    <para>вещественная или комплексная квадратная матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,8 +33,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>cosm(x)</literal> является матричным косинусом матрицы <literal>x</literal>.
-            <literal>t=0.5*(expm(%i*x)+expm(-%i*x))</literal>.
+            <code>cosm(x)</code> является матричным косинусом матрицы <varname>x</varname>.
+            <code>t=0.5*(expm(%i*x)+expm(-%i*x))</code>.
         </para>
     </refsection>
     <refsection>

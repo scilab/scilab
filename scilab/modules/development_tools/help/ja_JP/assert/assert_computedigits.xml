@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_computedigits" xml:lang="ja">
+    <refnamediv>
+        <refname>assert_computedigits</refname>
+        <refpurpose>計算結果の上位桁数を返す.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            d = assert_computedigits ( computed , expected )
+            d = assert_computedigits ( computed , expected , basis )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>computed :</term>
+                <listitem>
+                    <para> doubleの行列, 計算値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>expected :</term>
+                <listitem>
+                    <para> doubleの行列, 予測値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>basis :</term>
+                <listitem>
+                    <para> 1行1列のdoubleの行列, 整数値,  基底 (デフォルトの基底=10)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d :</term>
+                <listitem>
+                    <para> doubleの行列, 上位桁数.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            以下の式により非ゼロの結果の予測値に対する
+            計算結果の上位桁数を計算します:
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                d = - \frac{\log_{10} ( r )}{\log_{10}(basis)}
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            ただし,相対誤差は以下により定義されます
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                r = \frac{|computed - expected|}{|expected|}
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            オプションのパラメータが空の行列[]に等しい場合,
+            そのデフォルト値に置換されます.
+        </para>
+        <para>
+            上位桁数は dmin = 0 と 
+            dmax = -log10(2^(-53)) (約 15.95 ~ 16 ) の範囲となります.
+            基底2の場合,上位桁数は 53です.
+        </para>
+        <para>
+            expectedがcomputedに等しい場合, d は最大値,すなわちdmax,に
+            設定されます.
+            そうでない場合,expectedがゼロでcomputedがゼロでない場合,
+            d はその最小値,すなわち dmin=0に設定されます.
+        </para>
+        <para>
+            相対誤差は予測値に基づいているため,
+            computedとexpectedの値は交換できません.
+        </para>
+        <para>
+            計算は値の実部と虚部に分割されます.
+            桁数の戻り値は,実部と虚部の桁数の最小値です.
+        </para>
+        <para>
+            TODO : assert_digits ( computed , expected , dmin ) 関数の中で computedigitsを使用
+        </para>
+        <para>
+            TODO :
+            比較 "matrix" (現在は "element")のためのcomptypeオプションを追加
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+d = assert_computedigits ( 1 , 1 ) // d ~ 16
+d = assert_computedigits ( 1 , 1 , 2 ) // d = 53
+d = assert_computedigits ( 0 , 0 ) // d ~ 16
+d = assert_computedigits ( 1 , 0 ) // d = 0
+d = assert_computedigits ( 0 , 1 ) // d = 0
+d = assert_computedigits ( 3.1415926 , %pi ) // d ~ 8
+d = assert_computedigits ( 3.1415926 , %pi , 2 ) // d ~ 26
+d = assert_computedigits ( [0 0 1 1] , [0 1 0 1] ) // d ~ [16 0 0 16]
+d = assert_computedigits(ones(3,2),ones(3,2)) // d ~ 16 * ones(3,2)
+d = assert_computedigits(1.224646799D-16,8.462643383D-18) // d = 0
+
+// IEEE値を確認
+// d ~ [16 0 0 0]
+d = assert_computedigits([%nan %nan %nan %nan],[%nan %inf -%inf 0])
+// d ~ [0 16 0 0]
+d = assert_computedigits([%inf %inf %inf %inf],[%nan %inf -%inf 0])
+// d = [0 0 16 0]
+d = assert_computedigits([-%inf -%inf -%inf -%inf],[%nan %inf -%inf 0])
+// d = [0 0 0 16]
+d = assert_computedigits([0 0 0 0],[%nan %inf -%inf 0])
+
+// 複素数を確認
+d = assert_computedigits ( 1.2345 + %i*6.7891 , 1.23456789 + %i*6.789123456 ) // d ~ 4
+
+   ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

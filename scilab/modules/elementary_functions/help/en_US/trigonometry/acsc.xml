@@ -19,13 +19,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Real or complex array.</para>
+                    <para>a real or complex array.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>Real or complex array.</para>
+                    <para>a real or complex array.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -37,9 +37,9 @@
             real.
         </para>
         <para>
-            The following equalities hold: <literal>acsc(z) = -acsc(-z) =
-                asin(1/z) = %pi/2-asec(z) = %i*acsch(%i*z)
-            </literal>
+            The following equalities hold: <code>acsc(z) == -acsc(-z) ==
+                asin(1/z) == %pi/2-asec(z) == %i*acsch(%i*z)
+            </code>
         </para>
     </refsection>
     <refsection>

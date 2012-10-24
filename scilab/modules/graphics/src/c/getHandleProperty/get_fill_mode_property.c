@@ -39,7 +39,7 @@ int get_fill_mode_property(void* _pvCtx, char* pobjUID)
 
     if (piFillMode == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"fill_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "fill_mode");
         return -1;
     }
 

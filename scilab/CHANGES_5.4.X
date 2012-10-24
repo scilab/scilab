@@ -1,16 +1,72 @@
+                    Changes between version 5.4.0 and 5.4.1
+                    =======================================
 
 
-* Interactive point-and-click curve editor, now the user can select/unselect
-  hide/unhide and delete curves, copy, cut and paste selected curves between figures,
-  now figures can be copied as an image to system clipboard(only under Windows).
+Improvements
+=============
 
-* History
+* A warning has been added for 1./x and 1.\x syntax clarification.
 
-* Native datatips
 
-* Modifications of data
+Xcos
+=====
 
-* Graphic editor
+* Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the 
+                     initial value behavioral.
+
+* Bug #10434 fixed - loadXcosLibs changed the predef value.
+
+* Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
+
+* Bug #11775 fixed - xcos.tst crashed on Linux and MacOS X.
+
+* Bug #11821 fixed - Running XcosPalAdd example from help led to deadlock
+
+* Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
+                     Scilab crash.
+
+* Bug #11919 fixed - DLSS block with empty matrix as parameters made Scilab crash.
+
+* Bug #11963 fixed - input port in superblock was corrupted.
+
+* Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
+
+
+Bug fixes
+==========
+
+* Bug #3313 fixed - In the documentation, the title of a link was using the
+                    id instead of the title of the page.
+
+* Bug #8883 fixed - In some cases, Scilab build from sources was looking for
+                   libraries at the wrong place.
+
+* Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
+
+* Bug #11474 fixed - save_format help page was still refering to the old save
+                     format. Use the SEP #64 content.
+
+* Bug #11811 fixed - Fix a typo in the help page of Scinotes.
+
+* Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
+
+* Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
+                    containing a \E.
+
+* Bug #11971 fixed - Canceling "Open File" action launched from icon in the
+                    toolbar opened SciNotes anyway.
+
+
+* Bug #11981 fixed - Smooth french help page had a wrong declaration
+                     (colonnes => lignes).
+
+* Bug #11991 fixed - Under Windows, some empty lines were added by csvWrite.
+
+* Bug #11999 fixed - Blank lines ignored by default by csvRead / read_csv.
+
+* Bug #12003 fixed - Fix a typo in the spreadsheet module.
+
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================

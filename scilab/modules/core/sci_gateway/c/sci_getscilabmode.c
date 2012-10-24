@@ -10,6 +10,7 @@
  *
  */
 #include <string.h>
+#include "api_scilab.h"
 #include "gw_core.h"
 #include "stack-c.h"
 #include "MALLOC.h"
@@ -22,10 +23,11 @@ int C2F(sci_getscilabmode)(char *fname, unsigned long fname_len)
 {
     int n1 = 0, m1 = 0;
     char *output = NULL ;
+    int iRet = 0;
+    SciErr sciErr;
 
-    Rhs = Max(Rhs, 0);
-    CheckRhs(0, 0) ;
-    CheckLhs(1, 1) ;
+    CheckInputArgument(pvApiCtx, 0, 0) ;
+    CheckOutputArgument(pvApiCtx, 1, 1) ;
 
     switch (getScilabMode())
     {
@@ -44,17 +46,17 @@ int C2F(sci_getscilabmode)(char *fname, unsigned long fname_len)
             break;
     }
 
-    n1 = 1;
-    m1 = (int)strlen(output);
-    CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &m1, &n1, &output);
-    if (output)
+    /* Create the string matrix as return of the function */
+    iRet = createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, output);
+    free(output); // Data have been copied into Scilab memory
+    if (iRet)
     {
-        FREE(output);
-        output = NULL;
+        freeAllocatedSingleString(output);
+        return 1;
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

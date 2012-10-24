@@ -30,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_handle_visible_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_handle_visible_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status = FALSE;
 
-    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "handle_visible");
+    b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "handle_visible");
     if (b == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;

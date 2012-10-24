@@ -28,25 +28,25 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_viewport_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_viewport_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int values[4];
     BOOL status = FALSE;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "viewport");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow * nbCol != 2 )
+    if (nbRow * nbCol != 2)
     {
         Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "viewport", 2);
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
     /* For now we just use viewport positions */
-    copyDoubleVectorToIntFromStack(stackPointer, values, 2);
+    copyDoubleVectorToIntFromStack(_pvData, values, 2);
 
     /* dummy values */
     values[2] = 0;

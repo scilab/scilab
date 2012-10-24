@@ -19,7 +19,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "getPropertyAssignedValue.h"
 #include "axesScale.h"
 #include "localization.h"
@@ -49,12 +49,29 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4]);
  */
 static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
 {
+    SciErr sciErr;
     int nbRow = 0;
     int nbCol = 0;
-    size_t stackPointer = 0;
+    int* piAddrstackPointer = NULL;
+    double* stackPointer = NULL;
     int i = 0;
-    double * rectVect = NULL;
-    GetRhsVar(attribPos, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
+    double* rectVect = NULL;
+    sciErr = getVarAddressFromPosition(pvApiCtx, attribPos, &piAddrstackPointer);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position attribPos.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrstackPointer, &nbRow, &nbCol, &stackPointer);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, attribPos);
+        return 1;
+    }
+
 
     if (nbRow * nbCol != 4)
     {
@@ -69,7 +86,7 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
         return FALSE;
     }
 
-    rectVect = stk(stackPointer);
+    rectVect = (stackPointer);
     for (i = 0; i < 4; i++)
     {
         rect[i] = rectVect[i];
@@ -87,14 +104,31 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
  */
 static char * getZoomedObject(const char * fname)
 {
+    SciErr sciErr;
     int nbRow  = 0;
     int nbCol = 0;
-    size_t stackPointer = 0;
+    int* piAddrstackPointer = NULL;
+    long long* stackPointer = NULL;
     char *res = NULL;
     int iType = -1;
     int *piType = &iType;
     /* if a handle is specified it must be the first input argument */
-    GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrstackPointer);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return NULL;
+    }
+
+    // Retrieve a matrix of handle at position 1.
+    sciErr = getMatrixOfHandle(pvApiCtx, piAddrstackPointer, &nbRow, &nbCol, &stackPointer);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+        return NULL;
+    }
+
 
     /* check that there is only a single Figre or subwin */
     if (nbRow * nbCol != 1)
@@ -103,7 +137,7 @@ static char * getZoomedObject(const char * fname)
         return NULL;
     }
 
-    res = (char*)getObjectFromHandle(getHandleFromStack(stackPointer));
+    res = (char*)getObjectFromHandle((long int) * stackPointer);
 
     if (res == NULL)
     {
@@ -134,9 +168,9 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
     int *piHidden = &iHidden;
     int i = 0;
 
-    CheckRhs(0, 2) ;
-    CheckLhs(0, 1) ;
-    if (Rhs == 0)
+    CheckInputArgument(pvApiCtx, 0, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+    if (nbInputArgument(pvApiCtx) == 0)
     {
         /* zoom_rect() */
         pFigureUID = (char*)getCurrentFigure();
@@ -146,11 +180,11 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
         }
         startInteractiveZoom(pFigureUID);
     }
-    else if (Rhs == 1)
+    else if (nbInputArgument(pvApiCtx) == 1)
     {
         /* zoom_rect([xmin,ymin,xmax,ymax]) or zoom_rect(handle) */
         /* with handle a figure or subwindow */
-        if (GetType(1) == sci_handles)
+        if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
             char * pstZoomedObject = getZoomedObject(fname);
             if (pstZoomedObject == NULL)
@@ -159,7 +193,7 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
             }
             startInteractiveZoom(pstZoomedObject);
         }
-        else if (GetType(1) == sci_matrix)
+        else if (checkInputArgumentType(pvApiCtx, 1, sci_matrix))
         {
             double rect[4];
             if (getZoomRect(fname, 1, rect))
@@ -200,14 +234,14 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
             return 0;
         }
     }
-    else if (Rhs == 2)
+    else if (nbInputArgument(pvApiCtx) == 2)
     {
         /* zoom_rect(handle, [xmin,ymin,xmax,ymax]) */
 
         double rect[4];
         char *zoomedObject = NULL;
 
-        if (GetType(1) != sci_handles || GetType(2) != sci_matrix)
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)) || (!checkInputArgumentType(pvApiCtx, 2, sci_matrix)))
         {
             Scierror(999, _("%s: Wrong type for input arguments: Handle or vector of double expected.\n"), fname);
             return -1;
@@ -227,8 +261,8 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
         }
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

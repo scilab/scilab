@@ -5,9 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 
-loadXcosLibs();
 
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/tows_c.xcos"));
 scicos_simulate(scs_m, list());

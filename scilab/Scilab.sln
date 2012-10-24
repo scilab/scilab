@@ -441,6 +441,9 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "functions_f", "modules\func
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "api_scilab", "modules\api_scilab\api_scilab.vcxproj", "{43C5BAB1-1DCA-4743-A183-77E0D42FE7D0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D} = {DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hdf5", "modules\hdf5\src\c\hdf5.vcxproj", "{A824EA62-AF07-4F43-9036-0E63990556BD}"
 EndProject
@@ -1458,10 +1461,6 @@ Global
 		{AB7EBA0D-1B00-4B1B-BB00-62AB38E2309A}.Debug|x64.ActiveCfg = Debug|x64
 		{AB7EBA0D-1B00-4B1B-BB00-62AB38E2309A}.Release|Win32.ActiveCfg = Release|Win32
 		{AB7EBA0D-1B00-4B1B-BB00-62AB38E2309A}.Release|x64.ActiveCfg = Release|x64
-		{78D46B73-ADD7-40CF-8436-B66897B18D9A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{78D46B73-ADD7-40CF-8436-B66897B18D9A}.Debug|x64.ActiveCfg = Debug|x64
-		{78D46B73-ADD7-40CF-8436-B66897B18D9A}.Release|Win32.ActiveCfg = Release|Win32
-		{78D46B73-ADD7-40CF-8436-B66897B18D9A}.Release|x64.ActiveCfg = Release|x64
 		{DABDF840-2A2F-4B38-90B2-A4393E6DF38B}.Debug|Win32.ActiveCfg = Debug|Win32
 		{DABDF840-2A2F-4B38-90B2-A4393E6DF38B}.Debug|x64.ActiveCfg = Debug|x64
 		{DABDF840-2A2F-4B38-90B2-A4393E6DF38B}.Release|Win32.ActiveCfg = Release|Win32

@@ -29,8 +29,8 @@
 /*------------------------------------------------------------------------*/
 int get_figure_style_property(void* _pvCtx, char* pobjUID)
 {
-  /* no more old style */
-  sciReturnString(_pvCtx, "new") ;
-  return 0 ;
+    /* no more old style */
+    sciReturnString(_pvCtx, "new");
+    return 0;
 }
 /*------------------------------------------------------------------------*/

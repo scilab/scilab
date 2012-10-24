@@ -39,7 +39,7 @@ int get_cdata_mapping_property(void* _pvCtx, char* pobjUID)
 
     if (piCDataMapping == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"cdata_mapping");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "cdata_mapping");
         return -1;
     }
 

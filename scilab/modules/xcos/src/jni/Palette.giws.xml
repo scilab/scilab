@@ -23,7 +23,6 @@
             <parameter name="target" type="String[]"/>
         </method>
         <method name="generatePaletteIcon" returnType="void" modifier="static">
-            <parameter name="blockName" type="String"/>
             <parameter name="iconPath" type="String"/>
         </method>
     </object>

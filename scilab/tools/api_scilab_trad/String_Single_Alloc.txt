@@ -1,0 +1,8 @@
+\1char* \5 = NULL; //@MOVE@
+\1// YOU MUST REMOVE YOUR VARIABLE DECLARATION "int \5".
+\1if (allocSingleString(pvApiCtx, \2, \3 * \4, &\5))\6
+\1{
+\1    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+\1    return 1;
+\1}
+

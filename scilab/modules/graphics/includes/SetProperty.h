@@ -34,14 +34,14 @@
 #include "dynlib_graphics.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP int sciSetLineWidth ( char* pobj, double linewidth ) ;  /* SET */
+GRAPHICS_IMPEXP int sciSetLineWidth (char* pobj, double linewidth) ;  /* SET */
 
-GRAPHICS_IMPEXP int sciSetLineStyle ( char* pobj, int linestyle ) ; /* SET */
+GRAPHICS_IMPEXP int sciSetLineStyle (char* pobj, int linestyle) ; /* SET */
 
 GRAPHICS_IMPEXP int sciSetMarkSize (char* pobj, int marksize); /* SET */
 
 /* Text Functions */
-GRAPHICS_IMPEXP int sciSetText (   char* pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
+GRAPHICS_IMPEXP int sciSetText (  char* pobj, char ** text, int nbRow, int nbCol) ; /* SET */
 
 /* GMODE */
 GRAPHICS_IMPEXP int sciSetDefaultValues (void); /* SET */

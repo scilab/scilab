@@ -5,9 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 
-loadXcosLibs();
 
 //
 // Test Diagram with fromws after end behavior

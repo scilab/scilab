@@ -34,31 +34,31 @@
 /**
  * Close the figure with number winNum.
  */
-void sciDeleteWindow( int winNum )
+void sciDeleteWindow(int winNum)
 {
-  deleteGraphicObject((char*)getFigureFromIndex(winNum));
+    deleteGraphicObject((char*)getFigureFromIndex(winNum));
 }
 /*--------------------------------------------------------------------------------*/
-void AllGraphWinDelete( void )
+void AllGraphWinDelete(void)
 {
 
-  int num = sciGetNbFigure() ;
-  int *ArrayWGraph = NULL ;
+    int num = sciGetNbFigure();
+    int *ArrayWGraph = NULL;
 
-  /* sciGetIdFigure (ArrayWGraph,&num,&iflag); */
+    /* sciGetIdFigure (ArrayWGraph,&num,&iflag); */
 
-  if (num > 0)
-  {
-    int i=0;
-    ArrayWGraph=(int*)MALLOC(sizeof(int)*num);
-
-    sciGetFiguresId( ArrayWGraph ) ;
-
-    for (i=0;i<num;i++)
+    if (num > 0)
     {
-      sciDeleteWindow(ArrayWGraph[i]);
+        int i = 0;
+        ArrayWGraph = (int*)MALLOC(sizeof(int) * num);
+
+        sciGetFiguresId(ArrayWGraph);
+
+        for (i = 0; i < num; i++)
+        {
+            sciDeleteWindow(ArrayWGraph[i]);
+        }
+        FREE (ArrayWGraph);
+        ArrayWGraph = NULL;
     }
-    FREE (ArrayWGraph);
-    ArrayWGraph=NULL;
-  }
 }

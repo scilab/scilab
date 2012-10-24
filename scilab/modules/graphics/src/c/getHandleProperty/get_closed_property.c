@@ -39,7 +39,7 @@ int get_closed_property(void* _pvCtx, char* pobjUID)
 
     if (piClosed == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"closed");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "closed");
         return -1;
     }
 

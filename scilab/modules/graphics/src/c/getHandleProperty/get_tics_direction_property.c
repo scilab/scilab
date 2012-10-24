@@ -61,7 +61,7 @@ int get_tics_direction_property(void* _pvCtx, char* pobjUID)
     }
     else
     {
-        Scierror(999, _("Wrong value for '%s' property.\n"),"tics_direction");
+        Scierror(999, _("Wrong value for '%s' property.\n"), "tics_direction");
     }
 
     return -1;

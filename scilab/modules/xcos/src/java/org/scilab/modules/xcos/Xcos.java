@@ -95,7 +95,7 @@ public final class Xcos {
     public static final String TRADENAME = "Xcos";
     public static final ImageIcon ICON = new ImageIcon(ScilabSwingUtilities.findIcon("utilities-system-monitor", "256x256"));
 
-    private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "loadXcosLibs(); loadScicos();";
+    private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "prot=funcprot(); funcprot(0); loadXcosLibs(); loadScicos(); funcprot(prot); clear prot";
 
     /*
      * Dependencies version

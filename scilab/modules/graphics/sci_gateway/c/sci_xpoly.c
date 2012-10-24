@@ -19,7 +19,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "sciCall.h"
 #include "DrawObjects.h"
 #include "GetProperty.h"
@@ -35,12 +35,23 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xpoly( char * fname, unsigned long fname_len )
+int sci_xpoly(char * fname, unsigned long fname_len)
 {
+    SciErr sciErr;
+
+    int* piAddrl1 = NULL;
+    double* l1 = NULL;
+    int* piAddrl2 = NULL;
+    double* l2 = NULL;
+    int* piAddrl3 = NULL;
+    char* l3 = NULL;
+    int* piAddrl4 = NULL;
+    double* l4 = NULL;
+
     char *psubwinUID = NULL;
     char* pobjUID = NULL;
 
-    int m1 = 0,n1 = 0,l1 = 0 ,m2 = 0 ,n2 = 0 ,l2 = 0,m3 = 0,n3 = 0,l3 = 0,m4 = 0,n4 = 0,l4 = 0,close=0,mn2 = 0;
+    int m1 = 0, n1 = 0, m2 = 0 , n2 = 0, m4 = 0, n4 = 0, close = 0, mn2 = 0;
 
     long hdl = 0;/* NG */
     int mark = 0;/* NG */
@@ -50,48 +61,118 @@ int sci_xpoly( char * fname, unsigned long fname_len )
     int iTmp = 0;
     int* piTmp = &iTmp;
 
-    CheckRhs(2,4);
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
-    CheckSameDims(1,2,m1,n1,m2,n2);
+    CheckInputArgument(pvApiCtx, 2, 4);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 1.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 2.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        return 1;
+    }
+
+    //CheckSameDims
+    if (m1 != m2 || n1 != n2)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, 1, m1, n1);
+        return 1;
+    }
+
     mn2 = m2 * n2;
 
-    if (Rhs >= 3)
+    if (nbInputArgument(pvApiCtx) >= 3)
     {
-        GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-        if ( strcmp(cstk(l3),"lines") == 0)
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrl3);
+        if (sciErr.iErr)
         {
-            strcpy(C2F(cha1).buf,"xlines");
-            mark=1; /* NG */
+            printError(&sciErr, 0);
+            return 1;
         }
-        else if (strcmp(cstk(l3),"marks") == 0)
+
+        // Retrieve a matrix of double at position 3.
+        if (getAllocatedSingleString(pvApiCtx, piAddrl3, &l3))
         {
-            strcpy(C2F(cha1).buf,"xmarks");
-            mark=0; /* NG */
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            return 1;
+        }
+
+        if (strcmp((l3), "lines") == 0)
+        {
+            strcpy(C2F(cha1).buf, "xlines");
+            mark = 1; /* NG */
+        }
+        else if (strcmp((l3), "marks") == 0)
+        {
+            strcpy(C2F(cha1).buf, "xmarks");
+            mark = 0; /* NG */
         }
         else
         {
-            Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname,3, "lines","marks");
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "lines", "marks");
             return 0;
         }
     }
     else
     {
-        strcpy(C2F(cha1).buf,"xlines");
-        mark=1; /* NG */
+        strcpy(C2F(cha1).buf, "xlines");
+        mark = 1; /* NG */
     }
 
-    if (Rhs >= 4)
+    if (nbInputArgument(pvApiCtx) >= 4)
     {
-        GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4);
-        CheckScalar(4,m4,n4);
-        close = (int)  *stk(l4);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddrl4);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 4.
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddrl4, &m4, &n4, &l4);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+            return 1;
+        }
+
+        //CheckScalar
+        if (m4 != 1 || n4 != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 4);
+            return 1;
+        }
+
+        close = (int)  * (l4);
     }
     /* NG beg */
 
     psubwinUID = (char*)getOrCreateDefaultSubwin();
 
-    Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
+    Objpoly ((l1), (l2), mn2, close, mark, &hdl);
 
     pobjUID = (char*)getObjectFromHandle(hdl); /* the polyline newly created */
 
@@ -101,7 +182,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
      * The contour properties set calls below were
      * already present and have been updated for the MVC.
      */
-    if(mark == 0)
+    if (mark == 0)
     {
         /* marks are enabled but markstyle & foreground
            is determined by parents' markstyle & foreground */
@@ -130,8 +211,11 @@ int sci_xpoly( char * fname, unsigned long fname_len )
     setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
 
     /* NG end */
-    LhsVar(1)=0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
+
+    freeAllocatedSingleString(l3);
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="quote">
     <refnamediv>
         <refname>quote</refname>
-        <refpurpose> (') transpose operator, string delimiter</refpurpose>
+        <refpurpose>(') transpose operator, string delimiter</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -24,7 +24,9 @@
 [1+%i, 2]'
 [1+%i, 2].'
 x='This is a character string'
+x="This is another character string"
 'He said:''Good'''
+'He said:""Very Good""'
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

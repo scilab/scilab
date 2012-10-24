@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>y=cosd(x)</synopsis>
+        <synopsis>y = cosd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real vector/matrix</para>
+                    <para>a real vector/matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,8 +33,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            For a vector or a matrix <literal>x</literal> of angles given in
-            degree, <literal>cosd(x)</literal> is the cosine of its elements. The
+            For a vector or a matrix <varname>x</varname> of angles given in
+            degree, <code>cosd(x)</code> is the cosine of its elements. The
             results are in <literal>[-1 1]</literal>. For input elements which are
             equal to <literal>n*90</literal> with <literal>n</literal> integer and
             odd, the result is exactly zero.
@@ -50,8 +50,6 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
- 
-
 x=[0,30 45 60 90 360];
 cosd(x)
  ]]></programlisting>

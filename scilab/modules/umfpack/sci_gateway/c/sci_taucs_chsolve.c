@@ -4,6 +4,8 @@
  *   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do
  *                 Espírito Santo, Brazil. <frasson@ele.ufes.br>.
  *
+ *  Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
+ *
  * PURPOSE: Scilab interfaces routines onto the UMFPACK sparse solver
  * (Tim Davis) and onto the TAUCS snmf choleski solver (Sivan Teledo)
  *
@@ -51,9 +53,9 @@
   |       A : (optional) if provided a refiment step if taken   |
   |                                                             |
   +------------------------------------------------------------*/
+#include "api_scilab.h"
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
-#include "stack-c.h"
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "Scierror.h"
@@ -62,56 +64,128 @@
 
 extern CellAdr *ListCholFactors;
 
-
 int sci_taucs_chsolve(char* fname, unsigned long l)
 {
-    int mb = 0, nb = 0, lb = 0, lx = 0, one = 1, lv = 0, lres = 0;
-    int mC_ptr = 0, nC_ptr = 0, lC_ptr = 0;
-    int mA = 0, nA = 0, i = 0, j = 0, n = 0, it_flag = 0, Refinement = 0;
-    double *b = NULL, *x = NULL, *v = NULL, *res = NULL, norm_res = 0., norm_res_bis = 0.;
+    SciErr sciErr;
+
+    int mb = 0, nb = 0;
+    int i = 0, j = 0, n = 0, it_flag = 0, Refinement = 0;
+    double norm_res = 0., norm_res_bis = 0.;
     long double *wk = NULL;
     int A_is_upper_triangular = 0;
     taucs_handle_factors * pC = NULL;
+
     SciSparse A;
+    int mA              = 0; // rows
+    int nA              = 0; // cols
+    int iNbItem         = 0;
+    int* piNbItemRow    = NULL;
+    int* piColPos       = NULL;
+    double* pdblSpReal  = NULL;
+    double* pdblSpImg   = NULL;
+    int iComplex        = 0;
+
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
+    int* piAddr3 = NULL;
+
+    void* pvPtr     = NULL;
+    double* pdblB   = NULL;
+    double* pdblX   = NULL;
+    double* pdblV   = NULL;
+    double* pdblRes = NULL;
 
     /* Check numbers of input/output arguments */
-    CheckRhs(2, 3);
-    CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 2, 3);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
     /* First get arg #1 : the pointer to the Cholesky factors */
-    GetRhsVar(1, SCILAB_POINTER_DATATYPE, &mC_ptr, &nC_ptr, &lC_ptr);
-    pC = (taucs_handle_factors *) ((unsigned long int) * stk(lC_ptr));
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getPointer(pvApiCtx, piAddr1, &pvPtr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    pC = (taucs_handle_factors *)pvPtr;
 
     /* Check if this pointer is a valid ref to a Cholesky factor object */
     if ( ! IsAdrInList( (Adr)pC, ListCholFactors, &it_flag) )
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: not a valid reference to Cholesky factors"), fname, 1);
-        return 0;
-    };
+        return 1;
+    }
 
     /*  the number of rows/lines of the matrix  */
     n = pC->n;
     /* Get now arg #2 : the vector b */
-    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE , &mb, &nb, &lb);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &mb, &nb, &pdblB);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
     /* test if the right hand side is compatible */
     if (mb != n || nb < 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
-        return 0;
-    };
+        return 1;
+    }
 
-    /* get the pointer for b */
-    b = stk(lb);
-
-    if ( Rhs == 3 )
+    if (Rhs == 3)
     {
-        GetRhsVar(3,  SPARSE_MATRIX_DATATYPE, &mA, &nA, &A);
-        if ( mA != nA  ||  mA != n  ||  A.it == 1 )
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        if (isVarComplex(pvApiCtx, piAddr3))
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: not compatible with the Choleski factorisation.\n"), fname, 3);
+            return 1;
+        }
+
+        sciErr = getSparseMatrix(pvApiCtx, piAddr3, &mA, &nA, &iNbItem, &piNbItemRow, &piColPos, &pdblSpReal);
+
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // fill struct sparse
+        A.m     = mA;
+        A.n     = nA;
+        A.it    = iComplex;
+        A.nel   = iNbItem;
+        A.mnel  = piNbItemRow;
+        A.icol  = piColPos;
+        A.R     = pdblSpReal;
+        A.I     = pdblSpImg;
+
+        if (mA != nA || mA != n)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: not compatible with the Choleski factorisation.\n"), fname, 3);
-            return 0;
-        };
+            return 1;
+        }
+
         Refinement = 1;
         A_is_upper_triangular = is_sparse_upper_triangular(&A);
     }
@@ -121,52 +195,66 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
     }
 
     /* allocate memory for the solution x */
-    CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lx);
-    x = stk(lx);
-
-    /* allocate memory for a temporary vector v */
-    CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lv);
-    v = stk(lv);
-
-    if ( Refinement )
+    sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, mb, nb, &pdblX);
+    if (sciErr.iErr)
     {
-        CreateVar(Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &mb, &one, &lres);
-        res = stk(lres);
-        if ( A_is_upper_triangular )
-            if ( (wk = MALLOC( n * sizeof(long double))) == NULL )
-            {
-                Scierror(999, _("%s: not enough memory.\n"), fname);
-                return 0;
-            };
+        printError(&sciErr, 0);
+        return 1;
     }
 
-    for ( j = 0; j < nb ; j++ )
+    /* allocate memory for a temporary vector v */
+    pdblV = (double*)MALLOC(mb * sizeof(double));
+
+    if (Refinement)
     {
-        taucs_vec_permute(n, &b[j * mb], &x[j * mb], pC->p);
-        taucs_supernodal_solve_llt(pC->C, v, &x[j * mb]); /* FIXME : add a test here */
-        taucs_vec_ipermute(n, v, &x[j * mb], pC->p);
-        if ( Refinement )
+        pdblRes = (double*)MALLOC(mb * sizeof(double));
+        if ( A_is_upper_triangular )
+        {
+            if ( (wk = (long double*)MALLOC( n * sizeof(long double))) == NULL )
+            {
+                Scierror(999, _("%s: not enough memory.\n"), fname);
+                return 1;
+            }
+        }
+    }
+
+    for (j = 0; j < nb ; j++)
+    {
+        taucs_vec_permute(n, &pdblB[j * mb], &pdblX[j * mb], pC->p);
+        taucs_supernodal_solve_llt(pC->C, pdblV, &pdblX[j * mb]); /* FIXME : add a test here */
+        taucs_vec_ipermute(n, pdblV, &pdblX[j * mb], pC->p);
+        if (Refinement)
         {
             /* do one iterative refinement */
-            residu_with_prec_for_chol(&A, &x[j * mb], &b[j * mb], res, &norm_res, A_is_upper_triangular, wk);
+            residu_with_prec_for_chol(&A, &pdblX[j * mb], &pdblV[j * mb], pdblRes, &norm_res, A_is_upper_triangular, wk);
             /*  FIXME: do a test if the norm_res has an anormal value and send a warning
              *         (the user has certainly not give the good matrix A
              */
-            taucs_vec_permute(n, res, v, pC->p);
-            taucs_supernodal_solve_llt(pC->C, res, v);  /* FIXME : add a test here */
-            taucs_vec_ipermute(n, res, v, pC->p);
+            taucs_vec_permute(n, pdblRes, pdblV, pC->p);
+            taucs_supernodal_solve_llt(pC->C, pdblRes, pdblV);  /* FIXME : add a test here */
+            taucs_vec_ipermute(n, pdblRes, pdblV, pC->p);
             for ( i = 0 ; i < n ; i++ )
-                v[i] = x[j * mb + i] - v[i]; /* v is the refined solution */
-            residu_with_prec_for_chol(&A, v, &b[j * mb], res, &norm_res_bis, A_is_upper_triangular, wk);
+            {
+                pdblV[i] = pdblX[j * mb + i] - pdblV[i]; /* v is the refined solution */
+            }
+
+            residu_with_prec_for_chol(&A, pdblV, &pdblB[j * mb], pdblRes, &norm_res_bis, A_is_upper_triangular, wk);
             /* accept it if the 2 norm of the residual is improved */
             if ( norm_res_bis < norm_res )
+            {
                 for ( i = 0 ; i < n ; i++ )
-                    x[j * mb + i] = v[i];
+                {
+                    pdblX[j * mb + i] = pdblV[i];
+                }
+            }
         }
     }
 
     FREE(wk);
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    FREE(pdblV);
+    FREE(pdblRes);
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

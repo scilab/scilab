@@ -29,7 +29,7 @@
  * @param nbCol number of columns of the parent
  * @return execution status
  */
-GUI_IMPEXP int setMenuParent(char *sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int setMenuParent(char *sciObj, void* pvData, int valueType, int nbRow, int nbCol);
 
 /**
  * Disable/Enable a menu attached to a graphics window or Scilab console

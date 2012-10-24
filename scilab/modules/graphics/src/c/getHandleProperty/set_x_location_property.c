@@ -20,6 +20,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include "stricmp.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -31,44 +32,44 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_x_location_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_x_location_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int axisLocation = 0;
 
-    if ( !( valueType == sci_strings ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "x_location");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( isStringParamEqual( stackPointer, "bottom" ) )
+    if (stricmp((char*)_pvData, "bottom") == 0)
     {
         axisLocation = 0;
     }
-    else if ( isStringParamEqual( stackPointer, "top" ) )
+    else if (stricmp((char*)_pvData, "top") == 0)
     {
         axisLocation = 1;
     }
-    else if ( isStringParamEqual( stackPointer, "middle" ) )
+    else if (stricmp((char*)_pvData, "middle") == 0)
     {
         axisLocation = 2;
     }
-    else if ( isStringParamEqual( stackPointer, "origin" ) )
+    else if (stricmp((char*)_pvData, "origin") == 0)
     {
         axisLocation = 3;
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "x_location", "bottom, top, middle, origin");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOCATION__, &axisLocation, jni_int, 1);
 
     if (status == TRUE)
     {
-        return SET_PROPERTY_SUCCEED ;
+        return SET_PROPERTY_SUCCEED;
     }
     else
     {

@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_title_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_title_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int iType = -1;
     int *piType = &iType;
@@ -40,7 +40,7 @@ int set_title_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
 
     if (iType == __GO_AXES__)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"title");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "title");
         return SET_PROPERTY_ERROR;
     }
 

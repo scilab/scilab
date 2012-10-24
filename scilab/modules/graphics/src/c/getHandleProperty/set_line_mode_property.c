@@ -30,11 +30,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_line_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_line_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "line_mode");
-    if(b == NOT_A_BOOLEAN_VALUE)
+    int b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "line_mode");
+    if (b == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
     }
@@ -47,7 +47,7 @@ int set_line_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"line_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "line_mode");
         return SET_PROPERTY_ERROR;
     }
 

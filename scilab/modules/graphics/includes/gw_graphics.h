@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -58,7 +58,6 @@ GRAPHICS_IMPEXP int sci_unglue(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_swap_handles(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_stringbox(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_show_window(char *fname, unsigned long fname_len);
-GRAPHICS_IMPEXP int sci_show_pixmap(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_set(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_rubberbox(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_rotate_axes(char *fname, unsigned long fname_len);
@@ -92,12 +91,10 @@ GRAPHICS_IMPEXP int sci_fec(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_drawnow(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_drawlater(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_drawaxis(char *fname, unsigned long fname_len);
-GRAPHICS_IMPEXP int sci_draw(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_demo(char *fname, int fname_len);
 GRAPHICS_IMPEXP int sci_delete(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_copy(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_contour2di(char *fname, unsigned long fname_len);
-GRAPHICS_IMPEXP int sci_clear_pixmap(char *fname, unsigned long fname_len);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __INTGRAPHICS__ */

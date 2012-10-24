@@ -95,6 +95,6 @@ int get_type_property(void* _pvCtx, char* pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
     return sciReturnString(_pvCtx, getTypeNameFromInt(iType));
-    //return sciReturnString( sciGetCharEntityType( pobj ) ) ;
+    //return sciReturnString(sciGetCharEntityType(pobj));
 }
 /*------------------------------------------------------------------------*/

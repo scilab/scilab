@@ -36,7 +36,7 @@ int get_filled_property(void* _pvCtx, char* pobjUID)
 
     if (piFilled == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "filled") ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "filled");
         return -1;
     }
 
