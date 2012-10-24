@@ -31,15 +31,31 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
     InternalType *pResult = NULL;
 
     /*
+    ** [] < A TYPE
+    */
+    if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
+    /*
+    ** A TYPE < []
+    */
+    if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
+    /*
     ** DOUBLE < DOUBLE
     */
-    if(_pLeftOperand->isDouble() && _pRightOperand->isDouble())
+    if (_pLeftOperand->isDouble() && _pRightOperand->isDouble())
     {
         Double *pL = _pLeftOperand->getAs<Double>();
         Double *pR = _pRightOperand->getAs<Double>();
 
         int iResult = DoubleLessDouble(pL, pR, (Bool**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -50,13 +66,13 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
     /*
     ** SPARSE < SPARSE
     */
-    if(_pLeftOperand->isSparse() && _pRightOperand->isSparse())
+    if (_pLeftOperand->isSparse() && _pRightOperand->isSparse())
     {
         Sparse *pL = _pLeftOperand->getAs<Sparse>();
         Sparse *pR = _pRightOperand->getAs<Sparse>();
 
         int iResult = SparseLessSparse(pL, pR, (SparseBool**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -67,13 +83,13 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
     /*
     ** DOUBLE < SPARSE
     */
-    if(_pLeftOperand->isDouble() && _pRightOperand->isSparse())
+    if (_pLeftOperand->isDouble() && _pRightOperand->isSparse())
     {
         Double *pL = _pLeftOperand->getAs<Double>();
         Sparse *pR = _pRightOperand->getAs<Sparse>();
 
         int iResult = DoubleLessSparse(pL, pR, (SparseBool**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -84,13 +100,13 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
     /*
     ** SPARSE < DOUBLE
     */
-    if(_pLeftOperand->isSparse() && _pRightOperand->isDouble())
+    if (_pLeftOperand->isSparse() && _pRightOperand->isDouble())
     {
         Sparse *pL = _pLeftOperand->getAs<Sparse>();
         Double *pR = _pRightOperand->getAs<Double>();
 
         int iResult = SparseLessDouble(pL, pR, (SparseBool**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -102,15 +118,16 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
     /*
     ** INT < INT
     */
-    if(_pLeftOperand->isInt() && _pRightOperand->isInt())
+    if (_pLeftOperand->isInt() && _pRightOperand->isInt())
     {
-        if(_pLeftOperand->getType() != _pRightOperand->getType())
-        {//call overload function to convert left or right or both to have comparable type
+        if (_pLeftOperand->getType() != _pRightOperand->getType())
+        {
+            //call overload function to convert left or right or both to have comparable type
             return NULL;
         }
 
         int iResult = IntLessInt(_pLeftOperand, _pRightOperand, (GenericType**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -122,18 +139,20 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
 
 int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 {
-    if(_pDouble1->isComplex() || _pDouble2->isComplex())
-    {//call overload for complex cases
+    if (_pDouble1->isComplex() || _pDouble2->isComplex())
+    {
+        //call overload for complex cases
         return 0;
     }
 
     Bool* pB = NULL;
-    if(_pDouble1->isScalar())
-    {//d < D
+    if (_pDouble1->isScalar())
+    {
+        //d < D
         pB = new Bool(_pDouble2->getDims(), _pDouble2->getDimsArray());
         double dblRef	= _pDouble1->get(0);
 
-        for(int i = 0 ; i < pB->getSize() ; i++)
+        for (int i = 0 ; i < pB->getSize() ; i++)
         {
             pB->set(i, dblRef < _pDouble2->get(i));
         }
@@ -141,12 +160,13 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
         *_pOut = pB;
         return 0;
     }
-    else if(_pDouble2->isScalar())
-    {//D < d
+    else if (_pDouble2->isScalar())
+    {
+        //D < d
         pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
         double dblRef	= _pDouble2->get(0);
 
-        for(int i = 0 ; i < pB->getSize() ; i++)
+        for (int i = 0 ; i < pB->getSize() ; i++)
         {
             pB->set(i, _pDouble1->get(i) < dblRef);
         }
@@ -155,7 +175,7 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
         return 0;
     }
 
-    if(_pDouble1->getDims() != _pDouble2->getDims())
+    if (_pDouble1->getDims() != _pDouble2->getDims())
     {
         return 1;
     }
@@ -164,9 +184,9 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
     int* piDims1 = _pDouble1->getDimsArray();
     int* piDims2 = _pDouble2->getDimsArray();
 
-    for(int i = 0 ; i < _pDouble1->getDims() ; i++)
+    for (int i = 0 ; i < _pDouble1->getDims() ; i++)
     {
-        if(piDims1[i] != piDims2[i])
+        if (piDims1[i] != piDims2[i])
         {
             return 1;
         }
@@ -174,7 +194,7 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 
     pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
 
-    for(int i = 0 ; i < pB->getSize() ; i++)
+    for (int i = 0 ; i < pB->getSize() ; i++)
     {
         pB->set(i, _pDouble1->get(i) < _pDouble2->get(i));
     }
@@ -185,13 +205,14 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 
 int SparseLessSparse(Sparse* _pSparse1, Sparse* _pSparse2, SparseBool** _pOut)
 {
-    if(_pSparse1->isComplex() || _pSparse2->isComplex())
-    {//call overload for complex cases
+    if (_pSparse1->isComplex() || _pSparse2->isComplex())
+    {
+        //call overload for complex cases
         return 0;
     }
 
-    if(_pSparse1->isScalar() || _pSparse2->isScalar() || //scalar cases
-        (_pSparse1->getRows() == _pSparse2->getRows() && _pSparse1->getCols() == _pSparse2->getCols())) //matrix case
+    if (_pSparse1->isScalar() || _pSparse2->isScalar() || //scalar cases
+            (_pSparse1->getRows() == _pSparse2->getRows() && _pSparse1->getCols() == _pSparse2->getCols())) //matrix case
     {
         *_pOut = _pSparse1->newLessThan(*_pSparse2);
         return 0;
@@ -223,15 +244,31 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
     InternalType *pResult = NULL;
 
     /*
-    ** DOUBLE < DOUBLE
+    ** [] <= A TYPE
     */
-    if(_pLeftOperand->isDouble() && _pRightOperand->isDouble())
+    if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
+    /*
+    ** A TYPE <= []
+    */
+    if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
+    {
+        return Double::Empty();
+    }
+
+    /*
+    ** DOUBLE <= DOUBLE
+    */
+    if (_pLeftOperand->isDouble() && _pRightOperand->isDouble())
     {
         Double *pL = _pLeftOperand->getAs<Double>();
         Double *pR = _pRightOperand->getAs<Double>();
 
         int iResult = DoubleLessEqualDouble(pL, pR, (Bool**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -240,15 +277,15 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
     }
 
     /*
-    ** SPARSE < SPARSE
+    ** SPARSE <= SPARSE
     */
-    if(_pLeftOperand->isSparse() && _pRightOperand->isSparse())
+    if (_pLeftOperand->isSparse() && _pRightOperand->isSparse())
     {
         Sparse *pL = _pLeftOperand->getAs<Sparse>();
         Sparse *pR = _pRightOperand->getAs<Sparse>();
 
         int iResult = SparseLessEqualSparse(pL, pR, (SparseBool**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -257,15 +294,15 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
     }
 
     /*
-    ** DOUBLE < SPARSE
+    ** DOUBLE <= SPARSE
     */
-    if(_pLeftOperand->isDouble() && _pRightOperand->isSparse())
+    if (_pLeftOperand->isDouble() && _pRightOperand->isSparse())
     {
         Double *pL = _pLeftOperand->getAs<Double>();
         Sparse *pR = _pRightOperand->getAs<Sparse>();
 
         int iResult = DoubleLessEqualSparse(pL, pR, (SparseBool**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -274,15 +311,15 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
     }
 
     /*
-    ** SPARSE < DOUBLE
+    ** SPARSE <= DOUBLE
     */
-    if(_pLeftOperand->isSparse() && _pRightOperand->isDouble())
+    if (_pLeftOperand->isSparse() && _pRightOperand->isDouble())
     {
         Sparse *pL = _pLeftOperand->getAs<Sparse>();
         Double *pR = _pRightOperand->getAs<Double>();
 
         int iResult = SparseLessEqualDouble(pL, pR, (SparseBool**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -293,15 +330,16 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
     /*
     ** INT <= INT
     */
-    if(_pLeftOperand->isInt() && _pRightOperand->isInt())
+    if (_pLeftOperand->isInt() && _pRightOperand->isInt())
     {
-        if(_pLeftOperand->getType() != _pRightOperand->getType())
-        {//call overload function to convert left or right or both to have comparable type
+        if (_pLeftOperand->getType() != _pRightOperand->getType())
+        {
+            //call overload function to convert left or right or both to have comparable type
             return NULL;
         }
 
         int iResult = IntLessEqualInt(_pLeftOperand, _pRightOperand, (GenericType**)&pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -313,18 +351,20 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
 
 int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 {
-    if(_pDouble1->isComplex() || _pDouble2->isComplex())
-    {//call overload for complex cases
+    if (_pDouble1->isComplex() || _pDouble2->isComplex())
+    {
+        //call overload for complex cases
         return 0;
     }
 
     Bool* pB = NULL;
-    if(_pDouble1->isScalar())
-    {//d <= D
+    if (_pDouble1->isScalar())
+    {
+        //d <= D
         pB = new Bool(_pDouble2->getDims(), _pDouble2->getDimsArray());
         double dblRef	= _pDouble1->get(0);
 
-        for(int i = 0 ; i < pB->getSize() ; i++)
+        for (int i = 0 ; i < pB->getSize() ; i++)
         {
             pB->set(i, dblRef <= _pDouble2->get(i));
         }
@@ -332,12 +372,13 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
         *_pOut = pB;
         return 0;
     }
-    else if(_pDouble2->isScalar())
-    {//D <= d
+    else if (_pDouble2->isScalar())
+    {
+        //D <= d
         pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
         double dblRef	= _pDouble2->get(0);
 
-        for(int i = 0 ; i < pB->getSize() ; i++)
+        for (int i = 0 ; i < pB->getSize() ; i++)
         {
             pB->set(i, _pDouble1->get(i) <= dblRef);
         }
@@ -346,7 +387,7 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
         return 0;
     }
 
-    if(_pDouble1->getDims() != _pDouble2->getDims())
+    if (_pDouble1->getDims() != _pDouble2->getDims())
     {
         return 1;
     }
@@ -355,9 +396,9 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
     int* piDims1 = _pDouble1->getDimsArray();
     int* piDims2 = _pDouble2->getDimsArray();
 
-    for(int i = 0 ; i < _pDouble1->getDims() ; i++)
+    for (int i = 0 ; i < _pDouble1->getDims() ; i++)
     {
-        if(piDims1[i] != piDims2[i])
+        if (piDims1[i] != piDims2[i])
         {
             return 1;
         }
@@ -365,7 +406,7 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 
     pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
 
-    for(int i = 0 ; i < pB->getSize() ; i++)
+    for (int i = 0 ; i < pB->getSize() ; i++)
     {
         pB->set(i, _pDouble1->get(i) <= _pDouble2->get(i));
     }
@@ -376,13 +417,14 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 
 int SparseLessEqualSparse(Sparse* _pSparse1, Sparse* _pSparse2, SparseBool** _pOut)
 {
-    if(_pSparse1->isComplex() || _pSparse2->isComplex())
-    {//call overload for complex cases
+    if (_pSparse1->isComplex() || _pSparse2->isComplex())
+    {
+        //call overload for complex cases
         return 0;
     }
 
-    if(_pSparse1->isScalar() || _pSparse2->isScalar() || //scalar cases
-        (_pSparse1->getRows() == _pSparse2->getRows() && _pSparse1->getCols() == _pSparse2->getCols())) //matrix case
+    if (_pSparse1->isScalar() || _pSparse2->isScalar() || //scalar cases
+            (_pSparse1->getRows() == _pSparse2->getRows() && _pSparse1->getCols() == _pSparse2->getCols())) //matrix case
     {
         *_pOut = _pSparse1->newLessOrEqual(*_pSparse2);
         return 0;
@@ -420,51 +462,51 @@ InternalType *GenericGreaterEqual(InternalType *_pLeftOperand, InternalType *_pR
 
 int IntLessInt(types::InternalType* _pL, types::InternalType*  _pR, types::GenericType** _pOut)
 {
-    switch(_pL->getType())
+    switch (_pL->getType())
     {
-    case InternalType::RealInt8 :
+        case InternalType::RealInt8 :
         {
             Int8* pI1 = _pL->getAs<Int8>();
             Int8* pI2 = _pR->getAs<Int8>();
             return IntLessInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealUInt8 :
+        case InternalType::RealUInt8 :
         {
             UInt8* pI1 = _pL->getAs<UInt8>();
             UInt8* pI2 = _pR->getAs<UInt8>();
             return IntLessInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealInt16 :
+        case InternalType::RealInt16 :
         {
             Int16* pI1 = _pL->getAs<Int16>();
             Int16* pI2 = _pR->getAs<Int16>();
             return IntLessInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealUInt16 :
+        case InternalType::RealUInt16 :
         {
             UInt16* pI1 = _pL->getAs<UInt16>();
             UInt16* pI2 = _pR->getAs<UInt16>();
             return IntLessInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealInt32 :
+        case InternalType::RealInt32 :
         {
             Int32* pI1 = _pL->getAs<Int32>();
             Int32* pI2 = _pR->getAs<Int32>();
             return IntLessInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealUInt32 :
+        case InternalType::RealUInt32 :
         {
             UInt32* pI1 = _pL->getAs<UInt32>();
             UInt32* pI2 = _pR->getAs<UInt32>();
             return IntLessInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealInt64 :
+        case InternalType::RealInt64 :
         {
             Int64* pI1 = _pL->getAs<Int64>();
             Int64* pI2 = _pR->getAs<Int64>();
             return IntLessInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealUInt64 :
+        case InternalType::RealUInt64 :
         {
             UInt64* pI1 = _pL->getAs<UInt64>();
             UInt64* pI2 = _pR->getAs<UInt64>();
@@ -478,13 +520,13 @@ int IntLessInt(types::InternalType* _pL, types::InternalType*  _pR, types::Gener
 template <class T>
 int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
 {
-    if(_pL->isScalar())
+    if (_pL->isScalar())
     {
         Bool *pB = new Bool(_pR->getDims(), _pR->getDimsArray());
 
         int* pb = pB->get();
 
-        for(int i = 0 ; i < pB->getSize() ; i++)
+        for (int i = 0 ; i < pB->getSize() ; i++)
         {
             pb[i] = _pL->get(0) < _pR->get(i);
         }
@@ -493,13 +535,13 @@ int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
         return 0;
     }
 
-    if(_pR->isScalar())
+    if (_pR->isScalar())
     {
         Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
 
         int* pb = pB->get();
 
-        for(int i = 0 ; i < pB->getSize() ; i++)
+        for (int i = 0 ; i < pB->getSize() ; i++)
         {
             pb[i] = _pL->get(i) < _pR->get(0);
         }
@@ -508,7 +550,7 @@ int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
         return 0;
     }
 
-    if(_pL->getDims() != _pR->getDims())
+    if (_pL->getDims() != _pR->getDims())
     {
         return 1;
     }
@@ -516,16 +558,16 @@ int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
     int* piDimsL = _pL->getDimsArray();
     int* piDimsR = _pR->getDimsArray();
 
-    for(int i = 0 ; i < _pL->getDims() ; i++)
+    for (int i = 0 ; i < _pL->getDims() ; i++)
     {
-        if(piDimsL[i] != piDimsR[i])
+        if (piDimsL[i] != piDimsR[i])
         {
             return 1;
         }
     }
 
     Bool* pB = new Bool(_pR->getDims(), _pR->getDimsArray());
-    for(int i = 0 ; i < _pL->getSize() ; i++)
+    for (int i = 0 ; i < _pL->getSize() ; i++)
     {
         pB->set(i, _pL->get(i) < _pR->get(i));
     }
@@ -536,51 +578,51 @@ int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
 
 int IntLessEqualInt(types::InternalType* _pL, types::InternalType* _pR, types::GenericType** _pOut)
 {
-    switch(_pL->getType())
+    switch (_pL->getType())
     {
-    case InternalType::RealInt8 :
+        case InternalType::RealInt8 :
         {
             Int8* pI1 = _pL->getAs<Int8>();
             Int8* pI2 = _pR->getAs<Int8>();
             return IntLessEqualInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealUInt8 :
+        case InternalType::RealUInt8 :
         {
             UInt8* pI1 = _pL->getAs<UInt8>();
             UInt8* pI2 = _pR->getAs<UInt8>();
             return IntLessEqualInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealInt16 :
+        case InternalType::RealInt16 :
         {
             Int16* pI1 = _pL->getAs<Int16>();
             Int16* pI2 = _pR->getAs<Int16>();
             return IntLessEqualInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealUInt16 :
+        case InternalType::RealUInt16 :
         {
             UInt16* pI1 = _pL->getAs<UInt16>();
             UInt16* pI2 = _pR->getAs<UInt16>();
             return IntLessEqualInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealInt32 :
+        case InternalType::RealInt32 :
         {
             Int32* pI1 = _pL->getAs<Int32>();
             Int32* pI2 = _pR->getAs<Int32>();
             return IntLessEqualInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealUInt32 :
+        case InternalType::RealUInt32 :
         {
             UInt32* pI1 = _pL->getAs<UInt32>();
             UInt32* pI2 = _pR->getAs<UInt32>();
             return IntLessEqualInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealInt64 :
+        case InternalType::RealInt64 :
         {
             Int64* pI1 = _pL->getAs<Int64>();
             Int64* pI2 = _pR->getAs<Int64>();
             return IntLessInt(pI1, pI2, _pOut);
         }
-    case InternalType::RealUInt64 :
+        case InternalType::RealUInt64 :
         {
             UInt64* pI1 = _pL->getAs<UInt64>();
             UInt64* pI2 = _pR->getAs<UInt64>();
@@ -594,13 +636,13 @@ int IntLessEqualInt(types::InternalType* _pL, types::InternalType* _pR, types::G
 template <class T>
 int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
 {
-    if(_pL->isScalar())
+    if (_pL->isScalar())
     {
         Bool *pB = new Bool(_pR->getDims(), _pR->getDimsArray());
 
         int* pb = pB->get();
 
-        for(int i = 0 ; i < pB->getSize() ; i++)
+        for (int i = 0 ; i < pB->getSize() ; i++)
         {
             pb[i] = _pL->get(0) <= _pR->get(i);
         }
@@ -609,13 +651,13 @@ int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
         return 0;
     }
 
-    if(_pR->isScalar())
+    if (_pR->isScalar())
     {
         Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
 
         int* pb = pB->get();
 
-        for(int i = 0 ; i < pB->getSize() ; i++)
+        for (int i = 0 ; i < pB->getSize() ; i++)
         {
             pb[i] = _pL->get(i) <= _pR->get(0);
         }
@@ -624,7 +666,7 @@ int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
         return 0;
     }
 
-    if(_pL->getDims() != _pR->getDims())
+    if (_pL->getDims() != _pR->getDims())
     {
         return 1;
     }
@@ -632,16 +674,16 @@ int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
     int* piDimsL = _pL->getDimsArray();
     int* piDimsR = _pR->getDimsArray();
 
-    for(int i = 0 ; i < _pL->getDims() ; i++)
+    for (int i = 0 ; i < _pL->getDims() ; i++)
     {
-        if(piDimsL[i] != piDimsR[i])
+        if (piDimsL[i] != piDimsR[i])
         {
             return 1;
         }
     }
 
     Bool* pB = new Bool(_pR->getDims(), _pR->getDimsArray());
-    for(int i = 0 ; i < _pL->getSize() ; i++)
+    for (int i = 0 ; i < _pL->getSize() ; i++)
     {
         pB->set(i, _pL->get(i) <= _pR->get(i));
     }
