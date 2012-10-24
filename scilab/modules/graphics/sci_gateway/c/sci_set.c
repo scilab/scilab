@@ -221,14 +221,10 @@ int sci_set(char *fname, unsigned long fname_len)
             setStatus = callSetProperty(pvApiCtx, pobjUID, _pvData, valueType, iRows3, iCols3, pstProperty);
             if (valueType == sci_strings)
             {
-                //free allacted data
+                //free allocated data
                 if (isMatrixOfString == 1)
                 {
                     freeAllocatedMatrixOfString(iRows3, iCols3, (char**)_pvData);
-                }
-                else
-                {
-                    freeAllocatedSingleString((char*)_pvData);
                 }
             }
         }
@@ -254,18 +250,18 @@ int sci_set(char *fname, unsigned long fname_len)
                                                                  };
 
             int i = 0;
-            int iPropertyFounded = 0;
+            int iPropertyFound = 0;
 
             for (i = 0; i < NB_PROPERTIES_SUPPORTED; i++)
             {
 
                 if (strcmp(propertiesSupported[i], pstProperty) == 0)
                 {
-                    iPropertyFounded = 1;
+                    iPropertyFound = 1;
                 }
             }
 
-            if (iPropertyFounded)
+            if (iPropertyFound)
             {
                 // we do nothing with "figure_style" "new" (to remove in 5.4)
                 int bDoSet = ((isMatrixOfString) && (strcmp(pstProperty, "figure_style") == 0) && (strcmp(((char**)_pvData)[0], "new") == 0)) != 1;
@@ -275,15 +271,8 @@ int sci_set(char *fname, unsigned long fname_len)
                     setStatus = callSetProperty(pvApiCtx, NULL, _pvData, valueType, iRows3, iCols3, pstProperty);
                     if (valueType == sci_strings)
                     {
-                        //free allacted data
-                        if (isMatrixOfString == 1)
-                        {
-                            freeAllocatedMatrixOfString(iRows3, iCols3, (char**)_pvData);
-                        }
-                        else
-                        {
-                            freeAllocatedSingleString((char*)_pvData);
-                        }
+                        //free allocated data
+                        freeAllocatedMatrixOfString(iRows3, iCols3, (char**)_pvData);
                     }
                 }
             }
