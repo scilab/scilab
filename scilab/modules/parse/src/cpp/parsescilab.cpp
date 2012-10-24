@@ -3909,12 +3909,12 @@ yyreduce:
 
   case 141:
 
-    { (yyval.t_exp) = new ast::OpExp((yyloc), *new ast::DoubleExp((yyloc), 0.0), ast::OpExp::minus, *(yyvsp[(2) - (2)].t_exp)); }
+    { (yyval.t_exp) = new ast::OpExp((yyloc), *new ast::DoubleExp((yyloc), 0.0), ast::OpExp::unaryMinus, *(yyvsp[(2) - (2)].t_exp)); }
     break;
 
   case 142:
 
-    { (yyval.t_exp) = new ast::OpExp((yyloc), *new ast::DoubleExp((yyloc), 0.0), ast::OpExp::minus, *(yyvsp[(2) - (2)].t_call_exp)); }
+    { (yyval.t_exp) = new ast::OpExp((yyloc), *new ast::DoubleExp((yyloc), 0.0), ast::OpExp::unaryMinus, *(yyvsp[(2) - (2)].t_call_exp)); }
     break;
 
   case 143:

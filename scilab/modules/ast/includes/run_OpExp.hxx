@@ -58,10 +58,10 @@ void visitprivate(const OpExp &e)
 
         if (TypeR == GenericType::RealImplicitList)
         {
-            ImplicitList* pIL = pITR->getAs<ImplicitList>();
-            if (pIL->isComputable())
+            ImplicitList* pIR = pITR->getAs<ImplicitList>();
+            if (pIR->isComputable())
             {
-                pITR = pIL->extractFullMatrix();
+                pITR = pIR->extractFullMatrix();
                 TypeR = pITR->getType();
             }
         }
@@ -73,6 +73,11 @@ void visitprivate(const OpExp &e)
             case OpExp::plus :
             {
                 pResult = GenericPlus(pITL, pITR);
+                break;
+            }
+            case OpExp::unaryMinus :
+            {
+                pResult = GenericUnaryMinus(pITR);
                 break;
             }
             case OpExp::minus :
@@ -395,6 +400,19 @@ types::InternalType* callOverload(OpExp::Oper _oper, types::InternalType* _param
 {
     types::typed_list in;
     types::typed_list out;
+
+    /*
+    ** Special case for unary minus => will call %{type_s}
+    */
+    if (_oper == OpExp::unaryMinus)
+    {
+        _paramR->IncreaseRef();
+        in.push_back(_paramR);
+        Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this);
+
+        _paramR->DecreaseRef();
+        return out[0];
+    }
     _paramL->IncreaseRef();
     _paramR->IncreaseRef();
     in.push_back(_paramL);

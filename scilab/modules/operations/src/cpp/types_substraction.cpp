@@ -24,6 +24,36 @@ extern "C"
 #include "os_swprintf.h"
 #include "elem_common.h" //dset
 }
+InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
+{
+    if(_pRightOperand->isDouble())
+    {
+        Double *pR = dynamic_cast<Double*>(_pRightOperand->clone());
+        bool bComplex  = pR->isComplex();
+
+        double* pReal = pR->get();
+        for(int i = 0 ; i < pR->getSize() ; i++)
+        {
+            pReal[i] *= -1;
+        }
+
+        if(bComplex)
+        {
+            double* pImg = pR->getImg();
+            for(int i = 0 ; i < pR->getSize() ; i++)
+            {
+                pImg[i] *= -1;
+            }
+        }
+
+        return pR;
+    }
+
+    /*
+    ** Default case : Return NULL will Call Overloading.
+    */
+    return NULL;
+}
 
 InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOperand)
 {

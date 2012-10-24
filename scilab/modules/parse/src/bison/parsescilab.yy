@@ -927,8 +927,8 @@ variable rightOperand			{
 					  $2->location_set(@$);
 					  $$ = $2;
 					}
-| MINUS variable			{ $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::minus, *$2); }
-| MINUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::minus, *$2); }
+| MINUS variable			{ $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); }
+| MINUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); }
 | PLUS variable				{ $$ = $2; }
 | PLUS functionCall			{ $$ = $2; }
 | variable POWER variable		{ $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); }

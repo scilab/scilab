@@ -77,6 +77,7 @@ std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
         /* standard operators */
     case OpExp::plus :
         return std::wstring(L"a");
+    case OpExp::unaryMinus :
     case OpExp::minus :
         return std::wstring(L"s");
     case OpExp::times :

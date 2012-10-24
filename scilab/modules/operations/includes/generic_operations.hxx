@@ -29,6 +29,9 @@
 EXTERN_OP types::InternalType* GenericPlus(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
 // -
+EXTERN_OP types::InternalType* GenericUnaryMinus(types::InternalType *_pRightOperand);
+
+// -
 EXTERN_OP types::InternalType* GenericMinus(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
 // /

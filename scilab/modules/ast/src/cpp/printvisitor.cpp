@@ -210,17 +210,21 @@ namespace ast {
             *ostr << SCI_LPAREN;
         }
 
-        // Getting Left Operand
-        this->enable_force_parenthesis();
-        e.left_get().accept(*this);
-        this->set_force_parenthesis(old_force_parenthesis);
+        if (e.oper_get() != OpExp::unaryMinus)
+        {
+            // Getting Left Operand
+            this->enable_force_parenthesis();
+            e.left_get().accept(*this);
+            this->set_force_parenthesis(old_force_parenthesis);
+            *ostr << " ";
+        }
 
-        *ostr << " ";
         switch (e.oper_get())
         {
             // Arithmetics.
         case OpExp::plus:
             *ostr << SCI_PLUS; break;
+        case OpExp::unaryMinus:
         case OpExp::minus:
             *ostr << SCI_MINUS; break;
         case OpExp::times:

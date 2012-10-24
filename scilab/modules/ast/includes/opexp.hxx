@@ -65,7 +65,10 @@ namespace ast
             /** \brief "&" */		logicalAnd,
             /** \brief "|" */		logicalOr,
             /** \brief "&&" */	logicalShortCutAnd,
-            /** \brief "||" */	logicalShortCutOr
+            /** \brief "||" */	logicalShortCutOr,
+
+            // Unary minus
+            /** \brief "-" */ unaryMinus
         };
 
         /** \brief Operation Expression kind.
