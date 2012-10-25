@@ -10,6 +10,7 @@
  *
  */
 
+#include "sci_ieee.h"
 #include "matrix_division.h"
 #include <string.h>
 
@@ -20,8 +21,6 @@ int iRightDivisionComplexMatrixByComplexMatrix(
     double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize)
 {
     int iErr = 0;
-    int iErr2 = 0;
-    int iErr3 = 0;
     int iIndex		= 0; //Main loop index
     int iIndex1		= 0; //Loop index on left operand
     int iIndex2		= 0; //Loop index on right operand
@@ -29,21 +28,21 @@ int iRightDivisionComplexMatrixByComplexMatrix(
 
     if (_iInc2 == 0)
     {
-        if (dabss(_pdblReal2[iIndex2]) + dabss(_pdblImg2[iIndex2]) == 0)
-            iErr2 = 1;
+        if ((getieee() == 0) && (dabss(_pdblReal2[iIndex2]) + dabss(_pdblImg2[iIndex2]) == 0))
+        {
+            return 3;
+        }
     }
 
     for (iIndex = 0 ; iIndex < _iSize ; iIndex++)
     {
-        iErr3 = iRightDivisionComplexByComplex(_pdblReal1[iIndex1], _pdblImg1[iIndex1], _pdblReal2[iIndex2], _pdblImg2[iIndex2], &_pdblRealOut[iIndexOut], &_pdblImgOut[iIndexOut]);
-        if (iErr3 != 0)
-            iErr = iIndex + 1;
+        iErr = iRightDivisionComplexByComplex(_pdblReal1[iIndex1], _pdblImg1[iIndex1], _pdblReal2[iIndex2], _pdblImg2[iIndex2], &_pdblRealOut[iIndexOut], &_pdblImgOut[iIndexOut]);
         iIndexOut	+= _iIncOut;
         iIndex1		+= _iInc1;
         iIndex2		+= _iInc2;
     }
 
-    return iErr2 == 0 ? iErr : iErr2;
+    return iErr;
 }
 
 /*iRightDivisionComplexByComplex*/
@@ -58,7 +57,7 @@ int iRightDivisionComplexByComplex(
         if (_dblReal2 == 0)
         {
             //got NaN + i NaN
-            iErr = 1;
+            iErr = 10;
             *_pdblRealOut	= _dblImg2 / _dblReal2;
             *_pdblImgOut	= *_pdblRealOut;
         }
@@ -102,8 +101,6 @@ int iRightDivisionRealMatrixByComplexMatrix(
     double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize)
 {
     int iErr = 0;
-    int iErr2 = 0;
-    int iErr3 = 0;
     int iIndex		= 0; //Main loop index
     int iIndex1		= 0; //Loop index on left operand
     int iIndex2		= 0; //Loop index on right operand
@@ -111,21 +108,21 @@ int iRightDivisionRealMatrixByComplexMatrix(
 
     if (_iInc2 == 0)
     {
-        if (dabss(_pdblReal2[iIndex2]) + dabss(_pdblImg2[iIndex2]) == 0)
-            iErr2 = 1;
+        if ((getieee() == 0) && (dabss(_pdblReal2[iIndex2]) + dabss(_pdblImg2[iIndex2]) == 0))
+        {
+            return 3;
+        }
     }
 
     for (iIndex = 0 ; iIndex < _iSize ; iIndex++)
     {
-        iErr3 = iRightDivisionRealByComplex(_pdblReal1[iIndex1], _pdblReal2[iIndex2], _pdblImg2[iIndex2], &_pdblRealOut[iIndexOut], &_pdblImgOut[iIndexOut]);
-        if (iErr3 != 0)
-            iErr = iIndex + 1;
+        iErr = iRightDivisionRealByComplex(_pdblReal1[iIndex1], _pdblReal2[iIndex2], _pdblImg2[iIndex2], &_pdblRealOut[iIndexOut], &_pdblImgOut[iIndexOut]);
         iIndexOut	+= _iIncOut;
         iIndex1		+= _iInc1;
         iIndex2		+= _iInc2;
     }
 
-    return iErr2 == 0 ? iErr : iErr2;
+    return iErr;
 }
 
 /*iRightDivisionRealByComplex*/
@@ -151,7 +148,7 @@ int iRightDivisionRealByComplex(
 
         if (dblAbsSum == 0)
         {
-            iErr = 1;
+            iErr = 10;
             *_pdblRealOut	= _dblReal1 / dblAbsSum;
             *_pdblImgOut	= 0;
         }
@@ -175,16 +172,13 @@ int iRightDivisionComplexMatrixByRealMatrix(
     double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize)
 {
     int iErr = 0;
-    int iErr2 = 0;
     int iIndex		= 0; //Main loop index
     int iIndex1		= 0; //Loop index on left operand
     int iIndex2		= 0; //Loop index on right operand
     int iIndexOut	= 0; //Lopp index on result matrix
     for (iIndex = 0 ; iIndex < _iSize ; iIndex++)
     {
-        iErr2 = iRightDivisionComplexByReal(_pdblReal1[iIndex1], _pdblImg1[iIndex1], _pdblReal2[iIndex2], &_pdblRealOut[iIndexOut], &_pdblImgOut[iIndexOut]);
-        if (iErr2 != 0)
-            iErr = iIndex;
+        iErr = iRightDivisionComplexByReal(_pdblReal1[iIndex1], _pdblImg1[iIndex1], _pdblReal2[iIndex2], &_pdblRealOut[iIndexOut], &_pdblImgOut[iIndexOut]);
         iIndexOut	+= _iIncOut;
         iIndex1		+= _iInc1;
         iIndex2		+= _iInc2;
@@ -200,7 +194,18 @@ int iRightDivisionComplexByReal(
 {
     int iErr = 0;
     if (_dblReal2 == 0)
-        iErr = 1;
+    {
+        if (getieee() == 0)
+        {
+            iErr = 3;
+            return iErr;
+        }
+        else if (getieee() == 1)
+        {
+            //Warning
+            iErr = 4;
+        }
+    }
 
     *_pdblRealOut	= _dblReal1 / _dblReal2;
     *_pdblImgOut	= _dblImg1 / _dblReal2;
@@ -223,7 +228,18 @@ int iRightDivisionRealMatrixByRealMatrix(
     for (iIndex = 0 ; iIndex < _iSize ; iIndex++)
     {
         if (_pdblReal2[iIndex2] == 0)
-            iErr = iIndex + 1; //gné index a 0 en C donc iErr peut valoir 0 !!! Oo
+        {
+            if (getieee() == 0)
+            {
+                iErr = 3;
+                return iErr;
+            }
+            else if (getieee() == 1)
+            {
+                iErr = 4;
+            }
+        }
+
         _pdblRealOut[iIndexOut] = _pdblReal1[iIndex1] / _pdblReal2[iIndex2];
         iIndexOut				+= _iIncOut;
         iIndex1					+= _iInc1;

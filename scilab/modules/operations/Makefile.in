@@ -152,9 +152,8 @@ am__objects_2 = libscioperations_la-operations.lo \
 am_libscioperations_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscioperations_la_OBJECTS = $(am_libscioperations_la_OBJECTS)
 libscioperations_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) \
-	$(libscioperations_la_CXXFLAGS) $(CXXFLAGS) \
-	$(libscioperations_la_LDFLAGS) $(LDFLAGS) -o $@
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(libscioperations_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -453,7 +452,7 @@ OPERATIONS_C_SOURCES = src/c/doublecomplex.c \
 			src/c/matrix_division.c \
 			src/c/matrix_power.c \
 			src/c/matrix_finite.c \
-            src/c/matrix_kronecker.c \
+			src/c/matrix_kronecker.c \
 			src/c/operations_tools.c
 
 OPERATIONS_CPP_SOURCES = src/cpp/operations.cpp \
@@ -465,26 +464,23 @@ OPERATIONS_CPP_SOURCES = src/cpp/operations.cpp \
 			src/cpp/types_finite.cpp \
 			src/cpp/types_comparison_eq.cpp \
 			src/cpp/types_comparison_lt_le_gt_ge.cpp \
-            src/cpp/types_kronecker.cpp \
+			src/cpp/types_kronecker.cpp \
 			src/cpp/types_comparison_ne.cpp
 
 pkglib_LTLIBRARIES = libscioperations.la
 libscioperations_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscioperations_la_CFLAGS = \
-    -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/modules/elementary_functions/includes \
-    -I$(top_srcdir)/modules/output_stream/includes
-
-libscioperations_la_CXXFLAGS = \
-    -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/modules/types/includes \
-    -I$(top_srcdir)/modules/symbol/includes \
-    -I$(top_srcdir)/modules/ast/includes \
-    -I$(top_srcdir)/modules/core/includes \
-    -I$(top_srcdir)/modules/string/includes \
-    -I$(top_srcdir)/modules/elementary_functions/includes \
-    $(EIGEN_CPPFLAGS) \
+libscioperations_la_CPPFLAGS = \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/ast/includes \
+	-I$(top_srcdir)/modules/core/includes \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/elementary_functions/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 libscioperations_la_SOURCES = $(OPERATIONS_C_SOURCES) $(OPERATIONS_CPP_SOURCES)
@@ -684,67 +680,67 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libscioperations_la-doublecomplex.lo: src/c/doublecomplex.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -MT libscioperations_la-doublecomplex.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-doublecomplex.Tpo -c -o libscioperations_la-doublecomplex.lo `test -f 'src/c/doublecomplex.c' || echo '$(srcdir)/'`src/c/doublecomplex.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioperations_la-doublecomplex.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-doublecomplex.Tpo -c -o libscioperations_la-doublecomplex.lo `test -f 'src/c/doublecomplex.c' || echo '$(srcdir)/'`src/c/doublecomplex.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-doublecomplex.Tpo $(DEPDIR)/libscioperations_la-doublecomplex.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/doublecomplex.c' object='libscioperations_la-doublecomplex.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -c -o libscioperations_la-doublecomplex.lo `test -f 'src/c/doublecomplex.c' || echo '$(srcdir)/'`src/c/doublecomplex.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioperations_la-doublecomplex.lo `test -f 'src/c/doublecomplex.c' || echo '$(srcdir)/'`src/c/doublecomplex.c
 
 libscioperations_la-matrix_multiplication.lo: src/c/matrix_multiplication.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_multiplication.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_multiplication.Tpo -c -o libscioperations_la-matrix_multiplication.lo `test -f 'src/c/matrix_multiplication.c' || echo '$(srcdir)/'`src/c/matrix_multiplication.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_multiplication.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_multiplication.Tpo -c -o libscioperations_la-matrix_multiplication.lo `test -f 'src/c/matrix_multiplication.c' || echo '$(srcdir)/'`src/c/matrix_multiplication.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-matrix_multiplication.Tpo $(DEPDIR)/libscioperations_la-matrix_multiplication.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_multiplication.c' object='libscioperations_la-matrix_multiplication.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_multiplication.lo `test -f 'src/c/matrix_multiplication.c' || echo '$(srcdir)/'`src/c/matrix_multiplication.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_multiplication.lo `test -f 'src/c/matrix_multiplication.c' || echo '$(srcdir)/'`src/c/matrix_multiplication.c
 
 libscioperations_la-matrix_addition.lo: src/c/matrix_addition.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_addition.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_addition.Tpo -c -o libscioperations_la-matrix_addition.lo `test -f 'src/c/matrix_addition.c' || echo '$(srcdir)/'`src/c/matrix_addition.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_addition.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_addition.Tpo -c -o libscioperations_la-matrix_addition.lo `test -f 'src/c/matrix_addition.c' || echo '$(srcdir)/'`src/c/matrix_addition.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-matrix_addition.Tpo $(DEPDIR)/libscioperations_la-matrix_addition.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_addition.c' object='libscioperations_la-matrix_addition.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_addition.lo `test -f 'src/c/matrix_addition.c' || echo '$(srcdir)/'`src/c/matrix_addition.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_addition.lo `test -f 'src/c/matrix_addition.c' || echo '$(srcdir)/'`src/c/matrix_addition.c
 
 libscioperations_la-matrix_substraction.lo: src/c/matrix_substraction.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_substraction.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_substraction.Tpo -c -o libscioperations_la-matrix_substraction.lo `test -f 'src/c/matrix_substraction.c' || echo '$(srcdir)/'`src/c/matrix_substraction.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_substraction.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_substraction.Tpo -c -o libscioperations_la-matrix_substraction.lo `test -f 'src/c/matrix_substraction.c' || echo '$(srcdir)/'`src/c/matrix_substraction.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-matrix_substraction.Tpo $(DEPDIR)/libscioperations_la-matrix_substraction.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_substraction.c' object='libscioperations_la-matrix_substraction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_substraction.lo `test -f 'src/c/matrix_substraction.c' || echo '$(srcdir)/'`src/c/matrix_substraction.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_substraction.lo `test -f 'src/c/matrix_substraction.c' || echo '$(srcdir)/'`src/c/matrix_substraction.c
 
 libscioperations_la-matrix_division.lo: src/c/matrix_division.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_division.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_division.Tpo -c -o libscioperations_la-matrix_division.lo `test -f 'src/c/matrix_division.c' || echo '$(srcdir)/'`src/c/matrix_division.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_division.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_division.Tpo -c -o libscioperations_la-matrix_division.lo `test -f 'src/c/matrix_division.c' || echo '$(srcdir)/'`src/c/matrix_division.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-matrix_division.Tpo $(DEPDIR)/libscioperations_la-matrix_division.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_division.c' object='libscioperations_la-matrix_division.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_division.lo `test -f 'src/c/matrix_division.c' || echo '$(srcdir)/'`src/c/matrix_division.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_division.lo `test -f 'src/c/matrix_division.c' || echo '$(srcdir)/'`src/c/matrix_division.c
 
 libscioperations_la-matrix_power.lo: src/c/matrix_power.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_power.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_power.Tpo -c -o libscioperations_la-matrix_power.lo `test -f 'src/c/matrix_power.c' || echo '$(srcdir)/'`src/c/matrix_power.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_power.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_power.Tpo -c -o libscioperations_la-matrix_power.lo `test -f 'src/c/matrix_power.c' || echo '$(srcdir)/'`src/c/matrix_power.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-matrix_power.Tpo $(DEPDIR)/libscioperations_la-matrix_power.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_power.c' object='libscioperations_la-matrix_power.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_power.lo `test -f 'src/c/matrix_power.c' || echo '$(srcdir)/'`src/c/matrix_power.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_power.lo `test -f 'src/c/matrix_power.c' || echo '$(srcdir)/'`src/c/matrix_power.c
 
 libscioperations_la-matrix_finite.lo: src/c/matrix_finite.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_finite.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_finite.Tpo -c -o libscioperations_la-matrix_finite.lo `test -f 'src/c/matrix_finite.c' || echo '$(srcdir)/'`src/c/matrix_finite.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_finite.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_finite.Tpo -c -o libscioperations_la-matrix_finite.lo `test -f 'src/c/matrix_finite.c' || echo '$(srcdir)/'`src/c/matrix_finite.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-matrix_finite.Tpo $(DEPDIR)/libscioperations_la-matrix_finite.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_finite.c' object='libscioperations_la-matrix_finite.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_finite.lo `test -f 'src/c/matrix_finite.c' || echo '$(srcdir)/'`src/c/matrix_finite.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_finite.lo `test -f 'src/c/matrix_finite.c' || echo '$(srcdir)/'`src/c/matrix_finite.c
 
 libscioperations_la-matrix_kronecker.lo: src/c/matrix_kronecker.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_kronecker.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_kronecker.Tpo -c -o libscioperations_la-matrix_kronecker.lo `test -f 'src/c/matrix_kronecker.c' || echo '$(srcdir)/'`src/c/matrix_kronecker.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_kronecker.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_kronecker.Tpo -c -o libscioperations_la-matrix_kronecker.lo `test -f 'src/c/matrix_kronecker.c' || echo '$(srcdir)/'`src/c/matrix_kronecker.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-matrix_kronecker.Tpo $(DEPDIR)/libscioperations_la-matrix_kronecker.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_kronecker.c' object='libscioperations_la-matrix_kronecker.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_kronecker.lo `test -f 'src/c/matrix_kronecker.c' || echo '$(srcdir)/'`src/c/matrix_kronecker.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_kronecker.lo `test -f 'src/c/matrix_kronecker.c' || echo '$(srcdir)/'`src/c/matrix_kronecker.c
 
 libscioperations_la-operations_tools.lo: src/c/operations_tools.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -MT libscioperations_la-operations_tools.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-operations_tools.Tpo -c -o libscioperations_la-operations_tools.lo `test -f 'src/c/operations_tools.c' || echo '$(srcdir)/'`src/c/operations_tools.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioperations_la-operations_tools.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-operations_tools.Tpo -c -o libscioperations_la-operations_tools.lo `test -f 'src/c/operations_tools.c' || echo '$(srcdir)/'`src/c/operations_tools.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-operations_tools.Tpo $(DEPDIR)/libscioperations_la-operations_tools.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/operations_tools.c' object='libscioperations_la-operations_tools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -c -o libscioperations_la-operations_tools.lo `test -f 'src/c/operations_tools.c' || echo '$(srcdir)/'`src/c/operations_tools.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioperations_la-operations_tools.lo `test -f 'src/c/operations_tools.c' || echo '$(srcdir)/'`src/c/operations_tools.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -768,81 +764,81 @@ libscioperations_la-operations_tools.lo: src/c/operations_tools.c
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
 libscioperations_la-operations.lo: src/cpp/operations.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-operations.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-operations.Tpo -c -o libscioperations_la-operations.lo `test -f 'src/cpp/operations.cpp' || echo '$(srcdir)/'`src/cpp/operations.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-operations.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-operations.Tpo -c -o libscioperations_la-operations.lo `test -f 'src/cpp/operations.cpp' || echo '$(srcdir)/'`src/cpp/operations.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-operations.Tpo $(DEPDIR)/libscioperations_la-operations.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/operations.cpp' object='libscioperations_la-operations.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-operations.lo `test -f 'src/cpp/operations.cpp' || echo '$(srcdir)/'`src/cpp/operations.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-operations.lo `test -f 'src/cpp/operations.cpp' || echo '$(srcdir)/'`src/cpp/operations.cpp
 
 libscioperations_la-types_substraction.lo: src/cpp/types_substraction.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_substraction.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_substraction.Tpo -c -o libscioperations_la-types_substraction.lo `test -f 'src/cpp/types_substraction.cpp' || echo '$(srcdir)/'`src/cpp/types_substraction.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_substraction.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_substraction.Tpo -c -o libscioperations_la-types_substraction.lo `test -f 'src/cpp/types_substraction.cpp' || echo '$(srcdir)/'`src/cpp/types_substraction.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-types_substraction.Tpo $(DEPDIR)/libscioperations_la-types_substraction.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_substraction.cpp' object='libscioperations_la-types_substraction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_substraction.lo `test -f 'src/cpp/types_substraction.cpp' || echo '$(srcdir)/'`src/cpp/types_substraction.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_substraction.lo `test -f 'src/cpp/types_substraction.cpp' || echo '$(srcdir)/'`src/cpp/types_substraction.cpp
 
 libscioperations_la-types_multiplication.lo: src/cpp/types_multiplication.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_multiplication.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_multiplication.Tpo -c -o libscioperations_la-types_multiplication.lo `test -f 'src/cpp/types_multiplication.cpp' || echo '$(srcdir)/'`src/cpp/types_multiplication.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_multiplication.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_multiplication.Tpo -c -o libscioperations_la-types_multiplication.lo `test -f 'src/cpp/types_multiplication.cpp' || echo '$(srcdir)/'`src/cpp/types_multiplication.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-types_multiplication.Tpo $(DEPDIR)/libscioperations_la-types_multiplication.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_multiplication.cpp' object='libscioperations_la-types_multiplication.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_multiplication.lo `test -f 'src/cpp/types_multiplication.cpp' || echo '$(srcdir)/'`src/cpp/types_multiplication.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_multiplication.lo `test -f 'src/cpp/types_multiplication.cpp' || echo '$(srcdir)/'`src/cpp/types_multiplication.cpp
 
 libscioperations_la-types_divide.lo: src/cpp/types_divide.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_divide.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_divide.Tpo -c -o libscioperations_la-types_divide.lo `test -f 'src/cpp/types_divide.cpp' || echo '$(srcdir)/'`src/cpp/types_divide.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_divide.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_divide.Tpo -c -o libscioperations_la-types_divide.lo `test -f 'src/cpp/types_divide.cpp' || echo '$(srcdir)/'`src/cpp/types_divide.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-types_divide.Tpo $(DEPDIR)/libscioperations_la-types_divide.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_divide.cpp' object='libscioperations_la-types_divide.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_divide.lo `test -f 'src/cpp/types_divide.cpp' || echo '$(srcdir)/'`src/cpp/types_divide.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_divide.lo `test -f 'src/cpp/types_divide.cpp' || echo '$(srcdir)/'`src/cpp/types_divide.cpp
 
 libscioperations_la-types_addition.lo: src/cpp/types_addition.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_addition.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_addition.Tpo -c -o libscioperations_la-types_addition.lo `test -f 'src/cpp/types_addition.cpp' || echo '$(srcdir)/'`src/cpp/types_addition.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_addition.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_addition.Tpo -c -o libscioperations_la-types_addition.lo `test -f 'src/cpp/types_addition.cpp' || echo '$(srcdir)/'`src/cpp/types_addition.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-types_addition.Tpo $(DEPDIR)/libscioperations_la-types_addition.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_addition.cpp' object='libscioperations_la-types_addition.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_addition.lo `test -f 'src/cpp/types_addition.cpp' || echo '$(srcdir)/'`src/cpp/types_addition.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_addition.lo `test -f 'src/cpp/types_addition.cpp' || echo '$(srcdir)/'`src/cpp/types_addition.cpp
 
 libscioperations_la-types_power.lo: src/cpp/types_power.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_power.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_power.Tpo -c -o libscioperations_la-types_power.lo `test -f 'src/cpp/types_power.cpp' || echo '$(srcdir)/'`src/cpp/types_power.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_power.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_power.Tpo -c -o libscioperations_la-types_power.lo `test -f 'src/cpp/types_power.cpp' || echo '$(srcdir)/'`src/cpp/types_power.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-types_power.Tpo $(DEPDIR)/libscioperations_la-types_power.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_power.cpp' object='libscioperations_la-types_power.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_power.lo `test -f 'src/cpp/types_power.cpp' || echo '$(srcdir)/'`src/cpp/types_power.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_power.lo `test -f 'src/cpp/types_power.cpp' || echo '$(srcdir)/'`src/cpp/types_power.cpp
 
 libscioperations_la-types_finite.lo: src/cpp/types_finite.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_finite.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_finite.Tpo -c -o libscioperations_la-types_finite.lo `test -f 'src/cpp/types_finite.cpp' || echo '$(srcdir)/'`src/cpp/types_finite.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_finite.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_finite.Tpo -c -o libscioperations_la-types_finite.lo `test -f 'src/cpp/types_finite.cpp' || echo '$(srcdir)/'`src/cpp/types_finite.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-types_finite.Tpo $(DEPDIR)/libscioperations_la-types_finite.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_finite.cpp' object='libscioperations_la-types_finite.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_finite.lo `test -f 'src/cpp/types_finite.cpp' || echo '$(srcdir)/'`src/cpp/types_finite.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_finite.lo `test -f 'src/cpp/types_finite.cpp' || echo '$(srcdir)/'`src/cpp/types_finite.cpp
 
 libscioperations_la-types_comparison_eq.lo: src/cpp/types_comparison_eq.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_comparison_eq.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_comparison_eq.Tpo -c -o libscioperations_la-types_comparison_eq.lo `test -f 'src/cpp/types_comparison_eq.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_eq.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_comparison_eq.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_comparison_eq.Tpo -c -o libscioperations_la-types_comparison_eq.lo `test -f 'src/cpp/types_comparison_eq.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_eq.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-types_comparison_eq.Tpo $(DEPDIR)/libscioperations_la-types_comparison_eq.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_comparison_eq.cpp' object='libscioperations_la-types_comparison_eq.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_comparison_eq.lo `test -f 'src/cpp/types_comparison_eq.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_eq.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_comparison_eq.lo `test -f 'src/cpp/types_comparison_eq.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_eq.cpp
 
 libscioperations_la-types_comparison_lt_le_gt_ge.lo: src/cpp/types_comparison_lt_le_gt_ge.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_comparison_lt_le_gt_ge.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_comparison_lt_le_gt_ge.Tpo -c -o libscioperations_la-types_comparison_lt_le_gt_ge.lo `test -f 'src/cpp/types_comparison_lt_le_gt_ge.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_lt_le_gt_ge.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_comparison_lt_le_gt_ge.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_comparison_lt_le_gt_ge.Tpo -c -o libscioperations_la-types_comparison_lt_le_gt_ge.lo `test -f 'src/cpp/types_comparison_lt_le_gt_ge.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_lt_le_gt_ge.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-types_comparison_lt_le_gt_ge.Tpo $(DEPDIR)/libscioperations_la-types_comparison_lt_le_gt_ge.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_comparison_lt_le_gt_ge.cpp' object='libscioperations_la-types_comparison_lt_le_gt_ge.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_comparison_lt_le_gt_ge.lo `test -f 'src/cpp/types_comparison_lt_le_gt_ge.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_lt_le_gt_ge.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_comparison_lt_le_gt_ge.lo `test -f 'src/cpp/types_comparison_lt_le_gt_ge.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_lt_le_gt_ge.cpp
 
 libscioperations_la-types_kronecker.lo: src/cpp/types_kronecker.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_kronecker.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_kronecker.Tpo -c -o libscioperations_la-types_kronecker.lo `test -f 'src/cpp/types_kronecker.cpp' || echo '$(srcdir)/'`src/cpp/types_kronecker.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_kronecker.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_kronecker.Tpo -c -o libscioperations_la-types_kronecker.lo `test -f 'src/cpp/types_kronecker.cpp' || echo '$(srcdir)/'`src/cpp/types_kronecker.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-types_kronecker.Tpo $(DEPDIR)/libscioperations_la-types_kronecker.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_kronecker.cpp' object='libscioperations_la-types_kronecker.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_kronecker.lo `test -f 'src/cpp/types_kronecker.cpp' || echo '$(srcdir)/'`src/cpp/types_kronecker.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_kronecker.lo `test -f 'src/cpp/types_kronecker.cpp' || echo '$(srcdir)/'`src/cpp/types_kronecker.cpp
 
 libscioperations_la-types_comparison_ne.lo: src/cpp/types_comparison_ne.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_comparison_ne.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_comparison_ne.Tpo -c -o libscioperations_la-types_comparison_ne.lo `test -f 'src/cpp/types_comparison_ne.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_ne.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_comparison_ne.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_comparison_ne.Tpo -c -o libscioperations_la-types_comparison_ne.lo `test -f 'src/cpp/types_comparison_ne.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_ne.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-types_comparison_ne.Tpo $(DEPDIR)/libscioperations_la-types_comparison_ne.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_comparison_ne.cpp' object='libscioperations_la-types_comparison_ne.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_comparison_ne.lo `test -f 'src/cpp/types_comparison_ne.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_ne.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_comparison_ne.lo `test -f 'src/cpp/types_comparison_ne.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_ne.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

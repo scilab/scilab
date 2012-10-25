@@ -10,7 +10,7 @@ OPERATIONS_C_SOURCES = 	src/c/doublecomplex.c \
 			src/c/matrix_division.c \
 			src/c/matrix_power.c \
 			src/c/matrix_finite.c \
-            src/c/matrix_kronecker.c \
+			src/c/matrix_kronecker.c \
 			src/c/operations_tools.c
 
 OPERATIONS_CPP_SOURCES =  src/cpp/operations.cpp \
@@ -22,28 +22,25 @@ OPERATIONS_CPP_SOURCES =  src/cpp/operations.cpp \
 			src/cpp/types_finite.cpp \
 			src/cpp/types_comparison_eq.cpp \
 			src/cpp/types_comparison_lt_le_gt_ge.cpp \
-            src/cpp/types_kronecker.cpp \
+			src/cpp/types_kronecker.cpp \
 			src/cpp/types_comparison_ne.cpp
 
 pkglib_LTLIBRARIES = libscioperations.la
 
 libscioperations_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscioperations_la_CFLAGS = \
-    -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/modules/elementary_functions/includes \
-    -I$(top_srcdir)/modules/output_stream/includes
-
-libscioperations_la_CXXFLAGS = \
-    -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/modules/types/includes \
-    -I$(top_srcdir)/modules/symbol/includes \
-    -I$(top_srcdir)/modules/ast/includes \
-    -I$(top_srcdir)/modules/core/includes \
-    -I$(top_srcdir)/modules/string/includes \
-    -I$(top_srcdir)/modules/elementary_functions/includes \
-    $(EIGEN_CPPFLAGS) \
+libscioperations_la_CPPFLAGS = \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/ast/includes \
+	-I$(top_srcdir)/modules/core/includes \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/elementary_functions/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 libscioperations_la_SOURCES = $(OPERATIONS_C_SOURCES) $(OPERATIONS_CPP_SOURCES)
