@@ -37,7 +37,7 @@
  * @param ar
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, int *np1, int *np2, int *kminr, int *kmaxr, int *ar) ;
+GRAPHICS_IMPEXP int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, int *np1, int *np2, int *kminr, int *kmaxr, int *ar);
 
 /**
  * @TODO add comment
@@ -46,7 +46,7 @@ GRAPHICS_IMPEXP int C2F(graduate)(double *xmi, double *xma, double *xi, double *
  * @param c_format
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int ComputeC_format( char * pobjUID, char * c_format ) ;
+GRAPHICS_IMPEXP int ComputeC_format(char * pobjUID, char * c_format);
 
 /**
  * @TODO add comment
@@ -58,7 +58,7 @@ GRAPHICS_IMPEXP int ComputeC_format( char * pobjUID, char * c_format ) ;
  * @param checkdim
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, int checkdim ) ;
+GRAPHICS_IMPEXP int ComputeXIntervals(char * pobjUID, char xy_type, double ** vector, int * N, int checkdim);
 
 /**
  * @TODO add comment
@@ -66,13 +66,13 @@ GRAPHICS_IMPEXP int ComputeXIntervals( char * pobjUID, char xy_type, double ** v
  * @param pobjUID
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP StringMatrix * computeDefaultTicsLabels( char * pobjUID ) ;
+GRAPHICS_IMPEXP StringMatrix * computeDefaultTicsLabels(char * pobjUID);
 
 /**
  * same as ChoixFormatE when numbers are given through an
  * array xx[0:nx-1];
  */
-GRAPHICS_IMPEXP void ChoixFormatE1(char *fmt, double *xx, int nx) ;
+GRAPHICS_IMPEXP void ChoixFormatE1(char *fmt, double *xx, int nx);
 
 /**
 * Create a new string array which is the conversion of the doubles values.
@@ -80,7 +80,7 @@ GRAPHICS_IMPEXP void ChoixFormatE1(char *fmt, double *xx, int nx) ;
 *                   it to the result. It must greater than the length of any of the strings.
 *                   and ideally the maximum length.
 */
-GRAPHICS_IMPEXP char ** copyFormatedArray( const double values[], int nbStrings, const char format[5], int bufferSize ) ;
+GRAPHICS_IMPEXP char ** copyFormatedArray(const double values[], int nbStrings, const char format[5], int bufferSize);
 
 /**
  * @TODO add comment
@@ -90,6 +90,6 @@ GRAPHICS_IMPEXP char ** copyFormatedArray( const double values[], int nbStrings,
  */
 GRAPHICS_IMPEXP char * getFPF(void);
 
-GRAPHICS_IMPEXP int sciGetLogExponent( double minBound, double maxBound, double * expMin, double * expMax );
+GRAPHICS_IMPEXP int sciGetLogExponent(double minBound, double maxBound, double* expMin, double* expMax);
 
 #endif /* _FORMAT_H_ */

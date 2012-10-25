@@ -6,38 +6,39 @@
 ### SOURCES ###
 
 API_SCILAB_CXX_SOURCES = \
-    src/cpp/api_boolean.cpp \
-    src/cpp/api_boolean_sparse.cpp \
-    src/cpp/api_common.cpp \
-    src/cpp/api_double.cpp \
-    src/cpp/api_int.cpp \
-    src/cpp/api_list.cpp \
-    src/cpp/api_poly.cpp \
-    src/cpp/api_sparse.cpp \
-    src/cpp/api_string.cpp \
-    src/cpp/api_pointer.cpp \
-    src/cpp/api_handle.cpp \
-    src/cpp/overload.cpp \
-    src/cpp/api_error.cpp
-
+src/cpp/api_boolean.cpp \
+src/cpp/api_boolean_sparse.cpp \
+src/cpp/api_common.cpp \
+src/cpp/api_double.cpp \
+src/cpp/api_int.cpp \
+src/cpp/api_list.cpp \
+src/cpp/api_poly.cpp \
+src/cpp/api_sparse.cpp \
+src/cpp/api_string.cpp \
+src/cpp/api_pointer.cpp \
+src/cpp/api_handle.cpp \
+src/cpp/api_error.cpp \
+src/cpp/overload.cpp \
+src/cpp/api_optional.cpp
 
 libsciapi_scilab_la_CPPFLAGS= \
-    -I$(srcdir)/includes/ \
-    -I$(srcdir)/src/cpp/ \
-    -I$(srcdir)/src/c/ \
-    -I$(top_srcdir)/modules/core/includes \
-    -I$(top_srcdir)/modules/call_scilab/includes \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
-    -I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/operations/includes \
-    -I$(top_srcdir)/modules/types/includes \
-    -I$(top_srcdir)/modules/symbol/includes \
-    -I$(top_srcdir)/modules/ast/includes \
-    -I$(top_srcdir)/modules/elementary_functions/includes \
-    -I$(top_srcdir)/modules/string/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes
-
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/cpp/ \
+-I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/core/includes \
+-I$(top_srcdir)/modules/call_scilab/includes \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/localization/includes \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/types/includes \
+-I$(top_srcdir)/modules/symbol/includes \
+-I$(top_srcdir)/modules/types/includes \
+-I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/elementary_functions/includes \
+-I$(top_srcdir)/modules/string/includes \
+-I$(top_srcdir)/libs/dynamiclibrary/includes \
+$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciapi_scilab.la
@@ -86,6 +87,7 @@ includes/api_poly.h \
 includes/api_sparse.h \
 includes/api_string.h \
 includes/api_handle.h \
+includes/api_optional.h \
 includes/api_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am

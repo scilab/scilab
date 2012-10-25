@@ -31,25 +31,28 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_tics_segment_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tics_segment_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-	BOOL status = FALSE;
-	int b =  (int)FALSE;
+    BOOL status = FALSE;
+    int b =  (int)FALSE;
 
-	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "tics_segment");
-	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+    b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tics_segment");
+    if (b == NOT_A_BOOLEAN_VALUE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
 
-	status = setGraphicObjectProperty(pobjUID, __GO_TICKS_SEGMENT__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_TICKS_SEGMENT__, &b, jni_bool, 1);
 
-	if (status == TRUE)
-	{
-		return SET_PROPERTY_SUCCEED;
-	}
-	else
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_segment");
-		return SET_PROPERTY_ERROR;
-	}
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_segment");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/
 

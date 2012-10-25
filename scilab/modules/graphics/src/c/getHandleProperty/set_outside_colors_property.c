@@ -30,30 +30,30 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_outside_colors_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_outside_colors_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int  values[2];
     int nbColors = 0;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "outside_colors");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow * nbCol != 2 )
+    if (nbRow * nbCol != 2)
     {
         Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "outside_colors", 2);
         return SET_PROPERTY_ERROR;
     }
 
-    copyDoubleVectorToIntFromStack(stackPointer, values, 2);
+    copyDoubleVectorToIntFromStack(_pvData, values, 2);
 
     /* Returns the number of colors of pobj's parent Figure */
     nbColors = sciGetNumColors(pobjUID);
 
-    if (   values[0] > nbColors || values[0] < -1
+    if (  values[0] > nbColors || values[0] < -1
             || values[1] > nbColors || values[1] < -1)
     {
         /* It is possible to set color_range outside the colormap, however it won't be used.*/

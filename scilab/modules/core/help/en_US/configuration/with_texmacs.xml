@@ -2,7 +2,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="with_texmacs" xml:lang="en">
     <refnamediv>
         <refname>with_texmacs</refname>
-        <refpurpose>Checks if Scilab has been called by texmacs</refpurpose>
+        <refpurpose>
+            Checks if Scilab has been called by texmacs. <emphasis role="bold">This function is obsolete.</emphasis> 
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -23,7 +25,7 @@
         <title>Description</title>
         <para>
             Returns <literal>%t</literal> if Scilab has been called by TeXmacs
-            (required to install ATOMS module: atomsInstall('texmacs'))
+            (required to install ATOMS module: <code>atomsInstall('texmacs')</code>)
         </para>
     </refsection>
     <refsection>
@@ -34,5 +36,15 @@
                 <revremark>This function will be removed in Scilab 5.4.1</revremark>
             </revision>
         </revhistory>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+if with_texmacs() == %t then
+   disp("Texmacs is available");
+else
+   disp("Texmacs is not available");
+end
+ ]]></programlisting>
     </refsection>
 </refentry>

@@ -12,7 +12,6 @@
 
 #include <math.h>
 #include <string.h>
-#include "stack-c.h"
 #include "isanan.h"
 #include "core_math.h"
 #include "gw_arnoldi.h"
@@ -234,6 +233,12 @@ int sci_eigs(char *fname, void* pvApiCtx)
         return 0;
     }
 
+    if (isVarComplex(pvApiCtx, piAddressVarThree))
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "eigs", 3);
+        return 0;
+    }
+
     if (dblNEV != floor(dblNEV) || (dblNEV <= 0))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: k must be a positive integer.\n"), "eigs", 3);
@@ -281,13 +286,13 @@ int sci_eigs(char *fname, void* pvApiCtx)
             if (!Acomplex && Asym)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n" ),
-                    "eigs", 4, "LM", "SM", "LA", "SA", "BE");
+                         "eigs", 4, "LM", "SM", "LA", "SA", "BE");
                 return 0;
             }
             else
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n " ), 
-                    "eigs", 4, "LM", "SM", "LR", "SR", "LI", "SI");
+                Scierror(999, _("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n " ),
+                         "eigs", 4, "LM", "SM", "LR", "SR", "LI", "SI");
                 return 0;
             }
         }
@@ -456,7 +461,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    if(iTypeVarEight == sci_boolean)
+    if (iTypeVarEight == sci_boolean)
     {
         iErr = getScalarBoolean(pvApiCtx, piAddressVarEight, &iCHOLB);
         if (iErr)
@@ -465,15 +470,15 @@ int sci_eigs(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        if(iCHOLB != 1 && iCHOLB != 0)
+        if (iCHOLB != 1 && iCHOLB != 0)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB","%f","%t");
+            Scierror(999, _("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
             return 0;
         }
         dblCHOLB = (double) iCHOLB;
     }
-    
-    if(iTypeVarEight == sci_matrix)
+
+    if (iTypeVarEight == sci_matrix)
     {
         iErr = getScalarDouble(pvApiCtx, piAddressVarEight, &dblCHOLB);
         if (iErr)
@@ -481,10 +486,10 @@ int sci_eigs(char *fname, void* pvApiCtx)
             Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB");
             return 0;
         }
-        
-        if(dblCHOLB != 1 && dblCHOLB != 0)
+
+        if (dblCHOLB != 1 && dblCHOLB != 0)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB","%f","%t");
+            Scierror(999, _("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
             return 0;
         }
     }

@@ -36,7 +36,7 @@ int sci_getdebuginfo(char *fname, void* pvApiCtx)
 	CheckLhs(0,2);
 
 #ifdef _MSC_VER
-	outputDynamicList = getDynamicDebugInfo_Windows(&m1, pvApiCtx);
+	outputDynamicList = getDynamicDebugInfo_Windows(&m1);
 	outputStaticList = getStaticDebugInfo_Windows(&m2);
 #else
 	outputDynamicList = getDynamicDebugInfo(&m1, pvApiCtx);

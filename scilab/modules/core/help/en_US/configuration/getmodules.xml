@@ -25,6 +25,15 @@
         <title>Description</title>
         <para>Returns list of modules installed in Scilab.</para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+modules=getmodules();
+find(modules=="core");
+with_module("core");
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

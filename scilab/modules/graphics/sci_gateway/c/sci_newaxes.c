@@ -20,7 +20,7 @@
 #include <stdlib.h>
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "BuildObjects.h"
 #include "Scierror.h"
 #include "SetProperty.h"
@@ -32,23 +32,34 @@
 #include "CurrentObject.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_newaxes( char * fname, unsigned long fname_len )
+int sci_newaxes(char * fname, void *pvApiCtx)
 {
+    SciErr sciErr;
+
+    long long* outindex = NULL;
+
     char *psubwinUID = NULL;
-    int outindex = 0, numrow   = 1, numcol   = 1;
-    CheckRhs(0, 0);
-    CheckLhs(0, 1);
+    int numrow   = 1, numcol   = 1;
+    CheckInputArgument(pvApiCtx, 0, 0);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     getOrCreateDefaultSubwin();
 
     if ((psubwinUID = (char*)ConstructSubWin (getCurrentFigure())) != NULL)
     {
-        CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &numrow, &numcol, &outindex);
+        sciErr = allocMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, numrow, numcol, &outindex);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
 
-        *hstk(outindex) = getHandle(psubwinUID);
 
-        LhsVar(1) = 1;
-        PutLhsVar();
+        *(outindex) = getHandle(psubwinUID);
+
+        AssignOutputVariable(pvApiCtx, 1) = 1;
+        ReturnArguments(pvApiCtx);
     }
     else
     {

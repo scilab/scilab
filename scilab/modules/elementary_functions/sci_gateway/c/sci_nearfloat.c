@@ -10,8 +10,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_elementary_functions.h"
-#include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -73,14 +73,14 @@ int sci_nearfloat(char *fname, void* pvApiCtx)
 
 	if(iType1 != sci_strings)
 	{
-		Err = 1;
+		//Err = 1;
 		SciError(55);
 		return 0;
 	}
 
 	if(iType2 != sci_matrix)
 	{
-		Err = 2;
+		//Err = 2;
 		SciError(53);
 		return 0;
 	}

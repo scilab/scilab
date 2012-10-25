@@ -9,7 +9,7 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-#include "stack-c.h"
+#include <string.h>
 #include "MALLOC.h"
 #include "api_scilab.h"
 #include "localization.h"

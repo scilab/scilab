@@ -17,7 +17,7 @@
 * @param[out] size of returned array
 * @return array of string
 */
-char **getDynamicDebugInfo_Windows(int *sizeArray, int* _piKey);
+char **getDynamicDebugInfo_Windows(int *sizeArray);
 
 #endif /* __GETDYNAMICDEBUGINFO_WINDOWS_H__ */
 /*--------------------------------------------------------------------------*/

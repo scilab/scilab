@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 // <-- ENGLISH IMPOSED -->
 //
 // <-- Non-regression test for bug 7363 -->
@@ -18,7 +18,6 @@
 
 ilib_verbose(0);
 
-loadXcosLibs(); loadScicos();
 
 // stubbing dialogs
 prot = funcprot();

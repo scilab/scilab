@@ -12,7 +12,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "MALLOC.h"
-#include "stack-c.h"
 #include "do_xxprintf.h"
 #include "do_xxscanf.h"
 #include "scanf_functions.h"

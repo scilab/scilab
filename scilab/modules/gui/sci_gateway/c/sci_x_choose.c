@@ -2,104 +2,161 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Vincent COUVERT (Java version)
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 #include "gw_gui.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "CallMessageBox.h"
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
-int sci_x_choose(char *fname,unsigned long fname_len)
+int sci_x_choose(char *fname, void* pvApiCtx)
 {
-  int nbRow = 0, nbCol = 0;
-  int nbRowItems = 0, nbColItems = 0;
+    SciErr sciErr;
 
-  int messageBoxID = 0;
+    int* piAddritemsAdr = NULL;
+    int* piAddrmessageAdr = NULL;
+    int* piAddrbuttonLabelAdr = NULL;
+    double* userValueAdr = NULL;
 
-  char **itemsAdr = NULL;
-  char **buttonLabelAdr = NULL;
+    int nbRow = 0, nbCol = 0;
+    int nbRowItems = 0, nbColItems = 0;
 
-  char **messageAdr = NULL;
+    int messageBoxID = 0;
 
-  int userValueAdr = 0;
-  int userValue = 0;
+    char **itemsAdr = NULL;
+    char **buttonLabelAdr = NULL;
 
-  CheckRhs(2,3);
-  CheckLhs(0,1);
+    char **messageAdr = NULL;
 
-  if (VarType(1) == sci_strings)
+    int userValue = 0;
+
+    CheckInputArgument(pvApiCtx, 2, 3);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+
+    if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
     {
-      GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRowItems, &nbColItems, &itemsAdr);
-    }
-  else
-    {
-      Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname);
-      return FALSE;
-    }
-
-  if (VarType(2) == sci_strings)
-    {
-      GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &messageAdr);
-    }
-  else
-    {
-      Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 2);
-      return FALSE;
-    }
-
-  /* Create the Java Object */
-  messageBoxID = createMessageBox();
-
-  /* Title is a default title */
-  setMessageBoxTitle(messageBoxID, _("Scilab Choose Message"));
-  /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)messageAdr), nbCol*nbRow);
-  /* ListBox Items */
-  setMessageBoxListBoxItems(messageBoxID, getStringMatrixFromStack((size_t)itemsAdr), nbColItems*nbRowItems);
-  /* Modality */
-  setMessageBoxModal(messageBoxID, TRUE);
-    
-  if (Rhs == 3)
-    {
-      if (VarType(3) ==  sci_strings)
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddritemsAdr);
+        if (sciErr.iErr)
         {
-          GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&buttonLabelAdr);
-          if (nbRow*nbCol != 1)
-          {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of string at position 1.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddritemsAdr, &nbRowItems, &nbColItems, &itemsAdr))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            return 1;
+        }
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname);
+        return FALSE;
+    }
+
+    if ((checkInputArgumentType(pvApiCtx, 2, sci_strings)))
+    {
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrmessageAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of string at position 2.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddrmessageAdr, &nbRow, &nbCol, &messageAdr))
+        {
+            freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+            return 1;
+        }
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 2);
+        return FALSE;
+    }
+
+    /* Create the Java Object */
+    messageBoxID = createMessageBox();
+
+    /* Title is a default title */
+    setMessageBoxTitle(messageBoxID, _("Scilab Choose Message"));
+    /* Message */
+    setMessageBoxMultiLineMessage(messageBoxID, messageAdr, nbCol * nbRow);
+    freeAllocatedMatrixOfString(nbRow, nbCol, messageAdr);
+    /* ListBox Items */
+    setMessageBoxListBoxItems(messageBoxID, itemsAdr, nbColItems * nbRowItems);
+    freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
+    /* Modality */
+    setMessageBoxModal(messageBoxID, TRUE);
+
+    if (nbInputArgument(pvApiCtx) == 3)
+    {
+        if (checkInputArgumentType(pvApiCtx, 3, sci_strings))
+        {
+            sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrbuttonLabelAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 3.
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddrbuttonLabelAdr, &nbRow, &nbCol, &buttonLabelAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+                return 1;
+            }
+
+            if (nbRow*nbCol != 1)
+            {
+                freeAllocatedMatrixOfString(nbRow, nbCol, buttonLabelAdr);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
+                return FALSE;
+            }
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
             return FALSE;
-          }
-        }
-      else 
-        {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
-          return FALSE;
         }
 
-      setMessageBoxButtonsLabels(messageBoxID, getStringMatrixFromStack((size_t)buttonLabelAdr), nbCol*nbRow);
+        setMessageBoxButtonsLabels(messageBoxID, buttonLabelAdr, nbCol * nbRow);
+        freeAllocatedMatrixOfString(nbRow, nbCol, buttonLabelAdr);
     }
 
-  /* Display it and wait for a user input */
-  messageBoxDisplayAndWait(messageBoxID);
+    /* Display it and wait for a user input */
+    messageBoxDisplayAndWait(messageBoxID);
 
-  /* Read the user answer */
-  userValue = getMessageBoxSelectedItem(messageBoxID);
+    /* Read the user answer */
+    userValue = getMessageBoxSelectedItem(messageBoxID);
 
-  nbRow = 1;nbCol = 1;
-  CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &userValueAdr);
-  *stk(userValueAdr) = userValue;
+    nbRow = 1;
+    nbCol = 1;
 
-  LhsVar(1) = Rhs+1;
-  PutLhsVar();
-  return TRUE;
+    sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &userValueAdr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
+
+    *userValueAdr = userValue;
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
+    return TRUE;
 }
 /*--------------------------------------------------------------------------*/

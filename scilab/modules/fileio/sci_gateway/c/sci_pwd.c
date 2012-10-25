@@ -10,8 +10,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 #include "gw_fileio.h"
-#include "stack-c.h"
 #include "scicurdir.h"
 #include "MALLOC.h"
 #include "Scierror.h"

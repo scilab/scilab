@@ -228,36 +228,36 @@ endfunction
 //double
 function result = GetDouble(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Double_Matrix_Get.txt");
-    findExp = "/([\s]*)GetRhsVar\((.*), MATRIX_OF_DOUBLE_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)GetRhsVar\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_DOUBLE_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDouble(str, findExp, replaceExp);
 
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Double_Matrix_GetAsInteger.txt");
-    findExp = "/([\s]*)GetRhsVar\((.*), MATRIX_OF_INTEGER_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)GetRhsVar\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_INTEGER_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDouble(result, findExp, replaceExp);
 endfunction
 
 function result = CreateDouble(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Double_Matrix_Create.txt");
-    findExp = "/([\s]*)CreateVarFromPtr\((.*), MATRIX_OF_DOUBLE_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVarFromPtr\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_DOUBLE_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDouble(str, findExp, replaceExp);
 
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Double_Matrix_CreateAsInteger.txt");
-    findExp = "/([\s]*)CreateVarFromPtr\((.*), MATRIX_OF_INTEGER_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVarFromPtr\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_INTEGER_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDouble(result, findExp, replaceExp);
 endfunction
 
 function result = AllocDouble(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Double_Matrix_Alloc.txt");
-    findExp = "/([\s]*)CreateVar\((.*), MATRIX_OF_DOUBLE_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVar\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_DOUBLE_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDouble(str, findExp, replaceExp);
 
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Double_Matrix_AllocAsInteger.txt");
-    findExp = "/([\s]*)CreateVar\((.*), MATRIX_OF_INTEGER_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVar\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_INTEGER_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDouble(result, findExp, replaceExp);
 endfunction
@@ -297,37 +297,37 @@ endfunction
 function result = GetDoubleComplex(str)
     //MATRIX_OF_DOUBLE_DATATYPE
     replaceExp = mgetl("SCI/tools/api_scilab_trad/DoubleComplex_Matrix_Get.txt");
-    findExp = "/([\s]*)GetRhsCVar\((.*), MATRIX_OF_DOUBLE_DATATYPE, &(.*), &(.*), &(.*), &([\S]*)[\s]*, &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)GetRhsCVar\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_DOUBLE_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDoubleComplex(str, findExp, replaceExp);
 
     //MATRIX_OF_INTEGER_DATATYPE
     replaceExp = mgetl("SCI/tools/api_scilab_trad/DoubleComplex_Matrix_GetAsInteger.txt");
-    findExp = "/([\s]*)GetRhsCVar\((.*), MATRIX_OF_INTEGER_DATATYPE, &(.*), &(.*), &(.*), &([\S]*)[\s]*, &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)GetRhsCVar\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_INTEGER_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDoubleComplex(result, findExp, replaceExp);
 endfunction
 
 function result = CreateDoubleComplex(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/DoubleComplex_Matrix_Create.txt");
-    findExp = "/([\s]*)CreateCVarFromPtr\((.*), MATRIX_OF_DOUBLE_DATATYPE, &(.*), &(.*), &(.*), &([\S]*)[\s]*, &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateCVarFromPtr\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_DOUBLE_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDoubleComplex(str, findExp, replaceExp);
 
     replaceExp = mgetl("SCI/tools/api_scilab_trad/DoubleComplex_Matrix_CreateAsInteger.txt");
-    findExp = "/([\s]*)CreateCVarFromPtr\((.*), MATRIX_OF_INTEGER_DATATYPE, &(.*), &(.*), &(.*), &([\S]*)[\s]*, &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateCVarFromPtr\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_INTEGER_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDoubleComplex(result, findExp, replaceExp);
 endfunction
 
 function result = AllocDoubleComplex(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/DoubleComplex_Matrix_Alloc.txt");
-    findExp = "/([\s]*)CreateCVar\((.*), MATRIX_OF_DOUBLE_DATATYPE, &(.*), &(.*), &(.*), &([\S]*)[\s]*, &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateCVar\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_DOUBLE_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDoubleComplex(str, findExp, replaceExp);
 
     replaceExp = mgetl("SCI/tools/api_scilab_trad/DoubleComplex_Matrix_AllocAsInteger.txt");
-    findExp = "/([\s]*)CreateCVar\((.*), MATRIX_OF_INTEGER_DATATYPE, &(.*), &(.*), &(.*), &([\S]*)[\s]*, &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateCVar\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_INTEGER_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonDoubleComplex(result, findExp, replaceExp);
 endfunction
@@ -376,35 +376,35 @@ endfunction
 //string
 function result = GetSingleString(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/String_Single_Get.txt");
-    findExp = "/([\s]*)GetRhsVar\((.*), STRING_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)GetRhsVar\([\s]*(.*)[\s]*,[\s]*STRING_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonString(str, findExp, replaceExp);
 endfunction
 
 function result = GetStringMatrix(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/String_Matrix_Get.txt");
-    findExp = "/([\s]*)GetRhsVar\((.*), MATRIX_OF_STRING_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)GetRhsVar\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_STRING_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonString(str, findExp, replaceExp);
 endfunction
 
 function result = AllocSingleString(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/String_Single_Alloc.txt");
-    findExp = "/([\s]*)CreateVar\((.*), STRING_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVar\([\s]*(.*)[\s]*,[\s]*STRING_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonString(str, findExp, replaceExp);
 endfunction
 
 function result = CreateSingleString(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/String_Single_Create.txt");
-    findExp = "/([\s]*)CreateVarFromPtr\((.*), STRING_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVarFromPtr\([\s]*(.*)[\s]*,[\s]*STRING_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonString(str, findExp, replaceExp);
 endfunction
 
 function result = CreateStringMatrix(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/String_Matrix_Create.txt");
-    findExp = "/([\s]*)CreateVarFromPtr\((.*), MATRIX_OF_STRING_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVarFromPtr\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_STRING_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonString(str, findExp, replaceExp);
 endfunction
@@ -443,21 +443,21 @@ endfunction
 //////////////
 function result = GetBoolMatrix(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Bool_Matrix_Get.txt");
-    findExp = "/([\s]*)GetRhsVar\((.*), MATRIX_OF_BOOLEAN_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)GetRhsVar\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_BOOLEAN_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonBool(str, findExp, replaceExp);
 endfunction
 
 function result = AllocBoolMatrix(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Bool_Matrix_Alloc.txt");
-    findExp = "/([\s]*)CreateVar\((.*), MATRIX_OF_BOOLEAN_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVar\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_BOOLEAN_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonBool(str, findExp, replaceExp);
 endfunction
 
 function result = CreateBoolMatrix(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Bool_Matrix_Create.txt");
-    findExp = "/([\s]*)CreateVarFromPtr\((.*), MATRIX_OF_BOOLEAN_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVarFromPtr\([\s]*(.*)[\s]*,[\s]*MATRIX_OF_BOOLEAN_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonBool(str, findExp, replaceExp);
 endfunction
@@ -496,21 +496,21 @@ endfunction
 /////////////////
 function result = GetPointer(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Pointer_Get.txt");
-    findExp = "/([\s]*)GetRhsVar\((.*), SCILAB_POINTER_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)GetRhsVar\([\s]*(.*)[\s]*,[\s]*SCILAB_POINTER_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonPointer(str, findExp, replaceExp);
 endfunction
 
 function result = CreatePointer(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Pointer_Create.txt");
-    findExp = "/([\s]*)CreateVarFromPtr\((.*), SCILAB_POINTER_DATATYPE, &(.*), &(.*), ([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVarFromPtr\([\s]*(.*)[\s]*,[\s]*SCILAB_POINTER_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*([\S]*)[\s]*\);(.*)/";
 
     result = commonPointer(str, findExp, replaceExp);
 endfunction
 
 function result = AllocPointer(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Pointer_Alloc.txt");
-    findExp = "/([\s]*)CreateVar\((.*), SCILAB_POINTER_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVar\([\s]*(.*)[\s]*,[\s]*SCILAB_POINTER_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonPointer(str, findExp, replaceExp);
 endfunction
@@ -549,21 +549,21 @@ endfunction
 ////////////////
 function result = GetHandleMatrix(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Handle_Matrix_Get.txt");
-    findExp = "/([\s]*)GetRhsVar\((.*), GRAPHICAL_HANDLE_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)GetRhsVar\([\s]*(.*)[\s]*,[\s]*GRAPHICAL_HANDLE_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonHandle(str, findExp, replaceExp);
 endfunction
 
 function result = CreateHandleMatrix(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Handle_Matrix_Create.txt");
-    findExp = "/([\s]*)CreateVarFromPtr\((.*), GRAPHICAL_HANDLE_DATATYPE, &(.*), &(.*), ([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVarFromPtr\([\s]*(.*)[\s]*,[\s]*GRAPHICAL_HANDLE_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*([\S]*)[\s]*\);(.*)/";
 
     result = commonHandle(str, findExp, replaceExp);
 endfunction
 
 function result = AllocHandleMatrix(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Handle_Matrix_Alloc.txt");
-    findExp = "/([\s]*)CreateVar\((.*), GRAPHICAL_HANDLE_DATATYPE, &(.*), &(.*), &([\S]*)[\s]*\);(.*)/";
+    findExp = "/([\s]*)CreateVar\([\s]*(.*)[\s]*,[\s]*GRAPHICAL_HANDLE_DATATYPE[\s]*,[\s]*&(.*)[\s]*,[\s]*&(.*)[\s]*,[\s]*&([\S]*)[\s]*\);(.*)/";
 
     result = commonHandle(str, findExp, replaceExp);
 endfunction
@@ -602,70 +602,70 @@ endfunction
 ///////////////
 function result = replaceCheckScalar(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Tools_Check_Scalar.txt");
-    findExp = "/([\s]*)CheckScalar\((.*), (.*), (.*)\);/";
+    findExp = "/([\s]*)CheckScalar\([\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)\);/";
 
     result = sed(str, findExp, replaceExp);
 endfunction
 
 function result = replaceCheckSquare(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Tools_Check_Square.txt");
-    findExp = "/([\s]*)CheckSquare\((.*), (.*), (.*)\);/";
+    findExp = "/([\s]*)CheckSquare\([\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)\);/";
 
     result = sed(str, findExp, replaceExp);
 endfunction
 
 function result = replaceCheckVector(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Tools_Check_Vector.txt");
-    findExp = "/([\s]*)CheckVector\((.*), (.*), (.*)\);/";
+    findExp = "/([\s]*)CheckVector\([\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)\);/";
 
     result = sed(str, findExp, replaceExp);
 endfunction
 
 function result = replaceCheckRow(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Tools_Check_Row.txt");
-    findExp = "/([\s]*)CheckRow\((.*), (.*), (.*)\);/";
+    findExp = "/([\s]*)CheckRow\([\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)\);/";
 
     result = sed(str, findExp, replaceExp);
 endfunction
 
 function result = replaceCheckColumn(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Tools_Check_Column.txt");
-    findExp = "/([\s]*)CheckColumn\((.*), (.*), (.*)\);/";
+    findExp = "/([\s]*)CheckColumn\([\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)\);/";
 
     result = sed(str, findExp, replaceExp);
 endfunction
 
 function result = replaceCheckDims(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Tools_Check_Dims.txt");
-    findExp = "/([\s]*)CheckDims\((.*), (.*), (.*), (.*), (.*)\);/";
+    findExp = "/([\s]*)CheckDims\([\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)\);/";
 
     result = sed(str, findExp, replaceExp);
 endfunction
 
 function result = replaceCheckLength(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Tools_Check_Length.txt");
-    findExp = "/([\s]*)CheckLength\((.*), (.*), (.*)\);/";
+    findExp = "/([\s]*)CheckLength\([\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)\);/";
 
     result = sed(str, findExp, replaceExp);
 endfunction
 
 function result = replaceCheckSameDims(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Tools_Check_SameDims.txt");
-    findExp = "/([\s]*)CheckSameDims\((.*), (.*), (.*), (.*), (.*), (.*)\);/";
+    findExp = "/([\s]*)CheckSameDims\([\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)\);/";
 
     result = sed(str, findExp, replaceExp);
 endfunction
 
 function result = replaceCheckDimProp(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Tools_Check_DimProp.txt");
-    findExp = "/([\s]*)CheckDimProp\((.*), (.*), (.*)\);/";
+    findExp = "/([\s]*)CheckDimProp\([\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)\);/";
 
     result = sed(str, findExp, replaceExp);
 endfunction
 
 function result = replaceCheckOneDim(str)
     replaceExp = mgetl("SCI/tools/api_scilab_trad/Tools_Check_OneDim.txt");
-    findExp = "/([\s]*)CheckOneDim\((.*), (.*), (.*), (.*)\);/";
+    findExp = "/([\s]*)CheckOneDim\([\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)[\s]*,[\s]*(.*)\);/";
 
     result = sed(str, findExp, replaceExp);
 endfunction
@@ -676,13 +676,13 @@ function result = replaceVarType(str)
     //three cases
     //first
     //VarType(x) == sci_xx
-    result = sed(result, "/[\s]*VarType\(([\S]*)\) == (\S[^\s)]*)/", "(checkInputArgumentType(pvApiCtx, \1, \2))");
+    result = sed(result, "/[\s]*VarType\([\s]*(.*)[\s]*\)[\s]*==[\s]*([^);]*)[\s]*/", "(checkInputArgumentType(pvApiCtx, \1, \2))");
     //second
     //VarType(x) != sci_xx
-    result = sed(result, "/[\s]*VarType\(([\S]*)\) != (\S[^\s)]*)/", "(!checkInputArgumentType(pvApiCtx, \1, \2))");
+    result = sed(result, "/[\s]*VarType\([\s]*(.*)[\s]*\)[\s]*!=[\s]*([^);]*)[\s]*/", "(!checkInputArgumentType(pvApiCtx, \1, \2))");
     //third
-    //xx = VarType(x)
-    result = sed(result, "/ = VarType\((.*)\)/", " = getInputArgumentType(pvApiCtx, \1)");
+    //VarType(x)
+    result = sed(result, "/VarType\([\s]*(.*)[\s]*\)/", "getInputArgumentType(pvApiCtx, \1)");
 endfunction
 
 function result = replaceGetType(str)
@@ -690,13 +690,13 @@ function result = replaceGetType(str)
     //three cases
     //first
     //GetType(x) == sci_xx
-    result = sed(result, "/[\s]*GetType\(([\S]*)\) == (\S[^\s)]*)/", "checkInputArgumentType(pvApiCtx, \1, \2)");
+    result = sed(result, "/[\s]*GetType\([\s]*(.*)[\s]*\)[\s]*==[\s]*([^);]*)[\s^)]*/", "checkInputArgumentType(pvApiCtx, \1, \2)");
     //second
     //GetType(x) != sci_xx
-    result = sed(result, "/[\s]*GetType\(([\S]*)\) != (\S[^\s)]*)/", "(!checkInputArgumentType(pvApiCtx, \1, \2))");
+    result = sed(result, "/[\s]*GetType\([\s]*(.*)[\s]*\)[\s]*!=[\s]*([^);]*)[\s^)]*/", "(!checkInputArgumentType(pvApiCtx, \1, \2))");
     //third
-    //xx = GetType(x)
-    result = sed(result, "/ = GetType\((.*)\)/", " = getInputArgumentType(pvApiCtx, \1)");
+    //GetType(x)
+    result = sed(result, "/GetType\((.*)\)/", "getInputArgumentType(pvApiCtx, \1)");
 endfunction
 
 

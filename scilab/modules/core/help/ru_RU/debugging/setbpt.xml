@@ -30,16 +30,16 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>setbpt</literal> интерактивно вставляет точку останова в строку с номером  
-            <literal>linenumb</literal> (по умолчанию номер 1) функции с именем 
-            <literal>macroname</literal>.
+            <function>setbpt</function> интерактивно вставляет точку останова в строку с номером
+            <varname>linenumb</varname> (по умолчанию номер 1) функции с именем
+            <varname>macroname</varname>.
         </para>
         <para>
-            <literal>linenumb</literal> может быть вектор-строкой или вектор-столбцом или скаляром, указывающим номер строки.
+            <varname>linenumb</varname> может быть вектор-строкой или вектор-столбцом или скаляром, указывающим номер строки.
         </para>
         <para>
-            Номера строк в <literal>linenumb</literal> являются номерами
-            <emphasis>физических</emphasis> строк в функции с именем <literal>macroname</literal>. 
+            Номера строк в <varname>linenumb</varname> являются номерами
+            <emphasis>физических</emphasis> строк в функции с именем <varname>macroname</varname>.
             Заметьте, что Scilab до версии 5.0 использовал номера <emphasis>логических</emphasis> строк. Разница между номерами физических и логических строк равна количеству  <emphasis>продолженных
                 строк
             </emphasis>
@@ -48,7 +48,7 @@
         <para>
             Когда достигается точка останова, Scilab выполняет определённую физическую строку и 
             останавливает ход выполнения. Если функция не компилированная (см.
-            <link linkend="comp">comp</link>), то строка выводится на экра. Затем Scilab переходит в 
+            <link linkend="comp">comp</link>), то строка выводится на экран. Затем Scilab переходит в 
             режим <link linkend="pause">pause</link>, в котором пользователь может проверить текущие 
             значения. Из режима  <link linkend="pause">pause</link> можно выйти с помощью <link linkend="resume">resume</link> или <link linkend="abort">abort</link>.
         </para>
@@ -62,10 +62,12 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[ 
-setbpt('foo'),setbpt('foo',10),dispbpt()
+setbpt('foo')
+setbpt('foo',10)
+dispbpt()
 delbpt()
- 
-setbpt('foo',[1,2,5,6]),dispbpt()
+setbpt('foo',[1,2,5,6])
+dispbpt()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

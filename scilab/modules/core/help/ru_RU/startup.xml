@@ -18,6 +18,15 @@
             Для того, чтобы последняя строка файла начального запуска была учтена, необходимо, чтобы файл заканчивался новой пустой строкой.
         </para>
     </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+ls(SCIHOME)
+if ls(SCIHOME+"/scilab.ini") == [] & ls(SCIHOME+"/.scilab") == []
+   disp("Ни один из файлов начального запуска не определён");
+end
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">

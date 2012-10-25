@@ -71,8 +71,6 @@ char *findChildWithKindAt(char const* parent, int type, const int position)
     }
 
     releaseGraphicObjectProperty(__GO_CHILDREN__, children, jni_string_vector, childrenCount);
-    releaseGraphicObjectProperty(__GO_CHILDREN_COUNT__, &childrenCount, jni_int, 1);
-
     return child;
 };
 

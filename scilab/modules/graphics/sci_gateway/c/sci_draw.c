@@ -15,7 +15,7 @@
 /* file: sci_draw.h                                                       */
 /* desc : interface for draw routine                                      */
 /*------------------------------------------------------------------------*/
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "gw_graphics.h"
 //#include "warningmode.h"
 #include "sciprint.h"
@@ -24,11 +24,11 @@
 //
 // FIXME: Remove GW after Scilab 5.4.0
 //
-int sci_draw( char * fname, unsigned long fname_len )
+int sci_draw(char * fname, void* pvApiCtx)
 {
 
-    CheckRhs(0, 1) ;
-    CheckLhs(0, 1) ;
+    CheckInputArgument(pvApiCtx, 0, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     //    if (getWarningMode())
     {
@@ -37,8 +37,8 @@ int sci_draw( char * fname, unsigned long fname_len )
         sciprint(_("%s: This function will be permanently removed in Scilab %s\n\n"), _("Warning"), "5.4.1");
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

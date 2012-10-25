@@ -241,18 +241,18 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
     hid_t data_type;
     H5T_class_t data_class;
     hid_t space = H5Dget_space(_iDatasetId);
-    if(space < 0)
+    if (space < 0)
     {
         return -1;
     }
 
     data_type = H5Dget_type(_iDatasetId);
     data_class = H5Tget_class(data_type);
-    if(data_class == H5T_COMPOUND) 
+    if (data_class == H5T_COMPOUND)
     {
         *_iComplex = 1;
     }
-    else if(data_class == H5T_REFERENCE)
+    else if (data_class == H5T_REFERENCE)
     {
         *_iComplex = isComplexData(_iDatasetId);
     }
@@ -262,24 +262,25 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
     }
 
     *_iDims = H5Sget_simple_extent_ndims(space);
-    if(*_iDims < 0)
+    if (*_iDims < 0)
     {
         H5Sclose(space);
         return -1;
     }
 
-    if(_piDims != 0)
+    if (_piDims != 0)
     {
         int i = 0;
         hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) * *_iDims);
-        if(H5Sget_simple_extent_dims(space, dims, NULL) < 0)
+        if (H5Sget_simple_extent_dims(space, dims, NULL) < 0)
         {
             return -1;
         }
 
         //reverse dimensions
-        for(i = 0 ; i < *_iDims ; i++)
-        {//reverse dimensions to improve rendering in external tools
+        for (i = 0 ; i < *_iDims ; i++)
+        {
+            //reverse dimensions to improve rendering in external tools
             _piDims[i] = (int)dims[*_iDims - 1 - i];
             iSize *= _piDims[i];
         }
@@ -398,6 +399,14 @@ int getDataSetIdFromName(int _iFile, char *_pstName)
     return H5Dopen(_iFile, _pstName);
 }
 
+void closeDataSet(int _id)
+{
+    if (_id > 0)
+    {
+        H5Dclose(_id);
+    }
+}
+
 int getDataSetId(int _iFile)
 {
     herr_t status = 0;
@@ -502,7 +511,7 @@ int readDoubleComplexMatrix(int _iDatasetId, double *_pdblReal, double *_pdblImg
         return -1;
     }
 
-    
+
     vGetPointerFromDoubleComplex(pData, iSize, _pdblReal, _pdblImg);
     FREE(pData);
     status = H5Dclose(_iDatasetId);
@@ -625,7 +634,7 @@ int readCommonPolyMatrix(int _iDatasetId, char *_pstVarname, int _iComplex, int 
     herr_t status;
     int iSize = 1;
 
-    for(i = 0 ; i < _iDims ; i++)
+    for (i = 0 ; i < _iDims ; i++)
     {
         iSize *= _piDims[i];
     }
@@ -949,7 +958,7 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
         return -1;
     }
 
-    if(_iNbItem != 0)
+    if (_iNbItem != 0)
     {
         //read cols data
         obj = H5Rdereference(_iDatasetId, H5R_OBJECT, &pRef[1]);

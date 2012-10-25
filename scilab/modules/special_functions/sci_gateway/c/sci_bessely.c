@@ -13,7 +13,6 @@
 #include <string.h>
 #include "api_scilab.h"
 #include "gw_special_functions.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "msgs.h"
 #include "MALLOC.h"

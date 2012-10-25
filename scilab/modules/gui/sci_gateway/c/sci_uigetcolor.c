@@ -11,258 +11,440 @@
  */
 
 #include "gw_gui.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "CallColorChooser.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_uigetcolor(char *fname,unsigned long fname_len)
+int sci_uigetcolor(char *fname, void* pvApiCtx)
 {
-  int colorChooserID = 0;
-  int firstColorIndex = 0;
+    SciErr sciErr;
 
-  int nbRow = 0, nbCol = 0;
+    //WARNING ALL NEW DECALRATIONS ARE HERE IF YOUR HAVE MANY FUNCTIONS
+    //IN THE FILE YOU HAVE PROBABLY TO MOVE DECLARATIONS IN GOOD FUNCTIONS
+    int* piAddrredAdr = NULL;
+    double* redAdr = NULL;
+    int* piAddrtitleAdr = NULL;
+    char* titleAdr = NULL;
+    int* piAddrgreenAdr = NULL;
+    double* greenAdr = NULL;
+    int* piAddrblueAdr = NULL;
+    double* blueAdr = NULL;
 
-  int redAdr = 0;
-  int greenAdr = 0;
-  int blueAdr = 0;
-  int titleAdr = 0;
+    int colorChooserID = 0;
+    int firstColorIndex = 0;
 
-  double *selectedRGB = NULL;
+    int nbRow = 0, nbCol = 0;
 
-  CheckRhs(0, 4);
+    double *selectedRGB = NULL;
 
-  if ((Lhs!=1) && (Lhs!=3)) /* Bad use */
+    CheckInputArgument(pvApiCtx, 0, 4);
+
+    if ((nbOutputArgument(pvApiCtx) != 1) && (nbOutputArgument(pvApiCtx) != 3)) /* Bad use */
     {
-      Scierror(999, _("%s: Wrong number of output arguments: %d or %d expected.\n"), fname, 1, 3);
-      return FALSE;
+        Scierror(999, _("%s: Wrong number of output arguments: %d or %d expected.\n"), fname, 1, 3);
+        return FALSE;
     }
-  
-  /* Rhs==1: title or [R, G, B] given */
-  if (Rhs==1)
+
+    /* Rhs==1: title or [R, G, B] given */
+    if (nbInputArgument(pvApiCtx) == 1)
     {
-      if (VarType(1) == sci_matrix)
+        if ((checkInputArgumentType(pvApiCtx, 1, sci_matrix)))
         {
-          GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
-          if ((nbRow != 1) || (nbCol != 3))
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrredAdr);
+            if (sciErr.iErr)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 1, 3);
-              return FALSE;
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 1.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrredAdr, &nbRow, &nbCol, &redAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                return 1;
+            }
+
+            if ((nbRow != 1) || (nbCol != 3))
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 1, 3);
+                return FALSE;
             }
         }
-      else if (VarType(1) == sci_strings)
+        else if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
         {
-          GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
-          if (nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrtitleAdr);
+            if (sciErr.iErr)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-              return FALSE;
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 1.
+            if (getAllocatedSingleString(pvApiCtx, piAddrtitleAdr, &titleAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                return 1;
+            }
+
+            if (nbCol != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+                return FALSE;
             }
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A real or a string expected.\n"), fname, 1);
-          return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real or a string expected.\n"), fname, 1);
+            return FALSE;
         }
     }
 
-  /* Title and [R, G, B] given */
-  if (Rhs==2)
+    /* Title and [R, G, B] given */
+    if (nbInputArgument(pvApiCtx) == 2)
     {
-      /* Title */
-      if (VarType(1) == sci_strings)
+        /* Title */
+        if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
         {
-          GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
-          if (nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrtitleAdr);
+            if (sciErr.iErr)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-              return FALSE;
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 1.
+            if (getAllocatedSingleString(pvApiCtx, piAddrtitleAdr, &titleAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                return 1;
+            }
+
+            if (nbCol != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+                return FALSE;
             }
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-          return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            return FALSE;
         }
 
-      /* [R, G, B] */
-      if (VarType(2) == sci_matrix)
+        /* [R, G, B] */
+        if ((checkInputArgumentType(pvApiCtx, 2, sci_matrix)))
         {
-          GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
-          if (nbRow*nbCol != 3)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrredAdr);
+            if (sciErr.iErr)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 2, 3);
-              return FALSE;
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 2.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrredAdr, &nbRow, &nbCol, &redAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+                return 1;
+            }
+
+            if (nbRow*nbCol != 3)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 2, 3);
+                return FALSE;
             }
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 2, 3);
-          return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 2, 3);
+            return FALSE;
         }
     }
 
-  /* No title given but colors given with separate values */
-  if (Rhs==3)
+    /* No title given but colors given with separate values */
+    if (nbInputArgument(pvApiCtx) == 3)
     {
-      firstColorIndex = 1;
+        firstColorIndex = 1;
     }
 
-  /* Title and colors given with separate values */
-  if (Rhs==4)
+    /* Title and colors given with separate values */
+    if (nbInputArgument(pvApiCtx) == 4)
     {
-      firstColorIndex = 2;
-      
-      /* Title */
-      if (VarType(1) == sci_strings)
+        firstColorIndex = 2;
+
+        /* Title */
+        if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
         {
-          GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
-          if (nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrtitleAdr);
+            if (sciErr.iErr)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-              return FALSE;
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 1.
+            if (getAllocatedSingleString(pvApiCtx, piAddrtitleAdr, &titleAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                return 1;
+            }
+
+            if (nbCol != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+                return FALSE;
             }
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A real or a string expected.\n"), fname, 1);
-          return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real or a string expected.\n"), fname, 1);
+            return FALSE;
         }
     }
 
-  /* R, G, B given */
-  if (Rhs>=3)
+    /* R, G, B given */
+    if (nbInputArgument(pvApiCtx) >= 3)
     {
-      /* Default red value */
-      if (VarType(firstColorIndex) == sci_matrix)
+        /* Default red value */
+        if ((checkInputArgumentType(pvApiCtx, firstColorIndex, sci_matrix)))
         {
-          GetRhsVar(firstColorIndex, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
-          if (nbRow*nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, firstColorIndex, &piAddrredAdr);
+            if (sciErr.iErr)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex);
-              return FALSE;
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position firstColorIndex.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrredAdr, &nbRow, &nbCol, &redAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, firstColorIndex);
+                return 1;
+            }
+
+            if (nbRow*nbCol != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex);
+                return FALSE;
             }
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex);
-          return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex);
+            return FALSE;
         }
-      
-      /* Default green value */
-      if (VarType(firstColorIndex + 1) == sci_matrix)
+
+        /* Default green value */
+        if (checkInputArgumentType(pvApiCtx, firstColorIndex + 1, sci_matrix))
         {
-          GetRhsVar(firstColorIndex + 1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &greenAdr);
-          if (nbRow*nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, firstColorIndex + 1, &piAddrgreenAdr);
+            if (sciErr.iErr)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
-              return FALSE;
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position firstColorIndex + 1.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrgreenAdr, &nbRow, &nbCol, &greenAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, firstColorIndex + 1);
+                return 1;
+            }
+
+            if (nbRow*nbCol != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
+                return FALSE;
             }
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
-          return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
+            return FALSE;
         }
-      
-      /* Default blue value */
-      if (VarType(firstColorIndex + 2) == sci_matrix)
+
+        /* Default blue value */
+        if (checkInputArgumentType(pvApiCtx, firstColorIndex + 2, sci_matrix))
         {
-          GetRhsVar(firstColorIndex + 2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &blueAdr);
-          if (nbRow*nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, firstColorIndex + 2, &piAddrblueAdr);
+            if (sciErr.iErr)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
-              return FALSE;
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position firstColorIndex + 2.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrblueAdr, &nbRow, &nbCol, &blueAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, firstColorIndex + 2);
+                return 1;
+            }
+
+            if (nbRow*nbCol != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
+                return FALSE;
             }
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
-          return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
+            return FALSE;
         }
     }
-  
-  /* Create the Java Object */
-  colorChooserID = createColorChooser();
 
-  /* Title */
-  if (titleAdr != 0)
+    /* Create the Java Object */
+    colorChooserID = createColorChooser();
+
+    /* Title */
+    if (titleAdr != 0)
     {
-      setColorChooserTitle(colorChooserID, cstk(titleAdr));
+        setColorChooserTitle(colorChooserID, titleAdr);
+        freeAllocatedSingleString(titleAdr);
     }
 
-  /* Default red value */
-  if (redAdr != 0)
+    /* Default red value */
+    if (redAdr != 0)
     {
-      if (greenAdr !=0 ) /* All values given in first input argument */
+        if (greenAdr != 0 ) /* All values given in first input argument */
         {
-          setColorChooserDefaultRGBSeparateValues(colorChooserID, (int)stk(redAdr)[0], (int)stk(greenAdr)[0], (int)stk(blueAdr)[0]);
+            setColorChooserDefaultRGBSeparateValues(colorChooserID, (int)redAdr[0], (int)greenAdr[0], (int)blueAdr[0]);
         }
-      else
+        else
         {
-          setColorChooserDefaultRGB(colorChooserID, stk(redAdr));
+            setColorChooserDefaultRGB(colorChooserID, redAdr);
         }
     }
 
-  /* Display it and wait for a user input */
-  colorChooserDisplayAndWait(colorChooserID);
+    /* Display it and wait for a user input */
+    colorChooserDisplayAndWait(colorChooserID);
 
-  /* Return the selected color */
+    /* Return the selected color */
+    /* Read the user answer */
+    selectedRGB = getColorChooserSelectedRGB(colorChooserID);
 
-  /* Read the user answer */
-  selectedRGB = getColorChooserSelectedRGB(colorChooserID);
-
-  if (selectedRGB[0] >= 0) /* The user selected a color */
+    if (selectedRGB[0] >= 0) /* The user selected a color */
     {
 
-      nbRow = 1;
-      if (Lhs==1)
+        nbRow = 1;
+        if (nbOutputArgument(pvApiCtx) == 1)
         {
-          nbCol = 3;
-          CreateVarFromPtr(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &selectedRGB);
-          LhsVar(1) = Rhs+1;
+            nbCol = 3;
+            sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, selectedRGB);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         }
 
-      if (Lhs>=2)
+        if (nbOutputArgument(pvApiCtx) >= 2)
         {
-          nbCol = 1;
-          CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
-          *stk(redAdr) = selectedRGB[0];
-          CreateVar(Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &greenAdr);
-          *stk(greenAdr) = selectedRGB[1];
-          CreateVar(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &blueAdr);
-          *stk(blueAdr) = selectedRGB[2];
+            nbCol = 1;
 
-          LhsVar(1) = Rhs+1;
-          LhsVar(2) = Rhs+2;
-          LhsVar(3) = Rhs+3;
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &redAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+            redAdr[0] = selectedRGB[0];
+
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 2, nbRow, nbCol, &greenAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+            greenAdr[0] = selectedRGB[1];
+
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 3, nbRow, nbCol, &blueAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+            blueAdr[0] = selectedRGB[2];
+
+            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+            AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
+            AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
         }
     }
-  else /* The user canceled */
+    else /* The user canceled */
     {
-      nbRow = 0; nbCol = 0;
-      if (Lhs==1)
+        nbRow = 0;
+        nbCol = 0;
+        if (nbOutputArgument(pvApiCtx) == 1)
         {
-          /* Return [] */
-          CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
+            /* Return [] */
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &redAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
 
-          LhsVar(1) = Rhs+1;
+
+            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         }
 
-      if (Lhs>=2)
+        if (nbOutputArgument(pvApiCtx) >= 2)
         {
-          CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &redAdr);
-          CreateVar(Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &greenAdr);
-          CreateVar(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &blueAdr);
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &redAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
 
-          LhsVar(1) = Rhs+1;
-          LhsVar(2) = Rhs+2;
-          LhsVar(3) = Rhs+3;
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 2, nbRow, nbCol, &greenAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 3, nbRow, nbCol, &blueAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+
+            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+            AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
+            AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
         }
     }
 
-  PutLhsVar();
-  return TRUE;
+    ReturnArguments(pvApiCtx);
+    return TRUE;
 }
 /*--------------------------------------------------------------------------*/

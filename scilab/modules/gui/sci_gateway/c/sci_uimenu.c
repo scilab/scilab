@@ -15,10 +15,10 @@
  */
 
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "BuildObjects.h"
 #include "gw_gui.h"
 #include "localization.h"
-#include "stack-c.h"
 #include "GetProperty.h"
 #include "sciprint.h"
 #include "SetPropertyStatus.h"
@@ -36,30 +36,23 @@
 /*--------------------------------------------------------------------------*/
 int sci_uimenu(char *fname, void *pvApiCtx)
 {
-    int nbRow = 0, nbCol = 0, stkAdr = 0;
-
+    SciErr sciErr;
+    int nbRow = 0, nbCol = 0;
     int setStatus = SET_PROPERTY_SUCCEED;
-
     int inputIndex = 0, beginIndex = 0;
-
     char *propertyName = NULL;
-
     char *pParentUID = NULL;
-
     unsigned long GraphicHandle = 0;
-
     int parentDefined = FALSE;
-
     char *pstCurrentFigure = NULL;
-
     int iParentType = -1;
     int *piParentType = &iParentType;
 
     /* Create a new menu */
     GraphicHandle = getHandle(CreateUimenu());
 
-    /* If no Rhs -> current figure is the parent (Ascendant compatibility) */
-    if (Rhs == 0)
+    /* If no nbInputArgument(pvApiCtx) -> current figure is the parent (Ascendant compatibility) */
+    if (nbInputArgument(pvApiCtx) == 0)
     {
         // Set the parent property
         pstCurrentFigure = (char*)getCurrentFigure();
@@ -76,23 +69,33 @@ int sci_uimenu(char *fname, void *pvApiCtx)
      * All event inputs are property names
      * All odd (except first) inputs are property values
      */
-    if (Rhs % 2 == 1)
+    if (nbInputArgument(pvApiCtx) % 2 == 1)
     {
-        if (VarType(1) != sci_handles)
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
             return FALSE;
         }
         else                    /* Get parent ID */
         {
-            GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-
-            if (nbRow * nbCol != 1)
+            int *piAddr = NULL;
+            long long hParent = 0;
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+            if (sciErr.iErr)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
-                return FALSE;
+                printError(&sciErr, 0);
+                return 1;
             }
-            pParentUID = (char*)getObjectFromHandle((long) * hstk(stkAdr));
+
+            // Retrieve a matrix of handle at position 1.
+            // YOU MUST REMOVE YOUR VARIABLE DECLARATION "int stkAdr".
+            if (getScalarHandle(pvApiCtx, piAddr, &hParent))
+            {
+                Scierror(202, _("%s: Wrong type for argument %d: Handle expected.\n"), fname, 1);
+                return 1;
+            }
+
+            pParentUID = (char*)getObjectFromHandle((long)hParent);
             if (pParentUID != NULL)
             {
                 getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
@@ -103,7 +106,7 @@ int sci_uimenu(char *fname, void *pvApiCtx)
                 }
 
                 // Set the parent property
-                callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, "parent");
+                callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), &hParent, sci_handles, 1, 1, "parent");
 
                 // Set the flag to avoid setting the parent two times
                 parentDefined = TRUE;
@@ -130,22 +133,35 @@ int sci_uimenu(char *fname, void *pvApiCtx)
     }
 
     /* Read and set all properties */
-    for (inputIndex = beginIndex; inputIndex < Rhs; inputIndex = inputIndex + 2)
+    for (inputIndex = beginIndex; inputIndex < nbInputArgument(pvApiCtx); inputIndex = inputIndex + 2)
     {
+        int* piAddrValue = NULL;
+        int* piAddrProperty = NULL;
+
         int isUserDataProperty = 0;
         int iPropertyValuePositionIndex = inputIndex + 1;
         size_t posStackOrAdr = 0;
 
         /* Read property name */
-        if (VarType(inputIndex) != sci_strings)
+        if ((!checkInputArgumentType(pvApiCtx, inputIndex, sci_strings)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, inputIndex);
             return FALSE;
         }
         else
         {
-            GetRhsVar(inputIndex, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
-            propertyName = cstk(stkAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, inputIndex, &piAddrProperty);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            if (getAllocatedSingleString(pvApiCtx, piAddrProperty, &propertyName))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, inputIndex);
+                return 1;
+            }
 
             if (stricmp(propertyName, "parent") == 0)
             {
@@ -155,78 +171,90 @@ int sci_uimenu(char *fname, void *pvApiCtx)
             isUserDataProperty = (stricmp(propertyName, "user_data") == 0) || (stricmp(propertyName, "userdata") == 0);
         }
 
+        sciErr = getVarAddressFromPosition(pvApiCtx, iPropertyValuePositionIndex, &piAddrValue);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        if (isUserDataProperty)
+        {
+            nbRow = -1;
+            nbCol = -1;
+            setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), piAddrValue, 0, 0, 0, propertyName);
+        }
+
         /* Read property value */
-        switch (VarType(iPropertyValuePositionIndex))
+        switch (getInputArgumentType(pvApiCtx, iPropertyValuePositionIndex))
         {
             case sci_matrix:
-                if (isUserDataProperty)
+            {
+                double* pdblValue = NULL;
+                sciErr = getMatrixOfDouble(pvApiCtx, piAddrValue, &nbRow, &nbCol, &pdblValue);
+                if (sciErr.iErr)
                 {
-                    nbRow = -1;
-                    nbCol = -1;
-                    posStackOrAdr = iPropertyValuePositionIndex;
+                    printError(&sciErr, 0);
+                    Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, iPropertyValuePositionIndex);
+                    return 1;
                 }
-                else
-                {
-                    GetRhsVar(iPropertyValuePositionIndex, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                    posStackOrAdr = stkAdr;
-                }
-                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_matrix, nbRow, nbCol, propertyName);
+
+                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), pdblValue, sci_matrix, nbRow, nbCol, propertyName);
                 break;
+            }
             case sci_strings:
-                if (isUserDataProperty)
+            {
+                char* pstValue = NULL;
+                if (getAllocatedSingleString(pvApiCtx, piAddrValue, &pstValue))
                 {
-                    nbRow = -1;
-                    nbCol = -1;
-                    posStackOrAdr = iPropertyValuePositionIndex;
+                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, iPropertyValuePositionIndex);
+                    return 1;
                 }
-                else
-                {
-                    GetRhsVar(iPropertyValuePositionIndex, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                    posStackOrAdr = stkAdr;
-                }
-                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_strings, nbRow, nbCol, propertyName);
+
+                nbRow = (int)strlen(pstValue);
+                nbCol = 1;
+                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), pstValue, sci_strings, nbRow, nbCol, propertyName);
+                freeAllocatedSingleString(pstValue);
                 break;
+            }
             case sci_handles:
-                if (isUserDataProperty)
+            {
+                long long* phValues = NULL;
+                sciErr = getMatrixOfHandle(pvApiCtx, piAddrValue, &nbRow, &nbCol, &phValues);
+                if (sciErr.iErr)
                 {
-                    nbRow = -1;
-                    nbCol = -1;
-                    posStackOrAdr = iPropertyValuePositionIndex;
+                    printError(&sciErr, 0);
+                    Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, iPropertyValuePositionIndex);
+                    return 1;
                 }
-                else
-                {
-                    GetRhsVar(iPropertyValuePositionIndex, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                    posStackOrAdr = stkAdr;
-                }
-                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_handles, nbRow, nbCol, propertyName);
+                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), phValues, sci_handles, nbRow, nbCol, propertyName);
                 break;
+            }
             case sci_list:
-                if (isUserDataProperty)
-                {
-                    nbRow = -1;
-                    nbCol = -1;
-                    posStackOrAdr = iPropertyValuePositionIndex;
-                }
-                else
-                {
-                    GetRhsVar(iPropertyValuePositionIndex, LIST_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                    posStackOrAdr = iPropertyValuePositionIndex;
-                }
-                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), posStackOrAdr, sci_list, nbRow, nbCol, propertyName);
+            {
+                getListItemNumber(pvApiCtx, piAddrValue, &nbRow);
+                nbCol = 1;
+                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), piAddrValue, sci_list, nbRow, nbCol, propertyName);
                 break;
+            }
             default:
+            {
                 setStatus = SET_PROPERTY_ERROR;
                 break;
+            }
         }
+
         if (setStatus == SET_PROPERTY_ERROR)
         {
             Scierror(999, _("%s: Could not set property '%s'.\n"), fname, propertyName);
             return FALSE;
         }
+
+        freeAllocatedSingleString(propertyName);
     }
 
     /* If the parent is not given, the current figure is set as parent */
-    if (!parentDefined && (Rhs != 0))
+    if (!parentDefined && (nbInputArgument(pvApiCtx) != 0))
     {
         // Set the parent property
         pstCurrentFigure = (char*)getCurrentFigure();
@@ -240,13 +268,15 @@ int sci_uimenu(char *fname, void *pvApiCtx)
     /* Create return variable */
     nbRow = 1;
     nbCol = 1;
-    CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-    *hstk(stkAdr) = GraphicHandle;
+    // YOU MUST REMOVE YOUR VARIABLE DECLARATION "int stkAdr".
+    if (createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, GraphicHandle))
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
 
-    LhsVar(1) = Rhs + 1;
-
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return TRUE;
 }
 

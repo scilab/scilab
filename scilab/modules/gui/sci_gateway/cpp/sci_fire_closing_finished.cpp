@@ -27,7 +27,7 @@ using namespace org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
 int sci_fire_closing_finished(char *fname, void* pvApiCtx)
 {
-    CheckRhs(0, 0);
+    CheckInputArgument(pvApiCtx, 0, 0);
 
     char const* pstCurrentFigure = NULL;
 
@@ -38,11 +38,9 @@ int sci_fire_closing_finished(char *fname, void* pvApiCtx)
         CallScilabBridge::fireClosingFinished(getScilabJavaVM(), pstCurrentFigure);
     }
 
-    LhsVar(1) = 0;
-
-    PutLhsVar();
-
-    return 1;
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    returnArguments(pvApiCtx);
+    return 0;
 }
 
 /*--------------------------------------------------------------------------*/

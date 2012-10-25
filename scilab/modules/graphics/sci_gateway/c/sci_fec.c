@@ -16,9 +16,9 @@
 /* file: sci_fec.c                                                        */
 /* desc : interface for sci_fec routine                                   */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
 #include "sciCall.h"
@@ -27,103 +27,187 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_fec(char *fname,unsigned long fname_len)
+int sci_fec(char *fname, void *pvApiCtx)
 {
-    int m1 = 0,n1 = 0,l1 = 0,m2 = 0,n2 = 0,l2 = 0,m3 = 0,n3 = 0,l3 = 0,m4 = 0,n4 = 0,l4 = 0, mn1 = 0;
+    SciErr sciErr;
+    int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, mn1 = 0;
 
-    static rhs_opts opts[]= { {-1,"colminmax","?",0,0,0},
-                              {-1,"colout","?",0,0,0},
-                              {-1,"leg","?",0,0,0},
-                              {-1,"mesh","?",0,0,0},
-                              {-1,"nax","?",0,0,0},
-                              {-1,"rect","?",0,0,0},
-                              {-1,"strf","?",0,0,0},
-                              {-1,"zminmax","?",0,0,0},
-                              {-1,NULL,NULL,0,0}        } ;
-
-    char * strf = NULL ;
-    char * legend = NULL ;
-    double * rect = NULL ;
-    double * zminmax = NULL ;
-    int * colminmax = NULL ;
-    int * nax = NULL ;
-    int * colOut = NULL ;
-    BOOL flagNax = FALSE ;
-    BOOL withMesh = FALSE ;
-
-
-    if (Rhs <= 0)
+    static rhs_opts opts[] =
     {
-		sci_demo(fname, fname_len);
-		return 0;
-    }
+        { -1, "colminmax", -1, 0, 0, NULL},
+        { -1, "colout", -1, 0, 0, NULL},
+        { -1, "leg", -1, 0, 0, NULL},
+        { -1, "mesh", -1, 0, 0, NULL},
+        { -1, "nax", -1, 0, 0, NULL},
+        { -1, "rect", -1, 0, 0, NULL},
+        { -1, "strf", -1, 0, 0, NULL},
+        { -1, "zminmax", -1, 0, 0, NULL},
+        { -1, NULL, -1, 0, 0, NULL}
+    };
 
-    CheckRhs(4,12);
+    char* strf      = NULL;
+    char* legend    = NULL;
+    double* rect    = NULL;
+    double* zminmax = NULL;
+    int* colminmax  = NULL;
+    int* nax        = NULL;
+    int* colOut     = NULL;
+    BOOL flagNax    = FALSE;
+    BOOL withMesh   = FALSE;
 
-    if ( get_optionals(fname,opts) == 0)
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
+    int* piAddr3 = NULL;
+    int* piAddr4 = NULL;
+
+    double* l1 = NULL;
+    double* l2 = NULL;
+    double* l3 = NULL;
+    double* l4 = NULL;
+
+    if (nbInputArgument(pvApiCtx) <= 0)
     {
-        PutLhsVar();
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 
-    if ( FirstOpt() < 5)
+    CheckInputArgument(pvApiCtx, 4, 12);
+
+    if (getOptionals(pvApiCtx, fname, opts) == 0)
     {
-        Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),fname,1, 5);
+        ReturnArguments(pvApiCtx);
+        return 0;
+    }
+
+    if (FirstOpt() < 5)
+    {
+        Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 5);
         return -1;
     }
 
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
-    CheckSameDims(1,2,m1,n1,m2,n2);
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
+    // Retrieve a matrix of double at position 1.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 2.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //CheckSameDims
+    if (m1 != m2 || n1 != n2)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, 1, m1, n1);
+        return 1;
+    }
+
+
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 3.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
     if (n3 != 5)
     {
-        Scierror(999,_("%s: Wrong number of columns for input argument #%d: %d expected.\n"),fname,3,5);
+        Scierror(999, _("%s: Wrong number of columns for input argument #%d: %d expected.\n"), fname, 3, 5);
         return 0;
     }
 
-    GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4);
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr4);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 4.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr4, &m4, &n4, &l4);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
 
     if (m1 * n1 == 0 || m3 == 0)
     {
-        LhsVar(1) = 0;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
-    GetStrf(fname,5,opts,&strf);
-    GetLegend(fname,6,opts,&legend);
-    GetRect(fname,7,opts,&rect);
-    GetNax(8,opts,&nax,&flagNax);
-    GetZminmax(fname,9,opts,&zminmax);
-    GetColminmax(fname,10,opts,&colminmax);
-    GetColOut(fname,11,opts,&colOut);
-    GetWithMesh(fname,12,opts,&withMesh);
+    GetStrf(pvApiCtx, fname, 5, opts, &strf);
+    GetLegend(pvApiCtx, fname, 6, opts, &legend);
+    GetRect(pvApiCtx, fname, 7, opts, &rect);
+    GetNax(pvApiCtx, 8, opts, &nax, &flagNax);
+    GetZminmax(pvApiCtx, fname, 9, opts, &zminmax);
+    GetColminmax(pvApiCtx, fname, 10, opts, &colminmax);
+    GetColOut(pvApiCtx, fname, 11, opts, &colOut);
+    GetWithMesh(pvApiCtx, fname, 12, opts, &withMesh);
 
     getOrCreateDefaultSubwin();
 
-    if ( isDefStrf ( strf ) ) {
+    if (isDefStrf (strf))
+    {
         char strfl[4];
 
-        strcpy(strfl,DEFSTRFN);
+        strcpy(strfl, DEFSTRFN);
 
         strf = strfl;
-        if ( !isDefRect( rect ))
+        if (!isDefRect(rect))
         {
-            strfl[1]='7';
+            strfl[1] = '7';
         }
-        if ( !isDefLegend( legend ) )
+        if (!isDefLegend(legend))
         {
-            strfl[0]='1';
+            strfl[0] = '1';
         }
     }
     mn1 = m1 * n1;
 
-    Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,strf,legend,rect,nax,zminmax,colminmax,colOut,withMesh,flagNax);
+    Objfec ((l1), (l2), (l3), (l4), &mn1, &m3, strf, legend, rect, nax, zminmax, colminmax, colOut, withMesh, flagNax);
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

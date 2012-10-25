@@ -662,7 +662,8 @@ bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
 	$(am__append_1)
 scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_2)
 scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS)
-scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
+scilab_bin_CPPFLAGS = \
+    -I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/parse/includes/ \
     -I$(top_srcdir)/modules/ast/includes/ \
@@ -2096,7 +2097,7 @@ clean-tests:
 	fi
 
 clean-localization:
-	rm -rf $(top_srcdir)/locale/
+	rm -rf $(top_srcdir)/locale/*
 
 clean-generated:
 # Deleted junit + code coverage

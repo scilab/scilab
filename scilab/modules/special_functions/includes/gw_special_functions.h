@@ -28,7 +28,7 @@ int sci_legendre(char *fname, void* pvApiCtx);
 int sci_gamma(char *fname, void* pvApiCtx);
 int sci_lgamma(char *fname, void* pvApiCtx);
 int sci_dlgamma(char *fname, void* pvApiCtx);
-int sci_calerf(char *fname, unsigned long fname_len);
+int sci_calerf(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_SPECIAL_FUNCTIONS_H__ */
 /*--------------------------------------------------------------------------*/

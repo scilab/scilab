@@ -44,8 +44,8 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname);
 /*--------------------------------------------------------------------------*/
 int sci_toprint(char *fname, void* pvApiCtx)
 {
-    CheckRhs(1, 2);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (!loadedDep)
     {
@@ -53,7 +53,7 @@ int sci_toprint(char *fname, void* pvApiCtx)
         loadedDep = TRUE;
     }
 
-    if (Rhs == 1)
+    if (nbInputArgument(pvApiCtx) == 1)
     {
         return sci_toprint_one_rhs(pvApiCtx, fname);
     }
@@ -75,7 +75,7 @@ static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
+        return 1;
     }
 
     if (isStringType(_pvCtx, piAddressVarOne))
@@ -102,7 +102,7 @@ static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
                         fullName = NULL;
                         Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(),
                                  e.getJavaExceptionName().c_str());
-                        return 0;
+                        return 1;
                     }
                 }
                 else
@@ -120,6 +120,7 @@ static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
             createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
             AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
             ReturnArguments(_pvCtx);
+            return 0;
         }
         else
         {
@@ -140,13 +141,13 @@ static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
                 if (num_win < 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: Positive integers expected.\n"), fname);
-                    return 0;
+                    return 1;
                 }
 
                 if (getFigureFromIndex((int) num_win) == NULL)
                 {
                     Scierror(999, "%s: Figure with figure_id %d does not exist.\n", fname, (int)num_win);
-                    return 0;
+                    return 1;
                 }
 
                 try
@@ -156,12 +157,13 @@ static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
                 catch (const GiwsException::JniException & e)
                 {
                     Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
-                    return 0;
+                    return 1;
                 }
 
                 createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
                 AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
                 ReturnArguments(_pvCtx);
+                return 0;
             }
             else
             {
@@ -177,7 +179,7 @@ static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
     }
-    return 0;
+    return 1;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -192,8 +194,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-
-        return 0;
+        return 1;
     }
 
     sciErr = getVarAddressFromPosition(_pvCtx, 2, &piAddressVarTwo);
@@ -201,7 +202,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-        return 0;
+        return 1;
     }
 
     if (isStringType(_pvCtx, piAddressVarOne))
@@ -224,13 +225,13 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-                    return 0;
+                    return 1;
                 }
 
                 if (!((mOne == 1) || (nOne == 1)))
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), fname, 1);
-                    return 0;
+                    return 1;
                 }
 
                 mnOne = mOne * nOne;
@@ -239,7 +240,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                 if (lenStVarOne == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
-                    return 0;
+                    return 1;
                 }
 
                 sciErr = getMatrixOfString(_pvCtx, piAddressVarOne, &mOne, &nOne, lenStVarOne, NULL);
@@ -247,7 +248,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-                    return 0;
+                    return 1;
                 }
 
                 for (i = 0; i < mnOne; i++)
@@ -261,7 +262,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                     FREE(lenStVarOne);
                     lenStVarOne = NULL;
                     Scierror(999, _("%s: No more memory.\n"), fname);
-                    return 0;
+                    return 1;
                 }
 
                 for (i = 0; i < mnOne; i++)
@@ -276,7 +277,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                             lenStVarOne = NULL;
                         }
                         Scierror(999, _("%s: No more memory.\n"), fname);
-                        return 0;
+                        return 1;
                     }
                 }
 
@@ -291,7 +292,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                     freeArrayOfString(pStVarOne, mnOne);
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-                    return 0;
+                    return 1;
                 }
 
                 lines = (char *)MALLOC((lenLineToPrint + 1) * sizeof(char));
@@ -299,7 +300,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                 {
                     freeArrayOfString(pStVarOne, mnOne);
                     Scierror(999, _("%s: No more memory.\n"), fname);
-                    return 0;
+                    return 1;
                 }
 
                 for (i = 0; i < mnOne; i++)
@@ -334,7 +335,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                         }
                         Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(),
                                  e.getJavaExceptionName().c_str());
-                        return 0;
+                        return 1;
                     }
 
                     freeAllocatedSingleString(pageHeader);
@@ -347,6 +348,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                     createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
                     AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
                     ReturnArguments(_pvCtx);
+                    return 0;
                 }
                 else
                 {
@@ -356,19 +358,16 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                         lines = NULL;
                     }
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                    return 0;
                 }
             }
             else
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
-                return 0;
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
-            return 0;
         }
     }
     else if (isDoubleType(_pvCtx, piAddressVarOne))
@@ -385,19 +384,19 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                 if (num_win < 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: Positive integers expected.\n"), fname);
-                    return 0;
+                    return 1;
                 }
             }
             else
             {
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                return 0;
+                return 1;
             }
 
             if (!sciIsExistingFigure((int)num_win))
             {
                 Scierror(999, "%s: Figure with figure_id %d does not exist.\n", fname, (int)num_win);
-                return 0;
+                return 1;
             }
 
             if (isStringType(_pvCtx, piAddressVarTwo))
@@ -428,12 +427,13 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                                 Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(),
                                          e.getJavaExceptionName().c_str());
                                 freeAllocatedSingleString(outputType);
-                                return 0;
+                                return 1;
                             }
 
                             createScalarBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRet);
                             AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
                             ReturnArguments(_pvCtx);
+                            return 0;
                         }
                         else
                         {
@@ -465,7 +465,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
     }
-    return 0;
+    return 1;
 }
 
 /*--------------------------------------------------------------------------*/

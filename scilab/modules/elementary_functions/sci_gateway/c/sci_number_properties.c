@@ -10,8 +10,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_elementary_functions.h"
-#include "stack-c.h"
 #include "basic_functions.h"
 #include "sciprint.h"
 #include "localization.h"

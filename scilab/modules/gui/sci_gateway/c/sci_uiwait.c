@@ -10,41 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include <string.h>
 #include "gw_gui.h"
 #include "localization.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "ContextMenu.h"
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
 #include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
-int sci_uiwait(char *fname, unsigned long fname_len)
+int sci_uiwait(char *fname, void* pvApiCtx)
 {
-    int nbRow = 0, nbCol = 0, stkAdr = 0;
+    SciErr sciErr;
 
+    int* piAddrstkAdr = NULL;
+    long long* stkAdr = NULL;
+    char* strAdr = NULL;
+
+    int nbRow = 0, nbCol = 0;
     char *result = NULL;
-
-    long hdl = 0;
 
     char *pObjUID = NULL;
     int iObjType = -1;
     int *piObjType = &iObjType;
 
-    CheckRhs(1, 1);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if (VarType(1) == sci_handles)
+    if ((checkInputArgumentType(pvApiCtx, 1, sci_handles)))
     {
-        GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrstkAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of handle at position 1.
+        sciErr = getMatrixOfHandle(pvApiCtx, piAddrstkAdr, &nbRow, &nbCol, &stkAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+            return 1;
+        }
+
         if (nbRow * nbCol != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
             return FALSE;
         }
-        hdl = (unsigned long)*hstk(stkAdr);
-        pObjUID = (char*)getObjectFromHandle(hdl);
+
+        pObjUID = (char*)getObjectFromHandle((unsigned long) * stkAdr);
 
         getGraphicObjectProperty(pObjUID, __GO_TYPE__, jni_int, (void **)&piObjType);
         if (iObjType == __GO_UICONTEXTMENU__)
@@ -66,13 +84,20 @@ int sci_uiwait(char *fname, unsigned long fname_len)
     /* Create return variable */
     nbRow = (int)strlen(result);
     nbCol = 1;
-    CreateVar(Rhs + 1, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
-    strcpy(cstk(stkAdr), result);
 
-    LhsVar(1) = Rhs + 1;
+    if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow * nbCol, (const char**) &strAdr))
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
 
-    PutLhsVar();
+    strcpy(strAdr, result);
 
+    // TO DO : delete of "result"
+    // uiWaitContextMenu(pObjUID) can return NULL.
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return TRUE;
 }
 

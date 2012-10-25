@@ -8,7 +8,7 @@
 //
 // <-- ENGLISH IMPOSED -->
 //
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8480 -->
 //

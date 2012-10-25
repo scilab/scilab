@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 11554 -->
 //
@@ -17,7 +17,6 @@
 
 // avoid building the xcos toolbox skeleton by calling xcosPalAdd(...)
 
-loadXcosLibs();
 
 function [x,y,typ]=MY_BLOCK(job,arg1,arg2)
     x=[];y=[];typ=[];

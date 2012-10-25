@@ -12,8 +12,8 @@
  */
 
 #include "CreateMatlabVariable.h"
-#include "stack-c.h"
 #include "api_scilab.h"
+#include "scisparse.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"

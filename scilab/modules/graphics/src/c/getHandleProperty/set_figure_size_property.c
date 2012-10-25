@@ -31,22 +31,22 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_size_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_figure_size_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    double * values = stk( stackPointer ) ;
+    double* values = (double*)_pvData;
     BOOL status = FALSE;
     int intValues[2];
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "figure_size");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow * nbCol != 2 )
+    if (nbRow * nbCol != 2)
     {
-        Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "figure_size", 2) ;
-        return SET_PROPERTY_ERROR ;
+        Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "figure_size", 2);
+        return SET_PROPERTY_ERROR;
     }
 
     intValues[0] = (int)values[0];

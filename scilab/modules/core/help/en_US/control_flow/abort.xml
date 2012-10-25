@@ -2,15 +2,25 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="abort">
     <refnamediv>
         <refname>abort</refname>
-        <refpurpose> interrupt evaluation.  </refpurpose>
+        <refpurpose>interrupt evaluation.  </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            <literal>abort</literal> interrupts current evaluation and gives the prompt. Within
-            a <literal>pause</literal> level  <literal>abort</literal> return to level 0 prompt.
+            <code>abort</code> interrupts current evaluation and gives the prompt. Within
+            a <code>pause</code> level  <code>abort</code> return to level 0 prompt.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=2
+b=3
+abort // The execution will stop here.
+c=4   // c will not be defined
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

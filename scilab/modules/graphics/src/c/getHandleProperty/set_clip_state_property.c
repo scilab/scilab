@@ -20,6 +20,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include "stricmp.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -30,28 +31,28 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-int set_clip_state_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_clip_state_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int clipState = 0;
 
-    if ( !( valueType == sci_strings ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "clip_state");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( isStringParamEqual( stackPointer, "clipgrf" ) )
+    if (stricmp((char*)_pvData, "clipgrf") == 0)
     {
         clipState = 1;
     }
-    else if ( isStringParamEqual( stackPointer, "off" ) )
+    else if (stricmp((char*)_pvData, "off") == 0)
     {
         clipState = 0;
     }
-    else if ( isStringParamEqual( stackPointer, "on" ) )
+    else if (stricmp((char*)_pvData, "on") == 0)
     {
         clipState = 2;
     }

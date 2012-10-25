@@ -122,26 +122,26 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     {
         n = n_col;
     }
-    L_mnel  = (int*)MALLOC( n_row   * sizeof(int));
-    L_icol  = (int*)MALLOC( lnz     * sizeof(int));
+    L_mnel  = (int*)MALLOC(n_row * sizeof(int));
+    L_icol  = (int*)MALLOC(lnz * sizeof(int));
     L_ptrow = (int*)MALLOC((n_row + 1) * sizeof(int));
-    L_R     = (double*)MALLOC( lnz     * sizeof(double));
-    U_mnel  = (int*)MALLOC( n       * sizeof(int));
-    U_icol  = (int*)MALLOC( unz     * sizeof(int));
-    U_ptrow = (int*)MALLOC((n + 1)    * sizeof(int));
-    U_R     = (double*)MALLOC( unz     * sizeof(double));
-    V_irow  = (int*)MALLOC( unz     * sizeof(int));
+    L_R     = (double*)MALLOC( lnz * sizeof(double));
+    U_mnel  = (int*)MALLOC(n * sizeof(int));
+    U_icol  = (int*)MALLOC(unz * sizeof(int));
+    U_ptrow = (int*)MALLOC((n + 1) * sizeof(int));
+    U_R     = (double*)MALLOC( unz * sizeof(double));
+    V_irow  = (int*)MALLOC(unz * sizeof(int));
     V_ptcol = (int*)MALLOC((n_col + 1) * sizeof(int));
-    V_R     = (double*)MALLOC( unz     * sizeof(double));
-    p       = (int*)MALLOC( n_row   * sizeof(int));
-    q       = (int*)MALLOC( n_col   * sizeof(int));
-    Rs      = (double*)MALLOC( n_row   * sizeof(double));
+    V_R     = (double*)MALLOC( unz * sizeof(double));
+    p       = (int*)MALLOC(n_row * sizeof(int));
+    q       = (int*)MALLOC(n_col * sizeof(int));
+    Rs      = (double*)MALLOC(n_row * sizeof(double));
 
     if ( it_flag == 1 )
     {
-        L_I = (double*)MALLOC( lnz     * sizeof(double));
-        U_I = (double*)MALLOC( unz     * sizeof(double));
-        V_I = (double*)MALLOC( unz     * sizeof(double));
+        L_I = (double*)MALLOC(lnz * sizeof(double));
+        U_I = (double*)MALLOC(unz * sizeof(double));
+        V_I = (double*)MALLOC(unz * sizeof(double));
     }
     else
     {
@@ -227,12 +227,6 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     }
 
     /* output L */
-    if (! test_size_for_sparse(2 , n_row, it_flag, lnz, &pl_miss))
-    {
-        error_flag = 3;
-        goto the_end;
-    }
-
     if (it_flag) // complex
     {
         sciErr = createComplexSparseMatrix(pvApiCtx, 2, n_row, n, lnz, L_mnel, L_icol, L_R, L_I);
@@ -249,12 +243,6 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     }
 
     /* output U */
-    if (! test_size_for_sparse(3 , n, it_flag, unz, &pl_miss))
-    {
-        error_flag = 3;
-        goto the_end;
-    }
-
     if (it_flag) // complex
     {
         sciErr = createComplexSparseMatrix(pvApiCtx, 3, n, n_col, unz, U_mnel, U_icol, U_R, U_I);
@@ -271,11 +259,6 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     }
 
     /* output p */
-    if (! test_size_for_mat(4 , n_row, 1, 0, &pl_miss))
-    {
-        error_flag = 3;
-        goto the_end;
-    }
     sciErr = createMatrixOfDoubleAsInteger(pvApiCtx, 4, n_row, 1, p);
     if (sciErr.iErr)
     {
@@ -284,11 +267,6 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     }
 
     /* output q */
-    if (! test_size_for_mat(5 , n_col, 1, 0, &pl_miss))
-    {
-        error_flag = 3;
-        goto the_end;
-    }
     sciErr = createMatrixOfDoubleAsInteger(pvApiCtx, 5, n_col, 1, q);
     if (sciErr.iErr)
     {
@@ -297,11 +275,6 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
     }
 
     /* output res */
-    if (! test_size_for_mat(6 , n_row, 1, 0, &pl_miss))
-    {
-        error_flag = 3;
-        goto the_end;
-    }
     sciErr = createMatrixOfDouble(pvApiCtx, 6, n_row, 1, Rs);
     if (sciErr.iErr)
     {
@@ -340,7 +313,8 @@ the_end:
             AssignOutputVariable(pvApiCtx, 3) = 4;
             AssignOutputVariable(pvApiCtx, 4) = 5;
             AssignOutputVariable(pvApiCtx, 5) = 6;
-            break;
+            ReturnArguments(pvApiCtx);
+            return 0;
 
         case 1:   /* enough memory (with malloc) */
             Scierror(999, _("%s: No more memory.\n"), fname);
@@ -349,14 +323,9 @@ the_end:
         case 2:   /* a problem with one umfpack routine */
             Scierror(999, "%s: %s\n", fname, UmfErrorMes(stat));
             break;
-
-        case 3:  /* not enough place in the scilab stack */
-            Scierror(999, _("%s: No more memory : increase stacksize %d supplementary words needed.\n"), fname, pl_miss);
-            break;
     }
 
-    ReturnArguments(pvApiCtx);
-    return 0;
+    return 1;
 }
 
 

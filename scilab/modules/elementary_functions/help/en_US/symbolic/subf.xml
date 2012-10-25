@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="subf">
     <refnamediv>
         <refname>subf</refname>
-        <refpurpose> symbolic subtraction</refpurpose>
+        <refpurpose>symbolic subtraction</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -33,10 +33,10 @@
     <refsection>
         <title>Description</title>
         <para>
-          <code>c = subf("a", "b")</code> performs a symbolic subtraction and returns the
-          character string <varname>c</varname> which is <literal>"a-b"</literal>. Trivial
-          simplifications such as <literal>subf("0","a")</literal> or
-          <literal>subf("1","2")</literal> are performed.
+            <code>c = subf("a", "b")</code> performs a symbolic subtraction and returns the
+            character string <varname>c</varname> which is <literal>"a-b"</literal>. Trivial
+            simplifications such as <literal>subf("0","a")</literal> or
+            <literal>subf("1","2")</literal> are performed.
         </para>
     </refsection>
     <refsection>

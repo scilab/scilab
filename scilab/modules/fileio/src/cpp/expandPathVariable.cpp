@@ -19,7 +19,6 @@
 
 extern "C"
 {
-#include "stack-c.h"
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "PATH_MAX.h"

@@ -112,7 +112,7 @@ int sciSetLineStyle(char * pobjUID, int linestyle)
     return -1;
 }
 
-int sciSetMarkSize( char * pobjUID, int marksize )
+int sciSetMarkSize(char * pobjUID, int marksize)
 {
     if (marksize < 0)
     {
@@ -236,397 +236,397 @@ sciSetPoint(char * pthis, double *tab, int *numrow, int *numcol)
      */
     switch (iType)
     {
-    case __GO_POLYLINE__ :
-    {
-        BOOL result;
-        int numElementsArray[2];
-        int zCoordinatesSet;
-
-        if ( (*numcol != 3) && (*numcol != 2) && (*numcol != 0) )
+        case __GO_POLYLINE__ :
         {
-            Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"), 2, 3, "z");
-            return -1;
-        }
+            BOOL result;
+            int numElementsArray[2];
+            int zCoordinatesSet;
 
-        /*
-         * The coordinates array is re-allocated (if required) within the data model, testing whether
-         * the new number of points is different in order to free/re-allocate is not needed anymore.
-         * The 0-element array case is managed by the data model as well.
-         */
-
-        if (*numcol == 0)
-        {
-            n1 = 0;
-        }
-        else
-        {
-            n1 = *numrow;
-        }
-
-        /* The first element must be equal to 1 for a Polyline, the second is the polyline's number of vertices */
-        numElementsArray[0] = 1;
-        numElementsArray[1] = n1;
-
-        /* Resizes the data coordinates array if required */
-        result = setGraphicObjectProperty(pthis, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
-
-        /*
-         * For now, the FALSE return value corresponds to a failed memory allocation,
-         * which does not allow to discriminate between the failed allocation and non-existing
-         * property conditions.
-         */
-        if (result == FALSE)
-        {
-            Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
-            return -1;
-        }
-
-        if ( *numcol > 0 )
-        {
-            setGraphicObjectProperty(pthis, __GO_DATA_MODEL_X__, tab, jni_double_vector, n1);
-            setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Y__, &tab[n1], jni_double_vector, n1);
-
-            if (*numcol == 3)
+            if ((*numcol != 3) && (*numcol != 2) && (*numcol != 0))
             {
-                setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z__, &tab[2 * n1], jni_double_vector, n1);
-                zCoordinatesSet = 1;
-            }
-            else
-            {
-                zCoordinatesSet = 0;
+                Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"), 2, 3, "z");
+                return -1;
             }
 
-            /* Required for now to indicate that the z coordinates have been set or not */
-            setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_int, 1);
-        }
-
-        return 0;
-    }
-    case __GO_RECTANGLE__ :
-    {
-        double* currentUpperLeftPoint = NULL;
-        double upperLeftPoint[3];
-        int widthIndex = 2;
-        int size = *numrow * *numcol;
-
-        if ( size != 5 && size != 4 )
-        {
-            Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"), 4, 5, "z");
-            return -1;
-        }
-
-        upperLeftPoint[0] = tab[0];
-        upperLeftPoint[1] = tab[1];
-
-        if ( size == 5 )
-        {
-            upperLeftPoint[2] = tab[2];
-            widthIndex = 3;
-        }
-        else
-        {
             /*
-             * Needed in order to set the z coordinate if size == 4
-             * Being able to set only the point's x and y coordinates values would avoid doing this.
+             * The coordinates array is re-allocated (if required) within the data model, testing whether
+             * the new number of points is different in order to free/re-allocate is not needed anymore.
+             * The 0-element array case is managed by the data model as well.
              */
-            getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
-            upperLeftPoint[2] = currentUpperLeftPoint[2];
-        }
 
-        setGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
+            if (*numcol == 0)
+            {
+                n1 = 0;
+            }
+            else
+            {
+                n1 = *numrow;
+            }
 
-        /* check that the height and width are positive */
-        if ( tab[widthIndex] < 0.0 || tab[widthIndex + 1] < 0.0 )
-        {
-            Scierror(999, "Width and height must be positive.\n") ;
-            return -1 ;
-        }
+            /* The first element must be equal to 1 for a Polyline, the second is the polyline's number of vertices */
+            numElementsArray[0] = 1;
+            numElementsArray[1] = n1;
 
-        setGraphicObjectProperty(pthis, __GO_WIDTH__, &tab[widthIndex], jni_double, 1);
-        setGraphicObjectProperty(pthis, __GO_HEIGHT__, &tab[widthIndex + 1], jni_double, 1);
+            /* Resizes the data coordinates array if required */
+            result = setGraphicObjectProperty(pthis, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
 
-        return 0;
-    }
-    case __GO_ARC__ :
-    {
-        double startAngle = 0.;
-        double endAngle = 0.;
-        double upperLeftPoint[3];
-        double width = 0.;
-        double height = 0.;
-        double* currentUpperLeftPoint = NULL;
-        int size = 0;
-
-        size = *numrow * *numcol;
-
-        if ((size != 7) && (size != 6))
-        {
-            Scierror(999, _("Number of elements must be %d (%d if z coordinate )\n"), 6, 7);
-            return -1;
-        }
-
-        upperLeftPoint[0] = tab[0];
-        upperLeftPoint[1] = tab[1];
-
-        /*
-         * Setting the data has been made consistent with how it is done for the Rectangle:
-         * it takes into account the size of the input array instead of the parent Axes'
-         * view property. Using the latter led to incorrectly set values when size and view
-         * were not corresponding (for example when size==7, and view==2d).
-         */
-        if (size == 7)
-        {
-            upperLeftPoint[2] = tab[2];
-            width = tab[3];
-            height = tab[4];
-            startAngle = DEG2RAD(tab[5]);
-            endAngle = DEG2RAD(tab[6]);
-        }
-        else
-        {
-            /* Needed in order to set the z coordinate if size == 6 */
-            getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
-
-            upperLeftPoint[2] = currentUpperLeftPoint[2];
-            width = tab[2];
-            height = tab[3];
-            startAngle = DEG2RAD(tab[4]);
-            endAngle = DEG2RAD(tab[5]);
-        }
-
-        setGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
-
-        setGraphicObjectProperty(pthis, __GO_WIDTH__, &width, jni_double, 1);
-        setGraphicObjectProperty(pthis, __GO_HEIGHT__, &height, jni_double, 1);
-
-        setGraphicObjectProperty(pthis, __GO_START_ANGLE__, &startAngle, jni_double, 1);
-        setGraphicObjectProperty(pthis, __GO_END_ANGLE__, &endAngle, jni_double, 1);
-
-        return 0;
-    }
-    case __GO_TEXT__ :
-    {
-        char* parentAxes = NULL;
-        double position[3];
-        int iView = 0;
-        int* piView = &iView;
-
-        if ((*numrow * *numcol != 2) && (*numrow * *numcol != 3))
-        {
-            Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"), 2, 3, "z");
-            return -1;
-        }
-
-        getGraphicObjectProperty(pthis, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
-        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, (void**)&piView);
-
-        position[0] = tab[0];
-        position[1] = tab[1];
-
-        if (iView)
-        {
-            position[2] = tab[2];
-        }
-        else
-        {
             /*
-             * Required as the position has 3 coordinates, hence the z-coordinate
-             * is set to its current value, which must be retrieved beforehand.
-             * Avoiding doing this would require being able to set only the x and y
-             * coordinates if required.
+             * For now, the FALSE return value corresponds to a failed memory allocation,
+             * which does not allow to discriminate between the failed allocation and non-existing
+             * property conditions.
              */
-            double* currentPosition;
-            getGraphicObjectProperty(pthis, __GO_POSITION__, jni_double_vector, (void **)&currentPosition);
-            position[2] = currentPosition[2];
-        }
-
-        setGraphicObjectProperty(pthis, __GO_POSITION__, position, jni_double_vector, 3);
-
-        return 0;
-    }
-    case __GO_SEGS__ :
-    {
-        int numArrows = 0;
-        double* arrowPoints = NULL;
-
-        if ((*numcol != 3) && (*numcol != 2))
-        {
-            Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"), 2, 3, "z");
-            return -1;
-        }
-
-        if (*numrow % 2 != 0)
-        {
-            Scierror(999, _("Number of rows must be a multiple of 2.\n"));
-            return -1;
-        }
-
-
-        numArrows = *numrow / 2;
-
-        arrowPoints = (double*) MALLOC(3 * numArrows * sizeof(double));
-
-        if (arrowPoints == NULL)
-        {
-            Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
-            return -1;
-        }
-
-        /*
-         * Interlacing ought to be done in the MVC's coordinates
-         * set function to avoid the additional code below.
-         */
-        for (i = 0; i < numArrows; i++)
-        {
-            arrowPoints[3 * i] = tab[2 * i];
-            arrowPoints[3 * i + 1] = tab[2 * numArrows + 2 * i];
-
-            if (*numcol == 3)
+            if (result == FALSE)
             {
-                arrowPoints[3 * i + 2] = tab[4 * numArrows + 2 * i];
+                Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+                return -1;
+            }
+
+            if (*numcol > 0)
+            {
+                setGraphicObjectProperty(pthis, __GO_DATA_MODEL_X__, tab, jni_double_vector, n1);
+                setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Y__, &tab[n1], jni_double_vector, n1);
+
+                if (*numcol == 3)
+                {
+                    setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z__, &tab[2 * n1], jni_double_vector, n1);
+                    zCoordinatesSet = 1;
+                }
+                else
+                {
+                    zCoordinatesSet = 0;
+                }
+
+                /* Required for now to indicate that the z coordinates have been set or not */
+                setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_int, 1);
+            }
+
+            return 0;
+        }
+        case __GO_RECTANGLE__ :
+        {
+            double* currentUpperLeftPoint = NULL;
+            double upperLeftPoint[3];
+            int widthIndex = 2;
+            int size = *numrow * *numcol;
+
+            if (size != 5 && size != 4)
+            {
+                Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"), 4, 5, "z");
+                return -1;
+            }
+
+            upperLeftPoint[0] = tab[0];
+            upperLeftPoint[1] = tab[1];
+
+            if (size == 5)
+            {
+                upperLeftPoint[2] = tab[2];
+                widthIndex = 3;
             }
             else
             {
-                arrowPoints[3 * i + 2] = 0.0;
+                /*
+                 * Needed in order to set the z coordinate if size == 4
+                 * Being able to set only the point's x and y coordinates values would avoid doing this.
+                 */
+                getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
+                upperLeftPoint[2] = currentUpperLeftPoint[2];
             }
-        }
 
-        setGraphicObjectProperty(pthis, __GO_NUMBER_ARROWS__, &numArrows, jni_int, 1);
+            setGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
 
-        setGraphicObjectProperty(pthis, __GO_BASE__, arrowPoints, jni_double_vector, 3 * numArrows);
-
-        for (i = 0; i < numArrows; i++)
-        {
-            arrowPoints[3 * i] = tab[2 * i + 1];
-            arrowPoints[3 * i + 1] = tab[2 * numArrows + 2 * i + 1];
-
-            if (*numcol == 3)
+            /* check that the height and width are positive */
+            if (tab[widthIndex] < 0.0 || tab[widthIndex + 1] < 0.0)
             {
-                arrowPoints[3 * i + 2] = tab[4 * numArrows + 2 * i + 1];
+                Scierror(999, "Width and height must be positive.\n");
+                return -1;
+            }
+
+            setGraphicObjectProperty(pthis, __GO_WIDTH__, &tab[widthIndex], jni_double, 1);
+            setGraphicObjectProperty(pthis, __GO_HEIGHT__, &tab[widthIndex + 1], jni_double, 1);
+
+            return 0;
+        }
+        case __GO_ARC__ :
+        {
+            double startAngle = 0.;
+            double endAngle = 0.;
+            double upperLeftPoint[3];
+            double width = 0.;
+            double height = 0.;
+            double* currentUpperLeftPoint = NULL;
+            int size = 0;
+
+            size = *numrow * *numcol;
+
+            if ((size != 7) && (size != 6))
+            {
+                Scierror(999, _("Number of elements must be %d (%d if z coordinate)\n"), 6, 7);
+                return -1;
+            }
+
+            upperLeftPoint[0] = tab[0];
+            upperLeftPoint[1] = tab[1];
+
+            /*
+             * Setting the data has been made consistent with how it is done for the Rectangle:
+             * it takes into account the size of the input array instead of the parent Axes'
+             * view property. Using the latter led to incorrectly set values when size and view
+             * were not corresponding (for example when size==7, and view==2d).
+             */
+            if (size == 7)
+            {
+                upperLeftPoint[2] = tab[2];
+                width = tab[3];
+                height = tab[4];
+                startAngle = DEG2RAD(tab[5]);
+                endAngle = DEG2RAD(tab[6]);
             }
             else
             {
-                arrowPoints[3 * i + 2] = 0.0;
+                /* Needed in order to set the z coordinate if size == 6 */
+                getGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void **)&currentUpperLeftPoint);
+
+                upperLeftPoint[2] = currentUpperLeftPoint[2];
+                width = tab[2];
+                height = tab[3];
+                startAngle = DEG2RAD(tab[4]);
+                endAngle = DEG2RAD(tab[5]);
             }
+
+            setGraphicObjectProperty(pthis, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
+
+            setGraphicObjectProperty(pthis, __GO_WIDTH__, &width, jni_double, 1);
+            setGraphicObjectProperty(pthis, __GO_HEIGHT__, &height, jni_double, 1);
+
+            setGraphicObjectProperty(pthis, __GO_START_ANGLE__, &startAngle, jni_double, 1);
+            setGraphicObjectProperty(pthis, __GO_END_ANGLE__, &endAngle, jni_double, 1);
+
+            return 0;
         }
+        case __GO_TEXT__ :
+        {
+            char* parentAxes = NULL;
+            double position[3];
+            int iView = 0;
+            int* piView = &iView;
 
-        setGraphicObjectProperty(pthis, __GO_DIRECTION__, arrowPoints, jni_double_vector, 3 * numArrows);
+            if ((*numrow * *numcol != 2) && (*numrow * *numcol != 3))
+            {
+                Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"), 2, 3, "z");
+                return -1;
+            }
 
-        FREE(arrowPoints);
+            getGraphicObjectProperty(pthis, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
+            getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, (void**)&piView);
 
-        return 0;
-    }
-    /* DJ.A 2003 */
-    /* SCI_SURFACE has been replaced by the MVC's FAC3D and PLOT3D */
-    case __GO_FAC3D__ :
-    {
-        Scierror(999, _("Unhandled data field\n"));
-        return -1;
-    }
-    case __GO_PLOT3D__ :
-    {
-        Scierror(999, _("Unhandled data field\n"));
-        return -1;
-    }
-    case __GO_MATPLOT__ :
-    {
-        int nx = 0;
-        int ny = 0;
-        int gridSize[4];
-        int result = 0;
+            position[0] = tab[0];
+            position[1] = tab[1];
 
-        ny = *numrow;
-        nx = *numcol;
+            if (iView)
+            {
+                position[2] = tab[2];
+            }
+            else
+            {
+                /*
+                 * Required as the position has 3 coordinates, hence the z-coordinate
+                 * is set to its current value, which must be retrieved beforehand.
+                 * Avoiding doing this would require being able to set only the x and y
+                 * coordinates if required.
+                 */
+                double* currentPosition;
+                getGraphicObjectProperty(pthis, __GO_POSITION__, jni_double_vector, (void **)&currentPosition);
+                position[2] = currentPosition[2];
+            }
 
+            setGraphicObjectProperty(pthis, __GO_POSITION__, position, jni_double_vector, 3);
+
+            return 0;
+        }
+        case __GO_SEGS__ :
+        {
+            int numArrows = 0;
+            double* arrowPoints = NULL;
+
+            if ((*numcol != 3) && (*numcol != 2))
+            {
+                Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"), 2, 3, "z");
+                return -1;
+            }
+
+            if (*numrow % 2 != 0)
+            {
+                Scierror(999, _("Number of rows must be a multiple of 2.\n"));
+                return -1;
+            }
+
+
+            numArrows = *numrow / 2;
+
+            arrowPoints = (double*) MALLOC(3 * numArrows * sizeof(double));
+
+            if (arrowPoints == NULL)
+            {
+                Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+                return -1;
+            }
+
+            /*
+             * Interlacing ought to be done in the MVC's coordinates
+             * set function to avoid the additional code below.
+             */
+            for (i = 0; i < numArrows; i++)
+            {
+                arrowPoints[3 * i] = tab[2 * i];
+                arrowPoints[3 * i + 1] = tab[2 * numArrows + 2 * i];
+
+                if (*numcol == 3)
+                {
+                    arrowPoints[3 * i + 2] = tab[4 * numArrows + 2 * i];
+                }
+                else
+                {
+                    arrowPoints[3 * i + 2] = 0.0;
+                }
+            }
+
+            setGraphicObjectProperty(pthis, __GO_NUMBER_ARROWS__, &numArrows, jni_int, 1);
+
+            setGraphicObjectProperty(pthis, __GO_BASE__, arrowPoints, jni_double_vector, 3 * numArrows);
+
+            for (i = 0; i < numArrows; i++)
+            {
+                arrowPoints[3 * i] = tab[2 * i + 1];
+                arrowPoints[3 * i + 1] = tab[2 * numArrows + 2 * i + 1];
+
+                if (*numcol == 3)
+                {
+                    arrowPoints[3 * i + 2] = tab[4 * numArrows + 2 * i + 1];
+                }
+                else
+                {
+                    arrowPoints[3 * i + 2] = 0.0;
+                }
+            }
+
+            setGraphicObjectProperty(pthis, __GO_DIRECTION__, arrowPoints, jni_double_vector, 3 * numArrows);
+
+            FREE(arrowPoints);
+
+            return 0;
+        }
+        /* DJ.A 2003 */
+        /* SCI_SURFACE has been replaced by the MVC's FAC3D and PLOT3D */
+        case __GO_FAC3D__ :
+        {
+            Scierror(999, _("Unhandled data field\n"));
+            return -1;
+        }
+        case __GO_PLOT3D__ :
+        {
+            Scierror(999, _("Unhandled data field\n"));
+            return -1;
+        }
+        case __GO_MATPLOT__ :
+        {
+            int nx = 0;
+            int ny = 0;
+            int gridSize[4];
+            int result = 0;
+
+            ny = *numrow;
+            nx = *numcol;
+
+            /*
+             * The number of points along each dimension is equal to the z data matrix's
+             * corresponding dimension plus 1
+             */
+            gridSize[0] = nx + 1;
+            gridSize[1] = 1;
+            gridSize[2] = ny + 1;
+            gridSize[3] = 1;
+
+            result = setGraphicObjectProperty(pthis, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+
+            if (result == FALSE)
+            {
+                Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+                return -1;
+            }
+
+            setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z__, tab, jni_double_vector, nx * ny);
+            return 0;
+        }
+        case __GO_FEC__ :
+        {
+            BOOL result = FALSE;
+            int Nnode = 0;
+            if (*numcol != 3)
+            {
+                Scierror(999, _("Number of columns must be %d.\n"), 3);
+                return -1;
+            }
+
+            Nnode = *numrow;
+
+            /* Resizes the data coordinates array if required */
+            result = setGraphicObjectProperty(pthis, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
+
+            if (result == FALSE)
+            {
+                Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+                return -1;
+            }
+
+            setGraphicObjectProperty(pthis, __GO_DATA_MODEL_X__, tab, jni_double_vector, Nnode);
+            setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Y__, &tab[Nnode], jni_double_vector, Nnode);
+            setGraphicObjectProperty(pthis, __GO_DATA_MODEL_VALUES__, &tab[2 * Nnode], jni_double_vector, Nnode);
+            return 0;
+        }
+        case __GO_FIGURE__ :
+        {
+            printSetGetErrorMessage("data");
+            return -1;
+        }
+        case __GO_AXES__ :
+        {
+            printSetGetErrorMessage("data");
+            return -1;
+        }
+        case __GO_LEGEND__ :
+        {
+            printSetGetErrorMessage("data");
+            return -1;
+        }
+        case __GO_AXIS__ :
+        {
+            printSetGetErrorMessage("data");
+            return -1;
+        }
+        case __GO_COMPOUND__ :
+        {
+            printSetGetErrorMessage("data");
+            return -1;
+        }
+        /* F.Leray 28.05.04 */
+        case __GO_LABEL__ :
+        {
+            printSetGetErrorMessage("data");
+            return -1;
+        }
         /*
-         * The number of points along each dimension is equal to the z data matrix's
-         * corresponding dimension plus 1
+         * Deactivated for now
+         * Same condition as the default one
          */
-        gridSize[0] = nx + 1;
-        gridSize[1] = 1;
-        gridSize[2] = ny + 1;
-        gridSize[3] = 1;
-
-        result = setGraphicObjectProperty(pthis, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
-
-        if (result == FALSE)
-        {
-            Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
-            return -1;
-        }
-
-        setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Z__, tab, jni_double_vector, nx * ny);
-        return 0;
-    }
-    case __GO_FEC__ :
-    {
-        BOOL result = FALSE;
-        int Nnode = 0;
-        if (*numcol != 3)
-        {
-            Scierror(999, _("Number of columns must be %d.\n"), 3);
-            return -1;
-        }
-
-        Nnode = *numrow;
-
-        /* Resizes the data coordinates array if required */
-        result = setGraphicObjectProperty(pthis, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
-
-        if (result == FALSE)
-        {
-            Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
-            return -1;
-        }
-
-        setGraphicObjectProperty(pthis, __GO_DATA_MODEL_X__, tab, jni_double_vector, Nnode);
-        setGraphicObjectProperty(pthis, __GO_DATA_MODEL_Y__, &tab[Nnode], jni_double_vector, Nnode);
-        setGraphicObjectProperty(pthis, __GO_DATA_MODEL_VALUES__, &tab[2 * Nnode], jni_double_vector, Nnode);
-        return 0;
-    }
-    case __GO_FIGURE__ :
-    {
-        printSetGetErrorMessage("data");
-        return -1;
-    }
-    case __GO_AXES__ :
-    {
-        printSetGetErrorMessage("data");
-        return -1;
-    }
-    case __GO_LEGEND__ :
-    {
-        printSetGetErrorMessage("data");
-        return -1;
-    }
-    case __GO_AXIS__ :
-    {
-        printSetGetErrorMessage("data");
-        return -1;
-    }
-    case __GO_COMPOUND__ :
-    {
-        printSetGetErrorMessage("data");
-        return -1;
-    }
-    /* F.Leray 28.05.04 */
-    case __GO_LABEL__ :
-    {
-        printSetGetErrorMessage("data");
-        return -1;
-    }
-    /*
-     * Deactivated for now
-     * Same condition as the default one
-     */
 #if 0
-case SCI_UIMENU:
+        case SCI_UIMENU:
 #endif
-    default :
-    {
-        printSetGetErrorMessage("data");
-        return -1;
-    }
+        default :
+        {
+            printSetGetErrorMessage("data");
+            return -1;
+        }
     }
 
     return 0;

@@ -506,9 +506,6 @@
     <ClCompile Include="sci_gateway\c\sci_champ.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_clear_pixmap.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_contour2di.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -591,9 +588,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_set.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_show_pixmap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_show_window.c">
@@ -1284,6 +1278,7 @@
     <None Include="Elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
   </ItemGroup>

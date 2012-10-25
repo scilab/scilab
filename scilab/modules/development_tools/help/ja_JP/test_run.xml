@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="test_run" xml:lang="ja">
+    <refnamediv>
+        <refname>test_run</refname>
+        <refpurpose>テストを実行</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            status = test_run()
+            status = test_run(module)
+            status = test_run(module, test_name)
+            status = test_run(module, test_name, options, exportToFile)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>module</term>
+                <listitem>
+                    <para>文字列の配列. この入力引数には以下のどれかを指定します</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                Scilab内部モジュール名 ("core", "time", ...)またはサブモジュール名 (例: "optimization|neldermead").
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                ATOMSモジュールの名前("module_lycee", "nisp", ...).
+                                処理を行うには,このモジュールはtest_run()をコールする前に
+                                ロードしておく必要があります.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                モジュールの絶対ディレクトリパス.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>test_name</term>
+                <listitem>
+                    <para>文字列配列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>options</term>
+                <listitem>
+                    <para>文字列配列</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>no_check_ref</term>
+                            <listitem>
+                                <para>the .dia と .dia.ref が等しい場合, チェックを行いません</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>no_check_error_output</term>
+                            <listitem>
+                                <para>エラー出力ストリームはチェックされません.
+                                    Scilabがローカライズされたものが利用できないとエラーを発生する
+                                    場合,このオプションを利用できます.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>create_ref</term>
+                            <listitem>
+                                <para>.dia.refファイルを作成し,
+                                    .dia と .dia.refが等しいかどうかをチェックしません.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>show_error</term>
+                            <listitem>
+                                <para>エラーが発生した場合直近の10行分の実行行を表示します
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>show_diff</term>
+                            <listitem>
+                                <para>
+                                    差異がみつかった場合,<literal>diff -u</literal>コマンドの結果を
+                                    表示します.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>list</term>
+                            <listitem>
+                                <para>
+                                    テストを実行しませんが,
+                                    利用可能なテストの一覧を表示します
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>help</term>
+                            <listitem>
+                                <para>
+                                    このコマンドの使用方法に関するいくつかの例を表示します
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>mode_nw</term>
+                            <listitem>
+                                <para>実行時に "-nw" オプションを追加します</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>mode_nwni</term>
+                            <listitem>
+                                <para>実行時に "-nwni"オプションを追加します</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>nonreg_tests</term>
+                            <listitem>
+                                <para>回帰的でないテストのみを実行し,
+                                    ユニットテストをスキップします
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>unit_tests</term>
+                            <listitem>
+                                <para>
+                                    ユニットテストのみを実行し,回帰的でないテストをスキップします
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>skip_tests</term>
+                            <listitem>
+                                <para>テストをスキップします</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>enable_lt</term>
+                            <listitem>
+                                <para>テストの長時間実行を許可します</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>short_summary</term>
+                            <listitem>
+                                <para>
+                                    実行後に統計または実行時間を表示しません
+                                    (実行回数,成功/失敗/スキップしたテストの回数のみを1行に表示します).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>exportToFile</term>
+                <listitem>
+                    <para>
+                        テストの結果をXMLファイルにエクスポートします.
+                        このファイルはXUnit形式となります.
+                        このオプションの使用により,
+                        <literal>show_diff</literal> および <literal>show_error</literal>
+                        が有効となることに注意してください.
+                    </para>
+                    <para>
+                        <varname>exportToFile</varname>で指定したファイルが既に存在する場合,
+                        新規結果は既存のファイルに追加されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>
+                        論理値で,エラーが検出されなかった場合に %t,
+                        エラーが検出された場合に %f を返します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ユニットテストおよび非回帰テストライブラリで
+            .tstファイルを探して実行し,成功/失敗に関するレポートを表示します.
+            .tst ファイルはディレクトリ SCI+"/modules/*/tests/unit_tests"
+            およびSCI+"/modules/*/tests/nonreg_tests"で探されます.
+            テストが実行される度に, .diaファイルが生成され,
+            実行された全コマンドとコンソールに表示されたメッセージのリストが
+            出力されます.
+            スクリプトが実行された後, この.dia ファイルは,
+            .tst ファイルと同じディレクトリに置かれた.dia.refファイルで
+            と比較されます.
+            2つのファイルが異なる場合,そのテストは失敗となります.
+        </para>
+        <para>
+            テストの処理を制御できるように.tstファイルに特殊なタグを挿入できます.
+            これらのタグはScilabコメントとして記述します.
+        </para>
+        <para>以下に利用可能なタグを示します:</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    &lt;-- INTERACTIVE TEST --&gt;
+                    このテストは対話的なものであるため,スキップされます.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- LONG TIME EXECUTION --&gt;
+                    このテストは長い時間を要するためスキップされます.
+                    このテストを有効にするには,以下のオプションを指定してtest_runを
+                    コールします: "enable_lt"
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- NOT FIXED --&gt;
+                    このテストは,既知ではあるが,未修正のバグであるため,スキップされます.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- TEST WITH GRAPHIC --&gt;
+                    このテストはオプション "mode_nwni" が使用された場合は実行されません.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- NO TRY CATCH --&gt;
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- NO CHECK ERROR OUTPUT --&gt;
+                    エラー出力ファイルはチェックされません
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- NO CHECK REF --&gt;
+                    .dia および.dia.refファイルの比較が行われません.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- ENGLISH IMPOSED --&gt;
+                    このテストは-l en_USオプションを指定した場合のみ実行されます.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- FRENCH IMPOSED --&gt;
+                    このテストは-l fr_FRオプションを指定した場合のみ実行されます.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- CLI SHELL MODE --&gt;
+                    (was: &lt;-- JVM NOT MANDATORY --&gt;)
+                    このテストはデフォルトでscilab-cli (nwniモード)でのみ実行されます.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- WINDOWS ONLY --&gt;
+                    オペレーティング・システムがWindowsでない場合, このテストはスキップされます.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- UNIX ONLY --&gt;
+                    オペレーティング・システムがUnix OSでない場合, このテストはスキップされます.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- LINUX ONLY --&gt;
+                    オペレーティング・システムがGNU/Linuxでない場合, このテストはスキップされます.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- MACOSX ONLY --&gt;
+                    オペレーティング・システムがMac OS Xでない場合, このテストはスキップされます.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- XCOS TEST --&gt;
+                    このテストは全ての必要なXcosライブラリを実行します.
+                    このテストはnwモードで実行されます.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            各テストは"host"コマンドで生成された別のプロセスで実行されます.
+            これにより,テストにより不安定な環境となる場合でも,
+            カレントのコマンドの実行を継続できます.
+            また,テストは他のテストと独立して実行可能となります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>プラットフォーム毎のテスト</title>
+        <para>
+            テストの出力が実行されるプラットフォームに依存している場合があります.
+            この場合,<literal>.ref</literal>を全てのプラットフォーム用で同じとならず,
+            いくつかのプラットフォームではユニットテストが失敗する可能性があります.
+            この場合,
+            デフォルトの<literal>.ref</literal>と共に
+            各プラットフォーム用の<literal>.ref</literal>を作成することができます.
+        </para>
+        <para>
+            プラットフォーム毎の <literal>.ref</literal>には以下のような拡張子の
+            どれかを付ける必要があります.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>.unix.dia.ref</literal>はUnixプラットフォーム用,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>.linux.dia.ref</literal>はGNU/Linuxプラットフォーム用,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>.win.dia.ref</literal>はWindowsプラットフォーム用,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>.macosx.dia.ref</literal>はMac OS Xプラットフォーム用.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            アルゴリズムは以下のようになります.
+            まず, <literal>.ref</literal> が探されます.
+            このファイルが存在しない場合,
+            現在のプラットフォームに応じた以下の
+            プラットフォーム毎の<literal>.ref</literal>ファイルが実行されます.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Windowsプラットフォームの場合: <literal>.win.dia.ref</literal>,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Max OS X プラットフォームの場合: <literal>.unix.dia.ref</literal>, <literal>.macosx.dia.ref</literal>,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    GNU/Linuxプラットフォームの場合: <literal>.unix.dia.ref</literal>, <literal>.linux.dia.ref</literal>.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// 全てのテストを実行
+// =============================================
+
+test_run();
+test_run([]);
+test_run([],[]);
+
+// 1つまたは複数のモジュールをテスト
+// =============================================
+
+// 1つのモジュールをテスト
+test_run('time');
+
+// 複数のモジュールをテスト
+test_run(['time','string']);
+
+// サブモジュールをテスト
+test_run('optimization|neldermead');
+
+// パスで指定したモジュールを参照
+test_run(SCI+'/modules/core');
+
+// 指定したテストを実行
+// =============================================
+
+// テストを1つ指定
+test_run('time','datenum');
+
+// 複数のテストを指定
+test_run('time',['datenum';'calendar']);
+
+// いくつかのテストをスキップ
+// =============================================
+
+test_run('time',['datenum';'calendar'],'skip_tests');
+
+// オプション
+// =============================================
+
+// .dia と .dia.ref が等しいかどうかをチェックしません
+test_run('time','datenum','no_check_ref');
+
+// .dia.refファイルを作成しますが,.diaと.dia.refが等しいかどうかをチェックしません
+test_run([],[],'create_ref');
+
+// テストを実行しないが,利用可能なテストの一覧を表示します
+test_run([],[],'list');
+
+// このコマンドの使用法に関するいくつかの例を表示します
+test_run([],[],'help');
+
+// 非回帰テストのみを実行し,ユニットテストをスキップします
+test_run([],[],'nonreg_test');
+
+// ユニットテストのみを実行し,非回帰テストをスキップします
+test_run([],[],'unit_test');
+
+// エラー出力 (std err)をチェックしません
+test_run('boolean','bug_2799','no_check_error_output');
+
+// 複数のオプションを同時に指定
+test_run([],[],['no_check_ref','mode_nw']);
+ ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[
+//  (パスで指定した)外部モジュールのユニットテストを実行
+test_run('SCI/contrib/toolbox_skeleton')
+ ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[
+// XML Xunitファイルにエクスポート
+test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");
+test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>内部設計</title>
+        <para>
+            テストは,
+            テストファイルが置かれたディレクトリではなく,
+            テンポラリディレクトリで実行されます.
+            .tstファイルはテンポラリディレクトリにコピーされた後,
+            テストが実行され,.dia.ref が元の位置にコピーされます.
+        </para>
+        <para>
+            .tstスクリプトはそのまま実行されません.
+            かわりに,テンポラリディレクトリにコピーされる際に
+            ヘッダとフッタが.tstの先頭と終端に挿入されます.
+            この修正の理由は,出力メッセージを.diaファイルにリダイレクトし,
+            テストが実行された後に,ユーザがログファイルを取得できるように
+            するためです.
+        </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>test_runは以下のステータスを返します:
+                    <itemizedlist><listitem>
+                            エラーが検出されなかった場合に %t を返します
+                        </listitem>
+                        <listitem>
+                            エラーが検出された場合に %f を返します
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        <literal>show_diff</literal> および <literal>show_error</literal> が
+                        新しいオプションとして追加されました
+                    </para>
+                    <para>
+                        <literal>CLI SHELL MODE</literal> タグが追加されました.
+                        <literal>JVM NOT MANDATORY</literal> (まだサポート中)を置き換えます
+                    </para>
+                    <para>
+                        <literal>test_run</literal> は外部モジュールでも動作します.
+                    </para>
+                    
+                    <para>
+                        XMLファイルにエクスポートする4番目の引数が追加されました
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

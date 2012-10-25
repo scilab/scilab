@@ -5,3 +5,5 @@ EXPORTS
 ;core
 getExecMode
 freeArrayOfString
+isopt_
+numopt_

@@ -39,7 +39,7 @@ int get_z_bounds_property(void* _pvCtx, char* pobjUID)
 
     if (zBounds == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_bounds");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_bounds");
         return -1;
     }
 

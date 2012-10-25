@@ -166,12 +166,12 @@ int C2F(firstopt) (void)
 
 int C2F(findopt) (char *str, rhs_opts opts[])
 {
-    int i;
+    //int i;
 
-    i = rhs_opt_find(str, opts);
-    if (i >= 0)
-        if (opts[i].position > 0)
-            return opts[i].position;
+    //i = rhs_opt_find(str, opts);
+    //if (i >= 0)
+    //    if (opts[i].position > 0)
+    //        return opts[i].position;
 
     return 0;
 }
@@ -369,25 +369,25 @@ int rhs_opt_find(char *name, rhs_opts opts[])
 {
     int rep = -1, i = 0;
 
-    while (opts[i].name != NULL)
-    {
-        int cmp;
+    //while (opts[i].name != NULL)
+    //{
+    //    int cmp;
 
-        /* name is terminated by white space and we want to ignore them */
-        if ((cmp = strcmp(name, opts[i].name)) == 0)
-        {
-            rep = i;
-            break;
-        }
-        else if (cmp < 0)
-        {
-            break;
-        }
-        else
-        {
-            i++;
-        }
-    }
+    //    /* name is terminated by white space and we want to ignore them */
+    //    if ((cmp = strcmp(name, opts[i].name)) == 0)
+    //    {
+    //        rep = i;
+    //        break;
+    //    }
+    //    else if (cmp < 0)
+    //    {
+    //        break;
+    //    }
+    //    else
+    //    {
+    //        i++;
+    //    }
+    //}
     return rep;
 }
 
@@ -395,20 +395,20 @@ void rhs_opt_print_names(rhs_opts opts[])
 /* array of optinal names (in alphabetical order)
 * the array is null terminated */
 {
-    int i = 0;
+    //int i = 0;
 
-    if (opts[i].name == NULL)
-    {
-        sciprint(_("Optional argument list is empty.\n"));
-        return;
-    }
-    sciprint(_("Optional arguments list: \n"));
-    while (opts[i + 1].name != NULL)
-    {
-        sciprint("%s, ", opts[i].name);
-        i++;
-    }
-    sciprint(_("and %s.\n"), opts[i].name);
+    //if (opts[i].name == NULL)
+    //{
+    //    sciprint(_("Optional argument list is empty.\n"));
+    //    return;
+    //}
+    //sciprint(_("Optional arguments list: \n"));
+    //while (opts[i + 1].name != NULL)
+    //{
+    //    sciprint("%s, ", opts[i].name);
+    //    i++;
+    //}
+    //sciprint(_("and %s.\n"), opts[i].name);
 }
 
 /*---------------------------------------------------------------------

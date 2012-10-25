@@ -19,20 +19,6 @@
 #include "xerhlt.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] = {
-    {sci_legendre, "legendre"},
-    {sci_beta, "beta"},
-    {sci_besseli, "besseli"},
-    {sci_besselj, "besselj"},
-    {sci_besselk, "besselk"},
-    {sci_bessely, "bessely"},
-    {sci_besselh, "besselh"},
-    {NULL, ""}, //gamma
-    {NULL, ""}, //gammaln
-    {NULL, ""}, //dlgamma
-    {sci_calerf,"calerf"}
-};
-/*--------------------------------------------------------------------------*/
 int gw_special_functions(void)
 {
     return 0;

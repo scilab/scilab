@@ -96,16 +96,19 @@ int sci_listvar_in_hdf5(char *fname, int* pvApiCtx)
 
     //manage version information
     int iVersion = getSODFormatAttribute(iFile);
-    if(iVersion != SOD_FILE_VERSION)
+    if (iVersion != SOD_FILE_VERSION)
     {
         if (iVersion > SOD_FILE_VERSION)
-        {//can't read file with version newer that me !
+        {
+            //can't read file with version newer that me !
+            closeHDF5File(iFile);
             Scierror(999, _("%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
             return 1;
         }
         else
-        {//call older import functions and exit or ... EXIT !
-            if(iVersion == 1 || iVersion == -1)
+        {
+            //call older import functions and exit or ... EXIT !
+            if (iVersion == 1 || iVersion == -1)
             {
                 //sciprint("old sci_listvar_in_hdf5_v1\n");
                 return sci_listvar_in_hdf5_v1(fname, pvApiCtx);
@@ -118,6 +121,7 @@ int sci_listvar_in_hdf5(char *fname, int* pvApiCtx)
     {
         char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
         pInfo = (VarInfo*)MALLOC(iNbItem * sizeof(VarInfo));
+        int b;
 
         if (Lhs == 1)
         {
@@ -136,7 +140,9 @@ int sci_listvar_in_hdf5(char *fname, int* pvApiCtx)
 
             strcpy(pInfo[i].varName, pstVarNameList[i]);
             FREE(pstVarNameList[i]);
-            if (read_data(iDataSetId, 0, NULL, &pInfo[i]) == false)
+            b = read_data(iDataSetId, 0, NULL, &pInfo[i]) == false;
+            closeDataSet(iDataSetId);
+            if (b)
             {
                 break;
             }
@@ -159,6 +165,8 @@ int sci_listvar_in_hdf5(char *fname, int* pvApiCtx)
         PutLhsVar();
         return 0;
     }
+
+    closeHDF5File(iFile);
 
     //1st Lhs
     char** pstVarName = (char**)MALLOC(sizeof(char*) * iNbItem);

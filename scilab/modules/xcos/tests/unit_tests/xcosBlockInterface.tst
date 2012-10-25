@@ -6,7 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
-loadXcosLibs();
+// <-- XCOS TEST -->
 
 prot = funcprot();
 funcprot(0);

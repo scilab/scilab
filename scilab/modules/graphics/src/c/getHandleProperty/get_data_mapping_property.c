@@ -39,7 +39,7 @@ int get_data_mapping_property(void* _pvCtx, char* pobjUID)
 
     if (piDataMapping == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_mapping");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "data_mapping");
         return -1;
     }
 
@@ -53,7 +53,7 @@ int get_data_mapping_property(void* _pvCtx, char* pobjUID)
     }
     else
     {
-        Scierror(999, _("Wrong value for '%s' property.\n"),"data_mapping");
+        Scierror(999, _("Wrong value for '%s' property.\n"), "data_mapping");
         return -1;
     }
 }

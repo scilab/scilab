@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 6799 -->
 //
@@ -15,7 +15,6 @@
 // <-- Short Description -->
 //  The TOWS_c.sci define the default setting in the wrong order.
 
-loadXcosLibs;
 
 // exec(SCI + "/modules/scicos_blocks/macros/Sinks/TOWS_c.sci");
 

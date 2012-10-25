@@ -137,14 +137,13 @@ libscispecial_functions_algo_la_LIBADD =
 am__objects_1 = libscispecial_functions_algo_la-zbeshv.lo
 am__objects_2 = dbesig.lo dbesjg.lo dbeskg.lo dbesyg.lo zbesig.lo \
 	zbesjg.lo zbeskg.lo zbesyg.lo
-am__objects_3 =
 am_libscispecial_functions_algo_la_OBJECTS = $(am__objects_1) \
-	$(am__objects_2) $(am__objects_3)
+	$(am__objects_2)
 libscispecial_functions_algo_la_OBJECTS =  \
 	$(am_libscispecial_functions_algo_la_OBJECTS)
 libscispecial_functions_la_DEPENDENCIES =  \
 	libscispecial_functions-algo.la
-am__objects_4 = libscispecial_functions_la-sci_dlgamma.lo \
+am__objects_3 = libscispecial_functions_la-sci_dlgamma.lo \
 	libscispecial_functions_la-sci_bessely.lo \
 	libscispecial_functions_la-sci_beta.lo \
 	libscispecial_functions_la-sci_gamma.lo \
@@ -156,10 +155,7 @@ am__objects_4 = libscispecial_functions_la-sci_dlgamma.lo \
 	libscispecial_functions_la-sci_calerf.lo \
 	libscispecial_functions_la-gw_special_functions.lo \
 	libscispecial_functions_la-sci_lgamma.lo
-am__objects_5 = sci_f_dlgamma.lo sci_f_lgamma.lo sci_f_gamma.lo \
-	sci_f_calerf.lo
-am_libscispecial_functions_la_OBJECTS = $(am__objects_4) \
-	$(am__objects_5)
+am_libscispecial_functions_la_OBJECTS = $(am__objects_3)
 libscispecial_functions_la_OBJECTS =  \
 	$(am_libscispecial_functions_la_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
@@ -456,10 +452,9 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-SPECIAL_FUNCTIONS_C_SOURCES = src/c/zbeshv.c
+SPECIAL_FUNCTIONS_C_SOURCES = \
+src/c/zbeshv.c
 
-# List of the cpp files
-SPECIAL_FUNCTIONS_CPP_SOURCES = 
 SPECIAL_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/dbesig.f \
 src/fortran/dbesjg.f \
@@ -470,7 +465,8 @@ src/fortran/zbesjg.f \
 src/fortran/zbeskg.f \
 src/fortran/zbesyg.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_dlgamma.c \
+GATEWAY_C_SOURCES = \
+sci_gateway/c/sci_dlgamma.c \
 sci_gateway/c/sci_bessely.c \
 sci_gateway/c/sci_beta.c \
 sci_gateway/c/sci_gamma.c \
@@ -483,11 +479,6 @@ sci_gateway/c/sci_calerf.c \
 sci_gateway/c/gw_special_functions.c \
 sci_gateway/c/sci_lgamma.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_dlgamma.f \
-sci_gateway/fortran/sci_f_lgamma.f \
-sci_gateway/fortran/sci_f_gamma.f \
-sci_gateway/fortran/sci_f_calerf.f
-
 
 # Includes need for the compilation
 libscispecial_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
@@ -498,12 +489,14 @@ libscispecial_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
 $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscispecial_functions.la
 noinst_LTLIBRARIES = libscispecial_functions-algo.la
-libscispecial_functions_algo_la_SOURCES = $(SPECIAL_FUNCTIONS_C_SOURCES) $(SPECIAL_FUNCTIONS_FORTRAN_SOURCES) $(SPECIAL_FUNCTIONS_CPP_SOURCES)
-libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
+libscispecial_functions_algo_la_SOURCES = $(SPECIAL_FUNCTIONS_C_SOURCES) $(SPECIAL_FUNCTIONS_FORTRAN_SOURCES)
+libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscispecial_functions_algo_la_CPPFLAGS = $(libscispecial_functions_la_CPPFLAGS)
 
 # For the code check (splint)
@@ -516,7 +509,7 @@ modulename = special_functions
 
 #### special_functions : Conf files ####
 libscispecial_functions_la_rootdir = $(mydatadir)
-libscispecial_functions_la_root_DATA = license.txt 
+libscispecial_functions_la_root_DATA = license.txt
 
 #### special_functions : init scripts ####
 libscispecial_functions_la_etcdir = $(mydatadir)/etc
@@ -677,7 +670,7 @@ clean-pkglibLTLIBRARIES:
 libscispecial_functions-algo.la: $(libscispecial_functions_algo_la_OBJECTS) $(libscispecial_functions_algo_la_DEPENDENCIES) $(EXTRA_libscispecial_functions_algo_la_DEPENDENCIES) 
 	$(F77LINK)  $(libscispecial_functions_algo_la_OBJECTS) $(libscispecial_functions_algo_la_LIBADD) $(LIBS)
 libscispecial_functions.la: $(libscispecial_functions_la_OBJECTS) $(libscispecial_functions_la_DEPENDENCIES) $(EXTRA_libscispecial_functions_la_DEPENDENCIES) 
-	$(F77LINK) -rpath $(pkglibdir) $(libscispecial_functions_la_OBJECTS) $(libscispecial_functions_la_LIBADD) $(LIBS)
+	$(LINK) -rpath $(pkglibdir) $(libscispecial_functions_la_OBJECTS) $(libscispecial_functions_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -843,18 +836,6 @@ zbeskg.lo: src/fortran/zbeskg.f
 
 zbesyg.lo: src/fortran/zbesyg.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zbesyg.lo `test -f 'src/fortran/zbesyg.f' || echo '$(srcdir)/'`src/fortran/zbesyg.f
-
-sci_f_dlgamma.lo: sci_gateway/fortran/sci_f_dlgamma.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_dlgamma.lo `test -f 'sci_gateway/fortran/sci_f_dlgamma.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_dlgamma.f
-
-sci_f_lgamma.lo: sci_gateway/fortran/sci_f_lgamma.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_lgamma.lo `test -f 'sci_gateway/fortran/sci_f_lgamma.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_lgamma.f
-
-sci_f_gamma.lo: sci_gateway/fortran/sci_f_gamma.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_gamma.lo `test -f 'sci_gateway/fortran/sci_f_gamma.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_gamma.f
-
-sci_f_calerf.lo: sci_gateway/fortran/sci_f_calerf.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_calerf.lo `test -f 'sci_gateway/fortran/sci_f_calerf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_calerf.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -58,15 +58,15 @@ static herr_t op_func_v1(hid_t loc_id, const char *name, void *operator_data)
 
     switch (statbuf.type)
     {
-    case H5G_GROUP:
-        break;
-    case H5G_DATASET:
-        *pDataSetId = H5Dopen(loc_id, name);
-        break;
-    case H5G_TYPE:
-        break;
-    default:
-        break;
+        case H5G_GROUP:
+            break;
+        case H5G_DATASET:
+            *pDataSetId = H5Dopen(loc_id, name);
+            break;
+        case H5G_TYPE:
+            break;
+        default:
+            break;
     }
 
     return 0;
@@ -350,6 +350,14 @@ int getVariableNames_v1(int _iFile, char **pstNameList)
 int getDataSetIdFromName_v1(int _iFile, char *_pstName)
 {
     return H5Dopen(_iFile, _pstName);
+}
+
+void closeDataSet_v1(int _id)
+{
+    if (_id > 0)
+    {
+        H5Dclose(_id);
+    }
 }
 
 int getDataSetId_v1(int _iFile)
@@ -781,7 +789,7 @@ static int readPoly_v1(int _iDatasetId, int *_piNbCoef, double **_pdblData)
 }
 
 int readCommonPolyMatrix_v1(int _iDatasetId, char *_pstVarname, int _iComplex, int _iRows, int _iCols, int *_piNbCoef, double **_pdblReal,
-    double **_pdblImg)
+                            double **_pdblImg)
 {
     int i = 0;
     hid_t obj = 0;
@@ -1023,7 +1031,7 @@ int readUnsignedInteger64Matrix_v1(int _iDatasetId, int _iRows, int _iCols, unsi
 }
 
 int readCommonSparseComplexMatrix_v1(int _iDatasetId, int _iComplex, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow, int *_piColPos,
-    double *_pdblReal, double *_pdblImg)
+                                     double *_pdblReal, double *_pdblImg)
 {
     hid_t obj = 0;
     hobj_ref_t pRef[3] = {0};
@@ -1080,7 +1088,7 @@ int readSparseMatrix_v1(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, i
 }
 
 int readSparseComplexMatrix_v1(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow, int *_piColPos, double *_pdblReal,
-    double *_pdblImg)
+                               double *_pdblImg)
 {
     return readCommonSparseComplexMatrix_v1(_iDatasetId, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }

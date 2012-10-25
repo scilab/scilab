@@ -3,7 +3,7 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // Check that Xcos never use Saxon (before or after building doc).

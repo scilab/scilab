@@ -1,17 +1,17 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT (java version)
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "gw_gui.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "CallMessageBox.h"
 #include "Scierror.h"
@@ -20,203 +20,287 @@
 #include "messageboxoptions.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_messagebox(char *fname,unsigned long fname_len)
+int sci_messagebox(char *fname, void* pvApiCtx)
 {
-  int messageBoxID = 0;
+    SciErr sciErr;
 
-  /* Used to read input arguments */
-  int nbRow = 0, nbCol = 0;
-  int nbRowButtons = 0, nbColButtons = 0;
-  int nbRowMessage = 0, nbColMessage = 0;
+    int* piAddrmessageAdr       = NULL;
+    int* piAddrtitleAdr         = NULL;
+    int* piAddriconAdr          = NULL;
+    int* piAddrbuttonsTextAdr   = NULL;
+    int* piAddrmodalOptionAdr   = NULL;
+    double* buttonNumberAdr     = NULL;
 
-  char **buttonsTextAdr = 0;
-  char **messageAdr = 0;
-  char **titleAdr = 0;
-  char **modalOptionAdr = 0;
-  char **iconAdr = 0;
+    int messageBoxID = 0;
 
-  /* Used to write output argument */
-  int buttonNumberAdr = 0;
-  int buttonNumber = 0;
+    /* Used to read input arguments */
+    int nbRow = 0, nbCol = 0;
+    int nbRowButtons = 0, nbColButtons = 0;
+    int nbRowMessage = 0, nbColMessage = 0;
 
-  CheckRhs(1,5);
-  CheckLhs(0,1);
+    char **buttonsTextAdr   = 0;
+    char **messageAdr       = 0;
+    char **titleAdr         = 0;
+    char **modalOptionAdr   = 0;
+    char **iconAdr          = 0;
 
-  /* Message to be displayed */
-  if (VarType(1) == sci_strings) 
+    /* Used to write output argument */
+    int buttonNumber = 0;
+
+    CheckInputArgument(pvApiCtx, 1, 5);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+
+    /* Message to be displayed */
+    if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
     {
-      GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRowMessage, &nbColMessage, &messageAdr);
-    }
-  else
-    {
-      Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-      return FALSE;
-    }
-
-  /* Title to be displayed */
-  if (Rhs >= 2) 
-    {
-      if (VarType(2) == sci_strings)
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrmessageAdr);
+        if (sciErr.iErr)
         {
-          GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
-          if (nbRow*nbCol!=1)
-            {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-              return FALSE;
-            }
-          /* The title argument can be used to give the modal option */
-          if (isModalOption(getStringMatrixFromStack((size_t)titleAdr)[0]))
-            {
-              modalOptionAdr = titleAdr;
-              titleAdr = NULL;
-            }
+            printError(&sciErr, 0);
+            return 1;
         }
-      else
+
+        // Retrieve a matrix of string at position 1.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddrmessageAdr, &nbRowMessage, &nbColMessage, &messageAdr))
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-          return FALSE;
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            return 1;
         }
     }
-
-  /* Icon to be displayed */
-  if (Rhs >= 3)
+    else
     {
-      if (VarType(3) == sci_strings)
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        return FALSE;
+    }
+
+    /* Title to be displayed */
+    if (nbInputArgument(pvApiCtx) >= 2)
+    {
+        if (checkInputArgumentType(pvApiCtx, 2, sci_strings))
         {
-          GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&iconAdr);
-          if (nbRow*nbCol == 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrtitleAdr);
+            if (sciErr.iErr)
             {
-              /* The icon argument can be used to give the modal option or the buttons names */
-              if (isModalOption(getStringMatrixFromStack((size_t)iconAdr)[0]))
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 2.
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddrtitleAdr, &nbRow, &nbCol, &titleAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                return 1;
+            }
+
+            if (nbRow*nbCol != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+                return FALSE;
+            }
+            /* The title argument can be used to give the modal option */
+            if (isModalOption(titleAdr[0]))
+            {
+                modalOptionAdr = titleAdr;
+                titleAdr = NULL;
+            }
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            return FALSE;
+        }
+    }
+
+    /* Icon to be displayed */
+    if (nbInputArgument(pvApiCtx) >= 3)
+    {
+        if ((checkInputArgumentType(pvApiCtx, 3, sci_strings)))
+        {
+            sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddriconAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 3.
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddriconAdr, &nbRow, &nbCol, &iconAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+                return 1;
+            }
+
+            if (nbRow*nbCol == 1)
+            {
+                /* The icon argument can be used to give the modal option or the buttons names */
+                if (isModalOption(iconAdr[0]))
                 {
-                  modalOptionAdr = (char **)iconAdr;
-                  iconAdr = NULL;
+                    modalOptionAdr = (char **)iconAdr;
+                    iconAdr = NULL;
                 }
-              else if(!isIconName(getStringMatrixFromStack((size_t)iconAdr)[0]))
+                else if (!isIconName(iconAdr[0]))
                 {
-                  buttonsTextAdr = (char **)iconAdr;
-                  nbRowButtons = nbRow;
-                  nbColButtons = nbCol;
-                  iconAdr = NULL;
+                    buttonsTextAdr = (char **)iconAdr;
+                    nbRowButtons = nbRow;
+                    nbColButtons = nbCol;
+                    iconAdr = NULL;
                 }
             }
-          else  /* More than one string --> buttons names */
+            else  /* More than one string --> buttons names */
             {
-              buttonsTextAdr = (char **)iconAdr;
-              nbRowButtons = nbRow;
-              nbColButtons = nbCol;
-              iconAdr = NULL;
+                buttonsTextAdr = (char **)iconAdr;
+                nbRowButtons = nbRow;
+                nbColButtons = nbCol;
+                iconAdr = NULL;
             }
-
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string or a string vector expected.\n"), fname, 3);
-          return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string or a string vector expected.\n"), fname, 3);
+            return FALSE;
         }
     }
 
-  /* Buttons names */
-  if (Rhs >= 4)
+    /* Buttons names */
+    if (nbInputArgument(pvApiCtx) >= 4)
     {
-      if (VarType(4) == sci_strings)
+        if ((checkInputArgumentType(pvApiCtx, 4, sci_strings)))
         {
-          GetRhsVar(4,MATRIX_OF_STRING_DATATYPE,&nbRowButtons,&nbColButtons,&buttonsTextAdr);
-          if (nbRow*nbCol == 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddrbuttonsTextAdr);
+            if (sciErr.iErr)
             {
-              /* The buttons names argument can be used to give the modal option */
-              if (isModalOption(getStringMatrixFromStack((size_t)buttonsTextAdr)[0]))
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 4.
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddrbuttonsTextAdr, &nbRowButtons, &nbColButtons, &buttonsTextAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 4);
+                return 1;
+            }
+
+            if (nbRow*nbCol == 1)
+            {
+                /* The buttons names argument can be used to give the modal option */
+                if (isModalOption(buttonsTextAdr[0]))
                 {
-                  modalOptionAdr = buttonsTextAdr;
-                  buttonsTextAdr = NULL;
+                    modalOptionAdr = buttonsTextAdr;
+                    buttonsTextAdr = NULL;
                 }
             }
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string or a string vector expected.\n"), fname, 3);
-          return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string or a string vector expected.\n"), fname, 3);
+            return FALSE;
         }
     }
-  
-  /* Modal option */
-  if (Rhs == 5)
+
+    /* Modal option */
+    if (nbInputArgument(pvApiCtx) == 5)
     {
-      if (VarType(5) == sci_strings)
+        if ((checkInputArgumentType(pvApiCtx, 5, sci_strings)))
         {
-          GetRhsVar(5,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&modalOptionAdr);
-          if (nbRow*nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 5, &piAddrmodalOptionAdr);
+            if (sciErr.iErr)
             {
-              Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 5);
-              return FALSE;
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 5.
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddrmodalOptionAdr, &nbRow, &nbCol, &modalOptionAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 5);
+                return 1;
+            }
+
+            if (nbRow*nbCol != 1)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 5);
+                return FALSE;
             }
         }
-      else
+        else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 5);
-          return FALSE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 5);
+            return FALSE;
         }
     }
-  /* Create the Java Object */
-  messageBoxID = createMessageBox();
+    /* Create the Java Object */
+    messageBoxID = createMessageBox();
 
-  /* Message */
-  setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
+    /* Message */
+    setMessageBoxMultiLineMessage(messageBoxID, messageAdr, nbColMessage * nbRowMessage);
+    freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
 
-  /* Title */
-  if (titleAdr != NULL)
+    /* Title */
+    if (titleAdr != NULL)
     {
-      setMessageBoxTitle(messageBoxID, getStringMatrixFromStack((size_t)titleAdr)[0]);
+        setMessageBoxTitle(messageBoxID, titleAdr[0]);
+        freeAllocatedMatrixOfString(nbRow, nbCol, titleAdr);
     }
-  else
+    else
     {
-      setMessageBoxTitle(messageBoxID, _("Scilab Message"));
-    }
-
-  /* Icon */
-  if (iconAdr != NULL)
-    {
-      setMessageBoxIcon(messageBoxID, getStringMatrixFromStack((size_t)iconAdr)[0]);
-    }
-    
-  /* Buttons */
-  if (buttonsTextAdr != NULL)
-    {
-      setMessageBoxButtonsLabels(messageBoxID, getStringMatrixFromStack((size_t)buttonsTextAdr), nbColButtons*nbRowButtons);
+        setMessageBoxTitle(messageBoxID, _("Scilab Message"));
     }
 
-  /* Modal ? */
-  if (modalOptionAdr != NULL)
+    /* Icon */
+    if (iconAdr != NULL)
     {
-      setMessageBoxModal(messageBoxID, !stricmp(getStringMatrixFromStack((size_t)modalOptionAdr)[0],"modal"));
+        setMessageBoxIcon(messageBoxID, iconAdr[0]);
+        freeAllocatedMatrixOfString(nbRow, nbCol, iconAdr);
     }
-  else
-    {
-      setMessageBoxModal(messageBoxID, FALSE);
-    }
-  
-  /* Display it and wait for a user input */
-  messageBoxDisplayAndWait(messageBoxID);
 
-  /* Return the index of the button selected */
-  
-  if (Lhs == 1)
+    /* Buttons */
+    if (buttonsTextAdr != NULL)
     {
-      /* Read the user answer */
-      buttonNumber = getMessageBoxSelectedButton(messageBoxID);
-      
-      nbRow = 1; nbCol = 1;
-      CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &buttonNumberAdr);
-      *stk(buttonNumberAdr) = buttonNumber;
-      
-      LhsVar(1) = Rhs+1;
+        setMessageBoxButtonsLabels(messageBoxID, buttonsTextAdr, nbColButtons * nbRowButtons);
+        freeAllocatedMatrixOfString(nbRowButtons, nbColButtons, buttonsTextAdr);
     }
-  else
+
+    /* Modal ? */
+    if (modalOptionAdr != NULL)
     {
-      LhsVar(1) = 0;
+        setMessageBoxModal(messageBoxID, !stricmp(modalOptionAdr[0], "modal"));
+        freeAllocatedMatrixOfString(nbRow, nbCol, modalOptionAdr);
     }
-  
-  PutLhsVar();
-  return TRUE;
+    else
+    {
+        setMessageBoxModal(messageBoxID, FALSE);
+    }
+
+    /* Display it and wait for a user input */
+    messageBoxDisplayAndWait(messageBoxID);
+
+    /* Return the index of the button selected */
+    if (nbOutputArgument(pvApiCtx) == 1)
+    {
+        /* Read the user answer */
+        buttonNumber = getMessageBoxSelectedButton(messageBoxID);
+
+        nbRow = 1;
+        nbCol = 1;
+
+        sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &buttonNumberAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
+
+        buttonNumberAdr[0] = buttonNumber;
+
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    }
+    else
+    {
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+    }
+
+    ReturnArguments(pvApiCtx);
+    return TRUE;
 }
 /*--------------------------------------------------------------------------*/

@@ -161,7 +161,8 @@ case 'define' then
   model.out2=-3
   model.dep_ut=[%t %f]
 
-  label=[sci2exp(1)]
+  model.ipar=1
+  label=[sci2exp(model.ipar)]
   gr_i=['xstringb(orig(1),orig(2),[''MATMUL''],sz(1),sz(2),''fill'');']
   x=standard_define([2 2],model,label,gr_i)
 end

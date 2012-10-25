@@ -1,52 +1,52 @@
 <?xml version="1.0"?>
 <toolbar>
-  <!-- scinotes -->
-  <button icon="accessories-text-editor" tooltiptext="Launch SciNotes">
-    <callback instruction="editor()" type="0"/>
-  </button>
-  <!-- Open File -->
-  <button icon="document-open" tooltiptext="Open a file">
-    <callback instruction="           %fileToOpen = uigetfile(&quot;*.sc*&quot;, pwd(), gettext(&quot;Select a file to open with SciNotes&quot;),%t);           if %fileToOpen ~= [] then             editor(%fileToOpen);           end           clear(&quot;%fileToOpen&quot;);" type="0"/>
-  </button>
-  <separator/>
-  <!-- Copy -->
-  <button icon="edit-cut" tooltiptext="Cut">
-    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection" type="3"/>
-  </button>
-  <button icon="edit-copy" tooltiptext="Copy">
-    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection" type="3"/>
-  </button>
-  <!-- Paste -->
-  <button icon="edit-paste" tooltiptext="Paste">
-    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole" type="3"/>
-  </button>
-  <separator/>
-  <!-- Print -->
-  <button icon="printer" tooltiptext="Print...">
-    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.printConsoleContents" type="3"/>
-  </button>
-  <separator/>
-  <!-- Atoms -->
-  <button icon="package-x-generic" tooltiptext="Module manager - ATOMS">
-    <callback instruction="if with_module(&quot;atoms&quot;) then atomsGui(); else disp(gettext(&quot;Please install atoms module.&quot;)); end" type="0"/>
-  </button>
-  <separator/>
-  <!-- Xcos -->
-  <button icon="utilities-system-monitor" tooltiptext="Xcos">
-    <callback instruction="if with_module(&quot;xcos&quot;) then xcos(); else disp(gettext(&quot;Please install xcos module.&quot;)); end" type="0"/>
-  </button>
-  <separator/>
-  <!-- Preferences -->
-  <button icon="preferences-system" tooltiptext="Scilab Preferences">
-    <callback instruction='org.scilab.modules.preferences.XConfigManager.openPreferences' type="3"/>
-  </button>
-  <separator/>
-  <!-- Démos -->
-  <button icon="applications-system" tooltiptext="Scilab Demonstrations">
-    <callback instruction="demo_gui();" type="0"/>
-  </button>
-  <!-- Help -->
-  <button icon="help-browser" tooltiptext="Help Browser">
-    <callback instruction="help();" type="0"/>
-  </button>
+    <!-- scinotes -->
+    <button icon="accessories-text-editor" tooltiptext="Launch SciNotes">
+        <callback instruction="editor()" type="0"/>
+    </button>
+    <!-- Open File -->
+    <button icon="document-open" tooltiptext="Open a file">
+        <callback instruction="           %fileToOpen = uigetfile(&quot;*.sc*&quot;, pwd(), gettext(&quot;Select a file to open with SciNotes&quot;),%t);           if %fileToOpen ~= &quot;&quot; then             editor(%fileToOpen);           end           clear(&quot;%fileToOpen&quot;);" type="0"/>
+    </button>
+    <separator/>
+    <!-- Copy -->
+    <button icon="edit-cut" tooltiptext="Cut">
+        <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection" type="3"/>
+    </button>
+    <button icon="edit-copy" tooltiptext="Copy">
+        <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection" type="3"/>
+    </button>
+    <!-- Paste -->
+    <button icon="edit-paste" tooltiptext="Paste">
+        <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole" type="3"/>
+    </button>
+    <separator/>
+    <!-- Print -->
+    <button icon="printer" tooltiptext="Print...">
+        <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.printConsoleContents" type="3"/>
+    </button>
+    <separator/>
+    <!-- Atoms -->
+    <button icon="package-x-generic" tooltiptext="Module manager - ATOMS">
+        <callback instruction="if with_module(&quot;atoms&quot;) then atomsGui(); else disp(gettext(&quot;Please install atoms module.&quot;)); end" type="0"/>
+    </button>
+    <separator/>
+    <!-- Xcos -->
+    <button icon="utilities-system-monitor" tooltiptext="Xcos">
+        <callback instruction="if with_module(&quot;xcos&quot;) then xcos(); else disp(gettext(&quot;Please install xcos module.&quot;)); end" type="0"/>
+    </button>
+    <separator/>
+    <!-- Preferences -->
+    <button icon="preferences-system" tooltiptext="Scilab Preferences">
+        <callback instruction='org.scilab.modules.preferences.XConfigManager.openPreferences' type="3"/>
+    </button>
+    <separator/>
+    <!-- Démos -->
+    <button icon="applications-system" tooltiptext="Scilab Demonstrations">
+        <callback instruction="demo_gui();" type="0"/>
+    </button>
+    <!-- Help -->
+    <button icon="help-browser" tooltiptext="Help Browser">
+        <callback instruction="help();" type="0"/>
+    </button>
 </toolbar>

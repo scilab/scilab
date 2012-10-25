@@ -75,7 +75,6 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
     int i       = 0;
     int j       = 0;
 
-    int LastNum = 0;
     int NoTranspose = 0;
     int NoRaffinement = 0;
     SciSparse AA;
@@ -320,8 +319,7 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
 
     if (NoRaffinement == 0)
     {
-        SciSparseToCcsSparse(nbInputArgument(pvApiCtx) + 2, &AA, &A);
-        LastNum = nbInputArgument(pvApiCtx) + 2;
+        SciSparseToCcsSparse(&AA, &A);
     }
     else
     {
@@ -329,7 +327,6 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
         A.irow = NULL;
         A.R = NULL;
         A.I = NULL;
-        LastNum = nbInputArgument(pvApiCtx) + 1;
     }
 
     /* get the pointer for b */
@@ -391,6 +388,8 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
     {
         FREE(pdblBI);
     }
+
+    freeCcsSparse(A);
 
     FREE(W);
     FREE(Wi);

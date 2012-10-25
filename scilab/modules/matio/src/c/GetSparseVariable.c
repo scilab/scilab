@@ -11,8 +11,8 @@
  */
 
 #include "GetMatlabVariable.h"
-#include "stack-c.h"
 #include "api_scilab.h"
+#include "scisparse.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \

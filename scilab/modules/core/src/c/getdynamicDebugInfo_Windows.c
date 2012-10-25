@@ -40,7 +40,6 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 #define WIDTH 7
 #define BUFFER_LEN 255
 
-    SciErr sciErr;
     int nb_info = 0;
     char *str_info = NULL;
     char **outputDynamicList = NULL;

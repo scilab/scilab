@@ -16,11 +16,12 @@
 /* desc : function used to launch a demo of a command                     */
 /*------------------------------------------------------------------------*/
 
-#include "stack2.h"
+#include "api_scilab.h"
+#include <string.h>
+#include "gw_graphics.h"
 
-int sci_demo( char * fname, int fname_len)
+int sci_demo(char * fname, void* pvApiCtx)
 {
-  int lw = 0;
-  C2F(overload)(&lw, fname, fname_len);
-  return 0;
+    OverLoad(0);
+    return 0;
 }

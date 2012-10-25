@@ -14,7 +14,6 @@
 #include "isScilabFunction.h"
 #include "searchmacroinlibraries.h"
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "sci_types.h"
 #include "stack-def.h"
 #include "Funtab.h"

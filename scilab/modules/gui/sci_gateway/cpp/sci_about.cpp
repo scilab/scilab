@@ -31,13 +31,14 @@ int sci_about( char * fname, void* pvApiCtx )
     {
         CallScilabBridge::scilabAboutBox(getScilabJavaVM());
     }
-    catch(const GiwsException::JniException & e)
+    catch (const GiwsException::JniException & e)
     {
         Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
         return FALSE;
     }
-    LhsVar(1) = 0;
-    PutLhsVar();
+
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    returnArguments(pvApiCtx);
 
     return 0;
 }

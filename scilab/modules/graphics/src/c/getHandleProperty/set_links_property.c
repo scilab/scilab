@@ -36,7 +36,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_links_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int type = -1;
@@ -47,7 +47,7 @@ int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
 
-    if ( !( valueType == sci_handles ) )
+    if (valueType != sci_handles)
     {
         Scierror(999, _("Wrong type for '%s' property: Graphic handle array expected.\n"), "links");
         return SET_PROPERTY_ERROR;
@@ -61,7 +61,7 @@ int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
         return SET_PROPERTY_ERROR;
     }
 
-    if (nbRow*nbCol != iLinksCount)
+    if (nbRow * nbCol != iLinksCount)
     {
         Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "links", iLinksCount);
         return SET_PROPERTY_ERROR;
@@ -82,7 +82,7 @@ int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
     for (i = 0 ; i < iLinksCount ; i++)
     {
         char* polylineParentAxes;
-        char* polylineObjectUID = (char*)getObjectFromHandle( getHandleFromStack( stackPointer + i ) );
+        char* polylineObjectUID = (char*)getObjectFromHandle((long)((long long*)_pvData)[i]);
 
         getGraphicObjectProperty(polylineObjectUID, __GO_TYPE__, jni_int, (void **)&piType);
 

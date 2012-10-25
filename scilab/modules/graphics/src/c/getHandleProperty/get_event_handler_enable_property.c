@@ -37,10 +37,10 @@ int get_event_handler_enable_property(void* _pvCtx, char* pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_ENABLE__, jni_bool, (void **)&piEventHandlerEnable);
 
-    if ( piEventHandlerEnable == NULL )
+    if (piEventHandlerEnable == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "event_handler_enable") ;
-        return -1 ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "event_handler_enable");
+        return -1;
     }
 
     if (iEventHandlerEnable)

@@ -33,80 +33,79 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
-                             double * xMin, double * xMax,
-                             double * yMin, double * yMax,
-                             double * zMin, double * zMax );
+int getdDataBoundsFromStack(double* pdblBounds, int nbRow, int nbCol,
+                            double* xMin, double* xMax,
+                            double* yMin, double* yMax,
+                            double* zMin, double* zMax);
 /*------------------------------------------------------------------------*/
 /**
- * fill bounds (xMin, xMax, yMin,... ) from the assigned value in the stack
+ * fill bounds (xMin, xMax, yMin,...) from the assigned value in the stack
  * beacause it might have several possible size.
  */
-int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
-                             double * xMin, double * xMax,
-                             double * yMin, double * yMax,
-                             double * zMin, double * zMax )
+int getdDataBoundsFromStack(double* pdblBounds, int nbRow, int nbCol,
+                            double* xMin, double* xMax,
+                            double* yMin, double* yMax,
+                            double* zMin, double* zMax)
 {
-    double * bounds = stk( stackPointer ) ;
-
     /* initialize zMin and zMax to avoid checking between 2D and 3D */
-    *zMin = 1.0 ;
-    *zMax = 2.0 ;
+    *zMin = 1.0;
+    *zMax = 2.0;
 
-    if ( nbRow == 3 ) /* Remove the 3x2 case */
+    if (nbRow == 3) /* Remove the 3x2 case */
     {
         Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "data_bounds", "1x4, 1x6, 2x2, 2x3, 4x1, 6x1");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    switch ( nbRow * nbCol )
+    switch (nbRow * nbCol)
     {
         case 4 : /* 2D case */
-            *xMin = bounds[0] ;
-            *xMax = bounds[1] ;
-            *yMin = bounds[2] ;
-            *yMax = bounds[3] ;
+            *xMin = pdblBounds[0];
+            *xMax = pdblBounds[1];
+            *yMin = pdblBounds[2];
+            *yMax = pdblBounds[3];
             break;
 
         case 6 : /* 3D case */
-            *xMin = bounds[0] ;
-            *xMax = bounds[1] ;
-            *yMin = bounds[2] ;
-            *yMax = bounds[3] ;
-            *zMin = bounds[4] ;
-            *zMax = bounds[5] ;
-            break ;
+            *xMin = pdblBounds[0];
+            *xMax = pdblBounds[1];
+            *yMin = pdblBounds[2];
+            *yMax = pdblBounds[3];
+            *zMin = pdblBounds[4];
+            *zMax = pdblBounds[5];
+            break;
         default:
             Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "data_bounds", "1x4, 1x6, 2x2, 2x3, 4x1, 6x1");
-            return SET_PROPERTY_ERROR ;
+            return SET_PROPERTY_ERROR;
     }
-    return SET_PROPERTY_SUCCEED ;
+
+    return SET_PROPERTY_SUCCEED;
 }
 
 /*------------------------------------------------------------------------*/
-int set_data_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_data_bounds_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
 
     /* JB Silvy 09/11/05 */
-    double   xMin = 0. ;
-    double   xMax = 0. ;
-    double   yMin = 0. ;
-    double   yMax = 0. ;
-    double   zMin = 0. ;
-    double   zMax = 0. ;
+    double   xMin = 0.;
+    double   xMax = 0.;
+    double   yMin = 0.;
+    double   yMax = 0.;
+    double   zMin = 0.;
+    double   zMax = 0.;
     int firstPlot = 0;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "data_bounds");
         return SET_PROPERTY_ERROR;
     }
 
     /* get the bounds */
-    if ( getdDataBoundsFromStack( stackPointer, nbRow, nbCol, &xMin, &xMax, &yMin, &yMax, &zMin, &zMax ) == SET_PROPERTY_ERROR )
+    if (getdDataBoundsFromStack((double*)_pvData, nbRow, nbCol, &xMin, &xMax, &yMin, &yMax, &zMin, &zMax) == SET_PROPERTY_ERROR)
     {
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
     /* To be implemented within the MVC */
@@ -116,7 +115,7 @@ int set_data_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
     }
 
     /* copy the values in the axis */
-    if ( nbRow * nbCol == 4 )
+    if (nbRow * nbCol == 4)
     {
         /* 2D */
         double bounds[6];
@@ -143,7 +142,7 @@ int set_data_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
     else
     {
         /* 3D */
-        double bounds[6] = {xMin, xMax, yMin, yMax, zMin, zMax} ;
+        double bounds[6] = {xMin, xMax, yMin, yMax, zMin, zMax};
 
         status = setGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, bounds, jni_double_vector, 6);
     }

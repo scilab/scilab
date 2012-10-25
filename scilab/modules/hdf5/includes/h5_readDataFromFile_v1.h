@@ -28,6 +28,7 @@ HDF5_SCILAB_IMPEXP int getVariableNames_v1(int _iFile, char **pstNameList);
 HDF5_SCILAB_IMPEXP int getDataSetId_v1(int  _iFile);
 
 HDF5_SCILAB_IMPEXP int getDataSetIdFromName_v1(int _iFile, char *_pstName);
+HDF5_SCILAB_IMPEXP void closeDataSet_v1(int _id);
 
 HDF5_SCILAB_IMPEXP int getDatasetDims_v1(int _iDatasetId, int *_piRows, int *_piCols);
 HDF5_SCILAB_IMPEXP int getListDims_v1(int _iDatasetId, int *_piItem);

@@ -12,10 +12,10 @@
  *
  */
 
+#include <string.h>
 #include "SetUicontrolPosition.hxx"
-#include "stack-c.h"
 
-int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolPosition(char *sciObjUID, void* pvData, int valueType, int nbRow, int nbCol)
 {
     // Position can be [x, y, width, height] or "x|y|width|height"
 
@@ -34,7 +34,7 @@ int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, in
         }
 
         position = new double[4];
-        nbValues = sscanf(getStringFromStack(stackPointer), "%lf|%lf|%lf|%lf", &position[0], &position[1], &position[2], &position[3]);
+        nbValues = sscanf((char*)pvData, "%lf|%lf|%lf|%lf", &position[0], &position[1], &position[2], &position[3]);
 
         if (nbValues != 4)
         {
@@ -50,7 +50,7 @@ int SetUicontrolPosition(char *sciObjUID, size_t stackPointer, int valueType, in
             return SET_PROPERTY_ERROR;
         }
 
-        position = stk(stackPointer);
+        position = (double*)pvData;
 
     }
     else

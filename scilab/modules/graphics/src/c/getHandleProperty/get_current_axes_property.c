@@ -53,6 +53,6 @@ int get_current_axes_property(void* _pvCtx, char* pobjUID)
     }
 
 
-    return sciReturnHandle(_pvCtx, getHandle(getCurrentSubWin())) ;
+    return sciReturnHandle(_pvCtx, getHandle(getCurrentSubWin()));
 }
 /*------------------------------------------------------------------------*/

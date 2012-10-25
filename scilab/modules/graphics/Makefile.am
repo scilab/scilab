@@ -25,7 +25,8 @@ libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 #### graphics : datatips sub-module ####
 MACROSDIRSEXT = macros/datatips
 
-GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
+GRAPHICS_C_SOURCES = \
+src/c/GetCommandArg.c \
 src/c/loadTextRenderingAPI.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
@@ -343,7 +344,6 @@ sci_gateway/c/sci_geom3d.c \
 sci_gateway/c/sci_xset.c \
 sci_gateway/c/sci_unzoom.c \
 sci_gateway/c/sci_xsegs.c \
-sci_gateway/c/sci_clear_pixmap.c \
 sci_gateway/c/sci_glue.c \
 sci_gateway/c/sci_xarc.c \
 sci_gateway/c/sci_xpolys.c \
@@ -390,7 +390,6 @@ sci_gateway/c/sci_fec.c \
 sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
 sci_gateway/c/sci_is_handle_valid.c \
-sci_gateway/c/sci_show_pixmap.c \
 sci_gateway/c/sci_Legend.c
 
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/graphics_gw.cpp

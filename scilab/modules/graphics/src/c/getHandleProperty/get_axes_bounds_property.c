@@ -37,7 +37,7 @@ int get_axes_bounds_property(void* _pvCtx, char* pobjUID)
 
     if (axesBounds == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_bounds");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_bounds");
         return -1;
     }
 

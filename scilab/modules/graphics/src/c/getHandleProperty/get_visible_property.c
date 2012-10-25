@@ -37,7 +37,7 @@ int get_visible_property(void* _pvCtx, char* pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
-    if ( piVisible == NULL )
+    if (piVisible == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "visible");
         return FALSE;

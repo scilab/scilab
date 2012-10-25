@@ -14,7 +14,6 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "stack-c.h"
 #include "fftw_utilities.h"
 #include "sci_data_utilities.h"
 #include "callfftw.h"

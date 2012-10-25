@@ -34,14 +34,14 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_triangles_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_triangles_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int iType = -1;
     int *piType = &iType;
     BOOL result = FALSE;
     double* pnoeud = NULL;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "triangles");
         return SET_PROPERTY_ERROR;
@@ -60,7 +60,7 @@ int set_triangles_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbCol != 5 )
+    if (nbCol != 5)
     {
         Scierror(999, _("Wrong size for '%s' property: Must have %d columns.\n"), "triangles", 5);
         return SET_PROPERTY_ERROR;
@@ -75,7 +75,7 @@ int set_triangles_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
         return SET_PROPERTY_ERROR;
     }
 
-    pnoeud = stk(stackPointer);
+    pnoeud = (double*)_pvData;
 
     setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, nbRow);
 

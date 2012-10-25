@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="equal">
     <refnamediv>
         <refname>equal</refname>
-        <refpurpose> (=) assignment , comparison, equal sign</refpurpose>
+        <refpurpose>(=) assignment , comparison, equal sign</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -74,7 +74,10 @@
 a = sin(3.2)
 M = [2.1,3.3,8.5;7.6,6.7,6.9;0,6.3,8.8];
 [u,s] = schur(M)
-[1:10] == 4 
+2*2 == 4
+[1:10] == 4
+"foo" == "bar"
+sparse([1,2;4,5;3,10],[1,2,3]) == sparse([1,2;4,5;3,10],[1,2,3])
 1~=2
  ]]></programlisting>
     </refsection>

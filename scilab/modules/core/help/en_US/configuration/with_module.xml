@@ -8,7 +8,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>r=with_module(module_name)</synopsis>
+        <synopsis>r = with_module(module_name)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -22,7 +22,7 @@
             <varlistentry>
                 <term>module_name</term>
                 <listitem>
-                    <para>a string, for example : 'core'</para>
+                    <para>a string, for example : <literal>'core'</literal></para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -30,9 +30,21 @@
     <refsection>
         <title>Description</title>
         <para>
-            Returns <literal>%t</literal> if a Scilab module <literal>module_name</literal> is installed or <literal>%f</literal> if not.
+            Returns <constant>%t</constant> if a Scilab module <literal>module_name</literal> is installed or <constant>%f</constant> if not.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+withXML = with_module("xml");
+if withXML == %t then
+   disp("XML module enabled");
+else
+   disp("XML module disabled");
+end
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

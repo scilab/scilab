@@ -3,7 +3,7 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 // <-- ENGLISH IMPOSED -->
 //
 // <-- Short Description -->
@@ -17,7 +17,7 @@ xcosPalExport(pal, path)
 if ~isfile(path) then pause, end
 deletefile(path);
 
-[status, message] = xcosPalExport(pal, path)
+[status, msg] = xcosPalExport(pal, path)
 if ~isfile(path) then pause, end
 deletefile(path);
 

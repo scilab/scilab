@@ -10,8 +10,8 @@
  *
  */
 
+#include <string.h>
 #include "gw_io.h"
-#include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "sciprint.h"
@@ -134,7 +134,7 @@ int sci_save(char *fname, void *pvApiCtx)
     {
         int lw = 0;
         //call "overload" to prepare data to export_to_hdf5 function.
-        C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
+        OverLoad(0);
     }
 
     //old save ( not available in scilab 6

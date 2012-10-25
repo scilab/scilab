@@ -15,7 +15,7 @@
 
 extern "C"
 {
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "sci_mode.h"
 #include "localization.h"
@@ -28,70 +28,87 @@ extern "C"
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-int sci_printfigure(char *fname, unsigned long l)
+int sci_printfigure(char *fname, void* pvApiCtx)
 {
-    static int l1 = 0, n1 = 0, m1 = 0;
-    int num_win = -2;
-    int *status = NULL;
+    SciErr sciErr;
 
-    Rhs = Max(0, Rhs);
-    CheckRhs(1, 1);
-    CheckLhs(0, 1);
+    int n1 = 0, m1 = 0;
+    int num_win = -2;
+    int status  = 0;
+
+    int * piAddr1   = NULL;
+    double* l1      = NULL;
+
+    nbInputArgument(pvApiCtx) = Max(0, nbInputArgument(pvApiCtx));
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (getScilabMode() != SCILAB_NWNI)
     {
-        if (Rhs == 1)
+        if (nbInputArgument(pvApiCtx) == 1)
         {
-            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
+            if (sciErr.iErr)
+            {
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                printError(&sciErr, 0);
+                return 1;
+            }
 
             if (!IsAScalar(1))
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
-                return FALSE;
+                return 1;
             }
-            num_win = (int)(*stk(l1));
+            num_win = (int) * l1;
 
             if (num_win >= 0)
             {
                 /* Call Java */
-                status = new int[1];
-
                 try
                 {
-                    status[0] = (int)CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex(num_win), true, true); /* postscript mode and display dialog */
+                    status = (int)CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex(num_win), true, true); /* postscript mode and display dialog */
                 }
-                catch(const GiwsException::JniException & e)
+                catch (const GiwsException::JniException & e)
                 {
                     Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
-                    return FALSE;
+                    return 1;
                 }
 
-                m1 = 1;
-                n1 = 1;
-                CreateVarFromPtr(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &status);
-                LhsVar(1) = Rhs + 1;
-                delete[]status;
-                PutLhsVar();
-                return TRUE;
+                if (createScalarBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, status))
+                {
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    return 1;
+                }
+
+                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                returnArguments(pvApiCtx);
+                return 0;
             }
             else
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: Must be >= %d expected.\n"), fname, 1, 0);
-                return FALSE;
+                return 1;
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 2);
-            return FALSE;
+            return 1;
         }
     }
     else
     {
         Scierror(999, _("%s: Function not available in NWNI mode.\n"), fname);
-        return FALSE;
+        return 1;
     }
-    return TRUE;
+    return 0;
 }
 
 /*--------------------------------------------------------------------------*/

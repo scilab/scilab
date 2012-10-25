@@ -666,7 +666,12 @@ head = [
     ];
 
 if xcosNeeded then
-  head = [ head ; "loadXcosLibs();"];
+  head = [
+    head;
+    "prot=funcprot(); funcprot(0);";
+    "loadXcosLibs(); loadScicos();";
+    "funcprot(prot);";
+         ];
 end
 
 if try_catch then

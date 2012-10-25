@@ -39,7 +39,7 @@ int get_ytics_coord_property(void* _pvCtx, char* pobjUID)
 
     if (yTicksCoords == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"ytics_coord");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "ytics_coord");
         return -1;
     }
 

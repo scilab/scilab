@@ -22,12 +22,12 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-int SetConsoleShowHiddenHandles(void* _pvCtx, char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetConsoleShowHiddenHandles(void* _pvCtx, char *pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status = FALSE;
 
-    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, const_cast < char *>("ShowHiddenHandles"));
+    b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, const_cast < char *>("ShowHiddenHandles"));
 
     if (b == NOT_A_BOOLEAN_VALUE)
     {

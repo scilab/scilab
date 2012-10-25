@@ -13,7 +13,7 @@
  */
 
 #include "gw_gui.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "InitUIMenu.h"
@@ -21,18 +21,25 @@
 #include "FigureList.h"
 #include "getConsoleIdentifier.h"
 /*--------------------------------------------------------------------------*/
-int sci_unsetmenu(char *fname, unsigned long fname_len)
+int sci_unsetmenu(char *fname, void* pvApiCtx)
 {
-    int nbRow = 0, nbCol = 0;
-    int menuNameAdr = 0;
-    int figureNumberAdr = 0;
-    int subMenuIndexAdr = 0;
+    SciErr sciErr;
+
+    int* piAddrmenuNameAdr      = NULL;
+    char* menuNameAdr           = NULL;
+    int* piAddrfigureNumberAdr  = NULL;
+    double* figureNumberAdr     = NULL;
+    int* piAddrsubMenuIndexAdr  = NULL;
+    double* subMenuIndexAdr     = NULL;
+
+    int nbRow = 0;
+    int nbCol = 0;
 
     // Check parameter number
-    CheckRhs(1, 3);
-    CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 1, 3);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-    if (Rhs == 1)
+    if (nbInputArgument(pvApiCtx) == 1)
     {
         // Error message in not in standard mode (we need figure number)
         if (getScilabMode() != SCILAB_STD)
@@ -42,13 +49,25 @@ int sci_unsetmenu(char *fname, unsigned long fname_len)
         }
 
         // Unset a Menu of Scilab Main Window
-        if (VarType(1) != sci_strings)
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
             return FALSE;
         }
 
-        GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrmenuNameAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 1.
+        if (getAllocatedSingleString(pvApiCtx, piAddrmenuNameAdr, &menuNameAdr))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+            return 1;
+        }
 
         if (nbCol != 1)
         {
@@ -56,14 +75,30 @@ int sci_unsetmenu(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        EnableMenu(getConsoleIdentifier(), cstk(menuNameAdr), FALSE);
+        EnableMenu(getConsoleIdentifier(), menuNameAdr, FALSE);
+        freeAllocatedSingleString(menuNameAdr);
     }
-    else if (Rhs == 2)
+    else if (nbInputArgument(pvApiCtx) == 2)
     {
         // Unset a Menu a Scilab Graphic Window
-        if (VarType(1) == sci_matrix && VarType(2) == sci_strings)
+        if ((checkInputArgumentType(pvApiCtx, 1, sci_matrix)) && (checkInputArgumentType(pvApiCtx, 2, sci_strings)))
         {
-            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &figureNumberAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrfigureNumberAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 1.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrfigureNumberAdr, &nbRow, &nbCol, &figureNumberAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                return 1;
+            }
+
 
             if (nbRow * nbCol != 1)
             {
@@ -71,11 +106,24 @@ int sci_unsetmenu(char *fname, unsigned long fname_len)
                 return FALSE;
             }
 
-            GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrmenuNameAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
 
-            EnableMenu((char*)getFigureFromIndex((int)*stk(figureNumberAdr)), cstk(menuNameAdr), FALSE);
+            // Retrieve a matrix of double at position 2.
+            if (getAllocatedSingleString(pvApiCtx, piAddrmenuNameAdr, &menuNameAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                return 1;
+            }
+
+            EnableMenu((char*)getFigureFromIndex((int)*figureNumberAdr), menuNameAdr, FALSE);
+            freeAllocatedSingleString(menuNameAdr);
         }
-        else if (VarType(1) == sci_strings && VarType(2) == sci_matrix) // Unset a submenu in main window
+        else if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)) && (checkInputArgumentType(pvApiCtx, 2, sci_matrix))) // Unset a submenu in main window
         {
             // Error message in not in standard mode (we need figure number)
             if (getScilabMode() != SCILAB_STD)
@@ -84,9 +132,36 @@ int sci_unsetmenu(char *fname, unsigned long fname_len)
                 return FALSE;
             }
 
-            GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrmenuNameAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
 
-            GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &subMenuIndexAdr);
+            // Retrieve a matrix of double at position 1.
+            if (getAllocatedSingleString(pvApiCtx, piAddrmenuNameAdr, &menuNameAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                return 1;
+            }
+
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrsubMenuIndexAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 2.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrsubMenuIndexAdr, &nbRow, &nbCol, &subMenuIndexAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+                return 1;
+            }
+
 
             if (nbRow * nbCol != 1)
             {
@@ -94,7 +169,8 @@ int sci_unsetmenu(char *fname, unsigned long fname_len)
                 return FALSE;
             }
 
-            EnableSubMenu(getConsoleIdentifier(), cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), FALSE);
+            EnableSubMenu(getConsoleIdentifier(), menuNameAdr, (int)*subMenuIndexAdr, FALSE);
+            freeAllocatedSingleString(menuNameAdr);
         }
         else
         {
@@ -104,9 +180,24 @@ int sci_unsetmenu(char *fname, unsigned long fname_len)
     }
     else                        // Unset a submenu in graphics window
     {
-        if (VarType(1) == sci_matrix)
+        if ((checkInputArgumentType(pvApiCtx, 1, sci_matrix)))
         {
-            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &figureNumberAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrfigureNumberAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 1.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrfigureNumberAdr, &nbRow, &nbCol, &figureNumberAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                return 1;
+            }
+
 
             if (nbRow * nbCol != 1)
             {
@@ -120,9 +211,21 @@ int sci_unsetmenu(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        if (VarType(2) == sci_strings)
+        if ((checkInputArgumentType(pvApiCtx, 2, sci_strings)))
         {
-            GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &menuNameAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrmenuNameAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 2.
+            if (getAllocatedSingleString(pvApiCtx, piAddrmenuNameAdr, &menuNameAdr))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                return 1;
+            }
         }
         else
         {
@@ -130,9 +233,23 @@ int sci_unsetmenu(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        if (VarType(3) == sci_matrix)
+        if ((checkInputArgumentType(pvApiCtx, 3, sci_matrix)))
         {
-            GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &subMenuIndexAdr);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrsubMenuIndexAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of double at position 3.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrsubMenuIndexAdr, &nbRow, &nbCol, &subMenuIndexAdr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                return 1;
+            }
 
             if (nbRow * nbCol != 1)
             {
@@ -146,12 +263,12 @@ int sci_unsetmenu(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        EnableSubMenu((char*)getFigureFromIndex((int)*stk(figureNumberAdr)), cstk(menuNameAdr), (int)*stk(subMenuIndexAdr), FALSE);
+        EnableSubMenu((char*)getFigureFromIndex((int)*figureNumberAdr), menuNameAdr, (int)*subMenuIndexAdr, FALSE);
+        freeAllocatedSingleString(menuNameAdr);
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
-
 /*--------------------------------------------------------------------------*/

@@ -65,7 +65,7 @@
  *     if style is strictly negative --> a dashed line is used
  *        (dash id = abs(style[i])
  *     if there's only one curve, style can be of type style[0]=style,
- *     style[1]=pos ( pos in [1,6])
+ *     style[1]=pos (pos in [1,6])
  *     pos give the legend position (1 to 6) (this can be iteresting
  *     if you want to superpose curves with different legends by
  *     calling plot2d more than one time.
@@ -90,7 +90,7 @@
  *     if  strflag[2] == '2' -> no axis, only a box around the curves
  *     else no box and no axis
 
- * lstr* : unused ( but used by Fortran )
+ * lstr* : unused (but used by Fortran)
  *--------------------------------------------------------------------------*/
 
 int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, int *style, char *strflag, char *legend, double *brect, int *aaint,
@@ -179,9 +179,13 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             case '9':
                 /* Force data bounds to the x and y bounds */
                 if ((int)strlen(logflags) < 1)
+                {
                     dataflag = 'g';
+                }
                 else
+                {
                     dataflag = logflags[0];
+                }
 
                 getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[0] = iTmp;

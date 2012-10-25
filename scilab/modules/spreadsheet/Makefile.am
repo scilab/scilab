@@ -4,22 +4,24 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-SPREADSHEET_C_SOURCES = src/c/xls.c \
-src/cpp/checkCsvWriteFormat.c \
-src/cpp/csv_complex.c \
-src/cpp/csvDefault.c \
-src/cpp/csvIsnum.c \
-src/cpp/csvRead.c \
-src/cpp/csv_strsubst.cpp \
-src/cpp/csvWrite.c \
-src/cpp/getRange.c \
-src/cpp/latintoutf.c \
-src/cpp/splitLine.c \
-src/cpp/stringsToDoubles.c \
-src/cpp/stringToComplex.c \
-src/cpp/utftolatin.c
+SPREADSHEET_C_SOURCES = \
+src/c/xls.c \
+src/c/checkCsvWriteFormat.c \
+src/c/csv_complex.c \
+src/c/csvDefault.c \
+src/c/csvIsnum.c \
+src/c/csvRead.c \
+src/c/csv_strsubst.c \
+src/c/csvWrite.c \
+src/c/getRange.c \
+src/c/latintoutf.c \
+src/c/splitLine.c \
+src/c/stringsToDoubles.c \
+src/c/stringToComplex.c \
+src/c/utftolatin.c
 
-RIPOLE_SOURCES = src/c/ripole/olestream-unwrap.c \
+RIPOLE_SOURCES = \
+src/c/ripole/olestream-unwrap.c \
 src/c/ripole/pldstr.c \
 src/c/ripole/ole.c \
 src/c/ripole/bytedecoders.c \
@@ -27,21 +29,12 @@ src/c/ripole/logger.c \
 src/c/ripole/ripole.c \
 src/c/ripole/bt-int.c
 
-
 GATEWAY_CXX_SOURCES = \
 sci_gateway/cpp/sci_xls_read.cpp \
-sci_gateway/cpp/sci_xls_open.cpp \
-sci_gateway/cpp/gw_csv_helpers.cpp \
-sci_gateway/cpp/sci_csvDefault.cpp \
-sci_gateway/cpp/sci_csvIsnum.cpp \
-sci_gateway/cpp/sci_csvRead.cpp \
-sci_gateway/cpp/sci_csvStringToDouble.cpp \
-sci_gateway/cpp/sci_csvTextScan.cpp \
-sci_gateway/cpp/sci_csvWrite.cpp
+sci_gateway/cpp/sci_xls_open.cpp
 
 libscispreadsheet_la_CPPFLAGS= \
 -I$(srcdir)/includes/ \
--I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
 -I$(srcdir)/src/c/ripole \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -53,19 +46,31 @@ libscispreadsheet_la_CPPFLAGS= \
 -I$(top_srcdir)/modules/threads/includes \
 -I$(top_srcdir)/modules/operations/includes \
 -I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/libs/dynamiclibrary/includes \
 -I$(top_srcdir)/modules/fileio/includes \
 -I$(top_srcdir)/modules/types/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
--I$(top_srcdir)/modules/string/includes/
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/string/src/c/ \
+-I$(top_srcdir)/modules/io/includes/ \
+-I$(top_srcdir)/libs/dynamiclibrary/includes \
+$(AM_CPPFLAGS)
 
+GATEWAY_C_SOURCES = \
+sci_gateway/c/gw_spreadsheet.c \
+sci_gateway/c/gw_csv_helpers.c \
+sci_gateway/c/sci_csvDefault.c \
+sci_gateway/c/sci_csvIsnum.c \
+sci_gateway/c/sci_csvRead.c \
+sci_gateway/c/sci_csvStringToDouble.c \
+sci_gateway/c/sci_csvTextScan.c \
+sci_gateway/c/sci_csvWrite.c
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
 noinst_LTLIBRARIES = libscispreadsheet-algo.la
 
 
 libscispreadsheet_algo_la_SOURCES = $(SPREADSHEET_C_SOURCES) $(RIPOLE_SOURCES)
-libscispreadsheet_la_SOURCES = $(GATEWAY_CXX_SOURCES)
+libscispreadsheet_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES)
 libscispreadsheet_algo_la_CPPFLAGS = $(libscispreadsheet_la_CPPFLAGS)
 
 # For the code check (splint)

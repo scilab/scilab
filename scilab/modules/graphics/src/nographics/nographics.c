@@ -15,7 +15,6 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_graphics.h"
-#include "stack-c.h"
 #include "callFunctionFromGateway.h"
 #include "graphicModuleLoad.h"
 #include "TerminateGraphics.h"
@@ -56,23 +55,6 @@
 
 int gw_graphics(void)
 {
-    Rhs = Max(0, Rhs);
-
-    if ((Fin == DELETE_INDEX || Fin == GET_INDEX || Fin == SET_INDEX) && (VarType(1) == sci_tlist || VarType(1) == sci_mlist))
-    {
-        int lw = 1 + Top - Rhs;
-
-        if (Fin == DELETE_INDEX)
-            C2F(overload) (&lw, "delete", 6);
-        if (Fin == GET_INDEX)
-            C2F(overload) (&lw, "get", 3);
-        if (Fin == SET_INDEX)
-            C2F(overload) (&lw, "set", 3);
-    }
-    else
-    {
-        Scierror(999, _("Scilab Graphics module not installed.\n"));
-    }
     return 0;
 }
 
@@ -119,7 +101,7 @@ unsigned long getHandleFromStack(size_t stackPointer)
 }
 
 /*--------------------------------------------------------------------------*/
-int callSetProperty(void* _pvCtx, char *pObj, size_t stackPointer, int valueType, int nbRow, int nbCol, char *propertyName)
+int callSetProperty(void* _pvCtx, char *pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char * propertyName)
 {
     return -1;
 }

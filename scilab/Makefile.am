@@ -45,7 +45,8 @@ if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
-scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
+scilab_bin_CPPFLAGS = \
+    -I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/parse/includes/ \
     -I$(top_srcdir)/modules/ast/includes/ \
@@ -71,7 +72,8 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 
-scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
+scilab_bin_SOURCES = \
+    $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
     $(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
 if IS_MACOSX
@@ -334,7 +336,7 @@ clean-tests:
 	fi
 
 clean-localization:
-	rm -rf $(top_srcdir)/locale/
+	rm -rf $(top_srcdir)/locale/*
 
 clean-generated:
 # Deleted junit + code coverage

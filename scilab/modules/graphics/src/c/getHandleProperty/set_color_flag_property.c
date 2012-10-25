@@ -37,19 +37,19 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_color_flag_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int type = -1;
     int *piType = &type;
-    int flagcolor = (int) getDoubleFromStack( stackPointer );
+    int flagcolor = (int) ((double*)_pvData)[0];
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "color_flag");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow * nbCol != 1 )
+    if (nbRow * nbCol != 1)
     {
         Scierror(999, _("Wrong size for '%s' property: Scalar expected.\n"), "color_flag");
         return SET_PROPERTY_ERROR;
@@ -59,7 +59,7 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
 
     if (type == __GO_PLOT3D__)
     {
-        if ( flagcolor < 0 || flagcolor > 1 )
+        if (flagcolor < 0 || flagcolor > 1)
         {
             Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "color_flag", "0", "1");
             return SET_PROPERTY_ERROR;
@@ -71,7 +71,7 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     }
     else if (type == __GO_FAC3D__)
     {
-        if ( flagcolor < 0 || flagcolor > 4 )
+        if (flagcolor < 0 || flagcolor > 4)
         {
             Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "color_flag", "0, 1, 2, 3, 4");
             return SET_PROPERTY_ERROR;

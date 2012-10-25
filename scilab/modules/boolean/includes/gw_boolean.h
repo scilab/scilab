@@ -14,11 +14,8 @@
 #ifndef __GW_BOOLEAN__
 #define __GW_BOOLEAN__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_scilab.h"
 #include "c_gateway_prototype.h"
 #include "dynlib_boolean.h"
-#include "dynlib_boolean_gw.h"
 /*--------------------------------------------------------------------------*/
 C_GATEWAY_PROTOTYPE(sci_or);
 C_GATEWAY_PROTOTYPE(sci_and);

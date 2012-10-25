@@ -31,19 +31,19 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_event_handler_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_event_handler_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int bEnable = FALSE;
     char *pstHandler = NULL;
 
-    if ( !( valueType == sci_strings ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "event_handler");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    pstHandler = getStringFromStack(stackPointer);
+    pstHandler = (char*)_pvData;
     status = setGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_NAME__, pstHandler, jni_string, 1);
 
     if (strlen(pstHandler) == 0)
