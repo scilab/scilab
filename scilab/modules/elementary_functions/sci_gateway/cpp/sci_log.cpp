@@ -20,6 +20,7 @@
 extern "C"
 {
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 #include "elem_common.h"
 #include "log.h"
@@ -58,8 +59,19 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
             //If the value is less than precision (eps).
             if (iAlert && pDblIn->get(i) == 0 && pDblIn->getImg(i) == 0)
             {
-                // if ieee == 0 => error && return
-                // else if ieee == 1 => warning
+                if (ConfigVariable::getIeee() == 0)
+                {
+                    ScierrorW(999, _W("%ls: Wrong value for input argument #%d : Singularity of the function.\n"), L"log", 1);
+                    return types::Function::Error;
+                }
+                else if (ConfigVariable::getIeee() == 1)
+                {
+                    if (ConfigVariable::getWarningMode())
+                    {
+                        sciprintW(_W("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), L"log", 1);
+                    }
+                }
+
                 iAlert = 0;
             }
 
@@ -73,9 +85,19 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
         {
             if (iAlert && pDblIn->get(i) == 0)
             {
+                if (ConfigVariable::getIeee() == 0)
+                {
+                    ScierrorW(999, _W("%ls: Wrong value for input argument #%d : Singularity of the function.\n"), L"log", 1);
+                    return types::Function::Error;
+                }
+                else if (ConfigVariable::getIeee() == 1)
+                {
+                    if (ConfigVariable::getWarningMode())
+                    {
+                        sciprintW(_W("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), L"log", 1);
+                    }
+                }
                 iAlert = 0;
-                // if ieee == 0 => error && return
-                // else if ieee == 1 => warning
             }
             else if (pDblIn->get(i) < 0)
             {

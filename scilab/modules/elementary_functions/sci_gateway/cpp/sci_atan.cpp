@@ -20,6 +20,7 @@
 extern "C"
 {
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 #include "tan.h"
 #include "abs.h"
@@ -61,8 +62,18 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
             {
                 if (pDblX->get(i) == 0 && dabss(pDblX->getImg(i)) == 1)
                 {
-                    ScierrorW(999, _W("%ls: Wrong value for input argument #%d : Singularity of the fonction.\n"), L"atan", 1);
-                    return types::Function::Error;
+                    if (ConfigVariable::getIeee() == 0)
+                    {
+                        ScierrorW(999, _W("%ls: Wrong value for input argument #%d : Singularity of the function.\n"), L"atan", 1);
+                        return types::Function::Error;
+                    }
+                    else if (ConfigVariable::getIeee() == 1)
+                    {
+                        if (ConfigVariable::getWarningMode())
+                        {
+                            sciprintW(_W("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), L"atan", 1);
+                        }
+                    }
                 }
 
                 watan(pDblX->get(i), pDblX->getImg(i), pDblOut->get() + i, pDblOut->getImg() + i);
