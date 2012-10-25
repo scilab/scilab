@@ -1,5 +1,6 @@
 // Copyright (C) 2008 - 2009 - INRIA - Michael Baudin
 // Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2012 - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -155,9 +156,13 @@ function areequal = assert_arealmostequal ( computed , expected , reltol , absto
   if ( comptype == "matrix" ) then
     areclose = ( norm ( creg - ereg ) <= reltol * max(norm(ereg),norm(creg) ) + abstol )
   else
-    entries = ( abs(creg-ereg) <= reltol * max(abs(ereg),abs(creg)) + abstol )
-    // Compute the global condition from the entries conditions
-    areclose = and(entries)
+    if (creg==[]&ereg==[]) then
+       areclose=%t
+    else
+       entries = ( abs(creg-ereg) <= reltol * max(abs(ereg),abs(creg)) + abstol )
+       // Compute the global condition from the entries conditions
+       areclose = and(entries)
+    end
   end
   // The regular values must be almost equal and 
   // * the +%inf must be at the same place,
