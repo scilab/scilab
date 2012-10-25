@@ -52,6 +52,8 @@ Bug fixes
 * Bug #11474 fixed - save_format help page was still refering to the old save
                      format. Use the SEP #64 content.
 
+* Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
+
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
@@ -67,6 +69,8 @@ Bug fixes
 
 * Bug #11981 fixed - Smooth french help page had a wrong declaration
                      (colonnes => lignes).
+
+* Bug #11986 fixed - Wrong xclick behaviour on keyboard input fixed.
 
 * Bug #11991 fixed - Under Windows, some empty lines were added by csvWrite.
 

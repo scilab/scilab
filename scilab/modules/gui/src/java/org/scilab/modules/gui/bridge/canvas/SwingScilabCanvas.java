@@ -101,6 +101,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         });
 
         setBackground(Color.white);
+        setFocusable(true);
     }
 
     public void addNotify() {
