@@ -19,6 +19,7 @@
 #include "double.hxx"
 #include "sparse.hxx"
 
+int EqualToDoubleAndDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::GenericType** _pOut);
 int EqualToSparseAndSparse(types::Sparse* _pSparse1, types::Sparse* _pSarse2, types::GenericType** _pOut);
 int EqualToDoubleAndSparse(types::Double* _pDouble, types::Sparse* _pSarse, types::GenericType** _pOut);
 int EqualToSparseAndDouble(types::Sparse* _pSparse, types::Double* _pDouble, types::GenericType** _pOut);
