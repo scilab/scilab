@@ -143,7 +143,10 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
     //check finite values of _pDouble1 and _pDouble2
     if (isDoubleFinite(_pDouble1) == false || isDoubleFinite(_pDouble2) == false)
     {
-        return 2;
+        if (_pDouble2->isScalar() == false)
+        {
+            return 2;
+        }
     }
 
     if (_pDouble2->isScalar())
