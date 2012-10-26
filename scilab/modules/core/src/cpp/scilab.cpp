@@ -396,6 +396,7 @@ static void stateShow(Parser::ControlStatus status)
             SetTemporaryPrompt("- ...      ->");
             break;
         case Parser::AllControlClosed:
+            ClearTemporaryPrompt();
             break;
     }
 }
