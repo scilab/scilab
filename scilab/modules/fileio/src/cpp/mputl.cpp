@@ -30,21 +30,21 @@ mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR
     int i = 0;
     File* pF = NULL;
 
-    if(pstStrings == NULL)
+    if (pstStrings == NULL)
     {
         return MPUTL_ERROR;
     }
 
-    if(_iFileId == STDIN_ID)
+    if (_iFileId == STDIN_ID)
     {
         return MPUTL_INVALID_FILE_DESCRIPTOR;
     }
     else
     {
         pF = FileManager::getFile(_iFileId);
-        if(pF)
+        if (pF)
         {
-            if(pF->getFileModeAsDouble() >= 100 && pF->getFileModeAsDouble() < 200)
+            if (pF->getFileModeAsDouble() >= 100 && pF->getFileModeAsDouble() < 200)
             {
                 return MPUTL_NO_WRITE_RIGHT;
             }
@@ -56,17 +56,18 @@ mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR
     }
 
     //export in UTF-8 if file is not open in binary mode
-    if(static_cast<int>(pF->getFileModeAsDouble()) % 2 == 1)
-    {//binary mode
+    if (static_cast<int>(pF->getFileModeAsDouble()) % 2 == 0)
+    {
+        //text mode
         for (i = 0; i < _iSizeStrings; i++)
         {
-            if(fputws(pstStrings[i], pF->getFiledesc()) == -1)
+            if (fputws(pstStrings[i], pF->getFiledesc()) == EOF)
             {
                 return MPUTL_ERROR;
             }
-            if(_CR)
+            if (_CR)
             {
-                if(fputws(L"\n", pF->getFiledesc()) == -1)
+                if (fputws(L"\n", pF->getFiledesc()) == -1)
                 {
                     return MPUTL_ERROR;
                 }
@@ -74,21 +75,22 @@ mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR
         }
     }
     else
-    {//text mode
+    {
+        //binary mode
         for (i = 0; i < _iSizeStrings; i++)
         {
             char* pstTemp = NULL;
             pstTemp = wide_string_to_UTF8(pstStrings[i]);
             int iRet = fputs(pstTemp, pF->getFiledesc());
             FREE(pstTemp);
-            if(iRet == -1)
+            if (iRet == -1)
             {
                 return MPUTL_ERROR;
             }
-            if(_CR)
+            if (_CR)
             {
                 iRet = fputs("\n", pF->getFiledesc());
-                if(iRet == -1)
+                if (iRet == -1)
                 {
                     return MPUTL_ERROR;
                 }

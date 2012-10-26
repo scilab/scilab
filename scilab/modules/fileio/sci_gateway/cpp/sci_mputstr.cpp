@@ -35,15 +35,14 @@ Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, types::
     int iErr                = 1;
 
     types::Double* pdFileId = NULL;
-    File* pF                = NULL;
 
-    if(in.size() < 1 || in.size() > 2)
+    if (in.size() < 1 || in.size() > 2)
     {
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mputstr", 1, 2);
         return types::Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"mputstr", 1);
         return types::Function::Error;
@@ -51,9 +50,9 @@ Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, types::
 
     pString = in[0]->getAs<types::String>();
 
-    if(in.size() == 2)
+    if (in.size() == 2)
     {
-        if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false|| in[1]->getAs<types::Double>()->isComplex())
+        if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"mputstr", 2);
             return types::Function::Error;
@@ -63,11 +62,11 @@ Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, types::
 
     switch (iFile)
     {
-    case 5: // stdin
-        ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mputstr", iFile);
-        return types::Function::Error;
-    default :
-        iErr = mputl(iFile, pString->get(), 1);
+        case 5: // stdin
+            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mputstr", iFile);
+            return types::Function::Error;
+        default :
+            iErr = mputl(iFile, pString->get(), 1, FALSE);
     }
 
     out.push_back(new Bool(!iErr));
