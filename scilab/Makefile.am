@@ -234,6 +234,12 @@ else
 	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 endif
 
+doxygen: modules/development_tools/etc/doxyfile
+if DOXYGEN
+	mkdir $(top_builddir)/reports/
+	$(DOXYGEN_BIN) modules/development_tools/etc/doxyfile
+endif
+
 check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
 		for l in $(ALL_LINGUAS_DOC); do \
@@ -296,7 +302,9 @@ clean-help:
 	echo "rm -f $(top_builddir)/modules/scicos/jar/"; \
 	rm -rf $(top_builddir)/modules/scicos/jar/; \
 	echo "rm -rf $(top_builddir)/modules/javasci/javadoc"; \
-	rm -rf $(top_builddir)/modules/javasci/javadoc;
+	rm -rf $(top_builddir)/modules/javasci/javadoc; \
+	echo "rm -rf $(top_builddir)/html"; \
+	rm -rf $(top_builddir)/html;
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-cli-bin; then \

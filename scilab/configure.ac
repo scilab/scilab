@@ -1618,6 +1618,18 @@ if test "$with_install_help_xml" != no -a "$with_install_help_xml" != ""; then
 fi
 AM_CONDITIONAL(INSTALL_HELP_XML, test "$HELP_INSTALL_ENABLE" != "")
 
+## Doxygen help generation
+AC_ARG_ENABLE(build-doxygen,
+    AC_HELP_STRING([--enable-build-doxygen],[Generate doxygen C/C++ documentation]))
+
+DOXYGEN_ENABLE=yes
+if test "$enable_build_doxygen" != no -a "$enable_build_doxygen" != ""; then
+    AC_DOXYGEN()
+else
+    DOXYGEN_ENABLE=no
+fi
+AM_CONDITIONAL(DOXYGEN, test $DOXYGEN_ENABLE = yes)
+
 ##############################################################
 ## Javasci module
 ##############################################################
