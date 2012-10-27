@@ -337,7 +337,12 @@ public class Style extends Position {
             cBackColor.setBackground(new Color(rgbBackgroundColor[0].intValue(), rgbBackgroundColor[1].intValue(), rgbBackgroundColor[2].intValue()));
 
             // Get the current status of the property: Foreground Color
-            Integer scilabForegroundColor = EditorManager.getFromUid(parentFigure).getOriColor();
+            Integer scilabForegroundColor;
+            if ((Boolean)GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__) == false) {
+    		scilabForegroundColor = EditorManager.getFromUid(parentFigure).getOriColor();
+            } else {
+            	scilabForegroundColor = (Integer) GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_COLOR__);
+            }
             Double[] rgbForegroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabForegroundColor);
             cForeColor.setBackground(new Color(rgbForegroundColor[0].intValue(), rgbForegroundColor[1].intValue(), rgbForegroundColor[2].intValue()));
 
@@ -362,7 +367,12 @@ public class Style extends Position {
             cMarkBackground.setBackground(new Color(rgbMarkBackground[0].intValue(), rgbMarkBackground[1].intValue(), rgbMarkBackground[2].intValue()));
 
             // Get the current status of the property: Mark Foreground Color
-            Integer scilabMarkForeground = EditorManager.getFromUid(parentFigure).getOriColor();
+            Integer scilabMarkForeground;
+            if ((Boolean)GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__) == true) {
+    		scilabMarkForeground = EditorManager.getFromUid(parentFigure).getOriColor();
+            } else {
+            	scilabMarkForeground = (Integer) GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
+            }
             Double[] rgbMarkForeground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkForeground);
             cMarkForeground.setBackground(new Color(rgbMarkForeground[0].intValue(), rgbMarkForeground[1].intValue(), rgbMarkForeground[2].intValue()));
 

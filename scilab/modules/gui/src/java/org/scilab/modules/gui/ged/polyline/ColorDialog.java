@@ -316,7 +316,11 @@ public class ColorDialog extends Style {
     * @param scilabColor index of the color map.
     */
     private void setForegroundColor(Integer scilabColor) {
-        EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
+    	if ((Boolean)GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__) == false) {
+    		EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
+    	} else {
+    		GraphicController.getController().setProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
+    	}
     }
 
     /**
@@ -335,7 +339,10 @@ public class ColorDialog extends Style {
     * @param scilabColor index of the color map.
     */
     private void setMarkForeground(Integer scilabColor) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
+    	if ((Boolean)GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__) == true) {
+    		EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
+    	} else {
+    		GraphicController.getController().setProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
+    	}
     }
 }
