@@ -109,6 +109,7 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
     double* Z = NULL;
 
     int type;
+    int * pType = &type;
     double lastZ = 2.0;
 
     Vec3 direction = Vec3(dx, dy, dz);
@@ -137,10 +138,9 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
     }
 
 
-    getGraphicObjectProperty(uid, __GO_TYPE__, jni_string, (void**) &type);
+    getGraphicObjectProperty(uid, __GO_TYPE__, jni_int, (void**) &pType);
     if (type == __GO_PLOT3D__)
     {
-
         int numX = 0;
         int* piNumX = &numX;
         int numY = 0;
@@ -270,6 +270,7 @@ int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, Vec3 &ret)
 
     t = Edge2.dot(qVec) * inv_det;
     ret = P0 + Dir * t;
+
 
     return 1;
 }
