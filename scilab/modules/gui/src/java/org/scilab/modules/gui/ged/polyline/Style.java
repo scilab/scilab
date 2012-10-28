@@ -24,6 +24,7 @@ import java.awt.Insets;
 import javax.swing.Box;
 import javax.swing.Box.Filler;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -33,6 +34,7 @@ import javax.swing.JSeparator;
 import javax.swing.JToggleButton;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import org.scilab.modules.gui.editor.EditorManager;
@@ -47,46 +49,67 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Style extends Position {
-    private JButton bBackColor;
-    private JButton bForeColor;
     protected static JToggleButton bStyle;
-    protected static JLabel cBackColor;
-    protected static JLabel cForeColor;
-    protected JComboBox cLine;
-    protected JComboBox cPolyline;
-    protected JLabel lBackColor;
-    protected JLabel lForeColor;
-    protected JLabel lLine;
-    protected JLabel lPolyline;
-    protected JLabel lStyle;
-    protected JPanel pBackColor;
-    protected JPanel pForeColor;
+    private JLabel lStyle;
+    private JSeparator sStyle;
     protected static JPanel pStyle;
-    protected JSeparator sStyle;
-    protected static JDialog backcolorDialog;
-    protected static JDialog forecolorDialog;
-    protected String parentFigure = (String) GraphicController.getController()
-                                .getProperty(currentpolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+
     private JLabel lArrowSize;
     private JTextField cArrowSize;
+
     private JLabel lBarWidth;
     private JTextField cBarWidth;
-    private JComboBox cMarkStyle;
+
+    private JLabel lBackColor;
+    private JPanel pBackColor;
+    private JButton bBackColor;
+    protected static JLabel cBackColor;
+    protected static JDialog backcolorDialog;
+    private static JColorChooser chooserBack;
+    private static JButton okBack;
+
+    private JLabel lForeColor;
+    private JPanel pForeColor;
+    private JButton bForeColor;
+    protected static JLabel cForeColor;
+    protected static JDialog forecolorDialog;
+    private static JColorChooser chooserFore;
+    private static JButton okFore;
+
+    private JLabel lLine;
+    private JComboBox cLine;
+
+    private JLabel lPolyline;
+    private JComboBox cPolyline;
+
     private JLabel lThickness;
     private JTextField cThickness;
-    protected static JDialog markBackgroundDialog;
+
     private JLabel lMarkBackground;
     private JPanel pMarkBackground;
     private JButton bMarkBackground;
     protected static JLabel cMarkBackground;
-    protected static JDialog markForegroundDialog;
+    protected static JDialog markBackgroundDialog;
+    private static JColorChooser chooserMarkBackground;
+    private static JButton okMarkBackground;
+
     private JLabel lMarkForeground;
     private JPanel pMarkForeground;
     private JButton bMarkForeground;
     protected static JLabel cMarkForeground;
+    protected static JDialog markForegroundDialog;
+    private static JColorChooser chooserMarkForeground;
+    private static JButton okMarkForeground;
+
     private JLabel lMarkSize;
     private JTextField cMarkSize;
+
     private JLabel lMarkStyle;
+    private JComboBox cMarkStyle;
+
+    protected String parentFigure = (String) GraphicController.getController()
+                                .getProperty(currentpolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+
     private Filler fillerVERTICAL;
 
     /**
@@ -95,13 +118,17 @@ public class Style extends Position {
     */
     public Style(String objectID) {
         super(objectID);
+        styleComponents();
         initPropertiesStyle(objectID);
+        dialogBackgroundColor();
+        dialogForegroundColor();
+        dialogMarkBackground();
+        dialogMarkForeground();
     }
 
     /**
     * It has all the components of the section Style/Appeareance.
     */
-    @Override
     public void styleComponents() {
         ContentLayout layout = new ContentLayout();
 
@@ -323,11 +350,11 @@ public class Style extends Position {
             currentpolyline = objectID;
 
             // Get the current status of the property: Arrow Size Factor
-            cArrowSize.setText( Double.toString( (Double) GraphicController.getController()
+            cArrowSize.setText( Double.toString((Double) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__)));
 
             // Get the current status of the property: Bar Width
-            cBarWidth.setText( Double.toString( (Double) GraphicController.getController()
+            cBarWidth.setText( Double.toString((Double) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_BAR_WIDTH__)));
 
             // Get the current status of the property: Background Color
@@ -357,7 +384,7 @@ public class Style extends Position {
             cPolyline.setSelectedIndex(currentPolylineStyle);
 
             // Get the current status of the property: Thickness
-            cThickness.setText( Double.toString( (Double) GraphicController.getController()
+            cThickness.setText( Double.toString((Double) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_THICKNESS__)));
 
             // Get the current status of the property: Mark Background Color
@@ -377,7 +404,7 @@ public class Style extends Position {
             cMarkForeground.setBackground(new Color(rgbMarkForeground[0].intValue(), rgbMarkForeground[1].intValue(), rgbMarkForeground[2].intValue()));
 
             // Get the current status of the property: Mark Size
-            cMarkSize.setText( Integer.toString( (Integer) GraphicController.getController()
+            cMarkSize.setText( Integer.toString((Integer) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_SIZE__)));
 
             // Get the current status of the property: Mark Style
@@ -388,24 +415,56 @@ public class Style extends Position {
     }
 
     /**
-    * Method that will be overwritten by ColorDialog.
+    * JDialog - Selection of background colors.
     */
-    public void dialogBackgroundColor() { }
+    public void dialogBackgroundColor() {
+        backcolorDialog = new JDialog();
+        chooserBack = new JColorChooser();
+        okBack = new JButton();
+        ContentLayout layout = new ContentLayout();
+
+        layout.addColorDialog(backcolorDialog, chooserBack, okBack, cBackColor,
+                parentFigure, "polyline.Style", "setBackgroungColor", this);
+    }
 
     /**
-    * Method that will be overwritten by ColorDialog.
+    * JDialog - Selection of foreground colors.
     */
-    public void dialogForegroundColor() { }
+    public void dialogForegroundColor() {
+        forecolorDialog = new JDialog();
+        chooserFore = new JColorChooser();
+        okFore = new JButton();
+        ContentLayout layout = new ContentLayout();
+
+        layout.addColorDialog(forecolorDialog, chooserFore, okFore, cForeColor,
+                parentFigure, "polyline.Style", "setForegroundColor", this);
+    }
 
     /**
-    * Method that will be overwritten by ColorDialog.
+    * JDialog - Selection of mark background colors.
     */
-    public void dialogMarkBackground() { }
+    public void dialogMarkBackground() {
+        markBackgroundDialog = new JDialog();
+        chooserMarkBackground = new JColorChooser();
+        okMarkBackground = new JButton();
+        ContentLayout layout = new ContentLayout();
+
+        layout.addColorDialog(markBackgroundDialog, chooserMarkBackground, okMarkBackground,
+                cMarkBackground, parentFigure, "polyline.Style", "setMarkBackground", this);
+    }
 
     /**
-    * Method that will be overwritten by ColorDialog.
+    * JDialog - Selection of mark foreground colors.
     */
-    public void dialogMarkForeground() { }
+    public void dialogMarkForeground() {
+        markForegroundDialog = new JDialog();
+        chooserMarkForeground = new JColorChooser();
+        okMarkForeground = new JButton();
+        ContentLayout layout = new ContentLayout();
+
+        layout.addColorDialog(markForegroundDialog, chooserMarkForeground, okMarkForeground,
+                cMarkForeground, parentFigure, "polyline.Style", "setMarkForeground", this);
+    }
 
     /**
     * Implement the action button to show/hide.
@@ -560,5 +619,51 @@ public class Style extends Position {
     private void cMarkStyleActionPerformed(ActionEvent evt) {
         GraphicController.getController().setProperty(
                 currentpolyline, GraphicObjectProperties.__GO_MARK_STYLE__, cMarkStyle.getSelectedIndex());
+    }
+
+    /**
+    * Change the color of the object.
+    *
+    * @param scilabColor index of the color map.
+    */
+    public void setBackgroungColor(int scilabColor) {
+        GraphicController.getController().setProperty(
+                currentpolyline, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
+    }
+    
+    /**
+    * Change the color of the object.
+    *
+    * @param scilabColor index of the color map.
+    */
+    public void setForegroundColor(int scilabColor) {
+    	if ((Boolean)GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__) == false) {
+    		EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
+    	} else {
+    		GraphicController.getController().setProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
+    	}
+    }
+
+    /**
+    * Change the color of the object.
+    *
+    * @param scilabColor index of the color map.
+    */
+    public void setMarkBackground(int scilabColor) {
+        GraphicController.getController().setProperty(
+                currentpolyline, GraphicObjectProperties.__GO_MARK_BACKGROUND__, scilabColor);
+    }
+
+    /**
+    * Change the color of the object.
+    *
+    * @param scilabColor index of the color map.
+    */
+    public void setMarkForeground(int scilabColor) {
+    	if ((Boolean)GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__) == true) {
+    		EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
+    	} else {
+    		GraphicController.getController().setProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
+    	}
     }
 }

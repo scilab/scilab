@@ -11,13 +11,15 @@
  */
 package org.scilab.modules.gui.ged.polyline;
 
+import java.awt.Dimension;
+
 /**
 * Properties of the polyline.
 * Last child.
 *
 * @author Marcos Cardinot <mcardinot@gmail.com>
 */
-public class Polyline extends ColorDialog {
+public class Polyline extends Style {
     /**
     * Initializes the components of the JPanel.
     *
@@ -25,5 +27,6 @@ public class Polyline extends ColorDialog {
     */
     public Polyline(String objectID) {
         super(objectID);
+        setPreferredSize(new Dimension(100, 800));
     }
 }

@@ -26,8 +26,8 @@ import javax.swing.JToggleButton;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.gui.ged.ContentLayout;
 
+import org.scilab.modules.gui.ged.ContentLayout;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
@@ -35,7 +35,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class BaseProperties extends Roof {
+public class BaseProperties extends ContentLayout {
     protected static JToggleButton bBaseProperties;
     protected static JPanel pBaseProperties;
     private JSeparator sBaseProperties;
@@ -57,13 +57,13 @@ public class BaseProperties extends Roof {
     * @param objectID Enters the identification of polyline.
     */
     public BaseProperties(String objectID){
+        basePropertiesComponents();
         initPropertiesBase(objectID);
     }
 
     /**
     * It has all the components of the section Base Properties.
     */
-    @Override
     public void basePropertiesComponents() {
         ContentLayout layout = new ContentLayout();
 

@@ -52,6 +52,7 @@ public class MessagesGED {
     public static final String choose_background_color = Messages.gettext("Choose Background Color");
     public static final String choose_foreground_color = Messages.gettext("Choose Foreground Color");
     public static final String choose_font_color = Messages.gettext("Choose Font Color");
+    public static final String choose_color = Messages.gettext("Choose a Color");
 
     //Style/Appearance - Labels
     public static final String style_appearance = Messages.gettext("Style/Appearance");

@@ -61,13 +61,13 @@ public class Position extends DataProperties {
     */
     public Position(String objectID){
         super(objectID);
+        positionComponents();
         initPosition(objectID);
     }
 
     /**
     * It has all the components of the section Position.
     */
-    @Override
     public void positionComponents() {
         ContentLayout layout = new ContentLayout();
 

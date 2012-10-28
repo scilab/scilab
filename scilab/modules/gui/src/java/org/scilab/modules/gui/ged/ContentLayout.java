@@ -16,12 +16,19 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.lang.reflect.Method;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
@@ -129,6 +136,72 @@ public class ContentLayout extends JPanel{
         gbc.ipadx = 70;
         gbc.insets = new Insets(0, 4, 5, 0);
         parentPanel.add(fieldPanel, gbc);
+    }
+
+    public void addColorDialog(final JDialog colorDialog,
+                               final JColorChooser colorChooser,
+                                     JButton ok,
+                               final JLabel colorField,
+                               final String parentFigure,
+                               final String packClass,
+                               final String method,
+                               final Object methobj) {
+
+        colorDialog.setTitle(MessagesGED.choose_color);
+        colorDialog.setMinimumSize(new Dimension(567, 340));
+        colorDialog.setModal(true);
+        colorDialog.setResizable(true);
+        colorDialog.getContentPane().setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        colorDialog.getContentPane().add(colorChooser, gbc);
+
+        ok.setText(" OK ");
+        ok.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                try {
+                    okActionPerformed();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ContentLayout.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            /**
+            * Implement the action on the OK button to save the color chosen by the user.
+            */
+            private void okActionPerformed() throws ClassNotFoundException {
+                
+                Color choice = colorChooser.getColor();
+                double red = choice.getRed();
+                double green = choice.getGreen();
+                double blue = choice.getBlue();
+                Integer scilabColor = ColorMapHandler.getScilabColor(red, green, blue, parentFigure);
+
+                try {
+                    Class partypes[] = new Class[1];
+                    partypes[0] = Integer.TYPE;
+
+                    Class cls = Class.forName("org.scilab.modules.gui.ged." + packClass);
+                    Method meth = cls.getMethod(method, partypes);
+
+                    Object arglist[] = new Object[1];
+                    arglist[0] = new Integer(scilabColor);
+
+                    meth.invoke(methobj, arglist);
+                } catch (Throwable e) {
+                    System.err.println(e);  
+                }
+                colorField.setBackground(choice);
+                colorDialog.dispose();
+            }
+        });
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(0, 522, 2, 0);
+        colorDialog.getContentPane().add(ok, gbc);
     }
 
     public void addDataField(JPanel parentPanel, JPanel fieldPanel, JButton dataButton, JLabel dataLabel, int column, int row) {

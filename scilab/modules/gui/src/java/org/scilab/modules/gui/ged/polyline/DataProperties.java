@@ -72,13 +72,13 @@ public class DataProperties extends BaseProperties {
     */
     public DataProperties(String objectID){
         super(objectID);
+        dataPropertiesComponents();
         initDataProperties(objectID);
     }
 
     /**
     * It has all the components of the section Data Properties.
     */
-    @Override
     public void dataPropertiesComponents() {
         ContentLayout layout = new ContentLayout();
 
