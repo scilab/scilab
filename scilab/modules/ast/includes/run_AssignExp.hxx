@@ -789,6 +789,18 @@ void visitprivate(const AssignExp  &e)
             expected_size_set(1);
             e.right_exp_get().accept(*this);
 
+            const wstring *pstName = getStructNameFromExp(pField);
+            if(pstName)
+            {
+                InternalType* pCurrentStr = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(*pstName));
+                InternalType* pHigherStr = symbol::Context::getInstance()->get(symbol::Symbol(*pstName));
+                if(pHigherStr && pCurrentStr == NULL)
+                {//struct come from higher scope, so we need to clone and put it in current scope
+                    InternalType *pITClone = pHigherStr->clone();
+                    symbol::Context::getInstance()->put(symbol::Symbol(*pstName), *pITClone);
+                }
+            }
+
             bool bOK = getStructFromExp(pField, &pMain, &pCurrent, NULL, result_get());
             if (pMain != NULL)
             {
@@ -809,8 +821,8 @@ void visitprivate(const AssignExp  &e)
             if (pHead->isRef(1) == true)
             {
                 pHead = pHead->clone();
-                const wstring *pstName = getStructNameFromExp(pField);
-                symbol::Context::getInstance()->put(symbol::Symbol(*pstName), *pHead);
+                pstName = getStructNameFromExp(pField);
+                symbol::Context::getInstance()->put(symbol::Symbol(*pstName), *pHead->clone());
             }
 
             //we can assign only one value
