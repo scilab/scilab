@@ -91,6 +91,13 @@ XML_SCILAB_IMPEXP int isXMLObject(int *mlist, void *pvApiCtx);
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
  */
+XML_SCILAB_IMPEXP int isXMLObjects(const char ** types, int nb, int *mlist, void *pvApiCtx);
+
+/**
+ * Checks if a mlist has the good type
+ * @param mlist the mlist address
+ * @return 1 if the mlist has the good type, else 0.
+ */
 XML_SCILAB_IMPEXP int isXMLNotHandled(int *mlist, void *pvApiCtx);
 
 /**
@@ -112,6 +119,6 @@ XML_SCILAB_IMPEXP int isXMLValid(int *mlist, void *pvApiCtx);
  * @param mlist the mlist address
  * @return the object id.
  */
- XML_SCILAB_IMPEXP int getXMLObjectId(int *mlist, void *pvApiCtx);
+XML_SCILAB_IMPEXP int getXMLObjectId(int *mlist, void *pvApiCtx);
 
 #endif /* __XML_MLIST_H__ */

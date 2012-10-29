@@ -10,50 +10,53 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlAsNumber" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlName" xml:lang="en">
     <refnamediv>
-        <refname>xmlAsNumber</refname>
-        <refpurpose>Convert the result of a XPath query into a row of numbers</refpurpose>
+        <refname>xmlName</refname>
+        <refpurpose>Retrieve the name of the elements.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            nums = xmlAsNumber(xp)
+            names = xmlName(obj)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>xp</term>
+                <term>obj</term>
                 <listitem>
-                    <para>xp, a XML mlist typed XMLSet or XMLList</para>
+                    <para>obj, a XML mlist typed XMLSet or XMLList or XMLElem or XMLAttr</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>nums</term>
+                <term>name</term>
                 <listitem>
-                    <para>nums, a single row of doubles</para>
+                    <para>names, a single row of strings</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>The result of a XPath query or the chidren of a node can be a set of XMLElements which contains numbers, so the aim of this function is to convert the contents of each nodes into a double.</para>
+        <para>Retrieve the name(s) of the elements composing the XMLObject.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-    doc = xmlReadStr("<root><a>12</a><a>13</a><a>1.2345678</a><a>45e3</a><a>.23E-2</a></root>");
+	doc = xmlReadStr("<root><foo a=""123"" b=""456"" c=""789""/></root>")
 
-    // Retrieve the content of the nodes with name equals to "a"
-    xp = xmlXPath(doc, "//a/text()");
+	// Retrieve the name of a single element
+	xmlName(doc.root.children(1))
 
-    // convert the result into doubles
-    data = xmlAsNumber(xp)
+	// Retrieve the names of an attributes list
+	xmlName(doc.root.children(1).attributes)
 
-    xmlDelete(doc);
+	// Retrieve the names of the result of an XPath query
+	xmlName(xmlXPath(doc,"//foo/@*"))	
+	
+	xmlDelete(doc);
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -66,7 +69,7 @@
                 <link linkend="xmlAsText">xmlAsText</link>
             </member>
             <member>
-                <link linkend="xmlName">xmlName</link>
+                <link linkend="xmlAsNumber">xmlAsNumber</link>
             </member>
         </simplelist>
     </refsection>
