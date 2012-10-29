@@ -15,6 +15,7 @@
 #include "function.hxx"
 #include "int.hxx"
 #include "double.hxx"
+#include "bool.hxx"
 
 extern "C"
 {
@@ -25,33 +26,44 @@ extern "C"
 
 types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"double", 1);
         return types::Function::Error;
     }
 
     types::Double* pOut = NULL;
-    if(in[0]->isDouble())
+    if (in[0]->isDouble())
     {
         out.push_back(in[0]);
         return types::Function::OK;
     }
-    else if(in[0]->isInt() == false)
+    else if (in[0]->isInt() == false && in[0]->isBool() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type of input arguments: integer or double expected.\n"), L"double");
+        ScierrorW(999, _W("%ls: Wrong type of input arguments: integer, boolean or double expected.\n"), L"double");
         return types::Function::Error;
     }
 
     types::InternalType::RealType type = in[0]->getType();
 
-    switch(type)
+    switch (type)
     {
+        case types::InternalType::RealBool :
+        {
+            types::Bool* pInt = in[0]->getAs<types::Bool>();
+            pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
+            for (int i = 0 ; i < pInt->getSize() ; i++)
+            {
+                pOut->set(i, (double)pInt->get(i));
+            }
+            break;
+        }
+
         case types::InternalType::RealInt8 :
         {
             types::Int8* pInt = in[0]->getAs<types::Int8>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
-            for(int i = 0 ; i < pInt->getSize() ; i++)
+            for (int i = 0 ; i < pInt->getSize() ; i++)
             {
                 pOut->set(i, (double)pInt->get(i));
             }
@@ -62,7 +74,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
         {
             types::UInt8* pInt = in[0]->getAs<types::UInt8>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
-            for(int i = 0 ; i < pInt->getSize() ; i++)
+            for (int i = 0 ; i < pInt->getSize() ; i++)
             {
                 pOut->set(i, (double)pInt->get(i));
             }
@@ -73,7 +85,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
         {
             types::Int16* pInt = in[0]->getAs<types::Int16>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
-            for(int i = 0 ; i < pInt->getSize() ; i++)
+            for (int i = 0 ; i < pInt->getSize() ; i++)
             {
                 pOut->set(i, (double)pInt->get(i));
             }
@@ -84,7 +96,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
         {
             types::UInt16* pInt = in[0]->getAs<types::UInt16>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
-            for(int i = 0 ; i < pInt->getSize() ; i++)
+            for (int i = 0 ; i < pInt->getSize() ; i++)
             {
                 pOut->set(i, (double)pInt->get(i));
             }
@@ -95,7 +107,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
         {
             types::Int32* pInt = in[0]->getAs<types::Int32>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
-            for(int i = 0 ; i < pInt->getSize() ; i++)
+            for (int i = 0 ; i < pInt->getSize() ; i++)
             {
                 pOut->set(i, (double)pInt->get(i));
             }
@@ -106,7 +118,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
         {
             types::UInt32* pInt = in[0]->getAs<types::UInt32>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
-            for(int i = 0 ; i < pInt->getSize() ; i++)
+            for (int i = 0 ; i < pInt->getSize() ; i++)
             {
                 pOut->set(i, (double)pInt->get(i));
             }
@@ -117,7 +129,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
         {
             types::Int64* pInt = in[0]->getAs<types::Int64>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
-            for(int i = 0 ; i < pInt->getSize() ; i++)
+            for (int i = 0 ; i < pInt->getSize() ; i++)
             {
                 pOut->set(i, (double)pInt->get(i));
             }
@@ -128,7 +140,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
         {
             types::UInt64* pInt = in[0]->getAs<types::UInt64>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
-            for(int i = 0 ; i < pInt->getSize() ; i++)
+            for (int i = 0 ; i < pInt->getSize() ; i++)
             {
                 pOut->set(i, (double)pInt->get(i));
             }

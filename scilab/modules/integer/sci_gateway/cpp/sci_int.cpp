@@ -12,6 +12,7 @@
 
 #include "int.hxx"
 #include "double.hxx"
+#include "bool.hxx"
 #include "function.hxx"
 #include "integer_gw.hxx"
 
@@ -34,6 +35,12 @@ void convertInt(types::InternalType* _pIn, T* _pOut)
 {
     switch (_pIn->getType())
     {
+        case types::InternalType::RealBool :
+        {
+            types::Bool* pBool = _pIn->getAs<types::Bool>();
+            convert_int(pBool->get(), pBool->getSize(), _pOut->get());
+            break;
+        }
         case types::InternalType::RealDouble :
         {
             types::Double* pD = _pIn->getAs<types::Double>();
@@ -100,9 +107,9 @@ types::Callable::ReturnValue commonInt(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    if (in[0]->isDouble() == false && in[0]->isInt() == false)
+    if (in[0]->isDouble() == false && in[0]->isInt() == false && in[0]->isBool() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: %s or %s expected.\n"), L"_wstName.c_str()", 1, L"double", L"integer");
+        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: %ls, %ls or %ls expected.\n"), _wstName.c_str(), 1, L"integer", L"boolean", L"double");
         return types::Function::Error;
     }
 
