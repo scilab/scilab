@@ -5,8 +5,8 @@
 File input/output:
 ==================
 
-* The use of I/O consol is now allowed with functions : mget, mgetl, mgetstr, mput, mputl and mputstr.
-
+* The use of I/O console is now allowed with functions: mget, mgetl, mgetstr, mput, mputl and mputstr.
+* mclearerr now returns a flag indicating the file identifier validity.
 
 Removed functions (previously declared as obsolete):
 ====================================================
