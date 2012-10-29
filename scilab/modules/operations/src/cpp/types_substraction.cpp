@@ -26,21 +26,21 @@ extern "C"
 }
 InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
 {
-    if(_pRightOperand->isDouble())
+    if (_pRightOperand->isDouble())
     {
         Double *pR = dynamic_cast<Double*>(_pRightOperand->clone());
         bool bComplex  = pR->isComplex();
 
         double* pReal = pR->get();
-        for(int i = 0 ; i < pR->getSize() ; i++)
+        for (int i = 0 ; i < pR->getSize() ; i++)
         {
             pReal[i] *= -1;
         }
 
-        if(bComplex)
+        if (bComplex)
         {
             double* pImg = pR->getImg();
-            for(int i = 0 ; i < pR->getSize() ; i++)
+            for (int i = 0 ; i < pR->getSize() ; i++)
             {
                 pImg[i] *= -1;
             }
@@ -59,6 +59,12 @@ InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOpe
 {
     InternalType *pResult = NULL;
 
+    // InternalType - [] and [] - []
+    if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
+    {
+        return _pLeftOperand->clone();
+    }
+
     // [] - InternalType
     if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
     {
@@ -74,12 +80,6 @@ InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOpe
 
         Double pDblZero = Double(0);
         return GenericMinus((InternalType*)&pDblZero, _pRightOperand);
-    }
-
-    // InternalType - []
-    if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
-    {
-        return _pLeftOperand->clone();
     }
 
     /*
