@@ -136,7 +136,7 @@
                 </imageobject>
             </inlinemediaobject>
         </para>
-        <para>PID law is a linear combinaison of an input variable Up(t), its time
+        <para>PID law is a linear combination of an input variable Up(t), its time
             integral Ui(t) and its first derivative Ud(t). The control law Ucon(t) has
             the form:
         </para>
