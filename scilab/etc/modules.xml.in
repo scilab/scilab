@@ -53,4 +53,5 @@
     <module name="umfpack" activate="yes"/>
     <module name="optimization" activate="yes"/>
     <module name="special_functions" activate="yes"/>
+    <module name="graphics" activate="@GUI_ENABLE@"/>
 </modules>

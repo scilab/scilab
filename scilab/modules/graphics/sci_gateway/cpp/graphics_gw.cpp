@@ -24,5 +24,7 @@ using namespace types;
 
 int GraphicsModule::Load()
 {
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"set", &sci_set, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"get", &sci_get, MODULE_NAME));
     return 1;
 }

@@ -8,17 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [graphicslib, datatipslib] = startModule()
-
-//Load  functions libraries
-// =============================================================================
-  load(SCI+"/modules/graphics/macros/lib");
-  load(SCI+"/modules/graphics/macros/datatips/lib");
-
-endfunction
-
 if (getscilabmode() <> 'NWNI') then
-  [graphicslib, datatipslib] = startModule();
+    load(SCI+"/modules/graphics/macros/lib");
+    load(SCI+"/modules/graphics/macros/datatips/lib");
 end
-
-clear startModule;

@@ -1554,7 +1554,7 @@ function GetSetValue(h)
   execstr(lhs+'=getvalue(t,labels,typs,ini)')
   if ok then
     for k=1:n
-      execstr("if x'+string(k)+'<>h."+labels(k)+' then h.'+..
+      execstr("if x"+string(k)+"<>h."+labels(k)+' then h.'+..
               labels(k)+'=x'+string(k)+',end')
     end
   end
