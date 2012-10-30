@@ -497,7 +497,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
                 iMultiComplexScalarByComplexMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
         }
-
+        (*_pPolyOut)->updateRank();
         return 0;
     }
 
@@ -547,6 +547,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
             }
         }
 
+        (*_pPolyOut)->updateRank();
         return 0;
     }
 
@@ -598,6 +599,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
     }
 
     (*_pPolyOut)->setCoef(pTemp);
+    (*_pPolyOut)->updateRank();
     delete pTemp;
     return 0;
 }
@@ -654,6 +656,8 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
                 iMultiComplexScalarByComplexMatrix(pDoubleR[i], pDoubleI[i], pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
         }
+
+        (*_pPolyOut)->updateRank();
         return 0;
     }
     else if (bScalar2)
@@ -698,6 +702,8 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
                 iMultiComplexScalarByComplexMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
             }
         }
+
+        (*_pPolyOut)->updateRank();
         return 0;
     }
 
@@ -776,6 +782,8 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
             }//for(int iRow2 = 0 ; iRow2 < _pDouble->getRows() ; iRow2++)
         }//for(int iCol2 = 0 ; iCol2 < _pDouble->getCols() ; iCol2++)
     }//for(int iRow1 = 0 ; iRow1 < _pPoly->getRows() ; iRow1++)
+
+    (*_pPolyOut)->updateRank();
     return 0;
 }
 
