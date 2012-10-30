@@ -80,6 +80,9 @@ Bug fixes
 
 * Bug #12033 fixed - assert_checkalmostequal was failing with two %inf values.
 
+* Bug #12043 fixed - Fix a typo in the ATOMS module help pages.
+
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
