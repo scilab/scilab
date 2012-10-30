@@ -863,7 +863,7 @@ public :
             //    std::cout << L"Mean time (ms): " << (((double)llMean /  (double)liFresquency.QuadPart) * 1000) << std::endl;
             //}
         }
-        else if(result_get()->isList())
+        else if (result_get()->isList())
         {
             InternalType* pIT = result_get();
             List* pL = pIT->getAs<List>();
@@ -1259,7 +1259,7 @@ public :
     void visitprivate(const NotExp &e)
     {
         /*
-        @ or ~= !
+        @ or ~ !
         */
         e.exp_get().accept(*this);
 
@@ -1293,6 +1293,27 @@ public :
             for (int i = 0 ; i < pb->getSize() ; i++)
             {
                 piB[i] = piR[i] == 1 ? 0 : 1;
+            }
+
+            if (result_get()->isDeletable())
+            {
+                delete result_get();
+            }
+
+            result_set(pReturn);
+        }
+        else if (result_get()->isSparseBool())
+        {
+            InternalType* pIT   = result_get();
+            SparseBool *pb            = pIT->getAs<types::SparseBool>();
+            SparseBool *pReturn       = new SparseBool(pb->getRows(), pb->getCols());
+
+            for (int iRows = 0 ; iRows < pb->getRows() ; iRows++)
+            {
+                for (int iCols = 0 ; iCols < pb->getCols() ; iCols++)
+                {
+                    pReturn->set(iRows, iCols, !pb->get(iRows, iCols));
+                }
             }
 
             if (result_get()->isDeletable())
