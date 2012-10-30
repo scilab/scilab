@@ -90,7 +90,6 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_gw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_gw.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -114,7 +113,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;elementary_functions_gw.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -141,7 +140,6 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_gw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_gw.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <Midl>
@@ -168,7 +166,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;elementary_functions_gw.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -195,7 +193,6 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_gw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_gw.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -220,7 +217,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;elementary_functions_gw.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -249,7 +246,6 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_gw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_gw.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <Midl>
@@ -277,7 +273,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;elementary_functions_gw.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;elementary_functions.lib;string.lib;integer.lib;output_stream.lib;cacsd_f.lib;polynomials_f.lib;sparse_f.lib;eispack_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>elementary_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -613,7 +609,6 @@ cd ..
     <None Include="cacsd_f_Import.def" />
     <None Include="Core_f_Import.def" />
     <None Include="eispack_f_Import.def" />
-    <None Include="elementary_functions_gw_Import.def" />
     <None Include="elementary_functions_Import.def" />
     <None Include="Integer_Import.def" />
     <None Include="core_import.def" />

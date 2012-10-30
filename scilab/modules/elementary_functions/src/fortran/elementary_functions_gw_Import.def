@@ -1,5 +1,0 @@
-LIBRARY    elem_func_gw.dll
-
-
-EXPORTS
-dcoeff_
