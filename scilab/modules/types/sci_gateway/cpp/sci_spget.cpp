@@ -47,7 +47,6 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
         types::Sparse* sp = in[0]->getAs<types::Sparse>();
         nonZeros = static_cast<int>(sp->nonZeros());
 
-        printf("size %d\n", sp->getSize());
         if (nonZeros == 0)
         {
             out.push_back(types::Double::Empty());
