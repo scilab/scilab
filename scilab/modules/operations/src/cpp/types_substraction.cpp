@@ -26,23 +26,70 @@ extern "C"
 }
 InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
 {
+    // - Double
     if (_pRightOperand->isDouble())
     {
         Double *pR = dynamic_cast<Double*>(_pRightOperand->clone());
-        bool bComplex  = pR->isComplex();
-
+        bool bComplex = pR->isComplex();
         double* pReal = pR->get();
-        for (int i = 0 ; i < pR->getSize() ; i++)
-        {
-            pReal[i] *= -1;
-        }
 
         if (bComplex)
         {
             double* pImg = pR->getImg();
             for (int i = 0 ; i < pR->getSize() ; i++)
             {
-                pImg[i] *= -1;
+                pReal[i] *= -1;
+                pImg[i]  *= -1;
+            }
+        }
+        else
+        {
+            for (int i = 0 ; i < pR->getSize() ; i++)
+            {
+                pReal[i] *= -1;
+            }
+        }
+
+        return pR;
+    }
+
+    // - Polynom
+    if (_pRightOperand->isPoly())
+    {
+        double* pReal = NULL;
+        double* pImg  = NULL;
+
+        Double* pDblCoef = NULL;
+
+        Polynom *pR = dynamic_cast<Polynom*>(_pRightOperand->clone());
+        bool bComplex = pR->isComplex();
+
+        if (bComplex)
+        {
+            for (int i = 0; i < pR->getSize(); i++)
+            {
+                pDblCoef = pR->get(i)->getCoef();
+                pReal = pDblCoef->getReal();
+                pImg = pDblCoef->getImg();
+
+                for (int j = 0; j < pDblCoef->getSize(); j++)
+                {
+                    pReal[j] *= -1;
+                    pImg[j] *= -1;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < pR->getSize(); i++)
+            {
+                pDblCoef = pR->get(i)->getCoef();
+                pReal = pDblCoef->getReal();
+
+                for (int j = 0; j < pDblCoef->getSize(); j++)
+                {
+                    pReal[j] *= -1;
+                }
             }
         }
 
