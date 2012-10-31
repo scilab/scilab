@@ -223,7 +223,6 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\mexlib\src\cpp\mexlib.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_ieee.cpp" />
     <ClCompile Include="..\cpp\storeCommand.cpp" />
     <ClCompile Include="..\cpp\with_module.cpp" />
     <ClCompile Include="..\cpp\backtrace_print.cpp" />
