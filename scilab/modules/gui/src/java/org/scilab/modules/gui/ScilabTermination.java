@@ -9,19 +9,19 @@
 package org.scilab.modules.gui;
 
 
- /**
-   * @author Calixte DENIZET
-   */
+/**
+  * @author Calixte DENIZET
+  */
 public class ScilabTermination {
 
- /**
-   * Constructor
-   */
- protected ScilabTermination() {
-    throw new UnsupportedOperationException();
- }
-  public static void ScilabExit() {
-    ScilabTerminationJNI.ScilabExit();
-  }
+    /**
+      * Constructor
+      */
+    protected ScilabTermination() {
+        throw new UnsupportedOperationException();
+    }
+    public static void ScilabExit() {
+        ScilabTerminationJNI.ScilabExit();
+    }
 
 }

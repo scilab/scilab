@@ -187,6 +187,108 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #define SWIG_contract_assert(nullreturn, expr, msg) if (!(expr)) {SWIG_JavaThrowException(jenv, SWIG_JavaIllegalArgumentException, msg); return nullreturn; } else
 
 
+#include "returnType.h"
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
+
+double * getSurfDataX(char * uid)
+{
+	double * X;
+	getGraphicObjectProperty(uid, __GO_DATA_MODEL_X__, jni_double_vector, (void**) &X);
+	return X;
+}
+
+int getDataSizeX(char * uid)
+{
+	int type, size = 0, nGon = 0, nVert = 0;
+	int * pType = &type;
+	int * pSize = &size;
+	int * pNGon = &nGon;
+	int * pNVert = &nVert;
+	getGraphicObjectProperty(uid, __GO_TYPE__, jni_int, (void**) &pType);
+
+	switch(type)
+	{
+		case __GO_PLOT3D__:
+		case __GO_GRAYPLOT__:
+			getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &pSize);
+			break;
+		case __GO_FAC3D__:
+			getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void**) &pNGon);
+			getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &pNVert);
+			size = nGon * nVert;
+			break;
+	}
+	return size;
+}
+
+
+double * getSurfDataY(char * uid)
+{
+	double * Y;
+	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &Y);
+	return Y;
+}
+
+int getDataSizeY(char * uid)
+{
+	int type, size = 0, nGon = 0, nVert = 0;
+	int * pType = &type;
+	int * pSize = &size;
+	int * pNGon = &nGon;
+	int * pNVert = &nVert;
+	getGraphicObjectProperty(uid, __GO_TYPE__, jni_int, (void**) &pType);
+
+	switch(type)
+	{
+		case __GO_PLOT3D__:
+		case __GO_GRAYPLOT__:
+			getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &pSize);
+			break;
+		case __GO_FAC3D__:
+			getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void**) &pNGon);
+			getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &pNVert);
+			size = nGon * nVert;
+			break;
+	}
+	return size;
+}
+
+
+double * getSurfDataZ(char * uid)
+{
+	double * Z;
+	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &Z);
+	return Z;
+}
+
+int getDataSizeZ(char * uid)
+{
+	int type, size = 0, nGon = 0, nVert = 0;
+	int * pType = &type;
+	int * pSize = &size;
+	int * pNGon = &nGon;
+	int * pNVert = &nVert;
+	getGraphicObjectProperty(uid, __GO_TYPE__, jni_int, (void**) &pType);
+
+	switch(type)
+	{
+		case __GO_PLOT3D__:
+		case __GO_GRAYPLOT__:
+			getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_Z__, jni_int, (void**) &pSize);
+			break;
+		case __GO_FAC3D__:
+			getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void**) &pNGon);
+			getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &pNVert);
+			size = nGon * nVert;
+			break;
+	}
+	return size;
+}
+
+
 extern char * createObject3dData(char *obj, char *newObj, int type);
 extern double pickSurface(char * uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
 
@@ -194,6 +296,72 @@ extern double pickSurface(char * uid, double x, double y,  double z, double dx, 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_getSurfDataX(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobject jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  double *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (double *)getSurfDataX(arg1);
+  {
+    jresult = (*jenv)->NewDoubleArray(jenv, getDataSizeX(arg1));
+    (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSizeX(arg1), result);
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_getSurfDataY(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobject jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  double *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (double *)getSurfDataY(arg1);
+  {
+    jresult = (*jenv)->NewDoubleArray(jenv, getDataSizeY(arg1));
+    (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSizeY(arg1), result);
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_getSurfDataZ(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobject jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  double *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (double *)getSurfDataZ(arg1);
+  {
+    jresult = (*jenv)->NewDoubleArray(jenv, getDataSizeZ(arg1));
+    (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, getDataSizeZ(arg1), result);
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
 
 SWIGEXPORT jstring JNICALL Java_org_scilab_modules_graphic_1objects_SurfaceDataJNI_createObject3dData(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
   jstring jresult = 0 ;

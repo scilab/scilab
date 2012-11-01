@@ -9,6 +9,18 @@
 package org.scilab.modules.graphic_objects;
 
 public class SurfaceData {
+    public static Object getSurfDataX(String uid) {
+        return SurfaceDataJNI.getSurfDataX(uid);
+    }
+
+    public static Object getSurfDataY(String uid) {
+        return SurfaceDataJNI.getSurfDataY(uid);
+    }
+
+    public static Object getSurfDataZ(String uid) {
+        return SurfaceDataJNI.getSurfDataZ(uid);
+    }
+
     public static String createObject3dData(String obj, String newObj, int type) {
         return SurfaceDataJNI.createObject3dData(obj, newObj, type);
     }

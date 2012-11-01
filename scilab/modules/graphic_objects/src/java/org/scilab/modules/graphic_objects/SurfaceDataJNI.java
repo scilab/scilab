@@ -19,6 +19,9 @@ public class SurfaceDataJNI {
         }
     }
 
+    public final static native Object getSurfDataX(String jarg1);
+    public final static native Object getSurfDataY(String jarg1);
+    public final static native Object getSurfDataZ(String jarg1);
     public final static native String createObject3dData(String jarg1, String jarg2, int jarg3);
     public final static native double pickSurface(String jarg1, double jarg2, double jarg3, double jarg4, double jarg5, double jarg6, double jarg7, double jarg8, double jarg9, double jarg10, double jarg11);
 }

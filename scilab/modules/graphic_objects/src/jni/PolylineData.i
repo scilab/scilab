@@ -79,16 +79,31 @@ double * getDataY(char * uid)
 	return vec;
 }
 
+double * getDataZ(char * uid)
+{
+	double *vec;
+	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z__, jni_double_vector, (void**)&vec);
+	return vec;
+}
+
 double * getShiftX(char * uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_X_COORDINATES_SHIFT__, jni_double_vector, (void**)&vec);
 	return vec;
 }
+
 double * getShiftY(char * uid)
 {
 	double *vec;
 	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, (void**)&vec);
+	return vec;
+}
+
+double * getShiftZ(char * uid)
+{
+	double *vec;
+	getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double_vector, (void**)&vec);
 	return vec;
 }
 
@@ -256,8 +271,10 @@ void removePoint(char * uid, int index)
 
 double * getDataX(char * uid);
 double * getDataY(char * uid);
+double * getDataZ(char * uid);
 double * getShiftX(char * uid);
 double * getShiftY(char * uid);
+double * getShiftZ(char * uid);
 int isXShiftSet(char * uid);
 int isYShiftSet(char * uid);
 char * createPolylineData(char * uidFrom, char *uidTo);

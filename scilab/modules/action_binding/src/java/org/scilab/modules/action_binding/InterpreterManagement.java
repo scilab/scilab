@@ -9,52 +9,52 @@
 package org.scilab.modules.action_binding;
 
 
- /**
-   * All Scilab interpreter management used in Java console
-   * @author Vincent COUVERT
-   * @copyright INRIA
-   */
+/**
+  * All Scilab interpreter management used in Java console
+  * @author Vincent COUVERT
+  * @copyright INRIA
+  */
 public class InterpreterManagement {
 
- /**
-   * Constructor
-   */
- protected InterpreterManagement() {
-    throw new UnsupportedOperationException();
- }
-  
- /**
-   * Put a command in Scilab command queue so that Scilab executes it
-   * The command is displayed in Scilab Window
-   *
-   * @param command the command to execute
-   * @return execution status
-   */
-public  static int putCommandInScilabQueue(String command) {
-    return InterpreterManagementJNI.putCommandInScilabQueue(command);
-  }
+    /**
+      * Constructor
+      */
+    protected InterpreterManagement() {
+        throw new UnsupportedOperationException();
+    }
 
-  
- /**
-   * Put a command in Scilab command queue so that Scilab executes it
-   * The command is executed as soon as possible and may not be interrupted by another one.
-   * WARNING : if the command is taking some time, scilab will not do anything else
-   * before the command returns.
-   *
-   * @param command the command to execute
-   * @return execution status
-   */
-public  static int requestScilabExec(String command) {
-    return InterpreterManagementJNI.requestScilabExec(command);
-  }
+    /**
+      * Put a command in Scilab command queue so that Scilab executes it
+      * The command is displayed in Scilab Window
+      *
+      * @param command the command to execute
+      * @return execution status
+      */
+    public  static int putCommandInScilabQueue(String command) {
+        return InterpreterManagementJNI.putCommandInScilabQueue(command);
+    }
 
-  
- /**
-  * Stop Scilab current work
-  * @return execution status
-  */
-public  static int interruptScilab() {
-    return InterpreterManagementJNI.interruptScilab();
-  }
+
+    /**
+      * Put a command in Scilab command queue so that Scilab executes it
+      * The command is executed as soon as possible and may not be interrupted by another one.
+      * WARNING : if the command is taking some time, scilab will not do anything else
+      * before the command returns.
+      *
+      * @param command the command to execute
+      * @return execution status
+      */
+    public  static int requestScilabExec(String command) {
+        return InterpreterManagementJNI.requestScilabExec(command);
+    }
+
+
+    /**
+     * Stop Scilab current work
+     * @return execution status
+     */
+    public  static int interruptScilab() {
+        return InterpreterManagementJNI.interruptScilab();
+    }
 
 }
