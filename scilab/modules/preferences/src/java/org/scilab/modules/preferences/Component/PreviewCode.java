@@ -66,6 +66,7 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
                             + "// Scilab editor: http://www.scilab-enterprises.com/\n"
                             + "//\n"
                             + "// LaTeX $\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$\n"
+                            + "// TODO: blah blah\n"
                             + "function [a, b] = myfunction(d, e, f)\n"
                             + "\ta = 2.71828 + %pi + f($, :);\n"
                             + "\tb = cos(a) + cosh(a) + \"$\\frac12$\";\n"
