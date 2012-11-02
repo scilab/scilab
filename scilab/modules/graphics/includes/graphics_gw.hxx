@@ -21,9 +21,16 @@ class GraphicsModule
 private :
 	GraphicsModule(){};
 	~GraphicsModule(){};
+
+
 public :
+    GRAPHICS_GW_IMPEXP static void LoadDeps(void);
 	GRAPHICS_GW_IMPEXP static int Load();
+
+    static bool loadedDep;
 };
 
 
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_get, GRAPHICS_GW_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_winsid, GRAPHICS_GW_IMPEXP);
 #endif /* !__GUI_GW_HXX__ */

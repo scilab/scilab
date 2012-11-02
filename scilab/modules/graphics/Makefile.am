@@ -330,7 +330,8 @@ src/c/periEmpty.c \
 src/c/scitokenize.c \
 src/c/get_ticks_utils.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
+GATEWAY_C_SOURCES = \
+sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \
 sci_gateway/c/sci_matplot1.c \
 sci_gateway/c/sci_xfpolys.c \
@@ -365,12 +366,10 @@ sci_gateway/c/sci_plot3d.c \
 sci_gateway/c/sci_move.c \
 sci_gateway/c/sci_copy.c \
 sci_gateway/c/sci_relocate_handle.c \
-sci_gateway/c/sci_get.c \
 sci_gateway/c/sci_xarcs.c \
 sci_gateway/c/sci_xfpoly.c \
 sci_gateway/c/sci_drawlater.c \
 sci_gateway/c/sci_champ.c \
-sci_gateway/c/sci_set.c \
 sci_gateway/c/sci_unglue.c \
 sci_gateway/c/gw_graphics.c \
 sci_gateway/c/sci_zoom_rect.c \
@@ -385,14 +384,18 @@ sci_gateway/c/sci_xfarcs.c \
 sci_gateway/c/sci_param3d.c \
 sci_gateway/c/sci_contour2di.c \
 sci_gateway/c/sci_xdel.c \
-sci_gateway/c/sci_winsid.c \
 sci_gateway/c/sci_fec.c \
+sci_gateway/c/sci_set.c \
 sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
 sci_gateway/c/sci_is_handle_valid.c \
 sci_gateway/c/sci_Legend.c
 
-GATEWAY_CXX_SOURCES = sci_gateway/cpp/graphics_gw.cpp
+GATEWAY_CXX_SOURCES = \
+sci_gateway/cpp/graphics_gw.cpp \
+sci_gateway/cpp/sci_get.cpp \
+sci_gateway/cpp/sci_winsid.cpp
+
 
 libscigraphics_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
@@ -418,10 +421,11 @@ libscigraphics_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/system_env/includes/ \
 	-I$(top_srcdir)/modules/operations/includes/ \
 	-I$(top_srcdir)/modules/types/includes/ \
-	-I$(top_srcdir)/modules/core/includes/ \
 	-I$(top_srcdir)/modules/ast/includes/ \
 	-I$(top_srcdir)/modules/symbol/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/threads/includes/ \
+	-I$(top_srcdir)/modules/console/includes/ \
 	$(EIGEN_CPPFLAGS) \
 	$(TCL_INC_PATH) \
 	$(TK_INC_PATH) \

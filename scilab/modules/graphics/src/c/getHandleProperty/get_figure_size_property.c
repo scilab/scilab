@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_size_property(void* _pvCtx, char* pobjUID)
+void* get_figure_size_property(void* _pvCtx, char* pobjUID)
 {
     double figureSize[2];
     int* intSize = NULL;
@@ -41,12 +41,12 @@ int get_figure_size_property(void* _pvCtx, char* pobjUID)
     if (intSize == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "figure_size");
-        return -1;
+        return NULL;
     }
 
     figureSize[0] = (double)intSize[0];
     figureSize[1] = (double)intSize[1];
 
-    return sciReturnRowVector(_pvCtx, figureSize, 2);
+    return sciReturnRowVector(figureSize, 2);
 }
 /*------------------------------------------------------------------------*/

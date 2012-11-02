@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_xtics_coord_property(void* _pvCtx, char* pobjUID)
+void* get_xtics_coord_property(void* _pvCtx, char* pobjUID)
 {
     int iXNumberTicks = 0;
     int* xNumberTicks = &iXNumberTicks;
@@ -40,11 +40,11 @@ int get_xtics_coord_property(void* _pvCtx, char* pobjUID)
     if (xTicksCoords == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "xtics_coord");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, (void**)&xNumberTicks);
 
-    return sciReturnRowVector(_pvCtx, xTicksCoords, *xNumberTicks);
+    return sciReturnRowVector(xTicksCoords, *xNumberTicks);
 }
 /*------------------------------------------------------------------------*/

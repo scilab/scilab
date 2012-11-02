@@ -21,12 +21,6 @@ intersci_
 IsAScalar
 overload_
 putlhsvar_
-sciReturnDouble
-sciReturnEmptyMatrix
-sciReturnRowVector
-sciReturnRowVectorFromInt
-sciReturnString
-sciReturnStringMatrix
 stack_
 StoreCommand
 vartype_

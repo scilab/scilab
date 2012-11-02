@@ -16,11 +16,11 @@
 using namespace org_scilab_modules_gui_bridge;
 
 
-int GetScreenProperty(void* _pvCtx, char *propertyName)
+void* GetScreenProperty(void* _pvCtx, char *propertyName)
 {
   double *value = new double[4];
 
-  int flag = SET_PROPERTY_ERROR;
+  void* flag = NULL;
 
   if(!stricmp(propertyName,"screensize_px"))
     {
@@ -29,7 +29,7 @@ int GetScreenProperty(void* _pvCtx, char *propertyName)
       value[2] = CallScilabBridge::getScreenWidth(getScilabJavaVM());
       value[3] = CallScilabBridge::getScreenHeight(getScilabJavaVM());
       
-      flag = sciReturnRowVector(_pvCtx, value, 4);
+      flag = sciReturnRowVector(value, 4);
       
       delete[] value;
 
@@ -43,7 +43,7 @@ int GetScreenProperty(void* _pvCtx, char *propertyName)
       value[2] = pixelTomm( CallScilabBridge::getScreenWidth(getScilabJavaVM()) );
       value[3] = pixelTomm( CallScilabBridge::getScreenHeight(getScilabJavaVM()) );
       
-      flag = sciReturnRowVector(_pvCtx, value, 4);
+      flag = sciReturnRowVector(value, 4);
       
       delete[] value;
 
@@ -56,7 +56,7 @@ int GetScreenProperty(void* _pvCtx, char *propertyName)
       value[2] = pixelTocm( CallScilabBridge::getScreenWidth(getScilabJavaVM()) );
       value[3] = pixelTocm( CallScilabBridge::getScreenHeight(getScilabJavaVM()) );
       
-      flag = sciReturnRowVector(_pvCtx, value, 4);
+      flag = sciReturnRowVector(value, 4);
       
       delete[] value;
 
@@ -69,7 +69,7 @@ int GetScreenProperty(void* _pvCtx, char *propertyName)
       value[2] = pixelToinch( CallScilabBridge::getScreenWidth(getScilabJavaVM()) );
       value[3] = pixelToinch( CallScilabBridge::getScreenHeight(getScilabJavaVM()) );
       
-      flag = sciReturnRowVector(_pvCtx, value, 4);
+      flag = sciReturnRowVector(value, 4);
       
       delete[] value;
 
@@ -82,7 +82,7 @@ int GetScreenProperty(void* _pvCtx, char *propertyName)
       value[2] = pixelTopt( CallScilabBridge::getScreenWidth(getScilabJavaVM()) );
       value[3] = pixelTopt( CallScilabBridge::getScreenHeight(getScilabJavaVM()) );
       
-      flag = sciReturnRowVector(_pvCtx, value, 4);
+      flag = sciReturnRowVector(value, 4);
       
       delete[] value;
 
@@ -95,7 +95,7 @@ int GetScreenProperty(void* _pvCtx, char *propertyName)
       value[2] = 1.0;
       value[3] = 1.0;
       
-      flag = sciReturnRowVector(_pvCtx, value, 4);
+      flag = sciReturnRowVector(value, 4);
       
       delete[] value;
 
@@ -105,7 +105,7 @@ int GetScreenProperty(void* _pvCtx, char *propertyName)
     {
       value[0] = CallScilabBridge::getScreenDepth(getScilabJavaVM());
       
-      flag = sciReturnRowVector(_pvCtx, value, 1);
+      flag = sciReturnRowVector(value, 1);
       
       delete[] value;
 
@@ -114,7 +114,7 @@ int GetScreenProperty(void* _pvCtx, char *propertyName)
   else
     {
         delete[] value;
-      return SET_PROPERTY_ERROR;
+      return NULL;
     }
 }
 /*--------------------------------------------------------------------------*/

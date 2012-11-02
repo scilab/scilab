@@ -1364,12 +1364,13 @@ int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char
 
     types::typed_list in;
     types::typed_list out;
+    types::optional_list opt;
     for(int i = 0; i < nrhs; i++)
     {
         in.push_back((types::InternalType*)prhs[i]);
     }
 
-    func->call(in, nlhs, out, NULL);
+    func->call(in, opt, nlhs, out, NULL);
 
     for(int i = 0; i < nlhs; i++)
     {
@@ -1528,10 +1529,11 @@ int mexEvalString(const char *name)
                 Callable *pCall = execMe.result_get()->getAs<Callable>();
                 types::typed_list out;
                 types::typed_list in;
+                types::optional_list opt;
                 try
                 {
                     ExecVisitor execCall;
-                    Function::ReturnValue Ret = pCall->call(in, 1, out, &execCall);
+                    Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
                     if(Ret == Callable::OK)
                     {
                         if(out.size() == 0)

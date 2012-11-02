@@ -33,6 +33,11 @@ Function* Function::createFunction(std::wstring _wstName, GW_FUNC _pFunc, std::w
     return new Function(_wstName, _pFunc, NULL, _wstModule);
 }
 
+Function* Function::createFunction(std::wstring _wstName, GW_FUNC_OPT _pFunc, std::wstring _wstModule)
+{
+    return new OptFunction(_wstName, _pFunc, NULL, _wstModule);
+}
+
 Function* Function::createFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, std::wstring _wstModule)
 {
     return new WrapFunction(_wstName, _pFunc, NULL, _wstModule);
@@ -81,7 +86,7 @@ Function::~Function()
     }
 }
 
-Function::ReturnValue Function::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Function::ReturnValue Function::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
 {
     if (m_pLoadDeps != NULL)
     {
@@ -109,6 +114,36 @@ InternalType* Function::clone()
     return this;
 }
 
+OptFunction::OptFunction(std::wstring _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
+{
+    m_wstName = _wstName;
+    m_pFunc = _pFunc;
+    m_pLoadDeps = _pLoadDeps;
+    m_wstModule = _wstModule;
+}
+
+OptFunction::OptFunction(OptFunction* _pWrapFunction)
+{
+    m_wstModule  = _pWrapFunction->getModule();
+    m_wstName    = _pWrapFunction->getName();
+    m_pFunc  = _pWrapFunction->getFunc();
+    m_pLoadDeps = _pWrapFunction->getDeps();
+}
+
+InternalType* OptFunction::clone()
+{
+    return new OptFunction(this);
+}
+
+Function::ReturnValue OptFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+{
+    if (m_pLoadDeps != NULL)
+    {
+        m_pLoadDeps();
+    }
+    return this->m_pFunc(in, opt, _iRetCount, out);
+}
+
 WrapFunction::WrapFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
 {
     m_wstName = _wstName;
@@ -130,7 +165,7 @@ InternalType* WrapFunction::clone()
     return new WrapFunction(this);
 }
 
-Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
 {
     if (m_pLoadDeps != NULL)
     {
@@ -141,9 +176,10 @@ Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_l
     int iRet ;
     GatewayStruct gStr;
     _iRetCount = Max(1, _iRetCount);
-    gStr.m_iIn = in.size();
+    gStr.m_iIn = (int)in.size();
     gStr.m_iOut = _iRetCount;
     gStr.m_pIn = &in;
+    gStr.m_pOpt = &opt;
     typed_list::value_type tmpOut[MAX_OUTPUT_VARIABLE];
     std::fill_n(tmpOut, MAX_OUTPUT_VARIABLE, static_cast<typed_list::value_type>(0));
     gStr.m_pOut = tmpOut;
@@ -208,7 +244,7 @@ InternalType* WrapMexFunction::clone()
     return new WrapMexFunction(this);
 }
 
-Function::ReturnValue WrapMexFunction::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
 {
     if (m_pLoadDeps != NULL)
     {
@@ -278,7 +314,7 @@ DynamicFunction::DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPo
     m_hLib                  = NULL;
 }
 
-Function::ReturnValue DynamicFunction::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Function::ReturnValue DynamicFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
 {
     ReturnValue ret = OK;
     if (m_bLoaded == false)
@@ -292,7 +328,7 @@ Function::ReturnValue DynamicFunction::call(typed_list &in, int _iRetCount, type
     }
     /*call function*/
 
-    if (m_pFunction->call(in, _iRetCount, out, execFunc) != OK)
+    if (m_pFunction->call(in, opt, _iRetCount, out, execFunc) != OK)
     {
         return Error;
     }

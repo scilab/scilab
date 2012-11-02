@@ -14,21 +14,21 @@
 
 #include "GetUicontrolHorizontalAlignment.hxx"
 
-int GetUicontrolHorizontalAlignment(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolHorizontalAlignment(void* _pvCtx, char *sciObjUID)
 {
     char* alignment = NULL;
-    int status = 0;
+    void* status = NULL;
 
     getGraphicObjectProperty(sciObjUID, __GO_UI_HORIZONTALALIGNMENT__, jni_string, (void**) &alignment);
 
     if (alignment == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "HorizontalAlignment");
-        return FALSE;
+        return NULL;
     }
     else
     {
-        status = sciReturnString(_pvCtx, alignment);
+        status = sciReturnString(alignment);
         delete[] alignment;
         return status;
     }

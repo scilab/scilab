@@ -22,6 +22,6 @@
  * @param pObjUID Scilab object corresponding to the uicontrol or uimenu
  * @return true if the status is got without error
  */
-GUI_IMPEXP int GetUiobjectEnable(void* _pvCtx, char *pObjUID);
+GUI_IMPEXP void* GetUiobjectEnable(void* _pvCtx, char *pObjUID);
 
 #endif /* !__GETUIOBJECTENABLE_H__ */

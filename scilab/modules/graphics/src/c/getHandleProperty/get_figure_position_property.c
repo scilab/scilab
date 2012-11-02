@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_position_property(void* _pvCtx, char* pobjUID)
+void* get_figure_position_property(void* _pvCtx, char* pobjUID)
 {
     double figurePos[2];
     int* position = NULL;
@@ -41,13 +41,13 @@ int get_figure_position_property(void* _pvCtx, char* pobjUID)
     if (position == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "figure_position");
-        return -1;
+        return NULL;
     }
 
     figurePos[0] = (double) position[0];
     figurePos[1] = (double) position[1];
 
-    return sciReturnRowVector(_pvCtx, figurePos, 2);
+    return sciReturnRowVector(figurePos, 2);
 
 }
 /*------------------------------------------------------------------------*/

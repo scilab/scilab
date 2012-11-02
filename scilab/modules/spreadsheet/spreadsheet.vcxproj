@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../../libs/dynamiclink/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -103,7 +103,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../../libs/dynamiclink/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -128,7 +128,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../../libs/dynamiclink/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -161,7 +161,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../../libs/dynamiclink/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

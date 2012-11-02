@@ -42,7 +42,7 @@ typedef struct hashtable SetPropertyHashTable;
  * The char* is the UID of the object to get the property from
  * The return value is 0 if the call was successful and -1 otherwise.
  */
-typedef int (*getPropertyFunc)(void*, char *);
+typedef void* (*getPropertyFunc)(void*, char *);
 
 /**
 * Prototype of functions used to set a specific property of an handle.

@@ -12,7 +12,7 @@
 
 #include "GetUimenuChecked.hxx"
 
-int GetUimenuChecked(void* _pvCtx, char *pObjUID)
+void* GetUimenuChecked(void* _pvCtx, char *pObjUID)
 {
     int checked = 0;
     int *piChecked = &checked;
@@ -22,16 +22,15 @@ int GetUimenuChecked(void* _pvCtx, char *pObjUID)
     if (piChecked == NULL)
     {
         Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "Checked");
-
-        return FALSE;
+        return NULL;
     }
 
     if (checked == TRUE)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }

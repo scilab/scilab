@@ -84,7 +84,7 @@ int sci_champ_G(char *fname,
         return 0;
     }
 
-    if (FirstOpt() < 5)
+    if (FirstOpt(pvApiCtx) < 5)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 5);
         return -1;

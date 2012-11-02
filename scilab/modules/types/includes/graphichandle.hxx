@@ -14,48 +14,13 @@
 #define __GRAPHICHANDLE_HXX__
 
 #include "arrayof.hxx"
-#include "dynlib_types.h"
-
 
 namespace types
 {
-    class TYPES_IMPEXP SingleHandle : public InternalType
-    {
-    private :
-        char* m_pstHandleID;
-
-    protected :
-        char* getHandleID();
-        void  setHandleID(char* _pstHandleID);
-
-
-    public :
-        SingleHandle();
-        SingleHandle(char* _HandleID);
-        ~SingleHandle();
-
-        InternalType* clone();
-
-        InternalType::RealType getType();
-
-        bool isSingleHandle();
-
-        bool toString(std::wostringstream& ostr);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring getTypeStr() {return L"handle";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring    getShortTypeStr() {return L"h";}
-
-        bool operator==(const InternalType& it);
-        bool operator!=(const InternalType& it);
-
-    };
-    
-    class TYPES_IMPEXP GraphicHandle : public ArrayOf<SingleHandle*>
+    class TYPES_IMPEXP GraphicHandle : public ArrayOf<long long>
     {
     public :
-                                GraphicHandle(SingleHandle* _pSingleHandle);
+                                GraphicHandle(long long _handle);
                                 GraphicHandle(int _iRows, int _iCols);
                                 GraphicHandle(int _iDims, int* _piDims);
 
@@ -74,23 +39,24 @@ namespace types
         virtual std::wstring     getTypeStr() {return L"handle";}
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::wstring     getShortTypeStr() {return L"h";}
-    
+
+        bool                    hasToString() { return false; }
     protected :
         RealType				getType(void);
 
     private :
         virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
-        virtual SingleHandle*   getNullValue();
+        virtual long long       getNullValue();
         virtual GraphicHandle*  createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-        virtual SingleHandle*   copyValue(SingleHandle* _pData);
+        virtual long long       copyValue(long long _handle);
         virtual void            deleteAll();
         virtual void            deleteImg();
-        virtual SingleHandle**  allocData(int _iSize);
+        virtual long long*      allocData(int _iSize);
     };
 }
 
 #ifdef _MSC_VER
-template class TYPES_IMPEXP types::ArrayOf<types::SingleHandle*>; //GraphicHandle
+template class TYPES_IMPEXP types::ArrayOf<long long>; //GraphicHandle
 #endif
 #endif /* !__GRAPHICHANDLE_HXX__ */

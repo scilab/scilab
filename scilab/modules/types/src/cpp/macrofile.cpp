@@ -58,14 +58,14 @@ namespace types
         return true;
     }
 
-    Callable::ReturnValue MacroFile::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+    Callable::ReturnValue MacroFile::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
     {
         ReturnValue RetVal = Callable::OK;
 
         parse();
         if(m_pMacro)
         {
-            ReturnValue Val =  m_pMacro->call(in, _iRetCount, out, execFunc);
+            ReturnValue Val =  m_pMacro->call(in, opt, _iRetCount, out, execFunc);
             return Val;
         }
         else

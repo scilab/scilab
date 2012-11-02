@@ -29,14 +29,14 @@
 #include "HandleManagement.h"
 #include "FigureModel.h"
 /*--------------------------------------------------------------------------*/
-int get_default_figure_property(void* _pvCtx, char* pobjUID)
+void* get_default_figure_property(void* _pvCtx, char* pobjUID)
 {
     if (pobjUID != NULL)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_figure");
-        return -1;
+        return NULL;
     }
-    return sciReturnHandle(_pvCtx, getHandle(getFigureModel()));
+    return sciReturnHandle(getHandle(getFigureModel()));
 }
 /*--------------------------------------------------------------------------*/

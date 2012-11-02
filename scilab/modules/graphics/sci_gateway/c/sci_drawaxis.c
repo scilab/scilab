@@ -66,7 +66,7 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
     int nx = 0, ny = 0, ntics;
     int nb_tics_labels = -1;
 
-    nopt = NumOpt();
+    nopt = NumOpt(pvApiCtx);
 
     CheckInputArgument(pvApiCtx, minrhs, maxrhs + nopt);
     CheckOutputArgument(pvApiCtx, minlhs, maxlhs);

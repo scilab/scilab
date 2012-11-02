@@ -22,7 +22,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_resizefcn_property(void* _pvCtx, char* pobjUID)
+void* get_figure_resizefcn_property(void* _pvCtx, char* pobjUID)
 {
     char* resizeFcn = NULL;
     int iType = -1;
@@ -33,7 +33,7 @@ int get_figure_resizefcn_property(void* _pvCtx, char* pobjUID)
     if (iType != __GO_FIGURE__)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "resizefcn");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(pobjUID, __GO_RESIZEFCN__, jni_string, (void **) &resizeFcn);
@@ -41,9 +41,9 @@ int get_figure_resizefcn_property(void* _pvCtx, char* pobjUID)
     if (resizeFcn == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "resizefcn");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnString(_pvCtx, resizeFcn);
+    return sciReturnString(resizeFcn);
 }
 /*------------------------------------------------------------------------*/

@@ -32,10 +32,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_x_ticks_property(void* _pvCtx, char* pobjUID)
+void* get_x_ticks_property(void* _pvCtx, char* pobjUID)
 {
     int iNbTicks = 0;
     int *piNbTicks = &iNbTicks;
+    void* tList = NULL;
 
     /* retrieve number of ticks */
     getGraphicObjectProperty(pobjUID, __GO_X_AXIS_NUMBER_TICKS__, jni_int, (void **) &piNbTicks);
@@ -43,13 +44,13 @@ int get_x_ticks_property(void* _pvCtx, char* pobjUID)
     if (piNbTicks == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "x_ticks");
-        return -1;
+        return NULL;
     }
 
     if (iNbTicks == 0)
     {
         /* return empty matrices */
-        buildTListForTicks(NULL, NULL, 0);
+        tList = buildTListForTicks(NULL, NULL, 0);
     }
     else
     {
@@ -63,10 +64,10 @@ int get_x_ticks_property(void* _pvCtx, char* pobjUID)
         if (positions == NULL || labels == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "x_ticks");
-            return -1;
+            return NULL;
         }
 
-        buildTListForTicks(positions, labels, iNbTicks);
+        tList = buildTListForTicks(positions, labels, iNbTicks);
 
         /* free arrays */
 #if 0
@@ -75,6 +76,6 @@ int get_x_ticks_property(void* _pvCtx, char* pobjUID)
 #endif
     }
 
-    return 0;
+    return tList;
 }
 /*------------------------------------------------------------------------*/

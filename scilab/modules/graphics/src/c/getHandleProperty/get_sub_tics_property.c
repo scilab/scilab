@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_sub_tics_property(void* _pvCtx, char* pobjUID)
+void* get_sub_tics_property(void* _pvCtx, char* pobjUID)
 {
     int iType = -1;
     int *piType = &iType;
@@ -55,10 +55,10 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-            return -1;
+            return NULL;
         }
 
-        return sciReturnDouble(_pvCtx, iSubTicks);
+        return sciReturnDouble(iSubTicks);
     }
     else if (iType == __GO_AXES__)
     {
@@ -71,7 +71,7 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-            return -1;
+            return NULL;
         }
 
         sub_ticks[0] = iSubTicks;
@@ -86,17 +86,17 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
 
         if (iView == 1)
         {
-            return sciReturnRowVector(_pvCtx, sub_ticks, 3);
+            return sciReturnRowVector(sub_ticks, 3);
         }
         else
         {
-            return sciReturnRowVector(_pvCtx, sub_ticks, 2);
+            return sciReturnRowVector(sub_ticks, 2);
         }
     }
     else
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-        return -1;
+        return NULL;
     }
 }
 /*------------------------------------------------------------------------*/

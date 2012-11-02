@@ -63,7 +63,7 @@ int sci_matplot(char *fname, void *pvApiCtx)
         ReturnArguments(pvApiCtx);
         return 0;
     }
-    if (FirstOpt() < 2)
+    if (FirstOpt(pvApiCtx) < 2)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
                  fname, 1, 2);

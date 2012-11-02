@@ -37,17 +37,6 @@
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sciGet(void* _pvCtx, char *pobjUID, char *marker);
-
-/*--------------------------------------------------------------------------*/
-int sciGet(void* _pvCtx, char *pobjUID, char *marker)
-{
-    /* find the function in the hashtable relative to the property name */
-    /* and call it */
-    return callGetProperty(_pvCtx, pobjUID, marker);
-}
-
-/*--------------------------------------------------------------------------*/
 int sci_get(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
@@ -106,7 +95,7 @@ int sci_get(char *fname, void *pvApiCtx)
             {
                 if (nbInputArgument(pvApiCtx) == 1)
                 {
-                    if (sciReturnHandle(pvApiCtx, getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
+                    if (sciReturnHandle(getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
                     {
                         /* An error has occurred */
                         ReturnArguments(pvApiCtx);
@@ -261,7 +250,7 @@ int sci_get(char *fname, void *pvApiCtx)
     if (hdl == 0)
     {
         /* No handle specified */
-        if (sciGet(pvApiCtx, NULL, (l2)) != 0)
+        if (callGetProperty(pvApiCtx, NULL, (l2)) != 0)
         {
             /* An error has occurred */
             freeAllocatedSingleString(l2);
@@ -275,7 +264,7 @@ int sci_get(char *fname, void *pvApiCtx)
         if (pobjUID != NULL)
         {
 
-            if (sciGet(pvApiCtx, pobjUID, (l2)) != 0)
+            if (callGetProperty(pvApiCtx, pobjUID, (l2)) != 0)
             {
                 /* An error has occurred */
                 freeAllocatedSingleString(l2);

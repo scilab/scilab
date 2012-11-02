@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_font_angle_property(void* _pvCtx, char* pobjUID)
+void* get_font_angle_property(void* _pvCtx, char* pobjUID)
 {
     double dblFontAngle = 0;
     double* pdblFontAngle = &dblFontAngle;
@@ -41,9 +41,9 @@ int get_font_angle_property(void* _pvCtx, char* pobjUID)
     if (pdblFontAngle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_angle");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, RAD2DEG(dblFontAngle));
+    return sciReturnDouble(RAD2DEG(dblFontAngle));
 }
 /*------------------------------------------------------------------------*/

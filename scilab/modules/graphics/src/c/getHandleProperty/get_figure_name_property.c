@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_name_property(void* _pvCtx, char* pobjUID)
+void* get_figure_name_property(void* _pvCtx, char* pobjUID)
 {
     char* figureName = NULL;
     getGraphicObjectProperty(pobjUID, __GO_NAME__, jni_string, (void **)&figureName);
@@ -40,9 +40,9 @@ int get_figure_name_property(void* _pvCtx, char* pobjUID)
     if (figureName == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "figure_name");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnString(_pvCtx, figureName);
+    return sciReturnString(figureName);
 }
 /*------------------------------------------------------------------------*/

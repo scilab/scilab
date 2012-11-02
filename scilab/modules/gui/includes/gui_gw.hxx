@@ -22,7 +22,10 @@ private :
 	GuiModule(){};
 	~GuiModule(){};
 public :
+    GUI_GW_IMPEXP static void LoadDeps(void);
 	GUI_GW_IMPEXP static int Load();
+
+    static bool loadedDep;
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_helpbrowser);

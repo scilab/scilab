@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_font_color_property(void* _pvCtx, char* pobjUID)
+void* get_font_color_property(void* _pvCtx, char* pobjUID)
 {
     int iFontColor = 0;
     int* fontColor = &iFontColor;
@@ -40,9 +40,9 @@ int get_font_color_property(void* _pvCtx, char* pobjUID)
     if (fontColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_color");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, *fontColor);
+    return sciReturnDouble(*fontColor);
 }
 /*------------------------------------------------------------------------*/

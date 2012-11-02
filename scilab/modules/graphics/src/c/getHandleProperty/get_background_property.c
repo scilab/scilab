@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_background_property(void* _pvCtx, char* pobjUID)
+void* get_background_property(void* _pvCtx, char* pobjUID)
 {
     int iBackground = 0;
     int *piBackground = &iBackground;
@@ -41,9 +41,9 @@ int get_background_property(void* _pvCtx, char* pobjUID)
     {
         /* This object has not a background color */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "background");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, iBackground);
+    return sciReturnDouble(iBackground);
 }
 /*------------------------------------------------------------------------*/

@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_parent_property(void* _pvCtx, char* pobjUID)
+void* get_parent_property(void* _pvCtx, char* pobjUID)
 {
     char* parentID = NULL;
 
@@ -41,11 +41,11 @@ int get_parent_property(void* _pvCtx, char* pobjUID)
     if (strcmp(parentID, "") == 0)
     {
         /* No parent for this object */
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
     else
     {
-        return sciReturnHandle(_pvCtx, getHandle(parentID));
+        return sciReturnHandle(getHandle(parentID));
     }
 }
 /*------------------------------------------------------------------------*/

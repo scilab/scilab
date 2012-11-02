@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_clip_state_property(void* _pvCtx, char* pobjUID)
+void* get_clip_state_property(void* _pvCtx, char* pobjUID)
 {
     int iClipState = 0;
     int* piClipState = &iClipState;
@@ -40,25 +40,25 @@ int get_clip_state_property(void* _pvCtx, char* pobjUID)
     if (piClipState == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "clip_state");
-        return -1;
+        return NULL;
     }
 
     if (iClipState == 0)
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
     else if (iClipState == 1)
     {
-        return sciReturnString(_pvCtx, "clipgrf");
+        return sciReturnString("clipgrf");
     }
     else if (iClipState == 2)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "clip_state");
-        return -1;
+        return NULL;
     }
 
 }

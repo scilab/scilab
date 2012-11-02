@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_reverse_property(void* _pvCtx, char* pobjUID)
+void* get_axes_reverse_property(void* _pvCtx, char* pobjUID)
 {
     int const axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};
     char * axes_reverse[3]  = { NULL, NULL, NULL };
@@ -40,7 +40,7 @@ int get_axes_reverse_property(void* _pvCtx, char* pobjUID)
 
     int i = 0;
     int j = 0;
-    int status = -1;
+    void* status = NULL;
 
     for (i = 0 ; i < 3 ; i++)
     {
@@ -49,7 +49,7 @@ int get_axes_reverse_property(void* _pvCtx, char* pobjUID)
         if (piAxesReverse == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_reverse");
-            return -1;
+            return NULL;
         }
 
         if (iAxesReverse)
@@ -69,12 +69,12 @@ int get_axes_reverse_property(void* _pvCtx, char* pobjUID)
             }
 
             Scierror(999, _("%s: No more memory.\n"), "get_axes_reverse_property");
-            return -1;
+            return NULL;
         }
 
     }
 
-    status = sciReturnRowStringVector(_pvCtx, axes_reverse, 3);
+    status = sciReturnRowStringVector(axes_reverse, 3);
 
     for (i = 0 ; i < 3 ; i++)
     {

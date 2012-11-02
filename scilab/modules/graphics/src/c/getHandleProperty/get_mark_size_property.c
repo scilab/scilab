@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_size_property(void* _pvCtx, char* pobjUID)
+void* get_mark_size_property(void* _pvCtx, char* pobjUID)
 {
     int iMarkSize = 0;
     int* piMarkSize = &iMarkSize;
@@ -40,9 +40,9 @@ int get_mark_size_property(void* _pvCtx, char* pobjUID)
     if (piMarkSize == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_size");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, iMarkSize);
+    return sciReturnDouble(iMarkSize);
 }
 /*------------------------------------------------------------------------*/

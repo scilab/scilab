@@ -14,21 +14,21 @@
 #include "GetUimenuLabel.hxx"
 
 /* Get the label of an uimenu */
-int GetUimenuLabel(void* _pvCtx, char *pobjUID)
+void* GetUimenuLabel(void* _pvCtx, char *pobjUID)
 {
     char *label = NULL;
-    int status = 0;
+    void* status = NULL;
 
     getGraphicObjectProperty(pobjUID, __GO_UI_LABEL__, jni_string, (void **)&label);
 
     if (label == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "Label");
-        return FALSE;
+        return NULL;
     }
     else
     {
-        status = sciReturnString(_pvCtx, label);
+        status = sciReturnString(label);
         free(label);
         return status;
     }

@@ -39,6 +39,7 @@ int schur_dgees(double* _real, double* _img)
     {
         typed_list in;
         typed_list out;
+        optional_list opt;
         int iRetCount = 1;
         ast::ExecVisitor execFunc;
 
@@ -46,7 +47,7 @@ int schur_dgees(double* _real, double* _img)
         pDbl->IncreaseRef();
         in.push_back(pDbl);
 
-        bool bOk = pCall->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = pCall->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
         pDbl->DecreaseRef();
         delete pDbl;
         pDbl = NULL;
@@ -102,6 +103,7 @@ int schur_dgges(double* _real, double* _img, double* _beta)
     {
         typed_list in;
         typed_list out;
+        optional_list opt;
         int iRetCount = 1;
         ast::ExecVisitor execFunc;
 
@@ -112,7 +114,7 @@ int schur_dgges(double* _real, double* _img, double* _beta)
         in.push_back(pDblAlpha);
         in.push_back(pDblBeta);
 
-        bool bOk = pCall->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = pCall->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
         pDblAlpha->DecreaseRef();
         delete pDblAlpha;
         pDblAlpha = NULL;
@@ -170,6 +172,7 @@ int schur_zgees(doublecomplex* _complex)
     {
         typed_list in;
         typed_list out;
+        optional_list opt;
         int iRetCount = 1;
         ast::ExecVisitor execFunc;
 
@@ -177,7 +180,7 @@ int schur_zgees(doublecomplex* _complex)
         pDbl->IncreaseRef();
         in.push_back(pDbl);
 
-        bool bOk = pCall->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = pCall->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
         pDbl->DecreaseRef();
         delete pDbl;
         pDbl = NULL;
@@ -239,6 +242,7 @@ int schur_zgges(doublecomplex* _alpha, doublecomplex* _beta)
     {
         typed_list in;
         typed_list out;
+        optional_list opt;
         int iRetCount = 1;
         ast::ExecVisitor execFunc;
 
@@ -249,7 +253,7 @@ int schur_zgges(doublecomplex* _alpha, doublecomplex* _beta)
         in.push_back(pDblAlpha);
         in.push_back(pDblBeta);
 
-        bool bOk = pCall->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = pCall->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
         pDblAlpha->DecreaseRef();
         delete pDblAlpha;
         pDblAlpha = NULL;

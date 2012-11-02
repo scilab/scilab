@@ -14,21 +14,21 @@
 
 #include "GetUicontrolRelief.hxx"
 
-int GetUicontrolRelief(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolRelief(void* _pvCtx, char *sciObjUID)
 {
     char* relief = NULL;
-    int status = 0;
+    void* status = NULL;
 
     getGraphicObjectProperty(sciObjUID, __GO_UI_RELIEF__, jni_string, (void**) &relief);
 
     if (relief == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Relief");
-        return FALSE;
+        return NULL;
     }
     else
     {
-        status = sciReturnString(_pvCtx, relief);
+        status = sciReturnString(relief);
         delete[] relief;
         return status;
     }

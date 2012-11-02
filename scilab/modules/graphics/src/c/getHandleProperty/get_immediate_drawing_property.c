@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_immediate_drawing_property(void* _pvCtx, char* pobjUID)
+void* get_immediate_drawing_property(void* _pvCtx, char* pobjUID)
 {
     int iImmediateDrawing = 0;
     int *piImmediateDrawing = &iImmediateDrawing;
@@ -40,16 +40,16 @@ int get_immediate_drawing_property(void* _pvCtx, char* pobjUID)
     if (piImmediateDrawing == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "immediate_drawing");
-        return -1;
+        return NULL;
     }
 
     if (iImmediateDrawing)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }
 /*------------------------------------------------------------------------*/

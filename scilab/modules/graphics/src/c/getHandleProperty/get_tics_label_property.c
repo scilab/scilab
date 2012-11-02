@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_labels_property(void* _pvCtx, char* pobjUID)
+void* get_tics_labels_property(void* _pvCtx, char* pobjUID)
 {
     char** labels = NULL;
     int iNumberTicksLabels = 0;
@@ -42,7 +42,7 @@ int get_tics_labels_property(void* _pvCtx, char* pobjUID)
     if (piNumberTicksLabels == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_labels");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, jni_string_vector, (void **) &labels);
@@ -50,10 +50,10 @@ int get_tics_labels_property(void* _pvCtx, char* pobjUID)
     if (labels == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_labels");
-        return -1;
+        return NULL;
     }
 
     /* User-specified ticks labels */
-    return sciReturnRowStringVector(_pvCtx, labels, iNumberTicksLabels);
+    return sciReturnRowStringVector(labels, iNumberTicksLabels);
 }
 /*------------------------------------------------------------------------*/

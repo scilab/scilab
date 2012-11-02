@@ -28,16 +28,16 @@
 #include "HandleManagement.h"
 #include "AxesModel.h"
 /*--------------------------------------------------------------------------*/
-int get_default_axes_property(void* _pvCtx, char* pobjUID)
+void* get_default_axes_property(void* _pvCtx, char* pobjUID)
 {
 
     if (pobjUID != NULL)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_axes");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnHandle(_pvCtx, getHandle(getAxesModel()));
+    return sciReturnHandle(getHandle(getAxesModel()));
 }
 /*--------------------------------------------------------------------------*/

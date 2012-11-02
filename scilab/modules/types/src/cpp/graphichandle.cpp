@@ -27,85 +27,15 @@ using namespace std;
 
 namespace types
 {
-
-    /****************
-     * SingleHandle *
-     ****************/
-
-    SingleHandle::SingleHandle() : m_pstHandleID(NULL)
-    {
-    }
-
-    SingleHandle::SingleHandle(char* _pstHandleID)
-    {
-        m_pstHandleID = os_strdup(_pstHandleID);
-    }
-
-    SingleHandle::~SingleHandle()
-    {
-    }
-
-    InternalType* SingleHandle::clone()
-    {
-        return new SingleHandle(getHandleID());
-    }
-
-    InternalType::RealType SingleHandle::getType()
-    {
-        return RealSingleHandle;
-    }
-
-    bool SingleHandle::isSingleHandle()
-    {
-        return true;
-    }
-
-    bool SingleHandle::toString(std::wostringstream& ostr)
-    {
-        ostr << L"SingleHandle::toString";
-        return true;
-    }
-
-    char* SingleHandle::getHandleID()
-    {
-        return m_pstHandleID;
-    }
-
-    void SingleHandle::setHandleID(char* _pstHandleID)
-    {
-        if(m_pstHandleID)
-        {
-            FREE(m_pstHandleID);
-        }
-
-        m_pstHandleID = os_strdup(_pstHandleID);
-    }
-
-    bool SingleHandle::operator==(const InternalType& it)
-    {
-        if(const_cast<InternalType &>(it).isBool() == false)
-        {
-            return false;
-        }
-
-        SingleHandle* pSH = const_cast<InternalType &>(it).getAs<types::SingleHandle>();
-        return (strcmp(pSH->getHandleID(), getHandleID()) == 0);
-    }
-
-    bool SingleHandle::operator!=(const InternalType& it)
-    {
-        return !(*this == it);
-    }
-
     /*****************
      * GraphicHandle *
      *****************/
-    GraphicHandle::GraphicHandle(SingleHandle* _pSingleHandle)
+    GraphicHandle::GraphicHandle(long long _handle)
     {
         int piDims[2]   = {1, 1};
-        SingleHandle** pSH = NULL;
-        create(piDims, 2, &pSH, NULL);
-        pSH[0] = _pSingleHandle;
+        long long* pH = NULL;
+        create(piDims, 2, &pH, NULL);
+        pH[0] = _handle;
 #ifndef NDEBUG
         Inspector::addItem(this);
 #endif
@@ -114,8 +44,8 @@ namespace types
     GraphicHandle::GraphicHandle(int _iRows, int _iCols)
     {
         int piDims[2]   = {_iRows, _iCols};
-        SingleHandle** pSH = NULL;
-        create(piDims, 2, &pSH, NULL);
+        long long* pH = NULL;
+        create(piDims, 2, &pH, NULL);
 #ifndef NDEBUG
         Inspector::addItem(this);
 #endif
@@ -123,8 +53,8 @@ namespace types
 
     GraphicHandle::GraphicHandle(int _iDims, int* _piDims)
     {
-        SingleHandle** pSH = NULL;
-        create(_piDims, _iDims, &pSH, NULL);
+        long long* pH = NULL;
+        create(_piDims, _iDims, &pH, NULL);
 #ifndef NDEBUG
         Inspector::addItem(this);
 #endif
@@ -186,7 +116,7 @@ namespace types
 
         for(int i = 0 ; i < getSize() ; i++)
         {
-            if(*get(i) == *pGH->get(i))
+            if(get(i) == pGH->get(i))
             {
                 return false;
             }
@@ -201,12 +131,32 @@ namespace types
 
     bool GraphicHandle::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
     {
+        //call %h_p(h)
+        //GraphicHandle* pTemp = new GraphicHandle(_iDims, _piDims);
+        //long long* pHandle = pTemp->get();
+        //for(int i = 0 ; i < pTemp->getSize() ; i++)
+        //{
+        //    pHandle[i] = 0;
+        //}
+
+        //typed_list in;
+        //typed_list out;
+        //in.push_back(pTemp);
+
+        //InternalType* pIT = (InternalType*)context_get(L"%h_p");
+        //if(pIT->isFunction())
+        //{
+        //    ast::ExecVisitor execCall;
+        //    Function* pCall = (Function*)pIT;
+        //    pCall->call(in, 1, out, &execCall);
+        //}
+        
         return true;
     }
 
-    SingleHandle* GraphicHandle::getNullValue()
+    long long GraphicHandle::getNullValue()
     {
-        return new SingleHandle();
+        return 0;
     }
 
     GraphicHandle* GraphicHandle::createEmpty(int _iDims, int* _piDims, bool _bComplex)
@@ -214,9 +164,9 @@ namespace types
         return new GraphicHandle(_iDims, _piDims);
     }
 
-    SingleHandle* GraphicHandle::copyValue(SingleHandle* _pData)
+    long long GraphicHandle::copyValue(long long _hanlde)
     {
-        return dynamic_cast<SingleHandle*>(_pData->clone());
+        return _hanlde;
     }
 
     void GraphicHandle::deleteAll()
@@ -230,9 +180,9 @@ namespace types
     {
     }
 
-    SingleHandle** GraphicHandle::allocData(int _iSize)
+    long long* GraphicHandle::allocData(int _iSize)
     {
-        return new SingleHandle*[_iSize];
+        return new long long[_iSize];
     }
 
 }

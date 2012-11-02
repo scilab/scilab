@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_position_property(void* _pvCtx, char* pobjUID)
+void* get_position_property(void* _pvCtx, char* pobjUID)
 {
     int iType = -1;
     int* piType = &iType;
@@ -54,7 +54,7 @@ int get_position_property(void* _pvCtx, char* pobjUID)
         if (figurePosition == NULL || figureSize == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
-            return -1;
+            return NULL;
         }
 
         position[0] = (double) figurePosition[0];
@@ -62,7 +62,7 @@ int get_position_property(void* _pvCtx, char* pobjUID)
         position[2] = (double) figureSize[0];
         position[3] = (double) figureSize[1];
 
-        return sciReturnRowVector(_pvCtx, position, 4);
+        return sciReturnRowVector(position, 4);
     }
 
     /* Special label and legend case : only 2 values for position */
@@ -75,10 +75,10 @@ int get_position_property(void* _pvCtx, char* pobjUID)
         if (position == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
-            return -1;
+            return NULL;
         }
 
-        return sciReturnRowVector(_pvCtx, position, 2);
+        return sciReturnRowVector(position, 2);
     }
 
     /* Generic case : position is a 4 row vector */
@@ -88,9 +88,9 @@ int get_position_property(void* _pvCtx, char* pobjUID)
     if (position == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnRowVector(_pvCtx, position, 4);
+    return sciReturnRowVector(position, 4);
 }
 /*------------------------------------------------------------------------*/

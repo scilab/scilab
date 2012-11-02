@@ -21,6 +21,6 @@
  * @param pobjUID UID of the uimenu
  * @return true if the status is got without error
  */
-GUI_IMPEXP int GetUimenuChecked(void* _pvCtx, char *pobjUID);
+GUI_IMPEXP void* GetUimenuChecked(void* _pvCtx, char *pobjUID);
 
 #endif /* !__GETUIMENUCHECKED_H__ */

@@ -268,10 +268,10 @@
     <ClInclude Include="includes\sparseOp.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\graphichandle.hxx">
+    <ClInclude Include="includes\user.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\user.hxx">
+    <ClInclude Include="includes\graphichandle.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

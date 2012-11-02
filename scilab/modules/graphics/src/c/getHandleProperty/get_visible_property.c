@@ -30,7 +30,7 @@
 
 /*------------------------------------------------------------------------*/
 
-int get_visible_property(void* _pvCtx, char* pobjUID)
+void* get_visible_property(void* _pvCtx, char* pobjUID)
 {
     int visible = 0;
     int* piVisible = &visible;
@@ -45,16 +45,16 @@ int get_visible_property(void* _pvCtx, char* pobjUID)
 
     if (visible)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }
 
-int get_UID(void* _pvCtx, char *pobjUID)
+void* get_UID(void* _pvCtx, char *pobjUID)
 {
-    return sciReturnString(_pvCtx, pobjUID);
+    return sciReturnString(pobjUID);
 }
 /*------------------------------------------------------------------------*/

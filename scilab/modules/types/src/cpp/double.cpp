@@ -37,11 +37,17 @@ namespace types
 
     Double* Double::Identity(int _iRows, int _iCols)
     {
-        Double* pI = new Double(_iRows, _iCols);
+        double* pdbl = NULL;
+        Double* pI = new Double(_iRows, _iCols, &pdbl);
         pI->setZeros();
         for(int i = 0 ; i < Min(_iRows, _iCols) ; i++)
         {
             pI->set(i, i, 1);
+        }
+
+        if(_iRows == -1 && _iCols == -1)
+        {
+            pdbl[0] = 1;
         }
         return pI;
     }

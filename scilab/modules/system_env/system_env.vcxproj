@@ -177,6 +177,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\configvariable.cpp" />
+    <ClCompile Include="src\cpp\context_get.cpp" />
     <ClCompile Include="src\cpp\formatmode.cpp" />
     <ClCompile Include="src\cpp\home.cpp" />
     <ClCompile Include="src\cpp\lasterror.cpp" />
@@ -191,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\configvariable.hxx" />
+    <ClInclude Include="includes\context_get.h" />
     <ClInclude Include="includes\dynlib_system_env.h" />
     <ClInclude Include="includes\formatmode.h" />
     <ClInclude Include="includes\home.h" />

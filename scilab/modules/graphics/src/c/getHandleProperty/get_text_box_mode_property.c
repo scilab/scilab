@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_text_box_mode_property(void* _pvCtx, char* pobjUID)
+void* get_text_box_mode_property(void* _pvCtx, char* pobjUID)
 {
     int iTextBoxMode = 0;
     int* piTextBoxMode = &iTextBoxMode;
@@ -42,26 +42,25 @@ int get_text_box_mode_property(void* _pvCtx, char* pobjUID)
     if (piTextBoxMode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "text_box_mode");
-        return -1;
+        return NULL;
     }
 
     if (iTextBoxMode == 0)
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
     else if (iTextBoxMode == 1)
     {
-        return sciReturnString(_pvCtx, "centered");
+        return sciReturnString("centered");
     }
     else if (iTextBoxMode == 2)
     {
-        return sciReturnString(_pvCtx, "filled");
+        return sciReturnString("filled");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "text_box_mode");
-        return -1;
+        return NULL;
     }
-
 }
 /*------------------------------------------------------------------------*/

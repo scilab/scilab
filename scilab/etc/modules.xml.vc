@@ -55,4 +55,5 @@
     <module name="optimization" activate="yes"/>
     <module name="special_functions" activate="yes"/>
     <module name="graphics" activate="yes"/>
+    <module name="demo_tools" activate="yes"/>
 </modules>

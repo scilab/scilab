@@ -46,7 +46,7 @@ namespace types
 
         typedef void (*LOAD_DEPS)(void);
         typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
-        typedef ReturnValue (*MODULE_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
+        typedef ReturnValue (*GW_FUNC_OPT)(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out);
 
                                 Function() : Callable() {};
                                 Function(std::wstring _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
@@ -56,6 +56,7 @@ namespace types
         InternalType*           clone();
 
         static Function*        createFunction(std::wstring _wstName, GW_FUNC _pFunc, std::wstring _wstModule);
+        static Function*        createFunction(std::wstring _wstName, GW_FUNC_OPT _pFunc, std::wstring _wstModule);
         static Function*        createFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, std::wstring _wstModule);
         static Function*        createFunction(std::wstring _wstName, MEXGW_FUNC _pFunc, std::wstring _wstModule);
         static Function*        createFunction(std::wstring _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
@@ -73,7 +74,7 @@ namespace types
 
         bool                    toString(std::wostringstream& ostr);
 
-        virtual ReturnValue     call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+        virtual ReturnValue     call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring    getTypeStr() {return L"fptr";}
@@ -90,6 +91,23 @@ namespace types
         GW_FUNC                 m_pFunc;
     };
 
+    class OptFunction : public Function
+    {
+    private :
+                                OptFunction(OptFunction* _Function);
+    public :
+                                OptFunction(std::wstring _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
+
+                                Callable::ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+        InternalType*           clone();
+
+        GW_FUNC_OPT             getFunc() { return m_pFunc; }
+
+    private :
+        GW_FUNC_OPT             m_pFunc;
+    };
+
+
     class WrapFunction : public Function
     {
     private :
@@ -97,7 +115,7 @@ namespace types
     public :
                                 WrapFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
 
-                                Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+                                Callable::ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
         InternalType*           clone();
 
         OLDGW_FUNC              getFunc() { return m_pOldFunc; }
@@ -113,7 +131,7 @@ namespace types
     public :
                                 WrapMexFunction(std::wstring _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
 
-                                Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+                                Callable::ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
         InternalType*           clone();
 
         MEXGW_FUNC              getFunc() { return m_pOldFunc; }
@@ -126,6 +144,7 @@ namespace types
     {
     public :
         typed_list*             m_pIn;
+        optional_list*          m_pOpt;
         InternalType**          m_pOut;
         int                     m_iIn;
         int                     m_iOut;
@@ -145,7 +164,7 @@ namespace types
     public :
                                 DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, std::wstring _wstModule, bool _bCloseLibAfterCall = false);
                                 DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, std::wstring _wstLoadDepsName, std::wstring _wstModule, bool _bCloseLibAfterCall = false);
-        Callable::ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+        Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
     private :
         Callable::ReturnValue   Init();
         void                    Clear();

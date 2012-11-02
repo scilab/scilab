@@ -46,13 +46,13 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 162
+#define NB_PROPERTIES_TAB 162
 
 /**
  * list of all property names and associated functions in scilab
  * This is inserted in the hashTable
  */
-static getHashTableCouple propertyTable[NB_PROPERTIES] =
+static getHashTableCouple propertyTable[NB_PROPERTIES_TAB] =
 {
     {"figures_id", get_figures_id_property},
     {"visible", get_visible_property},
@@ -238,7 +238,7 @@ GetPropertyHashTable *createScilabGetHashTable(void)
     }
 
     /* insert every couple */
-    for (i = 0; i < NB_PROPERTIES; i++)
+    for (i = 0; i < NB_PROPERTIES_TAB; i++)
     {
         insertGetHashtable(getHashTable, propertyTable[i].key, propertyTable[i].accessor);
     }
@@ -250,14 +250,14 @@ GetPropertyHashTable *createScilabGetHashTable(void)
 }
 
 /*--------------------------------------------------------------------------*/
-int callGetProperty(void* _pvCtx, char *pObjUID, char *propertyName)
+void* callGetProperty(void* _pvCtx, char *pObjUID, char *propertyName)
 {
     getPropertyFunc accessor = searchGetHashtable(getHashTable, propertyName);
 
     if (accessor == NULL)
     {
         Scierror(999, _("Unknown property: %s.\n"), propertyName);
-        return -1;
+        return NULL;
     }
     return accessor(_pvCtx, pObjUID);
 }
@@ -281,13 +281,13 @@ char **getDictionaryGetProperties(int *sizearray)
 
     *sizearray = 0;
 
-    dictionary = (char **)MALLOC(sizeof(char *) * NB_PROPERTIES);
+    dictionary = (char **)MALLOC(sizeof(char *) * NB_PROPERTIES_TAB);
     if (dictionary)
     {
         int i = 0;
 
-        *sizearray = NB_PROPERTIES;
-        for (i = 0; i < NB_PROPERTIES; i++)
+        *sizearray = NB_PROPERTIES_TAB;
+        for (i = 0; i < NB_PROPERTIES_TAB; i++)
         {
             char *propertyname = (char *)MALLOC(sizeof(char) * (strlen(propertyTable[i].key) + 1));
 
@@ -302,4 +302,4 @@ char **getDictionaryGetProperties(int *sizearray)
 }
 
 /*--------------------------------------------------------------------------*/
-#undef NB_PROPERTIES
+#undef NB_PROPERTIES_TAB

@@ -923,6 +923,7 @@ int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, d
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblY    = NULL;
@@ -970,7 +971,7 @@ int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, d
             in.push_back(m_FArgs[i]);
         }
 
-        bool bOk = m_pCallFFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1049,6 +1050,7 @@ int DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, in
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblY = new types::Double(m_odeYRows, m_odeYCols);
@@ -1066,7 +1068,7 @@ int DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, in
             in.push_back(m_JacArgs[i]);
         }
 
-        bool bOk = m_pCallJacFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1112,6 +1114,7 @@ int DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int*
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblY = new types::Double(m_odeYRows, m_odeYCols);
@@ -1129,7 +1132,7 @@ int DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int*
             in.push_back(m_odeGArgs[i]);
         }
 
-        bool bOk = m_pCallGFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1179,6 +1182,7 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         // create input args
@@ -1193,7 +1197,7 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
             in.push_back(m_FArgs[i]);
         }
 
-        bool bOk = m_pCallFFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1241,6 +1245,7 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         // create input args
@@ -1258,7 +1263,7 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
             in.push_back(m_FArgs[i]);
         }
 
-        bool bOk = m_pCallFFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1312,6 +1317,7 @@ double DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, 
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         // create input args
@@ -1330,7 +1336,7 @@ double DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, 
             in.push_back(m_FArgs[i]);
         }
 
-        bool bOk = m_pCallFFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1384,6 +1390,7 @@ int DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double* 
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblX = NULL;
@@ -1407,7 +1414,7 @@ int DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double* 
             in.push_back(m_FArgs[i]);
         }
 
-        bool bOk = m_pCallFFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1476,6 +1483,7 @@ int DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double*
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblI = NULL;
@@ -1496,7 +1504,7 @@ int DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double*
             in.push_back(m_GsubArgs[i]);
         }
 
-        bool bOk = m_pCallGsubFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallGsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1551,6 +1559,7 @@ int DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, double
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblI = NULL;
@@ -1570,7 +1579,7 @@ int DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, double
             in.push_back(m_DgsubArgs[i]);
         }
 
-        bool bOk = m_pCallDgsubFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallDgsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1625,6 +1634,7 @@ int DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, doub
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblX = NULL;
@@ -1645,7 +1655,7 @@ int DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, doub
             in.push_back(m_FsubArgs[i]);
         }
 
-        bool bOk = m_pCallFsubFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallFsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1700,6 +1710,7 @@ int DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, dou
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblX = NULL;
@@ -1720,7 +1731,7 @@ int DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, dou
             in.push_back(m_DfsubArgs[i]);
         }
 
-        bool bOk = m_pCallDfsubFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallDfsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1776,6 +1787,7 @@ int DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, dou
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblX = NULL;
@@ -1789,7 +1801,7 @@ int DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, dou
             in.push_back(m_GuessArgs[i]);
         }
 
-        bool bOk = m_pCallGuessFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallGuessFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1859,6 +1871,7 @@ int DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* y
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblT = new types::Double(*t);
@@ -1880,7 +1893,7 @@ int DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* y
             in.push_back(m_FArgs[i]);
         }
 
-        bool bOk = m_pCallFFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -1944,6 +1957,7 @@ int DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* y
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblT = new types::Double(*t);
@@ -1965,7 +1979,7 @@ int DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* y
             in.push_back(m_FArgs[i]);
         }
 
-        bool bOk = m_pCallGFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -2023,6 +2037,7 @@ int DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double*
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblT = new types::Double(*t);
@@ -2044,7 +2059,7 @@ int DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double*
             in.push_back(m_FArgs[i]);
         }
 
-        bool bOk = m_pCallJacFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -2108,6 +2123,7 @@ int DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double*
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblT = new types::Double(*t);
@@ -2129,7 +2145,7 @@ int DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double*
             in.push_back(m_FArgs[i]);
         }
 
-        bool bOk = m_pCallFFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -2206,6 +2222,7 @@ int DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doubl
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblT = new types::Double(*t);
@@ -2231,7 +2248,7 @@ int DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doubl
             in.push_back(m_FArgs[i]);
         }
 
-        bool bOk = m_pCallJacFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {
@@ -2303,6 +2320,7 @@ int DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* y
 
         typed_list in;
         typed_list out;
+        types::optional_list opt;
         ast::ExecVisitor execFunc;
 
         types::Double* pDblT = new types::Double(*t);
@@ -2319,7 +2337,7 @@ int DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* y
             in.push_back(m_FArgs[i]);
         }
 
-        bool bOk = m_pCallGFunction->call(in, iRetCount, out, &execFunc) == types::Function::OK;
+        bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
         if(bOk == false)
         {

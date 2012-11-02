@@ -19,6 +19,7 @@
 /*------------------------------------------------------------------------*/
 
 #include <string.h>
+#include "gw_graphics.h"
 #include "api_scilab.h"
 #include "RendererFontManager.h"
 #include "freeArrayOfString.h"

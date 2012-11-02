@@ -6,3 +6,4 @@ getConsoleWidth
 getFormatSize
 getFormatMode
 getConsoleLines
+context_get

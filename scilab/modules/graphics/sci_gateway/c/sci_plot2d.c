@@ -95,7 +95,7 @@ int sci_plot2d(char* fname, void *pvApiCtx)
         iskip = 1;
     }
 
-    if (FirstOpt() == 2 + iskip)       				/** plot2d([loglags,] y, <opt_args>); **/
+    if (FirstOpt(pvApiCtx) == 2 + iskip)       				/** plot2d([loglags,] y, <opt_args>); **/
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1 + iskip, &piAddrl2);
         if (sciErr.iErr)
@@ -138,7 +138,7 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             }
         }
     }
-    else if (FirstOpt() >= 3 + iskip)     /** plot2d([loglags,] x, y[, style [,...]]); **/
+    else if (FirstOpt(pvApiCtx) >= 3 + iskip)     /** plot2d([loglags,] x, y[, style [,...]]); **/
     {
         /* x */
         sciErr = getVarAddressFromPosition(pvApiCtx, 1 + iskip, &piAddrl1);

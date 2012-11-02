@@ -36,9 +36,9 @@ function h=generic_i_h(i,v,h)
       hdl=lasthandle
       hind=p
       if (k+1)==size(i) then
-	index=i($)
+	    index=i($)
       else
-	index=list(i(k+1:$))
+        index=list(i(k+1:$))
       end
       break
     end
@@ -48,9 +48,9 @@ function h=generic_i_h(i,v,h)
       property(index(:))=v
     else
       if or(size(index)<>[-1 -1]) then
-	property(index)=v
+	    property(index)=v
       else
-	property=v
+	    property=v
       end
     end
     if size(hdl,'*')==1 then //a single handle

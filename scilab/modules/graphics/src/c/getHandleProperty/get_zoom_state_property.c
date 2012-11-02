@@ -30,7 +30,7 @@
 #include "getGraphicObjectProperty.h"
 
 /*------------------------------------------------------------------------*/
-int get_zoom_state_property(void* _pvCtx, char* pobjUID)
+void* get_zoom_state_property(void* _pvCtx, char* pobjUID)
 {
     int iZoomState = 0;
     int *piZoomState = &iZoomState;
@@ -40,13 +40,13 @@ int get_zoom_state_property(void* _pvCtx, char* pobjUID)
     if (piZoomState == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "zoom_state");
-        return -1;
+        return NULL;
     }
 
     if (iZoomState)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
-    return sciReturnString(_pvCtx, "off");
+    return sciReturnString("off");
 }
 /*------------------------------------------------------------------------*/

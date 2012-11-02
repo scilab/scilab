@@ -16,6 +16,7 @@
 #define __INTERNAL_HXX__
 
 #include <vector>
+#include <map>
 #include <iostream>
 #include <string.h>
 //#include "anytype.hxx"
@@ -88,7 +89,7 @@ namespace types
         virtual bool                    isAssignable(void) { return false; }
         virtual RealType                getType(void) = 0 ; //{ return RealInternal; }
 
-
+        virtual bool                    hasToString() { return true; }
         virtual bool                    toString(std::wostringstream& ostr) = 0;
 
         virtual std::wstring            toStringInLine()
@@ -201,6 +202,7 @@ namespace types
     ** List of types
     */
     typedef std::vector<InternalType *> typed_list;
+    typedef std::vector<std::pair<std::wstring, InternalType *> > optional_list;
 
 }
 

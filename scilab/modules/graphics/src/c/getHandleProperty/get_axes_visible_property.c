@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_visible_property(void* _pvCtx, char* pobjUID)
+void* get_axes_visible_property(void* _pvCtx, char* pobjUID)
 {
     char * axes_visible[3]  = { NULL, NULL, NULL };
     int  const axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
@@ -41,7 +41,7 @@ int get_axes_visible_property(void* _pvCtx, char* pobjUID)
 
     int i = 0;
     int j = 0;
-    int status = -1;
+    void* status = NULL;
 
     for (i = 0 ; i < 3 ; i++)
     {
@@ -50,7 +50,7 @@ int get_axes_visible_property(void* _pvCtx, char* pobjUID)
         if (piAxesVisible == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_visible");
-            return -1;
+            return NULL;
         }
 
         if (iAxesVisible)
@@ -70,12 +70,12 @@ int get_axes_visible_property(void* _pvCtx, char* pobjUID)
             }
 
             Scierror(999, _("%s: No more memory.\n"), "get_axes_visible_property");
-            return -1;
+            return NULL;
         }
 
     }
 
-    status = sciReturnRowStringVector(_pvCtx, axes_visible, 3);
+    status = sciReturnRowStringVector(axes_visible, 3);
 
     for (i = 0 ; i < 3 ; i++)
     {

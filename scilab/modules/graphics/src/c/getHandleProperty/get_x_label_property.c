@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_x_label_property(void* _pvCtx, char* pobjUID)
+void* get_x_label_property(void* _pvCtx, char* pobjUID)
 {
     char* labelUID = NULL;
 
@@ -41,9 +41,9 @@ int get_x_label_property(void* _pvCtx, char* pobjUID)
     if (labelUID == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "x_label");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnHandle(_pvCtx, getHandle(labelUID));
+    return sciReturnHandle(getHandle(labelUID));
 }
 /*------------------------------------------------------------------------*/

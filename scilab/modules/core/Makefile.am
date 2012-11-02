@@ -40,8 +40,6 @@ src/c/stackinfo.c \
 src/c/InitializeCore.c \
 src/c/TerminateCore.c \
 src/c/coretable.c \
-src/c/returnProperty.c \
-src/c/returnPropertyList.c \
 src/c/GetXmlFileEncoding.c \
 src/c/islittleendian.c \
 src/c/terme.c \

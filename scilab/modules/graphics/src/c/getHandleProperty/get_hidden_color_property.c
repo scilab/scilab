@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_hidden_color_property(void* _pvCtx, char* pobjUID)
+void* get_hidden_color_property(void* _pvCtx, char* pobjUID)
 {
     int iHiddenColor = 0;
     int* piHiddenColor = &iHiddenColor;
@@ -42,9 +42,9 @@ int get_hidden_color_property(void* _pvCtx, char* pobjUID)
     if (piHiddenColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "hidden_color");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, iHiddenColor);
+    return sciReturnDouble(iHiddenColor);
 }
 /*------------------------------------------------------------------------*/

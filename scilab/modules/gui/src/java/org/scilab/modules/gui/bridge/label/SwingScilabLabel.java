@@ -74,6 +74,10 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
 
     private String labelText = ""; /* Used to save user given text */
 
+    static {
+        Thread.currentThread().setContextClassLoader(ClassLoader.getSystemClassLoader());
+    }
+
     /**
      * Constructor
      */

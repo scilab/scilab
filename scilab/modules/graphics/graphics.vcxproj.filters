@@ -536,9 +536,6 @@
     <ClCompile Include="sci_gateway\c\sci_geom3d.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_get.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_glue.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -603,9 +600,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_unzoom.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_winsid.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_xarc.c">
@@ -1258,9 +1252,6 @@
     <ClInclude Include="src\c\loadTextRenderingAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\graphics_gw.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Gui_Import.def">
@@ -1278,6 +1269,8 @@
     <None Include="Elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="locales\graphics.pot" />
+    <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />

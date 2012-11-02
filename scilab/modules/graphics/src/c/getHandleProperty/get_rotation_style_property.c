@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_rotation_style_property(void* _pvCtx, char * pobjUID)
+void* get_rotation_style_property(void* _pvCtx, char * pobjUID)
 {
     int iRotationStyle = 0;
     int *piRotationStyle = &iRotationStyle;
@@ -39,18 +39,18 @@ int get_rotation_style_property(void* _pvCtx, char * pobjUID)
     if (piRotationStyle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "rotation_style");
-        return -1;
+        return NULL;
     }
 
     if (iRotationStyle == 0)
     {
-        return sciReturnString(_pvCtx, "unary");
+        return sciReturnString("unary");
     }
     else if (iRotationStyle == 1)
     {
-        return sciReturnString(_pvCtx, "multiple");
+        return sciReturnString("multiple");
     }
 
-    return -1;
+    return NULL;
 }
 /*------------------------------------------------------------------------*/

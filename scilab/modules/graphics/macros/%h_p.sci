@@ -109,7 +109,6 @@ function %h_p(h)
         // =====================================================================
 
         case "Axes"
-
             T=h.x_ticks
             if size(T.locations,'*')>9 then
                 locx="matrix "+strcat(string(size(T.locations)),'x')
@@ -907,7 +906,7 @@ function %h_p(h)
                 ]
         end
     end
-    write(%io(2),t)
+    printf("%s\n", t);
 endfunction
 
 

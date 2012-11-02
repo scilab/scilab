@@ -283,8 +283,6 @@ cd ..
     <ClCompile Include="readGateway.c" />
     <ClCompile Include="recursionFunction.c" />
     <ClCompile Include="returnanan.c" />
-    <ClCompile Include="returnProperty.c" />
-    <ClCompile Include="returnPropertyList.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_arg.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_clearfun.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_clearglobal.c" />
@@ -534,8 +532,6 @@ cd ..
     <ClInclude Include="..\..\includes\realmain.h" />
     <ClInclude Include="..\..\includes\recursionFunction.h" />
     <ClInclude Include="..\..\includes\returnanan.h" />
-    <ClInclude Include="..\..\includes\returnProperty.h" />
-    <ClInclude Include="..\..\includes\returnPropertyList.h" />
     <ClInclude Include="..\..\includes\runner.hxx" />
     <ClInclude Include="..\..\includes\scilabDefaults.h" />
     <ClInclude Include="..\..\includes\scimem.h" />

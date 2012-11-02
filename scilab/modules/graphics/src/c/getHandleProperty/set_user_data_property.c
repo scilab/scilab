@@ -27,21 +27,18 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "api_scilab.h"
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
 int set_user_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    /*NOT COMPATIBLE WITH SCILAB 6*/
-    //int iRhs = getRhsFromAddress(_pvCtx, (int*)_pvData);
-    //int iUserDataSize = GetDataSize(iRhs) * 2; /* GetDataSize returns the size of the variable in double words */
-    //int *piUserData = (int*)GetData(iRhs);
+    //temporary, try to write address of user_data in int array
+    int iSize = sizeof(void*) / sizeof(int);
 
-    //BOOL status = FALSE;
-
-    //if (setGraphicObjectProperty(pobjUID, __GO_USER_DATA__, piUserData, jni_int_vector, iUserDataSize) == FALSE)
-    //{
-    //    Scierror(999, _("'%s' property does not exist for this handle.\n"), "user_data");
-    //    return SET_PROPERTY_ERROR;
-    //}
+    if (setGraphicObjectProperty(pobjUID, __GO_USER_DATA__, &_pvData, jni_int_vector, iSize) == FALSE)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "user_data");
+        return SET_PROPERTY_ERROR;
+    }
 
     return SET_PROPERTY_SUCCEED;
 }

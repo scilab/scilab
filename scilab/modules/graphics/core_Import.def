@@ -6,13 +6,8 @@ EXPORTS
 ; core
 ;--------------------------
 vstk_
-addColVectorToReturnedList 
-addMatrixToReturnedList
-addStringColVectorToReturnedList
 callFunctionFromGateway
 com_
-createReturnedList
-destroyReturnedList
 elementtype_
 findopt_
 firstopt_
@@ -20,22 +15,6 @@ freeArrayOfString
 intersci_
 iop_
 numopt_
-overload_
-sciReturnChar
-sciReturnColHandleVector
-sciReturnDouble
-sciReturnEmptyMatrix
-sciReturnHandle
-sciReturnInt
-sciReturnMatrix
-sciReturnRowHandleVector
-sciReturnRowIntVector
-sciReturnRowStringVector
-sciReturnRowVectorFromInt
-sciReturnRowVector
-sciReturnStringMatrix
-sciReturnString
-sciReturnUserData
 stack_
 vartype_
 vstk_

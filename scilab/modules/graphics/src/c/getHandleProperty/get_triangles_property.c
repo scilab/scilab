@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_triangles_property(void* _pvCtx, char* pobjUID)
+void* get_triangles_property(void* _pvCtx, char* pobjUID)
 {
     double* triangles = NULL;
     int numTriangles = 0;
@@ -41,11 +41,11 @@ int get_triangles_property(void* _pvCtx, char* pobjUID)
     if (triangles == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "triangles");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**)&piNumTriangles);
 
-    return sciReturnMatrix(_pvCtx, triangles, numTriangles , 5);
+    return sciReturnMatrix(triangles, numTriangles , 5);
 }
 /*------------------------------------------------------------------------*/

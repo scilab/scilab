@@ -20,6 +20,7 @@
 
 #include "setGetHashTable.h"
 
+#include "dynlib_graphics.h"
 /**
  * create the fill hash table already filled for get functions
  * this use the singleton pattern since only one hashtable is useful.
@@ -37,6 +38,6 @@ void destroyScilabGetHashTable(void);
  *         -1 if an error occurred in the get function
  *          1 if the property was not found
  */
-int callGetProperty(void* _pvCtx, char *pObjUID, char * propertyName);
+GRAPHICS_IMPEXP void* callGetProperty(void* _pvCtx, char *pObjUID, char * propertyName);
 
 #endif /* _GET_HASH_TABLE_H_ */

@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_line_style_property(void* _pvCtx, char* pobjUID)
+void* get_line_style_property(void* _pvCtx, char* pobjUID)
 {
     int iLineStyle = 0;
     int* piLineStyle = &iLineStyle;
@@ -42,9 +42,9 @@ int get_line_style_property(void* _pvCtx, char* pobjUID)
     if (piLineStyle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "line_style");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, iLineStyle);
+    return sciReturnDouble(iLineStyle);
 }
 /*------------------------------------------------------------------------*/

@@ -14,21 +14,21 @@
 
 #include "GetUicontrolFontWeight.hxx"
 
-int GetUicontrolFontWeight(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolFontWeight(void* _pvCtx, char *sciObjUID)
 {
     char* fontWeight = NULL;
-    int status = 0;
+    void* status = NULL;
 
     getGraphicObjectProperty(sciObjUID, __GO_UI_FONTWEIGHT__, jni_string, (void**) &fontWeight);
 
     if (fontWeight == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "FontWeight");
-        return FALSE;
+        return NULL;
     }
     else
     {
-        status = sciReturnString(_pvCtx, fontWeight);
+        status = sciReturnString(fontWeight);
         delete[] fontWeight;
         return status;
     }

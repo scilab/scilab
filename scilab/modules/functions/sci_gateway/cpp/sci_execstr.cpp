@@ -175,11 +175,12 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 Callable *pCall = execMe.result_get()->getAs<Callable>();
                 types::typed_list out;
                 types::typed_list in;
+                types::optional_list opt;
 
                 try
                 {
                     ExecVisitor execCall;
-                    Function::ReturnValue Ret = pCall->call(in, 1, out, &execCall);
+                    Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
 
                     if(Ret == Callable::OK)
                     {

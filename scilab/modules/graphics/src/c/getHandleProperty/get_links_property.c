@@ -30,12 +30,12 @@
 #include "HandleManagement.h"
 
 /*------------------------------------------------------------------------*/
-int get_links_property(void* _pvCtx, char* pobjUID)
+void* get_links_property(void* _pvCtx, char* pobjUID)
 {
     int i = 0;
     long *handles = NULL;
     char** links = NULL;
-    int status = 0;
+    void* status = NULL;
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
 
@@ -44,19 +44,19 @@ int get_links_property(void* _pvCtx, char* pobjUID)
     if (piLinksCount == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "links");
-        return -1;
+        return NULL;
     }
 
     if (iLinksCount == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
 
     handles = (long *)MALLOC(iLinksCount * sizeof(long));
     if (handles == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "get_links_property");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(pobjUID, __GO_LINKS__, jni_string_vector, (void **) &links);
@@ -65,7 +65,7 @@ int get_links_property(void* _pvCtx, char* pobjUID)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "links");
         FREE(handles);
-        return -1;
+        return NULL;
     }
 
     for (i = 0; i < iLinksCount; i++)
@@ -73,7 +73,7 @@ int get_links_property(void* _pvCtx, char* pobjUID)
         handles[i] = getHandle(links[i]);
     }
 
-    status = sciReturnRowHandleVector(_pvCtx, handles, iLinksCount);
+    status = sciReturnRowHandleVector(handles, iLinksCount);
 
     FREE(handles);
 

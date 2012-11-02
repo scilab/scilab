@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_ticks_property(void* _pvCtx, char* pobjUID)
+void* get_auto_ticks_property(void* _pvCtx, char* pobjUID)
 {
     char * auto_ticks[3]  = { NULL, NULL, NULL };
     int const axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
@@ -42,7 +42,7 @@ int get_auto_ticks_property(void* _pvCtx, char* pobjUID)
 
     int i = 0;
     int j = 0;
-    int status = -1;
+    void* status = NULL;
 
     for (i = 0 ; i < 3 ; i++)
     {
@@ -51,7 +51,7 @@ int get_auto_ticks_property(void* _pvCtx, char* pobjUID)
         if (piAutoTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_ticks");
-            return -1;
+            return NULL;
         }
 
         if (iAutoTicks)
@@ -71,12 +71,12 @@ int get_auto_ticks_property(void* _pvCtx, char* pobjUID)
             }
 
             Scierror(999, _("%s: No more memory.\n"), "get_auto_ticks_property");
-            return -1;
+            return NULL;
         }
 
     }
 
-    status = sciReturnRowStringVector(_pvCtx, auto_ticks, 3);
+    status = sciReturnRowStringVector(auto_ticks, 3);
 
     for (i = 0 ; i < 3 ; i++)
     {

@@ -39,7 +39,7 @@ namespace types
 
         bool                        toString(std::wostringstream& ostr);
 
-        Callable::ReturnValue       call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+        Callable::ReturnValue       call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
 
         ast::SeqExp*                getBody();
 

@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int get_interp_color_vector_property(void* _pvCtx, char* pobjUID)
+void* get_interp_color_vector_property(void* _pvCtx, char* pobjUID)
 {
     int* piInterpVector = NULL;
     int iInterpVectorSet = 0;
@@ -44,19 +44,19 @@ int get_interp_color_vector_property(void* _pvCtx, char* pobjUID)
     if (piInterpVectorSet == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "interp_color_vector");
-        return -1;
+        return NULL;
     }
 
     if (iInterpVectorSet == FALSE)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
     else
     {
         getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, (void **) &piInterpVector);
         getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **) &piNumElements);
 
-        return sciReturnRowVectorFromInt(_pvCtx, piInterpVector, iNumElements);
+        return sciReturnRowVectorFromInt(piInterpVector, iNumElements);
     }
 }
 /*--------------------------------------------------------------------------*/

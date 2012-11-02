@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_background_property(void* _pvCtx, char* pobjUID)
+void* get_mark_background_property(void* _pvCtx, char* pobjUID)
 {
     int iMarkBackground = 0;
     int* piMarkBackground = &iMarkBackground;
@@ -40,9 +40,9 @@ int get_mark_background_property(void* _pvCtx, char* pobjUID)
     if (piMarkBackground == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_background");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, iMarkBackground);
+    return sciReturnDouble(iMarkBackground);
 }
 /*------------------------------------------------------------------------*/

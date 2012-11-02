@@ -27,10 +27,10 @@
 #include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_style_property(void* _pvCtx, char* pobjUID)
+void* get_figure_style_property(void* _pvCtx, char* pobjUID)
 {
     /* no more old style */
-    sciReturnString(_pvCtx, "new");
+    sciReturnString("new");
     return 0;
 }
 /*------------------------------------------------------------------------*/

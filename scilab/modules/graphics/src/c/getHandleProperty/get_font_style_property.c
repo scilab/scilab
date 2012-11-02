@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_font_style_property(void* _pvCtx, char* pobjUID)
+void* get_font_style_property(void* _pvCtx, char* pobjUID)
 {
     int iFontStyle = 0;
     int* piFontStyle = &iFontStyle;
@@ -40,9 +40,9 @@ int get_font_style_property(void* _pvCtx, char* pobjUID)
     if (piFontStyle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_style");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnInt(_pvCtx, iFontStyle);
+    return sciReturnInt(iFontStyle);
 }
 /*------------------------------------------------------------------------*/

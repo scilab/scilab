@@ -413,7 +413,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="sci_gateway\c\sci_drawnow.c" />
     <ClCompile Include="sci_gateway\c\sci_fec.c" />
     <ClCompile Include="sci_gateway\c\sci_geom3d.c" />
-    <ClCompile Include="sci_gateway\c\sci_get.c" />
     <ClCompile Include="sci_gateway\c\sci_glue.c" />
     <ClCompile Include="sci_gateway\c\sci_grayplot.c" />
     <ClCompile Include="sci_gateway\c\sci_is_handle_valid.c" />
@@ -436,7 +435,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="sci_gateway\c\sci_swap_handles.c" />
     <ClCompile Include="sci_gateway\c\sci_unglue.c" />
     <ClCompile Include="sci_gateway\c\sci_unzoom.c" />
-    <ClCompile Include="sci_gateway\c\sci_winsid.c" />
     <ClCompile Include="sci_gateway\c\sci_xarc.c" />
     <ClCompile Include="sci_gateway\c\sci_xarcs.c" />
     <ClCompile Include="sci_gateway\c\sci_xarrows.c" />
@@ -607,7 +605,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\BasicAlgos.h" />
     <ClInclude Include="includes\BuildObjects.h" />
     <ClInclude Include="includes\Champ.h" />
-    <ClInclude Include="includes\graphics_gw.hxx" />
     <ClInclude Include="src\c\CheckScilabXgc.h" />
     <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
     <ClInclude Include="includes\CloneObjects.h" />
@@ -697,7 +694,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </ProjectReference>
     <ProjectReference Include="..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>

@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_x_shift_property(void* _pvCtx, char* pobjUID)
+void* get_x_shift_property(void* _pvCtx, char* pobjUID)
 {
     double* shiftCoordinates = NULL;
     int iValue = 0;
@@ -42,19 +42,19 @@ int get_x_shift_property(void* _pvCtx, char* pobjUID)
     if (piValue == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "x_shift");
-        return -1;
+        return NULL;
     }
 
     if (iValue == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
     else
     {
         getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X_COORDINATES_SHIFT__, jni_double_vector, (void **)&shiftCoordinates);
         getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piValue);
 
-        return sciReturnRowVector(_pvCtx, shiftCoordinates, iValue);
+        return sciReturnRowVector(shiftCoordinates, iValue);
     }
 }
 /*------------------------------------------------------------------------*/

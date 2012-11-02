@@ -26,12 +26,12 @@
 #include "localization.h"
 #include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-int get_surface_color_property(void* _pvCtx, char* pobjUID)
+void* get_surface_color_property(void* _pvCtx, char* pobjUID)
 {
     //
     // FIXME
     //
-    return -1;
+    return NULL;
 
 }
 /*------------------------------------------------------------------------*/

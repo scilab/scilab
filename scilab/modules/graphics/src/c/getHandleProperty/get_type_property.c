@@ -86,13 +86,13 @@ static char *getTypeNameFromInt(int _iType)
 }
 
 /*------------------------------------------------------------------------*/
-int get_type_property(void* _pvCtx, char* pobjUID)
+void* get_type_property(void* _pvCtx, char* pobjUID)
 {
     int iType = -1;
     int *piType = &iType;
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
-    return sciReturnString(_pvCtx, getTypeNameFromInt(iType));
+    return sciReturnString(getTypeNameFromInt(iType));
     //return sciReturnString(sciGetCharEntityType(pobj));
 }
 /*------------------------------------------------------------------------*/

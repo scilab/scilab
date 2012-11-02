@@ -77,7 +77,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../../libs/dynamiclibrary/includes;../system_env/includes;../Threads/includes;../console/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -120,7 +120,7 @@ cd .. &gt;nul
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../../libs/dynamiclibrary/includes;../system_env/includes;../Threads/includes;../console/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -164,7 +164,7 @@ cd .. &gt;nul
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../../libs/dynamiclibrary/includes;../system_env/includes;../Threads/includes;../console/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -217,7 +217,7 @@ cd .. &gt;nul
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../../libs/dynamiclibrary/includes;../system_env/includes;../Threads/includes;../console/includes;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -275,6 +275,8 @@ cd .. &gt;nul
     <ClCompile Include="src\cpp\api_poly.cpp" />
     <ClCompile Include="src\cpp\api_sparse.cpp" />
     <ClCompile Include="src\cpp\api_string.cpp" />
+    <ClCompile Include="src\cpp\returnProperty.cpp" />
+    <ClCompile Include="src\cpp\returnPropertyList.cpp" />
     <ClCompile Include="src\c\DllmainApi_scilab.c" />
     <ClCompile Include="src\cpp\overload.cpp" />
   </ItemGroup>
@@ -288,6 +290,8 @@ cd .. &gt;nul
     <ClInclude Include="includes\api_int.h" />
     <ClInclude Include="includes\api_internal_handle.h" />
     <ClInclude Include="includes\api_optional.h" />
+    <ClInclude Include="includes\returnProperty.h" />
+    <ClInclude Include="includes\returnPropertyList.h" />
     <ClInclude Include="src\cpp\api_internal_boolean.h" />
     <ClInclude Include="src\cpp\api_internal_boolean_sparse.h" />
     <ClInclude Include="src\cpp\api_internal_common.h" />

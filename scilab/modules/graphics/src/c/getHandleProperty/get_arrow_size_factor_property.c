@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_arrow_size_factor_property(void* _pvCtx, char* pobjUID)
+void* get_arrow_size_factor_property(void* _pvCtx, char* pobjUID)
 {
     double dblArrowSizeFactor = 0;
     double* pdblArrowSizeFactor = &dblArrowSizeFactor;
@@ -40,9 +40,9 @@ int get_arrow_size_factor_property(void* _pvCtx, char* pobjUID)
     if (pdblArrowSizeFactor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "arrow_size_factor");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, dblArrowSizeFactor);
+    return sciReturnDouble(dblArrowSizeFactor);
 }
 /*------------------------------------------------------------------------*/

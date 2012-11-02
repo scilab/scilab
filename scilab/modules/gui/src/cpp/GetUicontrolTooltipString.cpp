@@ -21,7 +21,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int GetUicontrolTooltipString(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolTooltipString(void* _pvCtx, char *sciObjUID)
 {
     int iNbStrings = 0;
     int *piNbStrings = &iNbStrings;
@@ -32,11 +32,11 @@ int GetUicontrolTooltipString(void* _pvCtx, char *sciObjUID)
 
     if (pstString != NULL)
     {
-        return sciReturnStringMatrix(_pvCtx, pstString, 1, iNbStrings);
+        return sciReturnStringMatrix(pstString, 1, iNbStrings);
     }
     else
     {
         Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "TooltipString");
-        return FALSE;
+        return NULL;
     }
 }

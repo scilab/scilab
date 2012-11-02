@@ -110,7 +110,7 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
     /* added to support plot2dxx([logflags],y) */
     if (nbInputArgument(pvApiCtx) == 1 + iskip)
     {
-        if (FirstOpt() <= nbInputArgument(pvApiCtx))
+        if (FirstOpt(pvApiCtx) <= nbInputArgument(pvApiCtx))
         {
             Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 3 + iskip);
             return(0);
@@ -161,7 +161,7 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
 
     if (nbInputArgument(pvApiCtx) >= 2 + iskip)
     {
-        if (FirstOpt() < 3 + iskip)
+        if (FirstOpt(pvApiCtx) < 3 + iskip)
         {
             Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
                      fname, 1, 3 + iskip);

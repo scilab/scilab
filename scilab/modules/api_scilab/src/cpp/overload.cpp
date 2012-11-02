@@ -9,6 +9,9 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#pragma comment(lib,"../../bin/typesmacro.lib")
+
 extern "C"
 {
 #include "stdarg.h"
@@ -53,7 +56,8 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
     types::Callable *pCall = pIT->getAs<types::Callable>();
     try
     {
-        return pCall->call(in, _iRetCount, out, _execMe);
+        types::optional_list opt;
+        return pCall->call(in, opt, _iRetCount, out, _execMe);
     }
     catch (ScilabMessage sm)
     {
@@ -134,15 +138,4 @@ std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
     default :
         return std::wstring(L"???");
     }
-}
-
-wstring formatString(const wstring& wstFormat, ...)
-{
-    wchar_t pwstTemp[1024];
-    va_list arglist;
-    va_start(arglist, wstFormat);
-    int iLen = os_swprintf(pwstTemp, 1024, wstFormat.c_str(), arglist);
-    va_end(arglist);
-
-    return wstring(pwstTemp, iLen);
 }

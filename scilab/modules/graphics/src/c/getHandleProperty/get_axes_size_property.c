@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_size_property(void* _pvCtx, char* pobjUID)
+void* get_axes_size_property(void* _pvCtx, char* pobjUID)
 {
     int* axesSize = NULL;
     getGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, jni_int_vector, (void **)&axesSize);
@@ -40,9 +40,9 @@ int get_axes_size_property(void* _pvCtx, char* pobjUID)
     if (axesSize == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_size");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnRowIntVector(_pvCtx, axesSize, 2);
+    return sciReturnRowIntVector(axesSize, 2);
 }
 /*------------------------------------------------------------------------*/

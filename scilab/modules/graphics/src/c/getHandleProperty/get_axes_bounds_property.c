@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_bounds_property(void* _pvCtx, char* pobjUID)
+void* get_axes_bounds_property(void* _pvCtx, char* pobjUID)
 {
     double* axesBounds = NULL;
 
@@ -38,9 +38,9 @@ int get_axes_bounds_property(void* _pvCtx, char* pobjUID)
     if (axesBounds == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_bounds");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnRowVector(_pvCtx, axesBounds, 4);
+    return sciReturnRowVector(axesBounds, 4);
 }
 /*------------------------------------------------------------------------*/

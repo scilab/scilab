@@ -32,10 +32,10 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int get_children_property(void* _pvCtx, char* pobjUID)
+void* get_children_property(void* _pvCtx, char* pobjUID)
 {
     int i = 0;
-    int status = 0;
+    void* status = NULL;
     long *plChildren = NULL;
     char **pstChildrenUID;
     int iHidden = 0;
@@ -54,7 +54,7 @@ int get_children_property(void* _pvCtx, char* pobjUID)
     if (piChildrenCount[0] == 0)
     {
         // No Child
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
 
     getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, (void **)&pstChildrenUID);
@@ -76,7 +76,7 @@ int get_children_property(void* _pvCtx, char* pobjUID)
         if (iNotHiddenChildrenNumber == 0)
         {
             // No Child
-            return sciReturnEmptyMatrix(_pvCtx);
+            return sciReturnEmptyMatrix();
         }
     }
     else
@@ -95,7 +95,7 @@ int get_children_property(void* _pvCtx, char* pobjUID)
         }
     }
 
-    status = sciReturnColHandleVector(_pvCtx, plChildren, iNotHiddenChildrenNumber);
+    status = sciReturnColHandleVector(plChildren, iNotHiddenChildrenNumber);
     FREE(plChildren);
 
     return status;

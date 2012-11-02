@@ -37,9 +37,9 @@ extern "C" {
      * @return if the operation succeeded ( 0 ) or not ( !0 )
      */
     int getOptionals(void* _pvCtx, char* fname, rhs_opts opts[]);
-    int FirstOpt();
-    int NumOpt();
-    int FindOpt(char* pstProperty, rhs_opts opts[]);
+    int FirstOpt(void* _pvCtx);
+    int NumOpt(void* _pvCtx);
+    int FindOpt(void* _pvCtx, char* pstProperty, rhs_opts opts[]);
 #ifdef __cplusplus
 }
 #endif

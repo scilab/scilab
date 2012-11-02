@@ -16,6 +16,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include "list.hxx"
 
 extern "C"
 {
@@ -257,12 +258,14 @@ SciErr getListItemNumber(void* _pvCtx, int* _piAddress, int* _piNbItem)
         addErrorMessage(&sciErr, API_ERROR_LIST_ITEM_NUMBER, _("%s: Unable to get item number of list"), "getListItemNumber");
         return sciErr;
     }
+
+    types::List* pL = (types::List*)_piAddress;
     switch (iType)
     {
         case sci_list :
         case sci_mlist :
         case sci_tlist :
-            *_piNbItem = _piAddress[1];
+            *_piNbItem = pL->getSize();
             break;
         default :
             addErrorMessage(&sciErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s excepted"), "getListItemNumber", _("list"));
@@ -292,16 +295,16 @@ SciErr getListItemAddress(void* _pvCtx, int* _piAddress, int _iItemNum, int** _p
         return sciErr;
     }
 
+    types::List* pL = (types::List*)_piAddress;
     //get offset of item array
-    piOffset    =  _piAddress + 2;
-    if (piOffset[_iItemNum] == piOffset[_iItemNum - 1])
+    types::InternalType* pIT = pL->get(_iItemNum - 1);
+    if (pIT->isListUndefined())
     {
         *_piItemAddress = NULL;
     }
     else
     {
-        piItemAddress = piOffset + iItem  + 1 + !(iItem % 2);
-        *_piItemAddress = piItemAddress + (piOffset[_iItemNum - 1] - 1) * (sizeof(double) / sizeof(int));
+        *_piItemAddress = (int*)pIT;
     }
     return sciErr;
 }

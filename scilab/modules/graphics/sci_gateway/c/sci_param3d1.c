@@ -75,7 +75,7 @@ int sci_param3d1(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    if (FirstOpt() < 4)
+    if (FirstOpt(pvApiCtx) < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 4);
         return(0);

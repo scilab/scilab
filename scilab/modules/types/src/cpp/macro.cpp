@@ -76,7 +76,7 @@ namespace types
         return true;
     }
 
-    Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+    Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
     {
         bool bVarargout = false;
         ReturnValue RetVal = Callable::OK;
@@ -84,6 +84,13 @@ namespace types
 
         //open a new scope
         pContext->scope_begin();
+
+        //add optional paramter in current scope
+        optional_list::const_iterator it;
+        for(it = opt.begin() ; it != opt.end() ; it++)
+        {
+            pContext->put(symbol::Symbol(it->first), *it->second);
+        }
         //check excepted and input/output parameters numbers
         // Scilab Macro can be called with less than prototyped arguments,
         // but not more execpts with varargin

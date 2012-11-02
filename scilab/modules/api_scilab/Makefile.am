@@ -19,6 +19,8 @@ src/cpp/api_pointer.cpp \
 src/cpp/api_handle.cpp \
 src/cpp/api_error.cpp \
 src/cpp/overload.cpp \
+src/cpp/returnProperty.cpp \
+src/cpp/returnPropertyList.cpp \
 src/cpp/api_optional.cpp
 
 libsciapi_scilab_la_CPPFLAGS= \

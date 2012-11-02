@@ -22,6 +22,6 @@
  * @param pobj Scilab object corresponding to the uicontrol
  * @return true if the color has been correcty got
  */
-GUI_IMPEXP int GetUiobjectForegroundColor(void* _pvCtx, char* pobjUID);
+GUI_IMPEXP void* GetUiobjectForegroundColor(void* _pvCtx, char* pobjUID);
 
 #endif /* __GET_UIOBJECT_FOREGROUNDCOLOR_H__ */

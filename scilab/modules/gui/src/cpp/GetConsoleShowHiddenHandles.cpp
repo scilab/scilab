@@ -23,7 +23,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-int GetConsoleShowHiddenHandles(void* _pvCtx, char *pObjUID)
+void* GetConsoleShowHiddenHandles(void* _pvCtx, char *pObjUID)
 {
     int iShowHiddenHandles = 0;
     int *piShowHiddenHandles = &iShowHiddenHandles;
@@ -34,15 +34,15 @@ int GetConsoleShowHiddenHandles(void* _pvCtx, char *pObjUID)
     {
         Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "ShowHiddenHandles");
 
-        return FALSE;
+        return NULL;
     }
 
     if (iShowHiddenHandles == TRUE)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }

@@ -23,5 +23,11 @@
     <ClCompile Include="graphics_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_get.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_winsid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

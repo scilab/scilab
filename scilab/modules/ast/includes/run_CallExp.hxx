@@ -28,12 +28,34 @@ void visitprivate(const CallExp &e)
         types::Callable *pCall = pIT->getAs<types::Callable>();
         types::typed_list out;
         types::typed_list in;
+        types::optional_list opt;
 
         int iRetCount = expected_getSize();
 
         //get function arguments
         for (itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp)
         {
+            AssignExp* pAssign = dynamic_cast<AssignExp*>(*itExp);
+            if(pAssign)
+            {
+                //optional parameter
+                Exp* pL = &pAssign->left_exp_get();
+                SimpleVar* pVar = dynamic_cast<SimpleVar*>(pL);
+                if(pVar == NULL)
+                {
+                    std::wostringstream os;
+                    os << L"left side of optional parameter must be a variable" << std::endl;
+                    throw ScilabError(os.str(), 999, e.location_get());
+                }
+
+                Exp* pR = &pAssign->right_exp_get();
+                pR->accept (*this);
+                InternalType* pITR = result_get();
+
+                opt.push_back(std::pair<std::wstring, InternalType*>(pVar->name_get().name_get(), pITR));
+                continue;
+            }
+
             expected_size_set(1);
             (*itExp)->accept (*this);
 
@@ -80,7 +102,7 @@ void visitprivate(const CallExp &e)
             expected_size_set(iSaveExpectedSize);
             iRetCount = Max(1, iRetCount);
 
-            types::Function::ReturnValue Ret = pCall->call(in, iRetCount, out, this);
+            types::Function::ReturnValue Ret = pCall->call(in, opt, iRetCount, out, this);
             expected_size_set(iSaveExpectedSize);
 
             result_clear();
@@ -505,6 +527,33 @@ void visitprivate(const CallExp &e)
                     {
                         pOut = pIT->getAs<types::Struct>()->extract(pArgs);
                     }
+                    break;
+                }
+            case types::InternalType::RealHandle :
+                {
+                    if(pArgs->size() == 1 && (*pArgs)[0]->isString())
+                    {//s(["x"])
+                        types::GraphicHandle* pH = pIT->getAs<types::GraphicHandle>();
+                        types::String *pS = (*pArgs)[0]->getAs<types::String>();
+                        typed_list in;
+                        typed_list out;
+                        optional_list opt;
+
+                        in.push_back(pS);
+                        in.push_back(pH);
+
+                        Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"%h_e"));
+                        Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, this);
+                        if(ret == Callable::OK)
+                        {
+                            pOut = out[0];
+                        }
+                    }
+                    else
+                    {
+                        pOut = pIT->getAs<types::GraphicHandle>()->extract(pArgs);
+                    }
+                    break;
                 }
                 default :
                     break;

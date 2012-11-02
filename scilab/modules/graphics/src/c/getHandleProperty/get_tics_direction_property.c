@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_direction_property(void* _pvCtx, char* pobjUID)
+void* get_tics_direction_property(void* _pvCtx, char* pobjUID)
 {
     int iTicksDirection = 0;
     int* piTicksDirection = &iTicksDirection;
@@ -40,31 +40,31 @@ int get_tics_direction_property(void* _pvCtx, char* pobjUID)
     if (piTicksDirection == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_direction");
-        return -1;
+        return NULL;
     }
 
     if (iTicksDirection == 0)
     {
-        return sciReturnString(_pvCtx, "top");
+        return sciReturnString("top");
     }
     else if (iTicksDirection == 1)
     {
-        return sciReturnString(_pvCtx, "bottom");
+        return sciReturnString("bottom");
     }
     else if (iTicksDirection == 2)
     {
-        return sciReturnString(_pvCtx, "left");
+        return sciReturnString("left");
     }
     else if (iTicksDirection == 3)
     {
-        return sciReturnString(_pvCtx, "right");
+        return sciReturnString("right");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "tics_direction");
     }
 
-    return -1;
+    return NULL;
 
 }
 /*------------------------------------------------------------------------*/

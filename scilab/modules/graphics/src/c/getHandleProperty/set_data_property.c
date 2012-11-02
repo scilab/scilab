@@ -82,7 +82,7 @@ int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
 
     if (nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0 || nbRow[3] * nbCol[3] == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return SET_PROPERTY_SUCCEED;//sciReturnEmptyMatrix();
     }
 
     /* Update the champ's number of arrows and dimensions then set the coordinates */
@@ -135,7 +135,7 @@ int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
 
     if (nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return SET_PROPERTY_ERROR; //sciReturnEmptyMatrix()
     }
 
     /*
@@ -221,7 +221,7 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
 
     if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return SET_PROPERTY_ERROR;//sciReturnEmptyMatrix();
     }
 
     /* get color size if exists */

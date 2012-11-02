@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_margins_property(void* _pvCtx, char* pobjUID)
+void* get_margins_property(void* _pvCtx, char* pobjUID)
 {
     double* margins = NULL;
 
@@ -38,10 +38,10 @@ int get_margins_property(void* _pvCtx, char* pobjUID)
     if (margins == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "margins");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnRowVector(_pvCtx, margins, 4);
+    return sciReturnRowVector(margins, 4);
 
 }
 /*------------------------------------------------------------------------*/

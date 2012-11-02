@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_cdata_mapping_property(void* _pvCtx, char* pobjUID)
+void* get_cdata_mapping_property(void* _pvCtx, char* pobjUID)
 {
     int iCDataMapping = 0;
     int* piCDataMapping = &iCDataMapping;
@@ -40,18 +40,18 @@ int get_cdata_mapping_property(void* _pvCtx, char* pobjUID)
     if (piCDataMapping == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "cdata_mapping");
-        return -1;
+        return NULL;
     }
 
     if (iCDataMapping == 0)
     {
-        return sciReturnString(_pvCtx, "scaled");
+        return sciReturnString("scaled");
     }
     else if (iCDataMapping == 1)
     {
-        return sciReturnString(_pvCtx, "direct");
+        return sciReturnString("direct");
     }
 
-    return -1;
+    return NULL;
 }
 /*------------------------------------------------------------------------*/

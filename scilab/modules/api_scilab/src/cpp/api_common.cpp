@@ -424,9 +424,9 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
     case GenericType::RealUInt64 :
         *_piType = sci_ints;
         break;
-        //case GenericType::RealHandle :
-        //    *_piType = sci_handles;
-        //    break;
+    case GenericType::RealHandle :
+        *_piType = sci_handles;
+        break;
     case GenericType::RealString :
         *_piType = sci_strings;
         break;

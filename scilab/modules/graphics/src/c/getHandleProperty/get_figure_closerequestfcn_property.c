@@ -22,7 +22,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_closerequestfcn_property(void* _pvCtx, char* pobjUID)
+void* get_figure_closerequestfcn_property(void* _pvCtx, char* pobjUID)
 {
     char* closeRequestFcn = NULL;
     int iType = -1;
@@ -33,7 +33,7 @@ int get_figure_closerequestfcn_property(void* _pvCtx, char* pobjUID)
     if (iType != __GO_FIGURE__)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "closerequestfcn");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(pobjUID, __GO_CLOSEREQUESTFCN__, jni_string, (void **) &closeRequestFcn);
@@ -41,9 +41,9 @@ int get_figure_closerequestfcn_property(void* _pvCtx, char* pobjUID)
     if (closeRequestFcn == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "closerequestfcn");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnString(_pvCtx, closeRequestFcn);
+    return sciReturnString(closeRequestFcn);
 }
 /*------------------------------------------------------------------------*/

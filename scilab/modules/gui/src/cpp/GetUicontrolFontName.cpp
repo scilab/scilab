@@ -14,21 +14,21 @@
 
 #include "GetUicontrolFontName.hxx"
 
-int GetUicontrolFontName(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolFontName(void* _pvCtx, char *sciObjUID)
 {
     char* fontName = NULL;
-    int status = 0;
+    void* status = NULL;
 
     getGraphicObjectProperty(sciObjUID, __GO_UI_FONTNAME__, jni_string, (void**) &fontName);
 
     if (fontName == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "FontName");
-        return FALSE;
+        return NULL;
     }
     else
     {
-        status = sciReturnString(_pvCtx, fontName);
+        status = sciReturnString(fontName);
         delete[] fontName;
         return status;
     }

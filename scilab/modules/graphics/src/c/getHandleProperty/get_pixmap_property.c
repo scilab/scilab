@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_pixmap_property(void* _pvCtx, char* pobjUID)
+void* get_pixmap_property(void* _pvCtx, char* pobjUID)
 {
     int iPixmap = 0;
     int *piPixmap = &iPixmap;
@@ -39,16 +39,16 @@ int get_pixmap_property(void* _pvCtx, char* pobjUID)
     if (piPixmap == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "pixmap");
-        return -1;
+        return NULL;
     }
 
     if (iPixmap)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }
 /*------------------------------------------------------------------------*/

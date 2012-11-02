@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_log_flags_property(void* _pvCtx, char* pobjUID)
+void* get_log_flags_property(void* _pvCtx, char* pobjUID)
 {
     int i = 0;
     int iLogFlag = 0;
@@ -42,7 +42,7 @@ int get_log_flags_property(void* _pvCtx, char* pobjUID)
     if (piLogFlag == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flag");
-        return -1;
+        return NULL;
     }
 
     logFlags[0] = iLogFlag;
@@ -67,6 +67,6 @@ int get_log_flags_property(void* _pvCtx, char* pobjUID)
 
     /* 0 terminating character */
     logFlagsString[3] = 0;
-    return sciReturnString(_pvCtx, logFlagsString);
+    return sciReturnString(logFlagsString);
 }
 /*------------------------------------------------------------------------*/

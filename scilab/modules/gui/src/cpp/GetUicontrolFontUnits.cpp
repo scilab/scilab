@@ -13,21 +13,21 @@
 
 #include "GetUicontrolFontUnits.hxx"
 
-int GetUicontrolFontUnits(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolFontUnits(void* _pvCtx, char *sciObjUID)
 {
     char* fontUnits = NULL;
-    int status = 0;
+    void* status = NULL;
 
     getGraphicObjectProperty(sciObjUID, __GO_UI_FONTUNITS__, jni_string, (void**) &fontUnits);
 
     if (fontUnits == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "FontUnits");
-        return FALSE;
+        return NULL;
     }
     else
     {
-        status = sciReturnString(_pvCtx, fontUnits);
+        status = sciReturnString( fontUnits);
         delete[] fontUnits;
         return status;
     }

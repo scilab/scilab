@@ -179,12 +179,6 @@
     <ClCompile Include="returnanan.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="returnProperty.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="returnPropertyList.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_clearfun.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -526,12 +520,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\returnanan.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\returnProperty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\returnPropertyList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\runner.hxx">

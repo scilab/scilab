@@ -40,6 +40,7 @@ extern "C" {
 #include "matrix_transpose.h"
 #include "os_swprintf.h"
 #include "more.h"
+//#include "HandleManagement.h"
 }
 
 #include "timer.hxx"
@@ -547,6 +548,24 @@ public :
                 wchar_t szError[bsiz];
                 os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
                 throw ScilabError(szError, 999, e.location_get());
+            }
+        }
+        else if(result_get() != NULL && result_get()->isHandle())
+        {
+            SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
+            typed_list in;
+            typed_list out;
+            optional_list opt;
+
+            String* pField = new String(psvRightMember->name_get().name_get().c_str());
+            in.push_back(pField);
+            in.push_back(result_get());
+
+            Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"%h_e"));
+            Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, this);
+            if(ret == Callable::OK)
+            {
+                result_set(out[0]);
             }
         }
         else
@@ -1062,15 +1081,16 @@ public :
                     if (result_get()->isCallable()) //to manage call without ()
                     {
                         Callable *pCall = ((InternalType*)result_get())->getAs<Callable>();
-                        types::typed_list out;
-                        types::typed_list in;
+                        typed_list out;
+                        typed_list in;
+                        optional_list opt;
 
                         try
                         {
                             //in this case of calling, we can return only one values
                             int iSaveExpectedSize = expected_getSize();
                             expected_size_set(1);
-                            Function::ReturnValue Ret = pCall->call(in, expected_getSize(), out, this);
+                            Function::ReturnValue Ret = pCall->call(in, opt, expected_getSize(), out, this);
                             expected_size_set(iSaveExpectedSize);
 
                             if (Ret == Callable::OK)
@@ -1645,7 +1665,7 @@ public :
 
     void VariableToString(types::InternalType* pIT)
     {
-        if (pIT->isMList() || pIT->isTList())
+        if (pIT->isMList() || pIT->isTList() || pIT->hasToString() == false)
         {
             //call overload %type_p
             std::wostringstream ostr;

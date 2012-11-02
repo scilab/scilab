@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_title_property(void* _pvCtx, char* pobjUID)
+void* get_title_property(void* _pvCtx, char* pobjUID)
 {
     char* labelUID = NULL;
     long labelHandle = 0;
@@ -45,7 +45,7 @@ int get_title_property(void* _pvCtx, char* pobjUID)
     if (iType != __GO_AXES__)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "title");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(pobjUID, __GO_TITLE__, jni_string, (void **)&labelUID);
@@ -53,11 +53,11 @@ int get_title_property(void* _pvCtx, char* pobjUID)
     if (labelUID == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "title");
-        return -1;
+        return NULL;
     }
 
     labelHandle = getHandle(labelUID);
 
-    return sciReturnHandle(_pvCtx, labelHandle);
+    return sciReturnHandle(labelHandle);
 }
 /*------------------------------------------------------------------------*/

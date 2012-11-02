@@ -29,13 +29,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_user_data_property(void* _pvCtx, char* pobjUID)
+void* get_user_data_property(void* _pvCtx, char* pobjUID)
 {
     int iUserDataSize = 0;
     int *piUserDataSize = &iUserDataSize;
     int *piUserData = NULL;
 
-    int status = 0;
+    void* status = NULL;
 
     getGraphicObjectProperty(pobjUID, __GO_USER_DATA_SIZE__, jni_int, (void **)&piUserDataSize);
 
@@ -43,11 +43,11 @@ int get_user_data_property(void* _pvCtx, char* pobjUID)
 
     if ((piUserData == NULL) || (piUserDataSize == 0))
     {
-        status = sciReturnEmptyMatrix(_pvCtx);
+        status = sciReturnEmptyMatrix();
     }
     else
     {
-        status = sciReturnUserData(_pvCtx, piUserData, iUserDataSize);
+        status = sciReturnUserData(piUserData, iUserDataSize);
         free(piUserData);
     }
 
