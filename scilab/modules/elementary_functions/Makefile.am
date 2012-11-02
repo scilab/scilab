@@ -47,7 +47,8 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/matrix_generation.c \
     src/c/vmul.c \
     src/c/add_vector.c \
-    src/c/sub_vector.c
+    src/c/sub_vector.c \
+    src/c/convertbase.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
@@ -293,7 +294,9 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_nearfloat.c \
     sci_gateway/c/sci_real.c \
     sci_gateway/c/sci_round.c \
-    sci_gateway/c/sci_isequalbitwise.c
+    sci_gateway/c/sci_isequalbitwise.c \
+    sci_gateway/c/sci_base2dec.c \
+    sci_gateway/c/sci_dec2base.c
 
 GATEWAY_FORTRAN_SOURCES =  \
     sci_gateway/fortran/sci_f_testmatrix.f \

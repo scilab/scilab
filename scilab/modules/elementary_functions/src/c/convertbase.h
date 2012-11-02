@@ -13,6 +13,8 @@
 #ifndef __CONVERTBASE_H__
 #define __CONVERTBASE_H__
 
+#include "dynlib_elementary_functions.h"
+
 typedef enum
 { 
     ERROR_CONVERTBASE_OK = 0,
@@ -30,7 +32,7 @@ typedef enum
 * @param[out] int if 0 no error  
 * @return converted value (decimal)
 */
-double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err);
+ELEMENTARY_FUNCTIONS_IMPEXP double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err);
 
 /**
 * Convert decimal to base N number in string
@@ -40,7 +42,7 @@ double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err)
 * @param[out] error value
 * @return a matrix of string of size mn
 */
-char **convertMatrixOfDec2Base(const double* dValues, int mn, int numberbase, unsigned int nbDigits, error_convertbase *err);
+ELEMENTARY_FUNCTIONS_IMPEXP char **convertMatrixOfDec2Base(const double* dValues, int mn, int numberbase, unsigned int nbDigits, error_convertbase *err);
 
 #endif /* __CONVERTBASE_H__ */
 /*--------------------------------------------------------------------------*/ 

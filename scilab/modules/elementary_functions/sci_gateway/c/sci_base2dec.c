@@ -14,12 +14,12 @@
 #include "gw_elementary_functions.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "convertbase.h"
 /*--------------------------------------------------------------------------*/
-int sci_base2dec(char *fname, int* _piKey)
+
+int sci_base2dec(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -32,66 +32,66 @@ int sci_base2dec(char *fname, int* _piKey)
     double *dResults = NULL;
     int i = 0;
 
-    CheckRhs(2, 2);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
+        return 1;
     }
 
-    if (!isStringType(_piKey, piAddressVarOne))
+    if (!isStringType(pvApiCtx, piAddressVarOne))
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A matrix of string expected.\n"), fname, 1);
-        return 0;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of string expected.\n"), fname, 1);
+        return 1;
     }
 
-    sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
-    if(sciErr.iErr)
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+    if (sciErr.iErr)
     {
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         printError(&sciErr, 0);
-        return 0;
+        return 1;
     }
 
-    if (!isDoubleType(_piKey, piAddressVarTwo))
+    if (!isDoubleType(pvApiCtx, piAddressVarTwo))
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 2);
-        return 0;
+        Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 2);
+        return 1;
     }
 
-    if (!isScalar(_piKey, piAddressVarTwo))
+    if (!isScalar(pvApiCtx, piAddressVarTwo))
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d.\n"), fname, 2);
-        return 0;
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+        return 1;
     }
 
-    if (getScalarDouble(_piKey, piAddressVarTwo, &dValue) != 0)
+    if (getScalarDouble(pvApiCtx, piAddressVarTwo, &dValue) != 0)
     {
         Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
+        return 1;
     }
 
     iValue = (int)dValue;
     if (dValue != (double)iValue)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 2);
-        return 0;
+        return 1;
     }
 
     if ((iValue < 2) && (iValue > 36))
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d."), fname, 2, 2, 36);
-        return 0;
+        return 1;
     }
 
-    if (getAllocatedMatrixOfString(_piKey, piAddressVarOne, &m, &n, &pStrs) != 0)
+    if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &pStrs) != 0)
     {
         Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
+        return 1;
     }
 
     dResults = (double*)MALLOC(sizeof(double) * (m * n));
@@ -101,7 +101,7 @@ int sci_base2dec(char *fname, int* _piKey)
         pStrs = NULL;
 
         Scierror(999, _("%s: No more memory.\n"), fname);
-        return 0;
+        return 1;
     }
 
     for (i = 0; i < m * n; i++)
@@ -117,15 +117,14 @@ int sci_base2dec(char *fname, int* _piKey)
             dResults = NULL;
 
             Scierror(999, _("%s: Wrong value for input argument(s): Valid base %d representations expected.\n"), fname, iValue);
-            return 0;
-
+            return 1;
         }
     }
 
     freeAllocatedMatrixOfString(m, n, pStrs);
     pStrs = NULL;
 
-    sciErr = createMatrixOfDouble(_piKey, Rhs + 1, m, n, dResults);
+    sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m, n, dResults);
 
     FREE(dResults);
     dResults = NULL;
@@ -133,13 +132,12 @@ int sci_base2dec(char *fname, int* _piKey)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
-        return 0;
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
     }
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
