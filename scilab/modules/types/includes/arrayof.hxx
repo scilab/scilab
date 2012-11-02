@@ -69,6 +69,10 @@ protected :
                 //remove dimension equal to 1
                 m_iDims--;
             }
+            else
+            {
+                break;
+            }
         }
 
         //m_piDims    = new int[m_iDims];
