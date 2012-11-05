@@ -42,7 +42,13 @@ myIcon = SCI + "/modules/xcos/images/palettes/VVsourceAC.png";
 style= struct();
 style.labelPosition = "middle";
 style.verticalLabelPosition = "bottom";
-style.image = "file:" + SCI + "/modules/xcos/images/blocks/SUM.svg";
+sci_url = "file:";
+// escape the c: as /c:
+if getos() == "Windows" then
+    sci_url = sci_url + "/";
+end
+sci_url = sci_url + SCI;
+style.image = sci_url + "/modules/xcos/images/blocks/SUM.svg";
 style.noLabel = "0";
 style.displayedLabel = "My custom block";
 

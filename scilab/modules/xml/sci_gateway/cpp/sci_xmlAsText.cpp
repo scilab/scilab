@@ -60,17 +60,25 @@ int sci_xmlAsText(char *fname, unsigned long fname_len)
 
     pstStrings = list->getContentFromList();
 
-    err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char *const *>(pstStrings));
-    for (int i = 0; i < list->getSize(); i++)
+    if (list->getSize())
     {
-        xmlFree(const_cast < char *>(pstStrings[i]));
+        err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char * const *>(pstStrings));
+        for (int i = 0; i < list->getSize(); i++)
+        {
+            xmlFree(const_cast < char *>(pstStrings[i]));
+        }
+        delete[]pstStrings;
+
+        if (err.iErr)
+        {
+            printError(&err, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
     }
-    delete[]pstStrings;
-    if (err.iErr)
+    else
     {
-        printError(&err, 0);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
-        return 0;
+        createEmptyMatrix(pvApiCtx, Rhs + 1);
     }
 
     LhsVar(1) = Rhs + 1;

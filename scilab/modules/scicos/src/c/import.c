@@ -105,8 +105,8 @@ ScicosImport scicos_imp={
 };
 
 /*--------------------------------------------------------------------------*/
-/* get scicos import ptr return the ptr
- * of the import structure
+/* getscicosimportptr returns a pointer
+ * to the imported structure
  */
 ScicosImport* getscicosimportptr(void)
 {

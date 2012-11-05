@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-08-03 12:20+0000\n"
+"PO-Revision-Date: 2012-10-25 12:43+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16232)\n"
 "Language: ru\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -124,7 +124,7 @@ msgstr "%s: Дескриптор (более) не действителен.\n"
 
 #, c-format
 msgid "%s: Parent entity for destination should be an axes.\n"
-msgstr ""
+msgstr "%s: Родительский объект назначения должен быть осью.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
@@ -646,8 +646,8 @@ msgid "Number of elements must be %d (%d if %s coordinate).\n"
 msgstr "Количество элементов должно быть %d (%d если координата %s).\n"
 
 #, c-format
-msgid "Number of elements must be %d (%d if z coordinate )\n"
-msgstr "Количество элементов должно быть %d (%d если координата z).\n"
+msgid "Number of elements must be %d (%d if z coordinate)\n"
+msgstr "Количество элементов должно быть %d (%d, если координата z)\n"
 
 msgid "Number of rows must be a multiple of 2.\n"
 msgstr "Количество строк должно быть кратно 2.\n"
@@ -763,7 +763,7 @@ msgstr "Неверный размер свойства '%s': ожидался в
 
 #, c-format
 msgid "Wrong value for '%s' property: %d, %d, %d or %d expected.\n"
-msgstr ""
+msgstr "Неверное значение свойства '%s': ожидалось %d, %d, %d или %d.\n"
 
 msgid "Children property can not be modified directly.\n"
 msgstr "Свойство потомка не может быть изменено напрямую.\n"
@@ -986,7 +986,7 @@ msgid "Scilab Graphics module not installed.\n"
 msgstr "Графический модуль Scilab не установлен.\n"
 
 msgid "Press Return to continue ... \n"
-msgstr ""
+msgstr "Нажмите клавишу Enter для продолжения... \n"
 
 msgid "Computing in progress..."
 msgstr "Идёт вычисление..."

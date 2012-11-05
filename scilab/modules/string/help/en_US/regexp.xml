@@ -23,6 +23,7 @@
             [start,end,match]=regexp(input,pattern,[flag])
             [start,end]=regexp(input,pattern,[flag])
             [start,end,match]=regexp(input,pattern,[flag])
+            [start,end,match,foundString]=regexp(input,pattern,[flag])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -67,6 +68,14 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>foundString</term>
+                <listitem>
+                    <para>
+                        The captured parenthesized <literal>subpatterns</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>[flag]</term>
                 <listitem>
                     <para>'o' for matching the pattern once .</para>
@@ -94,6 +103,27 @@ regexp('a!','/((((((((((a))))))))))\041/')
 regexp('ABCC','/^abc$/i')
 regexp('ABC','/ab|cd/i')
 [a b c]=regexp('XABYABBBZ','/ab*/i')
+
+piString="3.14"
+[a,b,c,piStringSplit]=regexp(piString,"/(\d+)\.(\d+)/")
+disp(piStringSplit(1))
+disp(piStringSplit(2))
+
+[a,b,c,d]=regexp('xabyabbbz','/ab(.*)b(.*)/')
+size(d)
+
+
+
+// get host name from URL
+myURL="http://www.scilab.org/download/";
+[a,b,c,d]=regexp(myURL,'@^(?:http://)?([^/]+)@i')
+
+
+str='foobar: 2012';
+// Using named subpatterns
+[a,b,c,d]=regexp(str,'/(?P<name>\w+): (?P<digit>\d+)/')
+d(1)=="foobar"
+d(2)=="2012"
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -104,4 +134,14 @@ regexp('ABC','/ab|cd/i')
             </member>
         </simplelist>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.10</revnumber>
+                <revremark>A new output argument, foundString, has been added to retrieve subpatterns matches.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
 </refentry>

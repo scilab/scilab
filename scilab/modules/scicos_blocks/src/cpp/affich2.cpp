@@ -45,21 +45,6 @@ SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
     char ***pstValue = NULL;
     char pstConv[128];
 
-    //get xcos object ID
-    int blockHashCode;
-    int type = GetOparType(block, 1);
-
-    if (type == SCSREAL_N)
-    {
-        // getting the current block hashcode (linked to the AfficheBlock#getObjectsParameters() method).
-        blockHashCode = (int)*(double *)GetOparPtrs(block, 1);
-    }
-    else
-    {
-        // this is a not applicable block so does nothing.
-        return;
-    }
-
     iRowsIn = GetInPortRows(block, 1);
     iColsIn = GetInPortCols(block, 1);
 
@@ -68,96 +53,96 @@ SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
     //functions
     switch (flag)
     {
-    case StateUpdate:          //state evolution
-    case ReInitialization:
-        // Getting the allocated area
-        pstValue = (char ***)block->work[0];
+        case StateUpdate:          //state evolution
+        case ReInitialization:
+            // Getting the allocated area
+            pstValue = (char ***)block->work[0];
 
-        for (i = 0; i < iRowsIn; i++)
-        {
-            for (j = 0; j < iColsIn; j++)
+            for (i = 0; i < iRowsIn; i++)
             {
-                int iDigit = GetIparPtrs(block)[3];
-                int iPrec = GetIparPtrs(block)[4];
+                for (j = 0; j < iColsIn; j++)
+                {
+                    int iDigit = GetIparPtrs(block)[3];
+                    int iPrec = GetIparPtrs(block)[4];
 
-                double dblScale = pow((double)10, iPrec);
-                double dblTemp = pdblReal[i + (j * iRowsIn)] * dblScale;
-                double dblValue = C2F(sciround) (&dblTemp) / dblScale;
-                char pstFormat[10];
+                    double dblScale = pow((double)10, iPrec);
+                    double dblTemp = pdblReal[i + (j * iRowsIn)] * dblScale;
+                    double dblValue = C2F(sciround) (&dblTemp) / dblScale;
+                    char pstFormat[10];
 
 #if _MSC_VER
-                //"%0.2f"
-                sprintf_s(pstFormat, 10, "%%%d.%df", iDigit, iPrec);
-                sprintf_s(pstConv, 128, pstFormat, dblValue);
+                    //"%0.2f"
+                    sprintf_s(pstFormat, 10, "%%%d.%df", iDigit, iPrec);
+                    sprintf_s(pstConv, 128, pstFormat, dblValue);
 #else
-                sprintf(pstFormat, "%%%d.%df", iDigit, iPrec);
-                sprintf(pstConv, pstFormat, dblValue);
+                    sprintf(pstFormat, "%%%d.%df", iDigit, iPrec);
+                    sprintf(pstConv, pstFormat, dblValue);
 #endif
-                pstValue[i][j] = strdup(pstConv);
+                    pstValue[i][j] = strdup(pstConv);
+                }
             }
-        }
 
-        try
-        {
-            AfficheBlock::setValue(getScilabJavaVM(), blockHashCode, pstValue, iRowsIn, iColsIn);
-        }
-        catch(const GiwsException::JniException & exception)
-        {
-            /* 
-             * put a simulation error message.
-             */
-            Coserror(exception.whatStr().c_str());
-        }
-        break;
-
-    case Initialization:       //init
-        pstValue = (char ***)MALLOC(sizeof(char **) * iRowsIn);
-
-        for (i = 0; i < iRowsIn; i++)
-        {
-            pstValue[i] = (char **)MALLOC(sizeof(char *) * iColsIn);
-
-            for (j = 0; j < iColsIn; j++)
+            try
             {
-#if _MSC_VER
-                sprintf_s(pstConv, 128, "%0.2f", 0.0);
-#else
-                sprintf(pstConv, "%0.2f", 0.0);
-#endif
-                pstValue[i][j] = strdup(pstConv);
+                AfficheBlock::setValue(getScilabJavaVM(), block->label, pstValue, iRowsIn, iColsIn);
             }
-        }
+            catch (const GiwsException::JniException & exception)
+            {
+                /*
+                 * put a simulation error message.
+                 */
+                Coserror(exception.whatStr().c_str());
+            }
+            break;
 
-        try
-        {
-            AfficheBlock::setValue(getScilabJavaVM(), blockHashCode, pstValue, iRowsIn, iColsIn);
-        }
-        catch(const GiwsException::JniException & exception)
-        {
-            /* 
-             * put a simulation error message.
-             */
-            Coserror(exception.whatStr().c_str());
-        }
+        case Initialization:       //init
+            pstValue = (char ***)MALLOC(sizeof(char **) * iRowsIn);
 
-        // storing the allocated area on the block work field.
-        block->work[0] = pstValue;
-        break;
+            for (i = 0; i < iRowsIn; i++)
+            {
+                pstValue[i] = (char **)MALLOC(sizeof(char *) * iColsIn);
 
-    case Ending:
-        // Getting the allocated area
-        pstValue = (char ***)block->work[0];
+                for (j = 0; j < iColsIn; j++)
+                {
+#if _MSC_VER
+                    sprintf_s(pstConv, 128, "%0.2f", 0.0);
+#else
+                    sprintf(pstConv, "%0.2f", 0.0);
+#endif
+                    pstValue[i][j] = strdup(pstConv);
+                }
+            }
 
-        for (i = 0; i < iRowsIn; i++)
-        {
-            FREE(pstValue[i]);
-        }
-        FREE(pstValue);
-        break;
+            try
+            {
+                AfficheBlock::setValue(getScilabJavaVM(), block->label, pstValue, iRowsIn, iColsIn);
+            }
+            catch (const GiwsException::JniException & exception)
+            {
+                /*
+                 * put a simulation error message.
+                 */
+                Coserror(exception.whatStr().c_str());
+            }
 
-    default:
-        break;
+            // storing the allocated area on the block work field.
+            block->work[0] = pstValue;
+            break;
+
+        case Ending:
+            // Getting the allocated area
+            pstValue = (char ***)block->work[0];
+
+            for (i = 0; i < iRowsIn; i++)
+            {
+                FREE(pstValue[i]);
+            }
+            FREE(pstValue);
+            break;
+
+        default:
+            break;
     }
 }
 
-//      
+//

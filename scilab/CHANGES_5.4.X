@@ -7,11 +7,14 @@ Improvements
 
 * A warning has been added for 1./x and 1.\x syntax clarification.
 
+* A new output argument has been added to the function regexp to retrieve
+  subpatterns matches. See SEP #86.
+
 
 Xcos
 =====
 
-* Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the 
+* Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
 
 * Bug #10434 fixed - loadXcosLibs changed the predef value.
@@ -28,6 +31,9 @@ Xcos
 * Bug #11919 fixed - DLSS block with empty matrix as parameters made Scilab crash.
 
 * Bug #11963 fixed - input port in superblock was corrupted.
+
+* Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
+                     NullPointerException.
 
 * Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
 
@@ -46,12 +52,16 @@ Bug fixes
 * Bug #11474 fixed - save_format help page was still refering to the old save
                      format. Use the SEP #64 content.
 
+* Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
+
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
 
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
+
+* Bug #11962 fixed - event_handler may be called on wrong figure_id.
 
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
@@ -60,11 +70,17 @@ Bug fixes
 * Bug #11981 fixed - Smooth french help page had a wrong declaration
                      (colonnes => lignes).
 
+* Bug #11986 fixed - Wrong xclick behaviour on keyboard input fixed.
+
 * Bug #11991 fixed - Under Windows, some empty lines were added by csvWrite.
 
 * Bug #11999 fixed - Blank lines ignored by default by csvRead / read_csv.
 
 * Bug #12003 fixed - Fix a typo in the spreadsheet module.
+
+* Bug #12033 fixed - assert_checkalmostequal was failing with two %inf values.
+
+* Bug #12043 fixed - Fix a typo in the ATOMS module help pages.
 
 
 
@@ -170,7 +186,7 @@ Graphics
 
 * Bug #8241 fixed - Graphical properties were not always inherited.
 
-* Bug #8250, #10567, #10614 fixed - Artefacts dropped on 
+* Bug #8250, #10567, #10614 fixed - Artefacts dropped on
                                     vectorial exports (EPS/PDF/SVG).
 
 * Bug #8705 fixed - Some specific graphics could not be saved.
@@ -1632,7 +1648,7 @@ Bug Fixes
 
 * Bug #9540 fixed - MKL Pentium 4 target was not downloaded by installer under Windows.
 
-* Bug #9542 fixed - Under Windows, during export operation, the file could be locked by 
+* Bug #9542 fixed - Under Windows, during export operation, the file could be locked by
                     another process.
 
 * Bug #9543 fixed - Scilab did not use the default DocumentBuilderFactory

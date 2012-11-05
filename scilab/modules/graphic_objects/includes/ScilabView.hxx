@@ -23,6 +23,10 @@ extern "C"
     void ScilabNativeView__createObject(char const* pstId);
     void ScilabNativeView__deleteObject(char const* pstId);
     void ScilabNativeView__updateObject(char const* pstId, int iProperty);
+    void ScilabNativeView__setCurrentFigure(char const* pstId);
+    void ScilabNativeView__setCurrentSubWin(char const* pstId);
+    void ScilabNativeView__setCurrentObject(char const* pstId);
+    int ScilabNativeView__getValidDefaultFigureId();
 }
 
 class GRAPHIC_OBJECTS_IMPEXP ScilabView
@@ -61,6 +65,7 @@ public :
     static bool   existsFigureId(int id);
     static char const*  getFigureFromIndex(int figureNumber);
     static bool   isEmptyFigureList(void);
+    static int getValidDefaultFigureId();
 
     static char const*  getCurrentFigure(void);
     static void   setCurrentFigure(char const* UID);
