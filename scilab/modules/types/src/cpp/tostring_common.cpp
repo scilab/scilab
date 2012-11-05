@@ -89,7 +89,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
 
     if (ISNAN(_dblVal) || !finite(_dblVal))
     {
-        _pDF->iWidth =5;       //" nan" or " inf"
+        _pDF->iWidth = 5;      //" nan" or " inf"
         _pDF->iPrec = 0;
         return;
     }
@@ -98,11 +98,13 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
 
     //compute len of entire part
     if (dblEnt == 0)
-    {                           //[-1, 1]
+    {
+        //[-1, 1]
         iNbDigit = (int)fabs(floor(log10(dblAbs)));
 
         if (iNbDigit >= (iPrecNeeded - 2) || _pDF->bExp)
-        {                       //exponant
+        {
+            //exponant
             _pDF->bExp = true;
             iTotalLen = BLANK_SIZE + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + (int)log10((double)iNbDigit) + 1;
             _pDF->iWidth = iPrecNeeded;
@@ -119,7 +121,8 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
         double dblTemp = log10(dblEnt);
 
         if (dblTemp > (iPrecNeeded - 2) || _pDF->bExp)
-        {                       //exponant mode
+        {
+            //exponant mode
             if (dblTemp == 0)
             {
                 dblTemp = 1;    //no incidence on value, just to allow log10(dblTemp)
@@ -225,14 +228,17 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
     }
 
     if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
-    {                           //do not print if _bPrintOne == false && _dblVal == 1
+    {
+        //do not print if _bPrintOne == false && _dblVal == 1
         if (ISNAN(_dblVal))
-        {                       //NaN
-            os_swprintf(pwstOutput, 32, L"%ls%*s", pwstSign, _pDF->iPrec, L"Nan");
+        {
+            //NaN
+            os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Nan");
         }
         else if (!finite(_dblVal))
-        {                       //Inf
-            os_swprintf(pwstOutput, 32, L"%ls%*s", pwstSign, _pDF->iPrec, L"Inf");
+        {
+            //Inf
+            os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Inf");
         }
         else if (_pDF->bExp)
         {
@@ -312,9 +318,11 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
 
     // *_postr << "|%" << _iTotalWitdh << "%|";
     if (_dblR == 0)
-    {                           //no real part
+    {
+        //no real part
         if (_dblI == 0)
-        {                       //no imaginary part
+        {
+            //no imaginary part
 
             //0
             DoubleFormat df;
@@ -322,7 +330,8 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
             addDoubleValue(&ostemp, 0, &df);
         }
         else
-        {                       //imaginary part
+        {
+            //imaginary part
 
             //I
             DoubleFormat df;
@@ -337,9 +346,11 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
         }
     }
     else
-    {                           //real part
+    {
+        //real part
         if (_dblI == 0)
-        {                       //no imaginary part
+        {
+            //no imaginary part
 
             //R
             DoubleFormat df;
@@ -350,7 +361,8 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
             addDoubleValue(&ostemp, _dblR, &df);
         }
         else
-        {                       //imaginary part
+        {
+            //imaginary part
 
             //R
             DoubleFormat df;
