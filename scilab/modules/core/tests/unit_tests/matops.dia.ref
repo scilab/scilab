@@ -101,3 +101,10 @@ v([%f %f],[%f %f])=[];
 if or(v<>v_ref) then bugmes();quit;end
 v = [(1) (2) (3)];
 if or(v <> [1 2 3]) then bugmes();quit;end
+assert_checkequal([]-[],[]);
+a=matrix(1:9,3,3);
+assert_checkequal(a(3,2,1),6);
+assert_checkequal(a(8),8);
+assert_checkerror("a(3,3,3)", msprintf(_("Invalid index.\n")));
+assert_checkerror("a(2,4,1)", msprintf(_("Invalid index.\n")));
+assert_checkerror("a(11)", msprintf(_("Invalid index.\n")));

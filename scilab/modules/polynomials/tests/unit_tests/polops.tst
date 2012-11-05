@@ -712,3 +712,8 @@ if or(a<>a_ref) then pause,end
 a = [%s, 2*%s];
 a(2) = 1;
 assert_checkequal(a, [%s,1]);
+
+-%s;
+a=1+%s-%s^2;
+b=-a;
+assert_checkequal(b,-1-%s+%s^2);
