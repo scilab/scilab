@@ -117,13 +117,6 @@ int sci_taucs_chget(char* fname, unsigned long l)
         C->rowind[i]++;
     }
 
-    if (! test_size_for_sparse(2 , C->m, 0, nnz, &pl_miss)) // 0 for real
-    {
-        taucs_ccs_free(C);
-        Scierror(999, _("%s: No more memory : increase stacksize %d supplementary words needed.\n"), fname, pl_miss);
-        return 1;
-    }
-
     sciErr = createSparseMatrix(pvApiCtx, 2, C->m, C->n, nnz, C->colptr, C->rowind, C->values);
     if (sciErr.iErr)
     {

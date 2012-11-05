@@ -18,6 +18,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include "stricmp.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -30,22 +31,22 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_arc_drawing_method_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_arc_drawing_method_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int arcDrawingMethod = 0;
 
-    if ( !( valueType == sci_strings ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "arc_drawing_method");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( isStringParamEqual( stackPointer, "nurbs" ) )
+    if (stricmp((char*)_pvData, "nurbs") == 0)
     {
         arcDrawingMethod = 0;
     }
-    else if ( isStringParamEqual( stackPointer, "lines" ) )
+    else if (stricmp((char*)_pvData, "lines") == 0)
     {
         arcDrawingMethod = 1;
     }
@@ -56,7 +57,6 @@ int set_arc_drawing_method_property(void* _pvCtx, char* pobjUID, size_t stackPoi
     }
 
     status = setGraphicObjectProperty(pobjUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
-
     if (status == TRUE)
     {
         return SET_PROPERTY_SUCCEED;

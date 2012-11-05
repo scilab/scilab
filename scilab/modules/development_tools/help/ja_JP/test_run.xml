@@ -40,7 +40,7 @@
                         </listitem>
                         <listitem>
                             <para>
-                                ATOMSモジュールの名前("module_lycee", "nisp", ...). 
+                                ATOMSモジュールの名前("module_lycee", "nisp", ...).
                                 処理を行うには,このモジュールはtest_run()をコールする前に
                                 ロードしておく必要があります.
                             </para>
@@ -133,7 +133,7 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>nonreg_test</term>
+                            <term>nonreg_tests</term>
                             <listitem>
                                 <para>回帰的でないテストのみを実行し,
                                     ユニットテストをスキップします
@@ -141,7 +141,7 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>unit_test</term>
+                            <term>unit_tests</term>
                             <listitem>
                                 <para>
                                     ユニットテストのみを実行し,回帰的でないテストをスキップします
@@ -209,7 +209,7 @@
             テストが実行される度に, .diaファイルが生成され,
             実行された全コマンドとコンソールに表示されたメッセージのリストが
             出力されます.
-            スクリプトが実行された後, この.dia ファイルは, 
+            スクリプトが実行された後, この.dia ファイルは,
             .tst ファイルと同じディレクトリに置かれた.dia.refファイルで
             と比較されます.
             2つのファイルが異なる場合,そのテストは失敗となります.
@@ -359,7 +359,7 @@
         </itemizedlist>
         <para>
             アルゴリズムは以下のようになります.
-            まず, <literal>.ref</literal> が探されます. 
+            まず, <literal>.ref</literal> が探されます.
             このファイルが存在しない場合,
             現在のプラットフォームに応じた以下の
             プラットフォーム毎の<literal>.ref</literal>ファイルが実行されます.
@@ -384,7 +384,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 全てのテストを実行
 // =============================================
 
@@ -454,7 +454,7 @@ test_run([],[],['no_check_ref','mode_nw']);
 test_run('SCI/contrib/toolbox_skeleton')
  ]]></programlisting>
         
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // XML Xunitファイルにエクスポート
 test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");
 test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
@@ -496,7 +496,7 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
                         新しいオプションとして追加されました
                     </para>
                     <para>
-                        <literal>CLI SHELL MODE</literal> タグが追加されました. 
+                        <literal>CLI SHELL MODE</literal> タグが追加されました.
                         <literal>JVM NOT MANDATORY</literal> (まだサポート中)を置き換えます
                     </para>
                     <para>

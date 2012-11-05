@@ -39,7 +39,7 @@ int get_auto_dimensionning_property(void* _pvCtx, char* pobjUID)
 
     if (piAutoDimensioning == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_dimensionning");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_dimensionning");
         return -1;
     }
 

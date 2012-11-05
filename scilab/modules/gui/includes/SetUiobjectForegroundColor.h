@@ -24,6 +24,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true is the set has been correcty done
  */
-GUI_IMPEXP int SetUiobjectForegroundColor(void* _pvCtx, char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUiobjectForegroundColor(void* _pvCtx, char *pobjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UIOBJECT_FOREGROUNDCOLOR_H__ */

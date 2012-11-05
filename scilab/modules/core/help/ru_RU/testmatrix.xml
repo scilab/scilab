@@ -8,7 +8,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>[y]=testmatrix(name,n)</synopsis>
+        <synopsis>[y] = testmatrix(name, n)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -29,7 +29,7 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                        матрица размером <literal>n</literal> x <literal>n</literal>
+                        матрица размером <varname>n</varname> на <varname>n</varname>
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,24 +45,32 @@
                 <term>testmatrix('magi',n)</term>
                 <listitem>
                     <para>
-                        возвращает магический квадрат размером <literal>n</literal> x <literal>n</literal>.
+                        возвращает магический квадрат размером <varname>n</varname> на <varname>n</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>testmatrix('frk',n)</term>
                 <listitem>
-                    <para>возвращает матрицу Франка:</para>
+                    <para>возвращает матрицу Франка.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>testmatrix('hilb',n)</term>
                 <listitem>
                     <para>
-                        инверсия матрицы Гильберта размером <literal>n</literal> x <literal>n</literal>. Элементы матрицы Гильберта равны <literal>Hij= 1/(i+j-1)</literal>.
+                        инверсия матрицы Гильберта размером <varname>n</varname> на <varname>n</varname>. Элементы матрицы Гильберта равны <literal>Hij= 1/(i+j-1)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+testmatrix('magi',3)
+testmatrix('frk',10)
+testmatrix('hilb',4)
+ ]]></programlisting>
     </refsection>
 </refentry>

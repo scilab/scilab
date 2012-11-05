@@ -32,18 +32,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_arrow_size_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_arrow_size_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double arrowSize = 0.;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "arrow_size");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    arrowSize = getDoubleFromStack( stackPointer );
+    arrowSize = ((double*)_pvData)[0];
 
     status = setGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE__, &arrowSize, jni_double, 1);
 

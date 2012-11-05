@@ -36,18 +36,18 @@
  */
 
 /*------------------------------------------------------------------------*/
-int set_labels_font_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_labels_font_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int fontColor = 0;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "labels_font_color");
         return SET_PROPERTY_ERROR;
     }
 
-    fontColor = (int) getDoubleFromStack(stackPointer);
+    fontColor = (int)((double*)_pvData)[0];
 
     status = setGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, &fontColor, jni_int, 1);
 

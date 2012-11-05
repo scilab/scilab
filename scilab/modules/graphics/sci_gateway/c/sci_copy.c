@@ -125,7 +125,7 @@ int sci_copy(char *fname, unsigned long fname_len)
 
         hdlparent = (unsigned long) * l2; /* on recupere le pointeur d'objet par le handle*/
         psubwinparenttargetUID = (char*)getObjectFromHandle(hdlparent);
-        if ( psubwinparenttargetUID == NULL)
+        if (psubwinparenttargetUID == NULL)
         {
             Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
             return 0;

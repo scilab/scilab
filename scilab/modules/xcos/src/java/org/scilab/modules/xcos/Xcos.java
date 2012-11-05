@@ -883,7 +883,7 @@ public final class Xcos {
         });
     }
 
-    private Object lookupForCell(final String[] uid) {
+    public Object lookupForCell(final String[] uid) {
         final ArrayDeque<String> deque = new ArrayDeque<String>(Arrays.asList(uid));
 
         // specific case with an empty array

@@ -31,18 +31,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_font_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_font_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int value = 0;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "font_color");
         return SET_PROPERTY_ERROR;
     }
 
-    value = (int) getDoubleFromStack( stackPointer );
+    value = (int) ((double*)_pvData)[0];
 
     status = setGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, &value, jni_int, 1);
 

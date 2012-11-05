@@ -41,7 +41,7 @@ int get_y_label_property(void* _pvCtx, char* pobjUID)
 
     if (labelUID == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_label");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_label");
         return -1;
     }
 

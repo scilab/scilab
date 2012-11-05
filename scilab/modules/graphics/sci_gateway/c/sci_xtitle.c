@@ -36,7 +36,7 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xtitle( char * fname, unsigned long fname_len )
+int sci_xtitle(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -49,8 +49,10 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     int  box = 0;
     BOOL isBoxSpecified = FALSE;
     char * psubwinUID = NULL;
-    static rhs_opts opts[] = { { -1, "boxed", "i" , 0, 0, 0},
-        { -1, NULL   , NULL, 0, 0, 0}
+    static rhs_opts opts[] =
+    {
+        { -1, "boxed", -1, 0, 0, NULL},
+        { -1, NULL, -1, 0, 0, NULL}
     };
 
     if (nbInputArgument(pvApiCtx) <= 0)
@@ -65,7 +67,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     nbLabels = nbInputArgument(pvApiCtx);
 
     /* get the given options from the name in opts */
-    if ( !get_optionals(fname, opts) )
+    if (!getOptionals(pvApiCtx, fname, opts))
     {
         /* error */
         return 0;
@@ -74,10 +76,10 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     /* compatibility with previous version in which box was put */
     /* at the fourth position */
 
-    if ( nbInputArgument(pvApiCtx) == 4 )
+    if (nbInputArgument(pvApiCtx) == 4)
     {
         int type = getInputArgumentType(pvApiCtx, 4);
-        if ( type == 1 || type == 8 )/* double or int */
+        if (type == 1 || type == 8)/* double or int */
         {
             int n = 0, m = 0;
             sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr4);
@@ -109,14 +111,14 @@ int sci_xtitle( char * fname, unsigned long fname_len )
         }
     }
 
-    if ( opts[0].position != -1 && !isBoxSpecified )
+    if (opts[0].iPos != -1 && !isBoxSpecified)
     {
         /* check if "box" is in the options */
-        box = opts[0].l;
-        if ( opts[0].m * opts[0].n != 1 )
+        getScalarBoolean(pvApiCtx, opts[0].piAddr, &box);
+        if (opts[0].iRows != 1 || opts[0].iCols != 1)
         {
             /* check size */
-            Scierror( 999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname );
+            Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 1;
         }
         nbLabels--; /* it is not a label text */
@@ -124,7 +126,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
 
     psubwinUID = (char*)getOrCreateDefaultSubwin();
 
-    for ( narg = 1 ; narg <= nbLabels ; narg++)
+    for (narg = 1 ; narg <= nbLabels ; narg++)
     {
         int m = 0, n = 0;
         char **Str = NULL;
@@ -144,7 +146,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
             return 1;
         }
 
-        if ( m*n == 0 )
+        if (m * n == 0)
         {
             continue;
         }
@@ -188,7 +190,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
 #endif
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
-    C2F(putlhsvar)();
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

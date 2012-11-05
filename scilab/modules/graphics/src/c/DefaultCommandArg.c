@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,154 +21,181 @@
 
 /*------------------------------------------------------------------------*/
 /* The default values */
-static double def_rect[4]      = {0.0,0.0,0.0,0.0} ;
-static char   def_strf[4]      = DEFSTRF           ;
-static char   def_legend[]     = "X@Y@Z"           ;
-static double def_zminmax[2]   = {0.,0.}           ;
-static int    def_nax[4]       = {2,10,2,10}       ;
-static int    def_colminmax[2] = {0,0}             ;
-static int    def_colout[2]    = {-1,-1}           ;
-static BOOL   def_with_mesh    = FALSE             ;
-static char   def_logflags[4]  = DEFLOGFLAGS       ;
+static double def_rect[4]      = {0.0, 0.0, 0.0, 0.0};
+static char   def_strf[4]      = DEFSTRF          ;
+static char   def_legend[]     = "X@Y@Z"          ;
+static double def_zminmax[2]   = {0., 0.}          ;
+static int    def_nax[4]       = {2, 10, 2, 10}      ;
+static int    def_colminmax[2] = {0, 0}            ;
+static int    def_colout[2]    = { -1, -1}          ;
+static BOOL   def_with_mesh    = FALSE            ;
+static char   def_logflags[4]  = DEFLOGFLAGS      ;
 /*------------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------------*/
-double * getDefRect( void ) { return def_rect ; }
-/*------------------------------------------------------------------------*/
-char * getDefStrf( void ) { return def_strf ; }
-/*------------------------------------------------------------------------*/
-char * getDefLegend( void ) { return def_legend ; }
-/*------------------------------------------------------------------------*/
-double * getDefZminMax( void ) { return def_zminmax ; }
-/*------------------------------------------------------------------------*/
-int * getDefNax( void ) { return def_nax ; }
-/*------------------------------------------------------------------------*/
-int * getDefColMinMax( void ) { return def_colminmax ; }
-/*------------------------------------------------------------------------*/
-int * getDefColOut( void ) { return def_colout ; }
-/*------------------------------------------------------------------------*/
-BOOL getDefWithMesh( void ) { return def_with_mesh ; }
-/*------------------------------------------------------------------------*/
-char * getDefLogFlags( void ) { return def_logflags ; }
-/*------------------------------------------------------------------------*/
-
-/*------------------------------------------------------------------------*/
-void setDefRect( const double newDef[4] )
+double* getDefRect(void)
 {
-  def_rect[0] = newDef[0] ;
-  def_rect[1] = newDef[1] ;
-  def_rect[2] = newDef[2] ;
-  def_rect[3] = newDef[3] ;
+    return def_rect ;
 }
 /*------------------------------------------------------------------------*/
-void setDefStrf( const char newDef[4] )
+char * getDefStrf(void)
 {
-  def_strf[0] = newDef[0] ;
-  def_strf[1] = newDef[1] ;
-  def_strf[2] = newDef[2] ;
-  /* last element shoud be /0 */
+    return def_strf ;
 }
 /*------------------------------------------------------------------------*/
-void setDefZminMax( const double newDef[2] )
+char * getDefLegend(void)
 {
-  def_zminmax[0] = newDef[0] ;
-  def_zminmax[1] = newDef[1] ;
+    return def_legend ;
 }
 /*------------------------------------------------------------------------*/
-void setDefNax( const int newDef[4] )
+double* getDefZminMax(void)
 {
-  def_nax[0] = newDef[0] ;
-  def_nax[1] = newDef[1] ;
-  def_nax[2] = newDef[2] ;
-  def_nax[3] = newDef[3] ;
+    return def_zminmax ;
 }
 /*------------------------------------------------------------------------*/
-void setDefColMinMax( const int  newDef[2] )
+int * getDefNax(void)
 {
-  def_colminmax[0] = newDef[0] ;
-  def_colminmax[1] = newDef[1] ;
+    return def_nax ;
 }
 /*------------------------------------------------------------------------*/
-void setDefColOut( const int newDef[2] )
+int * getDefColMinMax(void)
 {
-  def_colout[0] = newDef[0] ;
-  def_colout[1] = newDef[1] ;
+    return def_colminmax ;
 }
 /*------------------------------------------------------------------------*/
-void setDefWithMesh( BOOL newDef )
+int * getDefColOut(void)
 {
-  def_with_mesh = newDef ;
+    return def_colout ;
 }
 /*------------------------------------------------------------------------*/
-void setDefLogFlags( const char newDef[4] )
+BOOL getDefWithMesh(void)
 {
-  def_logflags[0] = newDef[0] ;
-  def_logflags[1] = newDef[1] ;
-  def_logflags[2] = newDef[2] ;
-  /* last element shoud be /0 */
+    return def_with_mesh ;
+}
+/*------------------------------------------------------------------------*/
+char * getDefLogFlags(void)
+{
+    return def_logflags ;
 }
 /*------------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------------*/
-void reinitDefStrf( void )
+void setDefRect(const double newDef[4])
 {
-  strcpy( def_strf, DEFSTRF ) ;
+    def_rect[0] = newDef[0];
+    def_rect[1] = newDef[1];
+    def_rect[2] = newDef[2];
+    def_rect[3] = newDef[3];
 }
 /*------------------------------------------------------------------------*/
-void reinitDefStrfN( void )
+void setDefStrf(const char newDef[4])
 {
-  strcpy( def_strf, DEFSTRFN ) ;
+    def_strf[0] = newDef[0];
+    def_strf[1] = newDef[1];
+    def_strf[2] = newDef[2];
+    /* last element shoud be /0 */
 }
 /*------------------------------------------------------------------------*/
-void reinitDefLogFlags( void )
+void setDefZminMax(const double newDef[2])
 {
-  strcpy( def_logflags, DEFLOGFLAGS ) ;
+    def_zminmax[0] = newDef[0];
+    def_zminmax[1] = newDef[1];
+}
+/*------------------------------------------------------------------------*/
+void setDefNax(const int newDef[4])
+{
+    def_nax[0] = newDef[0];
+    def_nax[1] = newDef[1];
+    def_nax[2] = newDef[2];
+    def_nax[3] = newDef[3];
+}
+/*------------------------------------------------------------------------*/
+void setDefColMinMax(const int  newDef[2])
+{
+    def_colminmax[0] = newDef[0];
+    def_colminmax[1] = newDef[1];
+}
+/*------------------------------------------------------------------------*/
+void setDefColOut(const int newDef[2])
+{
+    def_colout[0] = newDef[0];
+    def_colout[1] = newDef[1];
+}
+/*------------------------------------------------------------------------*/
+void setDefWithMesh(BOOL newDef)
+{
+    def_with_mesh = newDef;
+}
+/*------------------------------------------------------------------------*/
+void setDefLogFlags(const char newDef[4])
+{
+    def_logflags[0] = newDef[0];
+    def_logflags[1] = newDef[1];
+    def_logflags[2] = newDef[2];
+    /* last element shoud be /0 */
 }
 /*------------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------------*/
-BOOL isDefRect( const double * rect )
+void reinitDefStrf(void)
 {
-  return rect == def_rect ;
+    strcpy(def_strf, DEFSTRF);
 }
 /*------------------------------------------------------------------------*/
-BOOL isDefStrf( const char * strf )
+void reinitDefStrfN(void)
 {
-  return strf == def_strf ;
+    strcpy(def_strf, DEFSTRFN);
 }
 /*------------------------------------------------------------------------*/
-BOOL isDefLegend( const char * legend )
+void reinitDefLogFlags(void)
 {
-  return legend == def_legend ;
+    strcpy(def_logflags, DEFLOGFLAGS);
 }
 /*------------------------------------------------------------------------*/
-BOOL isDefZminMax( const double * zminmax )
+
+/*------------------------------------------------------------------------*/
+BOOL isDefRect(const double* rect)
 {
-  return zminmax == def_zminmax ;
+    return rect == def_rect;
 }
 /*------------------------------------------------------------------------*/
-BOOL isDefNax( const int * nax )
+BOOL isDefStrf(const char * strf)
 {
-  return nax == def_nax ;
+    return strf == def_strf;
 }
 /*------------------------------------------------------------------------*/
-BOOL isDefColMinMax( const int * colminmax )
+BOOL isDefLegend(const char * legend)
 {
-  return colminmax == def_colminmax ;
+    return legend == def_legend;
 }
 /*------------------------------------------------------------------------*/
-BOOL isDefColOut( const int * colout )
+BOOL isDefZminMax(const double* zminmax)
 {
-  return colout == def_colout ;
+    return zminmax == def_zminmax;
 }
 /*------------------------------------------------------------------------*/
-BOOL isDefWithMesh( const BOOL withmesh )
+BOOL isDefNax(const int * nax)
 {
-  return withmesh == def_with_mesh ;
+    return nax == def_nax;
 }
 /*------------------------------------------------------------------------*/
-BOOL isDefLogFlags( const char * logflags  )
+BOOL isDefColMinMax(const int * colminmax)
 {
-  return logflags == def_logflags ;
+    return colminmax == def_colminmax;
+}
+/*------------------------------------------------------------------------*/
+BOOL isDefColOut(const int * colout)
+{
+    return colout == def_colout;
+}
+/*------------------------------------------------------------------------*/
+BOOL isDefWithMesh(const BOOL withmesh)
+{
+    return withmesh == def_with_mesh;
+}
+/*------------------------------------------------------------------------*/
+BOOL isDefLogFlags(const char * logflags)
+{
+    return logflags == def_logflags;
 }
 /*------------------------------------------------------------------------*/

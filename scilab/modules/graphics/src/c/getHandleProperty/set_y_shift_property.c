@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_y_shift_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_y_shift_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL result = FALSE;
     double* shiftCoordinates = NULL;
@@ -41,13 +41,13 @@ int set_y_shift_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int v
     int iNumElements = 0;
     int* piNumElements = &iNumElements;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "y_shift");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow > 1 && nbCol > 1 )
+    if (nbRow > 1 && nbCol > 1)
     {
         Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "y_shift", "0x0, 1xn, nx1");
         return SET_PROPERTY_ERROR;
@@ -61,15 +61,15 @@ int set_y_shift_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int v
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbElement != 0 && nbElement != iNumElements) /* we can specify [] (null vector) to reset to default */
+    if (nbElement != 0 && nbElement != iNumElements) /* we can specify [] (null vector) to reset to default */
     {
         Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "y_shift", 0, iNumElements);
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbElement != 0 )
+    if (nbElement != 0)
     {
-        shiftCoordinates = (double*) stk(stackPointer);
+        shiftCoordinates = (double*)_pvData;
 
         result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, shiftCoordinates, jni_double_vector, iNumElements);
 

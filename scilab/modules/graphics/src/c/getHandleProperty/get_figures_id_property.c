@@ -28,9 +28,9 @@
 /*------------------------------------------------------------------------*/
 int get_figures_id_property(void* _pvCtx, char* pobjUID)
 {
-    int   nbFig  = 0    ;
-    int * ids    = NULL ;
-    int   status = -1   ;
+    int   nbFig  = 0   ;
+    int * ids    = NULL;
+    int   status = -1  ;
 
     if (pobjUID != NULL)
     {
@@ -41,19 +41,19 @@ int get_figures_id_property(void* _pvCtx, char* pobjUID)
 
     nbFig = sciGetNbFigure() ; /* get the number of opened windows */
 
-    ids = MALLOC( nbFig * sizeof(int) ) ;
-    if ( ids == NULL )
+    ids = MALLOC(nbFig * sizeof(int));
+    if (ids == NULL)
     {
-        Scierror(999, _("%s: No more memory.\n"),"get_figures_id_property");
-        return -1 ;
+        Scierror(999, _("%s: No more memory.\n"), "get_figures_id_property");
+        return -1;
     }
 
-    sciGetFiguresId( ids ) ;
+    sciGetFiguresId(ids);
 
     status = sciReturnRowIntVector(_pvCtx, ids, nbFig);
 
-    FREE( ids ) ;
+    FREE(ids);
 
-    return status ;
+    return status;
 }
 /*------------------------------------------------------------------------*/

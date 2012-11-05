@@ -19,39 +19,43 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include "stricmp.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
-
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-int set_figure_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_figure_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
 
-    if ( !( valueType == sci_strings ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "figure_style");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    if ( isStringParamEqual( stackPointer, "old" ) )
+    if (stricmp((char*)_pvData, "old") == 0)
     {
-        Scierror(999, _("Old graphic mode is no longer available. Please refer to the set help page.\n")) ;
-        return SET_PROPERTY_ERROR ;
+        FREE(_pvData);
+        Scierror(999, _("Old graphic mode is no longer available. Please refer to the set help page.\n"));
+        return SET_PROPERTY_ERROR;
     }
-    else if ( isStringParamEqual( stackPointer, "new" ) )
+    else if (stricmp((char*)_pvData, "new") == 0)
     {
+        FREE(_pvData);
         /* graphic mode must be new */
         /* nothing to do */
-        return SET_PROPERTY_UNCHANGED ;
+        return SET_PROPERTY_UNCHANGED;
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "figure_style", "'old'", "'new'");
 
     }
-    return SET_PROPERTY_ERROR ;
+
+    return SET_PROPERTY_ERROR;
 }
 /*------------------------------------------------------------------------*/

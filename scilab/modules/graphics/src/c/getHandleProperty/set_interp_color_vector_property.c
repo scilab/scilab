@@ -33,13 +33,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_interp_color_vector_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_interp_color_vector_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int iNumElements = 0;
     int* piNumElements = &iNumElements;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "interp_color_vector");
         return SET_PROPERTY_ERROR;
@@ -57,13 +57,11 @@ int set_interp_color_vector_property(void* _pvCtx, char* pobjUID, size_t stackPo
         return SET_PROPERTY_ERROR;
     }
 
-    if ( ( nbCol == 3 && iNumElements == 3 ) ||
-            ( nbCol == 4 && iNumElements == 4 ) )
+    if ((nbCol == 3 && iNumElements == 3) ||
+            (nbCol == 4 && iNumElements == 4))
     {
         int tmp[4];
-        stk( stackPointer );
-
-        copyDoubleVectorToIntFromStack( stackPointer, tmp, nbCol );
+        copyDoubleVectorToIntFromStack(_pvData, tmp, nbCol);
 
         status = setGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR__, tmp, jni_int_vector, nbCol);
 

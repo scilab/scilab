@@ -40,7 +40,7 @@ int get_font_angle_property(void* _pvCtx, char* pobjUID)
 
     if (pdblFontAngle == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"font_angle");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_angle");
         return -1;
     }
 

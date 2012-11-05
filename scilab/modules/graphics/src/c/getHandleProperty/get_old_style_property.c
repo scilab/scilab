@@ -35,7 +35,7 @@ int get_old_style_property(void* _pvCtx, char* pobjUID)
         return -1;
     }
 
-  /* no more old style */
-  return sciReturnString(_pvCtx, "off");
+    /* no more old style */
+    return sciReturnString(_pvCtx, "off");
 }
 /*------------------------------------------------------------------------*/

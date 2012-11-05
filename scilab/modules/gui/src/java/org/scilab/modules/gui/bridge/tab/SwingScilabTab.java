@@ -1275,8 +1275,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     public void setEventHandler(String funName) {
         disableEventHandler();
-        Integer figureId = (Integer) GraphicController.getController().getProperty(getId(), __GO_ID__);
-        eventHandler = new ScilabEventListener(funName, figureId);
+        eventHandler = new ScilabEventListener(funName, getId());
         if (eventEnabled) {
             enableEventHandler();
         }

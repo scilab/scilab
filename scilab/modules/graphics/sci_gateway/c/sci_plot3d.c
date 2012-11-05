@@ -29,14 +29,14 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_plot3d( char * fname, unsigned long fname_len )
+int sci_plot3d(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
     static double  ebox_def [6] = { 0, 1, 0, 1, 0, 1};
-    double *ebox = ebox_def ;
+    double *ebox = ebox_def;
     static int iflag_def[3] = {2, 2, 4};
     int *iflag = iflag_def;
-    double  alpha_def = 35.0 , theta_def = 45.0 ;
+    double  alpha_def = 35.0 , theta_def = 45.0;
     double *alpha = &alpha_def, *theta = &theta_def;
     int m1 = 0, n1 = 0,  m2 = 0, n2 = 0, m3 = 0, n3 = 0;
     int m3n = 0, n3n = 0, m3l = 0;
@@ -46,15 +46,15 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 
     static rhs_opts opts[] =
     {
-        { -1, "alpha", "?", 0, 0, 0},
-        { -1, "ebox", "?", 0, 0, 0},
-        { -1, "flag", "?", 0, 0, 0},
-        { -1, "leg", "?", 0, 0, 0},
-        { -1, "theta", "?", 0, 0, 0},
-        { -1, NULL, NULL, 0, 0}
+        { -1, "alpha", -1, 0, 0, NULL},
+        { -1, "ebox", -1, 0, 0, NULL},
+        { -1, "flag", -1, 0, 0, NULL},
+        { -1, "leg", -1, 0, 0, NULL},
+        { -1, "theta", -1, 0, 0, NULL},
+        { -1, NULL, -1, 0, 0, NULL}
     };
 
-    char * legend = NULL ;
+    char * legend = NULL;
 
     int* piAddr1  = NULL;
     int* piAddr2  = NULL;
@@ -79,13 +79,13 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 
     CheckInputArgument(pvApiCtx, 3, 8);
 
-    if ( get_optionals(fname, opts) == 0)
+    if (getOptionals(pvApiCtx, fname, opts) == 0)
     {
         ReturnArguments(pvApiCtx);
         return 0;
     }
 
-    if ( FirstOpt() < 4)
+    if (FirstOpt() < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 4);
         return -1;
@@ -175,7 +175,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
                     return 1;
                 }
 
-                if ( m3l != 2 )
+                if (m3l != 2)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: List of size %d expected.\n"),
                              fname, 2, m3l, 2);
@@ -213,7 +213,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
                 }
 
                 zcol  = (l3n);
-                if (m3n * n3n != n3 &&  m3n*n3n != m3 * n3)
+                if (m3n * n3n != n3 &&  m3n * n3n != m3 * n3)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: %d or %d expected.\n"), fname, 3, n3, m3 * n3);
                     return 1;
@@ -225,11 +225,11 @@ int sci_plot3d( char * fname, unsigned long fname_len )
                 *   which has been modified to do the interpolated shading
                 *    (see the file SCI/modules/graphics/src/c/Plo3d.c
                 */
-                if (m3n*n3n == m3 * n3)
+                if (m3n * n3n == m3 * n3)
                 {
-                    izcol = 2  ;
+                    izcol = 2 ;
                 }
-                break ;
+                break;
             default :
                 OverLoad(3);
                 return 0;
@@ -237,11 +237,11 @@ int sci_plot3d( char * fname, unsigned long fname_len )
     }
     iflag_def[1] = 8;
 
-    GetOptionalDoubleArg(fname, 4, "theta", &theta, 1, opts);
-    GetOptionalDoubleArg(fname, 5, "alpha", &alpha, 1, opts);
-    GetLabels(fname, 6, opts, &legend);
-    GetOptionalIntArg(fname, 7, "flag", &iflag, 3, opts);
-    GetOptionalDoubleArg(fname, 8, "ebox", &ebox, 6, opts);
+    GetOptionalDoubleArg(pvApiCtx, fname, 4, "theta", &theta, 1, opts);
+    GetOptionalDoubleArg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts);
+    GetLabels(pvApiCtx, fname, 6, opts, &legend);
+    GetOptionalIntArg(pvApiCtx, fname, 7, "flag", &iflag, 3, opts);
+    GetOptionalDoubleArg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts);
 
     if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1)
     {
@@ -265,7 +265,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
             return 1;
         }
 
-        if ( m1*n1 <= 1 || m2*n2 <= 1 )
+        if (m1 * n1 <= 1 || m2 * n2 <= 1)
         {
             Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: %s expected.\n"), fname, 2, 3, ">= 2");
             return 1;

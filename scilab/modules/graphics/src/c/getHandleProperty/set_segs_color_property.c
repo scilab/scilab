@@ -33,14 +33,14 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_segs_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_segs_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int iNbSegs = 0;
     int* piNbSegs = &iNbSegs;
     int* segsColors = NULL;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "segs_color");
         return SET_PROPERTY_ERROR;
@@ -54,20 +54,20 @@ int set_segs_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
         return SET_PROPERTY_ERROR;
     }
 
-    if (nbRow*nbCol != 1 && nbRow*nbCol != iNbSegs)
+    if (nbRow * nbCol != 1 && nbRow * nbCol != iNbSegs)
     {
         Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "segs_color", 1, iNbSegs);
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow * nbCol == 1 )
+    if (nbRow * nbCol == 1)
     {
-        int value = (int) getDoubleFromStack( stackPointer );
+        int value = (int) ((double*)_pvData)[0];
 
         /* 1-element array which is internally duplicated */
         status = setGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, &value, jni_int_vector, 1);
     }
-    else if ( nbRow * nbCol == iNbSegs )
+    else if (nbRow * nbCol == iNbSegs)
     {
         segsColors = (int*) MALLOC(iNbSegs * sizeof(int));
 
@@ -77,7 +77,7 @@ int set_segs_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
             return SET_PROPERTY_ERROR;
         }
 
-        copyDoubleVectorToIntFromStack( stackPointer, segsColors, iNbSegs);
+        copyDoubleVectorToIntFromStack(_pvData, segsColors, iNbSegs);
         status = setGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, segsColors, jni_int_vector, iNbSegs);
 
         FREE(segsColors);

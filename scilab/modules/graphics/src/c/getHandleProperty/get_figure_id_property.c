@@ -36,7 +36,7 @@ int get_figure_id_property(void* _pvCtx, char* pobjUID)
     int *piFigureId = &iFigureId;
     getGraphicObjectProperty(pobjUID, __GO_ID__, jni_int, (void **)&piFigureId);
 
-    if ( piFigureId == NULL )
+    if (piFigureId == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "figure_id");
         return -1;

@@ -2,27 +2,27 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="int8">
     <refnamediv>
         <refname>int8 </refname>
-        <refpurpose> conversion au codage entier à 1 octet  </refpurpose>
+        <refpurpose>conversion au codage entier à 1 octet  </refpurpose>
     </refnamediv>
     <refnamediv xml:id="int16">
         <refname>int16</refname>
-        <refpurpose> conversion au codage entier à 2 octets  </refpurpose>
+        <refpurpose>conversion au codage entier à 2 octets  </refpurpose>
     </refnamediv>
     <refnamediv xml:id="int32">
         <refname>int32</refname>
-        <refpurpose> conversion au codage entier à 4 octets  </refpurpose>
+        <refpurpose>conversion au codage entier à 4 octets  </refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint8">
         <refname>uint8 </refname>
-        <refpurpose> conversion au codage entier non signé à 1 octet  </refpurpose>
+        <refpurpose>conversion au codage entier non signé à 1 octet  </refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint16">
         <refname>uint16</refname>
-        <refpurpose> conversion au codage entier non signé à 2 octets  </refpurpose>
+        <refpurpose>conversion au codage entier non signé à 2 octets  </refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint32">
         <refname>uint32</refname>
-        <refpurpose> conversion au codage entier non signé à 4 octets  </refpurpose>
+        <refpurpose>conversion au codage entier non signé à 4 octets  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>

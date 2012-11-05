@@ -15,7 +15,7 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolTooltipString(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolTooltipString(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int objectStyle = -1;
@@ -47,7 +47,7 @@ int SetUicontrolTooltipString(void* _pvCtx, char* sciObjUID, size_t stackPointer
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_TOOLTIPSTRING__, getStringMatrixFromStack(stackPointer), jni_string_vector, nbRow * nbCol);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_TOOLTIPSTRING__, (char**)_pvData, jni_string_vector, nbRow * nbCol);
 
     if (status == TRUE)
     {

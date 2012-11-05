@@ -55,7 +55,7 @@ static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
     int* piAddrstackPointer = NULL;
     double* stackPointer = NULL;
     int i = 0;
-    double * rectVect = NULL;
+    double* rectVect = NULL;
     sciErr = getVarAddressFromPosition(pvApiCtx, attribPos, &piAddrstackPointer);
     if (sciErr.iErr)
     {
@@ -168,8 +168,8 @@ int sci_zoom_rect(char *fname, unsigned long fname_len)
     int *piHidden = &iHidden;
     int i = 0;
 
-    CheckInputArgument(pvApiCtx, 0, 2) ;
-    CheckOutputArgument(pvApiCtx, 0, 1) ;
+    CheckInputArgument(pvApiCtx, 0, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     if (nbInputArgument(pvApiCtx) == 0)
     {
         /* zoom_rect() */

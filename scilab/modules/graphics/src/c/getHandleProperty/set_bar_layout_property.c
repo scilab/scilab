@@ -28,9 +28,9 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_bar_layout_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_bar_layout_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-// FIXME
-  return SET_PROPERTY_ERROR;
+    // FIXME
+    return SET_PROPERTY_ERROR;
 }
 /*------------------------------------------------------------------------*/

@@ -188,8 +188,8 @@
         </variablelist>
         <para>
             <note>
-                Пожалуйста, заметьте, что для некоторых переменных, <function>type</function> вернёт <literal>tlist</literal>
-                или <literal>mlist</literal> в зависимости от внутренней структуры данных. В может быть в случае матрицы с
+                Пожалуйста, заметьте, что для некоторых переменных <function>type</function> вернёт <literal>tlist</literal>
+                или <literal>mlist</literal> в зависимости от внутренней структуры данных. Это так же для случая матрицы с
                 <emphasis role="italic">рациональными</emphasis> значениями, матрицы с элементами <emphasis role="italic">пространства состояний</emphasis>, <emphasis role="italic">гиперматрицы</emphasis> и <emphasis role="italic">структуры</emphasis>. Пожалуйста, используйте  вместо этого <link linkend="typeof">typeof</link>.
             </note>
         </para>

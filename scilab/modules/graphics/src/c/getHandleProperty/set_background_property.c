@@ -31,18 +31,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_background_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_background_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int value = 0;
     BOOL status = FALSE;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "background");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    value = (int)getDoubleFromStack(stackPointer);
+    value = (int)((double*)_pvData)[0];
 
     status = setGraphicObjectProperty(pobjUID, __GO_BACKGROUND__, &value, jni_int, 1);
 

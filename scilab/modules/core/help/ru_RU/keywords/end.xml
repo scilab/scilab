@@ -8,9 +8,32 @@
         <title>Описание</title>
         <para>
             Используется в конце конструкций циклов или условий.
-            Конструкции <literal>for, while, if, select</literal> 
+            Конструкции <literal>for</literal>, <literal>while</literal>, <literal>if</literal>, <literal>select</literal> 
             должны заканчиваться ключевым словом <literal>end</literal>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+a=42
+if a==42 then
+   disp("Ответ на все вопросы.")
+end
+
+i = 0
+while i<5
+   disp("i");
+   i = i + 1;
+end
+
+n=5;
+for i = 1:n
+    for j = 1:n
+        a(i,j) = 1/(i+j-1);
+    end;
+end
+
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

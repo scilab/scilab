@@ -41,7 +41,7 @@ int get_log_flags_property(void* _pvCtx, char* pobjUID)
 
     if (piLogFlag == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"log_flag");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flag");
         return -1;
     }
 

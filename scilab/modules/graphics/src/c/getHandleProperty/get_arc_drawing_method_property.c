@@ -37,7 +37,7 @@ int get_arc_drawing_method_property(void* _pvCtx, char* pobjUID)
 
     if (piArcDrawingMethod == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"arc_drawing_method");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "arc_drawing_method");
         return -1;
     }
 

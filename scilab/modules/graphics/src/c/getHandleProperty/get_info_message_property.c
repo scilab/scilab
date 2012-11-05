@@ -35,9 +35,9 @@ int get_info_message_property(void* _pvCtx, char* pobjUID)
     char *infoMessage = NULL;
     getGraphicObjectProperty(pobjUID, __GO_INFO_MESSAGE__, jni_string, (void **)&infoMessage);
 
-    if ( infoMessage == NULL )
+    if (infoMessage == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "info_message") ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "info_message");
         return -1;
     }
 

@@ -26,7 +26,7 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_swap_handles( char * fname, unsigned long fname_len )
+int sci_swap_handles(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -49,8 +49,8 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
     int i = 0;
     long h = 0;
 
-    CheckInputArgument(pvApiCtx,  2, 2 ) ;
-    CheckOutputArgument(pvApiCtx,  0, 1 ) ;
+    CheckInputArgument(pvApiCtx,  2, 2);
+    CheckOutputArgument(pvApiCtx,  0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx,  1, &piAddrfirstHdlStkIndex);
     if (sciErr.iErr)
@@ -85,10 +85,10 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
     }
 
 
-    if ( firstHdlRow * firstHdlCol != 1 || secondHdlRow * secondHdlCol != 1 )
+    if (firstHdlRow * firstHdlCol != 1 || secondHdlRow * secondHdlCol != 1)
     {
         Scierror(999, _("%s: Routine can only swap two single handles.\n"), fname);
-        return 0 ;
+        return 0;
     }
 
     /* get the two handles and swap them */
@@ -127,8 +127,8 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
         setGraphicObjectRelationship(pstParent_1, pstHandle_2);
         setGraphicObjectRelationship(pstParent_2, pstHandle_1);
     }
-    AssignOutputVariable(pvApiCtx, 1) = 0 ;
+    AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
-    return 0 ;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

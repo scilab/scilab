@@ -18,7 +18,7 @@
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
         <synopsis>
-            n=ndims(A)
+            n = ndims(A)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -27,13 +27,13 @@
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>массив</para>
+                    <para>массив.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>целое число, количество размерностей массива</para>
+                    <para>целое число, количество размерностей массива.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -41,8 +41,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>n=ndims(A)</literal> возвращает количество размерностей массива 
-            <literal>A</literal>. <literal>n</literal> больше либо равно.
+            <code>n = ndims(A)</code> возвращает количество размерностей массива
+            <varname>A</varname>. <varname>n</varname> больше либо равно <literal>2</literal>.
         </para>
     </refsection>
     <refsection>

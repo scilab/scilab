@@ -32,13 +32,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_colored_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_colored_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int b =  (int)FALSE;
 
-    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "colored");
-    if(b == NOT_A_BOOLEAN_VALUE)
+    b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "colored");
+    if (b == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
     }
@@ -51,7 +51,7 @@ int set_colored_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int v
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"colored");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "colored");
         return SET_PROPERTY_ERROR;
     }
 }

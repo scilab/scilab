@@ -37,7 +37,7 @@ int get_outside_colors_property(void* _pvCtx, char* pobjUID)
 
     if (colors == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"outside_colors");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "outside_colors");
         return -1;
     }
 

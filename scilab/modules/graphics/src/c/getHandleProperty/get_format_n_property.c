@@ -38,7 +38,7 @@ int get_format_n_property(void* _pvCtx, char* pobjUID)
 
     if (formatn == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"format_n");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "format_n");
         return -1;
     }
 

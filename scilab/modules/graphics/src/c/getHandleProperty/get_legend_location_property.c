@@ -41,7 +41,7 @@ int get_legend_location_property(void* _pvCtx, char* pobjUID)
 
     if (piLegendLocation == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"legend_location");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "legend_location");
         return -1;
     }
 
@@ -91,7 +91,7 @@ int get_legend_location_property(void* _pvCtx, char* pobjUID)
     }
     else
     {
-        Scierror(999, _("Wrong value for '%s' property.\n"),"legend_location");
+        Scierror(999, _("Wrong value for '%s' property.\n"), "legend_location");
     }
 
     return -1;

@@ -119,13 +119,13 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>nonreg_test</term>
+                            <term>nonreg_tests</term>
                             <listitem>
                                 <para>runs only the non-regression tests, skipping unit tests</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>unit_test</term>
+                            <term>unit_tests</term>
                             <listitem>
                                 <para>Runs only the unit tests, skipping non-regression tests</para>
                             </listitem>
@@ -354,7 +354,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Launch all tests
 // =============================================
 
@@ -424,7 +424,7 @@ test_run([],[],['no_check_ref','mode_nw']);
 test_run('SCI/contrib/toolbox_skeleton')
  ]]></programlisting>
         
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Export to a XML Xunit file
 test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");
 test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");

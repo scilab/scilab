@@ -26,7 +26,7 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 /*--------------------------------------------------------------------------*/
-int sci_drawlater( char * fname, unsigned long fname_len )
+int sci_drawlater(char * fname, unsigned long fname_len)
 {
     int iFalse =  (int)FALSE;
     char* pFigureUID = NULL;

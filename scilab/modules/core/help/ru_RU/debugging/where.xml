@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>[linenum,mac]=where()</synopsis>
+        <synopsis>[linenum, callername] = where()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -18,7 +18,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>mac</term>
+                <term>callername</term>
                 <listitem>
                     <para>вектор-столбец строк</para>
                 </listitem>
@@ -28,17 +28,39 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>[linenum,mac]=where()</literal> возвращает номер строки 
-            <literal>linenum</literal> и имя <literal>mac</literal> такие, что текущая инструкция 
-            была вызвана в строке <literal>linenum(1)</literal> функции
-            <literal>mac(1)</literal>, а <literal>mac(1)</literal> была вызвана в строке
-            <literal>linenum(2)</literal> функции <literal>mac(2)</literal> и так далее.
+            <code>[linenum, callername] = where()</code> возвращает такие номер строки
+            <varname>linenum</varname> и имя <varname>callername</varname>, что текущая инструкция
+            была вызвана в строке <code>linenum(1)</code> функции
+            <code>callername(1)</code>, а <code>callername(1)</code> была вызвана в строке
+            <code>linenum(2)</code> функции <code>callername(2)</code> и так далее.
         </para>
         <para>
-            <literal>mac(i)</literal> -- это, в общем, имя функции, но это может быть также 
+            <code>callername(i)</code> - это, в общем, имя функции, но это может быть также
             <literal>"exec"</literal> или <literal>"execstr"</literal>, если инструкция лежит в  
-            сценарии, исполняемом функцией <literal>exec</literal>, или строковом аргументе функции <literal>execstr</literal>.
+            сценарии, исполняемом функцией <function>exec</function>, или строковом аргументе функции <function>execstr</function>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+function foo()
+         [a,b] = where()
+         disp("Строка:")
+         disp(a);
+         disp("Функция:")
+         disp(b);
+endfunction
+
+function bar()
+         function beer()
+                  foo()
+         endfunction
+         beer()
+endfunction
+
+bar()
+
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

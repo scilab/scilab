@@ -19,7 +19,6 @@
 /* desc : function to modify in Scilab the user_data field of             */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-#include "stack-c.h"
 #include "setHandleProperty.h"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
@@ -27,28 +26,24 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-
+#include "api_scilab.h"
 /*------------------------------------------------------------------------*/
-int set_user_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_user_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-
-    int iUserDataSize = GetDataSize((int)stackPointer) * 2; /* GetDataSize returns the size of the variable in double words */
-    int *piUserData = GetData((int)stackPointer);
+    /*NOT COMPATIBLE WITH SCILAB 6*/
+    int iRhs = getRhsFromAddress(pvApiCtx, (int*)_pvData);
+    int iUserDataSize = GetDataSize(iRhs) * 2; /* GetDataSize returns the size of the variable in double words */
+    int *piUserData = (int*)GetData(iRhs);
 
     BOOL status = FALSE;
 
-    status = setGraphicObjectProperty(pobjUID, __GO_USER_DATA__, piUserData, jni_int_vector, iUserDataSize);
-
-    if (status == TRUE)
-    {
-        return SET_PROPERTY_SUCCEED;
-    }
-    else
+    if (setGraphicObjectProperty(pobjUID, __GO_USER_DATA__, piUserData, jni_int_vector, iUserDataSize) == FALSE)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "user_data");
         return SET_PROPERTY_ERROR;
     }
 
+    return SET_PROPERTY_SUCCEED;
 }
 
 /*------------------------------------------------------------------------*/

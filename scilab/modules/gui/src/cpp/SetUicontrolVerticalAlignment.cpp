@@ -14,7 +14,7 @@
 
 #include "SetUicontrolVerticalAlignment.hxx"
 
-int SetUicontrolVerticalAlignment(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolVerticalAlignment(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* VerticalAlignment can be top, middle or bottom */
 
@@ -27,17 +27,17 @@ int SetUicontrolVerticalAlignment(void* _pvCtx, char* sciObjUID, size_t stackPoi
         Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n")), "VerticalAlignment", "top", "middle", "bottom");
         return SET_PROPERTY_ERROR;
     }
-    if(nbCol != 1 || nbRow == 0)
+    if (nbCol != 1 || nbRow == 0)
     {
         Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n")), "VerticalAlignment", "top", "middle", "bottom");
         return SET_PROPERTY_ERROR;
     }
 
-    alignment = getStringFromStack(stackPointer);
+    alignment = (char*)_pvData;
 
     if (stricmp(alignment, "top") != 0
-        && strcmp(alignment, "middle") != 0
-        && strcmp(alignment, "bottom") != 0)
+            && strcmp(alignment, "middle") != 0
+            && strcmp(alignment, "bottom") != 0)
     {
         /* Wrong string format */
         Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n")), "VerticalAlignment", "top", "middle", "bottom");

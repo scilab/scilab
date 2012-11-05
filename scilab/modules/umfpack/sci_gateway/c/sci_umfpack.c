@@ -58,8 +58,8 @@
   |                                                             |
   |      mb : number of rows of the vector b                    |
   |      nb : number of columns of the vector b                 |
-  |      lb : index of the first element of b in the stack      |
-  |       b : pointer to the vector b (gotten with b = stk(lb)) |
+  |      pdblBR : real part of b                                |
+  |      pdblBI : imaginary part of b                           |
   |                                                             |
   |      Require mb = mA , nb >= 1 in Case 1                    |
   |              mb >= 1 , nb = mA in Case 2                    |
@@ -222,20 +222,21 @@ int sci_umfpack(char* fname, unsigned long l)
         return 1;
     }
 
-    SciSparseToCcsSparse(4, &AA, &A);
+    SciSparseToCcsSparse(&AA, &A);
 
     /* allocate memory for the solution x */
     if (iComplex)
     {
-        sciErr = allocComplexMatrixOfDouble(pvApiCtx, 5, mb, nb, &pdblXR, &pdblXI);
+        sciErr = allocComplexMatrixOfDouble(pvApiCtx, 4, mb, nb, &pdblXR, &pdblXI);
     }
     else
     {
-        sciErr = allocMatrixOfDouble(pvApiCtx, 5, mb, nb, &pdblXR);
+        sciErr = allocMatrixOfDouble(pvApiCtx, 4, mb, nb, &pdblXR);
     }
 
     if (sciErr.iErr)
     {
+        freeCcsSparse(A);
         printError(&sciErr, 0);
         return 1;
     }
@@ -273,6 +274,7 @@ int sci_umfpack(char* fname, unsigned long l)
 
     if ( stat  != UMFPACK_OK )
     {
+        freeCcsSparse(A);
         Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("symbolic factorization"), UmfErrorMes(stat));
         return 1;
     }
@@ -305,6 +307,7 @@ int sci_umfpack(char* fname, unsigned long l)
         {
             umfpack_di_free_numeric(&Numeric);
         }
+        freeCcsSparse(A);
         Scierror(999, _("%s: An error occurred: %s: %s\n"), fname, _("numeric factorization"), UmfErrorMes(stat));
         return 1;
     }
@@ -385,7 +388,9 @@ int sci_umfpack(char* fname, unsigned long l)
         umfpack_di_free_numeric(&Numeric);
     }
 
-    AssignOutputVariable(pvApiCtx, 1) = 5;
+    freeCcsSparse(A);
+
+    AssignOutputVariable(pvApiCtx, 1) = 4;
     ReturnArguments(pvApiCtx);
     return 0;
 }

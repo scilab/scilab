@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-08-07 08:43+0000\n"
+"PO-Revision-Date: 2012-10-06 03:51+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16232)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -652,28 +652,22 @@ msgstr "コピー(&C)"
 msgid "&Paste"
 msgstr "貼り付け(&P)"
 
-#
-# File: scilab_fake_localization_file.c, line: 55
 msgid "&Empty clipboard"
-msgstr "クリップボードを空(&E)"
+msgstr "クリップボードを空にする(&E)"
 
 #
 # File: scilab_fake_localization_file.c, line: 56
 msgid "&Select all"
 msgstr "全て選択(&S)"
 
-#
-# File: scilab_fake_localization_file.c, line: 63
 msgid "Clear &History"
-msgstr "ヒストリークリア(&H)"
+msgstr "履歴を消去(&H)"
 
-#
-# File: scilab_fake_localization_file.c, line: 64
 msgid "Clear C&onsole"
-msgstr "コンソールクリア(&C)"
+msgstr "コンソールを消去(&C)"
 
 msgid "P&references"
-msgstr "プリファレンス(&r)"
+msgstr "設定(&r)"
 
 #
 # File: scilab_fake_localization_file.c, line: 65
@@ -1177,10 +1171,8 @@ msgstr ""
 "disp(\"警告: 事前の警告にも関わらず, 新しいグラフィック機能を有効にしてScilabを使用することを選択しました.  "
 "詳細な情報を得るには,\"\"help usecanvas\"\" と入力してください.\")"
 
-#
-# File: scilab_fake_localization_file.c, line: 64
 msgid "Clear Console"
-msgstr "コンソールクリア"
+msgstr "コンソールを消去"
 
 msgid "Are you sure you want to clear the console ?"
 msgstr "コンソールを消去してもよろしいですか?"
@@ -1188,10 +1180,8 @@ msgstr "コンソールを消去してもよろしいですか?"
 msgid "Do not show this message again"
 msgstr "次回からこのメッセージを表示しない"
 
-#
-# File: scilab_fake_localization_file.c, line: 63
 msgid "Clear History"
-msgstr "ヒストリークリア"
+msgstr "履歴を消去"
 
 #
 # File: scilab_fake_localization_file.c, line: 56
@@ -1639,7 +1629,7 @@ msgstr "%s: この方法ではメニューを加えることができません: 
 
 #, c-format
 msgid "%s: can not add a menu in console in this mode: %s.\n"
-msgstr "%s: この方法ではコンソールにメニューを加えることができません: %s\n"
+msgstr "%s: このモードではコンソールにメニューを加えることができません: %s\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"

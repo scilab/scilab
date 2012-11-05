@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="clean">
     <refnamediv>
         <refname>clean</refname>
-        <refpurpose> cleans matrices (round to zero small entries)    </refpurpose>
+        <refpurpose>cleans matrices (round to zero small entries)    </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -31,7 +31,9 @@
             <varlistentry>
                 <term>epsa, epsr</term>
                 <listitem>
-                    <para>real numbers. Cleaning tolerances (default values resp. <literal>1.d-10</literal> and <literal>1.d-10</literal>).</para>
+                    <para>
+                        real numbers. Cleaning tolerances (default values resp. <literal>1.d-10</literal> and <literal>1.d-10</literal>).
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

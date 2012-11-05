@@ -28,7 +28,7 @@
 #include "getPropertyAssignedValue.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_move( char * fname, unsigned long fname_len )
+int sci_move(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -43,7 +43,7 @@ int sci_move( char * fname, unsigned long fname_len )
     int nbDim = 2;
     BOOL alone = FALSE;
     char* pobjUID = NULL;
-    double * moveVector = NULL;
+    double* moveVector = NULL;
 
     CheckInputArgument(pvApiCtx, 2, 3);
     /*  set or create a graphic window */

@@ -32,18 +32,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_tics_color_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tics_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int ticksColor = 0;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "tics_color");
         return SET_PROPERTY_ERROR;
     }
 
-    ticksColor = (int) getDoubleFromStack(stackPointer);
+    ticksColor = (int)((double*)_pvData)[0];
 
     status = setGraphicObjectProperty(pobjUID, __GO_TICKS_COLOR__, &ticksColor, jni_int, 1);
 

@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * Copyright (C) ENPC
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,7 +16,7 @@
 #define STACK_SCI
 
 #if defined(__SCILAB_TOOLBOX__) && !defined(__INTERNAL_API_SCILAB__) && !defined(__USE_DEPRECATED_STACK_FUNCTIONS__) && !defined(__MEX_INCLUDE__)
-    #error Using stack-c.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack-c.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
+#error Using stack-c.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack-c.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
 #endif
 
 #include <string.h>
@@ -41,11 +41,11 @@ extern "C" {
 #include "stack3.h"
 #include "sci_types.h"
 
-/*-------------------------------------------------
- * structure used for int matrix
- * -------------------------------------------------*/
+    /*-------------------------------------------------
+     * structure used for int matrix
+     * -------------------------------------------------*/
 
-/* a set of define to decode it argument */
+    /* a set of define to decode it argument */
 
 #define I_CHAR 1
 #define I_INT16 2
@@ -54,7 +54,7 @@ extern "C" {
 #define I_UINT16 12
 #define I_UINT32 14
 
-/* a set of define for the associated casts */
+    /* a set of define for the associated casts */
 
 #define IC_CHAR(x) ((char *) (x))
 #define IC_INT16(x) ((short int *) (x))
@@ -63,42 +63,43 @@ extern "C" {
 #define IC_UINT16(x)   ((unsigned short int *) (x))
 #define IC_UINT32(x)  ((unsigned int *) (x))
 
-/**
- * sciintmat
- */
-typedef struct sciintmat {
-	int m,n;
-	int it ; /**< it : 1,2,4,11,12,14  */
-	int l;   /**< if l != -1 then istk(l) == D */
-	void *D;     /**< data : should be casted according to it */
-} SciIntMat ;
+    /**
+     * sciintmat
+     */
+    typedef struct sciintmat
+    {
+        int m, n;
+        int it ; /**< it : 1,2,4,11,12,14  */
+        int l;   /**< if l != -1 then istk(l) == D */
+        void *D;     /**< data : should be casted according to it */
+    } SciIntMat ;
 
 
 
-/*-------------------------------------------------
- * set of defines for interface simplication
- * -------------------------------------------------*/
+    /*-------------------------------------------------
+     * set of defines for interface simplication
+     * -------------------------------------------------*/
 
-static int c1_local=0;
-static int c_local=0;
+    static int c1_local = 0;
+    static int c_local = 0;
 
-static void initial_c1_local(void);
-static void initial_c_local(void);
+    static void initial_c1_local(void);
+    static void initial_c_local(void);
 
-/* Correction Warning variable "c_local" was declared but never referenced */
-/* initial_c_local not used */
-static void initial_c_local(void)
-{
-	initial_c1_local();
-	c_local=0;
-}
-/* Correction Warning variable "c1_local" was declared but never referenced */
-/* initial_c1_local not used */
-static void initial_c1_local(void)
-{
-	initial_c_local();
-	c1_local=0;
-}
+    /* Correction Warning variable "c_local" was declared but never referenced */
+    /* initial_c_local not used */
+    static void initial_c_local(void)
+    {
+        initial_c1_local();
+        c_local = 0;
+    }
+    /* Correction Warning variable "c1_local" was declared but never referenced */
+    /* initial_c1_local not used */
+    static void initial_c1_local(void)
+    {
+        initial_c_local();
+        c1_local = 0;
+    }
 
 
 
@@ -106,7 +107,7 @@ static void initial_c1_local(void)
 #define sadr(l) (((l)/2)+1)
 #define cadr(l) ((l)+(l)+(l)+(l)-3)
 
-/* Top is a variable used in Windows.h */
+    /* Top is a variable used in Windows.h */
 #ifdef Top
 #undef Top
 #endif
@@ -129,7 +130,7 @@ static void initial_c1_local(void)
 #define Lstk(x) (((int *) C2F(vstk).lstk) + x-1 )
 #define Infstk(x) (((int *) C2F(vstk).infstk) + x-1 )
 
-/* to retreive handles on the stack */
+    /* to retreive handles on the stack */
 #define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
 
 #define CheckOpt(first) if ( C2F(checkopt)(first) ) {return 0;}
@@ -164,16 +165,16 @@ static void initial_c1_local(void)
 
 #define OverLoad(n) C2F(overload)((c_local = (n == 0) ? n : n + Top - Rhs, &c_local),fname,(unsigned long)strlen(fname))
 
-/**
- * <long-description>
- *
- * @param n
- * @param ct
- * @param mx
- * @param nx
- * @param lx
- * @return <ReturnValue>
- */
+    /**
+     * <long-description>
+     *
+     * @param n
+     * @param ct
+     * @param mx
+     * @param nx
+     * @param lx
+     * @return <ReturnValue>
+     */
 #define GetRhsVar(n,ct,mx,nx,lx) if (! C2F(getrhsvar)((c_local=n,&c_local),ct,mx,nx,(int *) lx,1L))\
         { return 0;  }
 
@@ -259,22 +260,22 @@ static void initial_c1_local(void)
 
 #endif
 
-/** used for conversion to Scilab internal format **/
+    /** used for conversion to Scilab internal format **/
 
 #define Convert2Sci(x)  C2F(convert2sci)((c_local=x,&c_local))
 
 
-/** Used for calling a scilab function by its name  **/
+    /** Used for calling a scilab function by its name  **/
 
 #define SciString(ibegin,name,mlhs,mrhs) \
     if( ! C2F(scistring)(ibegin,name,mlhs,mrhs,(unsigned long)strlen(name))) return 0;
 
-/** Used for calling a scilab function given as argument **/
+    /** Used for calling a scilab function given as argument **/
 
 #define SciFunction(ibegin,lf,mlhs,mrhs) \
     if( ! C2F(scifunction)(ibegin,lf,mlhs,mrhs)) return 0;
 
-/** used for protecting a call to a Scilab function **/
+    /** used for protecting a call to a Scilab function **/
 
 #define PExecSciFunction(n,mx,nx,lx,name,fsqpenv) \
   if(! C2F(scifunction)((c_local=n,&c_local),mx,nx,lx))\
@@ -282,30 +283,31 @@ static void initial_c1_local(void)
 
 #define Nbvars C2F(intersci).nbvars
 
-/**
- * TODO : need a comment !!!!
- *
- */
+    /**
+     * TODO : need a comment !!!!
+     *
+     */
 #define LhsVar(x) C2F(intersci).lhsvar[x-1]
 
 
-/* used to access data associated to a variable
- * for example when a variable is created with CreateVarFromPtr(...)
- */
+    /* used to access data associated to a variable
+     * for example when a variable is created with CreateVarFromPtr(...)
+     */
 
 #define VarPtr(x) C2F(intersci).lad[x-1]
 
-typedef int (*interfun)(char *fname,unsigned long l);
+    typedef int (*interfun)(char *fname, unsigned long l);
 
-typedef struct tagTabF {
-  interfun f;
-  char *name;
-} TabF;
+    typedef struct tagTabF
+    {
+        interfun f;
+        char *name;
+    } TabF;
 
 
-/*-------------------------------------------------
- * checks properties
- * -------------------------------------------------*/
+    /*-------------------------------------------------
+     * checks properties
+     * -------------------------------------------------*/
 
 #define CheckSquare(pos,m,n) if (! check_square(pos,m,n)) return 0;
 #define CheckVector(pos,m,n) if (! check_vector(pos,m,n)) return 0;
@@ -325,25 +327,27 @@ typedef struct tagTabF {
 #define CheckListScalar(lpos,pos,m,n) if (! check_list_scalar(lpos,pos,m,n)) return 0;
 #define CheckListOneDim(lpos,pos,dim,val,valref) if (! check_list_one_dim(lpos,pos,dim,val,valref)) return 0;
 
-/*-------------------------------------------------
- * structure used for optional arguments in interfaces
- * -------------------------------------------------*/
+    /*-------------------------------------------------
+     * structure used for optional arguments in interfaces
+     * -------------------------------------------------*/
 
-typedef struct rhs_opts__ {
-  int position ; /** stack position : -1 if not present */
-  char *name   ;
-  char *type;
-  int m,n;
-  unsigned long int l;
-} rhs_opts;
+    typedef struct rhs_opts__
+    {
+        int iPos ; /** stack position : -1 if not present */
+        char* pstName;
+        int iType;// -1 not yet defined
+        int iRows;
+        int iCols;
+        int* piAddr;
+    } rhs_opts;
 
-int get_optionals(char *name,rhs_opts opts[]);
+    int get_optionals(char *name, rhs_opts opts[]);
 
 
-/*-------------------------------------
- * get infos without being dependent
- * of stack structure !!! (! WOW !)
- *------------------------------------*/
+    /*-------------------------------------
+     * get infos without being dependent
+     * of stack structure !!! (! WOW !)
+     *------------------------------------*/
 #define getType(il)			*istk(il)
 #define getNumberOfLines(il)		*istk(il+1)
 #define getNumberOfColumns(il)		*istk(il+2)
@@ -353,18 +357,18 @@ int get_optionals(char *name,rhs_opts opts[]);
 #define getElementByAddress(ea)		*stk(ea)
 
 
-/*------------------------------
- * prototypes 
- *-----------------------------*/
+    /*------------------------------
+     * prototypes
+     *-----------------------------*/
 
-/* functions defined in stack-2.c */
+    /* functions defined in stack-2.c */
 
-extern int C2F(firstopt)(void);
-extern int C2F(findopt)(char *, rhs_opts *);
-extern int C2F(isopt)(int *,char *,unsigned long);
-extern int C2F(checkrhs)(char *fname, int *imin, int *imax, unsigned long fname_len);
-extern int C2F(checklhs)(char *fname, int *imin, int *imax, unsigned long fname_len);
-extern void C2F(freeptr)(double *ip[]);
+    extern int C2F(firstopt)(void);
+    extern int C2F(findopt)(char *, rhs_opts *);
+    extern int C2F(isopt)(int *, char *, unsigned long);
+    extern int C2F(checkrhs)(char *fname, int *imin, int *imax, unsigned long fname_len);
+    extern int C2F(checklhs)(char *fname, int *imin, int *imax, unsigned long fname_len);
+    extern void C2F(freeptr)(double *ip[]);
 
 #ifdef __cplusplus
 }

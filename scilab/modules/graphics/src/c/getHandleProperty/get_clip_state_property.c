@@ -39,7 +39,7 @@ int get_clip_state_property(void* _pvCtx, char* pobjUID)
 
     if (piClipState == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_state");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "clip_state");
         return -1;
     }
 

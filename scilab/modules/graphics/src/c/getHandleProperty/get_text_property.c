@@ -41,8 +41,9 @@ int get_text_property(void* _pvCtx, char* pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, (void **) &dimensions);
 
-    if (dimensions == NULL) {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"text");
+    if (dimensions == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "text");
         return -1;
     }
 
@@ -50,7 +51,7 @@ int get_text_property(void* _pvCtx, char* pobjUID)
 
     if (textMatrix == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"text");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "text");
         return -1;
     }
 

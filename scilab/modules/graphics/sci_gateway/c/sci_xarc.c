@@ -203,7 +203,7 @@ int sci_xarc(char *fname, unsigned long fname_len)
 
     getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piCurColor);
 
-    if ( strcmp(fname, "xarc") == 0 )
+    if (strcmp(fname, "xarc") == 0)
     {
         Objarc (&angle1, &angle2, (l1), (l2), (l3), (l4), &curcolor, NULL, FALSE, TRUE, &hdl);
     }

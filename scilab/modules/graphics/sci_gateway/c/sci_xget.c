@@ -37,7 +37,7 @@
 #include "getHandleProperty.h"
 #include "CurrentFigure.h"
 /*--------------------------------------------------------------------------*/
-int xgetg( char * str, char * str1, int * len, int  lx0, int lx1);
+int xgetg(char * str, char * str1, int * len, int  lx0, int lx1);
 /*--------------------------------------------------------------------------*/
 int sci_xget(char *fname, unsigned long fname_len)
 {
@@ -54,7 +54,7 @@ int sci_xget(char *fname, unsigned long fname_len)
 
     BOOL keyFound = FALSE;
 
-    if ( nbInputArgument(pvApiCtx) <= 0 )
+    if (nbInputArgument(pvApiCtx) <= 0)
     {
         sci_demo(fname, fname_len);
         return 0;
@@ -80,14 +80,14 @@ int sci_xget(char *fname, unsigned long fname_len)
     /* check if key is valid */
     for (i = 0; i < NUMSETFONC ; i++)
     {
-        if ( strcmp((l1), KeyTab_[i]) == 0 )
+        if (strcmp((l1), KeyTab_[i]) == 0)
         {
-            keyFound = TRUE ;
-            break ;
+            keyFound = TRUE;
+            break;
         }
     }
 
-    if ( !keyFound )
+    if (!keyFound)
     {
         Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, (l1));
         return -1;
@@ -125,23 +125,24 @@ int sci_xget(char *fname, unsigned long fname_len)
         flagx = 0;
     }
 
-    if ( strcmp(l1, "fpf") == 0 || strcmp(l1, "auto clear") == 0)
+    if (strcmp(l1, "fpf") == 0 || strcmp(l1, "auto clear") == 0)
     {
         int bufl;
+        char buf[4096];
         /*     special case for global variables set */
-        xgetg( (l1), C2F(cha1).buf, &bufl, m1, bsiz);
+        xgetg((l1), buf, &bufl, m1, bsiz);
         if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, bufl * one, (const char **)&l3))
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 1;
         }
 
-        strncpy((l3), C2F(cha1).buf, bufl);
+        strncpy((l3), buf, bufl);
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
         return 0;
     }
-    else if ( strcmp(l1, "colormap") == 0)
+    else if (strcmp(l1, "colormap") == 0)
     {
         char *pobjUID = NULL;
         // Force figure creation if none exists.
@@ -155,7 +156,7 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         return 0;
     }
-    else if ( strcmp(l1, "mark") == 0)
+    else if (strcmp(l1, "mark") == 0)
     {
         char *pobjUID = (char*)getOrCreateDefaultSubwin();
         int iMarkStyle = 0;
@@ -175,7 +176,7 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         return 0;
     }
-    else if ( strcmp(l1, "mark size") == 0)
+    else if (strcmp(l1, "mark size") == 0)
     {
         char *pobjUID = (char*)getOrCreateDefaultSubwin();
         get_mark_size_property(pvApiCtx, pobjUID);
@@ -185,7 +186,7 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         return 0;
     }
-    else if ( strcmp(l1, "line style") == 0)
+    else if (strcmp(l1, "line style") == 0)
     {
         get_line_style_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
@@ -338,9 +339,9 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         return 0;
     }
-    else if (   strcmp(l1, "color") == 0
-                || strcmp(l1, "foreground") == 0
-                || strcmp(l1, "pattern") == 0)
+    else if (  strcmp(l1, "color") == 0
+               || strcmp(l1, "foreground") == 0
+               || strcmp(l1, "pattern") == 0)
     {
         get_foreground_property(pvApiCtx, (char*)getOrCreateDefaultSubwin());
 
@@ -424,7 +425,7 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         return 0;
     }
-    else if ( strcmp(l1, "clipgrf") == 0 )
+    else if (strcmp(l1, "clipgrf") == 0)
     {
         /* clip_state : 0 = off, 1 = on */
         int iClipState = 0;
@@ -438,7 +439,7 @@ int sci_xget(char *fname, unsigned long fname_len)
 
         return 0;
     }
-    else if ( strcmp(l1, "clipoff") == 0 )
+    else if (strcmp(l1, "clipoff") == 0)
     {
         int iClipState = 0;
         int* piClipState = &iClipState;
@@ -469,14 +470,14 @@ int sci_xget(char *fname, unsigned long fname_len)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int xgetg( char * str, char * str1, int * len, int  lx0, int lx1)
+int xgetg(char * str, char * str1, int * len, int  lx0, int lx1)
 {
-    if ( strcmp(str, "fpf") == 0)
+    if (strcmp(str, "fpf") == 0)
     {
         strncpy(str1, getFPF(), 32);
         *len = (int) strlen(str1);
     }
-    else if ( strcmp(str, "auto clear") == 0)
+    else if (strcmp(str, "auto clear") == 0)
     {
         int iAutoClear = 0;
         int* piAutoClear = &iAutoClear;

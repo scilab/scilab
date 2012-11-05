@@ -59,7 +59,7 @@ void TransposeMatrix(double A[], int ma, int na, double At[]);
 * @param[in,out]
 * @return
 */
-int sci_sparse_to_ccs_sparse(int num, SciSparse *A, CcsSparse *B);
+int SciSparseToCcsSparse(SciSparse *A, CcsSparse *B);
 
 /**
 * Comments ???
@@ -82,29 +82,7 @@ int is_sparse_upper_triangular(SciSparse *A);
 * @param[in,out]
 * @return
 */
-int spd_sci_sparse_to_taucs_sparse(int num, SciSparse *A, taucs_ccs_matrix *B);
-
-/**
-* Comments ???
-* @param[in]
-* @param[in]
-* @param[in]
-* @param[in]
-* @param[in,out]
-* @return
-*/
-int test_size_for_sparse(int pos, int m, int it, int nel, int * pl_miss) ;
-
-/**
-* Comments ???
-* @param[in]
-* @param[in]
-* @param[in]
-* @param[in]
-* @param[in,out]
-* @return
-*/
-int test_size_for_mat(int pos, int m, int n, int it, int * pl_miss) ;
+int spd_sci_sparse_to_taucs_sparse(SciSparse *A, taucs_ccs_matrix *B);
 
 /**
 * Comments ???
@@ -147,5 +125,19 @@ void cmplx_residu_with_prec(SciSparse *A,
                             double br[], double bi[],
                             double rr[], double ri[],
                             double *rn);
+
+/**
+* Free array allocated in SciSparseToCcsSparse()
+* @param[in] : CcsSparse sparse filled by SciSparseToCcsSparse()
+* @return
+*/
+void freeCcsSparse(CcsSparse _Sp);
+
+/**
+* Free array allocated in spd_sci_sparse_to_taucs_sparse()
+* @param[in] : CcsSparse sparse filled by spd_sci_sparse_to_taucs_sparse()
+* @return
+*/
+void freeTaucsSparse(taucs_ccs_matrix _Sp);
 
 #endif /* __COMMON_UMFPACK_H__ */

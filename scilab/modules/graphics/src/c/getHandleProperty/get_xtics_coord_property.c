@@ -39,7 +39,7 @@ int get_xtics_coord_property(void* _pvCtx, char* pobjUID)
 
     if (xTicksCoords == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"xtics_coord");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "xtics_coord");
         return -1;
     }
 

@@ -40,7 +40,7 @@ static int getInitialRectangle(double initRect[4])
     int rectNbCol = 0;
     int i = 0;
     int nbDims = 0;
-    double * rect = NULL;
+    double* rect = NULL;
 
     /* Initial rect is always in first position */
     //get variable address
@@ -178,7 +178,7 @@ static int returnRectAndButton(const double *_piJavaValues, int _iSelectedRectSi
         return 1;
     }
 
-    for ( i = 0; i < _iSelectedRectSize / 2; i++)
+    for (i = 0; i < _iSelectedRectSize / 2; i++)
     {
         j = i + _iSelectedRectSize / 2;
         (rectStackPointer)[i] = _piJavaValues[i + 1];

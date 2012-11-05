@@ -32,7 +32,7 @@
 #include "CurrentObject.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_newaxes( char * fname, unsigned long fname_len )
+int sci_newaxes(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
