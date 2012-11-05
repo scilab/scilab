@@ -174,7 +174,7 @@ msgstr ""
 msgid "neldermead - Output Command"
 msgstr ""
 
-msgid "neldermead - Dimensionnality"
+msgid "neldermead - Dimensionality"
 msgstr ""
 
 msgid "nmplot - Han #1"
@@ -462,7 +462,7 @@ msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为N维数组。\n"
 
 #, c-format

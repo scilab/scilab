@@ -185,7 +185,7 @@ msgstr "neldermead — змінна Розенброка"
 msgid "neldermead - Output Command"
 msgstr "neldermead — команда виводу"
 
-msgid "neldermead - Dimensionnality"
+msgid "neldermead - Dimensionality"
 msgstr "neldermead — розмірність"
 
 msgid "nmplot - Han #1"
@@ -490,7 +490,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати N-вимірний "
 "масив.\n"

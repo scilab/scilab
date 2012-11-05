@@ -84,6 +84,7 @@ Bug fixes
 
 * Bug #12043 fixed - Fix a typo in the ATOMS module help pages.
 
+* Bug #12050 fixed - Fix a typo: dimensionnal => dimensional.
 
 
                     Changes between version 5.3.3 and 5.4.0

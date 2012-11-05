@@ -168,7 +168,7 @@
             This set of commands allows to manage a simplex made of k&gt;=n+1
             points in a n-dimensional space. This component is the building block for
             a class of direct search optimization methods such as the Nelder-Mead
-            algorithm or Torczon's Multi-Dimensionnal Search.
+            algorithm or Torczon's Multi-Dimensional Search.
         </para>
         <para>
             A simplex is designed as a collection of k&gt;=n+1 vertices. Each

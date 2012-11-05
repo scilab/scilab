@@ -78,7 +78,7 @@ function M=generic_i_hm(default_value,varargin)
   end
 
 
-  //convert N-dimensionnal indexes to 1-D and extend dims if necessary
+  //convert N-dimensional indexes to 1-D and extend dims if necessary
   [Ndims,I]=convertindex(list(dims,size(N)),varargin(1:$-2));
   Ndims=matrix(Ndims,-1,1)
 

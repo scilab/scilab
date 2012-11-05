@@ -217,7 +217,7 @@ msgstr ""
 msgid "neldermead - Output Command"
 msgstr ""
 
-msgid "neldermead - Dimensionnality"
+msgid "neldermead - Dimensionality"
 msgstr ""
 
 msgid "nmplot - Han #1"
@@ -510,7 +510,7 @@ msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 # File: macros/derivative.sci, line: 32
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤:  應為 N-維 診陣列.\n"
 
 #
