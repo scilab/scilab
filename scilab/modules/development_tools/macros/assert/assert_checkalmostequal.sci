@@ -156,13 +156,17 @@ function areequal = assert_arealmostequal ( computed , expected , reltol , absto
   if ( comptype == "matrix" ) then
     areclose = ( norm ( creg - ereg ) <= reltol * max(norm(ereg),norm(creg) ) + abstol )
   else
-    if (creg==[]&ereg==[]) then
-       areclose=%t
-    else
-       entries = ( abs(creg-ereg) <= reltol * max(abs(ereg),abs(creg)) + abstol )
-       // Compute the global condition from the entries conditions
-       areclose = and(entries)
-    end
+      if (creg==[]&ereg==[]) then
+          areclose=%t
+      elseif (creg<>[]&ereg==[]) then
+          areclose=%f
+      elseif (creg==[]&ereg<>[]) then
+          areclose=%f
+      else
+          entries = ( abs(creg-ereg) <= reltol * max(abs(ereg),abs(creg)) + abstol )
+          // Compute the global condition from the entries conditions
+          areclose = and(entries)
+      end
   end
   // The regular values must be almost equal and 
   // * the +%inf must be at the same place,
