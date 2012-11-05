@@ -78,6 +78,8 @@ Bug fixes
 
 * Bug #12003 fixed - Fix a typo in the spreadsheet module.
 
+* Bug #12022 fixed - ftuneq had a bad example.
+
 * Bug #12033 fixed - assert_checkalmostequal was failing with two %inf values.
 
 * Bug #12043 fixed - Fix a typo in the ATOMS module help pages.
