@@ -75,3 +75,12 @@ txt = mgetl("SCI/modules/fileio/tests/unit_tests/text-UTF8BOM.txt");
 if and(size(txt) <> [12 1]) then bugmes();quit;end
 r = "Scilab is a numerical computational package developed since 1990 by researchers from the INRIA and the Ecole nationale des ponts et chaussees (ENPC). It is, since the creation of the Scilab consortium in May 2003, developed and maintained by the INRIA.";
 if r <> txt(1) then bugmes();quit;end
+file_1 = TMPDIR+'/test_binary_1.bin';
+fid = mopen(file_1,'wb');
+mput(1996,'l');
+mputstr('Scilab');
+mclose(fid);
+fid = mopen(file_1,'rb');
+assert_checkequal(mget(1,'l'),1996);
+assert_checkequal(mgetstr(6),"Scilab");
+mclose(fid);
