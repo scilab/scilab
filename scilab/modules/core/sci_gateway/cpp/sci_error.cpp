@@ -29,51 +29,51 @@ using namespace types;
 
 Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(_iRetCount != 1)
+    if (_iRetCount != 1)
     {
         ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"error", 1);
         return Function::Error;
     }
 
-    if(in.size() != 1 && in.size() != 2)
+    if (in.size() != 1 && in.size() != 2)
     {
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"error", 1, 2);
         return Function::Error;
     }
 
-    if(in.size() == 1)
+    if (in.size() == 1)
     {
         // RHS == 1
-        if(in[0]->isString() == false && in[0]->isDouble() == false)
+        if (in[0]->isString() == false && in[0]->isDouble() == false)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d.\n"), L"error", 1);
             return Function::Error;
         }
 
-        if(in[0]->isString() == true)
+        if (in[0]->isString() == true)
         {
-            if(in[0]->getAs<types::String>()->getSize() == 1)
+            if (in[0]->getAs<types::String>()->getSize() == 1)
             {
-                ScierrorW(DEFAULT_ERROR_CODE, in[0]->getAs<types::String>()->get(0));
+                ScierrorW(DEFAULT_ERROR_CODE, L"%ls", in[0]->getAs<types::String>()->get(0));
                 return Function::Error;
             }
             else
             {
-                ScierrorW(999,_W("%ls: Wrong size for input argument #%d: A string expected.\n"), L"error", 1);
+                ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A string expected.\n"), L"error", 1);
                 return Function::Error;
             }
         }
         else
         {
-            if(in[0]->getAs<Double>()->getSize() != 1)
+            if (in[0]->getAs<Double>()->getSize() != 1)
             {
                 ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"error", 1);
                 return Function::Error;
             }
 
-            if(in[0]->getAs<Double>()->getReal(0, 0) <= 0 || in[0]->getAs<Double>()->isComplex())
+            if (in[0]->getAs<Double>()->getReal(0, 0) <= 0 || in[0]->getAs<Double>()->isComplex())
             {
-                ScierrorW(999,_W("%ls: Wrong value for input argument #%d: Value greater than 0 expected.\n"), L"error", 1);
+                ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Value greater than 0 expected.\n"), L"error", 1);
                 return Function::Error;
             }
 
@@ -89,33 +89,33 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
     else
     {
         // RHS = 2 according to previous check.
-        if(in[0]->isDouble() == false)
+        if (in[0]->isDouble() == false)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d.\n"), L"error", 1);
             return Function::Error;
         }
 
-        if(in[1]->isString() == false)
+        if (in[1]->isString() == false)
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d.\n"), L"error", 2);
             return Function::Error;
         }
 
-        if(in[0]->getAs<Double>()->getSize() != 1)
+        if (in[0]->getAs<Double>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"error", 1);
             return Function::Error;
         }
 
-        if(in[1]->getAs<types::String>()->getSize() != 1)
+        if (in[1]->getAs<types::String>()->getSize() != 1)
         {
             ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"error", 2);
             return Function::Error;
         }
 
-        if(in[0]->getAs<Double>()->getReal(0, 0) <= 0 || in[0]->getAs<Double>()->isComplex())
+        if (in[0]->getAs<Double>()->getReal(0, 0) <= 0 || in[0]->getAs<Double>()->isComplex())
         {
-            ScierrorW(999,_W("%ls: Wrong value for input argument #%d: Value greater than 0 expected.\n"), L"error", 1);
+            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Value greater than 0 expected.\n"), L"error", 1);
             return Function::Error;
         }
 
