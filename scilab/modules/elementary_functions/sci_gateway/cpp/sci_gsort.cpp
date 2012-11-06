@@ -39,12 +39,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    if (_iRetCount > 1 && in[0]->isSparse())
-    {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"gsort", 1, 1);
-        return types::Function::Error;
-    }
-    else if (_iRetCount > 2)
+    if (_iRetCount > 2)
     {
         ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"gsort", 1, 2);
         return types::Function::Error;
