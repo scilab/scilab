@@ -57,7 +57,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     private String outName;
     private String urlBase;
     private boolean linkToTheWeb;
-    private boolean needsExamples;
+    private boolean hasExamples;
     private int warnings;
     private int nbFiles;
 
@@ -507,11 +507,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String fileName = mapId.get(currentId);
         String needsExampleAttr = attributes.get("needs-examples");
         createHTMLFile(currentId, fileName, refpurpose, contents);
-        if (!needsExamples && (needsExampleAttr == null || !needsExampleAttr.equals("no"))) {
+        if (!hasExamples && (needsExampleAttr == null || !needsExampleAttr.equals("no"))) {
             warnings++;
             System.err.println("Warning (should be fixed): no example in " + currentFileName);
         } else {
-            needsExamples = false;
+            hasExamples = false;
         }
         String rp = encloseContents("span", "refentry-description", refpurpose);
         String str = encloseContents("li", encloseContents("a", new String[] {"href", fileName, "class", "refentry"}, refname) + " &#8212; " + rp);
@@ -624,7 +624,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         } else if (parent.equals("section")) {
             sectionTitle = contents;
         } else if (parent.equals("refsection") && Pattern.matches("^[ \\t]*ex[ea]mpl[eo].*", contents.toLowerCase())) {
-            needsExamples = true;
+            hasExamples = true;
             return encloseContents("h3", clazz, contents);
         } else {
             return encloseContents("h3", clazz, contents);
@@ -850,8 +850,10 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             if (role.equals("xml")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "xmlcode", xmlLexer.convert(HTMLXMLCodeHandler.getInstance(), contents)));
             } else if (role.equals("c") || role.equals("cpp") || role.equals("code_gateway")) {
+                hasExamples = true;
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", cLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
             } else if (role.equals("java")) {
+                hasExamples = true;
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", javaLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
             } else if (role.equals("exec")) {
                 String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
@@ -863,7 +865,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 }
                 str = encloseContents("div", "programlisting", code);
             } else if (role.equals("no-scilab-exec")) {
-                needsExamples = true;
+                hasExamples = true;
                 String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 str = encloseContents("div", "programlisting", code);
             } else {
