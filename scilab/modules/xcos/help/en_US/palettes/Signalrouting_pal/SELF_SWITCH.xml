@@ -166,7 +166,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SELF_SWITCH_on_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SELF_SWITCH_on_Example.png" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SELF_SWITCH_on_Example.xcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -175,7 +175,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SELF_SWITCH_off_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SELF_SWITCH_off_Example.png" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SELF_SWITCH_off_Example.xcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
