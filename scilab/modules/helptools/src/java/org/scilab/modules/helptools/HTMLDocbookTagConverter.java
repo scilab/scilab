@@ -505,10 +505,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             currentId = id;
         }
         String fileName = mapId.get(currentId);
+        String hasExampleAttr = attributes.get("has-examples");
         createHTMLFile(currentId, fileName, refpurpose, contents);
-        if (!hasExamples) {
+        if (!hasExamples && (hasExampleAttr == null || !hasExampleAttr.equals("no"))) {
             warnings++;
-            //System.err.println("Warning (should be fixed): no example in " + currentFileName);
+            System.err.println("Warning (should be fixed): no example in " + currentFileName);
         } else {
             hasExamples = false;
         }
@@ -862,6 +863,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 }
                 str = encloseContents("div", "programlisting", code);
             } else if (role.equals("no-scilab-exec")) {
+                hasExamples = true;
                 String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 str = encloseContents("div", "programlisting", code);
             } else {

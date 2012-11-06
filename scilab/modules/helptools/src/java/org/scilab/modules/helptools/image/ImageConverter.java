@@ -39,7 +39,7 @@ import javax.swing.JLabel;
  */
 public final class ImageConverter {
 
-    private static Map<String, ExternalImageConverter> externalConverters = new HashMap();
+    private static Map<String, ExternalImageConverter> externalConverters = new HashMap<String, ExternalImageConverter>();
     private static MimetypesFileTypeMap mimeMap = new MimetypesFileTypeMap();
 
     static {
