@@ -246,7 +246,7 @@ namespace types
                 double dblVal = dblStart; // temp value
                 double dblEps = getRelativeMachinePrecision();
                 double dblPrec = 2 * Max(fabs(dblStart), fabs(dblEnd)) * dblEps;
-                while(dblStep * (dblVal - dblEnd) < 0)
+                while(dblStep * (dblVal - dblEnd) <= 0)
                 {
                     m_iSize++;
                     dblVal = dblStart + m_iSize * dblStep;
