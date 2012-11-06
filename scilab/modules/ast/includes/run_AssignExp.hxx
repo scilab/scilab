@@ -27,21 +27,25 @@ void visitprivate(const AssignExp  &e)
         {
             // x = ?
             /*getting what to assign*/
-            expected_size_set(1);
-            e.right_exp_get().accept(*this);
-
-            if (result_getSize() != 1)
+            InternalType *pIT = e.right_val_get();
+            if (pIT == NULL)
             {
-                std::wostringstream os;
-                os << L"Can not assign multiple value in a single variable" << std::endl;;
-                //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
-                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+                expected_size_set(1);
+                e.right_exp_get().accept(*this);
+
+                if (result_getSize() != 1)
+                {
+                    std::wostringstream os;
+                    os << L"Can not assign multiple value in a single variable" << std::endl;;
+                    //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
+                    throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+                }
+
+                pIT = result_get();
+                //reset result
+                result_set(NULL);
             }
 
-            InternalType *pIT = result_get();
-
-            //reset result
-            result_set(NULL);
             if (pIT->isImplicitList())
             {
                 if (pIT->getAs<ImplicitList>()->isComputable())
@@ -109,8 +113,14 @@ void visitprivate(const AssignExp  &e)
             }
 
             /*getting what to assign*/
-            e.right_exp_get().accept(*this);
-            InternalType* pITR = result_get();
+            InternalType* pITR = e.right_val_get();
+            if (pITR == NULL)
+            {
+                e.right_exp_get().accept(*this);
+                pITR = result_get();
+                //reset result
+                result_set(NULL);
+            }
 
             if (pITR == NULL)
             {
@@ -119,9 +129,6 @@ void visitprivate(const AssignExp  &e)
                 os << _W("Unable to extract right part expression.\n");
                 throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
             }
-
-            //reset result
-            result_set(NULL);
 
             if (pIT == NULL)
             {
@@ -257,8 +264,14 @@ void visitprivate(const AssignExp  &e)
             }
 
             /*getting what to assign*/
-            e.right_exp_get().accept(*this);
-            InternalType* pITR = result_get();
+            InternalType* pITR = e.right_val_get();
+            if (pITR == NULL)
+            {
+                e.right_exp_get().accept(*this);
+                pITR = result_get();
+                //reset result
+                result_set(NULL);
+            }
 
             if (pITR == NULL)
             {
@@ -267,9 +280,6 @@ void visitprivate(const AssignExp  &e)
                 os << _W("Unable to extract right part expression.\n");
                 throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
             }
-
-            //reset result
-            result_set(NULL);
 
             if (pIT == NULL)
             {
@@ -498,18 +508,18 @@ void visitprivate(const AssignExp  &e)
                 {
                     pRet = pIT->getAs<Sparse>()->insert(pArgs, pInsert);
                 }
-                else if(pIT->isPoly() && pInsert->isDouble())
+                else if (pIT->isPoly() && pInsert->isDouble())
                 {
                     Polynom* pDest = pIT->getAs<Polynom>();
                     Double* pIns = pInsert->getAs<Double>();
                     Polynom* pP = new Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray());
                     pP->setComplex(pIns->isComplex());
 
-                    for(int idx = 0 ; idx < pP->getSize() ; idx++)
+                    for (int idx = 0 ; idx < pP->getSize() ; idx++)
                     {
                         double* pR = NULL;
                         double* pI = NULL;
-                        if(pP->isComplex())
+                        if (pP->isComplex())
                         {
                             SinglePoly* pS = new SinglePoly(&pR, &pI, 1);
                             double dblR = pIns->get(idx);
@@ -530,7 +540,7 @@ void visitprivate(const AssignExp  &e)
                     pRet = pIT->getAs<Polynom>()->insert(pArgs, pP);
                     delete pP;
                 }
-                else if(pIT->isPoly() && pInsert->isPoly())
+                else if (pIT->isPoly() && pInsert->isPoly())
                 {
                     pRet = pIT->getAs<Polynom>()->insert(pArgs, pInsert);
                 }
@@ -743,36 +753,31 @@ void visitprivate(const AssignExp  &e)
             int iLhsCount = (int)pList->exps_get().size();
 
             /*getting what to assign*/
-            expected_size_set(iLhsCount);
-            e.right_exp_get().accept(*this);
+            T exec;
+            exec.expected_size_set(iLhsCount);
+            e.right_exp_get().accept(exec);
 
-            if (result_getSize() != iLhsCount)
+            if (exec.result_getSize() != iLhsCount)
             {
                 std::wostringstream os;
-                os << L"Incompatible assignation: trying to assign " << result_getSize();
+                os << L"Incompatible assignation: trying to assign " << exec.result_getSize();
                 os << " values in " << iLhsCount << " variables." << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
-
 
             std::list<Exp *>::const_reverse_iterator it;
             int i = (int)iLhsCount - 1;
             for (it = pList->exps_get().rbegin() ; it != pList->exps_get().rend() ; it++, i--)
             {
-                const SimpleVar *pListVar	= dynamic_cast<const SimpleVar*>((*it));
-                symbol::Context::getInstance()->put(pListVar->name_get(), *result_get(i));
-                if (e.is_verbose() && ConfigVariable::isPromptShow())
-                {
-                    std::wostringstream ostr;
-                    ostr << pListVar->name_get().name_get() << L"  = " << std::endl;
-                    ostr << std::endl;
-                    scilabWriteW(ostr.str().c_str());
-                    VariableToString(result_get(i));
-                }
+                //create a new AssignExp and run it
+                AssignExp* pAssign = new AssignExp((*it)->location_get(), *(*it), *const_cast<Exp*>(&e.right_exp_get()), exec.result_get(i));
+                pAssign->set_verbose(e.is_verbose());
+                pAssign->accept(*this);
+
                 //clear result to take care of [n,n]
-                result_set(i, NULL);
+                exec.result_set(i, NULL);
             }
-            result_clear();
+            exec.result_clear();
             return;
         }
 
@@ -790,12 +795,13 @@ void visitprivate(const AssignExp  &e)
             e.right_exp_get().accept(*this);
 
             const wstring *pstName = getStructNameFromExp(pField);
-            if(pstName)
+            if (pstName)
             {
                 InternalType* pCurrentStr = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(*pstName));
                 InternalType* pHigherStr = symbol::Context::getInstance()->get(symbol::Symbol(*pstName));
-                if(pHigherStr && pCurrentStr == NULL)
-                {//struct come from higher scope, so we need to clone and put it in current scope
+                if (pHigherStr && pCurrentStr == NULL)
+                {
+                    //struct come from higher scope, so we need to clone and put it in current scope
                     InternalType *pITClone = pHigherStr->clone();
                     symbol::Context::getInstance()->put(symbol::Symbol(*pstName), *pITClone);
                 }
