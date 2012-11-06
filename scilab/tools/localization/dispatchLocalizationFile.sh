@@ -89,3 +89,5 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
         echo "Ignore locale $LOC"
     fi
 done
+# Remove english variants
+rm -f modules/*/locales/en_*.po
