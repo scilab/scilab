@@ -231,6 +231,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="src\c\matrix_power.c" />
     <ClCompile Include="src\c\matrix_substraction.c" />
     <ClCompile Include="src\cpp\operations.cpp" />
+    <ClCompile Include="src\c\matrix_transpose.c" />
     <ClCompile Include="src\c\operations_tools.c" />
     <ClCompile Include="src\cpp\types_addition.cpp" />
     <ClCompile Include="src\cpp\types_divide.cpp" />
@@ -253,6 +254,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\matrix_right_division.h" />
     <ClInclude Include="includes\matrix_substraction.h" />
     <ClInclude Include="includes\matrix_transpose.h" />
+    <ClInclude Include="includes\matrix_transpose_int.hxx" />
     <ClInclude Include="includes\operations_tools.h" />
     <ClInclude Include="includes\types_addition.hxx" />
     <ClInclude Include="includes\types_comparison_eq.hxx" />

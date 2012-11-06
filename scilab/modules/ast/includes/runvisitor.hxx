@@ -35,6 +35,8 @@
 #include "overload.hxx"
 #include "scilabexception.hxx"
 
+#include "matrix_transpose_int.hxx"
+
 extern "C" {
 #include "doublecomplex.h"
 #include "matrix_transpose.h"
@@ -1481,6 +1483,102 @@ public :
         {
             types::InternalType* pIT = result_get();
             result_set(pIT->getAs<types::SparseBool>()->newTransposed());
+        }
+        else if (result_get()->isInt())
+        {
+            InternalType* pVar      = result_get();
+            InternalType* pReturn   = NULL;
+
+            switch (pVar->getType())
+            {
+                case types::InternalType::RealInt8 :
+                {
+                    types::Int8* pIntIn  = pVar->getAs<types::Int8>();
+                    types::Int8* pIntOut = new types::Int8(pIntIn->getCols(), pIntIn->getRows());
+                    char* pIn  = pIntIn->get();
+                    char* pOut = pIntOut->get();
+                    vTransposeIntMatrix<char>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
+                    pReturn = pIntOut;
+                    break;
+                }
+                case types::InternalType::RealUInt8 :
+                {
+                    types::UInt8* pIntIn  = pVar->getAs<types::UInt8>();
+                    types::UInt8* pIntOut = new types::UInt8(pIntIn->getCols(), pIntIn->getRows());
+                    unsigned char* pIn  = pIntIn->get();
+                    unsigned char* pOut = pIntOut->get();
+                    vTransposeIntMatrix<unsigned char>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
+                    pReturn = pIntOut;
+                    break;
+                }
+                case types::InternalType::RealInt16 :
+                {
+                    types::Int16* pIntIn  = pVar->getAs<types::Int16>();
+                    types::Int16* pIntOut = new types::Int16(pIntIn->getCols(), pIntIn->getRows());
+                    short* pIn  = pIntIn->get();
+                    short* pOut = pIntOut->get();
+                    vTransposeIntMatrix<short>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
+                    pReturn = pIntOut;
+                    break;
+                }
+                case types::InternalType::RealUInt16 :
+                {
+                    types::UInt16* pIntIn  = pVar->getAs<types::UInt16>();
+                    types::UInt16* pIntOut = new types::UInt16(pIntIn->getCols(), pIntIn->getRows());
+                    unsigned short* pIn  = pIntIn->get();
+                    unsigned short* pOut = pIntOut->get();
+                    vTransposeIntMatrix<unsigned short>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
+                    pReturn = pIntOut;
+                    break;
+                }
+                case types::InternalType::RealInt32 :
+                {
+                    types::Int32* pIntIn  = pVar->getAs<types::Int32>();
+                    types::Int32* pIntOut = new types::Int32(pIntIn->getCols(), pIntIn->getRows());
+                    int* pIn  = pIntIn->get();
+                    int* pOut = pIntOut->get();
+                    vTransposeIntMatrix<int>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
+                    pReturn = pIntOut;
+                    break;
+                }
+                case types::InternalType::RealUInt32 :
+                {
+                    types::UInt32* pIntIn  = pVar->getAs<types::UInt32>();
+                    types::UInt32* pIntOut = new types::UInt32(pIntIn->getCols(), pIntIn->getRows());
+                    unsigned int* pIn  = pIntIn->get();
+                    unsigned int* pOut = pIntOut->get();
+                    vTransposeIntMatrix<unsigned int>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
+                    pReturn = pIntOut;
+                    break;
+                }
+                case types::InternalType::RealInt64 :
+                {
+                    types::Int64* pIntIn  = pVar->getAs<types::Int64>();
+                    types::Int64* pIntOut = new types::Int64(pIntIn->getCols(), pIntIn->getRows());
+                    long long* pIn  = pIntIn->get();
+                    long long* pOut = pIntOut->get();
+                    vTransposeIntMatrix<long long>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
+                    pReturn = pIntOut;
+                    break;
+                }
+                case types::InternalType::RealUInt64 :
+                {
+                    types::UInt64* pIntIn  = pVar->getAs<types::UInt64>();
+                    types::UInt64* pIntOut = new types::UInt64(pIntIn->getCols(), pIntIn->getRows());
+                    unsigned long long* pIn  = pIntIn->get();
+                    unsigned long long* pOut = pIntOut->get();
+                    vTransposeIntMatrix<unsigned long long>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
+                    pReturn = pIntOut;
+                    break;
+                }
+            }
+
+            if (pVar->isDeletable())
+            {
+                delete pVar;
+            }
+
+            result_set(pReturn);
         }
     }
     /** \} */

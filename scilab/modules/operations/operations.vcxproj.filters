@@ -78,6 +78,9 @@
     <ClCompile Include="src\c\matrix_kronecker.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\matrix_transpose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\doublecomplex.h">
@@ -150,6 +153,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\generic_operations.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\matrix_transpose_int.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

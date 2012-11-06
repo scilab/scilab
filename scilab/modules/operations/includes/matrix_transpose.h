@@ -14,30 +14,31 @@
 #define __TRANSPOSE_H__
 
 #include "dynlib_operations.hxx"
+#include "doublecomplex.h"
 
 EXTERN_OP void vTransposeRealMatrix(
-			double *_pdblRealIn,
-			int _iRowsIn,			int _iColsIn,
-			double *_pdblRealOut);
+    double *_pdblRealIn,
+    int _iRowsIn, int _iColsIn,
+    double *_pdblRealOut);
 
 EXTERN_OP void vTransposeComplexMatrix(
-			double *_pdblRealIn,	double *_pdblImgIn,
-			int _iRowsIn,			int _iColsIn,
-			double *_pdblRealOut,	double *_pdblImgOut, int _iConjugate);
+    double *_pdblRealIn, double *_pdblImgIn,
+    int _iRowsIn, int _iColsIn,
+    double *_pdblRealOut, double *_pdblImgOut, int _iConjugate);
 
 EXTERN_OP void vTransposeDoubleComplexMatrix(
-			doublecomplex *_poIn,
-			int _iRowsIn,			int _iColsIn,
-			doublecomplex *_poOut, int _iConjugate);
+    doublecomplex *_poIn,
+    int _iRowsIn, int _iColsIn,
+    doublecomplex *_poOut, int _iConjugate);
 
 EXTERN_OP void vPretransposeRealMatrix(
-			double *_pdblRealIn,
-			int _iRowsIn,			int _iColsIn,
-			double *_pdblRealOut);
+    double *_pdblRealIn,
+    int _iRowsIn, int _iColsIn,
+    double *_pdblRealOut);
 
 EXTERN_OP void vPretransposeComplexMatrix(
-			double *_pdblRealIn,	double *_pdblImgIn,
-			int _iRowsIn,			int _iColsIn,
-			double *_pdblRealOut,	double *_pdblImgOut);
+    double *_pdblRealIn, double *_pdblImgIn,
+    int _iRowsIn, int _iColsIn,
+    double *_pdblRealOut, double *_pdblImgOut);
 
 #endif /* __TRANSPOSE_H__ */
