@@ -100,4 +100,10 @@
             </itemizedlist>
         </para>
     </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[ 
+filebrowser();
+ ]]></programlisting>
+    </refsection>
 </refentry>

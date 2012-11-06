@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>a string path of JRE</para>
+                    <para>a string path to the JRE</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,6 +33,13 @@
     <refsection>
         <title>Description</title>
         <para>returns Java Runtime Environment used by Scilab.</para>
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+jre_path();
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
