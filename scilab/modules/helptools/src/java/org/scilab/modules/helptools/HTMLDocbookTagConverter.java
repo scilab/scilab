@@ -57,7 +57,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     private String outName;
     private String urlBase;
     private boolean linkToTheWeb;
-    private boolean hasExamples;
+    private boolean needsExamples;
     private int warnings;
     private int nbFiles;
 
@@ -505,13 +505,13 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             currentId = id;
         }
         String fileName = mapId.get(currentId);
-        String hasExampleAttr = attributes.get("has-examples");
+        String needsExampleAttr = attributes.get("needs-examples");
         createHTMLFile(currentId, fileName, refpurpose, contents);
-        if (!hasExamples && (hasExampleAttr == null || !hasExampleAttr.equals("no"))) {
+        if (!needsExamples && (needsExampleAttr == null || !needsExampleAttr.equals("no"))) {
             warnings++;
             System.err.println("Warning (should be fixed): no example in " + currentFileName);
         } else {
-            hasExamples = false;
+            needsExamples = false;
         }
         String rp = encloseContents("span", "refentry-description", refpurpose);
         String str = encloseContents("li", encloseContents("a", new String[] {"href", fileName, "class", "refentry"}, refname) + " &#8212; " + rp);
@@ -624,7 +624,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         } else if (parent.equals("section")) {
             sectionTitle = contents;
         } else if (parent.equals("refsection") && Pattern.matches("^[ \\t]*ex[ea]mpl[eo].*", contents.toLowerCase())) {
-            hasExamples = true;
+            needsExamples = true;
             return encloseContents("h3", clazz, contents);
         } else {
             return encloseContents("h3", clazz, contents);
@@ -863,7 +863,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 }
                 str = encloseContents("div", "programlisting", code);
             } else if (role.equals("no-scilab-exec")) {
-                hasExamples = true;
+                needsExamples = true;
                 String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 str = encloseContents("div", "programlisting", code);
             } else {
