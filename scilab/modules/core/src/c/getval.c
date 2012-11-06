@@ -142,6 +142,7 @@
 #include "stack-c.h"
 #include "getval.h"
 #include "parserConstant.h"
+#include "sciprint.h"
 #include "localization.h"
 #include "warningmode.h"
 /* Table of constant values */
