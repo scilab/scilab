@@ -10,6 +10,8 @@ Improvements
 * A new output argument has been added to the function regexp to retrieve
   subpatterns matches. See SEP #86.
 
+* New xmlName function.
+
 
 Xcos
 =====

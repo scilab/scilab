@@ -45,18 +45,18 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-	doc = xmlReadStr("<root><foo a=""123"" b=""456"" c=""789""/></root>")
+doc = xmlReadStr("<root><foo a=""123"" b=""456"" c=""789""/></root>")
 
-	// Retrieve the name of a single element
-	xmlName(doc.root.children(1))
+// Retrieve the name of a single element
+xmlName(doc.root.children(1))
 
-	// Retrieve the names of an attributes list
-	xmlName(doc.root.children(1).attributes)
+// Retrieve the names of an attributes list
+xmlName(doc.root.children(1).attributes)
 
-	// Retrieve the names of the result of an XPath query
-	xmlName(xmlXPath(doc,"//foo/@*"))	
-	
-	xmlDelete(doc);
+// Retrieve the names of the result of an XPath query
+xmlName(xmlXPath(doc,"//foo/@*"))
+
+xmlDelete(doc);
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -77,8 +77,8 @@
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>XML module introduced.</revremark>
+                <revnumber>5.4.1</revnumber>
+                <revremark>xmlName function introduced.</revremark>
             </revision>
         </revhistory>
     </refsection>
