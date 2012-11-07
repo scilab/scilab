@@ -142,6 +142,7 @@
 #include "api_scilab.h"
 #include "getval.h"
 #include "parserConstant.h"
+#include "sciprint.h"
 #include "localization.h"
 #include "sci_warning.h"
 #include "sciprint.h"

@@ -65,6 +65,8 @@
   |              mb >= 1 , nb = mA in Case 2                    |
   |                                                             |
   +------------------------------------------------------------*/
+
+#include <string.h> // memset
 #include "api_scilab.h"
 #include "sciumfpack.h"
 #include "gw_umfpack.h"

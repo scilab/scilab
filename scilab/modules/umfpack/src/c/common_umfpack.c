@@ -69,6 +69,7 @@
  *         test_size_for_mat : the same for classic matrix
  */
 
+#include <math.h>
 #include "MALLOC.h"
 #include "sciumfpack.h"
 #include "taucs_scilab.h"

@@ -49,10 +49,10 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 	sci_gateway/c/sci_set_fftw_wisdom.c \
 	sci_gateway/c/sci_fftw_forget_wisdom.c \
 	sci_gateway/c/sci_dct.c \
-	sci_gateway/c/sci_dst.c 
+	sci_gateway/c/sci_dst.c
 
 #### fftw : Conf files ####
-libscifftw_la_root_DATA =  license.txt 
+libscifftw_la_root_DATA =  license.txt
 
 #### fftw : gateway declaration ####
 libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -78,6 +78,7 @@ libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/elementary_functions/includes/ \
 			$(FFTW3_CFLAGS) \
 			$(AM_CPPFLAGS)
 

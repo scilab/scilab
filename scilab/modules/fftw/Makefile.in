@@ -504,11 +504,11 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 @FFTW_TRUE@	sci_gateway/c/sci_set_fftw_wisdom.c \
 @FFTW_TRUE@	sci_gateway/c/sci_fftw_forget_wisdom.c \
 @FFTW_TRUE@	sci_gateway/c/sci_dct.c \
-@FFTW_TRUE@	sci_gateway/c/sci_dst.c 
+@FFTW_TRUE@	sci_gateway/c/sci_dst.c
 
 
 #### fftw : Conf files ####
-@FFTW_TRUE@libscifftw_la_root_DATA = license.txt 
+@FFTW_TRUE@libscifftw_la_root_DATA = license.txt
 
 #### fftw : gateway declaration ####
 @FFTW_TRUE@libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -539,6 +539,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 @FFTW_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
 @FFTW_TRUE@			-I$(top_srcdir)/modules/string/includes/ \
 @FFTW_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
+@FFTW_TRUE@			-I$(top_srcdir)/modules/elementary_functions/includes/ \
 @FFTW_TRUE@			$(FFTW3_CFLAGS) \
 @FFTW_TRUE@			$(AM_CPPFLAGS)
 

@@ -12,7 +12,7 @@
 *
 */
 
-
+#include <string.h>
 #include "api_scilab.h"
 #include "callfftw.h"
 #include "MALLOC.h"

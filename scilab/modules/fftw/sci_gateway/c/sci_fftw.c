@@ -23,6 +23,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
+#include "elem_common.h" // dset, dcopy, dscal
 /*--------------------------------------------------------------------------*/
 enum Scaling
 {
@@ -30,8 +31,6 @@ enum Scaling
     None = 0,
     Multiply = 1,
 };
-/*--------------------------------------------------------------------------*/
-extern void C2F(dscal)(int *n, double *da, double *dx, int *incx); /* blas routine */
 /*--------------------------------------------------------------------------*/
 static int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt, guru_dim_struct gdim);
 static int sci_fft_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  double *Ai, int isn, int iopt);
@@ -135,8 +134,14 @@ int sci_fftw(char *fname, void* pvApiCtx)
         {
             if (getAllocatedSingleString(pvApiCtx, piAddr, &option) == 0)
             {
-                if (strcmp("symmetric", option) == 0)  iopt = 1; /*user assumes symmetry */
-                else if (strcmp("nonsymmetric", option) == 0) iopt = 2; /*user claims full transform */
+                if (strcmp("symmetric", option) == 0)
+                {
+                    iopt = 1;    /*user assumes symmetry */
+                }
+                else if (strcmp("nonsymmetric", option) == 0)
+                {
+                    iopt = 2;    /*user claims full transform */
+                }
                 else
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, Rhs, "\"symmetric\"", "\"nonsymmetric\"");
@@ -150,7 +155,7 @@ int sci_fftw(char *fname, void* pvApiCtx)
             }
             else
             {
-                 Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, Rhs, "\"symmetric\"", "\"nonsymmetric\"");
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, Rhs, "\"symmetric\"", "\"nonsymmetric\"");
                 return 1;
             }
         }
@@ -226,7 +231,10 @@ int sci_fft_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
         if (dimsA[i] > 1)
         {
             ndims++;
-            if (first_nonsingleton < 0) first_nonsingleton = i;
+            if (first_nonsingleton < 0)
+            {
+                first_nonsingleton = i;
+            }
         }
     }
 
@@ -310,7 +318,10 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
         if (dimsA[i] > 1)
         {
             ndims++;
-            if (first_nonsingleton < 0) first_nonsingleton = i;
+            if (first_nonsingleton < 0)
+            {
+                first_nonsingleton = i;
+            }
         }
     }
 
@@ -389,7 +400,10 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
     j = 0;
     for (i = 0; i < ndimsA; i++)
     {
-        if (j >= gdim.rank) break;
+        if (j >= gdim.rank)
+        {
+            break;
+        }
         if (Sel[j] == i + 1)
         {
             gdim.dims[j].n = dimsA[i];
@@ -401,27 +415,33 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
     }
     /* Compute howmany_rank based on jumps in the Sel sequence */
     gdim.howmany_rank = 0;
-    if ((Sel[0] != 1) && (Sel[0] != ndimsA)) gdim.howmany_rank++;
+    if ((Sel[0] != 1) && (Sel[0] != ndimsA))
+    {
+        gdim.howmany_rank++;
+    }
 
     for (i = 1; i <= rank - 1; i++)
-      {
-        if (Sel[i] != Sel[i-1] + 1)
-          {
+    {
+        if (Sel[i] != Sel[i - 1] + 1)
+        {
             /*check if all dimensions between Sel[i-1]+1 and Sel[i]-1 are
               equal to one, in this case they can be ignored and there is
               no jump*/
             for (j = Sel[i - 1] + 1; j <= Sel[i] - 1; j++)
-              {
+            {
                 if (dimsA[j - 1] != 1)
-                  {
+                {
                     gdim.howmany_rank++;
                     break;
-                  }
-              }
-          }
-      }
+                }
+            }
+        }
+    }
 
-    if ((Sel[rank - 1] != ndimsA) || (rank == 1)) gdim.howmany_rank++;
+    if ((Sel[rank - 1] != ndimsA) || (rank == 1))
+    {
+        gdim.howmany_rank++;
+    }
 
     /* Fill the howmany_dims struct */
     if (gdim.howmany_rank > 0)
@@ -435,7 +455,10 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
             return 0;
         }
         pd = 1;
-        for (j = 1; j <= (Sel[0] - 1); j++) pd *= dimsA[j - 1]; /*prod(Dims(1:(sel(1)-1)))*/
+        for (j = 1; j <= (Sel[0] - 1); j++)
+        {
+            pd *= dimsA[j - 1];    /*prod(Dims(1:(sel(1)-1)))*/
+        }
         ih = 0;
         if ((Sel[0] != 1) && (Sel[0] != ndimsA))
         {
@@ -446,36 +469,42 @@ int  sci_fft_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
             ih++;
         }
         pd *= dimsA[Sel[0] - 1]; /*prod(Dims(1:sel(1)))*/
-        for (i = 1; i <= rank -1; i++)
-          {
+        for (i = 1; i <= rank - 1; i++)
+        {
             /* intermediate selected dimensions */
             if (Sel[i] != Sel[i - 1] + 1)
-              {
+            {
                 pds = 1;
-                for (j = (Sel[i - 1] + 1); j <= (Sel[i] - 1); j++) pds *= dimsA[j - 1]; /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+                for (j = (Sel[i - 1] + 1); j <= (Sel[i] - 1); j++)
+                {
+                    pds *= dimsA[j - 1];    /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+                }
                 /*check again if all dimensions between Sel[i-1]+1 and
                   Sel[i]-1 are equal to one, in this case they can be
                   ignored and there is no jump*/
                 for (j = (Sel[i - 1] + 1); j <= (Sel[i] - 1); j++)
-                  {
+                {
                     if (dimsA[j - 1] != 1)
-                      {
+                    {
                         gdim.howmany_dims[ih].is = pd;
                         gdim.howmany_dims[ih].os = pd;
                         gdim.howmany_dims[ih].n = pds;
                         ih++;
                         break;
-                      }
-                  }
-              }
+                    }
+                }
+            }
             pd *= pds * dimsA[Sel[i] - 1]; /*prod(Dims(1:sel(i)))*/
-          }
+        }
 
         if (Sel[rank - 1] != ndimsA)
         {
             /* last selected dimension*/
             pds = 1;
-            for (j = (Sel[rank - 1] + 1); j <= ndimsA; j++) pds *= dimsA[j - 1]; /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+            for (j = (Sel[rank - 1] + 1); j <= ndimsA; j++)
+            {
+                pds *= dimsA[j - 1];    /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+            }
             gdim.howmany_dims[ih].is = pd;
             gdim.howmany_dims[ih].os = pd;
             gdim.howmany_dims[ih].n = pds;
@@ -770,7 +799,10 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     j = 0;
     for (i = 0; i < ndims; i++)
     {
-        if (j >= gdim.rank) break;
+        if (j >= gdim.rank)
+        {
+            break;
+        }
         if (Sel[j] == i + 1)
         {
             gdim.dims[j].n = Dim[i];
@@ -782,13 +814,22 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     }
     /* Compute howmany_rank based on jumps in the Sel sequence */
     gdim.howmany_rank = 0;
-    if ((Sel[0] != 1) && (Sel[0] != ndims)) gdim.howmany_rank++;
+    if ((Sel[0] != 1) && (Sel[0] != ndims))
+    {
+        gdim.howmany_rank++;
+    }
 
     for (i = 1; i <= rank - 1; i++)
     {
-        if (Sel[i] != Sel[i - 1] + 1) gdim.howmany_rank++;
+        if (Sel[i] != Sel[i - 1] + 1)
+        {
+            gdim.howmany_rank++;
+        }
     }
-    if ((Sel[rank - 1] != ndims) || (rank == 1)) gdim.howmany_rank++;
+    if ((Sel[rank - 1] != ndims) || (rank == 1))
+    {
+        gdim.howmany_rank++;
+    }
     /* Fill the howmany_dims struct */
     if (gdim.howmany_rank > 0)
     {
@@ -807,7 +848,10 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
             return 0;
         }
         pd = 1;
-        for (j = 1; j <= (Sel[0] - 1); j++) pd *= Dim[j - 1]; /*prod(Dims(1:(sel(1)-1)))*/
+        for (j = 1; j <= (Sel[0] - 1); j++)
+        {
+            pd *= Dim[j - 1];    /*prod(Dims(1:(sel(1)-1)))*/
+        }
         ih = 0;
         if ((Sel[0] != 1) && (Sel[0] != ndims))
         {
@@ -824,7 +868,10 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
             if (Sel[i - 1] != Sel[i - 2] + 1)
             {
                 pds = 1;
-                for (j = (Sel[i - 2] + 1); j <= (Sel[i - 1] - 1); j++) pds *= Dim[j - 1]; /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+                for (j = (Sel[i - 2] + 1); j <= (Sel[i - 1] - 1); j++)
+                {
+                    pds *= Dim[j - 1];    /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+                }
                 gdim.howmany_dims[ih].is = pd;
                 gdim.howmany_dims[ih].os = pd;
                 gdim.howmany_dims[ih].n = pds;
@@ -837,7 +884,10 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
         {
             /* last selected dimension*/
             pds = 1;
-            for (j = (Sel[rank - 1] + 1); j <= ndims; j++) pds *= Dim[j - 1]; /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+            for (j = (Sel[rank - 1] + 1); j <= ndims; j++)
+            {
+                pds *= Dim[j - 1];    /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+            }
             gdim.howmany_dims[ih].is = pd;
             gdim.howmany_dims[ih].os = pd;
             gdim.howmany_dims[ih].n = pds;
@@ -987,7 +1037,10 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
     ii = Ai;
 
     scale = None; /*no scaling needed */
-    if (isn == FFTW_BACKWARD) scale = Divide;
+    if (isn == FFTW_BACKWARD)
+    {
+        scale = Divide;
+    }
     if (isrealA & !WITHMKL) /* To have type = C2C_PLAN*/
     {
         /*A is real */
@@ -1072,16 +1125,25 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
     if (scale != None)
     {
         double ak = 1.0;
-        for (i = 0; i < gdim.rank; i++) ak = ak * ((double)(gdim.dims[i].n));
-        if (scale == Divide) ak = 1.0 / ak;
+        for (i = 0; i < gdim.rank; i++)
+        {
+            ak = ak * ((double)(gdim.dims[i].n));
+        }
+        if (scale == Divide)
+        {
+            ak = 1.0 / ak;
+        }
         C2F(dscal)(&lA, &ak, ri, &one);
-        if (isrealA == 0) C2F(dscal)(&lA, &ak, ii, &one);
+        if (isrealA == 0)
+        {
+            C2F(dscal)(&lA, &ak, ii, &one);
+        }
     }
 
     if (!WITHMKL || gdim.howmany_rank <= 1)
     {
         /* Set Plan */
-      p = GetFFTWPlan(type, &gdim, ri, ii, ro, io, getCurrentFftwFlags(), isn , (fftw_r2r_kind *)NULL,&errflag);
+        p = GetFFTWPlan(type, &gdim, ri, ii, ro, io, getCurrentFftwFlags(), isn , (fftw_r2r_kind *)NULL, &errflag);
         if (errflag == 1)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
@@ -1110,7 +1172,7 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         gdim.howmany_rank = 0;
         gdim.howmany_dims = NULL;
 
-        p = GetFFTWPlan(type, &gdim, ri, ii, ro, io, getCurrentFftwFlags(), isn , (fftw_r2r_kind *)NULL,&errflag);
+        p = GetFFTWPlan(type, &gdim, ri, ii, ro, io, getCurrentFftwFlags(), isn , (fftw_r2r_kind *)NULL, &errflag);
         if (errflag == 1)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
@@ -1136,7 +1198,10 @@ int sci_fft_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
             return 0;
         }
         dims1[0] = howmany_dims[0].n;
-        for (i = 1; i < howmany_rank; i++) dims1[i] = dims1[i - 1] * howmany_dims[i].n;
+        for (i = 1; i < howmany_rank; i++)
+        {
+            dims1[i] = dims1[i - 1] * howmany_dims[i].n;
+        }
         nloop = dims1[howmany_rank - 1];
 
         if ((incr1 = (int *)MALLOC(sizeof(int) * howmany_rank)) == NULL)

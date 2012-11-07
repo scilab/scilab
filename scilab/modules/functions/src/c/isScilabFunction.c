@@ -16,6 +16,7 @@
 #include "api_scilab.h"
 #include "sci_types.h"
 #include "stack-def.h"
+#include "stack1.h"
 #include "Funtab.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/

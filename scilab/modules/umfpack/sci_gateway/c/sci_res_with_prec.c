@@ -36,6 +36,8 @@
  * knowledge of the CeCILL license and that you accept its terms.
  *
  */
+
+#include <string.h> // memset
 #include "api_scilab.h"
 #include "gw_umfpack.h"
 #include "sciumfpack.h"

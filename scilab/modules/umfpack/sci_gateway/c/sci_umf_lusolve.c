@@ -54,6 +54,8 @@
   |                                                             |
   |                                                             |
   +------------------------------------------------------------*/
+
+#include <string.h> // memset
 #include "api_scilab.h"
 #include "gw_umfpack.h"
 #include "sciumfpack.h"
