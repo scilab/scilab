@@ -969,7 +969,19 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
 
         Stack<DocbookElement> stack = getStack();
         String refnameTarget = mapIdRefname.get(link);
-        String href = encloseContents("a", new String[] {"href", id, "class", "link"}, refnameTarget == null ? contents : refnameTarget);
+        String str;
+        if (contents != null && !contents.isEmpty()) {
+            str = contents;
+        } else {
+            str = refnameTarget;
+        }
+
+        if (str == null) {
+            warnings++;
+            System.err.println("Warning (should be fixed): empty link (no text will be printed) to " + link + " in " + currentFileName + "\nat line " + locator.getLineNumber());
+        }
+
+        String href = encloseContents("a", new String[] {"href", id, "class", "link"}, str);
 
         int s = stack.size();
         if (s >= 3) {
