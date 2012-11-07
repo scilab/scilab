@@ -224,7 +224,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/electrical_pal/IdealTransformer_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../examples/electrical_pal/IdealTransformer_Example.png" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/electrical_pal/IdealTransformer_Example.xcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

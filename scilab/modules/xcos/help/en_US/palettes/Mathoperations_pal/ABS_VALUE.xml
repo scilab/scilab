@@ -199,7 +199,7 @@
         <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/ABS_VALUE_Example.xcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../examples/mathoperations_pal/ABS_VALUE_Example.png" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/mathoperations_pal/ABS_VALUE_Example.xcos" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </link>
