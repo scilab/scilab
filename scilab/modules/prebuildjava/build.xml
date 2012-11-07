@@ -12,86 +12,86 @@
  *
  -->
 <project default="all" name="build-all-jar">
-    <!-- Call World
+  <!-- Call World
 The main idea is to build at once all the var files
 -->
-    <property name="target-jar" value="jar"/>
-    <property file="../../scilab-lib.properties"/>
-    
-    <!-- Order matter : fixed order to avoid dependency handling-->
-    <target name="all" depends="localization, commons, history_manager, jvm, action_binding, graphic_objects, completion, console, renderer, graphic_export, gui, core, types, scinotes, ui_data, history_browser, javasci, graph, xcos, preferences, helptools" />
-    <target name="clean">
-        <antcall target="all">
-            <param name="target-jar" value="clean"/>
-        </antcall>
-    </target>
-    <target name="test"/>
-    
-    <target name="action_binding">
-        <ant antfile="../action_binding/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="commons">
-        <ant antfile="../commons/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="completion">
-        <ant antfile="../completion/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="console">
-        <ant antfile="../console/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="core">
-        <ant antfile="../core/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="graph">
-        <ant antfile="../graph/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="graphic_export">
-        <ant antfile="../graphic_export/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="graphic_objects">
-        <ant antfile="../graphic_objects/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="gui">
-        <ant antfile="../gui/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="history_browser">
-        <ant antfile="../history_browser/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="history_manager">
-        <ant antfile="../history_manager/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="javasci" if="build_javasci">
-        <ant antfile="../javasci/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="jvm">
-        <ant antfile="../jvm/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="localization">
-        <ant antfile="../localization/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="output_stream">
-        <ant antfile="../output_stream/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="renderer">
-        <ant antfile="../renderer/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="scinotes">
-        <ant antfile="../scinotes/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="types">
-        <ant antfile="../types/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="ui_data">
-        <ant antfile="../ui_data/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="xcos" if="build_xcos" depends="javasci">
-        <ant antfile="../xcos/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="preferences">
-        <ant antfile="../preferences/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
-    <target name="helptools">
-        <ant antfile="../helptools/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
-    </target>
+  <property name="target-jar" value="jar"/>
+  <property file="../../scilab-lib.properties"/>
+  
+  <!-- Order matter : fixed order to avoid dependency handling-->
+  <target name="all" depends="localization, commons, history_manager, jvm, action_binding, graphic_objects, completion, console, renderer, graphic_export, gui, core, helptools, types, scinotes, ui_data, history_browser, javasci, graph, xcos, preferences" />
+  <target name="clean">
+    <antcall target="all">
+      <param name="target-jar" value="clean"/>
+    </antcall>
+  </target>
+  <target name="test"/>
+  
+  <target name="action_binding">
+    <ant antfile="../action_binding/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="commons">
+    <ant antfile="../commons/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="completion">
+    <ant antfile="../completion/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="console">
+    <ant antfile="../console/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="core">
+    <ant antfile="../core/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="graph">
+    <ant antfile="../graph/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="graphic_export">
+    <ant antfile="../graphic_export/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="graphic_objects">
+    <ant antfile="../graphic_objects/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="gui">
+    <ant antfile="../gui/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="helptools">
+    <ant antfile="../helptools/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="history_browser">
+    <ant antfile="../history_browser/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="history_manager">
+    <ant antfile="../history_manager/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="javasci" if="build_javasci">
+    <ant antfile="../javasci/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="jvm">
+    <ant antfile="../jvm/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="localization">
+    <ant antfile="../localization/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="output_stream">
+    <ant antfile="../output_stream/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="renderer">
+    <ant antfile="../renderer/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="scinotes">
+    <ant antfile="../scinotes/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="types">
+    <ant antfile="../types/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="ui_data">
+    <ant antfile="../ui_data/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="xcos" if="build_xcos" depends="javasci">
+    <ant antfile="../xcos/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
+  <target name="preferences">
+    <ant antfile="../preferences/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false" />
+  </target>
 </project>
 

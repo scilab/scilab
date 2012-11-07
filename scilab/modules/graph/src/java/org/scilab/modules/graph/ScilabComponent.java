@@ -15,7 +15,6 @@ package org.scilab.modules.graph;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 
 import com.mxgraph.model.mxICell;
@@ -198,7 +197,6 @@ public class ScilabComponent extends mxGraphComponent {
 
             // Paint the foreground color after the real paint
             addListener(mxEvent.AFTER_PAINT, new mxEventSource.mxIEventListener() {
-                @Override
                 public void invoke(Object sender, mxEventObject evt) {
 
                     Graphics g = (Graphics) evt.getProperty("g");
@@ -212,18 +210,5 @@ public class ScilabComponent extends mxGraphComponent {
                 }
             });
         }
-    }
-
-    /*
-     * Disable some handlers in case of an headless env.
-     */
-
-    @Override
-    protected void createHandlers() {
-        if (GraphicsEnvironment.isHeadless()) {
-            return;
-        }
-
-        super.createHandlers();
     }
 }

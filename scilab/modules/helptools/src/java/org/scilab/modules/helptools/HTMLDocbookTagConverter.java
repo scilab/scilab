@@ -28,7 +28,6 @@ import org.scilab.modules.helptools.image.LaTeXImageConverter;
 import org.scilab.modules.helptools.image.MathMLImageConverter;
 import org.scilab.modules.helptools.image.ScilabImageConverter;
 import org.scilab.modules.helptools.image.SVGImageConverter;
-import org.scilab.modules.helptools.image.XcosImageConverter;
 import org.scilab.modules.helptools.scilab.ScilabLexer;
 import org.scilab.modules.helptools.scilab.HTMLScilabCodeHandler;
 import org.scilab.modules.helptools.scilab.AbstractScilabCodeHandler;
@@ -161,7 +160,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         ImageConverter.registerExternalImageConverter(MathMLImageConverter.getInstance(type));
         ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance(type));
         ImageConverter.registerExternalImageConverter(ScilabImageConverter.getInstance(type));
-        ImageConverter.registerExternalImageConverter(XcosImageConverter.getInstance(type));
     }
 
     /**
