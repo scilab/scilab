@@ -1,0 +1,303 @@
+src/modelica_compiler/parseTree.cmi:
+src/modelica_compiler/linenum.cmi:
+src/modelica_compiler/parser.cmi: ./src/modelica_compiler/parseTree.cmi
+src/modelica_compiler/lexer.cmi: ./src/translator/parsing/parser.cmi
+src/modelica_compiler/precompilation.cmi: \
+    ./src/modelica_compiler/parseTree.cmi
+src/modelica_compiler/compilation.cmi: \
+    ./src/modelica_compiler/precompilation.cmi
+src/modelica_compiler/instantiation.cmi: \
+    ./src/modelica_compiler/compilation.cmi
+src/modelica_compiler/graphNodeSet.cmi:
+src/modelica_compiler/symbolicExpression.cmi:
+src/modelica_compiler/squareSparseMatrix.cmi:
+src/modelica_compiler/bipartiteGraph.cmi:
+src/modelica_compiler/hungarianMethod.cmi:
+src/modelica_compiler/causalityGraph.cmi:
+src/modelica_compiler/optimization.cmi: \
+    ./src/modelica_compiler/symbolicExpression.cmi \
+    ./src/translator/instantiation/instantiation.cmi \
+    ./src/modelica_compiler/compilation.cmi
+src/modelica_compiler/xMLCodeGeneration.cmi: \
+    ./src/modelica_compiler/optimization.cmi
+src/modelica_compiler/optimizingCompiler.cmi: \
+    ./src/modelica_compiler/optimization.cmi
+src/modelica_compiler/scicosCodeGeneration.cmi: \
+    ./src/modelica_compiler/optimization.cmi
+src/modelica_compiler/scicosOptimizingCompiler.cmi:
+src/modelica_compiler/parseTree.cmo: src/modelica_compiler/parseTree.cmi
+src/modelica_compiler/parseTree.cmx: src/modelica_compiler/parseTree.cmi
+src/modelica_compiler/linenum.cmo: src/modelica_compiler/linenum.cmi
+src/modelica_compiler/linenum.cmx: src/modelica_compiler/linenum.cmi
+src/modelica_compiler/parser.cmo: ./src/modelica_compiler/parseTree.cmi \
+    ./src/translator/parsing/linenum.cmi src/modelica_compiler/parser.cmi
+src/modelica_compiler/parser.cmx: ./src/modelica_compiler/parseTree.cmx \
+    ./src/translator/parsing/linenum.cmx src/modelica_compiler/parser.cmi
+src/modelica_compiler/lexer.cmo: ./src/translator/parsing/parser.cmi \
+    src/modelica_compiler/lexer.cmi
+src/modelica_compiler/lexer.cmx: ./src/translator/parsing/parser.cmx \
+    src/modelica_compiler/lexer.cmi
+src/modelica_compiler/precompilation.cmo: \
+    ./src/modelica_compiler/parseTree.cmi \
+    src/modelica_compiler/precompilation.cmi
+src/modelica_compiler/precompilation.cmx: \
+    ./src/modelica_compiler/parseTree.cmx \
+    src/modelica_compiler/precompilation.cmi
+src/modelica_compiler/compilation.cmo: \
+    ./src/modelica_compiler/precompilation.cmi \
+    ./src/modelica_compiler/parseTree.cmi \
+    src/modelica_compiler/compilation.cmi
+src/modelica_compiler/compilation.cmx: \
+    ./src/modelica_compiler/precompilation.cmx \
+    ./src/modelica_compiler/parseTree.cmx \
+    src/modelica_compiler/compilation.cmi
+src/modelica_compiler/instantiation.cmo: \
+    ./src/modelica_compiler/compilation.cmi \
+    src/modelica_compiler/instantiation.cmi
+src/modelica_compiler/instantiation.cmx: \
+    ./src/modelica_compiler/compilation.cmx \
+    src/modelica_compiler/instantiation.cmi
+src/modelica_compiler/graphNodeSet.cmo: \
+    src/modelica_compiler/graphNodeSet.cmi
+src/modelica_compiler/graphNodeSet.cmx: \
+    src/modelica_compiler/graphNodeSet.cmi
+src/modelica_compiler/symbolicExpression.cmo: \
+    ./src/modelica_compiler/graphNodeSet.cmi \
+    src/modelica_compiler/symbolicExpression.cmi
+src/modelica_compiler/symbolicExpression.cmx: \
+    ./src/modelica_compiler/graphNodeSet.cmx \
+    src/modelica_compiler/symbolicExpression.cmi
+src/modelica_compiler/squareSparseMatrix.cmo: \
+    src/modelica_compiler/squareSparseMatrix.cmi
+src/modelica_compiler/squareSparseMatrix.cmx: \
+    src/modelica_compiler/squareSparseMatrix.cmi
+src/modelica_compiler/bipartiteGraph.cmo: \
+    src/modelica_compiler/bipartiteGraph.cmi
+src/modelica_compiler/bipartiteGraph.cmx: \
+    src/modelica_compiler/bipartiteGraph.cmi
+src/modelica_compiler/hungarianMethod.cmo: \
+    src/modelica_compiler/hungarianMethod.cmi
+src/modelica_compiler/hungarianMethod.cmx: \
+    src/modelica_compiler/hungarianMethod.cmi
+src/modelica_compiler/causalityGraph.cmo: \
+    src/modelica_compiler/causalityGraph.cmi
+src/modelica_compiler/causalityGraph.cmx: \
+    src/modelica_compiler/causalityGraph.cmi
+src/modelica_compiler/optimization.cmo: \
+    ./src/modelica_compiler/symbolicExpression.cmi \
+    ./src/modelica_compiler/squareSparseMatrix.cmi \
+    ./src/translator/instantiation/instantiation.cmi \
+    ./src/modelica_compiler/hungarianMethod.cmi \
+    ./src/modelica_compiler/compilation.cmi \
+    ./src/modelica_compiler/causalityGraph.cmi \
+    ./src/modelica_compiler/bipartiteGraph.cmi \
+    src/modelica_compiler/optimization.cmi
+src/modelica_compiler/optimization.cmx: \
+    ./src/modelica_compiler/symbolicExpression.cmx \
+    ./src/modelica_compiler/squareSparseMatrix.cmx \
+    ./src/translator/instantiation/instantiation.cmx \
+    ./src/modelica_compiler/hungarianMethod.cmx \
+    ./src/modelica_compiler/compilation.cmx \
+    ./src/modelica_compiler/causalityGraph.cmx \
+    ./src/modelica_compiler/bipartiteGraph.cmx \
+    src/modelica_compiler/optimization.cmi
+src/modelica_compiler/xMLCodeGeneration.cmo: \
+    ./src/modelica_compiler/symbolicExpression.cmi \
+    ./src/modelica_compiler/optimization.cmi \
+    src/modelica_compiler/xMLCodeGeneration.cmi
+src/modelica_compiler/xMLCodeGeneration.cmx: \
+    ./src/modelica_compiler/symbolicExpression.cmx \
+    ./src/modelica_compiler/optimization.cmx \
+    src/modelica_compiler/xMLCodeGeneration.cmi
+src/modelica_compiler/optimizingCompiler.cmo: \
+    ./src/modelica_compiler/xMLCodeGeneration.cmi \
+    ./src/modelica_compiler/precompilation.cmi \
+    ./src/translator/parsing/parser.cmi \
+    ./src/modelica_compiler/optimization.cmi \
+    ./src/translator/parsing/lexer.cmi \
+    ./src/translator/instantiation/instantiation.cmi \
+    ./src/modelica_compiler/compilation.cmi \
+    src/modelica_compiler/optimizingCompiler.cmi
+src/modelica_compiler/optimizingCompiler.cmx: \
+    ./src/modelica_compiler/xMLCodeGeneration.cmx \
+    ./src/modelica_compiler/precompilation.cmx \
+    ./src/translator/parsing/parser.cmx \
+    ./src/modelica_compiler/optimization.cmx \
+    ./src/translator/parsing/lexer.cmx \
+    ./src/translator/instantiation/instantiation.cmx \
+    ./src/modelica_compiler/compilation.cmx \
+    src/modelica_compiler/optimizingCompiler.cmi
+src/modelica_compiler/scicosCodeGeneration.cmo: \
+    ./src/modelica_compiler/symbolicExpression.cmi \
+    ./src/modelica_compiler/optimization.cmi \
+    ./src/translator/instantiation/instantiation.cmi \
+    src/modelica_compiler/scicosCodeGeneration.cmi
+src/modelica_compiler/scicosCodeGeneration.cmx: \
+    ./src/modelica_compiler/symbolicExpression.cmx \
+    ./src/modelica_compiler/optimization.cmx \
+    ./src/translator/instantiation/instantiation.cmx \
+    src/modelica_compiler/scicosCodeGeneration.cmi
+src/modelica_compiler/scicosOptimizingCompiler.cmo: \
+    ./src/modelica_compiler/scicosCodeGeneration.cmi \
+    ./src/modelica_compiler/optimizingCompiler.cmi \
+    src/modelica_compiler/scicosOptimizingCompiler.cmi
+src/modelica_compiler/scicosOptimizingCompiler.cmx: \
+    ./src/modelica_compiler/scicosCodeGeneration.cmx \
+    ./src/modelica_compiler/optimizingCompiler.cmx \
+    src/modelica_compiler/scicosOptimizingCompiler.cmi
+src/xml2modelica/xMLTree.cmo:
+src/xml2modelica/xMLTree.cmx:
+src/xml2modelica/linenum.cmo:
+src/xml2modelica/linenum.cmx:
+src/xml2modelica/stringParser.cmo:
+src/xml2modelica/stringParser.cmx:
+src/xml2modelica/stringLexer.cmo: ./src/xml2modelica/stringParser.cmo
+src/xml2modelica/stringLexer.cmx: ./src/xml2modelica/stringParser.cmx
+src/xml2modelica/xMLParser.cmo: ./src/xml2modelica/xMLTree.cmo \
+    ./src/translator/parsing/linenum.cmi
+src/xml2modelica/xMLParser.cmx: ./src/xml2modelica/xMLTree.cmx \
+    ./src/translator/parsing/linenum.cmx
+src/xml2modelica/xMLLexer.cmo: ./src/xml2modelica/xMLParser.cmo
+src/xml2modelica/xMLLexer.cmx: ./src/xml2modelica/xMLParser.cmx
+src/xml2modelica/modelicaCodeGenerator.cmo: ./src/xml2modelica/xMLTree.cmo \
+    ./src/xml2modelica/stringParser.cmo ./src/xml2modelica/stringLexer.cmo
+src/xml2modelica/modelicaCodeGenerator.cmx: ./src/xml2modelica/xMLTree.cmx \
+    ./src/xml2modelica/stringParser.cmx ./src/xml2modelica/stringLexer.cmx
+src/xml2modelica/xML2Modelica.cmo: ./src/xml2modelica/xMLParser.cmo \
+    ./src/xml2modelica/xMLLexer.cmo \
+    ./src/xml2modelica/modelicaCodeGenerator.cmo
+src/xml2modelica/xML2Modelica.cmx: ./src/xml2modelica/xMLParser.cmx \
+    ./src/xml2modelica/xMLLexer.cmx \
+    ./src/xml2modelica/modelicaCodeGenerator.cmx
+src/translator/parsing/syntax.cmi:
+src/translator/parsing/parser.cmi: ./src/translator/parsing/syntax.cmi
+src/translator/parsing/lexer.cmi: ./src/translator/parsing/parser.cmi
+src/translator/parsing/linenum.cmi:
+src/translator/compilation/types.cmi:
+src/translator/compilation/nameResolve.cmi: \
+    ./src/translator/compilation/types.cmi \
+    ./src/translator/parsing/syntax.cmi ./src/translator/parsing/parser.cmi
+src/translator/instantiation/instantiation.cmi: \
+    ./src/translator/compilation/types.cmi \
+    ./src/translator/parsing/syntax.cmi ./src/translator/parsing/parser.cmi \
+    ./src/translator/compilation/nameResolve.cmi
+src/translator/exceptionHandling/msgDico.cmi:
+src/translator/exceptionHandling/errorDico.cmi: \
+    ./src/translator/parsing/parser.cmi \
+    ./src/translator/instantiation/instantiation.cmi
+src/translator/exceptionHandling/exceptHandler.cmi: \
+    ./src/translator/parsing/parser.cmi \
+    ./src/translator/instantiation/instantiation.cmi
+src/translator/translation/libraryManager.cmi: \
+    ./src/translator/parsing/syntax.cmi ./src/translator/parsing/parser.cmi
+src/translator/translation/codeGeneration.cmi: \
+    ./src/translator/compilation/types.cmi \
+    ./src/translator/instantiation/instantiation.cmi \
+    ./src/translator/exceptionHandling/errorDico.cmi
+src/translator/translation/versiondate.cmi:
+src/translator/translation/translator.cmi: \
+    ./src/translator/parsing/syntax.cmi \
+    ./src/translator/compilation/nameResolve.cmi \
+    ./src/translator/instantiation/instantiation.cmi
+src/translator/parsing/syntax.cmo: src/translator/parsing/syntax.cmi
+src/translator/parsing/syntax.cmx: src/translator/parsing/syntax.cmi
+src/translator/parsing/parser.cmo: ./src/translator/parsing/syntax.cmi \
+    src/translator/parsing/parser.cmi
+src/translator/parsing/parser.cmx: ./src/translator/parsing/syntax.cmx \
+    src/translator/parsing/parser.cmi
+src/translator/parsing/lexer.cmo: ./src/translator/parsing/parser.cmi \
+    src/translator/parsing/lexer.cmi
+src/translator/parsing/lexer.cmx: ./src/translator/parsing/parser.cmx \
+    src/translator/parsing/lexer.cmi
+src/translator/parsing/linenum.cmo: src/translator/parsing/linenum.cmi
+src/translator/parsing/linenum.cmx: src/translator/parsing/linenum.cmi
+src/translator/compilation/types.cmo: src/translator/compilation/types.cmi
+src/translator/compilation/types.cmx: src/translator/compilation/types.cmi
+src/translator/compilation/nameResolve.cmo: \
+    ./src/translator/compilation/types.cmi \
+    ./src/translator/parsing/syntax.cmi ./src/translator/parsing/parser.cmi \
+    src/translator/compilation/nameResolve.cmi
+src/translator/compilation/nameResolve.cmx: \
+    ./src/translator/compilation/types.cmx \
+    ./src/translator/parsing/syntax.cmx ./src/translator/parsing/parser.cmx \
+    src/translator/compilation/nameResolve.cmi
+src/translator/instantiation/instantiation.cmo: \
+    ./src/translator/compilation/types.cmi \
+    ./src/translator/parsing/syntax.cmi ./src/translator/parsing/parser.cmi \
+    ./src/translator/compilation/nameResolve.cmi \
+    src/translator/instantiation/instantiation.cmi
+src/translator/instantiation/instantiation.cmx: \
+    ./src/translator/compilation/types.cmx \
+    ./src/translator/parsing/syntax.cmx ./src/translator/parsing/parser.cmx \
+    ./src/translator/compilation/nameResolve.cmx \
+    src/translator/instantiation/instantiation.cmi
+src/translator/exceptionHandling/msgDico.cmo: \
+    src/translator/exceptionHandling/msgDico.cmi
+src/translator/exceptionHandling/msgDico.cmx: \
+    src/translator/exceptionHandling/msgDico.cmi
+src/translator/exceptionHandling/errorDico.cmo: \
+    ./src/translator/parsing/parser.cmi \
+    ./src/translator/compilation/nameResolve.cmi \
+    ./src/translator/instantiation/instantiation.cmi \
+    src/translator/exceptionHandling/errorDico.cmi
+src/translator/exceptionHandling/errorDico.cmx: \
+    ./src/translator/parsing/parser.cmx \
+    ./src/translator/compilation/nameResolve.cmx \
+    ./src/translator/instantiation/instantiation.cmx \
+    src/translator/exceptionHandling/errorDico.cmi
+src/translator/exceptionHandling/exceptHandler.cmo: \
+    ./src/translator/parsing/parser.cmi \
+    ./src/translator/compilation/nameResolve.cmi \
+    ./src/translator/exceptionHandling/msgDico.cmi \
+    ./src/translator/parsing/linenum.cmi \
+    ./src/translator/instantiation/instantiation.cmi \
+    ./src/translator/exceptionHandling/errorDico.cmi \
+    src/translator/exceptionHandling/exceptHandler.cmi
+src/translator/exceptionHandling/exceptHandler.cmx: \
+    ./src/translator/parsing/parser.cmx \
+    ./src/translator/compilation/nameResolve.cmx \
+    ./src/translator/exceptionHandling/msgDico.cmx \
+    ./src/translator/parsing/linenum.cmx \
+    ./src/translator/instantiation/instantiation.cmx \
+    ./src/translator/exceptionHandling/errorDico.cmx \
+    src/translator/exceptionHandling/exceptHandler.cmi
+src/translator/translation/libraryManager.cmo: \
+    ./src/translator/parsing/parser.cmi ./src/translator/parsing/lexer.cmi \
+    ./src/translator/exceptionHandling/exceptHandler.cmi \
+    src/translator/translation/libraryManager.cmi
+src/translator/translation/libraryManager.cmx: \
+    ./src/translator/parsing/parser.cmx ./src/translator/parsing/lexer.cmx \
+    ./src/translator/exceptionHandling/exceptHandler.cmx \
+    src/translator/translation/libraryManager.cmi
+src/translator/translation/codeGeneration.cmo: \
+    ./src/translator/compilation/types.cmi \
+    ./src/translator/compilation/nameResolve.cmi \
+    ./src/translator/instantiation/instantiation.cmi \
+    ./src/translator/exceptionHandling/errorDico.cmi \
+    src/translator/translation/codeGeneration.cmi
+src/translator/translation/codeGeneration.cmx: \
+    ./src/translator/compilation/types.cmx \
+    ./src/translator/compilation/nameResolve.cmx \
+    ./src/translator/instantiation/instantiation.cmx \
+    ./src/translator/exceptionHandling/errorDico.cmx \
+    src/translator/translation/codeGeneration.cmi
+src/translator/translation/versiondate.cmo: \
+    src/translator/translation/versiondate.cmi
+src/translator/translation/versiondate.cmx: \
+    src/translator/translation/versiondate.cmi
+src/translator/translation/translator.cmo: \
+    ./src/translator/translation/versiondate.cmi \
+    ./src/translator/compilation/nameResolve.cmi \
+    ./src/translator/translation/libraryManager.cmi \
+    ./src/translator/instantiation/instantiation.cmi \
+    ./src/translator/exceptionHandling/exceptHandler.cmi \
+    ./src/translator/translation/codeGeneration.cmi \
+    src/translator/translation/translator.cmi
+src/translator/translation/translator.cmx: \
+    ./src/translator/translation/versiondate.cmx \
+    ./src/translator/compilation/nameResolve.cmx \
+    ./src/translator/translation/libraryManager.cmx \
+    ./src/translator/instantiation/instantiation.cmx \
+    ./src/translator/exceptionHandling/exceptHandler.cmx \
+    ./src/translator/translation/codeGeneration.cmx \
+    src/translator/translation/translator.cmi

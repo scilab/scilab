@@ -95,7 +95,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(am__libsciscicos_la_include_HEADERS_DIST) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(srcdir)/.depend $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.modelica.am $(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 @OCAML_TRUE@@XCOS_TRUE@bin_PROGRAMS = $(am__EXEEXT_1)
@@ -337,8 +337,8 @@ XML2Modelica_LDADD = $(LDADD)
 am__modelicac_SOURCES_DIST =  \
 	$(srcdir)/src/modelica_compiler/parseTree.ml \
 	$(srcdir)/src/modelica_compiler/linenum.ml \
-	$(srcdir)/src/modelica_compiler/parser.ml \
-	$(srcdir)/src/modelica_compiler/lexer.ml \
+	$(srcdir)/src/modelica_compiler/parser.mly \
+	$(srcdir)/src/modelica_compiler/lexer.mll \
 	$(srcdir)/src/modelica_compiler/precompilation.ml \
 	$(srcdir)/src/modelica_compiler/compilation.ml \
 	$(srcdir)/src/modelica_compiler/instantiation.ml \
@@ -353,10 +353,14 @@ am__modelicac_SOURCES_DIST =  \
 	$(srcdir)/src/modelica_compiler/optimizingCompiler.ml \
 	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml \
 	$(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
-@OCAML_TRUE@@XCOS_TRUE@am_modelicac_OBJECTS = $(am__objects_7)
+am_modelicac_OBJECTS =
 modelicac_OBJECTS = $(am_modelicac_OBJECTS)
 modelicac_LDADD = $(LDADD)
 am__modelicat_SOURCES_DIST =  \
+	$(srcdir)/src/translator/parsing/syntax.ml \
+	$(srcdir)/src/translator/parsing/parser.mly \
+	$(srcdir)/src/translator/parsing/lexer.mll \
+	$(srcdir)/src/translator/parsing/linenum.ml \
 	$(srcdir)/src/translator/compilation/types.ml \
 	$(srcdir)/src/translator/compilation/nameResolve.ml \
 	$(srcdir)/src/translator/instantiation/instantiation.ml \
@@ -367,7 +371,7 @@ am__modelicat_SOURCES_DIST =  \
 	$(srcdir)/src/translator/translation/codeGeneration.ml \
 	$(srcdir)/src/translator/translation/versiondate.ml \
 	$(srcdir)/src/translator/translation/translator.ml
-@OCAML_TRUE@@XCOS_TRUE@am_modelicat_OBJECTS = $(am__objects_7)
+am_modelicat_OBJECTS =
 modelicat_OBJECTS = $(am_modelicat_OBJECTS)
 modelicat_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
@@ -757,25 +761,25 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @OCAML_TRUE@@XCOS_TRUE@BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
 
 ### Translator 
-@OCAML_TRUE@@XCOS_TRUE@modelicat_SOURCES = $(MLS_modelicat)
-@OCAML_TRUE@@XCOS_TRUE@MLS_modelicat = $(srcdir)/src/translator/compilation/types.ml \
-@OCAML_TRUE@@XCOS_TRUE@ $(srcdir)/src/translator/compilation/nameResolve.ml \
-@OCAML_TRUE@@XCOS_TRUE@ $(srcdir)/src/translator/instantiation/instantiation.ml \
-@OCAML_TRUE@@XCOS_TRUE@ $(srcdir)/src/translator/exceptionHandling/msgDico.ml \
-@OCAML_TRUE@@XCOS_TRUE@ $(srcdir)/src/translator/exceptionHandling/errorDico.ml \
-@OCAML_TRUE@@XCOS_TRUE@ $(srcdir)/src/translator/exceptionHandling/exceptHandler.ml \
-@OCAML_TRUE@@XCOS_TRUE@ $(srcdir)/src/translator/translation/libraryManager.ml \
-@OCAML_TRUE@@XCOS_TRUE@ $(srcdir)/src/translator/translation/codeGeneration.ml \
-@OCAML_TRUE@@XCOS_TRUE@ $(srcdir)/src/translator/translation/versiondate.ml \
-@OCAML_TRUE@@XCOS_TRUE@ $(srcdir)/src/translator/translation/translator.ml
+@OCAML_TRUE@@XCOS_TRUE@modelicat_SOURCES = \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/parsing/syntax.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/parsing/parser.mly \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/parsing/lexer.mll \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/parsing/linenum.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/compilation/types.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/compilation/nameResolve.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/instantiation/instantiation.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/exceptionHandling/msgDico.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/exceptionHandling/errorDico.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/exceptionHandling/exceptHandler.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/translation/libraryManager.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/translation/codeGeneration.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/translation/versiondate.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/translator/translation/translator.ml
 
-@OCAML_TRUE@@XCOS_TRUE@MLS_SPECIFIC_PRE_modelicat = $(srcdir)/src/translator/parsing/syntax.ml \
-@OCAML_TRUE@@XCOS_TRUE@$(srcdir)/src/translator/parsing/parser.ml \
-@OCAML_TRUE@@XCOS_TRUE@$(srcdir)/src/translator/parsing/lexer.ml \
-@OCAML_TRUE@@XCOS_TRUE@$(srcdir)/src/translator/parsing/linenum.ml
-
-@OCAML_TRUE@@XCOS_TRUE@PARSER_SRC_modelicat = $(srcdir)/src/translator/parsing/parser.mly
-@OCAML_TRUE@@XCOS_TRUE@LEXER_SRC_modelicat = $(srcdir)/src/translator/parsing/lexer.mll
+@OCAML_TRUE@@XCOS_TRUE@modelicat_SOURCES_mly = $(modelicat_SOURCES:.mly=.ml)
+@OCAML_TRUE@@XCOS_TRUE@MLS_modelicat = $(modelicat_SOURCES_mly:.mll=.ml)
+@OCAML_TRUE@@XCOS_TRUE@MLIS_modelicat = $(MLS_modelicat:.ml=.mli)
 @OCAML_TRUE@@XCOS_TRUE@INCLUDE_modelicat = -I $(srcdir)/src/translator/compilation \
 @OCAML_TRUE@@XCOS_TRUE@-I $(srcdir)/src/translator/exceptionHandling \
 @OCAML_TRUE@@XCOS_TRUE@-I $(srcdir)/src/translator/parsing \
@@ -784,11 +788,11 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 
 ### Modelicac
-@OCAML_TRUE@@XCOS_TRUE@modelicac_SOURCES = $(MLS)
-@OCAML_TRUE@@XCOS_TRUE@MLS = $(srcdir)/src/modelica_compiler/parseTree.ml \
+@OCAML_TRUE@@XCOS_TRUE@modelicac_SOURCES = \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/parseTree.ml \
 @OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/linenum.ml \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/parser.ml \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/lexer.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/parser.mly \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/lexer.mll \
 @OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/precompilation.ml \
 @OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/compilation.ml \
 @OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/instantiation.ml \
@@ -804,25 +808,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml \
 @OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 
-
-# This is a basic copy of MLS with some elements removed
-@OCAML_TRUE@@XCOS_TRUE@MLIS = $(srcdir)/src/modelica_compiler/parseTree.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/precompilation.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/compilation.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/instantiation.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/graphNodeSet.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/symbolicExpression.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/squareSparseMatrix.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/bipartiteGraph.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/hungarianMethod.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/causalityGraph.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/optimization.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/optimizingCompiler.mli \
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
-
-@OCAML_TRUE@@XCOS_TRUE@PARSER_SRC = $(srcdir)/src/modelica_compiler/parser.mly
-@OCAML_TRUE@@XCOS_TRUE@LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
+@OCAML_TRUE@@XCOS_TRUE@modelicac_SOURCES_mly = $(modelicac_SOURCES:.mly=.ml)
+@OCAML_TRUE@@XCOS_TRUE@MLS = $(modelicac_SOURCES_mly:.mll=.ml)
+@OCAML_TRUE@@XCOS_TRUE@MLIS = $(MLS:.ml=.mli)
 @OCAML_TRUE@@XCOS_TRUE@BASE_PATH_MODELICAC = $(srcdir)/src/modelica_compiler
 @OCAML_TRUE@@XCOS_TRUE@INCLUDE = -I $(BASE_PATH_MODELICAC) -I $(BASE_PATH_XML2Modelica)
 @OCAML_TRUE@@XCOS_TRUE@CLEANFILES = $(BASE_PATH)/*/*.cmi \
@@ -844,7 +832,21 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/*/parser.ml \
 @OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/*/linenum.ml \
 @OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/*/lexer.ml \
-@OCAML_TRUE@@XCOS_TRUE@	$(TARGET)
+@OCAML_TRUE@@XCOS_TRUE@	$(TARGET) \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/modelica_compiler/linenum.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/modelica_compiler/scicosOptimizingCompiler.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/compilation/nameResolve.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/compilation/types.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/exceptionHandling/errorDico.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/exceptionHandling/exceptHandler.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/exceptionHandling/msgDico.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/instantiation/instantiation.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/parsing/linenum.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/parsing/syntax.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/translation/codeGeneration.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/translation/libraryManager.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/translation/translator.mli \
+@OCAML_TRUE@@XCOS_TRUE@	$(BASE_PATH)/translator/translation/versiondate.mli
 
 @XCOS_FALSE@pkglib_LTLIBRARIES = libsciscicos.la
 
@@ -1058,7 +1060,7 @@ all: all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .ml .mli .mll .mly .cmo .cmi .cmx .bin .c .f .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.modelica.am $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.modelica.am $(srcdir)/.depend $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -1079,7 +1081,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe);; \
 	esac;
-$(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.modelica.am:
+$(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.modelica.am $(srcdir)/.depend:
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
@@ -2397,7 +2399,7 @@ distclean-local:
 
 # @TODO check how to avoid the rebuild of the parser/lexer
 
-@OCAML_TRUE@@XCOS_TRUE@.ml.cmo:
+@OCAML_TRUE@@XCOS_TRUE@%.cmo: %.ml %.cmi
 @OCAML_TRUE@@XCOS_TRUE@	@if echo "$<"|grep src/translator; then \
 @OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
 @OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
@@ -2426,11 +2428,11 @@ distclean-local:
 
 @OCAML_TRUE@@XCOS_TRUE@.ml.mli:
 @OCAML_TRUE@@XCOS_TRUE@	@if echo "$<"|grep src/translator; then \
-@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat) -c $<; \
-@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE_modelicat) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat) -i $< > $@; \
+@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE_modelicat) -i $< > $@; \
 @OCAML_TRUE@@XCOS_TRUE@	else \
-@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE) -c $<; \
-@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE) -i $< > $@; \
+@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE) -i $< > $@; \
 @OCAML_TRUE@@XCOS_TRUE@	fi
 
 @OCAML_TRUE@@XCOS_TRUE@.mll.ml:
@@ -2439,38 +2441,324 @@ distclean-local:
 @OCAML_TRUE@@XCOS_TRUE@.mly.ml:
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLYACC) $<
 
-# call the ocaml/Yacc
-@OCAML_TRUE@@XCOS_TRUE@generate-parser: $(PARSER_SRC)
-@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLYACC) $(<)
-@OCAML_TRUE@@XCOS_TRUE@	$(RM) -f $(<:.mly=.mli)
-# Crappy workaround to avoid bug 8013
-@OCAML_TRUE@@XCOS_TRUE@	touch src/modelica_compiler/*.mli
-
-# Call the lexer
-@OCAML_TRUE@@XCOS_TRUE@generate-lexer: $(LEXER_SRC)
-@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLLEX) $(<)
-
 # Build the binaries
 
-@OCAML_TRUE@@XCOS_TRUE@modelicac:generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
+@OCAML_TRUE@@XCOS_TRUE@modelicac:$(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
 
 @OCAML_TRUE@@XCOS_TRUE@XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx) 
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 
 
-# call the ocaml/Yacc
-@OCAML_TRUE@@XCOS_TRUE@generate-parser_modelicat: $(PARSER_SRC_modelicat)
-@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLYACC) $(<)
-@OCAML_TRUE@@XCOS_TRUE@	$(RM) -f $(<:.mly=.ml)i
-# Crappy workaround to avoid bug 8013
-@OCAML_TRUE@@XCOS_TRUE@	touch $(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
-
-# Call the lexer
-@OCAML_TRUE@@XCOS_TRUE@generate-lexer_modelicat: $(LEXER_SRC_modelicat)
-@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLLEX) $(<)
-
-@OCAML_TRUE@@XCOS_TRUE@modelicat: generate-parser_modelicat generate-lexer_modelicat $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmo)  $(MLS_modelicat:.ml=.mli) $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmo)  $(MLS_modelicat:.ml=.cmx) 
+@OCAML_TRUE@@XCOS_TRUE@modelicat: $(MLIS_modelicat:.mli=.cmi) $(MLS_modelicat:.ml=.cmo) $(MLS_modelicat:.ml=.cmx)
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o modelicat $(INCLUDE_modelicat) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmx) 
+
+#BUILT_SOURCES = depend
+
+@OCAML_TRUE@@XCOS_TRUE@depend: $(MLIS) $(MLS) $(MLIS_XML2Modelica) $(MLS_XML2Modelica) $(MLIS_modelicat) $(MLS_modelicat)
+@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLDEP) $(INCLUDE_modelicat) $(INCLUDE) $^ > .depend
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/parseTree.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/linenum.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/parser.cmi: ./src/modelica_compiler/parseTree.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/lexer.cmi: ./src/translator/parsing/parser.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/precompilation.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/parseTree.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/compilation.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/precompilation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/instantiation.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/compilation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/graphNodeSet.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/symbolicExpression.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/squareSparseMatrix.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/bipartiteGraph.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/hungarianMethod.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/causalityGraph.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/optimization.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/symbolicExpression.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/compilation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/xMLCodeGeneration.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/optimization.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/optimizingCompiler.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/optimization.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/scicosCodeGeneration.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/optimization.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/scicosOptimizingCompiler.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/parseTree.cmo: src/modelica_compiler/parseTree.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/parseTree.cmx: src/modelica_compiler/parseTree.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/linenum.cmo: src/modelica_compiler/linenum.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/linenum.cmx: src/modelica_compiler/linenum.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/parser.cmo: ./src/modelica_compiler/parseTree.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/linenum.cmi src/modelica_compiler/parser.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/parser.cmx: ./src/modelica_compiler/parseTree.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/linenum.cmx src/modelica_compiler/parser.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/lexer.cmo: ./src/translator/parsing/parser.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/lexer.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/lexer.cmx: ./src/translator/parsing/parser.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/lexer.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/precompilation.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/parseTree.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/precompilation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/precompilation.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/parseTree.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/precompilation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/compilation.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/precompilation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/parseTree.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/compilation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/compilation.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/precompilation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/parseTree.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/compilation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/instantiation.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/compilation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/instantiation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/instantiation.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/compilation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/instantiation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/graphNodeSet.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/graphNodeSet.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/graphNodeSet.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/graphNodeSet.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/symbolicExpression.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/graphNodeSet.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/symbolicExpression.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/symbolicExpression.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/graphNodeSet.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/symbolicExpression.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/squareSparseMatrix.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/squareSparseMatrix.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/squareSparseMatrix.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/squareSparseMatrix.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/bipartiteGraph.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/bipartiteGraph.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/bipartiteGraph.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/bipartiteGraph.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/hungarianMethod.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/hungarianMethod.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/hungarianMethod.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/hungarianMethod.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/causalityGraph.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/causalityGraph.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/causalityGraph.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/causalityGraph.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/optimization.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/symbolicExpression.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/squareSparseMatrix.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/hungarianMethod.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/compilation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/causalityGraph.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/bipartiteGraph.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/optimization.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/optimization.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/symbolicExpression.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/squareSparseMatrix.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/hungarianMethod.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/compilation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/causalityGraph.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/bipartiteGraph.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/optimization.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/xMLCodeGeneration.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/symbolicExpression.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/optimization.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/xMLCodeGeneration.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/xMLCodeGeneration.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/symbolicExpression.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/optimization.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/xMLCodeGeneration.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/optimizingCompiler.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/xMLCodeGeneration.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/precompilation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/parser.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/optimization.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/lexer.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/compilation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/optimizingCompiler.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/optimizingCompiler.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/xMLCodeGeneration.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/precompilation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/parser.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/optimization.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/lexer.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/compilation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/optimizingCompiler.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/scicosCodeGeneration.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/symbolicExpression.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/optimization.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/scicosCodeGeneration.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/scicosCodeGeneration.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/symbolicExpression.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/optimization.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/scicosCodeGeneration.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/scicosOptimizingCompiler.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/scicosCodeGeneration.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/optimizingCompiler.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/scicosOptimizingCompiler.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/modelica_compiler/scicosOptimizingCompiler.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/scicosCodeGeneration.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/modelica_compiler/optimizingCompiler.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/modelica_compiler/scicosOptimizingCompiler.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/xMLTree.cmo:
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/xMLTree.cmx:
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/linenum.cmo:
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/linenum.cmx:
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/stringParser.cmo:
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/stringParser.cmx:
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/stringLexer.cmo: ./src/xml2modelica/stringParser.cmo
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/stringLexer.cmx: ./src/xml2modelica/stringParser.cmx
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/xMLParser.cmo: ./src/xml2modelica/xMLTree.cmo \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/linenum.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/xMLParser.cmx: ./src/xml2modelica/xMLTree.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/linenum.cmx
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/xMLLexer.cmo: ./src/xml2modelica/xMLParser.cmo
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/xMLLexer.cmx: ./src/xml2modelica/xMLParser.cmx
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/modelicaCodeGenerator.cmo: ./src/xml2modelica/xMLTree.cmo \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/xml2modelica/stringParser.cmo ./src/xml2modelica/stringLexer.cmo
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/modelicaCodeGenerator.cmx: ./src/xml2modelica/xMLTree.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/xml2modelica/stringParser.cmx ./src/xml2modelica/stringLexer.cmx
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/xML2Modelica.cmo: ./src/xml2modelica/xMLParser.cmo \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/xml2modelica/xMLLexer.cmo \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/xml2modelica/modelicaCodeGenerator.cmo
+@OCAML_TRUE@@XCOS_TRUE@src/xml2modelica/xML2Modelica.cmx: ./src/xml2modelica/xMLParser.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/xml2modelica/xMLLexer.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/xml2modelica/modelicaCodeGenerator.cmx
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/syntax.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/parser.cmi: ./src/translator/parsing/syntax.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/lexer.cmi: ./src/translator/parsing/parser.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/linenum.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/translator/compilation/types.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/translator/compilation/nameResolve.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/types.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/syntax.cmi ./src/translator/parsing/parser.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/instantiation/instantiation.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/types.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/syntax.cmi ./src/translator/parsing/parser.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/exceptionHandling/msgDico.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/translator/exceptionHandling/errorDico.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/parser.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/exceptionHandling/exceptHandler.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/parser.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/libraryManager.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/syntax.cmi ./src/translator/parsing/parser.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/codeGeneration.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/types.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/errorDico.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/versiondate.cmi:
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/translator.cmi: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/syntax.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/syntax.cmo: src/translator/parsing/syntax.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/syntax.cmx: src/translator/parsing/syntax.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/parser.cmo: ./src/translator/parsing/syntax.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/parsing/parser.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/parser.cmx: ./src/translator/parsing/syntax.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/parsing/parser.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/lexer.cmo: ./src/translator/parsing/parser.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/parsing/lexer.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/lexer.cmx: ./src/translator/parsing/parser.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/parsing/lexer.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/linenum.cmo: src/translator/parsing/linenum.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/parsing/linenum.cmx: src/translator/parsing/linenum.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/compilation/types.cmo: src/translator/compilation/types.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/compilation/types.cmx: src/translator/compilation/types.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/compilation/nameResolve.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/types.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/syntax.cmi ./src/translator/parsing/parser.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/compilation/nameResolve.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/compilation/nameResolve.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/types.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/syntax.cmx ./src/translator/parsing/parser.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/compilation/nameResolve.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/instantiation/instantiation.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/types.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/syntax.cmi ./src/translator/parsing/parser.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/instantiation/instantiation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/instantiation/instantiation.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/types.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/syntax.cmx ./src/translator/parsing/parser.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/instantiation/instantiation.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/exceptionHandling/msgDico.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/exceptionHandling/msgDico.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/exceptionHandling/msgDico.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/exceptionHandling/msgDico.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/exceptionHandling/errorDico.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/parser.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/exceptionHandling/errorDico.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/exceptionHandling/errorDico.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/parser.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/exceptionHandling/errorDico.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/exceptionHandling/exceptHandler.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/parser.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/msgDico.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/linenum.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/errorDico.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/exceptionHandling/exceptHandler.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/exceptionHandling/exceptHandler.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/parser.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/msgDico.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/linenum.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/errorDico.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/exceptionHandling/exceptHandler.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/libraryManager.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/parser.cmi ./src/translator/parsing/lexer.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/exceptHandler.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/translation/libraryManager.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/libraryManager.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/parsing/parser.cmx ./src/translator/parsing/lexer.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/exceptHandler.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/translation/libraryManager.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/codeGeneration.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/types.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/errorDico.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/translation/codeGeneration.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/codeGeneration.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/types.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/errorDico.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/translation/codeGeneration.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/versiondate.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/translation/versiondate.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/versiondate.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/translation/versiondate.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/translator.cmo: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/translation/versiondate.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/translation/libraryManager.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/exceptHandler.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/translation/codeGeneration.cmi \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/translation/translator.cmi
+@OCAML_TRUE@@XCOS_TRUE@src/translator/translation/translator.cmx: \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/translation/versiondate.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/compilation/nameResolve.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/translation/libraryManager.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/instantiation/instantiation.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/exceptHandler.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    ./src/translator/translation/codeGeneration.cmx \
+@OCAML_TRUE@@XCOS_TRUE@    src/translator/translation/translator.cmi
 
 .NOTPARALLEL: libscisundials.la libsciscicos.la
 
