@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_min(types::typed_list &in, int _iRetCount, type
 
     if (inputs[0]->isDouble() == false && inputs[0]->isInt() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_min";
+        std::wstring wstFuncName = L"%"  + inputs[0]->getShortTypeStr() + L"_min";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
     }
 
