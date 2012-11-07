@@ -124,8 +124,6 @@ function create_frame(my_fig_handle,fr_position,fr_title,fr_items)
   // =========================================================================
 
 
-mprintf("fr_items\n");
-disp(fr_items);
   // if no item, no display
   if fr_items == []  then
     my_visible = "off";
@@ -180,7 +178,6 @@ disp(fr_items);
     "visible"       , my_visible, ...
     "tag"         , "title_frame_"+string(fr_position));
 
-pause
   // List Box
   uicontrol( ...
     "parent"        , my_fig_handle,...
@@ -196,8 +193,6 @@ pause
     "visible"       , my_visible, ...
     "user_data"       , fr_items, ...
     "tag"         , "listbox_"+string(fr_position));
-    mprintf("%s\n", "listbox_"+string(fr_position));
-    disp(fr_items);
 
   // Logo Scilab
   // =========================================================================

@@ -42,20 +42,20 @@ extern "C" {
     } StrCtx, *pStrCtx;
 #endif
 
-//#if SCI_VERSION_MAJOR < 6
-//    #ifdef _MSC_VER
-//     #ifndef API_SCILAB_EXPORTS
-//         __declspec( dllimport ) StrCtx* pvApiCtx;
-//        #else
-//        extern StrCtx* pvApiCtx;
-//     #endif
-//    #endif
-//#endif
+    //#if SCI_VERSION_MAJOR < 6
+    //    #ifdef _MSC_VER
+    //     #ifndef API_SCILAB_EXPORTS
+    //         __declspec( dllimport ) StrCtx* pvApiCtx;
+    //        #else
+    //        extern StrCtx* pvApiCtx;
+    //     #endif
+    //    #endif
+    //#endif
 
 #include "api_scilab.h"
     /* generics functions */
 
-/*Rhs*/
+    /*Rhs*/
     int* getNbInputArgument(void* _pvCtx);
 #define nbInputArgument(PVCTX) (*getNbInputArgument(PVCTX))
 
@@ -64,7 +64,7 @@ extern "C" {
 #endif
 #define Rhs (*getNbInputArgument(pvApiCtx))
 
-/*Lhs*/
+    /*Lhs*/
     int* getNbOutputArgument(void* _pvCtx);
 #define nbOutputArgument(PVCTX) (*getNbOutputArgument(PVCTX))
 #ifdef Lhs
@@ -72,7 +72,7 @@ extern "C" {
 #endif
 #define Lhs (*getNbOutputArgument(pvApiCtx))
 
-/*PutLhs*/
+    /*PutLhs*/
     int* assignOutputVariable(void* _pvCtx, int _iVal);
 #define AssignOutputVariable(PVCTX, x) (*assignOutputVariable(PVCTX, x))
 #ifdef LhsVar
@@ -80,7 +80,7 @@ extern "C" {
 #endif
 #define LhsVar(x) (*assignOutputVariable(pvApiCtx, x))
 
-/*PutLhsVar*/
+    /*PutLhsVar*/
     int returnArguments(void* _pvCtx);
 #define ReturnArguments(PVCTX) if (! returnArguments(PVCTX)) { return 0; }
 #ifdef PutLhsVar
@@ -437,6 +437,19 @@ extern "C" {
      */
     int deleteNamedVariable(void* _pvCtx, const char* _pstName);
 
+    /**
+     * increase ref for user_data handle property
+     * @param[in] _piAddress variable address
+     * @return 1 for successand 0 for failure
+     */
+    int increaseValRef(void* _pvCtx, int* _piAddress);
+
+    /**
+     * decrease ref for user_data handle property
+     * @param[in] _piAddress variable address
+     * @return 1 for successand 0 for failure
+     */
+    int decreaseValRef(void* _pvCtx, int* _piAddress);
 #ifdef __cplusplus
 }
 #endif

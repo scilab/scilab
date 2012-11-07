@@ -20,13 +20,17 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <stdio.h>
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "MALLOC.h"
+#include "api_scilab.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
+
 
 /*------------------------------------------------------------------------*/
 void* get_user_data_property(void* _pvCtx, char* pobjUID)
@@ -43,7 +47,11 @@ void* get_user_data_property(void* _pvCtx, char* pobjUID)
 
     if ((piUserData == NULL) || (piUserDataSize == 0))
     {
+        int iSize = sizeof(void*) / sizeof(int);
         status = sciReturnEmptyMatrix();
+        //force user_data to have something and not create each time a new variable
+        setGraphicObjectProperty(pobjUID, __GO_USER_DATA__, &status, jni_int_vector, iSize);
+        increaseValRef(_pvCtx, (int*)status);
     }
     else
     {

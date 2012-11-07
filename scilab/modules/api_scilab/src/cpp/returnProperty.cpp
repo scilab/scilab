@@ -204,6 +204,18 @@ void* sciReturnStringMatrix(char * values[], int nbRow, int nbCol)
 /*--------------------------------------------------------------------------*/
 void* sciReturnUserData(const int * userData, int userDataSize)
 {
-    return ((types::InternalType*) * userData);
+    //take care of 32 and 64 bits arch.
+    if (userDataSize == 1)
+    {
+        //32 bits
+        int* p = (int*)userData;
+        return ((types::InternalType*) * p);
+    }
+    else
+    {
+        //64 bits
+        long long* p = (long long*)userData;
+        return ((types::InternalType*) * p);
+    }
 }
 /*--------------------------------------------------------------------------*/
