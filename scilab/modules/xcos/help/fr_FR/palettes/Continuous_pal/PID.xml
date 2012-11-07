@@ -224,7 +224,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_Example.png" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -236,7 +236,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID2_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID2_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID2_Example.png" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

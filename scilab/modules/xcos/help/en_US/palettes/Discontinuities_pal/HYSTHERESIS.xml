@@ -250,7 +250,7 @@
         <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/HYSTERESIS_Example.xcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/discontinuities_pal/HYSTERESIS_Example.xcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../examples/discontinuities_pal/HYSTERESIS_Example.png" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </link>

@@ -228,7 +228,7 @@
         <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/EVTDLY_c_Example.xcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/events_pal/EVTDLY_c_Example.xcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../examples/events_pal/EVTDLY_c_Example.png" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </link>
