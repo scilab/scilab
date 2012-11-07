@@ -331,8 +331,7 @@ AC_PROG_F77_C_O
 
 # If this option is provided, enable the debug on C & C++
 if test "$enable_stop_on_warning" = yes; then
-   enable_debug_C=yes
-   enable_debug_CXX=yes
+   enable_debug=yes
 fi
 
 if test "$enable_debug" = yes; then
