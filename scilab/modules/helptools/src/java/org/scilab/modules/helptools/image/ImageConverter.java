@@ -47,6 +47,7 @@ public final class ImageConverter {
         mimeMap.addMimeTypes("type=image/mathml exts=mml,mathml");
         mimeMap.addMimeTypes("type=image/svg exts=svg");
         mimeMap.addMimeTypes("type=image/scilab exts=sce");
+        mimeMap.addMimeTypes("type=image/scilab-xcos exts=xcos,zcos");
     }
 
     /**
