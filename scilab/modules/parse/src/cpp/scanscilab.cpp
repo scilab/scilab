@@ -2302,7 +2302,8 @@ YY_RULE_SETUP
 {
       unput(yytext[yyleng -1]);
       if (last_token == ID
-          || last_token == RPAREN)
+          || last_token == RPAREN
+          || last_token == QUOTE)
       {
           return scan_throw(COMMA);
       }
