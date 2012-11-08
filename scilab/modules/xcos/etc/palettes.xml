@@ -140,6 +140,12 @@
             <block name="DOLLAR_f">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/DOLLAR_f.png"/>
             </block>
+            <block name="DOLLAR">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DOLLAR.png"/>
+            </block>
+            <block name="DOLLAR_m">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DOLLAR_m.png"/>
+            </block>
             <block name="SAMPHOLD_m">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/SAMPHOLD_m.png"/>
             </block>
@@ -254,6 +260,12 @@
             <block name="GAINBLK_f">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/GAINBLK_f.png"/>
             </block>
+            <block name="GAINBLK">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/GAINBLK.png"/>
+            </block>
+            <block name="GAIN_f">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/GAIN_f.png"/>
+            </block>
             <block name="INVBLK">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/INVBLK.png"/>
             </block>
@@ -298,6 +310,9 @@
             </block>
             <block name="SUM_f">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/SUM_f.png"/>
+            </block>
+            <block name="SOM_f">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SOM_f.png"/>
             </block>
             <block name="TANBLK_f">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/TANBLK_f.png"/>
@@ -533,6 +548,9 @@
             <block name="DEMUX">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/DEMUX.png"/>
             </block>
+            <block name="DEMUX_f">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DEMUX_f.png"/>
+            </block>
             <block name="EXTRACTOR">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/EXTRACTOR.png"/>
             </block>
@@ -542,7 +560,6 @@
             <block name="FROM">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/FROM.png"/>
             </block>
-            
             <block name="FROMMO">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/FROMMO.png"/>
             </block>
@@ -569,6 +586,9 @@
             </block>
             <block name="MUX">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/MUX.png"/>
+            </block>
+            <block name="MUX_f">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MUX_f.png"/>
             </block>
             <block name="M_SWITCH">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/M_SWITCH.png"/>
@@ -690,6 +710,12 @@
             </block>
             <block name="CONST_m">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CONST_m.png"/>
+            </block>
+            <block name="CONST">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CONST.png"/>
+            </block>
+            <block name="CONST_f">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CONST_.png"/>
             </block>
             <block name="CURV_f">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CURV_f.png"/>
