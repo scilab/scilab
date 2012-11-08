@@ -28,7 +28,7 @@
 
 typedef struct __EXPRESSIONLINEBREAK__
 {
-    bool bMute;
+    bool bVerbose;
     int iNbBreaker;
 }LineBreakStr;
 

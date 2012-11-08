@@ -970,7 +970,10 @@ assign			"="
     yy_pop_state();
     for (int i = yyleng - 1 ; i >= 0 ; --i)
     {
+        //std::cerr << "Unputting i = {" << i << "}" << std::endl;
+        //std::cerr << "Unputting {" << yytext[i] << "}" << std::endl;
         unput(yytext[i]);
+        yylloc.last_column--;
     }
     /*
     ** To forgot comments after lines break
