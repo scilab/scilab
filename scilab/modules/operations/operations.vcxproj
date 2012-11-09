@@ -272,6 +272,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <None Include="elementary_functions_Import.def" />
     <None Include="linear_algebra_f_Import.def" />
     <None Include="Localization_Import.def" />
+    <None Include="operations.iss" />
     <None Include="polynomials_f_Import.def" />
     <None Include="system_env_Import.def" />
   </ItemGroup>

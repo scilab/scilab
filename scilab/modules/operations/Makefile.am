@@ -56,5 +56,8 @@ modulename=operations
 #### libscioperations_la_rootdir = $(mydatadir)
 #### libscioperations_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
+#### operations : init scripts ####
+libsciboolean_la_etcdir = $(mydatadir)/etc
+libsciboolean_la_etc_DATA = etc/operations.quit etc/operations.start
 
 include $(top_srcdir)/Makefile.incl.am

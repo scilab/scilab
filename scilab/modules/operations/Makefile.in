@@ -36,6 +36,7 @@
 ### Target, variable, suffixes which are supposed to be useful in every makefile.am
 ##########
 
+
 VPATH = @srcdir@
 am__make_dryrun = \
   { \
@@ -127,7 +128,8 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(pkglibdir)"
+am__installdirs = "$(DESTDIR)$(pkglibdir)" \
+	"$(DESTDIR)$(libsciboolean_la_etcdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscioperations_la_DEPENDENCIES =
 am__objects_1 = libscioperations_la-doublecomplex.lo \
@@ -185,6 +187,7 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
+DATA = $(libsciboolean_la_etc_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -492,6 +495,14 @@ libscioperations_la_LIBADD =
 
 #### Target ######
 modulename = operations
+
+#### operations : Conf files ####
+#### libscioperations_la_rootdir = $(mydatadir)
+#### libscioperations_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### operations : init scripts ####
+libsciboolean_la_etcdir = $(mydatadir)/etc
+libsciboolean_la_etc_DATA = etc/operations.quit etc/operations.start
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -857,6 +868,27 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libsciboolean_la_etcDATA: $(libsciboolean_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciboolean_la_etc_DATA)'; test -n "$(libsciboolean_la_etcdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciboolean_la_etcdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciboolean_la_etcdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciboolean_la_etcdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciboolean_la_etcdir)" || exit $$?; \
+	done
+
+uninstall-libsciboolean_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciboolean_la_etc_DATA)'; test -n "$(libsciboolean_la_etcdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciboolean_la_etcdir)'; $(am__uninstall_files_from_dir)
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -943,9 +975,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciboolean_la_etcdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1001,7 +1033,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local
+install-data-am: install-data-local install-libsciboolean_la_etcDATA
 
 install-dvi: install-dvi-am
 
@@ -1047,7 +1079,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-pkglibLTLIBRARIES
+uninstall-am: uninstall-libsciboolean_la_etcDATA \
+	uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
 
@@ -1059,13 +1092,15 @@ uninstall-am: uninstall-pkglibLTLIBRARIES
 	install install-am install-data install-data-am \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-pkglibLTLIBRARIES
+	install-html-local install-info install-info-am \
+	install-libsciboolean_la_etcDATA install-man install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libsciboolean_la_etcDATA \
+	uninstall-pkglibLTLIBRARIES
 
 
 # This target enables tests for Scilab
@@ -1272,10 +1307,6 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
-
-#### operations : Conf files ####
-#### libscioperations_la_rootdir = $(mydatadir)
-#### libscioperations_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -56,4 +56,5 @@
     <module name="graphics" activate="@GUI_ENABLE@"/>
     <module name="demo_tools" activate="@GUI_ENABLE@"/>
     <module name="graphic_export" activate="yes"/>
+    <module name="operations" activate="yes"/>
 </modules>

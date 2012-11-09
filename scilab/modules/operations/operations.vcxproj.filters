@@ -178,6 +178,7 @@
     <None Include="system_env_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
+    <None Include="operations.iss" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />
