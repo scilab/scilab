@@ -417,7 +417,7 @@ public :
                     {
                         if (pIdx[j] >= m_piDims[i])
                         {
-                            return false;
+                            return NULL;
                         }
                     }
                 }
@@ -432,7 +432,7 @@ public :
                 {
                     if (pIdx[i] > iMaxLastDim)
                     {
-                        return false;
+                        return NULL;
                     }
                 }
             }
