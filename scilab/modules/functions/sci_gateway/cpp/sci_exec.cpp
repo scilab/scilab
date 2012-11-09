@@ -46,7 +46,7 @@ using namespace std;
 
 bool checkPrompt(int _iMode, int _iCheck);
 void printLine(char* _stPrompt, char* _stLine, bool _bLF);
-void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, char* _pstPreviousBuffer);
+void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, char* _pstPreviousBuffer);
 std::string getExpression(char* _pstFile, Exp* _pExp);
 
 /*--------------------------------------------------------------------------*/
@@ -176,6 +176,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
     char str[1024];
     int iCurrentLine = -1; //no data in str
+    int iCurrentCol = 0; //no data in str
 
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
@@ -193,7 +194,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                 int iLastLine = (*j)->location_get().last_line;
                 do
                 {
-                    printExp(&file, *k, stPrompt, &iCurrentLine, str);
+                    printExp(&file, *k, stPrompt, &iCurrentLine, &iCurrentCol, str);
                     iLastLine = (*k)->location_get().last_line;
                     k++;
                 }while(k != LExp.end() && (*k)->location_get().first_line == iLastLine);
@@ -465,7 +466,7 @@ bool checkPrompt(int _iMode, int _iCheck)
     return ((_iMode & _iCheck) == _iCheck);
 }
 
-void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, char* _pstPreviousBuffer)
+void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, char* _pstPreviousBuffer)
 {
     char strLastLine[1024];
     //case 1, exp is on 1 line and take the entire line
@@ -521,22 +522,39 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         if(iStart == 0 && iExpLen == iLineLen)
         {//entire line
             printLine(_pstPrompt, strLastLine, true);
+            *_piCol = 0;
         }
         else
         {
             if(iStart == 0)
             {//begin of line
                 printLine(_pstPrompt, strLastLine, false);
+                *_piCol = loc.last_column;
             }
             else
             {
+                if(*_piCol == 0)
+                {
+                    printLine(_pstPrompt, "", false);
+                    (*_piCol)++;
+                }
+
+                if(*_piCol < loc.first_column)
+                {//pickup separator between expressionsfrom file and add to output
+                    char pstTemp[1024] = {0};
+                    strncpy(pstTemp, _pstPreviousBuffer +  (*_piCol - 1), loc.first_column - *_piCol);
+                    printLine("", pstTemp, false);
+                    *_piCol = loc.first_column;
+                }
                 if(iEnd == iLineLen)
                 {
                     printLine("", strLastLine, true);
+                    *_piCol = 0;
                 }
                 else
                 {
                     printLine("", strLastLine, false);
+                    *_piCol = loc.last_column;
                 }
             }
         }
@@ -572,10 +590,12 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         if(iLineLen == (loc.last_column-1))
         {
             printLine(_pstPrompt, strLastLine, true);
+            *_piCol = 0;
         }
         else
         {
             printLine(_pstPrompt, strLastLine, false);
+            *_piCol = loc.last_column;
         }
     }
 }
