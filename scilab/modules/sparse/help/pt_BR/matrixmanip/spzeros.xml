@@ -69,7 +69,10 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
+m=spzeros(2,2)
+a=rand(10,12);
+m=spzeros(a)
 sum(spzeros(1000,1000))
  ]]></programlisting>
     </refsection>
