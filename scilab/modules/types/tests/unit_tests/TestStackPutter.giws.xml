@@ -1,0 +1,8 @@
+<package name="org.scilab.modules.types">
+    <object name="TestS2JJ2S">
+        <method name="getId" returnType="int" modifier="static"/>
+        <method name="put" returnType="void" modifier="static" >
+            <parameter name="pos" type="int"/>
+        </method>
+    </object>
+</package>

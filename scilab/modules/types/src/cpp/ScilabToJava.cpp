@@ -18,107 +18,107 @@
 namespace org_modules_types
 {
 
-    int ScilabToJava::refreshId = -1;
+int ScilabToJava::refreshId = -1;
 
-    void ScilabToJava::sendAllListenedVariables()
+void ScilabToJava::sendAllListenedVariables()
+{
+    if (refreshId == -1)
     {
-        if (refreshId == -1)
-        {
-            refreshId = ScilabVariablesRefresh::getScilabVariablesRefreshId(getScilabJavaVM());
-        }
-
-        char ** vars = ScilabVariables::getAllListenedVariables(getScilabJavaVM());
-        while (*vars)
-        {
-            sendVariable(std::string(*vars), true, refreshId);
-            vars++;
-        }
+        refreshId = ScilabVariablesRefresh::getScilabVariablesRefreshId(getScilabJavaVM());
     }
 
-    bool ScilabToJava::sendVariable(const std::string & name, bool swaped, int handlerId)
+    char ** vars = ScilabVariables::getAllListenedVariables(getScilabJavaVM());
+    while (*vars)
     {
-        int * addr = 0;
-        SciErr err;
+        sendVariable(std::string(*vars), true, refreshId);
+        vars++;
+    }
+}
 
-        if (!isNamedVarExist(0, name.c_str()))
-        {
-            return false;
-        }
+bool ScilabToJava::sendVariable(const std::string & name, const bool swaped, const int handlerId)
+{
+    int * addr = 0;
+    SciErr err;
 
-        err = getVarAddressFromName(0, name.c_str(), &addr);
-        if (err.iErr)
-        {
-            printError(&err, 0);
-            return false;
-        }
-
-        std::vector<int> indexes;
-        return sendVariable(name, indexes, addr, swaped, handlerId, 0);
+    if (!isNamedVarExist(0, name.c_str()))
+    {
+        return false;
     }
 
-    bool ScilabToJava::sendVariable(const std::string & name, int * addr, bool swaped, int handlerId, void * pvApiCtx)
+    err = getVarAddressFromName(0, name.c_str(), &addr);
+    if (err.iErr)
     {
-        std::vector<int> indexes;
-        return sendVariable(name, indexes, addr, swaped, handlerId, pvApiCtx);
+        printError(&err, 0);
+        return false;
     }
 
-    bool ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, int * addr, bool swaped, int handlerId, void * pvApiCtx)
-    {
-        SciErr err;
+    std::vector<int> indexes;
+    return sendVariable(name, indexes, addr, swaped, handlerId, 0);
+}
 
-        int type;
-        int row;
-        int col;
-        int prec;
+bool ScilabToJava::sendVariable(const std::string & name, int * addr, const bool swaped, const int handlerId, void * pvApiCtx)
+{
+    std::vector<int> indexes;
+    return sendVariable(name, indexes, addr, swaped, handlerId, pvApiCtx);
+}
 
-        // Double
-        double * real = 0;
-        double * img = 0;
+bool ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, int * addr, const bool swaped, const int handlerId, void * pvApiCtx)
+{
+    SciErr err;
 
-        // Integers
-        char * integers8 = 0;
-        unsigned char * uintegers8 = 0;
-        short * integers16 = 0;
-        unsigned short * uintegers16 = 0;
-        int * integers32 = 0;
-        unsigned int * uintegers32 = 0;
+    int type;
+    int row;
+    int col;
+    int prec;
 
-        // Boolean
-        int * booleans = 0;
+    // Double
+    double * real = 0;
+    double * img = 0;
+
+    // Integers
+    char * integers8 = 0;
+    unsigned char * uintegers8 = 0;
+    short * integers16 = 0;
+    unsigned short * uintegers16 = 0;
+    int * integers32 = 0;
+    unsigned int * uintegers32 = 0;
+
+    // Boolean
+    int * booleans = 0;
 
 #ifdef __SCILAB_INT64__
-        long long * integers64 = 0;
-        unsigned long long * uintegers64 = 0;
+    long long * integers64 = 0;
+    unsigned long long * uintegers64 = 0;
 #endif
 
-        // Strings
-        char ** strings = 0;
+    // Strings
+    char ** strings = 0;
 
-        // Sparse
-        int nbItem;
-        int * nbItemRow = 0;
-        int * colPos = 0;
+    // Sparse
+    int nbItem;
+    int * nbItemRow = 0;
+    int * colPos = 0;
 
-        // Polynomial
-        double ** re = 0;
-        double ** im = 0;
-        int rc;
-        int * nbCoeffs = 0;
-        char varName[5];
-        int varNameLen;
+    // Polynomial
+    double ** re = 0;
+    double ** im = 0;
+    int rc;
+    int * nbCoeffs = 0;
+    char varName[5];
+    int varNameLen;
 
-        // Lists
-        char listtype = 0;
+    // Lists
+    char listtype = 0;
 
-        err = getVarType(pvApiCtx, addr, &type);
-        if (err.iErr)
-        {
-            printError(&err, 0);
-            return false;
-        }
+    err = getVarType(pvApiCtx, addr, &type);
+    if (err.iErr)
+    {
+        printError(&err, 0);
+        return false;
+    }
 
-        switch (type)
-        {
+    switch (type)
+    {
         case sci_matrix :
             if (isVarComplex(pvApiCtx, addr))
             {
@@ -153,91 +153,91 @@ namespace org_modules_types
 
             switch (prec)
             {
-            case SCI_INT8 :
-                err = getMatrixOfInteger8(pvApiCtx, addr, &row, &col, &integers8);
-                if (err.iErr)
-                {
-                    printError(&err, 0);
-                    return false;
-                }
+                case SCI_INT8 :
+                    err = getMatrixOfInteger8(pvApiCtx, addr, &row, &col, &integers8);
+                    if (err.iErr)
+                    {
+                        printError(&err, 0);
+                        return false;
+                    }
 
-                sendVariable<byte>(name, indexes, row, col, (byte *)integers8, swaped, handlerId);
-                break;
-            case SCI_UINT8 :
-                err = getMatrixOfUnsignedInteger8(pvApiCtx, addr, &row, &col, &uintegers8);
-                if (err.iErr)
-                {
-                    printError(&err, 0);
-                    return false;
-                }
+                    sendVariable<byte>(name, indexes, row, col, (byte *)integers8, swaped, handlerId);
+                    break;
+                case SCI_UINT8 :
+                    err = getMatrixOfUnsignedInteger8(pvApiCtx, addr, &row, &col, &uintegers8);
+                    if (err.iErr)
+                    {
+                        printError(&err, 0);
+                        return false;
+                    }
 
-                sendUnsignedVariable<byte>(name, indexes, row, col, (byte *)uintegers8, swaped, handlerId);
-                break;
-            case SCI_INT16 :
-                err = getMatrixOfInteger16(pvApiCtx, addr, &row, &col, &integers16);
-                if (err.iErr)
-                {
-                    printError(&err, 0);
-                    return false;
-                }
+                    sendUnsignedVariable<byte>(name, indexes, row, col, (byte *)uintegers8, swaped, handlerId);
+                    break;
+                case SCI_INT16 :
+                    err = getMatrixOfInteger16(pvApiCtx, addr, &row, &col, &integers16);
+                    if (err.iErr)
+                    {
+                        printError(&err, 0);
+                        return false;
+                    }
 
-                sendVariable<short>(name, indexes, row, col, integers16, swaped, handlerId);
-                break;
-            case SCI_UINT16 :
-                err = getMatrixOfUnsignedInteger16(pvApiCtx, addr, &row, &col, &uintegers16);
-                if (err.iErr)
-                {
-                    printError(&err, 0);
-                    return false;
-                }
+                    sendVariable<short>(name, indexes, row, col, integers16, swaped, handlerId);
+                    break;
+                case SCI_UINT16 :
+                    err = getMatrixOfUnsignedInteger16(pvApiCtx, addr, &row, &col, &uintegers16);
+                    if (err.iErr)
+                    {
+                        printError(&err, 0);
+                        return false;
+                    }
 
-                sendUnsignedVariable<short>(name, indexes, row, col, (short *)uintegers16, swaped, handlerId);
-                break;
-            case SCI_INT32 :
-                err = getMatrixOfInteger32(pvApiCtx, addr, &row, &col, &integers32);
-                if (err.iErr)
-                {
-                    printError(&err, 0);
-                    return false;
-                }
+                    sendUnsignedVariable<short>(name, indexes, row, col, (short *)uintegers16, swaped, handlerId);
+                    break;
+                case SCI_INT32 :
+                    err = getMatrixOfInteger32(pvApiCtx, addr, &row, &col, &integers32);
+                    if (err.iErr)
+                    {
+                        printError(&err, 0);
+                        return false;
+                    }
 
-                sendVariable<int>(name, indexes, row, col, integers32, swaped, handlerId);
-                break;
-            case SCI_UINT32 :
-                err = getMatrixOfUnsignedInteger32(pvApiCtx, addr, &row, &col, &uintegers32);
-                if (err.iErr)
-                {
-                    printError(&err, 0);
-                    return false;
-                }
+                    sendVariable<int>(name, indexes, row, col, integers32, swaped, handlerId);
+                    break;
+                case SCI_UINT32 :
+                    err = getMatrixOfUnsignedInteger32(pvApiCtx, addr, &row, &col, &uintegers32);
+                    if (err.iErr)
+                    {
+                        printError(&err, 0);
+                        return false;
+                    }
 
-                sendUnsignedVariable<int>(name, indexes, row, col, (int *)uintegers32, swaped, handlerId);
-                break;
+                    sendUnsignedVariable<int>(name, indexes, row, col, (int *)uintegers32, swaped, handlerId);
+                    break;
 
 #ifdef __SCILAB_INT64__
-            case SCI_INT64 :
-                err = getMatrixOfInteger64(pvApiCtx, addr, &row, &col, &integers64);
-                if (err.iErr)
-                {
-                    printError(&err, 0);
-                    return false;
-                }
+                case SCI_INT64 :
+                    err = getMatrixOfInteger64(pvApiCtx, addr, &row, &col, &integers64);
+                    if (err.iErr)
+                    {
+                        printError(&err, 0);
+                        return false;
+                    }
 
-                sendVariable<long long>(name, indexes, row, col, integers64, swaped, handlerId);
-                break;
-            case SCI_UINT64 :
-                err = getMatrixOfUnsignedInteger64(pvApiCtx, addr, &row, &col, &uintegers64);
-                if (err.iErr)
-                {
-                    printError(&err, 0);
-                    return false;
-                }
+                    sendVariable<long long>(name, indexes, row, col, integers64, swaped, handlerId);
+                    break;
+                case SCI_UINT64 :
+                    err = getMatrixOfUnsignedInteger64(pvApiCtx, addr, &row, &col, &uintegers64);
+                    if (err.iErr)
+                    {
+                        printError(&err, 0);
+                        return false;
+                    }
 
-                sendUnsignedVariable<long long>(name, indexes, row, col, (long long *)uintegers64, swaped, handlerId);
-                break;
+                    sendUnsignedVariable<long long>(name, indexes, row, col, (long long *)uintegers64, swaped, handlerId);
+                    break;
 #endif
-            default :
-                return false;
+                default :
+                    return false;
             }
             break;
         case sci_strings :
@@ -389,277 +389,329 @@ namespace org_modules_types
             break;
         default :
             return false;
-        }
-
-        if (listtype)
-        {
-            sendVariable(name, indexes, listtype, handlerId);
-            bool b = sendItems(name, indexes, addr, swaped, handlerId, pvApiCtx);
-            closeList(indexes, handlerId);
-            return b;
-        }
-
-        return true;
     }
 
-    inline bool ScilabToJava::sendItems(const std::string & name, std::vector<int> & indexes, int * addr, bool swaped, int handlerId, void * pvApiCtx)
+    if (listtype)
     {
-        int nbItems = 0;
-        int * itemAddr = 0;
+        sendVariable(name, indexes, listtype, handlerId);
+        bool b = sendItems(name, indexes, addr, swaped, handlerId, pvApiCtx);
+        closeList(indexes, handlerId);
+        return b;
+    }
 
-        SciErr err = getListItemNumber(pvApiCtx, addr, &nbItems);
+    return true;
+}
+
+inline bool ScilabToJava::sendItems(const std::string & name, std::vector<int> & indexes, int * addr, const bool swaped, const int handlerId, void * pvApiCtx)
+{
+    int nbItems = 0;
+    int * itemAddr = 0;
+
+    SciErr err = getListItemNumber(pvApiCtx, addr, &nbItems);
+    if (err.iErr)
+    {
+        printError(&err, 0);
+        return false;
+    }
+
+    for (int i = 1; i <= nbItems; i++)
+    {
+        err = getListItemAddress(pvApiCtx, addr, i, &itemAddr);
         if (err.iErr)
         {
             printError(&err, 0);
             return false;
         }
 
-        for (int i = 1; i <= nbItems; i++)
+        indexes.push_back(i);
+
+        if (!sendVariable(name, indexes, itemAddr, swaped, handlerId, pvApiCtx))
         {
-            err = getListItemAddress(pvApiCtx, addr, i, &itemAddr);
-            if (err.iErr)
-            {
-                printError(&err, 0);
-                return false;
-            }
-
-            indexes.push_back(i);
-
-            if (!sendVariable(name, indexes, itemAddr, swaped, handlerId, pvApiCtx))
-            {
-                return false;
-            }
-
-            indexes.pop_back();
+            return false;
         }
 
-        return true;
+        indexes.pop_back();
     }
 
-    inline int * ScilabToJava::getIndexesPointer(std::vector<int> & indexes)
-    {
-        if (indexes.size() == 0)
-        {
-            return 0;
-        }
-
-        return &(indexes[0]);
-    }
-
-    // Lists
-    inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, char type, int handlerId)
-    {
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), type, handlerId);
-    }
-
-    inline void ScilabToJava::closeList(std::vector<int> & indexes, int handlerId)
-    {
-        ScilabVariables::closeList(getScilabJavaVM(), getIndexesPointer(indexes), (int)indexes.size(), handlerId);
-    }
-
-    // Sparse
-    template<typename T>
-    inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, int nbItem, int * nbItemRow, int * colPos, int row, int col, T * data, int handlerId)
-    {
-        int * colPos_ = new int[nbItem];
-        for (int i = 0; i < nbItem; i++)
-        {
-            colPos_[i] = colPos[i] - 1;
-        }
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), row, col, nbItem, nbItemRow, row, colPos_, nbItem, data, nbItem, handlerId);
-        delete[] colPos_;
-    }
-
-    // Double, String, ...
-    template<typename T>
-    inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * data, bool swaped, int handlerId)
-    {
-        T ** addr = getMatrix<T>(row, col, data, swaped);
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, row, col, swaped, handlerId);
-        deleteMatrix<T>(addr, swaped);
-    }
-
-    // Boolean sparse
-    inline void ScilabToJava::sendBooleanSparseVariable(const std::string & name, std::vector<int> & indexes, int nbItem, int * nbItemRow, int * colPos, int row, int col, int handlerId)
-    {
-        int * colPos_ = new int[nbItem];
-        for (int i = 0; i < nbItem; i++)
-        {
-            colPos_[i] = colPos[i] - 1;
-        }
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), row, col, nbItem, nbItemRow, row, colPos_, nbItem, handlerId);
-        delete[] colPos_;
-    }
-
-    // uint* matrix with a bigger storage
-    // TODO : change the Java wrapping
-    template<typename T, typename U>
-    inline void ScilabToJava::sendUnsignedVariableWithCast(const std::string & name, std::vector<int> & indexes, int row, int col, U * data, bool swaped, int handlerId)
-    {
-        T ** addr = getConvertedMatrix<T, U>(row, col, data, swaped);
-        ScilabVariables::sendUnsignedData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, row, col, swaped, handlerId);
-        deleteMatrix<T>(addr, swaped);
-    }
-
-    // uint*
-    template<typename T>
-    inline void ScilabToJava::sendUnsignedVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * data, bool swaped, int handlerId)
-    {
-        T ** addr = getMatrix<T>(row, col, data, swaped);
-        ScilabVariables::sendUnsignedData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, row, col, swaped, handlerId);
-        deleteMatrix<T>(addr, swaped);
-    }
-
-    // Boolean
-    inline void ScilabToJava::sendConvertedBooleanVariable(const std::string & name, std::vector<int> & indexes, int row, int col, int * data, bool swaped, int handlerId)
-    {
-        bool ** addr = getConvertedMatrix<bool, int>(row, col, data, swaped);
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, row, col, swaped, handlerId);
-        deleteMatrix<bool>(addr, swaped);
-    }
-
-    // Complex sparse
-    template<typename T>
-    inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, int nbItem, int * nbItemRow, int * colPos, int row, int col, T * real, T * img, int handlerId)
-    {
-        int * colPos_ = new int[nbItem];
-        for (int i = 0; i < nbItem; i++)
-        {
-            colPos_[i] = colPos[i] - 1;
-        }
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(),  row, col, nbItem, nbItemRow, row, colPos_, nbItem, real, nbItem, img, nbItem, handlerId);
-        delete[] colPos_;
-    }
-
-    // Complex
-    template<typename T>
-    inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * real, T * img, bool swaped, int handlerId)
-    {
-        T ** re = getMatrix<T>(row, col, real, swaped);
-        T ** im = getMatrix<T>(row, col, img, swaped);
-        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), re, row, col, im, row, col, swaped, handlerId);
-        deleteMatrix<T>(re, swaped);
-        deleteMatrix<T>(im, swaped);
-    }
-
-    // Polynomial
-    template<typename T>
-    inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, const char * varName, int row, int col, int * nbcoeff, T ** data, bool swaped, int handlerId)
-    {
-        T *** addr = getMatrix<T*>(row, col, data, swaped);
-        int ** nbc = getMatrix<int>(row, col, nbcoeff, swaped);
-        ScilabPolynomialToJava::sendPolynomial(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), (char *)varName, addr, row, col, nbc, swaped, handlerId);
-        deleteMatrix<T*>(addr, swaped);
-        deleteMatrix<int>(nbc, swaped);
-    }
-
-    // Complex polynomial
-    template<typename T>
-    inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, const char * varName, int row, int col, int * nbcoeff, T ** real, T ** img, bool swaped, int handlerId)
-    {
-        T *** re = getMatrix<T*>(row, col, real, swaped);
-        T *** im = getMatrix<T*>(row, col, img, swaped);
-        int ** nbc = getMatrix<int>(row, col, nbcoeff, swaped);
-        ScilabPolynomialToJava::sendPolynomial(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), (char *)varName, re, im, row, col, nbc, swaped, handlerId);
-        deleteMatrix<T*>(re, swaped);
-        deleteMatrix<T*>(im, swaped);
-        deleteMatrix<int>(nbc, swaped);
-    }
-
-    template<typename T>
-    inline T ** ScilabToJava::getMatrix(int row, int col, T * data, bool swaped)
-    {
-        T ** addr = 0;
-
-        if (row && col)
-        {
-            if (swaped)
-            {
-                T * d = new T[row * col];
-                for (int i = 0; i < row; i++)
-                {
-                    for (int j = 0; j < col; j++)
-                    {
-                        d[i * col + j] = data[j * row + i];
-                    }
-                }
-                addr = convertMatrix<T>(row, col, d);
-            }
-            else
-            {
-                addr = convertMatrix<T>(col, row, data);
-            }
-        }
-
-        return addr;
-    }
-
-    template<typename T, typename U>
-    inline T ** ScilabToJava::getConvertedMatrix(int row, int col, U * data, bool swaped)
-    {
-        T ** addr = 0;
-
-        if (row && col)
-        {
-            int rc = row * col;
-            T * d = new T[rc];
-            if (swaped)
-            {
-                for (int i = 0; i < row; i++)
-                {
-                    for (int j = 0; j < col; j++)
-                    {
-                        d[i * col + j] = static_cast<T>(data[j * row + i]);
-                    }
-                }
-                addr = convertMatrix<T>(row, col, d);
-            }
-            else
-            {
-                for (int i = 0; i < rc; i++)
-                {
-                    d[i] = static_cast<T>(data[i]);
-                }
-                addr = convertMatrix<T>(col, row, d);
-            }
-        }
-
-        return addr;
-    }
-
-    template<typename T>
-    inline T ** ScilabToJava::convertMatrix(int row, int col, T * data)
-    {
-        T ** addr = 0;
-
-        if (row && col)
-        {
-            addr = new T*[row];
-            *addr = data;
-            for (int i = 1; i < row; i++)
-            {
-                addr[i] = addr[i - 1] + col;
-            }
-        }
-
-        return addr;
-    }
-
-    template<typename T>
-    inline void ScilabToJava::deleteMatrix(T ** data, bool swaped)
-    {
-        if (data)
-        {
-            if (swaped && *data)
-            {
-                delete[] *data;
-            }
-            delete[] data;
-        }
-    }
+    return true;
 }
 
-void getScilabVariable(const char * variableName, int swapRowCol, int handlerId)
+inline int * ScilabToJava::getIndexesPointer(std::vector<int> & indexes)
+{
+    if (indexes.size() == 0)
+    {
+        return 0;
+    }
+
+    return &(indexes[0]);
+}
+
+// Lists
+inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, char type, const int handlerId)
+{
+    ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), type, handlerId);
+}
+
+inline void ScilabToJava::closeList(std::vector<int> & indexes, const int handlerId)
+{
+    ScilabVariables::closeList(getScilabJavaVM(), getIndexesPointer(indexes), (int)indexes.size(), handlerId);
+}
+
+// Sparse
+template<typename T>
+inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, int nbItem, int * nbItemRow, int * colPos, int row, int col, T * data, const int handlerId)
+{
+    int * colPos_ = new int[nbItem];
+    for (int i = 0; i < nbItem; i++)
+    {
+        colPos_[i] = colPos[i] - 1;
+    }
+    ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), row, col, nbItem, nbItemRow, row, colPos_, nbItem, data, nbItem, handlerId);
+    delete[] colPos_;
+}
+
+// Double, String, ...
+template<typename T>
+inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * data, const bool swaped, const int handlerId)
+{
+    T ** addr = getMatrix<T>(row, col, data, swaped);
+    if (swaped)
+    {
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, row, col, swaped, handlerId);
+    }
+    else
+    {
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, col, row, swaped, handlerId);
+    }
+    deleteMatrix<T>(addr, swaped);
+}
+
+// Boolean sparse
+inline void ScilabToJava::sendBooleanSparseVariable(const std::string & name, std::vector<int> & indexes, int nbItem, int * nbItemRow, int * colPos, int row, int col, const int handlerId)
+{
+    int * colPos_ = new int[nbItem];
+    for (int i = 0; i < nbItem; i++)
+    {
+        colPos_[i] = colPos[i] - 1;
+    }
+    ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), row, col, nbItem, nbItemRow, row, colPos_, nbItem, handlerId);
+    delete[] colPos_;
+}
+
+// uint* matrix with a bigger storage
+// TODO : change the Java wrapping
+template<typename T, typename U>
+inline void ScilabToJava::sendUnsignedVariableWithCast(const std::string & name, std::vector<int> & indexes, int row, int col, U * data, const bool swaped, const int handlerId)
+{
+    T ** addr = getConvertedMatrix<T, U>(row, col, data, swaped);
+    if (swaped)
+    {
+        ScilabVariables::sendUnsignedData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, col, row, swaped, handlerId);
+    }
+    else
+    {
+        ScilabVariables::sendUnsignedData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, row, col, swaped, handlerId);
+    }
+    deleteMatrix<T>(addr, swaped);
+}
+
+// uint*
+template<typename T>
+inline void ScilabToJava::sendUnsignedVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * data, const bool swaped, const int handlerId)
+{
+    T ** addr = getMatrix<T>(row, col, data, swaped);
+    if (swaped)
+    {
+        ScilabVariables::sendUnsignedData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, row, col, swaped, handlerId);
+    }
+    else
+    {
+        ScilabVariables::sendUnsignedData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, col, row, swaped, handlerId);
+    }
+    deleteMatrix<T>(addr, swaped);
+}
+
+// Boolean
+inline void ScilabToJava::sendConvertedBooleanVariable(const std::string & name, std::vector<int> & indexes, int row, int col, int * data, const bool swaped, const int handlerId)
+{
+    bool ** addr = getConvertedMatrix<bool, int>(row, col, data, swaped);
+    if (swaped)
+    {
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, row, col, swaped, handlerId);
+    }
+    else
+    {
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), addr, col, row, swaped, handlerId);
+    }
+    deleteMatrix<bool>(addr, swaped);
+}
+
+// Complex sparse
+template<typename T>
+inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, int nbItem, int * nbItemRow, int * colPos, int row, int col, T * real, T * img, const int handlerId)
+{
+    int * colPos_ = new int[nbItem];
+    for (int i = 0; i < nbItem; i++)
+    {
+        colPos_[i] = colPos[i] - 1;
+    }
+    ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(),  row, col, nbItem, nbItemRow, row, colPos_, nbItem, real, nbItem, img, nbItem, handlerId);
+    delete[] colPos_;
+}
+
+// Complex
+template<typename T>
+inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * real, T * img, const bool swaped, const int handlerId)
+{
+    T ** re = getMatrix<T>(row, col, real, swaped);
+    T ** im = getMatrix<T>(row, col, img, swaped);
+
+    if (swaped)
+    {
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), re, row, col, im, row, col, swaped, handlerId);
+    }
+    else
+    {
+        ScilabVariables::sendData(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), re, col, row, im, col, row, swaped, handlerId);
+    }
+    deleteMatrix<T>(re, swaped);
+    deleteMatrix<T>(im, swaped);
+}
+
+// Polynomial
+template<typename T>
+inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, const char * varName, int row, int col, int * nbcoeff, T ** data, const bool swaped, const int handlerId)
+{
+    T *** addr = getMatrix<T*>(row, col, data, swaped);
+    int ** nbc = getMatrix<int>(row, col, nbcoeff, swaped);
+
+    if (swaped)
+    {
+        ScilabPolynomialToJava::sendPolynomial(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), (char *)varName, addr, row, col, nbc, swaped, handlerId);
+    }
+    else
+    {
+        ScilabPolynomialToJava::sendPolynomial(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), (char *)varName, addr, col, row, nbc, swaped, handlerId);
+    }
+    deleteMatrix<T*>(addr, swaped);
+    deleteMatrix<int>(nbc, swaped);
+}
+
+// Complex polynomial
+template<typename T>
+inline void ScilabToJava::sendVariable(const std::string & name, std::vector<int> & indexes, const char * varName, int row, int col, int * nbcoeff, T ** real, T ** img, const bool swaped, const int handlerId)
+{
+    T *** re = getMatrix<T*>(row, col, real, swaped);
+    T *** im = getMatrix<T*>(row, col, img, swaped);
+    int ** nbc = getMatrix<int>(row, col, nbcoeff, swaped);
+
+    if (swaped)
+    {
+        ScilabPolynomialToJava::sendPolynomial(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), (char *)varName, re, im, row, col, nbc, swaped, handlerId);
+    }
+    else
+    {
+        ScilabPolynomialToJava::sendPolynomial(getScilabJavaVM(), (char *)name.c_str(), getIndexesPointer(indexes), (int)indexes.size(), (char *)varName, re, im, col, row, nbc, swaped, handlerId);
+    }
+    deleteMatrix<T*>(re, swaped);
+    deleteMatrix<T*>(im, swaped);
+    deleteMatrix<int>(nbc, swaped);
+}
+
+template<typename T>
+inline T ** ScilabToJava::getMatrix(int row, int col, T * data, const bool swaped)
+{
+    T ** addr = 0;
+
+    if (row && col)
+    {
+        if (swaped)
+        {
+            T * d = new T[row * col];
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    d[i * col + j] = data[j * row + i];
+                }
+            }
+            addr = convertMatrix<T>(row, col, d);
+        }
+        else
+        {
+            addr = convertMatrix<T>(col, row, data);
+        }
+    }
+
+    return addr;
+}
+
+template<typename T, typename U>
+inline T ** ScilabToJava::getConvertedMatrix(int row, int col, U * data, bool swaped)
+{
+    T ** addr = 0;
+
+    if (row && col)
+    {
+        int rc = row * col;
+        T * d = new T[rc];
+        if (swaped)
+        {
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    d[i * col + j] = static_cast<T>(data[j * row + i]);
+                }
+            }
+            addr = convertMatrix<T>(row, col, d);
+        }
+        else
+        {
+            for (int i = 0; i < rc; i++)
+            {
+                d[i] = static_cast<T>(data[i]);
+            }
+            addr = convertMatrix<T>(col, row, d);
+        }
+    }
+
+    return addr;
+}
+
+template<typename T>
+inline T ** ScilabToJava::convertMatrix(int row, int col, T * data)
+{
+    T ** addr = 0;
+
+    if (row && col)
+    {
+        addr = new T*[row];
+        *addr = data;
+        for (int i = 1; i < row; i++)
+        {
+            addr[i] = addr[i - 1] + col;
+        }
+    }
+
+    return addr;
+}
+
+template<typename T>
+inline void ScilabToJava::deleteMatrix(T ** data, bool swaped)
+{
+    if (data)
+    {
+        if (swaped && *data)
+        {
+            delete[] *data;
+        }
+        delete[] data;
+    }
+}
+}
+
+void getScilabVariable(const char * variableName, int swapRowCol, const int handlerId)
 {
     org_modules_types::ScilabToJava::sendVariable(std::string(variableName), swapRowCol != 0, handlerId);
 }

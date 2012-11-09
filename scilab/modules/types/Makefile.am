@@ -28,7 +28,8 @@ include $(top_srcdir)/Makefile.incl.am
 
 TYPES_JNI_SOURCES = 
 
-TYPES_C_SOURCES = src/jni/getScilabVariable_wrap.c
+TYPES_C_SOURCES = src/jni/getScilabVariable_wrap.c \
+		  src/jni/putVars.c
 
 TYPES_CXX_SOURCES = src/cpp/ScilabToJava.cpp \
 	            src/jni/ScilabVariables.cpp \
@@ -51,6 +52,7 @@ libscitypes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			   -I$(srcdir)/src/jni/ \
 			   -I$(srcdir)/src/cpp/ \
 			   -I$(srcdir)/includes/ \
+			   -I$(top_srcdir)/libs/MALLOC/includes/ \
 			   -I$(top_srcdir)/modules/commons/src/jni/ \
 			   -I$(top_srcdir)/modules/jvm/includes/ \
 			   -I$(top_srcdir)/modules/output_stream/includes/ \

@@ -142,7 +142,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitypes_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscitypes_algo_la_LIBADD =
-am__objects_1 = libscitypes_algo_la-getScilabVariable_wrap.lo
+am__objects_1 = libscitypes_algo_la-getScilabVariable_wrap.lo \
+	libscitypes_algo_la-putVars.lo
 am__objects_2 =
 am__objects_3 = libscitypes_algo_la-ScilabToJava.lo \
 	libscitypes_algo_la-ScilabVariables.lo \
@@ -158,7 +159,8 @@ libscitypes_disable_la_OBJECTS = $(am_libscitypes_disable_la_OBJECTS)
 libscitypes_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/commons/libscicommons.la \
 	$(top_builddir)/modules/jvm/libscijvm.la
-am__objects_4 = libscitypes_la-getScilabVariable_wrap.lo
+am__objects_4 = libscitypes_la-getScilabVariable_wrap.lo \
+	libscitypes_la-putVars.lo
 am__objects_5 = libscitypes_la-ScilabToJava.lo \
 	libscitypes_la-ScilabVariables.lo \
 	libscitypes_la-ScilabVariablesRefresh.lo \
@@ -543,7 +545,9 @@ HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 TYPES_JNI_SOURCES = 
-TYPES_C_SOURCES = src/jni/getScilabVariable_wrap.c
+TYPES_C_SOURCES = src/jni/getScilabVariable_wrap.c \
+		  src/jni/putVars.c
+
 TYPES_CXX_SOURCES = src/cpp/ScilabToJava.cpp \
 	            src/jni/ScilabVariables.cpp \
 	            src/jni/ScilabVariablesRefresh.cpp \
@@ -560,6 +564,7 @@ libscitypes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			   -I$(srcdir)/src/jni/ \
 			   -I$(srcdir)/src/cpp/ \
 			   -I$(srcdir)/includes/ \
+			   -I$(top_srcdir)/libs/MALLOC/includes/ \
 			   -I$(top_srcdir)/modules/commons/src/jni/ \
 			   -I$(top_srcdir)/modules/jvm/includes/ \
 			   -I$(top_srcdir)/modules/output_stream/includes/ \
@@ -686,11 +691,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_algo_la-ScilabVariables.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_algo_la-ScilabVariablesRefresh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_algo_la-getScilabVariable_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_algo_la-putVars.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-ScilabPolynomialToJava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-ScilabToJava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-ScilabVariables.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-ScilabVariablesRefresh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-getScilabVariable_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-putVars.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -720,12 +727,26 @@ libscitypes_algo_la-getScilabVariable_wrap.lo: src/jni/getScilabVariable_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitypes_algo_la-getScilabVariable_wrap.lo `test -f 'src/jni/getScilabVariable_wrap.c' || echo '$(srcdir)/'`src/jni/getScilabVariable_wrap.c
 
+libscitypes_algo_la-putVars.lo: src/jni/putVars.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitypes_algo_la-putVars.lo -MD -MP -MF $(DEPDIR)/libscitypes_algo_la-putVars.Tpo -c -o libscitypes_algo_la-putVars.lo `test -f 'src/jni/putVars.c' || echo '$(srcdir)/'`src/jni/putVars.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitypes_algo_la-putVars.Tpo $(DEPDIR)/libscitypes_algo_la-putVars.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/putVars.c' object='libscitypes_algo_la-putVars.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitypes_algo_la-putVars.lo `test -f 'src/jni/putVars.c' || echo '$(srcdir)/'`src/jni/putVars.c
+
 libscitypes_la-getScilabVariable_wrap.lo: src/jni/getScilabVariable_wrap.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitypes_la-getScilabVariable_wrap.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-getScilabVariable_wrap.Tpo -c -o libscitypes_la-getScilabVariable_wrap.lo `test -f 'src/jni/getScilabVariable_wrap.c' || echo '$(srcdir)/'`src/jni/getScilabVariable_wrap.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitypes_la-getScilabVariable_wrap.Tpo $(DEPDIR)/libscitypes_la-getScilabVariable_wrap.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/getScilabVariable_wrap.c' object='libscitypes_la-getScilabVariable_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitypes_la-getScilabVariable_wrap.lo `test -f 'src/jni/getScilabVariable_wrap.c' || echo '$(srcdir)/'`src/jni/getScilabVariable_wrap.c
+
+libscitypes_la-putVars.lo: src/jni/putVars.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscitypes_la-putVars.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-putVars.Tpo -c -o libscitypes_la-putVars.lo `test -f 'src/jni/putVars.c' || echo '$(srcdir)/'`src/jni/putVars.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitypes_la-putVars.Tpo $(DEPDIR)/libscitypes_la-putVars.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/putVars.c' object='libscitypes_la-putVars.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscitypes_la-putVars.lo `test -f 'src/jni/putVars.c' || echo '$(srcdir)/'`src/jni/putVars.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
