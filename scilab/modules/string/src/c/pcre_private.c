@@ -1175,7 +1175,7 @@ pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, in
         *_piStart               = (int)wcslen(pwstTempStart);
         *_piEnd                 = (int)wcslen(pwstTempEnd);
 
-        if(*_piCapturedStringCount > 0)
+        if(_piCapturedStringCount && *_piCapturedStringCount > 0)
         {
             /*convert captured field in wide char*/
             *_pstCapturedString = (wchar_t**)MALLOC(sizeof(wchar_t*) * *_piCapturedStringCount);
@@ -1183,9 +1183,9 @@ pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, in
             {
                 (*_pstCapturedString)[i] = to_wide_string(pstCaptured[i]);
             }
+            freeArrayOfString(pstCaptured, *_piCapturedStringCount);
         }
 
-        freeArrayOfString(pstCaptured, *_piCapturedStringCount);
         FREE(pstTempStart);
         FREE(pstTempEnd);
         FREE(pwstTempStart);
