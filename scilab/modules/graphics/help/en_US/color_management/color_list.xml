@@ -4865,6 +4865,20 @@
             </tr>
         </informaltable>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+plot3d();
+h = gcf();
+h.color_map = jetcolormap(16);
+addcolor(name2rgb('grey')/255);
+addcolor(name2rgb('red'));
+
+rgb2name(240, 255, 255)
+
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
