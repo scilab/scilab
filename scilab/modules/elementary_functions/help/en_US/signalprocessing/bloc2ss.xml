@@ -101,6 +101,9 @@ list('link','name_of_link',
             <literal>S2</literal> to the output (port 0 of fictitious block -1,
             omitted) and to (input)port 2 of the adder.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 //Initialization
 syst=list('blocd'); l=1;
