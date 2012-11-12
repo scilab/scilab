@@ -72,6 +72,7 @@ int sci_xmlAsNumber(char *fname, void *pvApiCtx);
 int sci_xmlAsText(char *fname, void *pvApiCtx);
 int sci_xmlRemove(char *fname, void *pvApiCtx);
 int sci_xmlSetAttributes(char *fname, void *pvApiCtx);
+int sci_xmlName(char *fname, void *pvApiCtx);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_XML_H__ */

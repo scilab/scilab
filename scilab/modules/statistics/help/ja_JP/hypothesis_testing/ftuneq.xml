@@ -72,8 +72,11 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-samples=[46 55 54;53 54 50; 49 58 51;50 61 51;46 52 49]
-[f,p]=ftest(samples)
+sample1=[46 55 54];
+sample2=[53 54];
+sample3=[50 49 58 51 50];
+sample4=[61 51 46 52];
+[f,p]=ftuneq(sample1,sample2,sample3,sample4)
  ]]></programlisting>
     </refsection>
     <refsection>

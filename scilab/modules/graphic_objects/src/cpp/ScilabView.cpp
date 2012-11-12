@@ -13,6 +13,7 @@
 #include <iostream>
 #include <map>
 #include <cstring>
+#include <limits.h>
 
 #include "ScilabView.hxx"
 #include "CallGraphicController.hxx"
@@ -46,9 +47,50 @@ void ScilabNativeView__updateObject(char const* pstId, int iProperty)
     ScilabView::updateObject(pstId, iProperty);
 }
 
+void ScilabNativeView__setCurrentFigure(char const* pstId)
+{
+    ScilabView::setCurrentFigure(pstId);
+}
+
+void ScilabNativeView__setCurrentSubWin(char const* pstId)
+{
+    ScilabView::setCurrentSubWin(pstId);
+}
+
+void ScilabNativeView__setCurrentObject(char const* pstId)
+{
+    ScilabView::setCurrentObject(pstId);
+}
+
+int ScilabNativeView__getValidDefaultFigureId()
+{
+    return ScilabView::getValidDefaultFigureId();
+}
+
 /**
  * \}
  */
+
+int ScilabView::getValidDefaultFigureId()
+{
+    if (m_figureList.empty())
+    {
+        return 0;
+    }
+    else
+    {
+        int max = INT_MIN;
+        for (__figureList_iterator it = m_figureList.begin(); it != m_figureList.end(); ++it)
+        {
+            if (it->second > max)
+            {
+                max = it->second;
+            }
+        }
+
+        return max + 1;
+    }
+}
 
 bool ScilabView::isEmptyFigureList()
 {

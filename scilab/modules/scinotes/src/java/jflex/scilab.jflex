@@ -190,9 +190,10 @@ openCloseStructureKwds = "if" | "for" | "while" | "try" | "select" | "end"
 
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
-authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Antoine Elias" | "Antoine ELIAS" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Sheldon Cooper" | "Leonard Hofstadter" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Adeline Carnis" | "Adeline CARNIS" | "Simon Gareste" | "Simon GARESTE" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "Scilab Enterprises" | "ENPC"
+authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Yann Collette" | "Yann COLLETTE" | "Allan Cornet" | "Allan CORNET" | "Antoine Elias" | "Antoine ELIAS" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Manuel Juliachs" | "Manuel JULIACHS" | "Michael Baudin" | "Michael BAUDIN" | "Pierre Lando" | "Pierre LANDO" | "Pierre Marechal" | "Pierre MARECHAL" | "Sheldon Cooper" | "Leonard Hofstadter" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Vincent Liard" | "Vincent LIARD" | "Adeline Carnis" | "Adeline CARNIS" | "Simon Gareste" | "Simon GARESTE" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Nicolas Kahhali" | "Nicolas KAHHALI" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "Scilab Enterprises" | "ENPC"
 
 error = "Scilab Entreprises" | "Scilab Entreprise" | "Scilab Enterprise"
+todo = ("TODO" | "todo" | "Todo")[ \t:]+[^\n]*
 
 break = ".."(".")*
 breakinstring = {break}[ \t]*({comment} | {eol})
@@ -455,6 +456,10 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 }
 
 <COMMENT> {
+  {todo}			 {
+  				   return ScilabLexerConstants.TODO;
+				 }
+
   {error}			 {
   				   return ScilabLexerConstants.ERROR;
 				 }

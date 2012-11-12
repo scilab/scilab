@@ -14,7 +14,6 @@
 package org.scilab.modules.xcos;
 
 import java.awt.Component;
-import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -103,7 +102,6 @@ public final class Xcos {
     private static final List<String> MXGRAPH_VERSIONS = null;
     private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7", "1.8pre", "1.8");
 
-    private static final String IS_HEADLESS = Messages.gettext("a graphical environment is needed.");
     private static final String UNABLE_TO_LOAD_JGRAPHX = Messages.gettext("Unable to load the jgraphx library.\nExpecting version %s ; Getting version %s .");
     private static final String UNABLE_TO_LOAD_BATIK = Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
 
@@ -207,11 +205,6 @@ public final class Xcos {
     // CSOFF: MagicNumber
     private void checkDependencies() {
         final ClassLoader loader = ClassLoader.getSystemClassLoader();
-
-        /* Check not headless */
-        if (GraphicsEnvironment.isHeadless()) {
-            throw new RuntimeException(IS_HEADLESS);
-        }
 
         /* JGraphx */
         String mxGraphVersion = "";
@@ -883,7 +876,7 @@ public final class Xcos {
         });
     }
 
-    private Object lookupForCell(final String[] uid) {
+    public Object lookupForCell(final String[] uid) {
         final ArrayDeque<String> deque = new ArrayDeque<String>(Arrays.asList(uid));
 
         // specific case with an empty array

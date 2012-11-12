@@ -116,9 +116,10 @@ subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/eigen.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -420,6 +421,7 @@ DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
+DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -2028,6 +2030,10 @@ doc-web: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@	fi
 @BUILD_HELP_FALSE@	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 
+doxygen: modules/development_tools/etc/doxyfile
+@DOXYGEN_TRUE@	mkdir $(top_builddir)/reports/
+@DOXYGEN_TRUE@	$(DOXYGEN_BIN) modules/development_tools/etc/doxyfile
+
 check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
 		for l in $(ALL_LINGUAS_DOC); do \
@@ -2087,7 +2093,9 @@ clean-help:
 	echo "rm -f $(top_builddir)/modules/scicos/jar/"; \
 	rm -rf $(top_builddir)/modules/scicos/jar/; \
 	echo "rm -rf $(top_builddir)/modules/javasci/javadoc"; \
-	rm -rf $(top_builddir)/modules/javasci/javadoc;
+	rm -rf $(top_builddir)/modules/javasci/javadoc; \
+	echo "rm -rf $(top_builddir)/html"; \
+	rm -rf $(top_builddir)/html;
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-cli-bin; then \

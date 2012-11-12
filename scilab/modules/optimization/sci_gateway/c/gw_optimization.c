@@ -16,6 +16,7 @@
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
+/*
 static gw_generic_table Tab[] =
 {
 {sci_optim, "optim"},
@@ -26,6 +27,7 @@ static gw_generic_table Tab[] =
 {sci_qp_solve, "qp_solve"},
 {sci_readmps, "readmps"}
 };
+*/
 /*--------------------------------------------------------------------------*/
 int gw_optimization(void)
 {

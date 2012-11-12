@@ -27,4 +27,8 @@
     extern void ScilabNativeView__createObject(char* pstId);
     extern void ScilabNativeView__deleteObject(char* pstId);
     extern void ScilabNativeView__updateObject(char* pstId, int iProperty);
+    extern void ScilabNativeView__setCurrentFigure(char* pstId);
+    extern void ScilabNativeView__setCurrentSubWin(char* pstId);
+    extern void ScilabNativeView__setCurrentObject(char* pstId);
+    extern int ScilabNativeView__getValidDefaultFigureId();
     %}

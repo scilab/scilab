@@ -276,5 +276,8 @@
     <ClCompile Include="sci_gateway\cpp\sci_xmlSetAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xmlName.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

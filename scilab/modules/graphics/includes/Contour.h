@@ -26,7 +26,7 @@
  * - z is a (n1,n2) matrix
  * - x is a (1,n1) matrix
  * - y is a (1,n2) matrix
- * - x,y,z are stored as one dimensionnal array in C
+ * - x,y,z are stored as one dimensional array in C
  * - if *flagnz =0
  * -   then  nz is an int pointer to the number of level curves.
  *     else  zz is an array which gives th requested level values.

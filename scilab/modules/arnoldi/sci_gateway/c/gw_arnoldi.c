@@ -19,6 +19,7 @@
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
+/*
 static gw_generic_table Tab[] =
 {
   {sci_dsaupd,"dsaupd"},
@@ -29,6 +30,7 @@ static gw_generic_table Tab[] =
   {sci_zneupd,"zneupd"},
   {sci_eigs,"%_eigs"}
 };
+*/
 /*--------------------------------------------------------------------------*/
 int gw_arnoldi(void)
 {

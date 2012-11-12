@@ -254,7 +254,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/EXTRACT_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/matrix_pal/EXTRACT_Example.png" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/matrix_pal/EXTRACT_Example.xcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

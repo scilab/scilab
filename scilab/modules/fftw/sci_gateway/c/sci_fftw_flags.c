@@ -200,7 +200,7 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
                     return 1;
                 }
 
-                piLen = (int*)malloc(sizeof(int) * m1 * n1);
+                piLen = (int*)MALLOC(sizeof(int) * m1 * n1);
 
                 //second call to retrieve length of each string
                 sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, NULL);
@@ -210,10 +210,10 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
                     return 1;
                 }
 
-                Str1 = (char**)malloc(sizeof(char*) * m1 * n1);
+                Str1 = (char**)MALLOC(sizeof(char*) * m1 * n1);
                 for (i = 0 ; i < m1 * n1 ; i++)
                 {
-                    Str1[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+                    Str1[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
                 }
 
                 //third call to retrieve data

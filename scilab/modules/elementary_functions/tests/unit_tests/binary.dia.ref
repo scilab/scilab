@@ -123,7 +123,7 @@ res1=mget(100,'d',fd4);
 if res1<>res then bugmes();quit;end
 [a]=meof(fd4);
 if a==0 then bugmes();quit;end
-mclearerr(fd4)
+mclearerr(fd4);
 [a]= mclose(fd4);
 if a<>0 then bugmes();quit;end
 // -----------------------------------------------------------------------------

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16232)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -227,7 +227,7 @@ msgstr "neldermead - Rosenbrock 変数"
 msgid "neldermead - Output Command"
 msgstr "neldermead - 出力コマンド"
 
-msgid "neldermead - Dimensionnality"
+msgid "neldermead - Dimensionality"
 msgstr "neldermead - 次元"
 
 msgid "nmplot - Han #1"
@@ -518,7 +518,7 @@ msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引�
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています : N次元配列を指定してください.\n"
 
 #, c-format

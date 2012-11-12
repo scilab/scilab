@@ -29,7 +29,7 @@ function [varargout] = ndgrid(varargin)
    //         Z(i,j,k) = z(k)
    //
    //     X, Y, Z are the coordinates of the grid points formed by
-   //     the cartesian product of the one dimensionnal grids
+   //     the cartesian product of the one dimensional grids
    //     x, y and z.
    //
    //  AUTHOR

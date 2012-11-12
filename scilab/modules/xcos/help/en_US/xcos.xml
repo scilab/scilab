@@ -30,6 +30,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
+            xcos()
             xcos(filename)
             xcos(scs_m_list)
         </synopsis>
@@ -174,7 +175,17 @@ xcos(scs_m);]]></programlisting>
             </imageobject>
         </mediaobject>
         <para>Xcos requires a C compiler for simulation acceleration.</para>
-        <para>It is recommended that you install a supported compiler on your machine.</para>
+        <para>An installed supported compiler is recommended.</para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[ 
+xcos();
+xcos(SCI+"/modules/xcos/demos/Discrete-KalmanFilter.xcos");
+scs_m = scicos_diagram();
+scs_m.objs($+1) = BIGSOM_f("define");
+xcos(scs_m);
+ ]]></programlisting>
     </refsection>
     <refsection id="SeeAlso_xcos">
         <title role="see also">See Also</title>

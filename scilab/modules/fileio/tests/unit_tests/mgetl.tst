@@ -83,3 +83,12 @@ if ierr <> 999 then pause,end
 ierr = execstr('mgetl(6,1)','errcatch');
 if ierr <> 999 then pause,end
 
+file_1 = TMPDIR+'/test_binary_1.bin';
+fid = mopen(file_1,'wb');
+mput(1996,'l');
+mputstr('Scilab');
+mclose(fid);
+fid = mopen(file_1,'rb');
+assert_checkequal(mget(1,'l'),1996);
+assert_checkequal(mgetstr(6),"Scilab");
+mclose(fid);

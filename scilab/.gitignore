@@ -134,6 +134,7 @@ tclminor
 mainsci.o
 *.log
 /java
+/reports
 .metadata
 autom4te.cache
 .deps
@@ -170,4 +171,6 @@ modules/types/src/jni/sci_types_wrap.c
 # clang / scan-build generated temporary files
 modules/*/*.plist
 
+# optional modules
 modules/pvm/
+

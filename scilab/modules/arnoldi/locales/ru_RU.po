@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-25 18:57+0000\n"
+"PO-Revision-Date: 2012-10-28 13:29+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16232)\n"
 "Language: ru\n"
 
 #, c-format
@@ -79,6 +79,9 @@ msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: Нераспознанное значение "
+"сигма.\n"
+" Значение сигма должно быть одним из '%s', '%s', '%s', '%s' или '%s'.\n"
 
 #, c-format
 msgid ""
@@ -86,10 +89,15 @@ msgid ""
 " Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n"
 " "
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: Нераспознанное значение "
+"сигма.\n"
+" Значение сигма должно быть одним из '%s', '%s', '%s', '%s', '%s' или '%s'.\n"
+" "
 
 #, c-format
 msgid "%s: Invalid sigma value for complex or non symmetric problem.\n"
 msgstr ""
+"%s: Некорректное значение сигма для комплексной или несимметричной задачи.\n"
 
 #, c-format
 msgid "%s: Invalid sigma value for real symmetric problem.\n"
@@ -150,12 +158,16 @@ msgstr ""
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: Начальный вектор %s должнет быть "
+"размером N на 1.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be real for real "
 "problems.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: Начальный вектор %s должен быть "
+"вещественным для вещественных задач.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
@@ -166,30 +178,41 @@ msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
 "must be k < NCV <= N.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: Для вещественных симметричных "
+"задач NCV должно быть k < NCV <= N.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
 "must be k + 2 < NCV <= N.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: Для вещественных "
+"несимметричных задач NCV должно быть k + 2 < NCV <= N.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
 "+ 1 < NCV <= N.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: Для комплексных задач NCV "
+"должно быть k + 1 < NCV <= N.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be an integer in the range 1 to N - 1.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: Для вещественных симметричных "
+"задач значение k должно быть целым в диапазоне от 1 до N - 1.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: Для вещественных "
+"несимметричных задач значение k должно быть целым в диапазоне от 1 до N - "
+"2.\n"
 
 #, c-format
 msgid ""
@@ -259,6 +282,9 @@ msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: Нераспознанное значение "
+"сигма.\n"
+" Значение сигма должно быть одним из '%s', '%s', '%s', '%s', '%s' или '%s'.\n"
 
 #, c-format
 msgid ""
@@ -277,6 +303,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
 "must be k + 2 < NCV < N.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: Для вещественных "
+"несимметричных задач NCV должно быть k + 2 < NCV < N.\n"
 
 #, c-format
 msgid ""
@@ -312,6 +340,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be in the range 1 to N - 1.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: Для вещественных симметричных "
+"задач k должно быть в диапазоне от 1 до N - 1.\n"
 
 #, c-format
 msgid ""

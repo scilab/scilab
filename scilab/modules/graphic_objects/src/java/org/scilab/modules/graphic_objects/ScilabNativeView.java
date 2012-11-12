@@ -9,16 +9,32 @@
 package org.scilab.modules.graphic_objects;
 
 public class ScilabNativeView {
-  public static void ScilabNativeView__createObject(String pstId) {
-    ScilabNativeViewJNI.ScilabNativeView__createObject(pstId);
-  }
+    public static void ScilabNativeView__createObject(String pstId) {
+        ScilabNativeViewJNI.ScilabNativeView__createObject(pstId);
+    }
 
-  public static void ScilabNativeView__deleteObject(String pstId) {
-    ScilabNativeViewJNI.ScilabNativeView__deleteObject(pstId);
-  }
+    public static void ScilabNativeView__deleteObject(String pstId) {
+        ScilabNativeViewJNI.ScilabNativeView__deleteObject(pstId);
+    }
 
-  public static void ScilabNativeView__updateObject(String pstId, int iProperty) {
-    ScilabNativeViewJNI.ScilabNativeView__updateObject(pstId, iProperty);
-  }
+    public static void ScilabNativeView__updateObject(String pstId, int iProperty) {
+        ScilabNativeViewJNI.ScilabNativeView__updateObject(pstId, iProperty);
+    }
+
+    public static void ScilabNativeView__setCurrentFigure(String pstId) {
+        ScilabNativeViewJNI.ScilabNativeView__setCurrentFigure(pstId);
+    }
+
+    public static void ScilabNativeView__setCurrentSubWin(String pstId) {
+        ScilabNativeViewJNI.ScilabNativeView__setCurrentSubWin(pstId);
+    }
+
+    public static void ScilabNativeView__setCurrentObject(String pstId) {
+        ScilabNativeViewJNI.ScilabNativeView__setCurrentObject(pstId);
+    }
+
+    public static int ScilabNativeView__getValidDefaultFigureId() {
+        return ScilabNativeViewJNI.ScilabNativeView__getValidDefaultFigureId();
+    }
 
 }

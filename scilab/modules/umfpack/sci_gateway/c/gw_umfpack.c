@@ -48,6 +48,7 @@
 #include "callFunctionFromGateway.h"
 #include "taucs_scilab.h"
 /*--------------------------------------------------------------------------*/
+/*
 static gw_generic_table Tab[] =
 {
   {sci_umfpack, "umfpack"      },
@@ -63,7 +64,7 @@ static gw_generic_table Tab[] =
   {sci_taucs_chget, "taucs_chget"  },
   {sci_res_with_prec, "res_with_prec"}
 };
-
+*/
 /*--------------------------------------------------------------------------*/
 int gw_umfpack(void)
 {

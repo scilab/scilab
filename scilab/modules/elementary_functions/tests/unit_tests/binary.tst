@@ -151,7 +151,7 @@ if res1<>res then pause,end
 [a]=meof(fd4);
 if a==0 then pause,end
 
-mclearerr(fd4)
+mclearerr(fd4);
 [a]= mclose(fd4);
 if a<>0 then pause,end
 
