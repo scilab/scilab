@@ -91,5 +91,6 @@ extern void C2F(wdiv) (double *ar, double *ai, double *br, double *bi, double *c
 extern void C2F(dad) (double *a, int *na, int *i1, int *i2, int *j1, int *j2, double *r, int *isw);
 extern int C2F(entier) (int *_iSize, double *_pdbl, int *_pi);
 extern int C2F(simple) (int *_iSize, double *_pdbl, float *_pf);
+extern double C2F(nearfloat) (double*, double*);
 
 #endif /* __COMMON_H__ */
