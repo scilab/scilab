@@ -374,7 +374,7 @@ C
          PRINTW =ITMP.EQ.1 
       END IF 
 C
-C Determine the lenghts of working arrays.
+C Determine the lengths of working arrays.
 C The value for LDWORK is the minimum value needed by IB01BD for each
 C method and algorithm implemented.  Using a larger value could
 C increase the efficiency.

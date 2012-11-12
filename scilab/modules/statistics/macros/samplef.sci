@@ -10,7 +10,7 @@
 
 function s=samplef(n,X,f,orient)
 // 
-//This function gives s, a  vector of lenght n.  It contains
+//This function gives s, a  vector of length n.  It contains
 //a  sample of  n  extractions, with  replacement, from  the
 //vector  (or  matrix)  X,  each element  counted  with  the
 //frequence given by the corresponding value in vector f.
@@ -19,14 +19,14 @@ function s=samplef(n,X,f,orient)
 //vector s whose values are a random sample of n values from
 //X,   each  value   with  a   probability  to   be  sampled
 //proportional  to the corresponding  value of  f, extracted
-//with replacement, from X.  f must have same lenght than X.
+//with replacement, from X.  f must have same length than X.
 //
 //s=samplef(n,X,f,'r')           (or,          equivalently,
 //s=samplef(n,X,f,1))    returns    a    matrix   of    type
 //size(X,'r')xn.  It contains a random sample of n rows from
 //X, each row with  a probability to be sampled proportional
 //to   the  corresponding   value  of   f,   extracted  with
-//replacement, from the  rows of X. The lenght  of f must be
+//replacement, from the  rows of X. The length  of f must be
 //equal to the number of rows of X.
 //
 //s=samplef(n,X,f,'c')           (or,          equivalently,
@@ -34,7 +34,7 @@ function s=samplef(n,X,f,orient)
 //nxsize(X,'c').  It  contains a random sample  of n columns
 //from  X, each  column  with a  probability  to be  sampled
 //proportional  to the corresponding  value of  f, extracted
-//with replacement, from the columns  of X.  The lenght of f
+//with replacement, from the columns  of X.  The length of f
 //must be equal to the number of columns of X.
 //
   [lhs,rhs]=argn(0)
