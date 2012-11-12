@@ -10,8 +10,6 @@
  *
  */
 
-#pragma comment(lib,"../../bin/typesmacro.lib")
-
 extern "C"
 {
 #include "stdarg.h"
