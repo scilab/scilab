@@ -185,7 +185,17 @@ public:
         if (ddims)
         {
             targetspace = H5Screate_simple(drank, ddims, dmaxdims);
-            if (ddims && dmaxdims)
+            if (targetspace < 0)
+            {
+                if (newdims)
+                {
+                    delete[] newdims;
+                }
+                H5Sclose(srcspace);
+                H5Tclose(targettype);
+                throw H5Exception(__LINE__, __FILE__, _("Invalid target dataspace."));
+            }
+            if (dmaxdims)
             {
                 for (unsigned int i = 0; i < drank; i++)
                 {
@@ -231,6 +241,7 @@ public:
             catch (const H5Exception & e)
             {
                 H5Tclose(targettype);
+                H5Sclose(targetspace);
                 H5Sclose(srcspace);
                 throw;
             }

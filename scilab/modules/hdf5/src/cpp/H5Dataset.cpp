@@ -217,7 +217,7 @@ std::string H5Dataset::dump(std::map<haddr_t, std::string> & alreadyVisited, con
 
     try
     {
-	data = &const_cast<H5Dataset *>(this)->getData();
+        data = &const_cast<H5Dataset *>(this)->getData();
     }
     catch (const H5Exception & e)
     {
@@ -228,14 +228,14 @@ std::string H5Dataset::dump(std::map<haddr_t, std::string> & alreadyVisited, con
        << type.dump(alreadyVisited, indentLevel + 1)
        << space.dump(alreadyVisited, indentLevel + 1)
        << layout.dump(alreadyVisited, indentLevel + 1);
-    
+
     if (data)
     {
-	os << data->dump(alreadyVisited, indentLevel + 1);
+        os << data->dump(alreadyVisited, indentLevel + 1);
     }
     else
     {
-	os << H5Object::getIndentString(indentLevel + 1) << _("Error in retrieving data.") << std::endl;
+        os << H5Object::getIndentString(indentLevel + 1) << _("Error in retrieving data.") << std::endl;
     }
 
     os << attrs.dump(alreadyVisited, indentLevel + 1)
@@ -245,7 +245,7 @@ std::string H5Dataset::dump(std::map<haddr_t, std::string> & alreadyVisited, con
     delete &space;
     if (data)
     {
-	delete data;
+        delete data;
     }
     delete &attrs;
     delete &layout;
@@ -361,7 +361,15 @@ hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t ty
             {
                 herr_t err;
                 int ndims = H5Sget_simple_extent_ndims(space);
+                if (ndims < 0)
+                {
+                    throw H5Exception(__LINE__, __FILE__, _("Invalid source space"));
+                }
                 int dndims = H5Sget_simple_extent_ndims(targetspace);
+                if (dndims < 0)
+                {
+                    throw H5Exception(__LINE__, __FILE__, _("Invalid target space"));
+                }
                 hsize_t * dims = new hsize_t[ndims];
                 hsize_t * ddims = new hsize_t[dndims];
                 hsize_t * maxdims = new hsize_t[ndims];
@@ -417,6 +425,11 @@ hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t ty
         {
             herr_t err;
             int ndims = H5Sget_simple_extent_ndims(targetspace);
+            if (ndims < 0)
+            {
+                throw H5Exception(__LINE__, __FILE__, _("Invalid target space"));
+            }
+
             hsize_t * dims = new hsize_t[ndims];
 
             H5Sget_simple_extent_dims(targetspace, dims, 0);
