@@ -60,6 +60,18 @@
             </caution>
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+fd = mopen(TMPDIR + filesep() + 'mclose_tst','wt');
+mclose(TMPDIR + filesep() + 'mclose_tst');
+
+fd=mopen('SCI/etc/scilab.start','r')
+mgetl(fd,10)
+mclose(fd)
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
