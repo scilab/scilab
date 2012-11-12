@@ -112,7 +112,7 @@ std::string H5Attribute::dump(std::map<haddr_t, std::string> & alreadyVisited, c
 
     try
     {
-	data = &const_cast<H5Attribute *>(this)->getData();
+        data = &const_cast<H5Attribute *>(this)->getData();
     }
     catch (const H5Exception & e)
     {
@@ -122,14 +122,14 @@ std::string H5Attribute::dump(std::map<haddr_t, std::string> & alreadyVisited, c
     os << H5Object::getIndentString(indentLevel) << "ATTRIBUTE \"" << getName() << "\" {" << std::endl
        << type.dump(alreadyVisited, indentLevel + 1)
        << space.dump(alreadyVisited, indentLevel + 1);
-    
+
     if (data)
     {
-	os << data->dump(alreadyVisited, indentLevel + 1);
+        os << data->dump(alreadyVisited, indentLevel + 1);
     }
     else
     {
-	os << H5Object::getIndentString(indentLevel + 1) << _("Error in retrieving data.") << std::endl;
+        os << H5Object::getIndentString(indentLevel + 1) << _("Error in retrieving data.") << std::endl;
     }
 
     os << H5Object::getIndentString(indentLevel) << "}" << std::endl;
@@ -138,7 +138,7 @@ std::string H5Attribute::dump(std::map<haddr_t, std::string> & alreadyVisited, c
     delete &space;
     if (data)
     {
-	delete data;
+        delete data;
     }
 
     return os.str();
@@ -178,6 +178,11 @@ hid_t H5Attribute::create(H5Object & loc, const std::string & name, const hid_t 
 hid_t H5Attribute::create(const hid_t loc, const std::string & name, const hid_t type, const hid_t targettype, const hid_t srcspace, const hid_t targetspace, void * data)
 {
     herr_t err;
+    if (H5Aexists(loc, name.c_str()) > 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Attribute %s already exists."), name.c_str());
+    }
+
     hid_t attr = H5Acreate(loc, name.c_str(), targettype, targetspace == -1 ? srcspace : targetspace, H5P_DEFAULT, H5P_DEFAULT);
     if (attr < 0)
     {
