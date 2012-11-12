@@ -521,6 +521,10 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 
         if(iStart == 0 && iExpLen == iLineLen)
         {//entire line
+            if(*_piCol)
+            {//blank char at the end of previous line
+                printLine("", "", true);
+            }
             printLine(_pstPrompt, strLastLine, true);
             *_piCol = 0;
         }
@@ -528,6 +532,10 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         {
             if(iStart == 0)
             {//begin of line
+                if(*_piCol)
+                {//blank char at the end of previous line
+                    printLine("", "", true);
+                }
                 printLine(_pstPrompt, strLastLine, false);
                 *_piCol = loc.last_column;
             }
@@ -546,6 +554,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
                     printLine("", pstTemp, false);
                     *_piCol = loc.first_column;
                 }
+
                 if(iEnd == iLineLen)
                 {
                     printLine("", strLastLine, true);
@@ -564,10 +573,22 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 
         if(loc.first_column == 1)
         {
+            if(*_piCol)
+            {//blank char at the end of previous line
+                printLine("", "", true);
+            }
             printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1), true);
         }
         else
         {
+            if(*_piCol < loc.first_column)
+            {//pickup separator between expressionsfrom file and add to output
+                char pstTemp[1024] = {0};
+                strncpy(pstTemp, _pstPreviousBuffer +  (*_piCol - 1), loc.first_column - *_piCol);
+                printLine("", pstTemp, false);
+                *_piCol = loc.first_column;
+            }
+
             printLine("", _pstPreviousBuffer + (loc.first_column - 1), true);
         }
 
