@@ -32,28 +32,25 @@ BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
 
 ### Translator 
 
-modelicat_SOURCES = $(MLS_modelicat)
+modelicat_SOURCES = \
+	$(srcdir)/src/translator/parsing/syntax.ml \
+	$(srcdir)/src/translator/parsing/parser.mly \
+	$(srcdir)/src/translator/parsing/lexer.mll \
+	$(srcdir)/src/translator/parsing/linenum.ml \
+	$(srcdir)/src/translator/compilation/types.ml \
+	$(srcdir)/src/translator/compilation/nameResolve.ml \
+	$(srcdir)/src/translator/instantiation/instantiation.ml \
+	$(srcdir)/src/translator/exceptionHandling/msgDico.ml \
+	$(srcdir)/src/translator/exceptionHandling/errorDico.ml \
+	$(srcdir)/src/translator/exceptionHandling/exceptHandler.ml \
+	$(srcdir)/src/translator/translation/libraryManager.ml \
+	$(srcdir)/src/translator/translation/codeGeneration.ml \
+	$(srcdir)/src/translator/translation/versiondate.ml \
+	$(srcdir)/src/translator/translation/translator.ml
 
-MLS_modelicat =  $(srcdir)/src/translator/compilation/types.ml \
- $(srcdir)/src/translator/compilation/nameResolve.ml \
- $(srcdir)/src/translator/instantiation/instantiation.ml \
- $(srcdir)/src/translator/exceptionHandling/msgDico.ml \
- $(srcdir)/src/translator/exceptionHandling/errorDico.ml \
- $(srcdir)/src/translator/exceptionHandling/exceptHandler.ml \
- $(srcdir)/src/translator/translation/libraryManager.ml \
- $(srcdir)/src/translator/translation/codeGeneration.ml \
- $(srcdir)/src/translator/translation/versiondate.ml \
- $(srcdir)/src/translator/translation/translator.ml
-
-
-MLS_SPECIFIC_PRE_modelicat = $(srcdir)/src/translator/parsing/syntax.ml \
-$(srcdir)/src/translator/parsing/parser.ml \
-$(srcdir)/src/translator/parsing/lexer.ml \
-$(srcdir)/src/translator/parsing/linenum.ml
-
-PARSER_SRC_modelicat = $(srcdir)/src/translator/parsing/parser.mly
-LEXER_SRC_modelicat = $(srcdir)/src/translator/parsing/lexer.mll
-
+modelicat_SOURCES_mly = $(modelicat_SOURCES:.mly=.ml)
+MLS_modelicat = $(modelicat_SOURCES_mly:.mll=.ml)
+MLIS_modelicat = $(MLS_modelicat:.ml=.mli)
 
 INCLUDE_modelicat = -I $(srcdir)/src/translator/compilation \
 -I $(srcdir)/src/translator/exceptionHandling \
@@ -63,13 +60,11 @@ INCLUDE_modelicat = -I $(srcdir)/src/translator/compilation \
 
 ### Modelicac
 
-modelicac_SOURCES = $(MLS)
-
-
-MLS = $(srcdir)/src/modelica_compiler/parseTree.ml \
+modelicac_SOURCES = \
+	$(srcdir)/src/modelica_compiler/parseTree.ml \
 	$(srcdir)/src/modelica_compiler/linenum.ml \
-	$(srcdir)/src/modelica_compiler/parser.ml \
-	$(srcdir)/src/modelica_compiler/lexer.ml \
+	$(srcdir)/src/modelica_compiler/parser.mly \
+	$(srcdir)/src/modelica_compiler/lexer.mll \
 	$(srcdir)/src/modelica_compiler/precompilation.ml \
 	$(srcdir)/src/modelica_compiler/compilation.ml \
 	$(srcdir)/src/modelica_compiler/instantiation.ml \
@@ -85,24 +80,10 @@ MLS = $(srcdir)/src/modelica_compiler/parseTree.ml \
 	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml \
 	$(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 
-# This is a basic copy of MLS with some elements removed
-MLIS = $(srcdir)/src/modelica_compiler/parseTree.mli \
-	$(srcdir)/src/modelica_compiler/precompilation.mli \
-	$(srcdir)/src/modelica_compiler/compilation.mli \
-	$(srcdir)/src/modelica_compiler/instantiation.mli \
-	$(srcdir)/src/modelica_compiler/graphNodeSet.mli \
-	$(srcdir)/src/modelica_compiler/symbolicExpression.mli \
-	$(srcdir)/src/modelica_compiler/squareSparseMatrix.mli \
-	$(srcdir)/src/modelica_compiler/bipartiteGraph.mli \
-	$(srcdir)/src/modelica_compiler/hungarianMethod.mli \
-	$(srcdir)/src/modelica_compiler/causalityGraph.mli \
-	$(srcdir)/src/modelica_compiler/optimization.mli \
-	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.mli \
-	$(srcdir)/src/modelica_compiler/optimizingCompiler.mli \
-	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
+modelicac_SOURCES_mly = $(modelicac_SOURCES:.mly=.ml)
+MLS = $(modelicac_SOURCES_mly:.mll=.ml)
+MLIS = $(MLS:.ml=.mli)
 
-PARSER_SRC = $(srcdir)/src/modelica_compiler/parser.mly
-LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
 BASE_PATH_MODELICAC = $(srcdir)/src/modelica_compiler
 
 INCLUDE = -I $(BASE_PATH_MODELICAC) -I $(BASE_PATH_XML2Modelica)
@@ -110,10 +91,9 @@ INCLUDE = -I $(BASE_PATH_MODELICAC) -I $(BASE_PATH_XML2Modelica)
 ########## COMMON
 SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
-
 # @TODO check how to avoid the rebuild of the parser/lexer
 
-.ml.cmo:
+%.cmo: %.ml %.cmi
 	@if echo "$<"|grep src/translator; then \
 		echo $(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
 		$(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
@@ -143,11 +123,11 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
 .ml.mli:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat) -c $<; \
-		$(OCAMLC) $(INCLUDE_modelicat) -c $<; \
+		echo $(OCAMLC) $(INCLUDE_modelicat) -i $< > $@; \
+		$(OCAMLC) $(INCLUDE_modelicat) -i $< > $@; \
 	else \
-		echo $(OCAMLC) $(INCLUDE) -c $<; \
-		$(OCAMLC) $(INCLUDE) -c $<; \
+		echo $(OCAMLC) $(INCLUDE) -i $< > $@; \
+		$(OCAMLC) $(INCLUDE) -i $< > $@; \
 	fi
 
 
@@ -157,41 +137,16 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 .mly.ml:
 	$(OCAMLYACC) $<
 
-# call the ocaml/Yacc
-generate-parser: $(PARSER_SRC)
-	$(OCAMLYACC) $(<)
-	$(RM) -f $(<:.mly=.mli)
-# Crappy workaround to avoid bug 8013
-	touch src/modelica_compiler/*.mli
-
-# Call the lexer
-generate-lexer: $(LEXER_SRC)
-	$(OCAMLLEX) $(<)
-
 # Build the binaries
 
-modelicac:generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
+modelicac:$(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
 	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
 
 
 XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx) 
 	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 
 
-
-
-# call the ocaml/Yacc
-generate-parser_modelicat: $(PARSER_SRC_modelicat)
-	$(OCAMLYACC) $(<)
-	$(RM) -f $(<:.mly=.ml)i
-# Crappy workaround to avoid bug 8013
-	touch $(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
-
-
-# Call the lexer
-generate-lexer_modelicat: $(LEXER_SRC_modelicat)
-	$(OCAMLLEX) $(<)
-
-modelicat: generate-parser_modelicat generate-lexer_modelicat $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmo)  $(MLS_modelicat:.ml=.mli) $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmo)  $(MLS_modelicat:.ml=.cmx) 
+modelicat: $(MLIS_modelicat:.mli=.cmi) $(MLS_modelicat:.ml=.cmo) $(MLS_modelicat:.ml=.cmx)
 	$(OCAMLOPT) -o modelicat $(INCLUDE_modelicat) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmx) 
 
 
@@ -214,7 +169,28 @@ CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(BASE_PATH)/translator/*/parser.ml \
 	$(BASE_PATH)/translator/*/linenum.ml \
 	$(BASE_PATH)/translator/*/lexer.ml \
-	$(TARGET)
+	$(TARGET) \
+	$(BASE_PATH)/modelica_compiler/linenum.mli \
+	$(BASE_PATH)/modelica_compiler/scicosOptimizingCompiler.mli \
+	$(BASE_PATH)/translator/compilation/nameResolve.mli \
+	$(BASE_PATH)/translator/compilation/types.mli \
+	$(BASE_PATH)/translator/exceptionHandling/errorDico.mli \
+	$(BASE_PATH)/translator/exceptionHandling/exceptHandler.mli \
+	$(BASE_PATH)/translator/exceptionHandling/msgDico.mli \
+	$(BASE_PATH)/translator/instantiation/instantiation.mli \
+	$(BASE_PATH)/translator/parsing/linenum.mli \
+	$(BASE_PATH)/translator/parsing/syntax.mli \
+	$(BASE_PATH)/translator/translation/codeGeneration.mli \
+	$(BASE_PATH)/translator/translation/libraryManager.mli \
+	$(BASE_PATH)/translator/translation/translator.mli \
+	$(BASE_PATH)/translator/translation/versiondate.mli
+
+#BUILT_SOURCES = depend
+
+depend: $(MLIS) $(MLS) $(MLIS_XML2Modelica) $(MLS_XML2Modelica) $(MLIS_modelicat) $(MLS_modelicat)
+	$(OCAMLDEP) $(INCLUDE_modelicat) $(INCLUDE) $^ > .depend
+
+include .depend
 
 endif # OCAML
 endif # XCOS

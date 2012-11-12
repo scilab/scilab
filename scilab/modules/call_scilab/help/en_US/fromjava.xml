@@ -25,6 +25,12 @@
             Returns <literal>%t</literal> if Scilab is called from javasci or <literal>%f</literal> if not.
         </para>
     </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
+fromjava();
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

@@ -79,7 +79,8 @@ GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
 		      sci_gateway/cpp/sci_xmlAsNumber.cpp \
 		      sci_gateway/cpp/sci_xmlAsText.cpp \
 		      sci_gateway/cpp/sci_xmlRemove.cpp \
-		      sci_gateway/cpp/sci_xmlSetAttributes.cpp
+		      sci_gateway/cpp/sci_xmlSetAttributes.cpp \
+		      sci_gateway/cpp/sci_xmlName.cpp
 
 libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \

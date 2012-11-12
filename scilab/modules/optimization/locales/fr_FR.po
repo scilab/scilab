@@ -187,8 +187,8 @@ msgstr "neldermead - Variable de Rosenbrock"
 msgid "neldermead - Output Command"
 msgstr "neldermead - Commande de sortie"
 
-msgid "neldermead - Dimensionnality"
-msgstr "neldermead - dimensionnalité"
+msgid "neldermead - Dimensionality"
+msgstr "neldermead - dimensionalité"
 
 msgid "nmplot - Han #1"
 msgstr "nmplot - Han n°1"
@@ -495,7 +495,7 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une table de dimension N "
 "attendue.\n"

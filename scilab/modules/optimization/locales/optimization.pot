@@ -310,7 +310,7 @@ msgstr ""
 
 #
 # File: demos/neldermead/neldermead.dem.gateway.sce, line: 17
-msgid "neldermead - Dimensionnality"
+msgid "neldermead - Dimensionality"
 msgstr ""
 
 #
@@ -829,7 +829,7 @@ msgstr ""
 #
 # File: macros/derivative.sci, line: 42
 #, c-format
-msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgid "%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr ""
 
 #

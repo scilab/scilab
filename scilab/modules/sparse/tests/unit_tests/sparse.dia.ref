@@ -1,4 +1,10 @@
-// Copyright INRIA
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
 mode(5)
 lines(0)
 ij=[1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6];
@@ -768,3 +774,6 @@ a=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],1:9,[6 6]);
 b=sparse([1 6;1 2;5 5],[10;-1;-1],[5 6]);
 if a==b<>%f then bugmes();quit;end
 if a<>b<>%t then bugmes();quit;end
+a=sparse([%f %t %f %t]);
+b=sparse([%t %f %t %f]);
+assert_checkequal(~a, b);

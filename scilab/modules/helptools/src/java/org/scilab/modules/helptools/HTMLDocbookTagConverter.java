@@ -28,6 +28,7 @@ import org.scilab.modules.helptools.image.LaTeXImageConverter;
 import org.scilab.modules.helptools.image.MathMLImageConverter;
 import org.scilab.modules.helptools.image.ScilabImageConverter;
 import org.scilab.modules.helptools.image.SVGImageConverter;
+import org.scilab.modules.helptools.image.XcosImageConverter;
 import org.scilab.modules.helptools.scilab.ScilabLexer;
 import org.scilab.modules.helptools.scilab.HTMLScilabCodeHandler;
 import org.scilab.modules.helptools.scilab.AbstractScilabCodeHandler;
@@ -160,6 +161,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         ImageConverter.registerExternalImageConverter(MathMLImageConverter.getInstance(type));
         ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance(type));
         ImageConverter.registerExternalImageConverter(ScilabImageConverter.getInstance(type));
+        ImageConverter.registerExternalImageConverter(XcosImageConverter.getInstance(type));
     }
 
     /**
@@ -505,10 +507,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             currentId = id;
         }
         String fileName = mapId.get(currentId);
+        String needsExampleAttr = attributes.get("needs-examples");
         createHTMLFile(currentId, fileName, refpurpose, contents);
-        if (!hasExamples) {
+        if (!hasExamples && (needsExampleAttr == null || !needsExampleAttr.equals("no"))) {
             warnings++;
-            //System.err.println("Warning (should be fixed): no example in " + currentFileName);
+            System.err.println("Warning (should be fixed): no example in " + currentFileName);
         } else {
             hasExamples = false;
         }
@@ -849,8 +852,10 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             if (role.equals("xml")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "xmlcode", xmlLexer.convert(HTMLXMLCodeHandler.getInstance(), contents)));
             } else if (role.equals("c") || role.equals("cpp") || role.equals("code_gateway")) {
+                hasExamples = true;
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", cLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
             } else if (role.equals("java")) {
+                hasExamples = true;
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", javaLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
             } else if (role.equals("exec")) {
                 String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
@@ -862,6 +867,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 }
                 str = encloseContents("div", "programlisting", code);
             } else if (role.equals("no-scilab-exec")) {
+                hasExamples = true;
                 String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 str = encloseContents("div", "programlisting", code);
             } else {
@@ -965,7 +971,19 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
 
         Stack<DocbookElement> stack = getStack();
         String refnameTarget = mapIdRefname.get(link);
-        String href = encloseContents("a", new String[] {"href", id, "class", "link"}, refnameTarget);
+        String str;
+        if (contents != null && !contents.isEmpty()) {
+            str = contents;
+        } else {
+            str = refnameTarget;
+        }
+
+        if (str == null) {
+            warnings++;
+            System.err.println("Warning (should be fixed): empty link (no text will be printed) to " + link + " in " + currentFileName + "\nat line " + locator.getLineNumber());
+        }
+
+        String href = encloseContents("a", new String[] {"href", id, "class", "link"}, str);
 
         int s = stack.size();
         if (s >= 3) {

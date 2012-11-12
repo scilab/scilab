@@ -105,7 +105,7 @@ let create_component comp_defs inst_defs filename cmd =
 (** Main function *)
 let run () =
   Printf.printf "---------------------------------------------------\n";
-  Printf.printf "Translator v1.2 for Scicos from Modelica 2.x to flat Modelica\n";
+  Printf.printf "Translator v1.2 for Xcos from Modelica 2.x to flat Modelica\n";
   Printf.printf "Copyright (C) \n2005-2007 Imagine,\n2007-2008 LMS-Imagine\n";
   Versiondate.print_versiondate();
   Printf.printf "---------------------------------------------------\n";

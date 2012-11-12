@@ -183,7 +183,7 @@ msgstr ""
 msgid "neldermead - Output Command"
 msgstr ""
 
-msgid "neldermead - Dimensionnality"
+msgid "neldermead - Dimensionality"
 msgstr ""
 
 msgid "nmplot - Han #1"
@@ -474,7 +474,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana tablica N-"
 "wymiarowa.\n"

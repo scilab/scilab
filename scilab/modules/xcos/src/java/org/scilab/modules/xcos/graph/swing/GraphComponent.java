@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.graph.swing;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.MouseInfo;
 
 import org.scilab.modules.graph.ScilabComponent;
@@ -72,6 +73,10 @@ public class GraphComponent extends ScilabComponent {
      */
     @Override
     protected mxGraphHandler createGraphHandler() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return null;
+        }
+
         return new GraphHandler(this);
     }
 

@@ -53,7 +53,7 @@
         <para>
             <literal>intersect(a,b)</literal> renvoie un vecteur trié des
             valeurs communes à <literal>a</literal> et <literal>b</literal>. A noter
-            que 2 NaN sont toujours considéré comme différents.
+            que 2 NaN sont toujours considérés comme différents.
         </para>
         <para>
             <literal>[v,ka,kb]=intersect(a,b)</literal> renvoie aussi deux

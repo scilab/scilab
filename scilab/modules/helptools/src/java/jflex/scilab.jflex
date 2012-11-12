@@ -39,16 +39,16 @@ import java.io.IOException;
     private int saveLexState;
 
     private String id;
-    private List<String> returnValues = new ArrayList();
-    private List<String> argsValues = new ArrayList();
-    private List<String> localFun = new ArrayList();
+    private List<String> returnValues = new ArrayList<String>();
+    private List<String> argsValues = new ArrayList<String>();
+    private List<String> localFun = new ArrayList<String>();
 
     private AbstractScilabCodeHandler handler;
 
     public ScilabLexer(String[] primFile, String[] macroFile) {
        if (commands == null) {
-          commands = new HashSet();
-          macros = new HashSet();
+          commands = new HashSet<String>();
+          macros = new HashSet<String>();
           loadNames(primFile, commands);
           loadNames(macroFile, macros);
        }
@@ -58,24 +58,24 @@ import java.io.IOException;
        this(new String[]{primFile}, new String[]{macroFile});
     }
 
-    public ScilabLexer(Set primitives, Set macros) {
+    public ScilabLexer(Set<String> primitives, Set<String> macros) {
        commands = primitives;
        this.macros = macros;
     }
 
-    private void loadNames(String[] files, Set set) {
+    private void loadNames(String[] files, Set<String> set) {
        for (int i = 0; i < files.length; i++) {
           loadNames(files[i], set);
        }
     }
 
-    private void loadNames(String file, Set set) {
+    private void loadNames(String file, Set<String> set) {
        if (file == null) {
           return;
        }
        BufferedReader input = null;
        try {
-          input =  new BufferedReader(new FileReader(file));
+          input = new BufferedReader(new FileReader(file));
           String line = null;
           while ((line = input.readLine()) != null) {
              set.add(line);

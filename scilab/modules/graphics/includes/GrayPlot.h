@@ -27,7 +27,7 @@
  * - z is a (n1,n2) matrix
  * - x is a (1,n1) matrix
  * - y is a (1,n2) matrix
- * - x,y,z are stored as one dimensionnal array in C
+ * - x,y,z are stored as one dimensional array in C
  *
  *  z : is the value of a function on the grid defined by x,y
  *  on each rectangle the average value of z is computed

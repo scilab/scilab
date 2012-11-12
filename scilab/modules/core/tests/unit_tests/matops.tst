@@ -122,3 +122,23 @@ if or(v<>v_ref) then pause,end
 v = [(1) (2) (3)];
 if or(v <> [1 2 3]) then pause, end
 
+assert_checkequal([]-[],[]);
+
+a=matrix(1:9,3,3);
+assert_checkequal(a(3,2,1),6);
+assert_checkequal(a(8),8);
+assert_checkerror("a(3,3,3)", msprintf(_("Invalid index.\n")));
+assert_checkerror("a(2,4,1)", msprintf(_("Invalid index.\n")));
+assert_checkerror("a(11)", msprintf(_("Invalid index.\n")));
+
+A = rand(6, 4, 2, 8);
+[S(:,:,1), k(:,:,1)] = (A(:,:,1), A(:,:,2));
+assert_checkequal(S(:,:,1), A(:,:,1));
+
+function [a,b]=toto()
+a=2;b=5;
+endfunction
+[t(1,3), g(2,1)] = toto();
+assert_checkequal(t,[0,0,2]);
+assert_checkequal(g,[0;5]);
+

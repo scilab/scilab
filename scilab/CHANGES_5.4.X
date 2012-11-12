@@ -10,6 +10,8 @@ Improvements
 * A new output argument has been added to the function regexp to retrieve
   subpatterns matches. See SEP #86.
 
+* New xmlName function.
+
 
 Xcos
 =====
@@ -36,6 +38,12 @@ Xcos
                      NullPointerException.
 
 * Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
+
+
+Documentation
+==============
+
+* Add the 'scilab:needs-examples="no"' tag to specify that the help page does not need any example.
 
 
 Bug fixes
@@ -78,10 +86,13 @@ Bug fixes
 
 * Bug #12003 fixed - Fix a typo in the spreadsheet module.
 
+* Bug #12022 fixed - ftuneq had a bad example.
+
 * Bug #12033 fixed - assert_checkalmostequal was failing with two %inf values.
 
 * Bug #12043 fixed - Fix a typo in the ATOMS module help pages.
 
+* Bug #12050 fixed - Fix a typo: dimensionnal => dimensional.
 
 
                     Changes between version 5.3.3 and 5.4.0
