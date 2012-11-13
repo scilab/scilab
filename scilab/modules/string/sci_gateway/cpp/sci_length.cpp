@@ -77,7 +77,7 @@ Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out
     //}
     else
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument(s).\n"), L"length");
+        Scierror(999, _("%s: Wrong type for input argument(s).\n"), "length");
         return Function::Error;
     }
 

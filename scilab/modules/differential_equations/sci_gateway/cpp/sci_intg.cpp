@@ -21,6 +21,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "scifunctions.h"
@@ -42,14 +43,14 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 // *** check the minimal number of input args. ***
     if(in.size() < 3 || in.size() > 5)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"intg", 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "intg", 3);
         return types::Function::Error;
     }
 
 // *** check number of output args ***
     if(_iRetCount > 2)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"intg", 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "intg", 2);
         return types::Function::Error;
     }
 
@@ -57,7 +58,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     // A
     if(in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"intg", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "intg", 1);
         return types::Function::Error;
     }
 
@@ -65,7 +66,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
     if(pDblA->isScalar() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A scalar expected.\n"), L"intg", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A scalar expected.\n"), "intg", 1);
         return types::Function::Error;
     }
 
@@ -74,7 +75,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     // B
     if(in[1]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"intg", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "intg", 2);
         return types::Function::Error;
     }
 
@@ -82,7 +83,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
     if(pDblB->isScalar() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A scalar expected.\n"), L"intg", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A scalar expected.\n"), "intg", 2);
         return types::Function::Error;
     }
 
@@ -102,7 +103,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
         double ret = intg_f(&t);
         if(ret == 0)
         {
-            ScierrorW(50,_W("%ls: Argument #%d : Variable returned by scilab argument function is incorrect.\n"), L"intg", 3);
+            Scierror(50, _("%s: Argument #%d : Variable returned by scilab argument function is incorrect.\n"), "intg", 3);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -115,7 +116,9 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
         if(bOK == false)
         {
-            ScierrorW(50,_W("%ls: Subroutine not found: %ls\n"), L"intg", pStr->get(0));
+            char* pst = wide_string_to_UTF8(pStr->get(0));
+            Scierror(50, _("%s: Subroutine not found: %s\n"), "intg", pst);
+            FREE(pst);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -126,7 +129,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
         if(pList->getSize() == 0)
         {
-            ScierrorW(50,_W("%ls: Argument #%d : Subroutine not found in list: %ls\n"), L"intg", 3, L"(string empty)");
+            Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "intg", 3, "(string empty)");
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -141,14 +144,14 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : The first argument in the list must be a Scilab function.\n"), L"intg", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : The first argument in the list must be a Scilab function.\n"), "intg", 3);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
     }
     else
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A function expected.\n"), L"intg", 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "intg", 3);
         DifferentialEquation::removeDifferentialEquationFunctions();
         return types::Function::Error;
     }
@@ -157,7 +160,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     {
         if(in[3]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"intg", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "intg", 4);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -166,7 +169,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
         if(pDblEpsR->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A scalar expected.\n"), L"intg", 4);
+            Scierror(999, _("%s: Wrong size for input argument #%d : A scalar expected.\n"), "intg", 4);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -178,7 +181,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     {
         if(in[4]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"intg", 5);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "intg", 5);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -187,7 +190,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
         if(pDblEpsA->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A scalar expected.\n"), L"intg", 5);
+            Scierror(999, _("%s: Wrong size for input argument #%d : A scalar expected.\n"), "intg", 5);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -225,33 +228,33 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
         {
             case 1 :
             {
-                ScierrorW(999, _W("%ls: Maximum number of subdivisions allowed has been achieved.\n"), L"intg");
+                Scierror(999, _("%s: Maximum number of subdivisions allowed has been achieved.\n"), "intg");
                 return types::Function::Error;
             }
             case 2 :
             {
                 if(getWarningMode())
                 {
-                    sciprintW(_W("%ls: Warning : The occurrence of roundoff error is detected, which prevents the requested tolerance from being achieved. The error may be under-estimated.\n"),L"intg");
+                    sciprint(_("%ls: Warning : The occurrence of roundoff error is detected, which prevents the requested tolerance from being achieved. The error may be under-estimated.\n"),L"intg");
                 }
                 break;
             }
             case 3 :
             {
-                ScierrorW(999, _W("%ls: Extremely bad integrand behaviour occurs at some points of the integration interval.\n"), L"intg");
+                Scierror(999, _("%s: Extremely bad integrand behaviour occurs at some points of the integration interval.\n"), "intg");
                 return types::Function::Error;
             }
             case 4 :
             {
                 if(getWarningMode())
                 {
-                    sciprintW(_W("%ls: Warning : The algorithm does not converge. Roundoff error is detected in the extrapolation table. It is presumed that the requested tolerance cannot be achieved, and that the returned result is the best which can be obtained.\n"),L"intg");
+                    sciprint(_("%ls: Warning : The algorithm does not converge. Roundoff error is detected in the extrapolation table. It is presumed that the requested tolerance cannot be achieved, and that the returned result is the best which can be obtained.\n"),L"intg");
                 }
                 break;
             }
             case 5 :
             {
-                ScierrorW(999, _W("%ls: The integral is probably divergent, or slowly convergent.\n"), L"intg");
+                Scierror(999, _("%s: The integral is probably divergent, or slowly convergent.\n"), "intg");
                 return types::Function::Error;
             }
         }

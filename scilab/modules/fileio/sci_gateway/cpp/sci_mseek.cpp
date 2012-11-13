@@ -48,13 +48,13 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
 
     if(in.size() < 1 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mseek", 1, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mseek", 1, 3);
         return types::Function::Error;
     }
 
     if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A Real expected.\n"), L"mseek", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mseek", 1);
         return types::Function::Error;
     }
 
@@ -72,7 +72,7 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real or String expected.\n"), L"mseek", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real or String expected.\n"), "mseek", 2);
             return types::Function::Error;
         }
     }
@@ -81,12 +81,12 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
     {
         if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"mseek", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mseek", 2);
             return types::Function::Error;
         }
         if(in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"mseek", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "mseek", 3);
             return types::Function::Error;
         }
 
@@ -99,7 +99,7 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
     case 0: // stderr
     case 5: // stdin
     case 6: // stdout
-        ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mseek", iFile);
+        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mseek", iFile);
         return types::Function::Error;
     }
 
@@ -119,7 +119,7 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: '%ls', '%ls' or '%ls' expected.\n"),L"mseek",3,L"set",L"cur",L"end");
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), "mseek", 3, "set", "cur", "end");
             return types::Function::Error;
         }
     }

@@ -152,7 +152,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                 case L'X' : //HEX
                     if(_pArgs[iToken - 1].type != InternalType::RealDouble)
                     {
-                        ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), _pwstName);
+                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), _pwstName);
                         return NULL;
                     }
                     pToken[iToken].outputType = InternalType::RealInt32;
@@ -164,7 +164,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                 case L'G' : //shorter between float or EXP
                     if(_pArgs[iToken - 1].type != InternalType::RealDouble)
                     {
-                        ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), _pwstName);
+                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), _pwstName);
                         return NULL;
                     }
                     pToken[iToken].outputType = InternalType::RealDouble;
@@ -173,7 +173,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                 case L'c' :
                     if(_pArgs[iToken - 1].type != InternalType::RealString)
                     {
-                        ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), _pwstName);
+                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), _pwstName);
                         return NULL;
                     }
                     pToken[iToken].outputType = InternalType::RealString;

@@ -39,13 +39,13 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 {
     if(in.size() != 2)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"part", 2);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "part", 2);
         return Function::Error;
     }
 
     if(_iRetCount != -1 && _iRetCount != 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"part", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "part", 1);
         return Function::Error;
     }
 
@@ -58,7 +58,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 
     if(in[0]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix of strings expected.\n"), L"part", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "part", 1);
         return Function::Error;
     }
 
@@ -66,7 +66,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 
     if(in[1]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix expected.\n"), L"part", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "part", 2);
         return Function::Error;
     }
 
@@ -81,7 +81,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 
     if(pD->isVector() == false)
     {//non vector
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A vector expected.\n"), L"part", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), "part", 2);
         return Function::Error;
     }
 

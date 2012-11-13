@@ -33,7 +33,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     int iMax = -1;
     if(in.size() > 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"find", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "find", 1, 2);
         return types::Function::Error;
     }
 
@@ -41,7 +41,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     {
         if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->get(0) <= 0)
         {
-            ScierrorW(999, _W("%ls:  Wrong type for input argument #%d: Scalar positive integer expected.\n"), L"find", 2);
+            Scierror(999, _("%s:  Wrong type for input argument #%d: Scalar positive integer expected.\n"), "find", 2);
             return types::Function::Error;
         }
 

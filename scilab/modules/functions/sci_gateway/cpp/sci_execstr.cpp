@@ -51,7 +51,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     int iOldSilentError = ConfigVariable::getSilentError();
 	if(in.size() < 1 || in.size() > 3)
 	{
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d to %d expected.\n"), L"execstr" , 1, 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "execstr" , 1, 3);
         return Function::Error;
 	}
 
@@ -60,7 +60,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 	{//errcatch
         if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"execstr", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "execstr", 2);
             return Function::Error;
         }
 
@@ -72,7 +72,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: 'errcatch' expected.\n"), L"execstr", 2);
+            Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "execstr", 2);
             return Function::Error;
         }
     }
@@ -82,7 +82,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 	{
         if(in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
 		{
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"execstr", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "execstr", 3);
             return Function::Error;
         }
 
@@ -96,7 +96,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), L"execstr", 3, MUTE_FLAG, NO_MUTE_FLAG);
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "execstr", 3, MUTE_FLAG, NO_MUTE_FLAG);
             return Function::Error;
         }
 	}
@@ -110,7 +110,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
     if(in[0]->isString() == false || (in[0]->getAs<types::String>()->getRows() != 1 && in[0]->getAs<types::String>()->getCols() != 1))
 	{
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Vector of strings expected.\n"), L"execstr", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), "execstr", 1);
         return Function::Error;
     }
 
@@ -135,7 +135,9 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     FREE(pstCommand);
 	if(parser.getExitStatus() !=  Parser::Succeded)
 	{
-        ScierrorW(999, L"%ls", parser.getErrorMessage());
+        char* pst = wide_string_to_UTF8(parser.getErrorMessage());
+        Scierror(999, "%s", pst);
+        FREE(pst);
 		return Function::Error;
 	}
 
@@ -341,7 +343,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 scilabErrorW(se.GetErrorMessage().c_str());
 
                 //write positino
-                ScierrorW(999, _W("in  execstr instruction    called by :\n"));
+                Scierror(999, _("in  execstr instruction    called by :\n"));
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
                 //throw ScilabMessage(szError, 1, (*j)->location_get());
@@ -379,7 +381,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             }
 
             //store message
-            ScierrorW(ConfigVariable::getLastErrorNumber(), L"%ls", ConfigVariable::getLastErrorMessage().c_str());
+            Scierror(ConfigVariable::getLastErrorNumber(), "%s", ConfigVariable::getLastErrorMessage().c_str());
             iErr = ConfigVariable::getLastErrorNumber();
             if(bErrCatch == false)
             {

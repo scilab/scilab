@@ -35,7 +35,7 @@ types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount
     
     if(in.size() > 0)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"getdrives", 0);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "getdrives", 0);
         return types::Function::Error;
     }
 

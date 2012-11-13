@@ -54,7 +54,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
 
     if(size < 2 || size >3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mfscanf", 2, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mfscanf", 2, 3);
         return types::Function::Error;
     }
 
@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     {
         if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A Real expected.\n"), L"mfscanf", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mfscanf", 1);
             return types::Function::Error;
         }
         iNiter = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
@@ -70,13 +70,13 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
 
     if(in[size-2]->isDouble() == false || in[size-2]->getAs<types::Double>()->isScalar() == false || in[size-2]->getAs<types::Double>()->isComplex())
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A Real expected.\n"), L"mfscanf", size-1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mfscanf", size-1);
         return types::Function::Error;
     }
 
     if(in[size-1]->isString() == false || in[size-1]->getAs<types::String>()->isScalar() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"mfscanf", size);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "mfscanf", size);
         return types::Function::Error;
     }
 
@@ -85,11 +85,11 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     {
     case 0:
         // stderr
-        ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mfscanf", iFile);
+        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfscanf", iFile);
         return types::Function::Error;
     case 6:
         // stdout
-        ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mfscanf", iFile);
+        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfscanf", iFile);
         return types::Function::Error;
     default :
         break;
@@ -100,7 +100,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     types::File* pFile = FileManager::getFile(iFile);
     if(pFile == NULL)
     {
-        ScierrorW(999, _W("%ls: Cannot read file %d.\n"), L"mfscanf", iFile);
+        Scierror(999, _("%s: Cannot read file %d.\n"), "mfscanf", iFile);
         return types::Function::Error;
     }
 
@@ -126,14 +126,14 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 if(iNiter >= 0)
                 {
                     Free_Scan(rowcount,ncol,type_s,&data);
-                    ScierrorW(999,_W("%ls: Data mismatch.\n"),L"mfscanf");
+                    Scierror(999, _("%s: Data mismatch.\n"),"mfscanf");
                     return types::Function::Error;
                 }
                 break;
 
             case DO_XXPRINTF_MEM_LACK:
                 Free_Scan(rowcount,ncol,type_s,&data);
-                ScierrorW(999,_W("%ls: No more memory.\n"),L"mfscanf");
+                Scierror(999, _("%s: No more memory.\n"),"mfscanf");
                 return types::Function::Error;
                 break;
             }

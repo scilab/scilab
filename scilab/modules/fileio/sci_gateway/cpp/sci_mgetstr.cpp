@@ -40,13 +40,13 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
 
     if(in.size() < 1 || in.size() > 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mgetstr", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mgetstr", 1, 2);
         return types::Function::Error;
     }
 
     if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"mgetstr", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mgetstr", 1);
         return types::Function::Error;
     }
 
@@ -56,7 +56,7 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
     {
         if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"mgetstr", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mgetstr", 2);
             return types::Function::Error;
         }
         iFile = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
@@ -65,7 +65,7 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
     {
     case 0: // stderr
     case 6: // stdout
-        ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mgetstr", iFile);
+        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mgetstr", iFile);
         return types::Function::Error;
     default :
         pwstOut = mgetstr(iFile, iSizeToRead);
@@ -73,7 +73,7 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
 
     if(pwstOut == NULL)
     {
-        ScierrorW(999, _W("%ls: Unable to read file %d.\n"), L"mgetstr", iFile);
+        Scierror(999, _("%s: Unable to read file %d.\n"), "mgetstr", iFile);
         return types::Function::Error;
     }
     else

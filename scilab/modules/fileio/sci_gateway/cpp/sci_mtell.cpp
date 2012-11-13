@@ -36,14 +36,14 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
 
     if(in.size() > 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mtell", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mtell", 0, 1);
         return types::Function::Error;
     }
     if(in.size() == 1)
     {
         if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A Real expected.\n"), L"mtell", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mtell", 1);
             return types::Function::Error;
         }
 
@@ -55,14 +55,14 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
     case 0: // stderr
     case 5: // stdin
     case 6: // stdout
-        ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mtell", iFile);
+        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mtell", iFile);
         return types::Function::Error;
     }
 
     long int offset = mtell(iFile);
     if(offset < 0)
     {
-        ScierrorW(999, _W("%ls: Error while opening, reading or writing.\n"), L"mtell");
+        Scierror(999, _("%s: Error while opening, reading or writing.\n"), "mtell");
         return types::Function::Error;
     }
 

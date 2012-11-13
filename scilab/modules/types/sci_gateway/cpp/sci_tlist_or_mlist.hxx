@@ -20,6 +20,7 @@
 extern "C"
 {
 #include "Scierror.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "charEncoding.h"
 }
@@ -34,13 +35,13 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
     //check input parameters
     if(in.size() < 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: At least %d expected.\n"), _pstrFunName ,1);
+        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), _pstrFunName ,1);
         return Function::Error;
     }
 
     if(in[0]->isString() == false)
     {
-        ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"), _pstrFunName, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), _pstrFunName, 1);
         return Function::Error;
     }
 
@@ -56,7 +57,9 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
         {
             if(*it == wstring(pS->get(i)))
             {
-                ScierrorW(999, _W("%ls : Fields names must be unique"), _pstrFunName);
+                char* pstFunName = wide_string_to_UTF8(_pstrFunName);
+                Scierror(999, _("%s : Fields names must be unique"), pstFunName);
+                FREE(pstFunName);
                 return Function::Error;
             }
         }

@@ -28,7 +28,7 @@ types::Function::ReturnValue sci_gethistoryfile(types::typed_list &in, int _iRet
 {
     if(in.size() != 0)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"gethistoryfile", 0);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "gethistoryfile", 0);
         return types::Function::Error;
     }
 
@@ -41,7 +41,7 @@ types::Function::ReturnValue sci_gethistoryfile(types::typed_list &in, int _iRet
     }
     else
     {
-		ScierrorW(999,_W("%ls: An error occurred: %ls\n"),L"gethistoryfile",_W("filename not defined."));
+		Scierror(999, _("%s: An error occurred: %s\n"), "gethistoryfile", _("filename not defined."));
         return types::Function::Error;
     }
 

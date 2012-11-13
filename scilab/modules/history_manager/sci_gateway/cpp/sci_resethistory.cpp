@@ -29,13 +29,13 @@ types::Function::ReturnValue sci_resethistory(types::typed_list &in, int _iRetCo
         BOOL bOK = HistoryManager::getInstance()->reset();
         if(!bOK)
         {
-            ScierrorW(999, _W("%ls: Reset history failed.\n"), L"resethistory");
+            Scierror(999, _("%s: Reset history failed.\n"), "resethistory");
             return types::Function::Error;
         }
     }
     else
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"resethistory", 0);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "resethistory", 0);
         return types::Function::Error;
     }
     return types::Function::OK;

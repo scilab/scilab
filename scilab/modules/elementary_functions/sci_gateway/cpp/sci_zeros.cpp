@@ -31,7 +31,7 @@ Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, types::ty
     {
         if(in[i]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix expected.\n"), L"zeros", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "zeros", i + 1);
             return Function::Error;
         }
     }
@@ -58,7 +58,7 @@ Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, types::ty
             Double* pIn = in[i]->getAs<Double>();
             if(pIn->isScalar() == false || pIn->isComplex())
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real scalar expected.\n"), L"zeros", i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "zeros", i + 1);
                 return Function::Error;
             }
             piDims[i] = static_cast<int>(pIn->getReal()[0]);

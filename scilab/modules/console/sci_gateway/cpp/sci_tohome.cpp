@@ -26,12 +26,12 @@ types::Function::ReturnValue sci_tohome(types::typed_list &in, int _iRetCount, t
 {
     if(in.size() != 0)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"prompt", 0);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "prompt", 0);
         return types::Function::Error;
     }
     if (!tohome())
     {
-        ScierrorW(999, _W("%ls: This feature has not been implemented in this mode.\n"), L"prompt");
+        Scierror(999, _("%s: This feature has not been implemented in this mode.\n"), "prompt");
         return types::Function::Error;
     }
 

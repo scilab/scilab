@@ -42,25 +42,25 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
 
     if((in.size() != 1) && (in.size() != 2))
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"bdiag", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "bdiag", 1, 2);
         return types::Function::Error;
     }
     if(_iRetCount > 3)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"bdiag", 1, 3);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "bdiag", 1, 3);
         return types::Function::Error;
     }
 
     if(in[0]->isDouble() == false)
     {
-        ScierrorW(201, _W("%ls: Wrong type for argument %d: Real or complex matrix expected.\n"), L"bdiag", 1);
+        Scierror(201, _("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), "bdiag", 1);
         return types::Function::Error;
     }
 
     pDblMatrix = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>(); // input data will be modified
     if(pDblMatrix->getRows() != pDblMatrix->getCols())
     {
-		ScierrorW(20, _W("%ls: Wrong type for argument %d: Square matrix expected.\n"), L"bdiag", 1);
+		Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "bdiag", 1);
         return types::Function::Error;
     }
 
@@ -68,7 +68,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
     {
         if(in[1]->isDouble() == false && in[1]->getAs<types::Double>()->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for argument %d: A scalar expected.\n"), L"bdiag", 2);
+            Scierror(999, _("%s: Wrong type for argument %d: A scalar expected.\n"), "bdiag", 2);
             return types::Function::Error;
         }
 
@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
         (pDblMatrix->isComplex() == false ||
          C2F(vfinite)(&totalSize, pDblMatrix->getImg())))
     {
-		ScierrorW(264, _W("%ls: Wrong value for argument %d: Must not contain NaN or Inf.\n"), L"bdiag", 1);
+		Scierror(264, _("%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"), "bdiag", 1);
         return types::Function::Error;
     }
 
@@ -124,7 +124,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
 
     if((le && lib && lw) == false)
     {
-		ScierrorW(999, _W("%ls: Allocation failed.\n"), L"bdiag");
+		Scierror(999, _("%s: Allocation failed.\n"), "bdiag");
         return types::Function::Error;
     }
 
@@ -144,7 +144,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
         FREE(le);
         FREE(lib);
         FREE(lw);
-		ScierrorW(24, _W("%ls: Non convergence in QR steps.\n"), L"bdiag");
+		Scierror(24, _("%s: Non convergence in QR steps.\n"), "bdiag");
         return types::Function::Error;
     }
     else

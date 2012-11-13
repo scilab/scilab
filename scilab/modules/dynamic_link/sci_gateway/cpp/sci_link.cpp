@@ -43,7 +43,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
 
     if(in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"c_link", 0, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "c_link", 0, 3);
         return types::Function::Error;
     }
 
@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
     {//flag
         if(in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false)
         {
-            ScierrorW(999 ,_W("%ls : Wrong type for input argument #%d: A string expected.\n"), L"link", 3);
+            Scierror(999 ,_("%s : Wrong type for input argument #%d: A string expected.\n"), "link", 3);
             return types::Function::Error;
         }
 
@@ -85,7 +85,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            ScierrorW(999, _W("%ls Wrong value for input argument #%d: '%ls' or '%ls' expected.\n"), L"link", 3, L"f", L"c");
+            Scierror(999, _("%ls Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "link", 3, "f", "c");
             return types::Function::Error;
         }
 
@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
     {//sub names
         if(in[1]->isString() == false || ( in[1]->getAs<types::String>()->isVector() == false && in[1]->getAs<types::String>()->isScalar() == false))
         {
-            ScierrorW(999, _W("%ls Wrong type for input argument #%d: A string or a string vector expected.\n"), L"link", 2);
+            Scierror(999, _("%s Wrong type for input argument #%d: A string or a string vector expected.\n"), "link", 2);
             return types::Function::Error;
         }
 
@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
             types::Double* pD = in[0]->getAs<types::Double>();
             if(pD->isScalar() == false)
             {
-                ScierrorW(999, _W("%ls : Wrong value for argument #%d: %ls\n"), L"link", 1, _W("Unique id of a shared library expected."));
+                Scierror(999, _("%s : Wrong value for argument #%d: %s\n"), "link", 1, _("Unique id of a shared library expected."));
                 return types::Function::Error;
             }
 
@@ -122,7 +122,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
             types::String* pS = in[0]->getAs<types::String>();
             if(pS->isScalar() == false)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"link", 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "link", 1);
                 return types::Function::Error;
             }
             
@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar or a string expected.\n"), L"link", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar or a string expected.\n"), "link", 1);
             return types::Function::Error;
         }
     }
@@ -169,12 +169,12 @@ void displayDynLibInfo(void)
 
     if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
     {
-        sciprintW(_W("Number of entry points %d.\nShared libraries :\n"), pEPList->size());
+        sciprint(_("Number of entry points %d.\nShared libraries :\n"), pEPList->size());
     }
 
     if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
     {
-        sciprintW(L"[ ");
+        sciprint("[ ");
     }
 
     int iLibCount = 0;
@@ -184,7 +184,7 @@ void displayDynLibInfo(void)
         {
             if((*pDLList)[i] != NULL)
             {
-                sciprintW(L"%d ", i);
+                sciprint("%d ", i);
                 iLibCount++;
             }
         }
@@ -194,11 +194,11 @@ void displayDynLibInfo(void)
     {
         if(iLibCount < 2)
         {
-            sciprintW(_W("] : %d library.\n"), iLibCount);
+            sciprint(_("] : %d library.\n"), iLibCount);
         }
         else
         {
-            sciprintW(_W("] : %d libraries.\n"), iLibCount);
+            sciprint(_("] : %d libraries.\n"), iLibCount);
         }
     }
 
@@ -207,7 +207,7 @@ void displayDynLibInfo(void)
     {
         if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
         {
-            sciprintW(_W("Entry point %ls in shared library %d.\n"), (*it)->pwstEntryPointName, (*it)->iLibIndex);
+            sciprint(_("Entry point %ls in shared library %d.\n"), (*it)->pwstEntryPointName, (*it)->iLibIndex);
         }
     }
 }

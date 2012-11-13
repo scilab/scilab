@@ -53,19 +53,19 @@ Function::ReturnValue sci_nnz(typed_list &in, int nbRes, typed_list &out)
 {
     if(in.size() != 1)
     {
-         ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"nnz", 1);
+         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "nnz", 1);
         return Function::Error;
     }
 
     if(in[0]->isSparse() == false && in[0]->isSparseBool() == false && in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type argument %d: Sparse or matrix expected.\n"), L"nnz", 1);
+        Scierror(999, _("%s: Wrong type argument %d: Sparse or matrix expected.\n"), "nnz", 1);
         return Function::Error;
     }
 
     if(nbRes > 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"nnz", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "nnz", 1);
         return Function::Error;
     }
 

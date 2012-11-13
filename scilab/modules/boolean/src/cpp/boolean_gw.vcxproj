@@ -187,6 +187,9 @@
     <Library Include="..\..\..\..\bin\libintl.lib" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
+      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

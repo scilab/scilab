@@ -32,19 +32,19 @@ Function::ReturnValue sci_system_getproperty(typed_list &in, int _piRetCount, ty
 {
     if(in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: at least %d expected.\n"), L"system_getproperty", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), "system_getproperty", 1);
         return Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"system_getproperty" ,1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "system_getproperty" ,1);
         return Function::Error;
     }
 
     if (getScilabMode() == SCILAB_NWNI)
     {
-		ScierrorW(999, _W("JVM interface disabled in -nogui or -nwni modes.\n"));
+		Scierror(999, _("JVM interface disabled in -nogui or -nwni modes.\n"));
         return Function::Error;
     }
 

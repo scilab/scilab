@@ -43,25 +43,25 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 
     if(in.size() < 1 || in.size() > 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"fileparts", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "fileparts", 1, 2);
         return Function::Error;
     }
 
     if(in.size() == 2 && _iRetCount != 1 && _iRetCount != -1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"fileparts", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "fileparts", 1);
         return Function::Error;
     }
 
     if(in.size() == 1 && _iRetCount != 3)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"fileparts", 3);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "fileparts", 3);
         return Function::Error;
     }
 
     if(in[0]->isString() == false && in[0]->getAs<types::String>()->getSize() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"fileparts", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "fileparts", 1);
         return Function::Error;
     }
 
@@ -69,7 +69,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
     {
         if(in[1]->isString() == false && in[1]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"fileparts", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "fileparts", 2);
             return Function::Error;
         }
 
@@ -92,7 +92,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d.\n"), L"fileparts", 2);
+            Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "fileparts", 2);
             return Function::Error;
         }
     }

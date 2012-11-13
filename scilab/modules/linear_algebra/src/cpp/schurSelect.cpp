@@ -90,19 +90,19 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
 
         if(info < 0)
         {
-            sciprintW(_W("Argument %d in dgees had an illegal value.\n"),-info);
+            sciprint(_("Argument %d in dgees had an illegal value.\n"),-info);
         }
         else if(info > 0 && info < iCols)
         {
-            sciprintW(_W("The QR algorithm failed to compute all the eigenvalues.\n"));
+            sciprint(_("The QR algorithm failed to compute all the eigenvalues.\n"));
         }
         else if(info == iCols+1)
         {
-            sciprintW(_W("The eigenvalues could not be reordered because some eigenvalues were too close to separate (the problem is very ill-conditioned).\n"));
+            sciprint(_("The eigenvalues could not be reordered because some eigenvalues were too close to separate (the problem is very ill-conditioned).\n"));
         }
         else if(info == iCols+2)
         {
-            sciprintW(_W("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
+            sciprint(_("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
         }
     }
     else if(_pDblIn[1] == NULL && _bIsComplex)
@@ -157,19 +157,19 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
 
         if(info < 0)
         {
-            sciprintW(_W("Argument %d in zgees had an illegal value.\n"),-info);
+            sciprint(_("Argument %d in zgees had an illegal value.\n"),-info);
         }
         else if(info > 0 && info < iCols)
         {
-            sciprintW(_W("The QR algorithm failed to compute all the eigenvalues.\n"));
+            sciprint(_("The QR algorithm failed to compute all the eigenvalues.\n"));
         }
         else if(info == iCols+1)
         {
-            sciprintW(_W("The eigenvalues could not be reordered because some eigenvalues were too close to separate (the problem is very ill-conditioned).\n"));
+            sciprint(_("The eigenvalues could not be reordered because some eigenvalues were too close to separate (the problem is very ill-conditioned).\n"));
         }
         else if(info == iCols+2)
         {
-            sciprintW(_W("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
+            sciprint(_("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
         }
     }
     else if(_pDblIn[1] && _bIsComplex == false)
@@ -217,23 +217,23 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
 
         if(info < 0)
         {
-            sciprintW(_W("Argument %d in dgges had an illegal value.\n"),-info);
+            sciprint(_("Argument %d in dgges had an illegal value.\n"),-info);
         }
         else if(info > 0 && info < iCols)
         {
-            sciprintW(_W("The QZ iteration failed. (A,E) are not in Schur form.\n"));
+            sciprint(_("The QZ iteration failed. (A,E) are not in Schur form.\n"));
         }
         else if(info == iCols+1)
         {
-            sciprintW(_W("Other than QZ iteration failed in DHGEQZ.\n"));
+            sciprint(_("Other than QZ iteration failed in DHGEQZ.\n"));
         }
         else if(info == iCols+2)
         {
-            sciprintW(_W("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
+            sciprint(_("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
         }
         else if(info == iCols+3)
         {
-            sciprintW(_W("Reordering failed in DTGSEN.\n"));
+            sciprint(_("Reordering failed in DTGSEN.\n"));
         }
     }
     else if(_pDblIn[1] && _bIsComplex)
@@ -293,23 +293,23 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
 
         if(info < 0)
         {
-            sciprintW(_W("Argument %d in zgges had an illegal value.\n"),-info);
+            sciprint(_("Argument %d in zgges had an illegal value.\n"),-info);
         }
         else if(info > 0 && info < iCols)
         {
-            sciprintW(_W("The QZ iteration failed. (A,E) are not in Schur form.\n"));
+            sciprint(_("The QZ iteration failed. (A,E) are not in Schur form.\n"));
         }
         else if(info == iCols+1)
         {
-            sciprintW(_W("Other than QZ iteration failed in ZHGEQZ.\n"));
+            sciprint(_("Other than QZ iteration failed in ZHGEQZ.\n"));
         }
         else if(info == iCols+2)
         {
-            sciprintW(_W("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
+            sciprint(_("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
         }
         else if(info == iCols+3)
         {
-            sciprintW(_W("Reordering failed in ZTGSEN.\n"));
+            sciprint(_("Reordering failed in ZTGSEN.\n"));
         }
     }
 

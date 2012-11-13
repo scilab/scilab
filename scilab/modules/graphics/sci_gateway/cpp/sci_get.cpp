@@ -72,7 +72,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         pS = in[1]->getAs<types::String>();
         if(in[1]->isString() == false || pS->isScalar() == false)
         {
-            ScierrorW(202, _W("%ls: Wrong type for argument #%d: A string expected.\n"), L"get", 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 2);
             return types::Function::Error;
         }
 
@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         pS = in[0]->getAs<types::String>();
         if(in[0]->isString() == false || pS->isScalar() == false)
         {
-            ScierrorW(202, _W("%ls: Wrong type for argument #%d: A string expected.\n"), L"get", 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 1);
             return types::Function::Error;
         }
 
@@ -131,7 +131,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         if (pobjUID == NULL)
         {
             FREE(pstProperty);
-            ScierrorW(999, _W("%ls: The handle is not or no more valid.\n"), L"get");
+            Scierror(999, _("%s: The handle is not or no more valid.\n"), "get");
             return types::Function::Error;
         }
     }

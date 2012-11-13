@@ -22,6 +22,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "scifunctions.h"
@@ -77,14 +78,14 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 // *** check the minimal number of input args. ***
     if(in.size() < 6 || in.size() > 12)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"impl", 6, 12);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "impl", 6, 12);
         return types::Function::Error;
     }
 
 // *** check number of output args ***
     if(_iRetCount > 3 || _iRetCount == 2)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d or %d expected.\n"), L"impl", 1, 3);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "impl", 1, 3);
         return types::Function::Error;
     }
 
@@ -109,7 +110,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d : It must be one of the following strings : adams or stiff.\n"), L"impl", 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : adams or stiff.\n"), "impl", 1);
             return types::Function::Error;
         }
     }
@@ -118,7 +119,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     // y0
     if(in[iPos]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"impl", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "impl", iPos+1);
         return types::Function::Error;
     }
 
@@ -126,13 +127,13 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
     if(pDblY0->isComplex())
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"impl", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "impl", iPos+1);
         return types::Function::Error;
     }
 
     if(pDblY0->getCols() != 1 && pDblY0->getRows() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real vector expected.\n"), L"impl", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real vector expected.\n"), "impl", iPos+1);
         return types::Function::Error;
     }
 
@@ -140,7 +141,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     iPos++;
     if(in[iPos]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"impl", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "impl", iPos+1);
         return types::Function::Error;
     }
 
@@ -148,13 +149,13 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
     if(pDblYdot0->isComplex())
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"impl", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "impl", iPos+1);
         return types::Function::Error;
     }
 
     if(pDblYdot0->getCols() != 1 && pDblYdot0->getRows() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real vector expected.\n"), L"impl", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real vector expected.\n"), "impl", iPos+1);
         return types::Function::Error;
     }
 
@@ -162,7 +163,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     iPos++;
     if(in[iPos]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A scalar expected.\n"), L"impl", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "impl", iPos+1);
         return types::Function::Error;
     }
 
@@ -170,7 +171,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
     if(pDblT0->isScalar() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A scalar expected.\n"), L"impl", iPos+1);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A scalar expected.\n"), "impl", iPos+1);
         return types::Function::Error;
     }
 
@@ -178,7 +179,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     iPos++;
     if(in[iPos]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"impl", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "impl", iPos+1);
         return types::Function::Error;
     }
 
@@ -202,7 +203,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 pDblAtol = in[iPos]->getAs<types::Double>();
                 if(pDblAtol->getSize() != pDblY0->getSize() && pDblAtol->isScalar() == false)
                 {
-                    ScierrorW(267,_W("%ls: Arg %d and arg %d must have equal dimensions.\n"), L"impl", pStrType ? 2 : 1, iPos+1);
+                    Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "impl", pStrType ? 2 : 1, iPos+1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     free(pdYData);free(YSize);
                     return types::Function::Error;
@@ -213,7 +214,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 pDblRtol = in[iPos]->getAs<types::Double>();
                 if(pDblRtol->getSize() != pDblY0->getSize() && pDblRtol->isScalar() == false)
                 {
-                    ScierrorW(267,_W("%ls: Arg %d and arg %d must have equal dimensions.\n"), L"impl", pStrType ? 2 : 1, iPos+1);
+                    Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "impl", pStrType ? 2 : 1, iPos+1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     free(pdYData);free(YSize);
                     return types::Function::Error;
@@ -225,7 +226,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 {
                     if(in[iPos+1]->isDouble() == false)
                     {
-                        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"impl", iPos+2);
+                        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "impl", iPos+2);
                         DifferentialEquation::removeDifferentialEquationFunctions();
                         free(pdYData);free(YSize);
                         return types::Function::Error;
@@ -237,7 +238,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 }
                 else
                 {
-                    ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"impl", iPos+2);
+                    Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "impl", iPos+2);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     free(pdYData);free(YSize);
                     return types::Function::Error;
@@ -245,7 +246,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A function expected.\n"), L"impl", iPos+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "impl", iPos+1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 free(pdYData);free(YSize);
                 return types::Function::Error;
@@ -271,7 +272,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"impl", iPos+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "impl", iPos+1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 free(pdYData);free(YSize);
                 return types::Function::Error;
@@ -299,7 +300,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"impl", iPos+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "impl", iPos+1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 free(pdYData);free(YSize);
                 return types::Function::Error;
@@ -307,7 +308,9 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
             if(bOK == false)
             {
-                ScierrorW(50,_W("%ls: Subroutine not found: %ls\n"), L"impl", pStr->get(0));
+                char* pst = wide_string_to_UTF8(pStr->get(0));
+                Scierror(50, _("%s: Subroutine not found: %s\n"), "impl", pst);
+                FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 free(pdYData);free(YSize);
                 return types::Function::Error;
@@ -319,7 +322,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
             if(pList->getSize() == 0)
             {
-                ScierrorW(50,_W("%ls: Argument #%d : Subroutine not found in list: %ls\n"), L"impl", iPos+1, L"(string empty)");
+                Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "impl", iPos+1, "(string empty)");
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 free(pdYData);free(YSize);
                 return types::Function::Error;
@@ -327,7 +330,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
             if(bFuncF && bFuncG && bFuncJac)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"impl", iPos+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "impl", iPos+1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 free(pdYData);free(YSize);
                 return types::Function::Error;
@@ -365,7 +368,9 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
                 if(bOK == false)
                 {
-                    ScierrorW(50,_W("%ls: Argument #%d : Subroutine not found in list: %ls\n"), L"impl", iPos+1, pStr->get(0));
+                    char* pst = wide_string_to_UTF8(pStr->get(0));
+                    Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "impl", iPos+1, pst);
+                    FREE(pst);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     free(pdYData);free(YSize);
                     return types::Function::Error;
@@ -382,7 +387,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 {
                     if(pList->get(iter + 1)->isDouble() == false)
                     {
-                        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : Argument %d in the list must be a matrix.\n"), L"impl", iPos+1, iter+1);
+                        Scierror(999, _("%s: Wrong type for input argument #%d : Argument %d in the list must be a matrix.\n"), "impl", iPos+1, iter+1);
                         DifferentialEquation::removeDifferentialEquationFunctions();
                         free(pdYData);free(YSize);
                         return types::Function::Error;
@@ -441,7 +446,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d : The first argument in the list must be a string or a function.\n"), L"impl", iPos+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : The first argument in the list must be a string or a function.\n"), "impl", iPos+1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 free(pdYData);free(YSize);
                 return types::Function::Error;
@@ -449,7 +454,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix or a function expected.\n"), L"impl", iPos+1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix or a function expected.\n"), "impl", iPos+1);
             DifferentialEquation::removeDifferentialEquationFunctions();
             free(pdYData);free(YSize);
             return types::Function::Error;
@@ -458,7 +463,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
     if(bFuncF == false)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"impl", in.size() + 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "impl", in.size() + 1);
         DifferentialEquation::removeDifferentialEquationFunctions();
         free(pdYData);free(YSize);
         return types::Function::Error;
@@ -466,7 +471,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
     if(bFuncG == false)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"impl", in.size() + 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "impl", in.size() + 1);
         DifferentialEquation::removeDifferentialEquationFunctions();
         free(pdYData);free(YSize);
         return types::Function::Error;
@@ -567,7 +572,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     {
         if(pDblW->getSize() != rwSize || pDblIw->getSize() != iwSize)
         {
-            ScierrorW(9999, _W("%ls: Wrong size for w and iw : w = %d and iw = %d expected.\n"), L"impl", rwSize, iwSize);
+            Scierror(9999, _("%s: Wrong size for w and iw : w = %d and iw = %d expected.\n"), "impl", rwSize, iwSize);
             DifferentialEquation::removeDifferentialEquationFunctions();
             free(pdYData);free(YSize);
             free(rwork);free(iwork);
@@ -610,7 +615,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
         int err = 0;
         if(istate == 3)
         {
-            sciprintW(_W("The user-supplied subroutine res signalled lsodi to halt the integration and return (ires=2). Execution of the external function has failed.\n"));
+            sciprint(_("The user-supplied subroutine res signalled lsodi to halt the integration and return (ires=2). Execution of the external function has failed.\n"));
             err = 1;
         }
         else
@@ -620,7 +625,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
         if(err == 1)
         {
-            ScierrorW(999, _W("%ls: %ls exit with state %d.\n"), L"impl", L"lsodi", istate);
+            Scierror(999, _("%s: %s exit with state %d.\n"), "impl", "lsodi", istate);
             DifferentialEquation::removeDifferentialEquationFunctions();
             free(pdYData);free(YSize);
             free(rwork);free(iwork);

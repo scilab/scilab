@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
 
     if (in.size() > 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"prompt", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "prompt", 0, 1);
         return types::Function::Error;
     }
 
@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
     {
         if (_iRetCount > 2)
         {
-            ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"prompt", 1, 2);
+            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "prompt", 1, 2);
             return types::Function::Error;
         }
 
@@ -56,13 +56,13 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
     {
         if (_iRetCount > 1)
         {
-            ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"prompt", 1);
+            Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "prompt", 1);
             return types::Function::Error;
         }
 
         if ((in[0]->isString() == false) || !in[0]->getAs<types::String>()->isScalar())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"prompt", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "prompt", 1);
             return types::Function::Error;
         }
         SetTemporaryPrompt(wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0)));

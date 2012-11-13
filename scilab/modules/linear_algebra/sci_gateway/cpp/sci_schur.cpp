@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
 // *** check number of input args. ***
     if(in.size() < 1 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"schur", 1, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "schur", 1, 3);
         return types::Function::Error;
     }
 
@@ -62,13 +62,13 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
 
     if(pDbl[0]->getRows() != pDbl[0]->getCols()) // square matrix
     {
-        ScierrorW(20, _W("%ls: Wrong type for argument %d: Square matrix expected.\n"), L"schur", 1);
+        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "schur", 1);
         return types::Function::Error;
     }
 
     if((pDbl[0]->getRows() == -1) || (pDbl[0]->getCols() == -1)) // manage eye case
     {
-        ScierrorW(271,_W("%ls: Size varying argument a*eye(), (arg %d) not allowed here.\n"), L"schur", 1);
+        Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "schur", 1);
         return types::Function::Error;
     }
 
@@ -82,19 +82,19 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
 
             if(pDbl[1]->getRows() != pDbl[1]->getCols()) // square matrix
             {
-                ScierrorW(20, _W("%ls: Wrong type for argument %d: Square matrix expected.\n"), L"schur", 2);
+                Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "schur", 2);
                 return types::Function::Error;
             }
 
             if((pDbl[1]->getRows() == -1) || (pDbl[1]->getCols() == -1)) // manage eye case
             {
-                ScierrorW(271,_W("%ls: Size varying argument a*eye(), (arg %d) not allowed here.\n"), L"schur", 2);
+                Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "schur", 2);
                 return types::Function::Error;
             }
 
             if(pDbl[0]->getCols() != pDbl[1]->getCols())
             {
-                ScierrorW(267,_W("%ls: Arg %d and arg %d must have equal dimensions.\n"), L"schur", 1, 2);
+                Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "schur", 1, 2);
                 return types::Function::Error;
             }
 
@@ -164,7 +164,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if(_iRetCount > 2)
             {
-                ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"schur", 1, 2);
+                Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "schur", 1, 2);
                 return types::Function::Error;
             }
             break;
@@ -173,7 +173,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if(_iRetCount != 2 && _iRetCount != 4)
             {
-                ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d or %d expected.\n"), L"schur", 2, 4);
+                Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "schur", 2, 4);
                 return types::Function::Error;
             }
             break;
@@ -182,7 +182,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if(_iRetCount < 2 && _iRetCount > 3)
             {
-                ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"schur", 2, 3);
+                Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "schur", 2, 3);
                 return types::Function::Error;
             }
             break;
@@ -191,7 +191,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if(_iRetCount > 4) // in doc, 5 output args are possible ?!?
             {
-                ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"schur", 1, 4);
+                Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "schur", 1, 4);
                 return types::Function::Error;
             }
             break;
@@ -270,7 +270,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
 
     if(bIsRealStr && bComplexArgs)
     {
-        ScierrorW(202,_W("%ls: Wrong type for input argument #%d: Real matrix expected.\n"), L"schur", 1);
+        Scierror(202, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "schur", 1);
         return types::Function::Error;
     }
 
@@ -288,26 +288,29 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if(pStr)
             {
-                bIsContinuStr = !wcscmp(pStr->get(0), L"c") ||
-                                !wcscmp(pStr->get(0), L"cont") ||
-                                !wcscmp(pStr->get(0), L"zb02ow") || // two matrix, complex case
-                                !wcscmp(pStr->get(0), L"zb02mv") || // one matrix, complex case
-                                !wcscmp(pStr->get(0), L"sb02ow") || // two matrix, real case
-                                !wcscmp(pStr->get(0), L"sb02mv");   // one matrix, real case
+                wchar_t* pst = pStr->get(0);
+                bIsContinuStr = !wcscmp(pst, L"c") ||
+                                !wcscmp(pst, L"cont") ||
+                                !wcscmp(pst, L"zb02ow") || // two matrix, complex case
+                                !wcscmp(pst, L"zb02mv") || // one matrix, complex case
+                                !wcscmp(pst, L"sb02ow") || // two matrix, real case
+                                !wcscmp(pst, L"sb02mv");   // one matrix, real case
 
-                bIsDiscreteStr = !wcscmp(pStr->get(0), L"d") ||
-                                !wcscmp(pStr->get(0), L"disc") ||
-                                !wcscmp(pStr->get(0), L"zb02ox") || // two matrix, complex case
-                                !wcscmp(pStr->get(0), L"zb02mw") || // one matrix, complex case
-                                !wcscmp(pStr->get(0), L"sb02ox") || // two matrix, real case
-                                !wcscmp(pStr->get(0), L"sb02mw");   // one matrix, real case
+                bIsDiscreteStr = !wcscmp(pst, L"d") ||
+                                !wcscmp(pst, L"disc") ||
+                                !wcscmp(pst, L"zb02ox") || // two matrix, complex case
+                                !wcscmp(pst, L"zb02mw") || // one matrix, complex case
+                                !wcscmp(pst, L"sb02ox") || // two matrix, real case
+                                !wcscmp(pst, L"sb02mw");   // one matrix, real case
 
                 if(bIsContinuStr == false && bIsDiscreteStr == false)
                 {
                     pStrFunction = ConfigVariable::getEntryPoint(pStr->get(0));
                     if(pStrFunction == NULL)
                     {
-                        ScierrorW(999,_W("%ls: Subroutine not found: %ls\n"), L"schur", pStr->get(0));
+                        char* pst = wide_string_to_UTF8(pStr->get(0));
+                        Scierror(999, _("%s: Subroutine not found: %s\n"), "schur", pst);
+                        FREE(pst);
                         return types::Function::Error;
                     }
                 }
@@ -328,7 +331,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
 
     if(iRet)
     {
-        ScierrorW(999,_W("%ls: Schur exit with state %d\n"), L"schur", iRet);
+        Scierror(999, _("%s: Schur exit with state %d\n"), "schur", iRet);
         return types::Function::Error;
     }
 

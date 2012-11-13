@@ -26,13 +26,13 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
     types::Sparse *pSpOut = NULL;
     if (in.size() > 2)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"spzeros", 1, 2);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "spzeros", 1, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"spzeros", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "spzeros", 1);
         return types::Function::Error;
     }
 
@@ -43,13 +43,13 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
 
         if (in[0]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"spzeros", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "spzeros", 1);
             return types::Function::Error;
         }
 
         if (in[1]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"spzeros", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "spzeros", 2);
             return types::Function::Error;
         }
 
@@ -58,13 +58,13 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
 
         if (pDblRows->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"spzeros", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "spzeros", 1);
             return types::Function::Error;
         }
 
         if (pDblCols->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"spzeros", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "spzeros", 2);
             return types::Function::Error;
         }
 
@@ -94,7 +94,7 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
                 break;
             default :
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A matrix expected.\n"), L"spzeros", 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "spzeros", 1);
                 return types::Function::Error;
             }
         }

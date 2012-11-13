@@ -76,7 +76,7 @@ int mclose(int _iID)
     {
         if (getWarningMode()) 
         {
-            sciprintW(_W("%ls: Cannot close file whose descriptor is %d: File is not active.\n"), L"mclose", _iID);
+            sciprint(_("%s: Cannot close file whose descriptor is %d: File is not active.\n"), "mclose", _iID);
         }
     }
     return 0;

@@ -38,13 +38,13 @@ Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRe
     
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"get_absolute_file_path", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "get_absolute_file_path", 1);
         return types::Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
-        ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"get_absolute_file_path", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "get_absolute_file_path", 1);
         return types::Function::Error;
     }
 
@@ -76,7 +76,9 @@ Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRe
     
     if(wcsTemp == NULL)
     {
-        ScierrorW(999,_W("%ls: The file %ls is not opened in scilab.\n"), L"get_absolute_file_path", wcsFileName);
+        char* pstFile = wide_string_to_UTF8(wcsFileName);
+        Scierror(999, _("%s: The file %s is not opened in scilab.\n"), "get_absolute_file_path", pstFile);
+        FREE(pstFile);
         return types::Function::Error;
     }
 

@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "interpolation_functions.h"
@@ -47,14 +48,14 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
     // *** check the minimal number of input args. ***
     if (in.size() < 2 || in.size() > 4)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"splin", 2, 4);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "splin", 2, 4);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"splin", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "splin", 1);
         return types::Function::Error;
     }
 
@@ -62,7 +63,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
     // x
     if (in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"splin", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "splin", 1);
         return types::Function::Error;
     }
 
@@ -71,20 +72,20 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
 
     if (iSize < 2)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : At least a size of 2 expected.\n"), L"splin", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d : At least a size of 2 expected.\n"), "splin", 1);
         return types::Function::Error;
     }
 
     if (good_order(pDblX->get(), iSize) == false) /* verify strict increasing abscissae */
     {
-        ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), L"splin", 1);
+        Scierror(999, _("%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), "splin", 1);
         return types::Function::Error;
     }
 
     // y
     if (in[1]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"splin", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "splin", 2);
         return types::Function::Error;
     }
 
@@ -94,7 +95,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
             pDblX->getRows() != pDblY->getRows() ||
             (pDblX->getCols() != 1 && pDblX->getRows() != 1))
     {
-        ScierrorW(999, _W("%ls: Wrong size for input arguments #%d and #%d: Vector of same size expected.\n"), L"splin", 1, 2);
+        Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Vector of same size expected.\n"), "splin", 1, 2);
         return types::Function::Error;
     }
 
@@ -102,7 +103,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
     {
         if (in[2]->isString() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A string expected.\n"), L"splin", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "splin", 3);
             return types::Function::Error;
         }
 
@@ -138,7 +139,9 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
         }
         else // undefined
         {
-            ScierrorW(999, _W("%ls: Wrong values for input argument #%d : '%ls' is a unknow '%ls' type.\n"), L"splin", 3, wcsType, L"spline");
+            char* pstType = wide_string_to_UTF8(wcsType);
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "splin", 3, pstType, "spline");
+            FREE(pstType);
             return types::Function::Error;
         }
 
@@ -146,13 +149,13 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
         {
             if (in.size() != 4)
             {
-                ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"splin", 4);
+                Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "splin", 4);
                 return types::Function::Error;
             }
 
             if (in[3]->isDouble() == false)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"splin", 4);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "splin", 4);
                 return types::Function::Error;
             }
 
@@ -160,13 +163,13 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
 
             if (pDblDer->getSize() != 2)
             {
-                ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A martix of size 2 expected.\n"), L"splin", 4);
+                Scierror(999, _("%s: Wrong size for input argument #%d : A martix of size 2 expected.\n"), "splin", 4);
                 return types::Function::Error;
             }
         }
         else if (in.size() == 4)
         {
-            ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"splin", 3);
+            Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "splin", 3);
             return types::Function::Error;
         }
     }
@@ -174,7 +177,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
     // verify y(1) = y(n) for periodic splines
     if ((iType == 3 || iType == 5) && pDblY->get(0) != pDblY->get(pDblY->getSize() - 1))
     {
-        ScierrorW(999, _W("%ls: Wrong value for periodic spline %s: Must be equal to %s.\n"), L"spline", L"y(1)", L"y(n)");
+        Scierror(999, _("%s: Wrong value for periodic spline %s: Must be equal to %s.\n"), "spline", "y(1)", "y(n)");
         return types::Function::Error;
     }
 

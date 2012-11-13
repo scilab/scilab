@@ -26,7 +26,7 @@ Function::ReturnValue sci_inspectorDeleteUnreferencedItems(typed_list &in, int _
 {
     if(in.size() != 0)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"inspectorDeleteUnreferencedItems", 0);    
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "inspectorDeleteUnreferencedItems", 0);    
         return Function::Error;
     }
 

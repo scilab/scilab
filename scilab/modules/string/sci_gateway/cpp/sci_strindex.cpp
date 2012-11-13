@@ -52,7 +52,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     bool bRegExp = false;
     if (in.size() < 2 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"strindex", 2, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "strindex", 2, 3);
         return Function::Error;
     }
 
@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     {
         if (in[2]->isString() == false && in[2]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"strindex", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "strindex", 3);
             return Function::Error;
         }
 
@@ -74,14 +74,14 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: 's' or 'r' expected.\n"), L"strindex", 3);
+            Scierror(999, _("%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"), "strindex", 3);
             return Function::Error;
         }
     }
 
     if (in[1]->isString() == false || (in[1]->getAs<types::String>()->getRows() != 1 && in[1]->getAs<types::String>()->getCols() != 1))
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string or a string vector expected.\n"), L"strindex", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string or a string vector expected.\n"), "strindex", 2);
         return Function::Error;
     }
 
@@ -96,7 +96,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"strindex", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "strindex", 1);
         return Function::Error;
     }
 

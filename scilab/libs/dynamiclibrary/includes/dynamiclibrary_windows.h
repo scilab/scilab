@@ -60,7 +60,7 @@ IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetDynLibFuncPtrW(DynLibHandle _h
 * return last dynamic linking error 
 * @return a string
 */
-IMPORT_EXPORT_DYNAMICLIBRARY_DLL  wchar_t* GetLastDynLibError(void);
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL  char* GetLastDynLibError(void);
 
 
 typedef int (*PROC_GATEWAY) (void);

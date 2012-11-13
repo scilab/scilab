@@ -31,7 +31,7 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
 
     if(in.size() > 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"eye", 0, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "eye", 0, 2);
         return Function::Error;
     }
 
@@ -39,13 +39,13 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
     {
         if(in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"eye", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "eye", 1);
             return Function::Error;
         }
 
         if(in[1]->isDouble() == false || in[1]->getAs<Double>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"eye", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "eye", 2);
             return Function::Error;
         }
 
@@ -57,7 +57,7 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
     {
         if(in[0]->isGenericType() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix expected.\n"), L"eye", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "eye", 1);
             return Function::Error;
         }
 

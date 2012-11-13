@@ -34,25 +34,25 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
 
     if(_iRetCount != 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"getmd5", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getmd5", 1);
         return Function::Error;
     }
 
     if(in.size() != 1 && in.size() != 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"getmd5", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "getmd5", 1, 2);
         return Function::Error;
     }
 
     if(in[0]->isString() == false)
     {
-        ScierrorW(999,_W("%ls: Wrong type of input argument #%d: String expected.\n"), L"getmd5", 1);
+        Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), "getmd5", 1);
         return Function::Error;
     }
 
     if(in.size() == 2 && in[1]->isString() == false)
     {
-        ScierrorW(999,_W("%ls: Wrong type of input argument #%d: String expected.\n"), L"getmd5", 2);
+        Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), "getmd5", 2);
         return Function::Error;
     }
 
@@ -64,7 +64,7 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
         }
         else
         {
-            ScierrorW(999,_W("%ls: Wrong value for input argument #%d: \"%ls\" expected.\n"), L"getmd5", 2, L"string");
+            Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" expected.\n"), "getmd5", 2, "string");
             return Function::Error;
         }
     }
@@ -92,7 +92,9 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
             /* bug 4469 */
             if (isdirW(real_path))
             {
-                ScierrorW(999,_W("%ls: The file %ls does not exist.\n"), L"getmd5", real_path);
+                char* pstPath = wide_string_to_UTF8(real_path);
+                Scierror(999, _("%s: The file %s does not exist.\n"), "getmd5", pstPath);
+                FREE(pstPath);
                 delete pOutput;
                 delete real_path;
                 return Function::Error;
@@ -107,7 +109,9 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
             }
             else
             {
-                ScierrorW(999, _W("%ls: The file %ls does not exist.\n"), L"getmd5", real_path);
+                char* pstPath = wide_string_to_UTF8(real_path);
+                Scierror(999, _("%s: The file %s does not exist.\n"), "getmd5", pstPath);
+                FREE(pstPath);
                 delete pOutput;
                 FREE(real_path);
                 return Function::Error;

@@ -31,13 +31,13 @@ Function::ReturnValue sci_filesep(typed_list &in, int _iRetCount, typed_list &ou
 {
     if(in.size() != 0)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"filesep" , 0);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "filesep" , 0);
         return Function::Error;
     }
 
     if(_iRetCount != 1 && _iRetCount != -1)
     {
-        ScierrorW(78,_W("%ls: Wrong number of output argument(s): %d expected.\n"), L"filesep", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "filesep", 1);
         return Function::Error;
     }
 

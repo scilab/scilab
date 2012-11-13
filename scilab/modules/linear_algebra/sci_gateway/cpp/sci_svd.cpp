@@ -58,13 +58,13 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
 
     if(in.size() != 1 && in.size() != 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"svd", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "svd", 1, 2);
         return types::Function::Error;
     }
 
     if(_iRetCount > 4)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): At least %d expected.\n"), L"svd", 4);
+        Scierror(78, _("%s: Wrong number of output argument(s): At least %d expected.\n"), "svd", 4);
         return types::Function::Error;
     }
 
@@ -81,7 +81,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         {
             if(_iRetCount == 4)
             {
-                ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d or %d expected.\n"), L"svd", 1, 3);
+                Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "svd", 1, 3);
                 return types::Function::Error;
             }
             types::String* pStr = in[1]->getAs<types::String>();
@@ -122,7 +122,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
 
     if((pDbl->getRows() == -1) || (pDbl->getCols() == -1)) // manage eye case
     {
-        ScierrorW(271,_W("%ls: Size varying argument a*eye(), (arg %d) not allowed here.\n"), L"svd", 1);
+        Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "svd", 1);
         return types::Function::Error;
     }
 
@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
     totalsize = pDbl->getSize() * (pDbl->isComplex() ? 2 : 1);
     if(C2F(vfinite)(&totalsize, pData) == false)
     {
-        ScierrorW(264,_W("%ls: Wrong value for argument %d: Must not contain NaN or Inf.\n"), L"svd", 1);
+        Scierror(264, _("%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"), "svd", 1);
         return types::Function::Error;
     }
 
@@ -194,11 +194,11 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
     {
         if(iRet == -1)
         {
-            ScierrorW(999,_W("%ls: Cannot allocate more memory.\n"),L"svd");
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), "svd");
         }
         else
         {
-            ScierrorW(24,_W("%ls: Convergence problem...\n"),L"svd");
+            Scierror(24, _("%s: Convergence problem...\n"), "svd");
         }
         return types::Function::Error;
     }

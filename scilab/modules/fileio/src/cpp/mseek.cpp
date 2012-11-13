@@ -35,7 +35,7 @@ int mseek(int fd, int offset, int iflag)
     File* pF = FileManager::getFile(fd);
     if (pF == NULL)
     {
-        sciprintW(_W("%ls: No input file associated to logical unit %d.\n"), L"mseek", fd);
+        sciprint(_("%s: No input file associated to logical unit %d.\n"), "mseek", fd);
         return 1;
     }
 	FILE* fa = pF->getFiledesc();

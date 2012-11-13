@@ -33,19 +33,19 @@ Function::ReturnValue sci_isfile(typed_list &in, int _iRetCount, typed_list &out
 {
     if(in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"isfile" , 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "isfile" , 1);
         return Function::Error;
     }
 
     if(_iRetCount != 1)
     {
-        ScierrorW(78,_W("%ls: Wrong number of output argument(s): %d expected.\n"), L"isfile", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "isfile", 1);
         return Function::Error;
     }
 
     if(in[0]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix of strings expected.\n"), L"isfile", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "isfile", 1);
         return Function::Error;
     }
 

@@ -27,7 +27,7 @@ types::Function::ReturnValue sci_lines(types::typed_list &in, int _iRetCount, ty
 {
     if(in.size() > 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"lines", 0, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "lines", 0, 2);
         return types::Function::Error;
     }
 
@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_lines(types::typed_list &in, int _iRetCount, ty
     {
         if((in[1]->isDouble() == false) || !in[1]->getAs<types::Double>()->isScalar())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"lines", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "lines", 2);
             return types::Function::Error;
         }
 		ConfigVariable::setConsoleWidth((int)in[1]->getAs<types::Double>()->get(0));
@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_lines(types::typed_list &in, int _iRetCount, ty
 
     if((in[0]->isDouble() == false) || !in[0]->getAs<types::Double>()->isScalar())
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"lines", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "lines", 1);
         return types::Function::Error;
     }
 

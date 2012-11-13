@@ -42,43 +42,47 @@ Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int _iRetCo
 
     if(in.size() != 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"getrelativefilename", 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "getrelativefilename", 2);
         return types::Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
-        ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"getrelativefilename", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "getrelativefilename", 1);
         return types::Function::Error;
     }
 
     if(in[1]->isString() == false || in[1]->getAs<types::String>()->isScalar() == false)
     {
-        ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"getrelativefilename", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "getrelativefilename", 2);
         return types::Function::Error;
     }
 
     wcsAbsDir = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
     if(wcslen(wcsAbsDir) > PATH_MAX)
     {
-		ScierrorW(999,_W("%ls: Wrong size for input argument #%d: Must be less than %d characters.\n"), L"getrelativefilename", 1, PATH_MAX);
+		Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), "getrelativefilename", 1, PATH_MAX);
         return types::Function::Error;
     }
     if(!isdirW(wcsAbsDir))
     {
-        ScierrorW(999,_W("%ls: Directory '%ls' doesn't exists.\n"), L"getrelativefilename", wcsAbsDir);
+        char* pstAbs = wide_string_to_UTF8(wcsAbsDir);
+        Scierror(999, _("%s: Directory '%s' doesn't exists.\n"), "getrelativefilename", pstAbs);
+        FREE(pstAbs);
         return types::Function::Error;
     }
     
     wcsAbsFile = expandPathVariableW(in[1]->getAs<types::String>()->get(0));
     if(wcslen(wcsAbsFile) > PATH_MAX)
     {
-		ScierrorW(999,_W("%ls: Wrong size for input argument #%d: Must be less than %d characters.\n"), L"getrelativefilename", 2, PATH_MAX);
+		Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), "getrelativefilename", 2, PATH_MAX);
         return types::Function::Error;
     }
     if(!FileExistW(wcsAbsFile))
     {
-        ScierrorW(999,_W("%ls: File '%ls' doesn't exists.\n"), L"getrelativefilename", wcsAbsFile);
+        char* pstAbs = wide_string_to_UTF8(wcsAbsFile);
+        Scierror(999, _("%s: File '%s' doesn't exists.\n"), "getrelativefilename", pstAbs);
+        FREE(pstAbs);
         return types::Function::Error;
     }
 

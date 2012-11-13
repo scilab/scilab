@@ -38,13 +38,13 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
 
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"lu", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "lu", 1);
         return types::Function::Error;
     }
 
     if(_iRetCount < 2 || _iRetCount > 3)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"lu", 2, 3);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "lu", 2, 3);
         return types::Function::Error;
     }
 
@@ -61,7 +61,7 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         pData = (double*)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
         if(!pData)
         {
-            ScierrorW(999,_W("%ls: Cannot allocate more memory.\n"),L"lu");
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), "lu");
             return types::Function::Error;
         }
     }
@@ -120,7 +120,7 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
 
     if(iRet != 0)
     {
-	    ScierrorW(999, _W("%ls: LAPACK error n°%d.\n"), L"lu",iRet);
+	    Scierror(999, _("%s: LAPACK error n°%d.\n"), "lu",iRet);
         return types::Function::Error;
     }
 

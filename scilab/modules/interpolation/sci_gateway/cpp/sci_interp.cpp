@@ -45,14 +45,14 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
     // *** check the minimal number of input args. ***
     if (in.size() < 4 || in.size() > 5)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"interp", 4, 5);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "interp", 4, 5);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 4)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"interp", 1, 4);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "interp", 1, 4);
         return types::Function::Error;
     }
 
@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
     // xp
     if (in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"interp", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "interp", 1);
         return types::Function::Error;
     }
 
@@ -69,14 +69,14 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
     // x
     if (in[1]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"interp", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "interp", 2);
         return types::Function::Error;
     }
 
     pDblX = in[1]->getAs<types::Double>();
     if ((pDblX->getCols() != 1 && pDblX->getRows() != 1) || pDblX->getSize() < 2)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input arguments #%d: A vector of size at least 2 expected.\n"), L"interp", 2);
+        Scierror(999, _("%s: Wrong size for input arguments #%d: A vector of size at least 2 expected.\n"), "interp", 2);
         return types::Function::Error;
     }
     sizeOfX = pDblX->getSize();
@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
     // y
     if (in[2]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"interp", 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "interp", 3);
         return types::Function::Error;
     }
     pDblY = in[2]->getAs<types::Double>();
@@ -92,7 +92,7 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
     // d
     if (in[3]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"interp", 4);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "interp", 4);
         return types::Function::Error;
     }
     pDblD = in[3]->getAs<types::Double>();
@@ -102,7 +102,7 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
             pDblX->getRows() != pDblD->getRows() ||
             pDblX->getCols() != pDblD->getCols())
     {
-        ScierrorW(999, _W("%ls: Wrong size for input arguments #%d to #%d: Same sizes expected.\n"), L"interp", 2, 4);
+        Scierror(999, _("%s: Wrong size for input arguments #%d to #%d: Same sizes expected.\n"), "interp", 2, 4);
         return types::Function::Error;
     }
 
@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
     {
         if (in[4]->isString() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A string expected.\n"), L"interp", 5);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "interp", 5);
             return types::Function::Error;
         }
 
@@ -143,7 +143,7 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
         }
         else // undefined
         {
-            ScierrorW(999, _W("%ls: Wrong values for input argument #%d : '%ls' is a unknow '%ls' type.\n"), L"interp", 5, wcsType, L"outmode");
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "interp", 5, wcsType, "outmode");
             return types::Function::Error;
         }
     }

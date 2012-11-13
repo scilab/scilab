@@ -30,7 +30,7 @@ types::Function::ReturnValue sci_gethistory(types::typed_list &in, int _iRetCoun
 {
     if(in.size() > 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"gethistory", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "gethistory", 0, 1);
         return types::Function::Error;
     }
 
@@ -44,7 +44,7 @@ types::Function::ReturnValue sci_gethistory(types::typed_list &in, int _iRetCoun
     {
         if((in[0]->isDouble() == false) || (in[0]->getAs<types::Double>()->isScalar() == false))
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A double expected.\n"), L"gethistory", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A double expected.\n"), "gethistory", 1);
             return types::Function::Error;
         }
 
@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_gethistory(types::typed_list &in, int _iRetCoun
         }
         else
         {
-		    ScierrorW(999,_W("%ls: An error occurred: Get line %d failed.\n"),L"gethistory", pDbl->get(0));
+		    Scierror(999, _("%s: An error occurred: Get line %d failed.\n"), "gethistory", pDbl->get(0));
             return types::Function::Error;
         }
     }

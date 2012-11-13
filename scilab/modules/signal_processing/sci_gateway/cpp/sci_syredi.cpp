@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
     //check input parameters
     if(in.size() != 5)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"syredi", 5);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "syredi", 5);
         return types::Function::Error;
     }
 
@@ -106,7 +106,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
     pDblType = in[0]->getAs<types::Double>();
     if(in[0]->isDouble() == false || pDblType->isScalar() == false || pDblType->isComplex() == true)
     {
-        ScierrorW(999, _W("%ls: Wrong type for argument %d: Real scalar expected.\n"), L"syredi", 1);
+        Scierror(999, _("%s: Wrong type for argument %d: Real scalar expected.\n"), "syredi", 1);
         return types::Function::Error;
     }
 
@@ -116,7 +116,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
     pDblAppro = in[1]->getAs<types::Double>();
     if(in[1]->isDouble() == false || pDblAppro->isScalar() == false || pDblAppro->isComplex() == true)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real scalar expected.\n"), L"syredi", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "syredi", 2);
         return types::Function::Error;
     }
 
@@ -126,25 +126,25 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
     pDblCutOff = in[2]->getAs<types::Double>();
     if(in[2]->isDouble() == false || pDblCutOff->getSize() != 4 || pDblCutOff->getCols() != 4)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A %d-by-%d array expected.\n"), L"syredi", 3, 1, 4);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A %d-by-%d array expected.\n"), "syredi", 3, 1, 4);
         return types::Function::Error;
     }
 
     if(minimum(pDblCutOff->get(), pDblCutOff->getSize()) < 0 || minimum(pDblCutOff->get(), pDblCutOff->getSize()) > M_PI)
     {
-        ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Must be in the interval [%ls, %ls].\n"), L"syredi", 3, L"0", L"%pi");
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "syredi", 3, "0", "%pi");
         return types::Function::Error;
     }
 
     if((iType == low_pass || iType == high_pass) && isSortedAscending(pDblCutOff->get(), 2) == false)
     {
-        ScierrorW(999, _W("%ls: Wrong values for input argument #%d: Elements must be in increasing order.\n"), L"syredi", 3);
+        Scierror(999, _("%s: Wrong values for input argument #%d: Elements must be in increasing order.\n"), "syredi", 3);
         return types::Function::Error;
     }
 
     if((iType == band_pass || iType == stop_band) && isSortedAscending(pDblCutOff->get(), 4) == false)
     {
-        ScierrorW(999, _W("%ls: Wrong values for input argument #%d: Elements must be in increasing order.\n"), L"syredi", 3);
+        Scierror(999, _("%s: Wrong values for input argument #%d: Elements must be in increasing order.\n"), "syredi", 3);
         return types::Function::Error;
     }
 
@@ -152,7 +152,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
     pDblDeltaP = in[3]->getAs<types::Double>();
     if(in[3]->isDouble() == false || pDblAppro->isScalar() == false || pDblAppro->isComplex() == true)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real scalar expected.\n"), L"syredi", 4);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "syredi", 4);
         return types::Function::Error;
     }
 
@@ -162,7 +162,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
     pDblDeltaS = in[4]->getAs<types::Double>();
     if(in[4]->isDouble() == false || pDblDeltaS->isScalar() == false || pDblDeltaS->isComplex() == true)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real scalar expected.\n"), L"syredi", 5);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "syredi", 5);
         return types::Function::Error;
     }
 
@@ -188,17 +188,17 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
     {
         if(iErr == -7)
         {
-            ScierrorW(999, _W("%ls: specs => invalid order filter.\n"), L"syredi");
+            Scierror(999, _("%s: specs => invalid order filter.\n"), "syredi");
             return types::Function::Error;
         }
         else if(iErr == -9)
         {
-            ScierrorW(999, _W("%ls: specs => too high order filter.\n"), L"syredi");
+            Scierror(999, _("%s: specs => too high order filter.\n"), "syredi");
             return types::Function::Error;
         }
         else
         {
-            ScierrorW(999, _W("%ls: error in function syredi.\n"), L"syredi");
+            Scierror(999, _("%s: error in function syredi.\n"), "syredi");
             return types::Function::Error;
         }
     }

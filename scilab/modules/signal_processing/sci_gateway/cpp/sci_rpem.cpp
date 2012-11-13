@@ -68,14 +68,14 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
 
     if(in.size() < 3 || in.size() > 6)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"rpem", 3, 6);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "rpem", 3, 6);
         return types::Function::Error;
     }
 
     /* arg1: w0 = list(theta, p, l, phi, psi) */
     if((in[0]->isList() == false) || in[0]->getAs<types::List>()->getSize() != 5)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: %d-element list expected.\n"), L"rpem", 1, 5);
+        Scierror(999, _("%s: Wrong type for input argument #%d: %d-element list expected.\n"), "rpem", 1, 5);
         return types::Function::Error;
     }
 
@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     {
         if(!w0->get(i)->isDouble() || w0->get(i)->getAs<types::Double>()->isComplex())
         {
-            ScierrorW(77, _W("%ls: Wrong type for element %d of input argument #%d: A matrix of real expected.\n"), L"rpem", i+1, 1);
+            Scierror(77, _("%s: Wrong type for element %d of input argument #%d: A matrix of real expected.\n"), "rpem", i+1, 1);
             return types::Function::Error;
         }
         types::Double* current = w0->get(i)->getAs<types::Double>();
@@ -94,12 +94,12 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
             {
                 if (current->getRows() != 1)
                 {
-                    ScierrorW(77, _W("%ls: Wrong size for element %d of input argument #%d: A row vector expected.\n"), L"rpem", i+1, 1);
+                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: A row vector expected.\n"), "rpem", i+1, 1);
                     return types::Function::Error;
                 }
                 if (current->getCols() % 3 != 0)
                 {
-                    ScierrorW(77, _W("%ls: Wrong size for element %d of input argument #%d: Size must be multiple of %d.\n"), L"rpem", i+1, 1, 3);
+                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: Size must be multiple of %d.\n"), "rpem", i+1, 1, 3);
                     return types::Function::Error;
                 }
                 dimension = current->getCols();
@@ -112,7 +112,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
             {
                 if (current->getRows() != dimension || current->getCols() != dimension)
                 {
-                    ScierrorW(77, _W("%ls: Wrong size for element %d of input argument #%d: A square matrix expected.\n"), L"rpem", i+1, 1);
+                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: A square matrix expected.\n"), "rpem", i+1, 1);
                     return types::Function::Error;
                 }
                 dP = new types::Double(dimension, dimension);
@@ -125,7 +125,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
             {
                 if (current->getRows() != 1 || current->getCols() != dimension)
                 {
-                    ScierrorW(77, _W("%ls: Wrong size for element %d of input argument #%d: Same sizes of element %d expected.\n"), L"rpem", i+1, 1, 1);
+                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: Same sizes of element %d expected.\n"), "rpem", i+1, 1, 1);
                     return types::Function::Error;
                 }
             }
@@ -143,7 +143,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     /* arg2: u0: real ranged row vector */
     if((in[1]->isDouble() == false) || in[1]->getAs<types::Double>()->getRows() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A row vector expected.\n"), L"rpem", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A row vector expected.\n"), "rpem", 2);
         return types::Function::Error;
     }
     u = in[1]->getAs<types::Double>()->get();
@@ -152,12 +152,12 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     /* arg3: y0: real ranged row vector of same length as u0 */
     if((in[2]->isDouble() == false) || in[2]->getAs<types::Double>()->getRows() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A row vector expected.\n"), L"rpem", 3);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A row vector expected.\n"), "rpem", 3);
         return types::Function::Error;
     }
     if(in[2]->getAs<types::Double>()->getCols() != u_length)
     {
-        ScierrorW(999, _W("%ls: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"), L"rpem", 2, 3);
+        Scierror(999, _("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"), "rpem", 2, 3);
         return types::Function::Error;
     }
     y = in[2]->getAs<types::Double>()->get();
@@ -169,7 +169,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
         {
             if((in[5]->isDouble() == false) || !in[5]->getAs<types::Double>()->isScalar())
             {
-                ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"rpem", 6);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "rpem", 6);
                 return types::Function::Error;
             }
             c = in[5]->getAs<types::Double>()->get(0);
@@ -178,7 +178,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
         {
             if((in[4]->isDouble() == false) || (in[4]->getAs<types::Double>()->getRows() != 1) || (in[4]->getAs<types::Double>()->getCols() != 3))
             {
-                ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A %d-by-%d matrix expected.\n"), L"rpem", 5, 1, 3);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A %d-by-%d matrix expected.\n"), "rpem", 5, 1, 3);
                 return types::Function::Error;
             }
             data    = in[4]->getAs<types::Double>()->get();
@@ -190,7 +190,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
         {
             if((in[3]->isDouble() == false) || (in[3]->getAs<types::Double>()->getRows() != 1) || (in[3]->getAs<types::Double>()->getCols() != 3))
             {
-                ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A %d-by-%d matrix expected.\n"), L"rpem", 4, 1, 3);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A %d-by-%d matrix expected.\n"), "rpem", 4, 1, 3);
                 return types::Function::Error;
             }
             data    = in[3]->getAs<types::Double>()->get();

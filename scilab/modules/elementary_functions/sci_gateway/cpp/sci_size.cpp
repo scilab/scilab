@@ -115,7 +115,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 default : //"r"
                     if(iMode > iDims)
                     {
-                        ScierrorW(999, _W("%ls: Wrong value for input argument #%d.\n"), L"size", 2);
+                        Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "size", 2);
                         return Function::Error;
                     }
 

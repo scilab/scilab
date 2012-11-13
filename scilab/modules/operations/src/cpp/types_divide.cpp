@@ -88,11 +88,11 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
             case 3 :
                 throw ast::ScilabError(_W("Division by zero...\n"));
             case 4 :
-                sciprintW(_W("Warning : Division by zero...\n"));
+                sciprint(_("Warning : Division by zero...\n"));
                 break;
                 //            default : throw ast::ScilabError(_W("Operator / : Error %d not yet managed.\n"), iResult);
             default :
-                sciprintW(_W("Operator / : Error %d not yet managed.\n"), iResult);
+                sciprint(_("Operator / : Error %d not yet managed.\n"), iResult);
         }
     }
 
@@ -143,11 +143,11 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
             case 3 :
                 throw ast::ScilabError(_W("Division by zero...\n"));
             case 4 :
-                sciprintW(_W("Warning : Division by zero...\n"));
+                sciprint(_("Warning : Division by zero...\n"));
                 break;
                 //            default : throw ast::ScilabError(_W("Operator / : Error %d not yet managed.\n"), iResult);
             default :
-                sciprintW(_W("Operator / : Error %d not yet managed.\n"), iResult);
+                sciprint(_("Operator / : Error %d not yet managed.\n"), iResult);
         }
     }
 

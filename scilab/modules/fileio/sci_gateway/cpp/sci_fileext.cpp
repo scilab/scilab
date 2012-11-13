@@ -28,19 +28,19 @@ Function::ReturnValue sci_fileext(typed_list &in, int _iRetCount, typed_list &ou
 {
     if(in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"fileext" , 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "fileext" , 1);
         return Function::Error;
     }
 
     if(_iRetCount != 1)
     {
-        ScierrorW(78,_W("%ls: Wrong number of output argument(s): %d expected.\n"), L"fileext", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "fileext", 1);
         return Function::Error;
     }
 
     if(in[0]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix of strings expected.\n"), L"fileext", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "fileext", 1);
         return Function::Error;
     }
 

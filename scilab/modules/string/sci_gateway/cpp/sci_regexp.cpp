@@ -58,27 +58,27 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
 
     if (in.size() < 2 || in.size() > 3)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d or %d expected.\n"), L"regexp", 2, 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "regexp", 2, 3);
         return Function::Error;
     }
 
     // check output parameters
     if (_iRetCount < 1 || _iRetCount > 4)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d to %d expected.\n"), L"regexp", 1, 4);
+        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "regexp", 1, 4);
         return Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Single string expected.\n"), L"regexp", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "regexp", 1);
         return Function::Error;
     }
     pwstInput = in[0]->getAs<types::String>()->get(0);
 
     if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Single string expected.\n"), L"regexp", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "regexp", 2);
         return Function::Error;
     }
     pwstPattern = in[1]->getAs<types::String>()->get(0);
@@ -87,13 +87,13 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
     {
         if (in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Single string expected.\n"), L"regexp", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "regexp", 3);
             return Function::Error;
         }
 
         if (in[2]->getAs<types::String>()->get(0)[0] != WSTR_ONCE)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: '%ls' expected.\n"), L"regexp", 3, L"o");
+            Scierror(999, _("%s: Wrong type for input argument #%d: '%s' expected.\n"), "regexp", 3, "o");
             return Function::Error;
         }
         wcType = WSTR_ONCE;

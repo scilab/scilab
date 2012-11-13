@@ -60,21 +60,21 @@ IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetDynLibFuncPtrW(DynLibHandle _h
     return retFuncPtr;
 }
 /*---------------------------------------------------------------------------*/
-IMPORT_EXPORT_DYNAMICLIBRARY_DLL wchar_t* GetLastDynLibError(void)
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL char* GetLastDynLibError(void)
 {
-	static wchar_t buffer[512];
+	static char buffer[512];
 	DWORD dw = GetLastError(); 
 	DWORD source = 0;
 
 	if (dw == 0)
 	{
-		wcscpy(buffer, L"Unknown Error");
+		strcpy(buffer, "Unknown Error");
 	}
-    else if (FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM |
+    else if (FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM |
 			FORMAT_MESSAGE_IGNORE_INSERTS, &source, dw, 0,
 			buffer, 512, NULL) == 0) 
 	{
-			wcscpy(buffer, L"Unknown Error");
+			strcpy(buffer, "Unknown Error");
 	}
 
 	return buffer;

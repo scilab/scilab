@@ -32,14 +32,14 @@ types::Function::ReturnValue sci_delip(types::typed_list &in, int _iRetCount, ty
     //check input parameters
     if(in.size() != 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"delip", 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "delip", 2);
         return types::Function::Error;
     }
 
     //check first input parameter : x
     if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isComplex() == true)
     {
-        ScierrorW(999, _W("%ls: Wrong type for argument %d: Real matrix expected.\n"), L"delip", 1);
+        Scierror(999, _("%s: Wrong type for argument %d: Real matrix expected.\n"), "delip", 1);
         return types::Function::Error;
     }
 
@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_delip(types::typed_list &in, int _iRetCount, ty
     {
         if(pdblIn1[i] < 0)
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Must be in the interval [%ls, %ls].\n"), L"delip", 1, L"0", L"+INF");
+            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "delip", 1, "0", "+INF");
             return types::Function::Error;
         }
         else if(pdblIn1[i] > 1)
@@ -63,14 +63,14 @@ types::Function::ReturnValue sci_delip(types::typed_list &in, int _iRetCount, ty
     //check second input parameter : ck
     if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex() == true)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real scalar expected.\n"), L"delip", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "delip", 2);
         return types::Function::Error;
     }
 
     double pdblCK = in[1]->getAs<types::Double>()->get(0);
     if(pdblCK < -1 || pdblCK > 1)
     {
-      ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Must be in the interval [%ls, %ls].\n"), L"delip", 2, L"-1", L"1");
+      Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "delip", 2, "-1", "1");
       return types::Function::OK;
     }
 

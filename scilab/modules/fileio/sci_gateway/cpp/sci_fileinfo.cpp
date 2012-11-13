@@ -34,19 +34,19 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
 {
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"fileinfo", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "fileinfo", 1);
         return Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->getCols() != 1)
     {
-        Scierror(999, _("%ls: Wrong type for input argument: Column vector expected.\n"), L"fileinfo");
+        Scierror(999, _("%s: Wrong type for input argument: Column vector expected.\n"), "fileinfo");
         return Function::Error;
     }
 
     if(_iRetCount > 2)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output arguments: %d or %d expected.\n"), L"fileinfo", 1, 2);
+        Scierror(78, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "fileinfo", 1, 2);
         return Function::Error;
     }
 

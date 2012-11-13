@@ -43,14 +43,14 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
     // *** check the minimal number of input args. ***
     if (in.size() != 5)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"bsplin3val", 5);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "bsplin3val", 5);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"bsplin3val", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "bsplin3val", 1);
         return types::Function::Error;
     }
 
@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
     {
         if (in[i]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"bsplin3val", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bsplin3val", i + 1);
             return types::Function::Error;
         }
 
@@ -68,21 +68,21 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
 
         if (pDblXYZ[0]->getRows() != pDblXYZ[i]->getRows() || pDblXYZ[0]->getCols() != pDblXYZ[i]->getCols())
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d : Same size as argument %d expected.\n"), L"bsplin3val", i + 1, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d : Same size as argument %d expected.\n"), "bsplin3val", i + 1, 1);
             return types::Function::Error;
         }
     }
 
     if (in[3]->isTList() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A tlist of type bsplin3val expected.\n"), L"bsplin3val", 4);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A tlist of type bsplin3val expected.\n"), "bsplin3val", 4);
     }
 
     pTList = in[3]->getAs<types::TList>();
 
     if (pTList->getTypeStr() != L"tensbs3d")
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A %ls tlist expected.\n"), L"bsplin3val", 4, L"tensbs3d");
+        Scierror(999, _("%s: Wrong type for input argument #%d: A %s tlist expected.\n"), "bsplin3val", 4, "tensbs3d");
         return types::Function::Error;
     }
 
@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
 
     if (in[4]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"bsplin3val", 5);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bsplin3val", 5);
         return types::Function::Error;
     }
 
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
 
     if (pDblDer->getSize() != 3)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A vector of size 3 expected.\n"), L"bsplin3val", 5);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"), "bsplin3val", 5);
         return types::Function::Error;
     }
 
@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
             || pDblDer->get(1) != floor(pDblDer->get(1)) || pDblDer->get(1) < 0.0
             || pDblDer->get(2) != floor(pDblDer->get(2)) || pDblDer->get(2) < 0.0)
     {
-        ScierrorW(999, _W("%ls: Wrong values for input argument #%d : A real positiv integer vector expected.\n"), L"bsplin3val", 5);
+        Scierror(999, _("%s: Wrong values for input argument #%d : A real positiv integer vector expected.\n"), "bsplin3val", 5);
         return types::Function::Error;
     }
 

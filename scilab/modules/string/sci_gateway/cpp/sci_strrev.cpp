@@ -33,17 +33,17 @@ types::Function::ReturnValue sci_strrev(types::typed_list &in, int _iRetCount, t
     
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"strrev", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strrev", 1);
         return types::Function::Error;
     }    
     if(_iRetCount != 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"strrev", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strrev", 1);
         return types::Function::Error;
     }
 	if(in[0]->isString() == false)
 	{
-		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: Matrix of Strings expected.\n"),L"strrev", 1);
+		Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of Strings expected.\n"), "strrev", 1);
 		return types::Function::Error;
 	}
 

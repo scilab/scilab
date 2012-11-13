@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_displayhistory(types::typed_list &in, int _iRet
     }
     else
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"displayhistory", 0);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "displayhistory", 0);
         return types::Function::Error;
     }
     return types::Function::OK;

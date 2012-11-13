@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, ty
 
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"rcond", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "rcond", 1);
         return types::Function::Error;
     }
 
@@ -48,7 +48,7 @@ types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, ty
 
     if(pDbl->getRows() != pDbl->getCols())
     {
-		ScierrorW(20, _W("%ls: Wrong type for argument %d: Square matrix expected.\n"), L"rcond", 1);
+		Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "rcond", 1);
         return types::Function::Error;            
     }
 
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, ty
 
     if(iRet == -1)
     {
-		ScierrorW(999, _W("%ls: Allocation failed.\n"), L"rcond");
+		Scierror(999, _("%s: Allocation failed.\n"), "rcond");
         return types::Function::Error;
     }
 

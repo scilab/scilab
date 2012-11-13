@@ -71,14 +71,14 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
     // *** check the minimal number of input args. ***
     if(in.size() > 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"xls_open", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "xls_open", 1);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if(_iRetCount != 4)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"xls_open", 4);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "xls_open", 4);
         return types::Function::Error;
     }
 
@@ -86,7 +86,7 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
     // path
     if(in[0]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A string expected.\n"), L"xls_open", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "xls_open", 1);
         return types::Function::Error;
     }
 
@@ -116,7 +116,9 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
 
         if (FileExistW(filename_IN) == false)
         {
-            ScierrorW(999,_W("The file %ls does not exist.\n"), filename_IN);
+            char* pstFile = wide_string_to_UTF8(filename_IN);
+            Scierror(999, _("The file %s does not exist.\n"), pstFile);
+            FREE(pstFile);
             return types::Function::Error;
         }
     }
@@ -141,9 +143,10 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
 
     if(result != OLE_OK)
     {
+        char* pstFile = wide_string_to_UTF8(filename_IN);
         if(result == OLEER_NO_INPUT_FILE)
         {
-            ScierrorW(999,_W("%ls: The file %ls does not exist.\n"), L"xls_open", filename_IN);
+            Scierror(999, _("%s: The file %s does not exist.\n"), "xls_open", pstFile);
         }
         else if(result == OLEER_NOT_OLE_FILE ||
                 result == OLEER_INSANE_OLE_FILE ||
@@ -151,19 +154,21 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
                 result == OLEER_MINIFAT_READ_FAIL ||
                 result == OLEER_PROPERTIES_READ_FAIL)
         {
-            ScierrorW(999,_W("%ls: File %ls is not an ole2 file.\n"), L"xls_open", filename_IN);
+            Scierror(999, _("%s: File %s is not an ole2 file.\n"), "xls_open", pstFile);
         }
         else if(result == -1)
         {
-            ScierrorW(999,_W("%ls: Cannot open file %ls.\n"), L"xls_open", filename_IN);
+            Scierror(999, _("%s: Cannot open file %s.\n"), "xls_open", pstFile);
         }
 
         if(filename_IN)
         {
             FREE(filename_IN);
             filename_IN = NULL;
+            FREE(pstFile);
         }
 
+        FREE(pstFile);
         return types::Function::Error;
     }
 
@@ -173,18 +178,20 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
     iErr = mopen(TMP, L"rb", iSwap, &iId);
     if(iErr != MOPEN_NO_ERROR)
     {
-		sciprintW(_W("There is no xls stream in the ole2 file %ls.\n"), filename_IN);
+		sciprint(_("There is no xls stream in the ole2 file %ls.\n"), filename_IN);
         if(iErr == MOPEN_CAN_NOT_OPEN_FILE)
         {
-            ScierrorW(999, _W("%ls: Cannot open file %ls.\n"), L"xls_open", TMP);
+            char* pstTMP = wide_string_to_UTF8(TMP);
+            Scierror(999, _("%s: Cannot open file %s.\n"), "xls_open", pstTMP);
+            FREE(pstTMP);
         }
         else if(iErr == MOPEN_INVALID_FILENAME)
         {
-            ScierrorW(999,_W("%ls: invalid filename.\n"), L"xls_open");
+            Scierror(999, _("%s: invalid filename.\n"), "xls_open");
         }
         else //if(iErr == MOPEN_INVALID_STATUS)
         {
-            ScierrorW(999,_W("%ls: invalid status.\n"), L"xls_open");
+            Scierror(999, _("%s: invalid status.\n"), "xls_open");
         }
 
         FREE(TMP);
@@ -215,27 +222,27 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
         break;
 
         case 1:
-            ScierrorW(999,_W("%ls: Not an ole2 file.\n"),L"xls_open");
+            Scierror(999, _("%s: Not an ole2 file.\n"),"xls_open");
             return types::Function::Error;
             break;
 
         case 2:
-            ScierrorW(999,_W("%ls: The file has no Workbook directory.\n"),L"xls_open");
+            Scierror(999, _("%s: The file has no Workbook directory.\n"),"xls_open");
             return types::Function::Error;
             break;
 
         case 3:
-            ScierrorW(999,_W("%ls: No more memory.\n"),L"xls_open");
+            Scierror(999, _("%s: No more memory.\n"),"xls_open");
             return types::Function::Error;
             break;
 
         case 4:
-            ScierrorW(990,_W("%ls: Incorrect or corrupted file.\n"),L"xls_open");
+            Scierror(990, _("%s: Incorrect or corrupted file.\n"), "xls_open");
             return types::Function::Error;
             break;
 
         case 5:
-            ScierrorW(999,_W("%ls: Only BIFF8 file format is handled.\n"),L"xls_open");
+            Scierror(999, _("%s: Only BIFF8 file format is handled.\n"),"xls_open");
             return types::Function::Error;
             break;
 

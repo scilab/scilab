@@ -37,13 +37,13 @@ Function::ReturnValue sci_createdir(typed_list &in, int _iRetCount, typed_list &
 {
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"createdir", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "createdir", 1);
         return Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"createdir", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "createdir", 1);
         return Function::Error;
     }
 
@@ -57,7 +57,7 @@ Function::ReturnValue sci_createdir(typed_list &in, int _iRetCount, typed_list &
     {
         if(getWarningMode())
         {
-            sciprintW(_W("%ls: Warning: Directory '%ls' already exists.\n"), L"createdir", pwstPath);
+            sciprint(_("%ls: Warning: Directory '%ls' already exists.\n"), L"createdir", pwstPath);
         }
         iRet = 1;
     }

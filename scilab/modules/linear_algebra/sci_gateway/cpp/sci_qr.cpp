@@ -41,13 +41,13 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
 
     if(in.size() != 1 && in.size() != 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"qr", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "qr", 1, 2);
         return types::Function::Error;
     }
 
     if(_iRetCount > 4)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"qr", 1, 4);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "qr", 1, 4);
         return types::Function::Error;
     }
 
@@ -64,7 +64,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
         pData = (double*)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
         if(!pData)
         {
-            ScierrorW(999,_W("%ls: Cannot allocate more memory.\n"),L"qr");
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), "qr");
             return types::Function::Error;
         }
     }
@@ -97,7 +97,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
 
     if((pDbl->getRows() == -1) || (pDbl->getCols() == -1)) // manage eye case
     {
-        ScierrorW(271,_W("%ls: Size varying argument a*eye(), (arg %d) not allowed here.\n"), L"qr", 1);
+        Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "qr", 1);
         return types::Function::Error;
     }
 
@@ -119,7 +119,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
         }
         else
         {
-            ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A real or a string expected.\n"), L"qr", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real or a string expected.\n"), "qr", 2);
             return types::Function::Error;
         }
     }
@@ -152,7 +152,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
 
     if(iRet != 0)
     {
-	    ScierrorW(999, _W("%ls: LAPACK error n°%d.\n"), L"qr",iRet);
+	    Scierror(999, _("%s: LAPACK error n°%d.\n"), "qr",iRet);
         return types::Function::Error;
     }
 

@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "interpolation_functions.h"
@@ -42,14 +43,14 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
     // *** check the minimal number of input args. ***
     if (in.size() < 3 || in.size() > 4)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"splin2d", 3, 4);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "splin2d", 3, 4);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"splin2d", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "splin2d", 1);
         return types::Function::Error;
     }
 
@@ -57,7 +58,7 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
     // x
     if (in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A vector expected.\n"), L"splin2d", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A vector expected.\n"), "splin2d", 1);
         return types::Function::Error;
     }
 
@@ -65,20 +66,20 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
     sizeOfX = pDblX->getSize();
     if (pDblX->getRows() != 1 || pDblX->getSize() < 2)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A row vector of size at least 2 expected.\n"), L"splin2d", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A row vector of size at least 2 expected.\n"), "splin2d", 1);
         return types::Function::Error;
     }
 
     if (good_order(pDblX->get(), pDblX->getSize()) == false) /* verify strict increasing abscissae */
     {
-        ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), L"splin2d", 1);
+        Scierror(999, _("%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), "splin2d", 1);
         return types::Function::Error;
     }
 
     // y
     if (in[1]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A vector expected.\n"), L"splin2d", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A vector expected.\n"), "splin2d", 2);
         return types::Function::Error;
     }
 
@@ -87,20 +88,20 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
 
     if (pDblY->getRows() != 1 || pDblY->getSize() < 2)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A row vector of size at least 2 expected.\n"), L"splin2d", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A row vector of size at least 2 expected.\n"), "splin2d", 2);
         return types::Function::Error;
     }
 
     if (good_order(pDblY->get(), pDblY->getSize()) == false) /* verify strict increasing abscissae */
     {
-        ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), L"splin2d", 2);
+        Scierror(999, _("%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), "splin2d", 2);
         return types::Function::Error;
     }
 
     // z
     if (in[2]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"splin2d", 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "splin2d", 3);
         return types::Function::Error;
     }
 
@@ -108,7 +109,7 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
 
     if (pDblZ->getRows() != pDblX->getCols() || pDblZ->getCols() != pDblY->getCols())
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A matrix of size %d * %d expected.\n"), L"splin2d", 3, pDblX->getCols(), pDblY->getCols());
+        Scierror(999, _("%s: Wrong size for input argument #%d : A matrix of size %d * %d expected.\n"), "splin2d", 3, pDblX->getCols(), pDblY->getCols());
         return types::Function::Error;
     }
 
@@ -117,7 +118,7 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
     {
         if (in[3]->isString() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A string expected.\n"), L"splin2d", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "splin2d", 4);
             return types::Function::Error;
         }
 
@@ -153,7 +154,9 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
         }
         else // undefined
         {
-            ScierrorW(999, _W("%ls: Wrong values for input argument #%d : '%ls' is a unknow '%ls' type.\n"), L"splin2d", 4, wcsType, L"spline");
+            char* pstType = wide_string_to_UTF8(wcsType);
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "splin2d", 4, pstType, "spline");
+            FREE(pstType);
             return types::Function::Error;
         }
     }

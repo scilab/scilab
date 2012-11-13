@@ -42,13 +42,13 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
 
     if (in.size() < 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): At least %d expected.\n"), L"max", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), "max", 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"max", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "max", 1, 2);
         return types::Function::Error;
     }
 
@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
 
         if (iCountElem == 0)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d: Non empty list expected.\n"), L"max", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Non empty list expected.\n"), "max", 1);
             return types::Function::Error;
         }
 
@@ -135,7 +135,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
             }
             else
             {
-                ScierrorW(999, _W("%ls: Wrong value for input argument #%d: r, c, m or * expected.\n"), L"max", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d: r, c, m or * expected.\n"), "max", 2);
                 return types::Function::Error;
             }
             iCountElem = 1;
@@ -155,7 +155,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
 
     if (iOrientation > iDims)
     {
-        ScierrorW(999, _W("%ls: Wrong value for input argument #%d: value less than or equal to the number of dimension expected.\n"), L"max", 2);
+        Scierror(999, _("%s: Wrong value for input argument #%d: value less than or equal to the number of dimension expected.\n"), "max", 2);
         return types::Function::Error;
     }
 
@@ -169,7 +169,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
                 pDbl = inputs[i]->getAs<types::Double>();
                 if (pDbl->isComplex())
                 {
-                    ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real matrix expected.\n"), L"max", i + 1);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "max", i + 1);
                     return types::Function::Error;
                 }
 
@@ -274,7 +274,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
             }
             else if (iDims != pDbl->getDims())
             {
-                ScierrorW(999, _W("%ls: Wrong size for input argument #%d: All arguments must have the same size.\n"), L"max", i + 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), "max", i + 1);
                 return types::Function::Error;
             }
             else
@@ -284,7 +284,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
                 {
                     if (iCurrentDimsArray[iterDims] != piDimsArray[iterDims])
                     {
-                        ScierrorW(999, _W("%ls: Wrong size for input argument #%d: All arguments must have the same size.\n"), L"max", i + 1);
+                        Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), "max", i + 1);
                         return types::Function::Error;
                     }
                 }
@@ -294,7 +294,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A matrix expected.\n"), L"max", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "max", i + 1);
             return types::Function::Error;
         }
     }

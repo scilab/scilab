@@ -41,7 +41,7 @@ types::Function::ReturnValue sci_savehistory(types::typed_list &in, int _iRetCou
     {
         if((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"savehistory", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "savehistory", 1);
             return types::Function::Error;
         }
 
@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_savehistory(types::typed_list &in, int _iRetCou
     }
     else
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"savehistory", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "savehistory", 0, 1);
         return types::Function::Error;
     }
     return types::Function::OK;

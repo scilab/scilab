@@ -39,14 +39,14 @@ types::Function::ReturnValue sci_cshep2d(types::typed_list &in, int _iRetCount, 
     // *** check the minimal number of input args. ***
     if (in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"cshep2d", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "cshep2d", 1);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"cshep2d", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "cshep2d", 1);
         return types::Function::Error;
     }
 
@@ -54,7 +54,7 @@ types::Function::ReturnValue sci_cshep2d(types::typed_list &in, int _iRetCount, 
     //xyz
     if (in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"cshep2d", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "cshep2d", 1);
         return types::Function::Error;
     }
 
@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_cshep2d(types::typed_list &in, int _iRetCount, 
 
     if (pDblXYZ->getCols() != 3 || pDblXYZ->getRows() < 10)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A matrix of size n x 3 expected.(n >= 10)\n"), L"cshep2d", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A matrix of size n x 3 expected.(n >= 10)\n"), "cshep2d", 1);
         return types::Function::Error;
     }
 
@@ -96,7 +96,7 @@ types::Function::ReturnValue sci_cshep2d(types::typed_list &in, int _iRetCount, 
 
     if (ier != 0)
     {
-        ScierrorW(999, _W("%ls: Duplicate nodes or all nodes colinears (ier = %d).\n"), L"cshep2d", ier);
+        Scierror(999, _("%s: Duplicate nodes or all nodes colinears (ier = %d).\n"), "cshep2d", ier);
         return types::Function::Error;
     }
 

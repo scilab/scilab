@@ -27,21 +27,21 @@ Function::ReturnValue sci_inspectorGetItem(typed_list &in, int _iRetCount, typed
 {
     if(in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"inspectorGetItem", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "inspectorGetItem", 1);
         return Function::Error;
     }
 
     if(in[0]->isDouble() == false)
     {
 
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"inspectorGetItem", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "inspectorGetItem", 1);
         return Function::Error;
     }
 
     Double *pD = in[0]->getAs<Double>();
     if(pD->isScalar() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"inspectorGetItem", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "inspectorGetItem", 1);
         Function::Error;
     }
 

@@ -27,7 +27,7 @@ int checkOdeError(int meth, int istate)
         {
             if(istate == -7)
             {
-                sciprintW(_W("Work space insufficient to finish (see messages).\n"));
+                sciprint(_("Work space insufficient to finish (see messages).\n"));
                 return 1;
             }
         }
@@ -36,42 +36,42 @@ int checkOdeError(int meth, int istate)
         {
             if(istate == -1)
             {
-                sciprintW(_W("Excess work done on this call (perhaps wrong jacobian type).\n"));
+                sciprint(_("Excess work done on this call (perhaps wrong jacobian type).\n"));
                 return 1;
             }
             else if(istate == -2)
             {
-                sciprintW(_W("Excess accuracy requested (tolerances too small).\n"));
+                sciprint(_("Excess accuracy requested (tolerances too small).\n"));
                 return 1;
             }
             else if(istate == -3)
             {
-                sciprintW(_W("Illegal input detected (see printed message).\n"));
+                sciprint(_("Illegal input detected (see printed message).\n"));
                 return 1;
             }
             else if(istate == -4)
             {
-                sciprintW(_W("Repeated error test failures (check all inputs).\n"));
+                sciprint(_("Repeated error test failures (check all inputs).\n"));
                 return 1;
             }
             else if(istate == -5)
             {
-                sciprintW(_W("Repeated convergence failures (perhaps bad jacobian supplied or wrong choice of jacobian type or tolerances).\n"));
+                sciprint(_("Repeated convergence failures (perhaps bad jacobian supplied or wrong choice of jacobian type or tolerances).\n"));
                 return 1;
             }
             else if(istate == -6)
             {
-                sciprintW(_W("Error weight became zero during problem. (solution component i vanished, and atol or atol(i) = 0.)\n"));
+                sciprint(_("Error weight became zero during problem. (solution component i vanished, and atol or atol(i) = 0.)\n"));
                 return 1;
             }
             else if(istate == -7) // only used with impl (lsodi)
             {
-                sciprintW(_W("The user-supplied subroutine res set its error flag (ires = 3) despite repeated tries by lsodi to avoid that condition.\n"));
+                sciprint(_("The user-supplied subroutine res set its error flag (ires = 3) despite repeated tries by lsodi to avoid that condition.\n"));
                 return 1;
             }
             else if(istate == -8) // only used with impl (lsodi)
             {
-                sciprintW(_W("istate was 0 on input but lsodi was unable to compute the initial value of dy/dt.\n"));
+                sciprint(_("istate was 0 on input but lsodi was unable to compute the initial value of dy/dt.\n"));
                 return 1;
             }
             break;
@@ -100,7 +100,7 @@ int checkOdeError(int meth, int istate)
                 {
                     if(getWarningMode())
                     {
-                        sciprintW(_W("Integration was not completed because relative error tolerance was too small. rerr has been increased appropriately for continuing.\n")); 
+                        sciprint(_("Integration was not completed because relative error tolerance was too small. rerr has been increased appropriately for continuing.\n")); 
                     }
                         return 2;
                 }
@@ -108,28 +108,28 @@ int checkOdeError(int meth, int istate)
                 {
                     if(getWarningMode())
                     {
-                        sciprintW(_W("Integration was not completed because more than 3000 derivative evaluations were needed. This is approximately 500 steps.\n"));
+                        sciprint(_("Integration was not completed because more than 3000 derivative evaluations were needed. This is approximately 500 steps.\n"));
                     }
                         return 2;
                 }
                 case 5:
                 {
-                    sciprintW(_W("Integration was not completed because solution vanished making a pure relative error test impossible. Must use non-zero aerr to continue. Using the one-step integration mode for one step is a good way to proceed.\n"));
+                    sciprint(_("Integration was not completed because solution vanished making a pure relative error test impossible. Must use non-zero aerr to continue. Using the one-step integration mode for one step is a good way to proceed.\n"));
                         return 1;
                 }
                 case 6:
                 {
-                    sciprintW(_W("Integration was not completed because requested accuracy could not be achieved using smallest allowable stepsize. User must increase the error tolerance before continued integration can be attempted.\n"));
+                    sciprint(_("Integration was not completed because requested accuracy could not be achieved using smallest allowable stepsize. User must increase the error tolerance before continued integration can be attempted.\n"));
                         return 1;
                 }
                 case 7:
                 {
-                    sciprintW(_W("It is likely that rkf45 is inefficient for solving this problem. Too much output is restricting the natural stepsize choice. Use the one-step integrator mode.\n"));
+                    sciprint(_("It is likely that rkf45 is inefficient for solving this problem. Too much output is restricting the natural stepsize choice. Use the one-step integrator mode.\n"));
                         return 1;
                 }
                 case 8:
                 {
-                    sciprintW(_W("invalid input parameters : atol and rtol must be greater than 0.\n"));
+                    sciprint(_("invalid input parameters : atol and rtol must be greater than 0.\n"));
                         return 1;
                 }
                 default : break;
@@ -144,7 +144,7 @@ int checkOdeError(int meth, int istate)
             }
             else if(istate == 4)
             {
-                sciprintW(_W("Inappropriate error tolerance.\n"));
+                sciprint(_("Inappropriate error tolerance.\n"));
                 return 1;
             }
             break;
@@ -177,13 +177,13 @@ int checkDasslError(int idid)
         {
             if(getWarningMode())
             {
-                sciprintW(_W("To many steps necessary to reached next required time discretization point. Change discretisation of time vector t or decrease accuracy.\n")); 
+                sciprint(_("To many steps necessary to reached next required time discretization point. Change discretisation of time vector t or decrease accuracy.\n")); 
             }
             return 2;
         }
         case -2 : //The error tolerances are too stringent.
         {
-            sciprintW(_W("The error tolerances are too stringent.\n"));
+            sciprint(_("The error tolerances are too stringent.\n"));
             return 1;
         }
         case -3 :
@@ -194,7 +194,7 @@ int checkDasslError(int idid)
             //for this component.
             if(getWarningMode())
             {
-                sciprintW(_W("Atol and computed test value are zero.\n")); 
+                sciprint(_("Atol and computed test value are zero.\n")); 
             }
             return 2;
         }
@@ -202,7 +202,7 @@ int checkDasslError(int idid)
         {
             if(getWarningMode())
             {
-                sciprintW(_W("A singularity in the solution may be present.\n")); 
+                sciprint(_("A singularity in the solution may be present.\n")); 
             }
             return 2;
         }
@@ -210,20 +210,20 @@ int checkDasslError(int idid)
         {
             if(getWarningMode())
             {
-                sciprintW(_W("May be inaccurate or ill-conditioned JACOBIAN.\n")); 
+                sciprint(_("May be inaccurate or ill-conditioned JACOBIAN.\n")); 
             }
             return 2;
         }
         case -8 : //The matrix of partial derivatives is singular.
         {
-            sciprintW(_W("Singular partial derivatives matrix (may be redundant equations).\n"));
+            sciprint(_("Singular partial derivatives matrix (may be redundant equations).\n"));
             return 1;
         }
         case -9 : //The corrector could not converge.
         {         //There were repeated error test failures in this step.
             if(getWarningMode())
             {
-                sciprintW(_W("Either ill-posed problem or discontinuity or singularity encountered.\n")); 
+                sciprint(_("Either ill-posed problem or discontinuity or singularity encountered.\n")); 
             }
             return 2;
         }
@@ -231,18 +231,18 @@ int checkDasslError(int idid)
         {
             if(getWarningMode())
             {
-                sciprintW(_W("External ''res'' return many times with ires=-1.\n")); 
+                sciprint(_("External ''res'' return many times with ires=-1.\n")); 
             }
             return 2;
         }
         case -11 : //IRES equal to -2 was encountered and
         {          //control is being returned to the calling program.
-            sciprintW(_W("Error in external ''res''.\n"));
+            sciprint(_("Error in external ''res''.\n"));
             return 1;
         }
         case -12 : //DDASSL failed to compute the initial YPRIME.
         {
-            sciprintW(_W("dassl failed to compute the initial Ydot.\n"));
+            sciprint(_("dassl failed to compute the initial Ydot.\n"));
             return 1;
         }
         case -33 :
@@ -254,7 +254,7 @@ int checkDasslError(int idid)
             //when invalid input is detected.
             if(getWarningMode())
             {
-                sciprintW(_W("dassl encountered trouble.\n"));
+                sciprint(_("dassl encountered trouble.\n"));
             }
             return 2;
         }

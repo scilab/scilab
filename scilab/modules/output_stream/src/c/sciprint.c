@@ -48,39 +48,39 @@ void sciprint(char* fmt,...)
 	va_end (ap);
 }
 /*--------------------------------------------------------------------------*/
-void sciprintW(wchar_t* fmt,...)
-{
-	va_list ap;
-
-	va_start(ap,fmt);
-	scivprintW(fmt,ap);
-	va_end (ap);
-}
+//void sciprintW(wchar_t* fmt,...)
+//{
+//	va_list ap;
+//
+//	va_start(ap,fmt);
+//	scivprintW(fmt,ap);
+//	va_end (ap);
+//}
 /*--------------------------------------------------------------------------*/
-int scivprintW(wchar_t* fmt,va_list args)
-{
-	static wchar_t s_buf[MAXPRINTF];
-	int count=0;
-
-	va_list savedargs;
-	va_copy(savedargs, args);
-
-#ifdef _MSC_VER
-	count= vsnwprintf(s_buf, MAXPRINTF - 1, fmt, args );
-#else
-	count= vswprintf(s_buf, MAXPRINTF - 1, fmt, args );
-#endif
-	if(count == -1)
-    {
-        s_buf[MAXPRINTF - 1]= L'\0';
-    }
-
-	scilabWriteW(s_buf);
-
-	va_end(savedargs);
-
-	return count;
-}
+//int scivprintW(wchar_t* fmt,va_list args)
+//{
+//	static wchar_t s_buf[MAXPRINTF];
+//	int count=0;
+//
+//	va_list savedargs;
+//	va_copy(savedargs, args);
+//
+//#ifdef _MSC_VER
+//	count= vsnwprintf(s_buf, MAXPRINTF - 1, fmt, args );
+//#else
+//	count= vswprintf(s_buf, MAXPRINTF - 1, fmt, args );
+//#endif
+//	if(count == -1)
+//    {
+//        s_buf[MAXPRINTF - 1]= L'\0';
+//    }
+//
+//	scilabWriteW(s_buf);
+//
+//	va_end(savedargs);
+//
+//	return count;
+//}
 /*--------------------------------------------------------------------------*/
 int scivprint(char *fmt,va_list args)
 {

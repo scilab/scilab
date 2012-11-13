@@ -30,18 +30,18 @@ Function::ReturnValue sci_sp2adj(typed_list &in, int nbRes, typed_list &out)
 
     if(in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"sp2adj", 1);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "sp2adj", 1);
         return Function::Error;
     }
 
     if(in[0]->isSparse() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: sparse matrix expected.\n"), L"sp2adj", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: sparse matrix expected.\n"), "sp2adj", 1);
         return Function::Error;
     }
     if(nbRes > 3)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d to %d expected.\n"), L"sp2adj", 1, 3);
+        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "sp2adj", 1, 3);
         return Function::Error;
     }
 

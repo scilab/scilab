@@ -31,13 +31,13 @@ types::Function::ReturnValue sci_isreal(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 1 || in.size() > 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"isreal", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "isreal", 1, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"isreal", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "isreal", 1);
         return types::Function::Error;
     }
 
@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_isreal(types::typed_list &in, int _iRetCount, t
     {
         if (in[1]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real scalar expected.\n"), L"isreal", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "isreal", 2);
             return types::Function::Error;
         }
 
@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_isreal(types::typed_list &in, int _iRetCount, t
 
         if ((pDblEps->isScalar() == false) || pDblEps->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real scalar expected.\n"), L"isreal", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "isreal", 2);
             return types::Function::Error;
         }
 

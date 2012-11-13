@@ -37,13 +37,13 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
 
     if(in.size() < 2 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"lsq", 2, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "lsq", 2, 3);
         return types::Function::Error;
     }
 
     if(_iRetCount > 2)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"lsq", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "lsq", 1, 2);
         return types::Function::Error;
     }
 
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
     {
         if((in[2]->isDouble() == false) || (in[2]->getAs<types::Double>()->isComplex()) || (in[2]->getAs<types::Double>()->isScalar() == false))
         {
-            ScierrorW(256, _W("%ls: Wrong type for input argument #%d: A Real expected.\n"), L"lsq", 3);
+            Scierror(256, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "lsq", 3);
             return types::Function::Error;     
         }
         *pdTol = in[2]->getAs<types::Double>()->get(0);
@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
 
     if(pDbl[0]->getRows() != pDbl[1]->getRows())
     {
-        ScierrorW(265, _W("%ls: %ls and %ls must have equal number of rows.\n"), L"lsq", L"A", L"B");
+        Scierror(265, _("%s: %s and %s must have equal number of rows.\n"), "lsq", "A", "B");
         return types::Function::Error;
     }
 
@@ -99,7 +99,7 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
     {
         if(pDbl[i]->getCols() == -1)
         {
-            ScierrorW(271, _W("%ls: Size varying argument a*eye(), (arg %d) not allowed here.\n"), L"lsq", i+1);
+            Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "lsq", i+1);
             return types::Function::Error;
         }
 
@@ -108,7 +108,7 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
             pData[i] = (double*)oGetDoubleComplexFromPointer(pDbl[i]->getReal(), pDbl[i]->getImg(), pDbl[i]->getSize());
             if(!pData[i])
             {
-                ScierrorW(999,_W("%ls: Cannot allocate more memory.\n"),L"lsq");
+                Scierror(999, _("%s: Cannot allocate more memory.\n"), "lsq");
                 return types::Function::Error;
             }
         }
@@ -135,11 +135,11 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
     {
         if(iRet == -1)
         {
-		    ScierrorW(999, _W("%ls: Allocation failed.\n"), L"lsq");
+		    Scierror(999, _("%s: Allocation failed.\n"),  "lsq");
         }
         else
         {
-		    ScierrorW(999, _W("%ls: LAPACK error n°%d.\n"), L"lsq",iRet);
+		    Scierror(999, _("%s: LAPACK error n°%d.\n"),  "lsq",iRet);
         }
         return types::Function::Error;
     }

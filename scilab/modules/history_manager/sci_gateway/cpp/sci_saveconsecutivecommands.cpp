@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_saveconsecutivecommands(types::typed_list &in, 
 
         if((in[0]->isBool() == false) || (in[0]->getAs<types::Bool>()->isScalar() == false))
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A boolean expected.\n"), L"saveconsecutivecommands", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "saveconsecutivecommands", 1);
             return types::Function::Error;
         }
         BOOL bSave = (BOOL)in[0]->getAs<types::Bool>()->get(0);
@@ -44,7 +44,7 @@ types::Function::ReturnValue sci_saveconsecutivecommands(types::typed_list &in, 
     }
     else
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"saveafterncommands", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "saveafterncommands", 0, 1);
         return types::Function::Error;
     }
     return types::Function::OK;

@@ -44,14 +44,14 @@ types::Function::ReturnValue sci_xls_read(types::typed_list &in, int _iRetCount,
 // *** check the minimal number of input args. ***
     if(in.size() != 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"xls_read", 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "xls_read", 2);
         return types::Function::Error;
     }
 
 // *** check number of output args according the methode. ***
     if(_iRetCount != 2)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"xls_read", 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "xls_read", 2);
         return types::Function::Error;
     }
 
@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_xls_read(types::typed_list &in, int _iRetCount,
     // file id
     if(in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A scalar expected.\n"), L"xls_read", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "xls_read", 1);
         return types::Function::Error;
     }
 
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_xls_read(types::typed_list &in, int _iRetCount,
 
     if(pDblId->isScalar() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A scalar expected.\n"), L"xls_read", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "xls_read", 1);
         return types::Function::Error;
     }
 
@@ -76,7 +76,7 @@ types::Function::ReturnValue sci_xls_read(types::typed_list &in, int _iRetCount,
     // sheetpos
     if(in[1]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A scalar expected.\n"), L"xls_read", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "xls_read", 2);
         return types::Function::Error;
     }
 
@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_xls_read(types::typed_list &in, int _iRetCount,
 
     if(pDblSheetpos->isScalar() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A scalar expected.\n"), L"xls_read", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "xls_read", 2);
         return types::Function::Error;
     }
 
@@ -94,13 +94,13 @@ types::Function::ReturnValue sci_xls_read(types::typed_list &in, int _iRetCount,
     switch(iErr)
     {
         case 1 :
-            ScierrorW(999,_W("%ls: No more memory.\n"), L"xls_read");
+            Scierror(999, _("%s: No more memory.\n"), "xls_read");
             return types::Function::Error;
         case 2 :
-            ScierrorW(999,_W("%ls: Failed to read expected data, may be invalid xls file.\n"), L"xls_read");
+            Scierror(999, _("%s: Failed to read expected data, may be invalid xls file.\n"), "xls_read");
             return types::Function::Error;
         case 3 :
-            ScierrorW(999,_W("%ls: End of file.\n"), L"xls_read");
+            Scierror(999, _("%s: End of file.\n"), "xls_read");
             return types::Function::Error;
         default :
             /* no error */

@@ -42,13 +42,13 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
     if((in.size() != 1) && (in.size() != 2))
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"spec", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "spec", 1, 2);
         return types::Function::Error;
     }
 
     if(_iRetCount > 2*in.size())
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"spec", 1, 2*in.size());
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "spec", 1, 2*in.size());
         return types::Function::Error;
     }
 
@@ -61,13 +61,13 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
     if(pDblA->getCols() != pDblA->getRows())
     {
-		ScierrorW(20, _W("%ls: Wrong type for argument %d: Square matrix expected.\n"), L"sped", 1);
+		Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "sped", 1);
         return types::Function::Error;  
     }
 
     if((pDblA->getRows() == -1) || (pDblA->getCols() == -1)) // manage eye case
     {
-        ScierrorW(271,_W("%ls: Size varying argument a*eye(), (arg %d) not allowed here.\n"), L"spec", 1);
+        Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "spec", 1);
         return types::Function::Error;
     }
 
@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
             pDataA = (double*)oGetDoubleComplexFromPointer(pDblA->getReal(), pDblA->getImg(), pDblA->getSize());
             if(!pDataA)
             {
-                ScierrorW(999,_W("%ls: Cannot allocate more memory.\n"),L"spec");
+                Scierror(999, _("%s: Cannot allocate more memory.\n"), "spec");
                 return types::Function::Error;
             }
         }
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         int totalSize = pDblA->getSize();
         if((pDblA->isComplex() ? C2F(vfiniteComplex)(&totalSize, (doublecomplex*)pDataA) : C2F(vfinite)(&totalSize, pDataA)) == false)
         {
-		    ScierrorW(264, _W("%ls: Wrong value for argument %d: Must not contain NaN or Inf.\n"), L"spec", 1);
+		    Scierror(264, _("%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"), "spec", 1);
             return types::Function::Error;   
         }
 
@@ -135,13 +135,13 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
                 if(iRet < 0)
                 {
-                    ScierrorW(998, _W("%ls: On entry to ZGEEV parameter number  3 had an illegal value (lapack library problem).\n"), L"spec", iRet);
+                    Scierror(998, _("%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
                 if(iRet > 0)
                 {
-                    ScierrorW(24, _W("%ls: Convergence problem, %d off-diagonal elements of an intermediate tridiagonal form did not converge to zero.\n"), L"spec", iRet);
+                    Scierror(24, _("%s: Convergence problem, %d off-diagonal elements of an intermediate tridiagonal form did not converge to zero.\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
@@ -160,13 +160,13 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 iRet = iEigen1ComplexM((doublecomplex*)pDataA, pDblA->getCols(), pEigenValues,pEigenVectors);
                 if(iRet < 0)
                 {
-                    ScierrorW(998, _W("%ls: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), L"spec", iRet);
+                    Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
                 if(iRet > 0)
                 {
-                    ScierrorW(24, _W("%ls: The QR algorithm failed to compute all the eigenvalues, and no eigenvectors have been computed. Elements and %d+1:N of W contain eigenvalues which have converged.\n"), L"spec", iRet);
+                    Scierror(24, _("%s: The QR algorithm failed to compute all the eigenvalues, and no eigenvectors have been computed. Elements and %d+1:N of W contain eigenvalues which have converged.\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
@@ -194,13 +194,13 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
                 if(iRet < 0)
                 {
-                    ScierrorW(998, _W("%ls: On entry to ZGEEV parameter number  3 had an illegal value (lapack library problem).\n"), L"spec", iRet);
+                    Scierror(998, _("%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
                 if(iRet > 0)
                 {
-                    ScierrorW(24, _W("%ls: Convergence problem, %d off-diagonal elements of an intermediate tridiagonal form did not converge to zero.\n"), L"spec", iRet);
+                    Scierror(24, _("%s: Convergence problem, %d off-diagonal elements of an intermediate tridiagonal form did not converge to zero.\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
@@ -217,13 +217,13 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
                 if(iRet < 0)
                 {
-                    ScierrorW(998, _W("%ls: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), L"spec", iRet);
+                    Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
                 if(iRet > 0)
                 {
-                    ScierrorW(24, _W("%ls: The QR algorithm failed to compute all the eigenvalues, and no eigenvectors have been computed. Elements and %d+1:N of WR and WI contain eigenvalues which have converged.\n"), L"spec", iRet);
+                    Scierror(24, _("%s: The QR algorithm failed to compute all the eigenvalues, and no eigenvectors have been computed. Elements and %d+1:N of WR and WI contain eigenvalues which have converged.\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
@@ -258,7 +258,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         pDblB = in[1]->getAs<types::Double>()->clone()->getAs<types::Double>();
         if((pDblA->getRows() != pDblB->getRows()) && (pDblA->getCols() != pDblB->getCols()))
         {
-            ScierrorW(999, _W("%ls: Arguments %d and %d must have equal dimensions.\n"), L"spec", 1, 2);
+            Scierror(999, _("%s: Arguments %d and %d must have equal dimensions.\n"), "spec", 1, 2);
             return types::Function::Error;
         }
 
@@ -289,7 +289,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
             if(!pDblA || !pDblB)
             {
-                ScierrorW(999,_W("%ls: Cannot allocate more memory.\n"),L"spec");
+                Scierror(999, _("%s: Cannot allocate more memory.\n"), "spec");
                 return types::Function::Error;
             }
         }
@@ -303,13 +303,13 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
         if((pDblA->isComplex() ? C2F(vfiniteComplex)(&totalSize, (doublecomplex*)pDataA) : C2F(vfinite)(&totalSize, pDataA)) == false)
         {
-		    ScierrorW(264, _W("%ls: Wrong value for argument %d: Must not contain NaN or Inf.\n"), L"spec", 1);
+		    Scierror(264, _("%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"), "spec", 1);
             return types::Function::Error;   
         }
 
         if((pDblB->isComplex() ? C2F(vfiniteComplex)(&totalSize, (doublecomplex*)pDataB) : C2F(vfinite)(&totalSize, pDataB)) == false)
         {
-		    ScierrorW(264, _W("%ls: Wrong value for argument %d: Must not contain NaN or Inf.\n"), L"spec", 2);
+		    Scierror(264, _("%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"), "spec", 2);
             return types::Function::Error;   
         }
 
@@ -373,7 +373,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
         if(iRet < 0)
         {
-            ScierrorW(998, _W("%ls: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), L"spec", iRet);
+            Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
             return types::Function::Error;
         }
 
@@ -383,17 +383,17 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
             {
                 if(iRet <= pDblA->getCols())
                 {
-                    ScierrorW(24, _W("%ls: The QZ iteration failed in DGGEV.\n"), L"spec");
+                    Scierror(24, _("%s: The QZ iteration failed in DGGEV.\n"), "spec");
                 }
                 else
                 {
-                    if(iRet ==  pDblA->getCols()+1) ScierrorW(999, _W("%ls: Other than QZ iteration failed in DHGEQZ.\n"), L"spec");
-                    if(iRet ==  pDblA->getCols()+2) ScierrorW(999, _W("%ls: Error return from DTGEVC.\n"), L"spec");
+                    if(iRet ==  pDblA->getCols()+1) Scierror(999, _("%s: Other than QZ iteration failed in DHGEQZ.\n"), "spec");
+                    if(iRet ==  pDblA->getCols()+2) Scierror(999, _("%s: Error return from DTGEVC.\n"), "spec");
                 }
             }
             else
             {
-                ScierrorW(24, _W("%ls: The QR algorithm failed to compute all the eigenvalues, and no eigenvectors have been computed. Elements and %d+1:N of W contain eigenvalues which have converged.\n"), L"spec", iRet);
+                Scierror(24, _("%s: The QR algorithm failed to compute all the eigenvalues, and no eigenvectors have been computed. Elements and %d+1:N of W contain eigenvalues which have converged.\n"), "spec", iRet);
             }
             return types::Function::Error;
         }

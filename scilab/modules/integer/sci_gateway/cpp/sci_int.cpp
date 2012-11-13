@@ -99,17 +99,17 @@ void convertInt(types::InternalType* _pIn, T* _pOut)
 }
 
 template< class T>
-types::Callable::ReturnValue commonInt(types::typed_list &in, int _iRetCount, types::typed_list &out, std::wstring _wstName)
+types::Callable::ReturnValue commonInt(types::typed_list &in, int _iRetCount, types::typed_list &out, std::string _stName)
 {
     if (in.size() != 1)
     {
-        ScierrorW(77, _W("%s: Wrong number of input argument(s): %d expected.\n"), _wstName.c_str(), 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), _stName.c_str(), 1);
         return types::Function::Error;
     }
 
     if (in[0]->isDouble() == false && in[0]->isInt() == false && in[0]->isBool() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: %ls, %ls or %ls expected.\n"), _wstName.c_str(), 1, L"integer", L"boolean", L"double");
+        Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"), _stName.c_str(), 1, "integer", "boolean", "double");
         return types::Function::Error;
     }
 
@@ -129,41 +129,41 @@ types::Callable::ReturnValue commonInt(types::typed_list &in, int _iRetCount, ty
 /*--------------------------------------------------------------------------*/
 types::Callable::ReturnValue sci_integer8(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    return commonInt<types::Int8>(in, _iRetCount, out, L"int8");
+    return commonInt<types::Int8>(in, _iRetCount, out, "int8");
 }
 
 types::Callable::ReturnValue sci_uinteger8(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    return commonInt<types::UInt8>(in, _iRetCount, out, L"uint8");
+    return commonInt<types::UInt8>(in, _iRetCount, out, "uint8");
 }
 
 types::Callable::ReturnValue sci_integer16(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    return commonInt<types::Int16>(in, _iRetCount, out, L"int16");
+    return commonInt<types::Int16>(in, _iRetCount, out, "int16");
 }
 
 types::Callable::ReturnValue sci_uinteger16(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    return commonInt<types::UInt16>(in, _iRetCount, out, L"uint16");
+    return commonInt<types::UInt16>(in, _iRetCount, out, "uint16");
 }
 
 types::Callable::ReturnValue sci_integer32(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    return commonInt<types::Int32>(in, _iRetCount, out, L"int32");
+    return commonInt<types::Int32>(in, _iRetCount, out, "int32");
 }
 
 types::Callable::ReturnValue sci_uinteger32(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    return commonInt<types::UInt32>(in, _iRetCount, out, L"uint32");
+    return commonInt<types::UInt32>(in, _iRetCount, out, "uint32");
 }
 
 types::Callable::ReturnValue sci_integer64(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    return commonInt<types::Int64>(in, _iRetCount, out, L"int64");
+    return commonInt<types::Int64>(in, _iRetCount, out, "int64");
 }
 
 types::Callable::ReturnValue sci_uinteger64(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    return commonInt<types::UInt64>(in, _iRetCount, out, L"uint64");
+    return commonInt<types::UInt64>(in, _iRetCount, out, "uint64");
 }
 /*--------------------------------------------------------------------------*/

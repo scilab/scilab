@@ -37,13 +37,13 @@ Function::ReturnValue sci_removedir(typed_list &in, int _iRetCount, typed_list &
 {
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"removedir", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "removedir", 1);
         return Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"removedir", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "removedir", 1);
         return Function::Error;
     }
 
@@ -53,7 +53,7 @@ Function::ReturnValue sci_removedir(typed_list &in, int _iRetCount, typed_list &
     {
         if(getWarningMode())
         {
-            sciprintW(_W("%ls: Warning: Directory '%ls' doesn't exists.\n"), L"removedir", pwstPath);
+            sciprint(_("%s: Warning: Directory '%ls' doesn't exists.\n"), "removedir", pwstPath);
         }
     }
     else

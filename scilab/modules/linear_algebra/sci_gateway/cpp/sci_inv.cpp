@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
 
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"inv", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "inv", 1);
         return types::Function::Error;
     }
 
@@ -50,7 +50,7 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
 
     if(pDbl->getRows() != pDbl->getCols())
     {
-        ScierrorW(20, _W("%ls: Wrong type for argument %d: Square matrix expected.\n"), L"inv", 1);
+        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "inv", 1);
         return types::Function::Error;      
     }
 
@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
 
     if(ret == 19)
     {
-        ScierrorW(19, _W("%ls: Problem is singular.\n"), L"inv");
+        Scierror(19, _("%s: Problem is singular.\n"), "inv");
         return types::Function::Error;
     }
 

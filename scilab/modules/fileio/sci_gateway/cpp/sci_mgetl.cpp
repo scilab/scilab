@@ -66,24 +66,27 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
 
         if(iErr)
         {
+            char* pst = wide_string_to_UTF8(expandedFileName);
             switch(iErr)
             {
             case MOPEN_NO_MORE_LOGICAL_UNIT:
-                ScierrorW(66, _W("%ls: Too many files opened!\n"), L"mgetl");
+                Scierror(66, _("%s: Too many files opened!\n"), "mgetl");
                 break;
             case MOPEN_CAN_NOT_OPEN_FILE:
-                ScierrorW(999, _W("%ls: Cannot open file %ls.\n"), L"mgetl", expandedFileName);
+                Scierror(999, _("%s: Cannot open file %s.\n"), "mgetl", pst);
                 break;
             case MOPEN_NO_MORE_MEMORY:
-                ScierrorW(999, _W("%ls: No more memory.\n"), L"mgetl");
+                Scierror(999, _("%s: No more memory.\n"), "mgetl");
                 break;
             case MOPEN_INVALID_FILENAME:
-                ScierrorW(999, _W("%ls: invalid filename %ls.\n"), L"mgetl", expandedFileName);
+                Scierror(999, _("%s: invalid filename %s.\n"), "mgetl", pst);
                 break;
             default: //MOPEN_INVALID_STATUS
-                ScierrorW(999, _W("%ls: invalid status.\n"), L"mgetl");
+                Scierror(999, _("%s: invalid status.\n"), "mgetl");
                 break;
             }
+
+            FREE(pst);
             return Function::Error;
         }
         FREE(expandedFileName);
@@ -99,7 +102,7 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
     {
         case 0: // stderr
         case 6: // stdout
-            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mgetl", iFileID);
+            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mgetl", iFileID);
             return types::Function::Error;
         default :
         {

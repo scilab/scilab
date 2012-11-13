@@ -36,13 +36,13 @@ Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
 
     if(in.size() != 2)
     {
-        ScierrorW(999,_W("%ls: Wrong number of input argument(s): %d expected.\n"),L"mputl", 2);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "mputl", 2);
         return Function::Error;
     }
 
     if(_iRetCount != 1)
     {
-        ScierrorW(999,_W("%ls: Wrong number of output argument(s): %d expected.\n"), L"mputl", 1);
+        Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "mputl", 1);
         return Function::Error;
     }
 
@@ -59,24 +59,26 @@ Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
 
         if(iErr)
         {
+            char* pst = wide_string_to_UTF8(expandedFileName);
             switch(iErr)
             {
             case MOPEN_NO_MORE_LOGICAL_UNIT:
-                ScierrorW(66, _W("%ls: Too many files opened!\n"), L"mputl");
+                Scierror(66, _("%s: Too many files opened!\n"), "mputl");
                 break;
             case MOPEN_CAN_NOT_OPEN_FILE:
-                ScierrorW(999, _W("%ls: Cannot open file %ls.\n"), L"mputl", expandedFileName);
+                Scierror(999, _("%s: Cannot open file %s.\n"), "mputl", pst);
                 break;
             case MOPEN_NO_MORE_MEMORY:
-                ScierrorW(999, _W("%ls: No more memory.\n"), L"mputl");
+                Scierror(999, _("%s: No more memory.\n"), "mputl");
                 break;
             case MOPEN_INVALID_FILENAME:
-                ScierrorW(999, _W("%ls: invalid filename %ls.\n"), L"mputl", expandedFileName);
+                Scierror(999, _("%s: invalid filename %s.\n"), "mputl", pst);
                 break;
             default: //MOPEN_INVALID_STATUS
-                ScierrorW(999, _W("%ls: invalid status.\n"), L"mputl");
+                Scierror(999, _("%s: invalid status.\n"), "mputl");
                 break;
             }
+            FREE(pst);
             return Function::Error;
         }
         bCloseFile = true;
@@ -90,7 +92,7 @@ Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
     //String vextor, row or col
     if(in[0]->isString() == false || (in[0]->getAs<types::String>()->getRows() != 1 && in[0]->getAs<types::String>()->getCols() != 1))
     {
-        ScierrorW(999,_W("%ls: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), L"mputl", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), "mputl", 1);
         return Function::Error;
     }
 
@@ -99,7 +101,7 @@ Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
 	switch (iFileID)
 	{
         case 5: // stdin
-            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mputl", iFileID);
+            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mputl", iFileID);
             return types::Function::Error;
         default : iErr = mputl(iFileID, pS->get(), pS->getSize());
     }

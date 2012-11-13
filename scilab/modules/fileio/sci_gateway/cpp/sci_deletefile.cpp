@@ -28,13 +28,13 @@ Function::ReturnValue sci_deletefile(typed_list &in, int _iRetCount, typed_list 
 {
     if(in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"deletefile", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "deletefile", 1);
         return Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"deletefile", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "deletefile", 1);
         return Function::Error;
     }
 

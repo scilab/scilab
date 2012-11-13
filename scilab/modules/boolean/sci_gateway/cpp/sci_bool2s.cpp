@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
     types::InternalType* pOut = NULL;
     if (in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"bool2s", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "bool2s", 1);
         return types::Function::Error;
     }
 

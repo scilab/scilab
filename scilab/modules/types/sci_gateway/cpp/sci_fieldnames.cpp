@@ -30,7 +30,7 @@ Function::ReturnValue sci_fieldnames(typed_list &in, int _iRetCount, typed_list 
 {
     if (in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"fieldnames", 1);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "fieldnames", 1);
         return Function::Error;
     }
 

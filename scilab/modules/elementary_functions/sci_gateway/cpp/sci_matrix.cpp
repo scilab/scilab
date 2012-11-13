@@ -38,13 +38,13 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 2 )
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): At least %d expected.\n"), L"matrix", 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), "matrix", 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"matrix", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "matrix", 1);
         return types::Function::Error;
     }
 
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
     {
         if (in[1]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"matrix", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "matrix", 2);
             return types::Function::Error;
         }
 
@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
 
         if (pDblNewSize->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"matrix", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "matrix", 2);
             return types::Function::Error;
         }
 
@@ -93,13 +93,13 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
                 }
                 else
                 {
-                    ScierrorW(999, _W("%ls: Wrong value for input argument #%d : Only one value can be equal to %d.\n"), L"matrix", 2, -1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d : Only one value can be equal to %d.\n"), "matrix", 2, -1);
                     return types::Function::Error;
                 }
             }
             else if (piSizes[i] < -1)
             {
-                ScierrorW(999, _W("%ls: Wrong value for input argument #%d : At most %d expected.\n"), L"matrix", 2, -1);
+                Scierror(999, _("%s: Wrong value for input argument #%d : At most %d expected.\n"), "matrix", 2, -1);
                 return types::Function::Error;
             }
             else
@@ -116,7 +116,7 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
         {
             if (in[i]->isDouble() == false)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real scalar expected.\n"), L"matrix", i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "matrix", i + 1);
                 return types::Function::Error;
             }
 
@@ -124,7 +124,7 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
 
             if (pDblNewSize->isComplex() || pDblNewSize->isScalar() == false)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real scalar expected.\n"), L"matrix", i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "matrix", i + 1);
                 return types::Function::Error;
             }
 
@@ -137,13 +137,13 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
                 }
                 else
                 {
-                    ScierrorW(999, _W("%ls: Wrong value for input argument #%d : Only one value can be equal to %d.\n"), L"matrix", i + 1, -1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d : Only one value can be equal to %d.\n"), "matrix", i + 1, -1);
                     return types::Function::Error;
                 }
             }
             else if (piSizes[i - 1] < -1)
             {
-                ScierrorW(999, _W("%ls: Wrong value for input argument #%d : At most %d expected.\n"), L"matrix", i + 1, -1);
+                Scierror(999, _("%s: Wrong value for input argument #%d : At most %d expected.\n"), "matrix", i + 1, -1);
                 return types::Function::Error;
             }
             else
@@ -160,7 +160,7 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
 
     if (pGTOut->isSparse() && iDims > 2)
     {
-        ScierrorW(999, _W("%ls: Wrong value for input argument(s) : Sparse matrix cannot be reshaped beyond %d dimensions.\n"), L"matrix", 2);
+        Scierror(999, _("%s: Wrong value for input argument(s) : Sparse matrix cannot be reshaped beyond %d dimensions.\n"), "matrix", 2);
         return types::Function::Error;
     }
 
@@ -168,7 +168,7 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
 
     if (bOk == false)
     {
-        ScierrorW(999, _W("%ls: Input and output matrices must have the same number of elements.\n"), L"matrix");
+        Scierror(999, _("%s: Input and output matrices must have the same number of elements.\n"), "matrix");
         return types::Function::Error;
     }
 

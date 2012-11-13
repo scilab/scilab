@@ -43,7 +43,7 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
 
     if(in.size() < 0 || in.size() > 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"findfiles", 0, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "findfiles", 0, 2);
         return Function::Error;
     }
 
@@ -59,7 +59,7 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
     {//user path
         if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"findfiles", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "findfiles", 1);
             return Function::Error;
         }
 
@@ -69,7 +69,7 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
         {//user file spec
             if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"findfiles", 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "findfiles", 2);
                 return Function::Error;
             }
 

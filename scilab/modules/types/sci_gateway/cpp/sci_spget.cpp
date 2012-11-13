@@ -38,7 +38,7 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"spget", 1);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "spget", 1);
         return types::Function::Error;
     }
 
@@ -118,13 +118,13 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: sparse matrix expected.\n"), L"spget", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: sparse matrix expected.\n"), "spget", 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 3)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d to %d expected.\n"), L"spget", 1, 3);
+        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "spget", 1, 3);
         return types::Function::Error;
     }
 

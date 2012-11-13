@@ -97,7 +97,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
 {
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"string", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "string", 1);
         return Function::Error;
     }
 

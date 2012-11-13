@@ -26,6 +26,8 @@ extern "C"
 
 #define UNIX_TYPE       L"u"
 #define WINDOWS_TYPE    L"w"
+#define _UNIX_TYPE      "u"
+#define _WINDOWS_TYPE   "w"
 
 using namespace types;
 
@@ -38,13 +40,13 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 
     if(in.size() < 1 && in.size() > 4)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d to %d expected.\n"), L"pathconvert" , 1, 4);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "pathconvert" , 1, 4);
         return Function::Error;
     }
 
     if(_iRetCount != 1)
     {
-        ScierrorW(78,_W("%ls: Wrong number of output argument(s): %d expected.\n"), L"pathconvert", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "pathconvert", 1);
         return Function::Error;
     }
 
@@ -53,7 +55,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
     {
         if(in[3]->isString() == false || in[3]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"pathconvert", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "pathconvert", 4);
             return Function::Error;
         }
 
@@ -68,7 +70,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
         }
         else
         {
-            ScierrorW(999,_W("%ls: Wrong value for input argument #%d: '%ls' or '%ls' expected.\n"), L"pathconvert", 4, UNIX_TYPE, WINDOWS_TYPE);
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "pathconvert", 4, _UNIX_TYPE, _WINDOWS_TYPE);
             return Function::Error;
         }
     }
@@ -77,7 +79,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
     {
         if(in[2]->isBool() == false || in[2]->getAs<types::Bool>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A boolean expected.\n"), L"pathconvert", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "pathconvert", 3);
             return Function::Error;
         }
 
@@ -88,7 +90,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
     {
         if(in[1]->isBool() == false || in[1]->getAs<types::Bool>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A boolean expected.\n"), L"pathconvert", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "pathconvert", 2);
             return Function::Error;
         }
 
@@ -103,7 +105,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 
     if(in[0]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix of strings expected.\n"), L"pathconvert", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "pathconvert", 1);
         return Function::Error;
     }
 

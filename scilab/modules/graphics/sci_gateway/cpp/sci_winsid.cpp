@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_winsid(types::typed_list &in, int _iRetCount, t
         int * ids = (int*)MALLOC(nbFigure * sizeof(int));
         if (ids == NULL)
         {
-            ScierrorW(999, _W("%ls: No more memory.\n"), L"winsid");
+            Scierror(999, _("%s: No more memory.\n"), "winsid");
             return types::Function::Error;
         }
         sciGetFiguresId(ids);

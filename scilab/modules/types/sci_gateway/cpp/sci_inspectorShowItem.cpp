@@ -30,7 +30,7 @@ Function::ReturnValue sci_inspectorShowItem(typed_list &in, int _iRetCount, type
 {
     if(in.size() > 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d or %d expected.\n"), L"inspectorShowItem", 0, 1);    
+        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "inspectorShowItem", 0, 1);    
         return Function::Error;
     }
 
@@ -52,14 +52,14 @@ Function::ReturnValue sci_inspectorShowItem(typed_list &in, int _iRetCount, type
     {
         if(in[0]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"inspectorShowItem", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "inspectorShowItem", 1);
             return Function::Error;
         }
 
         Double *pD = in[0]->getAs<Double>();
         if(pD->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"inspectorShowItem", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "inspectorShowItem", 1);
             Function::Error;
         }
 

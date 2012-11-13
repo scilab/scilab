@@ -35,13 +35,13 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
 
     if(in.size() != 1 && in.size() != 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"balanc", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "balanc", 1, 2);
         return types::Function::Error;
     }
 
     if(_iRetCount != 2*in.size())
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"balanc", 2*in.size());
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "balanc", 2*in.size());
         return types::Function::Error;
     }
 
@@ -73,7 +73,7 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
 
         if(pDbl[0]->getRows() != pDbl[1]->getRows())
         {
-            ScierrorW(999, _W("%ls: Arguments %d and %d must have equal dimensions.\n"), L"balanc", 1, 2);
+            Scierror(999, _("%s: Arguments %d and %d must have equal dimensions.\n"), "balanc", 1, 2);
             return types::Function::Error;
         }
     }
@@ -92,7 +92,7 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
 
     if(pDbl[0]->getRows() != pDbl[0]->getCols())
     {
-        ScierrorW(20, _W("%ls: Wrong type for argument %d: Square matrix expected.\n"), L"balanc", 1);
+        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "balanc", 1);
         return types::Function::Error;
     }
 
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
             pData[i] = (double*)oGetDoubleComplexFromPointer(pDbl[i]->getReal(), pDbl[i]->getImg(), pDbl[i]->getSize());
             if(!pData[i])
             {
-                ScierrorW(999,_W("%ls: Cannot allocate more memory.\n"),L"balanc");
+                Scierror(999, _("%s: Cannot allocate more memory.\n"), "balanc");
                 return types::Function::Error;
             }
         }
@@ -119,7 +119,7 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
 
     if(iRet != 0)
     {
-	    ScierrorW(999, _W("%ls: LAPACK error n°%d.\n"), L"balanc",iRet);
+	    Scierror(999, _("%s: LAPACK error n°%d.\n"), "balanc",iRet);
         return types::Function::Error;
     }
 

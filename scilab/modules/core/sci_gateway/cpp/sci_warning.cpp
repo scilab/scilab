@@ -31,19 +31,19 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
 {
     if(in.size() != 1)
     {
-        ScierrorW(77,_W("%ls: Wrong number of input argument(s): %d expected.\n"), L"warning", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "warning", 1);
         return Function::Error;
     }
 
     if(_iRetCount != 1)
     {
-        ScierrorW(78,_W("%ls: Wrong number of output argument(s): %d expected.\n"), L"warning", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "warning", 1);
         return Function::Error;
     }
 
     if(in[0]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: String expected.\n"), L"warning", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "warning", 1);
         return Function::Error;
     }
 
@@ -82,9 +82,9 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
     {
         for(int i = 0; i < psInput->getSize() ; ++i)
         {
-            sciprintW(_W("WARNING: %ls\n"), psInput->get(i));
+            sciprint(_("WARNING: %ls\n"), psInput->get(i));
         }
-        sciprintW(L"\n");
+        sciprint("\n");
     }
 
 

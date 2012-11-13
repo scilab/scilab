@@ -34,12 +34,12 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
 
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"strtod", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strtod", 1);
         return types::Function::Error;
     }
     if(_iRetCount > 2)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"strtod", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "strtod", 1, 2);
         return types::Function::Error;
     }
 

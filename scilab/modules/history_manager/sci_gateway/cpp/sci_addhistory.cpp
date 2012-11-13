@@ -33,7 +33,7 @@ types::Function::ReturnValue sci_addhistory(types::typed_list &in, int _iRetCoun
     {
         if((in[0]->isString() == false))
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A matrix of string expected.\n"), L"addhistory", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of string expected.\n"), "addhistory", 1);
             return types::Function::Error;
         }
         pStr = in[0]->getAs<types::String>();
@@ -52,13 +52,13 @@ types::Function::ReturnValue sci_addhistory(types::typed_list &in, int _iRetCoun
 
         if(!bOK)
         {
-            ScierrorW(999, _W("%ls: Append lines in Scilab history failed.\n"), L"addhistory");
+            Scierror(999, _("%s: Append lines in Scilab history failed.\n"), "addhistory");
             return types::Function::Error;
         }
     }
     else
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"addhistory", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "addhistory", 1);
         return types::Function::Error;
     }
     return types::Function::OK;

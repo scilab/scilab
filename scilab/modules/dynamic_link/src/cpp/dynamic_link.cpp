@@ -110,14 +110,14 @@ int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPoint
                 {
                     if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
                     {
-                        sciprintW(_W("%ls: The file %ls does not exist in PATH environment.\n" ), L"link", _pwstLibraryName);
+                        sciprint(_("%ls: The file %ls does not exist in PATH environment.\n" ), L"link", _pwstLibraryName);
                     }
                 }
             }
 #else
             if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
             {
-                sciprintW(_W("Link failed for dynamic library '%ls'.\n"), _pwstLibraryName);
+                sciprint(_("Link failed for dynamic library '%ls'.\n"), _pwstLibraryName);
                 sciprint(_("An error occurred: %s\n"), GetLastDynLibError());
             }
 #endif
@@ -214,7 +214,7 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
     /** entry was previously loaded **/
     if(ConfigVariable::getEntryPoint(_pwstEntryPointName, _iLibID) != NULL)
     {
-        sciprintW(_W("Entry name %ls.\n"), _pwstEntryPointName);
+        sciprint(_("Entry name %ls.\n"), _pwstEntryPointName);
         return -4;
     }
 
@@ -231,7 +231,7 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
     {
         if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
         {
-            sciprintW(_W("%ls is not an entry point.\n"), _pwstEntryPointName);
+            sciprint(_("%ls is not an entry point.\n"), _pwstEntryPointName);
         }
         return -5;
     }
@@ -239,7 +239,7 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
 
     if(0 /*debug mode*/)
     {
-        sciprintW(_W("Linking %ls.\n"), _pwstEntryPointName);
+        sciprint(_("Linking %ls.\n"), _pwstEntryPointName);
     }
 
     ConfigVariable::setEntryPointName(pEP, _pwstEntryPointName);

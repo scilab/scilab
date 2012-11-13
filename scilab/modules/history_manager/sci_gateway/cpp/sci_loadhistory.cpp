@@ -36,14 +36,14 @@ types::Function::ReturnValue sci_loadhistory(types::typed_list &in, int _iRetCou
             BOOL bOK = HistoryManager::getInstance()->loadFromFile(pstFilename);
             if(!bOK)
             {
-                ScierrorW(999, _W("%ls: loadScilabHistoryFromFile failed.\n"), L"loadhistory");
+                Scierror(999, _("%s: loadScilabHistoryFromFile failed.\n"), "loadhistory");
                 return types::Function::Error;
             }
             FREE(pstFilename);
         }
         else
         {
-            ScierrorW(999, _W("%ls: getFilenameScilabHistory failed.\n"), L"loadhistory");
+            Scierror(999, _("%s: getFilenameScilabHistory failed.\n"), "loadhistory");
             return types::Function::Error;
         }
     }
@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_loadhistory(types::typed_list &in, int _iRetCou
 
         if((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"loadhistory", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "loadhistory", 1);
             return types::Function::Error;
         }
 
@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_loadhistory(types::typed_list &in, int _iRetCou
                 BOOL bOK = HistoryManager::getInstance()->loadFromFile(pstFilename);
                 if(!bOK)
                 {
-                    ScierrorW(999, _W("%ls: Load Scilab history from file failed.\n"), L"loadhistory");
+                    Scierror(999, _("%s: Load Scilab history from file failed.\n"), "loadhistory");
                     return types::Function::Error;
                 }
                 FREE(pstFilename);
@@ -75,13 +75,13 @@ types::Function::ReturnValue sci_loadhistory(types::typed_list &in, int _iRetCou
         }
         else
         {
-            ScierrorW(999, _W("%ls: expandPathVariableW failed.\n"), L"loadhistory");
+            Scierror(999, _("%s: expandPathVariableW failed.\n"), "loadhistory");
             return types::Function::Error;
         }
     }
     else
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"loadhistory", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "loadhistory", 0, 1);
         return types::Function::Error;
     }
     return types::Function::OK;

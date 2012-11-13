@@ -48,14 +48,14 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
     // *** check the minimal number of input args. ***
     if (in.size() < 3 || in.size() > 4)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"lsq_splin", 3, 4);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "lsq_splin", 3, 4);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 2)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %dexpected.\n"), L"lsq_splin", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %dexpected.\n"), "lsq_splin", 1, 2);
         return types::Function::Error;
     }
 
@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
     // xd
     if (in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"lsq_splin", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "lsq_splin", 1);
         return types::Function::Error;
     }
 
@@ -72,7 +72,7 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
     // yd
     if (in[1]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"lsq_splin", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "lsq_splin", 2);
         return types::Function::Error;
     }
 
@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
             pDblXd->getRows() != pDblYd->getRows() ||
             (pDblXd->getCols() != 1 && pDblXd->getRows() != 1))
     {
-        ScierrorW(999, _W("%ls: Wrong size for input arguments #%d and #%d: Same size expected.\n"), L"lsq_splin", 1, 2);
+        Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"), "lsq_splin", 1, 2);
         return types::Function::Error;
     }
 
@@ -93,7 +93,7 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
     {
         if (in[iPos]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"lsq_splin", iPos + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "lsq_splin", iPos + 1);
             return types::Function::Error;
         }
 
@@ -101,7 +101,7 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
 
         if (pDblWd->getRows() != pDblXd->getRows() || pDblWd->getCols() != pDblXd->getCols())
         {
-            ScierrorW(999, _W("%ls: Wrong size for input arguments #%d and #%d: Same size expected.\n"), L"lsq_splin", 1, 3);
+            Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"), "lsq_splin", 1, 3);
             return types::Function::Error;
         }
         iPos++;
@@ -110,7 +110,7 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
     // x
     if (in[iPos]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"lsq_splin", iPos + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "lsq_splin", iPos + 1);
         return types::Function::Error;
     }
 
@@ -119,13 +119,13 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
 
     if (pDblX->getSize() < 2 || (pDblX->getCols() != 1 && pDblX->getRows() != 1))
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A vector of size 2 expected.\n"), L"lsq_splin", iPos + 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"), "lsq_splin", iPos + 1);
         return types::Function::Error;
     }
 
     if (good_order(pDblX->get(), pDblX->getSize()) == false) /* verify strict increasing abscissae */
     {
-        ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), L"lsq_splin", iPos + 1);
+        Scierror(999, _("%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), "lsq_splin", iPos + 1);
         return types::Function::Error;
     }
 
@@ -154,12 +154,12 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
 
     if (ierr == -1)
     {
-        ScierrorW(999, _W("%ls: Not enough points for the fit.\n"), L"lsq_plin");
+        Scierror(999, _("%s: Not enough points for the fit.\n"), "lsq_plin");
         return types::Function::Error;
     }
     else if (ierr == 1 && getWarningMode())
     {
-        sciprintW(_W("%ls: Warning: Rank deficiency of the least square matrix.\n"), L"lsq_splin");
+        sciprint(_("%ls: Warning: Rank deficiency of the least square matrix.\n"), "lsq_splin");
     }
 
     // *** Return result in Scilab. ***

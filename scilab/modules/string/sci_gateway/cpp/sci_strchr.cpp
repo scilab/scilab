@@ -35,22 +35,22 @@ types::Function::ReturnValue sci_strchr(types::typed_list &in, int _iRetCount, t
 
     if(in.size() != 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"strchr", 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strchr", 2);
         return types::Function::Error;
     }
     if(_iRetCount != 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"strchr", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strchr", 1);
         return types::Function::Error;
     }
 	if(in[0]->isString() == false)
 	{
-		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"),L"strchr", 1);
+		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strchr", 1);
 		return types::Function::Error;
 	}
 	if(in[1]->isString() == false)
 	{
-		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"),L"strchr", 2);
+		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strchr", 2);
 		return types::Function::Error;
 	}
 
@@ -59,19 +59,19 @@ types::Function::ReturnValue sci_strchr(types::typed_list &in, int _iRetCount, t
 
     if(pString->getSize() == 0)
     {
-        ScierrorW(999,_W("%ls: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"),L"strchr",1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), "strchr",1);
         return types::Function::Error;
     }
 
     if(pCharSample->getSize() == 0)
     {
-        ScierrorW(999,_W("%ls: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"),L"strchr",2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), "strchr",2);
         return types::Function::Error;
     }
 
     if(pString->getSize() != pCharSample->getSize() && pCharSample->isScalar() == false)
     {
-        ScierrorW(999,_W("%ls: Wrong size for input argument #%d.\n"),L"strchr", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "strchr", 2);
         return types::Function::Error;
     }
 
@@ -87,7 +87,7 @@ types::Function::ReturnValue sci_strchr(types::typed_list &in, int _iRetCount, t
         int iLen = (int)wcslen(pCharSample->get(j));
         if(iLen != 1)
         {
-    		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: Char(s) expected.\n"),L"strchr", 2);
+    		Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), "strchr", 2);
     		delete pOutString;
             return types::Function::Error;
         }
@@ -107,7 +107,7 @@ types::Function::ReturnValue sci_strchr(types::typed_list &in, int _iRetCount, t
                 {
                     delete pOutString;
                     FREE(ptrwstrstr);
-                    ScierrorW(999,_W("%ls: No more memory.\n"),L"strchr");
+                    Scierror(999, _("%s: No more memory.\n"), "strchr");
                     return types::Function::Error;
                 }
             }
@@ -118,7 +118,7 @@ types::Function::ReturnValue sci_strchr(types::typed_list &in, int _iRetCount, t
                 {
                     delete pOutString;
                     FREE(ptrwstrstr);
-                    ScierrorW(999,_W("%ls: No more memory.\n"),L"strchr");
+                    Scierror(999, _("%s: No more memory.\n"), "strchr");
                     return types::Function::Error;
                 }
             }

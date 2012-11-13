@@ -98,7 +98,7 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
     // per the scilab manual sparse will take upto 3 arguments but no less than one
     if (in.size() < 1 || in.size() > 3)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"sparse", 1, 3);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "sparse", 1, 3);
         return Function::Error;
     }
 
@@ -124,7 +124,7 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
 
         if (!isValid)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix expected.\n"), L"sparse", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "sparse", i + 1);
             return Function::Error;
         }
     }
@@ -172,7 +172,7 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
         {
             if (in[i]->isDouble() == false && !(in[i]->isBool() && i == 1))
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real or Complex matrix expected.\n"), L"sparse", i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"), "sparse", i + 1);
                 return Function::Error;
             }
         }
@@ -184,7 +184,7 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
             pDims = in[2]->getAs<Double>();
             if (pDims->getRows() != 1 || pDims->getCols() != 2)
             {
-                ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"), L"sparse", 3, 1, 2);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"), "sparse", 3, 1, 2);
                 return Function::Error;
             }
         }
@@ -194,7 +194,7 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
 
         if (pGT2->getSize() != pGT1->getRows())
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A matrix of size %d expected.\n"), L"sparse", 2, pGT1->getRows());
+            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"), "sparse", 2, pGT1->getRows());
             return Function::Error;
         }
 

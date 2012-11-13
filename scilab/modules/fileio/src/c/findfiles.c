@@ -76,7 +76,11 @@ wchar_t** findfilesW(wchar_t *path, wchar_t *filespec, int *sizeListReturned, BO
 	{
 		if (warning)
 		{
-            sciprintW(_W("Warning: Could not open directory %s: %s\n"), path, _wcserror(errno));
+            char* pstPath = wide_string_to_UTF8(path);
+            char* pstError = wide_string_to_UTF8(_wcserror(errno));
+            sciprint(_("Warning: Could not open directory %s: %s\n"), pstPath, pstError);
+            FREE(pstPath);
+            FREE(pstError);
 		}
 	}
 	FindClose(hFile);

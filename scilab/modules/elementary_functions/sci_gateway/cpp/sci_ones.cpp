@@ -50,7 +50,7 @@ Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, types::typ
             Double* pIn = in[i]->getAs<Double>();
             if(pIn->isDouble() == false || pIn->isScalar() == false || pIn->isComplex())
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real scalar expected.\n"), L"ones", i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "ones", i + 1);
                 return Function::Error;
             }
             piDims[i] = static_cast<int>(pIn->getReal()[0]);

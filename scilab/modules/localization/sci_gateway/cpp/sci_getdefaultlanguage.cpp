@@ -28,13 +28,13 @@ Function::ReturnValue sci_getdefaultlanguage(typed_list &in, int _piRetCount, ty
 {
     if(in.size() != 0)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"getdefaultlanguage", 0);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "getdefaultlanguage", 0);
         return Function::Error;
     }
 
     if(_piRetCount != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"getdefaultlanguage", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "getdefaultlanguage", 1);
         return Function::Error;
     }
 

@@ -28,19 +28,19 @@ Function::ReturnValue sci_getfield(typed_list &in, int _iRetCount, typed_list &o
 {
     if (in.size() != 2)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"getfield", 2);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "getfield", 2);
         return Function::Error;
     }
 
     if (in[0]->isDouble() == false || in[0]->getAs<Double>()->isComplex() == true)
     {
-        ScierrorW(999, _W("%ls:  Wrong type for input argument #%d: Real Matrix expected.\n"), L"getfield", 1);
+        Scierror(999, _("%s:  Wrong type for input argument #%d: Real Matrix expected.\n"), "getfield", 1);
         return Function::Error;
     }
 
     if (in[1]->isList() == false && in[1]->isMList() == false && in[1]->isTList() == false)
     {
-        ScierrorW(999, _W("%ls:  Wrong type for input argument #%d: List expected.\n"), L"getfield", 2);
+        Scierror(999, _("%s:  Wrong type for input argument #%d: List expected.\n"), "getfield", 2);
         return Function::Error;
     }
 
@@ -51,7 +51,7 @@ Function::ReturnValue sci_getfield(typed_list &in, int _iRetCount, typed_list &o
 
     if (_iRetCount != pInDouble->getSize())
     {
-        ScierrorW(999, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"getfield", pInDouble->getSize());
+        Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "getfield", pInDouble->getSize());
         return Function::Error;
     }
 
@@ -68,7 +68,7 @@ Function::ReturnValue sci_getfield(typed_list &in, int _iRetCount, typed_list &o
         }
         else
         {
-            ScierrorW(21, _W("%ls: Invalid index: Computed index was %d.\n"), L"getfield", iIndex + 1);
+            Scierror(21, _("%s: Invalid index: Computed index was %d.\n"), "getfield", iIndex + 1);
             return Function::Error;
         }
     }

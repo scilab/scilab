@@ -68,7 +68,7 @@ Function::ReturnValue sci_spcompack(typed_list &in, int nbRes, typed_list &out)
 {
     if(in.size() != 3)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"spcompack", 3);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "spcompack", 3);
         return Function::Error;
     }
 
@@ -77,14 +77,14 @@ Function::ReturnValue sci_spcompack(typed_list &in, int nbRes, typed_list &out)
         /* Scilab <6 does not enforce vector args :( */
         if(in[i]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real vector expected.\n"), L"spcompack", i+1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Real vector expected.\n"), "spcompack", i+1);
             return Function::Error;
         }
     }
 
     if(nbRes > 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"spcompack", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "spcompack", 1);
         return Function::Error;
     }
 

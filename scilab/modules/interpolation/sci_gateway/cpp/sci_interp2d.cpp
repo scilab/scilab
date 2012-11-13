@@ -50,14 +50,14 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
     // *** check the minimal number of input args. ***
     if (in.size() < 5 || in.size() > 6)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"interp2d", 5, 6);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "interp2d", 5, 6);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 6)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"interp2d", 1, 6);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "interp2d", 1, 6);
         return types::Function::Error;
     }
 
@@ -65,7 +65,7 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
     // xp
     if (in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"interp2d", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "interp2d", 1);
         return types::Function::Error;
     }
 
@@ -75,21 +75,21 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
     // yp
     if (in[1]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"interp2d", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "interp2d", 2);
         return types::Function::Error;
     }
     pDblYp = in[1]->getAs<types::Double>();
 
     if (pDblXp->getRows() != pDblYp->getRows() || pDblXp->getCols() != pDblYp->getCols())
     {
-        ScierrorW(999, _W("%ls: Wrong size for input arguments #%d and #%d: Same size expected.\n"), L"interp2d", 1, 2);
+        Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"), "interp2d", 1, 2);
         return types::Function::Error;
     }
 
     // x
     if (in[2]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"interp2d", 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "interp2d", 3);
         return types::Function::Error;
     }
 
@@ -98,14 +98,14 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
 
     if (pDblX->getRows() != 1 || pDblX->getSize() < 2)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input arguments #%d: A row vector of size at least 2 expected.\n"), L"interp2d", 3);
+        Scierror(999, _("%s: Wrong size for input arguments #%d: A row vector of size at least 2 expected.\n"), "interp2d", 3);
         return types::Function::Error;
     }
 
     // y
     if (in[3]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"interp2d", 4);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "interp2d", 4);
         return types::Function::Error;
     }
 
@@ -114,14 +114,14 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
 
     if (pDblY->getRows() != 1 || pDblY->getSize() < 2)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input arguments #%d: A row vector of size at least 2 expected.\n"), L"interp2d", 4);
+        Scierror(999, _("%s: Wrong size for input arguments #%d: A row vector of size at least 2 expected.\n"), "interp2d", 4);
         return types::Function::Error;
     }
 
     // c
     if (in[4]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"interp2d", 5);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "interp2d", 5);
         return types::Function::Error;
     }
 
@@ -129,7 +129,7 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
     sizeOfC = 16 * (sizeOfX - 1) * (sizeOfY - 1);
     if (pDblC->getCols() != 1 || pDblC->getSize() != sizeOfC)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input arguments #%d: A colomn vector of size %d expected.\n"), L"interp2d", 5, sizeOfC);
+        Scierror(999, _("%s: Wrong size for input arguments #%d: A colomn vector of size %d expected.\n"), "interp2d", 5, sizeOfC);
         return types::Function::Error;
     }
 
@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
     {
         if (in[5]->isString() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A string expected.\n"), L"interp2d", 6);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "interp2d", 6);
             return types::Function::Error;
         }
 
@@ -166,7 +166,7 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
         }
         else // undefined
         {
-            ScierrorW(999, _W("%ls: Wrong values for input argument #%d : '%ls' is a unknow '%ls' type.\n"), L"interp2d", 6, wcsType, L"outmode");
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "interp2d", 6, wcsType, "outmode");
             return types::Function::Error;
         }
     }

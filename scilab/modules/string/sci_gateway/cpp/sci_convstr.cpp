@@ -29,19 +29,19 @@ Function::ReturnValue sci_convstr(typed_list &in, int _iRetCount, typed_list &ou
 
     if (_iRetCount != 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"convstr", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "convstr", 1);
         return Function::Error;
     }
 
     if (in.size() != 1 && in.size() != 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d or %d expected.\n"), L"convstr", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), "convstr", 1, 2);
         return Function::Error;
     }
 
     if (in[0]->isString() == false && !(in[0]->isDouble() == true && in[0]->getAs<Double>()->isEmpty() == true))
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix of strings expected.\n"), L"convstr", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "convstr", 2);
         return Function::Error;
     }
 
@@ -50,7 +50,7 @@ Function::ReturnValue sci_convstr(typed_list &in, int _iRetCount, typed_list &ou
         String *pInConvertMode = in[1]->getAs<String>();
         if (pInConvertMode->getSize() != 1 || wcslen(pInConvertMode->get(0)) != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) expected.\n"), L"convstr", 2);
+            Scierror(999, _("%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) expected.\n"), "convstr", 2);
             return Function::Error;
         }
 
@@ -65,7 +65,7 @@ Function::ReturnValue sci_convstr(typed_list &in, int _iRetCount, typed_list &ou
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) expected.\n"), L"convstr", 2);
+            Scierror(999, _("%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) expected.\n"), "convstr", 2);
             return Function::Error;
         }
     }

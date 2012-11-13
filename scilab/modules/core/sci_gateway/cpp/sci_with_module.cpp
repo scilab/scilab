@@ -29,13 +29,13 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
 {
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"with_module", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "with_module", 1);
         return types::Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-		ScierrorW(999, _W("%ls: Wrong type for input argument #%d: String expected.\n"), L"with_module", 1);
+		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "with_module", 1);
         return types::Function::Error;
     }
 

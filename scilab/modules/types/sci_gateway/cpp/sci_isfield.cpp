@@ -29,25 +29,25 @@ Function::ReturnValue sci_isfield(typed_list &in, int _iRetCount, typed_list &ou
 {
     if (_iRetCount != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"isfield", 1);
+        Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "isfield", 1);
         return Function::Error;
     }
 
     if (in.size() != 2)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"isfield", 2);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "isfield", 2);
         return Function::Error;
     }
 
     if(in[0]->isStruct() == false)
     {
-        ScierrorW(999, _W("%ls:  Wrong type for input argument #%d: struct array expected.\n"), L"isfield", 1);
+        Scierror(999, _("%s:  Wrong type for input argument #%d: struct array expected.\n"), "isfield", 1);
         return Function::Error;
     }
 
     if(in[1]->isString() == false)
     {
-        ScierrorW(999, _W("%ls:  Wrong type for input argument #%d: A string expected.\n"), L"isfield", 2);
+        Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected.\n"), "isfield", 2);
         return Function::Error;
     }
 

@@ -27,13 +27,13 @@ Function::ReturnValue sci_spones(typed_list &in, int _piRetCount, typed_list &ou
 {
     if(in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"spones", 1);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "spones", 1);
         return Function::Error;
     }
 
     if(in[0]->isSparse() == false && in[0]->isSparseBool() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for argument %d: Sparse matrix expected.\n"), L"spones", 1);
+        Scierror(999, _("%s: Wrong type for argument %d: Sparse matrix expected.\n"), "spones", 1);
         return Function::Error;
     }
 

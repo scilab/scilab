@@ -53,33 +53,33 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
 
     if(in.size() < 2)
     {
-       ScierrorW(77, _W("%ls: Wrong number of input argument(s): At least %d expected.\n"), L"mfprintf", 2);
+       Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), "mfprintf", 2);
         return types::Function::Error;
     }
 
     if(in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A Real expected.\n"), L"mfprintf", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mfprintf", 1);
         return types::Function::Error;
     }
 
     types::Double* pFileId = in[0]->getAs<types::Double>();
     if(pFileId->isScalar() == false || pFileId->isComplex())
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A Real expected.\n"), L"mfprintf", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mfprintf", 1);
         return types::Function::Error;
     }
 
     if(in[1]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"mfprintf", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "mfprintf", 2);
         return types::Function::Error;
     }
 
     types::String* pFileStr = in[1]->getAs<types::String>();
     if(pFileStr->isScalar() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"mfprintf", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "mfprintf", 2);
         return types::Function::Error;
     }
 
@@ -97,7 +97,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
 
 	if(FileManager::getFile(iFile) == NULL)
 	{           
-        ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mfprintf", iFile);
+        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfprintf", iFile);
         return types::Function::Error;
 	}
 
@@ -117,7 +117,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
         isSTD = TRUE;
         break;
     case 5:
-        ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mfprintf", iFile);
+        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfprintf", iFile);
         return types::Function::Error;
     default:
         isSTD = FALSE;
@@ -130,7 +130,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     /* read only attrib 1xx*/
     if((dfileMode >= 100) && (dfileMode < 200) && !isSTD)
     {
-        ScierrorW(999, _W("%ls: Wrong file mode: READ only.\n"), L"mfprintf");
+        Scierror(999, _("%s: Wrong file mode: READ only.\n"), "mfprintf");
         return types::Function::Error;
     }
 
@@ -153,7 +153,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     //Input values must be less or equal than excepted
     if((in.size() - 2) > iNumberPercent)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: at most %d expected.\n"), L"mprintf", iNumberPercent);
+        Scierror(999, _("%s: Wrong number of input arguments: at most %d expected.\n"), "mprintf", iNumberPercent);
         return types::Function::Error;
     }
 
@@ -167,7 +167,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
             //all arguments must have the same numbers of rows !
             if(iRefRows != in[i]->getAs<GenericType>()->getRows())
             {
-                ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), L"mprintf");
+                Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "mprintf");
                 return types::Function::Error;
             }
 
@@ -177,7 +177,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
 
     if(iNumberCols != iNumberPercent)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), L"mprintf");
+        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "mprintf");
         return types::Function::Error;
     }  
 

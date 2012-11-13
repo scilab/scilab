@@ -40,7 +40,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
 {
     if(in.size() > 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"getversion", 0, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "getversion", 0, 2);
         return Function::Error;
     }
 
@@ -48,7 +48,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
     {
         if(_iRetCount != 1 && _iRetCount != 2)
         {
-            ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"getveresion", 1, 2);
+            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "getveresion", 1, 2);
             return Function::Error;
         }
 
@@ -72,13 +72,13 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
     {
         if(in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d: String expected.\n"), L"getversion", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "getversion", 1);
             return Function::Error;
         }
 
         if(_iRetCount != 1)
         {
-             ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"getveresion", 1);
+            Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getveresion", 1);
             return Function::Error;
        }
 
@@ -89,7 +89,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
             int *version = getModuleVersion(pwstModule, &versionSize);
             if(version == NULL)
             {
-                ScierrorW(999, _W("%ls: Wrong file version.xml %s.\n"), L"getversion", pwstModule);
+                Scierror(999, _("%s: Wrong file version.xml %s.\n"), "getversion", pwstModule);
                 return Function::Error;
             }
 
@@ -103,13 +103,13 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
     {
         if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d: String expected.\n"), L"getversion", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "getversion", 1);
             return Function::Error;
         }
 
         if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d: String expected.\n"), L"getversion", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "getversion", 2);
             return Function::Error;
         }
 

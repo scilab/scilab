@@ -33,19 +33,19 @@ types::Function::ReturnValue sci_notify(types::typed_list &in, int _iRetCount, t
 
     if(in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"notify" , 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "notify" , 1);
         return types::Function::Error;
     }
     if(in[0]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"notify", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "notify", 1);
         return types::Function::Error;
     }
     pString = in[0]->getAs<types::String>();
 
     if(pString->isScalar() == FALSE)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A string expected.\n"), L"notify" , 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "notify" , 1);
         return types::Function::Error;
     }
     wcsInput = pString->get(0);
@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_notify(types::typed_list &in, int _iRetCount, t
     }
     catch(const GiwsException::JniException & e)
     {
-        ScierrorW(999, _W("%ls: A Java exception arisen:\n%s"), L"notify", e.whatStr().c_str());
+        Scierror(999, _("%s: A Java exception arisen:\n%s"), "notify", e.whatStr().c_str());
         FREE(strInput);
         return types::Function::Error;
     }

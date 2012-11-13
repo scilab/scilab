@@ -38,14 +38,14 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
 
     if(in.size() < 1 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mput", 1, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mput", 1, 3);
         return Function::Error;
     }
 
     //check parameter 1
     if((in[0]->isDouble() == false) && (in[0]->isInt() == false))
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"mput", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mput", 1);
         return Function::Error;
     }
 
@@ -64,7 +64,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
     {//export format
         if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"mput", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mput", 2);
             return Function::Error;
         }
         pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
@@ -75,7 +75,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
     {
         if(in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"mput", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mput", 3);
             return Function::Error;
         }
 
@@ -85,7 +85,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
     switch (iFile)
     {
     case 5: // stdin
-        ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mput", iFile);
+        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mput", iFile);
         return types::Function::Error;
     }
 

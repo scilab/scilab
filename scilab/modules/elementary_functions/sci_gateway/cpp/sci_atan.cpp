@@ -35,13 +35,13 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() < 1 || in.size() > 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"atan", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "atan", 1, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"atan", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "atan", 1);
         return types::Function::Error;
     }
 
@@ -64,14 +64,14 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
                 {
                     if (ConfigVariable::getIeee() == 0)
                     {
-                        ScierrorW(999, _W("%ls: Wrong value for input argument #%d : Singularity of the function.\n"), L"atan", 1);
+                        Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "atan", 1);
                         return types::Function::Error;
                     }
                     else if (ConfigVariable::getIeee() == 1)
                     {
                         if (ConfigVariable::getWarningMode())
                         {
-                            sciprintW(_W("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), L"atan", 1);
+                            sciprint(_("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "atan", 1);
                         }
                     }
                 }
@@ -94,13 +94,13 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
 
         if (pDblX->isComplex() || pDblY->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"atan", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "atan", 2);
             return types::Function::Error;
         }
 
         if (pDblX->getSize() != pDblY->getSize())
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d and #%d: Same size expected.\n"), L"atan", 1, 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d and #%d: Same size expected.\n"), "atan", 1, 2);
             return types::Function::Error;
         }
 

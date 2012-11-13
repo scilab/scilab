@@ -28,7 +28,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
 {
     if (in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"double", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "double", 1);
         return types::Function::Error;
     }
 
@@ -40,7 +40,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
     }
     else if (in[0]->isInt() == false && in[0]->isBool() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type of input arguments: integer, boolean or double expected.\n"), L"double");
+        Scierror(999, _("%s: Wrong type of input arguments: integer, boolean or double expected.\n"), "double");
         return types::Function::Error;
     }
 
@@ -149,7 +149,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
 
         default :
         {
-            ScierrorW(999, _W("Never occur"));
+            Scierror(999, _("Never occur"));
             return types::Function::Error;
         }
     }

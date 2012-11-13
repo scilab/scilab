@@ -35,7 +35,7 @@ types::Function::ReturnValue sci_chol(types::typed_list &in, int _iRetCount, typ
 
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"chol", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "chol", 1);
         return types::Function::Error;
     }
 
@@ -48,7 +48,7 @@ types::Function::ReturnValue sci_chol(types::typed_list &in, int _iRetCount, typ
     pDbl = in[0]->getAs<types::Double>();
     if(pDbl->getRows() != pDbl->getCols())
     {
-		ScierrorW(20, _W("%ls: Wrong type for argument %d: Square matrix expected.\n"), L"chol", 1);
+		Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "chol", 1);
         return types::Function::Error;            
     }
 
@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_chol(types::typed_list &in, int _iRetCount, typ
         if(pDbl->get(0) <= 0)
         {
 	    	/* Matrix must be positive definite */
-			ScierrorW(29, _W("%ls: Matrix is not positive definite.\n"), L"chol");
+			Scierror(29, _("%s: Matrix is not positive definite.\n"), "chol");
             return types::Function::Error;
         }
 
@@ -90,7 +90,7 @@ types::Function::ReturnValue sci_chol(types::typed_list &in, int _iRetCount, typ
     if(iCholProductResult > 0)
     {
     	/* Matrix must be positive definite */
-		ScierrorW(29, _W("%ls: Matrix is not positive definite.\n"), L"chol");
+		Scierror(29, _("%s: Matrix is not positive definite.\n"), "chol");
         return types::Function::Error;
     }
 

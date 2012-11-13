@@ -29,20 +29,20 @@ Function::ReturnValue sci_fullpath(typed_list &in, int _iRetCount, typed_list &o
 {
     if(in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"fullpath" , 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "fullpath" , 1);
         return Function::Error;
     }
 
     if(_iRetCount != 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"fullpath", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "fullpath", 1);
         return Function::Error;
     }
 
 /*
     if(in[0]->isString() == false || in[0]->getAs<String>()->getSize() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"fullpath", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "fullpath", 1);
         return Function::Error;
     }
 */

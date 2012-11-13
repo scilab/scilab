@@ -38,13 +38,13 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
 
     if (in.size() < 1 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"rat", 1, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "rat", 1, 3);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"rat", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "rat", 1, 2);
         return types::Function::Error;
     }
 
@@ -72,7 +72,7 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
     {
         if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A constant scalar expected.\n"), L"rat", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A constant scalar expected.\n"), "rat", 2);
             return types::Function::Error;
         }
 
@@ -106,7 +106,7 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
             C2F(rat)(&dblIn, &dblTol, &dblN, &dblD, &iFail);
             if (iFail)
             {
-                ScierrorW(999, _W("%ls: The tolerance is too large for the value %d.\n"), L"rat", i);
+                Scierror(999, _("%s: The tolerance is too large for the value %d.\n"), "rat", i);
                 return types::Function::Error;
             }
             pDblOut->set(i, (double)dblN / (double)dblD);
@@ -125,7 +125,7 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
             C2F(rat)(&dblIn, &dblTol, &dblN, &dblD, &iFail);
             if (iFail)
             {
-                ScierrorW(999, _W("%ls: The tolerance is too large for the value %d.\n"), L"rat", i);
+                Scierror(999, _("%s: The tolerance is too large for the value %d.\n"), "rat", i);
                 return types::Function::Error;
             }
             pDblN->set(i, dblN);

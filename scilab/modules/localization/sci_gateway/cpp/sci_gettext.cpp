@@ -39,13 +39,13 @@ Function::ReturnValue sci_gettext(typed_list &in, int _piRetCount, typed_list &o
 {
     if(in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: at least %d expected.\n"), L"gettext", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), "gettext", 1);
         return Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"gettext" ,1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "gettext" ,1);
         return Function::Error;
     }
 

@@ -33,13 +33,13 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
 
     if(in.size() < 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: at least %d expected.\n"), L"msprintf", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), "msprintf", 1);
         return types::Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"msprintf" ,1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "msprintf" ,1);
         return types::Function::Error;
     }
 
@@ -72,7 +72,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
     //Input values must be less or equal than excepted
     if((in.size() - 1) > iNumberPercent)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: at most %d expected.\n"), L"msprintf", iNumberPercent);
+        Scierror(999, _("%s: Wrong number of input arguments: at most %d expected.\n"), "msprintf", iNumberPercent);
         return types::Function::Error;
     }
 
@@ -86,7 +86,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
             //all arguments must have the same numbers of rows !
             if(iRefRows != in[i]->getAs<GenericType>()->getRows())
             {
-                ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), L"msprintf");
+                Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "msprintf");
                 return types::Function::Error;
             }
 
@@ -96,7 +96,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
 
     if(iNumberCols != iNumberPercent)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: data doesn't fit with format.\n"), L"msprintf");
+        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "msprintf");
         return types::Function::Error;
     }
 

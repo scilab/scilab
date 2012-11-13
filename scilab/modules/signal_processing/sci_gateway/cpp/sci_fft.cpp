@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
     //check input parameters
     if(in.size() != 1 && in.size() != 2 && in.size() != 4)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d or %d expected.\n"), L"fft", 1, 4);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), "fft", 1, 4);
         return types::Function::Error;
     }
 
@@ -65,7 +65,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
         //check fourth input parameter : inc
         if(in[3]->isDouble() == false || in[3]->getAs<types::Double>()->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Scalar expected.\n"), L"fft", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), "fft", 4);
             return types::Function::Error;
         }
 
@@ -74,7 +74,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
         //check third input parameter : dim
         if(in[2]->isDouble() == false || in[2]->getAs<types::Double>()->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Scalar expected.\n"), L"fft", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), "fft", 3);
             return types::Function::Error;
         }
 
@@ -85,21 +85,21 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
         //check third input parameter : way
         if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Scalar expected.\n"), L"fft", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), "fft", 2);
             return types::Function::Error;
         }
 
         iWay = (int)in[1]->getAs<types::Double>()->get(0);
         if(iWay != -1 && iWay != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Must be in the set {%ls}.\n"), L"fft", 2, "-1 1");
+            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "fft", 2, "-1 1");
             return types::Function::Error;
         }
 
     case 1:
         if(in[0]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Scalar expected.\n"), L"fft", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), "fft", 1);
             return types::Function::Error;
         }
 
@@ -110,7 +110,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
         break;
     default :
         {
-            ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d eor %d xpected.\n"), L"fft", 1, 4);
+            Scierror(77, _("%s: Wrong number of input argument(s): %d eor %d xpected.\n"), "fft", 1, 4);
             return types::Function::Error;
         }
     }
@@ -123,7 +123,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
     piWS = (int*)MALLOC(iWS * sizeof(int));
     if (piWS == NULL)
     {
-        ScierrorW(999, _W("%ls : Memory allocation error.\n"), L"fft");
+        Scierror(999, _("%s : Memory allocation error.\n"), "fft");
         return types::Function::Error;
     }
 
@@ -136,7 +136,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
         iErr = fft_2dim(pOut->getReal(), pOut->getImg(), pOut->getRows(), pOut->getCols(), iWay, piWS, iWS);
         if(iErr == 1)
         {
-            ScierrorW(999, _W("%ls : Memory allocation error.\n"), L"fft");
+            Scierror(999, _("%s : Memory allocation error.\n"), "fft");
             return types::Function::Error;
         }
         break;

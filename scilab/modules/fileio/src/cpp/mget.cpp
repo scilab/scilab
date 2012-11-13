@@ -88,7 +88,7 @@ void C2F(mgetnc)(int* fd, void* res, int* n1, char* type, int* ierr)
 
     if(pFile == NULL || (fa = pFile->getFiledesc()) == NULL)
     {
-        sciprintW(_W("%ls: No input file associated to logical unit %d.\n"),L"mget",*fd);
+        sciprint(_("%s: No input file associated to logical unit %d.\n"), "mget", *fd);
         *ierr=3;
         return;
     }
@@ -188,7 +188,7 @@ void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr)
     *ierr=0;
     if(strlen(type) == 0)
     {
-        sciprintW(_W("%ls: Wrong size for input argument #%d: Non-empty string expected.\n"), L"mget", 4, type);
+        sciprint(_("%s: Wrong size for input argument #%d: Non-empty string expected.\n"), "mget", 4, type);
         *ierr=2;
         return;
     }
@@ -199,12 +199,12 @@ void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr)
         mget2(pFile->getFiledesc(), pFile->getFileSwap(), res, *n, type, ierr);
         if(*ierr > 0)
         {
-            sciprintW(_W("%ls: Wrong value for input argument #%d: Format not recognized.\n"), L"mget", 4);
+            sciprint(_("%s: Wrong value for input argument #%d: Format not recognized.\n"), "mget", 4);
         }
     }
     else
     {
-        sciprintW(_W("%ls: No input file associated to logical unit %d.\n"), L"mget", *fd);
+        sciprint(_("%s: No input file associated to logical unit %d.\n"), "mget", *fd);
         *ierr=3;
     }
 }

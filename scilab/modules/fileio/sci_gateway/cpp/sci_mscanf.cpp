@@ -52,7 +52,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
 
     if(size < 1 || size > 2)
     {
-       ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mscanf", 1, 2);
+       Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mscanf", 1, 2);
         return types::Function::Error;
     }
 
@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
     {
         if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A Real expected.\n"), L"mscanf", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mscanf", 1);
             return types::Function::Error;
         }
         iNiter = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
 
     if(in[size-1]->isString() == false || in[size-1]->getAs<types::String>()->isScalar() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"mscanf", size);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "mscanf", size);
         return types::Function::Error;
     }
 
@@ -92,14 +92,14 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
                     if (iNiter >= 0)
                     {
                         Free_Scan(rowcount,ncol,type_s,&data);
-                        ScierrorW(999,_W("%ls: Data mismatch.\n"),L"mscanf");
+                        Scierror(999, _("%s: Data mismatch.\n"),"mscanf");
                         return types::Function::Error;
                     }
                 break;
 
                 case DO_XXPRINTF_MEM_LACK:
                     Free_Scan(rowcount,ncol,type_s,&data);
-                    ScierrorW(999,_W("%ls: No more memory.\n"),L"mscanf");
+                    Scierror(999, _("%s: No more memory.\n"),"mscanf");
                     return types::Function::Error;
                 break;
             }

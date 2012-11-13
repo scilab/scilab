@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
             }
             else
             {
-                ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String(s) expected.\n"), L"newest", 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A String(s) expected.\n"), "newest", 1);
                 return types::Function::Error;
             }
         }
@@ -92,7 +92,7 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
         {
             if(in[iNbrString]->isString() == FALSE)
             {
-                ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String(s) expected.\n"), L"newest", iNbrString);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A String(s) expected.\n"), "newest", iNbrString);
                 return types::Function::Error;
             }
             pwcsStringInput[iNbrString] = in[iNbrString]->getAs<types::String>()->get(0);

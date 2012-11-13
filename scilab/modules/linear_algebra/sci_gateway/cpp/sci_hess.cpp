@@ -35,13 +35,13 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
 
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"hess", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "hess", 1);
         return types::Function::Error;
     }
 
     if(_iRetCount > 2)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"hess", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "hess", 1, 2);
         return types::Function::Error;
     }
 
@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
 
     if(pDbl->getRows() != pDbl->getCols())
     {
-        ScierrorW(20, _W("%ls: Wrong type for argument %d: Square matrix expected.\n"), L"hess", 1);
+        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "hess", 1);
         return types::Function::Error;
     }
 
@@ -81,7 +81,7 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
         pData = (double *)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
         if(!pData)
         {
-            ScierrorW(999,_W("%ls: Cannot allocate more memory.\n"),L"hess");
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), "hess");
             return types::Function::Error;
         }
     }
@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
             pdH = (double*)MALLOC(pDblH->getSize() * sizeof(doublecomplex));
             if(!pdH)
             {
-                ScierrorW(999,_W("%ls: Cannot allocate more memory.\n"),L"hess");
+                Scierror(999, _("%s: Cannot allocate more memory.\n"), "hess");
                 return types::Function::Error;
             }
         }
@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
     int iRet = iHessM(pData, pDbl->getCols(), pDbl->isComplex(), pdH);
     if(iRet != 0)
     {
-	    ScierrorW(999, _W("%ls: LAPACK error n°%d.\n"), L"hess",iRet);
+	    Scierror(999, _("%s: LAPACK error n°%d.\n"), "hess",iRet);
         return types::Function::Error;
     }
 

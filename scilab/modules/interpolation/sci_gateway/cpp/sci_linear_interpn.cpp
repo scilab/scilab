@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "someinterp.h"
@@ -41,7 +42,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     // *** check the minimal number of input args. ***
     if (in.size() < 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): At least %d expected.\n"), L"linear_interpn", 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), "linear_interpn", 3);
         return types::Function::Error;
     }
 
@@ -50,7 +51,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     // *** check number of output args according the methode. ***
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"linear_interpn", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "linear_interpn", 1);
         return types::Function::Error;
     }
 
@@ -60,7 +61,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     {
         if (in[i]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"linear_interpn", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "linear_interpn", i + 1);
             return types::Function::Error;
         }
 
@@ -68,7 +69,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
 
         if (i != 0 && (lpDblXp[i - 1]->getRows() != lpDblXp[i]->getRows() || lpDblXp[i - 1]->getCols() != lpDblXp[i]->getCols()))
         {
-            ScierrorW(999, _W("%ls: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"), L"linear_interpn", i, i + 1);
+            Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"), "linear_interpn", i, i + 1);
             return types::Function::Error;
         }
     }
@@ -78,7 +79,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     {
         if (in[i + n]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"linear_interpn", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "linear_interpn", i + 1);
             return types::Function::Error;
         }
 
@@ -86,14 +87,14 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
 
         if ((lpDblX[i]->getCols() != 1 && lpDblX[i]->getRows() != 1) || lpDblX[i]->getSize() < 2)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input arguments #%d: A vector of size at least 2 expected.\n"), L"linear_interpn", i + 1);
+            Scierror(999, _("%s: Wrong size for input arguments #%d: A vector of size at least 2 expected.\n"), "linear_interpn", i + 1);
             return types::Function::Error;
         }
 
         /* verify strict increasing abscissae */
         if (good_order(lpDblX[i]->get(), lpDblX[i]->getSize()) == false)
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), L"linear_interpn", i + 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), "linear_interpn", i + 1);
             return types::Function::Error;
         }
     }
@@ -101,7 +102,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     // v
     if (in[2 * n]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"linear_interpn", 2 * n + 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "linear_interpn", 2 * n + 1);
         return types::Function::Error;
     }
 
@@ -111,7 +112,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     {
         if (pDblV->getSize() != lpDblX[0]->getSize())
         {
-            ScierrorW(999, _W("%ls: Size incompatibility between grid points and values in dimension %d.\n"), L"linear_interpn", 1);
+            Scierror(999, _("%s: Size incompatibility between grid points and values in dimension %d.\n"), "linear_interpn", 1);
             return types::Function::Error;
         }
     }
@@ -119,7 +120,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     {
         if (pDblV->getRows() != lpDblX[0]->getSize() || pDblV->getCols() != lpDblX[1]->getSize())
         {
-            ScierrorW(999, _W("%ls: Size incompatibility between grid points and values in dimension %d or %d.\n"), L"linear_interpn", 1, 2);
+            Scierror(999, _("%s: Size incompatibility between grid points and values in dimension %d or %d.\n"), "linear_interpn", 1, 2);
             return types::Function::Error;
         }
     }
@@ -127,7 +128,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     {
         if (pDblV->getDims() != n)
         {
-            ScierrorW(999, _W("%ls: %ls must be a real %d-dim hypermatrix.\n"), L"linear_interpn", L"V", n);
+            Scierror(999, _("%s: %s must be a real %d-dim hypermatrix.\n"), "linear_interpn", "V", n);
             return types::Function::Error;
         }
 
@@ -135,7 +136,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
         {
             if (lpDblX[i]->getSize() != pDblV->getDimsArray()[i])
             {
-                ScierrorW(999, _W("%ls: Size incompatibility between grid points and grid values in dimension %d.\n"), L"linear_interpn", i + 1);
+                Scierror(999, _("%s: Size incompatibility between grid points and grid values in dimension %d.\n"), "linear_interpn", i + 1);
                 return types::Function::Error;
             }
         }
@@ -146,7 +147,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     {
         if (in[2 * n + 1]->isString() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A string expected.\n"), L"linear_interpn", 2 * n + 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "linear_interpn", 2 * n + 2);
             return types::Function::Error;
         }
 
@@ -174,7 +175,9 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
         }
         else // undefined
         {
-            ScierrorW(999, _W("%ls: Wrong values for input argument #%d : '%ls' is a unknow '%ls' type.\n"), L"linear_interpn", 2 * n + 3, wcsType, L"outmode");
+            char* pst = wide_string_to_UTF8(wcsType);
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "linear_interpn", 2 * n + 3, pst, "outmode");
+            FREE(pst);
             return types::Function::Error;
         }
     }

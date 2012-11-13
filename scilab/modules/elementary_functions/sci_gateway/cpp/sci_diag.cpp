@@ -38,13 +38,13 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() < 1 || in.size() > 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"diag", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "diag", 1, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"diag", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "diag", 1);
         return types::Function::Error;
     }
 
@@ -169,7 +169,7 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
     {
         if (in[1]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real scalar expected.\n"), L"diag", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "diag", 2);
             return types::Function::Error;
         }
 
@@ -177,7 +177,7 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
 
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real scalar expected.\n"), L"diag", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "diag", 2);
             return types::Function::Error;
         }
 

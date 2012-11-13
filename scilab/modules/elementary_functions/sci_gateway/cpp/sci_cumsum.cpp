@@ -38,13 +38,13 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 1 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"cumsum", 1, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "cumsum", 1, 3);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"cumsum", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "cumsum", 1);
         return types::Function::Error;
     }
 
@@ -149,7 +149,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
     {
         if (in[2]->isString() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A string expected.\n"), L"cumsum", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "cumsum", 3);
             return types::Function::Error;
         }
 
@@ -165,7 +165,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d : It must be one of the following strings : native or double.\n"), L"cumsum", 3);
+            Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : native or double.\n"), "cumsum", 3);
             return types::Function::Error;
         }
     }
@@ -178,7 +178,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
 
             if (pDbl->isScalar() == false)
             {
-                ScierrorW(999, _W("%ls: Wrong value for input argument #%d : A positive scalar expected.\n"), L"cumsum", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d : A positive scalar expected.\n"), "cumsum", 2);
                 return types::Function::Error;
             }
 
@@ -186,7 +186,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
 
             if (iOrientation <= 0)
             {
-                ScierrorW(999, _W("%ls: Wrong value for input argument #%d : A positive scalar expected.\n"), L"cumsum", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d : A positive scalar expected.\n"), "cumsum", 2);
                 return types::Function::Error;
             }
         }
@@ -244,11 +244,11 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
             {
                 if (in.size() == 2)
                 {
-                    ScierrorW(999, _W("%ls: Wrong value for input argument #%d : It must be one of the following strings : *, r, c, m, native or double.\n"), L"cumsum", 2);
+                    Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : *, r, c, m, native or double.\n"), "cumsum", 2);
                 }
                 else
                 {
-                    ScierrorW(999, _W("%ls: Wrong value for input argument #%d : It must be one of the following strings : *, r, c or m.\n"), L"cumsum", 2);
+                    Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : *, r, c or m.\n"), "cumsum", 2);
                 }
 
                 return types::Function::Error;
@@ -256,7 +256,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix or a string expected.\n"), L"cumsum", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix or a string expected.\n"), "cumsum", 2);
             return types::Function::Error;
         }
     }

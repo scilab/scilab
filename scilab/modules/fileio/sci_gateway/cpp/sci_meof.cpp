@@ -36,14 +36,14 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
 
     if(in.size() > 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"meof", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "meof", 0, 1);
         return types::Function::Error;
     }
     if(in.size() == 1)
     {
         if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
-            ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"meof", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "meof", 1);
             return types::Function::Error;
         }
 
@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
         case 0: // stderr
         case 5: // stdin
         case 6: // stdout
-            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"meof", iFile);
+            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "meof", iFile);
             return types::Function::Error;
         }
     }
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
     {
         if (getWarningMode())
         {
-            sciprintW(_W("%ls: Cannot check the end of file whose descriptor is %d: File is not active.\n"), L"meof", iFile);
+            sciprint(_("%ls: Cannot check the end of file whose descriptor is %d: File is not active.\n"), "meof", iFile);
         }
         return types::Function::OK;
     }

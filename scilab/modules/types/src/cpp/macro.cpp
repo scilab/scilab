@@ -26,6 +26,7 @@
 extern "C"
 {
     #include "Scierror.h"
+    #include "MALLOC.h"
     #include "os_swprintf.h"
 }
 
@@ -144,7 +145,9 @@ namespace types
                 }
                 ostr << std::endl;
             }
-            ScierrorW(58, ostr.str().c_str());
+
+            char* pst = wide_string_to_UTF8(ostr.str().c_str());
+            Scierror(58, "%s", pst);
             pContext->scope_end();
 			return Callable::Error;
 		}
@@ -205,13 +208,13 @@ namespace types
                 InternalType* pOut = pContext->get(symbol::Symbol(L"varargout"));
                 if(pOut == NULL)
                 {
-                    ScierrorW(999, _W("Invalid index.\n"));
+                    Scierror(999, _("Invalid index.\n"));
                     return Callable::Error;
                 }
 
                 if(pOut->isList() == false || pOut->getAs<List>()->getSize() == 0)
                 {
-                    ScierrorW(999, _W("Invalid index.\n"));
+                    Scierror(999, _("Invalid index.\n"));
                     return Callable::Error;
                 }
 
@@ -221,7 +224,7 @@ namespace types
                     InternalType* pIT = pVarOut->get(i);
                     if(pIT->isListUndefined())
                     {
-                        ScierrorW(999, _W("List element number %d is Undefined.\n"), i + 1);
+                        Scierror(999, _("List element number %d is Undefined.\n"), i + 1);
                         return Callable::Error;
                     }
 
@@ -242,7 +245,9 @@ namespace types
                     }
                     else
                     {
-                        ScierrorW(999, _W("Undefined variable %ls.\n"), (*i).name_get().c_str());
+                        char* pst = wide_string_to_UTF8((*i).name_get().c_str());
+                        Scierror(999, _("Undefined variable %s.\n"), pst);
+                        FREE(pst);
                         return Callable::Error;
                     }
                 }

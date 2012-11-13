@@ -27,13 +27,13 @@ types::Function::ReturnValue sci_full(types::typed_list &in, int _iRetCount, typ
 {
     if (in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"full", 1);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "full", 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"full", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "full", 1);
     }
 
     if (in[0]->isSparse())

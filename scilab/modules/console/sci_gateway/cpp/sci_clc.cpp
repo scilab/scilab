@@ -37,26 +37,26 @@ types::Function::ReturnValue sci_clc(types::typed_list &in, int _iRetCount, type
     {
         if((in[0]->isDouble() == false) || !in[0]->getAs<types::Double>()->isScalar())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A double scalar expected.\n"), L"clc", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A double scalar expected.\n"), "clc", 1);
             return types::Function::Error;
         }
         nblines = (int)in[0]->getAs<types::Double>()->get(0);
         if(nblines < 0)
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: A positive double expected\n"), L"clc", 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: A positive double expected\n"), "clc", 1);
             return types::Function::Error;
         }
     }
     else
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"clc", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "clc", 0, 1);
         return types::Function::Error;
     }
 
     res = clc(nblines);
     if (!res)
     {
-        ScierrorW(999, _W("%ls: This feature has not been implemented in this mode.\n"), L"clc");
+        Scierror(999, _("%s: This feature has not been implemented in this mode.\n"), "clc");
         return types::Function::Error;
     }
 

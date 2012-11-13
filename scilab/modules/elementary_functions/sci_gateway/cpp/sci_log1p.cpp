@@ -33,13 +33,13 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"log1p", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "log1p", 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"log1p", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "log1p", 1);
         return types::Function::Error;
     }
 
@@ -54,7 +54,7 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
 
     if (pDblIn->isComplex())
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"log1p", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "log1p", 1);
         return types::Function::Error;
     }
 
@@ -64,14 +64,14 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
         {
             if (ConfigVariable::getIeee() == 0)
             {
-                ScierrorW(999, _W("%ls: Wrong value for input argument #%d : Singularity of the function.\n"), L"log1p", 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "log1p", 1);
                 return types::Function::Error;
             }
             else if (ConfigVariable::getIeee() == 1)
             {
                 if (ConfigVariable::getWarningMode())
                 {
-                    sciprintW(_W("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), L"log1p", 1);
+                    sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log1p", 1);
                 }
             }
         }

@@ -28,7 +28,7 @@ extern "C" {
  * @param ...
  */
 void sciprint(char *fmt, ...);
-void sciprintW(wchar_t* fmt, ...);
+//void sciprintW(wchar_t* fmt, ...);
 
 
 /**
@@ -41,7 +41,7 @@ void sciprintW(wchar_t* fmt, ...);
 */
 
 int scivprint(char* fmt, va_list args);
-int scivprintW(wchar_t* fmt, va_list args);
+//int scivprintW(wchar_t* fmt, va_list args);
 
 #ifdef __cplusplus
 }

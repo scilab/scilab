@@ -21,6 +21,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "scifunctions.h"
@@ -43,14 +44,14 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 // *** check the minimal number of input args. ***
     if(in.size() < 2 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"feval", 2, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "feval", 2, 3);
         return types::Function::Error;
     }
 
 // *** check number of output args according the methode. ***
     if(_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"feval", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "feval", 1);
         return types::Function::Error;
     }
 
@@ -58,13 +59,13 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
     // X
     if(in[iPos]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"feval", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "feval", iPos+1);
         return types::Function::Error;
     }
     pDblX = in[iPos]->getAs<types::Double>();
     if(pDblX->isComplex())
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"feval", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "feval", iPos+1);
         return types::Function::Error;
     }
     iPos++;
@@ -74,13 +75,13 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
     {
         if(in[iPos]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"feval", iPos+1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "feval", iPos+1);
             return types::Function::Error;
         }
         pDblY = in[iPos]->getAs<types::Double>();
         if(pDblY->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"feval", iPos+1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "feval", iPos+1);
             return types::Function::Error;
         }
         iPos++;
@@ -105,7 +106,7 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
         int ret  = deFunctionsManager->execFevalF(&nn, &x, &y, res, &iflag);
         if(ret)
         {
-            ScierrorW(50,_W("%ls: Argument #%d : Variable returned by scilab argument function is incorrect.\n"), L"int3d", 4);
+            Scierror(50, _("%s: Argument #%d : Variable returned by scilab argument function is incorrect.\n"), "int3d", 4);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -118,7 +119,9 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 
         if(bOK == false)
         {
-            ScierrorW(50,_W("%ls: Subroutine not found: %ls\n"), L"feval", pStr->get(0));
+            char* pst = wide_string_to_UTF8(pStr->get(0));
+            Scierror(50, _("%s: Subroutine not found: %s\n"), "feval", pst);
+            FREE(pst);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -129,7 +132,7 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 
         if(pList->getSize() == 0)
         {
-            ScierrorW(50,_W("%ls: Argument #%d : Subroutine not found in list: %ls\n"), L"feval", iPos+1, L"(string empty)");
+            Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "feval", iPos+1, "(string empty)");
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -144,14 +147,14 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : The first argument in the list must be a Scilab function.\n"), L"feval", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d : The first argument in the list must be a Scilab function.\n"), "feval", 4);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
     }
     else
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A function expected.\n"), L"feval", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "feval", iPos+1);
         DifferentialEquation::removeDifferentialEquationFunctions();
         return types::Function::Error;
     }
@@ -182,7 +185,7 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 
             if(iret)
             {
-                ScierrorW(999, _W("%ls: Error during the function execution.\n"), L"feval");
+                Scierror(999, _("%s: Error during the function execution.\n"), "feval");
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 delete pDblOut;
                 return types::Function::Error;

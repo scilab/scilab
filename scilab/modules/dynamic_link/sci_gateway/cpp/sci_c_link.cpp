@@ -36,13 +36,13 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
 
     if(in.size() < 1 || in.size() > 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"c_link", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "c_link", 1, 2);
         return types::Function::Error;
     }
 
     if(_iRetCount > 2)
     {
-        ScierrorW(78,_W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"c_link", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "c_link", 1, 2);
         return types::Function::Error;
     }
 
@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
         types::Double* pDId = in[1]->getAs<types::Double>();
         if(pDId == NULL || pDId->isScalar() == false)
         {
-            Scierror(999 ,_("%s : second argument must be a unique id of a shared library.\n"), L"c_link");
+            Scierror(999 ,_("%s : second argument must be a unique id of a shared library.\n"), "c_link");
             return types::Function::Error;
         }
 
@@ -61,7 +61,7 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
-        ScierrorW(999 ,_W("%ls : Wrong type for input argument #%d: A string expected.\n"), L"c_link", 1);
+        Scierror(999 ,_("%s : Wrong type for input argument #%d: A string expected.\n"), "c_link", 1);
         return types::Function::Error;
     }
 

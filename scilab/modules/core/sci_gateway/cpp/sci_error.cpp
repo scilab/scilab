@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "charEncoding.h"
@@ -31,13 +32,13 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
 {
     if (_iRetCount != 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"error", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "error", 1);
         return Function::Error;
     }
 
     if (in.size() != 1 && in.size() != 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"error", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "error", 1, 2);
         return Function::Error;
     }
 
@@ -46,7 +47,7 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
         // RHS == 1
         if (in[0]->isString() == false && in[0]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d.\n"), L"error", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 1);
             return Function::Error;
         }
 
@@ -54,12 +55,14 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
         {
             if (in[0]->getAs<types::String>()->getSize() == 1)
             {
-                ScierrorW(DEFAULT_ERROR_CODE, L"%ls", in[0]->getAs<types::String>()->get(0));
+                char* pstError = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
+                Scierror(DEFAULT_ERROR_CODE, "%s", pstError);
+                FREE(pstError);
                 return Function::Error;
             }
             else
             {
-                ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A string expected.\n"), L"error", 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "error", 1);
                 return Function::Error;
             }
         }
@@ -67,21 +70,21 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
         {
             if (in[0]->getAs<Double>()->getSize() != 1)
             {
-                ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"error", 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", 1);
                 return Function::Error;
             }
 
             if (in[0]->getAs<Double>()->getReal(0, 0) <= 0 || in[0]->getAs<Double>()->isComplex())
             {
-                ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Value greater than 0 expected.\n"), L"error", 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), "error", 1);
                 return Function::Error;
             }
 
 
             // FIXME : Find a way to retrieve error message from given ID.
-            ScierrorW((int)in[0]->getAs<Double>()->getReal(0, 0),
-                      L"[Error %d]: message given by ID... Should avoid this !!",
-                      (int) in[0]->getAs<Double>()->getReal(0, 0));
+            Scierror((int)in[0]->getAs<Double>()->getReal(0, 0),
+                     "[Error %d]: message given by ID... Should avoid this !!",
+                     (int) in[0]->getAs<Double>()->getReal(0, 0));
             return Function::Error;
         }
 
@@ -91,36 +94,37 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
         // RHS = 2 according to previous check.
         if (in[0]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d.\n"), L"error", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 1);
             return Function::Error;
         }
 
         if (in[1]->isString() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d.\n"), L"error", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 2);
             return Function::Error;
         }
 
         if (in[0]->getAs<Double>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"error", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", 1);
             return Function::Error;
         }
 
         if (in[1]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A scalar expected.\n"), L"error", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", 2);
             return Function::Error;
         }
 
         if (in[0]->getAs<Double>()->getReal(0, 0) <= 0 || in[0]->getAs<Double>()->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Value greater than 0 expected.\n"), L"error", 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), "error", 1);
             return Function::Error;
         }
 
-        ScierrorW((int)in[0]->getAs<Double>()->getReal(0, 0),
-                  in[1]->getAs<types::String>()->get(0));
+        char* pst = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+        Scierror((int)in[0]->getAs<Double>()->getReal(0, 0), "%s", pst);
+        FREE(pst);
         return Function::Error;
 
     }

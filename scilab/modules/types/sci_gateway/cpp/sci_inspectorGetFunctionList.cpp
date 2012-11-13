@@ -28,7 +28,7 @@ Function::ReturnValue sci_inspectorGetFunctionList(typed_list &in, int _iRetCoun
 {
     if(in.size() != 0)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"inspectorGetFunctionList", 0);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "inspectorGetFunctionList", 0);
         return Function::Error;
     }
 

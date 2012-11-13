@@ -26,13 +26,13 @@ Function::ReturnValue sci_getThreads(types::typed_list &in, int _iRetCount, type
 {
     if(in.size() != 0)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"getThreads" , 0);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "getThreads" , 0);
         return Function::Error;
 	}
 
     if(_iRetCount != 1)
 	{
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"getThreads" , 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "getThreads" , 1);
         return Function::Error;
     }
 

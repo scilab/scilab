@@ -20,7 +20,7 @@ using namespace types;
 
 Function::ReturnValue sci_inspectorGetItemCount(typed_list &in, int _iRetCount, typed_list &out)
 {
-    sciprintW(L"\n%d\tItems\n", Inspector::getItemCount());
-    sciprintW(L"%d\tUnreferenced Items\n", Inspector::getUnreferencedItemCount());
+    sciprint("\n%d\tItems\n", Inspector::getItemCount());
+    sciprint("%d\tUnreferenced Items\n", Inspector::getUnreferencedItemCount());
     return Function::OK;
 }

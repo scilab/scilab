@@ -33,7 +33,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 
     if(in.size() < 1 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"),L"basename", 1, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "basename", 1, 3);
         return Function::Error;
     }
 
@@ -41,7 +41,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
     {
         if(in[2]->isBool() == false && in[2]->getAs<types::Bool>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A boolean expected.\n"), L"basename", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "basename", 3);
             return Function::Error;
         }
 
@@ -52,7 +52,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
     {
         if(in[1]->isBool() == false && in[1]->getAs<types::Bool>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A boolean expected.\n"), L"basename", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "basename", 2);
             return Function::Error;
         }
 
@@ -66,7 +66,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
     }
     if(in[0]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string matrix expected.\n"), L"basename", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string matrix expected.\n"), "basename", 1);
         return Function::Error;
     }
 

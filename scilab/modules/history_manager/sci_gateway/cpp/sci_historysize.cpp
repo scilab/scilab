@@ -32,7 +32,7 @@ types::Function::ReturnValue sci_historysize(types::typed_list &in, int _iRetCou
     }
     else
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"historysize", 0);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "historysize", 0);
         return types::Function::Error;
     }
     return types::Function::OK;

@@ -34,14 +34,14 @@ Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, types::typ
 	/* Check the number of input argument */
 	if(in.size() > 1)
 	{
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d or %d expected.\n"), L"mode" , 0, 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "mode" , 0, 1);
 		return Function::Error;
 	}
 
 	/* Check the number of output argument */
 	if(_iRetCount != 1)
 	{
-		ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"mode", 1);
+		Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "mode", 1);
         return Function::Error;
 	}
 
@@ -53,7 +53,7 @@ Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, types::typ
     {
         if(in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
 	    {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Scalar expected.\n"), L"mode", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), "mode", 1);
             return Function::Error;
         }
 

@@ -28,12 +28,12 @@ Function::ReturnValue sci_adj2sp(typed_list &in, int nbRes, typed_list &out)
 {
     if(in.size() > 4 || in.size() < 3)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"adj2sp", 3, 4);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "adj2sp", 3, 4);
         return Function::Error;
     }
     if(nbRes != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"adj2sp", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "adj2sp", 1);
         return Function::Error;
     }
 
@@ -41,7 +41,7 @@ Function::ReturnValue sci_adj2sp(typed_list &in, int nbRes, typed_list &out)
     {
         if(in[i]->isDouble() == false || in[i]->getAs<Double>()->isVector() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for argument %d: Real vector expected.\n"), L"adj2sp", i + 1);
+            Scierror(999, _("%s: Wrong type for argument %d: Real vector expected.\n"), "adj2sp", i + 1);
             return Function::Error;
         }
     }
@@ -50,7 +50,7 @@ Function::ReturnValue sci_adj2sp(typed_list &in, int nbRes, typed_list &out)
     {
         if(in[i]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for argument %d: Matrix expected.\n"), L"adj2sp", i + 1);
+            Scierror(999, _("%s: Wrong type for argument %d: Matrix expected.\n"), "adj2sp", i + 1);
             return Function::Error;
         }
     }
@@ -67,13 +67,13 @@ Function::ReturnValue sci_adj2sp(typed_list &in, int nbRes, typed_list &out)
         Double& dims = *(in[3]->getAs<Double>());
         if(dims.getRows() != 1 || dims.getCols() != 2)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input arguments %d: A vector of size %d expected.\n" ), L"adj2sp", 4, 2);
+            Scierror(999, _("%s: Wrong size for input arguments %d: A vector of size %d expected.\n" ), "adj2sp", 4, 2);
             return Function::Error;
         }
 
         if(n > dims.getReal(0,0) || m > dims.getReal(0,1))
         {
-            ScierrorW(999, _W("%ls: Incompatible input argument.\n"), L"adj2sp");
+            Scierror(999, _("%s: Incompatible input argument.\n"), "adj2sp");
             return Function::Error;
         }
 

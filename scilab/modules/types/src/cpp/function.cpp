@@ -349,7 +349,7 @@ Callable::ReturnValue DynamicFunction::Init()
     /*Load library*/
     if (m_wstLibName.empty())
     {
-        ScierrorW(999, _W("%ls: Library name must not be empty\n."), m_wstName.c_str());
+        Scierror(999, _("%s: Library name must not be empty\n."), m_wstName.c_str());
         return Error;
     }
 
@@ -391,7 +391,9 @@ Callable::ReturnValue DynamicFunction::Init()
             return Error;
         }
 #else
-        ScierrorW(999, _W("Impossible to load %ls library\n"), m_wstLibName);
+        char* pstError = wide_string_to_UTF8(m_wstLibName.c_str());
+        Scierror(999, _("Impossible to load %s library\n"), pstError);
+        FREE(pstError);
         return Error;
 #endif
     }
@@ -423,7 +425,11 @@ Callable::ReturnValue DynamicFunction::Init()
 
     if (m_pFunc == NULL && m_pOldFunc == NULL && m_pMexFunc == NULL)
     {
-        ScierrorW(999, _W("Impossible to load %s function in %ls library: %ls\n"), m_wstEntryPoint.c_str(), m_wstLibName.c_str(), GetLastDynLibError());
+        char* pstEntry = wide_string_to_UTF8(m_wstEntryPoint.c_str());
+        char* pstLib = wide_string_to_UTF8(m_wstLibName.c_str());
+        Scierror(999, _("Impossible to load %s function in %s library: %s\n"), pstEntry, pstLib, GetLastDynLibError());
+        FREE(pstEntry);
+        FREE(pstLib);
         return Error;
     }
 

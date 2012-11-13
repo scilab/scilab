@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "interpolation_functions.h"
@@ -49,14 +50,14 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
     // *** check the minimal number of input args. ***
     if (in.size() != 5)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"interp3d", 5);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "interp3d", 5);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 4)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"interp3d", 1, 4);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "interp3d", 1, 4);
         return types::Function::Error;
     }
 
@@ -66,7 +67,7 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
     {
         if (in[i]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"interp3d", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "interp3d", i + 1);
             return types::Function::Error;
         }
 
@@ -74,7 +75,7 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
 
         if (pDblXYZ[0]->getRows() != pDblXYZ[i]->getRows() || pDblXYZ[0]->getCols() != pDblXYZ[i]->getCols())
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d : Same size as argument %d expected.\n"), L"interp3d", i + 1, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d : Same size as argument %d expected.\n"), "interp3d", i + 1, 1);
             return types::Function::Error;
         }
     }
@@ -83,14 +84,14 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
 
     if (in[3]->isTList() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A tlist of type %ls expected.\n"), L"interp3d", 4, L"tensbs3d");
+        Scierror(999, _("%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"), "interp3d", 4, "tensbs3d");
     }
 
     pTList = in[3]->getAs<types::TList>();
 
     if (pTList->getTypeStr() != L"tensbs3d")
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A %ls tlist expected.\n"), L"interp3d", 4, L"tensbs3d");
+        Scierror(999, _("%s: Wrong type for input argument #%d: A %s tlist expected.\n"), "interp3d", 4, "tensbs3d");
         return types::Function::Error;
     }
 
@@ -103,7 +104,7 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
 
     if (in[4]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A string expected.\n"), L"interp3d", 5);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "interp3d", 5);
         return types::Function::Error;
     }
 
@@ -127,7 +128,9 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
     }
     else // undefined
     {
-        ScierrorW(999, _W("%ls: Wrong values for input argument #%d : '%ls' is a unknow '%ls' type.\n"), L"interp3d", 5, wcsType, L"outmode");
+        char* pstType = wide_string_to_UTF8(wcsType);
+        Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "interp3d", 5, pstType, "outmode");
+        FREE(pstType);
         return types::Function::Error;
     }
 

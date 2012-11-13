@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_iswaitingforinput(types::typed_list &in, int _i
     } 
     else 
     {
-        ScierrorW(999, _W("%ls: Not implemented in this mode.\n"), L"iswaitingforinput");
+        Scierror(999, _("%s: Not implemented in this mode.\n"), "iswaitingforinput");
         return types::Function::Error;
     }
 

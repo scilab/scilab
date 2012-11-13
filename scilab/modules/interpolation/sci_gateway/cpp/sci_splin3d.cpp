@@ -41,14 +41,14 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
     // *** check the minimal number of input args. ***
     if (in.size() < 4 || in.size() > 5)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"splin3d", 4, 5);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "splin3d", 4, 5);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"splin3d", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "splin3d", 1);
         return types::Function::Error;
     }
 
@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
     {
         if (in[i]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"splin3d", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "splin3d", i + 1);
             return types::Function::Error;
         }
 
@@ -66,13 +66,13 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
 
         if (pDblXYZ[i]->getRows() != 1 || pDblXYZ[i]->getSize() < 3)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A row vector of size at least 3 expected.\n"), L"splin3d", i + 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d : A row vector of size at least 3 expected.\n"), "splin3d", i + 1);
             return types::Function::Error;
         }
 
         if (good_order(pDblXYZ[i]->get(), pDblXYZ[i]->getSize()) == false) /* verify strict increasing abscissae */
         {
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), L"splin3d", i + 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"), "splin3d", i + 1);
             return types::Function::Error;
         }
     }
@@ -80,14 +80,14 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
     // v
     if (in[3]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"splin3d", 4);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "splin3d", 4);
         return types::Function::Error;
     }
     pDblV = in[3]->getAs<types::Double>();
 
     if (pDblV->getDims() != 3)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A real three dimension hypermatrix expected.\n"), L"splin3d", 4);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A real three dimension hypermatrix expected.\n"), "splin3d", 4);
         return types::Function::Error;
     }
 
@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
     {
         if (pDblV->getDimsArray()[i] != pDblXYZ[i]->getSize())
         {
-            ScierrorW(999, _W("%ls: Wrong size for dimension %d for input argument #%d : A size of %d expected.\n"), L"splin3d", i + 1, 4, pDblXYZ[i]->getSize());
+            Scierror(999, _("%s: Wrong size for dimension %d for input argument #%d : A size of %d expected.\n"), "splin3d", i + 1, 4, pDblXYZ[i]->getSize());
             return types::Function::Error;
         }
     }
@@ -104,7 +104,7 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
     {
         if (in[4]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"splin3d", 5);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "splin3d", 5);
             return types::Function::Error;
         }
 
@@ -112,7 +112,7 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
 
         if (pDblOrder->getSize() != 3)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A real vector of size 3 expected.\n"), L"splin3d", 5);
+            Scierror(999, _("%s: Wrong size for input argument #%d : A real vector of size 3 expected.\n"), "splin3d", 5);
             return types::Function::Error;
         }
 
@@ -124,7 +124,7 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
         {
             if (pdOrder[i] < 2 || pdOrder[i] >= pDblXYZ[i]->getSize())
             {
-                ScierrorW(999, _W("%ls: Wrong value for element %d of input argument #%d : At least 2 and at most %d expected.\n"), L"splin3d", i + 1, 5, pDblXYZ[i]->getSize());
+                Scierror(999, _("%s: Wrong value for element %d of input argument #%d : At least 2 and at most %d expected.\n"), "splin3d", i + 1, 5, pDblXYZ[i]->getSize());
                 return types::Function::Error;
             }
         }
@@ -197,7 +197,7 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
 
     if (flag != 1) // flag can never be deffirent to 1.
     {
-        ScierrorW(999, _W("%ls: Problem with 'flag' = %d\n"), L"splin3d", flag);
+        Scierror(999, _("%s: Problem with 'flag' = %d\n"), "splin3d", flag);
         return types::Function::Error;
     }
 

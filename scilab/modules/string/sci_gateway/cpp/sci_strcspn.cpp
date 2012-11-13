@@ -34,22 +34,22 @@ types::Function::ReturnValue sci_strcspn(types::typed_list &in, int _iRetCount, 
     int j                       = 0;
     if(in.size() != 2)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"strcspn", 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strcspn", 2);
         return types::Function::Error;
     }
     if(_iRetCount != 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"strcspn", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strcspn", 1);
         return types::Function::Error;
     }
 	if(in[0]->isString() == false)
 	{
-		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"),L"strcspn", 1);
+		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strcspn", 1);
 		return types::Function::Error;
 	}
 	if(in[1]->isString() == false)
 	{
-		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"),L"strcspn", 2);
+		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strcspn", 2);
 		return types::Function::Error;
 	}
 
@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_strcspn(types::typed_list &in, int _iRetCount, 
 
     if(pString->getSize() != pStrSample->getSize() && pStrSample->isScalar() == false)
     {
-        ScierrorW(999,_W("%ls: Wrong size for input argument #%d.\n"),L"strcspn", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "strcspn", 2);
         return types::Function::Error;
     }
 

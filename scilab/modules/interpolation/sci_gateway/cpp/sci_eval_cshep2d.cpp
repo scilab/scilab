@@ -51,14 +51,14 @@ types::Function::ReturnValue sci_eval_cshep2d(types::typed_list &in, int _iRetCo
     // *** check the minimal number of input args. ***
     if (in.size() != 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"eval_cshep2d", 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "eval_cshep2d", 3);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount != 3 && _iRetCount != 6 && _iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d, %d or %d expected.\n"), L"eval_cshep2d", 1, 3, 6);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d, %d or %d expected.\n"), "eval_cshep2d", 1, 3, 6);
         return types::Function::Error;
     }
 
@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_eval_cshep2d(types::typed_list &in, int _iRetCo
     //xp
     if (in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"eval_cshep2d", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "eval_cshep2d", 1);
         return types::Function::Error;
     }
 
@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_eval_cshep2d(types::typed_list &in, int _iRetCo
     //yp
     if (in[1]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A matrix expected.\n"), L"eval_cshep2d", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "eval_cshep2d", 2);
         return types::Function::Error;
     }
 
@@ -83,14 +83,14 @@ types::Function::ReturnValue sci_eval_cshep2d(types::typed_list &in, int _iRetCo
 
     if (pDblYp->getRows() != pDblXp->getRows() || pDblYp->getCols() != pDblXp->getCols())
     {
-        ScierrorW(999, _W("%ls: Wrong size for input arguments #%d ans #%d: Same size expected.\n"), L"eval_cshep2d", 1, 2);
+        Scierror(999, _("%s: Wrong size for input arguments #%d ans #%d: Same size expected.\n"), "eval_cshep2d", 1, 2);
         return types::Function::Error;
     }
 
     //coef
     if (in[2]->isTList() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A tlist of type %ls expected.\n"), L"eval_cshep2d", 3, L"cshep2d");
+        Scierror(999, _("%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"), "eval_cshep2d", 3, "cshep2d");
         return types::Function::Error;
     }
 
@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_eval_cshep2d(types::typed_list &in, int _iRetCo
 
     if (pTListCoef->getTypeStr() != L"cshep2d")
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A %ls tlist expected.\n"), L"interp3d", 3, L"cshep2d");
+        Scierror(999, _("%s: Wrong type for input argument #%d: A %s tlist expected.\n"), "eval_cshep2d", 3, "cshep2d");
         return types::Function::Error;
     }
 

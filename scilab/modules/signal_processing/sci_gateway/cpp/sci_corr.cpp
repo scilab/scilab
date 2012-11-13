@@ -33,14 +33,14 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
     //check input parameters
     if(in.size() < 2 || in.size() > 5)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"corr", 2, 5);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "corr", 2, 5);
         return types::Function::Error;
     }
 
     //call format
     if(in[0]->isString())
     {
-        sciprintW(_W("%ls: Need to plug external call"), L"corr");
+        sciprint(_("%ls: Need to plug external call"), L"corr");
         return types::Function::Error;
 
         types::String* pS = in[0]->getAs<types::String>();
@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
             //check input parameters
             if(in.size() < 4 || in.size() > 5)
             {
-                ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"corr", 4, 5);
+                Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "corr", 4, 5);
                 return types::Function::Error;
             }
 
@@ -65,7 +65,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
             int iPos = (int)(in.size() - 1);
             if(in[iPos]->isDouble() == false || in[iPos]->getAs<types::Double>()->isScalar() == false)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"corr", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "corr", iPos + 1);
                 return types::Function::Error;
             }
 
@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
             iPos--;
             if(in[iPos]->isDouble() == false || in[iPos]->getAs<types::Double>()->isScalar() == false)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"corr", iPos + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "corr", iPos + 1);
                 return types::Function::Error;
             }
 
@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
             //get xmacro
             if(in[1]->isCallable() == false)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A function expected.\n"), L"corr", 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A function expected.\n"), "corr", 2);
                 return types::Function::Error;
             }
 
@@ -96,7 +96,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
                 //get ymacro
                 if(in[2]->isCallable() == false)
                 {
-                    ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A function expected.\n"), L"corr", 3);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A function expected.\n"), "corr", 3);
                     return types::Function::Error;
                 }
 
@@ -110,7 +110,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         }
         else
         {//error
-            ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Must be in the set {%ls}.\n"), L"corr", 1, L"'fft', 'update'");
+            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "corr", 1, "'fft', 'update'");
             return types::Function::Error;
         }
     }
@@ -129,7 +129,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         //check input parameters
         if(in.size() < 2 || in.size() > 3)
         {
-            ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"corr", 2, 3);
+            Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "corr", 2, 3);
             return types::Function::Error;
         }
 
@@ -137,7 +137,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         int iPos = (int)(in.size() - 1);
         if(in[iPos]->isDouble() == false || in[iPos]->getAs<types::Double>()->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A scalar expected.\n"), L"corr", iPos + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "corr", iPos + 1);
             return types::Function::Error;
         }
 
@@ -148,7 +148,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         {
             if(in[1]->isDouble() == false)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix expected.\n"), L"corr" ,2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "corr" ,2);
                 return types::Function::Error;
             }
 
@@ -156,7 +156,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
 
             if(in[0]->isDouble() == false)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix expected.\n"), L"corr" ,1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "corr" ,1);
                 return types::Function::Error;
             }
 
@@ -164,7 +164,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
 
             if(pDblX->getSize() != pDblY->getSize())
             {
-                ScierrorW(60, _W("%ls: Wrong size for argument: Incompatible dimensions.\n"), L"corr");
+                Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "corr");
                 return types::Function::Error;
             }
         }
@@ -172,7 +172,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         {
             if(in[0]->isDouble() == false)
             {
-                ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix expected.\n"), L"corr" ,1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "corr" ,1);
                 return types::Function::Error;
             }
 
@@ -185,7 +185,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         C2F(tscccf)(pDblX->get(), pDblY->get(), &iSize, pDblCorrelation->get(), pdblMean, &iCorrelation, &iErr);
         if(iErr == -1)
         {
-            ScierrorW(999, _W("%ls: Too many coefficients are required.\n"), L"corr");
+            Scierror(999, _("%s: Too many coefficients are required.\n"), "corr");
             return types::Function::Error;
         }
 

@@ -55,7 +55,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
     //check input paramters
     if(in.size() < 1 || in.size() > 3)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d or %d expected.\n"), L"strcat", 1, 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "strcat", 1, 3);
         return Function::Error;
     }
 
@@ -63,7 +63,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
     {
         if(in[i]->isString() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix of strings expected.\n"), L"strcat", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "strcat", i + 1);
             return Function::Error;
         }
     }
@@ -77,7 +77,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
     }
     else if(in[0]->isString() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: String expected.\n"), L"strcat", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strcat", 1);
         return Function::Error;
     }
 
@@ -93,7 +93,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
             iMode = 2;
             break;
         default :
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"), L"strcat", 3, L"c", L"r");
+            Scierror(999, _("%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"), "strcat", 3, "c", "r");
             return Function::Error;
         }
     }
@@ -102,7 +102,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
     {
         if(in[1]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: String expected.\n"), L"strcat", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strcat", 2);
             return Function::Error;
         }
 

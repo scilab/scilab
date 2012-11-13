@@ -32,19 +32,19 @@ Function::ReturnValue sci_setlanguage(typed_list &in, int _piRetCount, typed_lis
 {
     if(in.size() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"setlanguage", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "setlanguage", 1);
         return Function::Error;
     }
 
     if(_piRetCount != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong number of output arguments: %d expected.\n"), L"setlanguage", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "setlanguage", 1);
         return Function::Error;
     }
 
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"setlanguage", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "setlanguage", 1);
         return Function::Error;
     }
 
@@ -57,11 +57,11 @@ Function::ReturnValue sci_setlanguage(typed_list &in, int _piRetCount, typed_lis
         {
             if (newlanguage == NULL)
             {
-                sciprintW(_W("%ls: Unsupported language '%ls'.\n"), L"setlanguage", param);
+                sciprint(_("%ls: Unsupported language '%ls'.\n"), L"setlanguage", param);
             }
             else
             {
-                sciprintW(_W("%ls: Unsupported language '%ls'.\n"), L"setlanguage", newlanguage);
+                sciprint(_("%ls: Unsupported language '%ls'.\n"), L"setlanguage", newlanguage);
             }
         }
 
@@ -93,8 +93,8 @@ Function::ReturnValue sci_setlanguage(typed_list &in, int _piRetCount, typed_lis
     {
         if (getWarningMode())
         {
-            sciprintW(_W("Unsupported language '%ls'.\n"), param);
-            sciprintW(_W("Switching to default language : '%ls'.\n"), SCILABDEFAULTLANGUAGE);
+            sciprint(_("Unsupported language '%ls'.\n"), param);
+            sciprint(_("Switching to default language : '%ls'.\n"), SCILABDEFAULTLANGUAGE);
         }
         setlanguage(SCILABDEFAULTLANGUAGE);
         out.push_back(new Bool(FALSE));

@@ -67,7 +67,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
     if(in.size() < 1 || in.size() > 3)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input arguments: %d to %d expected.\n"), L"exec" , 1, 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "exec" , 1, 3);
         return Function::Error;
     }
 
@@ -82,7 +82,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             }
             else
             {
-                ScierrorW(999, _W("%ls: Wrong value for input argument #%d: 'errcatch' expected.\n"), L"execstr", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "exec", 2);
                 return Function::Error;
             }
 
@@ -90,7 +90,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             {
                 if(in[2]->isDouble() == false || in[2]->getAs<Double>()->isScalar() == false)
                 {//mode
-                    ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"exec", 3);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "exec", 3);
                     return Function::Error;
                 }
 
@@ -105,7 +105,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
         }
         else
         {//not managed
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer or string expected.\n"), L"exec", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A integer or string expected.\n"), "exec", 2);
             return Function::Error;
         }
     }
@@ -124,7 +124,9 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
         if(mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
         {
             FREE(pwstTemp);
-            ScierrorW(999, _W("%ls: Cannot open file %ls.\n"), L"exec", expandedPath);
+            char* pstPath = wide_string_to_UTF8(expandedPath);
+            Scierror(999, _("%s: Cannot open file %s.\n"), "exec", pstPath);
+            FREE(pstPath);
             return Function::Error;
         }
 
@@ -149,7 +151,9 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     {//1st argument is a macro name, parse and execute it in the current environnement
         if(in[0]->getAs<MacroFile>()->parse() == false)
         {
-            ScierrorW(999, _W("%ls: Unable to parse macro '%s'"), "exec", in[0]->getAs<MacroFile>()->getName().c_str());
+            char* pstMacro = wide_string_to_UTF8(in[0]->getAs<MacroFile>()->getName().c_str());
+            Scierror(999, _("%s: Unable to parse macro '%s'"), "exec", pstMacro);
+            FREE(pstMacro);
             mclose(iID);
             return Function::Error;
         }
@@ -157,7 +161,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     }
     else
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"exec", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "exec", 1);
         mclose(iID);
         return Function::Error;
     }

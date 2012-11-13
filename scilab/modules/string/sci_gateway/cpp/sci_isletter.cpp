@@ -39,24 +39,24 @@ types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount,
 
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"isletter", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "isletter", 1);
         return types::Function::Error;
     }
     if(_iRetCount != 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"isletter", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "isletter", 1);
         return types::Function::Error;
     }
 	if(in[0]->isString() == false)
 	{
-		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"),L"isletter", 1);
+		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "isletter", 1);
 		return types::Function::Error;
 	}
 
     pString = in[0]->getAs<types::String>();
     if(pString->isScalar() == false)
     {
-        ScierrorW(999,_W("%ls: Wrong size for input argument #%d.\n"),L"isletter", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "isletter", 1);
         return types::Function::Error;
     }
     if(pString->getSize() == 0)

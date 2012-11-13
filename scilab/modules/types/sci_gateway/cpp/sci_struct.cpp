@@ -33,7 +33,7 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
     /* Check number of input arguments: must be even */
     if (in.size() % 2 != 0)
     {
-        ScierrorW(999, _W("%ls: Wrong number of input argument(s): An even number is expected.\n"), L"struct");
+        Scierror(999, _("%s: Wrong number of input argument(s): An even number is expected.\n"), "struct");
         return Function::Error;
     }
 
@@ -50,7 +50,7 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
     {
         if ((*itInput)->isString() == false || (*itInput)->getAs<String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Field names must be strings.\n"), L"struct");
+            Scierror(999, _("%s: Field names must be strings.\n"), "struct");
             return Function::Error;
         }
     }
@@ -75,14 +75,14 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
                     {
                         if(piDims[i] != piDimsRef[i])
                         {
-                            ScierrorW(999, _W("%ls: Arguments must be scalar or must have same dimensions.\n"), L"struct");
+                            Scierror(999, _("%s: Arguments must be scalar or must have same dimensions.\n"), "struct");
                             return Function::Error;
                         }
                     }
                 }
                 else
                 {
-                    ScierrorW(999, _W("%ls: Arguments must be scalar or must have same dimensions.\n"), L"struct");
+                    Scierror(999, _("%s: Arguments must be scalar or must have same dimensions.\n"), "struct");
                     return Function::Error;
                 }
             }

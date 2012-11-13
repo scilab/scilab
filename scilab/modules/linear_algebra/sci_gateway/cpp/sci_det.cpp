@@ -34,13 +34,13 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
 
     if(in.size() != 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"det", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "det", 1);
         return types::Function::Error;
     }
 
     if(_iRetCount > 2)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"det", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "det", 1, 2);
         return types::Function::Error;
     }
 
@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
         pData = (double *)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
         if(!pData)
         {
-            ScierrorW(999,_W("%ls: Cannot allocate more memory.\n"),L"det");
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), "det");
             return types::Function::Error;
         }
     }
@@ -68,13 +68,13 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
 
     if(pDbl->getRows() != pDbl->getCols())
     {
-        ScierrorW(20, _W("%ls: Wrong type for argument %d: Square matrix expected.\n"), L"det", 1);
+        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "det", 1);
         return types::Function::Error;
     }
 
     if((pDbl->getRows() == -1)) // manage eye case
     {
-        ScierrorW(271,_W("%ls: Size varying argument a*eye(), (arg %d) not allowed here.\n"), L"det", 1);
+        Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "det", 1);
         return types::Function::Error;
     }
 
@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
     int iRet= iDetM(pData, pDbl->getCols(), pDblMantissa->getReal(), pDbl->isComplex() ? pDblMantissa->getImg() : NULL, pDblExponent ? &iExponent : NULL);
     if(iRet != 0)
     {
-	    ScierrorW(999, _W("%ls: LAPACK error n°%d.\n"), L"det",iRet);
+	    Scierror(999, _("%s: LAPACK error n°%d.\n"), "det",iRet);
         return types::Function::Error;
     }
 

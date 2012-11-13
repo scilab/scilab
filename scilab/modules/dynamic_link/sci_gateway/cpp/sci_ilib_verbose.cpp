@@ -28,7 +28,7 @@ types::Function::ReturnValue sci_ilib_verbose(types::typed_list &in, int _iRetCo
 
     if(in.size() > 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"ilib_verbose", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "ilib_verbose", 0, 1);
         return types::Function::Error;
     }
 
@@ -40,20 +40,20 @@ types::Function::ReturnValue sci_ilib_verbose(types::typed_list &in, int _iRetCo
 
     if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong value for input argument #%d: A int expected.\n"), L"ilib_verbose", 1);
+        Scierror(999, _("%s: Wrong value for input argument #%d: A int expected.\n"), "ilib_verbose", 1);
         return types::Function::Error;
     }
 
     int iLevel = (int) in[0]->getAs<types::Double>()->get(0);
     if((double)iLevel !=  in[0]->getAs<types::Double>()->get(0))
     {//not really a int
-        ScierrorW(999, _W("%ls: Wrong value for input argument #%d: A int expected.\n"), L"ilib_verbose", 1);
+        Scierror(999, _("%s: Wrong value for input argument #%d: A int expected.\n"), "ilib_verbose", 1);
         return types::Function::Error;
     }
 
     if(!setIlibVerboseLevel((ilib_verbose_level)iLevel))
     {
-        ScierrorW(999, _W("%ls: Wrong value for input argument #%d: Must be in the set {%s}.\n"), L"ilib_verbose", 1, L"0,1,2");
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "ilib_verbose", 1, "0,1,2");
         return types::Function::Error;
     }
 

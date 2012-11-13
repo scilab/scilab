@@ -38,14 +38,14 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
 
     if(in.size() < 1 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mget", 1, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mget", 1, 3);
         return Function::Error;
     }
 
     //check parameter 1
     if(in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"mget", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mget", 1);
         return Function::Error;
     }
 
@@ -55,7 +55,7 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
     {//export format
         if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"mget", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mget", 2);
             return Function::Error;
         }
         pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
@@ -65,7 +65,7 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
     {
         if(in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"mget", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mget", 3);
             return Function::Error;
         }
         iFile = static_cast<int>(in[2]->getAs<Double>()->get(0));
@@ -78,7 +78,7 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
     {
         case 0: // stderr
         case 6: // stdout
-            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mget", iFile);
+            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mget", iFile);
             return types::Function::Error;
     }
 

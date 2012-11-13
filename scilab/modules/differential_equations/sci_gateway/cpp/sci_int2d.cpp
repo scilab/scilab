@@ -21,6 +21,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "scifunctions.h"
@@ -52,14 +53,14 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 // *** check the minimal number of input args. ***
     if(in.size() < 3 || in.size() > 4)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"int2d", 3, 4);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "int2d", 3, 4);
         return types::Function::Error;
     }
 
 // *** check number of output args according the methode. ***
     if(_iRetCount > 3)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"int2d", 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "int2d", 2);
         return types::Function::Error;
     }
 
@@ -67,44 +68,44 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     // X
     if(in[0]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"int2d", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 1);
         return types::Function::Error;
     }
     pDblX = in[0]->getAs<types::Double>();//->clone()->getAs<types::Double>();
     if(pDblX->isComplex())
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"int2d", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 1);
         return types::Function::Error;
     }
 
     if(pDblX->getRows() != 3)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A 3 by N matrix expected.\n"), L"int2d", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A 3 by N matrix expected.\n"), "int2d", 1);
         return types::Function::Error;
     }
 
     // Y
     if(in[1]->isDouble() == false)
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"int2d", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 2);
         return types::Function::Error;
     }
     pDblY = in[1]->getAs<types::Double>();//->clone()->getAs<types::Double>();
     if(pDblY->isComplex())
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"int2d", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 2);
         return types::Function::Error;
     }
 
     if(pDblY->getRows() != 3)
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : A 3 by N matrix expected.\n"), L"int2d", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A 3 by N matrix expected.\n"), "int2d", 2);
         return types::Function::Error;
     }
 
     if(pDblY->getCols() != pDblX->getCols())
     {
-        ScierrorW(999, _W("%ls: Wrong size for input argument #%d : Same size of input argument %d expected.\n"), L"int2d", 2, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d : Same size of input argument %d expected.\n"), "int2d", 2, 1);
         return types::Function::Error;
     }
 
@@ -124,7 +125,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
         double ret = int2d_f(&x, &y);
         if(ret == 0)
         {
-            ScierrorW(50,_W("%ls: Argument #%d : Variable returned by scilab argument function is incorrect.\n"), L"int2d", 3);
+            Scierror(50, _("%s: Argument #%d : Variable returned by scilab argument function is incorrect.\n"), "int2d", 3);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -137,7 +138,9 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
         if(bOK == false)
         {
-            ScierrorW(50,_W("%ls: Subroutine not found: %ls\n"), L"int2d", pStr->get(0));
+            char* pst = wide_string_to_UTF8(pStr->get(0));
+            Scierror(50, _("%s: Subroutine not found: %s\n"), "int2d", pst);
+            FREE(pst);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -148,7 +151,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
         if(pList->getSize() == 0)
         {
-            ScierrorW(50,_W("%ls: Argument #%d : Subroutine not found in list: %ls\n"), L"int2d", 3, L"(string empty)");
+            Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "int2d", 3, "(string empty)");
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -163,14 +166,14 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : The first argument in the list must be a Scilab function.\n"), L"int2d", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : The first argument in the list must be a Scilab function.\n"), "int2d", 3);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
     }
     else
     {
-        ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A function expected.\n"), L"int2d", 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "int2d", 3);
         DifferentialEquation::removeDifferentialEquationFunctions();
         return types::Function::Error;
     }
@@ -180,7 +183,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     {
         if(in[3]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"int2d", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 4);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -188,14 +191,14 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
         pDblParams = in[3]->getAs<types::Double>();
         if(pDblParams->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real matrix expected.\n"), L"int2d", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "int2d", 4);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
 
         if(pDblParams->getSize() != 5)
         {
-            ScierrorW(999, _W("%ls: Wrong size for input argument #%d : %d expected.\n"), L"int2d", 4, 5);
+            Scierror(999, _("%s: Wrong size for input argument #%d : %d expected.\n"), "int2d", 4, 5);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
@@ -204,17 +207,17 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
         {
             if(pDblParams->get(0) < 0.0e0)
             {
-                sciprintW(_W("%ls: Warning : Wrong value for the first element of argument #%d : The default value will be used.\n"),L"int2d", 4);
+                sciprint(_("%ls: Warning : Wrong value for the first element of argument #%d : The default value will be used.\n"),L"int2d", 4);
             }
 
             if(pDblParams->get(2) < 1)
             {
-                sciprintW(_W("%ls: Warning : Wrong value for the third element of argument #%d : The default value will be used.\n"),L"int2d", 4);
+                sciprint(_("%ls: Warning : Wrong value for the third element of argument #%d : The default value will be used.\n"),L"int2d", 4);
             }
 
             if(pDblParams->get(3) < 1)
             {
-                sciprintW(_W("%ls: Warning : Wrong value for the fourth element of argument #%d : The default value will be used.\n"),L"int2d", 4);
+                sciprint(_("%ls: Warning : Wrong value for the fourth element of argument #%d : The default value will be used.\n"),L"int2d", 4);
             }
         }
 
@@ -243,32 +246,32 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
         {
             case 1 :
             {
-                ScierrorW(999, _W("%ls: Means termination for lack of space to divide another triangle.\n"), L"int2d");
+                Scierror(999, _("%s: Means termination for lack of space to divide another triangle.\n"), "int2d");
                 break;
             }
             case 2 :
             {
-                ScierrorW(999, _W("%ls: Means termination because of roundoff noise.\n"), L"int2d");
+                Scierror(999, _("%s: Means termination because of roundoff noise.\n"), "int2d");
                 break;
             }
             case 3 :
             {
-                ScierrorW(999, _W("%ls: means termination with relative error <= 5.0* machine epsilon.\n"), L"int2d");
+                Scierror(999, _("%s: means termination with relative error <= 5.0* machine epsilon.\n"), "int2d");
                 break;
             }
             case 4 :
             {
-                ScierrorW(999, _W("%ls: Means termination because the number of function evaluations has exceeded MEVALS.\n"), L"int2d");
+                Scierror(999, _("%s: Means termination because the number of function evaluations has exceeded MEVALS.\n"), "int2d");
                 break;
             }
             case 9 :
             {
-                ScierrorW(999, _W("%ls: Means termination because of error in input flag.\n"), L"int2d");
+                Scierror(999, _("%s: Means termination because of error in input flag.\n"), "int2d");
                 break;
             }
             default :// normaly nerver call.
             {
-                ScierrorW(999, _W("%ls: twodq return with error %d.\n"), L"int2d", iflag);
+                Scierror(999, _("%s: twodq return with error %d.\n"), "int2d", iflag);
             }
         }
         return types::Function::Error;

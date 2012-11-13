@@ -48,13 +48,13 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() < 1 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"clean", 1, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "clean", 1, 3);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"clean", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "clean", 1);
         return types::Function::Error;
     }
 
@@ -119,7 +119,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     {
         if (in[2]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real scalar expected.\n"), L"clean", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 3);
             return types::Function::Error;
         }
 
@@ -127,7 +127,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
 
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real scalar expected.\n"), L"clean", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 3);
             return types::Function::Error;
         }
 
@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     {
         if (in[1]->isDouble() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real scalar expected.\n"), L"clean", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 2);
             return types::Function::Error;
         }
 
@@ -146,7 +146,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
 
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d : A real scalar expected.\n"), L"clean", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 2);
             return types::Function::Error;
         }
 

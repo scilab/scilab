@@ -195,7 +195,7 @@ void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr)
     {
         if(getWarningMode())
         {
-            sciprintW(_W("%ls: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"), L"mput", 4, type);
+            sciprint(_("%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"), "mput", 4, type);
         }
         *ierr = 2;
         return;
@@ -209,7 +209,7 @@ void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr)
         {
             if(getWarningMode())
             {
-                sciprintW(_W("%ls: Wrong value for input argument #%d ('%s'): Format not recognized.\n"), L"mput", 4, type);
+                sciprint(_("%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"), "mput", 4, type);
             }
         }
     }
@@ -217,7 +217,7 @@ void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr)
     {
         if(getWarningMode())
         {
-            sciprintW(_W("%ls: No input file associated to logical unit %d.\n"), L"mput", *fd);
+            sciprint(_("%s: No input file associated to logical unit %d.\n"), "mput", *fd);
         }
         *ierr=3;
     }

@@ -31,13 +31,13 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
     bool bClearError = true;
     if(in.size() > 1)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected."), L"lasterror", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), "lasterror", 0, 1);
         return Function::Error;
     }
 
     if(_iRetCount > 4)
     {
-        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d to %d expected.\n"), L"lasterror", 1, 4);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "lasterror", 1, 4);
         return Function::Error;
     }
 
@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
     {
         if(in[0]->isBool() == false || in[0]->getAs<types::Bool>()->isScalar() == false)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Boolean vector expected.\n"), L"lasterror", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Boolean vector expected.\n"), "lasterror", 1);
             return Function::Error;
         }
         bClearError = in[0]->getAs<types::Bool>()->get()[0] == 1; //convert int to bool
