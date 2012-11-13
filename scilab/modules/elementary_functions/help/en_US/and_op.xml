@@ -29,6 +29,15 @@
             boolean.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+[%t %t %f] & [%f %t %t]
+[%t %t %f] & %f
+[%t %t %f] & %t
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

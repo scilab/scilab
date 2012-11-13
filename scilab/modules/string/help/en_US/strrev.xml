@@ -25,13 +25,17 @@
             <varlistentry>
                 <term>str1</term>
                 <listitem>
-                    <para>A character string or matrix of character strings</para>
+                    <para>
+                        a character string or matrix of character strings.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>A character string or matrix of character strings</para>
+                    <para>
+                        a character string or matrix of character strings.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,7 +43,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>res = strrev(str1)</literal> Returns string reversed.
+            <code>res = strrev(str1)</code> returns string reversed.
         </para>
     </refsection>
     <refsection>

@@ -187,8 +187,8 @@ CLEANFILES = $(BASE_PATH)/*/*.cmi \
 
 #BUILT_SOURCES = depend
 
-depend: $(MLIS) $(MLS) $(MLIS_XML2Modelica) $(MLS_XML2Modelica) $(MLIS_modelicat) $(MLS_modelicat)
-	$(OCAMLDEP) $(INCLUDE_modelicat) $(INCLUDE) $^ > .depend
+depend: 
+	$(OCAMLDEP) $(INCLUDE_modelicat) $(INCLUDE) $(MLIS) $(MLS) $(MLIS_XML2Modelica) $(MLS_XML2Modelica) $(MLIS_modelicat) $(MLS_modelicat) > .depend
 
 include .depend
 

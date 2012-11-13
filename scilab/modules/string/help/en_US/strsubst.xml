@@ -13,14 +13,15 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strsubst" xml:lang="en">
     <refnamediv>
         <refname>strsubst</refname>
-        <refpurpose>substitute a character string by another in a character
-            string.
+        <refpurpose>
+            substitute a character string by another in a character string
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>string_out=strsubst(string_in,searchStr,replaceStr)
-            string_out=strsubst(string_in,searchStr,replaceStr,[flag])
+        <synopsis>
+            string_out = strsubst(string_in, searchStr, replaceStr)
+            string_out = strsubst(string_in, searchStr, replaceStr, [flag])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -29,38 +30,45 @@
             <varlistentry>
                 <term>string_in</term>
                 <listitem>
-                    <para>a matrix of character string. The strings where to search
-                        occurrences of <literal>searchStr</literal>
+                    <para>
+                        a matrix of character string. The strings where to
+                        search occurrences of <varname>searchStr</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>searchStr</term>
                 <listitem>
-                    <para>A character string. The string to search in
-                        <literal>string</literal>.
+                    <para>
+                        a character string. The string to search in
+                        <varname>string_in</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>replaceStr</term>
                 <listitem>
-                    <para>A character string. The replacement string.</para>
+                    <para>
+                        a character string. The replacement string.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>str_out</term>
+                <term>string_out</term>
                 <listitem>
-                    <para>A matrix of character strings. The result of the substitution
-                        on <literal>searchStr</literal> by <literal>replaceStr</literal> in
-                        <literal>string</literal>
+                    <para>
+                        a matrix of character strings. The result of the
+                        substitution on <varname>searchStr</varname> by
+                        <varname>replaceStr</varname> in <varname>string_in</varname>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <para>string("r" for regular expression)</para>
+                    <para>
+                        a character (<literal>"r"</literal> for regular expression).
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -68,13 +76,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>strsubst</literal> replaces all occurrences of
-            <literal>searchStr</literal> in <literal>string</literal> by
-            <literal>replaceStr</literal>.
+            The <function>strsubst</function> function replaces all occurrences of
+            <varname>searchStr</varname> in <varname>string_in</varname> by
+            <varname>replaceStr</varname>.
         </para>
-        <para>When using the forth parameters "r", the searchStr should be a
-            string of regular expression. And then strsubst is going to match it with
-            string and replace according to the regular express rules.
+        <para>
+            When using the forth parameter <literal>"r"</literal>, the <varname>searchStr</varname> should be a
+            string of regular expression. And then <function>strsubst</function> is going to match it with
+            <varname>string_in</varname> and replace according to the regular expression rules.
         </para>
     </refsection>
     <refsection>

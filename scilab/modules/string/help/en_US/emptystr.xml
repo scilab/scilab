@@ -28,19 +28,19 @@
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para> matrix of size m x n</para>
+                    <para>a matrix of size <literal>m x n</literal>.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>s</term>
                 <listitem>
-                    <para>A matrix of character strings</para>
+                    <para>a matrix of character strings.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>m,n</term>
+                <term>m, n</term>
                 <listitem>
-                    <para>Integers</para>
+                    <para>integers</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -48,24 +48,31 @@
     <refsection>
         <title>Description</title>
         <para>
-            Returns a matrix of zero length character strings
+            The <function>emptystr</function> function returns a matrix of zero
+            length character strings.
         </para>
         <para>
-            With no input argument returns a zero length character string.
+            With no input argument <function>emptystr</function> returns a zero
+            length character string.
         </para>
         <para>
-            With a matrix for input argument returns a zero length character strings 
-            matrix of the same size.
+            With a matrix <varname>a</varname> for input argument
+            <function>emptystr</function> returns a zero length character
+            strings matrix of the same size.
         </para>
         <para>
-            With two integer arguments returns a m x n zero length character strings 
-            matrix
+            With two integer arguments <function>emptystr</function> returns a
+            <literal>m x n</literal> zero length character strings matrix.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-x=emptystr();for k=1:10, x=x+','+string(k);end
+x=emptystr();
+for k=1:10
+    x = x + ',' + string(k)
+    emptystr(1,k) + string(k)
+end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

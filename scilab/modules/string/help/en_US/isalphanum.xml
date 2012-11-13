@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                    <para>A character string.</para>
+                    <para>a character string.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>A boolean matrix.</para>
+                    <para>a boolean matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,7 +39,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>res = isalphanum(str)</literal> returns an array the same size as str containing logical %t (true) where the elements of str are alphanumerics and logical %f (false) where they are not.
+            <code>res = isalphanum(str)</code> returns an array the same size as
+            <varname>str</varname> containing logical <constant>%t</constant>
+            (true) where the elements of <varname>str</varname> are
+            alphanumerics and logical <constant>%f</constant> (false) where they
+            are not.
         </para>
     </refsection>
     <refsection>

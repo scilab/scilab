@@ -145,6 +145,7 @@ images/blocks/CVS.svg \
 images/blocks/DEADBAND.svg \
 images/blocks/Diode.svg \
 images/blocks/DSCOPE.svg \
+images/blocks/Flowmeter.svg \
 images/blocks/Ground.svg \
 images/blocks/Gyrator.svg \
 images/blocks/HYSTHERESIS.svg \
@@ -271,6 +272,7 @@ images/palettes/EXTRACTBITS.png \
 images/palettes/EXTRACTOR.png \
 images/palettes/EXTRACT.png \
 images/palettes/EXTTRI.png \
+images/palettes/Flowmeter.png \
 images/palettes/fortran_block.png \
 images/palettes/freq_div.png \
 images/palettes/FROMMO.png \

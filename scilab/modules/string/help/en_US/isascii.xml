@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                    <para>A character string.</para>
+                    <para>a character string.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>A Boolean matrix.</para>
+                    <para>a boolean matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,9 +39,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>res = isascii(str)</literal> returns TRUE (%T) if c is a 7-bit
+            <code>res = isascii(str)</code> returns <constant>%t</constant> (TRUE) if <varname>str</varname> is a 7-bit
             US-ASCII character code between 0 and octal 0177 inclusive.
-            otherwise returns FALSE (%F)
+            Otherwise returns <constant>%f</constant> (FALSE).
         </para>
     </refsection>
     <refsection>
