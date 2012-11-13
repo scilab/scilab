@@ -33,7 +33,8 @@ int cumprod(types::Double* pIn, int iOrientation, types::Double* pOut)
             for (int i = 1; i < pIn->getSize(); i++)
             {
                 pdblOutReal[i] = pdblInReal[i] * pdblOutReal[i - 1];
-                pdblOutImg[i] = pdblInImg[i] * pdblOutImg[i - 1];
+                pdblOutReal[i] -= pdblInImg[i] * pdblOutImg[i - 1];
+                pdblOutImg[i] = (pdblInReal[i] * pdblOutImg[i - 1]) + (pdblInImg[i] * pdblOutReal[i - 1]);
             }
         }
         else
@@ -62,7 +63,6 @@ int cumprod(types::Double* pIn, int iOrientation, types::Double* pOut)
                 {
                     pdblOutReal[i] = pdblInReal[i];
                     pdblOutImg[i] = pdblInImg[i];
-
                 }
 
                 for (int k = 1; k < iSizeOfDimN; k++) // make the cumprod for the next values
@@ -70,7 +70,8 @@ int cumprod(types::Double* pIn, int iOrientation, types::Double* pOut)
                     for (int i = (iIncrement * k) + j; i < (iIncrement * (k + 1)) + j; i++)
                     {
                         pdblOutReal[i] = pdblInReal[i] * pdblOutReal[i - iIncrement];
-                        pdblOutImg[i] = pdblInImg[i] * pdblOutImg[i - iIncrement];
+                        pdblOutReal[i] -= pdblInImg[i] * pdblOutImg[i - iIncrement];
+                        pdblOutImg[i] = (pdblInReal[i] * pdblOutImg[i - iIncrement]) + (pdblInImg[i] * pdblOutReal[i - iIncrement]);
                     }
                 }
             }
