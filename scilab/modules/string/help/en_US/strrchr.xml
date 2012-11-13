@@ -55,7 +55,7 @@
         </para>
         <para>
             <varname>char</varname> must have same dimensions than
-            <varname>str1<varname> or only one character.
+            <varname>str1</varname> or only one character.
         </para>
     </refsection>
     <refsection>

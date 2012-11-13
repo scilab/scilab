@@ -74,7 +74,7 @@
             same as <code>strcat(["a","b"]).</code>.
         </para>
         <para>
-            If the size of <varname>strings<varname> is one, it returns
+            If the size of <varname>strings</varname> is one, it returns
             <code>txt = strings(1)</code>;
         </para>
         <para>

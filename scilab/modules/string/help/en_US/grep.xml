@@ -78,7 +78,7 @@
             index of first string of <varname>needle</varname> found.
         </para>
         <para>
-            When using the third parameter <varname>flag<varname><literal>="r"</literal>, the
+            When using the third parameter <varname>flag</varname><literal>="r"</literal>, the
             <varname>needle</varname> is expected to be a regular expression string.
             In this case, <function>grep</function> uses the
             <varname>needle</varname> as a regular expression and compares it

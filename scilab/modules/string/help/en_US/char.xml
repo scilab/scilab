@@ -48,7 +48,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <emphasize role="bold">One input argument :</emphasize>
+            <emphasis role="bold">One input argument :</emphasis>
         </para>
         <para>
             Given a cell of array of strings <varname>x</varname>, this function
@@ -63,7 +63,7 @@
             the dimensions of <varname>y</varname> are <literal>[n1, n3, n4,...]</literal>.
         </para>
         <para>
-            <emphasize role="bold">More than one input argument :</emphasize>
+            <emphasis role="bold">More than one input argument :</emphasis>
         </para>
         <para>
             Given arrays of strings <literal>st1, st2, st3,...</literal>, this function 
