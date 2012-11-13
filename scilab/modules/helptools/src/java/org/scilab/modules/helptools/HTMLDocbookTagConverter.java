@@ -1263,8 +1263,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
 
         try {
             String path = new File(new URI(currentFileName)).getParent();
-            if (!ImageConverter.imageExists(path, fileref)) {
-                throw new SAXException("The given fileref is not on an existing image file:\n" + fileref);
+            File file = ImageConverter.imageExists(path, fileref);
+            if (file != null) {
+                throw new SAXException("The given fileref is not on an existing image file:\n" + fileref + " [" + file + "]");
             }
 
             return ImageConverter.getImageByFile(attributes, path, fileref, outName, imageDir);
