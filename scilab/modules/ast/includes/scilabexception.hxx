@@ -44,7 +44,7 @@ namespace ast
         int             m_iErrorNumber;
         Location        m_ErrorLocation;
 
-    private :
+    protected :
         void createScilabException(std::wstring _wstErrorMesssage = L"", int _iErrorNumber = 0, const Location& _ErrorLocation = *new Location());
     };
 
@@ -68,10 +68,10 @@ namespace ast
     {
     public :
         ScilabMessage() : ScilabException(){}
-        ScilabMessage(std::wstring _wstErrorMesssage) : ScilabException(_wstErrorMesssage){}
-        ScilabMessage(std::string _stErrorMesssage) : ScilabException(_stErrorMesssage){}
+        ScilabMessage(std::wstring _wstErrorMesssage); //: ScilabException(_wstErrorMesssage){}
+        ScilabMessage(std::string _stErrorMesssage); //: ScilabException(_stErrorMesssage){}
         ScilabMessage(const Location& _ErrorLocation) : ScilabException(_ErrorLocation){}
-        ScilabMessage(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation) : ScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation){}
+        ScilabMessage(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation); //: ScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation){}
     };
 }
 #endif // !AST_SCILABEXCEPTION_HXX

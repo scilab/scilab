@@ -79,8 +79,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
                 wstrProcess != L"lc" &&
                 wstrProcess != L"lr")
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : r, c, g, lr or lc.\n"), "gsort", 2);
-
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' expected.\n"), fname, 2, "r", "c", "g", "lr", "lc");
             return types::Function::Error;
         }
     }

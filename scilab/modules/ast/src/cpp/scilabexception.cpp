@@ -90,4 +90,25 @@ namespace ast
         return m_ErrorLocation;
     }
 
+    ScilabMessage::ScilabMessage(std::wstring _wstErrorMesssage)
+    {
+        //setLastError(999, _wstErrorMesssage.c_str(), 0, NULL);
+        createScilabException(_wstErrorMesssage);
+    }
+
+    ScilabMessage::ScilabMessage(std::string _stErrorMesssage)
+    {
+
+        wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
+        //setLastError(999, pwst, 0, NULL);
+        createScilabException(pwst);
+        FREE(pwst);
+    }
+
+    ScilabMessage::ScilabMessage(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
+    {
+        //setLastError(_iErrorNumber, _wstErrorMesssage.c_str(), 0, NULL);
+        createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);
+    }
+
 }
