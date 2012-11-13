@@ -351,13 +351,6 @@ u_0(t)
             systems Palette.
         </para>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/clss_d.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/CLSS_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
@@ -365,6 +358,10 @@ u_0(t)
                     </imageobject>
                 </inlinemediaobject>
             </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/CLSS_Example.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </para>
     </refsection>
     <refsection id="Interfacingfunction_CLSS">

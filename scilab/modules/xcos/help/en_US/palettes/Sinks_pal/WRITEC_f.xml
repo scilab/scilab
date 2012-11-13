@@ -298,11 +298,15 @@
             </link>
             .
         </para>
+        <para/>
         <para>
-            <mediaobject><imageobject>
-                    <imagedata fileref="../../../examples/sinks_pal/en_US/writec_f_diagram_en_US.png" align="center" />
-                </imageobject>
-            </mediaobject>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/en_US/writec_f_en_US.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/sinks_pal/en_US/writec_f_en_US.xcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
     </refsection>
     

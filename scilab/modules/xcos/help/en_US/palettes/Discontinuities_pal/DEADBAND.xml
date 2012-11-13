@@ -259,8 +259,14 @@
     <refsection id="Example_DEADBAND">
         <title>Example</title>
         <para>The following is an example of a system with deadband.
+        </para>
+        <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/en_US/deadband_en_US.xcos">
-                Open this example in Xcos
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/discontinuities_pal/en_US/deadband_en_US.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
             </link>
         </para>
         <para>The input is a sine wave. The magnitude is set to 2, the frequency
@@ -272,11 +278,10 @@
         </para>
         <para>This plot shows the effect of the dead band on the sine wave.</para>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/discontinuities_pal/en_US/deadband_c_en_US.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/discontinuities_pal/en_US/deadband_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </para>
     </refsection>
     <refsection id="Interfacingfunction_DEADBAND">

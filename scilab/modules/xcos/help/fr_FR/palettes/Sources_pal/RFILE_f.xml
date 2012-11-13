@@ -314,11 +314,13 @@
             .
         </para>
         <para>
-            <mediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../examples/sources_pal/fr_FR/rfile_f_diagram_fr_FR.png" align="center"/>
-                </imageobject>
-            </mediaobject>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/fr_FR/rfile_f_fr_FR.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/sources_pal/fr_FR/rfile_f_fr_FR.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
     </refsection>
     <refsection id="Interfacingfunction_RFILE_f">

@@ -199,26 +199,32 @@
         <para>
             In this example, we create a square wave generator with two inverted outputs by using a SUPER_f block with the contents
             shown in the following figure, where you can see the use of the CLKINV_f block as event input of the internal
-            square wave generator. <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/CLKINV_f_en_US.xcos">
+            square wave generator.
+        </para>
+        <para><link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/CLKINV_f_en_US.xcos">
                 Open this example in Xcos
             </link>
-            .
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/en_US/clkinv_f_superbloc_en_US.png"/>
-            </imageobject>
-        </mediaobject>
-        <para><para/>
+        <para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/CLKINV_f_en_US.xcos"/>
+                </imageobject>
+            </mediaobject>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/CLKINV_f_internal_en_US.xcos"/>
+                </imageobject>
+            </mediaobject>
+        </para>
+        <para>
             The following figure shows the output of the bloc :
         </para>
-        <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/en_US/clkinv_f_diagram_en_US.png"/>
-            </imageobject>
-        </mediaobject>
+        <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/CLKINV_f_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_CLKINV_f">
         <title>Interfacing function</title>

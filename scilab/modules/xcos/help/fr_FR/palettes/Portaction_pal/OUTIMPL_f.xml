@@ -197,7 +197,7 @@
         <para/>
         <mediaobject>
             <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/fr_FR/outimpl_f_superbloc_fr_FR.png"/>
+                <imagedata fileref="../../../../examples/portaction_pal/fr_FR/OUTIMPL_f_fr_FR.xcos"/>
             </imageobject>
         </mediaobject>
         <para>
@@ -206,7 +206,7 @@
         <para/>
         <mediaobject>
             <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/fr_FR/outimpl_f_diagram_fr_FR.png"/>
+                <imagedata fileref="../../../../examples/portaction_pal/fr_FR/OUTIMPL_f_internal_fr_FR.xcos"/>
             </imageobject>
         </mediaobject>
     </refsection>

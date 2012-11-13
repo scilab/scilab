@@ -76,11 +76,6 @@
                             <xref linkend="Computationalfunction_DERIV">Computational function</xref>
                         </para>
                     </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_DERIV">Example</xref>
-                        </para>
-                    </listitem>
                 </itemizedlist>
             </listitem>
         </itemizedlist>
@@ -209,11 +204,13 @@
             below:
         </para>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/derivative_diag.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/DERIV_Example.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/continuous_pal/DERIV_Example.xcos"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
             <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/DERIV_Example.xcos");
 xcos_simulate(scs_m, 4);
@@ -235,17 +232,5 @@ xcos_simulate(scs_m, 4);
                 <para>SCI/modules/scicos_blocks/src/c/deriv.c (Type 4)</para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection id="Example_DERIV">
-        <title>Example</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/DERIV_Example.xcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/DERIV_Example.xcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
     </refsection>
 </refentry>

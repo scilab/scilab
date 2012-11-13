@@ -301,11 +301,19 @@
                 Ouvrir cet exemple dans Xcos
             </link>
         </para>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/integer_pal/fr_FR/dlatch_diagram_fr_FR.png" align="center"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/DLATCH_fr_FR.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/integer_pal/fr_FR/DLATCH_fr_FR.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/DLATCH_fr_FR.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_DLATCH">
         <title>Fonction d'interfaçage</title>
