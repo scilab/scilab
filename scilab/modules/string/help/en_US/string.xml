@@ -28,8 +28,9 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Boolean, complex, real, integer, polynomial matrix, implicit
-                        size, library or function
+                    <para>
+                        a boolean, complex, real, integer, polynomial matrix,
+                        an implicit size, a library or a function.
                     </para>
                 </listitem>
             </varlistentry>
@@ -37,18 +38,18 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>converts a matrix into a matrix of strings.</para>
         <para>
-            If <literal>x</literal> is a function <literal>[out, in, text] =
-                string(x)
-            </literal>
-            returns three vectors strings : <literal>out</literal>
-            is the vector of output variables, <literal>in</literal> is the vector of
-            input variables, and <literal>text</literal> is the (column) vector of the
+            The <function>string</function> function converts a matrix <varname>x</varname> into a matrix of strings.
+        </para>
+        <para>
+            If <varname>x</varname> is a function <code>[out, in, text] = string(x)</code>
+            returns three vectors of strings: <varname>out</varname>
+            is the vector of output variables, <varname>in</varname> is the vector of
+            input variables, and <varname>text</varname> is the (column) vector of the
             source code of the function.
         </para>
         <para>
-            If <literal>x</literal> is a <literal>lib</literal> variable
+            If <varname>x</varname> is a <literal>lib</literal> variable
             (library), text is a character string column vector. The first element
             contains the path of library file and the other the name of functions it
             defines.
@@ -62,33 +63,35 @@
             Concatenation of strings is made by the <literal>+</literal>
             operation.
         </para>
-        <para>For complex, real, integer, polynomial matrix
-            <literal>string</literal> output is managed by <link linkend="format">format</link> function (see examples).
+        <para>
+            For complex, real, integer, polynomial matrix
+            <function>string</function> output is managed by <link linkend="format">format</link> function (see examples).
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example">string(rand(2, 2))
-            
-            deff("y = mymacro(x)", "y = x + 1")
-            [out, in, text] = string(mymacro)
-            x = 123.356;
-            disp("Result is " + string(x));
-            
-            disp("/" + string(~%t) + "/");
-            disp("/" + string(%i+1) + "/");
-            disp("/" + string(int16(-123)) + "/");
-            disp("/" + string(1 + %s + %s^3) + "/");
-            
-            string(corelib)
-            
-            v = format();
-            disp(string(%pi))
-            format(24);
-            disp(string(%pi))
-            format(v(2))
-            
-            string(1:4:$)
+        <programlisting role="example">
+string(rand(2, 2))
+
+deff("y = mymacro(x)", "y = x + 1")
+[out, in, text] = string(mymacro)
+x = 123.356;
+disp("Result is " + string(x));
+
+disp("/" + string(~%t) + "/");
+disp("/" + string(%i+1) + "/");
+disp("/" + string(int16(-123)) + "/");
+disp("/" + string(1 + %s + %s^3) + "/");
+
+string(corelib)
+
+v = format();
+disp(string(%pi))
+format(24);
+disp(string(%pi))
+format(v(2))
+
+string(1:4:$)
         </programlisting>
     </refsection>
     <refsection role="see also">
@@ -131,7 +134,9 @@
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>implicit size type managed as input argument.</revremark>
+                <revremark>
+                    implicit size type managed as input argument.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

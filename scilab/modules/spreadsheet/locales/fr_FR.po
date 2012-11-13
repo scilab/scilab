@@ -261,7 +261,7 @@ msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
 "the previous had %d.\n"
 msgstr ""
-"%s : Une incohérence a été trouvée dans les colonnes. À la ligne %d , %d "
+"%s : Une incohérence a été trouvée dans les colonnes. À la ligne %d, %d "
 "colonnes ont été trouvées, alors que la précédente en avait %d.\n"
 
 #, c-format

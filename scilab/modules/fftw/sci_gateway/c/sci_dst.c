@@ -1025,7 +1025,7 @@ int sci_dst_gen(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
 
     if (isn == -1)
     {
-        if (iopt == 0 | iopt == 1)
+        if (iopt == 0 || iopt == 1)
             for (i = 0; i < gdim.rank; i++)
             {
                 kind[i] = FFTW_RODFT00;
@@ -1043,7 +1043,7 @@ int sci_dst_gen(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     }
     else
     {
-        if (iopt == 0 | iopt == 1)
+        if (iopt == 0 || iopt == 1)
             for (i = 0; i < gdim.rank; i++)
             {
                 kind[i] = FFTW_RODFT00;

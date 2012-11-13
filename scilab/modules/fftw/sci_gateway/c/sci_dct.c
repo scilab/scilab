@@ -1014,7 +1014,7 @@ int sci_dct_gen(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
 
 
     AssignOutputVariable(pvApiCtx, 1) =  1;/* assume inplace transform*/
-    if (isn == 1 & iopt == 0)
+    if (isn == 1 && iopt == 0)
     {
         /* normalization */
         if (dct_scale_array(Ar, Ai, gdim, isn) == -1)
@@ -1033,7 +1033,7 @@ int sci_dct_gen(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
 
     if (isn == -1)
     {
-        if (iopt == 0 | iopt == 2)
+        if (iopt == 0 || iopt == 2)
             for (i = 0; i < gdim.rank; i++)
             {
                 kind[i] = FFTW_REDFT10;
@@ -1051,7 +1051,7 @@ int sci_dct_gen(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     }
     else
     {
-        if (iopt == 0 | iopt == 3)
+        if (iopt == 0 || iopt == 3)
             for (i = 0; i < gdim.rank; i++)
             {
                 kind[i] = FFTW_REDFT01;
@@ -1182,7 +1182,7 @@ int sci_dct_gen(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
         gdim.howmany_dims = howmany_dims;
 
     }
-    if (isn == -1 & iopt == 0)
+    if (isn == -1 && iopt == 0)
     {
         /* normalization */
 

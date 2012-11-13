@@ -49,7 +49,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
 //** 
 //**  where
 //**
-//**       o_size = size(gh_curwin.children.children); // o_size(1) => lenght  o_size(2) => 1
+//**       o_size = size(gh_curwin.children.children); // o_size(1) => length  o_size(2) => 1
 //**
 //**  the graphics "Compound" object are NOT deleted BUT set to "invisible" with the propriety
 //**

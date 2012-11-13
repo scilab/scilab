@@ -339,7 +339,7 @@ C
          enddo
       endif
 C
-C Determine the lenghts of working arrays.
+C Determine the lengths of working arrays.
 C Use a larger value for NDWORK for enabling calls of block algorithms
 C in DGEES, and possibly in DGEHRD, DGEQRF, DGERQF, SB04PD.
 C

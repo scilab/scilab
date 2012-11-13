@@ -44,6 +44,23 @@
             a dialog window.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// with a function transfert
+s=poly(0,'s');
+gs=syslin('c',1/(s+1));
+trfmod(gs)
+
+// with a state-space matrix
+A=diag([1,2,3]);
+B=[1;1;1];
+C=[2,2,2];
+sys=syslin('c',A,B,C);
+trfmod(sys)
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

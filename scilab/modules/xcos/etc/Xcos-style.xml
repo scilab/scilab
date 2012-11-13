@@ -864,6 +864,9 @@
   <add as="SourceP" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/SourceP.svg"/>
   </add>
+  <add as="Flowmeter" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Flowmeter.svg"/>
+  </add>
   <!-- DEMONSTRATION BLOCKS -->
   <add as="BOUNCE" extend="blockWithLabel">
     <add as="displayedLabel" value="Bouncing&lt;BR&gt;         balls"/>
