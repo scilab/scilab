@@ -13,11 +13,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="strtok">
     <refnamediv>
         <refname>strtok</refname>
-        <refpurpose>Split string into tokens</refpurpose>
+        <refpurpose>split string into tokens</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>res = strtok(str,delimiters)</synopsis>
+        <synopsis>res = strtok(str, delimiters)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,19 +25,19 @@
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                    <para>A character string</para>
+                    <para>a character string.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>delimiters</term>
                 <listitem>
-                    <para>A character string</para>
+                    <para>a character string.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>A character string</para>
+                    <para>a character string.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,7 +45,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>res = strtok(str,delimiters)</literal>  sequence of calls to this function split str into tokens, which are sequences of contiguous characters spearated by any of the characters that are part of delimiters.
+            <code>res = strtok(str, delimiters)</code>  sequence of calls to
+            this function split <varname>str</varname> into tokens, which are
+            sequences of contiguous characters separated by any of the
+            characters that are part of <varname>delimiters</varname>.
         </para>
     </refsection>
     <refsection>

@@ -10,14 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="sci2exp">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:lang="en" xml:id="sci2exp">
     <refnamediv>
         <refname>sci2exp</refname>
-        <refpurpose>converts an expression to a string</refpurpose>
+        <refpurpose> converts an expression to a string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>t=sci2exp(a [,nam] [,lmax])</synopsis>
+        <synopsis>t = sci2exp(a [,nam] [,lmax])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,36 +25,36 @@
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para>a scilab expression, may be</para>
+                    <para>a scilab expression, may be:</para>
                     <variablelist>
                         <varlistentry>
                             <term>-    </term>
                             <listitem>
-                                <para>constant,</para>
+                                <para>a constant;</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>-    </term>
                             <listitem>
-                                <para>polynomial</para>
+                                <para>a polynomial;</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>-    </term>
                             <listitem>
-                                <para>string matrix</para>
+                                <para>a string matrix;</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>-    </term>
                             <listitem>
-                                <para>list</para>
+                                <para>a list;</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>-    </term>
                             <listitem>
-                                <para>boolean matrix</para>
+                                <para>a boolean matrix.</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -63,20 +63,23 @@
             <varlistentry>
                 <term>nam</term>
                 <listitem>
-                    <para>character string</para>
+                    <para>a character string.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>vector of string, contains the expression or the affectation instruction</para>
+                    <para>
+                        a vector of strings, contains the expression or the affectation instruction.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>lmax</term>
                 <listitem>
                     <para>
-                        integer, contains the maximum line length. default value is 90, <literal>lmax=0</literal> indicate  no line length control a single string is returned
+                        an integer, contains the maximum line length. Default value is <literal>90</literal>,
+                        <literal>lmax=0</literal> indicates no line length control a single string is returned
                     </para>
                 </listitem>
             </varlistentry>
@@ -85,19 +88,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>sci2exp</literal> converts expression to an instruction string if <literal>nam</literal> is
+            <function>sci2exp</function> converts expression to an instruction string if <varname>nam</varname> is
             given or to an expression string.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=[1 2;3 4]
 sci2exp(a,'aa')
 sci2exp(a,'aa',0)
 sci2exp(ssrand(2,2,2))
 sci2exp(poly([1 0 3 4],'s'),'fi')
- ]]></programlisting>
+    ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

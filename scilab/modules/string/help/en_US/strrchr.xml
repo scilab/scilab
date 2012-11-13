@@ -13,11 +13,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="strrchr">
     <refnamediv>
         <refname>strrchr</refname>
-        <refpurpose>Find the last occurrence of a character in a string</refpurpose>
+        <refpurpose>
+            find the last occurrence of a character in a string
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>res = strrchr(str1,char)</synopsis>
+        <synopsis>res = strrchr(str1, char)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,19 +27,23 @@
             <varlistentry>
                 <term>str1</term>
                 <listitem>
-                    <para>A character string or matrix of character strings</para>
+                    <para>
+                        a character string or matrix of character strings.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>char</term>
                 <listitem>
-                    <para>a character.</para>
+                    <para>a character or matrix of characters.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>A character string or matrix of character strings</para>
+                    <para>
+                        a character string or matrix of character strings.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,9 +51,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>res = strrchr(str1,char)</literal> Returns the last occurrence of character in the string str.
+            <code>res = strrchr(str1, char)</code> returns the last occurrence of character <varname>char</varname> in the string <varname>str1</varname>.
         </para>
-        <para> num must have same dimensions than str1 or only one char. </para>
+        <para>
+            <varname>char</varname> must have same dimensions than
+            <varname>str1<varname> or only one character.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

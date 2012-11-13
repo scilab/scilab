@@ -17,8 +17,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>y=char(x)
-            y=char(st1,st2,st3,...)
+        <synopsis>
+            y = char(x)
+            y = char(st1, st2, st3,...)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -27,19 +28,19 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a cell array of strings, or an array of ascii codes</para>
+                    <para>a cell array of strings, or an array of ASCII codes.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>st1,st2,st3</term>
+                <term>st1, st2, st3</term>
                 <listitem>
-                    <para>arrays of strings</para>
+                    <para>arrays of strings.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>a vector of strings (column)</para>
+                    <para>a vector of strings (column).</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -47,28 +48,28 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>One input argument :</literal>
+            <emphasize role="bold">One input argument :</emphasize>
         </para>
         <para>
-            Given a cell of  array of strings <literal>x</literal>, this function
-            returns a vector of strings <literal>y</literal> in which the rows are the 
+            Given a cell of array of strings <varname>x</varname>, this function
+            returns a vector of strings <varname>y</varname> in which the rows are the
             concatenated components of corresponding rows of the cell array of strings.
         </para>
         <para>
-            Given an array of ascii codes <literal>x</literal>, this function
-            returns a  array of strings <literal>y</literal> corresponding into ascii
-            codes. If dimensions of <literal>x</literal> are <literal>[n1,n2,n3,n4,...]</literal>, 
+            Given an array of ASCII codes <varname>x</varname>, this function
+            returns a  array of strings <varname>y</varname> corresponding into ASCII
+            codes. If dimensions of <varname>x</varname> are <literal>[n1, n2, n3, n4,...]</literal>,
             then returned value has same size as input value except second dimension, i.e.
-            the dimensions of <literal>y</literal> are <literal>[n1,n3,n4,...]</literal>.
+            the dimensions of <varname>y</varname> are <literal>[n1, n3, n4,...]</literal>.
         </para>
         <para>
-            <literal>More than one input argument :</literal>
+            <emphasize role="bold">More than one input argument :</emphasize>
         </para>
         <para>
-            Given arrays of strings <literal>st1,st2,st3,...</literal>, this function 
+            Given arrays of strings <literal>st1, st2, st3,...</literal>, this function 
             returns a vector of strings in which the rows are the concatenated 
-            components of corresponding rows of <literal>st1,st2,st3,...</literal>. 
-            In the vector <literal>y</literal> all strings <literal>sti</literal> 
+            components of corresponding rows of <literal>st1, st2, st3,...</literal>.
+            In the vector <varname>y</varname> all strings <literal>sti</literal>
             are completed by blanks to have the same length as the max length of 
             <literal>sti</literal>.
         </para>
@@ -76,7 +77,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-//Example with a hypermatrix of ascii codes :
+//Example with a hypermatrix of ASCII codes :
 x=hypermat([4,2,3],61:84);
 y=char(x)
 size(x)
