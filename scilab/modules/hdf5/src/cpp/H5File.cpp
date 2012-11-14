@@ -90,6 +90,13 @@ void H5File::init(const hid_t fapl)
                 }
                 else
                 {
+                    struct stat stat_buf;
+                    int rc = stat(filename.c_str(), &stat_buf);
+                    if (!rc && stat_buf.st_size == 0)
+                    {
+                        throw H5Exception(__LINE__, __FILE__, _("Cannot open the file: %s, an empty file with the same name already exists"), filename.c_str());
+                    }
+
                     throw H5Exception(__LINE__, __FILE__, _("Cannot append the file (not HDF5): %s"), filename.c_str());
                 }
             }
@@ -220,6 +227,7 @@ H5File::H5File(const std::string & _filename, const std::string & _path, const s
 
 H5File::~H5File()
 {
+    H5Fflush(file, H5F_SCOPE_GLOBAL);
     cleanup();
     if (file >= 0)
     {

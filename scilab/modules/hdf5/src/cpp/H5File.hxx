@@ -15,6 +15,8 @@
 
 #include "H5Object.hxx"
 
+#include <sys/stat.h>
+
 namespace org_modules_hdf5
 {
 class H5Group;
