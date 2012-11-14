@@ -104,7 +104,7 @@ void H5Dataspace::getAccessibleAttribute(const std::string & _name, const int po
     std::string lower(_name);
     std::transform(_name.begin(), _name.end(), lower.begin(), tolower);
 
-    if (lower == "dims")
+    if (lower == "dims" || lower == "dimensions")
     {
         std::vector<unsigned int> dims = getDims(true);
         err = createMatrixOfUnsignedInteger32(pvApiCtx, pos, 1, dims.size(), &(dims[0]));
@@ -248,7 +248,8 @@ std::string H5Dataspace::toString(unsigned int indentLevel) const
 
     if (type == "simple")
     {
-        os << std::endl << indentString << _("Dimensions") << ": [1 x " << getDims(true).size() << "]";
+        os << std::endl << indentString << _("Dimensions") << ": [1 x " << getDims(true).size() << "]" << std::endl
+           << indentString << _("Extents") << ": [1 x " << getDims(false).size() << "]";
     }
 
     return os.str();

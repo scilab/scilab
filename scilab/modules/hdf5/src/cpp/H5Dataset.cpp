@@ -307,14 +307,18 @@ std::string H5Dataset::toString(const unsigned int indentLevel) const
     std::string indentString = H5Object::getIndentString(indentLevel + 1);
     const H5Type & type = const_cast<H5Dataset *>(this)->getDataType();
     const H5AttributesList & attrs = const_cast<H5Dataset *>(this)->getAttributes();
+    const H5Dataspace & space = const_cast<H5Dataset *>(this)->getSpace();
 
     os << H5Object::getIndentString(indentLevel) << "HDF5 Dataset" << std::endl
        << indentString << "Filename" << ": " << getParent().getFile().getFileName() << std::endl
        << indentString << "Name" << ": " << getName() << std::endl
        << indentString << "Path" << ": " << getCompletePath() << std::endl
        << indentString << "Type" << ": " << type.getTypeName() << std::endl
+       << indentString << "Dataspace" << ": " << space.getTypeName() << std::endl
+       << indentString << "Data" << ": " << space.getStringDims() << std::endl
        << indentString << "Attributes" << ": [1 x " << attrs.getSize() << "]";
 
+    delete &space;
     delete &type;
     delete &attrs;
 

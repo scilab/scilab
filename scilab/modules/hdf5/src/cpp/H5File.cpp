@@ -444,7 +444,8 @@ std::string H5File::toString(const unsigned int indentLevel) const
     os << H5Object::getIndentString(indentLevel) << "HDF5 File" << std::endl
        << indentString << "Filename" << ": " << filename << std::endl
        << indentString << "Version" << ": " << major << "." << minor << "." << release << std::endl
-       << indentString << "Size" << ": " << size << std::endl;
+       << indentString << "Size" << ": " << size << std::endl
+       << indentString << "Root" << ": /" <<  std::endl;
 
     return os.str();
 }
