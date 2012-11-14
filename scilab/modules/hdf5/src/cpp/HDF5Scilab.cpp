@@ -856,6 +856,11 @@ void HDF5Scilab::mount(H5Object & obj, const std::string & location, H5Object & 
         throw H5Exception(__LINE__, __FILE__, _("Invalid location"));
     }
 
+    if (H5Lexists(obj.getH5Id(), location.c_str(), H5P_DEFAULT) <= 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Invalid location: %s"), location.c_str());
+    }
+
     err = H5Fmount(obj.getH5Id(), location.c_str(), file.getH5Id(), H5P_DEFAULT);
     if (err < 0)
     {
