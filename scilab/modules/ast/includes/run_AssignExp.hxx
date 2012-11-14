@@ -290,7 +290,7 @@ void visitprivate(const AssignExp  &e)
             InternalType *pOut	= NULL;
 
             //fisrt extract implicit list
-            if(pITR->isColon())
+            if (pITR->isColon())
             {
                 //double* pdbl = NULL;
                 //pITR = new Double(-1, -1, &pdbl);
@@ -300,7 +300,10 @@ void visitprivate(const AssignExp  &e)
             else if (pITR->isImplicitList())
             {
                 InternalType *pIL = pITR->getAs<ImplicitList>()->extractFullMatrix();
-                pITR = pIL;
+                if (pIL)
+                {
+                    pITR = pIL;
+                }
             }
             else if (pITR->isContainer() && pITR->isRef())
             {
@@ -505,18 +508,18 @@ void visitprivate(const AssignExp  &e)
                 {
                     pRet = pIT->getAs<Sparse>()->insert(pArgs, pInsert);
                 }
-                else if(pIT->isPoly() && pInsert->isDouble())
+                else if (pIT->isPoly() && pInsert->isDouble())
                 {
                     Polynom* pDest = pIT->getAs<Polynom>();
                     Double* pIns = pInsert->getAs<Double>();
                     Polynom* pP = new Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray());
                     pP->setComplex(pIns->isComplex());
 
-                    for(int idx = 0 ; idx < pP->getSize() ; idx++)
+                    for (int idx = 0 ; idx < pP->getSize() ; idx++)
                     {
                         double* pR = NULL;
                         double* pI = NULL;
-                        if(pP->isComplex())
+                        if (pP->isComplex())
                         {
                             SinglePoly* pS = new SinglePoly(&pR, &pI, 1);
                             double dblR = pIns->get(idx);
@@ -537,7 +540,7 @@ void visitprivate(const AssignExp  &e)
                     pRet = pIT->getAs<Polynom>()->insert(pArgs, pP);
                     delete pP;
                 }
-                else if(pIT->isPoly() && pInsert->isPoly())
+                else if (pIT->isPoly() && pInsert->isPoly())
                 {
                     pRet = pIT->getAs<Polynom>()->insert(pArgs, pInsert);
                 }
@@ -626,10 +629,11 @@ void visitprivate(const AssignExp  &e)
                 {
                     pRet = pIT->getAs<List>()->insert(pArgs, pInsert);
                 }
-                else if(pIT->isHandle())
+                else if (pIT->isHandle())
                 {
-                    if(pArgs->size() == 1 && (*pArgs)[0]->isString())
-                    {//s(["x"])
+                    if (pArgs->size() == 1 && (*pArgs)[0]->isString())
+                    {
+                        //s(["x"])
                         types::GraphicHandle* pH = pIT->getAs<types::GraphicHandle>();
                         types::String *pS = (*pArgs)[0]->getAs<types::String>();
                         typed_list in;
@@ -642,7 +646,7 @@ void visitprivate(const AssignExp  &e)
 
                         Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
                         Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, this);
-                        if(ret == Callable::OK)
+                        if (ret == Callable::OK)
                         {
                             pRet = pIT;
                         }
@@ -840,21 +844,22 @@ void visitprivate(const AssignExp  &e)
                 InternalType* pMain     = NULL;
                 InternalType* pCurrent  = NULL;
                 const Exp* pCurrentExp  = pField;
-  
+
                 const wstring *pstName  = getStructNameFromExp(pField);
-                if(pstName)
+                if (pstName)
                 {
                     InternalType* pCurrentStr = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(*pstName));
                     InternalType* pHigherStr = symbol::Context::getInstance()->get(symbol::Symbol(*pstName));
-                    if(pHigherStr && pHigherStr->isStruct() && pCurrentStr == NULL)
-                    {//struct come from higher scope, so we need to clone and put it in current scope
+                    if (pHigherStr && pHigherStr->isStruct() && pCurrentStr == NULL)
+                    {
+                        //struct come from higher scope, so we need to clone and put it in current scope
                         InternalType *pITClone = pHigherStr->clone();
                         symbol::Context::getInstance()->put(symbol::Symbol(*pstName), *pITClone);
                     }
                 }
-                
+
                 bool bOK = getStructFromExp(pCurrentExp, &pMain, &pCurrent, NULL, pIT);
-                if(bOK)
+                if (bOK)
                 {
                     //someting was done
                 }
@@ -864,11 +869,11 @@ void visitprivate(const AssignExp  &e)
                     pField->head_get()->accept(*this);
                     InternalType *pHead = result_get();
 
-                    if(pHead->isMList())
+                    if (pHead->isMList())
                     {
                         //TODO:
                     }
-                    else if(pHead->isTList())
+                    else if (pHead->isTList())
                     {
                         //assign result to new field
                         const SimpleVar* pTail =  dynamic_cast<const SimpleVar*>(pField->tail_get());
@@ -921,7 +926,7 @@ void visitprivate(const AssignExp  &e)
             //    {
             //        pHead = pMain;
             //    }
-  
+
             //    //if a is already assign, make a copy and replace it
             //    if (pHead->isRef(1) == true)
             //    {
