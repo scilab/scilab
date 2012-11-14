@@ -229,12 +229,17 @@ const std::string XMLElement::toString() const
         }
     }
 
-    oss << "XML Element" << std::endl;
-    oss << "name: " << getNodeName() << std::endl;
-    oss << "namespace href: " << ns << std::endl;
-    oss << "namespace prefix: " << prefix << std::endl;
-    oss << "type: " << nodes_type[getNodeType() - 1] << std::endl;
-    oss << "definition line: " << node->line;
+    oss << "XML Element" << std::endl
+        << "name: " << getNodeName() << std::endl
+        << "namespace: XML Namespace" << std::endl
+        << "    href: " << ns << std::endl
+        << "    prefix: " << prefix << std::endl
+        << "type: " << nodes_type[getNodeType() - 1] << std::endl
+        << "parent: XML Element" << std::endl
+        << "attributes: [1 x " << XMLAttr::getSize(node->properties) << "]" << std::endl
+        << "children: [1 x " << XMLNodeList::getNodeListSize(node->children) << "]" << std::endl
+        << "content: ..." << std::endl
+        << "line: " << node->line;
 
     return oss.str();
 }

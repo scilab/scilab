@@ -96,6 +96,9 @@ Bug fixes
 
 * Bug #12050 fixed - Fix a typo: dimensionnal => dimensional.
 
+* Bug #12071 fixed - Printed info of a XML object were inconsistent with
+                     available fields.
+
 * Bug #12077 fixed - In help, attribute bgcolor was not handled in tables.
 
 
