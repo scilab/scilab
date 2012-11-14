@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-10-15 10:34+0100\n"
+"Revision-Date: 2012-11-14 11:00+0100\n"
 
 # File: sci_gateway/c/gw_csv_helpers.c, line: 72
 # File: sci_gateway/c/gw_csv_helpers.c, line: 128
@@ -380,49 +380,49 @@ msgid "ripOLE: %s\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 244
+# File: src/c/ripole/ole.c, line: 245
 #, c-format
 msgid "%s:%d:OLE_set_debug: Debug level set to %d"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 323
+# File: src/c/ripole/ole.c, line: 325
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 337
+# File: src/c/ripole/ole.c, line: 339
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 356
+# File: src/c/ripole/ole.c, line: 358
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 371
+# File: src/c/ripole/ole.c, line: 373
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 394
+# File: src/c/ripole/ole.c, line: 396
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 960
+# File: src/c/ripole/ole.c, line: 984
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1020
+# File: src/c/ripole/ole.c, line: 1048
 #, c-format
 msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
@@ -430,51 +430,51 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1034
-# File: src/c/ripole/ole.c, line: 1045
+# File: src/c/ripole/ole.c, line: 1064
+# File: src/c/ripole/ole.c, line: 1077
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1053
+# File: src/c/ripole/ole.c, line: 1087
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1334
+# File: src/c/ripole/ole.c, line: 1386
 #, c-format
 msgid ""
 "%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1418
+# File: src/c/ripole/ole.c, line: 1472
 #, c-format
 msgid "%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1472
+# File: src/c/ripole/ole.c, line: 1526
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1491
+# File: src/c/ripole/ole.c, line: 1547
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1540
+# File: src/c/ripole/ole.c, line: 1598
 #, c-format
 msgid "%s:%d:OLE_open_directory:ERROR: %s"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1597
+# File: src/c/ripole/ole.c, line: 1657
 #, c-format
 msgid ""
 "%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' "
@@ -482,19 +482,19 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1608
+# File: src/c/ripole/ole.c, line: 1668
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1622
+# File: src/c/ripole/ole.c, line: 1682
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
 msgstr ""
 
 #
-# File: src/c/ripole/olestream-unwrap.c, line: 157
+# File: src/c/ripole/olestream-unwrap.c, line: 158
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
@@ -502,34 +502,34 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ripole/olestream-unwrap.c, line: 169
+# File: src/c/ripole/olestream-unwrap.c, line: 170
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
 msgstr ""
 
 #
-# File: src/c/ripole/olestream-unwrap.c, line: 176
+# File: src/c/ripole/olestream-unwrap.c, line: 179
 #, c-format
 msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 
 #
-# File: src/c/ripole/olestream-unwrap.c, line: 282
+# File: src/c/ripole/olestream-unwrap.c, line: 299
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
 msgstr ""
 
 #
-# File: src/c/ripole/olestream-unwrap.c, line: 294
+# File: src/c/ripole/olestream-unwrap.c, line: 313
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
 msgstr ""
 
 #
-# File: src/c/ripole/olestream-unwrap.c, line: 335
+# File: src/c/ripole/olestream-unwrap.c, line: 368
 #, c-format
 msgid "Unable to decode stream with element string '%s'\n"
 msgstr ""

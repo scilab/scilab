@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-10-15 10:34+0100\n"
+"Revision-Date: 2012-11-14 11:00+0100\n"
 
 # File: sci_gateway/c/gw_fftw.c, line: 49
 #, c-format
@@ -45,34 +45,34 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_dct.c, line: 135
-# File: sci_gateway/c/sci_dct.c, line: 265
-# File: sci_gateway/c/sci_dct.c, line: 402
-# File: sci_gateway/c/sci_dct.c, line: 451
-# File: sci_gateway/c/sci_dct.c, line: 696
-# File: sci_gateway/c/sci_dct.c, line: 707
-# File: sci_gateway/c/sci_dct.c, line: 776
-# File: sci_gateway/c/sci_dct.c, line: 831
-# File: sci_gateway/c/sci_dct.c, line: 952
-# File: sci_gateway/c/sci_dct.c, line: 960
-# File: sci_gateway/c/sci_dct.c, line: 989
-# File: sci_gateway/c/sci_dct.c, line: 1020
-# File: sci_gateway/c/sci_dct.c, line: 1037
-# File: sci_gateway/c/sci_dct.c, line: 1048
-# File: sci_gateway/c/sci_dct.c, line: 1095
+# File: sci_gateway/c/sci_dct.c, line: 293
+# File: sci_gateway/c/sci_dct.c, line: 433
+# File: sci_gateway/c/sci_dct.c, line: 491
+# File: sci_gateway/c/sci_dct.c, line: 745
+# File: sci_gateway/c/sci_dct.c, line: 756
+# File: sci_gateway/c/sci_dct.c, line: 825
+# File: sci_gateway/c/sci_dct.c, line: 889
+# File: sci_gateway/c/sci_dct.c, line: 1023
+# File: sci_gateway/c/sci_dct.c, line: 1031
+# File: sci_gateway/c/sci_dct.c, line: 1078
+# File: sci_gateway/c/sci_dct.c, line: 1111
+# File: sci_gateway/c/sci_dct.c, line: 1128
+# File: sci_gateway/c/sci_dct.c, line: 1142
+# File: sci_gateway/c/sci_dct.c, line: 1192
 # File: sci_gateway/c/sci_dst.c, line: 134
-# File: sci_gateway/c/sci_dst.c, line: 263
-# File: sci_gateway/c/sci_dst.c, line: 400
-# File: sci_gateway/c/sci_dst.c, line: 449
-# File: sci_gateway/c/sci_dst.c, line: 694
-# File: sci_gateway/c/sci_dst.c, line: 705
-# File: sci_gateway/c/sci_dst.c, line: 774
-# File: sci_gateway/c/sci_dst.c, line: 829
-# File: sci_gateway/c/sci_dst.c, line: 952
-# File: sci_gateway/c/sci_dst.c, line: 983
-# File: sci_gateway/c/sci_dst.c, line: 1015
-# File: sci_gateway/c/sci_dst.c, line: 1032
-# File: sci_gateway/c/sci_dst.c, line: 1043
-# File: sci_gateway/c/sci_dst.c, line: 1098
+# File: sci_gateway/c/sci_dst.c, line: 291
+# File: sci_gateway/c/sci_dst.c, line: 431
+# File: sci_gateway/c/sci_dst.c, line: 489
+# File: sci_gateway/c/sci_dst.c, line: 743
+# File: sci_gateway/c/sci_dst.c, line: 754
+# File: sci_gateway/c/sci_dst.c, line: 823
+# File: sci_gateway/c/sci_dst.c, line: 887
+# File: sci_gateway/c/sci_dst.c, line: 1022
+# File: sci_gateway/c/sci_dst.c, line: 1071
+# File: sci_gateway/c/sci_dst.c, line: 1105
+# File: sci_gateway/c/sci_dst.c, line: 1122
+# File: sci_gateway/c/sci_dst.c, line: 1136
+# File: sci_gateway/c/sci_dst.c, line: 1196
 # File: sci_gateway/c/sci_fftw.c, line: 246
 # File: sci_gateway/c/sci_fftw.c, line: 383
 # File: sci_gateway/c/sci_fftw.c, line: 434
@@ -106,17 +106,17 @@ msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 174
-# File: sci_gateway/c/sci_dct.c, line: 188
-# File: sci_gateway/c/sci_dst.c, line: 171
-# File: sci_gateway/c/sci_dst.c, line: 185
+# File: sci_gateway/c/sci_dct.c, line: 186
+# File: sci_gateway/c/sci_dct.c, line: 213
+# File: sci_gateway/c/sci_dst.c, line: 183
+# File: sci_gateway/c/sci_dst.c, line: 210
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 205
-# File: sci_gateway/c/sci_dst.c, line: 203
+# File: sci_gateway/c/sci_dct.c, line: 230
+# File: sci_gateway/c/sci_dst.c, line: 228
 # File: sci_gateway/c/sci_fftw.c, line: 186
 #, c-format
 msgid ""
@@ -124,10 +124,10 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 351
-# File: sci_gateway/c/sci_dct.c, line: 572
-# File: sci_gateway/c/sci_dst.c, line: 349
-# File: sci_gateway/c/sci_dst.c, line: 570
+# File: sci_gateway/c/sci_dct.c, line: 382
+# File: sci_gateway/c/sci_dct.c, line: 621
+# File: sci_gateway/c/sci_dst.c, line: 380
+# File: sci_gateway/c/sci_dst.c, line: 619
 # File: sci_gateway/c/sci_fftw.c, line: 332
 # File: sci_gateway/c/sci_fftw.c, line: 555
 # File: sci_gateway/c/sci_fftw_flags.c, line: 174
@@ -137,18 +137,18 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 367
-# File: sci_gateway/c/sci_dst.c, line: 365
+# File: sci_gateway/c/sci_dct.c, line: 398
+# File: sci_gateway/c/sci_dst.c, line: 396
 # File: sci_gateway/c/sci_fftw.c, line: 348
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 377
-# File: sci_gateway/c/sci_dct.c, line: 660
-# File: sci_gateway/c/sci_dst.c, line: 375
-# File: sci_gateway/c/sci_dst.c, line: 658
+# File: sci_gateway/c/sci_dct.c, line: 408
+# File: sci_gateway/c/sci_dct.c, line: 709
+# File: sci_gateway/c/sci_dst.c, line: 406
+# File: sci_gateway/c/sci_dst.c, line: 707
 # File: sci_gateway/c/sci_fftw.c, line: 358
 # File: sci_gateway/c/sci_fftw.c, line: 643
 #, c-format
@@ -156,8 +156,8 @@ msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 384
-# File: sci_gateway/c/sci_dst.c, line: 382
+# File: sci_gateway/c/sci_dct.c, line: 415
+# File: sci_gateway/c/sci_dst.c, line: 413
 # File: sci_gateway/c/sci_fftw.c, line: 365
 #, c-format
 msgid ""
@@ -165,10 +165,10 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 391
-# File: sci_gateway/c/sci_dct.c, line: 684
-# File: sci_gateway/c/sci_dst.c, line: 389
-# File: sci_gateway/c/sci_dst.c, line: 682
+# File: sci_gateway/c/sci_dct.c, line: 422
+# File: sci_gateway/c/sci_dct.c, line: 733
+# File: sci_gateway/c/sci_dst.c, line: 420
+# File: sci_gateway/c/sci_dst.c, line: 731
 # File: sci_gateway/c/sci_fftw.c, line: 372
 # File: sci_gateway/c/sci_fftw.c, line: 667
 #, c-format
@@ -178,8 +178,8 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 599
-# File: sci_gateway/c/sci_dst.c, line: 597
+# File: sci_gateway/c/sci_dct.c, line: 648
+# File: sci_gateway/c/sci_dst.c, line: 646
 # File: sci_gateway/c/sci_fftw.c, line: 582
 #, c-format
 msgid ""
@@ -187,32 +187,32 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 612
-# File: sci_gateway/c/sci_dst.c, line: 610
+# File: sci_gateway/c/sci_dct.c, line: 661
+# File: sci_gateway/c/sci_dst.c, line: 659
 # File: sci_gateway/c/sci_fftw.c, line: 595
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 623
-# File: sci_gateway/c/sci_dst.c, line: 621
+# File: sci_gateway/c/sci_dct.c, line: 672
+# File: sci_gateway/c/sci_dst.c, line: 670
 # File: sci_gateway/c/sci_fftw.c, line: 606
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Must be a divisor of %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 647
-# File: sci_gateway/c/sci_dst.c, line: 645
+# File: sci_gateway/c/sci_dct.c, line: 696
+# File: sci_gateway/c/sci_dst.c, line: 694
 # File: sci_gateway/c/sci_fftw.c, line: 630
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 673
-# File: sci_gateway/c/sci_dst.c, line: 671
+# File: sci_gateway/c/sci_dct.c, line: 722
+# File: sci_gateway/c/sci_dst.c, line: 720
 # File: sci_gateway/c/sci_fftw.c, line: 656
 #, c-format
 msgid ""
@@ -220,10 +220,10 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 735
-# File: sci_gateway/c/sci_dct.c, line: 757
-# File: sci_gateway/c/sci_dst.c, line: 733
-# File: sci_gateway/c/sci_dst.c, line: 755
+# File: sci_gateway/c/sci_dct.c, line: 784
+# File: sci_gateway/c/sci_dct.c, line: 806
+# File: sci_gateway/c/sci_dst.c, line: 782
+# File: sci_gateway/c/sci_dst.c, line: 804
 # File: sci_gateway/c/sci_fftw.c, line: 718
 # File: sci_gateway/c/sci_fftw.c, line: 740
 #, c-format
@@ -231,10 +231,10 @@ msgid "%s: Incompatible input arguments #%d and #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dct.c, line: 994
-# File: sci_gateway/c/sci_dct.c, line: 1027
-# File: sci_gateway/c/sci_dst.c, line: 988
-# File: sci_gateway/c/sci_dst.c, line: 1022
+# File: sci_gateway/c/sci_dct.c, line: 1083
+# File: sci_gateway/c/sci_dct.c, line: 1118
+# File: sci_gateway/c/sci_dst.c, line: 1076
+# File: sci_gateway/c/sci_dst.c, line: 1112
 # File: sci_gateway/c/sci_fftw.c, line: 1095
 # File: sci_gateway/c/sci_fftw.c, line: 1126
 #, c-format

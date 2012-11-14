@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-10-15 10:34+0100\n"
+"Revision-Date: 2012-11-14 11:00+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -755,6 +755,15 @@ msgstr ""
 #, c-format
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
+msgstr ""
+
+#
+# File: src/c/getval.c, line: 226
+# File: src/c/getval.c, line: 229
+#, c-format
+msgid ""
+"%s: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for "
+"element wise operation \n"
 msgstr ""
 
 #
@@ -1625,23 +1634,23 @@ msgid "%s: Variable %s not found.\n"
 msgstr ""
 
 #
-# File: src/c/stack3.c, line: 89
-# File: src/c/stack3.c, line: 138
-# File: src/c/stack3.c, line: 275
-# File: src/c/stack3.c, line: 332
-# File: src/c/stack3.c, line: 431
-# File: src/c/stack3.c, line: 483
-# File: src/c/stack3.c, line: 529
-# File: src/c/stack3.c, line: 559
-# File: src/c/stack3.c, line: 596
-# File: src/c/stack3.c, line: 674
-# File: src/c/stack3.c, line: 720
+# File: src/c/stack3.c, line: 93
+# File: src/c/stack3.c, line: 152
+# File: src/c/stack3.c, line: 314
+# File: src/c/stack3.c, line: 378
+# File: src/c/stack3.c, line: 491
+# File: src/c/stack3.c, line: 546
+# File: src/c/stack3.c, line: 595
+# File: src/c/stack3.c, line: 629
+# File: src/c/stack3.c, line: 667
+# File: src/c/stack3.c, line: 757
+# File: src/c/stack3.c, line: 815
 #, c-format
 msgid "Undefined variable %s.\n"
 msgstr ""
 
 #
-# File: src/c/stack3.c, line: 285
+# File: src/c/stack3.c, line: 327
 #, c-format
 msgid "%s: argument must be a string.\n"
 msgstr ""
