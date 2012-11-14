@@ -709,12 +709,14 @@ public :
             e.body_get().accept(*this);
             if (e.body_get().is_break())
             {
+                const_cast<Exp*>(&(e.body_get()))->break_reset();
                 break;
             }
 
             if (e.body_get().is_return())
             {
                 const_cast<WhileExp*>(&e)->return_set();
+                const_cast<Exp*>(&(e.body_get()))->return_reset();
                 break;
             }
 
@@ -1022,8 +1024,45 @@ public :
                     }
                     else if (*pITCase == *pIT)
                     {
+                        if (e.is_breakable())
+                        {
+                            const_cast<SelectExp*>(&e)->break_reset();
+                            pCase->body_get()->breakable_set();
+                        }
+
+                        if (e.is_continuable())
+                        {
+                            const_cast<SelectExp*>(&e)->continue_reset();
+                            pCase->body_get()->continuable_set();
+                        }
+
+                        if (e.is_returnable())
+                        {
+                            const_cast<SelectExp*>(&e)->return_reset();
+                            pCase->body_get()->returnable_set();
+                        }
+
                         //the good one
                         pCase->body_get()->accept(*this);
+
+                        if (e.is_breakable() && pCase->body_get()->is_break())
+                        {
+                            const_cast<SelectExp*>(&e)->break_set();
+                            pCase->body_get()->break_reset();
+                        }
+
+                        if (e.is_continuable() && pCase->body_get()->is_continue())
+                        {
+                            const_cast<SelectExp*>(&e)->continue_set();
+                            pCase->body_get()->continue_reset();
+                        }
+
+                        if (e.is_returnable() && pCase->body_get()->is_return())
+                        {
+                            const_cast<SelectExp*>(&e)->return_set();
+                            pCase->body_get()->return_reset();
+                        }
+
                         bCase = true;
                         break;
                     }
@@ -1033,8 +1072,44 @@ public :
 
         if (bCase == false && e.default_case_get() != NULL)
         {
+            if (e.is_breakable())
+            {
+                const_cast<SelectExp*>(&e)->break_reset();
+                e.default_case_get()->breakable_set();
+            }
+
+            if (e.is_continuable())
+            {
+                const_cast<SelectExp*>(&e)->continue_reset();
+                e.default_case_get()->continuable_set();
+            }
+
+            if (e.is_returnable())
+            {
+                const_cast<SelectExp*>(&e)->return_reset();
+                e.default_case_get()->returnable_set();
+            }
+
             //default case
             e.default_case_get()->accept(*this);
+
+            if (e.is_breakable() && e.default_case_get()->is_break())
+            {
+                const_cast<SelectExp*>(&e)->break_set();
+                e.default_case_get()->break_reset();
+            }
+
+            if (e.is_continuable() && e.default_case_get()->is_continue())
+            {
+                const_cast<SelectExp*>(&e)->continue_set();
+                e.default_case_get()->continue_reset();
+            }
+
+            if (e.is_returnable() && e.default_case_get()->is_return())
+            {
+                const_cast<SelectExp*>(&e)->return_set();
+                e.default_case_get()->return_reset();
+            }
         }
 
         result_clear();
