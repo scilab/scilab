@@ -659,10 +659,10 @@ void visitprivate(const AssignExp  &e)
                     types::typed_list out;
 
                     //overload insertion
-                    //%x_i_x(i1, i2, ..., in, origin, inserted)
+                    //%x_i_x(i1, i2, ..., in, source, dest)
                     //i1, ..., in : indexes
-                    //origin : variable where to insert data
-                    //inserted : data to insert
+                    //dest : variable where to insert data
+                    //source : data to insert
 
                     for (int i = 0 ; i < pArgs->size() ; i++)
                     {
