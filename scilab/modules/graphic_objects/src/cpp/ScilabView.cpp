@@ -13,6 +13,7 @@
 #include <iostream>
 #include <map>
 #include <cstring>
+#include <limits.h>
 
 #include "ScilabView.hxx"
 #include "CallGraphicController.hxx"
@@ -24,6 +25,7 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
+#include "deleteGraphicObject.h"
 }
 
 /**
@@ -40,14 +42,55 @@ void ScilabNativeView__deleteObject(char const*pstId)
     ScilabView::deleteObject(pstId);
 }
 
-void ScilabNativeView__updateObject(char const* pstId, char const* pstProperty)
+void ScilabNativeView__updateObject(char const* pstId, int iProperty)
 {
-    ScilabView::updateObject(pstId, pstProperty);
+    ScilabView::updateObject(pstId, iProperty);
+}
+
+void ScilabNativeView__setCurrentFigure(char const* pstId)
+{
+    ScilabView::setCurrentFigure(pstId);
+}
+
+void ScilabNativeView__setCurrentSubWin(char const* pstId)
+{
+    ScilabView::setCurrentSubWin(pstId);
+}
+
+void ScilabNativeView__setCurrentObject(char const* pstId)
+{
+    ScilabView::setCurrentObject(pstId);
+}
+
+int ScilabNativeView__getValidDefaultFigureId()
+{
+    return ScilabView::getValidDefaultFigureId();
 }
 
 /**
  * \}
  */
+
+int ScilabView::getValidDefaultFigureId()
+{
+    if (m_figureList.empty())
+    {
+        return 0;
+    }
+    else
+    {
+        int max = INT_MIN;
+        for (__figureList_iterator it = m_figureList.begin(); it != m_figureList.end(); ++it)
+        {
+            if (it->second > max)
+            {
+                max = it->second;
+            }
+        }
+
+        return max + 1;
+    }
+}
 
 bool ScilabView::isEmptyFigureList()
 {
@@ -103,10 +146,11 @@ int ScilabView::getNbFigure(void)
 void ScilabView::createObject(char const* pstId)
 {
     //std::cerr << "[ScilabView] ++ createObject UID=" << pstId << std::endl;
-    char *pstType = NULL;
+    int iType = -1;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(pstId, __GO_TYPE__, jni_string, (void **)&pstType);
-    if (pstType != NULL && strcmp(pstType, __GO_FIGURE__) == 0)
+    getGraphicObjectProperty(pstId, __GO_TYPE__, jni_int, (void **)&piType);
+    if (iType != -1 && iType == __GO_FIGURE__)
     {
         m_figureList[pstId] = -1;
         setCurrentFigure(pstId);
@@ -119,15 +163,16 @@ void ScilabView::createObject(char const* pstId)
 void ScilabView::deleteObject(char const* pstId)
 {
     //std::cerr << "[ScilabView] -- deleteObject UID=" << pstId << std::endl;
-    char *pstType = NULL;
+    int iType = -1;
+    int *piType = &iType;
     char *pstParentUID = NULL;
 
-    getGraphicObjectProperty(pstId, __GO_TYPE__, jni_string, (void **)&pstType);
+    getGraphicObjectProperty(pstId, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
     ** If deleting a figure, remove from figure list.
     */
-    if (pstType != NULL && strcmp(pstType, __GO_FIGURE__) == 0)
+    if (iType != -1 && iType == __GO_FIGURE__)
     {
         m_figureList.erase(pstId);
     }
@@ -163,17 +208,20 @@ void ScilabView::deleteObject(char const* pstId)
     }
 
     // Remove the corresponding handle.
+    m_uidList.erase(m_handleList.find(pstId)->second);
     m_handleList.erase(pstId);
+
+    deleteDataObject(pstId);
 }
 
-void ScilabView::updateObject(char const* pstId, char const* pstProperty)
+void ScilabView::updateObject(char const* pstId, int iProperty)
 {
     //std::cerr << "[ScilabView] == updateObject UID=" << pstId << " PROPERTY=" << pstProperty << std::endl;
 
     /*
      ** Take care of update if the value update is ID and object type is a Figure I manage.
      */
-    if (strcmp(pstProperty, __GO_ID__) == 0 && m_figureList.find(pstId) != m_figureList.end())
+    if (iProperty == __GO_ID__ && m_figureList.find(pstId) != m_figureList.end())
     {
         int iNewId = 0;
         int *piNewId = &iNewId;
@@ -192,6 +240,9 @@ void ScilabView::updateObject(char const* pstId, char const* pstProperty)
 void ScilabView::registerToController(void)
 {
     org_scilab_modules_graphic_objects::CallGraphicController::registerScilabView(getScilabJavaVM());
+    m_figureList.get_allocator().allocate(4096);
+    m_handleList.get_allocator().allocate(4096);
+    m_uidList.get_allocator().allocate(4096);
 }
 
 /*
@@ -319,22 +370,20 @@ long ScilabView::getObjectHandle(char const* UID)
     // register new handle and return it.
     m_topHandleValue++;
     m_handleList[UID] = m_topHandleValue;
+    m_uidList[m_topHandleValue] = UID;
 
     return m_topHandleValue;
 }
 
 char const* ScilabView::getObjectFromHandle(long handle)
 {
-    __handleList_iterator it;
-
-    for (it = m_handleList.begin(); it != m_handleList.end(); ++it)
+    __uidList_iterator it = m_uidList.find(handle);
+    if (it == m_uidList.end())
     {
-        if (it->second == handle)
-        {
-            return it->first.c_str();
-        }
+        return NULL;
     }
-    return NULL;
+
+    return it->second.c_str();
 }
 
 char const* ScilabView::getFigureModel(void)
@@ -372,6 +421,7 @@ void ScilabView::setAxesModel(char const* UID)
 */
 ScilabView::__figureList ScilabView::m_figureList = *new __figureList();
 ScilabView::__handleList ScilabView::m_handleList = *new __handleList();
+ScilabView::__uidList ScilabView::m_uidList = *new __uidList();
 long ScilabView::m_topHandleValue = 0;
 std::string ScilabView::m_currentFigure;
 std::string ScilabView::m_currentObject;

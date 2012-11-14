@@ -32,32 +32,29 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_clip_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_clip_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status[2];
     int status1 = 0;
     int status2 = 0;
 
-    double* clipBox = NULL;
     /* 2: on */
     int clipState = 2;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "clip_box");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
     /* We must have 4 elements */
-    if ( nbRow * nbCol != 4 )
+    if (nbRow * nbCol != 4)
     {
         Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "clip_box", 4);
         return SET_PROPERTY_ERROR;
     }
 
-    clipBox = stk(stackPointer);
-
-    status[0] = setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipBox, jni_double_vector, 4);
+    status[0] = setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, _pvData, jni_double_vector, 4);
     status[1] = setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     if (status[0] == TRUE)
@@ -80,6 +77,6 @@ int set_clip_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "clip_box");
     }
 
-    return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 );
+    return sciSetFinalStatus((SetPropertyStatus)status1, (SetPropertyStatus)status2);
 }
 /*------------------------------------------------------------------------*/

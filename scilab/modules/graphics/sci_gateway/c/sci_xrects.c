@@ -19,7 +19,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "BuildObjects.h"
 #include "sciCall.h"
 #include "DrawObjects.h"
@@ -34,9 +34,16 @@
 #include "graphicObjectProperties.h"
 #include "CurrentObject.h"
 /*--------------------------------------------------------------------------*/
-int sci_xrects( char *fname, unsigned long fname_len )
+int sci_xrects(char *fname, unsigned long fname_len)
 {
-    int m1 = 0,n1 = 0,l1 = 0,m2 = 0,n2 = 0,l2 = 0;
+    SciErr sciErr;
+
+    int* piAddrl1 = NULL;
+    double* l1 = NULL;
+    int* piAddr2 = NULL;
+    int* l2 = NULL;
+
+    int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     long  hdl = 0;
     int i = 0;
     char* psubwinUID = NULL;
@@ -45,32 +52,79 @@ int sci_xrects( char *fname, unsigned long fname_len )
     int *piForeground = &foreground;
     char *pstCompoundUID = NULL;
 
-    int iVisible = (int) FALSE;
+    CheckInputArgument(pvApiCtx, 1, 2);
 
-    CheckRhs(1,2);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+    // Retrieve a matrix of double at position 1.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        return 1;
+    }
 
-    if (m1 != 4) {
-        Scierror(999,_("%s: Wrong size for input argument #%d: %s expected.\n"),fname, 1, "(4,n)");
+    if (m1 != 4)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: %s expected.\n"), fname, 1, "(4,n)");
         return 0;
     }
 
 
-    if (Rhs == 2)
+    if (nbInputArgument(pvApiCtx) == 2)
     {
-        GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
-        CheckVector(2,m2,n2);
-        if (m2 * n2 != n1) {
-            Scierror(999,_("%s: Incompatible length for input arguments #%d and #%d.\n"),fname, 1, 2);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 2.
+        sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddr2, &m2, &n2, &l2);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            return 1;
+        }
+
+        //CheckVector
+        if (m2 != 1 && n2 != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: Vector expected.\n"), fname, 2);
+            return 1;
+        }
+
+        if (m2 * n2 != n1)
+        {
+            Scierror(999, _("%s: Incompatible length for input arguments #%d and #%d.\n"), fname, 1, 2);
             return 0;
         }
     }
     else
     {
-        m2=1,n2=n1;
-        CreateVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
-        for (i = 0; i < n2; ++i)  { *istk(l2 + i) = 0; }
+        m2 = 1;
+        n2 = n1;
+
+        sciErr = allocMatrixOfDoubleAsInteger(pvApiCtx, 2, m2, n2, &l2);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
+
+        for (i = 0; i < n2; ++i)
+        {
+            l2[i] = 0;
+        }
     }
 
     psubwinUID = (char*)getOrCreateDefaultSubwin();
@@ -78,10 +132,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
     // Create compound.
     pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
     /* Sets the parent-child relationship for the Compound */
-    setGraphicObjectRelationship(psubwinUID,pstCompoundUID);
-
-    /** Hide Compound */
-    //setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
+    setGraphicObjectRelationship(psubwinUID, pstCompoundUID);
 
     /** Get Subwin line color */
     getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
@@ -89,43 +140,39 @@ int sci_xrects( char *fname, unsigned long fname_len )
     for (i = 0; i < n1; ++i)
     {
         /*       j = (i==0) ? 0 : 1; */
-        if (*istk(l2+i) == 0)
+        if (l2[i] == 0)
         {
             /** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
             /* color setting is done now */
 
-            Objrect(stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-                     &foreground,NULL,FALSE,TRUE,&hdl);
+            Objrect((l1 + (4 * i)), (l1 + (4 * i) + 1), (l1 + (4 * i) + 2), (l1 + (4 * i) + 3),
+                    &foreground, NULL, FALSE, TRUE, &hdl);
         }
         else
         {
-            if (*istk(l2+i) < 0)
+            if (l2[i] < 0)
             {
                 /** fil(i) < 0 rectangle i is drawn using the line style (or color) **/
-                int tmp = - (*istk(l2+i));
-                Objrect(stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-                         &tmp,NULL,FALSE,TRUE,&hdl);
+                int tmp = - (*(int*)(l2 + i));
+                Objrect((l1 + (4 * i)), (l1 + (4 * i) + 1), (l1 + (4 * i) + 2), (l1 + (4 * i) + 3),
+                        &tmp, NULL, FALSE, TRUE, &hdl);
             }
             else
             {
                 /** fil(i) > 0   rectangle i is filled using the pattern (or color) **/
-                Objrect(stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-                         NULL,istk(l2+i),TRUE,FALSE,&hdl);
+                Objrect((l1 + (4 * i)), (l1 + (4 * i) + 1), (l1 + (4 * i) + 2), (l1 + (4 * i) + 3),
+                        NULL, l2 + i, TRUE, FALSE, &hdl);
             }
         }
         // Add newly created object to Compound
         setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
     }
 
-    /** Show Compound */
-    iVisible = (int) TRUE;
-    //setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
-
     /** make Compound current object **/
     setCurrentObject(pstCompoundUID);
 
-    LhsVar(1)=0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

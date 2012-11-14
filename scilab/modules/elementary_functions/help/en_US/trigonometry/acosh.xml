@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[t]=acosh(x)</synopsis>
+        <synopsis>[t] = acosh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex vector or matrix.</para>
+                    <para>a real or complex vector or matrix.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>real or complex vector or matrix.</para>
+                    <para>a real or complex vector or matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,9 +39,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            The components of <literal>t</literal> are the inverse hyperbolic 
-            cosine of the corresponding entries of <literal>x</literal>.
-            Definition domain is ]1,+infinity[.
+            The components of <varname>t</varname> are the inverse hyperbolic
+            cosine of the corresponding entries of <varname>x</varname>.
+            Definition domain is <latex>]1,+\infty)</latex>].
         </para>
     </refsection>
     <refsection>

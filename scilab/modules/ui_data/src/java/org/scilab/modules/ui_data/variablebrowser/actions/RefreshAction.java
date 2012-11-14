@@ -12,12 +12,18 @@
 
 package org.scilab.modules.ui_data.variablebrowser.actions;
 
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+
 import javax.swing.ImageIcon;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -29,9 +35,15 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 @SuppressWarnings(value = { "serial" })
 public final class RefreshAction extends CommonCallBack {
 
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_W;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+
+    private static ImageIcon icon = new ImageIcon(ScilabSwingUtilities.findIcon("view-refresh"));
+
     /**
      * Constructor
-     * @param editor the editor
      * @param name the name of the action
      */
     public RefreshAction(String name) {
@@ -52,7 +64,6 @@ public final class RefreshAction extends CommonCallBack {
 
     /**
      * Create a button for a tool bar
-     * @param editor the associated editor
      * @param title tooltip for the button
      * @return the button
      */
@@ -60,9 +71,22 @@ public final class RefreshAction extends CommonCallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new RefreshAction(title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("view-refresh"));
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
+        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(icon);
 
         return button;
+    }
+
+    /**
+     * Create the menu for the menubar
+     * @param label the menu label
+     * @return the menu
+     */
+    public static MenuItem createMenuItem(String label) {
+        MenuItem menuItem = ScilabMenuItem.createMenuItem();
+        menuItem.setText(label);
+        SwingScilabMenuItem swingItem = (SwingScilabMenuItem) menuItem.getAsSimpleMenuItem();
+        swingItem.setCallback(new RefreshAction(label));
+        swingItem.setIcon(icon);
+        return menuItem;
     }
 }

@@ -29,18 +29,18 @@ if ~ and( atomsIsInstalled( ["toolbox_5" "1.0" ; ..
                              "toolbox_1" "1.0"])) then bugmes();quit;end
 atomsLoad("toolbox_5");
 
-Start Toolbox 5
+Start Toolbox 1
+	Load macros
+	Load gateways
+
+Start Toolbox 2
 	Load macros
 
 Start Toolbox 4
 	Load macros
 
-Start Toolbox 2
+Start Toolbox 5
 	Load macros
-
-Start Toolbox 1
-	Load macros
-	Load gateways
 
 if ~ atomsIsLoaded("toolbox_5") then bugmes();quit;end
 if ~ atomsIsLoaded(["toolbox_5" "1.0"]) then bugmes();quit;end

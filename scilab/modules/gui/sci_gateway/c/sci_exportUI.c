@@ -13,7 +13,7 @@
  */
 
 #include "gw_gui.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "HandleManagement.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -24,30 +24,50 @@
 /*--------------------------------------------------------------------------*/
 int sci_exportUI(char * fname, unsigned long fname_len)
 {
-    int iFigureId = 0; // id of the figure to export
-    int iRows = 0;
-    int iCols = 0;
-    size_t stackPointer = 0;
+    SciErr sciErr;
 
-    CheckLhs(0, 1);
-    CheckRhs(1, 1);
+    int* piAddrstackPointer = NULL;
 
-    if (GetType(1) == sci_handles) // exportUI(figHandle)
+    int iFigureId   = 0; // id of the figure to export
+    int *piFigureId = &iFigureId;
+    int iRows       = 0;
+    int iCols       = 0;
+    int iHandleType = -1;
+    int *piHandleType = &iHandleType;
+
+    CheckOutputArgument(pvApiCtx, 0, 1);
+    CheckInputArgument(pvApiCtx, 1, 1);
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrstackPointer);
+    if (sciErr.iErr)
     {
-        char *pstFigureUID = NULL;
-        char *pstHandleType = NULL;
-        int *piFigureId = &iFigureId;
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-        GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &iRows, &iCols, &stackPointer);
+    if (checkInputArgumentType(pvApiCtx, 1, sci_handles)) // exportUI(figHandle)
+    {
+        char *pstFigureUID      = NULL;
+        char *pstHandleType     = NULL;
+        long long* stackPointer = NULL;
+        // Retrieve a matrix of handle at position 1.
+        sciErr = getMatrixOfHandle(pvApiCtx, piAddrstackPointer, &iRows, &iCols, &stackPointer);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+            return 1;
+        }
+
         if (iRows * iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
         }
 
-        pstFigureUID = getObjectFromHandle((unsigned long) * (hstk(stackPointer)));
+        pstFigureUID = getObjectFromHandle((unsigned long) * stackPointer);
 
-        getGraphicObjectProperty(pstFigureUID, __GO_TYPE__, jni_string, (void **)&pstHandleType);
-        if (strcmp(pstHandleType, __GO_FIGURE__) != 0)
+        getGraphicObjectProperty(pstFigureUID, __GO_TYPE__, jni_int, (void **)&piHandleType);
+        if (iHandleType == __GO_FIGURE__)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
             return FALSE;
@@ -55,16 +75,26 @@ int sci_exportUI(char * fname, unsigned long fname_len)
 
         getGraphicObjectProperty(pstFigureUID, __GO_ID__, jni_int, (void **)&piFigureId);
     }
-    else if (GetType(1) == sci_matrix) // exportUI(figId)
+    else if (checkInputArgumentType(pvApiCtx, 1, sci_matrix)) // exportUI(figId)
     {
-        GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &stackPointer);
+        double* stackPointer = NULL;
+
+        // Retrieve a matrix of double at position 1.
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddrstackPointer, &iRows, &iCols, &stackPointer);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+            return 1;
+        }
+
         if (iRows * iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
             return FALSE;
         }
 
-        iFigureId = (int) * (stk(stackPointer));
+        iFigureId = (int) * stackPointer;
     }
     else
     {
@@ -75,10 +105,8 @@ int sci_exportUI(char * fname, unsigned long fname_len)
     // call the export function
     exportUserInterface(iFigureId);
 
-    LhsVar(1) = 0;
-
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -3,12 +3,12 @@
     <refnamediv>
         <refname>getmodules</refname>
         <refpurpose>
-            возвращает список модулей, установленных в Scilab
+            возвращает список модулей, установленных в Scilab'е
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>res=getmodules()</synopsis>
+        <synopsis>res = getmodules()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -23,7 +23,15 @@
     </refsection>
     <refsection>
         <title>Описание</title>
-        <para>Возвращает список модулей, установленных в Scilab.</para>
+        <para>Возвращает список модулей, установленных в Scilab'е.</para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+modules=getmodules();
+find(modules=="core");
+with_module("core");
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

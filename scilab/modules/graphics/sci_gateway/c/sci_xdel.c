@@ -17,7 +17,8 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "localization.h"
 #include "DestroyObjects.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -31,17 +32,37 @@
 /*--------------------------------------------------------------------------*/
 int sci_xdel(char *fname, unsigned long fname_len)
 {
-    int m1 = 0, n1 = 0, l1 = 0;
+    SciErr sciErr;
+
+    int* piAddrl1 = NULL;
+    double* l1 = NULL;
+
+    int m1 = 0, n1 = 0;
     char *pstCurrentFigure = NULL;
-    CheckRhs(-1, 1);
-    if (Rhs >= 1)
+    CheckInputArgument(pvApiCtx, -1, 1);
+    if (nbInputArgument(pvApiCtx) >= 1)
     {
         int i = 0;
-        double * windowNumbers = NULL;
-        GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+        double* windowNumbers = NULL;
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 1.
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+            return 1;
+        }
+
 
         /* First check that all the window numbers are valid */
-        windowNumbers = stk(l1);
+        windowNumbers = l1;
         for (i = 0; i < m1 * n1; i++)
         {
             if (!sciIsExistingFigure((int) windowNumbers[i]))
@@ -53,7 +74,7 @@ int sci_xdel(char *fname, unsigned long fname_len)
 
         for (i = 0; i < m1 * n1 ; i++)
         {
-            sciDeleteWindow( (int) windowNumbers[i] ) ;
+            sciDeleteWindow((int) windowNumbers[i]);
         }
     }
     else
@@ -64,8 +85,8 @@ int sci_xdel(char *fname, unsigned long fname_len)
             deleteGraphicObject(pstCurrentFigure);
         }
     }
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

@@ -27,7 +27,8 @@
     </refsection>
     <refsection>
         <title>Example</title>
-        <programlisting role="example">A = %nan
+        <programlisting role="example">
+            A = %nan
             B = %nan
             A == B
             isnan(A)

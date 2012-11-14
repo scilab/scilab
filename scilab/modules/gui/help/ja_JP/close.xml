@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="close">
+    <refnamediv>
+        <refname>close</refname>
+        <refpurpose>図を閉じる</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>整数,閉じるウインドウのハンドル.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            このルーチンはtksci図(トップレベルウインドウ)を閉じます.
+            ハンドルが指定された場合,このハンドルに対応する図が閉じられます.
+            それ以外の場合,カレントの(アクティブな)図が閉じられます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+h=figure();
+// 1番の図を作成
+uicontrol( h, 'style','text', ...
+              'string','scilab is great', ...
+              'position',[50 70 100 100], ...
+              'fontsize',15);
+// 図1に冴えた文字列を指定
+figure();
+// 図2を作成
+uicontrol( 'style','text', ...
+           'string','Really great', 'position',[50 70 100 100], 'fontsize',15);
+// 図2にテキストを指定
+close();
+// カレントのグラフィックウインドウ(すなわち図2)を閉じる
+close(h);
+// 図1を閉じる
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="figure">figure</link>
+            </member>
+            <member>
+                <link linkend="gcf">gcf</link>
+            </member>
+            <member>
+                <link linkend="xdel">xdel</link>
+            </member>
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

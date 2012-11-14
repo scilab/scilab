@@ -52,5 +52,11 @@ fplot3d(t,t,surface,35,45,"X@Y@Z")
 // which can be drawn using geom3d and xpoly
 [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
  ]]></programlisting>
+        <scilab:image>deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
+            t=%pi*(-10:10)/10;
+            fplot3d(t,t,surface,35,45,"X@Y@Z")
+            [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
+        </scilab:image>
+        
     </refsection>
 </refentry>

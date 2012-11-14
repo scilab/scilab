@@ -41,7 +41,7 @@ int get_z_shift_property(void* _pvCtx, char* pobjUID)
 
     if (piValue == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_shift");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_shift");
         return -1;
     }
 

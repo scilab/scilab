@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="messagebox">
+    <refnamediv>
+        <refname>messagebox</refname>
+        <refpurpose>メッセージボックスを開く.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            [btn] = messagebox(msg)
+            [btn] = messagebox(msg, msgboxtitle)
+            [btn] = messagebox(msg, msgboxtitle, msgboxicon)
+            [btn] = messagebox(msg, msgboxtitle, msgboxicon)
+            [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons)
+            [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>msg</term>
+                <listitem>
+                    <para>文字列の行列: メッセージボックスは
+                        この行列の各エントリを表示します
+                        (行毎に1エントリ).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>msgboxtitle</term>
+                <listitem>
+                    <para>文字列: メッセージボックスの表題 (デフォルト値は "Scilab Message").</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>msgboxicon</term>
+                <listitem>
+                    <para>文字列: メッセージボックスに表示されるアイコンの名前
+                        , 以下の値を指定可能です:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>"error"</para>
+                        </listitem>
+                        <listitem>
+                            <para>"hourglass"</para>
+                        </listitem>
+                        <listitem>
+                            <para>"info"</para>
+                        </listitem>
+                        <listitem>
+                            <para>"passwd"</para>
+                        </listitem>
+                        <listitem>
+                            <para>"question"</para>
+                        </listitem>
+                        <listitem>
+                            <para>"warning"</para>
+                        </listitem>
+                        <listitem>
+                            <para>"scilab": デフォルトのアイコン</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>buttons</term>
+                <listitem>
+                    <para>文字列の 1 x n ベクトル: 
+                        メッセージボックスに表示するボタンの名前.
+                        デフォルトでは,ラベル"OK"のボタンのみが
+                        標示されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>modal</term>
+                <listitem>
+                    <para>文字列: モーダルダイアログを作成する際には"modal"
+                        モーダルでないダイアログを作成する際にはその他の
+                        文字列.
+                        "modal"はmsg以外の他の入力引数で置換できる
+                        ことに注意してください (例を参照).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>btn</term>
+                <listitem>
+                    <para>スカラー: モーダルダイアログの場合,
+                        ユーザが押したボタンの番号(最も左のボタンは1),
+                        それ以外は0.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ユーザのアクションを待つまたは待たない
+            メッセージを表示するダイアログを作成します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// 簡単な例
+messagebox("Single line message")
+
+// 表題に複数行のメッセージ
+messagebox(["Multi-line" "message"], "User defined title")
+
+// アイコンをユーザにより指定
+messagebox("An error message", "Error", "error")
+
+// ボタンラベル + "modal" で表題を置換
+messagebox("Have you seen this beautiful message", "modal", "info", ["Yes" "No"])
+
+// "modal" を5番目の入力引数に指定
+messagebox("An error message", "Error", "error", ["Continue" "Stop"], "modal")
+ ]]></programlisting>
+    </refsection>
+</refentry>

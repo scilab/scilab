@@ -13,17 +13,17 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="strings">
     <refnamediv>
         <refname>strings</refname>
-        <refpurpose> Scilab Object, character strings</refpurpose>
+        <refpurpose>Scilab Object, character strings</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Strings are defined as <literal>'string'</literal> (between quotes) or 
-            <literal>"string"</literal> (between doublequotes);
+            Strings are defined as <code>'string'</code> (between quotes) or
+            <code>"string"</code> (between doublequotes);
             matrices of strings are defined as usual constant matrices.
         </para>
         <para>
-            Concatenation of two strings is made by a <literal>+</literal> : <literal>string1+string2</literal>.
+            Concatenation of two strings is made by a <literal>+</literal>: <code>string1 + string2</code>.
         </para>
     </refsection>
     <refsection>

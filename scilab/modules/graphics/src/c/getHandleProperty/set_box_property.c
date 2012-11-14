@@ -22,6 +22,7 @@
 
 #include <string.h>
 
+#include "stricmp.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -35,45 +36,46 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
 
-    if ( !( valueType == sci_strings ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "box");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * Required since the Box property is implemented differently for the Axes and Text
      * objects (respectively as an Integer and a Boolean).
      * To be corrected
      */
-    if (strcmp(type, __GO_AXES__) == 0)
+    if (type == __GO_AXES__)
     {
         int boxType;
 
-        if ( isStringParamEqual( stackPointer, "off" ) )
+        if (stricmp((char*)_pvData, "off") == 0)
         {
             boxType = 0;
         }
-        else if ( isStringParamEqual( stackPointer, "on" ) )
+        else if (stricmp((char*)_pvData, "on") == 0)
         {
             boxType = 1;
         }
-        else if ( isStringParamEqual( stackPointer, "hidden_axes" ) )
+        else if (stricmp((char*)_pvData, "hidden_axes") == 0)
         {
             boxType = 2;
         }
-        else if ( isStringParamEqual( stackPointer, "back_half" ) )
+        else if (stricmp((char*)_pvData, "back_half") == 0)
         {
             boxType = 3;
         }
-        else if ( isStringParamEqual( stackPointer, "hidden_axis" ) )
+        else if (stricmp((char*)_pvData, "hidden_axis") == 0)
         {
             sciprint(_("WARNING !!!\nIn '%s' property: '%s' is deprecated use '%s' instead.\n"), "box", "hidden_axis", "hidden_axes");
             boxType = 2;
@@ -97,15 +99,15 @@ int set_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int value
         }
 
     }
-    else if (strcmp(type, __GO_TEXT__) == 0)
+    else if (type == __GO_TEXT__)
     {
         int box;
 
-        if ( isStringParamEqual( stackPointer, "on" ) )
+        if (stricmp((char*)_pvData, "on") == 0)
         {
             box = 1;
         }
-        else if ( isStringParamEqual( stackPointer, "off" ) )
+        else if (stricmp((char*)_pvData, "off") == 0)
         {
             box = 0;
         }

@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>t=acos(x)</synopsis>
+        <synopsis>t = acos(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественный или комплексный вектор или матрица</para>
+                    <para>вещественный или комплексный вектор или матрица.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>вещественный или комплексный вектор или матрица</para>
+                    <para>вещественный или комплексный вектор или матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,9 +39,16 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы <literal>t</literal> являются арккосинусами соответствующих
-            элементов <literal>x</literal>. Область определения [-1, 1].
+            Элементы <varname>t</varname> являются арккосинусами соответствующих
+            элементов <varname>x</varname>. Область определения <literal>[-1, 1]</literal>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Образец</title>
+        <scilab:image>
+            x = -1:.05:1;
+            plot(x,acos(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Примеры</title>

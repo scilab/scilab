@@ -14,10 +14,11 @@
 
 #include <math.h>
 
+#include "GetUicontrolStyle.hxx"
 #include "SetUicontrolValue.hxx"
 #include "stack-c.h"
 
-int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolValue(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     double *value = NULL;
     double* truncatedValue = NULL;
@@ -30,12 +31,14 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int va
     double* pdblMaxValue = &maxValue;
     double minValue = 0;
     double* pdblMinValue = &minValue;
-    char* objectStyle = NULL;
-    char* type = NULL;
+    int objectStyle = -1;
+    int *piObjectStyle = &objectStyle;
+    int type = -1;
+    int *piType = &type;
 
     // Check type
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_TYPE__), jni_string, (void**) &type);
-    if (strcmp(type, __GO_UICONTROL__) != 0)
+    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**) &piType);
+    if (type != __GO_UICONTROL__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Value");
         return SET_PROPERTY_ERROR;
@@ -50,7 +53,7 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int va
             return SET_PROPERTY_ERROR;
         }
 
-        value = stk(stackPointer);
+        value = (double*)_pvData;
         valueSize = nbCol * nbRow;
     }
     else if (valueType == sci_strings) // Ascendant compatibility
@@ -64,7 +67,7 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int va
 
         value = new double[1];
         valueSize = 1;
-        nbValues = sscanf(getStringFromStack(stackPointer), "%lf", &value[0]);
+        nbValues = sscanf((char*)_pvData, "%lf", &value[0]);
 
         if (nbValues != 1)
         {
@@ -90,39 +93,38 @@ int SetUicontrolValue(void* _pvCtx, char* sciObjUID, size_t stackPointer, int va
         }
     }
 
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_STYLE__), jni_string, (void**) &objectStyle);
+    getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
 
     /*
      * For popumenus/listboxes: display a warning if the value is not an integer
      */
-    if (((strcmp(objectStyle, __GO_UI_POPUPMENU__) == 0) || (strcmp(objectStyle, __GO_UI_LISTBOX__) == 0)) && truncated)
+    if ((objectStyle == __GO_UI_POPUPMENU__ || objectStyle == __GO_UI_LISTBOX__) && truncated)
     {
-        sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be an integer, the value will be truncated.\n")), objectStyle);
+        sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be an integer, the value will be truncated.\n")), IntToStyle(objectStyle));
     }
 
     /*
      * For Checkboxes and Radiobuttons: display a warning if the value is neither equal to Min nor Max
      */
-    if ((strcmp(objectStyle, __GO_UI_CHECKBOX__) == 0) || (strcmp(objectStyle, __GO_UI_RADIOBUTTON__)) == 0)
+    if (objectStyle == __GO_UI_CHECKBOX__ || objectStyle == __GO_UI_RADIOBUTTON__)
     {
-        getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_MIN__), jni_double, (void**) &pdblMinValue);
-        getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_MAX__), jni_double, (void**) &pdblMaxValue);
+        getGraphicObjectProperty(sciObjUID, __GO_UI_MIN__, jni_double, (void**) &pdblMinValue);
+        getGraphicObjectProperty(sciObjUID, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
 
         if ((value[0] != minValue) && (value[0] != maxValue))
         {
-            sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), objectStyle, "Min", "Max");
+            sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), IntToStyle(objectStyle), "Min", "Max");
         }
 
     }
-    free(objectStyle);
 
-    if ((strcmp(objectStyle, __GO_UI_POPUPMENU__) == 0) || (strcmp(objectStyle, __GO_UI_LISTBOX__) == 0))
+    if (objectStyle == __GO_UI_POPUPMENU__ || objectStyle == __GO_UI_LISTBOX__)
     {
-        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_VALUE__), truncatedValue, jni_double_vector, valueSize);
+        status = setGraphicObjectProperty(sciObjUID, __GO_UI_VALUE__, truncatedValue, jni_double_vector, valueSize);
     }
     else
     {
-        status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_VALUE__), value, jni_double_vector, valueSize);
+        status = setGraphicObjectProperty(sciObjUID, __GO_UI_VALUE__, value, jni_double_vector, valueSize);
     }
 
     delete[] truncatedValue;

@@ -34,21 +34,21 @@ public class JavaObjectLoader {
          * @param the id of the given object.
          * @return the number of data elements.
          */
-        public static int getDataSize(String id) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-
-                if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
-                        return ArcDecomposer.getDataSize();
-                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
-                        return ChampDecomposer.getDataSize(id);
-                } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
-                        return RectangleDecomposer.getDataSize();
-                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
-                        return SegsDecomposer.getDataSize(id);
-                }
-
-                return 0;
+    public static int getDataSize(String id) {
+        int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        switch (type) {
+        case GraphicObjectProperties.__GO_ARC__ :
+            return ArcDecomposer.getDataSize();
+        case GraphicObjectProperties.__GO_CHAMP__ :
+            return ChampDecomposer.getDataSize(id);
+        case GraphicObjectProperties.__GO_RECTANGLE__ :
+            return RectangleDecomposer.getDataSize();
+        case GraphicObjectProperties.__GO_SEGS__ :
+            return SegsDecomposer.getDataSize(id);
+        default :
+            return 0;
         }
+    }
 
         /**
          * Fills the given buffer with vertex data from the given object.
@@ -62,16 +62,21 @@ public class JavaObjectLoader {
          */
         public static void fillVertices(String id, FloatBuffer buffer, int elementsSize,
                 int coordinateMask, double[] scale, double[] translation, int logMask) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+                int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
+                switch (type) {
+                case GraphicObjectProperties.__GO_ARC__ :
                         ArcDecomposer.fillVertices(buffer, id, elementsSize, coordinateMask, scale, translation, logMask);
-                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
+                        break;
+                case GraphicObjectProperties.__GO_CHAMP__ :
                         ChampDecomposer.fillVertices(buffer, id, elementsSize, coordinateMask, scale, translation, logMask);
-                } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
+                        break;
+                case GraphicObjectProperties.__GO_RECTANGLE__ :
                         RectangleDecomposer.fillVertices(buffer, id, elementsSize, coordinateMask, scale, translation, logMask);
-                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
+                        break;
+                case GraphicObjectProperties.__GO_SEGS__ :
                         SegsDecomposer.fillVertices(buffer, id, elementsSize, coordinateMask, scale, translation, logMask);
+                        break;
                 }
         }
 
@@ -83,11 +88,11 @@ public class JavaObjectLoader {
          * @param the number of components taken by one element in the buffer (3 or 4).
          */
         public static void fillColors(String id, FloatBuffer buffer, int elementsSize) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+                int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
+                if (type == GraphicObjectProperties.__GO_CHAMP__) {
                         ChampDecomposer.fillColors(buffer, id, elementsSize);
-                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
+                } else if (type == GraphicObjectProperties.__GO_SEGS__) {
                         SegsDecomposer.fillColors(buffer, id, elementsSize);
                 }
         }
@@ -98,19 +103,20 @@ public class JavaObjectLoader {
          * @return the object's number of indices.
          */
         public static int getIndicesSize(String id) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+                int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
-                        return ArcDecomposer.getIndicesSize();
-                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
-                        return ChampDecomposer.getIndicesSize(id);
-                } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
-                        return RectangleDecomposer.getIndicesSize();
-                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
-                        return SegsDecomposer.getIndicesSize(id);
+                switch (type) {
+                case GraphicObjectProperties.__GO_ARC__ :
+                    return ArcDecomposer.getIndicesSize();
+                case GraphicObjectProperties.__GO_CHAMP__ :
+                    return ChampDecomposer.getIndicesSize(id);
+                case GraphicObjectProperties.__GO_RECTANGLE__ :
+                    return RectangleDecomposer.getIndicesSize();
+                case GraphicObjectProperties.__GO_SEGS__ :  
+                    return SegsDecomposer.getIndicesSize(id);
+                default :
+                    return 0;
                 }
-
-                return 0;
         }
 
         /**
@@ -121,19 +127,20 @@ public class JavaObjectLoader {
          * @return the number of indices actually written.
          */
         public static int fillIndices(String id, IntBuffer buffer, int logMask) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+                int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
-                        return ArcDecomposer.fillIndices(buffer, id, logMask);
-                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
-                        return ChampDecomposer.fillIndices(buffer, id, logMask);
-                } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
-                        return RectangleDecomposer.fillIndices(buffer, id, logMask);
-                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
-                        return SegsDecomposer.fillIndices(buffer, id, logMask);
+                switch(type) {
+                case GraphicObjectProperties.__GO_ARC__ :
+                    return ArcDecomposer.fillIndices(buffer, id, logMask);
+                case GraphicObjectProperties.__GO_CHAMP__ :
+                    return ChampDecomposer.fillIndices(buffer, id, logMask);
+                case GraphicObjectProperties.__GO_RECTANGLE__ :
+                    return RectangleDecomposer.fillIndices(buffer, id, logMask);
+                case GraphicObjectProperties.__GO_SEGS__ :
+                    return SegsDecomposer.fillIndices(buffer, id, logMask);
+                default :
+                    return 0;
                 }
-
-                return 0;
         }
 
         /**
@@ -142,19 +149,20 @@ public class JavaObjectLoader {
          * @return the object's number of indices.
          */
         public static int getWireIndicesSize(String id) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+                int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
-                        return ArcDecomposer.getWireIndicesSize();
-                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
-                        return ChampDecomposer.getWireIndicesSize(id);
-                } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
-                        return RectangleDecomposer.getWireIndicesSize();
-                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
-                        return SegsDecomposer.getWireIndicesSize(id);
+                switch (type) {
+                case GraphicObjectProperties.__GO_ARC__ :
+                    return ArcDecomposer.getWireIndicesSize();
+                case GraphicObjectProperties.__GO_CHAMP__ :
+                    return ChampDecomposer.getWireIndicesSize(id);
+                case GraphicObjectProperties.__GO_RECTANGLE__ :
+                    return RectangleDecomposer.getWireIndicesSize();
+                case GraphicObjectProperties.__GO_SEGS__ :
+                    return SegsDecomposer.getWireIndicesSize(id);
+                default :
+                    return 0;
                 }
-
-                return 0;
         }
 
         /**
@@ -165,18 +173,19 @@ public class JavaObjectLoader {
          * @return the number of indices actually written.
          */
         public static int fillWireIndices(String id, IntBuffer buffer, int logMask) {
-                String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+                int type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-                if (type.equals(GraphicObjectProperties.__GO_ARC__)) {
-                        return ArcDecomposer.fillWireIndices(buffer, id, logMask);
-                } else if (type.equals(GraphicObjectProperties.__GO_CHAMP__)) {
-                        return ChampDecomposer.fillWireIndices(buffer, id, logMask);
-                } else if (type.equals(GraphicObjectProperties.__GO_RECTANGLE__)) {
-                        return RectangleDecomposer.fillWireIndices(buffer, id, logMask);
-                } else if (type.equals(GraphicObjectProperties.__GO_SEGS__)) {
-                        return SegsDecomposer.fillWireIndices(buffer, id, logMask);
+                switch (type) {
+                case GraphicObjectProperties.__GO_ARC__ :
+                    return ArcDecomposer.fillWireIndices(buffer, id, logMask);
+                case GraphicObjectProperties.__GO_CHAMP__ :
+                    return ChampDecomposer.fillWireIndices(buffer, id, logMask);
+                case GraphicObjectProperties.__GO_RECTANGLE__ :
+                    return RectangleDecomposer.fillWireIndices(buffer, id, logMask);
+                case GraphicObjectProperties.__GO_SEGS__ :
+                    return SegsDecomposer.fillWireIndices(buffer, id, logMask);
+                default :
+                    return 0;
                 }
-
-                return 0;
         }
 }

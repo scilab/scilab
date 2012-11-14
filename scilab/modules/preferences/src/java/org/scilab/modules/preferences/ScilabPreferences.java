@@ -33,11 +33,18 @@ public class ScilabPreferences {
      * Open the preferences window
      */
     public static void openPreferences() {
+        openPreferences(null);
+    }
+
+    /**
+     * Open the preferences window
+     */
+    public static void openPreferences(final String initialPath) {
         SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                XConfigManager.openPreferences();
-            }
-        });
+                public void run() {
+                    XConfigManager.openPreferences(initialPath);
+                }
+            });
     }
 
     /**

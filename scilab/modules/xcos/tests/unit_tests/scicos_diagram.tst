@@ -3,12 +3,11 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // Check scicos_diagram
 
-loadXcosLibs(), loadScicos();
 
 function assert_check_diagram(scs_m)
     
@@ -43,7 +42,7 @@ function assert_check_props(props)
     assert_checkfalse(isempty(props.title))
     
     // check tol
-    assert_checkequal(props.tol(:)', [0.000001,0.000001,1.000D-10,100001,0,0,0]);
+    assert_checkequal(props.tol(:)', [0.000001,0.000001,1.000D-10,100001,0,1,0]);
     
     // check tf
     assert_checkequal(props.tf, 100000);

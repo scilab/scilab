@@ -1548,10 +1548,10 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   AfterCG_WinList = winsid();
 
   AfterCG_size = size(AfterCG_WinList); //** matrix
-  AfterCG_size = AfterCG_size(2) ; //** vector lenght
+  AfterCG_size = AfterCG_size(2) ; //** vector length
 
   BeforeCG_size = size(BeforeCG_WinList); //** matrix
-  BeforeCG_size = BeforeCG_size(2) ; //** vector lenght
+  BeforeCG_size = BeforeCG_size(2) ; //** vector length
 
   if (or(AfterCG_WinList<>BeforeCG_WinList)) & (AfterCG_size>BeforeCG_size) then
      //** means that a scope or other scicos object has created some

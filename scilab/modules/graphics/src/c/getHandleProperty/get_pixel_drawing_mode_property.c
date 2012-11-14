@@ -42,7 +42,7 @@ int get_pixel_drawing_mode_property(void* _pvCtx, char* pobjUID)
     if (pixelDrawingMode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "pixel_drawing_mode");
-        return -1 ;
+        return -1;
     }
 
     return sciReturnString(_pvCtx, getPixelMode (*pixelDrawingMode));

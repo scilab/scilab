@@ -17,18 +17,33 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[H]= eval(Z)</synopsis>
+        <synopsis>[H] = eval(Z)</synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>a matrix of character string.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
-        <para>returns the evaluation of the matrix of character strings
-            <literal>Z</literal>.
+        <para>
+            The <function>eval</function> function returns the evaluation of the matrix of character strings
+            <varname>Z</varname>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-a=1; b=2; Z=['a','sin(b)'] ; eval(Z)  //returns the matrix [1,0.909];
+a=1;
+b=2;
+Z=['a','sin(b)'];
+eval(Z)  //returns the matrix [1, 0.909];
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

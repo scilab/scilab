@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xstringb">
     <refnamediv>
         <refname>xstringb</refname>
-        <refpurpose> dessine des chaînes de caractères dans une boîte  </refpurpose>
+        <refpurpose>dessine des chaînes de caractères dans une boîte  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -66,6 +66,18 @@ r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
 xrect(r(1),r(2)+r(4),r(3),r(4))
 xstringb(r(1),r(2),str,r(3),r(4),"fill");
  ]]></programlisting>
+        <scilab:image>
+            str=["Scilab" "is";"$\sqrt{not}$" "elisaB"]; // LaTeX rendering (&gt;= Scilab 5.2)
+            plot2d(0,0,[-1,1],"010"," ",[0,0,1,1]);
+            
+            r=[0,0,1,0.5];
+            xstringb(r(1),r(2),str,r(3),r(4),"fill");
+            xrect(r(1),r(2)+r(4),r(3),r(4));
+            
+            r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
+            xrect(r(1),r(2)+r(4),r(3),r(4))
+            xstringb(r(1),r(2),str,r(3),r(4),"fill");
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

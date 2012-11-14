@@ -34,28 +34,29 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_sub_tics_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int result = 0;
-    char* type = NULL;
-    char* axisSubticksPropertiesNames[3] = {__GO_X_AXIS_SUBTICKS__, __GO_Y_AXIS_SUBTICKS__, __GO_Z_AXIS_SUBTICKS__};
+    int type = -1;
+    int *piType = &type;
+    int axisSubticksPropertiesNames[3] = {__GO_X_AXIS_SUBTICKS__, __GO_Y_AXIS_SUBTICKS__, __GO_Z_AXIS_SUBTICKS__};
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "sub_tics");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * Type test required as the Axis object stores subticks as a single int
      * whereas Axes maintain a 3-element int vector.
      */
-    if (strcmp(type, __GO_AXIS__) == 0)
+    if (type == __GO_AXIS__)
     {
-        int nbTicks = (int) getDoubleFromStack(stackPointer);
+        int nbTicks = (int)((double*)_pvData)[0];
 
         status =  setGraphicObjectProperty(pobjUID, __GO_SUBTICKS__, &nbTicks, jni_int, 1);
 
@@ -69,15 +70,15 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
             return SET_PROPERTY_ERROR;
         }
     }
-    else if (strcmp(type, __GO_AXES__) == 0)
+    else if (type == __GO_AXES__)
     {
         int autoSubticks;
         int i;
-        double * values = stk( stackPointer );
+        double* values = (double*)_pvData;
 
         result = SET_PROPERTY_SUCCEED;
 
-        if ( (nbCol != 3 ) && (nbCol != 2) )
+        if ((nbCol != 3) && (nbCol != 2))
         {
             Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "sub_tics", 2, 3);
             return SET_PROPERTY_ERROR;
@@ -96,13 +97,13 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
             return SET_PROPERTY_ERROR;
         }
 
-        for ( i = 0; i < nbCol ; i++ )
+        for (i = 0; i < nbCol ; i++)
         {
             int nbTicks;
 
             nbTicks = (int) values[i];
 
-            if ( nbTicks < 0 )
+            if (nbTicks < 0)
             {
                 nbTicks = 0;
             }

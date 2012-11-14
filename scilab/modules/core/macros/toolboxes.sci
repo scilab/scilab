@@ -11,67 +11,71 @@
 
 //===========================================================
 function [y] = toolboxes(path)
-// INTERNAL macro should NOT used by users
-// toolboxes loading
-// path is a directory to explore for contribs
-//===========================================================
-  global %toolboxes
-  global %toolboxes_dir
-//===========================================================
-  [lhs,rhs] = argn(0) 
-  y = [];
-  if (rhs == 1) & typeof(path)=="constant" then 
-    // return string to exec
-    y = 'exec(""" + %toolboxes_dir + %toolboxes(path) + filesep() + "loader.sce" + """);';
-    return 
-  end
-
-// Non ATOMS modules
-  if rhs == 0 then 
-    path = SCI + filesep() + 'contrib';
-  end
-  
-  cur_wd = pwd();
-  chdir(path);
-  files = listfiles('.');
-  contribs = [];
-  for k = 1:size(files,'*') 
-    if isfile(files(k)+'/loader.sce') then 
-      contribs = [contribs ; files(k)];
+    // INTERNAL macro should NOT used by users
+    // toolboxes loading
+    // path is a directory to explore for contribs
+    //===========================================================
+    global %toolboxes
+    global %toolboxes_dir
+    //===========================================================
+    [lhs,rhs] = argn(0) 
+    y = [];
+    if (rhs == 1) & typeof(path)=="constant" then 
+        // return string to exec
+        tmp = %toolboxes(path);
+        if part(tmp,1)=="!" then   // ATOMS module => Get the path
+            atomsMod = atomsGetInstalled();
+            tmp = strtok(tmp, ",") // Trims the part of the release numbers
+            Path = atomsMod(find(atomsMod(:,1)==part(tmp, 2:length(tmp))),4);
+        else
+            Path = %toolboxes_dir + tmp;
+        end
+        y = 'exec(""" + pathconvert(Path) + filesep() + "loader.sce" + """);';
+        return 
     end
-  end
+
+    // Non ATOMS modules
+    if rhs == 0 then 
+        path = SCI + filesep() + 'contrib';
+    end
+
+    cur_wd = pwd();
+    chdir(path);
+    files = listfiles('.');
+    contribs = [];
+    for k = 1:size(files,'*') 
+        if isfile(files(k)+'/loader.sce') then 
+            contribs = [contribs ; files(k)];
+        end
+    end
 
     // ATOMS modules without autoloading
     installed   = atomsGetInstalled()
     autoloading = atomsAutoloadList() 
     for i = 1:size(installed,1)
-         if and(installed(i,1)~=autoloading(:,1)) then
-              tmpath = installed(i,4)+filesep()+"loader.sce"
-              if isfile(tmpath) then 
-                   contribs = [contribs ; installed(i,1)+filesep()+installed(i,2)]
-              end
-         end
+        if and(installed(i,1)~=autoloading(:,1)) then
+            tmpath = installed(i,4)+filesep()+"loader.sce"
+            if isfile(tmpath) then 
+                contribs = [contribs ; "!"+installed(i,1)+","+installed(i,2)]
+                // "!" => the path must be got from atomsGetInstalled
+            end
+        end
     end
 
-  if (contribs <> []) & (getscilabmode() == 'STD') then 
-    delmenu(gettext("&Toolboxes"));
-    h = uimenu("parent", 0, "label", gettext("&Toolboxes"));
-    for k=1:size(contribs,'*')
-      m = uimenu(h,'label', string(contribs(k)), 'callback','execstr(toolboxes('+string(k)+'))');
+    if (contribs <> []) & (getscilabmode() == 'STD') then 
+        delmenu(gettext("&Toolboxes"));
+        h = uimenu("parent", 0, "label", gettext("&Toolboxes"));
+        for k=1:size(contribs,'*')
+            tmp = strsubst(contribs(k),","," ");
+            tmp = strsubst(tmp,"!","");
+            m = uimenu(h,'label', tmp, 'callback','execstr(toolboxes('+msprintf("%d",k)+'))');
+        end
+        unsetmenu(gettext("&Toolboxes"));
     end
-    unsetmenu(gettext("&Toolboxes"));
-  end
-  
-  %toolboxes = contribs;
-  %toolboxes_dir = pathconvert(path);
-  chdir(cur_wd);
-  
+
+    %toolboxes = contribs;
+    %toolboxes_dir = pathconvert(path);
+    chdir(cur_wd);
+
 endfunction
 //===========================================================
-
-
-
-
-
-
-

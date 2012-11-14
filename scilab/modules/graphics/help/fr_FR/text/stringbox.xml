@@ -117,6 +117,15 @@ else
   disp('You missed it.')
 end;
  ]]></programlisting>
+        <scilab:image>
+            axes = gca() ;
+            axes.axes_visible = 'on' ;
+            axes.data_bounds = [ 1, 1 ; 10, 10 ] ;
+            xtitle( 'stringbox', 'X', 'Y' )  ;
+            stringbox( axes.x_label )
+            str = [ "Scilab", "is" , "not", "Skylab" ] ;
+            xstring( 4, 9, str ) ;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

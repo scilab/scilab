@@ -37,7 +37,7 @@ int get_color_range_property(void* _pvCtx, char* pobjUID)
 
     if (range == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_range");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_range");
         return -1;
     }
 

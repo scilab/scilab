@@ -13,18 +13,35 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="cmb_lin">
     <refnamediv>
         <refname>cmb_lin</refname>
-        <refpurpose> symbolic linear combination</refpurpose>
+        <refpurpose>symbolic linear combination</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[x]=cmb_lin(alfa,x,beta,y)</synopsis>
+        <synopsis>[x] = cmb_lin(alfa, x, beta, y)</synopsis>
     </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>alfa, beta, x, y</term>
+                <listitem>
+                    <para>character strings.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            Evaluates <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x, y</literal> are character
-            strings. (low-level routine)
+            Evaluates symbolic linear combination <code>alfa*x-beta*y</code>. (low-level routine)
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+cmb_lin('alfa','x','beta','y')
+cmb_lin('alfa','x','beta','-y')
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

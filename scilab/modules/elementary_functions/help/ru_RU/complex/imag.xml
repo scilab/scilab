@@ -39,9 +39,19 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>imag(x)</literal> является мнимой частью 
-            <literal>x</literal>. (См. <literal>%i</literal> для ввода комплексных чисел).
+            <code>imag(x)</code> является мнимой частью
+            <varname>x</varname>. (См. <constant>%i</constant> для ввода комплексных чисел).
         </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+imag([1 %i 2])
+imag(1+0*%i)
+imag(2+3*%i)
+imag(1+%s)
+imag(sprand(3,3,0.1))
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

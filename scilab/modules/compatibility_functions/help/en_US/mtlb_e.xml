@@ -28,7 +28,7 @@
             <listitem>
                 <para>
                     When extracting data from a character string matrix: due to the fact that character string matrices
-                    in Matlab can be adressed as any other matrix (each character can be adressed), extraction in such a type of
+                    in Matlab can be addressed as any other matrix (each character can be adressed), extraction in such a type of
                     matrix does not differ from other. But in Scilab it can't be done so and <literal>part</literal>
                     function has to be used. 
                 </para>

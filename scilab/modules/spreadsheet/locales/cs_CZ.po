@@ -8,13 +8,193 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-12-27 21:03+0000\n"
+"PO-Revision-Date: 2012-10-23 19:01+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16232)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Chyba při přidělování paměti.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno číslo s dvojitou "
+"přesností.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A double expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno číslo s dvojitou "
+"přesností.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Byl očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of double expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána matice čísel s dvojitou "
+"přesností.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A matrix of double, with integer "
+"values, expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávána matice celých čísel s "
+"dvojitou přesností.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: očekáváno '%s', '%s', '%s', "
+"'%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A double (value %d to %d) expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávána hodnota s dvojitou "
+"přesností (%d až %d).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' , '%s', '%s', '%s', "
+"'%s' or '%s' expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: očekáváno '%s', '%s', '%s', "
+"'%s', '%s', '%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Není více paměti.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávány čtyři položky.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A column or row vector expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor sloupce nebo "
+"řádku.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Inconsistent range.\n"
+msgstr "%s: Špatná hodnota pro vstupní argument #%d: Nejednotný rozsah.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván řetězec '%s' nebo "
+"'%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
+
+#, c-format
+msgid "%s: separator and decimal must have different values.\n"
+msgstr "%s: oddělovač a desetinné číslo musí mít různé hodnoty.\n"
+
+#, c-format
+msgid "%s: can not convert data.\n"
+msgstr "%s: nelze převést data.\n"
+
+#, c-format
+msgid "%s: %s does not exist.\n"
+msgstr "%s: %s neexistuje.\n"
+
+#, c-format
+msgid "%s: can not open file %s.\n"
+msgstr "%s: nelze otevřít soubor %s.\n"
+
+#, c-format
+msgid "%s: can not read file %s: Error in the column structure\n"
+msgstr "%s: nelze číst soubor %s: Chyba ve struktuře sloupce\n"
+
+#, c-format
+msgid "%s: can not read file %s.\n"
+msgstr "%s: nelze přečíst soubor %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: can not read text: Error in the column structure\n"
+msgstr "%s: nelze přečíst text: Chyba ve struktuře sloupce\n"
+
+#, c-format
+msgid "%s: can not read text.\n"
+msgstr "%s: nelze přečíst text.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array of strings "
+"expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno pole řetězeců 1 x n "
+"nebo m x 1.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno číslo s dvojitou "
+"přesností.\n"
+
+#, c-format
+msgid "%s: Not supported format %s.\n"
+msgstr "%s: %s není podporovaný formát.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno \"%s\", nebo \"%s\".\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of string or a matrix of "
+"real expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána reálná matice nebo matice "
+"řetězců.\n"
+
+#, c-format
+msgid "%s: error.\n"
+msgstr "%s: chyba.\n"
 
 #, c-format
 msgid "The file %s does not exist.\n"
@@ -41,10 +221,6 @@ msgid "%s: The file has no Workbook directory.\n"
 msgstr "%s Soubor nemá žádný adresář Workbook.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Není více paměti.\n"
-
-#, c-format
 msgid "%s: Incorrect or corrupted file.\n"
 msgstr "%s: Neplatný, nebo poškozený soubor.\n"
 
@@ -64,6 +240,14 @@ msgstr ""
 #, c-format
 msgid "%s: End of file.\n"
 msgstr "%s: Konec souboru.\n"
+
+#, c-format
+msgid ""
+"%s: Inconsistency found in the columns. At line %d, found %d columns while "
+"the previous had %d.\n"
+msgstr ""
+"%s: Ve sloupcích nalezena nesrovnalost. Na řádku %d nalezeno %d sloupců, "
+"zatímco předchozí obsahoval %d.\n"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -237,24 +421,3 @@ msgstr "Tabulka"
 
 msgid "Read a xls file"
 msgstr "Přečíst soubor xls"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: file %s does not exist.\n"
-msgstr "%s: soubor %s neexistuje.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: očekáván '%s' nebo '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno \"%s\", nebo \"%s\".\n"

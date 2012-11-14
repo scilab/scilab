@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xstring">
     <refnamediv>
         <refname>xstring</refname>
-        <refpurpose> draw strings</refpurpose>
+        <refpurpose>draw strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -80,13 +80,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            plot2d([0;1],[0;1],0)
-            xstring(0.5,0.5,["$\overbrace{Scilab}$" "n''est ";"pas" "$\underbrace{Matlab}$"])
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 plot2d([0;1],[0;1],0)
@@ -110,6 +103,11 @@ xstring(0.1,0.3,alphabet)
 xset("font",1,24);
 xstring(0.1,0.6,"a") //big alpha
  ]]></programlisting>
+        <scilab:image>
+            plot2d([0;1],[0;1],0)
+            xstring(0.5,0.5,["$\overbrace{Scilab}$" "n''est ";"pas" "$\underbrace{Matlab}$"])
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

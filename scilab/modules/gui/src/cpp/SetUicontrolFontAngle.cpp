@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontAngle.hxx"
 
-int SetUicontrolFontAngle(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontAngle(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Font angle can be normal, italic or oblique */
 
@@ -22,27 +22,29 @@ int SetUicontrolFontAngle(void* _pvCtx, char* sciObjUID, size_t stackPointer, in
     BOOL status = FALSE;
 
     // Font Name must be only one character string
-    if (valueType != sci_strings) {
+    if (valueType != sci_strings)
+    {
         Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "FontAngle");
         return SET_PROPERTY_ERROR;
     }
-    if (nbCol != 1 || nbRow == 0) {
+    if (nbCol != 1 || nbRow == 0)
+    {
         Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "FontAngle");
         return SET_PROPERTY_ERROR;
     }
 
-    fontAngle = getStringFromStack(stackPointer);
+    fontAngle = (char*)_pvData;
 
     if (stricmp(fontAngle, "normal") != 0
-        && stricmp(fontAngle, "italic") != 0
-        && stricmp(fontAngle, "oblique") != 0)
+            && stricmp(fontAngle, "italic") != 0
+            && stricmp(fontAngle, "oblique") != 0)
     {
         /* Wrong string format */
         Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n")), "FontAngle", "normal", "italic", "oblique");
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTANGLE__), fontAngle, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTANGLE__, fontAngle, jni_string, 1);
 
     if (status == TRUE)
     {

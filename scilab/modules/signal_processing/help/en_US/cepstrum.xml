@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="cepstrum">
     <refnamediv>
         <refname>cepstrum</refname>
-        <refpurpose> cepstrum calculation</refpurpose>
+        <refpurpose>cepstrum calculation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -50,6 +50,11 @@ w=0.1:0.1:5;mag=1+abs(sin(w));
 fresp=cepstrum(w,mag);
 plot2d([w',w'],[mag(:),abs(fresp)])
  ]]></programlisting>
+        <scilab:image>
+            w=0.1:0.1:5;mag=1+abs(sin(w));
+            fresp=cepstrum(w,mag);
+            plot2d([w',w'],[mag(:),abs(fresp)])
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

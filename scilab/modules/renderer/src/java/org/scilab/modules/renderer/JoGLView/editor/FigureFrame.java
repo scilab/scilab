@@ -12,6 +12,7 @@
 package org.scilab.modules.renderer.JoGLView.editor;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -36,7 +37,7 @@ public class FigureFrame extends JFrame {
         tree.setCellRenderer(new TreeCellRenderer() {
             private final TreeCellRenderer renderer = new DefaultTreeCellRenderer();
             public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-                Object type = GraphicController.getController().getProperty((String) value, "Type");
+                Object type = GraphicController.getController().getProperty((String) value, GraphicObjectProperties.__GO_TYPE__);
                 return renderer.getTreeCellRendererComponent(tree, type, selected, expanded, leaf, row, hasFocus);
             }
         });

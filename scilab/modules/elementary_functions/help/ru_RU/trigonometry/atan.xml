@@ -16,13 +16,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественный или комплексных скаляр, вектор или матрица</para>
+                    <para>вещественный или комплексный скаляр, вектор или матрица</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>phi</term>
                 <listitem>
-                    <para>вещественный или комплексных скаляр, вектор или матрица</para>
+                    <para>вещественный или комплексный скаляр, вектор или матрица</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -43,22 +43,22 @@
         <title>Описание</title>
         <para>
             Первая форма вычисляет 2-х квадрантный арктангенс, который является обратным значением от
-            <literal>tan(phi)</literal>. Для вещественного <literal>x</literal>,
-            <literal>phi</literal> лежит на интервале <literal>(-pi/2, pi/2)</literal>. 
-            Для комплексного <literal>x</literal>, <literal>atan</literal> имеет две неопределённых точки, точки перехода  <literal>+%i</literal>,<literal>-%i</literal> и выбираемые переходы  являются двумя мнимыми полупрямыми линиями <literal>[i, i*oo)</literal> и <literal>(-i*oo, -i]</literal>.
+            <code>tan(phi)</code>. Для вещественного <varname>x</varname>,
+            <varname>phi</varname> лежит на интервале  <latex>\left(\dfrac{-\pi}{2}, \dfrac{\pi}{2}\right)</latex>.
+            Для комплексного <varname>x</varname>, <function>atan</function> имеет две неопределённые точки, точки перехода  <code>+%i</code>, <code>-%i</code> и выбираемые переходы  являются двумя мнимыми полупрямыми линиями <latex>[i, i*\infty)</latex> и <latex>(-i*\infty, -i]</latex>.
         </para>
         <para>
-            Вторая форма вычисляет 4-х квадрантный арктангенс (в Фортране atan2), то есть она возвращает аргумент (угол) комплексного числа <literal>x+i*y</literal>.
-            Диапазон <literal>atan(y,x)</literal> равен <literal>(-pi, pi]</literal>.
+            Вторая форма вычисляет 4-х квадрантный арктангенс (в Фортране <function>atan2</function>), то есть она возвращает аргумент (угол) комплексного числа <literal>x+i*y</literal>.
+            Диапазон <code>atan(y, x)</code> равен <latex>(-\pi, \pi]</latex>.
         </para>
         <para>
             Для вещественных аргументов обе формы дают идентичные значения, если 
             <literal>x&gt;0</literal>.
         </para>
         <para>
-            Если аргумент является вектором или матрицей, то вычисление выполняется поэлементно, так что  <literal>phi</literal> является вектором или матрицей того же размера, при этом 
-            <literal>phi(i,j)=atan(x(i,j))</literal> или 
-            <literal>phi(i,j)=atan(y(i,j),x(i,j))</literal>.
+            Если аргумент является вектором или матрицей, то вычисление выполняется поэлементно, так что  <varname>phi</varname> является вектором или матрицей того же размера, при этом
+            <code>phi(i, j) = atan(x(i, j))</code> или
+            <code>phi(i, j) = atan(y(i, j), x(i, j))</code>.
         </para>
     </refsection>
     <refsection>
@@ -66,7 +66,7 @@
         <programlisting role="example"><![CDATA[ 
 // примеры со второй формой
 x=[1,%i,-1,%i]
-phasex=atan(imag(x),real(x))
+phase_x = atan(imag(x),real(x))
 atan(0,-1)
 atan(-%eps,-1)
  

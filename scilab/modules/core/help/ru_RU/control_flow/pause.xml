@@ -7,27 +7,41 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Переключение в режим <literal>pause</literal>. Внесение функции <literal>pause</literal> в 
+            Переключение в режим <code>pause</code>. Внесение функции <code>pause</code> в
             код функции прерывает исполнение функции: появляется символ командной строки, который 
-            указывает уровень  <literal>pause</literal> (например, <literal>-1-&gt;</literal>).
+            указывает уровень  <code>pause</code> (например, <literal>-1-&gt;</literal>).
             Пользователь затем оказывается в новом рабочем окружении, в котором доступны все переменные 
             более низкого уровня (и, особенно, все переменные функции). Чтобы вернуться в вызывающее 
-            рабочее окружение, введите команду <literal>return</literal>.
+            рабочее окружение, введите команду <code>return</code>.
         </para>
         <para>
             В этом режиме<literal>[...]=return(...)</literal> возвращает переменные аргумента 
             <literal>(...)</literal> в вызывающее рабочее окружение с именами на выходе <literal> 
                 [...]
-            </literal>
-            .Таким образом, переменные более низкого уровня защищены и не могут быть 
+            </literal>.
+            Таким образом, переменные более низкого уровня защищены и не могут быть
             изменены.
         </para>
         <para>
-            Команда <literal>pause</literal> чрезвычайна полезна в процессе отладки.
+            Команда <code>pause</code> чрезвычайно полезна в процессе отладки.
         </para>
         <para>
-            Это режим прекращается командой <literal>abort</literal>.
+            Это режим прекращается командой <code>abort</code>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    function c=foo(b)
+    a=42+b
+    disp("Благодаря инструкции pause, вы можете исследовать - имеет ли ''a'' верное значение");
+    disp("Значение может быть, если нужно, изменено.");
+    pause
+    c=a+2
+    endfunction
+
+    foo(2)
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

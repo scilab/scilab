@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-08-02 19:15+0000\n"
+"PO-Revision-Date: 2012-10-23 05:39+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16232)\n"
 "Language: uk\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -675,8 +675,8 @@ msgstr ""
 "Кількість елементів має дорівнювати %d (%d, якщо %s — це координата).\n"
 
 #, c-format
-msgid "Number of elements must be %d (%d if z coordinate )\n"
-msgstr "Кількість елементів має дорівнювати %d (%d, якщо z — координата)\n"
+msgid "Number of elements must be %d (%d if z coordinate)\n"
+msgstr "Кількість елементів має дорівнювати %d (%d, якщо є координата z)\n"
 
 msgid "Number of rows must be a multiple of 2.\n"
 msgstr "Кількість рядків має бути кратною до 2.\n"
@@ -813,6 +813,12 @@ msgid "Wrong size for '%s' property: A Real scalar expected.\n"
 msgstr ""
 "Помилкова розмірність значення властивості «%s»: слід використовувати "
 "числове дійсне значення.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: %d, %d, %d or %d expected.\n"
+msgstr ""
+"Помилкове значення властивості «%s»: мало бути використано одне з таких "
+"значень: %d, %d, %d або %d.\n"
 
 msgid "Children property can not be modified directly.\n"
 msgstr "Безпосередня зміна дочірньої властивості неможлива.\n"
@@ -1071,6 +1077,9 @@ msgstr "%s: вектор y не є монотонним.\n"
 
 msgid "Scilab Graphics module not installed.\n"
 msgstr "Графічний модуль Scilab не встановлено.\n"
+
+msgid "Press Return to continue ... \n"
+msgstr "Натисніть Enter, щоб продовжити… \n"
 
 msgid "Computing in progress..."
 msgstr "Виконуються обчислення…"

@@ -31,15 +31,16 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_title_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_title_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    char* type = NULL;
+    int iType = -1;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_AXES__) != 0)
+    if (iType == __GO_AXES__)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"title");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "title");
         return SET_PROPERTY_ERROR;
     }
 

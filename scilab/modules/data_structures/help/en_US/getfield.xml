@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="getfield">
     <refnamediv>
         <refname>getfield</refname>
-        <refpurpose>  list field extraction</refpurpose>
+        <refpurpose>list field extraction</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -25,19 +25,23 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>matrix  of any  possible types</para>
+                    <para>matrix of any possible types.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>l</term>
                 <listitem>
-                    <para>list, tlist or mlist variable</para>
+                    <para>
+                        <literal>list</literal>, <literal>tlist</literal> or <literal>mlist</literal> variable.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>i</term>
                 <listitem>
-                    <para>field index, see extraction for more details.</para>
+                    <para>
+                        field index, see <link linkend="extraction">extraction</link> for more details.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -52,10 +56,10 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l=list(1,'qwerw',%s)
 [a,b]=getfield([3 2],l)
-
+ 
 a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
 a(1) // the a(1,1,1) entry
 getfield(1,a) // the mlist first field

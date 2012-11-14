@@ -37,7 +37,7 @@ int get_rotation_angles_property(void* _pvCtx, char* pobjUID)
 
     if (angles == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_angles");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "rotation_angles");
         return -1;
     }
 

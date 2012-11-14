@@ -2,6 +2,7 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2007 - INRIA - Alan LAYEC
 * Copyright (C) 2007 - INRIA - Allan CORNET
+* Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -11,11 +12,10 @@
 *
 */
 
-#include "stack-c.h"
 #include "fftw_utilities.h"
 #include "callfftw.h"
-#include "MALLOC.h"
 #include "gw_fftw.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 /* Reset fftw wisdom
 *
@@ -28,17 +28,15 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-int sci_fftw_forget_wisdom(char *fname,unsigned long fname_len)
+int sci_fftw_forget_wisdom(char *fname, unsigned long fname_len)
 {
-    CheckRhs(0,0);
+    CheckInputArgument(pvApiCtx, 0, 0);
 
     FreeFFTWPlan(getSci_Backward_Plan());
     FreeFFTWPlan(getSci_Forward_Plan());
 
     call_fftw_forget_wisdom();
 
-    PutLhsVar();
-
-    return(0);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

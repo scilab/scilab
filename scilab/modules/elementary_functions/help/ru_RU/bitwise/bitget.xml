@@ -19,7 +19,7 @@
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
         <synopsis>
-            y = bitget(x,pos)
+            y = bitget(x, pos)
             
         </synopsis>
     </refsynopsisdiv>
@@ -30,9 +30,9 @@
                 <term>x :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности (double) размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения. 
+                        матрица чисел двойной точности (<literal>double</literal>) размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. Должна содержать положительные целые значения.
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,11 +40,11 @@
                 <term>pos :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности (double) размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения. 
-                        Входная <literal>pos</literal> должна быть в диапазоне 1,2,...,bitmax
-                        где bitmax - максимальное количество битов в <literal>x</literal>.
+                        матрица чисел двойной точности (<literal>double</literal>) размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. Должна содержать положительные целые значения.
+                        Входная <varname>pos</varname> должна быть в диапазоне 1, 2, ..., <literal>bitmax</literal>
+                        где <literal>bitmax</literal> - максимальное количество битов в <varname>x</varname>.
                         Должна содержать положительные целые значения. 
                     </para>
                 </listitem>
@@ -53,9 +53,9 @@
                 <term>y :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел размером m на n.
+                        матрица чисел двойной точности размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел размером <literal>m</literal> на <literal>n</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,7 +64,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Для заданного беззнакового целого числа <literal>x</literal>, эта функция возвращает беззнаковое целое число (0 или 1), которое является битом в позиции с номером <literal>pos</literal> в двоичном представлении <literal>x</literal>.
+            Для заданного беззнакового целого числа <varname>x</varname>, эта функция возвращает беззнаковое целое число <varname>y</varname> (<literal>0</literal> или <literal>1</literal>), которое является битом в позиции с номером <varname>pos</varname> в двоичном представлении <varname>x</varname>.
         </para>
     </refsection>
     <refsection>

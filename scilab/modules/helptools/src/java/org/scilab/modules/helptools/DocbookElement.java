@@ -26,7 +26,7 @@ public class DocbookElement {
      * @param name the tag name
      * @param attributes the attributes and its values
      */
-    protected DocbookElement(String name, String uri, Map attributes) {
+    protected DocbookElement(String name, String uri, Map<String, String> attributes) {
         this.name = name;
         this.attributes = attributes;
         this.uri = uri;
@@ -36,7 +36,7 @@ public class DocbookElement {
     /**
      * @return a new DocbookElement
      */
-    public DocbookElement getNewInstance(String name, String uri, Map attributes) {
+    public DocbookElement getNewInstance(String name, String uri, Map<String, String> attributes) {
         return new DocbookElement(name, uri, attributes);
     }
 

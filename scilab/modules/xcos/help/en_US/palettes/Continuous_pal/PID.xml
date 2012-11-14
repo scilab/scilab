@@ -136,7 +136,7 @@
                 </imageobject>
             </inlinemediaobject>
         </para>
-        <para>PID law is a linear combinaison of an input variable Up(t), its time
+        <para>PID law is a linear combination of an input variable Up(t), its time
             integral Ui(t) and its first derivative Ud(t). The control law Ucon(t) has
             the form:
         </para>
@@ -331,7 +331,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_Example.png" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_Example.xcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -343,7 +343,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID2_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID2_Example.png" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID2_Example.xcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

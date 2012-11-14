@@ -37,7 +37,7 @@
 int get_axes_visible_property(void* _pvCtx, char* pobjUID)
 {
     char * axes_visible[3]  = { NULL, NULL, NULL };
-    char* axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
+    int  const axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
     int iAxesVisible = 0;
     int* piAxesVisible = &iAxesVisible;
 
@@ -45,13 +45,13 @@ int get_axes_visible_property(void* _pvCtx, char* pobjUID)
     int j = 0;
     int status = -1;
 
-    for ( i = 0 ; i < 3 ; i++ )
+    for (i = 0 ; i < 3 ; i++)
     {
         getGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[i], jni_bool, (void **)&piAxesVisible);
 
         if (piAxesVisible == NULL)
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_visible");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_visible");
             return -1;
         }
 
@@ -66,12 +66,12 @@ int get_axes_visible_property(void* _pvCtx, char* pobjUID)
 
         if (axes_visible[i] == NULL)
         {
-            for ( j = 0 ; j < i ; j++ )
+            for (j = 0 ; j < i ; j++)
             {
                 FREE(axes_visible[j]);
             }
 
-            Scierror(999, _("%s: No more memory.\n"),"get_axes_visible_property");
+            Scierror(999, _("%s: No more memory.\n"), "get_axes_visible_property");
             return -1;
         }
 
@@ -79,11 +79,11 @@ int get_axes_visible_property(void* _pvCtx, char* pobjUID)
 
     status = sciReturnRowStringVector(_pvCtx, axes_visible, 3);
 
-    for ( i = 0 ; i < 3 ; i++ )
+    for (i = 0 ; i < 3 ; i++)
     {
-        FREE( axes_visible[i] );
+        FREE(axes_visible[i]);
     }
 
-    return status ;
+    return status;
 }
 /*------------------------------------------------------------------------*/

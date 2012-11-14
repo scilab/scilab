@@ -38,10 +38,10 @@ int get_auto_resize_property(void* _pvCtx, char* pobjUID)
     int* piAutoResize =  &iAutoResize;
     getGraphicObjectProperty(pobjUID, __GO_AUTORESIZE__, jni_bool, (void **)&piAutoResize);
 
-    if ( piAutoResize == NULL )
+    if (piAutoResize == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
-        return -1 ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_resize");
+        return -1;
     }
 
     if (iAutoResize)

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="uigetfont">
+    <refnamediv>
+        <refname>uigetfont</refname>
+        <refpurpose>フォント選択用のダイアログを開く.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            uigetfont()
+            
+            [fontname [,fontsize [,bold [,italic]]]] = uigetfont([defaultfontname [,defaultfontsize [,defaultbold [,defaultitalic]]]]);
+            
+            [fontname ,fontsize ,bold ,italic] = uigetfont(defaultfontname ,defaultfontsize ,defaultbold ,defaultitalic);
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>defaultfontname</term>
+                <listitem>
+                    <para>
+                        文字列: ダイアログに表示する
+                        選択用フォント名のデフォルト値.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>defaultfontsize</term>
+                <listitem>
+                    <para>スカラー: 
+                        ダイアログに表示する
+                        選択用フォントの大きさのデフォルト値.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>defaultbold</term>
+                <listitem>
+                    <para>論理値: 
+                        ダイアログのbold属性のデフォルト値 
+                        (ボールドフォントの場合は %T,それ以外は %F).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>defaultitalic</term>
+                <listitem>
+                    <para>論理値: 
+                        ダイアログのitalic属性のデフォルト値
+                        (斜体フォントの場合は %T, それ以外は %F).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fontname</term>
+                <listitem>
+                    <para>選択されたフォント名 (ユーザがキャンセルした場合は
+                        "").
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fontsize</term>
+                <listitem>
+                    <para>選択されたフォントの大きさ
+                        (ユーザーがキャンセルした場合は []).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bold</term>
+                <listitem>
+                    <para>bold属性が選択された場合は%T,
+                        それ以外は %F (ユーザーがキャンセルした場合は []).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>italic</term>
+                <listitem>
+                    <para>
+                        italic属性が選択された場合は %T, それ以外は %F
+                        (ユーザーがキャンセルした場合は []).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            フォント選択用のダイアログウインドウを作成します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+uigetfont()
+uigetfont("arial")
+uigetfont("arial", 24)
+uigetfont("arial", 24, %T)
+uigetfont("arial", 24, %T, %F)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getfont">getfont</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -13,6 +13,8 @@
 package org.scilab.modules.commons;
 
 import java.awt.Font;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import org.w3c.dom.Document;
 
@@ -37,6 +39,18 @@ public class ScilabGeneralPrefs implements XConfigurationListener {
         return instance;
     }
 
+    public static void openPreferences(String path) {
+        try {
+            Class prefs = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.preferences.ScilabPreferences");
+            Method open = prefs.getDeclaredMethod("openPreferences", String.class);
+            open.invoke(null, path);
+        } catch (ClassNotFoundException e) {
+            // Nothing displayed (always occurs in MN mode)
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
     public void configurationChanged(XConfigurationEvent e) {
         boolean all = e.getModifiedPaths().contains("ALL");
         if (all || e.getModifiedPaths().contains(ENV_PATH)) {
@@ -50,7 +64,7 @@ public class ScilabGeneralPrefs implements XConfigurationListener {
             Document doc = XConfiguration.getXConfigurationDocument();
             Language language = XConfiguration.get(Language.class, doc, LANG_PATH)[0];
             WindowsDefaultLanguage.setdefaultlanguage(language.lang);
-	}
+        }
 
         if (all || e.getModifiedPaths().contains(FONT_PATH)) {
             desktopFont = null;

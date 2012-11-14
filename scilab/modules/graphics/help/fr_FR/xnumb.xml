@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xnumb">
     <refnamediv>
         <refname>xnumb</refname>
-        <refpurpose> dessine des nombres  </refpurpose>
+        <refpurpose>dessine des nombres  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -51,6 +51,11 @@ plot2d([-100,500],[-100,600],[-1,-1],"022")
 x=0:100:200;
 xnumb(x,500*ones(x),[10,20,35],1)
  ]]></programlisting>
+        <scilab:image>
+            plot2d([-100,500],[-100,600],[-1,-1],"022")
+            x=0:100:200;
+            xnumb(x,500*ones(x),[10,20,35],1)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

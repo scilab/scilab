@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="hsvcolormap">
     <refnamediv>
         <refname>hsvcolormap</refname>
-        <refpurpose>  Hue-saturation-value colormap</refpurpose>
+        <refpurpose>Hue-saturation-value colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -50,20 +50,17 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image> 
-            t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
-            f=gcf();f.color_map=hsvcolormap(64);
-            plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
 f=gcf();f.color_map=hsvcolormap(64);
 plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
  ]]></programlisting>
+        <scilab:image> 
+            t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
+            f=gcf();f.color_map=hsvcolormap(64);
+            plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

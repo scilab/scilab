@@ -226,7 +226,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TIME_DELAY_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/TIME_DELAY_Example.png" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/TIME_DELAY_Example.xcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

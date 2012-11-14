@@ -33,50 +33,75 @@
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
 #include "api_scilab.h"
+
+/* DO NOT CHANGE ORDER !! */
+static const char* propertiesNames[] =
+{
+    "style",
+    "parent",
+    "backgroundcolor",
+    "foregroundcolor",
+    "string",
+    "units",
+    "fontweight",
+    "min",
+    "max",
+    "tag",
+    "position",
+    "relief",
+    "horizontalalignment",
+    "verticalalignment",
+    "sliderstep",
+    "fontname",
+    "callback",
+    "fontangle",
+    "fontunits",
+    "fontsize",
+    "listboxtop",
+    "user_data",
+    "value",
+    "userdata",
+    "visible",
+    "enable",
+    "callback_type",
+    "tooltipstring"
+};
+
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 28
-#define MAXPROPERTYNAMELENGTH 20
+//#define NBPROPERTIES 28
+//#define MAXPROPERTYNAMELENGTH 20
+/*--------------------------------------------------------------------------*/
+// callSetProperty get a stack pointer in input argument.
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
 {
-    int nbRow = 0, nbCol = 0, stkAdr = 0, k = 0;
-    char **stkAdrForStrings = NULL;
+    SciErr sciErr;
 
+    int nbRow = 0, nbCol = 0, k = 0;
     int setStatus = SET_PROPERTY_SUCCEED;
-
     int NOT_FOUND = -1;
-
     int inputIndex = 0, beginIndex = 0;
-
     char *propertyName = NULL;
     char *styleProperty = NULL;
-
     char *pParentUID = NULL;
     char *pUicontrol = NULL;
 
+    int iPropertiesCount = sizeof(propertiesNames) / sizeof(char**);
     unsigned long GraphicHandle = 0;
 
     int found = 0;              /* Does the property exists ? */
 
-    /* @TODO remove this crappy initialization */
-    /* DO NOT CHANGE ORDER !! */
-    char propertiesNames[NBPROPERTIES][MAXPROPERTYNAMELENGTH] =
-    {
-        "style", "parent", "backgroundcolor", "foregroundcolor", "string", "units", "fontweight", "min", "max", "tag", "position", "relief",
-        "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable",
-        "callback_type", "tooltipstring"
-    };
     int *propertiesValuesIndices = NULL;
-    int lw = 0;
-    char *propertyPart = NULL;
 
-    char *parentType = NULL;
-    char *parentStyle = NULL;
+    int iParentType = -1;
+    int *piParentType = &iParentType;
+    int iParentStyle = -1;
+    int *piParentStyle = &iParentStyle;
     char const* pstCurrentFigure = NULL;
 
-    CheckLhs(0, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if (Rhs == 0)
+    if (nbInputArgument(pvApiCtx) == 0)
     {
         /* Create a pushbutton in current figure */
 
@@ -90,44 +115,58 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             pstCurrentFigure = createNewFigureWithAxes();
         }
         setGraphicObjectRelationship(pstCurrentFigure, (char*)getObjectFromHandle(GraphicHandle));
+        pUicontrol = (char*)getObjectFromHandle(GraphicHandle);
     }
-    else if (Rhs == 1)
+    else if (nbInputArgument(pvApiCtx) == 1)
     {
         /* Create a pushbutton in figure given as parameter */
         /* Or give focus to the uicontrol given as parameter */
 
-        if (VarType(1) != sci_handles)
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)))
         {
-            lw = 1 + Top - Rhs;
-            C2F(overload) (&lw, "uicontrol", 9);
+            OverLoad(1);
             return FALSE;
         }
-        else                    /* Get parent ID */
+        else /* Get parent ID */
         {
-            GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+            int* piAddr = NULL;
+            long long hParent = 0;
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
 
-            if (nbRow * nbCol != 1)
+            if (isScalar(pvApiCtx, piAddr) == 0)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
                 return FALSE;
             }
-            pParentUID = (char*)getObjectFromHandle((long) * hstk(stkAdr));
+
+            if (getScalarHandle(pvApiCtx, piAddr, &hParent))
+            {
+                Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+                return 1;
+            }
+
+            pParentUID = (char*)getObjectFromHandle((long)hParent);
             if (pParentUID != NULL)
             {
-                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
-                if (strcmp(parentType, __GO_UICONTROL__) == 0)  /* Focus management */
+                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+                if (iParentType == __GO_UICONTROL__)  /* Focus management */
                 {
-                    GraphicHandle = (long) * hstk(stkAdr);
+                    GraphicHandle = (unsigned long)hParent;
                     requestFocus(pParentUID);
                 }
-                else if ((strcmp(parentType, __GO_FIGURE__) == 0) || (strcmp(parentType, __GO_UIMENU__) == 0))  /* PushButton creation */
+                else if (iParentType == __GO_FIGURE__ || iParentType == __GO_UIMENU__)  /* PushButton creation */
                 {
                     /* Create a new pushbutton */
                     GraphicHandle = getHandle(CreateUIControl(NULL));
 
                     /* First parameter is the parent */
                     setGraphicObjectRelationship(pParentUID, getObjectFromHandle(GraphicHandle));
-                    setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, (char *)propertiesNames[1]);
+                    setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), &hParent, sci_handles, 1, 1, (char*)propertiesNames[1]);
                     if (setStatus == SET_PROPERTY_ERROR)
                     {
                         Scierror(999, _("%s: Could not set property '%s'.\n"), fname, propertyName);
@@ -140,7 +179,6 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                              "Figure", "Uimenu");
                     return FALSE;
                 }
-                free(parentType);
             }
             else
             {
@@ -148,26 +186,26 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                          "Uimenu");
                 return FALSE;
             }
+            pUicontrol = (char*)getObjectFromHandle(GraphicHandle);
         }
     }
     else
     {
-        if ((VarType(1) != sci_handles) && (VarType(1) != sci_strings))
+        if (!checkInputArgumentType(pvApiCtx, 1, sci_handles) && !checkInputArgumentType(pvApiCtx, 1, sci_strings))
         {
-            lw = 1 + Top - Rhs;
-            C2F(overload) (&lw, "uicontrol", 9);
+            OverLoad(1);
             return FALSE;
         }
 
         /* Allocate memory to store the position of properties in uicontrol call */
-        if ((propertiesValuesIndices = (int *)MALLOC(sizeof(int) * NBPROPERTIES)) == NULL)
+        if ((propertiesValuesIndices = (int*)MALLOC(sizeof(int) * iPropertiesCount)) == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return FALSE;
         }
 
         /* Init all positions to NOT_FOUND */
-        for (inputIndex = 0; inputIndex < NBPROPERTIES; inputIndex++)
+        for (inputIndex = 0; inputIndex < iPropertiesCount; inputIndex++)
         {
             propertiesValuesIndices[inputIndex] = NOT_FOUND;    /* Property initialized as not found */
         }
@@ -178,42 +216,56 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
          * All event inputs are property names
          * All odd (except first) inputs are property values
          */
-        if (Rhs % 2 == 1)
+        if (nbInputArgument(pvApiCtx) % 2 == 1)
         {
-            if (VarType(1) != sci_handles)
+            if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)))
             {
-                if (VarType(1) == sci_matrix)
+                if ((checkInputArgumentType(pvApiCtx, 1, sci_matrix)))
                 {
-                    GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                    if (nbRow * nbCol == 1)
-                    {
-                        pParentUID = (char*)getFigureFromIndex((int)(*stk(stkAdr)));
+                    int* piAddr = NULL;
+                    double dblValue = 0;
 
-                        if (pParentUID == NULL)
+                    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+
+                    if (isScalar(pvApiCtx, piAddr) == 0)
+                    {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
+                        return FALSE;
+                    }
+
+                    if (getScalarDouble(pvApiCtx, piAddr, &dblValue))
+                    {
+                        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                        return 1;
+                    }
+
+                    pParentUID = (char*)getFigureFromIndex((int)dblValue);
+
+                    if (pParentUID == NULL)
+                    {
+                        Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
+                                 "Frame uicontrol");
+                        return FALSE;
+                    }
+
+                    getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+                    if (iParentType != __GO_FIGURE__)
+                    {
+                        getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
+                        if (iParentType != __GO_UICONTROL__ || iParentStyle != __GO_UI_FRAME__)
                         {
                             Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                                      "Frame uicontrol");
                             return FALSE;
                         }
-                        getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
-                        if (strcmp(parentType, __GO_FIGURE__) != 0)
-                        {
-                            getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_string, (void **)&parentStyle);
-                            if ((strcmp(parentType, __GO_UICONTROL__) != 0) || (strcmp(parentStyle, __GO_UI_FRAME__) != 0))
-                            {
-                                Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
-                                         "Frame uicontrol");
-                                return FALSE;
-                            }
-                        }
-                        /* First parameter is the parent */
-                        propertiesValuesIndices[1] = 1;
                     }
-                    else
-                    {
-                        Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
-                        return FALSE;
-                    }
+                    /* First parameter is the parent */
+                    propertiesValuesIndices[1] = 1;
                 }
                 else
                 {
@@ -222,28 +274,42 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                     return FALSE;
                 }
             }
-            else                /* Get parent ID */
+            else /* Get parent ID */
             {
-                GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+                int* piAddr = NULL;
+                long long hParent = 0;
+                sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 1;
+                }
 
-                if (nbRow * nbCol != 1)
+                if (isScalar(pvApiCtx, piAddr) == 0)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                              "Frame uicontrol");
                     return FALSE;
                 }
-                pParentUID = (char*)getObjectFromHandle((long) * hstk(stkAdr));
+
+                if (getScalarHandle(pvApiCtx, piAddr, &hParent))
+                {
+                    Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+                    return 1;
+                }
+
+                pParentUID = (char*)getObjectFromHandle((long)hParent);
                 if (pParentUID == NULL)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                              "Frame uicontrol");
                     return FALSE;
                 }
-                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
-                if (strcmp(parentType, __GO_FIGURE__) != 0)
+                getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+                if (iParentType != __GO_FIGURE__)
                 {
-                    getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_string, (void **)&parentStyle);
-                    if ((strcmp(parentType, __GO_UICONTROL__) != 0) || (strcmp(parentStyle, __GO_UI_FRAME__) != 0))
+                    getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
+                    if (iParentType != __GO_UICONTROL__ || iParentStyle != __GO_UI_FRAME__)
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"), fname, 1, "Figure",
                                  "Frame uicontrol");
@@ -272,35 +338,37 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         for (inputIndex = beginIndex; inputIndex < Rhs; inputIndex = inputIndex + 2)
         {
             /* Read property name */
-            if (VarType(inputIndex) != sci_strings)
+            if ((!checkInputArgumentType(pvApiCtx, inputIndex, sci_strings)))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, inputIndex);
                 return FALSE;
             }
             else
             {
-                GetRhsVar(inputIndex, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                propertyName = cstk(stkAdr);
+                int* piAddr = NULL;
+                sciErr = getVarAddressFromPosition(pvApiCtx, inputIndex, &piAddr);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 1;
+                }
+
+                if (getAllocatedSingleString(pvApiCtx, piAddr, &propertyName))
+                {
+                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, inputIndex);
+                    return 1;
+                }
+
 
                 /* Bug 3031 */
                 /* We only want to compare propertyName along its length */
                 /* 'posi' must be matched to 'position' */
-                propertyPart = (char *)MALLOC(sizeof(char) * (MAXPROPERTYNAMELENGTH + 1));
-                if (propertyPart == NULL)
-                {
-                    Scierror(999, _("%s: No more memory.\n"), fname);
-                    return FALSE;
-                }
-
                 found = 0;
-                for (k = 0; k < NBPROPERTIES; k++)
+                for (k = 0; k < iPropertiesCount ; k++)
                 {
-                    if (strlen(propertyName) <= MAXPROPERTYNAMELENGTH)
+                    if (strlen(propertyName) <= strlen(propertiesNames[k]))
                     {
-                        strncpy(propertyPart, propertiesNames[k], strlen(propertyName));
-                        propertyPart[strlen(propertyName)] = '\0';
-
-                        if (stricmp(propertyName, propertyPart) == 0)
+                        if (strnicmp(propertyName, propertiesNames[k], strlen(propertyName)) == 0)
                         {
                             propertiesValuesIndices[k] = inputIndex + 1;    /* Position of value for property */
                             found = 1;
@@ -308,8 +376,6 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                         }
                     }
                 }
-
-                FREE(propertyPart);
 
                 if (found == 0)
                 {
@@ -321,10 +387,21 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
         if (propertiesValuesIndices[0] != NOT_FOUND)    /* Style found */
         {
-            if (VarType(propertiesValuesIndices[0]) == sci_strings)
+            if ((checkInputArgumentType(pvApiCtx, propertiesValuesIndices[0], sci_strings)))
             {
-                GetRhsVar(propertiesValuesIndices[0], STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                styleProperty = cstk(stkAdr);
+                int* piAddr = NULL;
+                sciErr = getVarAddressFromPosition(pvApiCtx, propertiesValuesIndices[0], &piAddr);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 1;
+                }
+
+                if (getAllocatedSingleString(pvApiCtx, piAddr, &styleProperty))
+                {
+                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, propertiesValuesIndices[0]);
+                    return 1;
+                }
             }
             else
             {
@@ -335,6 +412,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
         /* Create a new uicontrol */
         pUicontrol = CreateUIControl(styleProperty);
+        freeAllocatedSingleString(styleProperty);
         if (pUicontrol == NULL) /* Error in creation */
         {
             Scierror(999, _("%s: Could not create 'Uicontrol' handle.\n"), fname);
@@ -355,58 +433,89 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 pstCurrentFigure = createNewFigureWithAxes();
             }
             setGraphicObjectRelationship(pstCurrentFigure, graphicObjectUID);
-            // TODO Remove following code and called functions in src/cpp/*.cpp
         }
 
         /* Read and set all properties */
-        for (inputIndex = 1; inputIndex < NBPROPERTIES; inputIndex++)   /* Style has already been set */
+        for (inputIndex = 1; inputIndex < iPropertiesCount; inputIndex++)   /* Style has already been set */
         {
             if (propertiesValuesIndices[inputIndex] != NOT_FOUND)
             {
+                int* piAddr = NULL;
+                sciErr = getVarAddressFromPosition(pvApiCtx, propertiesValuesIndices[inputIndex], &piAddr);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 1;
+                }
+
                 if (inputIndex == 21 || inputIndex == 23)   /* User data settings */
                 {
-                    stkAdr = propertiesValuesIndices[inputIndex];   /* Special management */
                     nbRow = -1;
                     nbCol = -1;
-                    setStatus =
-                        callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), stkAdr, VarType(propertiesValuesIndices[inputIndex]), nbRow, nbCol,
-                                        (char *)propertiesNames[inputIndex]);
+                    setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), piAddr, 0, 0, 0, (char*)propertiesNames[inputIndex]);
                 }
                 else            /* All other properties */
                 {
                     /* Read property value */
-                    switch (VarType(propertiesValuesIndices[inputIndex]))
+                    switch (getInputArgumentType(pvApiCtx, propertiesValuesIndices[inputIndex]))
                     {
                         case sci_matrix:
-                            GetRhsVar(propertiesValuesIndices[inputIndex], MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                            setStatus =
-                                callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol,
-                                                (char *)propertiesNames[inputIndex]);
+                        {
+                            double* pdblValue = NULL;
+                            sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &nbRow, &nbCol, &pdblValue);
+                            if (sciErr.iErr)
+                            {
+                                printError(&sciErr, 0);
+                                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                                return 1;
+                            }
+
+                            setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), pdblValue, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                             break;
+                        }
                         case sci_strings:
                             /* Index for String & TooltipString properties: Can be more than one character string */
                             if ((inputIndex == 4) || (inputIndex == 27))
                             {
-                                GetRhsVar(propertiesValuesIndices[inputIndex], MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &stkAdrForStrings);
-                                setStatus =
-                                    callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), (size_t) stkAdrForStrings, sci_strings, nbRow, nbCol,
-                                                    (char *)propertiesNames[inputIndex]);
-                                freeArrayOfString(stkAdrForStrings, nbRow * nbCol);
+                                char** pstValue = NULL;
+                                if (getAllocatedMatrixOfString(pvApiCtx, piAddr, &nbRow, &nbCol, &pstValue))
+                                {
+                                    Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                                    return 1;
+                                }
+
+                                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), pstValue, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                                freeAllocatedMatrixOfString(nbRow, nbCol, pstValue);
                             }
                             else
                             {
-                                GetRhsVar(propertiesValuesIndices[inputIndex], STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                                setStatus =
-                                    callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol,
-                                                    (char *)propertiesNames[inputIndex]);
+                                char* pstValue = NULL;
+                                if (getAllocatedSingleString(pvApiCtx, piAddr, &pstValue))
+                                {
+                                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                                    return 1;
+                                }
+
+                                nbRow = (int)strlen(pstValue);
+                                nbCol = 1;
+                                setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), pstValue, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                                freeAllocatedSingleString(pstValue);
                             }
                             break;
                         case sci_handles:
-                            GetRhsVar(propertiesValuesIndices[inputIndex], GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-                            setStatus =
-                                callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol,
-                                                (char *)propertiesNames[inputIndex]);
+                        {
+                            long long* pHandles = NULL;
+                            sciErr = getMatrixOfHandle(pvApiCtx, piAddr, &nbRow, &nbCol, &pHandles);
+                            if (sciErr.iErr)
+                            {
+                                printError(&sciErr, 0);
+                                Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, propertiesValuesIndices[inputIndex]);
+                                return 1;
+                            }
+
+                            setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), pHandles, sci_handles, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                             break;
+                        }
                         default:
                             setStatus = SET_PROPERTY_ERROR;
                             break;
@@ -414,25 +523,49 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                 }
                 if (setStatus == SET_PROPERTY_ERROR)
                 {
-                    Scierror(999, _("%s: Could not set property '%s'.\n"), fname, (char *)propertiesNames[inputIndex]);
+                    Scierror(999, _("%s: Could not set property '%s'.\n"), fname, (char*)propertiesNames[inputIndex]);
                     return FALSE;
                 }
             }
         }
     }
 
+    if ((nbInputArgument(pvApiCtx) < 2) || (propertiesValuesIndices[24] == NOT_FOUND))    /* Visible property not set */
+    {
+        /* Force the uicontrol to be visible because is invisible by default in the model (See bug #10346) */
+        int b = (int)TRUE;
+        setGraphicObjectProperty(pUicontrol, __GO_VISIBLE__, &b, jni_bool, 1);
+    }
+
+    if ((nbInputArgument(pvApiCtx) < 2) || (propertiesValuesIndices[14] == NOT_FOUND))    /* SliderStep property not set */
+    {
+        /* Set SliderStep property to [1/100*(Max-Min) 1/10*(Max-Min)] */
+        double maxValue = 0;
+        double* pdblMaxValue = &maxValue;
+        double minValue = 0;
+        double* pdblMinValue = &minValue;
+        double pdblStep[2];
+
+        getGraphicObjectProperty(pUicontrol, __GO_UI_MIN__, jni_double, (void**) &pdblMinValue);
+        getGraphicObjectProperty(pUicontrol, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
+
+        pdblStep[0] = 0.01 * (maxValue - minValue);
+        pdblStep[1] = 0.1 * (maxValue - minValue);
+
+        setGraphicObjectProperty(pUicontrol, __GO_UI_SLIDERSTEP__, pdblStep, jni_double_vector, 2);
+    }
+
     FREE(propertiesValuesIndices);
 
     /* Create return variable */
-    nbRow = 1;
-    nbCol = 1;
-    CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-    *hstk(stkAdr) = GraphicHandle;
+    if (createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, GraphicHandle))
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
 
-    LhsVar(1) = Rhs + 1;
-
-    PutLhsVar();
-
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return TRUE;
 }
 

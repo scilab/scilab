@@ -90,8 +90,8 @@ public class ScilabDoubleEntry extends JFormattedTextField implements XComponent
      * Actuators
      */
 
-    public final BigDecimal value() {
-        return (BigDecimal) getValue();
+    public final String value() {
+        return ((BigDecimal) getValue()).toPlainString();
     }
 
     public final void value(final String text) {

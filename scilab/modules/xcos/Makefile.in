@@ -88,9 +88,9 @@ subdir = modules/xcos
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -168,7 +168,8 @@ am__objects_4 = libscixcos_la-sci_Xcos.lo \
 	libscixcos_la-sci_xcosConfigureXmlFile.lo \
 	libscixcos_la-sci_xcosAddToolsMenu.lo \
 	libscixcos_la-sci_xcosUpdateBlock.lo \
-	libscixcos_la-sci_loadXcos.lo
+	libscixcos_la-sci_loadXcos.lo \
+	libscixcos_la-sci_xcosSimulationStarted.lo
 am_libscixcos_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscixcos_la_OBJECTS = $(am_libscixcos_la_OBJECTS)
 @GUI_TRUE@@XCOS_TRUE@am_libscixcos_la_rpath = -rpath $(pkglibdir)
@@ -245,6 +246,7 @@ DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
+DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -513,7 +515,8 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp \
 	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
 	sci_gateway/cpp/sci_xcosUpdateBlock.cpp \
-	sci_gateway/cpp/sci_loadXcos.cpp
+	sci_gateway/cpp/sci_loadXcos.cpp \
+	sci_gateway/cpp/sci_xcosSimulationStarted.cpp
 
 libscixcos_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
@@ -577,6 +580,7 @@ images/blocks/CVS.svg \
 images/blocks/DEADBAND.svg \
 images/blocks/Diode.svg \
 images/blocks/DSCOPE.svg \
+images/blocks/Flowmeter.svg \
 images/blocks/Ground.svg \
 images/blocks/Gyrator.svg \
 images/blocks/HYSTHERESIS.svg \
@@ -598,10 +602,13 @@ images/blocks/RAMP.svg \
 images/blocks/Resistor.svg \
 images/blocks/SampleCLK.svg \
 images/blocks/SATURATION.svg \
+images/blocks/sawtooth.svg \
 images/blocks/Self_Switch_off.svg \
 images/blocks/Self_Switch_on.svg \
 images/blocks/SELF_SWITCH.svg \
+images/blocks/SINUS_f.svg \
 images/blocks/SourceP.svg \
+images/blocks/SQUARE_WAVE_f.svg \
 images/blocks/STEP_FUNCTION.svg \
 images/blocks/SUM.svg \
 images/blocks/SUPER.svg \
@@ -700,6 +707,7 @@ images/palettes/EXTRACTBITS.png \
 images/palettes/EXTRACTOR.png \
 images/palettes/EXTRACT.png \
 images/palettes/EXTTRI.png \
+images/palettes/Flowmeter.png \
 images/palettes/fortran_block.png \
 images/palettes/freq_div.png \
 images/palettes/FROMMO.png \
@@ -1027,6 +1035,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalMove.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosUpdateBlock.Plo@am__quote@
 
 .c.o:
@@ -1217,6 +1226,13 @@ libscixcos_la-sci_loadXcos.lo: sci_gateway/cpp/sci_loadXcos.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_loadXcos.cpp' object='libscixcos_la-sci_loadXcos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_loadXcos.lo `test -f 'sci_gateway/cpp/sci_loadXcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadXcos.cpp
+
+libscixcos_la-sci_xcosSimulationStarted.lo: sci_gateway/cpp/sci_xcosSimulationStarted.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosSimulationStarted.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Tpo -c -o libscixcos_la-sci_xcosSimulationStarted.lo `test -f 'sci_gateway/cpp/sci_xcosSimulationStarted.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosSimulationStarted.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Tpo $(DEPDIR)/libscixcos_la-sci_xcosSimulationStarted.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosSimulationStarted.cpp' object='libscixcos_la-sci_xcosSimulationStarted.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosSimulationStarted.lo `test -f 'sci_gateway/cpp/sci_xcosSimulationStarted.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosSimulationStarted.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

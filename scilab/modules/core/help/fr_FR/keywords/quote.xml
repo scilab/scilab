@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="quote">
     <refnamediv>
         <refname>quote (')</refname>
-        <refpurpose> opérateur de transposition, délimiteur de chaîne de caractères  </refpurpose>
+        <refpurpose>opérateur de transposition, délimiteur de chaîne de caractères  </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -24,7 +24,9 @@
 [1+%i, 2]'
 [1+%i, 2].'
 x='Ceci est une chaîne de caractères'
-'Et Dieu dit : ''que la lumière soit'''
+x="Ceci est une autre chaîne de caractères"
+'Et il dit : ''que la force soit avec toi'''
+'Et il lui répondit : ""que la force soit avec toi""'
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

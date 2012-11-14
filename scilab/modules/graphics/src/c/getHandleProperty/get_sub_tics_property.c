@@ -34,32 +34,33 @@
 /*------------------------------------------------------------------------*/
 int get_sub_tics_property(void* _pvCtx, char* pobjUID)
 {
-    char* type;
+    int iType = -1;
+    int *piType = &iType;
     int iSubTicks = 0;
     int* piSubTicks = &iSubTicks;
 
     /*Dj.A 17/12/2003*/
     /* modified jb Silvy 01/2006 */
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * Type test required as the Axis object stores subticks as a single int
      * whereas Axes maintain a 3-element int vector.
      */
-    if (strcmp(type, __GO_AXIS__) == 0)
+    if (iType == __GO_AXIS__)
     {
         getGraphicObjectProperty(pobjUID, __GO_SUBTICKS__, jni_int, (void**)&piSubTicks);
 
         if (piSubTicks == NULL)
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
             return -1;
         }
 
         return sciReturnDouble(_pvCtx, iSubTicks);
     }
-    else if (strcmp(type, __GO_AXES__) == 0)
+    else if (iType == __GO_AXES__)
     {
         double sub_ticks[3];
         int iView = 0;
@@ -69,7 +70,7 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
 
         if (piSubTicks == NULL)
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
             return -1;
         }
 
@@ -94,8 +95,8 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"sub_ticks");
-        return -1 ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
+        return -1;
     }
 }
 /*------------------------------------------------------------------------*/

@@ -96,7 +96,7 @@ public class LaTeXImageConverter implements ExternalImageConverter {
             return null;
 
         } catch (ParseException e) {
-            System.err.println(e);
+            System.err.println("LaTeX code in\n" + currentFile + "\nhas generated an error: " + e.getMessage());
         }
 
         return null;

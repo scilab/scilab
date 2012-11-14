@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-11 01:09+0000\n"
+"PO-Revision-Date: 2012-09-21 13:43+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16232)\n"
 "Language: ja\n"
 
 #, c-format
@@ -117,8 +117,8 @@ msgstr "全て閉じる"
 msgid "Close All But This"
 msgstr "これを除きすべてを閉じる"
 
-msgid "Exit"
-msgstr "終了"
+msgid "Exit Scinotes"
+msgstr "Scinotesを終了"
 
 msgid "Edit"
 msgstr "編集"
@@ -229,7 +229,7 @@ msgid "Make Selection Uppercase"
 msgstr "選択部を大文字にする"
 
 msgid "Capitalize Selection;Capitalize character"
-msgstr "セレクションの先頭を大文字にします; 文字の先頭を大文字にします"
+msgstr "選択部の先頭を大文字にする;先頭を大文字にする"
 
 msgid "Single to double quote strings"
 msgstr "一重または二重引用符付きの文字列"
@@ -238,10 +238,22 @@ msgid "Options"
 msgstr "オプション"
 
 msgid "Current file encoding"
-msgstr "カレントのファイルエンコーディング"
+msgstr "現在のファイルエンコーディング"
 
 msgid "Line Endings"
 msgstr "行末コード"
+
+msgid "Preferences"
+msgstr "設定"
+
+msgid "Set font"
+msgstr "フォントを設定"
+
+msgid "Set colors"
+msgstr "色を設定"
+
+msgid "Scinotes General settings"
+msgstr "Scinotes一般設定"
 
 msgid "Auto-completion on"
 msgstr "オートコンプリート有効"
@@ -300,8 +312,8 @@ msgstr "すべてのファイルを保存し実行する"
 msgid "?"
 msgstr "?"
 
-msgid "SciNotes help"
-msgstr "SciNotesヘルプ"
+msgid "Scinotes help"
+msgstr "Scinotesヘルプ"
 
 msgid "Help on ;Help on selection"
 msgstr "ヘルプ; 選択部に関するヘルプ"
@@ -327,8 +339,8 @@ msgstr "自動保存"
 msgid "Editor"
 msgstr "エディタ"
 
-msgid "Use SciNotes"
-msgstr "SciNotesを使用"
+msgid "Use Scinotes"
+msgstr "Scinotesを使用"
 
 msgid "External editor: "
 msgstr "外部エディタ: "
@@ -338,9 +350,6 @@ msgstr "(パスが空白文字を含む場合,必ず引用符で括ってくだ�
 
 msgid "Scilab command: "
 msgstr "Scilabコマンド: "
-
-msgid "SciNotes General settings"
-msgstr "SciNotes一般設定"
 
 msgid "Restore previous session on start-up"
 msgstr "起動時に前のセッションを回復する"
@@ -516,6 +525,9 @@ msgstr "FOPによりコードをエクスポートする際にエラーが発生
 msgid "An error occurred when printing"
 msgstr "印刷時にエラーが発生しました"
 
+msgid "Exit"
+msgstr "終了"
+
 msgid "Tools"
 msgstr "ツール"
 
@@ -611,6 +623,9 @@ msgstr "先頭から評価..."
 
 msgid "Execute File Into Scilab"
 msgstr "Scilabへ取り込んで実行"
+
+msgid "SciNotes help"
+msgstr "SciNotesヘルプ"
 
 msgid "Help on the current keyword"
 msgstr "カレントのキーワードのヘルプ"
@@ -848,7 +863,7 @@ msgstr "実行するテキストがありません."
 #, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
-msgstr "ファイルエンコーディングは実際には %s で、 %s により保存されます. 続けますか ?"
+msgstr "現在のファイルエンコーディングは %s ですが, %s に変換されて保存されます. 続けてよろしいですか?"
 
 msgid "Encoding problems"
 msgstr "エンコーディングの問題"

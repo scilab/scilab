@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вектор или матрица</para>
+                    <para>вектор или матрица.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>вектор или матрица</para>
+                    <para>вектор или матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,8 +39,15 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы <literal>t</literal> являются тангенсом элементов <literal>x</literal>.
+            Элементы <varname>t</varname> являются тангенсом элементов <varname>x</varname>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Образец</title>
+        <scilab:image>
+            x=(-%pi/2)+0.01:0.01:(%pi/2)-0.01;
+            plot(x,tan(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Примеры</title>

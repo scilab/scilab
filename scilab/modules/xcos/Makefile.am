@@ -68,7 +68,8 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp \
 	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
 	sci_gateway/cpp/sci_xcosUpdateBlock.cpp \
-	sci_gateway/cpp/sci_loadXcos.cpp
+	sci_gateway/cpp/sci_loadXcos.cpp \
+	sci_gateway/cpp/sci_xcosSimulationStarted.cpp
 
 libscixcos_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
@@ -144,6 +145,7 @@ images/blocks/CVS.svg \
 images/blocks/DEADBAND.svg \
 images/blocks/Diode.svg \
 images/blocks/DSCOPE.svg \
+images/blocks/Flowmeter.svg \
 images/blocks/Ground.svg \
 images/blocks/Gyrator.svg \
 images/blocks/HYSTHERESIS.svg \
@@ -165,10 +167,13 @@ images/blocks/RAMP.svg \
 images/blocks/Resistor.svg \
 images/blocks/SampleCLK.svg \
 images/blocks/SATURATION.svg \
+images/blocks/sawtooth.svg \
 images/blocks/Self_Switch_off.svg \
 images/blocks/Self_Switch_on.svg \
 images/blocks/SELF_SWITCH.svg \
+images/blocks/SINUS_f.svg \
 images/blocks/SourceP.svg \
+images/blocks/SQUARE_WAVE_f.svg \
 images/blocks/STEP_FUNCTION.svg \
 images/blocks/SUM.svg \
 images/blocks/SUPER.svg \
@@ -267,6 +272,7 @@ images/palettes/EXTRACTBITS.png \
 images/palettes/EXTRACTOR.png \
 images/palettes/EXTRACT.png \
 images/palettes/EXTTRI.png \
+images/palettes/Flowmeter.png \
 images/palettes/fortran_block.png \
 images/palettes/freq_div.png \
 images/palettes/FROMMO.png \

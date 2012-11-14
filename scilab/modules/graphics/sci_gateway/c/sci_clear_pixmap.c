@@ -16,7 +16,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "warningmode.h"
 #include "sciprint.h"
 #include "localization.h"
@@ -24,10 +24,10 @@
 //
 // FIXME: Remove GW after Scilab 5.4.0
 //
-int sci_clear_pixmap(char *fname, unsigned long fname_len )
+int sci_clear_pixmap(char *fname, unsigned long fname_len)
 {
-    CheckRhs(0, 0);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 0, 0);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (getWarningMode())
     {
@@ -36,8 +36,8 @@ int sci_clear_pixmap(char *fname, unsigned long fname_len )
         sciprint(_("%s: This function will be permanently removed in Scilab %s\n\n"), _("Warning"), "5.4.1");
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

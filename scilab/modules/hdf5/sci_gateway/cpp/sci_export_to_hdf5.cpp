@@ -142,6 +142,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         if (iVersion != -1 && iVersion != SOD_FILE_VERSION)
         {
             //to update version must be the same
+            closeHDF5File(iH5File);
             Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
             return 1;
         }
@@ -166,7 +167,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
 
                     if (strcmp(pstVarNameList[i], pstNameList[j]) == 0)
                     {
-
+                        closeHDF5File(iH5File);
                         Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'."), fname, pstVarNameList[i], pstNameList[0]);
                         return 1;
                     }
@@ -197,12 +198,14 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         //add or update scilab version and file version in hdf5 file
         if (updateScilabVersion(iH5File) < 0)
         {
+            closeHDF5File(iH5File);
             Scierror(999, _("%s: Unable to update Scilab version in \"%s\"."), fname, pstNameList[0]);
             return 1;
         }
 
         if (updateFileVersion(iH5File) < 0)
         {
+            closeHDF5File(iH5File);
             Scierror(999, _("%s: Unable to update HDF5 format version in \"%s\"."), fname, pstNameList[0]);
             return 1;
         }
@@ -419,7 +422,9 @@ static bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType
         iRet = addItemInList(_iH5File, pvList, i, pstPathName);
         FREE(pstPathName);
         if (bReturn == false || iRet)
+        {
             return false;
+        }
     }
     iLevel--;
     closeList(_iH5File, pvList, _pstName, iItemNumber, _iVarType);

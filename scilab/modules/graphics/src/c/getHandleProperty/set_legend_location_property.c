@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_legend_location_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_legend_location_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     char* legendLocationsNames[11] = {"in_upper_right", "in_upper_left", "in_lower_right", "in_lower_left",
@@ -45,13 +45,13 @@ int set_legend_location_property(void* _pvCtx, char* pobjUID, size_t stackPointe
     int index = -1;
     char* legendLocation = NULL;
 
-    if ( !( valueType == sci_strings ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "legend_location");
         return SET_PROPERTY_ERROR;
     }
 
-    legendLocation = getStringFromStack(stackPointer);
+    legendLocation = (char*)_pvData;
 
     for (i = 0; i < 11; i++)
     {

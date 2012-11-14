@@ -69,8 +69,9 @@
  *         test_size_for_mat : the same for classic matrix
  */
 
+#include <math.h>
 #include "MALLOC.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "sciumfpack.h"
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
@@ -80,7 +81,9 @@ int AddAdrToList(Adr adr, int it_flag, CellAdr **L)
 {
     CellAdr *NewCell;
     if ( (NewCell = MALLOC(sizeof(CellAdr))) == NULL )
+    {
         return 0;
+    }
     else
     {
         NewCell->adr = adr;
@@ -98,7 +101,9 @@ int RetrieveAdrFromList(Adr adr, CellAdr **L, int *it_flag)
     CellAdr * Cell;
 
     if ( *L == NULL )
+    {
         return 0;
+    }
     else if ( (*L)->adr == adr )
     {
         Cell = *L;
@@ -108,7 +113,9 @@ int RetrieveAdrFromList(Adr adr, CellAdr **L, int *it_flag)
         return 1;
     }
     else
+    {
         return ( RetrieveAdrFromList(adr, &((*L)->next), it_flag));
+    }
 }
 
 int IsAdrInList(Adr adr, CellAdr *L, int *it_flag)
@@ -117,14 +124,18 @@ int IsAdrInList(Adr adr, CellAdr *L, int *it_flag)
        la fonction renvoie 1, sinon 0. On renvoit aussi it */
 
     if ( L == NULL )
+    {
         return 0;
+    }
     else if ( L->adr == adr )
     {
         *it_flag = L->it;
         return 1;
     }
     else
+    {
         return ( IsAdrInList(adr, L->next, it_flag) );
+    }
 }
 
 
@@ -141,45 +152,46 @@ void TransposeMatrix(double A[], int ma, int na, double At[])
     int i, j;
     for ( j = 0 ; j < ma ; j++ )
         for ( i = 0 ; i < na ; i++ )
+        {
             At[i + na * j] = A[j + ma * i];
+        }
 }
 
-int sci_sparse_to_ccs_sparse(int num, SciSparse *A, CcsSparse *B)
+int SciSparseToCcsSparse(SciSparse *A, CcsSparse *B)
 {
-    int taille, one = 1, nel = A->nel, m = A->m, n = A->n, it = A->it;
-    int l0, l1, l2, k, kb, i, j, count;
-
-    taille = ((2 * it + 3) * nel + n + 1 ) / 2 + 2;
-
-    CreateVar(num, MATRIX_OF_DOUBLE_DATATYPE, &taille, &one, &l0);  /* return 0 in case of failure (not enough memory in stk) */
+    int one = 1, nel = A->nel, m = A->m, n = A->n, it = A->it;
+    int k, kb, i, j, count;
 
     B->m = m;
     B->n = n;
     B->nel = nel;
     B->it = it;
-    B->R = stk(l0);
+    B->R = (double*)MALLOC(nel * (it + 1) * sizeof(double));
     if ( it == 1 )
     {
-        B->I = stk(l0 + nel);
-        l1 = l0 + 2 * nel;
+        B->I = B->R + nel;
     }
     else
     {
         B->I = NULL;
-        l1 = l0 + nel;
     }
-    B->p = (int *) stk(l1);
-    l2 = l1 + (n + 1) / 2 + 1;
-    B->irow = (int *) stk(l2);
+    B->p = (int*)MALLOC((n + 1) * sizeof(int));
+    B->irow = (int*)MALLOC(nel * sizeof(int));
 
     for ( i = 0 ; i <= n ; i++ )
+    {
         B->p[i] = 0;
+    }
 
     for ( k = 0 ; k < nel ; k++ )
-        B->p[A->icol[k]]++;   /* this is because  A->icol[k] is 1-based (and not 0-based) */
+    {
+        B->p[A->icol[k]]++;    /* this is because  A->icol[k] is 1-based (and not 0-based) */
+    }
 
     for ( i = 2 ; i <= n ; i++ )
+    {
         B->p[i] += B->p[i - 1];
+    }
 
     k = 0;
     for ( i = 0 ; i < m ; i++ )
@@ -189,16 +201,28 @@ int sci_sparse_to_ccs_sparse(int num, SciSparse *A, CcsSparse *B)
             kb = B->p[j];  /* "pointeur" actuel sur la colonne j */
             B->irow[kb] = i;
             B->R[kb] = A->R[k];
-            if (it == 1) B->I[kb] = A->I[k];
+            if (it == 1)
+            {
+                B->I[kb] = A->I[k];
+            }
             B->p[j]++;
             k++;
         }
 
     for ( i = n - 1 ; i > 0 ; i-- )
+    {
         B->p[i] = B->p[i - 1];
+    }
     B->p[0] = 0;
 
     return 1;
+}
+
+void freeCcsSparse(CcsSparse _Sp)
+{
+    FREE(_Sp.R);
+    FREE(_Sp.p);
+    FREE(_Sp.irow);
 }
 
 char *UmfErrorMes(int num_error)
@@ -236,13 +260,15 @@ int is_sparse_upper_triangular(SciSparse *A)
     {
         nb_elem_row_i = A->mnel[i];
         if (nb_elem_row_i > 0  &&  A->icol[k] <= i)
+        {
             return 0;
+        }
         k += nb_elem_row_i;
     }
     return 1;
 }
 
-int spd_sci_sparse_to_taucs_sparse(int num, SciSparse *A, taucs_ccs_matrix *B)
+int spd_sci_sparse_to_taucs_sparse(SciSparse *A, taucs_ccs_matrix *B)
 {
     /*
      *  this function create a taucs sparse symmetric matrix (with only the lower
@@ -251,30 +277,35 @@ int spd_sci_sparse_to_taucs_sparse(int num, SciSparse *A, taucs_ccs_matrix *B)
      *
      *  The scilab sparse may be only upper triangular
      */
-    int taille, one = 1, B_nel, n = A->n;
-    int l0, l1, l2, i, k, l, p, nnz;
+    int one = 1, B_nel, n = A->n;
+    int i, k, l, p, nnz;
+
+    B->values = NULL;
+    B->colptr = NULL;
+    B->rowind = NULL;
 
     if ( A->m != A->n  ||  A->m <= 0  ||  A->it == 1 )
+    {
         return ( MAT_IS_NOT_SPD );
+    }
 
     if ( is_sparse_upper_triangular(A) )
+    {
         B_nel = A->nel;
+    }
     else
+    {
         B_nel = n + (A->nel - n) / 2;
-    taille = (3 * B_nel + n + 1 ) / 2 + 2;
-
-    CreateVar(num, MATRIX_OF_DOUBLE_DATATYPE, &taille, &one, &l0);  /* return 0 in case of failure (not enough memory in stk) */
+    }
 
     /* form the taucs sparse matrix struct */
     B->m = n;
     B->n = n;
     B->flags =  TAUCS_SYMMETRIC | TAUCS_LOWER;
 
-    B->values = stk(l0);
-    l1 = l0 + B_nel;
-    B->colptr = (int *) stk(l1);
-    l2 = l1 + (n + 1) / 2 + 1;
-    B->rowind = (int *) stk(l2);
+    B->values = (double*)MALLOC(B_nel * sizeof(double));
+    B->colptr = (int*)MALLOC((n + 1) * sizeof(int));
+    B->rowind = (int*)MALLOC(B_nel * sizeof(int));
 
     nnz = 0;
     k = 0;
@@ -284,17 +315,27 @@ int spd_sci_sparse_to_taucs_sparse(int num, SciSparse *A, taucs_ccs_matrix *B)
         {
             l = 0;
             while ( l < A->mnel[i]  &&  A->icol[k + l] < i + 1 ) /* go to the diagonal element */
+            {
                 l++;
+            }
             if ( l >= A->mnel[i] )          /* no element A_ij with j >= i => A_ii = 0  */
+            {
                 return ( MAT_IS_NOT_SPD );
+            }
             else if ( A->icol[k + l] > i + 1 ) /* A_ii = 0 */
+            {
                 return ( MAT_IS_NOT_SPD );
+            }
             else if ( A->R[k + l] <= 0 )    /* A_ii <= 0 */
+            {
                 return ( MAT_IS_NOT_SPD );
+            }
             else                            /* normal case A_ii > 0 */
             {
                 if ( nnz + A->mnel[i] - l > B_nel )
+                {
                     return ( MAT_IS_NOT_SPD );
+                }
                 B->colptr[i] = nnz;
                 for ( p = l ; p < A->mnel[i] ; p++)
                 {
@@ -306,16 +347,26 @@ int spd_sci_sparse_to_taucs_sparse(int num, SciSparse *A, taucs_ccs_matrix *B)
             }
         }
         else
+        {
             return ( MAT_IS_NOT_SPD );
+        }
     }
     if ( nnz != B_nel )
+    {
         return ( MAT_IS_NOT_SPD );
+    }
 
     B->colptr[n] = nnz;
 
     return ( A_PRIORI_OK );
 }
 
+void freeTaucsSparse(taucs_ccs_matrix _Sp)
+{
+    free(_Sp.values);
+    free(_Sp.colptr);
+    free(_Sp.rowind);
+}
 
 /*------------------------------------------------------*
  * an utility to test if we can create a sparse matrix  *
@@ -336,7 +387,10 @@ int test_size_for_sparse(int pos, int m, int it, int nel, int * pl_miss)
 
     int lw = pos + Top - Rhs, il;
 
-    if (lw + 1 >= Bot) return FALSE; /* even no place for a supplementary var */
+    if (lw + 1 >= Bot)
+    {
+        return FALSE;    /* even no place for a supplementary var */
+    }
 
     /* 5 + m + nel : number of "integers" cases required for the sparse */
 
@@ -344,9 +398,13 @@ int test_size_for_sparse(int pos, int m, int it, int nel, int * pl_miss)
     *pl_miss =  (sadr(il) + nel * (it + 1)) - *Lstk(Bot);
 
     if ( *pl_miss > 0 )
+    {
         return FALSE;
+    }
     else
+    {
         return TRUE;
+    }
 }
 
 int test_size_for_mat(int pos, int m, int n, int it, int * pl_miss)
@@ -354,7 +412,10 @@ int test_size_for_mat(int pos, int m, int n, int it, int * pl_miss)
     /* the same for classic matrix (trick given par jpc) */
     int lw = pos + Top - Rhs, il;
 
-    if (lw + 1 >= Bot) return FALSE;
+    if (lw + 1 >= Bot)
+    {
+        return FALSE;
+    }
 
     /* 4 is the number of int "cases" required for a classic matrix
      * (type , m, n, it)
@@ -364,11 +425,14 @@ int test_size_for_mat(int pos, int m, int n, int it, int * pl_miss)
     *pl_miss =  (sadr(il) + m * n * (it + 1)) - *Lstk(Bot);
 
     if ( *pl_miss > 0 )
+    {
         return FALSE;
+    }
     else
+    {
         return TRUE;
+    }
 }
-
 
 void residu_with_prec(SciSparse *A, double x[], double b[], double r[], double *rn)
 {
@@ -404,12 +468,16 @@ void residu_with_prec_for_chol(SciSparse *A, double x[], double b[], double r[],
     long double norm2 = 0.0;
 
     if ( ! A_is_upper_triangular )
+    {
         residu_with_prec(A, x, b, r, rn);
+    }
     else
     {
         /* A*x-b but only the upper triangle of A is stored */
         for ( i = 0 ; i < A->m ; i++ )
+        {
             wk[i] = -(long double) b[i];
+        }
         k = 0;
         for ( i = 0 ; i < A->m ; i++ )
         {
@@ -418,7 +486,9 @@ void residu_with_prec_for_chol(SciSparse *A, double x[], double b[], double r[],
                 j = A->icol[k] - 1;
                 wk[i] += (long double) A->R[k]  *  (long double) x[j];
                 if ( j != i )
+                {
                     wk[j] += (long double) A->R[k]  *  (long double) x[i];
+                }
                 k++;
             }
         }

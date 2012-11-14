@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="isletter">
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA -
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:svg="http://www.w3.org/2000/svg"
+xmlns:mml="http://www.w3.org/1998/Math/MathML"
+xmlns:db="http://docbook.org/ns/docbook"
+xml:lang="en" xml:id="isletter">
     <refnamediv>
         <refname>isletter</refname>
-        <refpurpose> check that characters of a string are alphabetics letters</refpurpose>
+        <refpurpose>
+            check that characters of a string are alphabetic letters
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -25,13 +32,13 @@
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                    <para>A character string.</para>
+                    <para>a character string.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>A boolean matrix.</para>
+                    <para>a boolean matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,17 +46,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>res = isletter(str)</literal> returns an array the same size as str
-            containing logical %t (true) where the elements of str are letters of
-            the alphabet and logical %f (false) where they are not.
+            <code>res = isletter(str)</code> returns an array the same size as
+            <varname>str</varname> containing logical <constant>%t</constant>
+            (true) where the elements of <varname>str</varname> are letters of
+            the alphabet and logical <constant>%f</constant> (false) where they
+            are not.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s = 'A1,B2,C3';
 isletter(s)
- ]]></programlisting>
+        ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

@@ -19,7 +19,7 @@
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
         <synopsis>
-            y = bitcmp(x,n)
+            y = bitcmp(x, bitnum)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -29,22 +29,22 @@
                 <term>x :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности (double) размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения. 
+                        матрица чисел двойной точности (<literal>double</literal>) размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. Должна содержать положительные целые значения.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>n :</term>
+                <term>bitnum :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности (double) размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения. 
-                        Входная <literal>n</literal> должна быть в диапазоне 1,2,...,bitmax
-                        где bitmax - максимальное количество битов в <literal>x</literal>.
-                        Должна содержать положительные целые значения. 
+                        матрица чисел двойной точности (<literal>double</literal>) размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. Должна содержать положительные целые значения.
+                        Входная <varname>bitnum</varname> должна быть в диапазоне 1, 2, ..., <literal>bitmax</literal>
+                        где <literal>bitmax</literal> - максимальное количество битов в <varname>x</varname>.
+                          <varname>bitnum</varname> должна содержать положительные целые значения.
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,9 +52,9 @@
                 <term>y :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n.
+                        матрица чисел двойной точности размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,14 +63,14 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Для заданного беззнакового целого числа <literal>x</literal>, эта функция возвращает беззнаковое целое число, которое является целым числом, соответствующим дополнительному коду двоичного представления <literal>x</literal>.
+            Для заданного беззнакового целого числа <varname>x</varname>, эта функция возвращает беззнаковое целое число <varname>y</varname>, которое является целым числом, соответствующим дополнительному коду двоичного представления <varname>x</varname>.
         </para>
         <para>
-            Целое число <literal>n</literal> устанавливает максимальное количество битов.
+            Целое число <varname>bitnum</varname> устанавливает максимальное количество битов.
         </para>
         <para>
-            Если количество битов в двоичном представлении <literal>x</literal> меньше количества
-            bitmax (8, 16 или 32), то добавляются биты '1' к дополнительному коду для того чтобы у дополнительного кода количество битов было bitmax (8, 16 или 32).
+            Если количество битов в двоичном представлении <varname>x</varname> меньше количества
+            <literal>bitmax</literal> (8, 16 или 32), то добавляются биты <literal>'1'</literal> к дополнительному коду для того чтобы у дополнительного кода количество битов было <literal>bitmax</literal> (8, 16 или 32).
         </para>
     </refsection>
     <refsection>

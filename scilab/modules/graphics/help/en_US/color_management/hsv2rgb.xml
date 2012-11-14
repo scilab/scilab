@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="hsv2rgb">
     <refnamediv>
         <refname>hsv2rgb</refname>
-        <refpurpose> Converts HSV colors to RGB</refpurpose>
+        <refpurpose>Converts HSV colors to RGB</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -97,24 +97,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image> 
-            t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
-            plot3d1(t,t,z) 
-            f=gcf();f.pixmap='on';
-            for h=0:0.1:1
-            hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
-            f.color_map=hsv2rgb(hsv);
-            xpause(10000)
-            end
-            for v=0:0.1:1
-            hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
-            f.color_map=hsv2rgb(hsv);
-            xpause(10000)
-            end
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
@@ -131,5 +113,19 @@ for v=0:0.1:1
   xpause(10000)
 end
  ]]></programlisting>
+        <scilab:image> 
+            t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
+            plot3d1(t,t,z) 
+            f=gcf();f.pixmap='on';
+            for h=0:0.1:1
+            hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
+            f.color_map=hsv2rgb(hsv);
+            end
+            for v=0:0.1:1
+            hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
+            f.color_map=hsv2rgb(hsv);
+            end
+        </scilab:image>
+        
     </refsection>
 </refentry>

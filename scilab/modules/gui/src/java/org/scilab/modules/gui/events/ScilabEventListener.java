@@ -11,6 +11,8 @@
  */
 package org.scilab.modules.gui.events;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -18,6 +20,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.utils.SciTranslator;
 /*
  * This class is to manage scilab callback through seteventhandler
@@ -27,22 +30,23 @@ import org.scilab.modules.gui.utils.SciTranslator;
 public class ScilabEventListener implements KeyListener, MouseListener, MouseMotionListener {
 
 	private String callback;
-	private int windowsId;
+	private String windowsUID;
 	private int mouseX = 0;
 	private int mouseY = 0;
 	private SciTranslator eventTranslator = new SciTranslator();
 	private boolean freedom = true;
 	private boolean inCanvas = false;
 
-	public ScilabEventListener(String callback, int windowsId) {
+	public ScilabEventListener(String callback, String windowsUID) {
 		eventTranslator.setClickAction(SciTranslator.UNMANAGED);
 		this.callback = callback;
-		this.windowsId	= windowsId;
+		this.windowsUID	= windowsUID;
 	}
 
 	private void callScilab() {
 		// @FIXME : choose to send it to scilab or to display it
 		//
+	    int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
 		InterpreterManagement.requestScilabExec(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
 		//
 		//System.out.println("call " + callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
@@ -51,6 +55,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
 	private void invokeScilab() {
 		// @FIXME : choose to send it to scilab or to display it
 		//
+	    int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
 		InterpreterManagement.requestScilabExec(callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
 		//
 		//System.out.println("invoke " + callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');

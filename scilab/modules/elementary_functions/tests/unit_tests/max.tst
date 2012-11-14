@@ -28,7 +28,7 @@ for i = 1:Ntest,
     assert_checkequal(ak, ak1(1,1));
 end
 
-// test mini 
+// test mini
 
 for i=1:Ntest,
     m = 100;n = 200;a = rand(m,n);
@@ -52,7 +52,9 @@ A1 = rand(m,n);
 A2 = rand(m,n);
 A3 = rand(m,n);
 A4 = rand(m,n);
-deff('[y]=f(i,j)','[y,k]=max([A1(i,j),A2(i,j),A3(i,j),A4(i,j)]);y=y+%i*k');
+function [y]=f(i,j)
+    [y,k]=max([A1(i,j),A2(i,j),A3(i,j),A4(i,j)]);y=y+%i*k;
+endfunction
 A = feval(1:m,1:n,f);
 Am = real(A);Ak = imag(A);
 [Am1, Ak1] = max(A1, A2, A3, A4);
@@ -67,7 +69,7 @@ assert_checkequal(Ak1, Ak);
 assert_checkequal(Al, Am);
 assert_checkequal(Akl, Ak);
 
-// test max(A,'c') and max(A,'r') 
+// test max(A,'c') and max(A,'r')
 // max(A,'r') returns a row vector which contains max for each column
 
 [Am, Akm] = max(A1, 'r');
@@ -133,14 +135,14 @@ refMsg = msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expe
 assert_checkerror("m = max(A,sparse(B),C)", refMsg);
 
 L = list(A,sparse(B),C);
-assert_checkfalse(execstr("m = max(L", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d of list: A sparse matrix expected.\n"), "%sp_max", 3);
+assert_checkfalse(execstr("m = max(L)", "errcatch") == 0);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d (List element: %d): A sparse matrix expected.\n"), "%sp_max", 1, 3);
 assert_checkerror("m = max(L)", refMsg);
 
 C = sparse([1 2]);
 L = list(A,sparse(B),C);
-assert_checkfalse(execstr("m = max(L", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size of input argument #%d of list: Same size as input argument #%d expected.\n"), "%sp_max", 3, 1);
+assert_checkfalse(execstr("m = max(L)", "errcatch") == 0);
+refMsg = msprintf(_("%s: Wrong size of input argument #%d (List element: %d): Same size as input argument #%d expected.\n"), "%sp_max", 1, 3, 1);
 assert_checkerror("m = max(L)", refMsg);
 
 assert_checkfalse(execstr("m = max(A,sparse(B),C)", "errcatch") == 0);
@@ -301,7 +303,9 @@ A1 = sprand(m,n,10);
 A2 = sprand(m,n,10);
 A3 = sprand(m,n,10);
 A4 = sprand(m,n,10);
-deff('[y]=f(i,j)','[y,k]=max([A1(i,j),A2(i,j),A3(i,j),A4(i,j)]);y=y+%i*k');
+function [y]=f(i,j)
+    [y,k]=max([A1(i,j),A2(i,j),A3(i,j),A4(i,j)]);y=y+%i*k;
+endfunction
 A = feval(1:m,1:n,f);
 Am = real(A);Ak = imag(A);
 Am1 = max(A1, A2, A3, A4);
@@ -313,7 +317,7 @@ assert_checkequal(Am1, sparse(Am));
 Al = max(list(A1, A2, A3, A4));
 assert_checkequal(Al, sparse(Am));
 
-// test max(A,'c') and max(A,'r') 
+// test max(A,'c') and max(A,'r')
 // max(A,'r') returns a row vector which contains max for each column
 
 [Am] = max(A1, 'r');
@@ -344,7 +348,9 @@ A1 = sprand(m,n,10);
 A2 = sprand(m,n,10);
 A3 = sprand(m,n,10);
 A4 = sprand(m,n,10);
-deff('[y]=g(i,j)','[y,k]=min([A1(i,j),A2(i,j),A3(i,j),A4(i,j)]);y=y+%i*k');
+function [y]=g(i,j)
+    [y,k]=min([A1(i,j),A2(i,j),A3(i,j),A4(i,j)]);y=y+%i*k;
+endfunction
 A = feval(1:m,1:n,g);
 Am = real(A);Ak = imag(A);
 Am1 = min(A1, A2, A3, A4);
@@ -356,7 +362,7 @@ assert_checkequal(Am1, sparse(Am));
 Al = min(list(A1, A2, A3, A4));
 assert_checkequal(Al, sparse(Am));
 
-// test min(A,'c') and min(A,'r') 
+// test min(A,'c') and min(A,'r')
 // min(A,'r') returns a row vector which contains min for each column
 
 [Am] = min(A1, 'r');

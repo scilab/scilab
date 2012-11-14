@@ -41,7 +41,7 @@ int get_tics_labels_property(void* _pvCtx, char* pobjUID)
     getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, (void **) &piNumberTicksLabels);
     if (piNumberTicksLabels == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_labels");
         return -1;
     }
 
@@ -49,7 +49,7 @@ int get_tics_labels_property(void* _pvCtx, char* pobjUID)
 
     if (labels == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_labels");
         return -1;
     }
 

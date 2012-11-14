@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="hypermatrices">
     <refnamediv>
         <refname>hypermatrices</refname>
-        <refpurpose> Objet Scilab, matrices à N dimensions  </refpurpose>
+        <refpurpose>Objet Scilab, matrices à N dimensions  </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -40,7 +40,7 @@ a(1,1,:)
 
 size(a)
 
-a(:,:,1) //dimensionnality reduction 
+a(:,:,1) //dimensionality reduction 
 type(a(:,:,1))
 
 [a a]

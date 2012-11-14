@@ -37,16 +37,17 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int setMenuParent(char *pobjUID, void* pvData, int valueType, int nbRow, int nbCol)
 {
     char const* pstCurrentFigure = NULL;
-    char * parentType = NULL;
+    int parentType = -1;
+    int *piParentType = &parentType;
     char const* pParentUID = NULL;
 
     double *value = NULL;
 
     /* Special case to set current figure for parent */
-    if (stackPointer == -1)
+    if (pvData == NULL)
     {
         // Set the parent property
         pstCurrentFigure = getCurrentFigure();
@@ -92,21 +93,18 @@ int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, 
 
     if (valueType == sci_handles)
     {
-        pParentUID = getObjectFromHandle(getHandleFromStack(stackPointer));
+        pParentUID = getObjectFromHandle((long)((long long*)pvData)[0]);
         if (pParentUID != NULL)
         {
-            getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&parentType);
-            if ((strcmp(parentType, __GO_FIGURE__) == 0) || (strcmp(parentType, __GO_UIMENU__) == 0)
-                    || (strcmp(parentType, __GO_UICONTEXTMENU__) == 0))
+            getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+            if (parentType == __GO_FIGURE__ || parentType == __GO_UIMENU__
+                    || parentType == __GO_UICONTEXTMENU__)
             {
                 setGraphicObjectRelationship(pParentUID, pobjUID);
-                releaseGraphicObjectProperty(__GO_TYPE__, parentType, jni_string, 1);
             }
             else
             {
                 Scierror(999, const_cast < char *>(_("%s: Wrong type for parent: Figure or uimenu handle expected.\n")), "SetMenuParent");
-
-                releaseGraphicObjectProperty(__GO_TYPE__, parentType, jni_string, 1);
                 return SET_PROPERTY_ERROR;
             }
         }
@@ -121,7 +119,7 @@ int setMenuParent(char *pobjUID, size_t stackPointer, int valueType, int nbRow, 
     if (valueType == sci_matrix)
     {
         // The parent is Scilab Main window (Console Tab)
-        value = stk(stackPointer);
+        value = (double*)pvData;
         if (value[0] != 0)
         {
             Scierror(999, const_cast < char *>(_("%s: Wrong value for parent: 0 expected.\n")), "SetMenuParent");

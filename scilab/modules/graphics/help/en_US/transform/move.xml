@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="move">
     <refnamediv>
         <refname>move</refname>
-        <refpurpose> 
+        <refpurpose>
             move, translate, a graphic entity and its children.
         </refpurpose>
     </refnamediv>
@@ -63,16 +63,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            plot3d();
-            a=gca();
-            p=a.children(1);
-            t=[1,0,-1.25];
-            move(p,t);      
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 plot3d();
@@ -81,6 +71,14 @@ p=a.children(1);
 t=[1,0,-1.25];
 move(p,t);
  ]]></programlisting>
+        <scilab:image>
+            plot3d();
+            a=gca();
+            p=a.children(1);
+            t=[1,0,-1.25];
+            move(p,t);      
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) 2010-2011 - INRIA - Allan CORNET
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ -->
+<refentry version="5.0-subset Scilab" xml:id="csvWrite" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>csvWrite</refname>
+        
+        <refpurpose>Write comma-separated value file</refpurpose>
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        
+        <synopsis>
+            csvWrite(M, filename)
+            csvWrite(M, filename, separator)
+            csvWrite(M, filename, separator, decimal)
+            csvWrite(M, filename, separator, decimal, precision)
+            csvWrite(M, filename, separator, decimal, precision, comments)
+        </synopsis>
+    </refsynopsisdiv>
+    
+    <refsection>
+        <title>Parameters</title>
+        
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                
+                <listitem>
+                    <para>a 1-by-1 matrix of strings, the file path.</para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>M</term>
+                
+                <listitem>
+                    <para>a m-by-n matrix of strings or double (complex
+                        supported).
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>separator</term>
+                
+                <listitem>
+                    <para>a 1-by-1 matrix of strings, the column separator mark.</para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>decimal</term>
+                
+                <listitem>
+                    <para>a 1-by-1 matrix of strings, the decimal mark. The available
+                        values are "." or ",".
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>precision</term>
+                
+                <listitem>
+                    <para>a 1-by-1 matrix of strings, the C format.</para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>comments</term>
+                
+                <listitem>
+                    <para>a m-by-1 matrix of strings, the comments stored at the
+                        beginning of the file. This option may be used, for example, to put
+                        a licence header in a data file.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    
+    <refsection>
+        <title>Description</title>
+        
+        <para>This function writes matrix M into filename as comma-separated
+            values.
+        </para>
+        
+        <para>The default value of the optional input arguments are defined by the
+            <literal>csvDefault</literal> function.
+        </para>
+        
+        <para>Any optional input argument equal to the empty matrix
+            <literal>[]</literal> is set to its default value.
+        </para>
+        
+        <para>
+            If the file <literal>filename</literal> already exists, it is
+            overwritten.
+        </para>
+        
+        <para>
+            If relevant (ie with 'special' characters), the file will be saved as UTF-8.
+        </para>
+    </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        
+        <para>In the following example, we combine the
+            <literal>csvWrite</literal> and <literal>csvRead</literal>
+            functions.
+        </para>
+        
+        <programlisting role="example"><![CDATA[// Save a matrix as csv file format
+M = [1:10] * 0.1;
+filename = fullfile(TMPDIR, "data.csv");
+csvWrite(M, filename);
+
+// Read as text
+mgetl(filename)
+
+r = csvRead(filename);    
+        ]]></programlisting>
+        
+        <para>In the following example, we use various options of the
+            <literal>csvWrite</literal> function.
+        </para>
+        
+        <programlisting role="example"><![CDATA[// Save a matrix as csv file format
+M = rand(2,3);
+filename = fullfile(TMPDIR, "data.csv");
+//
+// Use tabs as the separator
+csvWrite(M, filename,ascii(9));
+mgetl(filename)
+//
+// Use the "," as the decimal point
+// (and blank space as the separator).
+csvWrite(M, filename," ",",");
+mgetl(filename)
+//
+// Configure the precision.
+// Caution: this lower precision may generate 
+// errors in a write-read cycle!
+csvWrite(M, filename,[],[],"%.8e");
+mgetl(filename)
+//
+// Configure the comments
+comments = [
+"// Copyright (C) INRIA"
+"//  This file must be used under the terms of the CeCILL."
+];
+csvWrite(M, filename,[],[],[],comments);
+mgetl(filename)   
+        ]]></programlisting>
+        
+        <para>The following examples are more advanced uses of the
+            <literal>csvWrite</literal> function.
+        </para>
+        
+        <programlisting role="example"><![CDATA[A = [
+1 0 200 %inf 0
+1 1.e-300 200 %inf 0
+9.99999999999990010e-001 9.99999999999999980e-201 200 3.15e300 102
+9.99999999899999990e-001 1.e-100 200 296 117
+1 %inf -%inf %nan 0
+];
+
+// Write into a file
+filename=fullfile(TMPDIR,"foo.csv");
+csvWrite ( A , filename );
+edit(filename)   
+        ]]></programlisting>
+    </refsection>
+    
+    <refsection>
+        <title>See Also</title>
+        
+        <simplelist type="inline">
+            <member>
+                <link linkend="csvRead">csvRead</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function introduced. Based on the 'csv_readwrite' module.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
+</refentry>
+

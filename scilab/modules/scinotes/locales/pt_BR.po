@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16232)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -119,8 +119,8 @@ msgstr "Fechar todos"
 msgid "Close All But This"
 msgstr "Fechar todos menos este"
 
-msgid "Exit"
-msgstr "Sair"
+msgid "Exit Scinotes"
+msgstr ""
 
 msgid "Edit"
 msgstr "Editar"
@@ -245,6 +245,18 @@ msgstr "Codificação de caracteres do arquivo atual"
 msgid "Line Endings"
 msgstr "Finais de linhas"
 
+msgid "Preferences"
+msgstr ""
+
+msgid "Set font"
+msgstr ""
+
+msgid "Set colors"
+msgstr ""
+
+msgid "Scinotes General settings"
+msgstr ""
+
 msgid "Auto-completion on"
 msgstr ""
 
@@ -302,8 +314,8 @@ msgstr "Salvar e executar todos os arquivos"
 msgid "?"
 msgstr "?"
 
-msgid "SciNotes help"
-msgstr "Ajuda do SciNotes"
+msgid "Scinotes help"
+msgstr ""
 
 msgid "Help on ;Help on selection"
 msgstr "Ajuda sobre ;Ajuda sobre seleção"
@@ -329,7 +341,7 @@ msgstr ""
 msgid "Editor"
 msgstr ""
 
-msgid "Use SciNotes"
+msgid "Use Scinotes"
 msgstr ""
 
 msgid "External editor: "
@@ -339,9 +351,6 @@ msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 msgid "Scilab command: "
-msgstr ""
-
-msgid "SciNotes General settings"
 msgstr ""
 
 msgid "Restore previous session on start-up"
@@ -519,6 +528,9 @@ msgstr "Ocorreu um erro ao exportar o código usando FOP"
 msgid "An error occurred when printing"
 msgstr "Ocorreu um erro ao imprimir"
 
+msgid "Exit"
+msgstr "Sair"
+
 msgid "Tools"
 msgstr "Ferramentas"
 
@@ -614,6 +626,9 @@ msgstr "Avaliar do começo..."
 
 msgid "Execute File Into Scilab"
 msgstr "Executar arquivo no Scilab"
+
+msgid "SciNotes help"
+msgstr "Ajuda do SciNotes"
 
 msgid "Help on the current keyword"
 msgstr "Ajuda sobre a palavra-chave atual"

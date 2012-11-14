@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xpolys">
     <refnamediv>
         <refname>xpolys</refname>
-        <refpurpose> draw a set of polylines or polygons</refpurpose>
+        <refpurpose>draw a set of polylines or polygons</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -60,15 +60,6 @@
         </itemizedlist>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            plot2d(0,0,-1,"012"," ",[0,0,1,1])
-            rand("uniform")
-            xset("color",3)
-            xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"012"," ",[0,0,1,1])
@@ -76,6 +67,13 @@ rand("uniform")
 xset("color",3)
 xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
  ]]></programlisting>
+        <scilab:image>
+            plot2d(0,0,-1,"012"," ",[0,0,1,1])
+            rand("uniform")
+            xset("color",3)
+            xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

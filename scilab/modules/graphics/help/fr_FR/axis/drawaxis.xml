@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="drawaxis">
     <refnamediv>
         <refname>drawaxis</refname>
-        <refpurpose> dessine un axe  </refpurpose>
+        <refpurpose>dessine un axe  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -159,6 +159,36 @@ drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
 // encore un axe horizontal
 drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
  ]]></programlisting>
+        <scilab:image>
+            plot2d(1:10,1:10,1,"020")
+            // axe horizontal
+            drawaxis(x=2:7,y=4,dir='u',tics='v')
+            // axe horizontal en haut du cadre
+            drawaxis(x=2:7,dir='u',tics='v') 
+            // axe horizontal en bas du cadre
+            drawaxis(x=2:7,dir='d',tics='v') 
+            
+            // axe horizontal donné par une plage de variation 
+            drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
+            
+            // axe vertical
+            drawaxis(x=4,y=2:7,dir='r',tics='v')
+            drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
+            drawaxis(y=2:7,dir='r',tics='v')
+            drawaxis(y=2:7,dir='l',tics='v')
+            
+            // axe horizontal avec chaînes de caractères au dessus des graduations
+            drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
+            // axe vertical avec chaînes de caractères au dessus des graduations
+            drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
+            
+            // axe horizontal avec 'i' 
+            drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
+            drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
+            
+            // encore un axe horizontal
+            drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-05-07 18:55+0000\n"
-"Last-Translator: Dennis Baudys <Unknown>\n"
+"PO-Revision-Date: 2012-10-01 21:32+0000\n"
+"Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16232)\n"
 "Language: de\n"
 
 #, c-format
@@ -739,7 +739,7 @@ msgstr "Undefinierte Operation für die gegebenen Operanden.\n"
 
 #, c-format
 msgid "check or define function %s for overloading.\n"
-msgstr "Überprüfen oder definieren der Funktion %s für Überlast.\n"
+msgstr "Funktion %s bezüglich Überladen überprüfen oder definieren.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"

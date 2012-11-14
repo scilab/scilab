@@ -95,6 +95,7 @@ case 'set' then
     [ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "IN_f");" "; ..
       gettext("Regular input port")], "Port Number", ..
       list("vec",1),exprs);
+    if ~ok then break,end
 
     prt=int(prt)
     if prt <=0 then

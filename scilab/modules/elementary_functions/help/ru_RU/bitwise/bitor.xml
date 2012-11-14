@@ -20,8 +20,7 @@
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
         <synopsis>
-            z = bitor(x,y)
-            
+            z = bitor(x, y)            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -31,9 +30,9 @@
                 <term>x :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности (double) размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения.             
+                        матрица чисел двойной точности (<literal>double</literal>) размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. Должна содержать положительные целые значения.
                     </para>
                 </listitem>
             </varlistentry>
@@ -41,9 +40,9 @@
                 <term>y :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности (double) размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица беззнаковых целых чисел (uint8, uint16 or uint32) размером m на n. Должна содержать положительные целые значения.             
+                        матрица чисел двойной точности (<literal>double</literal>) размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. Должна содержать положительные целые значения.
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,9 +50,9 @@
                 <term>z :</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности размером m на n 
-                        или гиперматрица чисел двойной точности размером m1 на m2 на ... на mm 
-                        или матрица целых чисел размером m на n.
+                        матрица чисел двойной точности размером <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером <literal>m1</literal> на <literal>m2</literal> на ... на <literal>mm</literal>
+                        или матрица целых чисел размером <literal>m</literal> на <literal>n</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -62,10 +61,10 @@
     <refsection>
         <title>Описание </title>
         <para>
-            Для заданных двух положительных целых чисел x, y эта функция возвращает десятеричное число, чьё двоичное представление является результатом операции ИЛИ над двоичными представлениями x и y.
+            Для заданных двух положительных целых чисел <varname>x</varname>, <varname>y</varname> эта функция возвращает десятеричное число<varname>z</varname>, чьё двоичное представление является результатом операции ИЛИ над двоичными представлениями <varname>x</varname> и <varname>y</varname>.
         </para>
         <para>
-            <literal>x</literal>, <literal>y</literal>, <literal>z</literal> должны быть одного и того же размера.
+            <varname>x</varname>, <varname>y</varname>, <varname>z</varname> должны быть одного и того же размера.
         </para>
     </refsection>
     <refsection>

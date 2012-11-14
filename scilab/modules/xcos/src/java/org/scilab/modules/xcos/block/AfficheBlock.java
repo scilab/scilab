@@ -11,17 +11,17 @@
  */
 package org.scilab.modules.xcos.block;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.Formatter;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
-import java.util.Map;
-import java.util.logging.Level;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.logging.Logger;
 
 import javax.swing.Timer;
@@ -29,10 +29,7 @@ import javax.swing.Timer;
 import org.scilab.modules.graph.utils.Font;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.graph.utils.StyleMap;
-import org.scilab.modules.types.ScilabDouble;
-import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
-import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.AbstractElement;
@@ -46,7 +43,6 @@ import com.mxgraph.view.mxGraphView;
  * Implement the AFFICH_m block
  */
 public final class AfficheBlock extends BasicBlock {
-
     /**
      * Default refresh rate used on the simulation to update block.
      */
@@ -57,39 +53,20 @@ public final class AfficheBlock extends BasicBlock {
     private static final int PRECISION_INDEX = 4;
     private static final String NEW_LINE = System.getProperty("line.separator");
     private static final String SPACE = "  ";
-    private static final long serialVersionUID = 6874403612919831380L;
 
-    /**
-     * Map any id to an affiche block instance.
-     *
-     * This property is linked to the affich2.cpp native implementation
-     */
-    private static final Map<Integer, AfficheBlock> INSTANCES = Collections.synchronizedMap(new HashMap<Integer, AfficheBlock>());
+    private static final TreeMap<String, String[][]> values = new TreeMap<String, String[][]>();
+    private static final UpdateValueListener updateAction = new UpdateValueListener();
+    private static final Timer printTimer = new Timer(DEFAULT_TIMER_RATE, updateAction);
 
     /**
      * Update the value of the associated block
      */
     @SuppressWarnings(value = { "serial" })
     private static class UpdateValueListener implements ActionListener, Serializable {
-        private AfficheBlock block;
-        private String[][] data;
-
         /**
          * Default constructor
-         *
-         * @param block
-         *            the current block
          */
-        public UpdateValueListener(AfficheBlock block) {
-            this.block = block;
-        }
-
-        /**
-         * @param data
-         *            the data to set
-         */
-        public synchronized void setData(String[][] data) {
-            this.data = data;
+        public UpdateValueListener() {
         }
 
         /**
@@ -100,17 +77,40 @@ public final class AfficheBlock extends BasicBlock {
          * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
          */
         @Override
-        public synchronized void actionPerformed(ActionEvent e) {
-            XcosDiagram graph = block.getParentDiagram();
-            if (graph == null) {
-                block.setParentDiagram(Xcos.findParent(block));
-                graph = block.getParentDiagram();
-                LOG.severe("Parent diagram was null");
+        public void actionPerformed(ActionEvent e) {
+            synchronized (values) {
+                for (Iterator<Entry<String, String[][]>> it = values.entrySet().iterator(); it.hasNext();) {
+                    final Entry<String, String[][]> entry = it.next();
+
+                    update(entry.getKey(), entry.getValue());
+
+                    it.remove();
+                }
+            }
+        }
+
+        /**
+         * Update and refresh the values
+         */
+        private void update(String uid, String[][] data) {
+            final Object cell = Xcos.getInstance().lookupForCell(new String[] { uid });
+            final XcosDiagram diag = Xcos.findParent(cell);
+            final String value = getText(data);
+
+            diag.getModel().setValue(cell, value);
+
+            final mxCellState state = diag.getView().getState(cell);
+            if (state != null) {
+                state.setLabel(value);
             }
 
-            /*
-             * Construct a String representation of the values.
-             */
+            diag.getAsComponent().redraw(state);
+        }
+
+        /**
+         * Construct a String representation of the values.
+         */
+        private final String getText(final String[][] data) {
             final StringBuilder blockResult = new StringBuilder();
             final int iRows = data.length;
             final int iCols = data[0].length;
@@ -126,26 +126,14 @@ public final class AfficheBlock extends BasicBlock {
                 blockResult.append(NEW_LINE);
             }
 
-            /*
-             * Update and refresh the values
-             */
-            String value = blockResult.toString();
-
-            block.setValue(value);
-
-            final mxCellState state = graph.getView().getState(block);
-            state.setLabel(value);
-            graph.getAsComponent().redraw(state);
-
-            if (LOG.isLoggable(Level.FINEST)) {
-                LOG.finest(blockResult.toString());
-            }
+            return blockResult.toString();
         }
     }
 
     /**
      * Update the style according to the values of the expression
-    @SuppressWarnings(value = { "serial" })
+     *
+     * @SuppressWarnings(value = { "serial" })
      */
     private static final class UpdateStyle implements PropertyChangeListener, Serializable {
         /**
@@ -299,16 +287,9 @@ public final class AfficheBlock extends BasicBlock {
         }
     }
 
-    private final Timer printTimer;
-    private final UpdateValueListener updateAction;
-
     /** Default constructor */
     public AfficheBlock() {
         super();
-
-        updateAction = new UpdateValueListener(this);
-        printTimer = new Timer(DEFAULT_TIMER_RATE, updateAction);
-        printTimer.setRepeats(false);
 
         getParametersPCS().addPropertyChangeListener(EXPRS, UpdateStyle.getInstance());
     }
@@ -334,83 +315,22 @@ public final class AfficheBlock extends BasicBlock {
      *            the value to set.
      */
     @ScilabExported(module = "scicos_blocks", filename = "Blocks.giws.xml")
-    public static void setValue(final int uid, final String[][] value) {
+    public static void setValue(final String uid, final String[][] value) {
         if (value.length == 0 || value[0].length == 0) {
             throw new IllegalArgumentException("value is not a non-empty String matrix (String[][])");
         }
 
-        final AfficheBlock block = INSTANCES.get(uid);
-
-        block.updateAction.setData(value);
-        if (!block.printTimer.isRunning()) {
-            block.printTimer.start();
-        }
-    }
-
-    /**
-     * @return the instance UID.
-     */
-    @Deprecated
-    public synchronized int getHashCode() {
-        return hashCode();
-    }
-
-    /**
-     * @return The scilab formated object parameters
-     */
-    @Override
-    public ScilabType getObjectsParameters() {
-        int id = hashCode();
-
-        /*
-         * As hashCode() may return an already existing id, we need to change it
-         * in this case.
-         *
-         * see
-         * http://java.sun.com/javase/6/docs/api/java/lang/Object.html#hashCode
-         * ()
-         */
-        while (INSTANCES.containsKey(id) && INSTANCES.get(id) != this) {
-            id++;
+        // update nothing in case of a headless env.
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
         }
 
-        INSTANCES.put(id, this);
+        synchronized (values) {
+            values.put(uid, value);
 
-        ScilabList list = new ScilabList();
-        list.add(new ScilabDouble(id));
-        return list;
+            if (!printTimer.isRunning()) {
+                printTimer.start();
+            }
+        }
     }
-
-    /**
-     * Remove the instance from the INSTANCES map.
-     *
-     * @throws Throwable
-     *             when unable to do so.
-     * @see java.lang.Object#finalize()
-     */
-    @Override
-    // CSOFF: IllegalThrows
-    protected void finalize() throws Throwable {
-        INSTANCES.remove(hashCode());
-        super.finalize();
-    }
-
-    // CSON: IllegalThrows
-
-    /**
-     * @return a clone of the block
-     * @throws CloneNotSupportedException
-     *             on error
-     * @see com.mxgraph.model.mxCell#clone()
-     */
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        AfficheBlock clone = (AfficheBlock) super.clone();
-
-        // reassociate the update action data
-        clone.updateAction.block = clone;
-
-        return clone;
-    }
-
 }

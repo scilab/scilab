@@ -28,7 +28,7 @@ AM_CXXFLAGS = $(SCI_CXXFLAGS)
 AM_FFLAGS   = $(SCI_FFLAGS)
 AM_LDFLAGS  = $(SCI_LDFLAGS)
 
-changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X
+changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X  CHANGES_5.5.X
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
@@ -234,6 +234,12 @@ else
 	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 endif
 
+doxygen: modules/development_tools/etc/doxyfile
+if DOXYGEN
+	mkdir $(top_builddir)/reports/
+	$(DOXYGEN_BIN) modules/development_tools/etc/doxyfile
+endif
+
 check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
 		for l in $(ALL_LINGUAS_DOC); do \
@@ -296,7 +302,9 @@ clean-help:
 	echo "rm -f $(top_builddir)/modules/scicos/jar/"; \
 	rm -rf $(top_builddir)/modules/scicos/jar/; \
 	echo "rm -rf $(top_builddir)/modules/javasci/javadoc"; \
-	rm -rf $(top_builddir)/modules/javasci/javadoc;
+	rm -rf $(top_builddir)/modules/javasci/javadoc; \
+	echo "rm -rf $(top_builddir)/html"; \
+	rm -rf $(top_builddir)/html;
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
@@ -306,7 +314,7 @@ clean-tests:
 	fi
 
 clean-localization:
-	rm -rf $(top_srcdir)/locale/
+	rm -rf $(top_srcdir)/locale/*
 
 clean-generated:
 # Deleted junit + code coverage

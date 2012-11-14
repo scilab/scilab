@@ -16,9 +16,17 @@
 #include <iostream>
 #include <string>
 
+#include "displaytree.hxx"
+#include "ScilabDisplayTree.hxx"
+#include "GiwsException.hxx"
+
 extern "C"
 {
-#include "stack-c.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
+#include "api_scilab.h"
 #include "gw_gui.h"
 #include "stdlib.h"
 #include "sciprint.h"
@@ -27,109 +35,151 @@ extern "C"
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
 }
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
-#include "displaytree.hxx"
-#include "ScilabDisplayTree.hxx"
-#include "GiwsException.hxx"
-
-using namespace std;
 
 /*--------------------------------------------------------------------------*/
 int sci_displaytree(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
+
+    int* piAddrTree         = NULL;
+    int* piAddrTreeStr      = NULL;
+    int* piAddrTreeMList    = NULL;
+    int* piAddrLabel        = NULL;
+    int* piAddrIcon         = NULL;
+    int* piAddrCallback     = NULL;
+
     int iItemCount = 0;
 
-    CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    char* strItem1      = NULL;
+    char* strLabel      = NULL;
+    char* strIcon       = NULL;
+    char* strCallback   = NULL;
 
-    vector < string > StructList;
-    int *piCurrentItem = NULL;
-    string szCurLevel = "";
+    vector<std::string> StructList;
+    std::string szCurLevel = "";
 
-    iGetListItemType(1, piCurrentItem, &iItemCount, NULL);
-    int *piItemType = (int *)MALLOC(iItemCount * sizeof(int));
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-    iGetListItemType(1, piCurrentItem, &iItemCount, piItemType);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrTree);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getListItemNumber(pvApiCtx, piAddrTree, &iItemCount);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
     if (iItemCount < 2)
     {
-        sciprint("Invalid size");
+        Scierror(999, _("%s: Wrong size for input argument #%d: At least 2 elements expected.\n"), fname, 1);
         return 1;
     }
 
-    if (piItemType[0] != sci_strings && piItemType[1] != sci_mlist) //type
+    // get first element as a string
+    sciErr = getListItemAddress(pvApiCtx, piAddrTree, 1, &piAddrTreeStr);
+    if (sciErr.iErr)
     {
-        sciprint("Invalid tree");
-        FREE(piItemType);
+        printError(&sciErr, 0);
         return 1;
     }
 
-    FREE(piItemType);
+    if (getAllocatedSingleString(pvApiCtx, piAddrTreeStr, &strItem1))
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: First element must be a string.\n"), fname, 1);
+        return 1;
+    }
+
     /*check tree structure */
-    if (bIsTreeStructure(1, piCurrentItem, 1) == false)
+    if (strcmp(strItem1, TREE_REF_NAME))
     {
-        sciprint("Invalid structure");
+        freeAllocatedSingleString(strItem1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A Tree expected.\n"), fname, 1);
         return 1;
     }
-    //Add node level
-    if (szCurLevel != "")
+
+    freeAllocatedSingleString(strItem1);
+
+    // get the second element as a mlist
+    sciErr = getListItemAddress(pvApiCtx, piAddrTree, 2, &piAddrTreeMList);
+    if (sciErr.iErr)
     {
-        szCurLevel + ".";
+        printError(&sciErr, 0);
+        return 1;
     }
+
+    if (isMListType(pvApiCtx, piAddrTreeMList) == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Second element must be a mlist.\n"), fname, 1);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //Add node level
     szCurLevel += "1";
     StructList.push_back(szCurLevel);
 
     //get label name
-    char *szLabel = NULL;
-    int iRet = iGetNodeLabel(1, piCurrentItem, szLabel);
-
-    if (iRet == -1)
+    sciErr = getListItemAddress(pvApiCtx, piAddrTreeMList, 3, &piAddrLabel);
+    if (sciErr.iErr)
     {
-        return false;
+        printError(&sciErr, 0);
+        return 1;
     }
 
-    szLabel = (char *)MALLOC((iRet + 1) * sizeof(char));
-    iRet = iGetNodeLabel(1, piCurrentItem, szLabel);
-    StructList.push_back(szLabel);
-    FREE(szLabel);
+    if (getAllocatedSingleString(pvApiCtx, piAddrLabel, &strLabel))
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Label: A string expected.\n"), fname, 1);
+        return 1;
+    }
+
+    StructList.push_back(strLabel);
+    freeAllocatedSingleString(strLabel);
 
     //get Icon name
-    char *szIcon = NULL;
-
-    iRet = iGetNodeIcon(1, piCurrentItem, szIcon);
-    if (iRet == -1)
+    sciErr = getListItemAddress(pvApiCtx, piAddrTreeMList, 4, &piAddrIcon);
+    if (sciErr.iErr)
     {
-        return false;
+        printError(&sciErr, 0);
+        return 1;
     }
 
-    szIcon = (char *)MALLOC((iRet + 1) * sizeof(char));
-    iRet = iGetNodeIcon(1, piCurrentItem, szIcon);
-    StructList.push_back(szIcon);
-    FREE(szIcon);
+    if (getAllocatedSingleString(pvApiCtx, piAddrIcon, &strIcon))
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Icon: A string expected.\n"), fname, 1);
+        return 1;
+    }
+
+    StructList.push_back(strIcon);
+    freeAllocatedSingleString(strIcon);
 
     //get callback name
-    char *szCallBack = NULL;
-
-    iRet = iGetNodeCallBack(1, piCurrentItem, szCallBack);
-    if (iRet == -1)
+    sciErr = getListItemAddress(pvApiCtx, piAddrTreeMList, 5, &piAddrCallback);
+    if (sciErr.iErr)
     {
-        return false;
+        printError(&sciErr, 0);
+        return 1;
     }
 
-    szCallBack = (char *)MALLOC((iRet + 1) * sizeof(char)); //new char[iRet + 1]; replace later
-    iRet = iGetNodeCallBack(1, piCurrentItem, szCallBack);
-    StructList.push_back(szCallBack);
-    FREE(szCallBack);           //delete[] szCallBack; replace later
-
-    if (iRet == -1)
+    if (getAllocatedSingleString(pvApiCtx, piAddrCallback, &strCallback))
     {
-        return false;
+        Scierror(999, _("%s: Wrong type for input argument #%d: callback: A string expected.\n"), fname, 1);
+        return 1;
     }
 
-    bParseListItem(1, piCurrentItem, &StructList, szCurLevel);
+    StructList.push_back(strCallback);
+    freeAllocatedSingleString(strCallback);
 
+    if (bParseListItem(pvApiCtx, piAddrTree, iItemCount, &StructList, szCurLevel))
+    {
+        Scierror(999, _("%s: Error in the tree parsing.\n"), fname, 1);
+        return 1;
+    }
     // Conversion Vector<string> to char **
     char **tab = NULL;
     size_t i = 0;
@@ -147,7 +197,7 @@ int sci_displaytree(char *fname, unsigned long fname_len)
         //Java
         org_scilab_modules_gui_tree::ScilabDisplayTree::scilabDisplayTree(getScilabJavaVM(), tab, (int)struct_size);
     }
-    catch(const GiwsException::JniException & e)
+    catch (const GiwsException::JniException & e)
     {
         Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
         return FALSE;

@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="errbar">
     <refnamediv>
         <refname>errbar</refname>
-        <refpurpose> ajoute des barres d'erreur sur un dessin 2D  </refpurpose>
+        <refpurpose>ajoute des barres d'erreur sur un dessin 2D  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -40,6 +40,12 @@ y=[sin(t) cos(t)]; x=[t t];
 plot2d(x,y)
 errbar(x,y,0.05*ones(x),0.03*ones(x))
  ]]></programlisting>
+        <scilab:image>
+            t=[0:0.1:2*%pi]';
+            y=[sin(t) cos(t)]; x=[t t];
+            plot2d(x,y)
+            errbar(x,y,0.05*ones(x),0.03*ones(x))
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

@@ -46,10 +46,10 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-        #if !defined(byte) | !defined(_MSC_VER) /* Defined anyway with Visual */
-                typedef signed char byte;
+        #if defined(_MSC_VER) /* Defined anyway with Visual */
+            #include <Windows.h>
         #else
-                #pragma message("Byte has been redefined elsewhere. Some problems can happen")
+            typedef signed char byte;
         #endif
 
 
@@ -76,7 +76,7 @@ private:
 JavaVM * jvm;
 
 protected:
-jmethodID voidsetValuejintintjobjectArray__java_lang_Stringjava_lang_StringID; // cache method id
+jmethodID voidsetValuejstringjava_lang_StringjobjectArray__java_lang_Stringjava_lang_StringID; // cache method id
 jclass stringArrayClass;
 
 
@@ -137,7 +137,7 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void setValue(JavaVM * jvm_, int id, char const* const* const* value, int valueSize, int valueSizeCol);
+static void setValue(JavaVM * jvm_, char const* uid, char const* const* const* value, int valueSize, int valueSizeCol);
 
 
                         /**

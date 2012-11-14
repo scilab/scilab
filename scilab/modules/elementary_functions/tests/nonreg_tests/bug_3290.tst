@@ -26,5 +26,5 @@
 
 n=2;
 solcomputed=integrate('x^n', 'x', 0, 1);
-solexpected=1./3.;
+solexpected=1/3;
 if (abs(solcomputed-solexpected)>%eps) then pause,end

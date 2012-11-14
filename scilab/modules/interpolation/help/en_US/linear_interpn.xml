@@ -149,7 +149,18 @@ clf()
 plot2d(xx,yy,style=2)
 plot2d(x,y,style=-9, strf="000")
 xtitle("linear interpolation of sin(x) with 11 interpolation points")
-
+ ]]></programlisting>
+        <scilab:image>
+            x = linspace(0,2*%pi,11);
+            y = sin(x);
+            xx = linspace(-2*%pi,4*%pi,400)';
+            yy = linear_interpn(xx, x, y, "periodic");
+            clf()
+            plot2d(xx,yy,style=2)
+            plot2d(x,y,style=-9, strf="000")
+            xtitle("linear interpolation of sin(x) with 11 interpolation points")
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // example 2 : bilinear interpolation
 n = 8;
 x = linspace(0,2*%pi,n); y = x;
@@ -164,7 +175,23 @@ param3d1(xg,yg, list(z,-9*ones(1,n)), flag=[0 0])
 xtitle("Bilinear interpolation of 2sin(x)sin(y)")
 legends("interpolation points",-9,1)
 show_window()
-
+ ]]></programlisting>
+        <scilab:image>
+            n = 8;
+            x = linspace(0,2*%pi,n); y = x;
+            z = 2*sin(x')*sin(y);
+            xx = linspace(0,2*%pi, 40);
+            [xp,yp] = ndgrid(xx,xx);
+            zp = linear_interpn(xp,yp, x, y, z);
+            clf()
+            plot3d(xx, xx, zp, flag=[2 6 4])
+            [xg,yg] = ndgrid(x,x);
+            param3d1(xg,yg, list(z,-9*ones(1,n)), flag=[0 0])
+            xtitle("Bilinear interpolation of 2sin(x)sin(y)")
+            legends("interpolation points",-9,1)
+            show_window()
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // example 3 : bilinear interpolation and experimentation
 //             with all the outmode features
 nx = 20; ny = 30;
@@ -201,11 +228,12 @@ subplot(2,3,6)
 plot3d(xp, yp, zp5, leg="x@y@z", flag = [2 4 4])
 xtitle("by_nan")
 show_window()
-
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[ 
 // example 4 : trilinear interpolation (see splin3d help
 //             page which have the same example with
 //             tricubic spline interpolation)
-exec("SCI/modules/interpolation/demos/interp_demo.sci")
+exec("SCI/modules/interpolation/demos/interp_demo.sci");
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
 n = 5; 

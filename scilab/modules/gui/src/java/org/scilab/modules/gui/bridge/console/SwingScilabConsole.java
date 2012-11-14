@@ -58,7 +58,6 @@ import org.scilab.modules.history_manager.HistoryManagement;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.commons.xml.XConfiguration;
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
-import org.scilab.modules.localization.Messages;
 
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.util.StringConstants;

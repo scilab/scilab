@@ -42,19 +42,19 @@ int get_y_ticks_property(void* _pvCtx, char* pobjUID)
 
     if (piNbTicks == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_ticks");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_ticks");
         return -1;
     }
 
     if (iNbTicks == 0)
     {
         /* return empty matrices */
-        buildTListForTicks( NULL, NULL, 0);
+        buildTListForTicks(NULL, NULL, 0);
     }
     else
     {
         char ** labels = NULL;
-        double * positions = NULL;
+        double* positions = NULL;
 
         getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LOCATIONS__, jni_double_vector, (void **) &positions);
 
@@ -62,11 +62,11 @@ int get_y_ticks_property(void* _pvCtx, char* pobjUID)
 
         if (positions == NULL || labels == NULL)
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_ticks");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_ticks");
             return -1;
         }
 
-        buildTListForTicks( positions, labels, iNbTicks ) ;
+        buildTListForTicks(positions, labels, iNbTicks);
 
         /* free arrays */
 #if 0

@@ -52,19 +52,6 @@
         <para>If a2 is equal to 360*64, a complete circle will be drawn.</para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
-            arcs=[-1.0 0.0 0.5; 
-            1.0 0.0 0.5; 
-            0.5 1.0 0.5; 
-            0.5 0.5 1.0; 
-            0.0 0.0 0.0; 
-            180*64 360*64 90*64]; 
-            xfarcs(arcs,[1,2,3])
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
@@ -76,6 +63,17 @@ arcs=[-1.0 0.0 0.5; // upper left x
        180*64 360*64 90*64]; // angle 2
 xfarcs(arcs,[1,2,3])
  ]]></programlisting>
+        <scilab:image>
+            plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
+            arcs=[-1.0 0.0 0.5; 
+            1.0 0.0 0.5; 
+            0.5 1.0 0.5; 
+            0.5 0.5 1.0; 
+            0.0 0.0 0.0; 
+            180*64 360*64 90*64]; 
+            xfarcs(arcs,[1,2,3])
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

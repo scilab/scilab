@@ -23,7 +23,7 @@ iLast = 20000;
 for i=1:iLast
   waitbar(i/iLast,"%",winId);
 end
-winclose(winId);
+delete(winId);
 
 mes = 'a';
 ierr = execstr('waitbar(0/iLast,mes,winId);','errcatch');
@@ -35,4 +35,4 @@ winId = waitbar(0);
 for i=1:iLast
   waitbar(i/iLast,mes,winId);
 end
-winclose(winId);
+delete(winId);

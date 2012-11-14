@@ -5,9 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
-//
-// <-- NOT FIXED -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 99927 -->
 //
@@ -17,7 +15,6 @@
 // <-- Short Description -->
 // Scilab crashed while executing 'XcosPalAdd' command
 
-loadXcosLibs();
 
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, "SUM_f");

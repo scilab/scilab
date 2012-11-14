@@ -14,7 +14,6 @@
 package org.scilab.modules.xcos;
 
 import java.awt.Component;
-import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -37,6 +36,7 @@ import javax.swing.SwingUtilities;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.core.Scilab;
+import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
@@ -53,6 +53,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.actions.ExternalAction;
+import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
@@ -93,7 +94,7 @@ public final class Xcos {
     public static final String TRADENAME = "Xcos";
     public static final ImageIcon ICON = new ImageIcon(ScilabSwingUtilities.findIcon("utilities-system-monitor", "256x256"));
 
-    private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "loadXcosLibs(); loadScicos();";
+    private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "prot=funcprot(); funcprot(0); loadXcosLibs(); loadScicos(); funcprot(prot); clear prot";
 
     /*
      * Dependencies version
@@ -101,7 +102,6 @@ public final class Xcos {
     private static final List<String> MXGRAPH_VERSIONS = null;
     private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7", "1.8pre", "1.8");
 
-    private static final String IS_HEADLESS = Messages.gettext("a graphical environment is needed.");
     private static final String UNABLE_TO_LOAD_JGRAPHX = Messages.gettext("Unable to load the jgraphx library.\nExpecting version %s ; Getting version %s .");
     private static final String UNABLE_TO_LOAD_BATIK = Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
 
@@ -205,11 +205,6 @@ public final class Xcos {
     // CSOFF: MagicNumber
     private void checkDependencies() {
         final ClassLoader loader = ClassLoader.getSystemClassLoader();
-
-        /* Check not headless */
-        if (GraphicsEnvironment.isHeadless()) {
-            throw new RuntimeException(IS_HEADLESS);
-        }
 
         /* JGraphx */
         String mxGraphVersion = "";
@@ -881,7 +876,7 @@ public final class Xcos {
         });
     }
 
-    private Object lookupForCell(final String[] uid) {
+    public Object lookupForCell(final String[] uid) {
         final ArrayDeque<String> deque = new ArrayDeque<String>(Arrays.asList(uid));
 
         // specific case with an empty array
@@ -1135,6 +1130,15 @@ public final class Xcos {
     @Deprecated
     public static void xcosDiagramClose(final String[] uid) {
         throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Inform Xcos the simulator has just started
+     *
+     */
+    @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
+    public static void xcosSimulationStarted() {
+        GraphActionManager.setEnable(StopAction.class, true);
     }
 
     /**

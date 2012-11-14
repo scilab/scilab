@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="return">
     <refnamediv>
         <refname>return</refname>
-        <refpurpose> sortie d'une fonction ou reprise d'exécution, avec récupération de variables locales  </refpurpose>
+        <refpurpose>sortie d'une fonction ou reprise d'exécution, avec récupération de variables locales  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>

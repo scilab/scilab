@@ -27,7 +27,7 @@
 #include "setGraphicObjectProperty.h"
 
 /*------------------------------------------------------------------------*/
-int set_tag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tag_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     // Tag must be only one character string
 
@@ -45,7 +45,7 @@ int set_tag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int value
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_TAG__, getStringFromStack(stackPointer), jni_string, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_TAG__, (char*)_pvData, jni_string, 1);
 
     if (status == TRUE)
     {

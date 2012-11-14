@@ -481,7 +481,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                 setRolloverEnabled(true);
                 setRolloverIcon(CLOSEONICON);
                 setBorderPainted(false);
-                setContentAreaFilled(false);
+                setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         closeTab();

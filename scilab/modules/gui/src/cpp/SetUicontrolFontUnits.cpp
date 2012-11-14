@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontUnits.hxx"
 
-int SetUicontrolFontUnits(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontUnits(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Font weight can be points, normalized, inches, centimeters or pixels */
 
@@ -22,29 +22,31 @@ int SetUicontrolFontUnits(void* _pvCtx, char* sciObjUID, size_t stackPointer, in
     BOOL status = FALSE;
 
     // Font units must be only one character string
-    if (valueType != sci_strings) {
+    if (valueType != sci_strings)
+    {
         Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "FontUnits");
         return SET_PROPERTY_ERROR;
     }
-    if (nbCol != 1 || nbRow == 0) {
+    if (nbCol != 1 || nbRow == 0)
+    {
         Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "FontUnits");
         return SET_PROPERTY_ERROR;
     }
 
-    fontUnits = getStringFromStack(stackPointer);
+    fontUnits = (char*)_pvData;
 
     if (strcmp(fontUnits, "points") != 0
-        && strcmp(fontUnits, "normalized") != 0
-        && strcmp(fontUnits, "inches") != 0
-        && strcmp(fontUnits, "centimeters") != 0
-        && strcmp(fontUnits, "pixels") != 0)
+            && strcmp(fontUnits, "normalized") != 0
+            && strcmp(fontUnits, "inches") != 0
+            && strcmp(fontUnits, "centimeters") != 0
+            && strcmp(fontUnits, "pixels") != 0)
     {
         /* Wrong string format */
         Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n")), "FontUnits", "points", "normalized", "inches", "centimeters", "pixels");
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTUNITS__), fontUnits, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTUNITS__, fontUnits, jni_string, 1);
 
     if (status == TRUE)
     {

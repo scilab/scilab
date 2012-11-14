@@ -30,18 +30,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_foreground_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_foreground_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int lineColor = 0;
 
-    if ( !( valueType == sci_matrix ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "foreground");
         return SET_PROPERTY_ERROR;
     }
 
-    lineColor = (int) getDoubleFromStack( stackPointer );
+    lineColor = (int) ((double*)_pvData)[0];
 
     status = setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, &lineColor, jni_int, 1);
 

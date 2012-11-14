@@ -95,6 +95,9 @@ vp_exact = f(xp,yp,zp);
 vp_interp = interp3d(xp,yp,zp, tl);
 er = max(abs(vp_exact - vp_interp))
 // now retry with n=20 and see the error
+ ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[ 
 
 // example 2 (see linear_interpn help page which have the
 //            same example with trilinear interpolation)

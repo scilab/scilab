@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-03 07:57+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2012-09-28 22:59+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16232)\n"
 "Language: fr\n"
 
 #, c-format
@@ -535,134 +535,140 @@ msgstr "Convertir les simples guillemets en double"
 msgid "Line numbering"
 msgstr "Numérotation de lignes"
 
+msgid "Set the SciNotes font"
+msgstr "Configurer la police de caractères de SciNotes"
+
+msgid "Set the SciNotes colors"
+msgstr "Configurer les couleurs de SciNotes"
+
 msgid "New diagram"
-msgstr ""
+msgstr "Nouveau diagramme"
 
 msgid "Open file in Scilab current directory"
-msgstr ""
+msgstr "Ouvrir le fichier dans le répertoire courant de Scilab"
 
 msgid "Export"
-msgstr ""
+msgstr "Exporter"
 
 msgid "Quit Xcos"
-msgstr ""
+msgstr "Quitter Xcos"
 
 msgid "Invert selection"
-msgstr ""
+msgstr "Inverser la sélection"
 
 msgid "Block Parameters"
-msgstr ""
+msgstr "Paramètres du bloc"
 
 msgid "Region to superblock"
-msgstr ""
+msgstr "Zone vers SuperBloc"
 
 msgid "Zoom In"
-msgstr ""
+msgstr "Zoom avant"
 
 msgid "Zoom Out"
-msgstr ""
+msgstr "Zoom arrière"
 
 msgid "Fit diagram to view"
-msgstr ""
+msgstr "Ajuster le diagramme à la vue"
 
 msgid "Normal 100%"
-msgstr ""
+msgstr "Normal 100%"
 
 msgid "Palette browser"
-msgstr ""
+msgstr "Navigateur de palettes"
 
 msgid "Diagram browser"
-msgstr ""
+msgstr "Navigateur de diagrammes"
 
 msgid "Viewport"
-msgstr ""
+msgstr "Aperçu"
 
 msgid "Details"
-msgstr ""
+msgstr "Détails"
 
 msgid "Setup"
-msgstr ""
+msgstr "Configurer"
 
 msgid "Execution trace and Debug"
-msgstr ""
+msgstr "Trace d'exécution et déboguage"
 
 msgid "Set Context"
-msgstr ""
+msgstr "Modifier le contexte"
 
 msgid "Compile"
-msgstr ""
+msgstr "Compiler"
 
 msgid "Start"
-msgstr ""
+msgstr "Démarrer"
 
 msgid "Stop"
-msgstr ""
+msgstr "Arrêter"
 
 msgid "Rotate"
-msgstr ""
+msgstr "Pivoter"
 
 msgid "Flip"
-msgstr ""
+msgstr "Retourner"
 
 msgid "Mirror"
-msgstr ""
+msgstr "Mirroir"
 
 msgid "Show/Hide shadow"
-msgstr ""
+msgstr "Afficher/Masquer l'ombre"
 
 msgid "Left"
-msgstr ""
+msgstr "À gauche"
 
 msgid "Center"
-msgstr ""
+msgstr "Au centre"
 
 msgid "Right"
-msgstr ""
+msgstr "À droite"
 
 msgid "Top"
-msgstr ""
+msgstr "En haut"
 
 msgid "Middle"
-msgstr ""
+msgstr "Au milieu"
 
 msgid "Bottom"
-msgstr ""
+msgstr "En bas"
 
 msgid "Border Color"
-msgstr ""
+msgstr "Couleur de bordure"
 
 msgid "Fill Color"
-msgstr ""
+msgstr "Couleur de remplissage"
 
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 msgid "Straight"
-msgstr ""
+msgstr "Droit"
 
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 msgid "Diagram background"
-msgstr ""
+msgstr "Fond du diagramme"
 
 msgid "Grid"
-msgstr ""
+msgstr "Grille"
 
 msgid "Code generation"
-msgstr ""
+msgstr "Génération de code"
 
 msgid "Xcos Help"
-msgstr ""
+msgstr "Aide de Xcos"
 
 msgid "Block Help"
-msgstr ""
+msgstr "Aide du bloc"
 
 msgid "Xcos Demos"
-msgstr ""
+msgstr "Démonstrations Xcos"
 
 msgid "About Xcos"
-msgstr ""
+msgstr "À propos de Xcos"
 
 msgid "Save variable"
 msgstr "Enregistrer la variable"
@@ -701,7 +707,7 @@ msgid "Desktop Layout"
 msgstr "Agencement du bureau"
 
 msgid "Select a layout"
-msgstr "Sélectionne un agencement"
+msgstr "Sélectionner un agencement"
 
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr ""

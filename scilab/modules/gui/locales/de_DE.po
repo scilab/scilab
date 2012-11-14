@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-16 15:58+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2012-09-25 18:59+0000\n"
+"Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Generator: Launchpad (build 16232)\n"
 "Language: de\n"
 
 #, c-format
@@ -557,7 +557,7 @@ msgid "&Scilab Help"
 msgstr "&Hilfe Scilab"
 
 msgid "&About Scilab..."
-msgstr "&Über Scilab"
+msgstr "&Über Scilab..."
 
 msgid "&Close"
 msgstr "&Schließen"
@@ -641,7 +641,7 @@ msgid "&Matlab to Scilab translator"
 msgstr "&Matlab nach Scilab Übersetzer"
 
 msgid "M&odule manager - ATOMS"
-msgstr "Modul Manager ATOMS"
+msgstr "Modul-Manager ATOMS"
 
 msgid "&Variable Browser"
 msgstr "&Variablen-Browser"
@@ -659,7 +659,7 @@ msgid "Scilab &Demonstrations"
 msgstr "Scilab &Demos"
 
 msgid "&Links"
-msgstr "&Web Verweise"
+msgstr "&Links"
 
 msgid "Scilab &Web Site"
 msgstr "Scilab &Web Seite"
@@ -671,7 +671,7 @@ msgid "Scilab &Wiki"
 msgstr ""
 
 msgid "Scilab &ATOMS Web Site"
-msgstr "Webseite zu Scilab & Atoms"
+msgstr "Webseite zu Scilab &Atoms"
 
 msgid "&File Exchange"
 msgstr ""
@@ -686,7 +686,7 @@ msgid "&Forge"
 msgstr ""
 
 msgid "&Bugs And Requests"
-msgstr "&Fehler und Anfrage Datenbank"
+msgstr "&Fehler und Anträge"
 
 msgid "&Scilab Enterprises"
 msgstr ""
@@ -1326,7 +1326,7 @@ msgid "All %s files"
 msgstr "Alle %s Dateien"
 
 msgid "About Scilab..."
-msgstr "Über Scliab..."
+msgstr "Über Scilab..."
 
 msgid "Close"
 msgstr "Schließen"
@@ -1355,7 +1355,7 @@ msgid "File"
 msgstr "Datei"
 
 msgid "GUI"
-msgstr "grafische Oberfläche"
+msgstr "Grafische Oberfläche"
 
 msgid "Dialogs"
 msgstr ""

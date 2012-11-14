@@ -212,6 +212,12 @@ public class TableVariableEditor extends JTable {
         setCellSelectionEnabled(true);
         setBackground(Color.WHITE);
         setAutoResizeMode(AUTO_RESIZE_OFF);
+
+        if (getGridColor().equals(Color.WHITE)) {
+            setGridColor(new Color(128, 128, 128));
+        }
+        setShowHorizontalLines(true);
+        setShowVerticalLines(true);
     }
 
     /**

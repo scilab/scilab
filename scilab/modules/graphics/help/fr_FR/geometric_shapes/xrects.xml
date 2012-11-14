@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xrects">
     <refnamediv>
         <refname>xrects</refname>
-        <refpurpose> dessine ou remplit un ensemble de rectangles  </refpurpose>
+        <refpurpose>dessine ou remplit un ensemble de rectangles  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -61,6 +61,15 @@ rects=[x;10*ones(x);step*ones(x);30*ones(x)];
 xrects(rects,cols)
 xnumb(x,15*ones(x),cols)
  ]]></programlisting>
+        <scilab:image>
+            plot2d([-100,500],[-50,50],[-1,-1],"022")
+            cols=[-34,-33,-32,-20:5:20,32,33,34];
+            x=400*(0:14)/14; step=20;
+            rects=[x;10*ones(x);step*ones(x);30*ones(x)];
+            xrects(rects,cols)
+            xnumb(x,15*ones(x),cols)
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

@@ -24,6 +24,14 @@
             the root path of Scilab.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+ls SCI
+ls(SCI)
+cd(SCI)
+        ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

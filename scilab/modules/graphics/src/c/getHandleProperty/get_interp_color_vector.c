@@ -43,7 +43,7 @@ int get_interp_color_vector_property(void* _pvCtx, char* pobjUID)
 
     if (piInterpVectorSet == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_vector");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "interp_color_vector");
         return -1;
     }
 

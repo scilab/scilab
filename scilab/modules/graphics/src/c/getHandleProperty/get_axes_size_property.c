@@ -37,7 +37,7 @@ int get_axes_size_property(void* _pvCtx, char* pobjUID)
     int* axesSize = NULL;
     getGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, jni_int_vector, (void **)&axesSize);
 
-    if ( axesSize == NULL )
+    if (axesSize == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_size");
         return -1;

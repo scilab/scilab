@@ -98,10 +98,6 @@ lib /DEF:&quot;$(InputDir)slatec_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:
 		<File RelativePath=".\dbesjg.f"/>
 		<File RelativePath=".\dbeskg.f"/>
 		<File RelativePath=".\dbesyg.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_calerf.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_dlgamma.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_gamma.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_lgamma.f"/>
 		<File RelativePath=".\zbesig.f"/>
 		<File RelativePath=".\zbesjg.f"/>
 		<File RelativePath=".\zbeskg.f"/>

@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="eval3dp">
     <refnamediv>
         <refname>eval3dp</refname>
-        <refpurpose> compute facets of a 3D parametric surface</refpurpose>
+        <refpurpose>compute facets of a 3D parametric surface</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -63,17 +63,6 @@
             surface, as [x(i),y(i),z(i)]=fun(p1(i),p2(i)). This is used for efficiency.
         </para>
     </refsection>
-    <refsection>
-        <title>Sample</title>
-        <scilab:image>p1=linspace(0,2*%pi,10);
-            p2=linspace(0,2*%pi,10);
-            deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
-            "y=p1.*cos(p1).*cos(p2)";..
-            "z=p1.*sin(p2)"])
-            [Xf,Yf,Zf]=eval3dp(scp,p1,p2);
-            plot3d(Xf,Yf,Zf)
-        </scilab:image>
-    </refsection>
     
     <refsection>
         <title>Examples</title>
@@ -86,6 +75,14 @@ deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
 [Xf,Yf,Zf]=eval3dp(scp,p1,p2);
 plot3d(Xf,Yf,Zf)
  ]]></programlisting>
+        <scilab:image>p1=linspace(0,2*%pi,10);
+            p2=linspace(0,2*%pi,10);
+            deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
+            "y=p1.*cos(p1).*cos(p2)";..
+            "z=p1.*sin(p2)"])
+            [Xf,Yf,Zf]=eval3dp(scp,p1,p2);
+            plot3d(Xf,Yf,Zf)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

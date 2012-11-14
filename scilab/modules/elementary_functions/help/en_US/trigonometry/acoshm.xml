@@ -17,25 +17,26 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>t=acoshm(x)</synopsis>
+        <synopsis>t = acoshm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,t</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>a real or complex square matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>acoshm is the matrix hyperbolic inverse cosine of the matrix x. Uses
-            the formula
-            <literal>t=logm(x+(x+eye())*sqrtm((x-eye())/(x+eye())))</literal> For non
-            symmetric matrices result may be inaccurate.
+        <para>
+            <function>acoshm</function> is the matrix hyperbolic inverse cosine of the
+            matrix <varname>x</varname>. Uses the formula
+            <code>t=logm(x+(x+eye())*sqrtm((x-eye())/(x+eye())))</code>. For non-symmetric
+            matrices result may be inaccurate.
         </para>
     </refsection>
     <refsection>

@@ -84,7 +84,7 @@ public final class XConfigManager extends XCommonManager {
     /** Display dialog and wait for events.
      *
      */
-    public static void displayAndWait() {
+    public static void displayAndWait(String initialPath) {
         XConfigManager.active = true;
         XWizardManager.active = false;
 
@@ -99,29 +99,33 @@ public final class XConfigManager extends XCommonManager {
 
         // Set up DOM Side
         readUserDocuments();
+        if (initialPath != null && !initialPath.equals("")) {
+            String path = getPath(initialPath);
+            document.getDocumentElement().setAttribute("path", path);
+        }
         updated = false;
 
         // Plug in resize
         //dialog.setResizable(false);
         dialog.addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent e) {
-                Element element = document.getDocumentElement();
-                Dimension dimension = dialog.getSize();
-                int height = XConfigManager.getInt(element, "height", 0);
-                int width = XConfigManager.getInt(element, "width",  0);
-                if (Math.abs(((double) height) - dimension.getHeight()) > 0.1 || Math.abs(((double) width) - dimension.getWidth()) > 0.1 ) {
-                    element.setAttribute("height", Integer.toString((int) dimension.getHeight()));
-                    element.setAttribute("width", Integer.toString((int) dimension.getWidth()));
+                public void componentResized(ComponentEvent e) {
+                    Element element = document.getDocumentElement();
+                    Dimension dimension = dialog.getSize();
+                    int height = XConfigManager.getInt(element, "height", 0);
+                    int width = XConfigManager.getInt(element, "width",  0);
+                    if (Math.abs(((double) height) - dimension.getHeight()) > 0.1 || Math.abs(((double) width) - dimension.getWidth()) > 0.1 ) {
+                        element.setAttribute("height", Integer.toString((int) dimension.getHeight()));
+                        element.setAttribute("width", Integer.toString((int) dimension.getWidth()));
+                    }
                 }
-            }
-        });
+            });
 
         dialog.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                cancel();
-            }
-        });
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    cancel();
+                }
+            });
         ScilabSwingUtilities.closeOnEscape(dialog);
 
         // Set up correspondence
@@ -143,8 +147,15 @@ public final class XConfigManager extends XCommonManager {
     /**
      * Opens a dialog to setup preferences.
      */
+    public static void openPreferences(String initialPath) {
+        XConfigManager.displayAndWait(initialPath);
+    }
+
+    /**
+     * Opens a dialog to setup preferences.
+     */
     public static void openPreferences() {
-        XConfigManager.displayAndWait();
+        XConfigManager.displayAndWait(null);
     }
 
     /** Secondary dialog for help.*/
@@ -247,8 +258,8 @@ public final class XConfigManager extends XCommonManager {
             Element tbxs = (Element) toolboxes.item(0);
             document.getDocumentElement().removeChild(tbxs);
         }
+        correspondance = null;
         updated = false;
-        refreshDisplay();
     }
 
     /** Interpret action.

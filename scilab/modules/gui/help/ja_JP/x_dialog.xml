@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="x_dialog">
+    <refnamediv>
+        <refname>x_dialog</refname>
+        <refpurpose>対話的な複数行入力用ダイアログ.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>result=x_dialog(labels,valueini)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>labels</term>
+                <listitem>
+                    <para>文字列の列ベクトル, ダイアログ用コメント</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>valueini</term>
+                <listitem>
+                    <para>文字列の列ベクトル, 提案する初期値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>result</term>
+                <listitem>
+                    <para>ユーザの応答: 
+                        "Ok"ボタンで返した場合は文字列の列ベクトル,
+                        "Cancel"ボタンで返した場合は []
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>対話的な複数行入力用ダイアログを開きます.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+gain=evstr(x_dialog('Value of gain ?','0.235'))
+x_dialog(['Method';'Enter sampling period'],'1')
+m=evstr(x_dialog('Enter a 3x3 matrix',['[0 0 0';'0 0 0';'0 0 0]']))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="x_mdialog">x_mdialog</link>
+            </member>
+            <member>
+                <link linkend="x_matrix">x_matrix</link>
+            </member>
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

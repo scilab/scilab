@@ -36,7 +36,7 @@ int get_pixmap_property(void* _pvCtx, char* pobjUID)
     int *piPixmap = &iPixmap;
     getGraphicObjectProperty(pobjUID, __GO_PIXMAP__, jni_bool, (void **)&piPixmap);
 
-    if ( piPixmap == NULL )
+    if (piPixmap == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "pixmap");
         return -1;

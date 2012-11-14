@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.label;
 
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.TextObject;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
@@ -82,18 +83,19 @@ public class Label extends TextObject {
 	 * @param propertyName the property name
 	 * @return the property enum
 	 */
-	public Object getPropertyFromName(String propertyName) {
-		if (propertyName.equals(__GO_FONT_ANGLE__)) {
+	public Object getPropertyFromName(int propertyName) {
+	    switch (propertyName) {
+	    case __GO_FONT_ANGLE__ :
 			return LabelProperty.FONTANGLE;
-		} else if (propertyName.equals(__GO_AUTO_POSITION__)) {
+	    case __GO_AUTO_POSITION__ :
 			return LabelProperty.AUTOPOSITION;
-		} else if (propertyName.equals(__GO_POSITION__)) {
+	    case __GO_POSITION__ :
 			return LabelProperty.POSITION;
-		} else if (propertyName.equals(__GO_CORNERS__)) {
+	    case __GO_CORNERS__ :
 			return LabelProperty.CORNERS;
-		} else if (propertyName.equals(__GO_AUTO_ROTATION__)) {
+	    case __GO_AUTO_ROTATION__ :
 			return LabelProperty.AUTOROTATION;
-		} else {
+		default :
 			return super.getPropertyFromName(propertyName);
 		}
 	}
@@ -266,8 +268,8 @@ public class Label extends TextObject {
 	/**
 	 * @return Type as String
 	 */
-	public String getType() {
-		return "Label";
+	public Integer getType() {
+		return GraphicObjectProperties.__GO_LABEL__;
 	}
 
 }

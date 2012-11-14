@@ -34,7 +34,7 @@ public class Uicontextmenu extends GraphicObject {
      * @return uicontextmenu
      * @see org.scilab.modules.graphic_objects.graphicObject.GraphicObject#getType()
      */
-    public String getType() {
+    public Integer getType() {
         return __GO_UICONTEXTMENU__;
     }
 

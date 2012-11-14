@@ -39,7 +39,7 @@ function [J,H] = derivative(F, x, h, order, H_form, Q , verbose )
      error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"derivative",2,6));
    end
    if type(x) ~= 1 then
-     error(msprintf(gettext("%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"),"derivative",2));
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: N-dimensional array expected.\n"),"derivative",2));
    end
    [n,p] = size(x)
    if p ~= 1 then

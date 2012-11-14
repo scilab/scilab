@@ -39,21 +39,21 @@ int get_mark_size_unit_property(void* _pvCtx, char* pobjUID)
 
     if (piMarkSizeUnit == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"mark_size_unit");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_size_unit");
         return -1;
     }
 
     if (iMarkSizeUnit == 0)
     {
-        return sciReturnString(_pvCtx, "point" );
+        return sciReturnString(_pvCtx, "point");
     }
-    else if(iMarkSizeUnit == 1)
+    else if (iMarkSizeUnit == 1)
     {
-        return sciReturnString(_pvCtx, "tabulated" );
+        return sciReturnString(_pvCtx, "tabulated");
     }
     else
     {
-        Scierror(999, _("Wrong value for '%s' property.\n"),"mark_size_unit");
+        Scierror(999, _("Wrong value for '%s' property.\n"), "mark_size_unit");
         return -1;
     }
 

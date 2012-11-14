@@ -47,6 +47,13 @@ The option is "disableUnderMode" and can be:
 
 <path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
 	<load on="Xcos"/>
+	<load on="documentationGeneration"/>
+</path>
+
+<path value="$SCILAB/thirdparty/scirenderer-1.0.2.jar" load="onUse">
+    <load on="graphics"/>
+    <load on="graphic_ojects"/>
+    <load on="Xcos"/>
 </path>
 
 <path value="$SCILAB/thirdparty/jogl2.jar" load="onUse">
@@ -61,18 +68,8 @@ The option is "disableUnderMode" and can be:
 	<load on="Xcos"/>
 </path>
 
-<path value="$SCILAB/thirdparty/scirenderer-0.5.8.jar" load="onUse">
-    <load on="graphics"/>
-    <load on="graphic_ojects"/>
-    <load on="Xcos"/>
-</path>
-
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
-
-<path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
-	<load on="Xcos"/>
-</path>
 <!-- END -->
 
 <!-- Documentation (not mandatory) -->
@@ -82,7 +79,7 @@ The option is "disableUnderMode" and can be:
 	<load on="xcos_mathml_rendering"/>
 </path>
 
-<path value="$SCILAB/thirdparty/jlatexmath-fop-0.9.7.jar" load="onUse">
+<path value="$SCILAB/thirdparty/jlatexmath-fop-1.0.0.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>
@@ -126,7 +123,7 @@ The option is "disableUnderMode" and can be:
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
-<path value="$SCILAB/thirdparty/jlatexmath-0.9.7.jar" load="onUse">
+<path value="$SCILAB/thirdparty/jlatexmath-1.0.0.jar" load="onUse">
   	<load on="documentationGeneration"/>
 	<load on="graphics_latex_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
@@ -172,6 +169,16 @@ The option is "disableUnderMode" and can be:
 	<load on="SciNotes"/>
 </path>
 
+<!-- Xcos module -->
+<path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
+	<load on="Xcos"/>
+	<load on="documentationGeneration"/>
+</path>
+
+<path value="$SCILAB/modules/graph/jar/org.scilab.modules.graph.jar" load="onUse">
+	<load on="Xcos"/>
+	<load on="documentationGeneration"/>
+</path>
 
 <!-- TO DO Load only when we need -->
 <path value="$SCILAB/modules/graphic_objects/jar/org.scilab.modules.graphic_objects.jar"/>
@@ -179,9 +186,6 @@ The option is "disableUnderMode" and can be:
 <!-- TO DO Load only when we need -->
 <path value="$SCILAB/modules/ui_data/jar/org.scilab.modules.ui_data.jar"/>
 <path value="$SCILAB/modules/javasci/jar/org.scilab.modules.javasci.jar"/>
-
-    <!-- TO DO Load only when we need -->
-<path value="$SCILAB/modules/graph/jar/org.scilab.modules.graph.jar"/>
 
 <path value="$SCILAB/modules/history_browser/jar/org.scilab.modules.history_browser.jar" disableUnderMode="NW"/>
 

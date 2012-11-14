@@ -37,11 +37,12 @@
 #include "CurrentSubwin.h"
 
 /*------------------------------------------------------------------------*/
-int set_current_axes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_current_axes_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     char * curAxesUID   = NULL;
     char * parentFigureUID = NULL;
-    char * type = NULL;
+    int type = -1;
+    int *piType = &type;
 
     if (pobjUID != NULL)
     {
@@ -50,23 +51,23 @@ int set_current_axes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, 
         return SET_PROPERTY_ERROR;
     }
 
-    if ( !( valueType == sci_handles ) )
+    if (valueType != sci_handles)
     {
         Scierror(999, _("Wrong type for '%s' property: Handle expected.\n"), "current_axes");
         return SET_PROPERTY_ERROR;
     }
 
-    curAxesUID = (char*)getObjectFromHandle( getHandleFromStack( stackPointer ) );
+    curAxesUID = (char*)getObjectFromHandle((long)((long long*)_pvData)[0]);
 
-    if ( curAxesUID == NULL)
+    if (curAxesUID == NULL)
     {
         Scierror(999, _("Wrong value for '%s' property: Must be a valid handle.\n"), "current_entity");
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(curAxesUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(curAxesUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_AXES__) != 0)
+    if (type != __GO_AXES__)
     {
         Scierror(999, _("Wrong value for '%s' property: Must be a handle on axes.\n"), "current_axes");
         return SET_PROPERTY_ERROR;

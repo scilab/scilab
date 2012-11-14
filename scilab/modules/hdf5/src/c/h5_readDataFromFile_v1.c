@@ -363,6 +363,14 @@ int getDataSetIdFromName_v1(int _iFile, char *_pstName)
     return H5Dopen(_iFile, _pstName, H5P_DEFAULT);
 }
 
+void closeDataSet_v1(int _id)
+{
+    if (_id > 0)
+    {
+        H5Dclose(_id);
+    }
+}
+
 int getDataSetId_v1(int _iFile)
 {
     herr_t status = 0;

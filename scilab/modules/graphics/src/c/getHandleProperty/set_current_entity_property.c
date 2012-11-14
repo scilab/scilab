@@ -31,9 +31,9 @@
 #include "sci_types.h"
 
 /*------------------------------------------------------------------------*/
-int set_current_entity_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_current_entity_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    char* curEntity = NULL ;
+    char* curEntity = NULL;
 
     if (pobjUID != NULL)
     {
@@ -42,21 +42,21 @@ int set_current_entity_property(void* _pvCtx, char* pobjUID, size_t stackPointer
         return -1;
     }
 
-    if ( !( valueType == sci_handles ) )
+    if (valueType != sci_handles)
     {
         Scierror(999, _("Wrong type for '%s' property: Handle expected.\n"), "current_entity");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    curEntity = (char*)getObjectFromHandle( getHandleFromStack( stackPointer ) ) ;
+    curEntity = (char*)getObjectFromHandle((long)((long long*)_pvData)[0]);
 
-    if ( curEntity == NULL )
+    if (curEntity == NULL)
     {
         Scierror(999, _("Wrong value for '%s' property: Must be a valid handle.\n"), "current_entity");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    setCurrentObject(curEntity) ;
-    return SET_PROPERTY_SUCCEED ;
+    setCurrentObject(curEntity);
+    return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

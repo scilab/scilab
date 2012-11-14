@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-09-03 11:06+0100\n"
+"Revision-Date: 2012-11-14 10:59+0100\n"
 
 # File: sci_gateway/c/sci_res_with_prec.c, line: 63
 #, c-format
@@ -189,22 +189,22 @@ msgid "numeric factorization"
 msgstr ""
 
 #
-# File: src/c/common_umfpack.c, line: 207
+# File: src/c/common_umfpack.c, line: 231
 msgid "singular matrix"
 msgstr ""
 
 #
-# File: src/c/common_umfpack.c, line: 208
+# File: src/c/common_umfpack.c, line: 232
 msgid "not enough memory"
 msgstr ""
 
 #
-# File: src/c/common_umfpack.c, line: 209
+# File: src/c/common_umfpack.c, line: 233
 msgid "internal error"
 msgstr ""
 
 #
-# File: src/c/common_umfpack.c, line: 210
+# File: src/c/common_umfpack.c, line: 234
 msgid "invalid matrix"
 msgstr ""
 

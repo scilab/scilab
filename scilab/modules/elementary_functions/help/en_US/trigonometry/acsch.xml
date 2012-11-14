@@ -19,13 +19,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>Real or complex array.</para>
+                    <para>a real or complex array.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>Real or complex array.</para>
+                    <para>a real or complex array.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -37,10 +37,10 @@
             is real.
         </para>
         <para>
-            The following equalities hold: <literal>acsch(z) = -acsch(-z) =
+            The following equalities hold: <code>acsch(z) = -acsch(-z) =
                 asinh(1/z) = csgn(%i+1/z)*asech(-i*z)-%i*%pi/2 =
                 %i*acsc(%i*z)
-            </literal>
+            </code>
         </para>
     </refsection>
     <refsection>

@@ -42,8 +42,8 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
      * @param isToolbox is true when compile a toolbox' help
      * @param urlBase the base url for external link
      */
-    public JavaHelpDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase) throws IOException, SAXException {
-        super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase, HTMLDocbookTagConverter.GenerationType.JAVAHELP);
+    public JavaHelpDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase, String language) throws IOException, SAXException {
+        super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase, language, HTMLDocbookTagConverter.GenerationType.JAVAHELP);
         prependToProgramListing = "<table border=\"0\" width=\"100%\"><tr><td width=\"98%\">";
         appendToProgramListing = "</td><td valign=\"top\"><a href=\"scilab://scilab.execexample/\"><img src=\"ScilabExecute.png\" border=\"0\"/></a></td><td valign=\"top\"><a href=\"scilab://scilab.editexample/\"><img src=\"ScilabEdit.png\" border=\"0\"/></a></td><td></td></tr></table>";
         appendForExecToProgramListing = "</td><td valign=\"top\"><a href=\"scilab://scilab.execexample/\"><img src=\"ScilabExecute.png\" border=\"0\"/></a></td><td></td></tr></table>";

@@ -255,6 +255,7 @@ mclose(fd_r2);
     <refsection>
     </refsection>
     <refsection>
+        <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // read/write a file as binary
 

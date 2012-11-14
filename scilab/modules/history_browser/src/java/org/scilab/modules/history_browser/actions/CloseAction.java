@@ -15,6 +15,7 @@ package org.scilab.modules.history_browser.actions;
 import java.lang.reflect.InvocationTargetException;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
@@ -63,6 +64,7 @@ public final class CloseAction extends CommonCallBack {
         menuItem.setText(LABEL);
         menuItem.setMnemonic(MNEMONIC);
         menuItem.setCallback(getCallBack());
+        ((SwingScilabMenuItem) menuItem.getAsSimpleMenuItem()).setAccelerator(ScilabKeyStroke.getKeyStroke(KEY));
         return menuItem;
     }
 
@@ -107,6 +109,6 @@ public final class CloseAction extends CommonCallBack {
      * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
      */
     public void callBack() {
-	ClosingOperationsManager.startClosingOperation(CommandHistory.getBrowserTab());
+        ClosingOperationsManager.startClosingOperation(CommandHistory.getBrowserTab());
     }
 }

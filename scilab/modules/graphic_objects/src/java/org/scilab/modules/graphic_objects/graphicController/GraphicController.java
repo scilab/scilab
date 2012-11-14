@@ -134,7 +134,7 @@ public class GraphicController {
      * @param value the property value
      * @return true if the property has been set, false otherwise
      */
-    public boolean setProperty(String id, String prop, Object value) {
+    public boolean setProperty(String id, int prop, Object value) {
         try {
             switch (GraphicModel.getModel().setProperty(id, prop, value)) {
             case Success : // BroadCast Message + return true
@@ -162,7 +162,7 @@ public class GraphicController {
      * @param prop the property name
      * @return the property value
      */
-    public Object getProperty(String id, String prop) {
+    public Object getProperty(String id, int prop) {
         try {
             return GraphicModel.getModel().getProperty(id, prop);
         }
@@ -191,6 +191,7 @@ public class GraphicController {
      * @return the created object's id
      */
     public String askObject(Type type) {
+        
         try {
             UID id = createUID();
             GraphicModel.getModel().createObject(id.toString(), type);
@@ -253,7 +254,7 @@ public class GraphicController {
      */
     public void objectCreated(final String id) {
         INFO("### Create object : "+id);
-        INFO("### type is : " + getProperty(id, "Type"));
+        INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
         Vector<Runnable> broadCastVector= new Vector<Runnable>();
 
         try {
@@ -277,9 +278,9 @@ public class GraphicController {
      * @param id the updated object's id
      * @param prop the property that has been updated
      */
-    public void objectUpdate(final String id, final String prop) {
+    public void objectUpdate(final String id, final int prop) {
         INFO("### Update object : "+id);
-        INFO("### type is : " + getProperty(id, "Type"));
+        INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
         INFO("### prop is : " + prop);
 
         Vector<Runnable> broadCastVector= new Vector<Runnable>();
@@ -305,7 +306,7 @@ public class GraphicController {
      */
     public void objectDeleted(final String id) {
         INFO("### Delete object : "+id);
-        INFO("### type is : " + getProperty(id, "Type"));
+        INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
         Vector<Runnable> broadCastVector= new Vector<Runnable>();
 
         try {

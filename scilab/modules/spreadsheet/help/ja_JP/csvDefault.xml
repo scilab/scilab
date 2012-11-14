@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) 2010-2011 - INRIA - Allan CORNET
+ * Copyright (C) 2011 - INRIA - Michael Baudin
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ -->
+<refentry version="5.0-subset Scilab" xml:id="csvDefault" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>csvDefault</refname>
+        
+        <refpurpose>CSVファイルに関するデフォルト動作を取得/設定.</refpurpose>
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        
+        <synopsis>allvalues = csvDefault() </synopsis>
+        
+        <synopsis>value = csvDefault(field) </synopsis>
+        
+        <synopsis>bRes = csvDefault(field, value) </synopsis>
+    </refsynopsisdiv>
+    
+    <refsection>
+        <title>パラメータ</title>
+        
+        <variablelist>
+            <varlistentry>
+                <term>allvalues</term>
+                
+                <listitem>
+                    <para>6行2列の文字列行列で, 全フィールドの値です. 
+                        最初の列には利用可能なフィールドが含まれ,
+                        2番目の列には現在の値が含まれます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>field</term>
+                
+                <listitem>
+                    <para>1行1列の文字列行列で, 
+                        取得または設定したフィールドの名前です.
+                        <literal>field</literal>で利用可能な値は,
+                        "separator", "decimal", "conversion", "precision", "regexp", "eol",
+                        "encoding", "blank"です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>value</term>
+                
+                <listitem>
+                    <para>
+                        1行1列の文字列行列で, 
+                        取得または設定したフィールドの値です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>bRes</term>
+                
+                <listitem>
+                    <para>
+                        1行1列の論理値行列で, 
+                        値が正しく設定された場合は bResがtrueとなり,
+                        そうでない場合はbResがfalseとなります.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    
+    <refsection>
+        <title>説明</title>
+        
+        <para>
+            この関数によりCSVファイルのオプションを調べたり,設定
+            することができます.
+            これらのオプションはユーザが呼び出し時に指定しない場合に
+            読み書き用の関数で使用されます.
+        </para>
+        
+        <para>
+            呼び出し手順 <literal>allvalues = csvDefault()</literal> は
+            全フィールドの値を返します.
+        </para>
+        
+        <para>
+            呼び出し手順 <literal>value = csvDefault(field)</literal> は
+            指定したフィールドに対応する値を返します.
+        </para>
+        
+        <para>
+            呼び出し手順 <literal>bRes = csvDefault(field, value)</literal> 
+            により, 指定したフィールドに値を設定できます.
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        関数がフィールドに指定した値を設定できない場合,
+                        <literal>bRes</literal> はfalseとなります. この場合,
+                        フィールドの値は変更されません.
+                    </para>
+                </listitem>
+                
+                <listitem>
+                    <para>
+                        関数が指定した値にフィールドを変更できた場合,
+                        <literal>bRes</literal> は trueとなります.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        
+        <para>
+            利用可能なフィールドを以下に示します. <itemizedlist>
+                <listitem>
+                    <para>field = "separator": CSVファイルにおける列の
+                        セパレータ. デフォルトのセパレータ = ",".
+                    </para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "decimal": CSVファイルで使用される小数点.
+                        利用可能な値は "." または "," です.
+                        デフォルトの小数点 = '.'.
+                    </para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "conversion": 
+                        <literal>csvRead</literal>関数の出力型. 指定可能な値は
+                        "string" または"double"です.
+                        conversionのデフォルト値 = "double". 
+                        conversion = "string"の場合,
+                        <literal>csvRead</literal> 関数は文字列の行列を
+                        返します.
+                        conversion = "double"の場合, 
+                        <literal>csvRead</literal> 関数はdoubleの行列を
+                        返します.
+                    </para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "precision": 
+                        <literal>csvWrite</literal>関数のdoubleから
+                        文字列を生成する際に使用されるCフォーマット.
+                        デフォルト値は <literal>precision="%.17lg"</literal>です. 
+                        このフォーマットにより読み書きエラーフリーサイクル
+                        を実行できます.
+                        これは,doubleを.csvに保存してから,doubleを読み込むと,
+                        正しく同じ値が取得できることを意味します.
+                        サポートされる形式を以下に示します: %type または
+                        %[幅].[精度]型. 
+                        <itemizedlist>
+                            <listitem>
+                                <para>型: lf, lg, d, i, e, f, g</para>
+                            </listitem>
+                            
+                            <listitem>
+                                <para>幅: オプションの数値で,出力文字の最小値を指定します.
+                                </para>
+                            </listitem>
+                            
+                            <listitem>
+                                <para>精度: 
+                                    オプションの数値で,
+                                    出力フィールドの全てまたは一部を出力する際の
+                                    最大文字数,または
+                                    整数値を出力する際の最小桁数を指定します.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "regexp": 
+                        <literal>csvRead</literal>関数のコメントを
+                        展開する際に使用する正規表現式.
+                    </para>
+                    
+                    <para>デフォルトでは, この値は'' (正規表現なし)です.</para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "eol": 
+                        <literal>csvWrite</literal>関数で行を書き込む際に
+                        使用される改行.
+                    </para>
+                    
+                    <para>
+                        指定可能な値は"linux", "windows", "macos9"です.
+                    </para>
+                    
+                    <para>デフォルトでは, この値はプラットフォーム依存です.</para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "encoding":</para>
+                    
+                    <para>指定可能な値は"utf-8", "iso-latin"です.</para>
+                    
+                    <para>デフォルトでは, この値は"utf-8"です.</para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "blank": テキストをパースする前に
+                        空白行を全て削除します
+                    </para>
+                    
+                    <para>指定可能な値は "on", "off"です.</para>
+                    
+                    <para>デフォルトでは, この値は "on"です.</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+    
+    <refsection>
+        <title>例</title>
+        
+        <programlisting role="example">// 利用可能な全フィールドを参照
+            allvalues = csvDefault()
+            // "precision"フィールドの値を取得
+            value = csvDefault("precision")
+            // "precision"フィールドの値を設定
+            bRes = csvDefault("precision","%.17e") // 期待値 = %t
+            // "precision"フィールドに不正な値を設定
+            bRes = csvDefault("precision","Ouch!") // 期待値 = %f    
+        </programlisting>
+    </refsection>
+    
+    <refsection>
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            <member>
+                <link linkend="csvRead">csvRead</link>
+            </member>
+            
+            <member>
+                <link linkend="csvWrite">csvWrite</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>関数が導入されました. 'csv_readwrite'モジュールに
+                    基づきます.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

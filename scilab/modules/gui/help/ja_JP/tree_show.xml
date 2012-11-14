@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="tree_show">
+    <refnamediv>
+        <refname>tree_show</refname>
+        <refpurpose>リストのツリービューを表示する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            tree_show(x)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>表示するリスト,mlistまたはtlist.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ウインドウを作成し,指定するリストのツリービューを表示します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// 簡単な例
+a=list(1,2,3);
+tree_show(a);
+
+// mlistを指定した他の例
+str=['a','b','c','d','e','f','g','h'];
+n=hypermat([2,2,2],str);
+v=hypermat([2,2,2],1:8);
+Mm=mlist(['V','name','value'],n,v);
+tree_show(Mm);
+
+// tlistを指定した別の例
+Mt=tlist(['V','name','value'],['a','b','c'],[1 2 3]);
+tree_show(Mt);
+ ]]></programlisting>
+    </refsection>
+</refentry>

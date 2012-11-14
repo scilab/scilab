@@ -40,7 +40,7 @@ int get_tics_style_property(void* _pvCtx, char* pobjUID)
 
     if (piTicksStyle == NULL)
     {
-        Scierror(999, _("Wrong value for '%s' property.\n"),"tics_direction");
+        Scierror(999, _("Wrong value for '%s' property.\n"), "tics_direction");
         return -1;
     }
 
@@ -58,7 +58,7 @@ int get_tics_style_property(void* _pvCtx, char* pobjUID)
     }
     else
     {
-        Scierror(999, _("Wrong value for '%s' property.\n"),"tics_style");
+        Scierror(999, _("Wrong value for '%s' property.\n"), "tics_style");
         return -1;
     }
 

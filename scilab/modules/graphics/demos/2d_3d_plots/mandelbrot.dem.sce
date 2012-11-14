@@ -7,7 +7,6 @@ function demo_mandelbrot()
 
   my_handle             = scf(100001);
   clf(my_handle,"reset");
-  demo_viewCode("mandelbrot.dem.sce");
 
   // DEMO START
 
@@ -22,21 +21,21 @@ function demo_mandelbrot()
         Dy = abs(ymax - ymin);
         dp = sqrt(Dx*Dy / nbPix);  // Area of a pixel
         nx = round(Dx/dp);
-        ny = round(Dy/dp); 
+        ny = round(Dy/dp);
         dx = abs(xmax - xmin)/(nx-1);
         x  = linspace(xmin, xmax, nx);
         y  = ymax:-dx:ymin;
         ny = length(y);
         c  = (ones(ny,1)*x) + %i*(y.'*ones(1,nx));
-        z  = c;  // Initial c Matrix 
+        z  = c;  // Initial c Matrix
         nd = ones(z)*%inf;  // nb iter for > 2
         inC = 1:size(c,"*");
-        i = 1; 
-        waitId = 0; 
+        i = 1;
+        waitId = 0;
         ifin = min(ndmin+nColors, maxIters);
         while i<=ifin,
             if waitId==0
-                waitId = waitbar(i/ifin,_("Computing in progress...")); 
+                waitId = waitbar(i/ifin,_("Computing in progress..."));
             else
                 waitbar(i/ifin,waitId);
             end
@@ -52,33 +51,33 @@ function demo_mandelbrot()
         M = nd
     endfunction
     // ---------------------
-    
+
     nColors = 100;   // Number of colors
     maxIters = 500;  // Maximal number of iterations
     nbPix = 200000;  // Total number of pixel per image
     // Targetted Mandelbrot area
-    xmin = -0.33; 
+    xmin = -0.33;
     xmax = 0.07;
     ymin = 0.6;
     ymax = 1.13;
-    
+
     // Generating the Mandelbrot local view
     M = getMandelbrotPart(xmin, xmax, ymin, ymax, nbPix, nColors, maxIters);
-    
+
     // Scaling false colors
     icol  = [color("black")  addcolor(rainbowcolormap(nColors))];
     Mmin = min(M);
     M = M - Mmin + 1;
     M(find(M==%inf | M>nColors))=0;
     A = icol(M+1);
-    
+
     clf
     drawlater;
     // colordef("black")  // Bug 11369 to be fixed
-    
+
     // Displaying the area
     Matplot1(matrix(A,size(M)),[xmin ymin xmax ymax]);
-    
+
     // Post-tuning the graphics
     ca = gca();
     ca.isoview = "on";
@@ -90,9 +89,10 @@ function demo_mandelbrot()
     xtitle(justify(msprintf(Ttxt),"c"))
     xlabel(_("Real part"))
     ylabel(_("Imaginary part"))
-    
+
     drawnow()
-    //show_window()
+
+    demo_viewCode("mandelbrot.dem.sce");
 
 endfunction
 

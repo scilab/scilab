@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xrpoly">
     <refnamediv>
         <refname>xrpoly</refname>
-        <refpurpose>  dessine un polygone régulier  </refpurpose>
+        <refpurpose>dessine un polygone régulier  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -56,6 +56,10 @@
 plot2d(0,0,-1,"012"," ",[0,0,10,10])
 xrpoly([5,5],5,5)
  ]]></programlisting>
+        <scilab:image>
+            plot2d(0,0,-1,"012"," ",[0,0,10,10])
+            xrpoly([5,5],5,5)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

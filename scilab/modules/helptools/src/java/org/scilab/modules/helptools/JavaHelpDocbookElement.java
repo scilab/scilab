@@ -22,7 +22,7 @@ public class JavaHelpDocbookElement extends DocbookElement {
     /**
      * {@inheritDoc}
      */
-    protected JavaHelpDocbookElement(String name, String uri, Map attributes) {
+    protected JavaHelpDocbookElement(String name, String uri, Map<String, String> attributes) {
         super(name, uri, attributes);
         mapIdContents = new StringBuilder();
     }
@@ -30,7 +30,7 @@ public class JavaHelpDocbookElement extends DocbookElement {
     /**
      * {@inheritDoc}
      */
-    public DocbookElement getNewInstance(String name, String uri, Map attributes) {
+    public DocbookElement getNewInstance(String name, String uri, Map<String, String> attributes) {
         return new JavaHelpDocbookElement(name, uri, attributes);
     }
 

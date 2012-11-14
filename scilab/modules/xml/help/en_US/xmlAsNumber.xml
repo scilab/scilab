@@ -65,6 +65,9 @@
             <member>
                 <link linkend="xmlAsText">xmlAsText</link>
             </member>
+            <member>
+                <link linkend="xmlName">xmlName</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection>

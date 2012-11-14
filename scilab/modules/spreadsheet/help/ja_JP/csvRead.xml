@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) 2010-2011 - INRIA - Allan CORNET
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ -->
+<refentry version="5.0-subset Scilab" xml:id="csvRead" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+    <info>
+        <pubdate>$LastChangedDate$</pubdate>
+    </info>
+    
+    <refnamediv>
+        <refname>csvRead</refname>
+        
+        <refpurpose>CSVファイルを読み込む</refpurpose>
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            M = csvRead(filename)
+            M = csvRead(filename, separator)
+            M = csvRead(filename, separator, decimal)
+            M = csvRead(filename, separator, decimal, conversion)
+            M = csvRead(filename, separator, decimal, conversion, substitute)
+            M = csvRead(filename, separator, decimal, conversion, substitute, rexgepcomments, range)
+            [M, comments] = csvRead(filename, separator, decimal, conversion, substitute, rexgepcomments, range)
+        </synopsis>
+    </refsynopsisdiv>
+    
+    <refsection>
+        <title>パラメータ</title>
+        
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                
+                <listitem>
+                    <para>1行1列の文字列行列で,ファイルパスです.</para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>separator</term>
+                
+                <listitem>
+                    <para>1行1列の文字列行列で, 
+                        使用されるフィールドセパレータ.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>decimal</term>
+                
+                <listitem>
+                    <para>1行1列の文字列行列で,使用される小数点.</para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>conversion</term>
+                
+                <listitem>
+                    <para>
+                        1行1列の文字列行列で,出力<literal>M</literal>の型.
+                        利用可能な値は "string" または "double"
+                        (デフォルト)です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>substitute</term>
+                
+                <listitem>
+                    <para>
+                        m行2列の文字列行列で,
+                        置換マップ(デフォルト = [], 置換処理なし).
+                        最初の列
+                        <literal>substitute(:,1)</literal> は
+                        検索する文字列を有し,
+                        2番目の列
+                        <literal>substitute(:,2)</literal> は置換文字列を
+                        有します.
+                        ファイル中に指定された文字列が現れる度に
+                        置換が行われます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>rexgepcomments</term>
+                
+                <listitem>
+                    <para>文字列: 一致する行を削除するための正規表現. 
+                        (デフォルト:
+                        [])
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>range</term>
+                
+                <listitem>
+                    <para>1行4列の浮動小数点の整数行列で,
+                        読み込む列および行の範囲です
+                        (デフォルトの範囲は [] で,全ての行と列を意味します).
+                        <literal>[R1 C1 R2 C2]</literal>の形式で範囲を
+                        指定してください.
+                        ただし,(R1,C1)は読み込むデータの左上隅,
+                        (R2,C2)は右下隅です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>M</term>
+                
+                <listitem>
+                    <para>m行n列の文字列またはdouble行列.</para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>comments</term>
+                
+                <listitem>
+                    <para>正規表現にマッチしたm行n列の文字列行列.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    
+    <refsection>
+        <title>説明</title>
+        
+        <para>
+            カンマ区切りの値をフィールドとするアスキーファイルを指定すると,
+            この関数は対応する文字列またはdoubleのScilab行列を返します.
+        </para>
+        
+        <para>例えば,.csvデータファイルは 
+            表計算ソフトウェアにより"テキスト及びカンマ"形式で
+            作成されたものとすることができます.
+        </para>
+        
+        <para>
+            列はカンマ以外で区切られたものとすることもできます.
+            この場合, 別のセパレータを指定する
+            csvRead(filename, separator) を使用してください.
+        </para>
+        
+        <para>
+            オプションの入力引数のデフォルト値は,
+            <literal>csvDefault</literal> 関数で定義されます.
+        </para>
+        
+        <para>
+            オプションの入力引数に空の行列<literal>[]</literal>を指定すると,
+            デフォルト値が設定されます.
+        </para>
+        
+        <para>
+            入力引数 "conversion" が "double" の時,
+            .csvの中の数値以外のフィールド(例:文字列)は NaNに変換されます.
+        </para>
+    </refsection>
+    
+    <refsection>
+        <title>例</title>
+        
+        <para>
+            以下のスクリプトは,
+            <literal>csvRead</literal>関数のいくつかの基本的な使用例を示します.
+        </para>
+        
+        <programlisting role="example">// タブ区切りのデータを含むファイルを生成
+            M = 1:50;
+            filename = fullfile(TMPDIR, "data.csv");
+            csvWrite(M, filename, ascii(9), '.');
+            
+            // csvファイルを読み込む
+            M1 = csvRead(filename,ascii(9), [], 'string')
+            
+            // doubleを返す
+            M2 = csvRead(filename,ascii(9), '.', 'double')
+            
+            // 元のデータを結果と比較
+            and(M == M2)
+            
+            // 特殊なデータファイルを管理するために
+            // 置換用引数を使用
+            content = [
+            "1"
+            "Not-A-Number"
+            "2"
+            "Not-A-Number"
+            ];
+            
+            substitute = [
+            "Not-A-Number" "Nan"
+            ];
+            
+            mputl(content,filename);
+            M = csvRead(filename,",",".","double",substitute)
+            isnan(M(2,1)) // Expected=%t
+            isnan(M(4,1)) // Expected=%t
+            
+        </programlisting>
+        
+        <para>
+            以下のスクリプトは,
+            <literal>csvRead</literal>関数のより実用的な使用例を示します.
+        </para>
+        
+        <programlisting role="example">// 文字列の行列を定義
+            Astr = [
+            "1" "8" "15" "22" "29" "36" "43" "50"
+            "2" "9" "16" "23" "30" "37" "44" "51"
+            "3" "10" "17" "6+3*I" "31" "38" "45" "52"
+            "4" "11" "18" "25" "32" "39" "46" "53"
+            "5" "12" "19" "26" "33" "40" "47" "54"
+            "6" "13" "20" "27" "34" "41" "48" "55"
+            "+0" "-0" "Inf" "-Inf" "Nan" "1.D+308" "1.e-308" "1.e-323"
+            ];
+            
+            // カンマ区切りのデータを有するファイルを作成
+            filename = fullfile(TMPDIR , 'foo.csv');
+            sep = ",";
+            fd = mopen(filename,'wt');
+            for i = 1 : size(Astr,"r")
+            mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
+            end
+            mclose(fd);
+            // ファイルを参照するには : edit(filename)
+            
+            // このファイルを読み込む
+            Bstr = csvRead ( filename )
+            
+            // 特殊なセパレータを有するファイルを作成: ここでは ";"
+            filename = fullfile(TMPDIR , 'foo.csv');
+            sep = ";";
+            fd = mopen(filename,'wt');
+            for i = 1 : size(Astr,"r")
+            mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
+            end
+            mclose(fd);
+            
+            //
+            // セパレータを指定してファイルを読み込む
+            csvRead ( filename , sep )   
+        </programlisting>
+        
+        <para>以下のスクリプトは
+            <literal>csvRead</literal> 関数のregexp引数により
+            行を削除する例を示します.
+        </para>
+        
+        <programlisting role="example">CSV = ["// tata"; ..
+            "1,0,0,0,0"; ..
+            "// titi"; ..
+            "0,1,0,0,0"; ..
+            "// toto"; ..
+            "0,0,1,0,0"; ..
+            "// tutu"];
+            filename = fullfile(TMPDIR , 'foo.csv');
+            mputl(CSV, filename);
+            
+            // //で始まる行を削除
+            [M, comments] = csvRead(filename, [], [], [], [], '/\/\//')
+        </programlisting>
+    </refsection>
+    
+    <refsection>
+        <para>空のフィールドはcsvReadで管理されます</para>
+        
+        <programlisting role="example">
+            csvWrite(['1','','3';'','','6'], TMPDIR + "/example.csv")
+            csvRead(TMPDIR + "/example.csv", [], [], "string")
+            csvRead(TMPDIR + "/example.csv", [], [], "double")
+        </programlisting>
+    </refsection>
+    
+    <programlisting role="example">
+        // 文字列の行列を定義
+        Astr = [
+        "1" "8" "15" "22" "29" "36" "43" "50"
+        "2" "9" "16" "23" "30" "37" "44" "51"
+        "3" "10" "17" "6+3*I" "31" "38" "45" "52"
+        "4" "11" "18" "25" "32" "39" "46" "53"
+        "5" "12" "19" "26" "33" "40" "47" "54"
+        "6" "13" "20" "27" "34" "41" "48" "55"
+        "+0" "-0" "Inf" "-Inf" "Nan" "1.D+308" "1.e-308" "1.e-323"
+        ];
+        
+        // カンマ区切りのデータを有するファイルを作成
+        filename = fullfile(TMPDIR , 'foo.csv');
+        sep = ",";
+        fd = mopen(filename,'wt');
+        for i = 1 : size(Astr,"r")
+        mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
+        end
+        mclose(fd);
+        // ファイルを参照するには : edit(filename)
+        
+        // このファイルを読み込む
+        Bstr = csvRead ( filename )
+        
+        // 特殊なセパレータを有するファイルを作成: ここでは ";"
+        filename = fullfile(TMPDIR , 'foo.csv');
+        sep = ";";
+        fd = mopen(filename,'wt');
+        for i = 1 : size(Astr,"r")
+        mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
+        end
+        mclose(fd);
+        //
+        // セパレータを指定してファイルを読み込む
+        csvRead ( filename , sep )
+    </programlisting>
+    
+    <refsection>
+        <para>
+            以下のスクリプトでは, ファイル "filename" は
+            5000行単位のブロックで読みこまれます.
+            実際に読み込まれたファイルの行数が5000行に
+            満たない時, すなわち, ファイルの終端に達した時,
+            このアルゴリズムは中断します.
+        </para>
+        
+        <programlisting role="example">blocksize = 5000;
+            C1 = 1;
+            C2 = 3;
+            iblock = 1
+            while (%t)
+            R1 = (iblock-1) * blocksize + 1;
+            R2 = blocksize + R1-1;
+            irange = [R1 C1 R2 C2];
+            mprintf("Block #%d, rows #%d to #%d\n",iblock,R1,R2);
+            tic();
+            M=csvRead(filename , [] , [] , [] , [] , [] , [] , irange );
+            t = toc();
+            nrows = size(M,"r");
+            ncols = size(M,"c");
+            if ( nrows &gt; 0 ) then
+            p = t/(nrows*ncols)*1.e6;
+            mprintf("  Actual #rows=%d\n",nrows);
+            mprintf("  T=%.3f (s)\n",t);
+            mprintf("  T=%.1f (ms/cell)\n",p);
+            end
+            if ( nrows &lt; blocksize ) then
+            mprintf("... End of the file.\n");
+            break
+            end
+            iblock = iblock + 1;
+            end
+        </programlisting>
+        
+        <para>出力は以下のようになります :</para>
+        
+        <programlisting role="no-scilab-exec">Block #1, rows #1 to #5000
+            Actual #rows=5000
+            T=3.135 (s)
+            T=209.0 (ms/cell)
+            Block #2, rows #5001 to #10000
+            Actual #rows=5000
+            T=3.139 (s)
+            T=209.3 (ms/cell)
+            Block #3, rows #10001 to #15000
+            Actual #rows=5000
+            T=3.151 (s)
+            T=210.1 (ms/cell)
+            etc....
+        </programlisting>
+    </refsection>
+    
+    <refsection>
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            <member>
+                <link linkend="csvWrite">csvWrite</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>関数が導入されました. 
+                    'csv_readwrite'モジュールに基づきます.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
+</refentry>
+

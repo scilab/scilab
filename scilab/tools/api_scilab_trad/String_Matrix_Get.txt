@@ -1,0 +1,16 @@
+\1int* piAddr\5 = NULL; //@MOVE@
+\1sciErr = getVarAddressFromPosition(pvApiCtx, \2, &piAddr\5);
+\1if (sciErr.iErr)
+\1{
+\1    printError(&sciErr, 0);
+\1    return 1;
+\1}
+
+\1// Retrieve a matrix of string at position \2.
+\1// DO NOT FORGET TO RELEASE MEMORY via freeAllocatedMatrixOfString(\3, \4, \5).
+\1if (getAllocatedMatrixOfString(pvApiCtx, piAddr\5, &\3, &\4, &\5))\6
+\1{
+\1    Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, \2);
+\1    return 1;
+\1}
+

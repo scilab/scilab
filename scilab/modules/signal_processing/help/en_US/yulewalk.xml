@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="yulewalk">
     <refnamediv>
         <refname>yulewalk</refname>
-        <refpurpose>  least-square filter design</refpurpose>
+        <refpurpose>least-square filter design</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -44,8 +44,8 @@
         <para>
             Hz = yulewalk(N,frq,mag) finds the N-th order iir filter
         </para>
-        <programlisting role=""><![CDATA[ 
-                  n-1         n-2            
+        <programlisting role="no-scilab-exec"><![CDATA[ 
+                  n-1         n-2
       B(z)   b(1)z     + b(2)z    + .... + b(n)
 H(z)= ---- = ---------------------------------
                 n-1       n-2
@@ -62,13 +62,42 @@ H(z)= ---- = ---------------------------------
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-f=[0,0.4,0.4,0.6,0.6,1];H=[0,0,1,1,0,0];Hz=yulewalk(8,f,H);
-fs=1000;fhz = f*fs/2;  
-clf(0);xset('window',0);plot2d(fhz',H');
+f=[0,0.4,0.4,0.6,0.6,1];
+H=[0,0,1,1,0,0];
+Hz=yulewalk(8,f,H);
+fs=1000;
+fhz = f*fs/2; 
+clf(0);
+xset('window',0);
+plot2d(fhz',H');
 xtitle('Desired Frequency Response (Magnitude)')
 [frq,repf]=repfreq(Hz,0:0.001:0.5);
-clf(1);xset('window',1);plot2d(fs*frq',abs(repf'));
+clf(1);
+xset('window',1);
+plot2d(fs*frq',abs(repf'));
 xtitle('Obtained Frequency Response (Magnitude)')
  ]]></programlisting>
+        <scilab:image>
+            f=[0,0.4,0.4,0.6,0.6,1];
+            H=[0,0,1,1,0,0];
+            Hz=yulewalk(8,f,H);
+            fs=1000;
+            fhz = f*fs/2; 
+            clf(0);
+            xset('window',0);
+            plot2d(fhz',H');
+            xtitle('Desired Frequency Response (Magnitude)')
+            [frq,repf]=repfreq(Hz,0:0.001:0.5);
+        </scilab:image>
+        <scilab:image>
+            f=[0,0.4,0.4,0.6,0.6,1];
+            H=[0,0,1,1,0,0];
+            Hz=yulewalk(8,f,H);
+            fs=1000;
+            fhz = f*fs/2;
+            [frq,repf]=repfreq(Hz,0:0.001:0.5);
+            plot2d(fs*frq',abs(repf'));
+            xtitle('Obtained Frequency Response (Magnitude)')
+        </scilab:image>
     </refsection>
 </refentry>

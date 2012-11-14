@@ -39,7 +39,7 @@ int get_auto_scale_property(void* _pvCtx, char* pobjUID)
 
     if (piAutoScale == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_scale");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_scale");
         return -1;
     }
 

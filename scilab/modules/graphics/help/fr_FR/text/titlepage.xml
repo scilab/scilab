@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="titlepage">
     <refnamediv>
         <refname>titlepage</refname>
-        <refpurpose> ajoute un titre au milieu d'une fenêtre graphique  </refpurpose>
+        <refpurpose>ajoute un titre au milieu d'une fenêtre graphique  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -27,6 +27,18 @@
             la fenêtre graphique courante, avec la police la plus grande possible.
         </para>
     </refsection>
+    
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+titlepage("Ceci est le titre de la page");
+ ]]></programlisting>
+        <scilab:image>
+            titlepage("Ceci est le titre de la page");
+        </scilab:image>
+        
+    </refsection>
+    
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

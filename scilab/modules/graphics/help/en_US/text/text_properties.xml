@@ -13,7 +13,7 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="text_properties">
     <refnamediv>
-        <refname>text_properties</refname>
+        <refname>text properties</refname>
         <refpurpose>description of the Text entity
             properties
         </refpurpose>
@@ -116,7 +116,7 @@
             <varlistentry>
                 <term>text_box: </term>
                 <listitem>
-                    <para>A two dimensionnal vector specifying the size of a rectangle in user coordinates.
+                    <para>A two dimensional vector specifying the size of a rectangle in user coordinates.
                         The rectangle is used when the text_box_mode property is set to
                         <emphasis role="bold">'centered'</emphasis> or <emphasis role="bold">'filled'</emphasis>.
                     </para>
@@ -260,22 +260,6 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            a=get("current_axes");
-            a.data_bounds=[0,0;1,1];
-            a.axes_visible = 'on' ;
-            
-            xstring(0,0,"Scilab is not esilaB",0,0)
-            
-            t=get("hdl") 
-            
-            t.font_foreground=6; 
-            t.font_size=5;
-            t.font_style=5;
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 a=get("current_axes");
@@ -304,6 +288,19 @@ t.text=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml]
 
 
  ]]></programlisting>
+        <scilab:image>
+            a=get("current_axes");
+            a.data_bounds=[0,0;1,1];
+            a.axes_visible = 'on' ;
+            
+            xstring(0,0,"Scilab is not esilaB",0,0)
+            
+            t=get("hdl") 
+            
+            t.font_foreground=6; 
+            t.font_size=5;
+            t.font_style=5;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

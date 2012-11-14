@@ -16,6 +16,8 @@ assert_checkequal(status, 1);
 exec("TMPDIR/toolbox_skeleton/builder.sce");
 Building macros...
 -- Creation of [toolbox_skeletonlib] (Macros) --
+genlib: Processing file: scilab_sum.sci
+genlib: Regenerate names and lib
 Building sources...
    Generate a loader file
    Generate a Makefile
@@ -46,6 +48,7 @@ Building gateway...
    Running the makefile
    Compilation of sci_csub.c
    Compilation of sci_csum.c
+   Compilation of sci_foo.c
    Compilation of sci_multiplybypi.c
    Compilation of skeleton_c.c
    Building shared library (be patient)

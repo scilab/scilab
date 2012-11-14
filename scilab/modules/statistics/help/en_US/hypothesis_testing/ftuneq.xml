@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ftuneq">
     <refnamediv>
         <refname>ftuneq</refname>
-        <refpurpose> Fisher ratio for samples of unequal size.  </refpurpose>
+        <refpurpose>Fisher ratio for samples of unequal size.  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -76,8 +76,11 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-samples=[46 55 54;53 54 50; 49 58 51;50 61 51;46 52 49]
-[f,p]=ftest(samples)
+sample1=[46 55 54];
+sample2=[53 54];
+sample3=[50 49 58 51 50];
+sample4=[61 51 46 52];
+[f,p]=ftuneq(sample1,sample2,sample3,sample4)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

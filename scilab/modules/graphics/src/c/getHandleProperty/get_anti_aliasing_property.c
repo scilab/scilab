@@ -34,7 +34,7 @@ int get_anti_aliasing_property(void* _pvCtx, char* pobjUID)
     int* piAntialiasing = &iAntialiasing;
     getGraphicObjectProperty(pobjUID, __GO_ANTIALIASING__, jni_int, (void **)&piAntialiasing);
 
-    if ( piAntialiasing == NULL )
+    if (piAntialiasing == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "anti_aliasing");
         return -1;
@@ -59,7 +59,7 @@ int get_anti_aliasing_property(void* _pvCtx, char* pobjUID)
             break;
         default:
             Scierror(999, _("Wrong value for '%s' property.\n"), "anti_aliasing");
-            return -1 ;
+            return -1;
             break;
     }
 

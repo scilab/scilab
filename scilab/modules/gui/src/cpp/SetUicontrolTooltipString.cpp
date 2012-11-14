@@ -15,15 +15,17 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolTooltipString(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolTooltipString(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    char* objectStyle = NULL;
-    char* type = NULL;
+    int objectStyle = -1;
+    int* piObjectStyle = &objectStyle;
+    int type = -1;
+    int* piType = &type;
 
     // Check type
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_TYPE__), jni_string, (void**) &type);
-    if (strcmp(type, __GO_UICONTROL__) != 0)
+    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**) &piType);
+    if (type != __GO_UICONTROL__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "TooltipString");
         return SET_PROPERTY_ERROR;
@@ -37,7 +39,7 @@ int SetUicontrolTooltipString(void* _pvCtx, char* sciObjUID, size_t stackPointer
     }
 
     // Check size according to uicontrol style
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_STYLE__), jni_string, (void**) &objectStyle);
+    getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
     // Value can be string or a string vector
     if (nbCol > 1 && nbRow > 1)
     {
@@ -45,7 +47,7 @@ int SetUicontrolTooltipString(void* _pvCtx, char* sciObjUID, size_t stackPointer
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_TOOLTIPSTRING__), getStringMatrixFromStack(stackPointer), jni_string_vector, nbRow * nbCol);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_TOOLTIPSTRING__, (char**)_pvData, jni_string_vector, nbRow * nbCol);
 
     if (status == TRUE)
     {

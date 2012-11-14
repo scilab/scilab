@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="m_circle">
     <refnamediv>
         <refname>m_circle</refname>
-        <refpurpose> plots the complex plane iso-gain contours of y/(1+y) (obsolete) </refpurpose>
+        <refpurpose>plots the complex plane iso-gain contours of y/(1+y) (obsolete) </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -78,12 +78,16 @@ m_circle();
         
         <programlisting role="example"><![CDATA[
 clf();
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
 nyquist([h1;h],0.01,100,['h1';'h'])
 m_circle([-8 -6 -4]);
 ]]></programlisting>
         <scilab:image>
             clf();
+            s=poly(0,'s')
+            h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
             h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
             nyquist([h1;h],0.01,100,['h1';'h'])
             m_circle([-8 -6 -4]);

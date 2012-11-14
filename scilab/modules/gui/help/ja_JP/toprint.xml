@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="toprint">
+    <refnamediv>
+        <refname>toprint</refname>
+        <refpurpose>文字列または図をプリンタに送信.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            toprint(filename)
+            toprint(linestoprint,pageheader)
+            toprint(figid)
+            toprint(figid,output)
+            status = toprint(filename)
+            status = toprint(linestoprint,pageheader)
+            status = toprint(figid)
+            status = toprint(figid,output)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>文字列: 印刷するテキストファイルのパス.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>linestoprint</term>
+                <listitem>
+                    <para>文字列の行列: 印刷する文字列, 
+                        各エントリは印刷されたページの行です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pageheader</term>
+                <listitem>
+                    <para>文字列: 印刷されたページのヘッダ.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>figid</term>
+                <listitem>
+                    <para>実数: 印刷する図のID.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>output</term>
+                <listitem>
+                    <para>
+                        文字列: 印刷時の出力型で, PostScriptの場合は
+                        <emphasis>"pos"</emphasis>,
+                        ビットマップ形式の場合は<emphasis>"gdi"</emphasis>
+                        (デフォルトは<emphasis>"gdi"</emphasis>)を
+                        指定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>
+                        論理値: 
+                        印刷に成功した場合は<emphasis>%T</emphasis>,
+                        それ以外は <emphasis>%F</emphasis>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            テキストファイル, Scilab文字列または図を印刷します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+toprint(SCI+"/etc/scilab.start");
+toprint(['Test','toprint primitive'],'Scilab page header');
+scf(4);
+plot();
+toprint(4);
+toprint(4,"pos");
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="printfigure">printfigure</link>
+            </member>
+            <member>
+                <link linkend="printsetupbox">printsetupbox</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

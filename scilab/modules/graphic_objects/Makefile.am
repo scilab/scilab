@@ -29,7 +29,8 @@ BUILT_SOURCES = 	includes/graphicObjectsProperties.h
 #This file is also generated, but can not be listed to prevent GCJ call.
 #src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 
-GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
+GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp \
+                              src/jni/GraphicObjectBuilder.cpp
 
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
 							src/jni/ScilabNativeView_wrap.c

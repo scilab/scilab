@@ -104,7 +104,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
-voidsetValuejintintjobjectArray__java_lang_Stringjava_lang_StringID=NULL;
+voidsetValuejstringjava_lang_StringjobjectArray__java_lang_Stringjava_lang_StringID=NULL;
 
 
 }
@@ -127,7 +127,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
-        voidsetValuejintintjobjectArray__java_lang_Stringjava_lang_StringID=NULL;
+        voidsetValuejstringjava_lang_StringjobjectArray__java_lang_Stringjava_lang_StringID=NULL;
 
 
 }
@@ -147,16 +147,23 @@ throw GiwsException::JniMonitorException(getCurrentEnv(), "AfficheBlock");
 }
 // Method(s)
 
-void AfficheBlock::setValue (JavaVM * jvm_, int id, char const* const* const* value, int valueSize, int valueSizeCol){
+void AfficheBlock::setValue (JavaVM * jvm_, char const* uid, char const* const* const* value, int valueSize, int valueSizeCol){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidsetValuejintintjobjectArray__java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setValue", "(I[[Ljava/lang/String;)V" ) ;
-if (voidsetValuejintintjobjectArray__java_lang_Stringjava_lang_StringID == NULL) {
+jmethodID voidsetValuejstringjava_lang_StringjobjectArray__java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "setValue", "(Ljava/lang/String;[[Ljava/lang/String;)V" ) ;
+if (voidsetValuejstringjava_lang_StringjobjectArray__java_lang_Stringjava_lang_StringID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "setValue");
 }
+
+jstring uid_ = curEnv->NewStringUTF( uid );
+if (uid != NULL && uid_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
 jclass stringArrayClass = curEnv->FindClass("java/lang/String");
 // create java array of array of strings.
 jobjectArray value_ = curEnv->NewObjectArray( valueSize, curEnv->FindClass("[Ljava/lang/String;"), NULL);
@@ -186,8 +193,9 @@ curEnv->SetObjectArrayElement(value_, i, valueLocal);
 curEnv->DeleteLocalRef(valueLocal);
 
 }
-                         curEnv->CallStaticVoidMethod(cls, voidsetValuejintintjobjectArray__java_lang_Stringjava_lang_StringID ,id, value_);
+                         curEnv->CallStaticVoidMethod(cls, voidsetValuejstringjava_lang_StringjobjectArray__java_lang_Stringjava_lang_StringID ,uid_, value_);
                         curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(uid_);
 curEnv->DeleteLocalRef(value_);
 curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {

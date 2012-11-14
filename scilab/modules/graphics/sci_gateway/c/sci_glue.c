@@ -21,7 +21,7 @@
 #include <stdlib.h>
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "BuildObjects.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
@@ -34,34 +34,70 @@
 #include "graphicObjectProperties.h"
 #include "CurrentObject.h"
 /*--------------------------------------------------------------------------*/
-int sci_glue( char * fname, unsigned long fname_len )
+int sci_glue(char * fname, unsigned long fname_len)
 {
-    int numrow = 0, numcol = 0, l1 = 0, l2 = 0, lind = 0, n = 0, cx1 = 1;
-    long *handelsvalue = NULL ;
-    int outindex = 0, i = 0;
+    SciErr sciErr;
+
+    int* piAddrl1 = NULL;
+    long long* l1 = NULL;
+    double* l2 = NULL;
+    int* lind = NULL;
+    long long* outindex = NULL;
+
+    int numrow = 0, numcol = 0, n = 0, cx1 = 1;
+    long *handelsvalue = NULL;
+    int i = 0;
 
     char *pstCompoundUID = NULL;
     char *pstParentUID = NULL;
     char *pstCurrentParentUID = NULL;
     char *pobjUID = NULL;
 
-    CheckRhs(1, 1);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     /*  set or create a graphic window */
-    GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &numrow, &numcol, &l1); /* We get the scalar value if it is ones */
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of handle at position 1.
+    sciErr = getMatrixOfHandle(pvApiCtx, piAddrl1, &numrow, &numcol, &l1); /* We get the scalar value if it is ones */
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+        return 1;
+    }
+
     n = numrow * numcol;
-    CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &numrow, &numcol, &l2);
-    CreateVar(Rhs + 2, MATRIX_OF_INTEGER_DATATYPE, &numrow, &numcol, &lind);
+    sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, numrow, numcol, &l2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
+
+    sciErr = allocMatrixOfDoubleAsInteger(pvApiCtx, nbInputArgument(pvApiCtx) + 2, numrow, numcol, &lind);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
 
     if (n > 1)
     {
-        C2F(dcopy)(&n, stk(l1), &cx1, stk(l2), &cx1);
-        C2F(dsort)(stk(l2), &n, istk(lind));
+        C2F(dcopy)(&n, (double*)l1, &cx1, l2, &cx1);
+        C2F(dsort)(l2, &n, (int*)(lind));
         for (i = 1; i < n; i++)
         {
-            long long i1 = (long long) * hstk(l2 + i);
-            long long i2 = (long long) * hstk(l2 + i - 1);
+            long long i1 = ((long long*)l2)[i];
+            long long i2 = ((long long*)l2)[i - 1];
 
             if (i1 == i2)
             {
@@ -75,7 +111,7 @@ int sci_glue( char * fname, unsigned long fname_len )
     handelsvalue = MALLOC(n * sizeof(long));
     for (i = 0 ; i < n ; i++)
     {
-        handelsvalue[i] = (unsigned long) (hstk(l1))[i];
+        handelsvalue[i] = (unsigned long) l1[i];
         pobjUID = (char*)getObjectFromHandle(handelsvalue[i]);
         if (pobjUID == NULL)
         {
@@ -119,11 +155,19 @@ int sci_glue( char * fname, unsigned long fname_len )
 
     numrow = 1;
     numcol = 1;
-    CreateVar(Rhs + 3, GRAPHICAL_HANDLE_DATATYPE, &numrow, &numcol, &outindex);
-    hstk(outindex)[0] = getHandle(pstCompoundUID);
+
+    sciErr = allocMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 3, numrow, numcol, &outindex);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
+
+    outindex[0] = getHandle(pstCompoundUID);
     releaseGraphicObjectProperty(__GO_PARENT__, pstCompoundUID, jni_string, 1);
-    LhsVar(1) = Rhs + 3;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 3;
+    ReturnArguments(pvApiCtx);
     FREE(handelsvalue);
 
     return 0;

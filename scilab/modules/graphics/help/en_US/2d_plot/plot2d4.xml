@@ -69,6 +69,11 @@ e.children(1).polyline_style=4;
 e.children(2).polyline_style=4;
 e.children(3).polyline_style=4;
  ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d4(x,[sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

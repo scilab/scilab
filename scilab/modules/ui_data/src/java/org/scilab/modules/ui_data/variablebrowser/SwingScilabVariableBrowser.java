@@ -56,6 +56,7 @@ import org.scilab.modules.ui_data.actions.CompiledFunctionFilteringAction;
 import org.scilab.modules.ui_data.actions.DoubleFilteringAction;
 import org.scilab.modules.ui_data.actions.FunctionLibFilteringAction;
 import org.scilab.modules.ui_data.actions.GraphicHandlesFilteringAction;
+import org.scilab.modules.ui_data.actions.HelpAction;
 import org.scilab.modules.ui_data.actions.ImplicitPolynomialFilteringAction;
 import org.scilab.modules.ui_data.actions.IntegerFilteringAction;
 import org.scilab.modules.ui_data.actions.IntrinsicFunctionFilteringAction;
@@ -93,11 +94,11 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
     private MenuBar menuBar;
     private Menu fileMenu;
+    private Menu helpMenu;
     private Menu filterMenu;
     private CheckBoxMenuItem filterDoubleCheckBox;
     private CheckBoxMenuItem filterPolynomialCheckBox;
     private CheckBoxMenuItem filterScilabVarCheckBox;
-    private CheckBoxMenuItem filterUserVarCheckBox;
     private CheckBoxMenuItem filterBooleanCheckBox;
     private CheckBoxMenuItem filterSparseCheckBox;
     private CheckBoxMenuItem filterSparseBoolCheckBox;
@@ -135,6 +136,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         ToolBar toolBar = ScilabToolBar.createToolBar();
         toolBar.add(RefreshAction.createButton(UiDataMessages.REFRESH));
         toolBar.addSeparator();
+        toolBar.add(HelpAction.createButton(UiDataMessages.HELP));
         filteringButton = ScilabVarFilteringButtonAction.createButton("Show/hide Scilab variable");
         //        toolBar.add(filteringButton);
         addToolBar(toolBar);
@@ -142,35 +144,35 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         dataModel = new SwingTableModel<Object>(columnsName);
 
         table = new JTable(dataModel) {
-                //Implement table cell tool tips.
-                public String getToolTipText(MouseEvent e) {
-                    String tip = null;
-                    TableModel model = ((JTable) e.getSource()).getModel();
-                    java.awt.Point p = e.getPoint();
-                    int rowIndex = rowAtPoint(p);
+            //Implement table cell tool tips.
+            public String getToolTipText(MouseEvent e) {
+                String tip = null;
+                TableModel model = ((JTable) e.getSource()).getModel();
+                java.awt.Point p = e.getPoint();
+                int rowIndex = rowAtPoint(p);
 
-                    if (rowIndex >= 0) {
-                        rowIndex = convertRowIndexToModel(rowIndex);
-                        int colIndex = columnAtPoint(p);
-                        if (colIndex == BrowseVar.TYPE_DESC_COLUMN_INDEX) { /* Scilab type */
-                            try {
-                                tip = Messages.gettext("Scilab type:") + " " + model.getValueAt(rowIndex, BrowseVar.TYPE_COLUMN_INDEX).toString();
-                            } catch (IllegalArgumentException exception) {
-                                /* If the type is not known/managed, don't crash */
-                            }
-                        } else {
+                if (rowIndex >= 0) {
+                    rowIndex = convertRowIndexToModel(rowIndex);
+                    int colIndex = columnAtPoint(p);
+                    if (colIndex == BrowseVar.TYPE_DESC_COLUMN_INDEX) { /* Scilab type */
+                        try {
+                            tip = Messages.gettext("Scilab type:") + " " + model.getValueAt(rowIndex, BrowseVar.TYPE_COLUMN_INDEX).toString();
+                        } catch (IllegalArgumentException exception) {
+                            /* If the type is not known/managed, don't crash */
+                        }
+                    } else {
 
-                            if (colIndex == BrowseVar.SIZE_COLUMN_INDEX) {
-                                /* Use the getModel() method because the
-                                 * column 5 has been removed from display
-                                 * but still exist in the model */
-                                tip = Messages.gettext("Bytes:") + " " + model.getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
-                            }
+                        if (colIndex == BrowseVar.SIZE_COLUMN_INDEX) {
+                            /* Use the getModel() method because the
+                             * column 5 has been removed from display
+                             * but still exist in the model */
+                            tip = Messages.gettext("Bytes:") + " " + model.getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
                         }
                     }
-                    return tip;
                 }
-            };
+                return tip;
+            }
+        };
 
         table.setFillsViewportHeight(true);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -196,6 +198,11 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         table.setCellSelectionEnabled(true);
 
         table.setBackground(Color.WHITE);
+        if (table.getGridColor().equals(Color.WHITE)) {
+            table.setGridColor(new Color(128, 128, 128));
+        }
+        table.setShowHorizontalLines(true);
+        table.setShowVerticalLines(true);
 
         for (int i = 0; i < aligment.length; i++) {
             align(table, columnsName[i], aligment[i]);
@@ -306,13 +313,13 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                 if (clickedRow != -1) {
                     String variableName = ((JTable) e.getSource()).getValueAt(clickedRow, 1).toString();
                     final ActionListener action = new ActionListener() {
-                            public void actionPerformed(ActionEvent e) {
+                        public void actionPerformed(ActionEvent e) {
 
-                            }
-                        };
+                        }
+                    };
 
                     String variableVisibility = ((JTable) e.getSource())
-                        .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
+                                                .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
 
                     // Global variables are not editable yet
                     if (variableVisibility.equals("global")) {
@@ -391,12 +398,15 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         fileMenu = ScilabMenu.createMenu();
         fileMenu.setText(UiDataMessages.FILE);
         fileMenu.setMnemonic('F');
+        fileMenu.add(RefreshAction.createMenuItem(UiDataMessages.REFRESH));
+        fileMenu.addSeparator();
         fileMenu.add(CloseAction.createMenu());
 
         menuBar.add(fileMenu);
 
         filterMenu = ScilabMenu.createMenu();
         filterMenu.setText(UiDataMessages.FILTER);
+        filterMenu.setMnemonic('I');
 
         filterScilabVarCheckBox = ScilabVarFilteringAction.createCheckBoxMenu();
         filterScilabVarCheckBox.setChecked(true);
@@ -471,6 +481,12 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         filterMenu.add(filterImplicitPolynomialCheckBox);
 
         menuBar.add(filterMenu);
+
+        helpMenu = ScilabMenu.createMenu();
+        helpMenu.setText("?");
+        helpMenu.setMnemonic('?');
+        helpMenu.add(HelpAction.createMenuItem(UiDataMessages.HELP));
+        menuBar.add(helpMenu);
     }
 
 

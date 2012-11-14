@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="subplot">
     <refnamediv>
         <refname>subplot</refname>
-        <refpurpose> divide a graphics window into a matrix of sub-windows</refpurpose>
+        <refpurpose>divide a graphics window into a matrix of sub-windows</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -51,20 +51,6 @@
         </para>
     </refsection>
     <refsection>
-        <title>Sample</title>
-        <scilab:image>
-            subplot(221)
-            plot2d()
-            subplot(222)
-            plot3d()
-            subplot(2,2,3)
-            param3d()
-            subplot(2,2,4)
-            hist3d()
-            
-        </scilab:image>
-    </refsection>
-    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 subplot(221)
@@ -76,6 +62,17 @@ param3d()
 subplot(2,2,4)
 hist3d()
  ]]></programlisting>
+        <scilab:image>
+            subplot(221)
+            plot2d()
+            subplot(222)
+            plot3d()
+            subplot(2,2,3)
+            param3d()
+            subplot(2,2,4)
+            hist3d()
+            
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

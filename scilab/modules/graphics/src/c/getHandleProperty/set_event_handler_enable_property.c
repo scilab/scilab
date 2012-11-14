@@ -30,27 +30,27 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_event_handler_enable_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_event_handler_enable_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-	int b =  (int)FALSE;
-	BOOL status = FALSE;
+    int b =  (int)FALSE;
+    BOOL status = FALSE;
 
-	b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "event_handler_enable");
-	if (b == NOT_A_BOOLEAN_VALUE)
+    b =  tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "event_handler_enable");
+    if (b == NOT_A_BOOLEAN_VALUE)
     {
-		return SET_PROPERTY_ERROR;
-	}
+        return SET_PROPERTY_ERROR;
+    }
 
-	status = setGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_ENABLE__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_ENABLE__, &b, jni_bool, 1);
 
-	if (status == TRUE)
-	{
-		return SET_PROPERTY_SUCCEED;
-	}
-	else
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"event_handler_enable");
-		return SET_PROPERTY_ERROR;
-	}
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "event_handler_enable");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

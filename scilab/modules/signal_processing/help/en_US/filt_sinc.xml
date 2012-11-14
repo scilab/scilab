@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="filt_sinc">
     <refnamediv>
         <refname>filt_sinc</refname>
-        <refpurpose>  samples of sinc function</refpurpose>
+        <refpurpose>samples of sinc function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -40,9 +40,12 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot(filt_sinc(100,0.1))
  ]]></programlisting>
+        <scilab:image>
+            plot(filt_sinc(100,0.1))
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

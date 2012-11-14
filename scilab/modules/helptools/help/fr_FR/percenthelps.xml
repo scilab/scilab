@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="percenthelps">
     <refnamediv>
         <refname>%helps</refname>
-        <refpurpose> variable contenant les noms des répertoires des chapitres d'aide  </refpurpose>
+        <refpurpose>variable contenant les noms des répertoires des chapitres d'aide  </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -22,7 +22,7 @@
         <para>
             <literal>%helps</literal> est une matrice de chaînes de caractères à deux colonnes. Chaque ligne est formée comme ceci
         </para>
-        <programlisting><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 répertoire_du_chapitre    titre_du_chapitre
  ]]></programlisting>
         <para>
