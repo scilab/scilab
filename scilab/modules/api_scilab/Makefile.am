@@ -40,6 +40,7 @@ libsciapi_scilab_la_CPPFLAGS= \
 -I$(top_srcdir)/modules/elementary_functions/includes \
 -I$(top_srcdir)/modules/string/includes \
 -I$(top_srcdir)/libs/dynamiclibrary/includes \
+$(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
