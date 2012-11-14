@@ -73,14 +73,28 @@ TYPES_IMPEXP void addSpaces(std::wostringstream *_postr, int _iSpace);
 template <typename T>
 void getUnsignedIntFormat(T _TVal, int *_piWidth)
 {
-    *_piWidth = static_cast<int>(log10(static_cast<long double>(_TVal)) + 1);
+    if(_TVal == 0)
+    {
+        *_piWidth = 0;
+    }
+    else
+    {
+        *_piWidth = static_cast<int>(log10(static_cast<long double>(_TVal)) + 1);
+    }
     *_piWidth += 1;
 }
 
 template <typename T>
 void getSignedIntFormat(T _TVal, int *_piWidth)
 {
-    *_piWidth = static_cast<int>(log10(static_cast<long double>(_abs64(_TVal))) + 1);
+    if(_TVal == 0)
+    {
+        *_piWidth = 0;
+    }
+    else
+    {
+        *_piWidth = static_cast<int>(log10(static_cast<long double>(_abs64(_TVal))) + 1);
+    }
     *_piWidth += 1;
 }
 
