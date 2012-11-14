@@ -96,6 +96,8 @@ Bug fixes
 
 * Bug #12050 fixed - Fix a typo: dimensionnal => dimensional.
 
+* Bug #12077 fixed - In help, attribute bgcolor was not handled in tables.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
