@@ -65,20 +65,20 @@
                     (Euler's method),
                 </listitem>
                 <listitem>
-                    <emphasis>k2</emphasis>is the increment based on the slope at the midpoint of the interval, using 
+                    <emphasis>k2</emphasis> is the increment based on the slope at the midpoint of the interval, using 
                     <emphasis>
                         y<subscript>n</subscript> + h*k1/2
                     </emphasis>
                     ,
                 </listitem>
                 <listitem>
-                    <emphasis>k3</emphasis>is again the increment based on the slope at the midpoint, but now using 
+                    <emphasis>k3</emphasis> is again the increment based on the slope at the midpoint, but now using 
                     <emphasis>
                         y<subscript>n</subscript> + h*k2/2
                     </emphasis>
                 </listitem>
                 <listitem>
-                    <emphasis>k4</emphasis>is the increment based on the slope at the end of the interval, using 
+                    <emphasis>k4</emphasis> is the increment based on the slope at the end of the interval, using 
                     <emphasis>
                         y<subscript>n</subscript> + h*k3
                     </emphasis>
@@ -90,7 +90,7 @@
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
-            .So in <emphasis>k4</emphasis>, we are approximating 
+            . So in <emphasis>k4</emphasis>, we are approximating 
             <emphasis>
                 y<superscript>(4)</superscript><subscript>n</subscript>
             </emphasis>
@@ -105,7 +105,7 @@
             <emphasis>
                 number of steps * O(h<superscript>5</superscript>)
             </emphasis>
-            .And since <emphasis>number of steps = interval size / h</emphasis> by definition, the total error is in 
+            . And since <emphasis>number of steps = interval size / h</emphasis> by definition, the total error is in 
             <emphasis>
                 O(h<superscript>4</superscript>)
             </emphasis>
@@ -123,11 +123,15 @@
             in total.
         </para>
         <para>
-            Althought the solver works fine for abstol up to <emphasis>abstol = 10^{-3}</emphasis>, rounding errors sometimes come into play as we approach 
+            Althought the solver works fine for abstol up to 
+            <emphasis>
+                abstol = 10<superscript>-3</superscript>
+            </emphasis>
+            , rounding errors sometimes come into play as we approach 
             <emphasis>
                 4*10<superscript>-4</superscript>
             </emphasis>
-            .Indeed, the interval splitting can't be done properly and we get capricious results.
+            . Indeed, the interval splitting can't be done properly and we get capricious results.
         </para>
     </refsection>
     <refsection>
@@ -207,7 +211,7 @@ Time for Runge-Kutta :
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="CVode">Cvode</link>
+                <link linkend="CVode">CVode</link>
             </member>
             <member>
                 <link linkend="IDA">IDA</link>
