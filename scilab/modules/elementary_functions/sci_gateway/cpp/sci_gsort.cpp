@@ -54,12 +54,14 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        wstrWay = in[2]->getAs<types::String>()->get(0);
-
-        if (wstrWay != L"i" && wstrWay != L"d")
+        wchar_t* pwstWay = in[2]->getAs<types::String>()->get(0);
+        if (pwstWay[0] == L'i')
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d : It must be one of the following strings : i or d.\n"), "gsort", 3);
-            return types::Function::Error;
+            wstrWay = L"i";
+        }
+        else
+        {
+            wstrWay = L"d";
         }
     }
 
@@ -79,7 +81,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
                 wstrProcess != L"lc" &&
                 wstrProcess != L"lr")
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "gsort", 2, "r", "c", "g", "lr", "lc");
+            Scierror(999, _("%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"), "gsort", 2);
             return types::Function::Error;
         }
     }
