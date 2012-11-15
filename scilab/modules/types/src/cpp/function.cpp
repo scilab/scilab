@@ -179,7 +179,15 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     _iRetCount = Max(1, _iRetCount);
     gStr.m_iIn = (int)in.size();
     gStr.m_iOut = _iRetCount;
-    gStr.m_pIn = &in;
+
+    //copy input parameter to prevent calling gateway modifies input data
+    typed_list inCopy;
+    for(int i = 0 ; i < in.size() ; i++)
+    {
+        inCopy.push_back(in[i]->clone());
+    }
+
+    gStr.m_pIn = &inCopy;
     gStr.m_pOpt = &opt;
     typed_list::value_type tmpOut[MAX_OUTPUT_VARIABLE];
     std::fill_n(tmpOut, MAX_OUTPUT_VARIABLE, static_cast<typed_list::value_type>(0));
@@ -192,6 +200,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     gStr.m_pOutOrder = &outOrder[0];
 
     char* pFunctionName = wide_string_to_UTF8(m_wstName.c_str());
+
     //call gateway (thoses cast should looks  suspicious)
     iRet = m_pOldFunc(pFunctionName, reinterpret_cast<int*>(&gStr));
     FREE(pFunctionName);
@@ -203,14 +212,16 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     {
         for (std::size_t i(0); i != _iRetCount && outOrder[i] != -1 && outOrder[i] != 0 ; ++i)
         {
-            if (outOrder[i] - 1 < in.size())
+            if (outOrder[i] - 1 < inCopy.size())
             {
                 std::size_t const iPos(outOrder[i] - 1);
-                out.push_back(in[iPos]);
+                //protect variable to deletion
+                inCopy[iPos]->IncreaseRef();
+                out.push_back(inCopy[iPos]);
             }
             else
             {
-                std::size_t const iPos(outOrder[i] - in.size() - 1);
+                std::size_t const iPos(outOrder[i] - inCopy.size() - 1);
                 out.push_back(tmpOut[iPos]);
                 tmpOut[iPos] = 0;
             }
@@ -219,6 +230,20 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     for (std::size_t i(0); i != MAX_OUTPUT_VARIABLE; ++i)
     {
         delete tmpOut[i];// delete 0 is safe cf.5.3.5/2
+    }
+
+    //clean input copy
+    for(int i = 0 ; i < in.size() ; i++)
+    {
+        if(inCopy[i]->isDeletable())
+        {
+            delete inCopy[i];
+        }
+        else
+        {
+            //remove protection
+            inCopy[i]->DecreaseRef();
+        }
     }
 
     FREE(gStr.m_pstName);
