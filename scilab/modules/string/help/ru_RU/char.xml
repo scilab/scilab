@@ -49,7 +49,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <emphasize role="bold">Один входной аргумент:</emphasize>
+            <emphasis role="bold">Один входной аргумент:</emphasis>
         </para>
         <para>
             Для  заданного cell-массива строковых значений <varname>x</varname> данная функция
@@ -65,7 +65,7 @@
             <literal>[n1, n3, n4,...]</literal>.
         </para>
         <para>
-            <emphasize role="bold">Более одного входного аргумента:</emphasize>
+            <emphasis role="bold">Более одного входного аргумента:</emphasis>
         </para>
         <para>
             Для заданных массивов строковых значений <literal>st1, st2, st3,...</literal> эта функция

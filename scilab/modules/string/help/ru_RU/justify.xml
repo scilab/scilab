@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA -
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+    <refentry xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook"
+        xml:lang="ru" xml:id="justify">
+    <refnamediv>
+        <refname>justify</refname>
+        <refpurpose>выравнивание массива символов</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>Tj = justify(T, opt)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>T</term>
+                <listitem>
+                    <para>матрица символьных строк.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Tj</term>
+                <listitem>
+                <para>
+                    матрица символьных строк. Результат выравнивания.
+                </para>
+            </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>opt</term>
+                <listitem>
+                    <para>
+                        символьная опция с возможными значениями:
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>'r' или 'right'</term>
+                            <listitem>
+                                <para>для выравнивания по правому краю;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>'l' или 'left'</term>
+                            <listitem>
+                                <para>для выравнивания по левому краю;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>'c' или 'center'</term>
+                            <listitem>
+                                <para>для выравнивания по центру.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>justify</function> выравнивает столбцы матрицы строк в соответствии с заданной опцией <varname>opt</varname>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+t=['1234','x','adfdfgdfghfgj'
+   '1','354556','dgf'
+   'sdfgd','','sdfsf'];
+justify(t,'l')
+justify(t,'c')
+justify(t,'r')
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="length">length</link>
+            </member>
+            <member>
+                <link linkend="part">part</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+                                    

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA -
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:svg="http://www.w3.org/2000/svg"
+xmlns:mml="http://www.w3.org/1998/Math/MathML"
+xmlns:db="http://docbook.org/ns/docbook"
+xml:lang="ru" xml:id="isnum">
+    <refnamediv>
+        <refname>isnum</refname>
+        <refpurpose>
+            проверка того, что строка представляет число
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>res = isnum(str)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                <para>
+                    символьная строка или матрица символьных строк.
+                </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>матрица логических значений.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>res = isnum(str)</code> возвращает <constant>%t</constant>, если <varname>str</varname> представляет число.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+isnum(['1'     , ..
+    '-1.23' , ..
+    '+1e+23', ..
+    '1d+23' , ..
+    'A'     , ..
+    '%pi'])
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="isletter">isletter</link>
+            </member>
+            <member>
+                <link linkend="isdigit">isdigit</link>
+            </member>
+            <member>
+                <link linkend="isalphanum">isalphanum</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
