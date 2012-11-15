@@ -337,7 +337,7 @@ assign			"="
     return scan_throw(RETURN);
 }
 
-^{spaces}*/({id}){spaces}[^(=<>~] {
+^{spaces}*/({id}){spaces}[^(=<>~@] {
         BEGIN(BEGINID);
 }
 
@@ -1224,6 +1224,72 @@ assign			"="
         scan_step();
         return scan_throw(EOL);
     }
+
+    {assign} {
+        if (last_token == STR)
+        {
+            yylval.str = new std::wstring(to_wide_string(yytext));
+            return scan_throw(STR);
+        }
+        else
+        {
+            BEGIN(INITIAL);
+            return scan_throw(ASSIGN);
+        }
+    }
+
+    {lparen} {
+        if (last_token == STR)
+        {
+            yylval.str = new std::wstring(to_wide_string(yytext));
+            return scan_throw(STR);
+        }
+        else
+        {
+            BEGIN(INITIAL);
+            return scan_throw(LPAREN);
+        }
+    }
+
+    {lowerthan} {
+        if (last_token == STR)
+        {
+            yylval.str = new std::wstring(to_wide_string(yytext));
+            return scan_throw(STR);
+        }
+        else
+        {
+            BEGIN(INITIAL);
+            return scan_throw(LT);
+        }
+    }
+
+    {greaterthan} {
+        if (last_token == STR)
+        {
+            yylval.str = new std::wstring(to_wide_string(yytext));
+            return scan_throw(STR);
+        }
+        else
+        {
+            BEGIN(INITIAL);
+            return scan_throw(GT);
+        }
+    }
+
+    {boolnot} {
+        if (last_token == STR)
+        {
+            yylval.str = new std::wstring(to_wide_string(yytext));
+            return scan_throw(STR);
+        }
+        else
+        {
+            BEGIN(INITIAL);
+            return scan_throw(NOT);
+        }
+    }
+
 
     [^ \t\v\f\r\n,;'"]+               {
         yylval.str = new std::wstring(to_wide_string(yytext));
