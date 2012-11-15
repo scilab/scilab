@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16272)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -375,6 +375,12 @@ msgstr "没有发现模块 %s。\n"
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr "出错：未找到有效的以“%s”编码的模块文件 %s（不以“%s”编码）。\n"
+
+#, c-format
+msgid ""
+"%s: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for "
+"element wise operation \n"
+msgstr ""
 
 msgid "SCI environment variable not defined.\n"
 msgstr "未定义 SCI 环境变量。\n"
