@@ -7,44 +7,25 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Run with exec("SCI/modules/xcos/help/en_US/solvers/integ.sce");
+// Run with exec("SCI/modules/xcos/examples/solvers/integ.sce");
 
 // Import the diagram and augment the ending time
+loadScicos();
+loadXcosLibs();
 importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
-scs_m.props.tf = 3500;
+scs_m.props.tf = 30000;
 
-// BDF / Newton
-// Select the solver
-scs_m.props.tol(6) = 0;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for BDF / Newton :");
+solverName=["BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functionnal"];
 
-// BDF / Functional
-// Select the solver
-scs_m.props.tol(6) = 1;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for BDF / Functional :");
+for solver=0:3
 
-// Adams / Functional
-// Select the solver
-scs_m.props.tol(6) = 3;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for Adams / Functional :");
+ // Select the solver
+ scs_m.props.tol(6) = solver;
 
-// Adams / Newton
-// Select the solver
-scs_m.props.tol(6) = 2;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for Adams / Newton :");
+ // Start the timer, launch the simulation and display time
+ tic();
+ try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end;
+ t = toc();
+ disp(t, "Time for " + solverName(solver+1) + " :");
+
+end

@@ -13,7 +13,7 @@
     <refnamediv>
         <refname>IDA</refname>
         <refpurpose>
-            <emphasis>IDA</emphasis> (Implicit Differential Algebraic) is a numerical solver providing an efficient and stable method to solve DAE Initial Value Problems. Called by <link linkend="scicos">scicos</link>.
+            <emphasis>IDA</emphasis> (Implicit Differential Algebraic) is a numerical solver providing an efficient and stable method to solve Differential Algebraic Equations (DAEs) Initial Value Problems. Called by <link linkend="xcos">xcos</link>.
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -48,7 +48,7 @@
             <emphasis>
                 yPrime<subscript>0</subscript>
             </emphasis>
-            ,<emphasis>IDA</emphasis> approximates 
+            , <emphasis>IDA</emphasis> approximates 
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -142,16 +142,15 @@
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/IDA_Example.xcos");
-
 // Redefining messagebox() to avoid popup
 function messagebox(msg, title)
-disp(title);
-disp(msg);
+ disp(title);
+ disp(msg);
 endfunction
-
-// Simulation
-xcos_simulate(scs_m, 4);
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
 ]]></scilab:image>
         </para>
     </refsection>
