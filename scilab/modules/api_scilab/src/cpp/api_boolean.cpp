@@ -80,7 +80,6 @@ SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     typed_list in = *pStr->m_pIn;
     InternalType** out = pStr->m_pOut;
-    int*	piRetCount = pStr->m_piRetCount;
 
     Bool *pBool = new Bool(_iRows, _iCols);
     if(pBool == NULL)

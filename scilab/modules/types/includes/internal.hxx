@@ -171,6 +171,7 @@ namespace types
         virtual bool                    isListDelete(void) { return false; }
         virtual bool                    isListInsert(void) { return false; }
         virtual bool                    isListUndefined(void) { return false; }
+        virtual bool                    isPointer(void) { return false; }
 
         void clearPrintState()
         {

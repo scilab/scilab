@@ -1522,6 +1522,43 @@ std::size_t Sparse::nonZeros(std::size_t r) const
     return res;
 }
 
+int* Sparse::getNbItemByRow(int* _piNbItemByRows)
+{
+    int* piNbItemByRows = new int[getRows() + 1];
+    if (isComplex())
+    {
+        mycopy_n(matrixCplx->outerIndexPtr(), getRows() + 1, piNbItemByRows);
+    }
+    else
+    {
+        mycopy_n(matrixReal->outerIndexPtr(), getRows() + 1, piNbItemByRows);
+    }
+
+    for(int i = 0 ; i < getRows() ; i++)
+    {
+        _piNbItemByRows[i] = piNbItemByRows[i + 1] - piNbItemByRows[i];
+    }
+
+    delete[] piNbItemByRows;
+    return _piNbItemByRows;
+}
+
+int* Sparse::getColPos(int* _piColPos)
+{
+    if(isComplex())
+    {
+        mycopy_n(matrixCplx->innerIndexPtr(), nonZeros(), _piColPos);
+    }
+    else
+    {
+        mycopy_n(matrixReal->innerIndexPtr(), nonZeros(), _piColPos);
+    }
+
+    std::transform(_piColPos, _piColPos + nonZeros(), _piColPos, std::bind2nd(std::plus<double>(), 1));
+    return _piColPos;
+}
+
+
 namespace
 {
 template<typename S> struct GetReal: std::unary_function<typename S::InnerIterator, double>
@@ -2073,14 +2110,24 @@ std::size_t SparseBool::nbTrue(std::size_t r) const
     return piIndex[r + 1] - piIndex[r];
 }
 
-int* SparseBool::getNbItemByRow()
+int* SparseBool::getNbItemByRow(int* _piNbItemByRows)
 {
-    return matrixBool->outerIndexPtr();
+    int* piNbItemByRows = new int[getRows() + 1];
+    mycopy_n(matrixBool->outerIndexPtr(), getRows() + 1, piNbItemByRows);
+
+    for(int i = 0 ; i < getRows() ; i++)
+    {
+        _piNbItemByRows[i] = piNbItemByRows[i + 1] - piNbItemByRows[i];
+    }
+
+    delete[] piNbItemByRows;
+    return _piNbItemByRows;
 }
 
-int* SparseBool::getColPos()
+int* SparseBool::getColPos(int* _piColPos)
 {
-    return matrixBool->innerIndexPtr();
+    mycopy_n(matrixBool->innerIndexPtr(), getRows(), _piColPos);
+    return _piColPos;
 }
 
 double* SparseBool::outputRowCol(double* out)const

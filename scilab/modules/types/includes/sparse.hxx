@@ -280,6 +280,8 @@ struct TYPES_IMPEXP Sparse : GenericType
      */
     std::size_t nonZeros(std::size_t i) const;
 
+    int* getNbItemByRow(int* _piNbItemByRows);
+    int* getColPos(int* _piColPos);
 
     /**
        "in-place" cast into a sparse matrix of comlpex values
@@ -507,8 +509,8 @@ struct TYPES_IMPEXP SparseBool : GenericType
      */
     std::size_t nbTrue(std::size_t i) const;
 
-        int* getNbItemByRow();
-        int* getColPos();
+    int* getNbItemByRow(int* _piNbItemByRows);
+    int* getColPos(int* _piColPos);
     /**
        output 1-base column numbers of the non zero elements
        @param out : ptr used as an output iterator over double values

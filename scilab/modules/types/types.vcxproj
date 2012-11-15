@@ -254,6 +254,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\listundefined.hxx" />
     <ClInclude Include="includes\matrixiterator.hxx" />
     <ClInclude Include="includes\mlist.hxx" />
+    <ClInclude Include="includes\pointer.hxx" />
     <ClInclude Include="includes\polynom.hxx" />
     <ClInclude Include="includes\singlepoly.hxx" />
     <ClInclude Include="includes\singlestruct.hxx" />

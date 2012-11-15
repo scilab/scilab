@@ -12,6 +12,7 @@
  * However, the API (profile of the functions in the header files) will be
  * still available and supported in Scilab 6.
  */
+#include "sparse.hxx"
 
 extern "C"
 {
@@ -25,6 +26,7 @@ extern "C"
 #include "call_scilab.h"
 }
 
+using namespace types;
 
 static int getCommonAllocatedSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
 static int getCommonNamedAllocatedSparseMatrix(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
@@ -80,30 +82,43 @@ SciErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* 
 		return sciErr;
 	}
 
-	*_piNbItem = _piAddress[4];
+    Sparse* pS = ((InternalType*)_piAddress)->getAs<Sparse>();
+
+    *_piNbItem = pS->nonZeros();
 
 	if(_piNbItemRow == NULL)
 	{
 		return sciErr;
 	}
-	*_piNbItemRow = _piAddress + 5;//4 for header + 1 for NbItem
+
+    //WARNING: leak memory, caller must free pointer
+    int* piNbItemRows = (int*)MALLOC(sizeof(int) * *_piRows);
+    *_piNbItemRow = pS->getNbItemByRow(piNbItemRows);
 
 	if(_piColPos == NULL)
 	{
 		return sciErr;
 	}
-	*_piColPos = *_piNbItemRow + *_piRows;
+
+    //WARNING: leak memory, caller must free pointer
+    int* piColPos = (int*)MALLOC(sizeof(int) * *_piNbItem);
+    *_piColPos = pS->getColPos(piColPos);
 
 	if(_pdblReal == NULL)
 	{
 		return sciErr;
 	}
 
-	iPos = (*_piNbItem + *_piRows) % 2 == 1 ? 0 : 1;
-	*_pdblReal = (double*)(*_piColPos + *_piNbItem + iPos);
+    //WARNING: leak memory, caller must free pointers
+    double* pR = (double*)MALLOC(sizeof(double) * *_piNbItem);
+    double* pI = (double*)MALLOC(sizeof(double) * *_piNbItem);
+    pS->outputValues(pR, pI);
+
+    *_pdblReal = pR;
+
 	if(_iComplex == 1 && _pdblImg != NULL)
 	{
-		*_pdblImg = *_pdblReal + *_piNbItem;
+		*_pdblImg = pI;
 	}
 	return sciErr;
 }

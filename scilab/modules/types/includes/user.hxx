@@ -21,20 +21,21 @@ namespace types
     class User : public InternalType
     {
     public :
-        User()                                  {};
-        virtual	~User()                         {};
+                                User() {}
+        virtual	                ~User() {}
         T*                      getAsUserType() { return this; }
-        virtual RealType        getType(void)   { return RealUserType; }
+        //non virtaul function to prevent overriding in user derived class
+        RealType                getType(void)   { return RealUserType; } 
 
         /*
         ** User will be asked to implement the following methods
         ** in order Scilab engine to manage correctly this user type
         */
     public :
-        virtual bool            toString(std::wostringstream& ostr) = 0;
-        virtual std::wstring     getTypeStr() = 0;
-        virtual std::wstring     getShortTypeStr() = 0;
-        virtual InternalType*    clone() = 0;
+        virtual bool            toString(std::wostringstream& ostr) { return L""; }
+        std::wstring            getTypeStr() { return L"pointer"; }
+        std::wstring            getShortTypeStr() { return L"p"; }
+        InternalType*           clone() { return new User(); }
     };
 }
 

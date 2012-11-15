@@ -125,7 +125,7 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int iType = 0;
-    if (	_piAddress == NULL)
+    if (_piAddress == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _iComplex ? "getComplexMatrixOfDouble" : "getMatrixOfDouble");
         return sciErr;
@@ -251,7 +251,6 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, char _cType, int _iCom
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     typed_list in = *pStr->m_pIn;
     InternalType** out = pStr->m_pOut;
-    int*	piRetCount = pStr->m_piRetCount;
 
     Double* pDbl = NULL;
     try

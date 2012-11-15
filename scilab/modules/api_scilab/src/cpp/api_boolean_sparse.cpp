@@ -66,14 +66,16 @@ SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
 		return sciErr;
 	}
 
-    *_piNbItemRow = pSpBool->getNbItemByRow();
+    int* piNbItemRows = (int*)MALLOC(sizeof(int) * *_piRows);
+    *_piNbItemRow = pSpBool->getNbItemByRow(piNbItemRows);
 
 	if(_piColPos == NULL)
 	{
 		return sciErr;
 	}
 
-    *_piColPos = pSpBool->getColPos();
+    int* piColPos = (int*)MALLOC(sizeof(int) * *_piNbItem);
+    *_piColPos = pSpBool->getColPos(piColPos);
 
 	return sciErr;
 }

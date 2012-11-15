@@ -77,7 +77,6 @@ SciErr allocMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, long
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     typed_list in = *pStr->m_pIn;
     InternalType** out = pStr->m_pOut;
-    int*	piRetCount = pStr->m_piRetCount;
 
     GraphicHandle *pHandle = new GraphicHandle(_iRows, _iCols);
     if(pHandle == NULL)
