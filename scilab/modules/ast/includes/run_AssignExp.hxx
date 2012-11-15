@@ -27,21 +27,25 @@ void visitprivate(const AssignExp  &e)
         {
             // x = ?
             /*getting what to assign*/
-            expected_size_set(1);
-            e.right_exp_get().accept(*this);
-
-            if (result_getSize() != 1)
+            InternalType *pIT = e.right_val_get();
+            if (pIT == NULL)
             {
-                std::wostringstream os;
-                os << L"Can not assign multiple value in a single variable" << std::endl;;
-                //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
-                throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+                expected_size_set(1);
+                e.right_exp_get().accept(*this);
+
+                if (result_getSize() != 1)
+                {
+                    std::wostringstream os;
+                    os << L"Can not assign multiple value in a single variable" << std::endl;;
+                    //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
+                    throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+                }
+
+                pIT = result_get();
+                //reset result
+                result_set(NULL);
             }
 
-            InternalType *pIT = result_get();
-
-            //reset result
-            result_set(NULL);
             if (pIT->isImplicitList())
             {
                 if (pIT->getAs<ImplicitList>()->isComputable())
@@ -109,8 +113,14 @@ void visitprivate(const AssignExp  &e)
             }
 
             /*getting what to assign*/
-            e.right_exp_get().accept(*this);
-            InternalType* pITR = result_get();
+            InternalType* pITR = e.right_val_get();
+            if (pITR == NULL)
+            {
+                e.right_exp_get().accept(*this);
+                pITR = result_get();
+                //reset result
+                result_set(NULL);
+            }
 
             if (pITR == NULL)
             {
@@ -119,9 +129,6 @@ void visitprivate(const AssignExp  &e)
                 os << _W("Unable to extract right part expression.\n");
                 throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
             }
-
-            //reset result
-            result_set(NULL);
 
             if (pIT == NULL)
             {
@@ -257,8 +264,14 @@ void visitprivate(const AssignExp  &e)
             }
 
             /*getting what to assign*/
-            e.right_exp_get().accept(*this);
-            InternalType* pITR = result_get();
+            InternalType* pITR = e.right_val_get();
+            if (pITR == NULL)
+            {
+                e.right_exp_get().accept(*this);
+                pITR = result_get();
+                //reset result
+                result_set(NULL);
+            }
 
             if (pITR == NULL)
             {
@@ -267,9 +280,6 @@ void visitprivate(const AssignExp  &e)
                 os << _W("Unable to extract right part expression.\n");
                 throw ScilabError(os.str(), 999, e.left_exp_get().location_get());
             }
-
-            //reset result
-            result_set(NULL);
 
             if (pIT == NULL)
             {
@@ -780,36 +790,31 @@ void visitprivate(const AssignExp  &e)
             int iLhsCount = (int)pList->exps_get().size();
 
             /*getting what to assign*/
-            expected_size_set(iLhsCount);
-            e.right_exp_get().accept(*this);
+            T exec;
+            exec.expected_size_set(iLhsCount);
+            e.right_exp_get().accept(exec);
 
-            if (result_getSize() != iLhsCount)
+            if (exec.result_getSize() != iLhsCount)
             {
                 std::wostringstream os;
-                os << L"Incompatible assignation: trying to assign " << result_getSize();
+                os << L"Incompatible assignation: trying to assign " << exec.result_getSize();
                 os << " values in " << iLhsCount << " variables." << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
-
 
             std::list<Exp *>::const_reverse_iterator it;
             int i = (int)iLhsCount - 1;
             for (it = pList->exps_get().rbegin() ; it != pList->exps_get().rend() ; it++, i--)
             {
-                const SimpleVar *pListVar	= dynamic_cast<const SimpleVar*>((*it));
-                symbol::Context::getInstance()->put(pListVar->name_get(), *result_get(i));
-                if (e.is_verbose() && ConfigVariable::isPromptShow())
-                {
-                    std::wostringstream ostr;
-                    ostr << pListVar->name_get().name_get() << L"  = " << std::endl;
-                    ostr << std::endl;
-                    scilabWriteW(ostr.str().c_str());
-                    VariableToString(result_get(i));
-                }
+                //create a new AssignExp and run it
+                AssignExp* pAssign = new AssignExp((*it)->location_get(), *(*it), *const_cast<Exp*>(&e.right_exp_get()), exec.result_get(i));
+                pAssign->set_verbose(e.is_verbose());
+                pAssign->accept(*this);
+
                 //clear result to take care of [n,n]
-                result_set(i, NULL);
+                exec.result_set(i, NULL);
             }
-            result_clear();
+            exec.result_clear();
             return;
         }
 
