@@ -78,7 +78,7 @@
             that <code>part(haystack,ind(k)+(0:length(needle(i))-1))</code> is
             the same string than <literal>needle(i)</literal>. If
             <varname>which</varname> argument is required it contains these
-            <literal>i</literal>. When using the third parameters <literal>"r"</literal>, the <varname>needle</varname>
+            <literal>i</literal>. When using the third parameter <literal>"r"</literal>, the <varname>needle</varname>
             should be a string of regular expression. And then <function>strindex</function> is going to
             match it with <varname>haystack</varname> according to the regular express rules.
         </para>
@@ -100,7 +100,7 @@
         <para>
             The rules of regular expression are similar to Perl language. For a
             quick start, see <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
-            For a more in-depth tutorial on , see <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
+            For a more in-depth tutorial on, see <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
             and for the reference page, see <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>
         </para>
     </refsection>

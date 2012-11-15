@@ -46,7 +46,7 @@ xml:lang="en" xml:id="isnum">
     <refsection>
         <title>Description</title>
         <para>
-            <code>res = isnum(str)</code>returns <constant>%t</constant> if
+            <code>res = isnum(str)</code> returns <constant>%t</constant> if
             <varname>str</varname> represents a number.
         </para>
     </refsection>

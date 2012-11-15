@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                    <para>a character string.</para>
+                    <para>a character string or an array of integers.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -39,8 +39,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>res = isascii(str)</code> returns <constant>%t</constant> (TRUE) if <varname>str</varname> is a 7-bit
-            US-ASCII character code between 0 and octal 0177 inclusive.
+            <code>res = isascii(str)</code> returns <constant>%t</constant>
+            (TRUE) if entries of <varname>str</varname> are a 7-bit
+            US-ASCII character code between 0 and octal 0177 inclusive (or
+            entries of <varname>str</varname> are 7-bit US-ASCII characters).
             Otherwise returns <constant>%f</constant> (FALSE).
         </para>
     </refsection>

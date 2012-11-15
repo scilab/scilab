@@ -13,7 +13,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="tokenpos">
     <refnamediv>
         <refname>tokenpos</refname>
-        <refpurpose>returns the tokens positions in a character string.  </refpurpose>
+        <refpurpose>
+            returns the tokens positions in a character string
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -53,7 +55,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>kdf = tokenpos(str [,delimiter]) </code> searches the tokens
+            <code>kdf = tokenpos(str [,delimiter])</code> searches the tokens
             included in the string <varname>str</varname>. The
             <varname>delimiter</varname> default value is <literal>[" ",&lt;Tab&gt;]</literal>
             where <literal>&lt;Tab&gt;</literal> stands for
@@ -64,9 +66,9 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-str='This is a character string';
-kdf=tokenpos(str)
-first=part(str,kdf(1,1):kdf(1,2))
+str = 'This is a character string';
+kdf = tokenpos(str)
+first = part(str, kdf(1,1):kdf(1,2))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
