@@ -124,7 +124,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      */
     public void hyperlinkUpdate(HyperlinkEvent event) {
         if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-            if (event.getDescription().startsWith("http://")) {
+            if (event.getDescription().startsWith("http://") || event.getDescription().startsWith("https://")) {
                 WebBrowser.openUrl(event.getURL(), event.getDescription());
             } else if (event.getDescription().startsWith(SCILAB_PROTO)) {
                 if (helpSets == null) {
