@@ -207,23 +207,7 @@ void visitprivate(const LogicalOpExp &e)
 
     InternalType *pResult = NULL;
 
-    if (TypeL != GenericType::RealBool)
-    {
-        e.right_get().accept(*this);
-        pITR = result_get();
-        switch (e.oper_get())
-        {
-            case LogicalOpExp::logicalShortCutOr :
-            case LogicalOpExp::logicalOr :
-            case LogicalOpExp::logicalShortCutAnd :
-            case LogicalOpExp::logicalAnd :
-                pResult = callOverload(e.oper_get(), pITL, pITR);
-                break;
-            default :
-                break;
-        }
-    }
-    else
+    if (TypeL == GenericType::RealBool)
     {
         Bool *pL = pITL->getAs<types::Bool>();
         switch (e.oper_get())
@@ -380,6 +364,63 @@ void visitprivate(const LogicalOpExp &e)
                 pResult = callOverload(e.oper_get(), pITL, pITR);
                 break;
             }
+        }
+    }
+    else if (pITL->isInt())
+    {
+        int iErr = 2;
+        e.right_get().accept(*this);
+        pITR = result_get();
+        GenericType::RealType TypeR = pITR->getType();
+
+        if (TypeL != TypeR)
+        {
+            pResult = callOverload(e.oper_get(), pITL, pITR);
+        }
+        else
+        {
+            if (e.oper_get() == LogicalOpExp::logicalOr)
+            {
+                iErr = bitwiseOrToIntAndInt(pITL, pITR, &pResult);
+            }
+            else if (e.oper_get() == LogicalOpExp::logicalAnd)
+            {
+                iErr = bitwiseAndToIntAndInt(pITL, pITR, &pResult);
+            }
+
+            if (iErr)
+            {
+                std::wostringstream os;
+                switch (iErr)
+                {
+                    case 1:
+                        os << _W("Inconsistent row/column dimensions.\n");
+                        break;
+                    case 2:
+                        os << _W("Bad operator.\n");
+                        break; // if the operator is not logicalOr or logicalAnd
+                    case 3:
+                        os << _W("Bad type.\n");
+                        break;// should never be occured.
+                }
+                throw ScilabError(os.str(), 999, e.right_get().location_get());
+            }
+        }
+    }
+    else
+    {
+        e.right_get().accept(*this);
+        pITR = result_get();
+        switch (e.oper_get())
+        {
+            case LogicalOpExp::logicalShortCutOr :
+            case LogicalOpExp::logicalOr :
+            case LogicalOpExp::logicalShortCutAnd :
+            case LogicalOpExp::logicalAnd :
+                pResult = callOverload(e.oper_get(), pITL, pITR);
+                break;
+            default :
+                break;
         }
     }
 

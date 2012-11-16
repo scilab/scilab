@@ -31,6 +31,7 @@
 // Needed by visitprivate(const OpExp &)
 // Needed by visitprivate(const LogicalOpExp &)
 #include "generic_operations.hxx"
+#include "types_bitwiseOp.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
 #include "scilabexception.hxx"
@@ -42,7 +43,7 @@ extern "C" {
 #include "matrix_transpose.h"
 #include "os_swprintf.h"
 #include "more.h"
-//#include "HandleManagement.h"
+    //#include "HandleManagement.h"
 }
 
 #include "timer.hxx"
@@ -552,7 +553,7 @@ public :
                 throw ScilabError(szError, 999, e.location_get());
             }
         }
-        else if(result_get() != NULL && result_get()->isHandle())
+        else if (result_get() != NULL && result_get()->isHandle())
         {
             SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
             typed_list in;
@@ -565,7 +566,7 @@ public :
 
             Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"%h_e"));
             Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, this);
-            if(ret == Callable::OK)
+            if (ret == Callable::OK)
             {
                 result_set(out[0]);
             }

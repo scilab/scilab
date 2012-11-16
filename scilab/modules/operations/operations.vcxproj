@@ -218,6 +218,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\types_bitwiseOp.cpp" />
     <ClCompile Include="src\cpp\types_comparison_eq.cpp" />
     <ClCompile Include="src\cpp\types_comparison_lt_le_gt_ge.cpp" />
     <ClCompile Include="src\cpp\types_comparison_ne.cpp" />
@@ -257,6 +258,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\matrix_transpose_int.hxx" />
     <ClInclude Include="includes\operations_tools.h" />
     <ClInclude Include="includes\types_addition.hxx" />
+    <ClInclude Include="includes\types_bitwiseOp.hxx" />
     <ClInclude Include="includes\types_comparison_eq.hxx" />
     <ClInclude Include="includes\types_comparison_lt_le_gt_ge.hxx" />
     <ClInclude Include="includes\types_comparison_ne.hxx" />

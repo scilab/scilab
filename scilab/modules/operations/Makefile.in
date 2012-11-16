@@ -152,7 +152,8 @@ am__objects_2 = libscioperations_la-operations.lo \
 	libscioperations_la-types_comparison_eq.lo \
 	libscioperations_la-types_comparison_lt_le_gt_ge.lo \
 	libscioperations_la-types_kronecker.lo \
-	libscioperations_la-types_comparison_ne.lo
+	libscioperations_la-types_comparison_ne.lo \
+	libscioperations_la-types_bitwiseOp.lo
 am_libscioperations_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscioperations_la_OBJECTS = $(am_libscioperations_la_OBJECTS)
 libscioperations_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -472,7 +473,8 @@ OPERATIONS_CPP_SOURCES = src/cpp/operations.cpp \
 			src/cpp/types_comparison_eq.cpp \
 			src/cpp/types_comparison_lt_le_gt_ge.cpp \
 			src/cpp/types_kronecker.cpp \
-			src/cpp/types_comparison_ne.cpp
+			src/cpp/types_comparison_ne.cpp \
+			src/cpp/types_bitwiseOp.cpp
 
 pkglib_LTLIBRARIES = libscioperations.la
 libscioperations_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
@@ -664,6 +666,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-operations.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-operations_tools.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-types_addition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-types_bitwiseOp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-types_comparison_eq.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-types_comparison_lt_le_gt_ge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-types_comparison_ne.Plo@am__quote@
@@ -862,6 +865,13 @@ libscioperations_la-types_comparison_ne.lo: src/cpp/types_comparison_ne.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_comparison_ne.cpp' object='libscioperations_la-types_comparison_ne.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_comparison_ne.lo `test -f 'src/cpp/types_comparison_ne.cpp' || echo '$(srcdir)/'`src/cpp/types_comparison_ne.cpp
+
+libscioperations_la-types_bitwiseOp.lo: src/cpp/types_bitwiseOp.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_bitwiseOp.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_bitwiseOp.Tpo -c -o libscioperations_la-types_bitwiseOp.lo `test -f 'src/cpp/types_bitwiseOp.cpp' || echo '$(srcdir)/'`src/cpp/types_bitwiseOp.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-types_bitwiseOp.Tpo $(DEPDIR)/libscioperations_la-types_bitwiseOp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_bitwiseOp.cpp' object='libscioperations_la-types_bitwiseOp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_bitwiseOp.lo `test -f 'src/cpp/types_bitwiseOp.cpp' || echo '$(srcdir)/'`src/cpp/types_bitwiseOp.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
