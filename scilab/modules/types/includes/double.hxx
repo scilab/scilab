@@ -69,6 +69,13 @@ namespace types
 
         bool                        isDouble() { return true; }
 
+        void                        setViewAsInteger(bool _bViewAsInteger = true) { m_bViewAsInteger = _bViewAsInteger; }
+        bool                        isViewAsInteger() { return m_bViewAsInteger; }
+
+        void                        convertToInteger();
+        void                        convertFromInteger();
+
+
         /* return type as string ( double, int, cell, list, ... )*/
         virtual std::wstring        getTypeStr() {return L"constant";}
         /* return type as short string ( s, i, ce, l, ... )*/
@@ -86,6 +93,7 @@ namespace types
         virtual void                deleteImg();
         virtual double*             allocData(int _iSize);
 
+        bool                        m_bViewAsInteger;
 
     };
 }

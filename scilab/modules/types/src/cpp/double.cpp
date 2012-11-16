@@ -112,6 +112,8 @@ namespace types
 		{
 			create(piDims, 2, &pReal, &pImg);
 		}
+
+        setViewAsInteger(false);
 #ifndef NDEBUG
         Inspector::addItem(this);
 #endif
@@ -127,6 +129,8 @@ namespace types
         m_iSize = 1;
         m_iSizeMax = m_iSize;
         m_pRealData = new double[1];
+        setViewAsInteger(false);
+
         m_pRealData[0] = _dblReal;
 
   //      int piDims[2] = {1, 1};
@@ -144,6 +148,8 @@ namespace types
 		double *pdblR;
 		double *pdblI;
 		create(piDims, 2, &pdblR, &pdblI);
+        setViewAsInteger(false);
+
 		pdblR[0] = _dblReal;
 		pdblI[0] = _dblImg;
 #ifndef NDEBUG
@@ -155,6 +161,8 @@ namespace types
 	{
         int piDims[2] = {_iRows, _iCols};
 		create(piDims, 2, _pdblReal, NULL);
+        setViewAsInteger(false);
+
 #ifndef NDEBUG
         Inspector::addItem(this);
 #endif
@@ -164,6 +172,8 @@ namespace types
 	{
         int piDims[2] = {_iRows, _iCols};
 		create(piDims, 2, _pdblReal, _pdblImg);
+        setViewAsInteger(false);
+
 #ifndef NDEBUG
         Inspector::addItem(this);
 #endif
@@ -181,6 +191,8 @@ namespace types
 		{
 			create(_piDims, _iDims, &pReal, &pImg);
 		}
+
+        setViewAsInteger(false);
 #ifndef NDEBUG
         Inspector::addItem(this);
 #endif
@@ -1056,4 +1068,77 @@ namespace types
         }
         return true;
     }
+
+    void Double::convertToInteger()
+    {
+        if(isViewAsInteger())
+        {
+            //already done
+            return;
+        }
+        //convert in place double to integer
+        int* piR = (int*)get();
+        double *pdblR = get();
+        //convert in place integer to double
+
+        if(isComplex())
+        {
+            int* piI = (int*)getImg();
+            double *pdblI = getImg();
+
+            //normal way to prevent overlap
+            for(int i = 0 ; i < getSize() ; i--)
+            {
+                pdblR[i] = (double)piR[i];
+                pdblI[i] = (double)piI[i];
+            }
+        }
+        else
+        {
+            //normal way to prevent overlap
+            for(int i = 0 ; i < getSize() ; i--)
+            {
+                pdblR[i] = (double)piR[i];
+            }
+        }
+
+        setViewAsInteger(true);
+    }
+
+    void Double::convertFromInteger()
+    {
+        if(isViewAsInteger() == false)
+        {
+            //no need change
+            return;
+        }
+
+        int* piR = (int*)get();
+        double *pdblR = get();
+        //convert in place integer to double
+
+        if(isComplex())
+        {
+            int* piI = (int*)getImg();
+            double *pdblI = getImg();
+
+            //reverse way to prevent overlap
+            for(int i = getSize() - 1 ; i >= 0 ; i--)
+            {
+                pdblR[i] = (double)piR[i];
+                pdblI[i] = (double)piI[i];
+            }
+        }
+        else
+        {
+            //reverse way to prevent overlap
+            for(int i = getSize() - 1 ; i >= 0 ; i--)
+            {
+                pdblR[i] = (double)piR[i];
+            }
+        }
+
+        setViewAsInteger(false);
+    }
+
 }

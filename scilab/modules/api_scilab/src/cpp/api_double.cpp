@@ -89,6 +89,10 @@ SciErr getMatrixOfDoubleAsInteger(void* _pvCtx, int* _piAddress, int* _piRows, i
 
     //Warning we overwrite double by int !!!!
     C2F(entier)(&iSize, pdblReal, *_piReal);
+
+    Double* pD = (Double*)_piAddress;
+    pD->setViewAsInteger();
+
     return sciErr;
 }
 
@@ -97,20 +101,21 @@ SciErr getComplexMatrixOfDoubleAsInteger(void* _pvCtx, int* _piAddress, int* _pi
     SciErr sciErr;
     double* pdblReal = NULL;
     double* pdblImg  = NULL;
-    int iSize = 0;
+
     sciErr = getCommonMatrixOfDouble(_pvCtx, _piAddress, 1, _piRows, _piCols, &pdblReal, &pdblImg);
     if (sciErr.iErr)
     {
         return sciErr;
     }
 
-    iSize = *_piRows * *_piCols;
-    *_piReal = (int*)pdblReal;
-    *_piImg = (int*)pdblImg;
 
-    //Warning we overwrite double by int !!!!
-    C2F(entier)(&iSize, pdblReal, *_piReal);
-    C2F(entier)(&iSize, pdblImg, *_piImg);
+    Double* pD = (Double*)_piAddress;
+    //convert values and view of data to int and int*
+    pD->convertToInteger();
+
+    *_piReal = (int*)pD->get();
+    *_piImg = (int*)pD->getImg();
+
     return sciErr;
 }
 
@@ -252,6 +257,10 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, char _cType, int _iCom
     try
     {
         pDbl = new Double(_iRows, _iCols, _iComplex == 1);
+        if(_cType == 'i')
+        {
+            pDbl->setViewAsInteger();
+        }
     }
     catch (ast::ScilabError se)
     {
@@ -731,17 +740,11 @@ static int createCommonMatrixDoubleFromInteger(void* _pvCtx, int _iVar, int _iCo
         return sciErr.iErr;
     }
 
-    for (int i = 0 ; i < _iRows * _iCols ; i++)
-    {
-        pdblReal[i] = (double)_piReal[i];
-    }
+    memcpy(pdblReal, _piReal, _iRows * _iCols * sizeof(int));
 
     if (_iComplex)
     {
-        for (int i = 0 ; i < _iRows * _iCols ; i++)
-        {
-            pdblImg[i] = (double)_piImg[i];
-        }
+        memcpy(pdblImg, _piImg, _iRows * _iCols * sizeof(int));
     }
     return 0;
 }
