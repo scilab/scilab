@@ -13,6 +13,12 @@ Improvements
 * New xmlName function.
 
 
+Removed functions
+==================
+
+* mtlb_repmat removed. Scilab provides a real repmat since 5.3.1.
+
+
 Xcos
 =====
 
