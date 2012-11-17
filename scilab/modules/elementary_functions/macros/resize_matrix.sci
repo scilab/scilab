@@ -45,7 +45,12 @@ function resMat = resize_matrix(mat, nbRow, nbCol, typeOfMat)
     // boolean matrix
     // intialized it to false
     resMat = (z == 1);
-    resMat(1:minRow, 1:minCol) = (mat(1:minRow, 1:minCol) == 1);
+    if typeof(mat) == 'boolean' then
+        resMat(1:minRow, 1:minCol) = (mat(1:minRow, 1:minCol) == %t);
+    else
+        resMat(1:minRow, 1:minCol) = (mat(1:minRow, 1:minCol) == 1);
+    end
+
     return
   case 'int8' then
     mat = int8(mat);

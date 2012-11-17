@@ -108,4 +108,5 @@
     <PRIMITIVE gatewayId="68" primitiveId="77" primitiveName="xmlRemove" />
     <PRIMITIVE gatewayId="68" primitiveId="78" primitiveName="xmlSetAttributes" />
     <PRIMITIVE gatewayId="68" primitiveId="79" primitiveName="xmlName" />
+    <PRIMITIVE gatewayId="68" primitiveId="80" primitiveName="xmlAppend" />
 </GATEWAY>

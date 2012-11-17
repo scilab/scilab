@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="length" xml:lang="ru">
+    <refnamediv>
+        <refname>length</refname>
+        <refpurpose>длина объекта</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>n = length(M)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>
+                        матрица (обычная или полиномиальная или символьных строк) или список.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>
+                        целое число или матрица целочисленных значений.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Для обычной или полиномиальной произведению количества строк и
+            столбцов <varname>M</varname>. (Также корректно и для матрицы
+            логических значений <varname>M</varname>).
+        </para>
+        <para>
+            Для матриц, составленных из символьных строк (и, в частности, для
+            символьной строки), функция <function>length</function> возвращает
+            в <varname>n</varname> длину элементов матрицы символьных строк
+            <varname>M</varname>.
+        </para>
+        <para>
+            Длина списка - это количество элементов в списке (также получается с помощью функции <function>size</function>).
+        </para>
+        <para>
+            Длина матричноориентированного списка (mlist) равна по умолчанию
+            количеству элементов в этом списке, но вы можете перегрузить <function>length</function> (см. пример).
+        </para>
+        <para>
+            <code>length('123')</code> равно <literal>3</literal>.
+            <code>length([1,2;3,4])</code> равно <literal>4</literal>.
+        </para>
+        <para>
+            <warning>
+                Внимание: <function>length</function> разрежённой матрицы
+                возвращает максимум размерностей а не произведение
+                размерностей. (Например: <code>length(sparse(eye(12,2)))</code>
+                возвращает <code>max(12,2)</code> а не <literal>24</literal>).
+                Пожалуйста, к разрежённой матрице применяйте
+                <literal>size(...,'*')</literal>.
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+length([123 ; 456 ])
+length(['hello world',SCI])
+    ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+a = mlist(["myMlistT" "field1" "field2"],"aexample","bexampleb");
+length(a)
+// возвращает 3, поведение по умолчанию, если length не перегружена для
+// матричноориентированного списка (mlist)
+
+// создадим функцию перегрузки для матричноориентированного списка типа
+// myMlistT
+function r = %myMlistT_length(M)
+    r = length(M.field1)
+endfunction
+length(a)
+// returns 8 result of length(a.field1)
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="size">size</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    Эта функция позволяет перегрузку для типа mlist.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

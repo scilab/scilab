@@ -50,13 +50,13 @@
             <varlistentry>
                 <term>H</term>
                 <listitem>
-                    <para>a matrix</para>
+                    <para>a matrix.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ierr</term>
                 <listitem>
-                    <para>an integer, error indicator</para>
+                    <para>an integer, error indicator.</para>
                 </listitem>
             </varlistentry>
         </variablelist>

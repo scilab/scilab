@@ -7,54 +7,28 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Run with exec("SCI/modules/xcos/help/en_US/solvers/integRK.sce");
+// Run with exec("SCI/modules/xcos/examples/solvers/integRK.sce");
 
 // Import the diagram and augment the ending time
+loadScicos();
+loadXcosLibs();
 importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
-scs_m.props.tf = 3500;
+scs_m.props.tf = 30000;
 
-// BDF / Newton
-// Select the solver
-scs_m.props.tol(6) = 0;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for BDF / Newton :");
+solverName=["BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functionnal", "Runge-Kutta"];
 
-// BDF / Functional
-// Select the solver
-scs_m.props.tol(6) = 1;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for BDF / Functional :");
+for solver=0:4
 
-// Adams / Functional
-// Select the solver
-scs_m.props.tol(6) = 3;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for Adams / Functional :");
+ // Select the solver
+ scs_m.props.tol(6) = solver;
 
-// Adams / Newton
-// Select the solver
-scs_m.props.tol(6) = 2;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for Adams / Newton :");
+ // Set max step size if Runge-Kutta
+ if (solver == 4) scs_m.props.tol(7) = 0.01;
 
-// Runge-Kutta
-// Select the solver and set abstol to 10^-2
-scs_m.props.tol(6) = 4;
-scs_m.props.tol(1) = 0.01;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for Runge-Kutta :");
+ // Start the timer, launch the simulation and display time
+ tic();
+ try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end;
+ t = toc();
+ disp(t, "Time for " + solverName(solver+1) + " :");
+
+end

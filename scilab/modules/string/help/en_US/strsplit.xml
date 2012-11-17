@@ -112,8 +112,8 @@
             whole rest of string.
         </para>
         <para>
-            <code>strsplit(str, matrix_of_strings, limit)</code>,
-            <varname>str</varname> is split on any of elements. It allows to
+            <code>strsplit(str, matrix_of_strings, limit)</code> splits
+            <varname>str</varname> on any of elements. It allows to
             split on different separators for users without regexp knowledge.
         </para>
         <para>
