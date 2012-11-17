@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="convstr">
+    <refnamediv>
+        <refname>convstr</refname>
+        <refpurpose>преобразование регистра</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[y] = convstr(str, [flag])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>str, y</term>
+                <listitem>
+                    <para>матрица символьных строк.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>необязательный символьный флаг с возможными значениями:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>'u'</term>
+                            <listitem>
+                                <para>для верхнего регистра;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>'l'</term>
+                            <listitem>
+                                <para>для нижнего регистра.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>convstr</function> преобразует матрицу строк
+            <varname>str</varname> в нижний регистр (для <varname>flag</varname> <literal>= "l"</literal>;
+            значение по умолчанию) или в верхний регистр (для
+            <varname>flag</varname> <literal>= "u"</literal>).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+A=['this','is';'my','matrix'];
+convstr(A,'u')
+ ]]></programlisting>
+    </refsection>
+</refentry>

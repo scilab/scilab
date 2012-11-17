@@ -122,66 +122,66 @@
             functions.
         </para>
         
-        <programlisting role="example">// Save a matrix as csv file format
-            M = [1:10] * 0.1;
-            filename = fullfile(TMPDIR, "data.csv");
-            csvWrite(M, filename);
-            
-            // Read as text
-            mgetl(filename)
-            
-            r = csvRead(filename);    
-        </programlisting>
+        <programlisting role="example"><![CDATA[// Save a matrix as csv file format
+M = [1:10] * 0.1;
+filename = fullfile(TMPDIR, "data.csv");
+csvWrite(M, filename);
+
+// Read as text
+mgetl(filename)
+
+r = csvRead(filename);    
+        ]]></programlisting>
         
         <para>In the following example, we use various options of the
             <literal>csvWrite</literal> function.
         </para>
         
-        <programlisting role="example">// Save a matrix as csv file format
-            M = rand(2,3);
-            filename = fullfile(TMPDIR, "data.csv");
-            //
-            // Use tabs as the separator
-            csvWrite(M, filename,ascii(9));
-            mgetl(filename)
-            //
-            // Use the "," as the decimal point
-            // (and blank space as the separator).
-            csvWrite(M, filename," ",",");
-            mgetl(filename)
-            //
-            // Configure the precision.
-            // Caution: this lower precision may generate 
-            // errors in a write-read cycle!
-            csvWrite(M, filename,[],[],"%.8e");
-            mgetl(filename)
-            //
-            // Configure the comments
-            comments = [
-            "// Copyright (C) INRIA"
-            "//  This file must be used under the terms of the CeCILL."
-            ];
-            csvWrite(M, filename,[],[],[],comments);
-            mgetl(filename)   
-        </programlisting>
+        <programlisting role="example"><![CDATA[// Save a matrix as csv file format
+M = rand(2,3);
+filename = fullfile(TMPDIR, "data.csv");
+//
+// Use tabs as the separator
+csvWrite(M, filename,ascii(9));
+mgetl(filename)
+//
+// Use the "," as the decimal point
+// (and blank space as the separator).
+csvWrite(M, filename," ",",");
+mgetl(filename)
+//
+// Configure the precision.
+// Caution: this lower precision may generate 
+// errors in a write-read cycle!
+csvWrite(M, filename,[],[],"%.8e");
+mgetl(filename)
+//
+// Configure the comments
+comments = [
+"// Copyright (C) INRIA"
+"//  This file must be used under the terms of the CeCILL."
+];
+csvWrite(M, filename,[],[],[],comments);
+mgetl(filename)   
+        ]]></programlisting>
         
         <para>The following examples are more advanced uses of the
             <literal>csvWrite</literal> function.
         </para>
         
-        <programlisting role="example">A = [
-            1 0 200 %inf 0
-            1 1.e-300 200 %inf 0
-            9.99999999999990010e-001 9.99999999999999980e-201 200 3.15e300 102
-            9.99999999899999990e-001 1.e-100 200 296 117
-            1 %inf -%inf %nan 0
-            ];
-            
-            // Write into a file
-            filename=fullfile(TMPDIR,"foo.csv");
-            csvWrite ( A , filename );
-            edit(filename)   
-        </programlisting>
+        <programlisting role="example"><![CDATA[A = [
+1 0 200 %inf 0
+1 1.e-300 200 %inf 0
+9.99999999999990010e-001 9.99999999999999980e-201 200 3.15e300 102
+9.99999999899999990e-001 1.e-100 200 296 117
+1 %inf -%inf %nan 0
+];
+
+// Write into a file
+filename=fullfile(TMPDIR,"foo.csv");
+csvWrite ( A , filename );
+edit(filename)   
+        ]]></programlisting>
     </refsection>
     
     <refsection>

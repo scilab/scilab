@@ -18,6 +18,10 @@ if or(imag(s)<>0)|or(int(s)<>s) then error(30),end
 [ms,ns]=size(s)
 if ms==1&ns==1 then
   if m==1|n==1 then //Element wise exponentiation f.^s with f vector
+    if m>1|n>1&warning("query")=="on" then 
+      //obsolescence warning
+      mprintf(_("  Warning: Syntax ""vector ^ scalar"" is obsolete it will be removed in scilab-6.\n           Use ""vector .^ scalar"" instead.\n"));
+    end
     if s<0 then 
       num=f('num')
       if or(abs(coeff(num(:)))*ones(max(degree(num))+1,1)==0) then

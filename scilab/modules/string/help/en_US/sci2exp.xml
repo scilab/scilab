@@ -78,8 +78,10 @@
                 <term>lmax</term>
                 <listitem>
                     <para>
-                        an integer, contains the maximum line length. Default value is <literal>90</literal>,
-                        <literal>lmax=0</literal> indicates no line length control a single string is returned
+                        an integer, contains the maximum line length. Default
+                        value is <literal>90</literal>,
+                        <literal>lmax=0</literal> indicates no line length
+                        control; a single string is returned.
                     </para>
                 </listitem>
             </varlistentry>

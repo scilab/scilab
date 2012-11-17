@@ -13,7 +13,7 @@
     <refnamediv>
         <refname>CVode</refname>
         <refpurpose>
-            <emphasis>CVode</emphasis> is a numerical solver providing an efficient and stable method to solve ODE Initial Value Problems. Called by scicos(), it uses either <emphasis>BDF</emphasis> or <emphasis>Adams</emphasis> as implicit integration method, and <emphasis>Newton</emphasis> or <emphasis>Functional</emphasis> iterations
+            <emphasis>CVode</emphasis> is a numerical solver providing an efficient and stable method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. Called by <link linkend="xcos">xcos</link>, it uses either <emphasis>BDF</emphasis> or <emphasis>Adams</emphasis> as implicit integration method, and <emphasis>Newton</emphasis> or <emphasis>Functional</emphasis> iterations
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -33,7 +33,7 @@
             <emphasis>
                 y<subscript>0</subscript>
             </emphasis>
-            ,<emphasis>CVode</emphasis> approximates 
+            , <emphasis>CVode</emphasis> approximates 
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -54,7 +54,7 @@
                 <emphasis>
                     y(t<subscript>n</subscript>)
                 </emphasis>
-                ,and 
+                , and 
                 <emphasis>
                     h<subscript>n</subscript>
                 </emphasis>
@@ -185,8 +185,10 @@
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
-xcos_simulate(scs_m, 4);
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
 ]]></scilab:image>
         </para>
         <para>
@@ -195,16 +197,18 @@ xcos_simulate(scs_m, 4);
         <para>
             <programlisting language="example"><![CDATA[
       // Import the diagram and set the ending time
+      loadScicos();
+      loadXcosLibs();
       importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
-      scs_m.props.tf = 3500;
+      scs_m.props.tf = 10000;
 
       // Select the solver BDF / Newton
       scs_m.props.tol(6) = 0;
 
       // Start the timer, launch the simulation and display time
-      timer();
-      xcos_simulate(scs_m, 4);
-      t = timer();
+      tic();
+      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
+      t = toc();
       disp(t, "Time for BDF / Newton :");
       ]]></programlisting>
         </para>

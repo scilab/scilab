@@ -270,6 +270,7 @@
     <ClCompile Include="sci_gateway\cpp\sci_percent_XMLList_size.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_print.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlAddNs.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlAppend.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlAsNumber.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlAsText.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlDelete.cpp" />

@@ -1,6 +1,8 @@
                     Changes between version 5.4.0 and 5.4.1
                     =======================================
 
+Syntax changes
+===============
 
 Improvements
 =============
@@ -95,6 +97,11 @@ Bug fixes
 * Bug #12043 fixed - Fix a typo in the ATOMS module help pages.
 
 * Bug #12050 fixed - Fix a typo: dimensionnal => dimensional.
+
+* Bug #12071 fixed - Printed info of a XML object were inconsistent with
+                     available fields.
+
+* Bug #12077 fixed - In help, attribute bgcolor was not handled in tables.
 
 
                     Changes between version 5.3.3 and 5.4.0

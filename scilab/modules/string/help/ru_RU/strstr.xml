@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strstr" xml:lang="ru">
+    <refnamediv>
+        <refname>strstr</refname>
+        <refpurpose>обнаружение подстроки</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>res = strstr(haystack, needle)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>haystack</term>
+                <listitem>
+                    <para>
+                        символьная строка или матрица символьных строк.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>needle</term>
+                <listitem>
+                    <para>
+                        символьная строка или матрица символьных строк.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>
+                        символьная строка или матрица символьных строк.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>res = strstr(haystack, needle)</code> возвращает матрицу строк
+            начиная от того места, где в <varname>haystack</varname> впервые
+            встретилась <varname>needle</varname> и до конца
+            <varname>haystack</varname>, либо <literal>''</literal>, если
+            <varname>needle</varname> не является частью <varname>haystack</varname>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+strstr('Это простая строка','простая')
+strstr('Это простая строка','пример')
+strstr(['Это простая строка','в scilab'],'в')
+strstr(['Это строка для примера','в scilab'],['а','scilab'])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strrchr">strrchr</link>
+            </member>
+            <member>
+                <link linkend="strchr">strchr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

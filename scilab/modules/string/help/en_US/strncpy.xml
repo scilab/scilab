@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>res = strncpy(str1,num)</synopsis>
+        <synopsis>res = strncpy(str1, num)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -51,7 +51,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>res = strncpy(str1,num)</code> copies the first <varname>num</varname> characters of source <varname>str1</varname> to destination <varname>res</varname>.
+            <code>res = strncpy(str1, num)</code> copies the first <varname>num</varname> characters of source <varname>str1</varname> to destination <varname>res</varname>.
         </para>
         <para>
             <varname>num</varname> must have same dimensions than

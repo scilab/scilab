@@ -153,15 +153,19 @@ public final class ImageConverter {
      * Test if an image file exists.
      * @param path of the parsed file
      * @param image the image name
-     * @return true if the image exists
+     * @return null if the image exists, the expected file path otherwise.
      */
-    public static boolean imageExists(String path, String image) {
+    public static File imageExists(String path, String image) {
         File f = new File(image);
         if (!f.isAbsolute()) {
             f = new File(path + File.separator + image);
         }
 
-        return f.exists();
+        if (f.exists()) {
+            return null;
+        } else {
+            return f;
+        }
     }
 
     /**

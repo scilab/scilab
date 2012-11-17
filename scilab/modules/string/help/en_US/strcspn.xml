@@ -56,7 +56,7 @@
             before this first occurrence.
         </para>
         <para>
-            <varname>string_one</varname> must have same dimensions than <varname>string_two</varname> or <varname>string_one</varname>
+            <varname>string_two</varname> must have same dimensions than <varname>string_one</varname> or <varname>string_two</varname>
             must be a string.
         </para>
     </refsection>

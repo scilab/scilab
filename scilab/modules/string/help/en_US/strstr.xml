@@ -55,7 +55,7 @@
             starting from where the first occurrence of
             <varname>needle</varname> in <varname>haystack</varname> to the end
             of <varname>haystack</varname>, or <literal>''</literal> if there
-            <varname>needle</varname>is not part of <varname>haystack</varname>.
+            <varname>needle</varname> is not part of <varname>haystack</varname>.
         </para>
     </refsection>
     <refsection>

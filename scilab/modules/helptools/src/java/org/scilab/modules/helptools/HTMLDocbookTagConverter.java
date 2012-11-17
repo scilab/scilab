@@ -209,11 +209,13 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         buffer.append(tag);
         if (attrs != null) {
             for (int i = 0; i < attrs.length; i += 2) {
-                buffer.append(" ");
-                buffer.append(attrs[i]);
-                buffer.append("=\"");
-                buffer.append(attrs[i + 1]);
-                buffer.append("\"");
+                if (attrs[i + 1] != null && !attrs[i + 1].isEmpty()) {
+                    buffer.append(" ");
+                    buffer.append(attrs[i]);
+                    buffer.append("=\"");
+                    buffer.append(attrs[i + 1]);
+                    buffer.append("\"");
+                }
             }
         }
 
@@ -1198,7 +1200,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleTr(final Map<String, String> attributes, final String contents) throws SAXException {
-        return encloseContents("tr", contents);
+        String bgcolor = attributes.get("bgcolor");
+        return encloseContents("tr", new String[] {"bgcolor", bgcolor}, contents);
     }
 
     /**
@@ -1210,10 +1213,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleTd(final Map<String, String> attributes, final String contents) throws SAXException {
         String align = attributes.get("align");
-        if (align == null) {
-            return encloseContents("td", new String[] {"align", align}, contents);
-        }
-        return encloseContents("td", contents);
+        String bgcolor = attributes.get("bgcolor");
+        return encloseContents("td", new String[] {"align", align, "bgcolor", bgcolor}, contents);
     }
 
     /**
@@ -1225,18 +1226,10 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleInformaltable(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
+        String bgcolor = attributes.get("bgcolor");
         String border = attributes.get("border");
-        if (border == null) {
-            border = "";
-        }
         String cellpadding = attributes.get("cellpadding");
-        if (cellpadding == null) {
-            cellpadding = "";
-        }
         String width = attributes.get("width");
-        if (width == null) {
-            width = "";
-        }
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("table", new String[] {"class", "informaltable", "border", border, "cellpadding", cellpadding, "width", width}, contents);
         } else {
@@ -1263,8 +1256,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
 
         try {
             String path = new File(new URI(currentFileName)).getParent();
-            if (!ImageConverter.imageExists(path, fileref)) {
-                throw new SAXException("The given fileref is not on an existing image file:\n" + fileref);
+            File file = ImageConverter.imageExists(path, fileref);
+            if (file != null) {
+                throw new SAXException("The given fileref is not on an existing image file:\n" + fileref + " [" + file + "]");
             }
 
             return ImageConverter.getImageByFile(attributes, path, fileref, outName, imageDir);
@@ -1484,10 +1478,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleTable(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
+        String bgcolor = attributes.get("bgcolor");
+        String border = attributes.get("border");
+        String cellpadding = attributes.get("cellpadding");
+
         if (id != null) {
-            return "<a name=\"" + id + "\"></a>" + encloseContents("table", "doctable", contents);
+            return "<a name=\"" + id + "\"></a>" + encloseContents("table", new String[] {"class", "doctable", "bgcolor", bgcolor, "border", border, "cellpadding", cellpadding}, contents);
         } else {
-            return encloseContents("table", "doctable", contents);
+            return encloseContents("table", new String[] {"class", "doctable", "bgcolor", bgcolor, "border", border, "cellpadding", cellpadding}, contents);
         }
     }
 
