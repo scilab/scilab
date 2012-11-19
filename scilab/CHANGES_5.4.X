@@ -106,6 +106,9 @@ Bug fixes
 * Bug #12071 fixed - Printed info of a XML object were inconsistent with
                      available fields.
 
+* Bug #12076 fixed - csvRead was not able to open csv files when separators
+                     were not spaces.
+
 * Bug #12077 fixed - In help, attribute bgcolor was not handled in tables.
 
 
