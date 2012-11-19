@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcosPalGenerateAllIcons" xml:lang="en">
+    <refnamediv>
+        <refname>xcosPalGenerateAllIcons</refname>
+        <refpurpose>Update the palette icons (gif files) from a Scilab instance
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            pal = xcosPalGenerateAllIcons(path)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>the palette path</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This functionnality updates the image file used on the palette accordingly to the Scilab interface function. It can be used to update the representation of a block at any time after the first generation.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
+// load all the default palettes
+loadXcosLibs();
+
+// will update the default palette
+xcosPalGenerateAllIcons(["Palettes" "Commonly Used Blocks"]);
+   ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    Function added.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xcosPalAdd">xcosPalAdd</link>
+            </member>
+            <member>
+                <link linkend="xcosPalAddBlock">xcosPalAddBlock</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

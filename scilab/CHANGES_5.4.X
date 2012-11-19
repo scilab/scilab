@@ -53,6 +53,8 @@ Xcos
 
 * Update the Palette icons and the rendering of some blocks.
 
+* xcosPalGenerateAllIcons added as an Xcos palette utility function.
+
 * Add a new ODE solver : LSodar. Automatically switches methods to efficiently solve both stiff and nonstiff problems. Includes a rootfinding feature.
 
 * Add a new ODE solver : Dormand-Price 4(5). Included in the CVode package, so benefits from the rootfinding feature.
