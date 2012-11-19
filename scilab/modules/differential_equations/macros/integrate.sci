@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -25,10 +25,10 @@ function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
     if rhs < 4 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"integrate",4));
     end
-    
+
     select rhs
     case 4 then
-        %ea=1d-14;%er=1.d-8 
+        %ea=1d-14;%er=1.d-8
     case 5 then
         %er=1d-14;
     end
@@ -57,10 +57,10 @@ function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
     //
 
     try
-        if %expr==%var then 
-            deff(%var+'=%func('+%var+')',%expr)
+        if %expr==%var then
+            execstr('function '+%var+'=%func('+%var+'),'+%expr+',endfunction');
         else
-            deff('ans=%func('+%var+')',%expr)
+            execstr('function ans=%func('+%var+'),'+%expr+',endfunction');
         end
     catch
         error(msprintf(gettext("%s: Wrong value for input argument #%d: syntax error in given expression\n"),"integrate",1));
