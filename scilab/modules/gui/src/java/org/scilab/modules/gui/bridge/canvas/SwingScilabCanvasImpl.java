@@ -243,8 +243,16 @@ public class SwingScilabCanvasImpl {
             //if (OS.get() == OS.MAC) {
             //    return new MacOSXGLJPanel();
             //} else {
-                return new GLJPanel();
+            return new GLJPanel();
             //}
+        }
+    }
+
+    public Component createOpenGLComponent(boolean isCanvas) {
+        if (isCanvas) {
+            return new GLCanvas();
+        } else {
+            return new GLJPanel();
         }
     }
 

@@ -35,7 +35,7 @@ public final class GraphicObjectBuilder {
 
         int iid = id == null ? ScilabNativeView.ScilabNativeView__getValidDefaultFigureId() : id.intValue();
 
-        CallGraphicController.setGraphicObjectProperty(newFID, GraphicObjectProperties.__GO_ID__, id);
+        CallGraphicController.setGraphicObjectProperty(newFID, GraphicObjectProperties.__GO_ID__, iid);
         CallGraphicController.setGraphicObjectRelationship(newFID, newAID);
         CallGraphicController.setGraphicObjectProperty(newFID, GraphicObjectProperties.__GO_SELECTED_CHILD__, newAID);
 

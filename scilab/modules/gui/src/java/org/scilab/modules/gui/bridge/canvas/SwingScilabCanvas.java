@@ -47,6 +47,9 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
+import java.awt.BorderLayout;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+
 /**
  * Swing implementation for Scilab Canvas in GUIs This implementation requires
  * JOGL
@@ -71,6 +74,9 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     /** The drawable component where the draw is performed */
     private final Component drawableComponent;
 
+    /** if true, a BorderLayout is used, else a PanelLayout is used */
+    private boolean isBorderLayout;
+
     static {
         try {
             System.loadLibrary("gluegen2-rt");
@@ -79,16 +85,22 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         }
     }
 
-    public SwingScilabCanvas(int figureId, final Figure figure) {
-        super(new PanelLayout());
+    public SwingScilabCanvas(int figureId, final Figure figure, boolean isCanvas, boolean isBorderLayout) {
+        super();
         this.figure = figure;
+        this.isBorderLayout = isBorderLayout;
 
-        drawableComponent = SwingScilabCanvasImpl.getInstance().createOpenGLComponent();
-
+        drawableComponent = SwingScilabCanvasImpl.getInstance().createOpenGLComponent(isCanvas);
         drawableComponent.setEnabled(true);
         drawableComponent.setVisible(true);
 
-        add(drawableComponent, PanelLayout.GL_CANVAS);
+        if (isBorderLayout) {
+            setLayout(new BorderLayout());
+            add(drawableComponent, BorderLayout.CENTER);
+        } else {
+            setLayout(new PanelLayout());
+            add(drawableComponent, PanelLayout.GL_CANVAS);
+        }
 
         rendererCanvas = JoGLCanvasFactory.createCanvas((GLAutoDrawable) drawableComponent);
         drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
@@ -104,10 +116,16 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         setFocusable(true);
     }
 
+    public SwingScilabCanvas(int figureId, final Figure figure) {
+        this(figureId, figure, SwingScilabCanvasImpl.isGLCanvasEnabled(), false);
+    }
+
     public void addNotify() {
         drawableComponent.setVisible(true);
         drawableComponent.setEnabled(true);
-        add(drawableComponent, PanelLayout.GL_CANVAS);
+        if (!isBorderLayout) {
+            add(drawableComponent, PanelLayout.GL_CANVAS);
+        }
         super.addNotify();
     }
 
@@ -309,7 +327,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * @param listener listener to add
      */
     public void addMouseMotionListener(MouseMotionListener listener) {
-        getParentAxes().addMouseMotionListener(listener);
+        drawableComponent.addMouseMotionListener(listener);//getParentAxes().addMouseMotionListener(listener);
     }
 
     /**
