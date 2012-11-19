@@ -12,6 +12,8 @@ Improvements
 
 * New xmlName function.
 
+* clc(): New icon in the toolbar to clear the console.
+
 
 Removed functions
 ==================
