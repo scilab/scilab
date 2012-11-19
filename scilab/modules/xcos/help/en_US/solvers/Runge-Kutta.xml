@@ -245,4 +245,13 @@ Time for Runge-Kutta :
             <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Sundials Documentation</ulink>
         </para>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>Dormand-Price 4(5) solver added</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

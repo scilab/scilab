@@ -127,6 +127,9 @@
         <para>
             Following the criticality of the event (its effect on the continuous problem), we either relaunch the solver with different start and final times as if nothing happened, or, if the system has been modified, we need to "cold-restart" the problem by reinitializing it anew and relaunching the solver.
         </para>
+        <para>
+            Averagely, <emphasis>IDA</emphasis> accepts tolerances up to 10<superscript>-11</superscript>. Beyond that, it returns a <emphasis>Too much accuracy</emphasis> requested error.
+        </para>
     </refsection>
     <refsection id="Example_IDA">
         <title>Example</title>

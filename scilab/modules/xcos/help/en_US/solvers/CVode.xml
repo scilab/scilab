@@ -173,6 +173,9 @@
         <para>
             Following the criticality of the event (its effect on the continuous problem), we either relaunch the solver with different start and final times as if nothing happened, or, if the system has been modified, we need to "cold-restart" the problem by reinitializing it anew and relaunching the solver.
         </para>
+        <para>
+            Averagely, <emphasis>CVode</emphasis> accepts tolerances up to 10<superscript>-16</superscript>. Beyond that, it returns a <emphasis>Too much accuracy</emphasis> requested error.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -216,7 +219,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
             The Scilab console displays :
             <screen><![CDATA[
 Time for BDF / Newton :
- 27.549
+ 33.997
             ]]></screen>
         </para>
         <para>
@@ -229,16 +232,16 @@ Time for BDF / Newton :
             Results :
             <screen language="example"><![CDATA[
 Time for BDF / Newton :
- 25.457
+ 12.998
 
 Time for BDF / Functional :
- 24.893
-
-Time for Adams / Functional :
- 20.049
+ 12.256
 
 Time for Adams / Newton :
- 20.469
+ 8.577
+
+Time for Adams / Functional :
+ 8.002
             ]]></screen>
         </para>
         <para>
