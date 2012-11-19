@@ -18,8 +18,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            content = h5ls(obj [, name])
-            content = h5ls(filename, name)
+            content = h5ls(obj [, name [, filter]])
+            content = h5ls(filename, name [, filter])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -44,6 +44,12 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>filter</term>
+                <listitem>
+                    <para>a string giving the type to filter</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>content</term>
                 <listitem>
                     <para>a matrix of strings with 2 columns</para>
@@ -54,6 +60,7 @@
     <refsection>
         <title>Description</title>
         <para>List the content of a group or a dataset. The first column gives the names and the second one the type of the listed element.</para>
+        <para>The filter can take one of the values 'group' (or 'g'), 'dataset' (or 'd'), 'type' (or 't') and 'attribute' (or 'a'). For example, if 'g' is given, only the groups will be returned.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -66,6 +73,12 @@ a = h5open(TMPDIR + "/x.sod");
 
 // We list the content of a
 h5ls(a)
+
+// only the dataset
+h5ls(a, ".", "d")
+
+// only the attributes
+h5ls(a, ".", "a");
 
 // We can see a dataset named x, list it
 h5ls(a.root.x) // a.root.x is equivalent to a("/x")

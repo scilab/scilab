@@ -207,6 +207,11 @@ public :
 
     }
 
+    virtual void ls(std::vector<std::string> & name, FilterType type) const
+    {
+        getNames(*this, name, type);
+    }
+
     virtual void printLsInfo(std::ostringstream & os) const
     {
         return;
@@ -381,11 +386,17 @@ protected :
     std::set<H5Object *> children;
     void registerChild(H5Object * child)
     {
-        if (!locked) children.insert(child);
+        if (!locked)
+        {
+            children.insert(child);
+        }
     }
     void unregisterChild(H5Object * child)
     {
-        if (!locked) children.erase(child);
+        if (!locked)
+        {
+            children.erase(child);
+        }
     }
 
     static void count(const H5Object & obj, OpDataCount & opdata);

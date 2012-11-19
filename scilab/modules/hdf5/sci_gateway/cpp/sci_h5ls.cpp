@@ -44,11 +44,12 @@ int sci_h5ls(char *fname, unsigned long fname_len)
     char * expandedPath = 0;
     std::string path;
     std::string name;
+    std::string type;
     bool mustDelete = true;
     const int nbIn = nbInputArgument(pvApiCtx);
 
     CheckOutputArgument(pvApiCtx, 1, 1);
-    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckInputArgument(pvApiCtx, 1, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -86,7 +87,7 @@ int sci_h5ls(char *fname, unsigned long fname_len)
         FREE(expandedPath);
     }
 
-    if (nbIn == 2)
+    if (nbIn >= 2)
     {
         err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
@@ -110,17 +111,57 @@ int sci_h5ls(char *fname, unsigned long fname_len)
 
         name = std::string(str);
         freeAllocatedSingleString(str);
+
+        if (nbIn == 3)
+        {
+            err = getVarAddressFromPosition(pvApiCtx, 3, &addr);
+            if (err.iErr)
+            {
+                printError(&err, 0);
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+                return 0;
+            }
+
+            if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+            {
+                Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+                return 0;
+            }
+
+            if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
+
+            type = std::string(str);
+            freeAllocatedSingleString(str);
+        }
     }
 
     try
     {
         if (hobj)
         {
-            HDF5Scilab::ls(*hobj, name, nbIn + 1, pvApiCtx);
+            if (nbIn == 3)
+            {
+                HDF5Scilab::ls(*hobj, name, type, nbIn + 1, pvApiCtx);
+            }
+            else
+            {
+                HDF5Scilab::ls(*hobj, name, nbIn + 1, pvApiCtx);
+            }
         }
         else
         {
-            HDF5Scilab::ls(path, name, nbIn + 1, pvApiCtx);
+            if (nbIn == 3)
+            {
+                HDF5Scilab::ls(path, name, type, nbIn + 1, pvApiCtx);
+            }
+            else
+            {
+                HDF5Scilab::ls(path, name, nbIn + 1, pvApiCtx);
+            }
         }
     }
     catch (const std::exception & e)

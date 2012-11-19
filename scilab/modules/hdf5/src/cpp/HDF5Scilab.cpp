@@ -15,6 +15,23 @@
 namespace org_modules_hdf5
 {
 
+std::map<std::string, H5Object::FilterType> HDF5Scilab::filtersName = initFilterNames();
+
+std::map<std::string, H5Object::FilterType> HDF5Scilab::initFilterNames()
+{
+    std::map<std::string, H5Object::FilterType> ret;
+    ret.insert(std::pair<std::string, H5Object::FilterType>("group", H5Object::GROUP));
+    ret.insert(std::pair<std::string, H5Object::FilterType>("g", H5Object::GROUP));
+    ret.insert(std::pair<std::string, H5Object::FilterType>("dataset", H5Object::DATASET));
+    ret.insert(std::pair<std::string, H5Object::FilterType>("d", H5Object::DATASET));
+    ret.insert(std::pair<std::string, H5Object::FilterType>("type", H5Object::TYPE));
+    ret.insert(std::pair<std::string, H5Object::FilterType>("t", H5Object::TYPE));
+    ret.insert(std::pair<std::string, H5Object::FilterType>("attribute", H5Object::ATTRIBUTE));
+    ret.insert(std::pair<std::string, H5Object::FilterType>("a", H5Object::ATTRIBUTE));
+
+    return ret;
+}
+
 int HDF5Scilab::getH5ObjectId(int * mlist, void * pvApiCtx)
 {
     int * id = 0;
@@ -561,7 +578,7 @@ void HDF5Scilab::copy(const std::string & sfile, const std::string & slocation, 
     }
 }
 
-void HDF5Scilab::ls(H5Object & obj, std::string name, int position, void * pvApiCtx)
+void HDF5Scilab::ls(H5Object & obj, const std::string & name, int position, void * pvApiCtx)
 {
     std::vector<std::string> _name;
     std::vector<std::string> _type;
@@ -587,13 +604,65 @@ void HDF5Scilab::ls(H5Object & obj, std::string name, int position, void * pvApi
     H5BasicData<char *>::create(pvApiCtx, position, _name.size(), 2, const_cast<char **>(&(strs[0])), 0, 0);
 }
 
-void HDF5Scilab::ls(std::string path, std::string name, int position, void * pvApiCtx)
+void HDF5Scilab::ls(const std::string & path, const std::string & name, int position, void * pvApiCtx)
 {
     H5File * file = new H5File(path, "/", "r");
 
     try
     {
         ls(*file, name, position, pvApiCtx);
+    }
+    catch (const H5Exception & e)
+    {
+        delete file;
+        throw;
+    }
+
+    delete file;
+}
+
+void HDF5Scilab::ls(H5Object & obj, const std::string & name, const std::string & type, int position, void * pvApiCtx)
+{
+    std::vector<std::string> _name;
+    std::vector<const char *> strs;
+    std::string lower(type);
+    std::transform(type.begin(), type.end(), lower.begin(), tolower);
+    std::map<std::string, H5Object::FilterType>::iterator it = filtersName.find(lower);
+    H5Object::FilterType ftype;
+    if (it != filtersName.end())
+    {
+        ftype = it->second;
+    }
+    else
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Invalid filter"));
+    }
+
+    H5Object & hobj = H5Object::isEmptyPath(name) ? obj : H5Object::getObject(obj, name);
+
+
+    hobj.ls(_name, ftype);
+    strs.reserve(_name.size());
+    for (unsigned int i = 0; i < _name.size(); i++)
+    {
+        strs.push_back(_name[i].c_str());
+    }
+
+    if (!H5Object::isEmptyPath(name))
+    {
+        delete &hobj;
+    }
+
+    H5BasicData<char *>::create(pvApiCtx, position, _name.size(), 1, const_cast<char **>(&(strs[0])), 0, 0);
+}
+
+void HDF5Scilab::ls(const std::string & path, const std::string & name, const std::string & type, int position, void * pvApiCtx)
+{
+    H5File * file = new H5File(path, "/", "r");
+
+    try
+    {
+        ls(*file, name, type, position, pvApiCtx);
     }
     catch (const H5Exception & e)
     {

@@ -14,6 +14,7 @@
 #define __HDF5SCILAB_HXX__
 
 #include <vector>
+#include <map>
 
 #include "H5Object.hxx"
 #include "H5File.hxx"
@@ -55,6 +56,8 @@ public:
         H5ARRAY,
         H5VLEN
     };
+
+    static std::map<std::string, H5Object::FilterType> filtersName;
 
     static int getH5ObjectId(int * mlist, void * pvApiCtx);
 
@@ -104,9 +107,13 @@ public:
 
     static void copy(const std::string & sfile, const std::string & slocation, const std::string & dfile, const std::string & dlocation);
 
-    static void ls(H5Object & obj, std::string name, int position, void * pvApiCtx);
+    static void ls(H5Object & obj, const std::string & name, int position, void * pvApiCtx);
 
-    static void ls(std::string path, std::string name, int position, void * pvApiCtx);
+    static void ls(const std::string & path, const std::string & name, int position, void * pvApiCtx);
+
+    static void ls(H5Object & obj, const std::string & name, const std::string & type, int position, void * pvApiCtx);
+
+    static void ls(const std::string & path, const std::string & name, const std::string & type, int position, void * pvApiCtx);
 
     static bool checkType(const H5Object & obj, const H5ObjectType type);
 
@@ -504,6 +511,9 @@ public:
 
         return arr;
     }
+
+private:
+    static std::map<std::string, H5Object::FilterType> initFilterNames();
 };
 }
 
