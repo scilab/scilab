@@ -34,12 +34,24 @@
             <literal>numer(R)</literal> est équivalent à <literal>R(2)</literal>, <literal>R('num')</literal> ou <literal>R.num</literal>
         </para>
     </refsection>
-    <refsection role="see also">
-        <title>Voir aussi</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="denom">denom</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+h=(1+2*%s)/poly(1:4,'s','c');
+denom(h)
+numer(h)
+
+s=poly(0,"s");
+p=1+s+2*s^2;
+denom(p) // Devrait retourner 1
+numer(p)
+ ]]></programlisting>
+        <refsection role="see also">
+            <title>Voir aussi</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="denom">denom</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>
