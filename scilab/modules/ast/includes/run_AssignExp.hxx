@@ -260,7 +260,7 @@ void visitprivate(const AssignExp  &e)
             }
             else
             {
-                pIT = symbol::Context::getInstance()->get(pVar->name_get());
+                pIT = symbol::Context::getInstance()->getCurrentLevel(pVar->name_get());
             }
 
             /*getting what to assign*/
