@@ -112,6 +112,12 @@ int sci_h5mv(char *fname, unsigned long fname_len)
     }
     else
     {
+        if (nbIn == 2)
+        {
+            Scierror(999, _("%s: Invalid number of arguments: more than %d expected.\n"), fname, 2);
+            return 0;
+        }
+
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);

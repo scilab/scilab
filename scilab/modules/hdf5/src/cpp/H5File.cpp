@@ -30,6 +30,11 @@ void H5File::init(const hid_t fapl)
     H5Eset_auto(H5E_DEFAULT, 0, 0);
 #endif
 
+    if (filename.empty())
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Invalid hdf5 file: empty filename"));
+    }
+
     switch (flags)
     {
         case RDONLY:
