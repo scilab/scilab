@@ -871,40 +871,6 @@ do_help()
     exit
 }
 
-do_compile()
-{
-    umask 002
-    rm -f report
-    name=$(basename $1 .sci)
-    echo generating $name.bin
-    echo "predef();exec('$name.sci');save('$name.bin');quit"\
-          | $SCILABBIN -ns -nwni | sed 1,8d 1>report 2>&1
-    if (grep error report 1> /dev/null  2>&1);
-    then cat report;echo " "
-        echo see $(pwd)/report for more information
-        grep libok report>/dev/null;
-    else rm -f report;
-    fi
-    umask 022
-    exit 0
-}
-
-do_lib()
-{
-    umask 002
-    rm -f report
-    echo "$1=lib('$2/');save('$2/lib',$1);quit"\
-          | $SCILABBIN -ns -nwni |sed 1,/--\>/d 1>report 2>&1
-    if (grep error report 1> /dev/null  2>&1);
-    then cat report;echo " "
-        echo see $(pwd)/report for more information
-        grep libok report>/dev/null;
-    else rm -f report;
-    fi
-    umask 022
-    exit 0
-}
-
 MORE_OPT=""
 if test "$SCILAB_MODE" = "nw"; then
     MORE_OPT="-nw"
@@ -915,26 +881,6 @@ rest="no"
 case $# in
     0) # No arg, run Scilab
         do_scilex $MORE_OPT
-        ;;
-    2) # Only two arg
-        case $1 in
-            -comp)
-                do_compile $2
-                ;;
-            *)
-                rest="yes"
-                ;;
-        esac
-        ;;
-    3)
-        case $1 in
-            -lib)
-                do_lib $2 $3
-                ;;
-            *)
-                rest="yes"
-                ;;
-        esac
         ;;
     *)
         case $1 in
