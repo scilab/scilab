@@ -73,8 +73,46 @@ public :
 
 private:
 
+    static std::string getHDF5ErrorMsg()
+    {
+        hid_t stid = H5Eget_current_stack();
+        if (stid < 0)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot get the current errors stack"));
+        }
+
+        ssize_t stackSize = H5Eget_num(stid);
+        std::string ret;
+
+        if (stackSize)
+        {
+            herr_t err = H5Ewalk2(stid, H5E_WALK_UPWARD, getStackErrorMsg, &ret);
+            H5Eclear2(stid);
+        }
+
+        return ret;
+    }
+
+    static herr_t getStackErrorMsg(unsigned int n, const H5E_error2_t * eptr, void * client_data)
+    {
+        std::string * str = (std::string *)client_data;
+        str->append(eptr->desc);
+
+        return 0;
+    }
+
     inline std::string getDescription(std::string m) const
     {
+        std::ostringstream os;
+        std::string err = getHDF5ErrorMsg();
+        if (!err.empty())
+        {
+            os << m << std::endl
+               << _("HDF5 description") << ": " << err << "." << std::flush;
+
+            m = os.str();
+            os.str("");
+        }
 
 #if defined(__HDF5OBJECTS_DEBUG__)
 
@@ -83,16 +121,14 @@ private:
             return m;
         }
 
-        std::ostringstream os;
         const char * bt = backtrace_print(0, 1);
 
         os << m << std::endl
            << "DEBUG Informations:" << std::endl
            << gettext("Exception thrown in file") << " " << file << " " << gettext("at line") << " " << line << std::endl
-           << bt;
+           << bt << std::flush;
 
         free(const_cast<char *>(bt));
-        os.flush();
 
         return os.str();
 
