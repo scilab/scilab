@@ -59,7 +59,7 @@
         </para>
         <para>
             <varname>num</varname> должен быть тех же размеров, что и
-            <varname>str1</varname> либо <varname>num</varname> должен быть
+            <varname>str1</varname>, либо <varname>num</varname> должен быть
             целым числом.
         </para>
     </refsection>

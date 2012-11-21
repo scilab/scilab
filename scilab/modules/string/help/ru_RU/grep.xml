@@ -91,7 +91,7 @@
         </para>
     </refsection>
     <refsection>
-        <title>Привет №1</title>
+        <title>Пример №1</title>
         <para>
             В следующем примере мы ищем одну или две строки в тексте, который
             хранится в переменной <varname>txt</varname>.
