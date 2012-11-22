@@ -74,6 +74,6 @@ case 'define' then
   gr_i=['dt=o.model.rpar(1);';
         'txt=[''Delay'';string(dt)];';
         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,exprs,gr_i)
+  x=standard_define([3 2],model,exprs,gr_i)
 end
 endfunction

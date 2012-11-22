@@ -141,7 +141,7 @@ function [x,y,typ]=FROMMO(job,arg1,arg2)
     exprs=['A']
     
     gr_i='';
-    x=standard_define([1.5 1.5],model,exprs,gr_i)
+    x=standard_define([2 1],model,exprs,gr_i)
     x.graphics.out_implicit=['I']
   end
 endfunction

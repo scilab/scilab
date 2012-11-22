@@ -149,6 +149,6 @@ case 'define' then
 	strcat(sci2exp(rpar));sci2exp(auto);sci2exp(0)],..
 	    list('y1=sin(u1)',' ',' ','y1=sin(u1)',' ',' ',' '))
   gr_i=['xstringb(orig(1),orig(2),''Scifunc'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,exprs,gr_i)
+  x=standard_define([4 2],model,exprs,gr_i)
 end
 endfunction

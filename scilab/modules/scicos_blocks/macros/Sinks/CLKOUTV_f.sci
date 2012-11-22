@@ -111,6 +111,6 @@ case 'define' then
   model.dep_ut=[%f %f]
 
   exprs=string(prt)
-  x=standard_define([1 1.5],model,exprs,' ')
+  x=standard_define([1 1],model,exprs,' ')
 end
 endfunction

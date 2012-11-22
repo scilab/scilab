@@ -109,6 +109,6 @@ case 'define' then
   exprs=string(prt)
   gr_i=['xo=orig(1);yo=orig(2)+sz(2)/3';
         'xstringb(xo,yo,string(prt),sz(1),sz(2)/1.5)']
-  x=standard_define([1 1.5],model,exprs,gr_i)
+  x=standard_define([1 1],model,exprs,gr_i)
 end
 endfunction
