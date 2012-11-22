@@ -58,7 +58,6 @@ ELEMENTARY_FUNCTIONS_IMPEXP void vWDmProd(int _iMode, double* _pdblIn1, double* 
 
 ELEMENTARY_FUNCTIONS_IMPEXP double durands(int *_iVal);
 ELEMENTARY_FUNCTIONS_IMPEXP int nint(double _iVal);
-ELEMENTARY_FUNCTIONS_IMPEXP double danints(double _dblVal);
 
 ELEMENTARY_FUNCTIONS_IMPEXP void ddmsums(int _iMode, double *_pdblIn, int _iRows, int _iCols, double *_pdblOut);
 ELEMENTARY_FUNCTIONS_IMPEXP void zdmsums(int _iMode, double *_pdblRealIn, double *_pdblImgIn, int _iRows, int _iCols, double *_pdblRealOut, double *_pdblImgOut);

@@ -249,6 +249,7 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_triu.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_zeros.f"/>
 		<File RelativePath=".\simple.f"/>
+		<File RelativePath=".\danints.f"/>
 		<File RelativePath=".\split.f"/>
 		<File RelativePath=".\urand.f"/>
 		<File RelativePath=".\vpythag.f"/>

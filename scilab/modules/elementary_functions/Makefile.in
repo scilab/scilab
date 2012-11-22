@@ -222,7 +222,7 @@ am__objects_5 = psi.lo wasum.lo dexpm1.lo wwdiv.lo wdotcr.lo iset.lo \
 	dmcopy.lo wexchn.lo isoval.lo dwrdiv.lo wipow.lo wlog.lo \
 	infinity.lo dwpow1.lo wmul.lo dad.lo dset.lo dtild.lo \
 	i1mach.lo dclmat.lo ortran.lo bdiag.lo wvmul.lo dmmul.lo \
-	wsqrt.lo israt.lo rat.lo old_pythag.lo
+	wsqrt.lo israt.lo rat.lo old_pythag.lo danints.lo
 am__objects_6 = libscielementary_functions_algo_la-getmode.lo \
 	libscielementary_functions_algo_la-cumsum.lo \
 	libscielementary_functions_algo_la-cumprod.lo \
@@ -894,7 +894,8 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wsqrt.f \
     src/fortran/israt.f \
     src/fortran/rat.f \
-    src/fortran/old_pythag.f
+    src/fortran/old_pythag.f \
+    src/fortran/danints.f
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_tril.c \
@@ -2772,6 +2773,9 @@ rat.lo: src/fortran/rat.f
 
 old_pythag.lo: src/fortran/old_pythag.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o old_pythag.lo `test -f 'src/fortran/old_pythag.f' || echo '$(srcdir)/'`src/fortran/old_pythag.f
+
+danints.lo: src/fortran/danints.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o danints.lo `test -f 'src/fortran/danints.f' || echo '$(srcdir)/'`src/fortran/danints.f
 
 sci_f_testmatrix.lo: sci_gateway/fortran/sci_f_testmatrix.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_testmatrix.lo `test -f 'sci_gateway/fortran/sci_f_testmatrix.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_testmatrix.f
