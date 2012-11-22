@@ -161,6 +161,23 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
             }
             return 0;
         }
+
+        if (decimal[0] != '.' && decimal[0] != ',')
+        {
+            if (iRange)
+            {
+                FREE(iRange);
+                iRange = NULL;
+            }
+            if (conversion)
+            {
+                FREE(conversion);
+                conversion = NULL;
+            }
+
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"), fname, 3, ",", ".");
+            return 0;
+        }
     }
     else
     {

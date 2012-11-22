@@ -82,6 +82,7 @@ Bug fixes
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
 
+* Bug #11976 fixed - Check csvTextScan 3rd parameter validity.
 
 * Bug #11981 fixed - Smooth french help page had a wrong declaration
                      (colonnes => lignes).
