@@ -330,7 +330,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
         if (iCountElem == 1 && iOrientation == 0)
         {
             int iCols = iDims;
-            if (iDims == 2 && (piDimsArray[0] == 1 || piDimsArray[1] == 1)) // vector case, return index in scalar
+            if (vectDouble[0]->getSize() == piDimsArray[iDims - 1]) // vector case
             {
                 iCols = 1;
             }
