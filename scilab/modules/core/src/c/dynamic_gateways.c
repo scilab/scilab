@@ -449,6 +449,22 @@ int gw_dynamic_external_objects(void)
                               &ptr_gw_external_objects);
 }
 /*--------------------------------------------------------------------------*/
+/* uiwidget module */
+#define UIWIDGET_MODULE_NAME "uiwidget"
+static DynLibHandle hUIWidgetLib = NULL;
+static PROC_GATEWAY ptr_gw_uiwidget = NULL;
+static char* dynlibname_uiwidget = NULL;
+static char* gatewayname_uiwidget = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_uiwidget(void)
+{
+    return gw_dynamic_generic(UIWIDGET_MODULE_NAME,
+                              &dynlibname_uiwidget,
+                              &gatewayname_uiwidget,
+                              &hUIWidgetLib,
+                              &ptr_gw_uiwidget);
+}
+/*--------------------------------------------------------------------------*/
 void freeAllDynamicGateways(void)
 {
     freeDynamicGateway(&dynlibname_special_functions,
@@ -576,6 +592,11 @@ void freeAllDynamicGateways(void)
                        &gatewayname_external_objects,
                        &hExternal_ObjectsLib,
                        &ptr_gw_external_objects);
+
+    freeDynamicGateway(&dynlibname_uiwidget,
+                       &gatewayname_uiwidget,
+                       &hUIWidgetLib,
+                       &ptr_gw_uiwidget);
 }
 /*--------------------------------------------------------------------------*/
 

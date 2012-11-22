@@ -14,7 +14,7 @@
 dnl Process this file with autoconf to produce a configure script.
 
 
-AC_REVISION($Revision$)dnl
+AC_REVISION($Revision$)
 AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
 AC_PREREQ(2.62)
 AC_CONFIG_MACRO_DIR([m4/])
@@ -35,7 +35,7 @@ SCILAB_LIBRARY_VERSION=$SCILAB_VERSION_MAJOR:$SCILAB_VERSION_MINOR:$SCILAB_VERSI
 AC_SUBST(SCILAB_LIBRARY_VERSION)
 
 SCILAB_BINARY_VERSION=$SCILAB_VERSION_MAJOR.$SCILAB_VERSION_MINOR.$SCILAB_VERSION_MAINTENANCE
-AC_SUBST(SCILAB_BINARY_VERSION)
+AC_SUBST(SCILAB_BINARY_VERSION)dqs
 
 #shared library versioning
 #GENERIC_LIBRARY_VERSION=1:2:0
@@ -1868,6 +1868,7 @@ modules/history_browser/Makefile
 modules/preferences/Makefile
 modules/xml/Makefile
 modules/external_objects/Makefile
+modules/uiwidget/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
