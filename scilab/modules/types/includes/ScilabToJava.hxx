@@ -44,6 +44,8 @@ class ScilabToJava
 
     static int refreshId;
 
+public :
+
     /**
      * Get the pointer on the indexes
      * @param indexes a vector containing indexes
@@ -300,8 +302,6 @@ class ScilabToJava
      */
     template<typename T>
     static void sendVariable(const std::string & name, std::vector<int> & indexes, const char * varName, int row, int col, int * nbcoeff, T ** real, T ** img, const bool swaped, const int handlerId);
-
-public :
 
     /**
      * Send all the listened variables
