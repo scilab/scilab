@@ -361,8 +361,13 @@ public :
 
     void visitprivate(const BoolExp  &e)
     {
-        Bool *pb = new Bool(e.value_get());
-        result_set(pb);
+        if (e.getBigBool() == NULL)
+        {
+            Bool *pB = new Bool(e.value_get());
+            (const_cast<BoolExp *>(&e))->setBigBool(pB);
+
+        }
+        result_set(e.getBigBool());
     }
 
 
