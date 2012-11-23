@@ -58,7 +58,7 @@
         </para>
         <para>
             <code>typename('',type)</code> suppress the data type given by its code
-            <literal>type</literal> out of the table of known data types.
+            <varname>type</varname> out of the table of known data types.
         </para>
         <para>Number max. of defined types is 50.</para>
     </refsection>

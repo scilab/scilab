@@ -183,7 +183,7 @@
                     <para>
                         <note>
                             Note that if a null variable is assigned to a name, it is removed.
-                            <code>x=disp(1)</code> deletes <literal>x</literal>.
+                            <code>x=disp(1)</code> deletes <varname>x</varname>.
                         </note>
                     </para>
                 </listitem>

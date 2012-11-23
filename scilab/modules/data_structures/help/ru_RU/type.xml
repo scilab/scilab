@@ -180,7 +180,7 @@
                     <para>
                         <note>
                             Заметьте, что, если нуль-переменная назначается имени, то оно удаляется.
-                            <code>x=disp(1)</code> удаляет <literal>x</literal>.
+                            <code>x=disp(1)</code> удаляет <varname>x</varname>.
                         </note>
                     </para>
                 </listitem>
