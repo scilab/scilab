@@ -46,6 +46,7 @@ p=1+s+2*s^2;
 denom(p) // Devrait retourner 1
 numer(p)
  ]]></programlisting>
+    </refsection>
         <refsection role="see also">
             <title>Voir aussi</title>
             <simplelist type="inline">
