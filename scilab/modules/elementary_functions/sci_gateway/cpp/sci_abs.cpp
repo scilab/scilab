@@ -42,21 +42,43 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble())
     {
-        types::Double* pDblIn = in[0]->getAs<types::Double>();
+        types::Double* pDblIn  = in[0]->getAs<types::Double>();
         types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+
+        double* pdblInR = pDblIn->get();
+        double* pdblInI = pDblIn->getImg();
+        double* pdblOut = pDblOut->get();
 
         if (pDblIn->isComplex())
         {
             for (int i = 0 ; i < pDblIn->getSize() ; i++)
             {
-                pDblOut->set(i, dabsz(pDblIn->get(i), pDblIn->getImg(i)));
+                if (ISNAN(pdblInR[i]))
+                {
+                    pdblOut[i] = pdblInR[i];
+                }
+                else if (ISNAN(pdblInI[i]))
+                {
+                    pdblOut[i] = pdblInI[i];
+                }
+                else
+                {
+                    pdblOut[i] = dabsz(pdblInR[i], pdblInI[i]);
+                }
             }
         }
         else
         {
             for (int i = 0 ; i < pDblIn->getSize() ; i++)
             {
-                pDblOut->set(i, dabss(pDblIn->get(i)));
+                if (ISNAN(pdblInR[i]))
+                {
+                    pdblOut[i] = pdblInR[i];
+                }
+                else
+                {
+                    pdblOut[i] = dabss(pdblInR[i]);
+                }
             }
         }
 
