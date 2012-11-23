@@ -194,6 +194,38 @@
             </note>
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=42;
+type(a)
+
+b=%t;
+type(b)
+
+c="foo"
+type(c)
+
+d=sparse([1,2;4,5;3,10],[1,2,3]);
+type(d)
+
+e = tlist(["listtype","field1","field2"], [], []);
+type(e)
+
+f=poly(0,"s");
+type(f)
+
+g=int8([1 -120 127 312]);
+type(g)
+
+h=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
+type(h)
+
+l = list(1,["a" "b"]);
+type(l)
+
+]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
