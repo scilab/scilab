@@ -105,12 +105,35 @@ public class UIWidget {
         });
     }
 
+    public static UIComponent getUIComponent(ScilabType arg) {
+        if (arg.isEmpty()) {
+            return null;
+        }
 
-    public static void uiwidget() throws Exception {
+        if (arg.getType() == ScilabTypeEnum.sci_strings) {
+            return UILocator.get(((ScilabString) arg).getData()[0][0]);
+        }
+
+        if (arg.getType() == ScilabTypeEnum.sci_mlist) {
+            ScilabMList mlist = (ScilabMList) arg;
+            ScilabString names = (ScilabString) mlist.get(0);
+            if (!names.isEmpty() && "UIWidget".equals(names.getData()[0][0])) {
+                ScilabType t = mlist.get(1);
+                if (t != null && !t.isEmpty() && t.getType() == ScilabTypeEnum.sci_ints) {
+                    return UILocator.get((int) ((ScilabInteger) t).getData()[0][0]);
+                }
+            }
+        }
+
+        return null;
+    }
+
+
+    public static int uiwidget() throws Exception {
         final List<ScilabType> args = handler.getArgumentList();
         final List<String> proprName = new ArrayList<String>();
         final ScilabTypeMap attributes = new ScilabTypeMap();
-        String parentId = null;
+        UIComponent parent = null;
         ScilabType arg;
         int start = 0;
 
@@ -122,10 +145,10 @@ public class UIWidget {
             start = 1;
             // First argument is the parent id
             arg = args.get(0);
-            if (arg.getType() != ScilabTypeEnum.sci_strings || arg.isEmpty()) {
-                throw new Exception("Invalid first argument: An uicontrol identifier expected");
+            parent = getUIComponent(arg);
+            if (parent == null) {
+                throw new Exception("Invalid parent object");
             }
-            parentId = ((ScilabString) arg).getData()[0][0];
         }
 
         for (int i = start; i < args.size(); i += 2) {
@@ -161,16 +184,6 @@ public class UIWidget {
         attributes.remove("style");
         //attributes.remove("id");
 
-        final UIComponent parent;
-        if (parentId != null) {
-            parent = UILocator.get(parentId);
-            if (parent == null) {
-                throw new Exception("Invalid parent object");
-            }
-        } else {
-            parent = null;
-        }
-
         final UIComponent ui;
         if (style.length == 1) {
             ui = UIComponent.getUIComponent("org.scilab.modules.uiwidget.components", style[0], attributes, parent, null);
@@ -185,17 +198,20 @@ public class UIWidget {
 
         // Layout informations are prioritar so we handle them now
         if (parent != null) {
+            final UIComponent _parent = parent;
             UIComponent.execOnEDT(new Runnable() {
                 public void run() {
                     try {
-                        parent.add(ui);
+                        _parent.add(ui);
                     } catch (Exception e) {
                         System.err.println(e);
                     }
-                    parent.finish();
+                    _parent.finish();
                 }
             });
         }
+
+        return ui.getUid();
 
         /*        final int s = start;
                 UIComponent.execOnEDT(new Runnable() {

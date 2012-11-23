@@ -35,7 +35,7 @@ public class UIScilabWindow extends UIComponent {
 
     private SwingScilabWindow win;
     private ImageIcon icon;
-    private boolean visible;
+    private Boolean visible;
 
     public UIScilabWindow(UIComponent parent) throws UIWidgetException {
         super(parent);
@@ -93,7 +93,10 @@ public class UIScilabWindow extends UIComponent {
 
     public void finish() {
         win.pack();
-        win.setVisible(visible);
+        if (visible != null) {
+            win.setVisible(visible);
+            visible = null;
+        }
     }
 
     public void setVisible(boolean b) {
@@ -101,6 +104,7 @@ public class UIScilabWindow extends UIComponent {
             win.pack();
         }
         win.setVisible(b);
+        visible = null;
     }
 
     public ImageIcon getIcon() {

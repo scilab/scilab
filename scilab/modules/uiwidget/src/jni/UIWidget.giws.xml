@@ -3,7 +3,7 @@
         <method name="uiwidgetLoad" returnType="void" modifier="static">
             <parameter name="fileName" type="String"/>
         </method>
-        <method name="uiwidget" returnType="void" modifier="static" />
+        <method name="uiwidget" returnType="int" modifier="static" />
         <method name="uiget" returnType="void" modifier="static" >
             <parameter name="uid" type="int"/>
             <parameter name="property" type="String"/>

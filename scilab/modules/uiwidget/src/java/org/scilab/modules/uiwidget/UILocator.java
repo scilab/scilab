@@ -80,11 +80,17 @@ public final class UILocator {
         }
 
         UIComponent root;
-        root = roots.get(pathElements.get(0));
+        String base = pathElements.get(0);
+        root = roots.get(base);
 
         if (root == null) {
-            return null;
+            // Not a root element: we look after it in the tree
+            root = search(base, roots);
+            if (root == null) {
+                return null;
+            }
         }
+
         for (int i = 1; i < pathElements.size(); i++) {
             String el = pathElements.get(i);
             if (el.equals("..")) {
@@ -100,6 +106,25 @@ public final class UILocator {
         pathToUI.put(path, root);
 
         return root;
+    }
+
+    private static final UIComponent search(final String base, final Map<String, UIComponent> map) {
+        UIComponent c = map.get(base);
+        if (c != null) {
+            return c;
+        }
+
+        for (UIComponent uic : map.values()) {
+            Map<String, UIComponent> cmap = uic.children;
+            if (cmap != null) {
+                c = search(base, cmap);
+                if (c != null) {
+                    return c;
+                }
+            }
+        }
+
+        return null;
     }
 
     private static final List<String> splitPath(final String path) {

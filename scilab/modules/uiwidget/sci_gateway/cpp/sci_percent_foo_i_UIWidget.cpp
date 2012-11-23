@@ -113,7 +113,8 @@ int sci_percent_foo_i_UIWidget(char *fname, unsigned long fname_len)
         }
     }
 
-    AssignOutputVariable(pvApiCtx, 1) = 0;
+    UIWidgetTools::createOnScilabStack(uid, nbIn + 1, pvApiCtx);
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
     ReturnArguments(pvApiCtx);
 
     return 0;

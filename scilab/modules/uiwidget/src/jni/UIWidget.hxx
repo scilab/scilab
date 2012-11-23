@@ -79,7 +79,7 @@ private:
 
 protected:
     jmethodID voiduiwidgetLoadjstringjava_lang_StringID; // cache method id
-    jmethodID voiduiwidgetID; // cache method id
+    jmethodID jintuiwidgetID; // cache method id
     jmethodID voiduigetjintintjstringjava_lang_StringjintintID; // cache method id
     jmethodID voiduisetjintintID; // cache method id
     jmethodID jintgetUIWidgetHandlerID; // cache method id
@@ -145,7 +145,7 @@ public:
     // Methods
     static void uiwidgetLoad(JavaVM * jvm_, char const* fileName);
 
-    static void uiwidget(JavaVM * jvm_);
+    static int uiwidget(JavaVM * jvm_);
 
     static void uiget(JavaVM * jvm_, int uid, char const* property, int stackPos);
 

@@ -115,7 +115,6 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
         Scilab.registerFinalHook(new Runnable() {
 
             public void run() {
-                System.out.println("boujou");
                 GraphicController.getController().unregister(UIScilabPlot.this);
             }
         });

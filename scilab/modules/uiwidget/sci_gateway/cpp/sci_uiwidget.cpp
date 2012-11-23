@@ -10,6 +10,7 @@
  *
  */
 
+#include "UIWidgetTools.hxx"
 #include "UIWidget.hxx"
 #include "ScilabToJava.hxx"
 
@@ -71,10 +72,18 @@ int sci_uiwidget(char * fname, unsigned long fname_len)
         catch (const GiwsException::JniException & e)
         {
             Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+            return 0;
         }
+
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
+
+        return 0;
     }
     else
     {
+        int uid = -1;
+
         for (int i = 1; i <= nbIn; i++)
         {
             err = getVarAddressFromPosition(pvApiCtx, i, &addr);
@@ -88,18 +97,28 @@ int sci_uiwidget(char * fname, unsigned long fname_len)
 
         try
         {
-            UIWidget::uiwidget(getScilabJavaVM());
+            uid = UIWidget::uiwidget(getScilabJavaVM());
         }
         catch (const GiwsException::JniException & e)
         {
             Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+            return 0;
+        }
+
+        if (uid != -1)
+        {
+            UIWidgetTools::createOnScilabStack(uid, nbIn + 1, pvApiCtx);
+            AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+            ReturnArguments(pvApiCtx);
+
+            return 0;
+        }
+        else
+        {
+            Scierror(999, _("%s: Invalid object.\n"), fname);
+            return 0;
         }
     }
-
-    AssignOutputVariable(pvApiCtx, 1) = 0;
-    ReturnArguments(pvApiCtx);
-
-    return 0;
 }
 
 /*--------------------------------------------------------------------------*/
