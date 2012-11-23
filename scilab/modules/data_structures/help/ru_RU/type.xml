@@ -195,7 +195,7 @@
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 a=42;
 type(a)

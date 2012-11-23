@@ -56,7 +56,7 @@
         <para>Максимальное число определённых типов 50.</para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 [typs,nams]=typename();
 disp("Первый тип (double) : " + string(typs(1)) + " / " + nams(1));
