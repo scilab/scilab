@@ -24,16 +24,16 @@ extern "C"
 
 std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount)
 {
-    switch(in.size())
+    switch (in.size())
     {
-    case 0 :
-        return L"%_" + _stFunctionName;
-    case 1:
-        return L"%" + in[0]->getShortTypeStr() + L"_" + _stFunctionName;
-    case 2:
-        return L"%" + in[0]->getShortTypeStr() + L"_" + _stFunctionName + L"_" + in[1]->getShortTypeStr();
-    default :
-        throw ast::ScilabError(L"Don't know how to overload " + _stFunctionName, 999, *new Location());
+        case 0 :
+            return L"%_" + _stFunctionName;
+        case 1:
+            return L"%" + in[0]->getShortTypeStr() + L"_" + _stFunctionName;
+        case 2:
+            return L"%" + in[0]->getShortTypeStr() + L"_" + _stFunctionName + L"_" + in[1]->getShortTypeStr();
+        default :
+            throw ast::ScilabError(L"Don't know how to overload " + _stFunctionName, 246, *new Location());
     }
     return _stFunctionName;
 }
@@ -47,9 +47,9 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
 {
     types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(_stOverloadingFunctionName));
 
-    if(pIT == NULL || pIT->isCallable() == false)
+    if (pIT == NULL || pIT->isCallable() == false)
     {
-        throw ast::ScilabError(_W("check or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n"), 999, *new Location());
+        throw ast::ScilabError(_W("check or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n"), 246, *new Location());
     }
     types::Callable *pCall = pIT->getAs<types::Callable>();
     try
@@ -59,7 +59,7 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
     }
     catch (ScilabMessage sm)
     {
-        if(pCall->isMacro() || pCall->isMacroFile())
+        if (pCall->isMacro() || pCall->isMacroFile())
         {
             wchar_t szError[bsiz];
             os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
@@ -76,64 +76,64 @@ std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
 {
     switch (_oper)
     {
-        /* standard operators */
-    case OpExp::plus :
-        return std::wstring(L"a");
-    case OpExp::unaryMinus :
-    case OpExp::minus :
-        return std::wstring(L"s");
-    case OpExp::times :
-        return std::wstring(L"m");
-    case OpExp::rdivide :
-        return std::wstring(L"r");
-    case OpExp::ldivide :
-        return std::wstring(L"l");
-    case OpExp::power :
-        return std::wstring(L"p");
-        /* dot operators */
-    case OpExp::dottimes :
-        return std::wstring(L"x");
-    case OpExp::dotrdivide :
-        return std::wstring(L"d");
-    case OpExp::dotldivide :
-        return std::wstring(L"q");
-    case OpExp::dotpower :
-        return std::wstring(L"j");
-        /* Kron operators */
-    case OpExp::krontimes :
-        return std::wstring(L"k");
-    case OpExp::kronrdivide :
-        return std::wstring(L"y");
-    case OpExp::kronldivide :
-        return std::wstring(L"z");
-        /* Control Operators ??? */
-    case OpExp::controltimes :
-        return std::wstring(L"u");
-    case OpExp::controlrdivide :
-        return std::wstring(L"v");
-    case OpExp::controlldivide :
-        return std::wstring(L"w");
-    case OpExp::eq :
-        return std::wstring(L"o");
-    case OpExp::ne :
-        return std::wstring(L"n");
-    case OpExp::lt :
-        return std::wstring(L"1");
-    case OpExp::le :
-        return std::wstring(L"3");
-    case OpExp::gt :
-        return std::wstring(L"2");
-    case OpExp::ge :
-        return std::wstring(L"4");
-    case OpExp::logicalAnd :
-        return std::wstring(L"h");
-    case OpExp::logicalOr :
-        return std::wstring(L"g");
-    case OpExp::logicalShortCutAnd :
-        return std::wstring(L"h");
-    case OpExp::logicalShortCutOr :
-        return std::wstring(L"g");
-    default :
-        return std::wstring(L"???");
+            /* standard operators */
+        case OpExp::plus :
+            return std::wstring(L"a");
+        case OpExp::unaryMinus :
+        case OpExp::minus :
+            return std::wstring(L"s");
+        case OpExp::times :
+            return std::wstring(L"m");
+        case OpExp::rdivide :
+            return std::wstring(L"r");
+        case OpExp::ldivide :
+            return std::wstring(L"l");
+        case OpExp::power :
+            return std::wstring(L"p");
+            /* dot operators */
+        case OpExp::dottimes :
+            return std::wstring(L"x");
+        case OpExp::dotrdivide :
+            return std::wstring(L"d");
+        case OpExp::dotldivide :
+            return std::wstring(L"q");
+        case OpExp::dotpower :
+            return std::wstring(L"j");
+            /* Kron operators */
+        case OpExp::krontimes :
+            return std::wstring(L"k");
+        case OpExp::kronrdivide :
+            return std::wstring(L"y");
+        case OpExp::kronldivide :
+            return std::wstring(L"z");
+            /* Control Operators ??? */
+        case OpExp::controltimes :
+            return std::wstring(L"u");
+        case OpExp::controlrdivide :
+            return std::wstring(L"v");
+        case OpExp::controlldivide :
+            return std::wstring(L"w");
+        case OpExp::eq :
+            return std::wstring(L"o");
+        case OpExp::ne :
+            return std::wstring(L"n");
+        case OpExp::lt :
+            return std::wstring(L"1");
+        case OpExp::le :
+            return std::wstring(L"3");
+        case OpExp::gt :
+            return std::wstring(L"2");
+        case OpExp::ge :
+            return std::wstring(L"4");
+        case OpExp::logicalAnd :
+            return std::wstring(L"h");
+        case OpExp::logicalOr :
+            return std::wstring(L"g");
+        case OpExp::logicalShortCutAnd :
+            return std::wstring(L"h");
+        case OpExp::logicalShortCutOr :
+            return std::wstring(L"g");
+        default :
+            return std::wstring(L"???");
     }
 }
