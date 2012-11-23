@@ -30,281 +30,315 @@ extern "C"
 
 namespace types
 {
-    /**
-    ** Constructor & Destructor (public)
-    */
-    List::List() : Container()
-    {
-        m_plData = new std::vector<InternalType *>();
+/**
+** Constructor & Destructor (public)
+*/
+List::List() : Container()
+{
+    m_plData = new std::vector<InternalType *>();
 #ifndef NDEBUG
-        Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
-    }
+}
 
-    List::~List()
-    {
-        if(isDeletable() == true)
-        {
-            std::vector<InternalType *>::iterator itValues;
-            for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues)
-            {
-                (*itValues)->DecreaseRef();
-                if((*itValues)->isDeletable())
-                {
-                    delete *itValues;
-                }
-            }
-            delete m_plData;
-        }
-#ifndef NDEBUG
-        Inspector::removeItem(this);
-#endif
-    }
-
-    /**
-    ** Private Copy Constructor and data Access
-    */
-    List::List(List *_oListCopyMe)
+List::~List()
+{
+    if (isDeletable() == true)
     {
         std::vector<InternalType *>::iterator itValues;
-        m_plData = new std::vector<InternalType *>;
-
-        for(int i = 0 ; i < _oListCopyMe->getData()->size() ; i++)
+        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues)
         {
-            InternalType* pIT = (*_oListCopyMe->getData())[i];
-            append(pIT);
+            (*itValues)->DecreaseRef();
+            if ((*itValues)->isDeletable())
+            {
+                delete *itValues;
+            }
         }
-
-        m_iSize = static_cast<int>(m_plData->size());
+        delete m_plData;
+    }
 #ifndef NDEBUG
-        Inspector::addItem(this);
+    Inspector::removeItem(this);
 #endif
+}
+
+/**
+** Private Copy Constructor and data Access
+*/
+List::List(List *_oListCopyMe)
+{
+    std::vector<InternalType *>::iterator itValues;
+    m_plData = new std::vector<InternalType *>;
+
+    for (int i = 0 ; i < _oListCopyMe->getData()->size() ; i++)
+    {
+        InternalType* pIT = (*_oListCopyMe->getData())[i];
+        append(pIT);
     }
 
-    std::vector<InternalType *> *List::getData()
-    {
-        return m_plData;
-    }
+    m_iSize = static_cast<int>(m_plData->size());
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
 
-    /**
-    ** size_get
-    ** Return the number of elements in list
-    */
-    int List::getSize()
-    {
-        return static_cast<int>(m_plData->size());
-    }
+std::vector<InternalType *> *List::getData()
+{
+    return m_plData;
+}
 
-    /**
-    ** append(InternalType *_typedValue)
-    ** Append the given value to the end of the List
-    */
-    void List::append(InternalType *_typedValue)
-    {
-        _typedValue->IncreaseRef();
-        m_plData->push_back(_typedValue);
-        m_iSize = static_cast<int>(m_plData->size());
-    }
+/**
+** size_get
+** Return the number of elements in list
+*/
+int List::getSize()
+{
+    return static_cast<int>(m_plData->size());
+}
 
-    /**
-    ** Clone
-    ** Create a new List and Copy all values.
-    */
-    InternalType *List::clone()
-    {
-        return new List(this);
-    }
+/**
+** append(InternalType *_typedValue)
+** Append the given value to the end of the List
+*/
+void List::append(InternalType *_typedValue)
+{
+    _typedValue->IncreaseRef();
+    m_plData->push_back(_typedValue);
+    m_iSize = static_cast<int>(m_plData->size());
+}
 
-    GenericType* List::getColumnValues(int _iPos)
-    {
-		return NULL;
-    }
+/**
+** Clone
+** Create a new List and Copy all values.
+*/
+InternalType *List::clone()
+{
+    return new List(this);
+}
 
-    /**
-    ** toString to display Lists
-    ** FIXME : Find a better indentation process
-    */
-    bool List::toString(std::wostringstream& ostr)
+GenericType* List::getColumnValues(int _iPos)
+{
+    return NULL;
+}
+
+/**
+** toString to display Lists
+** FIXME : Find a better indentation process
+*/
+bool List::toString(std::wostringstream& ostr)
+{
+    if (getSize() == 0)
     {
-        if (getSize() == 0)
+        ostr << L"()" << std::endl;
+    }
+    else
+    {
+        int iPosition = 1;
+        std::vector<InternalType *>::iterator itValues;
+        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
         {
-            ostr << L"()" << std::endl;
+            ostr << L"     (" << iPosition << L")" << std::endl;
+            //maange lines
+            bool bFinish = (*itValues)->toString(ostr);
+            ostr << std::endl;
         }
-        else
-        {
-            int iPosition = 1;
-            std::vector<InternalType *>::iterator itValues;
-            for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
-            {
-                ostr << L"     (" << iPosition << L")" << std::endl;
-                //maange lines
-                bool bFinish = (*itValues)->toString(ostr);
-                ostr << std::endl;
-            }
-        }
-        return true;
     }
+    return true;
+}
 
-    std::vector<InternalType*>	List::extract(typed_list* _pArgs)
+std::vector<InternalType*>	List::extract(typed_list* _pArgs)
+{
+    std::vector<InternalType*> outList;
+    //check input param
+    if (_pArgs->size() != 1)
     {
-        std::vector<InternalType*> outList;
-        //check input param
-        if(_pArgs->size() != 1)
-        {
-            return outList;
-        }
-
-        typed_list pArg;
-        int iDims           = (int)_pArgs->size();
-
-        int* piMaxDim       = new int[iDims];
-        int* piCountDim     = new int[iDims];
-
-        //evaluate each argument and replace by appropriate value and compute the count of combinations
-        int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
-        if(iSeqCount == 0)
-        {
-            //outList.push_back(Double::Empty());
-        }
-
-        for(int i = 0 ; i < iSeqCount ; i++)
-        {
-            int idx = (int)pArg[0]->getAs<Double>()->get(i);
-            if(idx > getSize() || idx < 1)
-            {
-                outList.clear();
-                break;
-            }
-            InternalType* pIT = (*m_plData)[idx - 1];
-            outList.push_back(pIT);
-        }
-
-        for(int iArg = 0 ; iArg < pArg.size() ; iArg++)
-        {
-            if(pArg[iArg]->isDeletable())
-            {
-                delete pArg[iArg];
-            }
-        }
         return outList;
     }
 
-    InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
+    typed_list pArg;
+    int iDims           = (int)_pArgs->size();
+
+    int* piMaxDim       = new int[iDims];
+    int* piCountDim     = new int[iDims];
+
+    //evaluate each argument and replace by appropriate value and compute the count of combinations
+    int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    if (iSeqCount == 0)
     {
-        //check input param
-        if(_pArgs->size() != 1)
+        //outList.push_back(Double::Empty());
+    }
+
+    for (int i = 0 ; i < iSeqCount ; i++)
+    {
+        int idx = (int)pArg[0]->getAs<Double>()->get(i);
+        if (idx > getSize() || idx < 1)
         {
-            return NULL;
+            outList.clear();
+            break;
         }
+        InternalType* pIT = (*m_plData)[idx - 1];
+        outList.push_back(pIT);
+    }
 
-        typed_list pArg;
-        int iDims           = (int)_pArgs->size();
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
+    return outList;
+}
 
-        int* piMaxDim       = new int[iDims];
-        int* piCountDim     = new int[iDims];
+InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
+{
+    //check input param
+    if (_pArgs->size() != 1)
+    {
+        return NULL;
+    }
 
-        int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
-        if(iSeqCount == 0)
-        {//do nothing
+    typed_list pArg;
+    int iDims           = (int)_pArgs->size();
+
+    int* piMaxDim       = new int[iDims];
+    int* piCountDim     = new int[iDims];
+
+    int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    if (iSeqCount == 0)
+    {
+        //do nothing
+        return this;
+    }
+    else if (iSeqCount > 1)
+    {
+        std::wostringstream os;
+        os << _W("Unable to insert multiple item in a list.\n");
+        throw ast::ScilabError(os.str());
+    }
+
+
+    int idx = (int)pArg[0]->getAs<Double>()->get(0);
+    if (_pSource->isListDelete())
+    {
+        //delete item
+        if (idx == 0)
+        {
+            //do nothing
             return this;
         }
-        else if(iSeqCount > 1)
+        else if (idx <= m_plData->size())
+        {
+            InternalType* pIT = (*m_plData)[idx - 1];
+            if (pIT)
+            {
+                pIT->DecreaseRef();
+                if (pIT->isDeletable())
+                {
+                    delete pIT;
+                }
+            }
+            m_plData->erase(m_plData->begin() + idx - 1);
+        }
+    }
+    else if (_pSource->isListInsert())
+    {
+        //insert item
+        if (idx == 0)
         {
             std::wostringstream os;
-            os << _W("Unable to insert multiple item in a list.\n");
+            os << _W("Index out of bounds.\n");
             throw ast::ScilabError(os.str());
         }
 
-
-        int idx = (int)pArg[0]->getAs<Double>()->get(0);
-        if(_pSource->isListDelete())
-        {//delete item
-            if(idx == 0)
-            {//do nothing
-                return this;
-            }
-            else if(idx <= m_plData->size())
+        InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert();
+        pInsert->IncreaseRef();
+        if (idx > m_plData->size())
+        {
+            //try to insert after the last index, increase list size and assign value
+            while (m_plData->size() < idx)
             {
-                InternalType* pIT = (*m_plData)[idx - 1];
-                if(pIT)
-                {
-                    pIT->DecreaseRef();
-                    if(pIT->isDeletable())
-                    {
-                        delete pIT;
-                    }
-                }
-                m_plData->erase(m_plData->begin() + idx - 1);
+                //incease list size and fill with "Undefined"
+                InternalType* pUndef = new ListUndefined();
+                pUndef->IncreaseRef();
+                m_plData->push_back(new ListUndefined());
             }
-        }
-        else if(_pSource->isListInsert())
-        {//insert item
-            if(idx == 0)
-            {
-                std::wostringstream os;
-                os << _W("Index out of bounds.\n");
-                throw ast::ScilabError(os.str());
-            }
-
-            InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert();
-            pInsert->IncreaseRef();
-            if(idx > m_plData->size())
-            {//try to insert after the last index, increase list size and assign value
-                while(m_plData->size() < idx)
-                {//incease list size and fill with "Undefined"
-                    InternalType* pUndef = new ListUndefined();
-                    pUndef->IncreaseRef();
-                    m_plData->push_back(new ListUndefined());
-                }
-                (*m_plData)[idx - 1] = pInsert;
-            }
-            else
-            {
-                m_plData->insert(m_plData->begin() + idx - 1, pInsert);
-            }
-        }
-        else if(idx == 0)
-        {//special cazse to insert at the first position
-            InternalType* pInsert = NULL;
-            if(_pSource->isListInsert())
-            {
-                pInsert = _pSource->getAs<ListInsert>()->getInsert();
-            }
-            else
-            {
-                pInsert = _pSource;
-            }
-            pInsert->IncreaseRef();
-            m_plData->insert(m_plData->begin(), pInsert);
+            (*m_plData)[idx - 1] = pInsert;
         }
         else
         {
-            while(m_plData->size() < idx)
-            {//incease list size and fill with "Undefined"
-                m_plData->push_back(new ListUndefined());
-            }
-
-            InternalType* pIT = (*m_plData)[idx - 1];
-            pIT->DecreaseRef();
-            if(pIT->isDeletable())
-            {
-                delete pIT;
-            }
-
-            _pSource->IncreaseRef();
-            (*m_plData)[idx - 1] = _pSource;
+            m_plData->insert(m_plData->begin() + idx - 1, pInsert);
         }
-
-        m_iSize = (int)m_plData->size();
-        return this;
     }
-
-    InternalType* List::get(const int _iIndex)
+    else if (idx == 0)
     {
-        if(_iIndex >= 0 && _iIndex < m_plData->size())
+        //special cazse to insert at the first position
+        InternalType* pInsert = NULL;
+        if (_pSource->isListInsert())
         {
-            return (*m_plData)[_iIndex];
+            pInsert = _pSource->getAs<ListInsert>()->getInsert();
         }
-        return NULL;
+        else
+        {
+            pInsert = _pSource;
+        }
+        pInsert->IncreaseRef();
+        m_plData->insert(m_plData->begin(), pInsert);
     }
+    else
+    {
+        while (m_plData->size() < idx)
+        {
+            //incease list size and fill with "Undefined"
+            m_plData->push_back(new ListUndefined());
+        }
+
+        InternalType* pIT = (*m_plData)[idx - 1];
+        pIT->DecreaseRef();
+        if (pIT->isDeletable())
+        {
+            delete pIT;
+        }
+
+        _pSource->IncreaseRef();
+        (*m_plData)[idx - 1] = _pSource;
+    }
+
+    m_iSize = (int)m_plData->size();
+    return this;
+}
+
+InternalType* List::get(const int _iIndex)
+{
+    if (_iIndex >= 0 && _iIndex < m_plData->size())
+    {
+        return (*m_plData)[_iIndex];
+    }
+    return NULL;
+}
+
+bool List::operator==(const InternalType& it)
+{
+    if (const_cast<InternalType &>(it).isList() == false)
+    {
+        return false;
+    }
+
+    List* plst = const_cast<InternalType &>(it).getAs<List>();
+
+    if (getSize() != plst->getSize())
+    {
+        return false;
+    }
+
+    for (int i = 0; i < getSize(); i++)
+    {
+        if (*(*m_plData)[i] != *plst->get(i))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 }

@@ -19,53 +19,70 @@
 
 namespace types
 {
-    class TYPES_IMPEXP List : public Container
+class TYPES_IMPEXP List : public Container
+{
+public :
+    List();
+    ~List();
+
+private :
+    List(List *_oListCopyMe);
+protected :
+    std::vector<InternalType *>*    getData();
+public :
+    int                             getSize();
+
+    void                            whoAmI(void)
     {
-    public :
-                                        List();
-                                        ~List();
-
-    private :
-                                        List(List *_oListCopyMe);
-    protected :
-        std::vector<InternalType *>*    getData();
-    public :
-        int                             getSize();
-
-        void                            whoAmI(void) { std::cout << "types::List"; };
-
-        RealType                        getType(void) { return RealList; }
-
-        /**
-        ** append(InternalType *_typedValue)
-        ** Append the given value to the end of the List
-        */
-        void                            append(InternalType *_typedValue);
-
-        /**
-        ** Clone
-        ** Create a new List and Copy all values.
-        */
-        InternalType*                   clone();
-
-        GenericType*                    getColumnValues(int _iPos);
-
-        bool                            toString(std::wostringstream& ostr);
-
-        bool                            isList() { return true; }
-
-        InternalType*                   insert(typed_list* _pArgs, InternalType* _pSource);
-        std::vector<InternalType*>      extract(typed_list* _pArgs);
-        virtual InternalType*           get(const int _iIndex);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring            getTypeStr() {return L"list";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring            getShortTypeStr() {return L"l";}
-
-    protected :
-        std::vector<InternalType *>*    m_plData;
+        std::cout << "types::List";
     };
+
+    RealType                        getType(void)
+    {
+        return RealList;
+    }
+
+    /**
+    ** append(InternalType *_typedValue)
+    ** Append the given value to the end of the List
+    */
+    void                            append(InternalType *_typedValue);
+
+    /**
+    ** Clone
+    ** Create a new List and Copy all values.
+    */
+    InternalType*                   clone();
+
+    GenericType*                    getColumnValues(int _iPos);
+
+    bool                            toString(std::wostringstream& ostr);
+
+    bool                            isList()
+    {
+        return true;
+    }
+
+    InternalType*                   insert(typed_list* _pArgs, InternalType* _pSource);
+    std::vector<InternalType*>      extract(typed_list* _pArgs);
+    virtual InternalType*           get(const int _iIndex);
+
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring            getTypeStr()
+    {
+        return L"list";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring            getShortTypeStr()
+    {
+        return L"l";
+    }
+
+    virtual bool                    operator==(const InternalType& it);
+
+protected :
+    std::vector<InternalType *>*    m_plData;
+};
 }
 
 #endif /* __LIST_HH__ */
