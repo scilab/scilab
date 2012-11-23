@@ -30,25 +30,25 @@ using namespace types;
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() < 1)
+    if (in.size() < 1)
     {
-        Scierror(999,_("%s: Wrong number of input arguments: At least %d expected.\n"), "size", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), "size", 1);
         return Function::Error;
     }
 
-    switch(in[0]->getType())
+    switch (in[0]->getType())
     {
-        // Dedicated case for lists.
-    case InternalType::RealMList:
+            // Dedicated case for lists.
+        case InternalType::RealMList:
         {
             std::wstring wstFuncName = L"%"  + in[0]->getTypeStr() + L"_size";
             Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
             break;
         }
-    case InternalType::RealTList:
-    case InternalType::RealList:
+        case InternalType::RealTList:
+        case InternalType::RealList:
         {
-            if(in.size() > 1)
+            if (in.size() > 1)
             {
                 Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "size", 1);
                 return Function::Error;
@@ -58,21 +58,21 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
             out.push_back(pD);
             break;
         }
-    default :
-        // All types inherits of GenericType, so have this algorithm as default.
+        default :
+            // All types inherits of GenericType, so have this algorithm as default.
         {
             int iMode = -1;
 
-            if(in.size() > 2)
+            if (in.size() > 2)
             {
-                Scierror(77,_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "size", 1, 2);
+                Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "size", 1, 2);
                 return Function::Error;
             }
 
-            if(in.size() == 2)
+            if (in.size() == 2)
             {
                 iMode = getMode(in, 1, 0);
-                if(iMode == -2)
+                if (iMode == -2)
                 {
                     return Function::Error;
                 }
@@ -81,56 +81,68 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
             int iDims   = in[0]->getAs<GenericType>()->getDims();
             int* piDims = in[0]->getAs<GenericType>()->getDimsArray();
 
-            if(_iRetCount == 1)
+            if (_iRetCount == 1)
             {
                 int iRowsOut = 1;
                 int iColsOut = 0;
                 double* pdblReal = NULL;
 
-                switch(iMode)
+                switch (iMode)
                 {
-                case -1 : //lhs == 1
-                    iColsOut = iDims;
-                    break;
-                default : //"*"
-                    iColsOut = 1;
-                    break;
+                    case -1 : //lhs == 1
+                        iColsOut = iDims;
+                        break;
+                    default : //"*"
+                        iColsOut = 1;
+                        break;
                 }
 
                 Double* pD = new Double(iRowsOut, iColsOut);
 
                 double* pdbl = pD->getReal();
 
-                switch(iMode)
+                switch (iMode)
                 {
-                case -1 : //lhs == 1
-                    for(int i = 0 ; i < iDims ; i++)
-                    {
-                        pdbl[i] = piDims[i];
-                    }
-                    break;
-                case 0 : //"*"
-                    pdbl[0] = in[0]->getAs<GenericType>()->getSize();
-                    break;
-                default : //"r"
-                    if(iMode > iDims)
-                    {
-                        Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "size", 2);
-                        return Function::Error;
-                    }
+                    case -1 : //lhs == 1
+                        for (int i = 0 ; i < iDims ; i++)
+                        {
+                            pdbl[i] = piDims[i];
+                        }
+                        break;
+                    case 0 : //"*"
+                        pdbl[0] = in[0]->getAs<GenericType>()->getSize();
+                        break;
+                    default : //"r"
+                        if (iMode > iDims)
+                        {
+                            pdbl[0] = 1;
+                            out.push_back(pD);
+                            return Function::OK;
+                        }
 
-                    iColsOut = 1;
-                    pdbl[0] = piDims[iMode - 1];
-                    break;
+                        iColsOut = 1;
+                        pdbl[0] = piDims[iMode - 1];
+                        break;
                 }
                 out.push_back(pD);
             }
             else
             {
-                for(int i = 0 ; i < Min(_iRetCount, iDims) ; i++)
+                for (int i = 0 ; i < Min(_iRetCount, iDims) ; i++)
                 {
                     Double* pD = new Double(piDims[i]);
                     out.push_back(pD);
+                }
+
+                /* Multiple returns:
+                 * example: [a b c]=size(M) */
+                if (_iRetCount > iDims)
+                {
+                    for (int i = iDims ; i < _iRetCount ; i++)
+                    {
+                        Double* pD = new Double(1);
+                        out.push_back(pD);
+                    }
                 }
             }
             break;

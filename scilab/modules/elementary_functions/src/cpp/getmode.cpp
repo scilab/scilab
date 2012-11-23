@@ -27,44 +27,55 @@ using namespace types;
 int getMode(typed_list &in, int _iProcess, int _iRef)
 {
     int iMode = 0;
-    if(in[_iProcess]->isString())
+    if (in[_iProcess]->isString())
     {
         String* pS = in[_iProcess]->getAs<String>();
-        if(pS->getSize() != 1)
+        if (pS->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
         }
 
-        switch(pS->get(0)[0])
+        switch (pS->get(0)[0])
         {
-        case 'r' :
-            iMode = 1;
-            break;
-        case 'c' :
-            iMode = 2;
-            break;
-        case '*' :
-            iMode = 0;
-            break;
-        case 'm' :
-            iMode = -1;
-            break;
-        default :
-            Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "size", _iProcess + 1, "m" , "*" , "r", "c");
-            iMode = -2;
-            break;
+            case 'r' :
+                iMode = 1;
+                break;
+            case 'c' :
+                iMode = 2;
+                break;
+            case '*' :
+                iMode = 0;
+                break;
+            case 'm' :
+                iMode = -1;
+                break;
+            default :
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "size", _iProcess + 1, "m" , "*" , "r", "c");
+                iMode = -2;
+                break;
         }
     }
-    else if(in[1]->isDouble() && in[1]->getAs<Double>()->isComplex() == false)
+    else if (in[1]->isDouble() && in[1]->getAs<Double>()->isComplex() == false)
     {
         Double* pD = in[_iProcess]->getAs<Double>();
-        if(pD->getSize() != 1)
+        if (pD->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
             iMode = -2;
         }
 
         iMode = static_cast<int>(pD->getReal()[0]);
+        if (pD->getReal()[0] != static_cast<double>(iMode))
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "size", 2);
+            iMode = -2;
+        }
+
+        if (iMode == 0)
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "size", 2);
+            iMode = -2;
+        }
     }
     else
     {
@@ -73,14 +84,14 @@ int getMode(typed_list &in, int _iProcess, int _iRef)
     }
 
     //special case for -1
-    if(iMode == -1)
+    if (iMode == -1)
     {
         iMode = 0;
-        if(in[_iRef]->getAs<GenericType>()->getRows() > 1)
+        if (in[_iRef]->getAs<GenericType>()->getRows() > 1)
         {
             iMode = 1;
         }
-        else if(in[_iRef]->getAs<GenericType>()->getCols() > 1)
+        else if (in[_iRef]->getAs<GenericType>()->getCols() > 1)
         {
             iMode = 2;
         }
