@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 
-// 
+// Copyright (C) INRIA -
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [sl,U]=ssrand(nout,nin,nstate,flag)
@@ -15,7 +15,7 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
 //flag=list('ncno',dim_cno,dim_ncno,dim_co,dim_nco)
 //
 // (A,B,C) U-similar to
-// 
+//
 //     [*,*,*,*;     [*;
 //     [0,*,*,*;     [0;
 // A=  [0,0,*,*;  B= [*;
@@ -28,26 +28,26 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
 //  (A33,B3) --> controllable,observable modes , dimension flag(4)
 //  (A44,B4) --> uncontrollable,observable modes, dimension flag(5)
 //*******************stabilizability*********************
-//flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
-//    dim_cont_subs<=dim_stab_subs<=dim_stab0  
+//flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)
+//    dim_cont_subs<=dim_stab_subs<=dim_stab0
 //pair (A,B) U-similar to:
-//    [*,*,*,*;     [*;    
+//    [*,*,*,*;     [*;
 //    [0,s,*,*;     [0;
 //A=  [0,0,i,*;   B=[0;
 //    [0,0,0,u]     [0]
-//     
+//
 // (A11,B1) controllable  s=stable matrix i=neutral matrix u=unstsble matrix
 //********************detectability***********************
-//flag=list('dt',dim_inst_unob,dim_instb0,dim_unobs)      
+//flag=list('dt',dim_inst_unob,dim_instb0,dim_unobs)
 //    dim_inst_unob<=dim_instb0<=dim_unobs
 //
 //pair  (A,C) U-similar to:
 //
-//    [u,*,*,*; 
-//    [0,i,*,*; 
-//A=  [0,0,s,*; 
-//    [0,0,0,*] 
-//  
+//    [u,*,*,*;
+//    [0,i,*,*;
+//A=  [0,0,s,*;
+//    [0,0,0,*]
+//
 //C=  [0,0,0,*]
 //
 // (A44,C4) observable  s=stable matrix i=neutral matrix u=unstsble matrix
@@ -56,7 +56,7 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
 //flag=list('on',nr,ng,ng0,nv,rk)
 //    nr<=ng<=ng0<=nv<=nstate    and rk<=nu    (rk<nu if nr>0)
 //        nstate-nv>=rk ny>=rk
-//   
+//
 //system (A,B,C,D) U-equivalent to
 //
 //    [*,*,*,*,*;     [0,*;
@@ -96,7 +96,7 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
 //
 //   with (A55,C15) observable
 //         [C21,d2] full row-rank
-//         row-image([[A21;A31;A41;A51]],[B2;B3;B4;B5]) 
+//         row-image([[A21;A31;A41;A51]],[B2;B3;B4;B5])
 //  included in row-image([C21,D2]);
 //         A22 unstable
 //         A33 neutral
@@ -108,7 +108,12 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
 //         row dimension C2.= row dimension of D2. =rk
 //***************************************************************
 
-deff('[w]=st_able(w,margin)','if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end')
+function [w]=st_able(w,margin)
+    if w~=[] then
+        w=w-(max(real(spec(w)))+margin)*eye();
+    end
+endfunction
+
 margin=0.5;  //M "stable"  will mean real-part(M) < -margin
 [lhs,rhs]=argn(0)
 //rand('seed',0)
@@ -119,16 +124,16 @@ case []
    sl=syslin('c',rand(nstate,nstate),rand(nstate,nin),rand(nout,nstate),..
  zeros(nout,nin),zeros(nstate,1));U=eye(nstate,nstate);
 case 'fullV'
-//C^(-1)(D) = X  
+//C^(-1)(D) = X
   rd=flag(2)  //rank(D)   needs rd<nin
   sl=syslin('c',rand(nstate,nstate),rand(nstate,nin),...
   [rand(rd,nstate);zeros(nout-rd,nstate)],[rand(rd,nin);zeros(nout-rd,nin)]);
 case 'noW'
-// B ker(D)=0  
+// B ker(D)=0
   rd=flag(2) //rank(D)   needs nout>rd   or C=0
   sl=syslin('c',rand(nstate,nstate),[zeros(nstate,nin-rd),rand(nstate,rd)],...
      rand(nout,nstate),[zeros(nout,nin-rd),rand(nout,rd)]);
-case 'fullW'  
+case 'fullW'
 //admits polynomial inverse
   iv=rand(nin,nout)
   for k=1:nstate
@@ -189,7 +194,7 @@ case 'on'
   b21=b21d1(1:nstate-nv,:);d1=b21d1(nstate-nv+1:nstate-nv+nout,:);
   a21=a21c1(1:nstate-nv,:);c1=a21c1(nstate-nv+1:nstate-nv+nout,:);
 
-  if rk>=nout then 
+  if rk>=nout then
     error(msprintf(gettext("%s: Wrong values for input argument #%d: you must choose rk<nout.\n"),"ssrand",4))
   end
 //  if rk>=nout then j=-b21*pinv(d1);a22=-j*c2;end
@@ -243,7 +248,13 @@ function w=imag_axis(ns,nn,nu,flag);
 [LHS,RHS]=argn(0);
 if RHS==3 then flag='siu';end
 if flag=='siu' then
-deff('[w]=st_able(w,margin)','if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end')
+
+function [w]=st_able(w,margin)
+    if w~=[] then
+        w=w-(max(real(spec(w)))+margin)*eye();
+    end
+endfunction
+
 margin=0.5;  //M "stable"  will mean real-part(M) < -margin
 w=[];k=int(nn/2);
 rand('normal');
@@ -259,7 +270,13 @@ rand('uniform');
 return
 end
 if flag=='uis' then
-deff('[w]=st_able(w,margin)','if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end')
+
+function [w]=st_able(w,margin)
+    if w~=[] then
+        w=w-(max(real(spec(w)))+margin)*eye();
+    end
+endfunction
+
 w=[];k=int(nn/2);
 rand('normal');
 //rand('seed',0);
