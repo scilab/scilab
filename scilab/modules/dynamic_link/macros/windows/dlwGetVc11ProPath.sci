@@ -8,12 +8,12 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //=============================================================================
-function vcPath = dlwGetVc11ExpressPath()
+function vcPath = dlwGetVc11ProPath()
   vcPath = [];
   try
     vcPath = winqueryreg('HKEY_LOCAL_MACHINE', ..
-                      'Software\Microsoft\VCExpress\11.0\Setup\VS', ..
-                      'ProductDir');
+                     'Software\Microsoft\VisualStudio\11.0\Setup\VS', ..
+                     'ProductDir');
   catch
     // remove last error on 'winqueryreg' fails
     lasterror();
@@ -24,5 +24,6 @@ function vcPath = dlwGetVc11ExpressPath()
   if vcPath <> [] then
     vcPath = pathconvert(vcPath, %f, %t);
   end
+
 endfunction
 //=============================================================================

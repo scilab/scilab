@@ -8,21 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //=============================================================================
-function vcPath = dlwGetVc11ExpressPath()
-  vcPath = [];
-  try
-    vcPath = winqueryreg('HKEY_LOCAL_MACHINE', ..
-                      'Software\Microsoft\VCExpress\11.0\Setup\VS', ..
-                      'ProductDir');
-  catch
-    // remove last error on 'winqueryreg' fails
-    lasterror();
-    return;
-  end
-
-  // remove last file separator if it exists
-  if vcPath <> [] then
-    vcPath = pathconvert(vcPath, %f, %t);
-  end
+function bOK = dlwIsVc11Express()
+  bOK = (dlwGetVc11ExpressPath() <> []);
 endfunction
 //=============================================================================

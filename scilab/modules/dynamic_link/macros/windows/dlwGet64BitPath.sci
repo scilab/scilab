@@ -47,10 +47,6 @@ function vcPath64 = dlwGet64BitPath();
                 vcPath64 = [];
             end
         end
-        
-        // remove last file separator if it exists
-        if vcPath64 <> [] then
-        vcPath64 = pathconvert(vcPath64, %f, %t);
     end
 endfunction
 //=============================================================================
