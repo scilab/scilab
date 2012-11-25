@@ -17,6 +17,18 @@ Improvements
 * test_run no longer take in account skipped tests in the summary.
   See bug #12117
 
+* Add two new commands:
+ - scinotes
+   scinotes modules/core/macros/whos.sci
+   Support also the -indent argument to indent automatically a Scilab file.
+   For example: ./bin/scinotes -indent modules/core/macros/whos.sci
+   If the file does not exist, propose to create it.
+
+ - xcos
+   xcos modules/xcos/examples/integral.xcos will open the integral Xcos
+   schema
+   If the file does not exist, propose to create it.
+
 
 Removed functions
 ==================
