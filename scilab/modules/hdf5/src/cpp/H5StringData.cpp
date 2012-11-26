@@ -90,8 +90,31 @@ void H5StringData::printData(std::ostream & os, const unsigned int pos, const un
 
 void H5StringData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition) const
 {
+    static char EMPTY[] = { '\0' };
+
     SciErr err;
+    char ** _tdata = 0;
     char ** _data = static_cast<char **>(getData());
+
+    if (!transformedData)
+    {
+        // It is possible to have a nil pointer (Scilab doesn't like that)
+        // so we replace nil ptr by an empty string...
+
+        _tdata = new char *[totalSize];
+        for (hsize_t i = 0; i < totalSize; i++)
+        {
+            if (_data[i])
+            {
+                _tdata[i] = _data[i];
+            }
+            else
+            {
+                _tdata[i] = static_cast<char *>(EMPTY);
+            }
+        }
+        _data = _tdata;
+    }
 
     if (ndims == 0)
     {
@@ -116,6 +139,11 @@ void H5StringData::toScilab(void * pvApiCtx, const int lhsPosition, int * parent
             H5BasicData<char *>::create(pvApiCtx, lhsPosition, 1, (int)totalSize, newData, parentList, listPosition);
         }
         delete[] newData;
+    }
+
+    if (_tdata)
+    {
+        delete[] _tdata;
     }
 }
 
