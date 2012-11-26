@@ -31,7 +31,10 @@ class H5ReferenceData : public H5BasicData<char>
 public:
 
     H5ReferenceData(H5Object & _parent, const bool _datasetReference, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, char * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner);
+
     virtual ~H5ReferenceData();
+
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const;
 
     bool isReference() const
     {

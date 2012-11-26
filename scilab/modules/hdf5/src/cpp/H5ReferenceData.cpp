@@ -25,6 +25,11 @@ H5ReferenceData::~H5ReferenceData()
     delete[] cumprod;
 }
 
+void H5ReferenceData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition) const
+{
+    H5Object::toScilab(pvApiCtx, lhsPosition, parentList, listPosition);
+}
+
 const char ** H5ReferenceData::getReferencesName() const
 {
     hid_t file = getFile().getH5Id();
