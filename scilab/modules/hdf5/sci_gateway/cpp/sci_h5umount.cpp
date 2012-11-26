@@ -56,6 +56,7 @@ int sci_h5umount(char *fname, unsigned long fname_len)
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A H5Object expected.\n"), fname, 1);
+        return 0;
     }
 
     err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
