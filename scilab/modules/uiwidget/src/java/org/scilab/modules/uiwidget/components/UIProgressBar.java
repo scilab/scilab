@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -22,8 +22,7 @@ import javax.swing.event.ChangeListener;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
-
-import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
 public class UIProgressBar extends UIComponent {
 
@@ -72,7 +71,7 @@ public class UIProgressBar extends UIComponent {
             bar.addChangeListener(new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
                     if (onchangeEnable) {
-                        InterpreterManagement.requestScilabExec(UIProgressBar.this.action + "(" + Integer.toString(bar.getValue()) + ")");
+                        UIWidgetTools.execAction(UIProgressBar.this, UIProgressBar.this.action, bar.getValue());
                     }
                 }
             });

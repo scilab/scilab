@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -208,7 +208,7 @@ public class XMLToUIComponentConverter extends DefaultHandler {
             } else {
                 final UIComponent c = stack.pop();
 
-                UIComponent.execOnEDT(new Runnable() {
+                UIAccessTools.execOnEDT(new Runnable() {
                     public void run() {
                         c.finish();
                     }
@@ -219,9 +219,8 @@ public class XMLToUIComponentConverter extends DefaultHandler {
                 }
 
                 if (!stack.isEmpty()) {
-                    //		    try {
                     final UIComponent top = stack.peek();
-                    UIComponent.execOnEDT(new Runnable() {
+                    UIAccessTools.execOnEDT(new Runnable() {
                         public void run() {
                             try {
                                 top.add(c);
@@ -230,9 +229,6 @@ public class XMLToUIComponentConverter extends DefaultHandler {
                             }
                         }
                     });
-                    //		    } catch (UIWidgetException e) {
-                    //			System.err.println("(Warning) Cannot add the component " + localName + ": ignored");
-                    //		    }
                 }
             }
         }

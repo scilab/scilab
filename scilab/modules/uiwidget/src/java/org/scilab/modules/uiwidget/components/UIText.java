@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -28,8 +28,7 @@ import javax.swing.text.Document;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
-
-import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
 public class UIText extends UIComponent {
 
@@ -135,9 +134,9 @@ public class UIText extends UIComponent {
     public void setOnurlclick(final String action) {
         if (this.action == null) {
             editor.addHyperlinkListener(new HyperlinkListener() {
-                public void	hyperlinkUpdate(HyperlinkEvent e) {
+                public void hyperlinkUpdate(HyperlinkEvent e) {
                     if (onurlclickEnable && e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                        InterpreterManagement.requestScilabExec(UIText.this.action + "(\"" + e.getURL().toString() + "\")");
+                        UIWidgetTools.execAction(UIText.this, UIText.this.action, e.getURL());
                     }
                 }
             });

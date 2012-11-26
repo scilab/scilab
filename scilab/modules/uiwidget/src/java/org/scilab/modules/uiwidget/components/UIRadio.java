@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -26,6 +26,7 @@ import org.scilab.modules.uiwidget.UIWidgetException;
 public class UIRadio extends UIComponent {
 
     private JRadioButton radio;
+    private String buttonGroup;
 
     public UIRadio(UIComponent parent) throws UIWidgetException {
         super(parent);
@@ -37,15 +38,30 @@ public class UIRadio extends UIComponent {
         return radio;
     }
 
-    @UIComponentAnnotation(attributes = {"text", "icon", "selected"})
-    public Object newInstance(String text, Icon icon, boolean selected) {
+    @UIComponentAnnotation(attributes = {"text", "icon", "selected", "button-group"})
+    public Object newInstance(String text, Icon icon, boolean selected, String group) {
         if (icon != null) {
             radio = new JRadioButton(text, icon, selected);
         } else {
             radio = new JRadioButton(text, selected);
         }
 
+        setButtonGroup(group);
+
         return radio;
+    }
+
+    public void setButtonGroup(String group) {
+        if (group != null && !group.isEmpty()) {
+            getRoot().addToButtonGroup(group, radio);
+        } else {
+            getRoot().removeFromButtonGroup(this.buttonGroup, radio);
+        }
+        this.buttonGroup = group;
+    }
+
+    public String getButtonGroup() {
+        return buttonGroup;
     }
 
     public void setOnclick(Action action) {

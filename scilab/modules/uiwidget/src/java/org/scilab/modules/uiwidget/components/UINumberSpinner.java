@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -24,8 +24,7 @@ import javax.swing.event.ChangeListener;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
-
-import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
 public class UINumberSpinner extends UIComponent {
 
@@ -33,6 +32,7 @@ public class UINumberSpinner extends UIComponent {
     private static final String defaultIntPattern = ((JSpinner.NumberEditor) new JSpinner(new SpinnerNumberModel(0, 0, 0, 0)).getEditor()).getFormat().toPattern();
 
     private JSpinner spinner;
+    private ChangeListener listener;
     private String action;
 
     public UINumberSpinner(UIComponent parent) throws UIWidgetException {
@@ -137,13 +137,27 @@ public class UINumberSpinner extends UIComponent {
         return spinner;
     }
 
+    public void removeListener() {
+        if (listener != null) {
+            spinner.removeChangeListener(listener);
+            listener = null;
+        }
+    }
+
+    public void remove() {
+        removeListener();
+        super.remove();
+    }
+
     public void setOnchange(final String action) {
         if (this.action == null) {
-            spinner.addChangeListener(new ChangeListener() {
+            removeListener();
+            listener = new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
-                    InterpreterManagement.requestScilabExec(UINumberSpinner.this.action + "(" + spinner.getValue().toString() + ")");
+                    UIWidgetTools.execAction(UINumberSpinner.this, UINumberSpinner.this.action, spinner.getValue());
                 }
-            });
+            };
+            spinner.addChangeListener(listener);
         }
         this.action = action;
     }

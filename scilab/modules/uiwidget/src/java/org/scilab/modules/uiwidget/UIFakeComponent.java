@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -51,7 +51,7 @@ public class UIFakeComponent {
     public UIComponent getUIComponent(final UIComponent parent, final Map<String, Map<String, String>> style) throws UIWidgetException {
         final UIComponent ui = UIComponent.getUIComponent(pack, name, attributes, parent, style);
 
-        UIComponent.execOnEDT(new Runnable() {
+        UIAccessTools.execOnEDT(new Runnable() {
             public void run() {
                 for (UIFakeComponent comp : children) {
                     try {

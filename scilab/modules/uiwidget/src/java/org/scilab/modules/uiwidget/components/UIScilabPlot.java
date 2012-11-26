@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -28,8 +28,8 @@ import javax.swing.event.AncestorListener;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.core.Scilab;
 import org.scilab.modules.graphic_objects.GraphicObjectBuilder;
 import org.scilab.modules.graphic_objects.ScilabNativeView;
@@ -155,13 +155,13 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
             if (figure.getIdentifier().equals(parentFigure)) {
                 if (property == GraphicObjectProperties.__GO_ROTATION_ANGLES__ && onrotate != null && !onrotate.isEmpty()) {
                     Double[] angles = (Double[]) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
-                    InterpreterManagement.requestScilabExec(onrotate + "(\"" + UIScilabPlot.this.getUIPath() + "\",[" + angles[0].toString() + "," + angles[1].toString() + "])");
+                    UIWidgetTools.execAction(UIScilabPlot.this, onrotate, "[" + angles[0].toString() + "," + angles[1].toString() + "]");
                 } else if (property == GraphicObjectProperties.__GO_ZOOM_BOX__ && onzoom != null && !onzoom.isEmpty()) {
                     Double[] box = (Double[]) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_ZOOM_BOX__);
                     if (box.length == 6) {
-                        InterpreterManagement.requestScilabExec(onzoom + "(\"" + UIScilabPlot.this.getUIPath() + "\",[" + box[0].toString() + "," + box[1].toString() + "," + box[2].toString() + "," + box[3].toString() + "," + box[4].toString() + "," + box[5].toString() + "])");
+                        UIWidgetTools.execAction(UIScilabPlot.this, onzoom, "[" + box[0].toString() + "," + box[1].toString() + "," + box[2].toString() + "," + box[3].toString() + "," + box[4].toString() + "," + box[5].toString() + "]");
                     } else {
-                        InterpreterManagement.requestScilabExec(onzoom + "(\"" + UIScilabPlot.this.getUIPath() + "\",[])");
+                        UIWidgetTools.execAction(UIScilabPlot.this, onzoom, "[]");
                     }
                 }
             }

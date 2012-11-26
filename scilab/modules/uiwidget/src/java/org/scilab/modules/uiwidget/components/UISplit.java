@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -22,6 +22,7 @@ import javax.swing.JComponent;
 import javax.swing.JSplitPane;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
 
+import org.scilab.modules.uiwidget.UIAccessTools;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
@@ -78,7 +79,7 @@ public class UISplit extends UIComponent {
 
     public void add(final UIComponent comp) throws UIWidgetException {
         if (comp.getComponent() instanceof JComponent) {
-            execOnEDT(new Runnable() {
+            UIAccessTools.execOnEDT(new Runnable() {
                 public void run() {
                     try {
                         if (!first) {

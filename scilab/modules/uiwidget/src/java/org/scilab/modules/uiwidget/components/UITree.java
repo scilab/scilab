@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -37,8 +37,7 @@ import javax.swing.tree.TreePath;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
-
-import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
 public class UITree extends UIComponent {
 
@@ -297,9 +296,9 @@ public class UITree extends UIComponent {
                         if (value instanceof UINode) {
                             UINode node = (UINode) value;
                             if (node.getCheckbox()) {
-                                InterpreterManagement.requestScilabExec(UITree.this.oneditAction + "(\"" + node.getUIPath() + "\"," + (node.getChecked() ?  "%t" : "%f" ) + ")");
+                                UIWidgetTools.execAction(node, UITree.this.oneditAction, node.getChecked() ?  "%t" : "%f");
                             } else {
-                                InterpreterManagement.requestScilabExec(UITree.this.oneditAction + "(\"" + node.getUIPath() + "\",\"" + node.getText() + "\")");
+                                UIWidgetTools.execAction(node, UITree.this.oneditAction, "\"" + node.getText() + "\"");
                             }
                         }
                     }

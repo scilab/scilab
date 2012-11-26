@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -22,12 +22,12 @@ import javax.swing.event.ChangeListener;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
-
-import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
 public class UISlider extends UIComponent {
 
     private JSlider slider;
+    private ChangeListener listener;
     private boolean onchangeEnable = true;
     private String action;
 
@@ -79,15 +79,24 @@ public class UISlider extends UIComponent {
         slider.setMinorTickSpacing(increment);
     }
 
+    public void remove() {
+        if (listener != null) {
+            slider.removeChangeListener(listener);
+            listener = null;
+        }
+        super.remove();
+    }
+
     public void setOnchange(final String action) {
         if (this.action == null) {
-            slider.addChangeListener(new ChangeListener() {
+            listener = new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
                     if (onchangeEnable) {
-                        InterpreterManagement.requestScilabExec(UISlider.this.action + "(\"" + UISlider.this.getUIPath() + "\"," + Integer.toString(slider.getValue()) + ")");
+                        UIWidgetTools.execAction(UISlider.this, UISlider.this.action, slider.getValue());
                     }
                 }
-            });
+            };
+            slider.addChangeListener(listener);
         }
         this.action = action;
     }

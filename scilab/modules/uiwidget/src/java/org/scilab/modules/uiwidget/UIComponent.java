@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -20,7 +20,6 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.font.TextAttribute;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -31,20 +30,19 @@ import java.util.Map;
 import java.util.EventListener;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
 
 import org.xml.sax.Attributes;
 
 import org.scilab.modules.uiwidget.components.NoLayout;
-import org.scilab.modules.uiwidget.components.TextData;
+import org.scilab.modules.uiwidget.components.UIFocusListener;
 import org.scilab.modules.uiwidget.components.UIMouseListener;
 import org.scilab.modules.uiwidget.components.UITab;
 import org.scilab.modules.uiwidget.components.UITools;
@@ -62,10 +60,12 @@ public abstract class UIComponent {
     private int uid;
     private UIComponent root;
     protected UIComponent parent;
+    protected Map<String, ButtonGroup> buttonGroups;
     protected Map<String, UIComponent> children;
     protected List<UIComponent> childrenList;
     protected Map<String, Map<String, String>> style;
     protected UIMouseListener mouseListener;
+    protected UIFocusListener focusListener;
     protected String path;
     protected Map<String, String> constraint;
     protected Rectangle position = new Rectangle();
@@ -180,8 +180,18 @@ public abstract class UIComponent {
             if (parent != null && parent.children != null && id != null) {
                 parent.children.remove(id);
             }
+            if (isRoot() && buttonGroups != null) {
+                if (parent.root.buttonGroups == null) {
+                    parent.root.buttonGroups = buttonGroups;
+                } else {
+                    parent.root.buttonGroups.putAll(buttonGroups);
+                }
+                buttonGroups = null;
+            }
+
             UILocator.removeFromCachedPaths(this);
             this.parent = parent;
+            setRoot(parent == null ? this : parent.root);
             invalidateUIPath();
             registerToParent();
             registerIdToParent();
@@ -190,6 +200,13 @@ public abstract class UIComponent {
             } else {
                 parent.add(this);
             }
+        }
+    }
+
+    private void setRoot(UIComponent root) {
+        this.root = root;
+        for (UIComponent c : childrenList) {
+            c.setRoot(root);
         }
     }
 
@@ -216,6 +233,22 @@ public abstract class UIComponent {
         }
     }
 
+    public String getId() {
+        return this.id;
+    }
+
+    public void setTag(String tag) {
+        setId(tag);
+    }
+
+    public String getTag() {
+        return getId();
+    }
+
+    public String getMlistCode() {
+        return "mlist([''UIWidget'',''_id'']," + Integer.toString(uid);
+    }
+
     private void invalidateUIPath() {
         if (id != null) {
             if (isRoot()) {
@@ -231,16 +264,39 @@ public abstract class UIComponent {
         }
     }
 
-    public String getId() {
-        return this.id;
-    }
-
     public String getUIPath() {
         return this.path;
     }
 
     public String getRootId() {
         return root.id;
+    }
+
+    public UIComponent getRoot() {
+        return root;
+    }
+
+    public void addToButtonGroup(String name, AbstractButton button) {
+        if (isRoot()) {
+            if (buttonGroups == null) {
+                buttonGroups = new HashMap<String, ButtonGroup>();
+            }
+            ButtonGroup bg = buttonGroups.get(name);
+            if (bg == null) {
+                bg = new ButtonGroup();
+                buttonGroups.put(name, bg);
+            }
+            bg.add(button);
+        }
+    }
+
+    public void removeFromButtonGroup(String name, AbstractButton button) {
+        if (isRoot() && buttonGroups != null) {
+            ButtonGroup bg = buttonGroups.get(name);
+            if (bg != null) {
+                bg.remove(button);
+            }
+        }
     }
 
     public boolean isRoot() {
@@ -264,6 +320,14 @@ public abstract class UIComponent {
         }
         closeUIComponent();
         parent = null;
+        if (mouseListener != null) {
+            mouseListener.addListenerToComponent(null);
+            mouseListener = null;
+        }
+        if (focusListener != null) {
+            focusListener.addListenerToComponent(null);
+            focusListener = null;
+        }
         if (component instanceof JComponent) {
             JComponent jc = (JComponent) component;
             if (jc.getParent() != null) {
@@ -315,6 +379,10 @@ public abstract class UIComponent {
 
     public Object getComponent() {
         return component;
+    }
+
+    public void setComponent(Object o) {
+        this.component = o;
     }
 
     public Object getModifiableComponent() {
@@ -571,6 +639,7 @@ public abstract class UIComponent {
     private final void createMouseListener() throws UIWidgetException {
         if (mouseListener == null) {
             mouseListener = new UIMouseListener(this);
+            mouseListener.newInstance();
             mouseListener.addListenerToComponent(getModifiableJComponent());
         }
     }
@@ -631,6 +700,70 @@ public abstract class UIComponent {
         }
     }
 
+    public String getOnmouseclick() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmouseclick();
+        }
+
+        return null;
+    }
+
+    public String getOnmouseover() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmouseover();
+        }
+
+        return null;
+    }
+
+    public String getOnmouseenter() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmouseenter();
+        }
+
+        return null;
+    }
+
+    public String getOnmouseexit() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmouseexit();
+        }
+
+        return null;
+    }
+
+    public String getOnmousepress() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmousepress();
+        }
+
+        return null;
+    }
+
+    public String getOnmouserelease() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmouserelease();
+        }
+
+        return null;
+    }
+
+    public String getOnmousedrag() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmousedrag();
+        }
+
+        return null;
+    }
+
+    public String getOnmousewheel() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmousewheel();
+        }
+
+        return null;
+    }
+
     public void setOnmouseclickEnable(boolean b) {
         if (mouseListener != null) {
             mouseListener.setOnmouseclickEnable(b);
@@ -679,6 +812,56 @@ public abstract class UIComponent {
         }
     }
 
+    private final void createFocusListener() throws UIWidgetException {
+        if (focusListener == null) {
+            focusListener = new UIFocusListener(this);
+            focusListener.newInstance();
+            focusListener.addListenerToComponent(getModifiableJComponent());
+        }
+    }
+
+    public void setOnfocusgain(String command) throws UIWidgetException {
+        if (command != null && !command.isEmpty()) {
+            createFocusListener();
+            focusListener.setOnfocusgain(command);
+        }
+    }
+
+    public void setOnfocusloss(String command) throws UIWidgetException {
+        if (command != null && !command.isEmpty()) {
+            createFocusListener();
+            focusListener.setOnfocusloss(command);
+        }
+    }
+
+    public String getOnfocusgain() {
+        if (focusListener != null) {
+            return focusListener.getOnfocusgain();
+        }
+
+        return null;
+    }
+
+    public String getOnfocusloss() {
+        if (focusListener != null) {
+            return focusListener.getOnfocusloss();
+        }
+
+        return null;
+    }
+
+    public void setOnfocusgainEnable(boolean b) {
+        if (focusListener != null) {
+            focusListener.setOnfocusgainEnable(b);
+        }
+    }
+
+    public void setOnfocuslossEnable(boolean b) {
+        if (focusListener != null) {
+            focusListener.setOnfocuslossEnable(b);
+        }
+    }
+
     public void updateDependencies(UIComponent parent) throws UIWidgetException {
         setParent(parent);
     }
@@ -690,52 +873,7 @@ public abstract class UIComponent {
     }
 
     public void add(final UIComponent uicomp) throws UIWidgetException {
-        final Object comp = uicomp.getComponent();
-        if (uicomp instanceof UIListener) {
-            addListener((UIListener) uicomp);
-            uicomp.updateDependencies(this);
-        } else if (comp instanceof JPopupMenu) {
-            addPopupMenu((JPopupMenu) comp);
-            uicomp.updateDependencies(this);
-        } else if (uicomp instanceof TextData) {
-            String text = ((TextData) uicomp).getText();
-            setProperty("text", text);
-            uicomp.updateDependencies(this);
-        } else {
-            try {
-                Object base = this;
-                Method method = null;
-                try {
-                    method = UIMethodFinder.findAdder(base.getClass(), comp.getClass());
-                } catch (Exception e) {
-                    System.err.println(e);
-                }
-
-                if (method == null) {
-                    base = this.getComponent();
-                    method = UIMethodFinder.findAdder(base.getClass(), comp.getClass());
-                }
-
-                if (method == null) {
-                    throw new UIWidgetException("Cannot add a " + comp.getClass().getName() + " to a " + this.getClass().getName());
-                }
-
-                final Method m = method;
-                final Object b = base;
-                execOnEDT(new Runnable() {
-                    public void run() {
-                        try {
-                            invokeAdder(m, b, comp);
-                            uicomp.updateDependencies(UIComponent.this);
-                        } catch (Exception e) {
-                            System.err.println(e);
-                        }
-                    }
-                });
-            } catch (SecurityException e) {
-                throw new UIWidgetException("Cannot add a " + comp.getClass().getName() + " to a " + this.getClass().getName() + ":\n" + e.getMessage());
-            }
-        }
+        UIAccessTools.add(this, uicomp);
     }
 
     public void addListener(final UIListener uicomp) throws UIWidgetException {
@@ -743,7 +881,7 @@ public abstract class UIComponent {
     }
 
     public void addPopupMenu(final JPopupMenu popup) {
-        execOnEDT(new Runnable() {
+        UIAccessTools.execOnEDT(new Runnable() {
             public void run() {
                 try {
                     getModifiableJComponent().setComponentPopupMenu(popup);
@@ -771,31 +909,11 @@ public abstract class UIComponent {
     }
 
     protected final void setPropertyViaReflectionInThis(final String name, final String value) throws UIWidgetException {
-        setPropertyViaReflection(this, name, value);
+        UIAccessTools.setPropertyViaReflection(this, name, value);
     }
 
     protected final void setPropertyViaReflectionInComponent(final String name, final String value) throws UIWidgetException {
-        setPropertyViaReflection(getModifiableComponent(), name, value);
-    }
-
-    protected void setPropertyViaReflection(final Object obj, final String name, final String value) throws UIWidgetException {
-        Class clazz = obj.getClass();
-        String methName = getSetterName(name);
-        final Method method = UIMethodFinder.findSetter(methName, clazz);
-
-        if (method == null) {
-            throw new UIWidgetException("Cannot set the attribute " + name + ": No corresponding method found");
-        }
-
-        execOnEDT(new Runnable() {
-            public void run() {
-                try {
-                    invokeSetter(method, obj, value);
-                } catch (Exception e) {
-                    System.err.println(e);
-                }
-            }
-        });
+        UIAccessTools.setPropertyViaReflection(getModifiableComponent(), name, value);
     }
 
     public void setProperty(final String name, final ScilabType value) throws UIWidgetException {
@@ -815,67 +933,11 @@ public abstract class UIComponent {
     }
 
     protected final void setPropertyViaReflectionInThis(final String name, final ScilabType value) throws UIWidgetException {
-        setPropertyViaReflection(this, name, value);
+        UIAccessTools.setPropertyViaReflection(this, name, value);
     }
 
     protected final void setPropertyViaReflectionInComponent(final String name, final ScilabType value) throws UIWidgetException {
-        setPropertyViaReflection(getModifiableComponent(), name, value);
-    }
-
-    protected void setPropertyViaReflection(final Object obj, final String name, final ScilabType value) throws UIWidgetException {
-        Class clazz = obj.getClass();
-        String methName = getSetterName(name);
-        final Method method = UIMethodFinder.findSetter(methName, clazz);
-
-        if (method == null) {
-            throw new UIWidgetException("Cannot set the attribute " + name + ": No corresponding method found");
-        }
-
-        execOnEDT(new Runnable() {
-            public void run() {
-                try {
-                    invokeSetter(method, obj, value);
-                } catch (Exception e) {
-                    System.err.println(e);
-                }
-            }
-        });
-    }
-
-    private final void invokeSetter(final Method m, final Object obj, final String value) throws UIWidgetException {
-        try {
-            m.invoke(obj, StringConverters.getObjectFromValue(m.getParameterTypes()[0], value));
-        } catch (IllegalAccessException e) {
-            throw new UIWidgetException("Illegal access to the method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getMessage());
-        } catch (ExceptionInInitializerError e) {
-            throw new UIWidgetException("Initializer error with method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getMessage());
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-            System.err.println(e.getCause());
-            throw new UIWidgetException("An exception has been thrown in calling the method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getCause());
-        } catch (IllegalArgumentException e) {
-
-        } catch (NullPointerException e) {
-
-        }
-    }
-
-    private final void invokeSetter(final Method m, final Object obj, final ScilabType value) throws UIWidgetException {
-        try {
-            m.invoke(obj, ScilabTypeConverters.getObjectFromValue(m.getParameterTypes()[0], value));
-        } catch (IllegalAccessException e) {
-            throw new UIWidgetException("Illegal access to the method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getMessage());
-        } catch (ExceptionInInitializerError e) {
-            throw new UIWidgetException("Initializer error with method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getMessage());
-        } catch (InvocationTargetException e) {
-            //System.err.println(e.getCause());
-            e.printStackTrace();
-            throw new UIWidgetException("An exception has been thrown in calling the method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getCause());
-        } catch (IllegalArgumentException e) {
-
-        } catch (NullPointerException e) {
-
-        }
+        UIAccessTools.setPropertyViaReflection(getModifiableComponent(), name, value);
     }
 
     public String[][] getPropertiesPairs() {
@@ -910,176 +972,15 @@ public abstract class UIComponent {
     }
 
     protected Object getPropertyViaReflectionInThis(final String name) throws UIWidgetException {
-        return getPropertyViaReflection(this, name);
+        return UIAccessTools.getPropertyViaReflection(this, name);
     }
 
     protected Object getPropertyViaReflectionInComponent(final String name) throws UIWidgetException {
-        return getPropertyViaReflection(getComponent(), name);
+        return UIAccessTools.getPropertyViaReflection(getComponent(), name);
     }
 
-    protected Object getPropertyViaReflection(final Object obj, final String name) throws UIWidgetException {
-        Class clazz = obj.getClass();
-        String methName = getGetterName(name);
-        Method method = UIMethodFinder.findGetter(methName, clazz);
-        if (method == null) {
-            methName = getIsGetterName(name);
-            method = UIMethodFinder.findGetter(methName, clazz);
-        }
-
-        if (method == null) {
-            throw new UIWidgetException("Cannot get the attribute " + name + ": No corresponding method found");
-        }
-
-        if (SwingUtilities.isEventDispatchThread()) {
-            return invokeGetter(method, obj);
-        } else {
-            final Method m = method;
-            final Object[] ptr = new Object[1];
-
-            try {
-                SwingUtilities.invokeAndWait(new Runnable() {
-                    public void run() {
-                        try {
-                            ptr[0] = invokeGetter(m, obj);
-                        } catch (Exception e) {
-                            System.err.println(e);
-                        }
-                    }
-                });
-            } catch (InterruptedException e) {
-                throw new UIWidgetException("Error in getting property " + name);
-            } catch (InvocationTargetException e) {
-                throw new UIWidgetException("Error in getting property " + name + ":\n" + e.getMessage());
-            }
-
-            return ptr[0];
-        }
-    }
-
-    private final Object invokeGetter(final Method m, final Object obj) throws UIWidgetException {
-        try {
-            return m.invoke(obj);
-        } catch (IllegalAccessException e) {
-            throw new UIWidgetException("Illegal access to the method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getMessage());
-        } catch (ExceptionInInitializerError e) {
-            throw new UIWidgetException("Initializer error with method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getMessage());
-        } catch (InvocationTargetException e) {
-            throw new UIWidgetException("An exception has been thrown in calling the method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getMessage());
-        } catch (IllegalArgumentException e) {
-            throw new UIWidgetException("An exception has been thrown in calling the method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getMessage());
-        } catch (NullPointerException e) {
-            throw new UIWidgetException("An exception has been thrown in calling the method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getMessage());
-        }
-    }
-
-    private final void invokeAdder(final Method m, final Object base, final Object obj) throws UIWidgetException {
-        try {
-            m.invoke(base, obj);
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }
-
-    public static String getMethodName(final String prefix, final String key) throws UIWidgetException {
-        if (key == null || key.isEmpty()) {
-            throw new UIWidgetException("Invalid attribute name: cannot be empty");
-        }
-        StringBuilder buffer = new StringBuilder(32);
-        buffer.append(prefix);
-        char[] chars = key.toCharArray();
-        buffer.append(Character.toUpperCase(chars[0]));
-        for (int i = 1; i < chars.length; i++) {
-            if (chars[i] == '-') {
-                buffer.append(Character.toUpperCase(chars[i + 1]));
-                i++;
-            } else {
-                buffer.append(chars[i]);
-            }
-        }
-
-        return buffer.toString();
-    }
-
-    public static String getSetterName(final String key) throws UIWidgetException {
-        return getMethodName("set", key);
-    }
-
-    public static String getGetterName(final String key) throws UIWidgetException {
-        return getMethodName("get", key);
-    }
-
-    public static String getIsGetterName(final String key) throws UIWidgetException {
-        return getMethodName("is", key);
-    }
-
-    public static void execOnEDT(final Runnable runnable) {
-        if (SwingUtilities.isEventDispatchThread()) {
-            runnable.run();
-        } else {
-            SwingUtilities.invokeLater(runnable);
-        }
-    }
-
-    private void createNewInstance(ConvertableMap attributes) throws UIWidgetException {
-        final Set<String> uselessAttrs = new TreeSet<String>(attributes.keySet());
-        Method method = UIMethodFinder.findNewer(this.getClass());
-        Annotation annotation = null;
-        Object[] args = null;
-
-        if (method == null) {
-            try {
-                method = this.getClass().getMethod("newInstance");
-            } catch (NoSuchMethodException e) { }
-            catch (SecurityException e) {
-                throw new UIWidgetException("Cannot access to the method newInstance in " + this.getClass().getName());
-            }
-        } else {
-            annotation = method.getAnnotation(UIComponentAnnotation.class);
-        }
-
-        if (annotation != null) {
-            String[] argsName = ((UIComponentAnnotation) annotation).attributes();
-            Class[] argsType = method.getParameterTypes();
-
-            if (argsName.length != argsType.length) {
-                throw new UIWidgetException("Invalid annotation: the number of attributes must be the same as the number of arguments");
-            }
-
-            args = new Object[argsType.length];
-
-            for (int i = 0; i < args.length; i++) {
-                args[i] = attributes.get(argsType[i], argsName[i]);
-                //args[i] = StringConverters.getObjectFromValue(argsType[i], attributes.get(argsName[i]));
-                uselessAttrs.remove(argsName[i]);
-            }
-        } else {
-            args = new Object[0];
-        }
-
-        final Object[] fargs = args;
-        final Method m = method;
-
-        if (SwingUtilities.isEventDispatchThread()) {
-            try {
-                component = m.invoke(UIComponent.this, fargs);
-            } catch (Exception e) {
-                System.err.println(e);
-            }
-        } else {
-            try {
-                SwingUtilities.invokeAndWait(new Runnable() {
-                    public void run() {
-                        try {
-                            component = m.invoke(UIComponent.this, fargs);
-                        } catch (Exception e) {
-                            System.err.println(e);
-                        }
-                    }
-                });
-            } catch (Exception e) {
-                System.err.println(e);
-            }
-        }
+    private void createNewInstance(final ConvertableMap attributes) throws UIWidgetException {
+        Set<String> uselessAttrs = UIAccessTools.createNewInstance(this, attributes);
 
         if (uselessAttrs.contains("scrollable")) {
             boolean scrollable = (Boolean) attributes.get(boolean.class, "scrollable", false);
@@ -1095,7 +996,7 @@ public abstract class UIComponent {
 
     private void setAttributesAndStyle(final ConvertableMap attributes, final Set<String> uselessAttrs) {
         if (!uselessAttrs.isEmpty()) {
-            execOnEDT(new Runnable() {
+            UIAccessTools.execOnEDT(new Runnable() {
                 public void run() {
                     if (attributes instanceof StringMap) {
                         for (String attr : uselessAttrs) {
@@ -1131,7 +1032,7 @@ public abstract class UIComponent {
 
             final Map<String, String> es = elementStyle;
             if (elementStyle != null) {
-                execOnEDT(new Runnable() {
+                UIAccessTools.execOnEDT(new Runnable() {
                     public void run() {
                         try {
                             setUiStyle(new HashMap<String, String>(es));
@@ -1143,43 +1044,6 @@ public abstract class UIComponent {
             }
         }
 
-    }
-
-    private static final Method findOneArgMethod(final String name, final Class baseClass, final Class clazz) throws NoSuchMethodException {
-        Method[] methods = baseClass.getMethods();
-        for (Method m : methods) {
-            if (m.getName().equals(name)) {
-                Class[] types = m.getParameterTypes();
-                if (types.length == 1 && types[0].isAssignableFrom(clazz)) {
-                    return m;
-                }
-            }
-        }
-
-        throw new NoSuchMethodException("No method " + name + " in " + baseClass.getName());
-    }
-
-    private static final Method findMethod(final String name, final Class baseClass, final Class[] clazz) throws NoSuchMethodException {
-        Method[] methods = baseClass.getMethods();
-        for (Method m : methods) {
-            if (m.getName().equals(name)) {
-                Class[] types = m.getParameterTypes();
-                if (types.length == clazz.length) {
-                    boolean b = true;
-                    for (int i = 0; i < types.length; i++) {
-                        if (!types[i].isAssignableFrom(clazz[i])) {
-                            b = false;
-                            break;
-                        }
-                    }
-                    if (b) {
-                        return m;
-                    }
-                }
-            }
-        }
-
-        throw new NoSuchMethodException("No method " + name + " in " + baseClass.getName());
     }
 
     protected void finalize() throws Throwable {

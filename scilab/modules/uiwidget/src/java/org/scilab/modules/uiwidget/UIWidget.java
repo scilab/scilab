@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -89,7 +89,7 @@ public class UIWidget {
             throw new Exception("Unknown id");
         }
 
-        UIComponent.execOnEDT(new Runnable() {
+        UIAccessTools.execOnEDT(new Runnable() {
             public void run() {
                 for (int i = 0; i < proprName.size(); i++) {
                     String name = proprName.get(i);
@@ -199,7 +199,7 @@ public class UIWidget {
         // Layout informations are prioritar so we handle them now
         if (parent != null) {
             final UIComponent _parent = parent;
-            UIComponent.execOnEDT(new Runnable() {
+            UIAccessTools.execOnEDT(new Runnable() {
                 public void run() {
                     try {
                         _parent.add(ui);
@@ -214,7 +214,7 @@ public class UIWidget {
         return ui.getUid();
 
         /*        final int s = start;
-                UIComponent.execOnEDT(new Runnable() {
+                UIAccessTools.execOnEDT(new Runnable() {
                         public void run() {
                             for (Map.Entry<String, ScilabType> entry : attributes.entrySet()) {
                                 try {

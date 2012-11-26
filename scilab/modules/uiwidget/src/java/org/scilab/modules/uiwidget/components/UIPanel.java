@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
 import org.scilab.modules.uiwidget.StringConverters;
+import org.scilab.modules.uiwidget.UIAccessTools;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
@@ -120,7 +121,7 @@ public class UIPanel extends UIComponent {
         if (o instanceof Component && !(o instanceof JPopupMenu)) {
             final Component comp = (Component) o;
             final LayoutManager layout = panel.getLayout();
-            execOnEDT(new Runnable() {
+            UIAccessTools.execOnEDT(new Runnable() {
                 public void run() {
                     try {
                         if (layout instanceof BorderLayout) {
@@ -163,8 +164,8 @@ public class UIPanel extends UIComponent {
         gbc.gridy = StringConverters.getObjectFromValue(int.class, attrs.get("gridy"), 1) - 1;
         gbc.gridwidth = StringConverters.getObjectFromValue(int.class, attrs.get("gridwidth"), 1);
         gbc.gridheight = StringConverters.getObjectFromValue(int.class, attrs.get("gridheight"), 1);
-        gbc.weightx = StringConverters.getObjectFromValue(int.class, attrs.get("weightx"), 1);
-        gbc.weighty = StringConverters.getObjectFromValue(int.class, attrs.get("weighty"), 1);
+        gbc.weightx = StringConverters.getObjectFromValue(double.class, attrs.get("weightx"), 1d);
+        gbc.weighty = StringConverters.getObjectFromValue(double.class, attrs.get("weighty"), 1d);
         gbc.ipadx = StringConverters.getObjectFromValue(int.class, attrs.get("ipadx"), 0);
         gbc.ipady = StringConverters.getObjectFromValue(int.class, attrs.get("ipady"), 0);
 

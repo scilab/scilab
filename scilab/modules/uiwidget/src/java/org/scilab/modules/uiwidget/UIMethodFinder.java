@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -18,10 +18,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class UIMethodFinder {
+/**
+ * TODO:
+ * on peut ameliorer les choses pr determiner la "bonne" methode a utiliser:
+ * par ex: si on a foo(A), foo(B), ... declarees et que l'on cherche la foo appeler
+ * pr un argument de type X, on calcule la distance de X a A, B, ... (dist(X,A)=le nombre de
+ * de derivation pr passer de A a X) puis on cherche la methode qui minimise cette distance.
+ **/
 
-    //private static final Map<Class, Map<String, Method>> setterCache = new HashMap<Class, Map<String, Method>>();
-    //private static final Map<Class, Map<String, Method>> getterCache = new HashMap<Class, Map<String, Method>>();
+public final class UIMethodFinder {
 
     private static final Map<Class, MethodsInfo> info = new HashMap<Class, MethodsInfo>();
 
@@ -116,10 +121,12 @@ public final class UIMethodFinder {
                 } else {
                     if (name == ni) {
                         if (m.getAnnotation(UIComponentAnnotation.class) != null) {
+                            checkMethod(m);
                             info.newers.add(m);
                         }
                     } else if (len == 1) {
                         if (name == add) {
+                            checkMethod(m);
                             info.adders.add(m);
                         } else if (name.startsWith("set")) {
                             if (StringConverters.containConverter(argsTypes[0])) {
@@ -133,6 +140,14 @@ public final class UIMethodFinder {
         }
 
         return info;
+    }
+
+    private static void checkMethod(Method m) {
+        if (!m.isAccessible()) {
+            try {
+                m.setAccessible(true);
+            } catch (SecurityException e) { }
+        }
     }
 
     private static class MethodsInfo {
@@ -155,8 +170,8 @@ public final class UIMethodFinder {
                 ms = new ArrayList<Method>();
                 map.put(name, ms);
             }
+            checkMethod(m);
             ms.add(m);
         }
     }
-
 }

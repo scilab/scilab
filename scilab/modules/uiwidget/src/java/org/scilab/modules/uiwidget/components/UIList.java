@@ -1,5 +1,5 @@
 /*
- * Uicontrol2 ( http://forge.scilab.org/index.php/p/uicontrol2/ ) - This file is a part of Uicontrol2
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
@@ -17,6 +17,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Map;
 
 import javax.swing.DefaultListCellRenderer;
@@ -26,14 +27,15 @@ import javax.swing.JList;
 
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
-
-import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
 public class UIList extends UIComponent {
 
     private JList list;
+    private MouseListener listener;
     private DefaultListModel model;
     private boolean isFinished;
+    private String action;
 
     public UIList(UIComponent parent) throws UIWidgetException {
         super(parent);
@@ -82,13 +84,28 @@ public class UIList extends UIComponent {
         }
     }
 
-    public void setOnclick(final String action) {
-        if (action != null && !action.isEmpty()) {
-            list.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    InterpreterManagement.requestScilabExec(action + "(\"" + list.getSelectedValue().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\")");
-                }
-            });
+    public void removeListener() {
+        if (listener != null) {
+            list.removeMouseListener(listener);
+            listener = null;
         }
+    }
+
+    public void remove() {
+        removeListener();
+        super.remove();
+    }
+
+    public void setOnclick(String action) {
+        if (this.action == null) {
+            removeListener();
+            listener = new MouseAdapter() {
+                public void mouseClicked(MouseEvent e) {
+                    UIWidgetTools.execAction(UIList.this, UIList.this.action, "\"" + list.getSelectedValue().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                }
+            };
+            list.addMouseListener(listener);
+        }
+        this.action = action;
     }
 }
