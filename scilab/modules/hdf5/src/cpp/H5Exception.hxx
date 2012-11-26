@@ -78,7 +78,7 @@ private:
         hid_t stid = H5Eget_current_stack();
         if (stid < 0)
         {
-            throw H5Exception(__LINE__, __FILE__, _("Cannot get the current errors stack"));
+            return std::string(_("Cannot get the current errors stack"));
         }
 
         ssize_t stackSize = H5Eget_num(stid);
@@ -98,7 +98,7 @@ private:
         std::string * str = (std::string *)client_data;
         str->append(eptr->desc);
 
-        return 0;
+        return -1;
     }
 
     inline std::string getDescription(std::string m) const
