@@ -62,21 +62,15 @@ int sci_h5rm(char *fname, unsigned long fname_len)
         hobj = HDF5Scilab::getH5Object(addr, pvApiCtx);
         if (!hobj)
         {
-            Scierror(999, _("%s: Can not print H5Object: invalid object.\n"), fname);
+            Scierror(999, _("%s: Invalid H5Object.\n"), fname);
             return 0;
         }
     }
     else
     {
-        if (nbIn == 1)
-        {
-            Scierror(999, gettext("%s: Wrong number of input arguments: 2 expected.\n"), fname, 1);
-            return 0;
-        }
-
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"), fname, 1);
             return 0;
         }
 
@@ -88,6 +82,12 @@ int sci_h5rm(char *fname, unsigned long fname_len)
 
         file = std::string(str);
         freeAllocatedSingleString(str);
+
+        if (nbIn == 1)
+        {
+            Scierror(999, gettext("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+            return 0;
+        }
     }
 
     if (nbIn == 2)

@@ -67,12 +67,6 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
     }
     else
     {
-        if (nbIn == 1)
-        {
-            Scierror(999, _("%s: Invalid number of arguments.\n"), fname);
-            return 0;
-        }
-
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
@@ -89,6 +83,12 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
         _expandedPath = std::string(expandedPath);
         FREE(expandedPath);
         freeAllocatedSingleString(str);
+
+        if (nbIn == 1)
+        {
+            Scierror(999, _("%s: Invalid number of argument(s): %d exepected.\n"), fname, 3);
+            return 0;
+        }
     }
 
     if (nbIn >= 2)
@@ -103,7 +103,7 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
 
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -134,7 +134,7 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
 
             if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
                 return 0;
             }
 
