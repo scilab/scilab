@@ -81,7 +81,7 @@ int sci_h5dataset(char *fname, unsigned long fname_len)
     {
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"), fname, 1);
             return 0;
         }
 
@@ -105,7 +105,7 @@ int sci_h5dataset(char *fname, unsigned long fname_len)
 
     if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -128,7 +128,7 @@ int sci_h5dataset(char *fname, unsigned long fname_len)
 
     if (!isDoubleType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A double matrix expected.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A double matrix expected.\n"), fname, 3);
         return 0;
     }
 
@@ -160,7 +160,7 @@ int sci_h5dataset(char *fname, unsigned long fname_len)
     {
         if (!checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 5);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 5);
             return 0;
         }
 
@@ -188,7 +188,7 @@ int sci_h5dataset(char *fname, unsigned long fname_len)
 
     if (!isDoubleType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A double matrix expected.\n"), fname, hasSourceType ? 6 : 5);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A double matrix expected.\n"), fname, hasSourceType ? 6 : 5);
         return 0;
     }
 
@@ -224,7 +224,7 @@ int sci_h5dataset(char *fname, unsigned long fname_len)
 
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 5);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 5);
             return 0;
         }
 

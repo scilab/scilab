@@ -72,6 +72,11 @@ int sci_h5close(char *fname, unsigned long fname_len)
                      */
                     addr[28] = invalid;
                 }
+                else
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A H5Object expected.\n"), fname, i);
+                    return 0;
+                }
             }
             catch (std::exception & e)
             {
