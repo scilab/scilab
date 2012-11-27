@@ -17,7 +17,7 @@ xcos();
 // open it
 // close the main diagram
 // close the super block diagram
-// -> check that a saving popup appears wihtout cancel button
+// -> check that a saving popup appears without cancel button
 // click No
 // close Scilab
 // -> check that no popup appears
