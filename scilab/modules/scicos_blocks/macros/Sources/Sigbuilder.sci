@@ -380,7 +380,7 @@ model=scicos_model(..
 	'xset(''color'',2)';
 	'xpoly(xx2,yy2,''lines'');']
     
-  x=standard_define([2 2],model,[],gr_i)
+  x=standard_define([3 2],model,[],gr_i)
 end
 endfunction
 

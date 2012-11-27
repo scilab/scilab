@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16272)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -172,6 +172,20 @@ msgstr ""
 #, c-format
 msgid "%s: Can not read named argument %s.\n"
 msgstr "%s: Nelze přečíst pojmenovaný argument %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%i: XMLSet, XMLList, XMLAttr or XMLElem "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: XMLAttr does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: XMLElem does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"

@@ -14,11 +14,21 @@ Improvements
 
 * New xmlName function.
 
+* clc(): New icon in the toolbar to clear the console.
+
+
+Removed functions
+==================
+
+* mtlb_repmat removed. Scilab provides a real repmat since 5.3.1.
+
 
 Xcos
 =====
 
 * New Flowmeter block in the thermohydraulics palette.
+
+* Update the Palette icons and the rendering of some blocks.
 
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
@@ -42,6 +52,8 @@ Xcos
                      NullPointerException.
 
 * Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
+
+* Bug #12014 fixed - dep_ut help was wrongly detailed.
 
 
 Documentation
@@ -78,6 +90,7 @@ Bug fixes
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
 
+* Bug #11976 fixed - Check csvTextScan 3rd parameter validity.
 
 * Bug #11981 fixed - Smooth french help page had a wrong declaration
                      (colonnes => lignes).
@@ -101,7 +114,12 @@ Bug fixes
 * Bug #12071 fixed - Printed info of a XML object were inconsistent with
                      available fields.
 
+* Bug #12076 fixed - csvRead was not able to open csv files when separators
+                     were not spaces.
+
 * Bug #12077 fixed - In help, attribute bgcolor was not handled in tables.
+
+* Bug #12115 fixed - phaseplot(frq,db,phi) did not work.
 
 
                     Changes between version 5.3.3 and 5.4.0

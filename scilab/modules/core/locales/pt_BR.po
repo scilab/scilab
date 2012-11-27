@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16272)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -439,6 +439,12 @@ msgid ""
 msgstr ""
 "Erro: Não é um módulo válido %s. A codificação não é '%s': detectou-se a "
 "codificação '%s'\n"
+
+#, c-format
+msgid ""
+"%s: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for "
+"element wise operation \n"
+msgstr ""
 
 msgid "SCI environment variable not defined.\n"
 msgstr "A variável de ambiente SCI não está definida.\n"

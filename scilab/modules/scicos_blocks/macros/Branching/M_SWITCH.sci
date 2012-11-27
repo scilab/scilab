@@ -85,6 +85,6 @@ case 'define' then
    'xsegs([orig(1),orig(1)+sz(1)],[orig(2)+sz(2)-d,orig(2)+sz(2)-d])';
   'xstringb(orig(1),orig(2)+sz(2)-d,''control'',sz(1),d,''fill'')';
   'xstringb(orig(1),orig(2),[''M_Port'';''switch''],sz(1),sz(2)-d,''fill'');']
-  x=standard_define([2 2],model,exprs,gr_i)
+  x=standard_define([2.5 2],model,exprs,gr_i)
 end
 endfunction

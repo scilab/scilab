@@ -208,6 +208,10 @@ int C2F(graphicsmodels) (void)
     // Create default Axes by Asking MVC a new one.
     paxesmdlUID = createGraphicObject(__GO_AXESMODEL__);
     setAxesModel(paxesmdlUID);
+
+    /* Sets the parent-child relationship between the default Figure and Axes */
+    setGraphicObjectRelationship(pfiguremdlUID, paxesmdlUID);
+
     /* Axes Model properties */
 
     result = InitAxesModel();
@@ -246,9 +250,6 @@ int C2F(graphicsmodels) (void)
 #if 0
     ppaxesmdl->FirstPlot = TRUE;
 #endif
-
-    /* Sets the parent-child relationship between the default Figure and Axes */
-    setGraphicObjectRelationship(pfiguremdlUID, paxesmdlUID);
 
     return 1;
 }

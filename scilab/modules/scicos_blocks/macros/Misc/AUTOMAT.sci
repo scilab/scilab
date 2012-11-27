@@ -154,7 +154,7 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
      gr_i=['txt=[''Automaton'';''nM='+string(NMode)+',nX='+string(NX)+'''];'..
 	     ;'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']    
 
-     x=standard_define([2.5 2],model,exprs,gr_i);
+     x=standard_define([4 2],model,exprs,gr_i);
   end
 endfunction
 

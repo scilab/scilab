@@ -51,7 +51,7 @@ function []=phaseplot(varargin)
 
       [phi,d]=phasemag(varargin(2))
     case 3 then  //frq,db,phi
-      [frq,d,phi]=varargin(1:rhs-1)
+      [frq,d,phi]=varargin(1:rhs)
       if size(frq,2)<>size(d,2) then
         error(msprintf(_("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),..
                        fname,1,2))

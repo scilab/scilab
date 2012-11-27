@@ -97,6 +97,6 @@ case 'define' then
   gr_i=['dly=model.rpar;';
     'txt=[''Shift'';''Register'';string(dly)];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
-  x=standard_define([2.5 2.5],model,exprs,gr_i)
+  x=standard_define([3 2],model,exprs,gr_i)
 end
 endfunction
