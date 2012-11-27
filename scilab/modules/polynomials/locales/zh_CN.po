@@ -33,9 +33,6 @@ msgid ""
 "or rational fraction array expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个浮点数、多项式或者有理分数数组。\n"
 
-msgid "Computing determinant: Be patient...\n"
-msgstr "计算行列式：请耐心等待...\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个多项式。\n"

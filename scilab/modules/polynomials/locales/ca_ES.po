@@ -37,9 +37,6 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
 "decimal amb coma flotant, un polinomi o un vector de fraccions racionals.\n"
 
-msgid "Computing determinant: Be patient...\n"
-msgstr "S'està calculant el determinant: Tingueu paciència...\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""

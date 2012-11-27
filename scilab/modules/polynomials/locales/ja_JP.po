@@ -36,11 +36,6 @@ msgid ""
 "or rational fraction array expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 浮動小数点数または多項式または有理分数配列を指定してください.\n"
 
-#
-# File: macros/determ.sci, line: 58
-msgid "Computing determinant: Be patient...\n"
-msgstr "行列式を計算しています、しばらくお待ちください....\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 多項式を指定してください.\n"

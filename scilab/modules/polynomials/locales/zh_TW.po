@@ -33,9 +33,6 @@ msgid ""
 "or rational fraction array expected.\n"
 msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一實數, 多項式或有理分式陣列.\n"
 
-msgid "Computing determinant: Be patient...\n"
-msgstr "判定運算中: 請耐心等候...\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: 第 %d 輸入參數長度錯誤: 應為一多項式.\n"
