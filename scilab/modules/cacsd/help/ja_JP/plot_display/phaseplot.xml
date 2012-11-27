@@ -159,22 +159,14 @@
                     ゲイン/位相表現<literal>db</literal>,
                     <literal>phi</literal>で指定できます.
                 </para>
-                .
-                
                 <para>
                     <literal>frq</literal> および <literal>repf</literal> は,
                     行ベクトルまたは(各行が入出力の組みを表わす) n x m 配列です.
                 </para>
-                .
             </listitem>
         </itemizedlist>
         <para>
-            The 
-            <member>
-                <link linkend="datatips">データティップ</link>
-            </member>
-            ツール
-            は位相曲線に沿ってデータを表示する際に使用できます.
+            The <link linkend="datatips">データティップ</link>ツールは位相曲線に沿ってデータを表示する際に使用できます.
         </para>
     </refsection>
     <refsection>
