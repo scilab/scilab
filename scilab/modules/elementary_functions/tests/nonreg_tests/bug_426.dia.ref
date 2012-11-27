@@ -14,17 +14,17 @@
 // Wrong permutation
 a = ['aaa';'eee';'ccc';'bbb';'ddd';'rrr'];
 trueValue=[1; 4; 3; 5; 2; 6];
-[b result] = gsort(a,'rc','i')
+[b result] = gsort(a,'r','i')
  result  =
- 
-    1.  
-    4.  
-    3.  
-    5.  
-    2.  
-    6.  
+
+    1.
+    4.
+    3.
+    5.
+    2.
+    6.
  b  =
- 
+
 !aaa  !
 !     !
 !bbb  !
