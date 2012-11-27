@@ -32,7 +32,7 @@ void H5File::init(const hid_t fapl)
 
     if (filename.empty())
     {
-        throw H5Exception(__LINE__, __FILE__, _("Invalid hdf5 file: empty filename"));
+        throw H5Exception(__LINE__, __FILE__, _("Invalid hdf5 file: empty filename."));
     }
 
     switch (flags)
@@ -40,13 +40,13 @@ void H5File::init(const hid_t fapl)
         case RDONLY:
             if (!FileExist(const_cast<char *>(filename.c_str())) || H5Fis_hdf5(filename.c_str()) <= 0)
             {
-                throw H5Exception(__LINE__, __FILE__, _("Invalid hdf5 file: %s"), filename.c_str());
+                throw H5Exception(__LINE__, __FILE__, _("Invalid hdf5 file: %s."), filename.c_str());
             }
 
             file = H5Fopen(filename.c_str(), H5F_ACC_RDONLY, fapl);
             if (file < 0)
             {
-                throw H5Exception(__LINE__, __FILE__, _("Cannot open the given hdf5 file: %s"), filename.c_str());
+                throw H5Exception(__LINE__, __FILE__, _("Cannot open the given hdf5 file: %s."), filename.c_str());
             }
 
             opened = true;
@@ -54,13 +54,13 @@ void H5File::init(const hid_t fapl)
         case RDWR:
             if (!FileExist(const_cast<char *>(filename.c_str())) || H5Fis_hdf5(filename.c_str()) <= 0)
             {
-                throw H5Exception(__LINE__, __FILE__, _("Invalid hdf5 file: %s"), filename.c_str());
+                throw H5Exception(__LINE__, __FILE__, _("Invalid hdf5 file: %s."), filename.c_str());
             }
 
             file = H5Fopen(filename.c_str(), H5F_ACC_RDWR, fapl);
             if (file < 0)
             {
-                throw H5Exception(__LINE__, __FILE__, _("Cannot open the given hdf5 file: %s"), filename.c_str());
+                throw H5Exception(__LINE__, __FILE__, _("Cannot open the given hdf5 file: %s."), filename.c_str());
             }
 
             opened = true;
@@ -69,7 +69,7 @@ void H5File::init(const hid_t fapl)
             file = H5Fcreate(filename.c_str(), H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
             if (file < 0)
             {
-                throw H5Exception(__LINE__, __FILE__, _("Cannot create the given hdf5 file: %s"), filename.c_str());
+                throw H5Exception(__LINE__, __FILE__, _("Cannot create the given hdf5 file: %s."), filename.c_str());
             }
 
             break;
@@ -77,7 +77,7 @@ void H5File::init(const hid_t fapl)
             file = H5Fcreate(filename.c_str(), H5F_ACC_EXCL, H5P_DEFAULT, fapl);
             if (file < 0)
             {
-                throw H5Exception(__LINE__, __FILE__, _("Cannot create the given hdf5 file: %s"), filename.c_str());
+                throw H5Exception(__LINE__, __FILE__, _("Cannot create the given hdf5 file: %s."), filename.c_str());
             }
             break;
         case APPEND:
@@ -88,7 +88,7 @@ void H5File::init(const hid_t fapl)
                     file = H5Fopen(filename.c_str(), H5F_ACC_RDWR, fapl);
                     if (file < 0)
                     {
-                        throw H5Exception(__LINE__, __FILE__, _("Cannot open the given hdf5 file: %s"), filename.c_str());
+                        throw H5Exception(__LINE__, __FILE__, _("Cannot open the given hdf5 file: %s."), filename.c_str());
                     }
 
                     opened = true;
@@ -99,10 +99,10 @@ void H5File::init(const hid_t fapl)
                     int rc = stat(filename.c_str(), &stat_buf);
                     if (!rc && stat_buf.st_size == 0)
                     {
-                        throw H5Exception(__LINE__, __FILE__, _("Cannot open the file: %s, an empty file with the same name already exists"), filename.c_str());
+                        throw H5Exception(__LINE__, __FILE__, _("Cannot open the file: %s, an empty file with the same name already exists."), filename.c_str());
                     }
 
-                    throw H5Exception(__LINE__, __FILE__, _("Cannot append the file (not HDF5): %s"), filename.c_str());
+                    throw H5Exception(__LINE__, __FILE__, _("Cannot append the file (not HDF5): %s."), filename.c_str());
                 }
             }
             else
@@ -110,7 +110,7 @@ void H5File::init(const hid_t fapl)
                 file = H5Fcreate(filename.c_str(), H5F_ACC_EXCL, H5P_DEFAULT, fapl);
                 if (file < 0)
                 {
-                    throw H5Exception(__LINE__, __FILE__, _("Cannot create the given hdf5 file: %s"), filename.c_str());
+                    throw H5Exception(__LINE__, __FILE__, _("Cannot create the given hdf5 file: %s."), filename.c_str());
                 }
             }
             break;

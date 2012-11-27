@@ -86,7 +86,7 @@ int sci_h5readattr(char *fname, unsigned long fname_len)
 
         if (nbIn == 1)
         {
-            Scierror(999, _("%s: Invalid number of argument(s): %d exepected.\n"), fname, 3);
+            Scierror(999, _("%s: Invalid number of argument(s): %d expected.\n"), fname, 3);
             return 0;
         }
     }
