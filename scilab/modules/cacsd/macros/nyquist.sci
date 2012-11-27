@@ -209,7 +209,7 @@ function nyquist(varargin)
     end
   end
   if ks($)~=n then
-    if min(((repf(:,ks(1))-repf(:,n))^2)/dx2+((repi(:,ks(1))-repi(:,n))^2)/dy2)>0.01 then
+    if min(((repf(:,ks(1))-repf(:,n)).^2)/dx2+((repi(:,ks(1))-repi(:,n)).^2)/dy2)>0.01 then
       ks=[ks n];
     end
   end

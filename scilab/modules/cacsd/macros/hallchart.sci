@@ -96,7 +96,7 @@ function hallchart(modules,args,colors)
   //radius sqrt(1+N^2)/(2*N) with N=tan(arg(H(-jw)))
 
   N=tan(args*%pi/180);
-  radius=sqrt(1+N^2)./(2*N);
+  radius=sqrt(1+N.^2)./(2*N);
   xc=-1/2;
   yc=1 ./(2*N);
 
