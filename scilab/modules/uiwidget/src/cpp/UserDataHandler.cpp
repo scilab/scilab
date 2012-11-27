@@ -11,6 +11,11 @@
  */
 
 #include "UserDataHandler.hxx"
+extern "C"
+{
+#include "stack2.h"
+#include "returnProperty.h"
+}
 
 namespace org_scilab_modules_uiwidget
 {

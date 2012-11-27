@@ -26,6 +26,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 }
 
+
 using namespace org_scilab_modules_uiwidget;
 
 /*--------------------------------------------------------------------------*/

@@ -12,6 +12,11 @@
 
 #include "UIWidgetTools.hxx"
 
+extern "C"
+{
+#include "api_scilab.h"
+}
+
 #define __SCILAB_MLIST_UIWIDGET_TYPE__ "UIWidget"
 
 namespace org_scilab_modules_uiwidget

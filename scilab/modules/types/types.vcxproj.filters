@@ -63,5 +63,8 @@
     <ClCompile Include="src\jni\ScilabVariablesRefresh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\jni\putVars.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

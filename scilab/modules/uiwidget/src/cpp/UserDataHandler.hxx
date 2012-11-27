@@ -18,12 +18,6 @@
 
 extern "C"
 {
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-
-#include "api_scilab.h"
-#include "stack2.h"
-#include "returnProperty.h"
-
     void removeUIWidgetUserData(const int uid);
 }
 

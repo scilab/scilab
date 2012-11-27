@@ -15,11 +15,6 @@
 
 #include <cstring>
 
-extern "C"
-{
-#include "api_scilab.h"
-}
-
 namespace org_scilab_modules_uiwidget
 {
 

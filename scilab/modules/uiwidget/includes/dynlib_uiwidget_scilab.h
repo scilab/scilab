@@ -15,7 +15,7 @@
 #define __DYNLIB_UIWIDGET_SCILAB_H__
 
 #ifdef _MSC_VER
-#ifdef UIWIDGET_SCILAB_EXPORTS
+#ifdef UIWIDGET_EXPORTS
 #define UIWIDGET_SCILAB_IMPEXP __declspec(dllexport)
 #else
 #define UIWIDGET_SCILAB_IMPEXP __declspec(dllimport)

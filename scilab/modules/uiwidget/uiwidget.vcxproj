@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{626B9142-13A1-4765-A072-FB08952E7BB8}</ProjectGuid>
-    <RootNamespace>types</RootNamespace>
+    <ProjectGuid>{2EDF3A4A-737C-45A0-91C8-4190382F158E}</ProjectGuid>
+    <RootNamespace>uiwidget</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -72,28 +72,26 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sci$(ProjectName)</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sci$(ProjectName)</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sci$(ProjectName)</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">sci$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;XML_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;../api_scilab/includes;../core/includes;../commons/src/jni;../types/includes;../localization/includes;../jvm/includes;../output_stream/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;UIWIDGET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <DisableSpecificWarnings>4251;4800</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
+      <Message>
+      </Message>
       <Command>
       </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
@@ -108,20 +106,22 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;TYPES_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;../api_scilab/includes;../core/includes;../commons/src/jni;../types/includes;../localization/includes;../jvm/includes;../output_stream/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;UIWIDGET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <DisableSpecificWarnings>4251;4800</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
+      <Message>
+      </Message>
       <Command>
       </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
@@ -134,23 +134,25 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;TYPES_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;../api_scilab/includes;../core/includes;../commons/src/jni;../types/includes;../localization/includes;../jvm/includes;../output_stream/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;UIWIDGET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
+      <Message>
+      </Message>
       <Command>
       </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -168,23 +170,25 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;TYPES_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;../api_scilab/includes;../core/includes;../commons/src/jni;../types/includes;../localization/includes;../jvm/includes;../output_stream/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;UIWIDGET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
+      <Message>
+      </Message>
       <Command>
       </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -196,17 +200,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="locales\types.pot" />
-    <None Include="Makefile.am" />
-    <None Include="types.iss" />
+    <ClInclude Include="includes\dynlib_uiwidget_scilab.h" />
+    <ClInclude Include="includes\gw_uiwidget.h" />
+    <ClInclude Include="src\cpp\UIWidgetTools.hxx" />
+    <ClInclude Include="src\cpp\UserDataHandler.hxx" />
+    <ClInclude Include="src\jni\UIWidget.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sci_gateway\cpp\sci_percent_foo_i_UIWidget.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_UIWidget_e.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_uiget.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_uiset.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_uiwidget.cpp" />
+    <ClCompile Include="sci_gateway\c\gw_uiwidget.c" />
+    <ClCompile Include="src\cpp\UIWidgetTools.cpp" />
+    <ClCompile Include="src\cpp\UserDataHandler.cpp" />
+    <ClCompile Include="src\jni\UIWidget.cpp" />
+    <ClCompile Include="src\jni\UserData_wrap.c" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
       <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">
-      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
@@ -214,24 +228,27 @@
     <ProjectReference Include="..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\fileio\fileio.vcxproj">
+      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\types\types.vcxproj">
+      <Project>{626b9142-13a1-4765-a072-fb08952e7bb8}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes\GetScilabVariable.h" />
-    <ClInclude Include="includes\ScilabToJava.hxx" />
-    <ClInclude Include="src\jni\ScilabPolynomialToJava.hxx" />
-    <ClInclude Include="src\jni\ScilabVariables.hxx" />
-    <ClInclude Include="src\jni\ScilabVariablesRefresh.hxx" />
+    <Library Include="..\..\bin\libintl.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\ScilabToJava.cpp" />
-    <ClCompile Include="src\jni\getScilabVariable_wrap.c" />
-    <ClCompile Include="src\jni\putVars.c" />
-    <ClCompile Include="src\jni\ScilabPolynomialToJava.cpp" />
-    <ClCompile Include="src\jni\ScilabVariables.cpp" />
-    <ClCompile Include="src\jni\ScilabVariablesRefresh.cpp" />
+    <None Include="sci_gateway\uiwidget_gateway.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
