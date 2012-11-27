@@ -117,6 +117,8 @@ Bug fixes
 
 * Bug #12077 fixed - In help, attribute bgcolor was not handled in tables.
 
+* Bug #12115 fixed - phaseplot(frq,db,phi) did not work.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
