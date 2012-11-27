@@ -14,6 +14,9 @@ Improvements
 
 * clc(): New icon in the toolbar to clear the console. See bug #12049.
 
+* test_run no longer take in account skipped tests in the summary.
+  See bug #12117
+
 
 Removed functions
 ==================
