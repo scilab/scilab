@@ -368,18 +368,38 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 {
                     //Add Source like coef of the new element
                     Double* pD = _poSource->getAs<Double>();
-                    for (int i = 0 ; i < pD->getRows() ; i++)
-                    {
-                        for (int j = 0 ; j < pD->getCols() ; j++)
-                        {
-                            types::SinglePoly* pPolyOut	= poResult->getAs<types::Polynom>()->get(iCurRow + i, iCurCol + j);
+                    types::Polynom* pPolyOut = poResult->getAs<types::Polynom>();
 
-                            pPolyOut->setRank(1);
-                            double pDbl = pD->get(i, j);
-                            pPolyOut->setCoef(&pDbl, NULL);
+                    if (pD->isComplex())
+                    {
+                        pPolyOut->setComplex(true);
+                        for (int i = 0 ; i < pD->getRows() ; i++)
+                        {
+                            for (int j = 0 ; j < pD->getCols() ; j++)
+                            {
+                                types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
+
+                                pSPOut->setRank(1);
+                                double pDblR = pD->get(i, j);
+                                double pDblI = pD->getImg(i, j);
+                                pSPOut->setCoef(&pDblR, &pDblI);
+                            }
                         }
                     }
+                    else
+                    {
+                        for (int i = 0 ; i < pD->getRows() ; i++)
+                        {
+                            for (int j = 0 ; j < pD->getCols() ; j++)
+                            {
+                                types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
 
+                                pSPOut->setRank(1);
+                                double pDbl = pD->get(i, j);
+                                pSPOut->setCoef(&pDbl, NULL);
+                            }
+                        }
+                    }
                 }
                 break;
             case types::GenericType::RealSparse :

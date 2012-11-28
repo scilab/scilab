@@ -135,33 +135,42 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
             return NULL;
         }
 
-        for (int i = 0; i < iSize; i++)
+        if (pIn->isComplex())
         {
-            iRank = pIn->get(i)->getRank();
-
-            if (pIn->isComplex())
+            for (int i = 0; i < iSize; i++)
             {
+                iRank = pIn->get(i)->getRank();
                 pSP = new types::SinglePoly(&pdRData, &pdIData, iRank);
-            }
-            else
-            {
-                pSP = new types::SinglePoly(&pdRData, iRank);
-            }
+                iPos = (i + iStartCol) * iRows + (i + iStartRow);
 
-            iPos = (i + iStartCol) * iRows + (i + iStartRow);
-
-            for (int j = 0; j < iRank; j++)
-            {
-                pdRData[j] = pIn->get(iPos)->getCoefReal()[j];
-                if (pIn->isComplex())
+                for (int j = 0; j < iRank; j++)
                 {
+                    pdRData[j] = pIn->get(iPos)->getCoefReal()[j];
                     pdIData[j] = pIn->get(iPos)->getCoefImg()[j];
                 }
-            }
 
-            pPolyOut->set(i, pSP);
-            delete pSP;
-            pSP = NULL;
+                pPolyOut->set(i, pSP);
+                delete pSP;
+                pSP = NULL;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < iSize; i++)
+            {
+                iRank = pIn->get(i)->getRank();
+                pSP = new types::SinglePoly(&pdRData, iRank);
+                iPos = (i + iStartCol) * iRows + (i + iStartRow);
+
+                for (int j = 0; j < iRank; j++)
+                {
+                    pdRData[j] = pIn->get(iPos)->getCoefReal()[j];
+                }
+
+                pPolyOut->set(i, pSP);
+                delete pSP;
+                pSP = NULL;
+            }
         }
     }
     else // pIn is a vector
@@ -181,36 +190,46 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
         pPolyOut = new types::Polynom(pIn->getVariableName(), iSize, iSize);
         pPolyOut->setComplex(pIn->isComplex());
 
-        for (int i = 0; i < iSizeOfVector; i++)
+        if (pIn->isComplex())
         {
-            iRank = pIn->get(i)->getRank();
-
-            if (pIn->isComplex())
+            for (int i = 0; i < iSizeOfVector; i++)
             {
+                iRank = pIn->get(i)->getRank();
                 pSP = new types::SinglePoly(&pdRData, &pdIData, iRank);
-            }
-            else
-            {
-                pSP = new types::SinglePoly(&pdRData, iRank);
-            }
+                iPos = (i + iStartCol) * iSize + (i + iStartRow);
 
-            iPos = (i + iStartCol) * iSize + (i + iStartRow);
-
-            for (int j = 0; j < iRank; j++)
-            {
-                pdRData[j] = pIn->get(i)->getCoefReal()[j];
-                if (pIn->isComplex())
+                for (int j = 0; j < iRank; j++)
                 {
+                    pdRData[j] = pIn->get(i)->getCoefReal()[j];
                     pdIData[j] = pIn->get(i)->getCoefImg()[j];
                 }
-            }
 
-            pPolyOut->set(iPos, pSP);
-            delete pSP;
-            pSP = NULL;
+                pPolyOut->set(iPos, pSP);
+                delete pSP;
+                pSP = NULL;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < iSizeOfVector; i++)
+            {
+                iRank = pIn->get(i)->getRank();
+                pSP = new types::SinglePoly(&pdRData, iRank);
+                iPos = (i + iStartCol) * iSize + (i + iStartRow);
+
+                for (int j = 0; j < iRank; j++)
+                {
+                    pdRData[j] = pIn->get(i)->getCoefReal()[j];
+                }
+
+                pPolyOut->set(iPos, pSP);
+                delete pSP;
+                pSP = NULL;
+            }
         }
     }
 
+    pPolyOut->updateRank();
     return pPolyOut;
 }
 

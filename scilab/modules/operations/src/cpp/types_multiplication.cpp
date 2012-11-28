@@ -24,6 +24,7 @@ extern "C"
 #include "operation_f.h"
 #include "localization.h"
 #include "charEncoding.h"
+#include "elem_common.h"
 }
 
 using namespace types;
@@ -111,10 +112,60 @@ InternalType *GenericDotTimes(InternalType *_pLeftOperand, InternalType *_pRight
     }
 
     /*
+    ** DOUBLE .* POLY
+    */
+    if (_pLeftOperand->isDouble() && _pRightOperand->isPoly())
+    {
+        Double *pL   = _pLeftOperand->getAs<Double>();
+        Polynom *pR  = _pRightOperand->getAs<Polynom>();
+
+        int iResult = DotMultiplyDoubleByPoly(pL, pR, (Polynom**)&pResult);
+        if (iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+
+    /*
+    ** POLY .* DOUBLE
+    */
+    if (_pLeftOperand->isPoly() && _pRightOperand->isDouble())
+    {
+        Polynom *pL   = _pLeftOperand->getAs<Polynom>();
+        Double *pR    = _pRightOperand->getAs<Double>();
+
+        int iResult = DotMultiplyPolyByDouble(pL, pR, (Polynom**)&pResult);
+        if (iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+
+    /*
+    ** POLY .* POLY
+    */
+    if (_pLeftOperand->isPoly() && _pRightOperand->isPoly())
+    {
+        Polynom *pL   = _pLeftOperand->getAs<Polynom>();
+        Polynom *pR   = _pRightOperand->getAs<Polynom>();
+
+        int iResult = DotMultiplyPolyByPoly(pL, pR, (Polynom**)&pResult);
+        if (iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        return pResult;
+    }
+
+    /*
     ** Default case : Return NULL will Call Overloading.
     */
     return NULL;
-
 }
 
 InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOperand)
@@ -1613,4 +1664,122 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
 int DotMultiplySparseByDouble(Sparse* _pSparse, Double* _pDouble, GenericType** _pOut)
 {
     return DotMultiplyDoubleBySparse(_pDouble, _pSparse, _pOut);
+}
+
+int DotMultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
+{
+    return DotMultiplyDoubleByPoly(_pDouble, _pPoly, _pPolyOut);
+}
+
+int DotMultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
+{
+    if (_pDouble->isScalar() == false &&
+            _pPoly->isScalar() == false &&
+            _pDouble->getSize() != _pPoly->getSize())
+    {
+        return 1;
+    }
+
+    Polynom* pPolyTemp = new Polynom(_pPoly->getVariableName(), _pDouble->getDims(), _pDouble->getDimsArray());
+    pPolyTemp->setCoef(_pDouble);
+    int iErr = DotMultiplyPolyByPoly(pPolyTemp, _pPoly, _pPolyOut);
+    delete pPolyTemp;
+    return iErr;
+}
+
+int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
+{
+    if (_pPoly1->isScalar() || _pPoly2->isScalar())
+    {
+        return MultiplyPolyByPoly(_pPoly1, _pPoly2, _pPolyOut);
+    }
+    else
+    {
+        if (_pPoly1->getSize() != _pPoly2->getSize())
+        {
+            return 1;
+        }
+
+        int* piRank = new int[_pPoly1->getSize()];
+        for (int i = 0 ; i < _pPoly1->getSize() ; i++)
+        {
+            piRank[i] = _pPoly1->get(i)->getRank() + _pPoly2->get(i)->getRank() - 1;
+        }
+
+        (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getDims(), _pPoly1->getDimsArray(), piRank);
+
+        if (_pPoly1->isComplex() && _pPoly2->isComplex())
+        {
+            (*_pPolyOut)->setComplex(true);
+            for (int i = 0; i < _pPoly1->getSize(); i++)
+            {
+                SinglePoly *pSP1    = _pPoly1->get(i);
+                SinglePoly *pSP2    = _pPoly2->get(i);
+                SinglePoly *pSPOut  = (*_pPolyOut)->get(i);
+                Double *pCoef1      = pSP1->getCoef();
+                Double *pCoef2      = pSP2->getCoef();
+                Double *pCoefOut    = pSPOut->getCoef();
+
+                pCoefOut->setZeros();
+
+                iMultiComplexPolyByComplexPoly(
+                    pCoef1->get(), pCoef1->getImg(), pSP1->getRank(),
+                    pCoef2->get(), pCoef2->getImg(), pSP2->getRank(),
+                    pCoefOut->get(), pCoefOut->getImg(), pSPOut->getRank());
+
+            }
+        }
+        else if (_pPoly1->isComplex())
+        {
+            (*_pPolyOut)->setComplex(true);
+            for (int i = 0; i < _pPoly1->getSize(); i++)
+            {
+                SinglePoly *pSP1   = _pPoly1->get(i);
+                SinglePoly *pSP2   = _pPoly2->get(i);
+                SinglePoly *pSPOut = (*_pPolyOut)->get(i);
+
+                pSPOut->getCoef()->setZeros();
+
+                iMultiComplexPolyByRealPoly(
+                    pSP1->getCoef()->get(), pSP1->getCoef()->getImg(), pSP1->getRank(),
+                    pSP2->getCoef()->get(), pSP2->getRank(),
+                    pSPOut->getCoef()->get(), pSPOut->getCoef()->getImg(), pSPOut->getRank());
+            }
+        }
+        else if (_pPoly2->isComplex())
+        {
+            (*_pPolyOut)->setComplex(true);
+            for (int i = 0; i < _pPoly1->getSize(); i++)
+            {
+                SinglePoly *pSP1   = _pPoly1->get(i);
+                SinglePoly *pSP2   = _pPoly2->get(i);
+                SinglePoly *pSPOut = (*_pPolyOut)->get(i);
+
+                pSPOut->getCoef()->setZeros();
+
+                iMultiRealPolyByComplexPoly(
+                    pSP1->getCoef()->get(), pSP1->getRank(),
+                    pSP2->getCoef()->get(), pSP2->getCoef()->getImg(), pSP2->getRank(),
+                    pSPOut->getCoef()->get(), pSPOut->getCoef()->getImg(), pSPOut->getRank());
+            }
+        }
+        else
+        {
+            for (int i = 0; i < _pPoly1->getSize(); i++)
+            {
+                SinglePoly *pSP1   = _pPoly1->get(i);
+                SinglePoly *pSP2   = _pPoly2->get(i);
+                SinglePoly *pSPOut = (*_pPolyOut)->get(i);
+
+                pSPOut->getCoef()->setZeros();
+
+                iMultiRealPolyByRealPoly(
+                    pSP1->getCoef()->get(), pSP1->getRank(),
+                    pSP2->getCoef()->get(), pSP2->getRank(),
+                    pSPOut->getCoef()->get(), pSPOut->getRank());
+            }
+        }
+    }
+
+    return 0;
 }

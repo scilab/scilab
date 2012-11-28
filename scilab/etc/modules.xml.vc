@@ -60,4 +60,5 @@
     <module name="operations" activate="yes"/>
     <module name="api_scilab" activate="yes"/>
     <module name="ast" activate="yes"/>
+    <module name="polynomials" activate="yes"/>
 </modules>

@@ -902,3 +902,22 @@ int ConfigVariable::getIeee()
 /*
 ** \}
 */
+
+/*
+** simp Mode
+** \{
+*/
+int ConfigVariable::m_iSimpMode = 1;
+
+void ConfigVariable::setSimpMode(int _iSimpMode)
+{
+    m_iSimpMode = _iSimpMode;
+}
+
+int ConfigVariable::getSimpMode()
+{
+    return m_iSimpMode;
+}
+/*
+** \}
+*/

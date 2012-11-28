@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -85,10 +85,11 @@
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -104,7 +105,7 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/MALLOC/includes;../../../../libs/dynamiclibrary/includes;../../../../libs/Eigen/includes;../../../../libs/intl;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -113,10 +114,11 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -130,7 +132,7 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -141,10 +143,11 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -163,7 +166,7 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -174,10 +177,11 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -190,32 +194,28 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\polynomials_gw.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_bezout.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_coeff.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_degree.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_poly.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_pppdiv.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_roots.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_sfact.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_simp.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_simpMode.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_varn.cpp" />
     <ClCompile Include="DllmainPolynomial.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_polynomials.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_bezout.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_cleanp.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_coeff.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_degree.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_diag.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_div.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_poly.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_prod.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_roots.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sfact.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_simp.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_simp_mode.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sum.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_tril.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_triu.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_varn.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_polynomials.h" />
     <ClInclude Include="..\..\includes\gw_polynomials.h" />
+    <ClInclude Include="..\..\includes\polynomials_gw.hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\polynomials.pot" />
     <None Include="core_import.def" />
+    <None Include="Elementary_functions_f_Import.def" />
     <None Include="polynomials_f_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\polynomials.iss" />
@@ -236,6 +236,39 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast-tools\ast-tools.vcxproj">
+      <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\console\src\c\console.vcxproj">
+      <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\operations\operations.vcxproj">
+      <Project>{1bb396f7-ce61-4cfc-9c22-266b2cfb2e74}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
+      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
+      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\types\types.vcxproj">
+      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\types\typesmacro\typesmacro.vcxproj">
+      <Project>{9252a034-7f22-4cb1-a634-4577da69f2d0}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

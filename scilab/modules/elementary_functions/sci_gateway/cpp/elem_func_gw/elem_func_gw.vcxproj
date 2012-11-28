@@ -213,8 +213,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\..\c\sci_sign.c" />
     <ClCompile Include="..\..\c\sci_sqrt.c" />
     <ClCompile Include="..\..\c\sci_testmatrix.c" />
-    <ClCompile Include="..\..\c\sci_tril.c" />
-    <ClCompile Include="..\..\c\sci_triu.c" />
     <ClCompile Include="..\elem_func_gw.cpp" />
     <ClCompile Include="..\sci_abs.cpp" />
     <ClCompile Include="..\sci_acos.cpp" />
@@ -255,6 +253,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\sci_size.cpp" />
     <ClCompile Include="..\sci_sum.cpp" />
     <ClCompile Include="..\sci_tan.cpp" />
+    <ClCompile Include="..\sci_tril.cpp" />
+    <ClCompile Include="..\sci_triu.cpp" />
     <ClCompile Include="..\sci_zeros.cpp" />
   </ItemGroup>
   <ItemGroup>

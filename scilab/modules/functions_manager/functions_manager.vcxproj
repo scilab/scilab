@@ -301,6 +301,9 @@
       <Project>{74d43792-dbfc-47f0-adbc-4d7a20cdada2}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\polynomials\src\c\polynomials.vcxproj">
+      <Project>{620d8fa7-3704-438e-bb1e-391c84401a2e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\scinotes\src\c\scinotes.vcxproj">
       <Project>{bae68b54-2c1a-44d0-a0e9-05156a784e79}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

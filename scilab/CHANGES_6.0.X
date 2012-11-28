@@ -18,6 +18,7 @@ Removed functions (previously declared as obsolete):
 Functions modified:
 ===================
 
-* impl : Recall impl with the same parameters as in its previous stop is now available.
-* ode  : y0 is restricted to a column vector.
-
+* impl   : Recall impl with the same parameters as in its previous stop is now available.
+* ode    : y0 is restricted to a column vector.
+* pppdiv : return a scalar of type 'constant' when the rank is 0.
+* pdiv   : return a matrix of type 'constant' when all the rank are 0.

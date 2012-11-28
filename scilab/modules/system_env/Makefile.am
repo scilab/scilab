@@ -22,7 +22,8 @@ SYSTEM_ENV_CPP_SOURCES = \
 	src/cpp/lasterror.cpp \
 	src/cpp/promptmode.cpp \
 	src/cpp/formatmode.cpp \
-	src/cpp/sci_ieee.cpp
+	src/cpp/sci_ieee.cpp \
+	src/cpp/sci_simpMode.cpp
 
 pkglib_LTLIBRARIES = libscisystem_env.la
 

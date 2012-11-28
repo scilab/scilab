@@ -315,6 +315,14 @@ private :
 public :
     static void setIeee(int _iIeee);
     static int getIeee();
+
+    // simp mode
+private :
+    static int m_iSimpMode;
+
+public :
+    static void setSimpMode(int _iSimpMode);
+    static int getSimpMode();
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

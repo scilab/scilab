@@ -324,7 +324,7 @@ void SinglePoly::updateRank(void)
     int iNewRank = m_iRank;
     double *pCoefR = getCoef()->getReal();
     double *pCoefI = getCoef()->getImg();
-    for (int i = m_iRank - 1; i >= 0 ; i--)
+    for (int i = m_iRank - 1; i > 0 ; i--)
     {
         if (fabs(pCoefR[i]) <= dblEps && (pCoefI != NULL ? fabs(pCoefI[i]) : 0) <= dblEps)
         {
@@ -335,7 +335,6 @@ void SinglePoly::updateRank(void)
             break;
         }
     }
-
     if (iNewRank < m_iRank)
     {
         setRank(iNewRank, true);
