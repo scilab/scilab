@@ -108,6 +108,8 @@ Xcos
 
 * Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
 
+* Bug #12101 fixed - Port ordering was not preserved on parameters change.
+
 * Bug #12014 fixed - dep_ut help was wrongly detailed.
 
 * Bug #12031 fixed - Changes in context of superblock did not always have 
