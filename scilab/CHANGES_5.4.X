@@ -126,9 +126,11 @@ Bug fixes
 
 * Bug #12077 fixed - In help, attribute bgcolor was not handled in tables.
 
+* Bug #12087 fixed - profile help page did not mention add_profiling.
+
 * Bug #12115 fixed - phaseplot(frq,db,phi) did not work.
 
-* Bug #12119 fixed - bar and barh had wrong x/y bounds
+* Bug #12119 fixed - bar and barh had wrong x/y bounds.
 
 
                     Changes between version 5.3.3 and 5.4.0

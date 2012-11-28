@@ -39,8 +39,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            To use <literal>profile</literal> the Scilab function must have been prepared for
-            profiling (see exec).
+            To use <literal>profile</literal>, profiling instructions need to be added to the Scilab function
+            function by <link linkend="add_profiling">add_profiling</link>.
         </para>
         <para>
             For such function, When such a function is executed the systems counts
@@ -60,34 +60,29 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-//define function and prepare it for profiling
-deff('x=foo(n)',['if n==0 then'
-                 '  x=[]'
-                 'else'
-                 '  x=0'
-                 '  for k=1:n'
-                 '    s=svd(rand(n+10,n+10))'
-                 '    x=x+s(1)'
-                 '  end'
-                 'end'],'p')
+        <programlisting role="example"><![CDATA[
+function x=foo(a, n)
+ x=0;
+ for i=1:n
+   if x<10 then
+     x=x+a
+   else
+     x=x+1
+   end
+ end
+ x=x^2+1
+endfunction
 
-//call the function
-foo(10)
-
-//get execution profiles
-profile(foo)
-
-//call the function
-foo(20)
-profile(foo) //execution profiles are cumulated
+add_profiling("foo")
+foo(0.1,100) //run the function
+profile(foo) //extract profile information
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="exec">exec</link>
+                <link linkend="add_profiling">add_profiling</link>
             </member>
             <member>
                 <link linkend="deff">deff</link>
