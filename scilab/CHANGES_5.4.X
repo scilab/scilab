@@ -193,6 +193,8 @@ Bug fixes
 
 * Bug #12087 fixed - profile help page did not mention add_profiling.
 
+* Bug #12097 fixed - Scilab wrongly detected DLL platform information.
+
 * Bug #12115 fixed - phaseplot(frq,db,phi) did not work.
 
 * Bug #12119 fixed - bar and barh had wrong x/y bounds.
