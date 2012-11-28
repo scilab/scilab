@@ -25,6 +25,8 @@ import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.net.MalformedURLException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
@@ -663,6 +665,23 @@ public final class StringConverters {
                 }
 
                 return ScilabCallBack.create(str);
+            }
+        });
+        converters.put(DecimalFormat.class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null) {
+                    return null;
+                }
+
+                if (str.isEmpty()) {
+                    return new DecimalFormat();
+                }
+
+                try {
+                    return new DecimalFormat(str);
+                } catch (IllegalArgumentException e) {
+                    return NumberFormat.getNumberInstance();
+                }
             }
         });
     }

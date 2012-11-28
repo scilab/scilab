@@ -14,9 +14,11 @@ package org.scilab.modules.uiwidget.components;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.text.DecimalFormat;
 import java.util.Map;
 
 import javax.swing.Action;
+import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -62,13 +64,18 @@ public class UITextfield extends UIComponent {
         return textfield;
     }
 
-    @UIComponentAnnotation(attributes = {"text", "columns", "color", "font", "underline", "bold", "italic", "strike-through", "size", "weight", "password"})
-    public Object newInstance(String text, int columns, Color color, String font, boolean underline, boolean bold, boolean italic, boolean strikethrough, double size, UITools.FontWeight weight, boolean password) {
+    @UIComponentAnnotation(attributes = {"text", "columns", "color", "font", "underline", "bold", "italic", "strike-through", "size", "weight", "password", "format"})
+    public Object newInstance(String text, int columns, Color color, String font, boolean underline, boolean bold, boolean italic, boolean strikethrough, double size, UITools.FontWeight weight, boolean password, DecimalFormat format) {
         this.password = password;
-        if (password) {
-            textfield = new JPasswordField(columns == Integer.MAX_VALUE ? 0 : columns);
+        if (format == null) {
+            if (password) {
+                textfield = new JPasswordField(columns == Integer.MAX_VALUE ? 0 : columns);
+            } else {
+                textfield = new JTextField(columns == Integer.MAX_VALUE ? 0 : columns);
+            }
         } else {
-            textfield = new JTextField(columns == Integer.MAX_VALUE ? 0 : columns);
+            textfield = new JFormattedTextField(format);
+            textfield.setColumns(columns == Integer.MAX_VALUE ? 0 : columns);
         }
 
         textfield.setText(text);
