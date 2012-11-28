@@ -137,11 +137,11 @@ msgstr "%s : Une erreur s'est produite : %s\n"
 
 #, c-format
 msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr "%s : Impossible de charger un dll x86 dans un environnement x64.\n"
+msgstr "%s : Impossible de charger une dll x86 dans un environnement x64.\n"
 
 #, c-format
 msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr "%s : Impossible de charger un dll x64 dans un environnement x86.\n"
+msgstr "%s : Impossible de charger une dll x64 dans un environnement x86.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist in PATH environment.\n"
