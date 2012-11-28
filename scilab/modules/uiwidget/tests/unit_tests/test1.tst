@@ -16,7 +16,7 @@ tf = uiget("/mywin/tab1/p1/p2/field1");
 xtitle(tf.text)
 endfunction
 
-function update_title()
+function update_title(obj)
 f = uiget("/mywin/tab1/p1/p3/sciplot1");
 scf(double(f.figureId));
 tf = uiget("/mywin/tab1/p1/p2/field1");
@@ -44,7 +44,7 @@ uicontrol(p2, "style", "UILabel", "text", "Make the basic plot2d", "id", "label1
 b1 = uicontrol(p2, "style", "UIButton", "text", "plot2d", "onclick", "make_plot2d", "id", "b1", "constraint", "gridx:2; gridy:1; weightx:0; weighty:0");
 uicontrol(p2, "style", "UILabel", "text", "Make the basic plot3d", "id", "label2", "constraint", "gridx:1; gridy:2; weightx:1; weighty:0; fill:horizontal");
 b2 = uicontrol(p2, "style", "UIButton", "text", "plot3d", "onclick", "make_plot3d", "id", "b2", "constraint", "gridx:2; gridy:2; weightx:0; weighty:0");
-tf = uicontrol(p2, "style", "UITextfield", "text", "My beautiful plot", "onenter", "update_title", "id", "field1", "constraint", "gridx:1; gridy:3; weightx:1; weighty:0; fill:horizontal");
+tf = uicontrol(p2, "style", "UITextfield", "text", "My beautiful plot", "onenter", "update_title", "id", "field1", "constraint", "gridx:1; gridy:3; weightx:1; weighty:0; fill:horizontal", "onchange", "update_title");
 b3 = uicontrol(p2, "style", "UIButton", "text", "Make title", "onclick", "update_title", "id", "b3", "constraint", "gridx:2; gridy:3; weightx:0; weighty:0");
 uicontrol(p2, "style", "UILabel", "text", "You can use the slider to rotate the figure", "id", "label3", "constraint", "gridx:1; gridy:4; weightx:1; weighty:0; fill:horizontal");
 sl = uicontrol(p2, "style", "UISlider", "id", "sl1", "orientation", "horizontal", "min", 0, "max", 360, "value", 0, "paint-ticks", %t, "labels-increment", 20, "size", 8, "onchange", "slider_cb", "constraint", "gridx:1; gridy:5; weightx:1; weighty:0; gridwidth:2; fill:horizontal");

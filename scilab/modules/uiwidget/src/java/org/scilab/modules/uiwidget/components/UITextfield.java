@@ -19,15 +19,20 @@ import java.util.Map;
 import javax.swing.Action;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
 public class UITextfield extends UIComponent {
 
     private JTextField textfield;
     private boolean password;
+    private DocumentListener listener;
+    private String action;
 
     public enum Alignment {
         LEADING (JTextField.LEADING),
@@ -109,5 +114,36 @@ public class UITextfield extends UIComponent {
         if (password && s != null && !s.isEmpty()) {
             ((JPasswordField) textfield).setEchoChar(s.charAt(0));
         }
+    }
+
+    public void removeListener() {
+        if (listener != null) {
+            textfield.getDocument().removeDocumentListener(listener);
+            listener = null;
+        }
+    }
+
+    public void remove() {
+        removeListener();
+        super.remove();
+    }
+
+    public void setOnchange(final String action) {
+        if (this.action == null) {
+            removeListener();
+            listener = new DocumentListener() {
+                public void insertUpdate(DocumentEvent e) {
+                    UIWidgetTools.execAction(UITextfield.this, UITextfield.this.action);
+                }
+
+                public void removeUpdate(DocumentEvent e) {
+                    UIWidgetTools.execAction(UITextfield.this, UITextfield.this.action);
+                }
+
+                public void changedUpdate(DocumentEvent e) { }
+            };
+            textfield.getDocument().addDocumentListener(listener);
+        }
+        this.action = action;
     }
 }
