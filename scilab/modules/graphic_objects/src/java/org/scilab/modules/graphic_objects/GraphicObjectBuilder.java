@@ -44,6 +44,7 @@ public final class GraphicObjectBuilder {
             String modelLabelUID = CallGraphicController.getGraphicObjectPropertyAsString(axesModelUID, type);
             String pobjUID = GraphicController.getController().createUID().toString();
             GraphicModel.getModel().cloneObject(modelLabelUID, pobjUID);
+            ScilabNativeView.ScilabNativeView__createObject(pobjUID);
             CallGraphicController.setGraphicObjectProperty(pobjUID, GraphicObjectProperties.__GO_POSITION__, position);
 
             int autoPosition = CallGraphicController.getGraphicObjectPropertyAsBoolean(modelLabelUID, GraphicObjectProperties.__GO_AUTO_POSITION__);
@@ -54,6 +55,8 @@ public final class GraphicObjectBuilder {
         }
 
         ScilabNativeView.ScilabNativeView__createObject(newFID);
+        ScilabNativeView.ScilabNativeView__createObject(newAID);
+
         ScilabNativeView.ScilabNativeView__updateObject(newFID, GraphicObjectProperties.__GO_ID__);
         ScilabNativeView.ScilabNativeView__setCurrentObject(newAID);
         ScilabNativeView.ScilabNativeView__setCurrentSubWin(newAID);
