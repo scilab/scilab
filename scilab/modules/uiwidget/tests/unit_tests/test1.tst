@@ -1,39 +1,37 @@
-function make_plot2d()
-f = uiget("/mywin/tab1/p1/p3/sciplot1");
+function make_plot2d(obj)
+wp = obj.root.path;
+f = uiget(wp + "/tab1/p1/p3/sciplot1");
 scf(double(f.figureId));
 clf();
 plot2d();
-tf = uiget("/mywin/tab1/p1/p2/field1");
+tf = uiget(wp +"/tab1/p1/p2/field1");
 xtitle(tf.text)
 endfunction
 
-function make_plot3d()
-f = uiget("/mywin/tab1/p1/p3/sciplot1");
+function make_plot3d(obj)
+wp = obj.root.path;
+f = uiget(wp + "/tab1/p1/p3/sciplot1");
 scf(double(f.figureId));
 clf();
 plot3d();
-tf = uiget("/mywin/tab1/p1/p2/field1");
+tf = uiget(wp + "/tab1/p1/p2/field1");
 xtitle(tf.text)
 endfunction
 
 function update_title(obj)
-f = uiget("/mywin/tab1/p1/p3/sciplot1");
+wp = obj.root.path;
+f = uiget(wp + "/tab1/p1/p3/sciplot1");
 scf(double(f.figureId));
-tf = uiget("/mywin/tab1/p1/p2/field1");
+tf = uiget(wp + "/tab1/p1/p2/field1");
 xtitle(tf.text)
 endfunction
 
-function slider_cb(id, x)
-f = uiget("/mywin/tab1/p1/p3/sciplot1");
-scf(double(f.figureId));
-a=gca();
-ra = a.rotation_angles;
-a.rotation_angles = [x, ra(2)];
+function slider_cb(obj, x)
+f = uiget(obj.root.path + "/tab1/p1/p3/sciplot1");uiset(f, "onrotateEnable", %f);scf(double(f.figureId));a=gca();ra = a.rotation_angles;a.rotation_angles = [x, ra(2)];uiset(f, "onrotateEnable", %t);
 endfunction
 
-function rotate_cb(id, angles)
-sl = uiget("/mywin/tab1/p1/p2/sl1");
-uiset(sl, "onchangeEnable", "off", "value", pmodulo(angles(1), 360), "onchangeEnable", "on");
+function rotate_cb(obj, angles)
+sl = uiget(obj.root.path + "/tab1/p1/p2/sl1");uiset(sl, "onchangeEnable", %f, "value", pmodulo(angles(1), 360), "onchangeEnable", %t);
 endfunction
 
 win = uiwidget("style", "UIScilabWindow", "id", "mywin", "location", [200, 200], "size", [1500, 500]);

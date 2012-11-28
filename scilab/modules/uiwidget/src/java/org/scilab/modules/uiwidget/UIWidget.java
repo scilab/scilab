@@ -61,14 +61,28 @@ public class UIWidget {
     }
 
     public static void uiget(int uid, String property, int stackPos) throws Exception {
+        if (property == null || property.isEmpty()) {
+            throw new Exception(String.format("Invalid argument: A property name expected"));
+        }
+
         final UIComponent comp = UILocator.get(uid);
 
         if (comp == null) {
             throw new Exception("Invalid first argument: An uicontrol identifier expected");
         }
 
-        Object o = comp.getProperty(property);
-        ObjectToScilabConverters.putOnScilabStack(o, stackPos);
+        String p = property.toLowerCase();
+        // The properties root, path & parent need to be quickly retrieve (no invokeAndWait)
+        if (p.equals("root")) {
+            ObjectToScilabConverters.putOnScilabStack(comp.getRoot(), stackPos);
+        } else if (p.equals("path")) {
+            ObjectToScilabConverters.putOnScilabStack(comp.getPath(), stackPos);
+        } else if (p.equals("parent")) {
+            ObjectToScilabConverters.putOnScilabStack(comp.getParent(), stackPos);
+        } else {
+            Object o = comp.getProperty(property);
+            ObjectToScilabConverters.putOnScilabStack(o, stackPos);
+        }
     }
 
     public static void uiset(final int uid) throws Exception {

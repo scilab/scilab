@@ -13,6 +13,7 @@
 package org.scilab.modules.uiwidget.components;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
 
 import javax.swing.AbstractAction;
@@ -28,14 +29,16 @@ import org.scilab.modules.uiwidget.StringConverters;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
 public class UIButton extends UIComponent {
 
     private JButton button;
-    private Action action;
     private JPopupMenu menu;
     private Action menuAction;
     private boolean hasRolloverIcon;
+    private ActionListener clicklistener;
+    private String clickaction;
 
     public enum Relief {
         NONE,
@@ -127,19 +130,6 @@ public class UIButton extends UIComponent {
         super.setUiStyle(style);
     }
 
-    public void setRelief(Relief relief) {
-        switch (relief) {
-            case NONE:
-                //button.setContentAreaFilled(false);
-                //button.setOpaque(true);
-                button.setBorder(BorderFactory.createEmptyBorder());
-                break;
-            case HALF:
-            case NORMAL:
-                break;
-        }
-    }
-
     public void add(JMenuItem menuitem) {
         if (menu == null) {
             menu = new JPopupMenu();
@@ -154,14 +144,33 @@ public class UIButton extends UIComponent {
         menu.add(menuitem);
     }
 
-    public void setOnclick(Action action) {
-        if (this.action != null) {
-            button.removeActionListener(this.action);
+    public void removeClickListener() {
+        if (clicklistener != null) {
+            button.removeActionListener(clicklistener);
+            clicklistener = null;
         }
-        if (action != null) {
-            button.addActionListener(action);
+    }
+
+    public void remove() {
+        removeClickListener();
+        super.remove();
+    }
+
+    public String getOnclick() {
+        return this.clickaction;
+    }
+
+    public void setOnclick(final String action) {
+        if (this.clickaction == null) {
+            removeClickListener();
+            clicklistener = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    UIWidgetTools.execAction(UIButton.this, UIButton.this.clickaction);
+                }
+            };
+            button.addActionListener(clicklistener);
         }
-        this.action = action;
+        this.clickaction = action;
     }
 
     public void setLabel(String label) {

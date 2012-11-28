@@ -37,7 +37,7 @@ bool UIWidgetTools::isUIWidget(int * mlist, void * pvApiCtx)
     }
 
     err = getMatrixOfStringInList(pvApiCtx, mlist, 1, &rows, &cols, 0, 0);
-    if (err.iErr || rows != 1 || cols != 2)
+    if (err.iErr || rows * cols != 2)
     {
         return false;
     }

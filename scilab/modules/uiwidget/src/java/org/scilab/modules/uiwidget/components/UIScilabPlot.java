@@ -50,6 +50,8 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
     SwingScilabCanvas canvas;
     String onrotate;
     String onzoom;
+    boolean onrotateEnable = true;
+    boolean onzoomEnable = true;
     boolean hasAction;
 
     public UIScilabPlot(UIComponent parent) throws UIWidgetException {
@@ -139,6 +141,22 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
         this.hasAction = (onrotate != null && !onrotate.isEmpty()) || (onzoom != null && !onzoom.isEmpty());
     }
 
+    public void setOnrotateEnable(boolean b) {
+        this.onrotateEnable = b;
+    }
+
+    public void setOnzoom(boolean b) {
+        this.onzoomEnable = b;
+    }
+
+    public boolean getOnzoomEnable() {
+        return this.onzoomEnable;
+    }
+
+    public boolean getOnrotateEnable() {
+        return this.onrotateEnable;
+    }
+
     public String getOnrotate() {
         return onrotate;
     }
@@ -149,14 +167,14 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
 
     @Override
     public void updateObject(String id, int property) {
-        if (hasAction && GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__) == ((Integer) GraphicObjectProperties.__GO_AXES__)) {
+        if ((hasAction && (onrotateEnable || onzoomEnable)) && GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__) == ((Integer) GraphicObjectProperties.__GO_AXES__)) {
             GraphicObject obj = GraphicController.getController().getObjectFromId(id);
             String parentFigure = obj.getParentFigure();
             if (figure.getIdentifier().equals(parentFigure)) {
-                if (property == GraphicObjectProperties.__GO_ROTATION_ANGLES__ && onrotate != null && !onrotate.isEmpty()) {
+                if (property == GraphicObjectProperties.__GO_ROTATION_ANGLES__ && onrotateEnable && onrotate != null && !onrotate.isEmpty()) {
                     Double[] angles = (Double[]) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
                     UIWidgetTools.execAction(UIScilabPlot.this, onrotate, "[" + angles[0].toString() + "," + angles[1].toString() + "]");
-                } else if (property == GraphicObjectProperties.__GO_ZOOM_BOX__ && onzoom != null && !onzoom.isEmpty()) {
+                } else if (property == GraphicObjectProperties.__GO_ZOOM_BOX__ && onzoomEnable && onzoom != null && !onzoom.isEmpty()) {
                     Double[] box = (Double[]) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_ZOOM_BOX__);
                     if (box.length == 6) {
                         UIWidgetTools.execAction(UIScilabPlot.this, onzoom, "[" + box[0].toString() + "," + box[1].toString() + "," + box[2].toString() + "," + box[3].toString() + "," + box[4].toString() + "," + box[5].toString() + "]");

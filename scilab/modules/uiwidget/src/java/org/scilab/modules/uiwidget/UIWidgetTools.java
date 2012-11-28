@@ -18,7 +18,7 @@ public final class UIWidgetTools {
 
     public static String getActionString(UIComponent uicomp, String command, Object ... args) {
         StringBuilder buffer = new StringBuilder(128);
-        buffer.append(command).append("(mlist(['UIWidget','_id'],").append(Integer.toString(uicomp.getUid())).append(")");
+        buffer.append(command).append("(mlist(['UIWidget','_id'],int32(").append(Integer.toString(uicomp.getUid())).append("))");
         if (args.length >= 1) {
             buffer.append(",");
         }
@@ -36,6 +36,8 @@ public final class UIWidgetTools {
     }
 
     public static void execAction(UIComponent uicomp, String command, Object ... args) {
-        InterpreterManagement.requestScilabExec(getActionString(uicomp, command, args));
+        if (command != null && !command.isEmpty()) {
+            InterpreterManagement.requestScilabExec(getActionString(uicomp, command, args));
+        }
     }
 }

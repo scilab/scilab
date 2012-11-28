@@ -268,6 +268,10 @@ public abstract class UIComponent {
         return this.path;
     }
 
+    public String getPath() {
+        return getUIPath();
+    }
+
     public String getRootId() {
         return root.id;
     }

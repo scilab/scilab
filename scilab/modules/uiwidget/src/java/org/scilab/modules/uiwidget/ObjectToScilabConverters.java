@@ -49,6 +49,8 @@ import org.scilab.modules.uiwidget.components.UISlider;
 import org.scilab.modules.uiwidget.components.UIProgressBar;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.types.ScilabInteger;
+import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabStackPutter;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -73,7 +75,14 @@ public final class ObjectToScilabConverters {
         if (o == null) {
             ScilabStackPutter.put(stackPos, new double[0], false);
         } else {
-            ObjectConverter converter = converters.get(o.getClass());
+            final Class clazz = o.getClass();
+            ObjectConverter converter;
+            if (o instanceof UIComponent) {
+                converter = converters.get(UIComponent.class);
+            } else {
+                converter = converters.get(clazz);
+            }
+
             if (converter == null) {
                 ScilabStackPutter.put(stackPos, new double[0], false);
             } else {
@@ -220,6 +229,14 @@ public final class ObjectToScilabConverters {
             public void convert(Object o, int stackPos) {
                 CommonCallBack cb = (CommonCallBack) o;
                 ScilabStackPutter.put(stackPos, cb.getCommand());
+            }
+        });
+        converters.put(UIComponent.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                UIComponent ui = (UIComponent) o;
+                ScilabMList mlist = new ScilabMList(new String[] {"UIWidget", "_id"});
+                mlist.add(new ScilabInteger(ui.getUid()));
+                ScilabStackPutter.put(stackPos, mlist);
             }
         });
     }
