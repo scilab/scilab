@@ -71,6 +71,8 @@ Bug fixes
 
 * Bug #8213 fixed - geom3d had no examples.
 
+* Bug #8395 fixed - dft has been deprecated to fft.
+
 * Bug #8414 fixed - Some genetic algorithms functions had no examples.
 
 * Bug #8883 fixed - In some cases, Scilab build from sources was looking for
