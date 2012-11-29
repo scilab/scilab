@@ -46,6 +46,12 @@ Removed functions
 * ricc_old() removed. Use ricc() instead.
 
 
+Deprecated functions
+=====================
+
+* fit_dat has been deprecated for datafit. See bug #9306.
+
+
 Xcos
 =====
 

@@ -14,7 +14,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fit_dat" xml:lang="en">
     <refnamediv>
         <refname>fit_dat</refname>
-        <refpurpose>Parameter identification based on measured data</refpurpose>
+        <refpurpose>
+            Parameter identification based on measured data 
+            <emphasis role="bold">
+                This function is obsolete. Use <link linkend="datafit">datafit</link>
+            </emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -128,7 +133,7 @@ endfunction
 
 xset('window',1)
 clf();
-plot2d(X',Y',-1) 
+plot2d(X',Y',-1)
 plot2d(X',FF(X)',5,'002')
 a=p(1);
 b=p(2);
