@@ -51,11 +51,6 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/determ.sci, line: 58
-msgid "Computing determinant: Be patient...\n"
-msgstr ""
-
-#
 # File: macros/factors.sci, line: 22
 # File: macros/polfact.sci, line: 25
 #, c-format

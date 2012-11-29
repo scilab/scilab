@@ -37,9 +37,6 @@ msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de números reais, de polinômios ou frações racionais.\n"
 
-msgid "Computing determinant: Be patient...\n"
-msgstr "Computando o determinante: Tenha paciência...\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""

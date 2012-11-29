@@ -37,9 +37,6 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un tableau de flottants, de "
 "polynômes ou de fractions rationnelles attendu.\n"
 
-msgid "Computing determinant: Be patient...\n"
-msgstr "Calcul du déterminant : Veuillez patienter...\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""

@@ -57,12 +57,6 @@ fi
 DISABLE_JAVA_DETECTION=0
 IS_SCILAB_BINARY=0
 
-# Electric fence is a tool to check problem of memory
-start_electric_fence() {
-    echo "Running Scilab with Electric Fence : "  LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" "$@"
-    LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" "$@"
-}
-
 start_debug() {
     if test -n "$DEVENV"; then
         echo "Running debug of Scilab [gdb]  : " "$SCI"/libtool --mode=execute gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
@@ -855,7 +849,6 @@ do_help()
     echo     "  -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
     echo     "                    define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
     echo     "                    callgrind (and override the existing callgrind arguments)."
-    echo     "  -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
     echo     "  -disable-exception-catching : Disable Scilab exception catching system."
     echo     " "
     echo     "  All these arguments can be retrieved by the Scilab function sciargs."
@@ -898,7 +891,6 @@ if test "$rest" = "yes"; then
     debug_kdbg=
     profiling=
     profiling_visu=
-    electric_fence=
     prevarg=
     for sciarg in "$@"
     do
@@ -946,9 +938,6 @@ if test "$rest" = "yes"; then
             -profiling-visu)
                 PROFILING_VISU="-profiling-visu"
                 ;;
-            -electric-fence)
-                ELECTRIC_FENCE="-electric-fence"
-                ;;
             -disable-exception-catching)
                 SCI_DISABLE_EXCEPTION_CATCHING=1
                 export SCI_DISABLE_EXCEPTION_CATCHING
@@ -982,11 +971,7 @@ if test "$rest" = "yes"; then
                 if test -n "$PROFILING_VISU"; then
                     start_profiling_visu "$@" $MORE_OPT
                 else
-                    if test -n "$ELECTRIC_FENCE"; then
-                        start_electric_fence "$@" $MORE_OPT
-                    else
-                        do_scilex "$@" $MORE_OPT
-                    fi # not electric fense
+                    do_scilex "$@" $MORE_OPT
                 fi # not profiling visu
             fi # not profiling
         fi # not debug kdbg

@@ -14,13 +14,36 @@ Improvements
 
 * New xmlName function.
 
-* clc(): New icon in the toolbar to clear the console.
+* clc(): New icon in the toolbar to clear the console. See bug #12049.
+
+* test_run no longer take in account skipped tests in the summary.
+  See bug #12117
 
 
 Removed functions
 ==================
 
 * mtlb_repmat removed. Scilab provides a real repmat since 5.3.1.
+
+* with_pvm removed. Use getversion() instead.
+
+* with_texmacs removed. Moved as ATOMS module: atomsInstall('texmacs')
+
+* createpopup removed. Use uicontextmenu() instead.
+
+* config() removed. Use preferences() instead.
+
+* mtlb_conv removed. Use conv() instead.
+
+* xselect() removed. Use show_window() instead.
+
+* showalluimenushandles() removed.
+  Use set(get(0), "ShowHiddenHandles", "on") instead.
+
+* Functions neldermead_display, nmplot_display, optimbase_display and
+  optimsimplex_print removed. Use disp() instead.
+
+* Function optimsimplex_tostring removed. Use string() instead.
 
 
 Xcos
@@ -68,6 +91,16 @@ Bug fixes
 * Bug #3313 fixed - In the documentation, the title of a link was using the
                     id instead of the title of the page.
 
+* Bug #6583 fixed - jmat() was poorly documented.
+
+* Bug #8213 fixed - geom3d had no examples.
+
+* Bug #8395 fixed - dft has been deprecated to fft.
+
+* Bug #8414 fixed - Some genetic algorithms functions had no examples.
+
+* Bug #8638 fixed - Improved examples for gcd.
+
 * Bug #8883 fixed - In some cases, Scilab build from sources was looking for
                    libraries at the wrong place.
 
@@ -81,6 +114,8 @@ Bug fixes
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
+
+* Bug #11939 fixed - ssprint formatting was slightly not right.
 
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
@@ -119,7 +154,11 @@ Bug fixes
 
 * Bug #12077 fixed - In help, attribute bgcolor was not handled in tables.
 
+* Bug #12087 fixed - profile help page did not mention add_profiling.
+
 * Bug #12115 fixed - phaseplot(frq,db,phi) did not work.
+
+* Bug #12119 fixed - bar and barh had wrong x/y bounds.
 
 
                     Changes between version 5.3.3 and 5.4.0

@@ -38,9 +38,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати число з "
 "рухомою комою, поліном або масив з раціональних дробів.\n"
 
-msgid "Computing determinant: Be patient...\n"
-msgstr "Обчислення визначника: зачекайте…\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""

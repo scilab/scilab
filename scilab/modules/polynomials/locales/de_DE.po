@@ -36,9 +36,6 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Fließpunkt-Zahl, Polynom "
 "oder Datenfeld mit rationalen Brüchen erwartet.\n"
 
-msgid "Computing determinant: Be patient...\n"
-msgstr "Berechne Determinante: bitte warten.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: ein Polynom erwartet.\n"

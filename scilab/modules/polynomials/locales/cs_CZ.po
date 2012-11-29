@@ -35,9 +35,6 @@ msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno desetinné číslo, polynom, "
 "nebo pole racionálních zlomků.\n"
 
-msgid "Computing determinant: Be patient...\n"
-msgstr "Vypočítávám determinant: Strpení, prosím...\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván mnohočlen.\n"
