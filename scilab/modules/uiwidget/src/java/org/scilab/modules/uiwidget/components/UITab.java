@@ -69,14 +69,14 @@ public class UITab extends UIComponent {
     @UIComponentAnnotation(attributes = {"placement"})
     public Object newInstance(Placement placement) {
         tab = new JTabbedPane(placement.value());
-        tab.addChangeListener(new ChangeListener() {
+        /*tab.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 Component c = tab.getSelectedComponent();
                 if (c != null && !c.isValid()) {
-                    //c.validate();
+                    c.validate();
                 }
             }
-        });
+        });*/
         return tab;
     }
 
