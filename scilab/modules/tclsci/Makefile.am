@@ -122,7 +122,6 @@ tcl/sciGUI/local_extra/rnotebook.tcl \
 tcl/sciGUI/local_extra/spinbutton.tcl \
 tcl/sciGUI/license.txt \
 tcl/sciGUI/sciGUI.tcl \
-tcl/sciGUI/sciConfig.tcl \
 tcl/sciGUI/sciBrowseVar.tcl \
 tcl/sciGUI/sciEditVar.tcl \
 tcl/TK_Scilab.tcl
