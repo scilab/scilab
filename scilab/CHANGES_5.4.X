@@ -35,6 +35,9 @@ Removed functions
 
 * xselect() removed. Use show_window() instead.
 
+* showalluimenushandles() removed.
+  Use set(get(0), "ShowHiddenHandles", "on") instead.
+
 * Functions neldermead_display, nmplot_display, optimbase_display and
   optimsimplex_print removed. Use disp() instead.
 
