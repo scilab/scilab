@@ -25,6 +25,8 @@ Removed functions
 
 * with_pvm removed.
 
+* with_texmacs removed.
+
 
 Xcos
 =====
