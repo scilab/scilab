@@ -102,6 +102,8 @@ Bug fixes
 * Bug #8883 fixed - In some cases, Scilab build from sources was looking for
                    libraries at the wrong place.
 
+* Bug #9005 fixed - The bitset function did not have any tests.
+
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
 * Bug #11474 fixed - save_format help page was still refering to the old save
