@@ -105,6 +105,9 @@ Bug fixes
 * Bug #8964 fixed - The optim_{ga, moga, nsga, nsga2} functions may not create
                     pop_init.
 
+* Bug #8899 fixed - The help page of splin2d was unclear about the size of
+                    the arguments.
+
 * Bug #8901 fixed - The help page of interp2d was unclear about the size of
                     the arguments.
 
