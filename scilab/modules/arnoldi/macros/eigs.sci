@@ -574,22 +574,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                 AMSB = A - sigma * %_B;
             end
         end
-        if(~isreal(AMSB))
-            Lup = umf_lufact(AMSB);
-            [L, U, p, q, R] = umf_luget(Lup);
-            R = diag(R);
-            P = zeros(nA, nA);
-            Q = zeros(nA, nA);
-            for i = 1:nA
-                P(i,p(i)) = 1;
-                Q(q(i),i) = 1;
-            end
-            umf_ludel(Lup);
-        else
-            [hand, rk] = lufact(AMSB);
-            [P, L, U, Q] = luget(hand);
-            ludel(hand);
-        end
+        Lup = umf_lufact(AMSB);
     end
 
     if(Areal)
@@ -653,15 +638,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                     if(ido == 2)
                         workd(ipntr(2):ipntr(2)+nA-1) = workd(ipntr(1):ipntr(1)+nA-1);
                     else
-                        if(Areal & Breal)
-                            workd(ipntr(2):ipntr(2)+nA-1) = inv(Q) * inv(U) * inv(L) * inv(P) *workd(ipntr(1):ipntr(1)+nA-1);
-                        else
-                            if(~isreal(L) | ~isreal(U))
-                                error(msprintf(gettext("%s: Impossible to invert complex sparse matrix.\n"), "eigs"));
-                            else
-                                workd(ipntr(2):ipntr(2)+nA-1) = Q * inv(U) * inv(L) * P * inv(R) * workd(ipntr(1):ipntr(1)+nA-1);
-                            end
-                        end
+                        workd(ipntr(2):ipntr(2)+nA-1) = umf_lusolve(Lup, workd(ipntr(1):ipntr(1)+nA-1));
                     end
                 else
                     if(ido == 2)
@@ -676,25 +653,9 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                         else
                             workd(ipntr(2):ipntr(2)+nA-1) = %_B * workd(ipntr(1):ipntr(1)+nA-1);
                         end
-                        if(Areal & Breal)
-                            workd(ipntr(2):ipntr(2)+nA-1) = inv(Q) * inv(U) * inv(L) * inv(P) *workd(ipntr(2):ipntr(2)+nA-1);
-                        else
-                            if(~isreal(L) | ~isreal(U))
-                                error(msprintf(gettext("%s: Impossible to invert complex sparse matrix.\n"), "eigs"));
-                            else
-                                workd(ipntr(2):ipntr(2)+nA-1) = Q * inv(U) * inv(L) * P * inv(R) * workd(ipntr(2):ipntr(2)+nA-1);
-                            end
-                        end
+                        workd(ipntr(2):ipntr(2)+nA-1) = umf_lusolve(Lup, workd(ipntr(2):ipntr(2)+nA-1));
                     else
-                        if(Areal & Breal)
-                            workd(ipntr(2):ipntr(2)+nA-1) = inv(Q) * inv(U) * inv(L) * inv(P) * workd(ipntr(3):ipntr(3)+nA-1);
-                        else
-                            if(~isreal(L) | ~isreal(U))
-                                error(msprintf(gettext("%s: Impossible to invert complex sparse matrix.\n"), "eigs"));
-                            else
-                                workd(ipntr(2):ipntr(2)+nA-1) = Q * inv(U) * inv(L) * P * inv(R) * workd(ipntr(3):ipntr(3)+nA-1);
-                            end
-                        end
+                        workd(ipntr(2):ipntr(2)+nA-1) = umf_lusolve(Lup, workd(ipntr(3):ipntr(3)+nA-1));
                     end
                 end
             else
@@ -709,6 +670,9 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                 end
             end
         end
+    end
+    if(iparam(7)==3)
+	 umf_ludel(Lup);
     end
 
     if(Areal & Breal)
