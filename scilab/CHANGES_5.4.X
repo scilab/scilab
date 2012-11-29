@@ -89,6 +89,8 @@ Bug fixes
 * Bug #3313 fixed - In the documentation, the title of a link was using the
                     id instead of the title of the page.
 
+* Bug #5385 fixed - clean help page moved to the matrix operation chapter.
+
 * Bug #6583 fixed - jmat() was poorly documented.
 
 * Bug #8213 fixed - geom3d had no examples.
