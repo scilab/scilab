@@ -93,6 +93,9 @@ Bug fixes
 
 * Bug #6583 fixed - jmat() was poorly documented.
 
+* Bug #7583 fixed - binomial function moved in the distribution function
+                    chapter.
+
 * Bug #8213 fixed - geom3d had no examples.
 
 * Bug #8395 fixed - dft has been deprecated to fft.
