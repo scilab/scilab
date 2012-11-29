@@ -31,10 +31,15 @@ Removed functions
 
 * config() removed. Use preferences() instead.
 
+* mtlb_conv removed. Use conv() instead.
+
+* xselect() removed. Use show_window() instead.
+
 * Functions neldermead_display, nmplot_display, optimbase_display and
   optimsimplex_print removed. Use disp() instead.
 
 * Function optimsimplex_tostring removed. Use string() instead.
+
 
 Xcos
 =====
