@@ -31,6 +31,11 @@ Removed functions
 
 * config() removed. Use preferences() instead.
 
+* Functions neldermead_display, nmplot_display, optimbase_display and
+  optimsimplex_print removed. Use disp() instead.
+
+* Function optimsimplex_tostring removed. Use string() instead.
+
 Xcos
 =====
 
