@@ -87,6 +87,8 @@ Bug fixes
 
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
 
+* Bug #11939 fixed - ssprint formatting was slightly not right.
+
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
 
