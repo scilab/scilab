@@ -29,6 +29,8 @@ Removed functions
 
 * createpopup removed. Use uicontextmenu() instead.
 
+* config() removed. Use preferences() instead.
+
 Xcos
 =====
 
