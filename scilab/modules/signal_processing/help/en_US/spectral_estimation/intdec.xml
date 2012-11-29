@@ -61,5 +61,5 @@ plot(u2b, u2);
             u2b = intdec(u1, Fs2/Fs1);
             plot(u2b, u2);
         </scilab:image>
-        
-    </refentry>
+    </refsection>
+</refentry>

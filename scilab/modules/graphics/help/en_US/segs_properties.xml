@@ -63,10 +63,16 @@
                 <listitem>
                     <para>
                         This field is two column matrix <literal>[x,y,
-                        [z]]</literal> which gives the coordinates of the
+                            [z]]
+                        </literal>
+                        which gives the coordinates of the
                         segments boundary. If <literal>xv =
-                        matrix(x,2,-1)</literal> and <literal>yv =
-                        matrix(y,2,-1)</literal> then <literal>xv(:,k)</literal>
+                            matrix(x,2,-1)
+                        </literal>
+                        and <literal>yv =
+                            matrix(y,2,-1)
+                        </literal>
+                        then <literal>xv(:,k)</literal>
                         and <literal>yv(:,k)</literal> are the boundary
                         coordinates of the segment numbered
                         <literal>k</literal>.
@@ -205,7 +211,7 @@
                         This field contains the <literal>mark_foreground</literal>
                         property value which is the marks' edge color. Its value
                         should be a color index (relative to the current
-                        <literal>color_map</liteal>) or 0 for transparent edge.
+                        <literal>color_map</literal>) or 0 for transparent edge.
                     </para>
                 </listitem>
             </varlistentry>
@@ -214,7 +220,7 @@
                 <listitem>
                     <para>
                         This field contains the <literal>mark_background</literal>
-                        property value which is the marks' face color. Its value should be a color index (relative to the current <literal>color_map</liteal>) or 0 for transparent face.
+                        property value which is the marks' face color. Its value should be a color index (relative to the current <literal>color_map</literal>) or 0 for transparent face.
                     </para>
                 </listitem>
             </varlistentry>

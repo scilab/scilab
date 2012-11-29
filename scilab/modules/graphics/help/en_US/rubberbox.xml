@@ -33,7 +33,9 @@
                     <para>
                         a vector with two or four entries. With four entries it
                         gives the initial rectangle defined by <literal>[x_min,
-                        y_max, width, height]</literal>, with two entries width
+                            y_max, width, height]
+                        </literal>
+                        ,with two entries width
                         and height are supposed to be 0.
                     </para>
                 </listitem>
@@ -43,7 +45,7 @@
                 <listitem>
                     <para>
                         a boolean, if <varname>edition_mode</varname> is
-                        constant>%t</constant> button press selects the first corner, release selects the opposite corner. If <varname>edition_mode</varname> is <constant>%f</constant>, a button press or click selects the first corner, a click is requested to select the opposite corner. The default value is <constant>%f</constant>.
+                        <constant>%t</constant> button press selects the first corner, release selects the opposite corner. If <varname>edition_mode</varname> is <constant>%f</constant>, a button press or click selects the first corner, a click is requested to select the opposite corner. The default value is <constant>%f</constant>.
                     </para>
                 </listitem>
             </varlistentry>
