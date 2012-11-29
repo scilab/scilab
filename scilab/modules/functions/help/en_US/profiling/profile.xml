@@ -54,7 +54,7 @@
         </para>
         <para>
             Note that, due to the precision of the processor clock (typically one
-            micro second), some executed lignes may appear with 0 cpu time even if
+            micro second), some executed lines may appear with 0 cpu time even if
             total cpu time really spend in their execution is large.
         </para>
     </refsection>
