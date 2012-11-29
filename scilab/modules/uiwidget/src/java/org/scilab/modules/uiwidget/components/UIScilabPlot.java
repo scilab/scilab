@@ -40,8 +40,13 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
+import org.scilab.modules.jvm.LoadClassPath;
 
 public class UIScilabPlot extends UIComponent implements GraphicView {
+
+    static {
+        LoadClassPath.loadOnUse("graphics");
+    }
 
     WindowAdapter winAdapter;
     Window parentWindow;

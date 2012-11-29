@@ -19,7 +19,7 @@ import java.util.Map;
 
 import org.xml.sax.Attributes;
 
-public class UIFakeComponent {
+public class UIFakeComponent implements Cloneable {
 
     private StringMap attributes;
     private UIFakeComponent parent;
@@ -38,9 +38,11 @@ public class UIFakeComponent {
         this(pack, name, UIComponent.getMapFromAttributes(attributes));
     }
 
-    public void setId(String id) {
-        if (attributes != null) {
-            attributes.put("id", id);
+    public void addAttributes(Attributes attributes) {
+        if (this.attributes == null) {
+            this.attributes = UIComponent.getMapFromAttributes(attributes);
+        } else {
+            this.attributes.putAll(UIComponent.getMapFromAttributes(attributes));
         }
     }
 
@@ -48,14 +50,21 @@ public class UIFakeComponent {
         children.add(comp);
     }
 
-    public UIComponent getUIComponent(final UIComponent parent, final Map<String, Map<String, String>> style) throws UIWidgetException {
-        final UIComponent ui = UIComponent.getUIComponent(pack, name, attributes, parent, style);
+    public UIComponent getUIComponent(final UIComponent parent, final StringMap attributes, final Map<String, Map<String, String>> style) throws UIWidgetException {
+        final StringMap attrs;
+        if (attributes != null) {
+            attributes.putAll(this.attributes);
+            attrs = attributes;
+        } else {
+            attrs = this.attributes;
+        }
 
+        final UIComponent ui = UIComponent.getUIComponent(pack, name, attrs, parent, style);
         UIAccessTools.execOnEDT(new Runnable() {
             public void run() {
                 for (UIFakeComponent comp : children) {
                     try {
-                        ui.add(comp.getUIComponent(ui, style));
+                        ui.add(comp.getUIComponent(ui, null, style));
                     } catch (UIWidgetException e) {
                         System.err.println(e);
                     }
@@ -63,6 +72,17 @@ public class UIFakeComponent {
                 ui.finish();
             }
         });
+
+        return ui;
+    }
+
+    public Object clone() {
+        UIFakeComponent ui = new UIFakeComponent(pack, name, (StringMap) null);
+        if (attributes != null) {
+            ui.attributes = (StringMap) attributes.clone();
+        }
+
+        ui.children = this.children;
 
         return ui;
     }

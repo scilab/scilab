@@ -70,20 +70,28 @@ public class UIModele {
         modele.m.put(modeleName, component);
     }
 
-    public static UIFakeComponent get(String uri, String modeleName) {
+    public static UIFakeComponent get(String uri, String modeleName, Attributes attrs) {
         UIModele modele = modeles.get(uri);
         if (modele == null) {
             return null;
         }
 
-        return modele.m.get(modeleName);
+        UIFakeComponent ui = modele.m.get(modeleName);
+        if (attrs != null && attrs.getLength() != 0) {
+            UIFakeComponent uic = (UIFakeComponent) ui.clone();
+            uic.addAttributes(attrs);
+
+            return uic;
+        }
+
+        return ui;
     }
 
     public static UIComponent get(String uri, String modeleName, final UIComponent parent, final Map<String, Map<String, String>> style) throws UIWidgetException {
         return get(uri, modeleName, parent, null, style);
     }
 
-    public static UIComponent get(String uri, String modeleName, final UIComponent parent, final String id, final Map<String, Map<String, String>> style) throws UIWidgetException {
+    public static UIComponent get(String uri, String modeleName, final UIComponent parent, final StringMap attributes, final Map<String, Map<String, String>> style) throws UIWidgetException {
         UIModele modele = modeles.get(uri);
         if (modele == null) {
             return null;
@@ -93,17 +101,17 @@ public class UIModele {
         if (c == null) {
             return null;
         }
-        if (id != null && !id.isEmpty()) {
-            c.setId(id);
-        }
 
         final UIComponent[] ptr = new UIComponent[1];
         try {
             javax.swing.SwingUtilities.invokeAndWait(new Runnable() {
                 public void run() {
                     try {
-                        ptr[0] = c.getUIComponent(parent, style);
-                    } catch (Exception e) { }
+                        ptr[0] = c.getUIComponent(parent, attributes, style);
+                    } catch (Exception e) {
+                        System.err.println(e);
+                        e.printStackTrace();
+                    }
                 }
             });
         } catch (Exception e) { }

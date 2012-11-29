@@ -138,11 +138,6 @@ public abstract class UIComponent {
             String id = (String) attributes.get(String.class, "id", null);
             ui.setId(id);
             attributes.remove("id");
-            String tabTitle = (String) attributes.get(String.class, "tab-title", null);
-            if (tabTitle != null) {
-                ui.setTabTitle(tabTitle);
-                attributes.remove("tab-title");
-            }
             ui.setMapStyle(style);
             ui.createNewInstance(attributes);
             if (ui.component instanceof JComponent) {
@@ -150,7 +145,11 @@ public abstract class UIComponent {
                 Dimension d = jc.getPreferredSize();
                 ui.position = new Rectangle(0, 0, d.width, d.height);
             }
-
+            String tabTitle = (String) attributes.get(String.class, "tab-title", null);
+            if (tabTitle != null) {
+                ui.setTabTitle(tabTitle);
+                attributes.remove("tab-title");
+            }
             return ui;
         } catch (ClassNotFoundException e) {
             throw new UIWidgetException("Cannot find the class " + pack + "." + name);
@@ -349,7 +348,6 @@ public abstract class UIComponent {
         component = null;
         modifiableComponent = null;
         root = null;
-        System.gc();
     }
 
     public abstract Object newInstance();
@@ -458,9 +456,8 @@ public abstract class UIComponent {
             if (index != -1) {
                 tab.setTitleAt(index, title);
             }
-        } else {
-            this.tabTitle = title;
         }
+        this.tabTitle = title;
     }
 
     public String getTabTitle() throws UIWidgetException {

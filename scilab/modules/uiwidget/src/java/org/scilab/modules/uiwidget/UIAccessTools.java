@@ -268,6 +268,8 @@ public final class UIAccessTools {
         if (SwingUtilities.isEventDispatchThread()) {
             try {
                 uicomp.setComponent(m.invoke(uicomp, fargs));
+            } catch (InvocationTargetException e) {
+                e.getCause().printStackTrace();
             } catch (Exception e) {
                 System.err.println(e);
             }
@@ -277,6 +279,8 @@ public final class UIAccessTools {
                     public void run() {
                         try {
                             uicomp.setComponent(m.invoke(uicomp, fargs));
+                        } catch (InvocationTargetException e) {
+                            e.getCause().printStackTrace();
                         } catch (Exception e) {
                             System.err.println(e);
                         }

@@ -96,7 +96,11 @@ public final class UILocator {
             if (el.equals("..")) {
                 root = root.parent;
             } else if (!el.equals(".")) {
-                root = root.children.get(el);
+                if (root.children != null) {
+                    root = root.children.get(el);
+                } else {
+                    root = null;
+                }
             }
             if (root == null) {
                 return null;

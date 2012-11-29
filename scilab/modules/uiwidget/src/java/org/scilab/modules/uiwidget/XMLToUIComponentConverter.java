@@ -83,6 +83,7 @@ public class XMLToUIComponentConverter extends DefaultHandler {
         if (in != null) {
             File f = new File(in);
             if (f.exists() && f.canRead()) {
+                UIWidgetTools.addBaseDir(f.getAbsoluteFile().getParentFile());
                 convert(f);
             } else {
                 try {
@@ -257,7 +258,7 @@ public class XMLToUIComponentConverter extends DefaultHandler {
         }
 
         try {
-            UIComponent ui = UIModele.get(uri, name, parent, style);
+            UIComponent ui = UIModele.get(uri, name, parent, UIComponent.getMapFromAttributes(attributes), style);
             if (ui != null) {
                 stack.push(ui);
             }
@@ -276,13 +277,21 @@ public class XMLToUIComponentConverter extends DefaultHandler {
     }
 
     protected void createUIFakeComponentOnModele(String uri, String name, Attributes attributes) {
-        stackFake.push(UIModele.get(uri, name));
+        stackFake.push(UIModele.get(uri, name, attributes));
     }
 
     protected void handleInclude(String file) throws SAXException {
         if (file != null && !file.isEmpty()) {
+            String ff = file;
+            File f = new File(file);
+            if (!f.isAbsolute()) {
+                File main = new File(this.in);
+                f = new File(main.getParentFile(), file);
+                ff = f.getAbsolutePath();
+            }
+
             try {
-                convert(file);
+                convert(ff);
             } catch (IOException e) {
                 System.err.println(e);
             }

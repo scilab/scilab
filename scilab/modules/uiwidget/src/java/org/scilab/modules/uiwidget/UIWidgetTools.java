@@ -12,9 +12,39 @@
 
 package org.scilab.modules.uiwidget;
 
+import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.scilab.modules.action_binding.InterpreterManagement;
 
 public final class UIWidgetTools {
+
+    private static final Set<File> bases = new HashSet<File>();
+
+    public static void addBaseDir(File f) {
+        bases.add(f);
+    }
+
+    public static File getFile(String f) {
+        File ff = new File(f);
+        if (ff.isAbsolute()) {
+            return ff;
+        }
+
+        for (File base : bases) {
+            ff = new File(base, f);
+            if (ff.exists() && ff.canRead()) {
+                if (ff.isAbsolute()) {
+                    return ff;
+                } else {
+                    return ff.getAbsoluteFile();
+                }
+            }
+        }
+
+        return new File(f);
+    }
 
     public static String getActionString(UIComponent uicomp, String command, Object ... args) {
         StringBuilder buffer = new StringBuilder(128);

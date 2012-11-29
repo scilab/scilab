@@ -61,7 +61,7 @@ public class UITab extends UIComponent {
     }
 
     public void finish() {
-        //tab.revalidate();
+        tab.revalidate();
         //tab.layout();
         //tab.validate();
     }
@@ -72,23 +72,9 @@ public class UITab extends UIComponent {
         tab.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 Component c = tab.getSelectedComponent();
-                if (!c.isValid()) {
-                    c.validate();
+                if (c != null && !c.isValid()) {
+                    //c.validate();
                 }
-            }
-        });
-        tab.addAncestorListener(new AncestorListener() {
-            public void ancestorMoved(AncestorEvent e) {
-            }
-
-            public void ancestorRemoved(AncestorEvent e) {
-            }
-
-            public void ancestorAdded(AncestorEvent e) {
-                /*if (!tab.isValid()) {
-                tab.validate();
-                }
-                System.out.println(tab.isValid());*/
             }
         });
         return tab;

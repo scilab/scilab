@@ -262,7 +262,7 @@ public final class StringConverters {
                     return new ImageIcon(url);
                 } catch (MalformedURLException e) { }
 
-                return new ImageIcon(str);
+                return new ImageIcon(UIWidgetTools.getFile(str).getAbsolutePath());
             }
         });
         converters.put(Icon.class, converters.get(ImageIcon.class));

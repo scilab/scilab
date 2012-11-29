@@ -99,6 +99,11 @@ public class UIScilabWindow extends UIComponent {
         }
     }
 
+    public void remove() {
+        win.dispose();
+        super.remove();
+    }
+
     public void setVisible(boolean b) {
         if (b) {
             win.pack();
