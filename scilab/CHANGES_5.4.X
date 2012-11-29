@@ -23,10 +23,11 @@ Removed functions
 
 * mtlb_repmat removed. Scilab provides a real repmat since 5.3.1.
 
-* with_pvm removed.
+* with_pvm removed. Use getversion() instead.
 
-* with_texmacs removed.
+* with_texmacs removed. Moved as ATOMS module: atomsInstall('texmacs')
 
+* createpopup removed. Use uicontextmenu() instead.
 
 Xcos
 =====
