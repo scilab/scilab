@@ -47,7 +47,7 @@
         <title>Description</title>
         <para>
             <warning>
-                This function is obsolete, use preferably the <function>mfscanf</function>
+                This function is obsolete and will be removed in Scilab 5.5.0, use preferably the <link linkend="mfscanf">mfscanf</link>
                 function which is more efficient and is more compatible with the C
                 <function>fscanf</function> procedure.
             </warning>
@@ -82,6 +82,16 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>Function tagged as obsolete. Will be removed in 5.5.0.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
