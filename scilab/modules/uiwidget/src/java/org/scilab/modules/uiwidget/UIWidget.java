@@ -79,6 +79,8 @@ public class UIWidget {
             ObjectToScilabConverters.putOnScilabStack(comp.getPath(), stackPos);
         } else if (p.equals("parent")) {
             ObjectToScilabConverters.putOnScilabStack(comp.getParent(), stackPos);
+        } else if (p.equals("id")) {
+            ObjectToScilabConverters.putOnScilabStack(comp.getId(), stackPos);
         } else {
             Object o = comp.getProperty(property);
             ObjectToScilabConverters.putOnScilabStack(o, stackPos);
@@ -202,7 +204,9 @@ public class UIWidget {
         if (style.length == 1) {
             ui = UIComponent.getUIComponent("org.scilab.modules.uiwidget.components", style[0], attributes, parent, null);
         } else {
-            ui = UIModele.get(style[0], style[1], parent, id, null);
+            ui = null;
+            // TODO: gerer les modeles correctement en ajoutant le ScilabTypeMap au StringMap deja defini
+            //ui = UIModele.get(style[0], style[1], parent, id, null);
         }
 
         /*if (attributes.containsKey("constraint")) {
