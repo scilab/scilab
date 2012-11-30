@@ -25,7 +25,7 @@
             
             
             <literal>src</literal> is the incoming color of the pixel.
-            <literal>prv</literal> is the previus color of the pixel (which is already drawn).
+            <literal>prv</literal> is the previous color of the pixel (which is already drawn).
             <literal>res</literal> is the resulting color of the pixel (which will be drawn).
             
             Possible values for <literal>pixel_drawing_mode</literal> are:
