@@ -1,4 +1,4 @@
-                    Changes between version 5.4.0 and 5.4.1
+﻿                    Changes between version 5.4.0 and 5.4.1
                     =======================================
 
 Syntax changes
@@ -93,6 +93,9 @@ Bug fixes
 
 * Bug #6583 fixed - jmat() was poorly documented.
 
+* Bug #7583 fixed - binomial function moved in the distribution function
+                    chapter.
+
 * Bug #8213 fixed - geom3d had no examples.
 
 * Bug #8395 fixed - dft has been deprecated to fft.
@@ -103,6 +106,17 @@ Bug fixes
 
 * Bug #8883 fixed - In some cases, Scilab build from sources was looking for
                    libraries at the wrong place.
+
+* Bug #8964 fixed - The optim_{ga, moga, nsga, nsga2} functions may not create
+                    pop_init.
+
+* Bug #8899 fixed - The help page of splin2d was unclear about the size of
+                    the arguments.
+
+* Bug #8901 fixed - The help page of interp2d was unclear about the size of
+                    the arguments.
+
+* Bug #9005 fixed - The bitset function did not have any tests.
 
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
@@ -145,6 +159,8 @@ Bug fixes
 * Bug #12043 fixed - Fix a typo in the ATOMS module help pages.
 
 * Bug #12050 fixed - Fix a typo: dimensionnal => dimensional.
+
+* Bug #12062 fixed - getsystemmetrics() failed for some properties such as 'SM_CXMAXIMIZED'.
 
 * Bug #12071 fixed - Printed info of a XML object were inconsistent with
                      available fields.

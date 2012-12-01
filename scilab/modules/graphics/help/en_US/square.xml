@@ -13,19 +13,21 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="square">
     <refnamediv>
         <refname>square</refname>
-        <refpurpose>set scales for isometric plot (change the size of the window)  </refpurpose>
+        <refpurpose>
+            set scales for isometric plot (change the size of the window)
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>square(xmin,ymin,xmax,ymax)</synopsis>
+        <synopsis>square(xmin, ymin, xmax, ymax)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>xmin,xmax,ymin,ymax</term>
+                <term>xmin, xmax, ymin, ymax</term>
                 <listitem>
-                    <para>four real values</para>
+                    <para>four real values.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,13 +35,16 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>square</literal> is used to have isometric scales on the x and y axes. 
-            The requested values 
-            <literal>xmin, xmax, ymin, ymax</literal> are the boundaries of the graphics frame
-            and <literal>square</literal> changes the graphics window dimensions in order to
-            have an isometric plot. <literal>square</literal> set the current graphics scales 
+            <function>square</function> is used to have isometric scales on the x
+            and y axes. The requested values <literal>xmin</literal>,
+            <literal>xmax</literal>, <literal>ymin</literal>,
+            <literal>ymax</literal> are the boundaries of the graphics frame
+            and <function>square</function> changes the graphics window
+            dimensions in order to have an isometric plot.
+            <function>square</function> sets the current graphics scales
             and can be used in conjunction with graphics routines which request
-            the current graphics scale (for instance <literal>fstrf="x0z"</literal> in <literal>plot2d</literal>).
+            the current graphics scale (for instance <code>strf="x0z"</code> in
+            <function>plot2d</function>).
         </para>
     </refsection>
     <refsection>

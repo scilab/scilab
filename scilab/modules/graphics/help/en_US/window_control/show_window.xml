@@ -33,8 +33,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            With no parameters,<literal>show_window</literal>raises the current graphics window even if
-            it is iconified. Otherwise, raises the specified window by its number or handle.
+            With no parameters, <function>show_window</function>raises the
+            current graphics window even if it is iconified. Otherwise, raises
+            the specified window by its number or handle.
             If no window already exists, one is created.
         </para>
     </refsection>

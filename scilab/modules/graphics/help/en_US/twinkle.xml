@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>handle of a graphics entity.</para>
+                    <para>a handle of a graphics entity.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>integer.</para>
+                    <para>an integer.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,9 +39,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>twinkle</literal> let the graphics entity given by its handle <literal>h</literal> twinkle. It can be used to
+            <function>twinkle</function> let the graphics entity given by its handle <varname>h</varname> twinkle. It can be used to
             find the graphics object corresponding to a graphics handle in the graphics window. By default the graphics
-            entity twinkles 5 times, but you can change this by using optional argument <literal>n</literal>.
+            entity twinkles 5 times, but you can change this by using optional argument <varname>n</varname>.
         </para>
     </refsection>
     <refsection>
@@ -64,7 +64,7 @@ twinkle(gca())
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="graphics_entities">graphics_entities</link>
+                <link linkend="graphics_entities">graphics entities</link>
             </member>
         </simplelist>
     </refsection>
