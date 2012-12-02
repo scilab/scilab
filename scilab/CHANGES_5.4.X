@@ -208,6 +208,8 @@ Bug fixes
 
 * Bug #12120 fixed - eigs was broken for complex sparse matrices.
 
+* Bug #12135 fixed - stacksize('max') failed silently.
+
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
 
 * Bug #12166 fixed - There was a bad label with drawaxis.
