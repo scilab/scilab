@@ -554,7 +554,15 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
         if(~Breal)
             error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "eigs"));
         else
-            [R,P] = spchol(%_B);
+            if(issparse(%_B))
+                [R, P] = spchol(%_B);
+                perm = spget(P);
+                perm = perm(:,2);
+                iperm = spget(P');
+                iperm = iperm(:,2);
+            else
+                R = chol(%_B);
+            end
         end
         Rprime = R';
     end
@@ -628,10 +636,18 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
 
         if(ido == -1 | ido == 1 | ido == 2)
             if(iparam(7) == 1)
-                if(matB == 0)
-                    workd(ipntr(2):ipntr(2)+nA-1) = A * workd(ipntr(1):ipntr(1)+nA-1);
+                if(ido==2)
+                    workd(ipntr(2):ipntr(2)+nA-1) = workd(ipntr(1):ipntr(1)+nA-1);
                 else
-                    workd(ipntr(2):ipntr(2)+nA-1) = inv(Rprime) * A * inv(R) * workd(ipntr(1):ipntr(1)+nA-1);
+                    if(matB == 0)
+                        workd(ipntr(2):ipntr(2)+nA-1) = A * workd(ipntr(1):ipntr(1)+nA-1);
+                    else
+                        if(issparse(%_B))
+                            workd(ipntr(2):ipntr(2)+nA-1) = R \ A(iperm,iperm) * (Rprime \ workd(ipntr(1):ipntr(1)+nA-1));
+                        else
+                            workd(ipntr(2):ipntr(2)+nA-1) = Rprime \ (A * (R \ workd(ipntr(1):ipntr(1)+nA-1)));
+                        end
+                    end
                 end
             elseif(iparam(7) == 3)
                 if(matB == 0)
@@ -720,6 +736,14 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                 res_d = diag(d);
                 res_v = z;
             end
+        end
+    end
+    if rvec & iparam(7)==1 & matB<>0
+        if issparse(B) then
+             res_v = Rprime \ res_v;
+             res_v = res_v(perm,:);
+        else
+             res_v = R \ res_v;
         end
     end
 endfunction
