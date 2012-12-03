@@ -483,7 +483,6 @@ res_with_prec
 resethistory
 residu
 ricc
-ricc_old
 rlist
 roots
 rotate_axes
