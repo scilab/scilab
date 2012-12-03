@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -335,7 +335,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ppol.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rankqr.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_residu.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ricc.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ricc2.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rtitr.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sident.c" />
@@ -401,7 +400,6 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ppol.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rankqr.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_residu.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ricc.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ricc2.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rtitr.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sident.f" />

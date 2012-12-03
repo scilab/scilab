@@ -181,7 +181,6 @@ sci_gateway/fortran/sci_f_sylv.f \
 sci_gateway/fortran/sci_f_ppol.f \
 sci_gateway/fortran/sci_f_freq.f \
 sci_gateway/fortran/sci_f_ldiv.f \
-sci_gateway/fortran/sci_f_ricc.f \
 sci_gateway/fortran/sci_f_sident.f \
 sci_gateway/fortran/sci_f_lyap.f \
 sci_gateway/fortran/sci_f_rtitr.f \
