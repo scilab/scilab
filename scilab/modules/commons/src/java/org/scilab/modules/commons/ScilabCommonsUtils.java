@@ -48,6 +48,12 @@ public final class ScilabCommonsUtils {
         return ScilabCommons.getScilabVersionMajor() + "." + ScilabCommons.getScilabVersionMinor() + "." + ScilabCommons.getScilabVersionMaintenance();
     }
 
+    public static String getScilabVersionAsString() {
+        return ScilabCommons.getScilabVersionAsString().replaceFirst("scilab-", "");
+    }
+
+
+
     /**
      * Get a MD5 string of the input string
      * @param str the string to convert
