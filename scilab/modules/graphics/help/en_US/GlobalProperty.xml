@@ -90,7 +90,7 @@
                         to map linearly into the current colormap
                         (<literal>'scaled'</literal> mode)
                         or point directly into this colormap
-                        (<literal>'direct</literal>' mode).
+                        (<literal>'direct'</literal> mode).
                         This property is useful when
                         <literal>color_flag</literal> equals
                         <literal>2</literal>, <literal>3</literal> or
@@ -176,7 +176,7 @@
                         specifying the way the facet's color are rendered.
                         When <literal>'none'</literal> is selected, a mesh of
                         the surface is drawn; if <literal>'flat'</literal>
-                        (deault mode) is set, the <literal>Fac3d</literal>
+                        (default mode) is set, the <literal>Fac3d</literal>
                         <literal>color.data</literal> values determine one color
                         per facet using the color of the first vertex of the
                         facet. If the value is <literal>'interp'</literal>, an
@@ -189,7 +189,7 @@
                 <term>LineStyle: </term>
                 <listitem>
                     <para>
-                        This property value should be a string defining a line
+                        this property value should be a string defining a line
                         style. This property is linked to the object's
                         <literal>line_style</literal> property
                         (see <link linkend="polyline_properties">polyline
@@ -248,7 +248,7 @@
                 <term>Marker or MarkStyle: </term>
                 <listitem>
                     <para>
-                        A string defining the marker type. Note that if you
+                        a string defining the marker type. Note that if you
                         specify a marker without a line style, both line (with
                         default solid mode enabled) and marker are drawn.This
                         property is linked to the object's
@@ -338,7 +338,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <literal>'pentagram'</literal>
+                                <literal>'pentagram'</literal> or
+                                <literal>'p'</literal>
                             </td>
                             <td>Five-pointed star (pentagram)</td>
                         </tr>
