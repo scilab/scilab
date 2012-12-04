@@ -55,7 +55,7 @@
                         This field contains the <literal>visible</literal>
                         property value for the entity. It should be
                         <literal>"on"</literal> or <literal>"off"</literal>. By
-                        default, value is <literal>"on" </literal> where graphics
+                        default, value is <literal>"on"</literal> where graphics
                         entities children of the <literal>Compound</literal> are
                         drawn according to their visibility property. If
                         <literal>"off"</literal> all children of
