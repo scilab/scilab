@@ -58,9 +58,12 @@ r = csvRead(fullfile(path,"K_2.csv"), ascii(9), [], "string");
 assert_checkequal (r,Kstr);
 //
 r = csvRead(fullfile(path,"K_3.csv"), " ", ",", "string");
-assert_checkequal (r,Kstr2);
+assert_checkequal (r,Kstr);
 //
 r = csvRead(fullfile(path,"K_4.csv"), ";", ",", "string");
+assert_checkequal (r,Kstr);
+//
+r = csvRead(fullfile(path,"K_4.csv"), ";", [], "string");
 assert_checkequal (r,Kstr2);
 // =============================================================================
 S = [

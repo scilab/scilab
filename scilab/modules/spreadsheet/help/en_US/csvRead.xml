@@ -10,9 +10,6 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-    <info>
-        <pubdate>$LastChangedDate$</pubdate>
-    </info>
     
     <refnamediv>
         <refname>csvRead</refname>
@@ -59,6 +56,7 @@
                 
                 <listitem>
                     <para>a 1-by-1 matrix of strings, the decimal used.</para>
+                    <para>If <literal>decimal</literal> is different of <literal>[]</literal> and <literal>conversion</literal> is set to <literal>string</literal>, the decimal conversion will be done.</para>
                 </listitem>
             </varlistentry>
             
@@ -229,7 +227,7 @@ filename = fullfile(TMPDIR , 'foo.csv');
 sep = ",";
 fd = mopen(filename,'wt');
 for i = 1 : size(Astr,"r")
-mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
+        mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
 end
 mclose(fd);
 // To see the file : edit(filename)
@@ -242,7 +240,7 @@ filename = fullfile(TMPDIR , 'foo.csv');
 sep = ";";
 fd = mopen(filename,'wt');
 for i = 1 : size(Astr,"r")
-mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
+        mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
 end
 mclose(fd);
 
@@ -311,7 +309,7 @@ filename = fullfile(TMPDIR , 'foo.csv');
 sep = ";";
 fd = mopen(filename,'wt');
 for i = 1 : size(Astr,"r")
-mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
+        mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
 end
 mclose(fd);
 //
@@ -406,6 +404,13 @@ csvRead(filename, [], [], "double", [], [], [5 3 7 6])
                 <revremark>
                     Function introduced. Based on the 'csv_readwrite' module. The only difference in the behavior compared to <link linkend="read_csv">read_csv</link> is that csvRead will try to convert value to double by default when read_csv will return value as string. 
                 </revremark>
+      <revision>
+        <revnumber>5.4.1</revnumber>
+        <revremark>
+          If <literal>decimal</literal> is different of <literal>[]</literal> and <literal>conversion</literal> is set to <literal>string</literal>, the decimal conversion will be done.
+          </revremark>
+      </revision>
+
             </revision>
         </revhistory>
     </refsection>

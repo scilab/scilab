@@ -160,6 +160,8 @@ Bug fixes
 
 * Bug #11962 fixed - event_handler may be called on wrong figure_id.
 
+* Bug #11965 fixed - Export to SVG converted texts in shapes.
+
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
 
@@ -204,11 +206,11 @@ Bug fixes
 
 * Bug #12119 fixed - bar and barh had wrong x/y bounds.
 
+* Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
+
 * Bug #12166 fixed - There was a bad label with drawaxis.
 
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
-
-* Bug #11965 fixed - Export to SVG converted texts in shapes.
 
 
                     Changes between version 5.3.3 and 5.4.0
