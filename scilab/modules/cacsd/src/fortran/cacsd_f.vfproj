@@ -191,7 +191,6 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ppol.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_rankqr.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_residu.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ricc.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ricc2.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_rtitr.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sident.f"/>

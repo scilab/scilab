@@ -45,6 +45,8 @@ Removed functions
 
 * Function optimsimplex_tostring removed. Use string() instead.
 
+* ricc_old() removed. Use ricc() instead.
+
 
 Xcos
 =====
