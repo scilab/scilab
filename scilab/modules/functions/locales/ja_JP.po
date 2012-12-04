@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16272)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -127,6 +127,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列�
 
 #
 # File: macros/genlib.sci, line: 102
+# File: macros/genlib_old.sci, line: 72
 #, c-format
 msgid "%s: %s file compilation forced\n"
 msgstr "%s: %s ファイルの強制コンパイル\n"
@@ -141,12 +142,14 @@ msgstr "%s: names と lib を再度生成する\n"
 
 #
 # File: macros/genlib.sci, line: 151
+# File: macros/genlib_old.sci, line: 114
 #, c-format
 msgid "%s: %s file cannot be created\n"
 msgstr "%s: ファイル %s を作成できません。\n"
 
 #
 # File: macros/genlib.sci, line: 161
+# File: macros/genlib_old.sci, line: 123
 #, c-format
 msgid ""
 "Library file %s has been updated,\n"
@@ -157,18 +160,21 @@ msgstr ""
 
 #
 # File: macros/genlib.sci, line: 182
+# File: macros/genlib_old.sci, line: 139
 #, c-format
 msgid "%s: Warning: Error in file %s : %s. File ignored\n"
 msgstr "%s: 警告: ファイル %s でエラー : ファイル %s を無視します。\n"
 
 #
 # File: macros/genlib.sci, line: 204
+# File: macros/genlib_old.sci, line: 153
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
 msgstr "%s: 書き込みのためのファイル %s を開くことができません。\n"
 
 #
 # File: macros/genlib.sci, line: 212
+# File: macros/genlib_old.sci, line: 159
 #, c-format
 msgid "%s: File %s does not contain any function.\n"
 msgstr "%s: ファイル %s は、どんな関数も含みません。\n"
