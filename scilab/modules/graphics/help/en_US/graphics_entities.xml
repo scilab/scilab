@@ -50,7 +50,7 @@
                 <term>Figure: </term>
                 <listitem>
                     <para>
-                        The <literal>Figure<literal> entity is the top level of the graphics
+                        The <literal>Figure</literal> entity is the top level of the graphics
                         entities hierarchy. This entity defines the parameters
                         for the figure itself as well as the parameters' default
                         values for the children creation. The figure children

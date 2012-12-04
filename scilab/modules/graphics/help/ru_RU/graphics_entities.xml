@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="graphics_entities">
+    <refnamediv>
+        <refname>Графические объекты</refname>
+        <refpurpose>
+            описание структур данных графических объектов
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            В Scilab'е графическое окно и рисование его содержимого представлены
+            иерархическими объектами. Верхний уровень иерархии - это
+            <literal>Figure</literal> ("Окно"). Каждое окно
+            <literal>Figure</literal> определяет по меньшей мере одного потомка
+            типа <literal>Axes</literal> ("оси"). Каждый объект осей
+            <literal>Axes</literal> содержит набор листовых объектов, которые
+            являются основными графическими объектами такими, как
+            <literal>Polylines</literal> ("ломанные линии"),
+            <literal>Rectangles</literal> ("прямоугольники"),
+            <literal>Arcs</literal> ("дуги"), <literal>Segs</literal> ("сегменты"),...
+            Он может также содержать составной тип <literal>Compound</literal>,
+            который является рекурсивным набором объектов. Главный интерес
+            графического режима заключается в том, чтобы сделать обмен
+            свойствами проще. Этот графический режим  обеспечивает набор
+            графических функций высокого уровня (см. <link
+            linkend="set">set</link>, <link linkend="get">get</link>),
+            используемых для управления свойствами объектов, такими, как данные,
+            координаты и масштабирование, цвет и вид без необходимости повторять
+            команды инициализации графики.
+        </para>
+        <para>
+            Графические объекты связаны с переменными Scilab'а типа
+            <literal>handle</literal> ("дескриптор"). Дескриптор - это
+            уникальный идентификатор, который связан с каждым образцом
+            созданного графического объекта. Используя этот дескриптор, можно
+            добраться до свойств объекта через функции <function>set</function>
+            и <function>get</function>. Дескрипторы также используются для
+            манипулирования графическими объектами, чтобы двигать, копировать
+            или удалять их.
+        </para>
+        <para/>
+        <variablelist>
+            <varlistentry>
+                <term>Figure: </term>
+                <listitem>
+                    <para>
+                        Объект графического окна <literal>Figure</literal> - это
+                        верхний уровень иерархии графических объектов. Этот
+                        объект определяет параметры собственно графического
+                        окна, а также значения по умолчанию параметров при
+                        создании потомков. Потомки графического окна являются
+                        объектами осей <literal>Axes</literal>.
+                    </para>
+                    <para>
+                        Дескриптор текущего графического окна (графического
+                        окна, используемого для построения графиков) может быть
+                        получен с помощью <code>get("current_figure")</code> и
+                        он может быть установлен с помощью
+                        <code>set("current_figure",h)</code>, где
+                        <literal>h</literal> - это или дескриптор
+                        графического окна, или <literal>figure_id</literal>. В
+                        последнем случае, если графическое окно ещё не
+                        существует, то оно будет создано.
+                    </para>
+                    <para>
+                        См. подробности в <link
+                        linkend="figure_properties">свойствах графического окна</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Axes: </term>
+                <listitem>
+                    <para>
+                        Объект осей The <literal>Axes</literal> - это второй
+                        уровень иерархии графических объектов. Этот объект
+                        определяет параметры для изменения координат и рисования
+                        осей, а также значений по умолчанию параметров для
+                        создания его потомков. См. подробности в <link
+                        linkend="axes_properties">свойствах осей</link>.
+                        Дескриптор текущих осей <literal>Axes</literal> может
+                        быть получен с помощью <code>get("current_axes")</code>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Compound: </term>
+                <listitem>
+                    <para>
+                        Составной объект <literal>Compound</literal> - это
+                        просто вектор потомков и с единственным свойством
+                        (свойство видимости). Он используется для склеивания
+                        набора объектов вместе.
+                    </para>
+                    <para>
+                        См. функции <link linkend="glue">glue</link>, <link
+                        linkend="unglue">unglue</link> и <link
+                        linkend="Compound_properties">свойства составного
+                        объекта Compound</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Axis: </term>
+                <listitem>
+                    <para>
+                        Объект оси <literal>Axis</literal> - это лист иерархии
+                        графических объектов. Этот объект определяет параметры
+                        для масштабирования и вида осей.
+                    </para>
+                    <para>
+                        См. подробности в <link
+                        linkend="axis_properties">свойствах оси</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Polyline: </term>
+                <listitem>
+                    <para>
+                        Объект ломаной линии <literal>Polyline</literal> - это
+                        лист иерархии графических объектов. Он определяет
+                        двумерные и трёхмерные ломаные линии и свойства
+                        рисования продолжения ломаных линий.
+                    </para>
+                    <para>
+                        См. подробности в <link
+                        linkend="polyline_properties">свойствах ломаных линий</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Arc: </term>
+                <listitem>
+                    <para>
+                        Объект дуги <literal>Arc</literal> - это
+                        лист иерархии графических объектов. Этот объект
+                        определяет параметры эллипсов и части эллипсов.
+                    </para>
+                    <para>
+                        См. подробности в  <link
+                        linkend="arc_properties">свойствах дуги</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Rectangle: </term>
+                <listitem>
+                    <para>
+                        Объект прямоугольника <literal>Rectangle</literal> - это
+                        лист иерархии графических объектов. Этот объект
+                        определяет параметры прямоугольников и залитых
+                        прямоугольников.
+                    </para>
+                    <para>
+                        См. подробности в  <link
+                        linkend="rectangle_properties">свойствах прямоугольника</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Surface: </term>
+                <listitem>
+                    <para>
+                        Объект поверхности <literal>Surface</literal> - это
+                        лист иерархии графических объектов. У него есть подтипы
+                        <literal>Fac3d</literal> или <literal>Plot3d</literal>.
+                        Этот объект определяет параметры для графиков трёхмерной
+                        поверхности.
+                    </para>
+                    <para>
+                        См. подробности в <link
+                        linkend="surface_properties">свойствах поверхности</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Fec: </term>
+                <listitem>
+                    <para>
+                        Объект <literal>Fec</literal> - это
+                        лист иерархии графических объектов. Он представляет
+                        двумерные графики конечных элементов.
+                    </para>
+                    <para>
+                        См. подробности в <link
+                        linkend="fec_properties">свойствах fec</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Grayplot: </term>
+                <listitem>
+                    <para>
+                        Объект палитры серого <literal>Grayplot</literal> - это
+                        лист иерархии графических объектов. Он представляет
+                        двумерные графики поверхности с помощью цветов и
+                        изображений.
+                    </para>
+                    <para>
+                        См. подробности в <link
+                        linkend="grayplot_properties">палитре серого</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Matplot: </term>
+                <listitem>
+                    <para>
+                        Объект <literal>Matplot</literal> - это
+                        лист иерархии графических объектов. Он представляет
+                        двумерные графики с помощью матриц с целочисленными
+                        элементами.
+                    </para>
+                    <para>
+                        См. подробности в <link
+                        linkend="Matplot_properties">свойствах Matplot'а</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Segs: </term>
+                <listitem>
+                    <para>
+                        Объект сегментов <literal>Segs</literal> - это
+                        лист иерархии графических объектов. Этот объект
+                        определяет параметры для набора раскрашенных сегментов
+                        или раскрашенных стрелок.
+                    </para>
+                    <para>
+                        См. подробности в <link
+                        linkend="segs_properties">свойствах сегментов</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Champ: </term>
+                <listitem>
+                    <para>
+                        Объект фона <literal>Champ</literal> - это
+                        лист иерархии графических объектов. Этот объект
+                        определяет параметры двумерного векторного поля.
+                    </para>
+                    <para>
+                        См. подробности в <link
+                        linkend="champ_properties">свойствах фона</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Text: </term>
+                <listitem>
+                    <para>
+                        Объект текста <literal>Text</literal> - это
+                        лист иерархии графических объектов. Этот объект
+                        определяет параметры для рисования строк.
+                    </para>
+                    <para>
+                        См. подробности в <link
+                        linkend="text_properties">свойствах текста</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Label: </term>
+                <listitem>
+                    <para>
+                        Объект подписи <literal>Label</literal> - это
+                        потомок графического объекта осей
+                        <literal>Axes</literal>. Этот объект определяет
+                        параметры подписей к осям x, y и z, а также названия,
+                        нарисованного в графическом окне.
+                    </para>
+                    <para>
+                        См. подробности в <link
+                        linkend="label_properties">свойствах  объекта подписи Label</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Legend: </term>
+                <listitem>
+                    <para>
+                        Объект легенды <literal>Legend</literal> - это
+                        лист иерархии графических объектов. Этот объект
+                        определяет параметры легенды, рисуемой ниже графиков
+                        <literal>plot2dx</literal>. Этот объект требует дальнейшей разработки.
+                    </para>
+                    <para>
+                        См. подробности в <link linkend="legend_properties">свойствах объекта легенды Legend</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+// Проиграйте этот пример строчку за строчкой
+scf() //создать графическое окно в объектном режиме
+//получить дескриптор объекта Figure и распечатать его свойства
+f=get("current_figure") 
+a=f.children // дескриптор потомка - осей Axes
+x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
+e=a.children //Составной объект Compound двух ломаных линий
+p1=e.children(1) // свойства последней нарисованной ломаной линии
+p1.foreground=5; // изменение цвета ломаной линии
+e.children.thickness=5; // изменение толщины двух ломаных линий
+delete(e.children(2))
+move(e.children,[0,30]) //перевод ломаной линии
+a.axes_bounds=[0 0 0.5 0.5]; 
+subplot(222) //создать новый объект осей Axes
+plot(1:10);
+a1=f.children(1); //получить его дескриптор
+copy(e.children,a1); //скопировать объект ломаной линии первого графика в новый объект осей Axes
+a1.data_bounds=[1 0;10 100]; //изменить пределы осей Axes
+set("current_figure",10) //создать новое графическое окно с figure_id=10
+plot3d() // график посылается в графическое окно 10
+set("current_figure",f) // создать предыдущее графическое окно текущим
+plot2d(x,x^3)  // график посылается в первоначальное графическое окно
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="move">move</link>
+            </member>
+            <member>
+                <link linkend="draw">draw</link>
+            </member>
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+            <member>
+                <link linkend="object_editor">редактор объектов</link>
+            </member>
+            <member>
+                <link linkend="plot">plot</link>
+            </member>
+            <member>
+                <link linkend="surf">surf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
