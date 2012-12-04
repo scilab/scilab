@@ -674,7 +674,12 @@
                     <link linkend="plotframe">plotframe</link>
                 </term>
                 <listitem>
-                    <para>Plot a frame with scaling and grids</para>
+                    <para>
+                        Plot a frame with scaling and grids
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -687,7 +692,13 @@
                     <link linkend="isoview">isoview</link>
                 </term>
                 <listitem>
-                    <para>Set scales for isometric plot (do not change the size of the window)</para>
+                    <para>
+                        Set scales for isometric plot (do not change the size
+                        of the window)
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -801,7 +812,12 @@
                     <link linkend="xset">xset</link>
                 </term>
                 <listitem>
-                    <para>Set values of the graphics context</para>
+                    <para>
+                        Set values of the graphics context
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -809,7 +825,12 @@
                     <link linkend="xget">xget</link>
                 </term>
                 <listitem>
-                    <para>Get current values of the graphics context</para>
+                    <para>
+                        Get current values of the graphics context
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -825,7 +846,12 @@
                     <link linkend="getsymbol">getsymbol</link>
                 </term>
                 <listitem>
-                    <para>Dialog to select a symbol and its size</para>
+                    <para>
+                        Dialog to select a symbol and its size
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -862,7 +888,12 @@
                     <link linkend="xs2emf">xs2emf</link>
                 </term>
                 <listitem>
-                    <para>Export graphics using the EMF format</para>
+                    <para>
+                        Export graphics using the EMF format
+                        <warning>
+                            Only under Windows.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -939,7 +970,9 @@
                     <link linkend="clf">clf</link>
                 </term>
                 <listitem>
-                    <para>Clear a graphics window and erase the associated recorded graphics</para>
+                    <para>
+                        Clear or reset the current graphic figure (window) to default values
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -947,7 +980,12 @@
                     <link linkend="xclear">xclear</link>
                 </term>
                 <listitem>
-                    <para>Clear a graphics window</para>
+                    <para>
+                        Clear a graphics window
+                        <warning>
+                            Function <function>xclear</function> is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -1040,7 +1078,9 @@
                     <link linkend="xclick">xclick</link>
                 </term>
                 <listitem>
-                    <para>Wait for a mouse click</para>
+                    <para>
+                        Wait for a mouse click or an event in a graphic window
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -1056,7 +1096,7 @@
                     <link linkend="xgetmouse">xgetmouse</link>
                 </term>
                 <listitem>
-                    <para>Get the current position of the mouse</para>
+                    <para>Get the mouse events and current position</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -1140,12 +1180,33 @@
                     <link linkend="m_circle">m_circle</link>
                 </term>
                 <listitem>
-                    <para>M-circle plot</para>
+                    <para>
+                        Plot the complex plane iso-gain contours of y/(1+y)
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                     <para>
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
                         <scilab:image>m_circle();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="hallchart">hallchart</link>
+                </term>
+                <listitem>
+                    <para>
+                        Hall chart
+                    </para>
+                    <para>
+                        <emphasis role="bold">Example:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>hallchart();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
