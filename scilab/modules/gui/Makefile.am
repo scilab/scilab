@@ -219,6 +219,7 @@ libscigui_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/src/cpp/ \
+			-I$(top_srcdir)/modules/uiwidget/includes/ \
 			$(JAVA_JNI_INCLUDE) \
 			$(TCL_INC_PATH) \
 			$(Tk_INC_PATH) \

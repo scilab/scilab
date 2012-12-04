@@ -58,9 +58,20 @@ public final class UILocator {
         }
     }
 
+    public static boolean isValid(final int uid) {
+        return uids.get(uid) != null;
+    }
+
     public static void remove(final UIComponent ui) {
         removeFromCachedPaths(ui);
         uids.remove(ui.getUid());
+    }
+
+    public static void removeAll() {
+        UIComponent[] uis = (UIComponent[]) roots.keySet().toArray();
+        for (UIComponent ui : uis) {
+            remove(ui);
+        }
     }
 
     public static UIComponent get(final int uid) {

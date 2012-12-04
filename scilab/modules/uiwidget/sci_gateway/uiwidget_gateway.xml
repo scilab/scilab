@@ -30,20 +30,7 @@
 
 -->
     <PRIMITIVE gatewayId="72" primitiveId="1" primitiveName="uiwidget" />
-    <PRIMITIVE gatewayId="72" primitiveId="2" primitiveName="%UIWidget_uicontrol" />
-    <PRIMITIVE gatewayId="72" primitiveId="3" primitiveName="%c_uicontrol" />
-    <PRIMITIVE gatewayId="72" primitiveId="4" primitiveName="uiget" />
-    <PRIMITIVE gatewayId="72" primitiveId="5" primitiveName="uiset" />
-    <PRIMITIVE gatewayId="72" primitiveId="6" primitiveName="%UIWidget_get" />
-    <PRIMITIVE gatewayId="72" primitiveId="7" primitiveName="%UIWidget_set" />
-    <PRIMITIVE gatewayId="72" primitiveId="8" primitiveName="%UIWidget_e" />
-    <PRIMITIVE gatewayId="72" primitiveId="9" primitiveName="%c_i_UIWidget" />
-    <PRIMITIVE gatewayId="72" primitiveId="10" primitiveName="%s_i_UIWidget" />
-    <PRIMITIVE gatewayId="72" primitiveId="11" primitiveName="%i_i_UIWidget" />
-    <PRIMITIVE gatewayId="72" primitiveId="12" primitiveName="%mc_i_UIWidget" />
-    <PRIMITIVE gatewayId="72" primitiveId="13" primitiveName="%sp_i_UIWidget" />
-    <PRIMITIVE gatewayId="72" primitiveId="14" primitiveName="%b_i_UIWidget" />
-    <PRIMITIVE gatewayId="72" primitiveId="15" primitiveName="%l_i_UIWidget" />
-    <PRIMITIVE gatewayId="72" primitiveId="16" primitiveName="%st_i_UIWidget" />
-    <PRIMITIVE gatewayId="72" primitiveId="17" primitiveName="%fptr_i_UIWidget" />
+    <PRIMITIVE gatewayId="72" primitiveId="2" primitiveName="uiget" />
+    <PRIMITIVE gatewayId="72" primitiveId="3" primitiveName="uiset" />
+    <PRIMITIVE gatewayId="72" primitiveId="4" primitiveName="createUIWidgetHandle" />
 </GATEWAY>

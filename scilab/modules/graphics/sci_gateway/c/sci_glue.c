@@ -111,6 +111,13 @@ int sci_glue(char * fname, unsigned long fname_len)
     handelsvalue = MALLOC(n * sizeof(long));
     for (i = 0 ; i < n ; i++)
     {
+        if (l1[i] < 0)
+        {
+            FREE(handelsvalue);
+            Scierror(999, _("%s: Invalid handle for input argument: caanot be an UIWidget.\n"), fname);
+            return 0;
+        }
+
         handelsvalue[i] = (unsigned long) l1[i];
         pobjUID = (char*)getObjectFromHandle(handelsvalue[i]);
         if (pobjUID == NULL)

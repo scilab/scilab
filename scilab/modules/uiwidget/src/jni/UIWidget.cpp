@@ -118,6 +118,10 @@ UIWidget::UIWidget(JavaVM * jvm_)
     jintuiwidgetID = NULL;
     voiduigetjintintjstringjava_lang_StringjintintID = NULL;
     voiduisetjintintID = NULL;
+    jbooleanuiisValidjintintID = NULL;
+    voiduishowWindowjintintID = NULL;
+    voiduideletejintintID = NULL;
+    voiduideleteAllID = NULL;
     jintgetUIWidgetHandlerID = NULL;
     jintgetUidFromPathjstringjava_lang_StringID = NULL;
 
@@ -149,6 +153,10 @@ UIWidget::UIWidget(JavaVM * jvm_, jobject JObj)
     jintuiwidgetID = NULL;
     voiduigetjintintjstringjava_lang_StringjintintID = NULL;
     voiduisetjintintID = NULL;
+    jbooleanuiisValidjintintID = NULL;
+    voiduishowWindowjintintID = NULL;
+    voiduideletejintintID = NULL;
+    voiduideleteAllID = NULL;
     jintgetUIWidgetHandlerID = NULL;
     jintgetUidFromPathjstringjava_lang_StringID = NULL;
 
@@ -285,6 +293,108 @@ void UIWidget::uiset (JavaVM * jvm_, int uid)
     }
 
     curEnv->CallStaticVoidMethod(cls, voiduisetjintintID , uid);
+    curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+bool UIWidget::uiisValid (JavaVM * jvm_, int uid)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = curEnv->FindClass( className().c_str() );
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    jmethodID jbooleanuiisValidjintintID = curEnv->GetStaticMethodID(cls, "uiisValid", "(I)Z" ) ;
+    if (jbooleanuiisValidjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "uiisValid");
+    }
+
+    jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleanuiisValidjintintID , uid));
+    curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+    return (res == JNI_TRUE);
+
+}
+
+void UIWidget::uishowWindow (JavaVM * jvm_, int uid)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = curEnv->FindClass( className().c_str() );
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    jmethodID voiduishowWindowjintintID = curEnv->GetStaticMethodID(cls, "uishowWindow", "(I)V" ) ;
+    if (voiduishowWindowjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "uishowWindow");
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voiduishowWindowjintintID , uid);
+    curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void UIWidget::uidelete (JavaVM * jvm_, int uid)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = curEnv->FindClass( className().c_str() );
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    jmethodID voiduideletejintintID = curEnv->GetStaticMethodID(cls, "uidelete", "(I)V" ) ;
+    if (voiduideletejintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "uidelete");
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voiduideletejintintID , uid);
+    curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void UIWidget::uideleteAll (JavaVM * jvm_)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = curEnv->FindClass( className().c_str() );
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    jmethodID voiduideleteAllID = curEnv->GetStaticMethodID(cls, "uideleteAll", "()V" ) ;
+    if (voiduideleteAllID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "uideleteAll");
+    }
+
+    curEnv->CallStaticVoidMethod(cls, voiduideleteAllID );
     curEnv->DeleteLocalRef(cls);
     if (curEnv->ExceptionCheck())
     {

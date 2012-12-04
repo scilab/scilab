@@ -71,6 +71,12 @@ int sci_uiget(char *fname, unsigned long fname_len)
         freeAllocatedSingleString(str);
     }
 
+    if (uid == -1)
+    {
+        Scierror(999, _("%s: The handle is not valid.\n"), fname);
+        return 0;
+    }
+
     if (nbIn == 1)
     {
         UIWidgetTools::createOnScilabStack(uid, nbIn + 1, pvApiCtx);
@@ -93,7 +99,7 @@ int sci_uiget(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
-        if (!strcmp(str, "userdata"))
+        if (!strcmp(str, "userdata") || !strcmp(str, "user_data"))
         {
             UserDataHandler::get(uid, pvApiCtx, nbIn + 1);
         }

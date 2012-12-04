@@ -67,4 +67,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\bin\libintl.lib" />
+  </ItemGroup>
 </Project>

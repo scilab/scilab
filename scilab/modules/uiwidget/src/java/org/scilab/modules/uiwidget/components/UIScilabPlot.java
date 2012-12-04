@@ -30,7 +30,6 @@ import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 
-import org.scilab.modules.core.Scilab;
 import org.scilab.modules.graphic_objects.GraphicObjectBuilder;
 import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.CallGraphicController;
@@ -78,6 +77,7 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
         canvas = new SwingScilabCanvas(id, figure, isCanvas, true);
         winAdapter = new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
+                parentWindow.removeWindowListener(winAdapter);
                 GraphicController.getController().unregister(UIScilabPlot.this);
                 ScilabNativeView.ScilabNativeView__deleteObject(figure.getIdentifier());
             }
@@ -115,13 +115,6 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
             public void ancestorMoved(AncestorEvent event) { }
 
             public void ancestorRemoved(AncestorEvent event) {
-                GraphicController.getController().unregister(UIScilabPlot.this);
-            }
-        });
-
-        Scilab.registerFinalHook(new Runnable() {
-
-            public void run() {
                 GraphicController.getController().unregister(UIScilabPlot.this);
             }
         });

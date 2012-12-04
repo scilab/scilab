@@ -36,8 +36,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_uiwidget.c
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_uiwidget.cpp \
 		      sci_gateway/cpp/sci_uiget.cpp \
 		      sci_gateway/cpp/sci_uiset.cpp \
-		      sci_gateway/cpp/sci_percent_UIWidget_e.cpp \
-	              sci_gateway/cpp/sci_percent_foo_i_UIWidget.cpp
+		      sci_gateway/cpp/sci_createUIWidgetHandle.cpp
 
 libsciuiwidget_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \

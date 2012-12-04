@@ -93,9 +93,19 @@ int sci_swap_handles(char * fname, unsigned long fname_len)
 
     /* get the two handles and swap them */
     h = (long) * (firstHdlStkIndex);
+    if (h < 0)
+    {
+        Scierror(999, _("%s: Invalid handle for input argument #%d.\n"), fname, 1);
+        return 0;
+    }
     pstHandle_1 = (char*)getObjectFromHandle(h);
 
     h = (long) * (secondHdlStkIndex);
+    if (h < 0)
+    {
+        Scierror(999, _("%s: Invalid handle for input argument #%d.\n"), fname, 2);
+        return 0;
+    }
     pstHandle_2 = (char*)getObjectFromHandle(h);
 
     getGraphicObjectProperty(pstHandle_1, __GO_PARENT__, jni_string, (void **)&pstParent_1);

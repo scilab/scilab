@@ -20,21 +20,9 @@
 static gw_generic_table Tab[] =
 {
     {sci_uiwidget, "uiwidget"},
-    {sci_uiwidget, "%UIWidget_uicontrol"},
-    {sci_uiwidget, "%c_uicontrol"},
     {sci_uiget, "uiget"},
     {sci_uiset, "uiset"},
-    {sci_uiget, "%UIWidget_get"},
-    {sci_uiset, "%UIWidget_set"},
-    {sci_percent_UIWidget_e, "%UIWidget_e"},
-    {sci_percent_foo_i_UIWidget, "%c_i_UIWidget"},
-    {sci_percent_foo_i_UIWidget, "%s_i_UIWidget"},
-    {sci_percent_foo_i_UIWidget, "%i_i_UIWidget"},
-    {sci_percent_foo_i_UIWidget, "%mc_i_UIWidget"},
-    {sci_percent_foo_i_UIWidget, "%sp_i_UIWidget"},
-    {sci_percent_foo_i_UIWidget, "%b_i_UIWidget"},
-    {sci_percent_foo_i_UIWidget, "%l_i_UIWidget"},
-    {sci_percent_foo_i_UIWidget, "%st_i_UIWidget"}
+    {sci_createUIWidgetHandle, "createUIWidgetHandle"}
 };
 
 /*--------------------------------------------------------------------------*/

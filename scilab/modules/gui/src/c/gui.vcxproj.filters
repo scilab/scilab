@@ -403,6 +403,9 @@
     <None Include="..\..\locales\gui.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="uiwidget_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="gui.rc">

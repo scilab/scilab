@@ -157,49 +157,59 @@ int sci_Legend(char * fname, unsigned long fname_len)
         char* subwinUID;
 
         handlesvalue = (unsigned long) ((long long*)(l1))[n - 1 - i];
-        pobjUID = (char*)getObjectFromHandle(handlesvalue);
-
-        if (pobjUID == NULL)
+        if (handlesvalue < 0)
         {
             freeAllocatedMatrixOfString(m2, n2, Str);
             FREE(tabofhandles);
-            Scierror(999, _("%s: The handle is no more valid.\n"), fname);
+            Scierror(999, _("%s: Invalid handle for input argument #%d.\n"), fname, 1);
             return 1;
         }
-
-        /**
-          * We get the current pSubwin & pFigure from the first handle's parents.
-          */
-        if (i == 0)
+        else
         {
-            getGraphicObjectProperty(pobjUID, __GO_PARENT_FIGURE__, jni_string, (void **)&pFigureUID);
-            getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&psubwinUID);
+            pobjUID = (char*)getObjectFromHandle(handlesvalue);
+
+            if (pobjUID == NULL)
+            {
+                freeAllocatedMatrixOfString(m2, n2, Str);
+                FREE(tabofhandles);
+                Scierror(999, _("%s: The handle is no more valid.\n"), fname);
+                return 1;
+            }
+
+            /**
+             * We get the current pSubwin & pFigure from the first handle's parents.
+             */
+            if (i == 0)
+            {
+                getGraphicObjectProperty(pobjUID, __GO_PARENT_FIGURE__, jni_string, (void **)&pFigureUID);
+                getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&psubwinUID);
+            }
+
+            /**
+             * We check that the pSubwin UID is the same for all given handles.
+             */
+            getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&subwinUID);
+
+            if (strcmp(psubwinUID, subwinUID) != 0)
+            {
+                freeAllocatedMatrixOfString(m2, n2, Str);
+                Scierror(999, _("%s: Objects must have the same axes.\n"), fname);
+                FREE(tabofhandles);
+                return 1;
+            }
+
+            getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+
+            if (type != __GO_POLYLINE__)
+            {
+                freeAllocatedMatrixOfString(m2, n2, Str);
+                FREE(tabofhandles);
+                Scierror(999, _("%s: The %d th handle is not a polyline handle.\n"), fname, i + 1);
+                return 1;
+            }
+
+            tabofhandles[i] = handlesvalue;
         }
-
-        /**
-         * We check that the pSubwin UID is the same for all given handles.
-         */
-        getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&subwinUID);
-
-        if (strcmp(psubwinUID, subwinUID) != 0)
-        {
-            freeAllocatedMatrixOfString(m2, n2, Str);
-            Scierror(999, _("%s: Objects must have the same axes.\n"), fname);
-            FREE(tabofhandles);
-            return 1;
-        }
-
-        getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
-
-        if (type != __GO_POLYLINE__)
-        {
-            freeAllocatedMatrixOfString(m2, n2, Str);
-            FREE(tabofhandles);
-            Scierror(999, _("%s: The %d th handle is not a polyline handle.\n"), fname, i + 1);
-            return 1;
-        }
-
-        tabofhandles[i] = handlesvalue;
     }
 
     /* Create the legend */

@@ -170,6 +170,10 @@ public abstract class UIComponent {
         }
     }
 
+    public String getType() {
+        return this.getClass().getSimpleName();
+    }
+
     public int getUid() {
         return uid;
     }
@@ -313,6 +317,7 @@ public abstract class UIComponent {
     public void closeUIComponent() { }
 
     public void remove() {
+        UserData.removeUIWidgetUserData(uid);
         UILocator.remove(this);
         if (childrenList != null) {
             for (UIComponent ui : childrenList) {
@@ -377,6 +382,10 @@ public abstract class UIComponent {
         } else {
             return root.isRootVisible();
         }
+    }
+
+    public UIComponent[] getChildren() {
+        return childrenList.toArray(new UIComponent[childrenList.size()]);
     }
 
     public Object getComponent() {

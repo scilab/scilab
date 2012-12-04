@@ -21,6 +21,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "getPropertyAssignedValue.h"
+#include "UIWidget.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_is_handle_valid(char *fname, unsigned long fname_len)
@@ -73,7 +74,15 @@ int sci_is_handle_valid(char *fname, unsigned long fname_len)
     /* Check each handle */
     for (i = 0; i < nbHandle; i++)
     {
-        resultStackPointer[i] =  (getObjectFromHandle((long int)handleStackPointer[i]) != NULL ? TRUE : FALSE);
+        if (handleStackPointer[i] >= 0)
+        {
+            resultStackPointer[i] =  (getObjectFromHandle((long int)handleStackPointer[i]) != NULL ? TRUE : FALSE);
+        }
+        else
+        {
+            // UIWidget
+            resultStackPointer[i] = isValidUIWidget(handleStackPointer[i]) != 0 ? TRUE : FALSE;
+        }
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;

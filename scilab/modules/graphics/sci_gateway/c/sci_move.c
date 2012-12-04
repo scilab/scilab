@@ -94,6 +94,12 @@ int sci_move(char * fname, unsigned long fname_len)
         return 1;
     }
 
+    if (*l1 < 0)
+    {
+        Scierror(999, _("%s: Invalid handle for input argument #%d.\n"), fname, 1);
+        return 0;
+    }
+
     pobjUID = (char*)getObjectFromHandle((long int) * l1);
 
     if (pobjUID == NULL)

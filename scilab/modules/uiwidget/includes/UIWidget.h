@@ -10,19 +10,19 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#ifndef __GW_UIWIDGET_H__
-#define __GW_UIWIDGET_H__
+#ifndef __UIWIDGET_H__
+#define __UIWIDGET_H__
 /*--------------------------------------------------------------------------*/
+
 #include "dynlib_uiwidget_scilab.h"
-/*--------------------------------------------------------------------------*/
-UIWIDGET_SCILAB_IMPEXP int gw_uiwidget(void);
+UIWIDGET_SCILAB_IMPEXP void deleteUIWidget(const long long hdl);
+
+void deleteAllUIWidget();
+
+UIWIDGET_SCILAB_IMPEXP int isValidUIWidget(const long long hdl);
+
+UIWIDGET_SCILAB_IMPEXP void showWindowUIWidget(const long long hdl);
 
 /*--------------------------------------------------------------------------*/
-UIWIDGET_SCILAB_IMPEXP int sci_uiwidget(char *fname, unsigned long fname_len);
-UIWIDGET_SCILAB_IMPEXP int sci_uiget(char *fname, unsigned long fname_len);
-UIWIDGET_SCILAB_IMPEXP int sci_uiset(char *fname, unsigned long fname_len);
-int sci_createUIWidgetHandle(char *fname, unsigned long fname_len);
-
-/*--------------------------------------------------------------------------*/
-#endif /* __GW_UIWIDGET_H__ */
+#endif /* __UIWIDGET_H__ */
 /*--------------------------------------------------------------------------*/

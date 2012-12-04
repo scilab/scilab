@@ -14,6 +14,7 @@
 #include <jni.h>
 #include "api_scilab.h"
 #include "stack-c.h"
+#include "localization.h"
 #include "sci_types.h"
 #include "MALLOC.h"
 #include "BOOL.h"
@@ -175,6 +176,77 @@ extern "C" {
                     }
                     (*jenv)->DeleteLocalRef(jenv, data);
                     (*jenv)->DeleteLocalRef(jenv, imagData);
+                }
+                (*jenv)->DeleteLocalRef(jenv, var);
+                break;
+            }
+            case sci_handles :
+            {
+                int nbRow = (*jenv)->GetArrayLength(jenv, var);
+                int nbCol = 0;
+                int j = 0, k;
+                long long * h = 0;
+
+                if (parentList)
+                {
+                    sciErr.iErr = 0;
+                    sciErr.iMsgCount = 0;
+                    addErrorMessage(&sciErr, API_ERROR_CREATE_HANDLE, _("Unable to create handle in list"));
+                    break;
+                }
+
+                if (!var || nbRow == 0)
+                {
+                    if (parentList)
+                    {
+                        sciErr = createMatrixOfDoubleInList(pvApiCtx, stackPos, parentList, listPos, 0, 0, 0);
+                    }
+                    else
+                    {
+                        sciErr = createMatrixOfDouble(pvApiCtx, stackPos, 0, 0, 0);
+                    }
+                    if (!var)
+                    {
+                        (*jenv)->DeleteLocalRef(jenv, var);
+                    }
+                    break;
+                }
+
+                // Get the matrix rows
+                for (; j < nbRow; j++)
+                {
+                    jboolean isCopy1 = JNI_FALSE;
+                    jlong* element = NULL;
+                    jlongArray oneDim = (jlongArray)(*jenv)->GetObjectArrayElement(jenv, var, j);
+                    if (nbCol == 0)
+                    {
+                        nbCol = (*jenv)->GetArrayLength(jenv, oneDim);
+                        sciErr = allocMatrixOfHandle(pvApiCtx, stackPos, swap ? nbRow : nbCol, swap ? nbCol : nbRow, &h);
+                        if (sciErr.iErr)
+                        {
+                            break;
+                        }
+                    }
+
+                    element = (jlong*)(*jenv)->GetPrimitiveArrayCritical(jenv, oneDim, &isCopy1);
+
+                    // Get the matrix element
+                    if (swap)
+                    {
+                        for (k = 0; k < nbCol; k++)
+                        {
+                            h[k * nbRow + j] = element[k];
+                        }
+                    }
+                    else
+                    {
+                        for (k = 0; k < nbCol; k++)
+                        {
+                            h[j * nbCol + k] = element[k];
+                        }
+                    }
+                    (*jenv)->ReleasePrimitiveArrayCritical(jenv, oneDim, element, JNI_ABORT);
+                    (*jenv)->DeleteLocalRef(jenv, oneDim);
                 }
                 (*jenv)->DeleteLocalRef(jenv, var);
                 break;

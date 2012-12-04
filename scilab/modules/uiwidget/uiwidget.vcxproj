@@ -72,6 +72,10 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">sci$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -89,7 +93,7 @@
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -119,7 +123,7 @@
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -150,7 +154,7 @@
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -186,7 +190,7 @@
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -202,13 +206,13 @@
   <ItemGroup>
     <ClInclude Include="includes\dynlib_uiwidget_scilab.h" />
     <ClInclude Include="includes\gw_uiwidget.h" />
+    <ClInclude Include="includes\UIWidget.h" />
     <ClInclude Include="src\cpp\UIWidgetTools.hxx" />
     <ClInclude Include="src\cpp\UserDataHandler.hxx" />
     <ClInclude Include="src\jni\UIWidget.hxx" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sci_gateway\cpp\sci_percent_foo_i_UIWidget.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_UIWidget_e.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_createUIWidgetHandle.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_uiget.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_uiset.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_uiwidget.cpp" />

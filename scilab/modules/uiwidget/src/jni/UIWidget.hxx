@@ -82,6 +82,10 @@ protected:
     jmethodID jintuiwidgetID; // cache method id
     jmethodID voiduigetjintintjstringjava_lang_StringjintintID; // cache method id
     jmethodID voiduisetjintintID; // cache method id
+    jmethodID jbooleanuiisValidjintintID; // cache method id
+    jmethodID voiduishowWindowjintintID; // cache method id
+    jmethodID voiduideletejintintID; // cache method id
+    jmethodID voiduideleteAllID; // cache method id
     jmethodID jintgetUIWidgetHandlerID; // cache method id
     jmethodID jintgetUidFromPathjstringjava_lang_StringID; // cache method id
 
@@ -150,6 +154,14 @@ public:
     static void uiget(JavaVM * jvm_, int uid, char const* property, int stackPos);
 
     static void uiset(JavaVM * jvm_, int uid);
+
+    static bool uiisValid(JavaVM * jvm_, int uid);
+
+    static void uishowWindow(JavaVM * jvm_, int uid);
+
+    static void uidelete(JavaVM * jvm_, int uid);
+
+    static void uideleteAll(JavaVM * jvm_);
 
     static int getUIWidgetHandler(JavaVM * jvm_);
 

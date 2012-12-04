@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;../windows_tools/includes;../localization/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;XML_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -108,7 +108,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;../windows_tools/includes;../localization/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;TYPES_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -134,7 +134,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;../windows_tools/includes;../localization/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;TYPES_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -168,7 +168,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../api_scilab/includes;../commons/src/jni;../jvm/includes;../output_stream/includes;../../libs/MALLOC/includes;../../libs/intl;../../java/jdk/include/win32;../../java/jdk/include;../windows_tools/includes;../localization/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;TYPES_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -232,6 +232,9 @@
     <ClCompile Include="src\jni\ScilabPolynomialToJava.cpp" />
     <ClCompile Include="src\jni\ScilabVariables.cpp" />
     <ClCompile Include="src\jni\ScilabVariablesRefresh.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\bin\libintl.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -12,6 +12,16 @@
         <method name="uiset" returnType="void" modifier="static" >
             <parameter name="uid" type="int"/>
         </method>
+        <method name="uiisValid" returnType="boolean" modifier="static" >
+            <parameter name="uid" type="int"/>
+        </method>
+        <method name="uishowWindow" returnType="void" modifier="static" >
+            <parameter name="uid" type="int"/>
+        </method>
+        <method name="uidelete" returnType="void" modifier="static" >
+            <parameter name="uid" type="int"/>
+        </method>
+        <method name="uideleteAll" returnType="void" modifier="static" />
         <method name="getUIWidgetHandler" returnType="int" modifier="static" />
         <method name="getUidFromPath" returnType="int" modifier="static" >
             <parameter name="path" type="String"/>

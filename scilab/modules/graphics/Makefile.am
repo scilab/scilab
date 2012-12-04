@@ -413,6 +413,7 @@ libscigraphics_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/renderer/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/uiwidget/includes/ \
 	$(TCL_INC_PATH) \
 	$(TK_INC_PATH) \
 	$(AM_CPPFLAGS)

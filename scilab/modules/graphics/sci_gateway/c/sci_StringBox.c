@@ -138,6 +138,12 @@ int sci_stringbox(char * fname, unsigned long fname_len)
             return 0;
         }
 
+        if (*stackPointer < 0)
+        {
+            Scierror(999, _("%s: Invalid handle for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
+            return 0;
+        }
+
         /* Get the handle and check that this is a text handle */
         pTextUID = (char*)getObjectFromHandle((long int) * stackPointer);
 

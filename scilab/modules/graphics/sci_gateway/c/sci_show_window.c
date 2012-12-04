@@ -35,6 +35,7 @@
 #include "BuildObjects.h"
 #include "CurrentSubwin.h"
 #include "sci_types.h"
+#include "UIWidget.h"
 /*--------------------------------------------------------------------------*/
 int sci_show_window(char *fname, unsigned long fname_len)
 {
@@ -84,6 +85,16 @@ int sci_show_window(char *fname, unsigned long fname_len)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"), fname, 1, "Figure");
                 return -1;
+            }
+
+            if (*llstackPointer < 0)
+            {
+                // UIWidget
+                showWindowUIWidget(*llstackPointer);
+                AssignOutputVariable(pvApiCtx, 1) = 0;
+                ReturnArguments(pvApiCtx);
+
+                return 0;
             }
 
             pFigureUID = (char*)getObjectFromHandle((long int)(*llstackPointer));

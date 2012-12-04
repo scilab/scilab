@@ -98,8 +98,11 @@ int sci_relocate_handle(char * fname, unsigned long fname_len)
     for (i = 0; i < nbHandle; i++)
     {
         children = (long)handleStkIndex[i];
-        childrenID = (char*)getObjectFromHandle(children);
-        setGraphicObjectRelationship(parentID, childrenID);
+        if (children >= 0)
+        {
+            childrenID = (char*)getObjectFromHandle(children);
+            setGraphicObjectRelationship(parentID, childrenID);
+        }
     }
 
     sciErr = allocMatrixOfHandle(pvApiCtx,  nbInputArgument(pvApiCtx) + 1, handleCol, handleRow, &outIndex);

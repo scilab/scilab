@@ -151,8 +151,7 @@ libsciuiwidget_la_DEPENDENCIES = libsciuiwidget-algo.la
 am__objects_4 = libsciuiwidget_la-gw_uiwidget.lo
 am__objects_5 = libsciuiwidget_la-sci_uiwidget.lo \
 	libsciuiwidget_la-sci_uiget.lo libsciuiwidget_la-sci_uiset.lo \
-	libsciuiwidget_la-sci_percent_UIWidget_e.lo \
-	libsciuiwidget_la-sci_percent_foo_i_UIWidget.lo
+	libsciuiwidget_la-sci_createUIWidgetHandle.lo
 am_libsciuiwidget_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libsciuiwidget_la_OBJECTS = $(am_libsciuiwidget_la_OBJECTS)
 libsciuiwidget_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -471,8 +470,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_uiwidget.c
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_uiwidget.cpp \
 		      sci_gateway/cpp/sci_uiget.cpp \
 		      sci_gateway/cpp/sci_uiset.cpp \
-		      sci_gateway/cpp/sci_percent_UIWidget_e.cpp \
-	              sci_gateway/cpp/sci_percent_foo_i_UIWidget.cpp
+		      sci_gateway/cpp/sci_createUIWidgetHandle.cpp
 
 libsciuiwidget_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \
@@ -676,8 +674,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciuiwidget_algo_la-UserDataHandler.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciuiwidget_algo_la-UserData_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciuiwidget_la-gw_uiwidget.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciuiwidget_la-sci_percent_UIWidget_e.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciuiwidget_la-sci_percent_foo_i_UIWidget.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciuiwidget_la-sci_createUIWidgetHandle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciuiwidget_la-sci_uiget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciuiwidget_la-sci_uiset.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciuiwidget_la-sci_uiwidget.Plo@am__quote@
@@ -780,19 +777,12 @@ libsciuiwidget_la-sci_uiset.lo: sci_gateway/cpp/sci_uiset.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciuiwidget_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciuiwidget_la-sci_uiset.lo `test -f 'sci_gateway/cpp/sci_uiset.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiset.cpp
 
-libsciuiwidget_la-sci_percent_UIWidget_e.lo: sci_gateway/cpp/sci_percent_UIWidget_e.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciuiwidget_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciuiwidget_la-sci_percent_UIWidget_e.lo -MD -MP -MF $(DEPDIR)/libsciuiwidget_la-sci_percent_UIWidget_e.Tpo -c -o libsciuiwidget_la-sci_percent_UIWidget_e.lo `test -f 'sci_gateway/cpp/sci_percent_UIWidget_e.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_UIWidget_e.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciuiwidget_la-sci_percent_UIWidget_e.Tpo $(DEPDIR)/libsciuiwidget_la-sci_percent_UIWidget_e.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_percent_UIWidget_e.cpp' object='libsciuiwidget_la-sci_percent_UIWidget_e.lo' libtool=yes @AMDEPBACKSLASH@
+libsciuiwidget_la-sci_createUIWidgetHandle.lo: sci_gateway/cpp/sci_createUIWidgetHandle.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciuiwidget_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciuiwidget_la-sci_createUIWidgetHandle.lo -MD -MP -MF $(DEPDIR)/libsciuiwidget_la-sci_createUIWidgetHandle.Tpo -c -o libsciuiwidget_la-sci_createUIWidgetHandle.lo `test -f 'sci_gateway/cpp/sci_createUIWidgetHandle.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_createUIWidgetHandle.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciuiwidget_la-sci_createUIWidgetHandle.Tpo $(DEPDIR)/libsciuiwidget_la-sci_createUIWidgetHandle.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_createUIWidgetHandle.cpp' object='libsciuiwidget_la-sci_createUIWidgetHandle.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciuiwidget_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciuiwidget_la-sci_percent_UIWidget_e.lo `test -f 'sci_gateway/cpp/sci_percent_UIWidget_e.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_UIWidget_e.cpp
-
-libsciuiwidget_la-sci_percent_foo_i_UIWidget.lo: sci_gateway/cpp/sci_percent_foo_i_UIWidget.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciuiwidget_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciuiwidget_la-sci_percent_foo_i_UIWidget.lo -MD -MP -MF $(DEPDIR)/libsciuiwidget_la-sci_percent_foo_i_UIWidget.Tpo -c -o libsciuiwidget_la-sci_percent_foo_i_UIWidget.lo `test -f 'sci_gateway/cpp/sci_percent_foo_i_UIWidget.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_foo_i_UIWidget.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciuiwidget_la-sci_percent_foo_i_UIWidget.Tpo $(DEPDIR)/libsciuiwidget_la-sci_percent_foo_i_UIWidget.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_percent_foo_i_UIWidget.cpp' object='libsciuiwidget_la-sci_percent_foo_i_UIWidget.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciuiwidget_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciuiwidget_la-sci_percent_foo_i_UIWidget.lo `test -f 'sci_gateway/cpp/sci_percent_foo_i_UIWidget.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_foo_i_UIWidget.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciuiwidget_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciuiwidget_la-sci_createUIWidgetHandle.lo `test -f 'sci_gateway/cpp/sci_createUIWidgetHandle.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_createUIWidgetHandle.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

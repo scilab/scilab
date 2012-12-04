@@ -55,6 +55,7 @@ libscitypes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			   -I$(top_srcdir)/libs/MALLOC/includes/ \
 			   -I$(top_srcdir)/modules/commons/src/jni/ \
 			   -I$(top_srcdir)/modules/jvm/includes/ \
+			   -I$(top_srcdir)/modules/localization/includes/ \
 			   -I$(top_srcdir)/modules/output_stream/includes/ \
 			   -I$(top_srcdir)/modules/api_scilab/includes/ \
 			   $(AM_CPPFLAGS)

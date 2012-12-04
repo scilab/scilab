@@ -50,7 +50,7 @@ import org.scilab.modules.uiwidget.components.UIProgressBar;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.types.ScilabInteger;
-import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabHandle;
 import org.scilab.modules.types.ScilabStackPutter;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -234,9 +234,19 @@ public final class ObjectToScilabConverters {
         converters.put(UIComponent.class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
                 UIComponent ui = (UIComponent) o;
-                ScilabMList mlist = new ScilabMList(new String[] {"UIWidget", "_id"});
-                mlist.add(new ScilabInteger(ui.getUid()));
-                ScilabStackPutter.put(stackPos, mlist);
+                ScilabHandle handle = new ScilabHandle((long) (-ui.getUid() - 1));
+                ScilabStackPutter.put(stackPos, handle);
+            }
+        });
+        converters.put(UIComponent[].class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                UIComponent[] uis = (UIComponent[]) o;
+                long[][] hdls = new long[1][uis.length];
+                for (int i = 0; i < uis.length; i++) {
+                    hdls[0][i] = (long) (-uis[i].getUid() - 1);
+                }
+                ScilabHandle handle = new ScilabHandle(hdls);
+                ScilabStackPutter.put(stackPos, handle);
             }
         });
     }

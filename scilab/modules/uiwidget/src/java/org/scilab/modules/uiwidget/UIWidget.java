@@ -12,14 +12,20 @@
 
 package org.scilab.modules.uiwidget;
 
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
+
 import org.scilab.modules.types.ScilabInteger;
-import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabHandle;
 import org.scilab.modules.types.ScilabStackPutter;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
@@ -87,6 +93,67 @@ public class UIWidget {
         }
     }
 
+    public static void uidelete(final int uid) {
+        final UIComponent comp = UILocator.get(uid);
+        if (comp != null) {
+            UIAccessTools.execOnEDT(new Runnable() {
+                public void run() {
+                    UIComponent p = comp.getParent();
+                    comp.remove();
+
+                    if (p != null) {
+                        try {
+                            Object c = p.getComponent();
+                            if (c != null) {
+                                if (c instanceof JComponent) {
+                                    JComponent jc = (JComponent) c;
+                                    jc.revalidate();
+                                    jc.repaint();
+                                } else if (c instanceof Container) {
+                                    Container co = (Container) c;
+                                    co.invalidate();
+                                    co.validate();
+                                    co.repaint();
+                                }
+                            }
+                        } catch (Exception e) { }
+                    }
+                }
+            });
+        }
+    }
+
+    public static void uideleteAll() {
+        UIAccessTools.execOnEDT(new Runnable() {
+            public void run() {
+                UILocator.removeAll();
+            }
+        });
+    }
+
+    public static void uishowWindow(final int uid) {
+        final UIComponent comp = UILocator.get(uid);
+        if (comp != null) {
+            Object o = comp.getComponent();
+            if (o instanceof Component) {
+                final Frame frame = (Frame) SwingUtilities.getAncestorOfClass(Frame.class, (Component) o);
+                if (frame != null) {
+                    UIAccessTools.execOnEDT(new Runnable() {
+                        public void run() {
+                            frame.setVisible(true);
+                            frame.setState(Frame.NORMAL);
+                            frame.toFront();
+                        }
+                    });
+                }
+            }
+        }
+    }
+
+    public static boolean uiisValid(final int uid) {
+        return UILocator.isValid(uid);
+    }
+
     public static void uiset(final int uid) throws Exception {
         final List<ScilabType> args = handler.getArgumentList();
         final List<String> proprName = new ArrayList<String>();
@@ -130,15 +197,9 @@ public class UIWidget {
             return UILocator.get(((ScilabString) arg).getData()[0][0]);
         }
 
-        if (arg.getType() == ScilabTypeEnum.sci_mlist) {
-            ScilabMList mlist = (ScilabMList) arg;
-            ScilabString names = (ScilabString) mlist.get(0);
-            if (!names.isEmpty() && "UIWidget".equals(names.getData()[0][0])) {
-                ScilabType t = mlist.get(1);
-                if (t != null && !t.isEmpty() && t.getType() == ScilabTypeEnum.sci_ints) {
-                    return UILocator.get((int) ((ScilabInteger) t).getData()[0][0]);
-                }
-            }
+        if (arg.getType() == ScilabTypeEnum.sci_handles) {
+            ScilabHandle hdl = (ScilabHandle) arg;
+            return UILocator.get((int) (-hdl.getData()[0][0] - 1));
         }
 
         return null;
@@ -209,16 +270,12 @@ public class UIWidget {
             //ui = UIModele.get(style[0], style[1], parent, id, null);
         }
 
-        /*if (attributes.containsKey("constraint")) {
-            ui.setConstraint(((ScilabString) attributes.get("constraint")).getData()[0][0]);
-            attributes.remove("constraint");
-        }*/
-
         // Layout informations are prioritar so we handle them now
         if (parent != null) {
             final UIComponent _parent = parent;
             UIAccessTools.execOnEDT(new Runnable() {
                 public void run() {
+                    ui.finish();
                     try {
                         _parent.add(ui);
                     } catch (Exception e) {
@@ -227,23 +284,14 @@ public class UIWidget {
                     _parent.finish();
                 }
             });
+        } else {
+            UIAccessTools.execOnEDT(new Runnable() {
+                public void run() {
+                    ui.finish();
+                }
+            });
         }
 
         return ui.getUid();
-
-        /*        final int s = start;
-                UIAccessTools.execOnEDT(new Runnable() {
-                        public void run() {
-                            for (Map.Entry<String, ScilabType> entry : attributes.entrySet()) {
-                                try {
-                                    ui.setProperty(entry.getKey(), entry.getValue());
-                                } catch (Exception e) {
-                                    System.err.println(e);
-                                    break;
-                                }
-                            }
-                        }
-                    });
-        */
     }
 }

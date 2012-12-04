@@ -123,6 +123,9 @@ exit /B 0</NMakeReBuildCommandLine>
     <None Include="loadgenlib.sce" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\uiwidget\uiwidget.vcxproj">
+      <Project>{2edf3a4a-737c-45a0-91c8-4190382f158e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\windows_tools\src\c\CScilex\CScilex.vcxproj">
       <Project>{9ba6f7e4-ae64-4fd9-a5a7-0996a8b73b77}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

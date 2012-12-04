@@ -19,6 +19,7 @@
 /* desc : interface for sci_get routine                                   */
 /*------------------------------------------------------------------------*/
 #include "gw_graphics.h"
+#include "gw_uiwidget.h"
 /*--------------------------------------------------------------------------*/
 
 #include "HandleManagement.h"
@@ -192,21 +193,30 @@ int sci_get(char *fname, unsigned long fname_len)
                 OverLoad(1);
                 return 0;
             }
-            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return 1;
-            }
-
-            // Retrieve a matrix of double at position 2.
-            if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
-            {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
-                return 1;
-            }
 
             hdl = (long) * l1; /* on recupere le pointeur d'objet par le handle */
+
+            if (hdl < 0)
+            {
+                return sci_uiget(fname, fname_len);
+            }
+            else
+            {
+                sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 1;
+                }
+
+                // Retrieve a matrix of double at position 2.
+                if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
+                {
+                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                    return 1;
+                }
+            }
+
             break;
         case sci_strings:          /* string argument (string) */
             CheckInputArgument(pvApiCtx, 1, 1);

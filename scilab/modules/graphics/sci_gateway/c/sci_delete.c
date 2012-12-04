@@ -34,6 +34,7 @@
 #include "CurrentObject.h"
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
+#include "UIWidget.h"
 
 #include "AxesModel.h"
 #include "FigureModel.h"
@@ -132,6 +133,16 @@ int sci_delete(char *fname, unsigned long fname_len)
                         return 1;
                     }
                 }
+
+                if (*l1 < 0)
+                {
+                    // UIWidget
+                    deleteUIWidget(*l1);
+                    AssignOutputVariable(pvApiCtx, 1) = 0;
+                    ReturnArguments(pvApiCtx);
+                    return 0;
+                }
+
                 hdl = (unsigned long) * (l1); /* Puts the value of the Handle to hdl */
                 break;
             case sci_strings:      /* delete("all") */

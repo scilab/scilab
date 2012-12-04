@@ -10,103 +10,69 @@
  *
  */
 
+#include "UIWidget.hxx"
 #include "UIWidgetTools.hxx"
 
 extern "C"
 {
 #include "api_scilab.h"
+#include "UIWidget.h"
+#include "getScilabJavaVM.h"
 }
-
-#define __SCILAB_MLIST_UIWIDGET_TYPE__ "UIWidget"
 
 namespace org_scilab_modules_uiwidget
 {
 
-bool UIWidgetTools::isUIWidget(int * mlist, void * pvApiCtx)
+bool UIWidgetTools::isUIWidget(int * addr, void * pvApiCtx)
 {
-    char * mlist_type[2];
-    int type;
-    int rows, cols;
-    int lengths[2];
-
-    SciErr err = getVarType(pvApiCtx, mlist, &type);
-
-    if (err.iErr || type != sci_mlist)
+    if (isHandleType(pvApiCtx, addr))
     {
-        return false;
+        long long hdl = 0;
+        if (!getScalarHandle(pvApiCtx, addr, &hdl))
+        {
+            if (hdl < 0)
+            {
+                return true;
+            }
+        }
     }
 
-    err = getMatrixOfStringInList(pvApiCtx, mlist, 1, &rows, &cols, 0, 0);
-    if (err.iErr || rows * cols != 2)
-    {
-        return false;
-    }
-
-    err = getMatrixOfStringInList(pvApiCtx, mlist, 1, &rows, &cols, lengths, 0);
-    if (err.iErr)
-    {
-        return false;
-    }
-
-    for (int i = 0; i < 2; i++)
-    {
-        mlist_type[i] = new char[lengths[i] + 1];
-    }
-
-    err = getMatrixOfStringInList(pvApiCtx, mlist, 1, &rows, &cols, lengths, mlist_type);
-    if (err.iErr)
-    {
-        return false;
-    }
-
-    bool ret = !strcmp(mlist_type[0], __SCILAB_MLIST_UIWIDGET_TYPE__) && !strcmp(mlist_type[1], "_id");
-
-    for (int i = 0; i < 2; i++)
-    {
-        delete[] mlist_type[i];
-    }
-
-    return ret;
+    return false;
 }
 
-int UIWidgetTools::getUIWidgetId(int * mlist, void * pvApiCtx)
+int UIWidgetTools::getUIWidgetId(int * addr, void * pvApiCtx)
 {
-    int * id = 0;
-    int row, col;
-
-    SciErr err = getMatrixOfInteger32InList(pvApiCtx, mlist, 2, &row, &col, &id);
-    if (err.iErr)
+    long long hdl = 0;
+    if (!getScalarHandle(pvApiCtx, addr, &hdl))
     {
-        return -1;
+        return (int)(-hdl - 1);
     }
 
-    return *id;
+    return -1;
 }
 
 int UIWidgetTools::createOnScilabStack(const int uid, const int pos, void * pvApiCtx)
 {
-    static const char * fields[] = {__SCILAB_MLIST_UIWIDGET_TYPE__, "_id"};
-    int * mlistaddr = 0;
-    SciErr err;
-
-    err = createMList(pvApiCtx, pos, 2, &mlistaddr);
-    if (err.iErr)
-    {
-        return 0;
-    }
-
-    err = createMatrixOfStringInList(pvApiCtx, pos, mlistaddr, 1, 1, 2, fields);
-    if (err.iErr)
-    {
-        return 0;
-    }
-
-    err = createMatrixOfInteger32InList(pvApiCtx, pos, mlistaddr, 2, 1, 1, &uid);
-    if (err.iErr)
-    {
-        return 0;
-    }
-
-    return 1;
+    return createScalarHandle(pvApiCtx, pos, (long long)(-uid - 1));
 }
+}
+
+void deleteUIWidget(const long long hdl)
+{
+    org_scilab_modules_uiwidget::UIWidget::uidelete(getScilabJavaVM(), (int)(-hdl - 1));
+}
+
+void deleteAllUIWidget()
+{
+    org_scilab_modules_uiwidget::UIWidget::uideleteAll(getScilabJavaVM());
+}
+
+int isValidUIWidget(const long long hdl)
+{
+    return org_scilab_modules_uiwidget::UIWidget::uiisValid(getScilabJavaVM(), (int)(-hdl - 1)) ? 1 : 0;
+}
+
+void showWindowUIWidget(const long long hdl)
+{
+    org_scilab_modules_uiwidget::UIWidget::uishowWindow(getScilabJavaVM(), (int)(-hdl - 1));
 }

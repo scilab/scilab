@@ -195,6 +195,20 @@ public :
     GIWSEXPORT static void sendVariable(const std::string & name, std::vector<int> & indexes, int row, int col, T * data, const bool swaped, const int handlerId);
 
     /**
+     * Send handle matrices
+     *
+     * @param T the type of the data
+     * @param name the variable name
+     * @param indexes an integer array with the indexes of the (sub)*-list which will contain the data
+     * @param row the row number
+     * @param col the col number
+     * @param data the data
+     * @param swaped true if the matrix is stored row by row
+     * @param handlerId the handler id
+     */
+    GIWSEXPORT static void sendHandleVariable(const std::string & name, std::vector<int> & indexes, int row, int col, long long * data, const bool swaped, const int handlerId);
+
+    /**
      * Send boolean sparse matrix
      *
      * @param name the variable name
