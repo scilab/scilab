@@ -9,7 +9,7 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- -->
+ --> 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="graphics_entities">
     <refnamediv>
         <refname>Graphics Entities</refname>
@@ -50,7 +50,7 @@
                 <term>Figure: </term>
                 <listitem>
                     <para>
-                        The figure entity is the top level of the graphics
+                        The <literal>Figure<literal> entity is the top level of the graphics
                         entities hierarchy. This entity defines the parameters
                         for the figure itself as well as the parameters' default
                         values for the children creation. The figure children
@@ -62,7 +62,7 @@
                         <code>get("current_figure")</code> and it may be set
                         using <code>set("current_figure",h)</code>, where
                         <literal>h</literal> is either a handle on a figure or a
-                        <literal>figure_id</literal> in this last case if the
+                        <literal>figure_id</literal>. In this last case if the
                         figure does not already exists, it is created.
                     </para>
                     <para>
