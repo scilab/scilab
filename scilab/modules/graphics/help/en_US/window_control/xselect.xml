@@ -29,7 +29,7 @@
         <para>
             <warning>
                 This function is obsolete and will be removed in Scilab 5.4.
-                It has been replaced by the show_window function.
+                It has been replaced by the <function>show_window</function> function.
             </warning>
         </para>
     </refsection>
