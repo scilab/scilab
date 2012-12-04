@@ -16,6 +16,10 @@ mode(-1);  // silent execution mode
 predef("clear"); //unprotect all variables
 clear  // erase all variables
 clearglobal();
+//save default Scilab language
+global scilabDefaultLanguage;
+scilabDefaultLanguage = getlanguage();
+clear scilabDefaultLanguage;
 
 // Set stack size   ===================================================
 function setStackSize()
@@ -106,7 +110,6 @@ if with_module("atoms") then
   clear atomsSystemInit;
 end
 
-
 // Protect variable previously defined  ================================
 predef("all");
 
@@ -146,11 +149,16 @@ if sciargs()<>"-nouserstartup" then
   clear startupfiles;
 end
 
+//save user language
+global scilabDefaultLanguage;
+userLanguage = getlanguage();
+//force language to scilab default
+setlanguage(scilabDefaultLanguage);
+
 // Menus/toolbar can now be enabled ====================================
 if getscilabmode() == "STD" then
   setmenu(gettext("&File"));
   setmenu(gettext("&Edit"));
-  setmenu(gettext("&Preferences"));
   setmenu(gettext("&Control"));
   setmenu(gettext("&Applications"));
   if ~with_module("scinotes") then // Desactivate Editor menu
@@ -169,5 +177,11 @@ if getscilabmode() == "STD" then
   setmenu(gettext("&Toolboxes"));
   toolbar(-1, "on");
 end
+
+//restore user language
+setlanguage(userLanguage);
 // ====================================================================
 clear ans
+clear userLanguage
+clearglobal scilabDefaultLanguage;
+clear scilabDefaultLanguage;
