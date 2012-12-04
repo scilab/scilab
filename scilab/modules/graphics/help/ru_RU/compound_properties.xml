@@ -48,8 +48,8 @@
                         <literal>"Polyline"</literal> ("Ломаная линия"),
                         <literal>"Patch"</literal> ("Пятно"),
                         <literal>"Segs"</literal> ("Сегменты"),
-                        <literal>"Arc"</literal>("Дуги"),
-                        <literal>"Grayplot"</literal> ("Палитра серого), ...
+                        <literal>"Arc"</literal> ("Дуги"),
+                        <literal>"Grayplot"</literal> ("Палитра серого"), ...
                     </para>
                 </listitem>
             </varlistentry>
