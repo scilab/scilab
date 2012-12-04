@@ -23,7 +23,10 @@
         <title>Description</title>
         <para>
             <function>xbasr</function> is used to redraw the content of the graphics
-            window with id <varname>win_num</varname>. It works only with the driver <literal>"Rec"</literal>.
+            window with id <varname>win_num</varname>.
+            <warning>
+                It works only with the driver <literal>"Rec"</literal>.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">
