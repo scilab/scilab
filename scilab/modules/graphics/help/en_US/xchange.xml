@@ -65,6 +65,8 @@
             according to the value of the parameter <varname>dir</varname>:
             <literal>"f2i"</literal> (float to int) means real to pixel and
             <literal>"i2f"</literal> (int to float) means pixel to real.
+        </para>
+        <para>
             <varname>x1</varname> and <varname>y1</varname> are the new
             coordinates of the set of points defined by the old coordinates
             <varname>x</varname> and <varname>y</varname>.
