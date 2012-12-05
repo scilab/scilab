@@ -106,7 +106,7 @@ case 'define' then
         'e=gce();'
         'e.font_style=style;']
   exprs=[string(nz);string(varnam);string(herit)]
-  x=standard_define([3.5 2],model,exprs,gr_i)
+  x=standard_define([4 2],model,exprs,gr_i)
 end
 endfunction
 

@@ -42,7 +42,7 @@
         <title>Описание</title>
         <para>
             <code>res = isascii(str)</code> возвращает <constant>%t</constant>
-            (ИСТНА), если элементы <varname>str</varname> соответствуют 7-битному
+            (ИСТИНА), если элементы <varname>str</varname> соответствуют 7-битному
             коду US-ASCII-символов между 0 и восьмеричным 0177
             включительно (или являются US-ASCII-символами).
             В противном случае возвращает <constant>%f</constant> (ЛОЖЬ).

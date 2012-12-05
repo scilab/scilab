@@ -41,6 +41,19 @@
             solves the sparse linear system  <literal>A*x = b</literal> and clears <literal>p</literal>.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+non_zeros=[1,2,3,4];
+rows_cols=[1,1;2,2;3,3;4,4];
+sp=sparse(rows_cols,non_zeros);
+[h,rk]=lufact(sp);
+x=lusolve(h,[1;1;1;1]);
+ludel(h)
+rk,sp*x
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

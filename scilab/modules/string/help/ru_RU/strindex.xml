@@ -102,8 +102,8 @@
         <para>w = 1. 1. k = 1. 2.</para>
         <para>
             Правила регулярного выражения сходны с языком Perl. Для быстрого старта см.<ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
-            Для более глубокого изучения см. <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
-            а для справки см. <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>
+            Для более глубокого изучения см. <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>,
+            а для справки см. <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>.
         </para>
     </refsection>
     <refsection>

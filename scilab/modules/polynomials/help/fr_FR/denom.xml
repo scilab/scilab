@@ -42,6 +42,20 @@
             <literal>r('den')</literal> ou <literal>r.den)</literal>.
         </para>
     </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+h=(1+2*%s)/poly(1:4,'s','c');
+denom(h)
+numer(h)
+
+s=poly(0,"s");
+p=1+s+2*s^2;
+denom(p) // Devrait retourner 1
+numer(p)
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

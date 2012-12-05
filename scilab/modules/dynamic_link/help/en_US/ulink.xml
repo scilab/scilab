@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ulink">
     <refnamediv>
         <refname>ulink</refname>
-        <refpurpose>unlink a dynamically linked shared object</refpurpose>
+        <refpurpose>unlink/unload a dynamically linked shared object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -56,6 +56,29 @@ scilab -nwni -profile
             allow <literal>valgrind</literal> to perform its sum-up analysis.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+cd TMPDIR
+f1=['#include <math.h>'
+    'void fooc(double c[],double a[],double *b,int *m,int *n)'
+    '{'
+    '   int i;'
+    '   for ( i =0 ; i < (*m)*(*n) ; i++) '
+    '     c[i] = sin(a[i]) + *b; '
+    '}'];
+mputl(f1,'fooc.c');
+
+ilib_for_link('fooc','fooc.c',[],"c");
+exec loader.sce;
+
+link() // Will should fooc
+link("show") // Will should the value 0
+
+ulink(0) // ulink fooc
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

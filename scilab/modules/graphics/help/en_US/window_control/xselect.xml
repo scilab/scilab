@@ -23,12 +23,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xselect</literal>raises the current graphics window.
+            <function>xselect</function> raises the current graphics window.
             It creates the window if none exists.
         </para>
         <para>
-            Warning: This function is obsolete and will be removed in Scilab 5.4.
-            It has been replaced by the show_window function.
+            <warning>
+                This function is obsolete and will be removed in Scilab 5.4.
+                It has been replaced by the <function>show_window</function> function.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

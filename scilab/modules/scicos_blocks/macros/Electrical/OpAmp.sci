@@ -87,7 +87,7 @@ case 'define' then
     'xstringb(orig(1)+13*(sz(1)/32),orig(2)+30*(sz(2)/70),txt,w,h,''fill'');'
     'e=gce();'
     'e.font_style=style;']
-  x=standard_define([2 2],model,exprs,gr_i)
+  x=standard_define([3 5],model,exprs,gr_i)
   x.graphics.in_implicit=['I';'I']
   x.graphics.out_implicit=['I']
   end

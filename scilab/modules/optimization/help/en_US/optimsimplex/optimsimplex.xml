@@ -1641,25 +1641,6 @@ s1 = optimsimplex_destroy ( s1 );
         </para>
     </refsection>
     <refsection>
-        <title>TODO</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    implement reflection and expansion as in multidimensional search
-                    by Torczon
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    turn optimsimplex_reflect into a proper constructor, i.e. an option of the
-                    the optimsimplex_new function. Another possibility is to reflect "in place"
-                    as in the optimsimplex_shrink function (but in this case we must provide a "copy"
-                    constructor from current simplex before reflecting it).
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection>
         <title>Bibliography</title>
         <para>
             &#8220;Sequential Application of Simplex Designs in Optimisation and

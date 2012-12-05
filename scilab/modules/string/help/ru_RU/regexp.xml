@@ -102,9 +102,9 @@ xml:id="regexp" xml:lang="ru">
             Правила регулярного выражения схожи с языком Perl. Для быстрого старта смотрите
             <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
             Для более глубокого изучения смотрите
-            <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
+            <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>,
             а для справки смотрите
-            <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>
+            <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>.
         </para>
         <para>
             Отличие от Perl заключается в том, что соответствие позиции, а не символа (например, с <literal>/^/</literal> или

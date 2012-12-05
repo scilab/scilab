@@ -19,6 +19,13 @@
             This function corresponds to the <literal>getarg</literal> function in C language.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+args=sciargs()
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
