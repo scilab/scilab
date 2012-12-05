@@ -250,7 +250,7 @@ Time for Runge-Kutta :
         <revhistory>
             <revision>
                 <revnumber>5.4.1</revnumber>
-                <revdescription>Dormand-Price 4(5) solver added</revdescription>
+                <revdescription>Runge-Kutta 4(5) solver added</revdescription>
             </revision>
         </revhistory>
     </refsection>
