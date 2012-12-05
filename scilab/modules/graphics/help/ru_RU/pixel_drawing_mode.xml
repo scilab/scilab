@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Pierre Lando <pierre.lando@scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="pixel_drawing_mode">
+    <refnamediv>
+        <refname>pixel_drawing_mode</refname>
+        <refpurpose>побитовые функции рендеринга пикселей</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Здесь цвет кодируется в RGB.
+            <literal>pixel_drawing_mode</literal> - <link
+            linkend="figure_properties">свойство графического окна</link>, которое определяет побитовую операцию, применяемую к любому пикселю графического окна между накладываемым цветом и уже существующим цветом в графическом окне. Результатом этой операции будет новый цвет пикселя. <literal>src</literal> - накладываемый цвет пикселя.
+            <literal>prv</literal> - предыдущий цвет пикселя (который уже нарисован). <literal>res</literal> - результирующий цвет пикселя (который будет нарисован). Возможными значениями для  <literal>pixel_drawing_mode</literal> являются:
+        </para>
+        <informaltable border="1">
+            <tr>
+                <td>значение</td>
+                <td>побитовая операция</td>
+                <td>комментарии</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>CLEAR</td>
+                <td>результирующий цвет - чёрный</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>AND</td>
+                <td>res = src И prv</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>AND REVERSE</td>
+                <td>res = src И (НЕ prv)</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>COPY</td>
+                <td>res = src, значение по умолчанию</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>AND INVERTED</td>
+                <td>res = (НЕ src) И prv</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>NOOP</td>
+                <td>res = prv</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>XOR</td>
+                <td>res = src ИСКЛЮЧАЮЩЕЕ ИЛИ prv</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>OR</td>
+                <td>res = src ИЛИ prv</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>NOR</td>
+                <td>res = НЕ (src ИЛИ prv)</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>EQUIV</td>
+                <td>res = (НЕ src) ИСКЛЮЧАЮЩЕЕ ИЛИ prv</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>INVERT</td>
+                <td>res = ИЛИ prv</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>OR REVERSE</td>
+                <td>res = src ИЛИ (НЕ prv)</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>COPY INVERTED</td>
+                <td>res = НЕ src</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>OR INVERTED</td>
+                <td>res = (НЕ src) ИЛИ prv</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>NAND</td>
+                <td>res = НЕ (src И prv)</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>SET</td>
+                <td>результирующий цвет - белый</td>
+            </tr>
+        </informaltable>
+    </refsection>
+</refentry>
