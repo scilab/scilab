@@ -46,7 +46,7 @@
                         <literal>p</literal> est le polynôme
                         caractéristique de a, c'est à dire
                         <literal>déterminant(x*eye()-a)</literal>, <literal>x</literal> étant
-                        l'indéterminée. 
+                        l'indéterminée.
                     </para>
                 </listitem>
             </varlistentry>
@@ -84,11 +84,13 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,"s");
 p=1+s+2*s^2;
 A=rand(2,2);
 poly(A,"x")
+//fractions rationnelles
+h=(1+2*%s)/poly(1:4,'s','coeff')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -104,5 +106,14 @@ poly(A,"x")
                 <link linkend="rational">rational</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Les seules valeurs autorisées pour le troisième argument sont "roots" et "coeff".</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

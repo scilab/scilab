@@ -19,6 +19,12 @@ Improvements
 * test_run no longer take in account skipped tests in the summary.
   See bug #12117
 
+Obsolete
+=========
+
+* The third argument of poly function will be more strict.
+    Only the following string will be allowed : "roots" "coeff"
+
 
 Removed functions
 ==================
