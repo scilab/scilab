@@ -948,19 +948,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xclear">xclear</link>
-                </term>
-                <listitem>
-                    <para>
-                        グラフィックウインドウをクリア
-                        <warning>
-                            関数 <function>xclear</function> は廃止されました.
-                        </warning>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="driver">driver</link>
                 </term>
                 <listitem>

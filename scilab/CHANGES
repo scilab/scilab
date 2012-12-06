@@ -287,6 +287,8 @@ Removed Functions
 
 * extract_help_examples has been removed. (Undocumented and based on former help format).
 
+* xclear has been removed. Please use clf instead.
+
 * Symbolic module functions have been removed:
   - addf
   - cmb_lin

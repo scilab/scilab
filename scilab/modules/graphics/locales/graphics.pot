@@ -4362,12 +4362,6 @@ msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/xclear.sci, line: 28
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
-msgstr ""
-
-#
 # File: modules/graphics/macros/xload.sci, line: 19
 #, c-format
 msgid "%s: file %s does not exist.\n"

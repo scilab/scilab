@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -962,19 +962,6 @@
                 <listitem>
                     <para>
                         Clear or reset the current graphic figure (window) to default values
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xclear">xclear</link>
-                </term>
-                <listitem>
-                    <para>
-                        Clear a graphics window
-                        <warning>
-                            Function <function>xclear</function> is obsolete.
-                        </warning>
                     </para>
                 </listitem>
             </varlistentry>

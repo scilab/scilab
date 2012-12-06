@@ -939,14 +939,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xclear">xclear</link>
-                </term>
-                <listitem>
-                    <para>efface une fenêtre graphique</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="driver">driver</link>
                 </term>
                 <listitem>
