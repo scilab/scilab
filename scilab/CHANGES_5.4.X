@@ -23,7 +23,7 @@ Obsolete
 =========
 
 * The third argument of poly function will be more strict.
-    Only the following string will be allowed : "roots" "coeff"
+    Only the following string will be allowed : "roots", "coeff", "c", "r".
 
 
 Removed functions

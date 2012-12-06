@@ -16,6 +16,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       data blank/40/,racine/27/,coeff/12/
       integer r(5)/27, 24, 24, 29, 28/
       integer c(5)/12, 24, 14, 15, 15/
+      integer size
+      character*256 tmpmsg
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -53,7 +55,8 @@ c
             call error(55)
             return
          endif
-         if (istk(il+5)-1.ne.5) then
+         size = istk(il+5)-1
+         if (size.ne.5 .and. size.ne.1) then
             w = 1
          endif
          il=il+5+istk(il+1)*istk(il+2)
@@ -66,7 +69,7 @@ c
             endif
          endif
          if(w.eq.0) then
-            do 22 i=1,5
+            do 22 i=1,size
                 if(c(i).ne.abs(istk(il+i-1)).and.
      $             r(i).ne.abs(istk(il+i-1))) then
                     w = 1
@@ -81,7 +84,7 @@ c
         call msgstxt('Warning:')
         call msgstxt('This usage of 3rd argument of poly is obsolete.')
         call msgstxt('It will be more strict in scilab 6.0.0.')
-        call msgstxt('Please use ''roots'' or ''coeff'' instead.')
+        call msgstxt('Please use roots, coeff, r or c instead.')
       endif
 
 c     formal variable

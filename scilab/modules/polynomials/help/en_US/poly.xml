@@ -29,7 +29,7 @@
                 <term>"flag"  </term>
                 <listitem>
                     <para>
-                        string ("roots", "coeff"), default value is <literal>"roots"</literal>.
+                        string ("roots" or "r", "coeff" or "c"), default value is <literal>"roots"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -123,7 +123,7 @@ h=(1+2*%s)/poly(1:4,'s','coeff')
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>The only values allowed for the third argument are "roots" and "coeff".</revremark>
+                <revremark>The only values allowed for the third argument are "roots", "coeff", "c" and "r".</revremark>
             </revision>
         </revhistory>
     </refsection>
