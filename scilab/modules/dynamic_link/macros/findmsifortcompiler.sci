@@ -13,6 +13,11 @@ function ifortCompiler = findmsifortcompiler()
   ifortCompiler = 'unknown'; // unknown
 
   if getos() == 'Windows' then
+    if getenv('IFORT_COMPILER13','NOK') <> 'NOK' then
+      ifortCompiler = 'ifort13';
+      return
+    end
+
     if getenv('IFORT_COMPILER12','NOK') <> 'NOK' then
       ifortCompiler = 'ifort12';
       return
