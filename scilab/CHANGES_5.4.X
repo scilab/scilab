@@ -55,6 +55,9 @@ Obsolete functions
 * getlinestyle() tagged as obsolete. Will be removed for Scilab 5.5.0.
   Use ged() instead.
 
+* getmark() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use ged() instead.
+
 
 Xcos
 =====
