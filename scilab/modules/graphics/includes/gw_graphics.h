@@ -65,7 +65,6 @@ GRAPHICS_IMPEXP int sci_rubberbox(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_rotate_axes(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot3d(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot2d1(char *fname, void *pvApiCtx);
-GRAPHICS_IMPEXP int sci_plot2d1_1(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot2d1_2(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot2d1_3(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot2d1_4(char *fname, void *pvApiCtx);

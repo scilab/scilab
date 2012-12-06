@@ -16,7 +16,7 @@
 
 /*------------------------------------------------------------------------*/
 /* file: sci_plot2d1.c                                                    */
-/* desc : interface for plot2d1, plot2d2, plot2d3 and plot2d4 routines    */
+/* desc : interface for plot2d2, plot2d3 and plot2d4 routines    */
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_graphics.h"
@@ -28,11 +28,6 @@
 #include "Scierror.h"
 #include "sci_malloc.h"
 
-/*--------------------------------------------------------------------------*/
-int sci_plot2d1_1 (char *fname, void *pvApiCtx)
-{
-    return sci_plot2d1_G("plot2d1", 1, pvApiCtx); /* NG */
-}
 /*--------------------------------------------------------------------------*/
 int sci_plot2d1_2 (char *fname, void *pvApiCtx)
 {

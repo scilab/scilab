@@ -30,7 +30,7 @@ function [z]=RndIntT(n)
     demo_viewCode("discrete_uni.dem.sce");
     plot2d3("onn",i',z'/n,[1,2],,,[-12,0,12,0.1]);
     i1=(imin:imax)';
-    plot2d1("onn",i1,ones(i1)/prod(size(imin:imax)),[-2,5]);
+    plot2d(i1, ones(i1)/prod(size(imin:imax)), [-2,5])
 
     xtitle(_("Simulation of a discrete uniform random variable"));
     current_axe = gca();

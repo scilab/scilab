@@ -270,8 +270,6 @@ Obsolete functions or features
 ==============================
 * maxfiles function is now obsolete.
 
-* xpause will be removed from Scilab 6.1. Please use sleep(..) instead.
-
 * isoview(xmin,xmax,ymin,ymax) will be removed from Scilab 6.1. Please use isoview("on"), replot(..) instead.
 
 
@@ -287,9 +285,13 @@ Removed Functions
 
 * extract_help_examples has been removed. (Undocumented and based on former help format).
 
+* xpause has been removed. Please use sleep(..) instead.
+
 * xclear has been removed. Please use clf instead.
 
 * fcontour2d has been removed. Please use contour2d instead.
+
+* plot2d1 has been removed. Please use plot2d() instead.
 
 * Symbolic module functions have been removed:
   - addf

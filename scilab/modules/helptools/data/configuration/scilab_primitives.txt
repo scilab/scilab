@@ -585,6 +585,7 @@ int16
 int2d
 int32
 int3d
+int64
 int8
 interp
 interp2d
@@ -737,7 +738,6 @@ pathconvert
 pathsep
 phase_simulation
 plot2d
-plot2d1
 plot2d2
 plot2d3
 plot2d4
@@ -898,6 +898,7 @@ uigetfont
 uimenu
 uint16
 uint32
+uint64
 uint8
 uipopup
 uiputfile

@@ -23,7 +23,7 @@
         <title>Syntax</title>
         <synopsis>yt=odedc(y0,nd,stdel,t0,t,f)</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -181,7 +181,7 @@ yp = f(t, yc, yd, flag, p1, p2,...)
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>y=odedc([y0c;y0d],nd,[h,delta],t0,t,f)</literal> computes
@@ -247,7 +247,7 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
             <literal>link</literal>).
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 //Linear system with switching input
@@ -264,7 +264,7 @@ xu=odedc([x0;u0],nu,stdel,0,t,phis);
 x=xu(1:2,:);
 u=xu(3,:);
 nx=2;
-plot2d1('onn',t',x',[1:nx],'161');
+plot2d(t, x', [1:nx], '161')
 plot2d2('onn',t',u',[nx+1:nx+nu],'000');
 //Fortran external (see fydot2.f):
 norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
@@ -283,7 +283,7 @@ norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
             x=xu(1:2,:);
             u=xu(3,:);
             nx=2;
-            plot2d1('onn',t',x',[1:nx],'161');
+            plot2d(t, x', [1:nx],'161')
             plot2d2('onn',t',u',[nx+1:nx+nu],'000');
             //Fortran external (see fydot2.f):
         </scilab:image>

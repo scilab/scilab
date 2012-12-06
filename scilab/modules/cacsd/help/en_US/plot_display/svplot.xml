@@ -22,7 +22,7 @@
         <title>Syntax</title>
         <synopsis>[SVM]=svplot(sl,[w])</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -41,7 +41,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             computes for the system <literal>sl=(A,B,C,D)</literal>
@@ -67,32 +67,34 @@ or
             The <literal>i</literal>-th column of the output matrix <literal>SVM</literal> contains the singular
             values of <literal>G</literal> for the <literal>i</literal>-th frequency value <literal>w(i)</literal>.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 SVM = svplot(sl)
  ]]></programlisting>
         <para>
             is equivalent to
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 SVM = svplot(sl,logspace(-3,3))  (continuous)
  ]]></programlisting>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 SVM = svplot(sl,logspace(-3,%pi)) (discrete)
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-x=logspace(-3,3);
-y=svplot(ssrand(2,2,4),x);
-clf();plot2d1("oln",x',20*log(y')/log(10));
+        <programlisting role="example"><![CDATA[
+x = logspace(-3,3);
+y = svplot(ssrand(2,2,4),x);
+clf()
+plot2d("ln", x, 20*log(y')/log(10))
 xgrid(12)
 xtitle("Singular values plot","(Rd/sec)", "Db");
  ]]></programlisting>
         <scilab:image>
             x=logspace(-3,3);
             y=svplot(ssrand(2,2,4),x);
-            clf();plot2d1("oln",x',20*log(y')/log(10));
+            clf()
+            plot2d("ln", x, 20*log(y')/log(10))
             xgrid(12)
             xtitle("Singular values plot","(Rd/sec)", "Db");
         </scilab:image>

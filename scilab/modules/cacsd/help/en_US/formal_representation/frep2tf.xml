@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -22,7 +22,7 @@
         <title>Syntax</title>
         <synopsis>[h [,err]]=frep2tf(frq,repf,dg [,dom,tols,weight])</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -81,34 +81,36 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             Frequency response to  transfer function conversion. The order of <literal>h</literal>
             is a priori given in <literal>dg</literal> which must be provided.
             The following linear system is solved in the least square sense.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
  weight(k)*(n( phi_k) - d(phi_k)*rep_k)=0, k=1,..,n
  ]]></programlisting>
         <para>
-            where <literal>phi_k= 2*%i*%pi*frq</literal> when <literal>dom='c'</literal> and <literal>phi_k=exp(2*%i*%pi*dom*frq</literal> if not. If the <literal>weight</literal> vector is not given a default 
+            where <literal>phi_k= 2*%i*%pi*frq</literal> when <literal>dom='c'</literal> and
+            <literal>phi_k=exp(2*%i*%pi*dom*frq</literal> if not. If the <literal>weight</literal>
+            vector is not given a default
             penalization is used (when <literal>dom='c'</literal>).
         </para>
         <para>
             A stable and minimum phase system can be obtained by using function <literal>factors</literal>.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 h=syslin('c',(s-1)/(s^3+5*s+20))
 frq=0:0.05:3;
 repf=repfreq(h,frq);
 clean(frep2tf(frq,repf,3))
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
 Sys=ssrand(1,1,10);
 frq=logspace(-3,2,200);
@@ -122,27 +124,26 @@ bode(frq,[rep;rep2])   //Responses of Sys and Sys2
 [gsort(spec(Sys('A'))), gsort(roots(Sys2('den')))] //poles
  ]]></programlisting>
         <scilab:image>
-            
             Sys=ssrand(1,1,10);
             frq=logspace(-3,2,200);
-            [frq,rep]=repfreq(Sys,frq); 
+            [frq,rep]=repfreq(Sys,frq);
             [Sys2,err]=frep2tf(frq,rep,10);
             Sys2=clean(Sys2)
-            
+
             [frq,rep2]=repfreq(Sys2,frq);
             bode(frq,[rep;rep2])
             [gsort(spec(Sys('A'))), gsort(roots(Sys2('den')))]
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
-dom=1/1000; // Sampling time 
-z=poly(0,'z');
-h=syslin(dom,(z^2+0.5)/(z^3+0.1*z^2-0.5*z+0.08))
-frq=(0:0.01:0.5)/dom;
-repf=repfreq(h,frq);
-[Sys2,err]=frep2tf(frq,repf,3,dom);
-[frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
+        <programlisting role="example"><![CDATA[
+dom = 1/1000; // Sampling time
+z = poly(0,'z');
+h = syslin(dom,(z^2+0.5)/(z^3+0.1*z^2-0.5*z+0.08))
+frq = (0:0.01:0.5)/dom;
+repf = repfreq(h,frq);
+[Sys2,err] = frep2tf(frq,repf,3,dom);
+[frq,rep2] = repfreq(Sys2,frq); //Frequency response of Sys2
 clf();
-plot2d1("onn",frq',abs([repf;rep2])');
+plot2d(frq, abs([repf;rep2])')
  ]]></programlisting>
         <scilab:image>
             dom=1/1000;
@@ -152,7 +153,7 @@ plot2d1("onn",frq',abs([repf;rep2])');
             repf=repfreq(h,frq);
             [Sys2,err]=frep2tf(frq,repf,3,dom);
             [frq,rep2]=repfreq(Sys2,frq);
-            plot2d1("onn",frq',abs([repf;rep2])');
+            plot2d(frq, abs([repf;rep2])')
         </scilab:image>
     </refsection>
     <refsection role="see also">
