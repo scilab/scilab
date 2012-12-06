@@ -61,6 +61,9 @@ Obsolete functions
 * getsymbol() tagged as obsolete. Will be removed for Scilab 5.5.0.
   Use ged() instead.
 
+* getfont() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use ged() instead.
+
 
 Xcos
 =====
