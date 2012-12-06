@@ -3,19 +3,19 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-04-22 10:13+0000\n"
+"PO-Revision-Date: 2012-11-21 09:50+0000\n"
 "Last-Translator: Alvin Tseng <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16272)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr ""
+msgstr "%s: 輸入引數 #%d 型態錯誤: 需爲實數矩陣。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
@@ -93,7 +93,7 @@ msgstr "自相關 (Autocorrelation) 函數"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
-msgstr ""
+msgstr "%s: 輸入引數的值錯誤 #%d: 需爲穩定系統。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -405,7 +405,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
-msgstr ""
+msgstr "%s: 輸入引數的值錯誤 #%d: 需爲穩定系統。\n"
 
 #
 # File: macros/minreal.sci, line: 22
@@ -433,7 +433,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
-msgstr ""
+msgstr "%s: 忽略輸入引數 #%d。\n"
 
 #, c-format
 msgid ""
@@ -573,13 +573,13 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
-msgstr ""
+msgstr "%s: 輸入引數的型態錯誤 #%d: 需爲線性系統。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Single input, single output system "
 "expected.\n"
-msgstr ""
+msgstr "%s: 輸入引數的型態錯誤 #%d: 需爲SISO系統。\n"
 
 #
 # File: macros/gamitg.sci, line: 67
@@ -695,7 +695,7 @@ msgstr "%s: %s 在虛軸上(或接近) 有零點.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
-msgstr ""
+msgstr "%s: 輸入引數的值錯誤 #%d: %s非滿秩。\n"
 
 #
 # File: macros/h_inf.sci, line: 243
@@ -774,12 +774,12 @@ msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是時-連續線性系統
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
-msgstr ""
+msgstr "%s: 輸入引數的值錯誤 #%d: 不應爲純虛軸極點。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Discrete time system expected.\n"
-msgstr ""
+msgstr "%s: 輸入引數的值錯誤 #%d: 需爲離散時間系統。\n"
 
 #, c-format
 msgid "%s: Square but singular system.\n"
@@ -813,7 +813,7 @@ msgstr "%s: %s 非對稱.\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
-msgstr ""
+msgstr "%s: 輸入引數的型態錯誤 #%d: 需爲線性子空間。\n"
 
 #
 # File: macros/linfn.sci, line: 111
@@ -853,7 +853,7 @@ msgstr "%s: %s 非零! (設為零)"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
-msgstr ""
+msgstr "%s: 輸入引數的值錯誤 #%d: 時域需爲 'c' 或 'd'。\n"
 
 #
 # File: macros/minreal.sci, line: 29

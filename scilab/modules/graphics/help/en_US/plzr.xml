@@ -36,7 +36,7 @@
         <title>Description</title>
         <para>
             <code>plzr(sl)</code> produces a pole-zero plot of the linear system
-            <varname>sl</varname> (<literal>syslin</literal> list)
+            <varname>sl</varname> (<literal>syslin</literal> list).
         </para>
     </refsection>
     <!--  

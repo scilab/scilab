@@ -46,7 +46,7 @@
         <para>
             <warning>
                 This function is obsolete.
-            </warning>.
+            </warning>
             Use the Scilab graphic objects representation instead (see the <link
             linkend="set">set</link> and <link linkend="get">get</link>
             functions as well as the <link linkend="graphics_entities">graphics
