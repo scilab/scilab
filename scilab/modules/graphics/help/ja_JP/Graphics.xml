@@ -916,14 +916,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xbasr">xbasr</link>
-                </term>
-                <listitem>
-                    <para>グラフィックウインドウを再描画</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="replot">replot</link>
                 </term>
                 <listitem>

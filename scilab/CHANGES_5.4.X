@@ -45,6 +45,8 @@ Removed functions
 
 * ricc_old() removed. Use ricc() instead.
 
+* xbasr() removed. Automatically managed by Scilab now.
+
 
 Obsolete functions
 ===================

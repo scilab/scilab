@@ -92,9 +92,6 @@ replot([-3,-2,8,4],f.children(2))
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="xbasr">xbasr</link>
-            </member>
-            <member>
                 <link linkend="clf">clf</link>
             </member>
         </simplelist>
