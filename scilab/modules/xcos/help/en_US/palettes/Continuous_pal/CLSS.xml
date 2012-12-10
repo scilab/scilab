@@ -361,7 +361,7 @@ u_0(t)
             <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/CLSS_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../examples/continuous_pal/CLSS_Example.png" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/CLSS_Example.xcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-10-15 10:34+0100\n"
+"Revision-Date: 2012-11-14 11:00+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 135
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -38,7 +38,7 @@ msgstr ""
 # File: sci_gateway/c/sci_unzoom.c, line: 69
 # File: sci_gateway/c/sci_winsid.c, line: 43
 # File: sci_gateway/c/sci_xset.c, line: 273
-# File: src/c/BuildObjects.c, line: 447
+# File: src/c/BuildObjects.c, line: 442
 # File: src/c/Champ.c, line: 97
 # File: src/c/Champ.c, line: 123
 # File: src/c/Contour.c, line: 312
@@ -761,29 +761,29 @@ msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr ""
 
 #
-# File: src/c/BuildObjects.c, line: 204
+# File: src/c/BuildObjects.c, line: 203
 msgid "The parent has to be a FIGURE\n"
 msgstr ""
 
 #
-# File: src/c/BuildObjects.c, line: 367
-# File: src/c/BuildObjects.c, line: 430
-# File: src/c/BuildObjects.c, line: 778
-# File: src/c/BuildObjects.c, line: 1030
-# File: src/c/BuildObjects.c, line: 1176
-# File: src/c/BuildObjects.c, line: 1313
-# File: src/c/BuildObjects.c, line: 1499
-# File: src/c/BuildObjects.c, line: 1889
+# File: src/c/BuildObjects.c, line: 363
+# File: src/c/BuildObjects.c, line: 426
+# File: src/c/BuildObjects.c, line: 773
+# File: src/c/BuildObjects.c, line: 1025
+# File: src/c/BuildObjects.c, line: 1171
+# File: src/c/BuildObjects.c, line: 1308
+# File: src/c/BuildObjects.c, line: 1494
+# File: src/c/BuildObjects.c, line: 1884
 msgid "The parent has to be a SUBWIN\n"
 msgstr ""
 
 #
-# File: src/c/BuildObjects.c, line: 877
+# File: src/c/BuildObjects.c, line: 872
 msgid "Width and height must be positive.\n"
 msgstr ""
 
 #
-# File: src/c/BuildObjects.c, line: 1427
+# File: src/c/BuildObjects.c, line: 1422
 msgid "Impossible case when building axis\n"
 msgstr ""
 

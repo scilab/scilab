@@ -145,6 +145,7 @@ images/blocks/CVS.svg \
 images/blocks/DEADBAND.svg \
 images/blocks/Diode.svg \
 images/blocks/DSCOPE.svg \
+images/blocks/Flowmeter.svg \
 images/blocks/Ground.svg \
 images/blocks/Gyrator.svg \
 images/blocks/HYSTHERESIS.svg \
@@ -230,7 +231,9 @@ images/palettes/CMAT3D.png \
 images/palettes/CMATVIEW.png \
 images/palettes/CMSCOPE.png \
 images/palettes/ConstantVoltage.png \
+images/palettes/CONST_f.png \
 images/palettes/CONST_m.png \
+images/palettes/CONST.png \
 images/palettes/CONSTRAINT2_c.png \
 images/palettes/CONSTRAINT_c.png \
 images/palettes/CONVERT.png \
@@ -247,6 +250,7 @@ images/palettes/DEADBAND.png \
 images/palettes/DEBUG_SCICOS.png \
 images/palettes/DELAY_f.png \
 images/palettes/DELAYV_f.png \
+images/palettes/DEMUX_f.png \
 images/palettes/DEMUX.png \
 images/palettes/DERIV.png \
 images/palettes/DFLIPFLOP.png \
@@ -257,6 +261,8 @@ images/palettes/DLRADAPT_f.png \
 images/palettes/DLR.png \
 images/palettes/DLSS.png \
 images/palettes/DOLLAR_f.png \
+images/palettes/DOLLAR_m.png \
+images/palettes/DOLLAR.png \
 images/palettes/EDGE_TRIGGER.png \
 images/palettes/ENDBLK.png \
 images/palettes/END_c.png \
@@ -271,12 +277,15 @@ images/palettes/EXTRACTBITS.png \
 images/palettes/EXTRACTOR.png \
 images/palettes/EXTRACT.png \
 images/palettes/EXTTRI.png \
+images/palettes/Flowmeter.png \
 images/palettes/fortran_block.png \
 images/palettes/freq_div.png \
 images/palettes/FROMMO.png \
 images/palettes/FROM.png \
 images/palettes/FROMWSB.png \
 images/palettes/GAINBLK_f.png \
+images/palettes/GAINBLK.png \
+images/palettes/GAIN_f.png \
 images/palettes/GENERAL_f.png \
 images/palettes/generic_block3.png \
 images/palettes/GENSIN_f.png \
@@ -334,6 +343,7 @@ images/palettes/M_freq.png \
 images/palettes/MIN_f.png \
 images/palettes/Modulo_Count.png \
 images/palettes/M_SWITCH.png \
+images/palettes/MUX_f.png \
 images/palettes/MUX.png \
 images/palettes/NEGTOPOS_f.png \
 images/palettes/NMOS.png \
@@ -382,6 +392,7 @@ images/palettes/Sigbuilder.png \
 images/palettes/SIGNUM.png \
 images/palettes/SINBLK_f.png \
 images/palettes/SineVoltage.png \
+images/palettes/SOM_f.png \
 images/palettes/SourceP.png \
 images/palettes/SQRT.png \
 images/palettes/SRFLIPFLOP.png \

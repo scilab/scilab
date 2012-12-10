@@ -119,6 +119,17 @@ extern "C" {
      */
     SciErr allocComplexMatrixOfDoubleAsInteger(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piReal, int** _piImg);
 
+
+    /**
+     * Allocate a doublecomplex variable
+     * @param[in] _iVar variable number
+     * @param[in] _iRows number of rows
+     * @param[in] _iCols number of columns
+     * @param[out] _pdblData return pointer to doublecomplex data
+     * @return if the operation succeeded ( 0 ) or not ( !0 )
+     */
+    SciErr allocComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const doublecomplex** _pdblData);
+
     /**
      * Create a double variable
      * @param[in] _iVar variable number

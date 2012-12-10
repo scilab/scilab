@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: uk\n"
 
 msgid "Polynomials"
@@ -37,9 +37,6 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати число з "
 "рухомою комою, поліном або масив з раціональних дробів.\n"
-
-msgid "Computing determinant: Be patient...\n"
-msgstr "Обчислення визначника: зачекайте…\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"

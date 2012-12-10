@@ -4,8 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-myMat =[     0.6029980    4.2470508    3.2442814    3.7427533  
-    1.4276821    2.6285304    4.9615955    2.0520295  
+myMat =[     0.6029980    4.2470508    3.2442814    3.7427533
+    1.4276821    2.6285304    4.9615955    2.0520295
     4.3037573    4.9656049    0.2502099    3.0422632  ];
 myMat = resize_matrix( myMat, 3, 3 ) // reduce the matrix size
  myMat  =
@@ -38,6 +38,9 @@ assert_checkequal(size(myMatBoolean), [2, 2]);
 myMatBoolean = resize_matrix( myMatBoolean, 3, 5 );
 assert_checkequal(myMatBoolean, [%f,%f,%f,%f,%f;%f,%f,%f,%f,%f;%f,%f,%f,%f,%f]);
 assert_checkequal(size(myMatBoolean), [3, 5]);
+myMatBoolean(1:4:9) = %t;
+myMatBoolean = resize_matrix(myMatBoolean, 3, 3);
+assert_checkequal(myMatBoolean, [%t %f %f; %f %t %f; %f %f %t]);
 // string matrix
 myMatString = ["Scilab","the";"Open Source","Scientific";"Software","Package"];
 myMatString = resize_matrix( myMatString, 3, 1 );

@@ -30,49 +30,52 @@
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                    <para>A character string to split</para>
+                    <para>a character string to split.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ind</term>
                 <listitem>
-                    <para>a vector of stricly increasing indices in the interval
-                        <literal>[1 length(str)-1] </literal>.
+                    <para>
+                        a vector of strictly increasing indices in the interval
+                        <literal>[1 length(str)-1]</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>the resulting column vector of string (dimension &gt;<literal>
-                            size(ind,'*')+1
-                        </literal>
-                        ).
+                    <para>
+                        the resulting column vector of string (dimension &gt;<literal>size(ind,'*')+1</literal>).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>matched_separators</term>
                 <listitem>
-                    <para>a column vector of the matched separators</para>
+                    <para>
+                        a column vector of the matched separators.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>matrix_of_strings</term>
                 <listitem>
-                    <para>a matrix of strings to search in str</para>
+                    <para>
+                        a matrix of strings to search in <varname>str</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>regexp_pattern</term>
                 <listitem>
-                    <para>a regular expression pattern</para>
+                    <para>a regular expression pattern.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>limit</term>
                 <listitem>
-                    <para>maximum of limit elements</para>
+                    <para>maximum of limit elements.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -80,38 +83,41 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>v= strsplit(str, ind)</literal> splits the string
-            <literal>str</literal> into a vector of strings at the points given by the
-            indices in <literal>ind</literal> (after each characters pointed to by the
-            index in ind).
+            <code>v= strsplit(str, ind)</code> splits the string
+            <varname>str</varname> into a vector of strings at the points given by the
+            indices in <varname>ind</varname> (after each characters pointed to by the
+            index in <varname>ind</varname>).
         </para>
         <para>
-            <literal>strsplit(str)</literal> returns same thing as
-            <literal>strsplit(str,1:length(str)-1).</literal>
+            <code>strsplit(str)</code> returns same thing as
+            <code>strsplit(str,1:length(str)-1).</code>
         </para>
         <para>
-            <literal>strsplit(str, regexp_pattern, limit)</literal> returns an
-            column vector of strings, each of which is a substring of str formed by
-            splitting it on boundaries formed by the case-sensitive regular expression
-            pattern.
-        </para>
-        <para>If there are n occurrences of pattern , the returned array will
-            contain n+1 items.
-        </para>
-        <para>For example, if there is no occurrence of pattern , an array with
-            only one element will be returned. Of course, this is also true if str is
-            empty.
-        </para>
-        <para>If limit is set, the returned array will contain a maximum of limit
-            elements with the last element containing the whole rest of string.
+            <code>strsplit(str, regexp_pattern, limit)</code> returns an
+            column vector of strings, each of which is a substring of
+            <varname>str</varname> formed by splitting it on boundaries formed
+            by the case-sensitive regular expression pattern.
         </para>
         <para>
-            <literal>strsplit(str, matrix_of_strings, limit)</literal> , str is
-            split on any of elements. It allows to split on different separators
-            for users without regex knowledge.
+            If there are <literal>n</literal> occurrences of pattern, the
+            returned array will contain <literal>n+1</literal> items.
         </para>
         <para>
-            If <literal>strsplit()</literal> is called with a second output
+            For example, if there is no occurrence of pattern, an array with
+            only one element will be returned. Of course, this is also true if <varname>str</varname> is empty.
+        </para>
+        <para>
+            If <varname>limit</varname> is set, the returned array will contain
+            a maximum of limit elements with the last element containing the
+            whole rest of string.
+        </para>
+        <para>
+            <code>strsplit(str, matrix_of_strings, limit)</code> splits
+            <varname>str</varname> on any of elements. It allows to
+            split on different separators for users without regexp knowledge.
+        </para>
+        <para>
+            If <code>strsplit()</code> is called with a second output
             argument, the column vector of the matched separators is returned.
         </para>
     </refsection>
@@ -138,6 +144,9 @@ strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/")
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="part"> part</link>
+            </member>
             <member>
                 <link linkend="strcat"> strcat</link>
             </member>

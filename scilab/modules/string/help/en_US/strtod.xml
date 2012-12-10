@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -13,12 +13,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strtod" xml:lang="en">
     <refnamediv>
         <refname>strtod</refname>
-        <refpurpose>Convert string to double.</refpurpose>
+        <refpurpose>convert string to double</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>d =  strtod(str)
-            [d,endstr] = strtod(str)
+        <synopsis>
+            d =  strtod(str)
+            [d, endstr] = strtod(str)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -27,20 +28,26 @@
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                    <para>A character string or matrix of character strings</para>
+                    <para>
+                        a character string or matrix of character strings.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>d</term>
                 <listitem>
-                    <para>A real or matrix of reals</para>
+                    <para>
+                        a real or matrix of reals.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>endstr</term>
                 <listitem>
-                    <para>A character string or matrix of character strings (next
-                        character in str after the numerical value).
+                    <para>
+                        a character string or matrix of character strings (next
+                        character in <varname>str</varname> after the numerical
+                        value).
                     </para>
                 </listitem>
             </varlistentry>
@@ -49,9 +56,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>[d,endstr] = strtod(str)</literal> Parses strings str
-            interpreting its content as a floating point number and returns its value
-            as a real.
+            <code>[d, endstr] = strtod(str)</code> parses strings
+            <varname>str</varname> interpreting its content as a floating point
+            number and returns its value as a real.
         </para>
     </refsection>
     <refsection>

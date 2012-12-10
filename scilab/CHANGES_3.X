@@ -62,7 +62,7 @@ OTHERS IMPROVEMENTS
   - functions with no argument can be called without () if called as a command
   - More efficient number parsing (thanks to Bruno Pincon)
  MISC
-  - N dimensionnal matrices efficiency improved (thanks to Bruno Pincon)
+  - N dimensional matrices efficiency improved (thanks to Bruno Pincon)
   - cd, ls, clc, clf, tohome functions added
   - Elementary functions evaluation in the complex plane revisited  (thanks to Bruno Pincon)
   - History of commands rewritten to make it persistant between calls to Scilab

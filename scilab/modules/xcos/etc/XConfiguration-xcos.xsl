@@ -121,11 +121,11 @@
                     </xsl:for-each>
                 </Select>
                 <Label gridx="1" gridy="8" text="_(Maximum step size (0 means no limit))"/>
-                <NumericalSpinner gridx="2" gridy="8" min-value="0" increment="1" length="4" listener="ActionListener" value="{@max-step-size}">
+                <ScilabDoubleEntry gridx="2" gridy="8" value="{@max-step-size}" listener="PropertyChangeListener">
                     <actionPerformed choose="max-step-size">
                         <xsl:call-template name="context"/>
                     </actionPerformed>
-                </NumericalSpinner>
+                </ScilabDoubleEntry>
             </Grid>
         </Title>
         <VSpace height="10"/>

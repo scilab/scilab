@@ -32,7 +32,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
     char *ptrFormat = NULL;
     int K = 0;
     int i = 0;
-    int lenghtFormat = 0;
+    int lengthFormat = 0;
     int NumberPercent = 0;
     int NumberCols = 0;
     int nmax = 0;
@@ -49,7 +49,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
     int k = 0;
     int mOut = 0;
     int nOut = 0;
-    int lenghtSplitChar = (int)strlen(SPLIT_ON_CR_IN_FORMAT);
+    int lengthSplitChar = (int)strlen(SPLIT_ON_CR_IN_FORMAT);
 
     Nbvars = 0;
     CheckRhs(1, 1000);
@@ -131,13 +131,13 @@ int sci_msprintf(char *fname, unsigned long fname_len)
         }
     }
 
-    lenghtFormat = (int)strlen(ptrFormat);
-    for (i = 0; i < lenghtFormat; i++)
+    lengthFormat = (int)strlen(ptrFormat);
+    for (i = 0; i < lengthFormat; i++)
     {
         if (ptrFormat[i] == PERCENT_CHAR)
         {
             NumberPercent++;
-            if ( (i + 1 < lenghtFormat) && (ptrFormat[i + 1] == PERCENT_CHAR))
+            if ( (i + 1 < lengthFormat) && (ptrFormat[i + 1] == PERCENT_CHAR))
             {
                 NumberPercent--;
                 i++;
@@ -225,7 +225,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
         pStrTmp1 = pStrTmp;
         while (*pStrTmp != '\0')
         {
-            if (strncmp(pStrTmp, SPLIT_ON_CR_IN_FORMAT, lenghtSplitChar) == 0)
+            if (strncmp(pStrTmp, SPLIT_ON_CR_IN_FORMAT, lengthSplitChar) == 0)
             {
                 k = (int)(pStrTmp - pStrTmp1);
                 if (!cat_to_last)
@@ -292,7 +292,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                     pOutputStrings[mOut - 1][k + ll] = EMPTY_CHAR;
                 }
                 k = 0;
-                pStrTmp += lenghtSplitChar;
+                pStrTmp += lengthSplitChar;
                 pStrTmp1 = pStrTmp;
                 cat_to_last = 0;
             }
@@ -379,11 +379,14 @@ int sci_msprintf(char *fname, unsigned long fname_len)
             }
         }
 
-        if (strncmp(pStrTmp - lenghtSplitChar, SPLIT_ON_CR_IN_FORMAT, lenghtSplitChar) != 0)
+        if (strncmp(pStrTmp - lengthSplitChar, SPLIT_ON_CR_IN_FORMAT, lengthSplitChar) != 0)
         {
             cat_to_last = 1;
         }
-        if (Rhs == 1) break;
+        if (Rhs == 1)
+        {
+            break;
+        }
 
     }
 
@@ -393,7 +396,10 @@ int sci_msprintf(char *fname, unsigned long fname_len)
         ptrFormat = NULL;
     }
 
-    if (rval == RET_BUG) return 0;
+    if (rval == RET_BUG)
+    {
+        return 0;
+    }
 
     /* Create a Scilab String */
     nOut = 1;

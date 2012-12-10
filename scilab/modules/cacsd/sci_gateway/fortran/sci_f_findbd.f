@@ -446,7 +446,7 @@ C
          IP =IP +1
       END IF 
 C
-C Determine the lenghts of working arrays.
+C Determine the lengths of working arrays.
 C The default value for LDWORK is computed using the formula
 C      LDWORK = MAX( minimum value needed, 2*CSIZE/3,
 C     $              CSIZE - ( M + L )*NSMP - 2*N*( N + M + L ) - L*M )

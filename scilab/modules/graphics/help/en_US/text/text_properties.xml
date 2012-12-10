@@ -116,7 +116,7 @@
             <varlistentry>
                 <term>text_box: </term>
                 <listitem>
-                    <para>A two dimensionnal vector specifying the size of a rectangle in user coordinates.
+                    <para>A two dimensional vector specifying the size of a rectangle in user coordinates.
                         The rectangle is used when the text_box_mode property is set to
                         <emphasis role="bold">'centered'</emphasis> or <emphasis role="bold">'filled'</emphasis>.
                     </para>

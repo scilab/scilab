@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: ca\n"
 
 msgid "Polynomials"
@@ -36,9 +36,6 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
 "decimal amb coma flotant, un polinomi o un vector de fraccions racionals.\n"
-
-msgid "Computing determinant: Be patient...\n"
-msgstr "S'està calculant el determinant: Tingueu paciència...\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"

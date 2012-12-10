@@ -101,6 +101,7 @@ c     scalar^matrix treated as scalar.^matrix (see matxpow)
       if(m1.ne.n1) then
          if(mn2.eq.1.and.(m1.eq.1.or.n1.eq.1)) then
 c     .     vect^scalar treated as  vect.^scalar (see matxpow)
+            call msgs(116)
             sr=stk(l2)
             si=stk(l2+1)
             if(it1.eq.0) then

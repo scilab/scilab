@@ -24,7 +24,7 @@ function [x,y,typ]=PENDULUM_ANIM(job,arg1,arg2)
       if ~ok then break,end
       mess=[]
       if plen<=0|csiz<=0 then
-        mess=[mess;'Pendulum lenght and cart size must be positive.';' ']
+        mess=[mess;'Pendulum length and cart size must be positive.';' ']
         ok=%f
       end
       if ymin>=ymax then

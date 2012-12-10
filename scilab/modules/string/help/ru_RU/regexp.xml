@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA -
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+xmlns:mml="http://www.w3.org/1998/Math/MathML"
+xmlns:db="http://docbook.org/ns/docbook"
+xml:id="regexp" xml:lang="ru">
+    <refnamediv>
+        <refname>regexp</refname>
+        <refpurpose>
+            поиск подстроки, соответствующей строке регулярного выражения
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            [start] = regexp(input, pattern, [flag])
+            [start, end] = regexp(input, pattern, [flag])
+            [start, end, match] = regexp(input, pattern, [flag])
+            [start, end, match, foundString] = regexp(input, pattern, [flag])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>input</term>
+                <listitem>
+                    <para>символьная строка.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pattern</term>
+                <listitem>
+                    <para>
+                        символьная строка, шаблон (по правилам регулярных
+                        выражений).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>start</term>
+                <listitem>
+                    <para>
+                        начальный индекс каждой подстроки
+                        <varname>input</varname>, которая соответствует строке
+                        регулярного выражения <varname>pattern</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>end</term>
+                <listitem>
+                    <para>
+                        конечный индекс каждой подстроки 
+                        <varname>input</varname>, которая соответствует строке
+                        регулярного выражения <varname>pattern</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>match</term>
+                <listitem>
+                    <para>
+                        текст каждой подстроки <varname>input</varname>,
+                        которая соответствует шаблону <varname>pattern</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>foundString</term>
+                <listitem>
+                    <para>
+                        текст, выделенный элементами шаблона, заключёнными в скобки.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[flag]</term>
+                <listitem>
+                    <para>
+                        <literal>'o'</literal> для одного соответствия шаблону.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Правила регулярного выражения схожи с языком Perl. Для быстрого старта смотрите
+            <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
+            Для более глубокого изучения смотрите
+            <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>,
+            а для справки смотрите
+            <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>.
+        </para>
+        <para>
+            Отличие от Perl заключается в том, что соответствие позиции, а не символа (например, с <literal>/^/</literal> или
+            <literal>/(?=o)/</literal>) будет успешным в Perl, но не в Scilab'е.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+regexp('xabyabbbz','/ab*/','o')
+regexp('a!','/((((((((((a))))))))))\041/')
+regexp('ABCC','/^abc$/i')
+regexp('ABC','/ab|cd/i')
+[a b c]=regexp('XABYABBBZ','/ab*/i')
+
+piString="3.14"
+[a,b,c,piStringSplit]=regexp(piString,"/(\d+)\.(\d+)/")
+disp(piStringSplit(1))
+disp(piStringSplit(2))
+
+[a,b,c,d]=regexp('xabyabbbz','/ab(.*)b(.*)/')
+size(d)
+
+// получение имени сервера из URL
+myURL="http://www.scilab.org/download/";
+[a,b,c,d]=regexp(myURL,'@^(?:http://)?([^/]+)@i')
+
+str='foobar: 2012';
+// использование именованных элементов шаблона
+[a,b,c,d]=regexp(str,'/(?P<name>\w+): (?P<digit>\d+)/')
+d(1)=="foobar"
+d(2)=="2012"
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strindex">strindex</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    Добавлен новый выходной аргумент, foundString, для
+                    получения соответствий элементам шаблона.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

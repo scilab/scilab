@@ -44,6 +44,16 @@
             вдоль прямой линии <literal>a b</literal> на комплексной плоскости.
         </para>
     </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+function y=f(z)
+  y = z^(3 + %pi * %i)
+endfunction
+
+intc(1+%i, 4-%i, f)
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">

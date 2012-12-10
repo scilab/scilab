@@ -332,7 +332,6 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     if(lhs > 1)
         rvec = 1;
     end
-
     //**************************
     //First variable A :
     //**************************

@@ -17,10 +17,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>row=grep(haystack,needle )
-            [row,which]=grep(haystack,needle )
-            row=grep(haystack,needle ,[flag])
-            [row,which]=grep(haystack,needle ,[flag])
+        <synopsis>row = grep(haystack, needle )
+            [row, which] = grep(haystack, needle )
+            row = grep(haystack, needle, [flag])
+            [row, which] = grep(haystack, needle, [flag])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -29,21 +29,23 @@
             <varlistentry>
                 <term>haystack</term>
                 <listitem>
-                    <para>A Row vector of character strings.</para>
+                    <para>a row vector of character strings.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>needle</term>
                 <listitem>
-                    <para>A character string or a row vector of character strings . The
-                        string(s) to search in <literal>haystack.</literal>
+                    <para>
+                        a character string or a row vector of character strings. The
+                        string(s) to search in <varname>haystack</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>row</term>
                 <listitem>
-                    <para>vector of indices: row where a match has been found or an
+                    <para>
+                        a vector of indices: row where a match has been found or an
                         empty matrix if no match found.
                     </para>
                 </listitem>
@@ -51,15 +53,16 @@
             <varlistentry>
                 <term>which</term>
                 <listitem>
-                    <para>vector of indices: index of needle string found or an empty
-                        matrix if no match found.
+                    <para>
+                        a vector of indices: index of <varname>needle</varname> string found
+                        or an empty matrix if no match found.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <para>Character ("r" for regular expression)</para>
+                    <para>a character (<literal>"r"</literal> for regular expression).</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -67,27 +70,28 @@
     <refsection>
         <title>Description</title>
         <para>
-            Foreach entry of <literal>haystack </literal>, grep searches if at
-            least a string in <literal>needle</literal> which matches a substring.
-            The <literal>haystack</literal> entries index where at least a match has
-            been found are returned in the <literal>row</literal> output argument.
-            The optional <literal>which</literal> output argument gives the index
-            of first string of <literal>needle</literal> found.
+            For each entry of <varname>haystack</varname>, <function>grep</function>
+            searches if at least a string in <varname>needle</varname> which matches a
+            substring. The <varname>haystack</varname> entries index where at least a
+            match has been found are returned in the <varname>row</varname> output
+            argument. The optional <varname>which</varname> output argument gives the
+            index of first string of <varname>needle</varname> found.
         </para>
         <para>
-            When using the third parameter <literal>flag="r"</literal>, the
-            <literal>needle</literal> is expected to be a regular expression string.
-            In this case, <literal>grep</literal> uses the
-            <literal>needle</literal> as a regular expression and compares it
-            against <literal>haystack</literal> according to the regular express
+            When using the third parameter <varname>flag</varname><literal>="r"</literal>, the
+            <varname>needle</varname> is expected to be a regular expression string.
+            In this case, <function>grep</function> uses the
+            <varname>needle</varname> as a regular expression and compares it
+            against <varname>haystack</varname> according to the regular expressions
             rules. See the <link linkend="regexp">regexp</link> function for details about
             regular expressions.
         </para>
     </refsection>
     <refsection>
         <title>Example #1</title>
-        <para>In the following example, we search one or two strings in a text,
-            which is stored in the <literal>txt</literal> variable.
+        <para>
+            In the following example, we search one or two strings in a text,
+            which is stored in the <varname>txt</varname> variable.
         </para>
         <programlisting role="example"><![CDATA[ 
 txt=['find matches of a string in a vector of strings'

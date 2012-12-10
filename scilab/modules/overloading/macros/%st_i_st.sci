@@ -42,7 +42,7 @@ function M=%st_i_st(varargin)
       dims=[dims(1:rhs-3) prod(dims(rhs-2:$))]
       if size(find(dims>1),'*')>1 then reduced_index=%t,end
     end
-    //convert N-dimensionnal indexes to 1-D and extend dims if necessary
+    //convert N-dimensional indexes to 1-D and extend dims if necessary
     [Ndims,I]=convertindex(list(dims,double(matrix(N.dims,1,-1))),varargin(1:$-2));Ndims=matrix(Ndims,1,-1)
     if reduced_index&or(Ndims<>dims)  then error(21),end
     if or(Ndims>dims) then

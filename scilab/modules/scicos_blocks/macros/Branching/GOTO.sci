@@ -223,7 +223,7 @@ function [x,y,typ]=GOTO(job,arg1,arg2)
     exprs=['A';sci2exp(1)]
 
     gr_i='';
-    x=standard_define([1.5 1.5],model,exprs,gr_i)
+    x=standard_define([2 1],model,exprs,gr_i)
     x.graphics.id="Goto"
   end
 endfunction

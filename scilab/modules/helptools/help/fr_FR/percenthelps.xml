@@ -22,7 +22,7 @@
         <para>
             <literal>%helps</literal> est une matrice de chaînes de caractères à deux colonnes. Chaque ligne est formée comme ceci
         </para>
-        <programlisting><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 répertoire_du_chapitre    titre_du_chapitre
  ]]></programlisting>
         <para>

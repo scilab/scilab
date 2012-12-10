@@ -35,7 +35,7 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
     private static final String entete = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\n          \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"{$lang}\" lang=\"{$lang}\">\n  <head{$profile}>\n    <title><!--<title>--> <!--<subtitle>--></title>\n    <style type=\"text/css\" media=\"all\">\n      @import url(\"site.css\");\n      @import url(\"css/scilab_code.css\");\n      @import url(\"css/style.css\");\n    </style>\n    <!--[if IE]><![endif]><![endif]-->\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n    <!-- <link rel=\"shortcut icon\" href=\"{$_SERVER['STATIC_ROOT']}/favicon.ico\" />{$link}\n     $canonical\n    <script type=\"text/javascript\" src=\"{$_SERVER['STATIC_ROOT']}/userprefs.js\"></script>{$base}{$meta}{$moreheadtags}\n        -->\n  </head>\n  <body>";
 
     private List<String> files;
-    private Map<String, Set<String>> macroUsage = new HashMap();
+    private Map<String, Set<String>> macroUsage = new HashMap<String, Set<String>>();
     private ScilabLexer scilabLexer;
     private String outputDirectory;
     private Map<String, String> mapId;
@@ -129,10 +129,10 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
 
     private void generateMapId(String filename) {
         BufferedReader input = null;
-        files = new ArrayList();
-        mapId = new HashMap();
+        files = new ArrayList<String>();
+        mapId = new HashMap<String, String>();
         try {
-            input =  new BufferedReader(new FileReader(filename));
+            input = new BufferedReader(new FileReader(filename));
             String line = null;
             while ((line = input.readLine()) != null) {
                 files.add(line);
@@ -171,7 +171,7 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
         public void handleMacro(String macro) throws IOException {
             Set<String> set = macroUsage.get(macro);
             if (set == null) {
-                set = new HashSet();
+                set = new HashSet<String>();
                 macroUsage.put(macro, set);
             }
             set.add(currentCommand);

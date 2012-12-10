@@ -58,6 +58,20 @@
             <literal>prompt(userprompt)</literal> sets the prompt.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+currentPrompt = prompt();
+disp(currentPrompt); // Probably "-->"
+
+[currentPrompt, pauseLevel] = prompt();
+disp(pauseLevel); // Probably 0
+
+prompt(">>"); // Create a new prompt just for the next command
+
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

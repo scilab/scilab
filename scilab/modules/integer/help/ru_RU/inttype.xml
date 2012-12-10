@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="inttype">
+  <refnamediv>
+    <refname>inttype</refname>
+    <refpurpose>возвращает тип целых чисел, используемых в типах целочисленных данных</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Последовательность вызова</title>
+    <synopsis>[i] = inttype(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Аргументы</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+	  <para>матрица целых чисел (см. <function>int8</function>,...).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>i</term>
+        <listitem>
+          <para>целое число.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Описание</title>
+    <para>
+      <code>inttype(x)</code> возвращает целое число <varname>i</varname>, которое является
+      типом элементов <varname>x</varname> как показано ниже:
+    </para>
+    <para>
+      1 
+      :  однобайтное представление целого числа;
+    </para>
+    <para>
+      2 
+      :  двухбайтное представление целого числа;
+    </para>
+    <para>
+      4 
+      :  четырёхбайтное представление целого числа;
+    </para>
+    <para>
+      11 
+      :  однобайтное представление беззнакового целого числа;
+    </para>
+    <para>
+      12 
+      :  двухбайтное представление беззнакового целого числа;
+    </para>
+    <para>
+      14 
+      :  четырёхбайтное представление беззнакового целого числа.
+    </para>
+    <para>
+      Если тип <varname>x</varname> - <literal>double</literal> (число
+	  удвоенной точности), то <varname>i</varname> равен <literal>0</literal>.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Примеры</title>
+    <programlisting role="example"><![CDATA[ 
+x=uint16(1:10);
+inttype(x)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>Смотрите также</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="double">double</link>
+      </member>
+      <member>
+        <link linkend="iconvert">iconvert</link>
+      </member>
+      <member>
+        <link linkend="int8">int8</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>
+ 

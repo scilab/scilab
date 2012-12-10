@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-09-02 18:39+0000\n"
-"Last-Translator: Petersen <Unknown>\n"
+"PO-Revision-Date: 2012-11-29 17:22+0000\n"
+"Last-Translator: peter <peterslopp@googlemail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: de\n"
 
 #, c-format
@@ -23,7 +23,7 @@ msgstr "Scilab '%s' Modul in Modus -nogui oder -nmwi deaktiviert.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Eingangsargument #%d kann nicht gelesen werden.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -76,7 +76,7 @@ msgid "Grid"
 msgstr "Raster"
 
 msgid "Default simulation settings"
-msgstr ""
+msgstr "Ausgangseinstellungen der Simulation"
 
 msgid "Final integration time"
 msgstr "Finale Integrationszeit"
@@ -116,9 +116,6 @@ msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: einen Zeichenkettenvektor "
 "erwartet.\n"
 
-msgid "a graphical environment is needed."
-msgstr ""
-
 #, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
@@ -139,16 +136,16 @@ msgid "parent diagram not found."
 msgstr ""
 
 msgid "Preview"
-msgstr ""
+msgstr "Vorschau"
 
 msgid "Error on export"
-msgstr ""
+msgstr "Fehler beim Exportieren"
 
 msgid "Please specify a valid file format"
 msgstr ""
 
 msgid "Incompatibility detected"
-msgstr ""
+msgstr "Inkompabilität gefunden"
 
 msgid "Please check the diagram, before trying to simulate it."
 msgstr ""

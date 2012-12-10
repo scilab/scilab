@@ -51,9 +51,20 @@
             В случае вызова с аргументами с правой стороны, функция <function>typename</function> свяжет имя и код типа данных.
         </para>
         <para>
-            <code>typename('',type)</code> удаляет тип данных, указанный по его коду <literal>type</literal> из таблицы известных типов данных.
+            <code>typename('',type)</code> удаляет тип данных, указанный по его коду <varname>type</varname> из таблицы известных типов данных.
         </para>
         <para>Максимальное число определённых типов 50.</para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+[typs,nams]=typename();
+disp("Первый тип (double) : " + string(typs(1)) + " / " + nams(1));
+typename("mytype",1024);
+[typs,nams]=typename();
+disp(typs($))
+disp(nams($)) // возвращает mytype
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

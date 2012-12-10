@@ -11,6 +11,7 @@
  */
 package org.scilab.modules.xcos.block;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -317,6 +318,11 @@ public final class AfficheBlock extends BasicBlock {
     public static void setValue(final String uid, final String[][] value) {
         if (value.length == 0 || value[0].length == 0) {
             throw new IllegalArgumentException("value is not a non-empty String matrix (String[][])");
+        }
+
+        // update nothing in case of a headless env.
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
         }
 
         synchronized (values) {

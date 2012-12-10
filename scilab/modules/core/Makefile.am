@@ -95,7 +95,8 @@ src/c/windowsChangeManagement.c \
 src/c/setieee.c \
 src/c/setlines.c \
 src/c/setformat.c \
-src/c/InitializePreferences.c
+src/c/InitializePreferences.c \
+src/c/sci_tools.c
 
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \

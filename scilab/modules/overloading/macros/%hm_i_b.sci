@@ -21,7 +21,7 @@ function M=%hm_i_b(varargin)
   nd=size(dims,'*')
   if rhs-2>nd then dims(nd+1:rhs-2)=1;end  
 
-  //convert N-dimensionnal indexes to 1-D
+  //convert N-dimensional indexes to 1-D
   [Ndims,I]=convertindex(list(dims,double(matrix(N.dims,1,-1))),varargin(1:$-2))
 
   if or(Ndims>dims) then

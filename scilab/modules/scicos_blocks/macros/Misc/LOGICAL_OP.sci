@@ -112,6 +112,6 @@ case 'define' then
   
   exprs=[string(nin);string(ipar)]
   gr_i=['xstringb(orig(1),orig(2),[''Logical Op'';OPER],sz(1),sz(2),''fill'');']
-  x=standard_define([2.5 2],model,exprs,gr_i)
+  x=standard_define([4 2],model,exprs,gr_i)
 end
 endfunction
