@@ -17,15 +17,16 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>champ(x,y,fx,fy,[arfact,rect,strf])
-            champ(x,y,fx,fy,&lt;opt_args&gt;)
+        <synopsis>
+            champ(x, y, fx, fy, [arfact, rect, strf])
+            champ(x, y, fx, fy, &lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,y</term>
+                <term>x, y</term>
                 <listitem>
                     <para>two vectors which define the grid.</para>
                 </listitem>
@@ -33,8 +34,10 @@
             <varlistentry>
                 <term>fx</term>
                 <listitem>
-                    <para>a matrix which describes the x component of the vector field.
-                        <literal>fx(i,j)</literal> is the x component of the vector field at point
+                    <para>
+                        a matrix which describes the x component of the vector
+                        field. <literal>fx(i,j)</literal> is the x
+                        component of the vector field at point
                         <literal>(x(i),y(j))</literal>.
                     </para>
                 </listitem>
@@ -42,28 +45,33 @@
             <varlistentry>
                 <term>fy</term>
                 <listitem>
-                    <para>a matrix which describes the y component of the vector field.
-                        <literal>fy(i,j)</literal> is the y component of the vector field at point
-                        <literal>(x(i),y(j))</literal>.
+                    <para>
+                        a matrix which describes the y component of the vector
+                        field. <literal>fy(i,j)</literal> is the y component of
+                        the vector field at point <literal>(x(i),y(j))</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
-                    <para>This represents a sequence of statements 
-                        <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
-                        <literal>key2,...</literal> can be one of the following: arfact, rect,
-                        strf (see below).
+                    <para>
+                        This represents a sequence of statements 
+                        <literal>key1=value1, key2=value2</literal>,... where
+                        <literal>key1</literal>, <literal>key2</literal>,... can
+                        be one of the following: <varname>arfact</varname>,
+                        <varname>rect</varname>, <varname>strf</varname> (see below).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>arfact</term>
                 <listitem>
-                    <para>an optional argument of type real which gives a scale factor
-                        for the display of the arrow heads on the plot (default value is
-                        1.0).
+                    <para>
+                        an optional argument of type <literal>real</literal>
+                        which gives a scale factor for the display of the arrow
+                        heads on the plot (default value is
+                        <literal>1.0</literal>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -71,17 +79,20 @@
                 <term>rect</term>
                 <listitem>
                     <para>
-                        a vector <literal>rect=[xmin,ymin,xmax,ymax]</literal> which gives
-                        the boundaries of the graphics frame to use.
+                        a vector <literal>rect=[xmin, ymin, xmax, ymax]</literal>
+                        which gives the boundaries of the graphics frame to use.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>strf</term>
                 <listitem>
-                    <para>a string of length 3 "xyz" which has the same meaning as the
-                        <literal>strf</literal> parameter of <literal>plot2d</literal>. The first
-                        character x has no effect with <literal>champ</literal>.
+                    <para>
+                        a string of length 3 "xyz" which has the same meaning as
+                        the <varname>strf</varname> parameter of
+                        <function>plot2d</function>. The first  character
+                        x has no effect with
+                        <function>champ</function>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -90,19 +101,16 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>champ</literal> draws a 2D vector field. The length of the arrows is
-            proportional to the intensity of the field.
-        </para>
-        <para>If you want colored arrows with the color of the arrows depending on
-            the intensity of the field, use <literal>champ1</literal>.
+            <function>champ</function> draws a 2D vector field. The length of
+            the arrows is proportional to the intensity of the field.
         </para>
         <para>
-            Enter the command <literal>champ()</literal> to see a demo.
+            If you want colored arrows with the color of the arrows depending on
+            the intensity of the field, use <function>champ1</function>.
         </para>
-    </refsection>
-    <refsection>
-        <title>Sample</title>
-        
+        <para>
+            Enter the command <code>champ()</code> to see a demo.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
