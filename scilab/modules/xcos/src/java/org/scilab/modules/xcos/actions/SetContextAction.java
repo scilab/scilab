@@ -75,7 +75,7 @@ public final class SetContextAction extends SimulationNotRunningAction {
         }
         
         final SetContextDialog dialog = new SetContextDialog(
-                comp, graph.getScicosParameters());
+                comp, graph, graph.getScicosParameters());
 
         dialog.pack();
         dialog.setVisible(true);

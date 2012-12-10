@@ -41,6 +41,7 @@ import javax.swing.SpinnerNumberModel;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -97,6 +98,7 @@ public class SetupDialog extends JDialog {
     }
 
     private final ScicosParameters parameters;
+    private final XcosDiagram rootGraph;
 
     private JFormattedTextField integration;
     private JFormattedTextField rts;
@@ -115,7 +117,7 @@ public class SetupDialog extends JDialog {
      * @param parameters
      *            the current parameters
      */
-    public SetupDialog(Component parent, ScicosParameters parameters) {
+    public SetupDialog(Component parent, XcosDiagram graph, ScicosParameters parameters) {
         super();
 
         this.parameters = parameters;
@@ -127,6 +129,7 @@ public class SetupDialog extends JDialog {
         setTitle(XcosMessages.SETUP_TITLE);
         setModal(false);
         setLocationRelativeTo(parent);
+        rootGraph = graph;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         ScilabSwingUtilities.closeOnEscape(this);
 
@@ -374,7 +377,7 @@ public class SetupDialog extends JDialog {
         setContextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                final SetContextDialog dialog = new SetContextDialog(SetupDialog.this, parameters);
+                final SetContextDialog dialog = new SetContextDialog(SetupDialog.this, rootGraph, parameters);
 
                 dialog.pack();
                 dialog.setVisible(true);
