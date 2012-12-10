@@ -352,17 +352,34 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                         delete pdbl;
                     }
 
-                    poResult->getAs<types::Polynom>()->setCoef(iCurRow, iCurCol, _poSource->getAs<types::Polynom>()->get(0)->getCoef());
+                    Polynom* pP = _poSource->getAs<types::Polynom>();
+
+                    for (int i = 0 ; i < pP->getRows() ; i++)
+                    {
+                        for (int j = 0 ; j < pP->getCols() ; j++)
+                        {
+                            poResult->getAs<types::Polynom>()->setCoef(iCurRow + i, iCurCol + j, _poSource->getAs<types::Polynom>()->get(i, j)->getCoef());
+                        }
+                    }
                 }
                 break;
             case types::GenericType::RealPoly :
                 if (TypeSource == types::GenericType::RealDouble)
                 {
                     //Add Source like coef of the new element
-                    types::SinglePoly* pPolyOut	= poResult->getAs<types::Polynom>()->get(iCurRow, iCurCol);
+                    Double* pD = _poSource->getAs<Double>();
+                    for (int i = 0 ; i < pD->getRows() ; i++)
+                    {
+                        for (int j = 0 ; j < pD->getCols() ; j++)
+                        {
+                            types::SinglePoly* pPolyOut	= poResult->getAs<types::Polynom>()->get(iCurRow + i, iCurCol + j);
 
-                    pPolyOut->setRank(1);
-                    pPolyOut->setCoef(_poSource->getAs<types::Double>());
+                            pPolyOut->setRank(1);
+                            double pDbl = pD->get(i, j);
+                            pPolyOut->setCoef(&pDbl, NULL);
+                        }
+                    }
+
                 }
                 break;
             case types::GenericType::RealSparse :
@@ -594,7 +611,7 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
         {
             pVar    = dynamic_cast<const SimpleVar*>(pField->tail_get());
 
-            if(pCurrent->isStruct())
+            if (pCurrent->isStruct())
             {
                 Struct* pCurStr = pCurrent->getAs<Struct>();
                 //clone _pIT BEFORE addField in case of st.b = st
@@ -705,20 +722,20 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
             else //handle
             {
                 String* pTail = new String(pVar->name_get().name_get().c_str());
-                if(_pArgs != NULL && *_pArgs == NULL)
+                if (_pArgs != NULL && *_pArgs == NULL)
                 {
                     *_pArgs = new typed_list;
                     pArgs = *_pArgs;
                 }
-                else if(pArgs == NULL)
+                else if (pArgs == NULL)
                 {
                     pArgs = new typed_list;
                 }
 
-                if(pArgs)
+                if (pArgs)
                 {
                     pArgs->push_back(pTail);
-                    if(_pIT == NULL)
+                    if (_pIT == NULL)
                     {
                         //let caller work
 
@@ -729,14 +746,14 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                         optional_list opt;
                         ExecVisitor exec;
 
-                        if(pArgs->size() == 1)
+                        if (pArgs->size() == 1)
                         {
                             in.push_back((*pArgs)[0]);
                         }
                         else
                         {
                             List* pList = new List();
-                            for(int i = 0 ; i < pArgs->size() ; i++)
+                            for (int i = 0 ; i < pArgs->size() ; i++)
                             {
                                 pList->append((*pArgs)[i]);
                             }
@@ -753,26 +770,26 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                         in.front()->DecreaseRef();
                         pMain->DecreaseRef();
 
-                        if(in.front()->isList())
+                        if (in.front()->isList())
                         {
                             //delete pList
                             delete in.front();
                         }
 
-                        if(ret != Callable::OK)
+                        if (ret != Callable::OK)
                         {
                             std::wostringstream os;
                             os << L"unable to update handle";
                             throw ScilabError(os.str(), 999, pField->location_get());
                         }
 
-                        if(out[0]->isHandle() || out[0]->isStruct())
+                        if (out[0]->isHandle() || out[0]->isStruct())
                         {
                             *_pCurrent = out[0];
                             (*_pCurrent)->IncreaseRef();
 
                             //clean *_pArgs to do nt extract previons fields
-                            if(_pArgs && *_pArgs)
+                            if (_pArgs && *_pArgs)
                             {
                                 (*_pArgs)->clear();
                             }
@@ -795,14 +812,14 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                     ExecVisitor exec;
 
 
-                    if(pArgs->size() == 1)
+                    if (pArgs->size() == 1)
                     {
                         in.push_back((*pArgs)[0]);
                     }
                     else
                     {
                         List* pList = new List();
-                        for(int i = 0 ; i < pArgs->size() ; i++)
+                        for (int i = 0 ; i < pArgs->size() ; i++)
                         {
                             pList->append((*pArgs)[i]);
                         }
@@ -823,13 +840,13 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                     //_pIT->DecreaseRef();
                     pMain->DecreaseRef();
 
-                    if(in.front()->isList())
+                    if (in.front()->isList())
                     {
                         //delete pList
                         delete in.front();
                     }
 
-                    if(ret != Callable::OK)
+                    if (ret != Callable::OK)
                     {
                         std::wostringstream os;
                         os << L"unable to update handle";
@@ -842,7 +859,7 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                     os << L"impossible !";
                     throw ScilabError(os.str(), 999, pField->location_get());
                 }
-                
+
             }
 
 
@@ -867,11 +884,11 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
         //a.x : with x not only a SimpleVar
         types::InternalType *pStr = NULL;
         types::InternalType *pIT = symbol::Context::getInstance()->get(pVar->name_get());
-        if (pIT == NULL || 
-            (   pIT->isStruct() == false && 
-                pIT->isHandle() == false && 
-                pIT->isMList() == false && 
-                pIT->isTList() == false))
+        if (pIT == NULL ||
+                (   pIT->isStruct() == false &&
+                    pIT->isHandle() == false &&
+                    pIT->isMList() == false &&
+                    pIT->isTList() == false))
         {
             //"a" doest not exist or it is another type, create it with size 1,1 and return it
             //create new structure variable
@@ -895,12 +912,13 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
             //Add variable to scope
             symbol::Context::getInstance()->put(pVar->name_get(), *pStr);
         }
-        else if(pIT->isHandle() || pIT->isStruct())
+        else if (pIT->isHandle() || pIT->isStruct())
         {
             pStr = pIT;
         }
         else
-        {//TList or MList, work will be done outside
+        {
+            //TList or MList, work will be done outside
             return false;
         }
 
@@ -946,7 +964,7 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                 wchar_t* pFieldName = pS->get(0);
 
 
-                if(pCurrent->isStruct())
+                if (pCurrent->isStruct())
                 {
                     Struct* pStr = NULL;
                     Struct *pCurStr = pCurrent->getAs<Struct>();
@@ -1003,14 +1021,15 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                     }
                 }
                 else
-                {//handle
+                {
+                    //handle
                     GraphicHandle* pCurH = pCurrent->getAs<GraphicHandle>();
                 }
             }
             else
             {
                 /*try to extract sub struct, if it fails, resize the struct and try again*/
-                if(pCurrent->isStruct())
+                if (pCurrent->isStruct())
                 {
                     Struct* pCurStr = pCurrent->getAs<Struct>();
                     InternalType* pIT = pCurStr->extract(pCurrentArgs);
@@ -1075,7 +1094,7 @@ List* getPropertyTree(Exp* e, List* pList)
 
     //a.b
     SimpleVar* pVar = dynamic_cast<SimpleVar*>(e);
-    if(pVar)
+    if (pVar)
     {
         pList->append(new String(pVar->name_get().name_get().c_str()));
         return pList;
@@ -1083,13 +1102,13 @@ List* getPropertyTree(Exp* e, List* pList)
 
     //a(x).b
     CallExp* pCall = dynamic_cast<CallExp*>(e);
-    if(pCall)
+    if (pCall)
     {
         pList = getPropertyTree(&pCall->name_get(), pList);
         ExecVisitor exec;
         std::list<Exp*> l = pCall->args_get();
         std::list<Exp*>::const_iterator it;
-        for(it = l.begin() ; it != l.end() ; it++)
+        for (it = l.begin() ; it != l.end() ; it++)
         {
             Exp* pArg = (*it);
             try
@@ -1098,7 +1117,7 @@ List* getPropertyTree(Exp* e, List* pList)
                 pList->append(exec.result_get());
                 exec.result_clear();
             }
-            catch(ScilabException e)
+            catch (ScilabException e)
             {
                 throw e;
             }
@@ -1109,7 +1128,7 @@ List* getPropertyTree(Exp* e, List* pList)
 
     //a.b.c
     FieldExp* pField = dynamic_cast<FieldExp*>(e);
-    if(pField)
+    if (pField)
     {
         pList = getPropertyTree(pField->head_get(), pList);
         pList = getPropertyTree(pField->tail_get(), pList);
