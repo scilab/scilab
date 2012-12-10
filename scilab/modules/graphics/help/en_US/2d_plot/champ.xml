@@ -91,7 +91,7 @@
                         a string of length 3 "xyz" which has the same meaning as
                         the <varname>strf</varname> parameter of
                         <function>plot2d</function>. The first  character
-                        x has no effect with
+                        <literal>x</literal> has no effect with
                         <function>champ</function>.
                     </para>
                 </listitem>
