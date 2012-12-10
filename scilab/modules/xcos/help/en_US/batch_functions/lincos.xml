@@ -24,11 +24,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lincos">
     <refnamediv>
         <refname>lincos</refname>
-        <refpurpose>Constructs by linearization a linear state-space model from a general dynamical system described by a xcos diagram</refpurpose>
+        <refpurpose>Constructs by linearization a linear state-space model from a general dynamical system described by a Xcos diagram</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>sys= lincos(scs_m [,x0,u0 [,param] ])</synopsis>
+        <synopsis>sys = lincos(scs_m [,x0,u0 [,param] ])</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_lincos">
         <title>Module</title>
@@ -46,10 +46,11 @@
             Construct a linear state-space system by linearizing a model given as a Xcos diagram. The idea is to transform a <link linkend="SUPER_f">sub-diagram</link> to a linear state-space model. The sub-diagram should have <link linkend="IN_f">inputs</link> and <link linkend="OUT_f">outputs</link>.
         </para>
         <para>
-            The output is a Scilab data structure of type continuous-time state-space linear system.  
+            The output is a Scilab data structure of type continuous-time state-space linear system.
         </para>
-        <para>
-        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // loading data
 exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");

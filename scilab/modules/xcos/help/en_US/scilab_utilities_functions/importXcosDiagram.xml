@@ -45,13 +45,13 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">result :</emphasis> The status of the
+                    <emphasis role="bold">result:</emphasis> The status of the
                     operation.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">filename :</emphasis> The Xcos file to
+                    <emphasis role="bold">filename:</emphasis> The Xcos file to
                     load.
                 </para>
             </listitem>
