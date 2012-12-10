@@ -43,7 +43,7 @@
     <refsection id="Description_lincos">
         <title>Description</title>
         <para>
-            Construct a linear state-space system by linearizing a model given as an xcos diagram. The idea is to transform a <link linkend="SUPER_f">sub-diagram</link> to a linear state-space model. The sub-diagram should have <link linkend="IN_f">inputs</link> and <link linkend="OUT_f">outputs</link>.
+            Construct a linear state-space system by linearizing a model given as a Xcos diagram. The idea is to transform a <link linkend="SUPER_f">sub-diagram</link> to a linear state-space model. The sub-diagram should have <link linkend="IN_f">inputs</link> and <link linkend="OUT_f">outputs</link>.
         </para>
         <para>
             The output is a Scilab data structure of type continuous-time state-space linear system.  

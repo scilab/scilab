@@ -120,7 +120,7 @@
                     </inlinemediaobject>
                 </para>
                 <para>
-                    Select the <emphasis>Open</emphasis> menu item to load an XML (<emphasis>.xcos</emphasis>) or a binary file
+                    Select the <emphasis>Open</emphasis> menu item to load a XML (<emphasis>.xcos</emphasis>) or a binary file
                     (<emphasis>.cos</emphasis>) which contain saved block diagram or a palette. The command open a dialog box allows
                     you to choose the folder and the file.
                 </para>
