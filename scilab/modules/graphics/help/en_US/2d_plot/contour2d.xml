@@ -19,24 +19,29 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>contour2d(x,y,z,nz,[style,strf,leg,rect,nax])
-            contour2d(x,y,z,nz,&lt;opt_args&gt;)
+        <synopsis>
+            contour2d(x, y, z, nz, [style, strf, leg, rect, nax])
+            contour2d(x, y, z, nz, &lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,y</term>
+                <term>x, y</term>
                 <listitem>
-                    <para>two real row vectors of size n1 and n2: the grid.</para>
+                    <para>
+                        two real row vectors of size <literal>n1</literal> and
+                        <literal>n2</literal>: the grid.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>z</term>
                 <listitem>
-                    <para>real matrix of size (n1,n2), the values of the function on the
-                        grid or a  Scilab function which defines the surface  <literal>z=f(x,y)</literal>. 
+                    <para>
+                        real matrix of size <literal>(n1,n2)</literal>, the
+                        values of the function on the grid or a Scilab function which defines the surface <literal>z=f(x,y)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,33 +51,40 @@
                     <para>the level values or the number of levels.</para>
                     <variablelist>
                         <varlistentry>
-                            <term/>
+                            <term>
+                                If <literal>nz</literal> is an integer
+                            </term>
                             <listitem>
                                 <para>
-                                    If <literal>nz</literal> is an integer, its value gives the
-                                    number of level curves equally spaced from zmin to zmax as
-                                    follows:
+                                    its value gives the number of level curves
+                                    equally spaced from <literal>zmin</literal>
+                                    to <literal>zmax</literal> as follows:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1) 
  ]]></programlisting>
                                 <para>
-                                    Note that the <literal>zmin</literal> and <literal>zmax</literal>
-                                    levels are not drawn (generically they are reduced to points)
+                                    <note>
+                                    Note that the <literal>zmin</literal> and
+                                    <literal>zmax</literal> levels are not drawn
+                                    (generically they are reduced to points)
                                     but they can be added with
+                                    </note>
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 [im,jm] = find(z == zmin); // or zmax
 plot2d(x(im)',y(jm)',-9,"000")
  ]]></programlisting>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term/>
+                            <term>
+                                If <literal>nz</literal> is a vector
+                            </term>
                             <listitem>
                                 <para>
-                                    If <literal>nz</literal> is a vector, <literal>nz(i)</literal> gives
-                                    the value of the ith level curve.
+                                    <literal>nz(i)</literal> gives the value of
+                                    the <literal>i</literal>-th level curve.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -82,20 +94,26 @@ plot2d(x(im)',y(jm)',-9,"000")
             <varlistentry>
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
-                    <para>This represents a sequence of statements 
-                        <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
-                        <literal>key2,...</literal> can be one of the following: style, leg, rect,
-                        nax, strf or axesflag and frameflag (see <link linkend="plot2d">plot2d</link>)
+                    <para>
+                        This represents a sequence of statements 
+                        <literal>key1=value1, key2=value2</literal>,... where
+                        <literal>key1</literal>, <literal>key2</literal>,... can
+                        be one of the following: <literal>style</literal>,
+                        <literal>leg</literal>, <literal>rect</literal>,
+                        <literal>nax</literal>, <literal>strf</literal> or
+                        <literal>axesflag</literal> and
+                        <literal>frameflag</literal> (see <link linkend="plot2d">plot2d</link>)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>style,strf,leg,rect,nax</term>
+                <term>style, strf, leg, rect, nax</term>
                 <listitem>
                     <para>
-                        see <link linkend="plot2d">plot2d</link>. The argument <literal>style</literal> gives
-                        the dash styles or colors which are to be used for level curves. It
-                        must have the same size as the number of levels.
+                        see <link linkend="plot2d">plot2d</link>. The argument
+                        <literal>style</literal> gives the dash styles or colors
+                        which are to be used for level curves. It must have the
+                        same size as the number of levels.
                     </para>
                 </listitem>
             </varlistentry>
@@ -104,29 +122,35 @@ plot2d(x(im)',y(jm)',-9,"000")
     <refsection>
         <title>Description</title>
         <para>
-            <literal>contour2d</literal> draws level curves of a surface
-            <literal>z=f(x,y)</literal> on a 2D plot. The values of <literal>f(x,y)</literal> are
-            given by the matrix <literal>z</literal> at the grid points defined by
-            <literal>x</literal> and <literal>y</literal>.
-        </para>
-        <para>You can change the format of the floating point number printed on the
-            levels by using <literal>xset("fpf",string)</literal> where <literal>string</literal>
-            gives the format in C format syntax (for example
-            <literal>string="%.3f"</literal>). Use <literal>string=""</literal> to switch back to
-            default format and Use <literal>string=" "</literal> to suppress printing. This
-            last feature is useful in conjunction with <link linkend="legends">legends</link> to display
-            the level numbers in a legend and not directly onto the level curves as 
-            usual (see Examples).
+            <function>contour2d</function> draws level curves of a surface
+            <literal>z=f(x,y)</literal> on a 2D plot. The values of
+            <literal>f(x,y)</literal> are given by the matrix
+            <varname>z</varname> at the grid points defined by
+            <varname>x</varname> and <varname>y</varname>.
         </para>
         <para>
-            The optional arguments <literal>style,strf,leg,rect,nax</literal>, can be
-            passed by a sequence of statements <literal>key1=value1, key2=value2</literal>,
-            ... where keys may be
-            <literal>style</literal>,<literal>strf</literal>,<literal>leg</literal>,<literal>rect</literal>,<literal>nax</literal>.
-            In this case, the order has no special meaning.
+            You can change the format of the floating point number printed on
+            the levels by using <code>xset("fpf",string)</code> where
+            <varname>string</varname> gives the format in C format syntax (for
+            example <code>string="%.3f"</code>). Use <code>string=""</code> to
+            switch back to default format and use <code>string=" "</code> to
+            suppress printing. This last feature is useful in conjunction with
+            <link linkend="legends">legends</link> to display the level numbers
+            in a legend and not directly onto the level curves as usual (see
+            Examples).
         </para>
         <para>
-            Use <literal>contour</literal> to draw levels curves on a 3D surface.
+            The optional arguments <varname>style</varname>,
+            <varname>strf</varname>, <varname>leg</varname>,
+            <varname>rect</varname>, <varname>nax</varname> can be
+            passed by a sequence of statements <literal>key1=value1,
+            key2=value2</literal>,... where keys may be
+            <literal>style</literal>, <literal>strf</literal>,
+            <literal>leg</literal>, <literal>rect</literal>,
+            <literal>nax</literal>. In this case, the order has no special meaning.
+        </para>
+        <para>
+            Use <function>contour</function> to draw levels curves on a 3D surface.
         </para>
     </refsection>
     <refsection>
