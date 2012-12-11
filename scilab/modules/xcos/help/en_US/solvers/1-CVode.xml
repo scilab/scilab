@@ -13,13 +13,13 @@
     <refnamediv>
         <refname>CVode</refname>
         <refpurpose>
-            <emphasis>CVode</emphasis> is a numerical solver providing an efficient and stable method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. Called by <link linkend="xcos">xcos</link>, it uses either <emphasis>BDF</emphasis> or <emphasis>Adams</emphasis> as implicit integration method, and <emphasis>Newton</emphasis> or <emphasis>Functional</emphasis> iterations
+            <emphasis>CVode</emphasis> (short for C-language Variable-coefficients ODE solver) is a numerical solver providing an efficient and stable method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. It uses either <emphasis>BDF</emphasis> or <emphasis>Adams</emphasis> as implicit integration method, and <emphasis>Newton</emphasis> or <emphasis>Functional</emphasis> iterations
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            <emphasis>CVode</emphasis> is a numerical solver providing an efficient and stable method to solve Initial Value Problems of the form :
+            Called by <link linkend="xcos">xcos</link>, <emphasis>CVode</emphasis> (short for C-language Variable-coefficients ODE solver) is a numerical solver providing an efficient and stable method to solve Initial Value Problems of the form :
         </para>
         <para>
             <latex>
@@ -225,7 +225,7 @@ Time for BDF / Newton :
         </para>
         <para>
             Now, in the following script, we compare the time difference between the methods by running the example with the four solvers in turn :
-            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integ.sce">
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integSundials.sce">
                 Open the script
             </link>
         </para>
@@ -253,10 +253,10 @@ Time for Adams / Functional :
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="IDA">IDA</link>
+                <link linkend="LSodar">LSodar</link>
             </member>
             <member>
-                <link linkend="LSodar">LSodar</link>
+                <link linkend="IDA">IDA</link>
             </member>
             <member>
                 <link linkend="RK">Runge-Kutta 4(5)</link>

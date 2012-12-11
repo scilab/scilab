@@ -13,13 +13,13 @@
     <refnamediv>
         <refname>LSodar</refname>
         <refpurpose>
-            LSODAR (short for Livermore Solver for Ordinary Differential equations, with Automatic method switching for stiff and nonstiff problems, and with Root-finding) is a numerical solver providing an efficient and stable method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. Called by <link linkend="xcos">xcos</link>.
+            <emphasis>LSodar</emphasis> (short for Livermore Solver for Ordinary Differential equations, with Automatic method switching for stiff and nonstiff problems, and with Root-finding) is a numerical solver providing an efficient and stable method to solve Ordinary Differential Equations (ODEs) Initial Value Problems.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            LSODAR (short for Livermore Solver for Ordinary Differential equations, with Automatic method switching for stiff and nonstiff problems, and with Root-finding) is a numerical solver providing an efficient and stable variable-size step method to solve Initial Value Problems of the form :
+            Called by <link linkend="xcos">xcos</link>, <emphasis>LSodar</emphasis> (short for Livermore Solver for Ordinary Differential equations, with Automatic method switching for stiff and nonstiff problems, and with Root-finding) is a numerical solver providing an efficient and stable variable-size step method to solve Initial Value Problems of the form :
         </para>
         <para>
             <latex>
@@ -137,10 +137,10 @@ Time for BDF / Newton :
 Time for BDF / Functional :
  12.415
 
-Time for Adams / Functional :
+Time for Adams / Newton :
  8.651
 
-Time for Adams / Newton :
+Time for Adams / Functional :
  7.962
             ]]></screen>
         </para>
