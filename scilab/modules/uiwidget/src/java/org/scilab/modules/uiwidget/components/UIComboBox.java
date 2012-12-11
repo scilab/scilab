@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
@@ -106,6 +107,31 @@ public class UIComboBox extends UIComponent {
         defaultRenderer = null;
         removeListener();
         super.remove();
+    }
+
+    public void setString(String item) {
+        setSelectedItem(item);
+    }
+
+    public String getString() {
+        return getSelectedItem();
+    }
+
+    public void setSelectedItem(String item) {
+        if (item != null) {
+            ComboBoxModel model = combo.getModel();
+            for (int i = 0; i < model.getSize(); i++) {
+                Object o = model.getElementAt(i);
+                if (o != null && o.toString().equals(item)) {
+                    combo.setSelectedItem(o);
+                    break;
+                }
+            }
+        }
+    }
+
+    public String getSelectedItem() {
+        return combo.getSelectedItem().toString();
     }
 
     public void setOnchange(String action) {
