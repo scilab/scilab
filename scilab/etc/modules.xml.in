@@ -57,4 +57,5 @@
     <module name="demo_tools" activate="@GUI_ENABLE@"/>
     <module name="graphic_export" activate="yes"/>
     <module name="operations" activate="yes"/>
+    <module name="api_scilab" activate="yes"/>
 </modules>
