@@ -82,8 +82,10 @@ Xcos
 
 * Bug #12014 fixed - dep_ut help was wrongly detailed.
 
-* Bug #12031 fixed - Changes in context of superblock
-                     did not always have effect.
+* Bug #12031 fixed - Changes in context of superblock did not always have 
+                     effect.
+
+* Bug #12162 fixed - tbx_build_blocks did not report errors.
 
 
 Documentation
