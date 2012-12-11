@@ -252,11 +252,11 @@ public class UIWidget {
         }
 
         if (!attributes.containsKey("id")) {
-            throw new Exception("Cannot create an UIWidget without an id");
+            //throw new Exception("Cannot create an UIWidget without an id");
         }
 
         String[] style = ScilabTypeConverters.getObjectFromValue(String[].class, attributes.get("style"));
-        String id = ((ScilabString) attributes.get("id")).getData()[0][0];
+        //String id = ((ScilabString) attributes.get("id")).getData()[0][0];
 
         attributes.remove("style");
         //attributes.remove("id");

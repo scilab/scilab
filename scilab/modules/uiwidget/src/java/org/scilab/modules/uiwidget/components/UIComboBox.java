@@ -40,37 +40,46 @@ public class UIComboBox extends UIComponent {
         combo = new JComboBox();
         vector = new Vector<Object>();
 
+        /*
+          TODO: ca ne tient pas compte du LAF
         combo.setRenderer(new DefaultListCellRenderer() {
 
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof UIListElement.ListElement) {
-                    UIListElement.ListElement l = (UIListElement.ListElement) value;
-                    label.setIcon(l.getIcon());
-                    Font f = l.getFont();
-                    if (f != null) {
-                        label.setFont(f);
-                    }
-                    Color c = l.getBackground();
-                    if (c != null && !isSelected) {
-                        label.setBackground(l.getBackground());
-                    }
-                    c = l.getForeground();
-                    if (c != null) {
-                        label.setForeground(l.getForeground());
-                    }
-                }
+                public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                    JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                    if (value instanceof UIListElement.ListElement) {
+                        UIListElement.ListElement l = (UIListElement.ListElement) value;
+        	    if (l.getIcon() != null) {
+        		label.setIcon(l.getIcon());
+        	    }
 
-                return label;
-            }
-        });
+                        Font f = l.getFont();
+                        if (f != null) {
+                            label.setFont(f);
+                        }
+
+                        Color c = l.getBackground();
+                        if (c != null && !isSelected) {
+                            label.setBackground(l.getBackground());
+                        }
+                        c = l.getForeground();
+                        if (c != null) {
+                            label.setForeground(l.getForeground());
+                        }
+        	}
+
+                    return label;
+                }
+            });
+        */
 
         return combo;
     }
 
     public void finish() {
-        combo.setModel(new DefaultComboBoxModel(vector));
-        vector = null;
+        if (vector != null) {
+            combo.setModel(new DefaultComboBoxModel(vector));
+            vector = null;
+        }
     }
 
     public void add(Object obj) {
