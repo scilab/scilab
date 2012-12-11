@@ -638,12 +638,12 @@ public abstract class UIComponent {
         getModifiableContainer().setLayout(UILayoutFactory.getLayout(getModifiableJComponent(), layout));
     }
 
-    public void setEnable(String enable) throws UIWidgetException {
-        getJComponent().setEnabled("on".equalsIgnoreCase(enable));
+    public void setEnable(boolean enable) throws UIWidgetException {
+        getJComponent().setEnabled(enable);
     }
 
-    public String getEnable() throws UIWidgetException {
-        return getJComponent().isEnabled() ? "on" : "off";
+    public boolean getEnable() throws UIWidgetException {
+        return getJComponent().isEnabled();
     }
 
     private final void createMouseListener() throws UIWidgetException {

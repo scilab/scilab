@@ -24,6 +24,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
@@ -35,6 +36,7 @@ public class UIComboBox extends UIComponent {
     private ActionListener listener;
     private String action;
     private Vector<Object> vector;
+    private ListCellRenderer defaultRenderer;
 
     public UIComboBox(UIComponent parent) throws UIWidgetException {
         super(parent);
@@ -43,38 +45,34 @@ public class UIComboBox extends UIComponent {
     public Object newInstance() {
         combo = new JComboBox();
         vector = new Vector<Object>();
+        defaultRenderer = combo.getRenderer();
 
-        /*
-          TODO: ca ne tient pas compte du LAF
         combo.setRenderer(new DefaultListCellRenderer() {
 
-                public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                    JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                    if (value instanceof UIListElement.ListElement) {
-                        UIListElement.ListElement l = (UIListElement.ListElement) value;
-        	    if (l.getIcon() != null) {
-        		label.setIcon(l.getIcon());
-        	    }
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof UIListElement.ListElement) {
+                    UIListElement.ListElement l = (UIListElement.ListElement) value;
+                    label.setIcon(l.getIcon());
 
-                        Font f = l.getFont();
-                        if (f != null) {
-                            label.setFont(f);
-                        }
+                    Font f = l.getFont();
+                    if (f != null) {
+                        label.setFont(f);
+                    }
 
-                        Color c = l.getBackground();
-                        if (c != null && !isSelected) {
-                            label.setBackground(l.getBackground());
-                        }
-                        c = l.getForeground();
-                        if (c != null) {
-                            label.setForeground(l.getForeground());
-                        }
-        	}
-
-                    return label;
+                    Color c = l.getBackground();
+                    if (c != null && !isSelected) {
+                        label.setBackground(l.getBackground());
+                    }
+                    c = l.getForeground();
+                    if (c != null) {
+                        label.setForeground(l.getForeground());
+                    }
                 }
-            });
-        */
+
+                return label;
+            }
+        });
 
         return combo;
     }
@@ -105,6 +103,7 @@ public class UIComboBox extends UIComponent {
     }
 
     public void remove() {
+        defaultRenderer = null;
         removeListener();
         super.remove();
     }
