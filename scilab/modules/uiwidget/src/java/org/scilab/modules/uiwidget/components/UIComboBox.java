@@ -15,7 +15,8 @@ package org.scilab.modules.uiwidget.components;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.util.Map;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
@@ -26,10 +27,13 @@ import javax.swing.JList;
 
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
 public class UIComboBox extends UIComponent {
 
     private JComboBox combo;
+    private ActionListener listener;
+    private String action;
     private Vector<Object> vector;
 
     public UIComboBox(UIComponent parent) throws UIWidgetException {
@@ -91,5 +95,30 @@ public class UIComboBox extends UIComponent {
         if (obj instanceof UIListElement.ListElement) {
             ((UIListElement.ListElement) obj).setParent(combo);
         }
+    }
+
+    public void removeListener() {
+        if (listener != null) {
+            combo.removeActionListener(listener);
+            listener = null;
+        }
+    }
+
+    public void remove() {
+        removeListener();
+        super.remove();
+    }
+
+    public void setOnchange(String action) {
+        if (this.action == null) {
+            removeListener();
+            listener = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    UIWidgetTools.execAction(UIComboBox.this, UIComboBox.this.action, "\"" + combo.getSelectedItem().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                }
+            };
+            combo.addActionListener(listener);
+        }
+        this.action = action;
     }
 }
