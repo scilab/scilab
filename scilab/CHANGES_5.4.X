@@ -61,6 +61,10 @@ Xcos
 
 * Update the Palette icons and the rendering of some blocks.
 
+* Add a new ODE solver : LSodar. Automatically switches methods to efficiently solve both stiff and nonstiff problems. Includes a rootfinding feature.
+
+* Add a new ODE solver : Dormand-Price 4(5). Included in the CVode package, so benefits from the rootfinding feature.
+
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
 
@@ -85,6 +89,11 @@ Xcos
 * Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
 
 * Bug #12014 fixed - dep_ut help was wrongly detailed.
+
+* Bug #12031 fixed - Changes in context of superblock did not always have 
+                     effect.
+
+* Bug #12162 fixed - tbx_build_blocks did not report errors.
 
 
 Documentation

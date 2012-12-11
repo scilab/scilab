@@ -50,6 +50,14 @@
         <title>Description</title>
         <para>returns current scilab history in a string matrix.</para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+gethistory(1) // Return the last line
+gethistory() // Return all the line
+]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

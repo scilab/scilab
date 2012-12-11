@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlXPath" xml:lang="en">
     <refnamediv>
         <refname>xmlXPath</refname>
-        <refpurpose>Make an XPath query on a XML document</refpurpose>
+        <refpurpose>Make a XPath query on a XML document</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -52,7 +52,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Make an XPath query on a document or in starting on an element. If you need to use namespaces, then you must define them in using the optional argument. XML namespaces are defined in the first tag with the keyword "xmlns".</para>
+        <para>Make a XPath query on a document or in starting on an element. If you need to use namespaces, then you must define them in using the optional argument. XML namespaces are defined in the first tag with the keyword "xmlns".</para>
         <para>
             For more information about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.
         </para>

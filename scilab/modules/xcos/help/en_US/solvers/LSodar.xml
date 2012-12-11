@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.
+ * The terms are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="LSodar">
+    <refnamediv>
+        <refname>LSodar</refname>
+        <refpurpose>
+            LSODAR (short for Livermore Solver for Ordinary Differential equations, with Automatic method switching for stiff and nonstiff problems, and with Root-finding) is a numerical solver providing an efficient and stable method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. Called by <link linkend="xcos">xcos</link>.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            LSODAR (short for Livermore Solver for Ordinary Differential equations, with Automatic method switching for stiff and nonstiff problems, and with Root-finding) is a numerical solver providing an efficient and stable variable-size step method to solve Initial Value Problems of the form :
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                \dot{y} = f(t,y), \hspace{3 mm} y(t_0) = y_0, \hspace{3 mm} y \in R^N
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            LSodar is similar to <emphasis>CVode</emphasis> in many ways :
+            <itemizedlist>
+                <listitem>
+                    It uses variable-size steps,
+                </listitem>
+                <listitem>
+                    It can potentially use <emphasis>BDF</emphasis> and <emphasis>Adams</emphasis> integration, methods,
+                </listitem>
+                <listitem>
+                    <emphasis>BDF</emphasis> and <emphasis>Adams</emphasis> being implicit stable methods, <emphasis>LSodar</emphasis> is suitable for stiff and nonstiff problems,
+                </listitem>
+                <listitem>
+                    They both look for roots over the integration interval.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            The main difference though is that <emphasis>LSodar</emphasis> is <emphasis role="bold">fully automated</emphasis>, and chooses between <emphasis>BDF</emphasis> and <emphasis>Adams</emphasis> itself, by checking for stiffness at every step.
+        </para>
+        <para>
+            If the step is considered stiff, then <emphasis>BDF</emphasis> (with max order set to 5) is used and the Modified Newton method <emphasis>'Chord'</emphasis> iteration is selected.
+        </para>
+        <para>
+            Otherwise, the program uses <emphasis>Adams</emphasis> integration (with max order set to 12) and <emphasis>Functional</emphasis> iterations.
+        </para>
+        <para>
+            The stiffness detection is done by step size attempts with both methods.
+        </para>
+        <para>
+            First, if we are in <emphasis>Adams</emphasis> mode and the order is greater than 5, then we assume the problem is nonstiff and proceed with <emphasis>Adams</emphasis>.
+        </para>
+        <para>
+            The first twenty steps use <emphasis>Adams / Functional</emphasis> method.
+            Then <emphasis>LSodar</emphasis> computes the ideal step size of both methods. If the step size advantage is at least <emphasis>ratio = 5</emphasis>, then the current method switches (<emphasis>Adams / Functional</emphasis> to <emphasis>BDF / Chord Newton</emphasis> or vice versa).
+        </para>
+        <para>
+            After every switch, <emphasis>LSodar</emphasis> takes twenty steps, then starts comparing the step sizes at every step.
+        </para>
+        <para>
+            Such strategy induces a minor overhead computational cost if the problem stiffness is known, but is very effective on problems that require differentiate precision. For instance, discontinuities-sensitive problems.
+        </para>
+        <para>
+            Concerning precision, the two integration/iteration methods being close to <emphasis>CVode</emphasis>'s, the results are very similar.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
+scs_m.props.tol(6) = 0;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
+]]></scilab:image>
+        </para>
+        <para>
+            The integral block returns its continuous state, we can evaluate it with LSodar by running the example :
+        </para>
+        <para>
+            <programlisting language="example"><![CDATA[
+      // Import the diagram and set the ending time
+      loadScicos();
+      loadXcosLibs();
+      importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
+      scs_m.props.tf = 10000;
+
+      // Select the LSodar solver
+      scs_m.props.tol(6) = 0;
+
+      // Start the timer, launch the simulation and display time
+      tic();
+      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
+      t = toc();
+      disp(t, "Time for LSodar :");
+      ]]></programlisting>
+        </para>
+        <para>
+            The Scilab console displays :
+            <screen><![CDATA[
+Time for LSodar :
+ 30.584
+            ]]></screen>
+        </para>
+        <para>
+            Now, in the following script, we compare the time difference between the methods by running the example with the five solvers in turn :
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integLSodar.sce">
+                Open the script
+            </link>
+        </para>
+        <para>
+            <screen><![CDATA[
+Time for LSodar :
+ 5.001
+
+Time for BDF / Newton :
+ 12.943
+
+Time for BDF / Functional :
+ 12.415
+
+Time for Adams / Functional :
+ 8.651
+
+Time for Adams / Newton :
+ 7.962
+            ]]></screen>
+        </para>
+        <para>
+            These results show that on a nonstiff problem, for the same precision required, LSodar is significantly faster. Other tests prove the proximity of the results. Indeed, we find that the solution difference order between LSodar and CVode is close to the order of the highest tolerance ( 
+            <emphasis>
+                y<subscript>lsodar</subscript> - y<subscript>cvode</subscript>
+            </emphasis>
+            &#8776; <emphasis>max(reltol, abstol)</emphasis> ).
+        </para>
+        <para>
+            Variable step-size ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.
+        </para>
+    </refsection>
+    <refsection>
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="CVode">CVode</link>
+            </member>
+            <member>
+                <link linkend="IDA">IDA</link>
+            </member>
+            <member>
+                <link linkend="RK">Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DoPri">Dormand-Price 4(5)</link>
+            </member>
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
+            <member>
+                <link linkend="ode_root">ode_root</link>
+            </member>
+            <member>
+                <link linkend="odedc">odedc</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>
+            ACM SIGNUM Newsletter, Volume 15, Issue 4, December 1980, Pages 10-11 <ulink url="http://dl.acm.org/citation.cfm?id=1218052.1218054&amp;coll=DL&amp;dl=GUIDE&amp;CFID=213153447&amp;CFTOKEN=26634355">LSode - LSodi</ulink>
+        </para>
+        <para>
+            <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Sundials Documentation</ulink>
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>LSodar solver added</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

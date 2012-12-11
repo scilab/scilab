@@ -53,7 +53,7 @@ xmlName(doc.root.children(1))
 // Retrieve the names of an attributes list
 xmlName(doc.root.children(1).attributes)
 
-// Retrieve the names of the result of an XPath query
+// Retrieve the names of the result of a XPath query
 xmlName(xmlXPath(doc,"//foo/@*"))
 
 xmlDelete(doc);

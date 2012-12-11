@@ -22,7 +22,7 @@
  * See the file ./license.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcos_menu_entries">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" scilab:needs-examples="no" xmlns:scilab="http://www.scilab.org" xml:id="xcos_menu_entries">
     <refnamediv>
         <refname>Menu_Entries</refname>
         <refpurpose>Xcos editor menu entries</refpurpose>
@@ -120,7 +120,7 @@
                     </inlinemediaobject>
                 </para>
                 <para>
-                    Select the <emphasis>Open</emphasis> menu item to load an XML (<emphasis>.xcos</emphasis>) or a binary file
+                    Select the <emphasis>Open</emphasis> menu item to load a XML (<emphasis>.xcos</emphasis>) or a binary file
                     (<emphasis>.cos</emphasis>) which contain saved block diagram or a palette. The command open a dialog box allows
                     you to choose the folder and the file.
                 </para>

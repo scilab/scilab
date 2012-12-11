@@ -12,10 +12,10 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>block1</term>: An Xcos block.
+                <term>block1</term>: A Xcos block.
             </varlistentry>
             <varlistentry>
-                <term>block2</term>: An Xcos block.
+                <term>block2</term>: A Xcos block.
             </varlistentry>
         </variablelist>
     </refsection>

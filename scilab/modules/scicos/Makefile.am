@@ -42,7 +42,8 @@ src/c/createblklist.c \
 src/c/var2sci.c \
 src/c/copyvarfromlistentry.c \
 src/c/MlistGetFieldNumber.c \
-src/c/extractblklist.c
+src/c/extractblklist.c \
+src/c/lsodar.c
 
 SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
 src/fortran/vvtosci.f \

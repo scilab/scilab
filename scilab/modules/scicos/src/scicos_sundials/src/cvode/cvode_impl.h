@@ -473,6 +473,7 @@ extern "C" {
 
   /* CVode Error Messages */
 
+#define MSGCV_BAD_INPUT "One of the arguments is illegal"
 #define MSGCV_LSOLVE_NULL "The linear solver's solve routine is NULL."
 #define MSGCV_YOUT_NULL "yout = NULL illegal."
 #define MSGCV_TRET_NULL "tret = NULL illegal."
