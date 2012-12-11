@@ -271,6 +271,9 @@ Time for implicit Runge-Kutta :
                 <link linkend="DoPri">Dormand-Prince 4(5)</link>
             </member>
             <member>
+                <link linkend="Comparisons">Comparisons</link>
+            </member>
+            <member>
                 <link linkend="ode_discrete">ode_discrete</link>
             </member>
             <member>

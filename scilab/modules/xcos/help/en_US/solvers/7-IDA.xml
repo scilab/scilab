@@ -176,6 +176,9 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
             </member>
             <member>
+                <link linkend="Comparisons">Comparisons</link>
+            </member>
+            <member>
                 <link linkend="ode">ode</link>
             </member>
             <member>

@@ -152,7 +152,7 @@ Time for Adams / Functional :
             &#8776; <emphasis>max(reltol, abstol)</emphasis> ).
         </para>
         <para>
-            Variable step-size ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.
+            Variable-size step ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.
         </para>
     </refsection>
     <refsection>
@@ -172,6 +172,9 @@ Time for Adams / Functional :
             </member>
             <member>
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="Comparisons">Comparisons</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>
