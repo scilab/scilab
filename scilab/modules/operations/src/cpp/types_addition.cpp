@@ -565,32 +565,24 @@ int AddDoubleToPoly(Polynom *_pPoly, Double *_pDouble, Polynom ** _pPolyOut)
 
     if (_pDouble->isScalar())
     {
-        //Create new SinglePoly
-        (*_pPolyOut) = new Polynom();
-        //Copy the old one ( rank, size, ... but not coefficients
-        **_pPolyOut = *_pPoly;
-
+        //Clone original poly
+        (*_pPolyOut) = _pPoly->clone()->getAs<Polynom>();
         for (int i = 0 ; i < (*_pPolyOut)->getSize() ; i++)
         {
-            SinglePoly *pInPoly  = _pPoly->get(i);
-            SinglePoly *pOutPoly = (*_pPolyOut)->get(i);
-            double *pInPolyR     = pInPoly->getCoef()->getReal();
-            double *pOutPolyR    = pOutPoly->getCoef()->getReal();
-
-            pOutPolyR[0] = pInDblR[0] + pInPolyR[0];
+            SinglePoly *pOutPoly    = (*_pPolyOut)->get(i);
+            double *pOutPolyR       = pOutPoly->getCoef()->get();
+            pOutPolyR[0]   += pInDblR[0];
         }
 
-        if (bComplex1 || bComplex2)
+        if ((*_pPolyOut)->isComplex() || _pDouble->isComplex())
         {
             (*_pPolyOut)->setComplex(true);
             for (int i = 0 ; i < (*_pPolyOut)->getSize() ; i++)
             {
-                SinglePoly *pInPoly  = _pPoly->get(i);
-                SinglePoly *pOutPoly = (*_pPolyOut)->get(i);
-                double *pInPolyI     = pInPoly->getCoef()->getImg();
-                double *pOutPolyI    = pOutPoly->getCoef()->getImg();
+                SinglePoly *pOutPoly    = (*_pPolyOut)->get(i);
+                double *pOutPolyI       = pOutPoly->getCoef()->getImg();
 
-                pOutPolyI[0] = (pInDblI == NULL ? 0 : pInDblI[0]) + (pInPolyI == NULL ? 0 : pInPolyI[0]);
+                pOutPolyI[0]            +=  (pInDblI == NULL ? 0 : pInDblI[0]);
             }
         }
 
