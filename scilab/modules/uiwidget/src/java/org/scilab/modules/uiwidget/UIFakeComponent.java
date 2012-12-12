@@ -56,7 +56,7 @@ public class UIFakeComponent implements Cloneable {
             attributes.putAll(this.attributes);
             attrs = attributes;
         } else {
-            attrs = this.attributes;
+            attrs = (StringMap) this.attributes.clone();
         }
 
         final UIComponent ui = UIComponent.getUIComponent(pack, name, attrs, parent, style);
