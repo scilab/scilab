@@ -35,6 +35,7 @@ public class UIComboBox extends UIComponent {
 
     private JComboBox combo;
     private ActionListener listener;
+    private boolean onchangeEnable = true;
     private String action;
     private Vector<Object> vector;
     private ListCellRenderer defaultRenderer;
@@ -134,16 +135,48 @@ public class UIComboBox extends UIComponent {
         return combo.getSelectedItem().toString();
     }
 
+    public void setSelectedIndex(int index) {
+        try {
+            combo.setSelectedIndex(index);
+        } catch (IllegalArgumentException e) { }
+    }
+
+    public int getSelectedIndex() {
+        return combo.getSelectedIndex();
+    }
+
+    public int getValue() {
+        return getSelectedIndex();
+    }
+
+    public void setValue(int index) {
+        setSelectedIndex(index);
+    }
+
+    public String getOnchange() {
+        return action;
+    }
+
     public void setOnchange(String action) {
         if (this.action == null) {
             removeListener();
             listener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    UIWidgetTools.execAction(UIComboBox.this, UIComboBox.this.action, "\"" + combo.getSelectedItem().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                    if (onchangeEnable) {
+                        UIWidgetTools.execAction(UIComboBox.this, UIComboBox.this.action, "\"" + combo.getSelectedItem().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                    }
                 }
             };
             combo.addActionListener(listener);
         }
         this.action = action;
+    }
+
+    public boolean getOnchangeEnable() {
+        return onchangeEnable;
+    }
+
+    public void setOnchangeEnable(boolean b) {
+        onchangeEnable = b;
     }
 }

@@ -34,6 +34,7 @@ public class UITextfield extends UIComponent {
     private JTextField textfield;
     private boolean password;
     private DocumentListener listener;
+    private boolean onchangeEnable = true;
     private String action;
 
     public enum Alignment {
@@ -123,6 +124,14 @@ public class UITextfield extends UIComponent {
         }
     }
 
+    public void setString(String s) {
+        textfield.setText(s);
+    }
+
+    public String getString() {
+        return textfield.getText();
+    }
+
     public void removeListener() {
         if (listener != null) {
             textfield.getDocument().removeDocumentListener(listener);
@@ -135,16 +144,24 @@ public class UITextfield extends UIComponent {
         super.remove();
     }
 
+    public String getOnchange() {
+        return action;
+    }
+
     public void setOnchange(final String action) {
         if (this.action == null) {
             removeListener();
             listener = new DocumentListener() {
                 public void insertUpdate(DocumentEvent e) {
-                    UIWidgetTools.execAction(UITextfield.this, UITextfield.this.action);
+                    if (onchangeEnable) {
+                        UIWidgetTools.execAction(UITextfield.this, UITextfield.this.action);
+                    }
                 }
 
                 public void removeUpdate(DocumentEvent e) {
-                    UIWidgetTools.execAction(UITextfield.this, UITextfield.this.action);
+                    if (onchangeEnable) {
+                        UIWidgetTools.execAction(UITextfield.this, UITextfield.this.action);
+                    }
                 }
 
                 public void changedUpdate(DocumentEvent e) { }
@@ -152,5 +169,13 @@ public class UITextfield extends UIComponent {
             textfield.getDocument().addDocumentListener(listener);
         }
         this.action = action;
+    }
+
+    public boolean getOnchangeEnable() {
+        return onchangeEnable;
+    }
+
+    public void setOnchangeEnable(boolean b) {
+        onchangeEnable = b;
     }
 }

@@ -106,7 +106,7 @@ public final class ObjectToScilabConverters {
     static {
         converters.put(Integer.class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
-                ScilabStackPutter.put(stackPos, ((Integer) o).intValue(), false);
+                ScilabStackPutter.put(stackPos, (double) ((Integer) o).intValue());
             }
         });
         converters.put(int[].class, new ObjectConverter() {

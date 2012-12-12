@@ -87,6 +87,10 @@ public class UISlider extends UIComponent {
         super.remove();
     }
 
+    public String getOnchange() {
+        return action;
+    }
+
     public void setOnchange(final String action) {
         if (this.action == null) {
             listener = new ChangeListener() {
@@ -99,6 +103,10 @@ public class UISlider extends UIComponent {
             slider.addChangeListener(listener);
         }
         this.action = action;
+    }
+
+    public boolean getOnchangeEnable() {
+        return onchangeEnable;
     }
 
     public void setOnchangeEnable(boolean b) {
