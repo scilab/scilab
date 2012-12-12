@@ -458,10 +458,12 @@ static char* gatewayname_uiwidget = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_uiwidget(void)
 {
+#ifdef _MSC_VER
     if (dynlibname_uiwidget == NULL)
     {
         dynlibname_uiwidget = buildModuleDynLibraryName(UIWIDGET_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
     }
+#endif
     return gw_dynamic_generic(UIWIDGET_MODULE_NAME,
                               &dynlibname_uiwidget,
                               &gatewayname_uiwidget,
