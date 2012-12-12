@@ -31,7 +31,7 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** DOUBLE .* DOUBLE
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if (_pLeftOperand->isDouble() && _pRightOperand->isDouble())
     {
         Double *pL   = _pLeftOperand->getAs<Double>();
         Double *pR   = _pRightOperand->getAs<Double>();
@@ -44,7 +44,7 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
 
         return pResult;
     }
-    else if (TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+    else if (_pLeftOperand->isPoly() && _pRightOperand->isDouble())
     {
         Polynom *pL   = _pLeftOperand->getAs<Polynom>();
         Double *pR   = _pRightOperand->getAs<Double>();
