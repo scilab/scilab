@@ -147,8 +147,17 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * Create a lexer used to colorize the text
      * @return ScilabLexer the lexer
      */
+    public ScilabLexer createLexer(boolean update) {
+        return new ScilabLexer(this, update);
+    }
+
+    /**
+     * Create a lexer used to colorize the text
+     * @param update true if the scilab vars must be updated
+     * @return ScilabLexer the lexer
+     */
     public ScilabLexer createLexer() {
-        return new ScilabLexer(this);
+        return new ScilabLexer(this, true);
     }
 
     /**
@@ -744,10 +753,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param ev the DocumentEvent to handle
      */
     private void handleEvent(DocumentEvent ev) {
-        if (!contentModified && pane != null) {
+        if (!contentModified) {
             contentModified = true;
-            pane.updateTitle();
+            if (pane != null) {
+                pane.updateTitle();
+            }
         }
+
         contentModifiedSinceBackup = true;
 
         DocumentEvent.ElementChange chg = ev.getChange(getDefaultRootElement());

@@ -73,7 +73,7 @@ public class CompoundUndoManager extends UndoManager {
      * startCompoundEdit
      */
     public void startCompoundEdit() {
-        if (compoundEdit == null) {
+        if (compoundEdit == null && sdoc.getEditorPane() != null) {
             compoundEdit = new CompoundEdit();
             addEdit(compoundEdit);
             ++nbEdits;
@@ -87,7 +87,7 @@ public class CompoundUndoManager extends UndoManager {
      * endCompoundEdit
      */
     public void endCompoundEdit() {
-        if (compoundEdit != null) {
+        if (compoundEdit != null && sdoc.getEditorPane() != null) {
             compoundEdit.end();
             compoundEdit = null;
         }
@@ -190,47 +190,48 @@ public class CompoundUndoManager extends UndoManager {
      */
     public void undoableEditHappened(UndoableEditEvent e) {
         DocumentEvent event = (AbstractDocument.DefaultDocumentEvent) e.getEdit();
-
-        if (!oneShot && event.getLength() == 1) {
-            if (!remove && event.getType() == DocumentEvent.EventType.REMOVE) {
-                endCompoundEdit();
-                remove = true;
-            }
-
-            if (remove && event.getType() == DocumentEvent.EventType.INSERT) {
-                endCompoundEdit();
-                remove = false;
-            }
-
-            try {
-                sdoc.getText(event.getOffset(), 1, seg);
-                boolean br = false;
-                for (int i = 0; i < breaks.length && !br; i++) {
-                    br = seg.array[seg.offset] == breaks[i];
+        if (sdoc.getEditorPane() != null) {
+            if (!oneShot && event.getLength() == 1) {
+                if (!remove && event.getType() == DocumentEvent.EventType.REMOVE) {
+                    endCompoundEdit();
+                    remove = true;
                 }
-                if (!remove && br) {
-                    // there is a problem when the window is splitted
-                    // two compoundEdits are created !
+
+                if (remove && event.getType() == DocumentEvent.EventType.INSERT) {
                     endCompoundEdit();
-                    startCompoundEdit();
-                    compoundEdit.addEdit(e.getEdit());
-                    endCompoundEdit();
-                    return;
-                } else {
-                    if (sdoc.getDefaultRootElement().getElementIndex(event.getOffset()) != prevLine) {
-                        prevLine = sdoc.getDefaultRootElement().getElementIndex(event.getOffset());
-                        endCompoundEdit();
+                    remove = false;
+                }
+
+                try {
+                    sdoc.getText(event.getOffset(), 1, seg);
+                    boolean br = false;
+                    for (int i = 0; i < breaks.length && !br; i++) {
+                        br = seg.array[seg.offset] == breaks[i];
                     }
-                    startCompoundEdit();
-                    compoundEdit.addEdit(e.getEdit());
-                    return;
+                    if (!remove && br) {
+                        // there is a problem when the window is splitted
+                        // two compoundEdits are created !
+                        endCompoundEdit();
+                        startCompoundEdit();
+                        compoundEdit.addEdit(e.getEdit());
+                        endCompoundEdit();
+                        return;
+                    } else {
+                        if (sdoc.getDefaultRootElement().getElementIndex(event.getOffset()) != prevLine) {
+                            prevLine = sdoc.getDefaultRootElement().getElementIndex(event.getOffset());
+                            endCompoundEdit();
+                        }
+                        startCompoundEdit();
+                        compoundEdit.addEdit(e.getEdit());
+                        return;
+                    }
+                } catch (BadLocationException ex) {
+                    ex.printStackTrace();
                 }
-            } catch (BadLocationException ex) {
-                ex.printStackTrace();
+            } else {
+                startCompoundEdit();
+                compoundEdit.addEdit(e.getEdit());
             }
-        } else {
-            startCompoundEdit();
-            compoundEdit.addEdit(e.getEdit());
         }
     }
 }
