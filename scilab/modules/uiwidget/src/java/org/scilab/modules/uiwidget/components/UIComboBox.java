@@ -39,6 +39,7 @@ public class UIComboBox extends UIComponent {
     private String action;
     private Vector<Object> vector;
     private ListCellRenderer defaultRenderer;
+    private MyComboBoxModel model;
 
     public UIComboBox(UIComponent parent) throws UIWidgetException {
         super(parent);
@@ -48,7 +49,8 @@ public class UIComboBox extends UIComponent {
         combo = new JComboBox();
         vector = new Vector<Object>();
         defaultRenderer = combo.getRenderer();
-
+        model = new MyComboBoxModel(vector);
+        combo.setModel(model);
         combo.setRenderer(new DefaultListCellRenderer() {
 
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -80,18 +82,12 @@ public class UIComboBox extends UIComponent {
     }
 
     public void finish() {
-        if (vector != null) {
-            combo.setModel(new DefaultComboBoxModel(vector));
-            vector = null;
-        }
+        model.fireContentsChanged(model, 0, vector.size() - 1);
+        resetIndex();
     }
 
     public void add(Object obj) {
-        if (vector == null) {
-            combo.addItem(obj);
-        } else {
-            vector.add(obj);
-        }
+        vector.add(obj);
         if (obj instanceof UIListElement.ListElement) {
             ((UIListElement.ListElement) obj).setParent(combo);
         }
@@ -131,6 +127,24 @@ public class UIComboBox extends UIComponent {
         }
     }
 
+    public void setItems(String[] items) {
+        if (items != null) {
+            vector.clear();
+            for (String item : items) {
+                add(new UIListElement.ListElement(item, null));
+            }
+            model.fireContentsChanged(model, 0, vector.size() - 1);
+            resetIndex();
+        }
+    }
+
+    private void resetIndex() {
+        boolean old = onchangeEnable;
+        onchangeEnable = false;
+        setSelectedIndex(0);
+        onchangeEnable = old;
+    }
+
     public String getSelectedItem() {
         return combo.getSelectedItem().toString();
     }
@@ -162,7 +176,7 @@ public class UIComboBox extends UIComponent {
             removeListener();
             listener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    if (onchangeEnable) {
+                    if (onchangeEnable && combo.getSelectedItem() != null) {
                         UIWidgetTools.execAction(UIComboBox.this, UIComboBox.this.action, "\"" + combo.getSelectedItem().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
                     }
                 }
@@ -178,5 +192,16 @@ public class UIComboBox extends UIComponent {
 
     public void setOnchangeEnable(boolean b) {
         onchangeEnable = b;
+    }
+
+    private static class MyComboBoxModel extends DefaultComboBoxModel {
+
+        public MyComboBoxModel(Vector v) {
+            super(v);
+        }
+
+        public void fireContentsChanged(Object o, int i, int f) {
+            super.fireContentsChanged(o, i, f);
+        }
     }
 }

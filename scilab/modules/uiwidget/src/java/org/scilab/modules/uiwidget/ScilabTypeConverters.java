@@ -78,7 +78,7 @@ public final class ScilabTypeConverters {
             return StringConverters.getObjectFromValue(clazz, null);
         }
 
-        if (clazz != String.class && value.getType() == ScilabTypeEnum.sci_strings) {
+        if (clazz != String.class && value.getType() == ScilabTypeEnum.sci_strings && value.getWidth() == 1 && value.getHeight() == 1) {
             // We have a Scilab string in input so we will use a String converter (since the target is not a string)
             converter = null;
         } else {
