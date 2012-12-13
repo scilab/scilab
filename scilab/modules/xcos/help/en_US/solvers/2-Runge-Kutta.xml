@@ -147,7 +147,7 @@
 loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
-scs_m.props.tol(6) = 5;
+scs_m.props.tol(6) = 6;
 scs_m.props.tol(7) = 10^-2;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
 ]]></scilab:image>
@@ -164,7 +164,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
       scs_m.props.tf = 10000;
 
       // Select the solver Runge-Kutta and set the precision
-      scs_m.props.tol(6) = 5;
+      scs_m.props.tol(6) = 6;
       scs_m.props.tol(7) = 10^-2;
 
       // Start the timer, launch the simulation and display time

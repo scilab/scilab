@@ -57,7 +57,7 @@ Xcos
 
 * Add a new ODE solver : LSodar. Automatically switches methods to efficiently solve both stiff and nonstiff problems. Includes a rootfinding feature.
 
-* Add a new ODE solver : Dormand-Price 4(5). Included in the CVode package, so benefits from the rootfinding feature.
+* Add two new Fixed-size step ODE solvers : Dormand-Price 4(5) then Runge-Kutta 4(5). Included in the CVode package, so benefit from the rootfinding feature.
 
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.

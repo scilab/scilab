@@ -823,7 +823,11 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
         {
             cossim(t0);
         }
-        else if (C2F(cmsolver).solver == 5)   /*  DOPRI: Method: Dormand-Price, Nonlinear solver= FUNCTIONAL */
+        else if (C2F(cmsolver).solver == 5)   /*  DOPRI: Method: Dormand-Price, Nonlinear solver=  */
+        {
+            cossim(t0);
+        }
+        else if (C2F(cmsolver).solver == 6)   /*  RK45: Method: Runge-Kutta, Nonlinear solver=  */
         {
             cossim(t0);
         }
@@ -1380,6 +1384,9 @@ static void cossim(double *told)
                 break;
             case 5:
                 cvode_mem = CVodeCreate(CV_DOPRI, CV_FUNCTIONAL);
+                break;
+            case 6:
+                cvode_mem = CVodeCreate(CV_ExpRK, CV_FUNCTIONAL);
                 break;
         }
 
