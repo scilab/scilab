@@ -86,7 +86,7 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
         double d;
         index = new unsigned int[nbIn - 1];
 
-        for (unsigned int i = 1; i <= nbIn - 1; i++)
+        for (int i = 1; i <= nbIn - 1; i++)
         {
             err = getVarAddressFromPosition(pvApiCtx, i, &addr);
             if (err.iErr)

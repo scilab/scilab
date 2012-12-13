@@ -113,7 +113,7 @@ std::string H5Attribute::dump(std::map<haddr_t, std::string> & alreadyVisited, c
     {
         data = &const_cast<H5Attribute *>(this)->getData();
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
 
     }
@@ -252,7 +252,7 @@ void H5Attribute::copy(const hid_t src, const hid_t dest, const std::string & na
         delete[] dims;
         delete[] data;
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         H5Sclose(space);
         H5Tclose(type);

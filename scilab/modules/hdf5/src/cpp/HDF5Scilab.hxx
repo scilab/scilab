@@ -304,8 +304,8 @@ public:
         unsigned int rank;
         hsize_t * dims = 0;
         void * data = 0;
-        bool mustDelete;
-        bool mustDeleteContent;
+        bool mustDelete = false;
+        bool mustDeleteContent = false;
         H5Object * hobj = 0;
         T * newobj = 0;
         bool isReference = false;

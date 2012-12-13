@@ -135,7 +135,7 @@ H5File::H5File(const std::string & _filename, const std::string & _path, const s
         init(fapl);
         H5Pclose(fapl);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         H5Pclose(fapl);
         throw;
@@ -161,7 +161,7 @@ H5File::H5File(const std::string & _filename, const std::string & _path, const s
         init(fapl);
         H5Pclose(fapl);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         H5Pclose(fapl);
         throw;
@@ -186,7 +186,7 @@ H5File::H5File(const std::string & _filename, const std::string & _path, const s
         init(fapl);
         H5Pclose(fapl);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         H5Pclose(fapl);
         throw;
@@ -222,7 +222,7 @@ H5File::H5File(const std::string & _filename, const std::string & _path, const s
         init(fapl);
         H5Pclose(fapl);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         H5Pclose(fapl);
         throw;
@@ -274,7 +274,7 @@ H5Object & H5File::getRoot()
     {
         return H5Object::getObject(*this, obj);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         H5Oclose(obj);
         throw;
@@ -340,7 +340,7 @@ void H5File::getAccessibleAttribute(const std::string & _name, const int pos, vo
             obj->createOnScilabStack(pos, pvApiCtx);
             return;
         }
-        catch (const H5Exception & e)
+        catch (const H5Exception & /*e*/)
         {
             if (obj)
             {

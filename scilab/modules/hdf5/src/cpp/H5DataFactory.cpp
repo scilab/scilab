@@ -39,7 +39,7 @@ H5Data & H5DataFactory::getData(H5Object & parent, const hid_t obj, H5Dataspace 
 
         return ret;
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         H5Tclose(type);
         H5Tclose(nativeType);
@@ -166,7 +166,7 @@ H5Data & H5DataFactory::getObjectData(H5Object & parent, const hsize_t totalSize
             int nmembers = H5Tget_nmembers(type);
             std::string * names = nmembers > 0 ? new std::string[nmembers] : 0;
 
-            for (unsigned int i = 0; i < nmembers; i++)
+            for (int i = 0; i < nmembers; i++)
             {
                 char * mname = H5Tget_member_name(type, i);
                 names[i] = std::string(mname);
@@ -268,7 +268,7 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * 
             *data = static_cast<void *>(new char[(size_t)size]);
         }
     }
-    catch (const std::bad_alloc & e)
+    catch (const std::bad_alloc & /*e*/)
     {
         H5Tclose(nativeType);
         if (space < 0)

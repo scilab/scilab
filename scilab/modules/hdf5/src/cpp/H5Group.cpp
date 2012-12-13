@@ -223,7 +223,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
             obj.createOnScilabStack(pos, pvApiCtx);
             return;
         }
-        catch (const H5Exception & e) { }
+        catch (const H5Exception & /*e*/) { }
     }
 
     H5Object::getAccessibleAttribute(_name, pos, pvApiCtx);

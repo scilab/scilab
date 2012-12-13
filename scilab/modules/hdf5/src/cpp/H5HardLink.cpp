@@ -38,7 +38,7 @@ H5Object & H5HardLink::getLinkedObject() const
     {
         return H5Object::getObject(*const_cast<H5HardLink *>(this), obj);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         H5Oclose(obj);
         throw;

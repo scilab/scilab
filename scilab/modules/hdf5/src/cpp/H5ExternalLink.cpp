@@ -23,7 +23,6 @@ std::vector<std::string *> H5ExternalLink::getLinkTargets() const
     std::vector<std::string *> ret;
     const char * filename = 0;
     const char * obj_path = 0;
-    unsigned int flags;
 
     err = H5Lget_info(getParent().getH5Id(), getName().c_str(), &info, H5P_DEFAULT);
     if (err < 0)

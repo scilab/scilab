@@ -107,7 +107,7 @@ void H5Dataspace::getAccessibleAttribute(const std::string & _name, const int po
     if (lower == "dims" || lower == "dimensions")
     {
         std::vector<unsigned int> dims = getDims(true);
-        err = createMatrixOfUnsignedInteger32(pvApiCtx, pos, 1, dims.size(), &(dims[0]));
+        err = createMatrixOfUnsignedInteger32(pvApiCtx, pos, 1, (int)dims.size(), &(dims[0]));
         if (err.iErr)
         {
             throw H5Exception(__LINE__, __FILE__, _("Cannot create an array of integer on the stack."));
@@ -118,7 +118,7 @@ void H5Dataspace::getAccessibleAttribute(const std::string & _name, const int po
     else if (lower == "extents")
     {
         std::vector<unsigned int> dims = getDims(false);
-        err = createMatrixOfUnsignedInteger32(pvApiCtx, pos, 1, dims.size(), &(dims[0]));
+        err = createMatrixOfUnsignedInteger32(pvApiCtx, pos, 1, (int)dims.size(), &(dims[0]));
         if (err.iErr)
         {
             throw H5Exception(__LINE__, __FILE__, _("Cannot create an array of integer on the stack."));

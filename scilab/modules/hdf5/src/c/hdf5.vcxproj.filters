@@ -188,6 +188,12 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_percent_H5Object_p.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_h5ln.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_h5readattr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_hdf5_scilab.h">

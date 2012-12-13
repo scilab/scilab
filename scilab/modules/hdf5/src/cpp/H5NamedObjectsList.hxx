@@ -252,7 +252,7 @@ private:
 
         if (H5ListObject<T>::indexList)
         {
-            if (pos >= 0 && pos < H5ListObject<T>::indexSize)
+            if (pos >= 0 && pos < (int)H5ListObject<T>::indexSize)
             {
                 _pos = H5ListObject<T>::indexList[pos];
             }

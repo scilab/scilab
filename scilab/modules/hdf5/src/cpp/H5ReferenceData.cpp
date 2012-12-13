@@ -235,7 +235,7 @@ void H5ReferenceData::printData(std::ostream & os, const unsigned int pos, const
                 const hsize_t N = ndims * npoints;
                 hsize_t * buf = new hsize_t[N];
                 herr_t err =  H5Sget_select_elem_pointlist(space, 0, npoints, buf);
-                for (hssize_t i = 0; i < N; i += ndims)
+                for (hssize_t i = 0; i < (hssize_t)N; i += ndims)
                 {
                     os << "(";
                     for (unsigned int j = 0; j < ndims - 1; j++)
@@ -263,7 +263,7 @@ void H5ReferenceData::printData(std::ostream & os, const unsigned int pos, const
                     const hsize_t N = 2 * ndims * nblocks;
                     hsize_t * buf = new hsize_t[N];
                     herr_t err = H5Sget_select_hyper_blocklist(space, 0, nblocks, buf);
-                    for (hssize_t i = 0; i < N; i += 2 * ndims)
+                    for (hssize_t i = 0; i < (hssize_t)N; i += 2 * ndims)
                     {
                         os << "(";
                         for (unsigned int j = 0; j < ndims - 1; j++)

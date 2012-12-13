@@ -67,7 +67,7 @@ H5Attribute & H5AttributesList::getObject(const int pos, const bool checkPos)
     if (checkPos)
     {
         unsigned int size = getSize();
-        if (pos < 0 || pos >= size)
+        if (pos < 0 || pos >= (int)size)
         {
             throw H5Exception(__LINE__, __FILE__, _("Invalid index %u: must be between 0 and %u."), pos, size);
         }

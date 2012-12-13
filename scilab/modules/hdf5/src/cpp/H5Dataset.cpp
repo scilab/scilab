@@ -159,7 +159,7 @@ void H5Dataset::getAccessibleAttribute(const std::string & _name, const int pos,
             obj.createOnScilabStack(pos, pvApiCtx);
             return;
         }
-        catch (const H5Exception & e) { }
+        catch (const H5Exception & /*e*/) { }
     }
 
     H5Object::getAccessibleAttribute(_name, pos, pvApiCtx);
@@ -218,7 +218,7 @@ std::string H5Dataset::dump(std::map<haddr_t, std::string> & alreadyVisited, con
     {
         data = &const_cast<H5Dataset *>(this)->getData();
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
 
     }
@@ -388,7 +388,7 @@ hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t ty
                 }
                 else
                 {
-                    for (unsigned int i = 0; i < ndims; i++)
+                    for (int i = 0; i < ndims; i++)
                     {
                         if (maxdims[i] != dmaxdims[i])
                         {
@@ -412,7 +412,7 @@ hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t ty
                 delete[] dmaxdims;
 
             }
-            catch (const H5Exception & e)
+            catch (const H5Exception & /*e*/)
             {
                 delete[] dims;
                 delete[] ddims;

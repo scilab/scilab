@@ -53,13 +53,19 @@ H5StringData::~H5StringData()
     else
     {
         char ** _data = reinterpret_cast<char **>(getData());
-        for (hsize_t i = 0; i < totalSize; i++)
+        hid_t space = H5Screate_simple(1, &totalSize, 0);
+        hid_t type = H5Tcopy(H5T_C_S1);
+        H5Tset_size(type, H5T_VARIABLE);
+        H5Tset_strpad(type, H5T_STR_NULLTERM);
+
+        herr_t err = H5Dvlen_reclaim(type, space, H5P_DEFAULT, _data);
+        if (err < 0)
         {
-            if (_data[i])
-            {
-                free(_data[i]);
-            }
+            throw H5Exception(__LINE__, __FILE__, _("Cannot free the memory associated with String data"));
         }
+
+        H5Tclose(type);
+        H5Sclose(space);
     }
 }
 

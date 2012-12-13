@@ -178,7 +178,7 @@ int sci_h5read(char *fname, unsigned long fname_len)
         }
     }
 
-    for (unsigned int i = 3; i <= nbIn; i++)
+    for (int i = 3; i <= nbIn; i++)
     {
         err = getVarAddressFromPosition(pvApiCtx, i, &addr);
         if (err.iErr)

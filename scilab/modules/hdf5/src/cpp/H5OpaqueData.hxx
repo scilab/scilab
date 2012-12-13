@@ -69,7 +69,7 @@ public:
                 alloc(pvApiCtx, lhsPosition, 1, (int)(totalSize * dataSize), list, 3, &newData);
                 H5DataConverter::C2FHypermatrix((int)ndims + 1, _dims, (int)(totalSize * dataSize), static_cast<unsigned char *>(getData()), newData);
             }
-            catch (const H5Exception & e)
+            catch (const H5Exception & /*e*/)
             {
                 delete[] _dims;
                 throw;

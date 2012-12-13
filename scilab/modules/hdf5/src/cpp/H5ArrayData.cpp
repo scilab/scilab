@@ -57,7 +57,7 @@ H5Object & H5ArrayData::getData(const unsigned int size, const unsigned int * in
 
     for (unsigned int i = 0; i < size; i++)
     {
-        pos += cumprod[i] * index[i];
+        pos += (int)cumprod[i] * index[i];
     }
 
     if (pos >= totalSize)
