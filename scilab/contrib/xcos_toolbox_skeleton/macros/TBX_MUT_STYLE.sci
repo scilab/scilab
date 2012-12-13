@@ -6,18 +6,10 @@
 function [x,y,typ]=TBX_MUT_STYLE(job,arg1,arg2)
   x=[];y=[];typ=[]
   select job
-   case 'plot' then
-    standard_draw(arg1)
-   case 'getinputs' then
-    [x,y,typ]=standard_inputs(arg1)
-   case 'getoutputs' then
-    [x,y,typ]=standard_outputs(arg1)
-   case 'getorigin' then
-    [x,y]=standard_origin(arg1)
    case 'set' then
     x=arg1;
     model = x.model;
-    graphics = x.graphics;    
+    graphics = x.graphics;
 
     // no parameters yet, just change the style of the block and the ports
     hexa = [string(1:9) "A" "B" "C" "D" "E" "F"];
@@ -43,15 +35,14 @@ function [x,y,typ]=TBX_MUT_STYLE(job,arg1,arg2)
     // one output with a single "double" element
     model.out=1
     model.outtyp=1
-    
+
     model.blocktype='c'
     model.dep_ut=[%f %f]
 
     exprs=string([]);
-    gr_i=['txt=[''TBX_SUM_c''];';
-          'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
-
-    x=standard_define([2 2],model,exprs,gr_i)
+    gr_i=[]
+    x=standard_define([2 2],model,exprs,gr_i);
+    x.graphics.style="BIGSOM_f";
   end
 endfunction
 
