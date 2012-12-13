@@ -170,7 +170,7 @@ std::string H5ReferenceData::toString(const unsigned int indentLevel) const
 
 std::string H5ReferenceData::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
 {
-    return H5DataConverter::dump(alreadyVisited, indentLevel, ndims, dims, *this);
+    return H5DataConverter::dump(alreadyVisited, indentLevel, (int)ndims, dims, *this);
 }
 
 void H5ReferenceData::printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const

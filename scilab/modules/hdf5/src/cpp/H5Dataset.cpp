@@ -106,7 +106,6 @@ H5Dataset::H5Layout & H5Dataset::getLayout()
 
 void H5Dataset::getAccessibleAttribute(const std::string & _name, const int pos, void * pvApiCtx) const
 {
-    SciErr err;
     std::string lower(_name);
 
     std::transform(_name.begin(), _name.end(), lower.begin(), tolower);
@@ -115,7 +114,7 @@ void H5Dataset::getAccessibleAttribute(const std::string & _name, const int pos,
     {
         std::vector<std::string> names;
         getNames(*this, names, ATTRIBUTE);
-        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+        H5BasicData<char>::putStringVectorOnStack(names, (int)names.size(), 1, pos, pvApiCtx);
 
         return;
     }

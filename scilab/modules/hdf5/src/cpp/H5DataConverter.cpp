@@ -50,7 +50,7 @@ int * H5DataConverter::getHypermatrix(void * pvApiCtx, const int position, const
         }
         for (int i = 0; i < ndims; i++)
         {
-            _dims[i] = dims[i];
+            _dims[i] = (int)dims[i];
         }
     }
 

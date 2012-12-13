@@ -18,6 +18,9 @@
 #include "H5Link.hxx"
 #include "H5ListObject.hxx"
 
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 namespace org_modules_hdf5
 {
 

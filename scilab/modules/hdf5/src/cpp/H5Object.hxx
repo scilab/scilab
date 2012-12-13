@@ -10,6 +10,10 @@
  *
  */
 
+#ifdef _MSC_VER
+#pragma warning(disable: 4355) //disable Warning C4355: 'this' : used in base member initializer list 
+#endif
+
 #ifndef __H5OBJECT_HXX__
 #define __H5OBJECT_HXX__
 
@@ -164,7 +168,7 @@ public :
         {
             return getData(size, _index);
         }
-        catch (const H5Exception & e)
+        catch (const H5Exception & /*e*/)
         {
             delete[] _index;
             throw;

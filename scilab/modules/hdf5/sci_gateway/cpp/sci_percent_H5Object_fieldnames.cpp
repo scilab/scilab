@@ -29,7 +29,6 @@ using namespace org_modules_hdf5;
 int sci_percent_H5Object_fieldnames(char * fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
-    int id;
     SciErr err;
     int * addr = 0;
     const int nbIn = nbInputArgument(pvApiCtx);

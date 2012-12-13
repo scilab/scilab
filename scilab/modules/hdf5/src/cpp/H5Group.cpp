@@ -125,7 +125,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
     {
         std::vector<std::string> names;
         getNames(*this, names, ATTRIBUTE);
-        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+        H5BasicData<char>::putStringVectorOnStack(names, (int)names.size(), 1, pos, pvApiCtx);
 
         return;
     }
@@ -133,7 +133,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
     {
         std::vector<std::string> names;
         getNames(*this, names, GROUP);
-        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+        H5BasicData<char>::putStringVectorOnStack(names, (int)names.size(), 1, pos, pvApiCtx);
 
         return;
     }
@@ -141,7 +141,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
     {
         std::vector<std::string> names;
         getNames(*this, names, DATASET);
-        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+        H5BasicData<char>::putStringVectorOnStack(names, (int)names.size(), 1, pos, pvApiCtx);
 
         return;
     }
@@ -149,7 +149,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
     {
         std::vector<std::string> names;
         getNames(*this, names, TYPE);
-        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+        H5BasicData<char>::putStringVectorOnStack(names, (int)names.size(), 1, pos, pvApiCtx);
 
         return;
     }
@@ -157,7 +157,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
     {
         std::vector<std::string> names;
         getNames(*this, names, EXTERNAL);
-        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+        H5BasicData<char>::putStringVectorOnStack(names, (int)names.size(), 1, pos, pvApiCtx);
 
         return;
     }
@@ -165,7 +165,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
     {
         std::vector<std::string> names;
         getNames(*this, names, SOFT);
-        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+        H5BasicData<char>::putStringVectorOnStack(names, (int)names.size(), 1, pos, pvApiCtx);
 
         return;
     }
@@ -173,7 +173,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
     {
         std::vector<std::string> names;
         getNames(*this, names, DANGLING);
-        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+        H5BasicData<char>::putStringVectorOnStack(names, (int)names.size(), 1, pos, pvApiCtx);
 
         return;
     }
@@ -181,7 +181,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
     {
         std::vector<std::string> names;
         getNames(*this, names, HARD);
-        H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, pos, pvApiCtx);
+        H5BasicData<char>::putStringVectorOnStack(names, (int)names.size(), 1, pos, pvApiCtx);
 
         return;
     }
@@ -207,7 +207,7 @@ void H5Group::getAccessibleAttribute(const std::string & _name, const int pos, v
             _str.push_back(types[i].c_str());
         }
 
-        err = createMatrixOfString(pvApiCtx, pos, names.size(), 3, &(_str[0]));
+        err = createMatrixOfString(pvApiCtx, pos, (int)names.size(), 3, &(_str[0]));
         if (err.iErr)
         {
             throw H5Exception(__LINE__, __FILE__, _("Cannot create a column of strings on the stack."));

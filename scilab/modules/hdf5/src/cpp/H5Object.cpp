@@ -660,9 +660,7 @@ herr_t H5Object::filterIterator(hid_t g_id, const char * name, const H5L_info_t 
 
 herr_t H5Object::filterSoftLinkIterator(hid_t g_id, const char * name, const H5L_info_t * info, void * op_data)
 {
-    H5O_info_t oinfo;
     herr_t err;
-    hid_t obj;
     OpDataSoftLinkFilter & opdata = *(OpDataSoftLinkFilter *)op_data;
 
     if (info->type == H5L_TYPE_SOFT && opdata.type == SOFT)

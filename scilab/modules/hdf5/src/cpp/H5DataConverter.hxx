@@ -65,25 +65,25 @@ public:
                 os << start << "0): ";
                 for (hsize_t i = 0; i < dims[0] - 1; i++)
                 {
-                    obj.printData(os, *pos + i, 0);
+                    obj.printData(os, *pos + (int)i, 0);
                     os << ", ";
                 }
-                obj.printData(os, *pos + dims[0] - 1, 0);
+                obj.printData(os, *pos + (int)dims[0] - 1, 0);
             }
             else
             {
                 for (hsize_t i = 0; i < dims[0] - 1; i++)
                 {
                     os << start << i << "): ";
-                    obj.printData(os, *pos + i, indentLevel);
+                    obj.printData(os, *pos + (int)i, indentLevel);
                     os << ", " << std::endl;
                 }
                 os << start << dims[0] - 1 << "): ";
-                obj.printData(os, *pos + dims[0] - 1, indentLevel);
+                obj.printData(os, *pos + (int)dims[0] - 1, indentLevel);
             }
 
             os << std::endl;
-            *pos += dims[0];
+            *pos += (int)dims[0];
         }
         else
         {

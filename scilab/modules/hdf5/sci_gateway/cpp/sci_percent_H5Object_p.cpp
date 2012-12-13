@@ -48,7 +48,7 @@ int sci_percent_H5Object_p(char * fname, unsigned long fname_len)
         id = HDF5Scilab::getH5ObjectId(mlistaddr, pvApiCtx);
         obj = H5VariableScope::getVariableFromId(id);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         Scierror(999, _("%s: Can not print H5Object.\n"), fname);
         return 0;

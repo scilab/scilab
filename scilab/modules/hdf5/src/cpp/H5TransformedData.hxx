@@ -67,7 +67,6 @@ public:
 
     virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
     {
-        SciErr err;
         U * newData = 0;
 
         if (ndims == 0)
@@ -76,28 +75,28 @@ public:
         }
         else if (ndims == 1)
         {
-            H5BasicData<U>::alloc(pvApiCtx, lhsPosition, 1, *dims, parentList, listPosition, &newData);
+            H5BasicData<U>::alloc(pvApiCtx, lhsPosition, 1, (int)*dims, parentList, listPosition, &newData);
             memcpy(static_cast<void *>(newData), static_cast<void *>(transformedData), totalSize * sizeof(U));
         }
         else
         {
             if (ndims == 2)
             {
-                H5BasicData<U>::alloc(pvApiCtx, lhsPosition, dims[0], dims[1], parentList, listPosition, &newData);
+                H5BasicData<U>::alloc(pvApiCtx, lhsPosition, (int)dims[0], (int)dims[1], parentList, listPosition, &newData);
                 H5DataConverter::C2FHypermatrix(2, dims, 0, static_cast<U *>(getData()), newData);
             }
             else
             {
                 int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition);
-                H5BasicData<U>::alloc(pvApiCtx, lhsPosition, 1, totalSize, list, 3, &newData);
-                H5DataConverter::C2FHypermatrix(ndims, dims, totalSize, static_cast<U *>(getData()), newData);
+                H5BasicData<U>::alloc(pvApiCtx, lhsPosition, 1, (int)totalSize, list, 3, &newData);
+                H5DataConverter::C2FHypermatrix((int)ndims, dims, totalSize, static_cast<U *>(getData()), newData);
             }
         }
     }
 
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
     {
-        return H5DataConverter::dump(alreadyVisited, indentLevel, ndims, dims, *this);
+        return H5DataConverter::dump(alreadyVisited, indentLevel, (int)ndims, dims, *this);
     }
 };
 }

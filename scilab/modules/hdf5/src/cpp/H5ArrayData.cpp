@@ -98,7 +98,7 @@ std::string H5ArrayData::toString(const unsigned int indentLevel) const
 
 std::string H5ArrayData::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
 {
-    return H5DataConverter::dump(alreadyVisited, indentLevel, ndims, dims, *this, false);
+    return H5DataConverter::dump(alreadyVisited, indentLevel, (int)ndims, dims, *this, false);
 }
 
 void H5ArrayData::printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
@@ -111,7 +111,7 @@ void H5ArrayData::printData(std::ostream & os, const unsigned int pos, const uns
         hdata.printData(os, i, indentLevel + 1);
         os << ", ";
     }
-    hdata.printData(os, atotalSize - 1, indentLevel + 1);
+    hdata.printData(os, (int)atotalSize - 1, (int)indentLevel + 1);
     os << " ]";
 
     delete &hdata;

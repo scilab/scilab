@@ -113,7 +113,7 @@ void H5CompoundData::getFieldNames(const int position, void * vApiCtx)
     {
         names.push_back(fieldinfos[i]->name);
     }
-    H5BasicData<char>::putStringVectorOnStack(names, names.size(), 1, position, pvApiCtx);
+    H5BasicData<char>::putStringVectorOnStack(names, (int)names.size(), 1, position, pvApiCtx);
 }
 
 std::string H5CompoundData::toString(const unsigned int indentLevel) const
@@ -153,7 +153,7 @@ std::string H5CompoundData::toString(const unsigned int indentLevel) const
 
 std::string H5CompoundData::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
 {
-    return H5DataConverter::dump(alreadyVisited, indentLevel, ndims, dims, *this, false);
+    return H5DataConverter::dump(alreadyVisited, indentLevel, (int)ndims, dims, *this, false);
 }
 
 void H5CompoundData::printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const

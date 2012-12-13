@@ -92,7 +92,6 @@ void H5StringData::toScilab(void * pvApiCtx, const int lhsPosition, int * parent
 {
     static char EMPTY[] = { '\0' };
 
-    SciErr err;
     char ** _tdata = 0;
     char ** _data = static_cast<char **>(getData());
 
@@ -122,7 +121,7 @@ void H5StringData::toScilab(void * pvApiCtx, const int lhsPosition, int * parent
     }
     else if (ndims == 1)
     {
-        H5BasicData<char *>::create(pvApiCtx, lhsPosition, 1, *dims, _data, parentList, listPosition);
+        H5BasicData<char *>::create(pvApiCtx, lhsPosition, 1, (int)*dims, _data, parentList, listPosition);
     }
     else
     {
@@ -130,12 +129,12 @@ void H5StringData::toScilab(void * pvApiCtx, const int lhsPosition, int * parent
         if (ndims == 2)
         {
             H5DataConverter::C2FHypermatrix(2, dims, 0, _data, newData);
-            H5BasicData<char *>::create(pvApiCtx, lhsPosition, dims[0], dims[1], newData, parentList, listPosition);
+            H5BasicData<char *>::create(pvApiCtx, lhsPosition, (int)dims[0], (int)dims[1], newData, parentList, listPosition);
         }
         else
         {
             int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition);
-            H5DataConverter::C2FHypermatrix(ndims, dims, (int)totalSize, _data, newData);
+            H5DataConverter::C2FHypermatrix((int)ndims, dims, totalSize, _data, newData);
             H5BasicData<char *>::create(pvApiCtx, lhsPosition, 1, (int)totalSize, newData, parentList, listPosition);
         }
         delete[] newData;
@@ -149,6 +148,6 @@ void H5StringData::toScilab(void * pvApiCtx, const int lhsPosition, int * parent
 
 std::string H5StringData::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
 {
-    return H5DataConverter::dump(alreadyVisited, indentLevel, ndims, dims, *this);
+    return H5DataConverter::dump(alreadyVisited, indentLevel, (int)ndims, dims, *this);
 }
 }

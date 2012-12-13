@@ -91,7 +91,7 @@ std::string H5VlenData::toString(const unsigned int indentLevel) const
 
 std::string H5VlenData::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
 {
-    return H5DataConverter::dump(alreadyVisited, indentLevel, ndims, dims, *this, false);
+    return H5DataConverter::dump(alreadyVisited, indentLevel, (int)ndims, dims, *this, false);
 }
 
 void H5VlenData::printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
@@ -115,7 +115,7 @@ void H5VlenData::printData(std::ostream & os, const unsigned int pos, const unsi
         hdata.printData(os, i, indentLevel + 1);
         os << ", ";
     }
-    hdata.printData(os, *_dims - 1, indentLevel + 1);
+    hdata.printData(os, (int)*_dims - 1, indentLevel + 1);
     os << ")";
 
     delete &hdata;

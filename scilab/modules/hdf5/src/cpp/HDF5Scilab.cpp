@@ -156,7 +156,7 @@ void HDF5Scilab::readAttributeData(const std::string & filename, const std::stri
     {
         readAttributeData(*file, path, attrName, pos, pvApiCtx);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete file;
         throw;
@@ -173,7 +173,7 @@ void HDF5Scilab::readData(const std::string & filename, const std::string & name
     {
         readData(*file, name, size, start, stride, count, block, pos, pvApiCtx);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete file;
         throw;
@@ -205,7 +205,7 @@ void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsign
                 data = &dataset->getData(space, dims);
                 data->toScilab(pvApiCtx, pos);
             }
-            catch (const H5Exception & e)
+            catch (const H5Exception & /*e*/)
             {
                 if (data)
                 {
@@ -225,7 +225,7 @@ void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsign
             throw H5Exception(__LINE__, __FILE__, _("Invalid object: not a dataset."));
         }
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         if (!H5Object::isEmptyPath(name))
         {
@@ -257,7 +257,7 @@ void HDF5Scilab::deleteObject(const std::string & file, const std::string & name
         deleteObject(*_file, name);
         delete _file;
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete _file;
     }
@@ -272,7 +272,7 @@ void HDF5Scilab::deleteObject(const std::string & file, const int size, const ch
         deleteObject(*_file, size, names);
         delete _file;
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete _file;
     }
@@ -342,7 +342,7 @@ void HDF5Scilab::getObject(H5Object & parent, const std::string & location, cons
     {
         obj = &H5Object::getObject(parent, location, isAttr);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         H5BasicData<double>::create(pvApiCtx, position, 0, 0, (double *)0, 0, 0);
         return;
@@ -352,7 +352,7 @@ void HDF5Scilab::getObject(H5Object & parent, const std::string & location, cons
     {
         obj->createOnScilabStack(position, pvApiCtx);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete obj;
         throw;
@@ -433,7 +433,7 @@ void HDF5Scilab::createLink(const std::string & file, const std::string & locati
     {
         createLink(*_file, name, destName, hard);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete _file;
         throw;
@@ -450,7 +450,7 @@ void HDF5Scilab::createLink(const std::string & file, const std::string & locati
     {
         createLink(_file->getRoot(), name, destFile, destName);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete _file;
         throw;
@@ -501,7 +501,7 @@ void HDF5Scilab::copy(H5Object & src, const std::string & slocation, H5Object & 
             attr->copy(*dobj, name);
             return;
         }
-        catch (const H5Exception & e)
+        catch (const H5Exception & /*e*/)
         {
             throw;
         }
@@ -526,7 +526,7 @@ void HDF5Scilab::copy(H5Object & src, const std::string & slocation, const std::
         copy(src, slocation, *dest, dlocation);
         delete dest;
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete dest;
         throw;
@@ -542,7 +542,7 @@ void HDF5Scilab::copy(const std::string & sfile, const std::string & slocation, 
         copy(*src, slocation, dest, dlocation);
         delete src;
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete src;
         throw;
@@ -558,7 +558,7 @@ void HDF5Scilab::copy(const std::string & sfile, const std::string & slocation, 
     {
         dest = new H5File(dfile, "/");
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete src;
         throw;
@@ -570,7 +570,7 @@ void HDF5Scilab::copy(const std::string & sfile, const std::string & slocation, 
         delete src;
         delete dest;
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete src;
         delete dest;
@@ -601,7 +601,7 @@ void HDF5Scilab::ls(H5Object & obj, const std::string & name, int position, void
         delete &hobj;
     }
 
-    H5BasicData<char *>::create(pvApiCtx, position, _name.size(), 2, const_cast<char **>(&(strs[0])), 0, 0);
+    H5BasicData<char *>::create(pvApiCtx, position, (int)_name.size(), 2, const_cast<char **>(&(strs[0])), 0, 0);
 }
 
 void HDF5Scilab::ls(const std::string & path, const std::string & name, int position, void * pvApiCtx)
@@ -612,7 +612,7 @@ void HDF5Scilab::ls(const std::string & path, const std::string & name, int posi
     {
         ls(*file, name, position, pvApiCtx);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete file;
         throw;
@@ -653,7 +653,7 @@ void HDF5Scilab::ls(H5Object & obj, const std::string & name, const std::string 
         delete &hobj;
     }
 
-    H5BasicData<char *>::create(pvApiCtx, position, _name.size(), 1, const_cast<char **>(&(strs[0])), 0, 0);
+    H5BasicData<char *>::create(pvApiCtx, position, (int)_name.size(), 1, const_cast<char **>(&(strs[0])), 0, 0);
 }
 
 void HDF5Scilab::ls(const std::string & path, const std::string & name, const std::string & type, int position, void * pvApiCtx)
@@ -664,7 +664,7 @@ void HDF5Scilab::ls(const std::string & path, const std::string & name, const st
     {
         ls(*file, name, type, position, pvApiCtx);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete file;
         throw;
@@ -687,7 +687,7 @@ void HDF5Scilab::createGroup(const std::string & file, const std::string & name)
     {
         createGroup(*_file, name);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete _file;
         throw;
@@ -709,7 +709,7 @@ void HDF5Scilab::createGroup(const std::string & file, const int size, const cha
     {
         createGroup(*_file, size, names);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete _file;
         throw;
@@ -726,7 +726,7 @@ void HDF5Scilab::label(const std::string & filename, const std::string & locatio
     {
         label(*file, location, size, dim, names);
     }
-    catch (const H5Exception & e)
+    catch (const H5Exception & /*e*/)
     {
         delete file;
         throw;
@@ -744,7 +744,7 @@ void HDF5Scilab::label(H5Object & obj, const std::string & location, const unsig
         {
             reinterpret_cast<H5Dataset *>(&hobj)->label(size, dim, names);
         }
-        catch (const H5Exception & e)
+        catch (const H5Exception & /*e*/)
         {
             if (!H5Object::isEmptyPath(location))
             {

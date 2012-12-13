@@ -62,7 +62,7 @@ inline static int sci_h5isfoo(const HDF5Scilab::H5ObjectType type, char * fname,
     {
         ok = HDF5Scilab::checkType(*hobj, type);
     }
-    catch (const std::exception & e)
+    catch (const std::exception & /*e*/)
     {
 
     }

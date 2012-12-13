@@ -47,7 +47,7 @@ int sci_h5close(char *fname, unsigned long fname_len)
     }
     else
     {
-        for (unsigned int i = 1; i <= nbIn; i++)
+        for (int i = 1; i <= nbIn; i++)
         {
             err = getVarAddressFromPosition(pvApiCtx, i, &addr);
             if (err.iErr)
@@ -78,7 +78,7 @@ int sci_h5close(char *fname, unsigned long fname_len)
                     return 0;
                 }
             }
-            catch (std::exception & e)
+            catch (std::exception & /*e*/)
             {
                 Scierror(999, _("%s: Cannot remove H5Object.\n"), fname);
                 return 0;

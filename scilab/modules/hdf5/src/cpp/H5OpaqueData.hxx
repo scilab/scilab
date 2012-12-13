@@ -45,17 +45,16 @@ public:
 
     virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
     {
-        SciErr err;
         unsigned char * newData = 0;
 
         if (ndims == 0)
         {
-            alloc(pvApiCtx, lhsPosition, 1, dataSize, parentList, listPosition, &newData);
+            alloc(pvApiCtx, lhsPosition, 1, (int)dataSize, parentList, listPosition, &newData);
             copyData(newData);
         }
         else if (ndims == 1)
         {
-            alloc(pvApiCtx, lhsPosition, *dims, dataSize, parentList, listPosition, &newData);
+            alloc(pvApiCtx, lhsPosition, (int)*dims, (int)dataSize, parentList, listPosition, &newData);
             copyData(newData);
         }
         else
@@ -67,8 +66,8 @@ public:
 
             try
             {
-                alloc(pvApiCtx, lhsPosition, 1, totalSize * dataSize, list, 3, &newData);
-                H5DataConverter::C2FHypermatrix(ndims + 1, _dims, totalSize * dataSize, static_cast<unsigned char *>(getData()), newData);
+                alloc(pvApiCtx, lhsPosition, 1, (int)(totalSize * dataSize), list, 3, &newData);
+                H5DataConverter::C2FHypermatrix((int)ndims + 1, _dims, (int)(totalSize * dataSize), static_cast<unsigned char *>(getData()), newData);
             }
             catch (const H5Exception & e)
             {

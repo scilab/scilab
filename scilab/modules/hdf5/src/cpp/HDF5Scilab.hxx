@@ -144,10 +144,8 @@ public:
         hid_t srcspace;
         hid_t targetspace;
         hid_t targettype;
-        herr_t err;
         hsize_t * newdims = 0;
         bool mustDelete = false;
-        H5T_conv_t conv;
         H5T_cdata_t * pcdata = 0;
         bool chunked = false;
 
@@ -182,7 +180,7 @@ public:
         {
             newdims = H5Dataspace::select(srcspace, srank, sstart, sstride, scount, sblock);
         }
-        catch (const H5Exception & e)
+        catch (const H5Exception & /*e*/)
         {
             H5Tclose(targettype);
             H5Sclose(srcspace);
@@ -245,7 +243,7 @@ public:
                     delete[] _newdims;
                 }
             }
-            catch (const H5Exception & e)
+            catch (const H5Exception & /*e*/)
             {
                 H5Tclose(targettype);
                 H5Sclose(targetspace);
@@ -263,7 +261,7 @@ public:
                 H5Sclose(targetspace);
             }
         }
-        catch (const H5Exception & e)
+        catch (const H5Exception & /*e*/)
         {
             H5Tclose(targettype);
             H5Sclose(srcspace);
@@ -291,7 +289,7 @@ public:
             createObjectFromStack<T>(src, location, name, flip, pvApiCtx, rhsPosition, srank, sdims, sstart, sstride, scount, sblock, targetType, drank, ddims, dmaxdims, dstart, dstride, dcount, dblock);
             delete &src;
         }
-        catch (const H5Exception & e)
+        catch (const H5Exception & /*e*/)
         {
             delete &src;
             throw;
@@ -416,7 +414,7 @@ public:
 
             newobj = &create<T>(*hobj, name, rank, sdims, sstart, sstride, scount, sblock, sourceType, data, drank, ddims, dmaxdims, dstart, dstride, dcount, dblock, targettype);
         }
-        catch (const H5Exception & e)
+        catch (const H5Exception & /*e*/)
         {
             if (mustDeleteContent)
             {

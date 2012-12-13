@@ -157,7 +157,6 @@ public:
 
     virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
     {
-        SciErr err;
         T * newData = 0;
         hsize_t _ndims = ndims;
         hsize_t _totalSize = totalSize;
@@ -169,28 +168,28 @@ public:
         }
         else if (_ndims == 1)
         {
-            alloc(pvApiCtx, lhsPosition, 1, *_dims, parentList, listPosition, &newData);
+            alloc(pvApiCtx, lhsPosition, 1, (int)*_dims, parentList, listPosition, &newData);
             copyData(newData);
         }
         else
         {
             if (_ndims == 2)
             {
-                alloc(pvApiCtx, lhsPosition, _dims[0], _dims[1], parentList, listPosition, &newData);
+                alloc(pvApiCtx, lhsPosition, (int)_dims[0], (int)_dims[1], parentList, listPosition, &newData);
                 H5DataConverter::C2FHypermatrix(2, _dims, 0, static_cast<T *>(getData()), newData);
             }
             else
             {
                 int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition);
-                alloc(pvApiCtx, lhsPosition, 1, _totalSize, list, 3, &newData);
-                H5DataConverter::C2FHypermatrix(_ndims, _dims, _totalSize, static_cast<T *>(getData()), newData);
+                alloc(pvApiCtx, lhsPosition, 1, (int)_totalSize, list, 3, &newData);
+                H5DataConverter::C2FHypermatrix((int)_ndims, _dims, _totalSize, static_cast<T *>(getData()), newData);
             }
         }
     }
 
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
     {
-        return H5DataConverter::dump(alreadyVisited, indentLevel, ndims, dims, *this);
+        return H5DataConverter::dump(alreadyVisited, indentLevel, (int)ndims, dims, *this);
     }
 
     static void putStringVectorOnStack(std::vector<std::string> & strs, const int rows, const int cols, const int pos, void * pvApiCtx)
@@ -200,7 +199,6 @@ public:
             throw H5Exception(__LINE__, __FILE__, _("Invalid dimensions."));
         }
 
-        SciErr err;
         std::vector<const char *> _strs;
         _strs.reserve(strs.size());
         for (unsigned int i = 0; i < strs.size(); i++)

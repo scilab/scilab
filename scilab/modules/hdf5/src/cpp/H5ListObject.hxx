@@ -14,6 +14,7 @@
 #define __H5LISTOBJECT_HXX__
 
 #include "H5Object.hxx"
+#include "H5Attribute.hxx"
 
 namespace org_modules_hdf5
 {
@@ -51,7 +52,7 @@ public :
 
     virtual void getAccessibleAttribute(const double index, const int pos, void * pvApiCtx) const
     {
-        T & obj = const_cast<H5ListObject *>(this)->getObject((int)index);
+        T & obj = const_cast<H5ListObject<T> *>(this)->getObject((int)index);
         obj.createOnScilabStack(pos, pvApiCtx);
     }
 

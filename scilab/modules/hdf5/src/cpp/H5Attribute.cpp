@@ -72,7 +72,6 @@ H5Dataspace & H5Attribute::getSpace()
 
 void H5Attribute::getAccessibleAttribute(const std::string & _name, const int pos, void * pvApiCtx) const
 {
-    SciErr err;
     std::string lower(_name);
     std::transform(_name.begin(), _name.end(), lower.begin(), tolower);
 

@@ -97,7 +97,7 @@ protected:
 
         if (sizeof(int) == sizeof(hsize_t))
         {
-            err = createMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, ndims, (int *)dims);
+            err = createMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, (int)ndims, (int *)dims);
             if (err.iErr)
             {
                 throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
@@ -106,14 +106,14 @@ protected:
         else
         {
             int * _dims = 0;
-            err = allocMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, ndims, &_dims);
+            err = allocMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, (int)ndims, &_dims);
             if (err.iErr)
             {
                 throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
             }
             for (int i = 0; i < ndims; i++)
             {
-                _dims[i] = dims[i];
+                _dims[i] = (int)dims[i];
             }
         }
 

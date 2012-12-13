@@ -258,26 +258,26 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * 
 
     try
     {
-	if (isString)
-	{
-	    *data = static_cast<void *>(new char[(size_t)size]());
-	}
-	else
-	{
-	    // No need to initialize the array
-	    *data = static_cast<void *>(new char[(size_t)size]);
-	}
+        if (isString)
+        {
+            *data = static_cast<void *>(new char[(size_t)size]());
+        }
+        else
+        {
+            // No need to initialize the array
+            *data = static_cast<void *>(new char[(size_t)size]);
+        }
     }
     catch (const std::bad_alloc & e)
     {
-	H5Tclose(nativeType);
+        H5Tclose(nativeType);
         if (space < 0)
         {
             H5Sclose(_space);
         }
-	*data = 0;
-	delete[] *dims;
-	*dims = 0;
+        *data = 0;
+        delete[] *dims;
+        *dims = 0;
         throw H5Exception(__LINE__, __FILE__, _("Cannot allocate memory to get the data"));
     }
 
@@ -289,13 +289,13 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * 
             H5Sclose(_space);
         }
         delete[] *dims;
-	*dims = 0;
+        *dims = 0;
         throw H5Exception(__LINE__, __FILE__, _("Cannot allocate memory to get the data"));
     }
 
     if (hyperslab)
     {
-        targetspace =  H5Screate_simple(*ndims, *dims, 0);
+        targetspace =  H5Screate_simple((int) * ndims, *dims, 0);
         err = H5Dread(obj, nativeType, targetspace, _space, H5P_DEFAULT, *data);
         H5Sclose(targetspace);
     }
@@ -319,9 +319,9 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * 
             H5Sclose(_space);
         }
         delete[] static_cast<char *>(*data);
-	*data = 0;
+        *data = 0;
         delete[] *dims;
-	*dims = 0;
+        *dims = 0;
         throw H5Exception(__LINE__, __FILE__, _("Cannot retrieve the data from the attribute"));
     }
 
