@@ -586,22 +586,30 @@ void HDF5Scilab::ls(H5Object & obj, const std::string & name, int position, void
     H5Object & hobj = H5Object::isEmptyPath(name) ? obj : H5Object::getObject(obj, name);
 
     hobj.ls(_name, _type);
-    strs.reserve(_name.size() * 2);
-    for (unsigned int i = 0; i < _name.size(); i++)
-    {
-        strs.push_back(_name[i].c_str());
-    }
-    for (unsigned int i = 0; i < _type.size(); i++)
-    {
-        strs.push_back(_type[i].c_str());
-    }
 
-    if (!H5Object::isEmptyPath(name))
+    if (_name.size() == 0)
     {
-        delete &hobj;
+        H5BasicData<char *>::create(pvApiCtx, position, 0, 0, "", 0, 0);
     }
+    else
+    {
+        strs.reserve(_name.size() * 2);
+        for (unsigned int i = 0; i < _name.size(); i++)
+        {
+            strs.push_back(_name[i].c_str());
+        }
+        for (unsigned int i = 0; i < _type.size(); i++)
+        {
+            strs.push_back(_type[i].c_str());
+        }
 
-    H5BasicData<char *>::create(pvApiCtx, position, (int)_name.size(), 2, const_cast<char **>(&(strs[0])), 0, 0);
+        if (!H5Object::isEmptyPath(name))
+        {
+            delete &hobj;
+        }
+
+        H5BasicData<char *>::create(pvApiCtx, position, (int)_name.size(), 2, const_cast<char **>(&(strs[0])), 0, 0);
+    }
 }
 
 void HDF5Scilab::ls(const std::string & path, const std::string & name, int position, void * pvApiCtx)
@@ -642,18 +650,25 @@ void HDF5Scilab::ls(H5Object & obj, const std::string & name, const std::string 
 
 
     hobj.ls(_name, ftype);
-    strs.reserve(_name.size());
-    for (unsigned int i = 0; i < _name.size(); i++)
+    if (_name.size() == 0)
     {
-        strs.push_back(_name[i].c_str());
+        H5BasicData<char *>::create(pvApiCtx, position, 0, 0, "", 0, 0);
     }
-
-    if (!H5Object::isEmptyPath(name))
+    else
     {
-        delete &hobj;
-    }
+        strs.reserve(_name.size());
+        for (unsigned int i = 0; i < _name.size(); i++)
+        {
+            strs.push_back(_name[i].c_str());
+        }
 
-    H5BasicData<char *>::create(pvApiCtx, position, (int)_name.size(), 1, const_cast<char **>(&(strs[0])), 0, 0);
+        if (!H5Object::isEmptyPath(name))
+        {
+            delete &hobj;
+        }
+
+        H5BasicData<char *>::create(pvApiCtx, position, (int)_name.size(), 1, const_cast<char **>(&(strs[0])), 0, 0);
+    }
 }
 
 void HDF5Scilab::ls(const std::string & path, const std::string & name, const std::string & type, int position, void * pvApiCtx)

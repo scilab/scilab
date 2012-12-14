@@ -24,7 +24,7 @@ a = h5open(TMPDIR + "/test.h5");
 
 msgerr = msprintf(gettext("%s: Invalid hdf5 file: %s."), "h5mv","42");
 assert_checkerror("h5mv(a,""42"",""42"")",msgerr,999);
-msgerr = msprintf(gettext("%s: Cannot copy object.\nHDF5 description: object doesn''t exist."), "h5mv");
+msgerr = msprintf(gettext("%s: Cannot copy object.\nHDF5 description: object ''%s'' doesn''t exist."), "h5mv", "42");
 assert_checkerror("h5mv(a,""42"",a)",msgerr,999);
 
 b = h5open(TMPDIR + "/test1.h5");

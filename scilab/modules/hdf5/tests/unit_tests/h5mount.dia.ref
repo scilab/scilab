@@ -24,7 +24,7 @@ h5group(c, "Group_2");
 h5write(c, "Group_2/Dataset_2", uint32([14 15 16;17 18 19]));
 h5mount(a, "/mnt", b);
 assert_checkequal(a.root.mnt.Groups,"Group_1");
-msgerr = msprintf(gettext("%s: Cannot mount the file: %s"), "h5mount",TMPDIR+"/test1.h5");
+msgerr = msprintf(gettext("%s: Cannot mount the file: %s"), "h5mount",TMPDIR + filesep() + "test1.h5");
 assert_checkerror("h5mount(a, ""/mnt"", b)",msgerr,999);
 h5mount(a, "/mnt", c);
 assert_checkequal(a.root.mnt.Groups,"Group_2");

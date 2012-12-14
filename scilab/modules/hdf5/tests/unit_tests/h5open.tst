@@ -25,10 +25,21 @@ assert_checkequal(a.root.Name,'/');
 h5write(a,"Dset_1",[1 2;3 4]);
 h5close(a);
 
-msgerr = msprintf(gettext("%s: Cannot append the file (not HDF5): %s."), "h5open", "/");
+
+//on Windows path / does not exist.
+if getos() == "Windows" then
+    msgerr = msprintf(gettext("%s: Cannot create the given hdf5 file: %s."), "h5open", filesep());
+else
+    msgerr = msprintf(gettext("%s: Cannot append the file (not HDF5): %s."), "h5open", filesep());
+end
 assert_checkerror("h5open(""/"")",msgerr,999);
-msgerr = msprintf(gettext("%s: Cannot append the file (not HDF5): %s."), "h5open", SCI + "/COPYING-FR");
+
+if getos() == "Windows" then
+    msgerr = msprintf(gettext("%s: Cannot append the file (not HDF5): %s."), "h5open", WSCI + filesep() + "COPYING-FR");
+else
+    msgerr = msprintf(gettext("%s: Cannot append the file (not HDF5): %s."), "h5open", SCI + filesep() + "COPYING-FR");
+end
 assert_checkerror("h5open(SCI + ""/COPYING-FR"")",msgerr,999);
 copyfile(SCI+"/COPYING-FR",TMPDIR+"/z.h5");
-msgerr = msprintf(gettext("%s: Cannot append the file (not HDF5): %s."), "h5open", TMPDIR + "/z.h5");
+msgerr = msprintf(gettext("%s: Cannot append the file (not HDF5): %s."), "h5open", TMPDIR + filesep() + "z.h5");
 assert_checkerror("h5open(TMPDIR + ""/z.h5"")",msgerr,999);

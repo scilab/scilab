@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- ENGLISH IMPOSED -->
+// <-- LINUX ONLY -->
 // <-- CLI SHELL MODE -->
 
 msgerr = msprintf(gettext("%s: Wrong number of input argument(s): 1 to 2 expected."), "h5flush");

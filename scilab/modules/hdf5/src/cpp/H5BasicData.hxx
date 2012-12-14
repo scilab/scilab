@@ -199,13 +199,20 @@ public:
             throw H5Exception(__LINE__, __FILE__, _("Invalid dimensions."));
         }
 
-        std::vector<const char *> _strs;
-        _strs.reserve(strs.size());
-        for (unsigned int i = 0; i < strs.size(); i++)
+        if (strs.size() == 0)
         {
-            _strs.push_back(strs[i].c_str());
+            create(pvApiCtx, pos, 0, 0, "", 0, 0);
         }
-        create(pvApiCtx, pos, rows, cols, const_cast<char **>(&(_strs[0])), 0, 0);
+        else
+        {
+            std::vector<const char *> _strs;
+            _strs.reserve(strs.size());
+            for (unsigned int i = 0; i < strs.size(); i++)
+            {
+                _strs.push_back(strs[i].c_str());
+            }
+            create(pvApiCtx, pos, rows, cols, const_cast<char **>(&(_strs[0])), 0, 0);
+        }
     }
 
     __SCILAB_ALLOCATORS_CREATORS__(double, Double)
