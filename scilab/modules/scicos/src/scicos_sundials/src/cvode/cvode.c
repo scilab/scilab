@@ -30,6 +30,7 @@
 
 /* SUNDIALS EXTENSION */
 #include "sundials_extension.h"
+#include "nvector/nvector_serial.h"
 
 /*=================================================================*/
 /*             CVODE Private Constants                             */
