@@ -14,6 +14,7 @@
 #include "types_substraction.hxx"
 #include "scilabexception.hxx"
 #include "core_math.h"
+#include "int.hxx"
 
 extern "C"
 {
@@ -94,6 +95,104 @@ InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
         }
 
         return pR;
+    }
+
+    // - Int
+    if (_pRightOperand->isInt())
+    {
+        switch (_pRightOperand->getType())
+        {
+            case InternalType::RealInt8 :
+            {
+                Int8 *pR = _pRightOperand->clone()->getAs<Int8>();
+                char* pReal = pR->get();
+
+                for (int i = 0 ; i < pR->getSize() ; i++)
+                {
+                    pReal[i] *= -1;
+                }
+                return pR;
+            }
+            case InternalType::RealInt16 :
+            {
+                Int16 *pR = _pRightOperand->clone()->getAs<Int16>();
+                short* pReal = pR->get();
+
+                for (int i = 0 ; i < pR->getSize() ; i++)
+                {
+                    pReal[i] *= -1;
+                }
+                return pR;
+            }
+            case InternalType::RealInt32 :
+            {
+                Int32 *pR = _pRightOperand->clone()->getAs<Int32>();
+                int* pReal = pR->get();
+
+                for (int i = 0 ; i < pR->getSize() ; i++)
+                {
+                    pReal[i] *= -1;
+                }
+                return pR;
+            }
+            case InternalType::RealInt64 :
+            {
+                Int64 *pR = _pRightOperand->clone()->getAs<Int64>();
+                long long* pReal = pR->get();
+
+                for (int i = 0 ; i < pR->getSize() ; i++)
+                {
+                    pReal[i] *= -1;
+                }
+                return pR;
+            }
+            case InternalType::RealUInt8 :
+            {
+                UInt8 *pR = _pRightOperand->clone()->getAs<UInt8>();
+                unsigned char* pReal = pR->get();
+
+                for (int i = 0 ; i < pR->getSize() ; i++)
+                {
+                    pReal[i] *= -1;
+                }
+                return pR;
+            }
+            case InternalType::RealUInt16 :
+            {
+                UInt16 *pR = _pRightOperand->clone()->getAs<UInt16>();
+                unsigned short* pReal = pR->get();
+
+                for (int i = 0 ; i < pR->getSize() ; i++)
+                {
+                    pReal[i] *= -1;
+                }
+                return pR;
+            }
+            case InternalType::RealUInt32 :
+            {
+                UInt32 *pR = _pRightOperand->clone()->getAs<UInt32>();
+                unsigned int* pReal = pR->get();
+
+                for (int i = 0 ; i < pR->getSize() ; i++)
+                {
+                    pReal[i] *= -1;
+                }
+                return pR;
+            }
+            case InternalType::RealUInt64 :
+            {
+                UInt64 *pR = _pRightOperand->clone()->getAs<UInt64>();
+                unsigned long long* pReal = pR->get();
+
+                for (int i = 0 ; i < pR->getSize() ; i++)
+                {
+                    pReal[i] *= -1;
+                }
+                return pR;
+            }
+            default :
+                return NULL;
+        }
     }
 
     /*
