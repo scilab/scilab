@@ -21,6 +21,11 @@
 #include "stepvisitor.hxx"
 #include "configvariable.hxx"
 
+#include "jit_ocaml.hxx"
+extern "C" {
+#include "jit_ocaml.h"
+}
+
 #include "scilabWrite.hxx"
 #include "runner.hxx"
 
@@ -145,6 +150,10 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose)
     {
         _timer.start();
     }
+
+    char *buf = scicaml_ast2string(tree);
+    buf = jit_ocaml_analyze(buf);
+    tree = scicaml_string2ast(buf);
 
     if(ASTtimed)
     {

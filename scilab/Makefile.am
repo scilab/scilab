@@ -62,6 +62,7 @@ scilab_bin_CPPFLAGS = \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/jit_ocaml/includes/ \
     -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
     -I$(top_srcdir)/libs/MALLOC/includes/ \
     $(EIGEN_CPPFLAGS) \
@@ -80,19 +81,31 @@ if IS_MACOSX
 scilab_bin_SOURCES		+=  $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
 endif
 
+JIT_LIBS = \
+  modules/jit_ocaml/libscijit_ocaml-runtime.o \
+  modules/jit_ocaml/jit_ocaml.o \
+  modules/jit_ocaml/libasmrun.a
+
+modules/jit_ocaml/libscijit_ocaml-runtime.o:
+	$(MAKE) -C modules/jit_ocaml libscijit_ocaml-runtime.o
+modules/jit_ocaml/jit_ocaml.o:
+	$(MAKE) -C modules/jit_ocaml jit_ocaml.o
+modules/jit_ocaml/libasmrun.a:
+	$(MAKE) -C modules/jit_ocaml libasmrun.a
+
 scilab_bin_LDADD 		= $(COMMON_LIBS)
 if GUI
 # Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
 scilab_bin_LDADD += $(top_builddir)/modules/jvm/libscijvm.la
 endif
-scilab_bin_LDADD += $(top_builddir)/modules/libscilab.la $(FLIBS)
+scilab_bin_LDADD += $(top_builddir)/modules/libscilab.la $(JIT_LIBS) $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES	=	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
-scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
+scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(JIT_LIBS) $(FLIBS)
 
 
 if NEED_JAVA

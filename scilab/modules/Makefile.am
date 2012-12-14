@@ -98,7 +98,8 @@ history_browser \
 preferences \
 xml \
 types \
-external_objects
+external_objects \
+jit_ocaml
 
 if XCOS
 SUBDIRS += scicos_blocks
@@ -205,6 +206,7 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/types/libscitypes.la \
+	$(top_builddir)/modules/jit_ocaml/libscijit_ocaml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
 	$(top_builddir)/modules/preferences/libscipreferences-cli.la
 

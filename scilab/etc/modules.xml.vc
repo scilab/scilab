@@ -58,5 +58,6 @@
     <module name="demo_tools" activate="yes"/>
     <module name="graphic_export" activate="yes"/>
     <module name="operations" activate="yes"/>
+    <module name="jit_ocaml" activate="yes"/>
     <module name="api_scilab" activate="yes"/>
 </modules>
