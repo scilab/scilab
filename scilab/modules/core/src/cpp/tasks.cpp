@@ -153,8 +153,12 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose)
 
     char *buf = scicaml_ast2string(tree);
     buf = jit_ocaml_analyze(buf);
-    tree = scicaml_string2ast(buf);
+    ast::Exp* ocaml_tree = scicaml_string2ast(buf);
+    /* uncomment these lines to verify that the translation is IDEMPOTENT
 
+    char *buf2 = scicaml_ast2string(ocaml_tree);
+    jit_ocaml_analyze(buf2);
+    */
     if(ASTtimed)
     {
         exec = (ast::ExecVisitor*)new ast::TimedVisitor();
@@ -170,7 +174,7 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose)
         exec = new ast::ExecVisitor();
     }
 
-    Runner::execAndWait(tree, exec);
+    Runner::execAndWait(ocaml_tree, exec);
     //delete exec;
 
     if(timed)
