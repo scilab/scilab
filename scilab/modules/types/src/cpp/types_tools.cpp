@@ -21,10 +21,10 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
     int iDims           = static_cast<int>(_pArgsIn->size());
     int iSeqCount       = 1;
     bool bUndefine      = false;
-    bool bDeleteNeeded  = false;
 
     for (int i = 0 ; i < iDims ; i++)
     {
+        bool bDeleteNeeded  = false;
         InternalType* pIT = (*_pArgsIn)[i];
         Double *pCurrentArg = NULL;
 
