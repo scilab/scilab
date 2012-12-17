@@ -153,7 +153,7 @@ function messagebox(msg, title)
  disp(title);
  disp(msg);
 endfunction
-try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
     </refsection>
@@ -171,6 +171,9 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
             </member>
             <member>
                 <link linkend="DoPri">Dormand-Price 4(5)</link>
+            </member>
+            <member>
+                <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>

@@ -59,6 +59,8 @@ Xcos
 
 * Add two new Fixed-size step ODE solvers : Dormand-Price 4(5) then Runge-Kutta 4(5). Included in the CVode package, so benefit from the rootfinding feature.
 
+* Add an implicit Fixed-size stop ODE solver : Implicit Runge-Kutta 4(5). Also benefits from the CVode rootfinding feature.
+
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
 

@@ -89,7 +89,7 @@ loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
 scs_m.props.tol(6) = 0;
-try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
@@ -101,14 +101,14 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
       loadScicos();
       loadXcosLibs();
       importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
-      scs_m.props.tf = 10000;
+      scs_m.props.tf = 5000;
 
       // Select the LSodar solver
       scs_m.props.tol(6) = 0;
 
       // Start the timer, launch the simulation and display time
       tic();
-      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
+      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
       disp(t, "Time for LSodar :");
       ]]></programlisting>
@@ -117,7 +117,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
             The Scilab console displays :
             <screen><![CDATA[
 Time for LSodar :
- 30.584
+ 16.836
             ]]></screen>
         </para>
         <para>
@@ -129,19 +129,19 @@ Time for LSodar :
         <para>
             <screen><![CDATA[
 Time for LSodar :
- 5.001
+ 6.115
 
 Time for BDF / Newton :
- 12.943
+ 19.894
 
 Time for BDF / Functional :
- 12.415
+ 19.382
 
 Time for Adams / Newton :
- 8.651
+ 11.255
 
 Time for Adams / Functional :
- 7.962
+ 10.233
             ]]></screen>
         </para>
         <para>
@@ -169,6 +169,9 @@ Time for Adams / Functional :
             </member>
             <member>
                 <link linkend="DoPri">Dormand-Price 4(5)</link>
+            </member>
+            <member>
+                <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>

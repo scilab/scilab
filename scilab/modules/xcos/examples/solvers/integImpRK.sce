@@ -15,16 +15,16 @@ loadXcosLibs();
 importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
 scs_m.props.tf = 30000;
 
-solverName=["BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functional", "Runge-Kutta"];
+solverName=["BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functional", "implicit Runge-Kutta"];
 
 for solver=1:5
 
- // Select the solver (Runge-Kutta is solver number 6)
+ // Select the solver (implicit Runge-Kutta is solver number 7)
  scs_m.props.tol(6) = solver;
- if (solver == 5) then scs_m.props.tol(6) = 6; end
+ if (solver == 5) then scs_m.props.tol(6) = 7; end
 
- // Set max step size if Runge-Kutta is selected
- if (solver == 5) then scs_m.props.tol(7) = 0.01; end
+ // Set max step size and reltol if implicit Runge-Kutta
+ if (solver == 5) then scs_m.props.tol(7) = 0.01; scs_m.props.tol(2) = 1.0e-10; end
 
  // Start the timer, launch the simulation and display time
  tic();

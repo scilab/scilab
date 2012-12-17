@@ -175,11 +175,11 @@ public class SetupDialog extends JDialog {
 
         JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
         final String[] solvers = new String[] { "LSodar", "Sundials/CVODE - BDF - NEWTON", "Sundials/CVODE - BDF - FUNCTIONAL",
-                                                "Sundials/CVODE - ADAMS - NEWTON", "Sundials/CVODE - ADAMS - FUNCTIONAL", "DOPRI5 - Dormand-Prince 4(5)", "RK45 - Runge-Kutta 4(5)", "Sundials/IDA"
+                                                "Sundials/CVODE - ADAMS - NEWTON", "Sundials/CVODE - ADAMS - FUNCTIONAL", "DOPRI5 - Dormand-Prince 4(5)", "RK45 - Runge-Kutta 4(5)", "Implicit RK45 - Runge-Kutta 4(5)", "Sundials/IDA"
                                               };
         final String[] solversTooltips = new String[] { "Method: dynamic, Nonlinear solver= dynamic", "Method: BDF, Nonlinear solver= NEWTON",
                 "Method: BDF, Nonlinear solver= FUNCTIONAL", "Method: ADAMS, Nonlinear solver= NEWTON", "Method: ADAMS, Nonlinear solver= FUNCTIONAL",
-                "Method: Fixed step", "Method: Fixed step", "Sundials/IDA"
+                "Method: Fixed step", "Method: Fixed step", "Method: Fixed step, Nonlinear solver= FIXED-POINT", "Sundials/IDA"
                                                       };
 
         solver = new JComboBox(solvers);

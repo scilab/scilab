@@ -26,6 +26,7 @@
                 <solver code="4" description="Sundials/CVODE - ADAMS - FUNCTIONAL"/>
                 <solver code="5" description="DOPRI5 - Dormand-Prince 4(5)"/>
                 <solver code="6" description="RK45 - Runge-Kutta 4(5)"/>
+                <solver code="7" description="Implicit RK45 - Runge-Kutta 4(5) - FIXED-POINT"/>
                 <solver code="100" description="Sundials/IDA"/>
                 <!-- Available trace values lists from scicos -->        
                 <trace code="0" description="_(No trace nor debug printing)"/>

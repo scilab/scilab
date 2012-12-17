@@ -9,17 +9,17 @@
  * The terms are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="RK">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="ImpRK">
     <refnamediv>
-        <refname>Runge-Kutta 4(5)</refname>
+        <refname>Implicit Runge-Kutta 4(5)</refname>
         <refpurpose>
-            <emphasis>Runge-Kutta</emphasis> is a numerical solver providing an efficient explicit method to solve Ordinary Differential Equations (ODEs) Initial Value Problems.
+            Runge-Kutta is a numerical solver providing an efficient and stable implicit method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. Called by <link linkend="xcos">xcos</link>.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Called by <link linkend="xcos">xcos</link>, <emphasis>Runge-Kutta</emphasis> is a numerical solver providing an efficient fixed-size step method to solve Initial Value Problems of the form :
+            Runge-Kutta is a numerical solver providing an efficient and stable fixed-size step method to solve Initial Value Problems of the form :
         </para>
         <para>
             <latex>
@@ -35,66 +35,106 @@
             A drawback of that is the unpredictable computation time. With Runge-Kutta, we do not adapt to the complexity of the problem, but we guarantee a stable computation time.
         </para>
         <para>
-            As of now, this method is explicit, so it is not concerned with Newton or Functional iterations, and not advised for stiff problems.
+            This method being explicit, it can be used on stiff problems.
         </para>
         <para>
-            It is an enhancement of the Euler method, which approximates 
+            It is an enhancement of the backward Euler method, which approximates 
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
-            by truncating the Taylor expansion.
+            by computing 
+            <emphasis>
+                f(t<subscript>n</subscript>+h, y<subscript>n+1</subscript>)
+            </emphasis>
+            and truncating the Taylor expansion.
+        </para>
+        <para>
+            The implemented scheme is inspired from the "Low-Dispersion Low-Dissipation Implicit Runge-Kutta Scheme" (see bottom for link).
         </para>
         <para>
             By convention, to use fixed-size steps, the program first computes a fitting <emphasis>h</emphasis> that approaches the simulation parameter <link linkend="Simulatemenu_Menu_entries">max step size</link>.
         </para>
         <para>
-            An important difference of Runge-Kutta with the previous methods is that it computes up to the fourth derivative of <emphasis>y</emphasis>, while the others only use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
+            An important difference of implicit Runge-Kutta with the previous methods is that it computes up to the fourth derivative of <emphasis>y</emphasis>, while the others mainly use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
         </para>
         <para>
             Here, the next value is determined by the present value 
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
-            plus the weighted average of four increments, where each increment is the product of the size of the interval, <emphasis>h</emphasis>, and an estimated slope specified by the function <emphasis>f(t,y)</emphasis> :
+            plus the weighted average of three increments, where each increment is the product of the size of the interval, <emphasis>h</emphasis>, and an estimated slope specified by the function <emphasis>f(t,y)</emphasis>. They are distributed approximately equally on the interval.
             <itemizedlist>
                 <listitem>
-                    <emphasis>k1</emphasis> is the increment based on the slope at the beginning of the interval, using 
+                    <emphasis>k1</emphasis> is the increment based on the slope near the quarter of the interval, using 
                     <emphasis>
-                        y<subscript>n</subscript>
-                    </emphasis>
-                    (Euler's method),
-                </listitem>
-                <listitem>
-                    <emphasis>k2</emphasis> is the increment based on the slope at the midpoint of the interval, using 
-                    <emphasis>
-                        y<subscript>n</subscript> + h*k1/2
+                        y<subscript>n</subscript>+ a11*h*k1,
                     </emphasis>
                     ,
                 </listitem>
                 <listitem>
-                    <emphasis>k3</emphasis> is again the increment based on the slope at the midpoint, but now using 
+                    <emphasis>k2</emphasis> is the increment based on the slope near the midpoint of the interval, using 
                     <emphasis>
-                        y<subscript>n</subscript> + h*k2/2
+                        y<subscript>n</subscript> + a21*h*k1 + a22*h*k2,
                     </emphasis>
+                    ,
                 </listitem>
                 <listitem>
-                    <emphasis>k4</emphasis> is the increment based on the slope at the end of the interval, using 
+                    <emphasis>k3</emphasis> is the increment based on the slope near the third quarter of the interval, using 
                     <emphasis>
-                        y<subscript>n</subscript> + h*k3
+                        y<subscript>n</subscript> + a31*h*k1 + a32*h*k2 + a33*h*k3.
                     </emphasis>
                 </listitem>
             </itemizedlist>
+        </para>
+        <para>
+            We see that the computation of <emphasis>ki</emphasis> requires <emphasis>ki</emphasis>, thus necessitating the use of a nonlinear solver (here, fixed-point iterations).
+        </para>
+        <para>
+            First, we set 
+            <emphasis>
+                k0 = h * f(t<subscript>n</subscript>, y<subscript>n</subscript>)
+            </emphasis>
+            as first guess for all the <emphasis>ki</emphasis>, to get updated <emphasis>ki</emphasis> and a first value for 
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            .
+        </para>
+        <para>
+            Next, we save and recompute 
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            with those new <emphasis>ki</emphasis>.
+        </para>
+        <para>
+            Then, we compare the two 
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            and recompute it until its difference with the last computed one is inferior to the simulation parameter <emphasis>reltol</emphasis>.
+        </para>
+        <para>
+            This process adds a significant computation time to the method, but greatly improves stability.
         </para>
         <para>
             We can see that with the <emphasis>ki</emphasis>, we progress in the derivatives of 
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
-            . So in <emphasis>k4</emphasis>, we are approximating 
+            . So in <emphasis>k3</emphasis>, we are approximating 
             <emphasis>
-                y<superscript>(4)</superscript><subscript>n</subscript>
+                y<superscript>(3)</superscript><subscript>n</subscript>
             </emphasis>
             , thus making an error in 
+            <emphasis>
+                O(h<superscript>4</superscript>)
+            </emphasis>
+            . But choosing the right coefficients in the computation of the <emphasis>ki</emphasis> (notably the 
+            <emphasis>
+                a<subscript>ij</subscript>
+            </emphasis>
+            ) makes us gain an order, thus making a per-step total error in 
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
@@ -112,7 +152,7 @@
             .
         </para>
         <para>
-            That error analysis baptized the method <emphasis>Runge-Kutta 4(5)</emphasis>, 
+            That error analysis baptized the method <emphasis>implicit Runge-Kutta 4(5)</emphasis> : 
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
@@ -127,7 +167,8 @@
             <emphasis>
                 10<superscript>-3</superscript>
             </emphasis>
-            , rounding errors sometimes come into play as we approach <emphasis>
+            , rounding errors sometimes come into play as we approach 
+            <emphasis>
                 4*10<superscript>-4</superscript>
             </emphasis>
             . Indeed, the interval splitting cannot be done properly and we get capricious results.
@@ -147,7 +188,8 @@
 loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
-scs_m.props.tol(6) = 6;
+scs_m.props.tol(2) = 10^-5;
+scs_m.props.tol(6) = 7;
 scs_m.props.tol(7) = 10^-2;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
@@ -164,26 +206,27 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       scs_m.props.tf = 5000;
 
       // Select the solver Runge-Kutta and set the precision
-      scs_m.props.tol(6) = 6;
+      scs_m.props.tol(2) = 10^-10;
+      scs_m.props.tol(6) = 7;
       scs_m.props.tol(7) = 10^-2;
 
       // Start the timer, launch the simulation and display time
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Time for Runge-Kutta :");
+      disp(t, "Time for implicit Runge-Kutta :");
       ]]></programlisting>
         </para>
         <para>
             The Scilab console displays :
             <screen><![CDATA[
-Time for Runge-Kutta :
- 15.624
+Time for implicit Runge-Kutta :
+ 17.003
             ]]></screen>
         </para>
         <para>
-            Now, in the following script, we compare the time difference between Runge-Kutta and Sundials by running the example with the five solvers in turn :
-            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integRK.sce">
+            Now, in the following script, we compare the time difference between implicit RK and CVode by running the example with the five solvers in turn :
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integImpRK.sce">
                 Open the script
             </link>
         </para>
@@ -201,12 +244,12 @@ Time for Adams / Newton :
 Time for Adams / Functional :
  10.233
 
-Time for Runge-Kutta :
- 5.502
+Time for implicit Runge-Kutta :
+ 8.112
             ]]></screen>
         </para>
         <para>
-            These results show that on a nonstiff problem, for relatively same precision required and forcing the same step size, Runge-Kutta is faster.
+            These results show that on a nonstiff problem, for relatively same precision required and forcing the same step size, implicit Runge-Kutta competes with Adams / Functional.
         </para>
         <para>
             Variable-size step ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.
@@ -222,16 +265,10 @@ Time for Runge-Kutta :
                 <link linkend="CVode">CVode</link>
             </member>
             <member>
-                <link linkend="IDA">IDA</link>
+                <link linkend="RK">Runge-Kutta 4(5)</link>
             </member>
             <member>
-                <link linkend="DoPri">Dormand-Price 4(5)</link>
-            </member>
-            <member>
-                <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
-            </member>
-            <member>
-                <link linkend="ode">ode</link>
+                <link linkend="DoPri">Dormand-Prince 4(5)</link>
             </member>
             <member>
                 <link linkend="ode_discrete">ode_discrete</link>
@@ -250,6 +287,9 @@ Time for Runge-Kutta :
     <refsection>
         <title>Bibliography</title>
         <para>
+            ACM SIGNUM Newsletter, Volume 15, Issue 4, December 1980, Pages 10-11 <ulink url="http://dl.acm.org/citation.cfm?id=1218052.1218054&amp;coll=DL&amp;dl=GUIDE&amp;CFID=213153447&amp;CFTOKEN=26634355">LSode - LSodi</ulink>
+        </para>
+        <para>
             <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Sundials Documentation</ulink>
         </para>
     </refsection>
@@ -258,7 +298,7 @@ Time for Runge-Kutta :
         <revhistory>
             <revision>
                 <revnumber>5.4.1</revnumber>
-                <revdescription>Runge-Kutta 4(5) solver added</revdescription>
+                <revdescription>Implicit Runge-Kutta 4(5) solver added</revdescription>
             </revision>
         </revhistory>
     </refsection>

@@ -133,7 +133,7 @@ loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
 scs_m.props.tol(6) = 5;
 scs_m.props.tol(7) = 10^-2;
-try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
@@ -153,7 +153,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
 
       // Start the timer, launch the simulation and display time
       tic();
-      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
+      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
       disp(t, "Time for Dormand-Price :");
       ]]></programlisting>
@@ -162,7 +162,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
             The Scilab console displays :
             <screen><![CDATA[
 Time for Dormand-Price :
- 17.126
+ 17.226
             ]]></screen>
         </para>
         <para>
@@ -174,26 +174,26 @@ Time for Dormand-Price :
         <para>
             <screen><![CDATA[
 Time for BDF / Newton :
- 12.852
+ 19.894
 
 Time for BDF / Functional :
- 12.343
+ 19.382
 
 Time for Adams / Newton :
- 8.75
+ 11.255
 
 Time for Adams / Functional :
- 7.789
+ 10.233
 
 Time for DoPri :
- 7.606
+ 8.654
             ]]></screen>
         </para>
         <para>
             These results show that on a nonstiff problem, for relatively same precision required and forcing the same step size, Dormand-Price's computational overhead (compared to Runge-Kutta) is significant and is close to <emphasis>Adams/Functional</emphasis>. Its error to the solution is althought much smaller than the regular Runge-Kutta 4(5), for a small overhead in time.
         </para>
         <para>
-            Variable step-size ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.
+            Variable-size step ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.
         </para>
     </refsection>
     <refsection>
@@ -210,6 +210,9 @@ Time for DoPri :
             </member>
             <member>
                 <link linkend="RK">Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>
