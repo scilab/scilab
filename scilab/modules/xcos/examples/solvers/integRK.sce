@@ -23,7 +23,7 @@ for solver=1:5
  scs_m.props.tol(6) = solver;
 
  // Set max step size if Runge-Kutta
- if (solver == 5) scs_m.props.tol(7) = 0.01;
+ if (solver == 5) then scs_m.props.tol(7) = 0.01; end
 
  // Start the timer, launch the simulation and display time
  tic();
