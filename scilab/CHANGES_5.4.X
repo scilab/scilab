@@ -19,12 +19,6 @@ Improvements
 * test_run no longer take in account skipped tests in the summary.
   See bug #12117
 
-Obsolete
-=========
-
-* The third argument of poly function will be more strict.
-    Only the following string will be allowed : "roots", "coeff", "c", "r".
-
 
 Removed functions
 ==================
@@ -90,7 +84,7 @@ Xcos
 
 * Bug #12014 fixed - dep_ut help was wrongly detailed.
 
-* Bug #12031 fixed - Changes in context of superblock did not always have 
+* Bug #12031 fixed - Changes in context of superblock did not always have
                      effect.
 
 * Bug #12162 fixed - tbx_build_blocks did not report errors.
