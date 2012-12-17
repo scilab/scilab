@@ -10,9 +10,9 @@
 *
 */
 
+#include <hdf5.h>
 extern "C"
 {
-#include <hdf5.h>
 #include <string.h>
 #include "gw_hdf5.h"
 #include "MALLOC.h"
@@ -954,7 +954,7 @@ static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int *_piAddres
     }
 
     FREE(piNbItemRow);
-    if(piColPos)
+    if (piColPos)
     {
         FREE(piColPos);
     }

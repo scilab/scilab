@@ -187,6 +187,8 @@ Bug fixes
 
 * Bug #12119 fixed - bar and barh had wrong x/y bounds.
 
+* Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
