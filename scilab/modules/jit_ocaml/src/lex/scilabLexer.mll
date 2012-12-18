@@ -113,7 +113,7 @@ rule token = parse
   | comma                        { COMMA }
   | semicolon                    { SEMI }
   | integer as inum              { let num = float_of_string inum in
-                                   VARINT num }
+                                   Printf.printf "varint[%f]" num;VARINT num }
   | number as nnum               { let num = float_of_string nnum in
                                    NUM num }
   | little as lnum               { let num = float_of_string lnum in
