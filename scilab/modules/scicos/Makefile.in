@@ -169,10 +169,10 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/tree.c \
 	src/c/il_state.c src/c/il_sim.c src/c/createblklist.c \
 	src/c/var2sci.c src/c/copyvarfromlistentry.c \
 	src/c/MlistGetFieldNumber.c src/c/extractblklist.c \
-	src/c/lsodar.c src/fortran/scitovv.f \
-	src/fortran/vvtosci.f src/fortran/skipvars.f \
-	src/fortran/coselm.f src/fortran/scitod.f src/fortran/sctree.f \
-	src/fortran/scierr.f src/fortran/ftree2.f src/fortran/ftree3.f \
+	src/c/lsodar.c src/fortran/scitovv.f src/fortran/vvtosci.f \
+	src/fortran/skipvars.f src/fortran/coselm.f \
+	src/fortran/scitod.f src/fortran/sctree.f src/fortran/scierr.f \
+	src/fortran/ftree2.f src/fortran/ftree3.f \
 	src/fortran/list2vars.f src/fortran/ftree4.f \
 	src/fortran/scitoi.f src/fortran/scifunc.f
 @XCOS_TRUE@am__objects_1 = libsciscicos_algo_la-tree.lo \
@@ -1212,7 +1212,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-lsodar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-copyvarfromlistentry.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-createblklist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-extractblklist.Plo@am__quote@
@@ -1220,6 +1219,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-il_sim.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-il_state.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-import.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-lsodar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-sciblk2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-sciblk4.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-scicos.Plo@am__quote@
