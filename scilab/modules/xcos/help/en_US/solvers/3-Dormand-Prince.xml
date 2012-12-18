@@ -11,15 +11,15 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="DoPri">
     <refnamediv>
-        <refname>Dormand-Price 4(5)</refname>
+        <refname>Dormand-Prince 4(5)</refname>
         <refpurpose>
-            <emphasis>Dormand-Price</emphasis> is a numerical solver providing an efficient explicit method to solve Ordinary Differential Equations (ODEs) Initial Value Problems.
+            <emphasis>Dormand-Prince</emphasis> is a numerical solver providing an efficient explicit method to solve Ordinary Differential Equations (ODEs) Initial Value Problems.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Called by <link linkend="xcos">xcos</link>, <emphasis>Dormand-Price</emphasis> is a numerical solver providing an efficient fixed-size step method to solve Initial Value Problems of the form :
+            Called by <link linkend="xcos">xcos</link>, <emphasis>Dormand-Prince</emphasis> is a numerical solver providing an efficient fixed-size step method to solve Initial Value Problems of the form :
         </para>
         <para>
             <latex>
@@ -32,7 +32,7 @@
             <emphasis>CVode</emphasis> and <emphasis>IDA</emphasis> use variable-size steps for the integration.
         </para>
         <para>
-            A drawback of that is the unpredictable computation time. With Dormand-Price, we do not adapt to the complexity of the problem, but we guarantee a stable computation time.
+            A drawback of that is the unpredictable computation time. With Dormand-Prince, we do not adapt to the complexity of the problem, but we guarantee a stable computation time.
         </para>
         <para>
             As of now, this method is explicit, so it is not concerned with Newton or Functional iterations, and not advised for stiff problems.
@@ -48,7 +48,7 @@
             By convention, to use fixed-size steps, the program first computes a fitting <emphasis>h</emphasis> that approaches the simulation parameter <link linkend="Simulatemenu_Menu_entries">max step size</link>.
         </para>
         <para>
-            An important difference of Dormand-Price with the previous methods is that it computes up to the seventh derivative of <emphasis>y</emphasis>, while the others only use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
+            An important difference of Dormand-Prince with the previous methods is that it computes up to the seventh derivative of <emphasis>y</emphasis>, while the others only use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
         </para>
         <para>
             Here, the next value is determined by the present value 
@@ -95,7 +95,7 @@
             .
         </para>
         <para>
-            That error analysis baptized the method <emphasis>Dormand-Price 4(5)</emphasis> : 
+            That error analysis baptized the method <emphasis>Dormand-Prince 4(5)</emphasis> : 
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
@@ -137,7 +137,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            The integral block returns its continuous state, we can evaluate it with Dormand-Price by running the example :
+            The integral block returns its continuous state, we can evaluate it with Dormand-Prince by running the example :
         </para>
         <para>
             <programlisting language="example"><![CDATA[
@@ -147,7 +147,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
       scs_m.props.tf = 5000;
 
-      // Select the Dormand-Price solver and set the precision
+      // Select the Dormand-Prince solver and set the precision
       scs_m.props.tol(6) = 5;
       scs_m.props.tol(7) = 10^-2;
 
@@ -155,18 +155,18 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Time for Dormand-Price :");
+      disp(t, "Time for Dormand-Prince :");
       ]]></programlisting>
         </para>
         <para>
             The Scilab console displays :
             <screen><![CDATA[
-Time for Dormand-Price :
+Time for Dormand-Prince :
  17.226
             ]]></screen>
         </para>
         <para>
-            Now, in the following script, we compare the time difference between Dormand-Price and Sundials by running the example with the five solvers in turn :
+            Now, in the following script, we compare the time difference between Dormand-Prince and Sundials by running the example with the five solvers in turn :
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integDoPri.sce">
                 Open the script
             </link>
@@ -190,7 +190,7 @@ Time for DoPri :
             ]]></screen>
         </para>
         <para>
-            These results show that on a nonstiff problem, for relatively same precision required and forcing the same step size, Dormand-Price's computational overhead (compared to Runge-Kutta) is significant and is close to <emphasis>Adams/Functional</emphasis>. Its error to the solution is althought much smaller than the regular Runge-Kutta 4(5), for a small overhead in time.
+            These results show that on a nonstiff problem, for relatively same precision required and forcing the same step size, Dormand-Prince's computational overhead (compared to Runge-Kutta) is significant and is close to <emphasis>Adams/Functional</emphasis>. Its error to the solution is althought much smaller than the regular Runge-Kutta 4(5), for a small overhead in time.
         </para>
         <para>
             Variable-size step ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.
@@ -234,7 +234,7 @@ Time for DoPri :
     <refsection>
         <title>Bibliography</title>
         <para>
-            Journal of Computational and Applied Mathematics, Volume 15, Issue 2, 2 June 1986, Pages 203-211 <ulink url="http://dl.acm.org/citation.cfm?id=9958.9963&amp;coll=DL&amp;dl=GUIDE">Dormand-Price Method</ulink>
+            Journal of Computational and Applied Mathematics, Volume 15, Issue 2, 2 June 1986, Pages 203-211 <ulink url="http://dl.acm.org/citation.cfm?id=9958.9963&amp;coll=DL&amp;dl=GUIDE">Dormand-Prince Method</ulink>
         </para>
         <para>
             <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Sundials Documentation</ulink>
@@ -245,7 +245,7 @@ Time for DoPri :
         <revhistory>
             <revision>
                 <revnumber>5.4.1</revnumber>
-                <revdescription>Dormand-Price 4(5) solver added</revdescription>
+                <revdescription>Dormand-Prince 4(5) solver added</revdescription>
             </revision>
         </revhistory>
     </refsection>

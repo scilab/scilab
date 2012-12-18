@@ -823,7 +823,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
         {
             cossim(t0);
         }
-        else if (C2F(cmsolver).solver == 5)   /*  DOPRI: Method: Dormand-Price, Nonlinear solver=  */
+        else if (C2F(cmsolver).solver == 5)   /*  DOPRI: Method: Dormand-Prince, Nonlinear solver=  */
         {
             cossim(t0);
         }

@@ -57,7 +57,7 @@ Xcos
 
 * Add a new ODE solver : LSodar. Automatically switches methods to efficiently solve both stiff and nonstiff problems. Includes a rootfinding feature.
 
-* Add two new Fixed-size step ODE solvers : Dormand-Price 4(5) then Runge-Kutta 4(5). Included in the CVode package, so benefit from the rootfinding feature.
+* Add two new Fixed-size step ODE solvers : Dormand-Prince 4(5) then Runge-Kutta 4(5). Included in the CVode package, so benefit from the rootfinding feature.
 
 * Add an implicit Fixed-size stop ODE solver : Implicit Runge-Kutta 4(5). Also benefits from the CVode rootfinding feature.
 

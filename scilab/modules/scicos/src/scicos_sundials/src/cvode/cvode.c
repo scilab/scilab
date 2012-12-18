@@ -357,7 +357,7 @@ void *CVodeCreate(int lmm, int iter)
 
   maxord = (lmm == CV_ADAMS) ? ADAMS_Q_MAX : BDF_Q_MAX;
 
-  /* If Dormand-Price is selected, then maxord = 8 to use the 7 extra vectors allocated (zn[2, 3, 4, 5, 6, 7, 8]) */
+  /* If Dormand-Prince is selected, then maxord = 8 to use the 7 extra vectors allocated (zn[2, 3, 4, 5, 6, 7, 8]) */
   maxord = (lmm == CV_DOPRI) ? 8 : maxord;
 
   /* If Runge-Kutta is selected, then maxord = 1 */
@@ -2403,7 +2403,7 @@ static int CVStep(CVodeMem cv_mem)
 /*
  * CVStepDoPri
  *
- * This routine performs one internal cvode step using the Dormand-Price 4(5) method, from tn to tn + h.
+ * This routine performs one internal cvode step using the Dormand-Prince 4(5) method, from tn to tn + h.
  * Proceed to computing the K[i] coefficients, build the final solution, increment tn and return CV_SUCCESS.
  *
  * In order to temporarily store the results, we use tempv and ftemp.
@@ -2493,11 +2493,11 @@ static int CVStepDoPri(CVodeMem cv_mem)
 
   /* Check for errors in the evaluations of f thanks to retval */
   if (retval < 0) {
-    CVProcessError(cv_mem, CV_RHSFUNC_FAIL, "Dormand-Price", "CVStepDoPri", MSGCV_RHSFUNC_FAILED, tn);
+    CVProcessError(cv_mem, CV_RHSFUNC_FAIL, "Dormand-Prince", "CVStepDoPri", MSGCV_RHSFUNC_FAILED, tn);
     return(CV_RHSFUNC_FAIL);
   }
   if (retval > 0) {
-    CVProcessError(cv_mem, CV_FIRST_RHSFUNC_ERR, "Dormand-Price", "CVStepDoPri", MSGCV_RHSFUNC_FIRST);
+    CVProcessError(cv_mem, CV_FIRST_RHSFUNC_ERR, "Dormand-Prince", "CVStepDoPri", MSGCV_RHSFUNC_FIRST);
     return(CV_FIRST_RHSFUNC_ERR);
   }
 

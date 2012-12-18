@@ -15,7 +15,7 @@ loadXcosLibs();
 importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
 scs_m.props.tf = 30000;
 
-solverName=["BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functional", "Dormand-Price"];
+solverName=["BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functional", "Dormand-Prince"];
 
 for solver=1:5
 
