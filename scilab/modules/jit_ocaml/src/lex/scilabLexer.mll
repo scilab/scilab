@@ -64,12 +64,26 @@ let startlinecomment  = "//"
 let startblockcomment = "/*"
 let endblockcomment   = "*/"
 
+let plus    = "+"
+let minus   = "-"
+let rdivide = "/"
+let ldivide = "\\"
+let times   = "*"
+let power   = "^" | "**"
+
+let equal        = "=="
+let notequal     = "~=" | "@=" | "<>"
+let lowerthan    = "<"
+let greaterthan	 = ">"
+let lowerequal   = "<="
+let greaterequal = ">="
+
 let assign = "="
 
 
 rule token = parse
   | blank                        { token lexbuf }
-  | newline                      { Printf.printf "\n"; newline lexbuf; EOL}
+  | newline                      { (* Printf.printf "\n";  *)newline lexbuf; EOL}
   | startlinecomment             { str_cmt := "";comment lexbuf }
   | "if"                         { IF }
   | "then"                       { THEN }
@@ -80,6 +94,22 @@ rule token = parse
   | "do"                         { DO }
   | "="                          { ASSIGN }
   | "for"                        { FOR }
+  | "hidden"                     { HIDDEN }
+  | "function"                   { FUNCTION }
+  | "#function"                  { HIDDENFUNCTION }
+  | "endfunction"                { ENDFUNCTION }
+  | plus                         { PLUS }
+  | minus                        { MINUS }
+  | rdivide                      { RDIVIDE }
+  | ldivide                      { LDIVIDE }
+  | times                        { TIMES }
+  | power                        { POWER }
+  | equal                        { EQUAL }
+  | notequal                     { NOTEQUAL }
+  | lowerthan                    { LOWERTHAN }
+  | greaterthan                  { GREATERTHAN }
+  | lowerequal                   { LOWEREQUAL }
+  | greaterequal                 { GREATEREQUAL }
   | comma                        { COMMA }
   | semicolon                    { SEMI }
   | integer as inum              { let num = float_of_string inum in
