@@ -25,3 +25,4 @@ GetData
 check_length
 getrhsvar_
 vartype_
+getWarningMode
