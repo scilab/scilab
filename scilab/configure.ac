@@ -16,7 +16,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_REVISION($Revision$)dnl
 AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
-AC_PREREQ(2.62)
+AC_PREREQ(2.68)
 AC_CONFIG_MACRO_DIR([m4/])
 
 SCI_BUILDDIR="`pwd`"
