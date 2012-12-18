@@ -1,0 +1,1 @@
+while 0 do 0 end

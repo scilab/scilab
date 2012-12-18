@@ -556,17 +556,35 @@ OCAML_MLIS = \
 	$(OCAML_AST_MLIS) \
 	$(OCAML_SCILAB_MLIS)
 
+OCAML_PARSER_MLS = \
+	src/ocaml/scilabAst.ml \
+	src/ocaml/scilabAstPrinter.ml \
+	src/yacc/scilabParser.ml \
+	src/lex/scilabLexer.ml \
+	src/ocaml/scilabParserMain.ml
+
+OCAML_PARSER_CMXS = $(OCAML_PARSER_MLS:.ml=.cmx)
 OCAML_CMIS = $(OCAML_MLS:.ml=.cmi) $(OCAML_MLIS:.mli=.cmi)
 OCAML_CMXS = $(OCAML_MLS:.ml=.cmx)
 OCAML_OBJS = $(OCAML_MLS:.ml=.o)
-OCAML_INCL = -I src/ocaml
+OCAML_INCL = -I src/ocaml -I src/yacc -I src/lex
+OCAML_PARSER_INCL = -I src/yacc
 OPTFLAGS = -c -fPIC $(OCAML_INCL)
 CLEANFILES = \
 	$(OCAML_CMIS)  \
 	$(OCAML_CMXS)  \
 	$(OCAML_OBJS)  \
 	jit_ocaml.o \
-	libasmrun.a
+	libasmrun.a \
+	ocaml_parser \
+	src/lex/*.cm* \
+	src/lex/*.o \
+	src/yacc/*.cm* \
+	src/yacc/*.o \
+	src/lex/scilabLexer.ml \
+	src/yacc/scilabParser.ml \
+	src/yacc/scilabParser.mli \
+	scilab_parser
 
 all: all-am
 
@@ -1149,6 +1167,9 @@ distclean-local:
 jit_ocaml.o: src/c/jit_ocaml.c
 	ocamlopt -c -I includes -fPIC src/c/jit_ocaml.c
 
+scilab_parser : $(OCAML_PARSER_CMXS)
+	$(OCAMLOPT) -o scilab_parser $(OCAML_PARSER_CMXS)
+
 libscijit_ocaml-runtime.o: $(OCAML_CMXS) jit_ocaml.o libasmrun.a
 	$(OCAMLOPT) -o libscijit_ocaml-runtime.o -output-obj $(OCAML_CMXS)
 
@@ -1156,7 +1177,7 @@ libasmrun.a:
 	cp $(OCAMLC_WHERE)/libasmrun.a .
 
 depend_ocaml:
-	$(OCAMLDEP) -native $(OCAML_INCL) $(OCAML_MLS) $(OCAML_MLIS) > .depend_ocaml
+	$(OCAMLDEP) -native $(OCAML_INCL) $(OCAML_MLS) $(OCAML_MLIS) $(OCAML_PARSER_MLS) > .depend_ocaml
 src/ocaml/scilabAst.cmo :
 src/ocaml/scilabAst.cmx :
 src/ocaml/scilabTypes.cmo :
@@ -1187,6 +1208,10 @@ src/ocaml/scilabCallbacks.cmi :
 .ml.cmx:
 	$(OCAMLOPT) $(OPTFLAGS) -c $<
 
+.mll.cmx:
+	$(OCAMLLEX) $<
+	$(OCAMLOPT) $(OPTFLAGS) -c $*.ml
+
 .mli.cmi:
 	$(OCAMLOPT) $(OPTFLAGS) -c $<
 
@@ -1194,7 +1219,16 @@ src/ocaml/scilabCallbacks.cmi :
 	$(OCAMLLEX) $<
 
 .mly.ml:
+	$(OCAMLYACC) -v $<
+
+.mly.cmx:
 	$(OCAMLYACC) $<
+	$(OCAMLOPT) $(OPTFLAGS) -c $*.mli
+	$(OCAMLOPT) $(OPTFLAGS) -c $*.ml
+
+.mly.cmi:
+	$(OCAMLYACC) -v $<
+	$(OCAMLOPT) $(OPTFLAGS) -c $*.mli
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -90,6 +90,7 @@ OCAML_SCILAB_MLIS = \
 	src/ocaml/scilabAst2String.mli \
 	src/ocaml/scilabCallbacks.mli
 
+
 OCAML_MLS = \
 	$(OCAML_AST_MLS) \
 	$(OCAML_SCILAB_MLS)
@@ -98,11 +99,21 @@ OCAML_MLIS = \
 	$(OCAML_AST_MLIS) \
 	$(OCAML_SCILAB_MLIS)
 
+OCAML_PARSER_MLS = \
+	src/ocaml/scilabAst.ml \
+	src/ocaml/scilabAstPrinter.ml \
+	src/yacc/scilabParser.ml \
+	src/lex/scilabLexer.ml \
+	src/ocaml/scilabParserMain.ml
+
+OCAML_PARSER_CMXS = $(OCAML_PARSER_MLS:.ml=.cmx)
+
 OCAML_CMIS = $(OCAML_MLS:.ml=.cmi) $(OCAML_MLIS:.mli=.cmi)
 OCAML_CMXS = $(OCAML_MLS:.ml=.cmx)
 OCAML_OBJS = $(OCAML_MLS:.ml=.o)
 
-OCAML_INCL= -I src/ocaml
+OCAML_INCL= -I src/ocaml -I src/yacc -I src/lex
+OCAML_PARSER_INCL = -I src/yacc
 OPTFLAGS = -c -fPIC $(OCAML_INCL)
 
 
@@ -111,7 +122,22 @@ CLEANFILES= \
 	$(OCAML_CMXS)  \
 	$(OCAML_OBJS)  \
 	jit_ocaml.o \
-	libasmrun.a
+	libasmrun.a \
+	ocaml_parser \
+	src/lex/*.cm* \
+	src/lex/*.o \
+	src/yacc/*.cm* \
+	src/yacc/*.o \
+	src/lex/scilabLexer.ml \
+	src/yacc/scilabParser.ml \
+	src/yacc/scilabParser.mli \
+	scilab_parser \
+	macros/lib
+
+
+scilab_parser : $(OCAML_PARSER_CMXS)
+	$(OCAMLOPT) -o scilab_parser $(OCAML_PARSER_CMXS)
+
 
 libscijit_ocaml-runtime.o: $(OCAML_CMXS) jit_ocaml.o libasmrun.a
 	$(OCAMLOPT) -o libscijit_ocaml-runtime.o -output-obj $(OCAML_CMXS)
@@ -121,7 +147,7 @@ libasmrun.a:
 
 
 depend_ocaml:
-	$(OCAMLDEP) -native $(OCAML_INCL) $(OCAML_MLS) $(OCAML_MLIS) > .depend_ocaml
+	$(OCAMLDEP) -native $(OCAML_INCL) $(OCAML_MLS) $(OCAML_MLIS) $(OCAML_PARSER_MLS) > .depend_ocaml
 include .depend_ocaml
 
 ########## COMMON
@@ -130,6 +156,10 @@ SUFFIXES += .ml .mli .mll .mly .cmi .cmx
 .ml.cmx:
 	$(OCAMLOPT) $(OPTFLAGS) -c $<
 
+.mll.cmx:
+	$(OCAMLLEX) $<
+	$(OCAMLOPT) $(OPTFLAGS) -c $*.ml
+
 .mli.cmi:
 	$(OCAMLOPT) $(OPTFLAGS) -c $<
 
@@ -137,5 +167,14 @@ SUFFIXES += .ml .mli .mll .mly .cmi .cmx
 	$(OCAMLLEX) $<
 
 .mly.ml:
+	$(OCAMLYACC) -v $<
+
+.mly.cmx:
 	$(OCAMLYACC) $<
+	$(OCAMLOPT) $(OPTFLAGS) -c $*.mli
+	$(OCAMLOPT) $(OPTFLAGS) -c $*.ml
+
+.mly.cmi:
+	$(OCAMLYACC) -v $<
+	$(OCAMLOPT) $(OPTFLAGS) -c $*.mli
 
