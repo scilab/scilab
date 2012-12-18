@@ -14,10 +14,11 @@ package org.scilab.modules.uiwidget.components;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.text.DecimalFormat;
 import java.util.Map;
 
-import javax.swing.Action;
+import javax.swing.AbstractAction;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -35,7 +36,9 @@ public class UITextfield extends UIComponent {
     private boolean password;
     private DocumentListener listener;
     private boolean onchangeEnable = true;
-    private String action;
+    private String onchangeAction;
+    private boolean onenterEnable = true;
+    private String onenterAction;
 
     public enum Alignment {
         LEADING (JTextField.LEADING),
@@ -106,10 +109,6 @@ public class UITextfield extends UIComponent {
         textfield.setHorizontalAlignment(alignment.value());
     }
 
-    public void setOnenter(Action action) {
-        textfield.setAction(action);
-    }
-
     public String getPassword() {
         if (password) {
             return new String(((JPasswordField) textfield).getPassword());
@@ -132,7 +131,7 @@ public class UITextfield extends UIComponent {
         return textfield.getText();
     }
 
-    public void removeListener() {
+    public void removeChangeListener() {
         if (listener != null) {
             textfield.getDocument().removeDocumentListener(listener);
             listener = null;
@@ -140,27 +139,28 @@ public class UITextfield extends UIComponent {
     }
 
     public void remove() {
-        removeListener();
+        removeChangeListener();
+        textfield.setAction(null);
         super.remove();
     }
 
     public String getOnchange() {
-        return action;
+        return onchangeAction;
     }
 
-    public void setOnchange(final String action) {
-        if (this.action == null) {
-            removeListener();
+    public void setOnchange(final String onchangeAction) {
+        if (this.onchangeAction == null) {
+            removeChangeListener();
             listener = new DocumentListener() {
                 public void insertUpdate(DocumentEvent e) {
                     if (onchangeEnable) {
-                        UIWidgetTools.execAction(UITextfield.this, UITextfield.this.action);
+                        UIWidgetTools.execAction(UITextfield.this, UITextfield.this.onchangeAction);
                     }
                 }
 
                 public void removeUpdate(DocumentEvent e) {
                     if (onchangeEnable) {
-                        UIWidgetTools.execAction(UITextfield.this, UITextfield.this.action);
+                        UIWidgetTools.execAction(UITextfield.this, UITextfield.this.onchangeAction);
                     }
                 }
 
@@ -168,7 +168,7 @@ public class UITextfield extends UIComponent {
             };
             textfield.getDocument().addDocumentListener(listener);
         }
-        this.action = action;
+        this.onchangeAction = onchangeAction;
     }
 
     public boolean getOnchangeEnable() {
@@ -177,5 +177,30 @@ public class UITextfield extends UIComponent {
 
     public void setOnchangeEnable(boolean b) {
         onchangeEnable = b;
+    }
+
+    public String getOnenter() {
+        return onenterAction;
+    }
+
+    public void setOnenter(final String onenterAction) {
+        if (this.onenterAction == null) {
+            textfield.setAction(new AbstractAction() {
+                public void actionPerformed(ActionEvent e) {
+                    if (onenterEnable) {
+                        UIWidgetTools.execAction(UITextfield.this, UITextfield.this.onenterAction);
+                    }
+                }
+            });
+        }
+        this.onenterAction = onenterAction;
+    }
+
+    public boolean getOnenterEnable() {
+        return onenterEnable;
+    }
+
+    public void setOnenterEnable(boolean b) {
+        onenterEnable = b;
     }
 }
