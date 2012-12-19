@@ -197,6 +197,8 @@ Bug fixes
 
 * Bug #12119 fixed - bar and barh had wrong x/y bounds.
 
+* Bug #12166 fixed - There was a bad label with drawaxis.
+
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
 
 * Bug #11965 fixed - Export to SVG converted texts in shapes.
