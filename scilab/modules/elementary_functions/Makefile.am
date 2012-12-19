@@ -4,51 +4,51 @@
 # This file is distributed under the same license as the Scilab package.
 
 ELEMENTARIES_FUNCTIONS_C_SOURCES = \
-    src/c/sci_tools.c \
-    src/c/finite.c \
-    src/c/vfinite.c \
-    src/c/cmp.c \
-    src/c/vceil.c \
-    src/c/xerhlt.c \
-    src/c/vfloor.c \
-    src/c/vfrexp.c \
-    src/c/scidcopy.c \
-    src/c/int2db.c \
-    src/c/rea2db.c \
-    src/c/qsort.c \
-    src/c/qsort-char.c \
-    src/c/qsort-double.c \
-    src/c/qsort-int.c \
-    src/c/qsort-short.c \
-    src/c/qsort-string.c \
-    src/c/basic_functions.c \
-    src/c/abs.c \
-    src/c/acos.c \
-    src/c/asin.c \
-    src/c/atan.c \
-    src/c/cos.c \
-    src/c/cosh.c \
-    src/c/sin.c \
-    src/c/sinh.c \
-    src/c/tan.c \
-    src/c/exp.c \
-    src/c/expm.c \
-    src/c/log.c \
-    src/c/sqrt.c \
-    src/c/cupro.c \
-    src/c/sign.c \
-    src/c/ceil.c \
-    src/c/eye.c \
-    src/c/dmsum.c \
-    src/c/dsearch.c \
-    src/c/floor.c \
-    src/c/mprod.c \
-    src/c/pythag.c \
-    src/c/matrix_generation.c \
-    src/c/vmul.c \
-    src/c/add_vector.c \
-    src/c/sub_vector.c \
-    src/c/convertbase.c
+src/c/sci_tools.c \
+src/c/finite.c \
+src/c/vfinite.c \
+src/c/cmp.c \
+src/c/vceil.c \
+src/c/xerhlt.c \
+src/c/vfloor.c \
+src/c/vfrexp.c \
+src/c/scidcopy.c \
+src/c/int2db.c \
+src/c/rea2db.c \
+src/c/qsort.c \
+src/c/qsort-char.c \
+src/c/qsort-double.c \
+src/c/qsort-int.c \
+src/c/qsort-short.c \
+src/c/qsort-string.c \
+src/c/basic_functions.c \
+src/c/abs.c \
+src/c/acos.c \
+src/c/asin.c \
+src/c/atan.c \
+src/c/cos.c \
+src/c/cosh.c \
+src/c/sin.c \
+src/c/sinh.c \
+src/c/tan.c \
+src/c/exp.c \
+src/c/expm.c \
+src/c/log.c \
+src/c/sqrt.c \
+src/c/cupro.c \
+src/c/sign.c \
+src/c/ceil.c \
+src/c/eye.c \
+src/c/dmsum.c \
+src/c/dsearch.c \
+src/c/floor.c \
+src/c/mprod.c \
+src/c/pythag.c \
+src/c/matrix_generation.c \
+src/c/vmul.c \
+src/c/add_vector.c \
+src/c/sub_vector.c \
+src/c/convertbase.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
@@ -387,7 +387,8 @@ libdummy_elementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 
 
 # Includes need for the compilation
-libscielementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
+libscielementary_functions_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \

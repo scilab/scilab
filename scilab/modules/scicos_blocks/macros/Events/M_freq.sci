@@ -75,7 +75,7 @@ case 'define' then
   model.dep_ut=[%f %f]
   exprs=[sci2exp([1;2]);sci2exp([0;0])]
      gr_i=['xstringb(orig(1),orig(2),[''      Multiple    '';''    Frequency    ''],sz(1),sz(2),''fill'');']
-  x=standard_define([2.5 2],model,exprs,gr_i)
+  x=standard_define([3 2],model,exprs,gr_i)
 end
 endfunction
  

@@ -58,10 +58,22 @@
         </para>
         <para>
             <code>typename('',type)</code> suppress the data type given by its code
-            <literal>type</literal> out of the table of known data types.
+            <varname>type</varname> out of the table of known data types.
         </para>
         <para>Number max. of defined types is 50.</para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+[typs,nams]=typename();
+disp("First type (double) : " + string(typs(1)) + " / " + nams(1));
+typename("mytype",1024);
+[typs,nams]=typename();
+disp(typs($))
+disp(nams($)) // returns mytype
+]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

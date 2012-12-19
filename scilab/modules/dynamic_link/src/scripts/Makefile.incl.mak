@@ -59,7 +59,7 @@ CC_LDFLAGS =
 # default usage is to use f2c 
 #==================================================
 USE_F2C=YES
-# detect intel fortran compiler 9,10,11.x, 2011 XE family
+# detect intel fortran compiler
 !IF "$(IFORT_COMPILER9)" == ""
 !ELSE
 USE_F2C=NO
@@ -73,6 +73,10 @@ USE_F2C=NO
 USE_F2C=NO
 !ENDIF
 !IF "$(IFORT_COMPILER12)" == ""
+!ELSE
+USE_F2C=NO
+!ENDIF
+!IF "$(IFORT_COMPILER13)" == ""
 !ELSE
 USE_F2C=NO
 !ENDIF

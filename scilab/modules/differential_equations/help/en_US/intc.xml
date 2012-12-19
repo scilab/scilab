@@ -44,6 +44,17 @@
             straight line <literal>a b</literal> of the complex plane.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+function y=f(z)
+  y = z^(3 + %pi * %i)
+endfunction
+
+intc(1+%i, 4-%i, f)
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

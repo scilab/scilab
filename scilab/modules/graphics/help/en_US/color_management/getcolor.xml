@@ -52,6 +52,17 @@
             <literal>getcolor</literal> returns the id of the selected color or [] if the "Cancel" button has been clicked or the window closed.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+getcolor();
+
+getcolor("Title foo");
+
+getcolor("foo",21); // Select the red
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

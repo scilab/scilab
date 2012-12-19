@@ -98,6 +98,6 @@ case 'define' then
 	 string(swap)]
   gr_i=['txt=[''write AU to'';''/dev/audio''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
-  x=standard_define([3 2],model,exprs,gr_i)
+  x=standard_define([4 2],model,exprs,gr_i)
 end
 endfunction

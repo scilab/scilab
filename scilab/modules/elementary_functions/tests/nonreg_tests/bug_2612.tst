@@ -7,6 +7,6 @@
 
 // <-- CLI SHELL MODE -->
 
-ref = ["abc","abd";"aa","bxe"];
-A=gsort(['abc','abd';'aa','bxe'],'rc');
+ref = ["abc","bxe";"abc","aa"];
+A=gsort(['abc','abd';'aa','bxe'],'c');
 if ref <> A then pause,end

@@ -35,6 +35,7 @@ extern "C"
 #include "call_scilab.h"
 #include "stackinfo.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 #include "MALLOC.h"
 }
@@ -61,6 +62,9 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 #define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
 #define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
+
+static SciErr getinternalVarAddress(void* _pvCtx, int _iVar, int** _piAddress);
+
 /*--------------------------------------------------------------------------*/
 /* Replaces Rhs */
 int* getNbInputArgument(void* _pvCtx)
@@ -333,6 +337,21 @@ SciErr getVarAddressFromPosition(void *_pvCtx, int _iVar, int **_piAddress)
     SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
+
+    sciErr = getinternalVarAddress(_pvCtx, _iVar, _piAddress);
+
+    //sciprint("type : %d(%c)\n", (*_piAddress)[0], intersci_.ntypes[_iVar - 1]);
+    //update variable state to "read
+    //intersci_.ntypes[_iVar - 1] = '$';
+    return sciErr;
+}
+
+/*--------------------------------------------------------------------------*/
+static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iAddr = 0;
     int iValType = 0;
 
@@ -358,7 +377,6 @@ SciErr getVarAddressFromPosition(void *_pvCtx, int _iVar, int **_piAddress)
     *_piAddress = (int*)in[_iVar - 1];
     return sciErr;
 }
-
 /*--------------------------------------------------------------------------*/
 SciErr getVarNameFromPosition(void *_pvCtx, int _iVar, char *_pstName)
 {
@@ -642,7 +660,8 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
         return sciErr;
     }
 
-    sciErr = getVarAddressFromPosition(_pvCtx, _iPos, &piAddr2);
+    //sciprint("getProcessMode ->");
+    sciErr = getinternalVarAddress(_pvCtx, _iPos, &piAddr2);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Unable to get variable address"), "getProcessMode");
@@ -1372,14 +1391,15 @@ int getInputArgumentType(void* _pvCtx, int _iVar)
     int* piAddr = NULL;
     int iType = 0;
 
-    sciErr = getVarAddressFromPosition(_pvCtx, _iVar, &piAddr);
-    if(sciErr.iErr)
+    //sciprint("getInputArgumentType ->");
+    sciErr = getinternalVarAddress(_pvCtx, _iVar, &piAddr);
+    if (sciErr.iErr)
     {
         return 0;
     }
 
     sciErr = getVarType(_pvCtx, piAddr, &iType);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         return 0;
     }
@@ -1475,21 +1495,33 @@ int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
     int iRet = 1;
 
     // check pointer
-    if (_pstName == NULL) iRet = 0;
+    if (_pstName == NULL)
+    {
+        iRet = 0;
+    }
 
     // check length _pstName <> 0
     if (strlen(_pstName) == 0) iRet = 0;
 
     // forbidden characters
-    if (strpbrk(_pstName, FORBIDDEN_CHARS) != NULL) iRet = 0;
+    if (strpbrk(_pstName, FORBIDDEN_CHARS) != NULL)
+    {
+        iRet = 0;
+    }
 
     // variable does not begin by a digit
-    if (isdigit(_pstName[0])) iRet = 0;
+    if (isdigit(_pstName[0]))
+    {
+        iRet = 0;
+    }
 
     // check that we have only ascii characters
     for (int i = 0; i < (int)strlen(_pstName); i++)
     {
-        if (!isascii(_pstName[i])) iRet = 0;
+        if (!isascii(_pstName[i]))
+        {
+            iRet = 0;
+        }
         break;
     }
 

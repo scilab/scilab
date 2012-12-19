@@ -132,6 +132,8 @@ realtype RAbs(realtype x);
 
 realtype RExp(realtype x);
 
+realtype FLOOR(realtype x);
+
 #ifdef __cplusplus
 }
 #endif

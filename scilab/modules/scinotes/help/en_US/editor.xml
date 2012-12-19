@@ -24,8 +24,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            An external text editor can be used with Scilab.
+            An external text editor can be used with Scilab. This has to be configured in the <link linkend="preferences">preferences</link> menu.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// editor without parameters
+editor();
+
+// editor with a file name
+editor('SCI/modules/time/macros/datenum.sci');
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

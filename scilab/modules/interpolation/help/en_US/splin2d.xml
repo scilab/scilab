@@ -12,35 +12,39 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,y</term>
+                <term>x</term>
                 <listitem>
-                    <para>strictly increasing row vectors (with at least 2 components)
-                        defining the interpolation grid
+                    <para> a 1-by-nx matrix of doubles, the x coordinate of the interpolation points. We must have x(i)&lt;x(i+1), for i=1,2,...,nx-1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>a 1-by-ny matrix of doubles, the y coordinate of the interpolation points.
+                        We must have y(i)&lt;y(i+1), for i=1,2,...,ny-1.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>z</term>
                 <listitem>
-                    <para>
-                        nx x ny matrix (nx being the length of <literal>x</literal>
-                        and ny the length of <literal>y</literal>)
+                    <para>a nx-by-ny matrix of doubles, the function values.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>spline_type</term>
                 <listitem>
-                    <para>(optional) a string selecting the kind of bicubic spline to
-                        compute
+                    <para>a 1-by-1 matrix of strings, the typof of spline to compute.
+                        Available values are spline_type="not_a_knot" and spline_type="periodic".
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>C</term>
                 <listitem>
-                    <para>a big vector with the coefficients of the bicubic patches (see
-                        details in Remarks)
+                    <para>the coefficients of the bicubic patches. This output argument of splin2d is the input argument of the interp2d function.
                     </para>
                 </listitem>
             </varlistentry>

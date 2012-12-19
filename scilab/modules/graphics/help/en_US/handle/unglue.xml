@@ -49,6 +49,20 @@
             children.
         </para>
     </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+a=gca();
+t=0:9;
+x=cos(t*%pi/5);
+y=sin(t*%pi/5);
+plot(x,y,'r-');
+p = unglue(gce())
+set(p,"closed","on");
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

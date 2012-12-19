@@ -29,10 +29,10 @@
             this = optimbase_set ( this , key , value )
             this = optimbase_checkbounds ( this )
             this = optimbase_checkx0 ( this )
-            [ this , f , index ] = optimbase_function ( this , x , index [ , a1, a2, ... ] )
-            [ this , f , c , index ] = optimbase_function ( this , x , index [ , a1, a2, ... ] )
-            [ this , f , g , index ] = optimbase_function ( this , x , index [ , a1, a2, ... ] )
-            [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index [ , a1, a2, ... ] )
+            [ this , f , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
+            [ this , f , c , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
+            [ this , f , g , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
+            [ this , f , g , c , gc , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
             [ this , hasbounds ] = optimbase_hasbounds ( this )
             [ this , hascons ] = optimbase_hasconstraints ( this )
             [ this , hasnlcons ] = optimbase_hasnlcons ( this )
@@ -1608,31 +1608,5 @@
             disp(f)
             opt = optimbase_destroy(opt);
         </programlisting>
-    </refsection>
-    <refsection>
-        <title>TODO</title>
-        <itemizedlist>
-            <listitem>
-                <para>manage equality constraints</para>
-            </listitem>
-            <listitem>
-                <para>manage linear constraints</para>
-            </listitem>
-            <listitem>
-                <para>manage quadratic objective</para>
-            </listitem>
-            <listitem>
-                <para>manage linear objective</para>
-            </listitem>
-            <listitem>
-                <para>manage linear inequality constraints</para>
-            </listitem>
-            <listitem>
-                <para>manage non linear equality constraints</para>
-            </listitem>
-            <listitem>
-                <para>manage linear equality constraints</para>
-            </listitem>
-        </itemizedlist>
     </refsection>
 </refentry>

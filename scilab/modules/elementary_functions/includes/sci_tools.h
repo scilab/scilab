@@ -34,8 +34,8 @@
 #define SET_NB_COL(ptr,m) (((int*) (ptr))[-2] = (m))
 #define SET_NB_ROW(ptr,n) (((int*) (ptr))[-3] = (n))
 
-ELEMENTARY_FUNCTIONS_IMPEXP void (SciToF77)(double *ptr, int size, int lda);
-ELEMENTARY_FUNCTIONS_IMPEXP void (F77ToSci)(double *ptr, int size, int lda);
+ELEMENTARY_FUNCTIONS_IMPEXP void SciToF77(double *ptr, int size, int lda);
+ELEMENTARY_FUNCTIONS_IMPEXP void F77ToSci(double *ptr, int size, int lda);
 
 ELEMENTARY_FUNCTIONS_IMPEXP void double2z(double *ptr, double *ptr77z, int size, int lda);
 ELEMENTARY_FUNCTIONS_IMPEXP void z2double(double *ptrz, double *ptrsci, int size, int lda);

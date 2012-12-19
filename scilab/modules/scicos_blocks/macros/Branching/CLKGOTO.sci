@@ -115,7 +115,7 @@ case 'define' then
   model.dep_ut=[%f %f]
 
   exprs=['A';sci2exp(1)]
-  x=standard_define([1.5 1.5],model,exprs,' ')
+  x=standard_define([2 1],model,exprs,' ')
   x.graphics.id="Goto"
 end
 endfunction

@@ -17,38 +17,9 @@
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
-
-/*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-    {sci_Xcos, ""}, //xcos"},
-    {sci_warnBlockByUID, ""}, //warnBlockByUID"},
-    {sci_closeXcosFromScilab, ""}, //closeXcos"},
-    {sci_xcosDiagramToScilab, ""}, //xcosDiagramToScilab"},
-    {sci_xcosPalLoad, ""}, //xcosPalLoad"},
-    {sci_xcosPalCategoryAdd, ""}, //xcosPalCategoryAdd"},
-    {sci_xcosPalDelete, ""}, //xcosPalDelete"},
-    {sci_xcosPalMove, ""}, //xcosPalMove"},
-    {sci_xcosPalEnable, ""}, //xcosPalEnable"},
-    {sci_xcosPalDisable, ""}, //xcosPalDisable"},
-    {sci_xcosPalGenerateIcon, ""}, //xcosPalGenerateIcon"},
-    {sci_xcosConfigureXmlFile, ""}, //xcosConfigureXmlFile"},
-    {sci_xcosAddToolsMenu, ""}, //xcosAddToolsMenu"},
-    {sci_xcosUpdateBlock, ""}, //xcosUpdateBlock"},
-    {sci_loadXcos, ""}, //loadXcos"}
-    {sci_xcosSimulationStarted, ""} //xcosSimulationStarted"}
-};
-
-/*--------------------------------------------------------------------------*/
-int gw_xcos(void)
-{
-    return 0;
-}
-
 /*--------------------------------------------------------------------------*/
 int xcosStarted(void)
 {
     return loadedDep;
 }
-
 /*--------------------------------------------------------------------------*/

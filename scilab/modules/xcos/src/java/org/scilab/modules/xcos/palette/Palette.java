@@ -13,10 +13,13 @@
 package org.scilab.modules.xcos.palette;
 
 import java.awt.GraphicsEnvironment;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -481,53 +484,66 @@ public final class Palette {
     }
 
     /**
-     * Helper function used to regenerate palette block images from block
+     * Helper function used to regenerate palette block images from the block
      * instance.
      *
-     * This method is not export to scilab but is needed for internal purpose
-     * (palette block image generation)
+     * @param path
+     *            the path to emit the images for.
      */
-    public static void generateAllPaletteImages() {
+    public static void generateAllImages(final String[] path) {
+        PaletteManager.getInstance();
+
         SwingUtilities.invokeLater(new Runnable() {
+
             @Override
             public void run() {
-                final PaletteManager current = PaletteManager.getInstance();
-                iterate(current.getRoot().getNode());
-                current.saveConfig();
-            }
-
-            private void iterate(final List<PaletteNode> children) {
-                for (final PaletteNode next : children) {
-                    if (next instanceof Category) {
-                        iterate(((Category) next).getNode());
-                    } else if (next instanceof PreLoaded) {
-                        generatePreLoadedIcon((PreLoaded) next);
-                    }
+                final PaletteNode src = getPathNode(path, false);
+                if (src == null) {
+                    System.err.print(String.format(WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, "path"));
+                    return;
                 }
-            }
 
-            /**
-             * Generate PreLoaded icon file.
-             *
-             * @param current
-             *            the current node
-             */
-            private void generatePreLoadedIcon(final PreLoaded current) {
-                final List<PaletteBlock> blocks = current.getBlock();
-                for (final PaletteBlock paletteBlock : blocks) {
-
-                    try {
-                        final BasicBlock block = new PaletteBlockCtrl(paletteBlock).loadBlock();
-                        generateIcon(block, paletteBlock.getIcon().getEvaluatedPath());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ScicosFormatException e) {
-                        e.printStackTrace();
-                    }
-                }
+                iterate(Collections.singletonList(src));
             }
         });
 
         LOG.finest("All images has been generated.");
+    }
+
+    private static void iterate(final List<PaletteNode> children) {
+        for (final PaletteNode next : children) {
+            if (next instanceof Category) {
+                iterate(((Category) next).getNode());
+            } else if (next instanceof PreLoaded) {
+                generatePreLoadedIcon((PreLoaded) next);
+            }
+        }
+    }
+
+    /**
+     * Generate PreLoaded icon file.
+     *
+     * @param current
+     *            the current node
+     */
+    private static void generatePreLoadedIcon(final PreLoaded current) {
+        final List<PaletteBlock> blocks = current.getBlock();
+        for (final PaletteBlock paletteBlock : blocks) {
+
+            new PaletteBlockCtrl(paletteBlock).loadBlock(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    try {
+                        generateIcon((BasicBlock) event.getSource(), paletteBlock.getIcon().getEvaluatedPath());
+                        if (LOG.isLoggable(Level.FINEST)) {
+                            LOG.finest(String.format("%s has been generated", paletteBlock.getIcon()));
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 }

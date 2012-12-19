@@ -115,7 +115,7 @@ case 'define' then
   model.dep_ut=[%t %f]
   exprs=[string(size(in,'*'));txt;'1']
   gr_i=['xstringb(orig(1),orig(2),[''Mathematical'';''Expression''],sz(1),sz(2),''fill'');']
-  x=standard_define([3 2],model,exprs,gr_i)
+  x=standard_define([5 2],model,exprs,gr_i)
 end
 endfunction
 

@@ -69,12 +69,6 @@ int sci_unsetmenu(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        if (nbCol != 1)
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-            return FALSE;
-        }
-
         EnableMenu(getConsoleIdentifier(), menuNameAdr, FALSE);
         freeAllocatedSingleString(menuNameAdr);
     }

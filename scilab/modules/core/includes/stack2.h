@@ -26,7 +26,7 @@
  * @param size size of the array
  * @param lda
  */
-void SciToF77(double *ptr, int size, int lda);
+//void SciToF77(double *ptr, int size, int lda);
 
 /**
  * Convert an Fortran array of double to a Scilab format

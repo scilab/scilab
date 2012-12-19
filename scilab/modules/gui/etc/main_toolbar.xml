@@ -21,6 +21,11 @@
         <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole" type="3"/>
     </button>
     <separator/>
+    <!-- Clear -->
+    <button icon="edit-clear" tooltiptext="Clear Console">
+        <callback instruction="clc();" type="0"/>
+    </button>
+    <separator/>
     <!-- Print -->
     <button icon="printer" tooltiptext="Print...">
         <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.printConsoleContents" type="3"/>

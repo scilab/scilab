@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: de\n"
 
 msgid "Polynomials"
@@ -35,9 +35,6 @@ msgid ""
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Fließpunkt-Zahl, Polynom "
 "oder Datenfeld mit rationalen Brüchen erwartet.\n"
-
-msgid "Computing determinant: Be patient...\n"
-msgstr "Berechne Determinante: bitte warten.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"

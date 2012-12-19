@@ -67,7 +67,6 @@ addcolor(name2rgb('grey')/255);
             h.color_map = jetcolormap(16);
             addcolor(name2rgb('grey')/255);
         </scilab:image>
-        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

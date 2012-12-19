@@ -932,7 +932,6 @@ compute_initial_temp
 cond
 cond2sp
 condestsp
-config
 configure_msifort
 configure_msvc
 cont_frm
@@ -1024,7 +1023,6 @@ determ
 detr
 detrend
 devtools_run_builder
-dft
 dhnorm
 diff
 diophant
@@ -1144,7 +1142,6 @@ generic_i_s
 generic_i_st
 genfac3d
 genlib
-genlib_old
 genmarkov
 geomean
 getColorIndex
@@ -1908,8 +1905,6 @@ wintercolormap
 with_javasci
 with_macros_source
 with_modelica_compiler
-with_pvm
-with_texmacs
 with_tk
 write_csv
 x_choices
@@ -1947,7 +1942,6 @@ xrpoly
 xs2emf
 xs2fig
 xsave
-xselect
 xsetm
 xstringl
 ylabel

@@ -57,6 +57,22 @@
             degree in <literal>v</literal> . (<literal>v</literal> is a row or column vector).
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+w=s*rand(10,10);
+determ(w)
+coeff(w,1)
+
+r = poly([0 -1+%i -1-%i],'s',"roots");
+coeff(r)
+
+r = poly([-1-%i -1+2*%i 0],'s',"roots");
+coeff(r)
+
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

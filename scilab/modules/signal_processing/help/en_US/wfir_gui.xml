@@ -96,6 +96,13 @@
         </para>
     </refsection>
     <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+wfir_gui()
+ ]]></programlisting>
+    </refsection>
+    
+    <refsection>
         <title>History</title>
         <revhistory>
             <revision>
