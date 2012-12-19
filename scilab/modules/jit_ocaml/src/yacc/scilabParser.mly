@@ -28,7 +28,7 @@
 %token COMMA EOL DOLLAR SEMI IF THEN ELSE ELSEIF END WHILE DO 
 %token COLON ASSIGN ID FOR FUNCTION ENDFUNCTION HIDDEN HIDDENFUNCTION
 %token PLUS MINUS RDIVIDE LDIVIDE TIMES POWER EQUAL NOTEQUAL LOWERTHAN 
-%token GREATERTHAN LOWEREQUAL GREATEREQUAL
+%token GREATERTHAN LOWEREQUAL GREATEREQUAL SELECT SWITCH OTHERWISE CASE
 %token BOOLTRUE BOOLFALSE
 %token<float> VARINT
 %token<float> VARFLOAT
@@ -71,8 +71,18 @@
 program :
 | expressions                                   { Exp $1 }
 | EOL expressions                               { Exp $2 }
-| expressions EOF                               { Exp $1 }
-
+/*| expressions EOF                               { Exp $1 }*/
+| expressionLineBreak                           { let seqexp = SeqExp [] in
+                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 1 in
+                                                  let loc = create_loc off_st off_end in
+                                                  Exp (create_exp loc seqexp) }
+| /* Empty */                                   { let seqexp = SeqExp [] in
+                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 1 in
+                                                  let loc = create_loc off_st off_end in
+                                                  Exp (create_exp loc seqexp) }
+    
 expressions :
 | recursiveExpression                          { let seqexp = SeqExp (List.rev $1) in
                                                  let off_st = Parsing.rhs_start_pos 1 in
@@ -139,6 +149,7 @@ expression :
 | functionCall %prec TOPLEVEL                   { $1 }
 | variableDeclaration                           { $1 }
 | ifControl                                     { $1 }
+| selectControl                                 { $1 }
 | forControl                                    { $1 }
 | whileControl                                  { $1 }
 | variable %prec TOPLEVEL                       { $1 }
@@ -771,7 +782,7 @@ thenBody :
 
 elseBody :
 | /* Empty */                                  { None }
-| expression                                   { Some $1 }
+| expressions                                  { Some $1 }
 
 
 ifConditionBreak :
@@ -841,6 +852,167 @@ elseIfControl :
                                                           create_loc off_st off_end in
                                                         create_exp loc 
                                                           (SeqExp [create_exp loc ifexp]) }
+
+/* SELECT */
+selectControl :
+| select selectable selectConditionBreak casesControl END                              { let select_exp = SelectExp
+                                                                                           { selectExp_selectme = $2 ;
+                                                                                             selectExp_cases    = Array.of_list $4 ;
+                                                                                             selectExp_default  = None } in
+                                                                                         let select_st = Parsing.rhs_start_pos 1 in
+                                                                                         let select_end = Parsing.rhs_end_pos 5 in
+                                                                                         let select_loc = create_loc select_st select_end in
+                                                                                         create_exp select_loc (ControlExp select_exp) }
+| select selectable selectConditionBreak casesControl defaultCase elseBody END         { let default_st =  Parsing.rhs_start_pos 6 in
+                                                                                         let default_end = Parsing.rhs_end_pos 6 in
+                                                                                         let default_loc = create_loc default_st default_end in
+                                                                                         let default = 
+                                                                                           match $6 with
+                                                                                             | None -> None
+                                                                                             | Some seqexp -> Some (default_loc,[seqexp]) in 
+                                                                                         let select_exp = SelectExp
+                                                                                           { selectExp_selectme = $2 ;
+                                                                                             selectExp_cases    = Array.of_list $4 ;
+                                                                                             selectExp_default  = default } in
+                                                                                         let select_st = Parsing.rhs_start_pos 1 in
+                                                                                         let select_end = Parsing.rhs_end_pos 7 in
+                                                                                         let select_loc = create_loc select_st select_end in
+                                                                                         create_exp select_loc (ControlExp select_exp) }
+| select selectable COMMENT selectConditionBreak casesControl END                      { let select_exp = SelectExp
+                                                                                           { selectExp_selectme = $2 ;
+                                                                                             selectExp_cases    = Array.of_list $5 ;
+                                                                                             selectExp_default  = None } in
+                                                                                         let select_st = Parsing.rhs_start_pos 1 in
+                                                                                         let select_end = Parsing.rhs_end_pos 6 in
+                                                                                         let select_loc = create_loc select_st select_end in
+                                                                                         create_exp select_loc (ControlExp select_exp) }
+| select selectable COMMENT selectConditionBreak casesControl defaultCase elseBody END { let default_st =  Parsing.rhs_start_pos 7 in
+                                                                                         let default_end = Parsing.rhs_end_pos 7 in
+                                                                                         let default_loc = create_loc default_st default_end in
+                                                                                         let default =  match $7 with
+                                                                                           | None -> None
+                                                                                           | Some seqexp -> Some (default_loc,[seqexp]) in 
+                                                                                         let select_exp = SelectExp
+                                                                                           { selectExp_selectme = $2 ;
+                                                                                             selectExp_cases    = Array.of_list $5 ;
+                                                                                             selectExp_default  = default } in
+                                                                                         let select_st = Parsing.rhs_start_pos 1 in
+                                                                                         let select_end = Parsing.rhs_end_pos 8 in
+                                                                                         let select_loc = create_loc select_st select_end in
+                                                                                         create_exp select_loc (ControlExp select_exp) }
+
+select :
+| SELECT                           { }
+| SWITCH                           { }
+
+defaultCase :
+| elseTok                          { }
+| OTHERWISE                        { }
+| OTHERWISE COMMA                  { }
+| OTHERWISE SEMI                   { }
+| OTHERWISE EOL                    { }
+| OTHERWISE COMMA EOL              { }
+| OTHERWISE SEMI EOL               { }
+
+selectable :
+| variable                         { $1 }
+| functionCall                     { $1 }
+
+selectConditionBreak :
+| EOL                              { }
+| COMMA                            { }
+| SEMI                             { }
+| COMMA EOL                        { }
+| SEMI EOL                         { }
+
+casesControl :
+| CASE variable caseControlBreak caseBody                  { let casetest_st = Parsing.rhs_start_pos 2 in
+                                                             let casetest_end = Parsing.rhs_end_pos 2 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 4 in
+                                                             let casebody_end = Parsing.rhs_end_pos 4 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $2 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $4 } in
+                                                             [casexp] }
+| CASE functionCall caseControlBreak caseBody              { let casetest_st = Parsing.rhs_start_pos 2 in
+                                                             let casetest_end = Parsing.rhs_end_pos 2 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 4 in
+                                                             let casebody_end = Parsing.rhs_end_pos 4 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $2 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $4 } in
+                                                             [casexp] }
+| comments CASE variable caseControlBreak caseBody         { let casetest_st = Parsing.rhs_start_pos 3 in
+                                                             let casetest_end = Parsing.rhs_end_pos 3 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 5 in
+                                                             let casebody_end = Parsing.rhs_end_pos 5 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $3 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $5 } in
+                                                             [casexp] }
+| comments CASE functionCall caseControlBreak caseBody     { let casetest_st = Parsing.rhs_start_pos 3 in
+                                                             let casetest_end = Parsing.rhs_end_pos 3 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 5 in
+                                                             let casebody_end = Parsing.rhs_end_pos 5 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $3 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $5 } in
+                                                             [casexp] }
+| casesControl CASE variable caseControlBreak caseBody     { let casetest_st = Parsing.rhs_start_pos 3 in
+                                                             let casetest_end = Parsing.rhs_end_pos 3 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 5 in
+                                                             let casebody_end = Parsing.rhs_end_pos 5 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $3 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $5 } in
+                                                             casexp::$1 }
+| casesControl CASE functionCall caseControlBreak caseBody { let casetest_st = Parsing.rhs_start_pos 3 in
+                                                             let casetest_end = Parsing.rhs_end_pos 3 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 5 in
+                                                             let casebody_end = Parsing.rhs_end_pos 5 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $3 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $5 } in
+                                                             casexp::$1 }
+caseBody :
+| expressions                      { 
+  match $1.exp_desc with 
+    | SeqExp l -> l
+    | _ -> [] }
+| /* Empty */                      { [] }
+    
+caseControlBreak :
+| THEN                             { }
+| COMMA                            { }
+| SEMI                             { }
+| EOL                              { }
+| THEN EOL                         { }
+| COMMA EOL                        { }
+| SEMI EOL                         { }
+| THEN COMMA                       { }
+| THEN COMMA EOL                   { }
+| THEN SEMI                        { }
+| THEN SEMI EOL                    { }
+
+
 /* FOR */
 forControl :
 | FOR ID ASSIGN forIterator forConditionBreak forBody END               { let vardec_st = Parsing.rhs_start_pos 2 in
@@ -856,8 +1028,7 @@ forControl :
                                                                               forExp_body = $6 } in
                                                                           let off_st = Parsing.rhs_start_pos 1 in
                                                                           let off_end = Parsing.rhs_end_pos 7 in
-                                                                          let loc = 
-                                                                            create_loc off_st off_end in
+                                                                          let loc = create_loc off_st off_end in
                                                                           create_exp loc (ControlExp forexp) }
 | FOR LPAREN ID ASSIGN forIterator RPAREN forConditionBreak forBody END { let vardec_st = Parsing.rhs_start_pos 3 in
                                                                           let vardec_end = Parsing.rhs_end_pos 3 in
@@ -872,8 +1043,7 @@ forControl :
                                                                               forExp_body = $8 } in
                                                                           let off_st = Parsing.rhs_start_pos 1 in
                                                                           let off_end = Parsing.rhs_end_pos 9 in
-                                                                          let loc = 
-                                                                            create_loc off_st off_end in
+                                                                          let loc = create_loc off_st off_end in
                                                                           create_exp loc (ControlExp forexp)}
 
 forIterator :
