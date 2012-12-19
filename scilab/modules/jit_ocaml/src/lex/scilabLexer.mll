@@ -83,7 +83,7 @@ let assign = "="
 
 rule token = parse
   | blank                        { token lexbuf }
-  | newline                      { (* Printf.printf "\n";  *)newline lexbuf; EOL}
+  | newline                      { Printf.printf "EOL\n";newline lexbuf; EOL}
   | startlinecomment             { str_cmt := "";comment lexbuf }
   | "if"                         { IF }
   | "then"                       { THEN }
@@ -97,7 +97,7 @@ rule token = parse
   | "hidden"                     { HIDDEN }
   | "function"                   { FUNCTION }
   | "#function"                  { HIDDENFUNCTION }
-  | "endfunction"                { ENDFUNCTION }
+  | "endfunction"                { Printf.printf "endfunction";ENDFUNCTION }
   | plus                         { PLUS }
   | minus                        { MINUS }
   | rdivide                      { RDIVIDE }
@@ -125,7 +125,7 @@ rule token = parse
   | dollar                       { DOLLAR }
   | booltrue                     { BOOLTRUE }
   | boolfalse                    { BOOLFALSE }
-  | id as str                    { (* Printf.printf "ID[%s]" str; *)ID str }
+  | id as str                    { Printf.printf "ID[%s]" str;ID str }
   | eof                          { EOF }
   | _ as c                       { Printf.printf "Lexing error : Unknow character \'%c\'" c;exit 1}
 

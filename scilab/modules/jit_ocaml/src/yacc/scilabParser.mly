@@ -69,15 +69,36 @@
 
 %%
 program :
-| expressions                                   { $1 }
-| expressions EOF                               { $1 }
+| expressions                                   { Exp $1 }
+| EOL expressions                               { Exp $2 }
+| expressions EOF                               { Exp $1 }
 
 expressions :
-| expression                                    { let seqexp = SeqExp [$1] in
-                                                  let off_st = Parsing.rhs_start_pos 1 in
-                                                  let off_end = Parsing.rhs_end_pos 1 in
-                                                  let loc = create_loc off_st off_end in
-                                                  Exp (create_exp loc seqexp) }
+| recursiveExpression                          { let seqexp = SeqExp $1 in
+                                                 let off_st = Parsing.rhs_start_pos 1 in
+                                                 let off_end = Parsing.rhs_end_pos 1 in
+                                                 let loc = create_loc off_st off_end in
+                                                 create_exp loc seqexp }
+| recursiveExpression expression               { let seqexp = SeqExp ($2::$1) in
+                                                 let off_st = Parsing.rhs_start_pos 1 in
+                                                 let off_end = Parsing.rhs_end_pos 2 in
+                                                 let loc = create_loc off_st off_end in
+                                                 create_exp loc seqexp }
+| recursiveExpression expression COMMENT       { let commentexp = CommentExp { commentExp_comment = $3 } in
+                                                 let cmt_st = Parsing.rhs_start_pos 3 in
+                                                 let cmt_end = Parsing.rhs_end_pos 3 in
+                                                 let cmt_loc = create_loc cmt_st cmt_end in
+                                                 let cmt_exp = create_exp cmt_loc (ConstExp commentexp) in
+                                                 let seqexp = SeqExp ($2::cmt_exp::$1) in
+                                                 let off_st = Parsing.rhs_start_pos 1 in
+                                                 let off_end = Parsing.rhs_end_pos 2 in
+                                                 let loc = create_loc off_st off_end in
+                                                 create_exp loc seqexp }
+| expression                                   { let seqexp = SeqExp [$1] in
+                                                 let off_st = Parsing.rhs_start_pos 1 in
+                                                 let off_end = Parsing.rhs_end_pos 1 in
+                                                 let loc = create_loc off_st off_end in
+                                                 create_exp loc seqexp }
 | expression COMMENT                           { let commentexp = CommentExp { commentExp_comment = $2 } in
                                                  let cmt_st = Parsing.rhs_start_pos 2 in
                                                  let cmt_end = Parsing.rhs_end_pos 2 in
@@ -87,10 +108,33 @@ expressions :
                                                  let off_st = Parsing.rhs_start_pos 1 in
                                                  let off_end = Parsing.rhs_end_pos 2 in
                                                  let loc = create_loc off_st off_end in
-                                                 Exp (create_exp loc seqexp) }
+                                                 create_exp loc seqexp }
 
-expression :
-| expression EOL                       /**/     { $1 }                                    
+recursiveExpression :
+| recursiveExpression expression expressionLineBreak         { List.rev ($2::$1) }
+| recursiveExpression expression COMMENT expressionLineBreak { let commentexp = CommentExp { commentExp_comment = $3 } in
+                                                               let cmt_st = Parsing.rhs_start_pos 3 in
+                                                               let cmt_end = Parsing.rhs_end_pos 3 in
+                                                               let cmt_loc = create_loc cmt_st cmt_end in
+                                                               let cmt_exp = create_exp cmt_loc (ConstExp commentexp) in 
+                                                               List.rev (cmt_exp::$2::$1)}
+| expression COMMENT expressionLineBreak                     { let commentexp = CommentExp { commentExp_comment = $2 } in
+                                                               let cmt_st = Parsing.rhs_start_pos 2 in
+                                                               let cmt_end = Parsing.rhs_end_pos 2 in
+                                                               let cmt_loc = create_loc cmt_st cmt_end in
+                                                               let cmt_exp = create_exp cmt_loc (ConstExp commentexp) in 
+                                                               $1::[cmt_exp]}
+| expression expressionLineBreak                             { [$1] }
+
+expressionLineBreak :
+| SEMI                                        { }
+| COMMA                                       { }
+| EOL                                         { }
+| expressionLineBreak SEMI                    { }
+| expressionLineBreak COMMA                   { }
+| expressionLineBreak EOL                     { }
+
+expression :                              
 | functionDeclaration				{ $1 }
 | functionCall %prec TOPLEVEL                   { $1 }
 | variableDeclaration                           { $1 }
@@ -420,7 +464,7 @@ functionDeclarationBreak :
 | COMMA EOL			{ }
 
 functionBody :
-| expression                     { $1 }
+| expressions                    { $1 }
 | /* Empty */                    { let off_st = Parsing.rhs_start_pos 1 in
                                    let off_end = Parsing.rhs_end_pos 1 in
                                    let loc = 
@@ -1056,7 +1100,13 @@ variableDeclaration :
                                                                   let off_end = Parsing.rhs_end_pos 3 in
                                                                   let loc = create_loc off_st off_end in
                                                                   create_exp loc assignexp}
-
+| assignable ASSIGN functionCall %prec HIGHLEVEL                    { let assignexp = 
+                                                                    AssignExp {assignExp_left_exp = $1;
+                                                                               assignExp_right_exp = $3 } in
+                                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                                  let loc = create_loc off_st off_end in
+                                                                  create_exp loc assignexp}
 
 assignable :
 | ID %prec LISTABLE                                             { let varloc_st = Parsing.rhs_start_pos 1 in
