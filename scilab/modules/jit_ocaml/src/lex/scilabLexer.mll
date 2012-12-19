@@ -90,6 +90,10 @@ rule token = parse
   | "else"                       { ELSE }
   | "elseif"                     { ELSEIF }
   | "end"                        { END }
+  | "select"                     { SELECT }
+  | "switch"                     { SWITCH }
+  | "otherwise"                  { OTHERWISE }
+  | "case"                       { CASE }
   | "while"                      { WHILE }
   | "do"                         { DO }
   | "="                          { ASSIGN }
