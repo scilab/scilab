@@ -74,12 +74,12 @@ program :
 | expressions EOF                               { Exp $1 }
 
 expressions :
-| recursiveExpression                          { let seqexp = SeqExp $1 in
+| recursiveExpression                          { let seqexp = SeqExp (List.rev $1) in
                                                  let off_st = Parsing.rhs_start_pos 1 in
                                                  let off_end = Parsing.rhs_end_pos 1 in
                                                  let loc = create_loc off_st off_end in
                                                  create_exp loc seqexp }
-| recursiveExpression expression               { let seqexp = SeqExp ($2::$1) in
+| recursiveExpression expression               { let seqexp = SeqExp (List.rev ($2::$1)) in
                                                  let off_st = Parsing.rhs_start_pos 1 in
                                                  let off_end = Parsing.rhs_end_pos 2 in
                                                  let loc = create_loc off_st off_end in
@@ -89,7 +89,7 @@ expressions :
                                                  let cmt_end = Parsing.rhs_end_pos 3 in
                                                  let cmt_loc = create_loc cmt_st cmt_end in
                                                  let cmt_exp = create_exp cmt_loc (ConstExp commentexp) in
-                                                 let seqexp = SeqExp ($2::cmt_exp::$1) in
+                                                 let seqexp = SeqExp (List.rev ($2::cmt_exp::$1)) in
                                                  let off_st = Parsing.rhs_start_pos 1 in
                                                  let off_end = Parsing.rhs_end_pos 2 in
                                                  let loc = create_loc off_st off_end in
@@ -111,13 +111,13 @@ expressions :
                                                  create_exp loc seqexp }
 
 recursiveExpression :
-| recursiveExpression expression expressionLineBreak         { List.rev ($2::$1) }
+| recursiveExpression expression expressionLineBreak         { $2::$1 }
 | recursiveExpression expression COMMENT expressionLineBreak { let commentexp = CommentExp { commentExp_comment = $3 } in
                                                                let cmt_st = Parsing.rhs_start_pos 3 in
                                                                let cmt_end = Parsing.rhs_end_pos 3 in
                                                                let cmt_loc = create_loc cmt_st cmt_end in
                                                                let cmt_exp = create_exp cmt_loc (ConstExp commentexp) in 
-                                                               List.rev (cmt_exp::$2::$1)}
+                                                               cmt_exp::$2::$1}
 | expression COMMENT expressionLineBreak                     { let commentexp = CommentExp { commentExp_comment = $2 } in
                                                                let cmt_st = Parsing.rhs_start_pos 2 in
                                                                let cmt_end = Parsing.rhs_end_pos 2 in
