@@ -1,1 +1,1 @@
-feefe
+function w = foo(x), w = x + 1 endfunction;foo(1)
