@@ -3,11 +3,21 @@
   open Lexing
   open ScilabParser
 
-  let newline lexbuf =
+  let end_cmt lexbuf =
+    lexbuf.lex_curr_pos <- lexbuf.lex_start_pos;
     lexbuf.lex_curr_p <- { lexbuf.lex_curr_p with
-      pos_lnum = lexbuf.lex_curr_p.pos_lnum + 1;
-      pos_bol =  lexbuf.lex_curr_p.pos_cnum;
+      pos_cnum = lexbuf.lex_start_p.pos_cnum;
     }
+
+
+  let print_pos pos =
+    Printf.printf "%i %i %i" pos.pos_lnum pos.pos_bol pos.pos_cnum
+
+  let print_lexbuf lexbuf =
+    Printf.printf "st :"; print_pos lexbuf.lex_start_p;
+    Printf.printf "; curr :"; print_pos lexbuf.lex_curr_p;
+    Printf.printf "; st_pos :%i" lexbuf.lex_start_pos;
+    Printf.printf "; curr_pos :%i \n" lexbuf.lex_curr_pos
 
   let str_cmt = ref ""
 
@@ -83,7 +93,7 @@ let assign = "="
 
 rule token = parse
   | blank                        { token lexbuf }
-  | newline                      { Printf.printf "EOL\n";newline lexbuf; EOL}
+  | newline                      { (* Printf.printf "EOL\n"; *) Lexing.new_line lexbuf; EOL}
   | startlinecomment             { str_cmt := "";comment lexbuf }
   | "if"                         { IF }
   | "then"                       { THEN }
@@ -101,7 +111,7 @@ rule token = parse
   | "hidden"                     { HIDDEN }
   | "function"                   { FUNCTION }
   | "#function"                  { HIDDENFUNCTION }
-  | "endfunction"                { Printf.printf "endfunction";ENDFUNCTION }
+  | "endfunction"                { ENDFUNCTION }
   | plus                         { PLUS }
   | minus                        { MINUS }
   | rdivide                      { RDIVIDE }
@@ -134,8 +144,8 @@ rule token = parse
   | _ as c                       { Printf.printf "Lexing error : Unknow character \'%c\'" c;exit 1}
 
 and comment = parse
-  | newline                      { Printf.printf "\n"; newline lexbuf; COMMENT !str_cmt}
-  | eof                          { COMMENT !str_cmt}
+  | newline                      { Printf.printf "//%s" !str_cmt; end_cmt lexbuf; COMMENT !str_cmt}
+  | eof                          { COMMENT !str_cmt ; }
   | _ as c                       { str_cmt := !str_cmt^(String.make 1 c); comment lexbuf }
 
 (* and matrix = parse *)
