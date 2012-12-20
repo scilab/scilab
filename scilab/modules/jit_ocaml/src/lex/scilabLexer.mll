@@ -118,12 +118,12 @@ rule token = parse
   | ldivide                      { LDIVIDE }
   | times                        { TIMES }
   | power                        { POWER }
-  | equal                        { EQUAL }
-  | notequal                     { NOTEQUAL }
-  | lowerthan                    { LOWERTHAN }
-  | greaterthan                  { GREATERTHAN }
-  | lowerequal                   { LOWEREQUAL }
-  | greaterequal                 { GREATEREQUAL }
+  | equal                        { EQ }
+  | notequal                     { NE }
+  | lowerthan                    { LT }
+  | greaterthan                  { GT }
+  | lowerequal                   { LE }
+  | greaterequal                 { GE }
   | comma                        { COMMA }
   | semicolon                    { SEMI }
   | integer as inum              { let num = float_of_string inum in
