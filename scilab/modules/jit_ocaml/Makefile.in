@@ -584,7 +584,8 @@ CLEANFILES = \
 	src/lex/scilabLexer.ml \
 	src/yacc/scilabParser.ml \
 	src/yacc/scilabParser.mli \
-	scilab_parser
+	scilab_parser \
+	macros/lib
 
 all: all-am
 
