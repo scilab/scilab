@@ -225,7 +225,7 @@ Time for BDF / Newton :
         </para>
         <para>
             Now, in the following script, we compare the time difference between the methods by running the example with the four solvers in turn :
-            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integSundials.sce">
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integCVode.sce">
                 Open the script
             </link>
         </para>
