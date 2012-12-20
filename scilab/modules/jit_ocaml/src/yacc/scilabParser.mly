@@ -71,7 +71,6 @@
 program :
 | expressions                                   { Exp $1 }
 | EOL expressions                               { Exp $2 }
-/*| expressions EOF                               { Exp $1 }*/
 | expressionLineBreak                           { let seqexp = SeqExp [] in
                                                   let off_st = Parsing.rhs_start_pos 1 in
                                                   let off_end = Parsing.rhs_end_pos 1 in
@@ -137,6 +136,7 @@ recursiveExpression :
 | expression expressionLineBreak                             { [$1] }
 
 expressionLineBreak :
+| EOF                                         { }
 | SEMI                                        { }
 | COMMA                                       { }
 | EOL                                         { }
