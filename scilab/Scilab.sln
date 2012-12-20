@@ -441,6 +441,9 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "functions_f", "modules\func
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "api_scilab", "modules\api_scilab\api_scilab.vcxproj", "{43C5BAB1-1DCA-4743-A183-77E0D42FE7D0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D} = {DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hdf5", "modules\hdf5\src\c\hdf5.vcxproj", "{A824EA62-AF07-4F43-9036-0E63990556BD}"
 EndProject
