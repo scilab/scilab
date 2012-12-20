@@ -21,6 +21,8 @@
 
   let str_cmt = ref ""
 
+  let str = ref ""
+
 }
 
 let newline = ('\010' | '\013' | "\013\010")
@@ -74,6 +76,9 @@ let startlinecomment  = "//"
 let startblockcomment = "/*"
 let endblockcomment   = "*/"
 
+let dquote = "\""
+let quote  = "'"
+
 let plus    = "+"
 let minus   = "-"
 let rdivide = "/"
@@ -94,7 +99,8 @@ let assign = "="
 rule token = parse
   | blank                        { token lexbuf }
   | newline                      { (* Printf.printf "EOL\n"; *) Lexing.new_line lexbuf; EOL}
-  | startlinecomment             { str_cmt := "";comment lexbuf }
+  | startlinecomment             { str_cmt := ""; comment lexbuf }
+  | dquote                       { str := ""; doublestr lexbuf }
   | "if"                         { IF }
   | "then"                       { THEN }
   | "else"                       { ELSE }
@@ -127,7 +133,7 @@ rule token = parse
   | comma                        { COMMA }
   | semicolon                    { SEMI }
   | integer as inum              { let num = float_of_string inum in
-                                   Printf.printf "varint[%f]" num;VARINT num }
+                                   Printf.printf "varint[%f]" num; VARINT num }
   | number as nnum               { let num = float_of_string nnum in
                                    NUM num }
   | little as lnum               { let num = float_of_string lnum in
@@ -139,14 +145,22 @@ rule token = parse
   | dollar                       { DOLLAR }
   | booltrue                     { BOOLTRUE }
   | boolfalse                    { BOOLFALSE }
-  | id as str                    { Printf.printf "ID[%s]" str;ID str }
+  | id as str                    { Printf.printf "ID[%s]" str; ID str }
   | eof                          { EOF }
   | _ as c                       { Printf.printf "Lexing error : Unknow character \'%c\'" c;exit 1}
 
 and comment = parse
-  | newline                      { Printf.printf "//%s" !str_cmt; end_cmt lexbuf; COMMENT !str_cmt}
+  | newline                      { (* Printf.printf "//%s" !str_cmt; *) end_cmt lexbuf; COMMENT !str_cmt}
   | eof                          { COMMENT !str_cmt ; }
   | _ as c                       { str_cmt := !str_cmt^(String.make 1 c); comment lexbuf }
+
+and doublestr = parse
+  | dquote                       { STR !str}
+  | dquote dquote                { str := !str^"\""; doublestr lexbuf }
+  | quote dquote                 { str := !str^"\""; doublestr lexbuf }
+  | newline                      { failwith "Error : unexpected newline in a string." }
+  | eof                          { failwith "Error : unexpected end of file in a string." }
+  | _ as c                       { str := !str^(String.make 1 c); doublestr lexbuf }
 
 (* and matrix = parse *)
 (*   | spaces+ *)

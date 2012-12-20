@@ -35,6 +35,7 @@
 %token<float> NUM
 %token<string> ID
 %token<string> COMMENT
+%token<string> STR
 %token EOF
 
 %nonassoc TOPLEVEL
@@ -1328,6 +1329,13 @@ variable :
                                                   let off_end = Parsing.rhs_end_pos 1 in
                                                   let loc = create_loc off_st off_end in
                                                   create_exp loc (ConstExp doubleexp)} 
+| STR                                           { let strexp = StringExp
+                                                    { stringExp_value = $1 ;
+                                                      stringExp_bigString = () } in
+                                                  let str_st = Parsing.rhs_start_pos 1 in 
+                                                  let str_end = Parsing.rhs_end_pos 1 in
+                                                  let str_loc = create_loc str_st str_end in
+                                                  create_exp str_loc (ConstExp strexp) }
 | comparison                                    { $1 }
 
 /* Matrix */
