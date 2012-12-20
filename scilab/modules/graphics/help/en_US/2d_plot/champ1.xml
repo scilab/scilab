@@ -8,13 +8,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>champ1(x,y,fx,fy,[arfact,rect,strf])</synopsis>
+        <synopsis>champ1(x, y, fx, fy, [arfact, rect, strf])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,y</term>
+                <term>x, y</term>
                 <listitem>
                     <para>two vectors which define the grid.</para>
                 </listitem>
@@ -22,27 +22,30 @@
             <varlistentry>
                 <term>fx</term>
                 <listitem>
-                    <para>a matrix which describes the x component of the vector field.
-                        <literal>fx(i,j)</literal> is the x component of the vector field at point
-                        <literal>(x(i),y(j))</literal>.
+                    <para>
+                        a matrix which describes the x component of the vector
+                        field. <literal>fx(i,j)</literal> is the x component of
+                        the vector field at point <literal>(x(i),y(j))</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fy</term>
                 <listitem>
-                    <para>a matrix which describes the y component of the vector field.
-                        <literal>fy(i,j)</literal> is the y component of the vector field at point
-                        <literal>(x(i),y(j))</literal>.
+                    <para>
+                        a matrix which describes the y component of the vector
+                        field. <literal>fy(i,j)</literal> is the y component of
+                        the vector field at point <literal>(x(i),y(j))</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>arfact</term>
                 <listitem>
-                    <para>an optional argument of type real which gives a scale factor
-                        for the display of the arrow heads on the plot (default value is
-                        1.0).
+                    <para>
+                        an optional argument of type <literal>real</literal>
+                        which gives a scale factor for the display of the arrow
+                        heads on the plot (default value is 1.0).
                     </para>
                 </listitem>
             </varlistentry>
@@ -50,34 +53,38 @@
                 <term>rect</term>
                 <listitem>
                     <para>
-                        a vector <literal>rect=[xmin,ymin,xmax,ymax]</literal> which gives
-                        the boundaries of the graphics frame to use.
+                        a vector <literal>rect = [xmin, ymin, xmax, ymax]</literal>
+                        which gives the boundaries of the graphics frame to use.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>frameflag</term>
                 <listitem>
-                    <para>controls the computation of the actual coordinate ranges from
-                        the minimal requested values. The associated value should be an
-                        integer ranging from 0 to 8.
+                    <para>
+                        controls the computation of the actual coordinate ranges
+                        from the minimal requested values. The associated value
+                        should be an integer ranging from 0 to 8.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>axesflag</term>
                 <listitem>
-                    <para>specifies how the axes are drawn. The associated value should
-                        be an integer ranging from 0 to 5.
+                    <para>
+                        specifies how the axes are drawn. The associated value
+                        should be an integer ranging from 0 to 5.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>strf</term>
                 <listitem>
-                    <para>a string of length 3 "xyz" which has the same meaning as the
-                        <literal>strf</literal> parameter of <literal>plot2d</literal>. The first
-                        character x has no effect with <literal>champ1</literal>.
+                    <para>
+                        a string of length 3 "xyz" which has the same meaning as
+                        the <varname>strf</varname> parameter of <function>plot2d</function>.
+                        The first character <literal>x</literal> has no effect
+                        with <function>champ1</function>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -86,14 +93,16 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>champ1</literal> draws a 2D vector field with colored arrows. The
-            color of the arrows depends on the intensity of the field.
-        </para>
-        <para>If you want arrows proportional to the intensity of the field, use
-            <literal>champ</literal>.
+            <function>champ1</function> draws a 2D vector field with colored
+            arrows. The color of the arrows depends on the intensity of the
+            field.
         </para>
         <para>
-            Enter the command <literal>champ1()</literal> to see a demo.
+            If you want arrows proportional to the intensity of the field, use
+            <function>champ</function>.
+        </para>
+        <para>
+            Enter the command <code>champ1()</code> to see a demo.
         </para>
     </refsection>
     <refsection>

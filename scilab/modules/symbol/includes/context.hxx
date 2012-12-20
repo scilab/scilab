@@ -28,116 +28,103 @@
 namespace symbol
 {
 
-    /** \brief Define class Context.
-     */
-    class EXTERN_SYMBOL Context
+/** \brief Define class Context.
+ */
+class EXTERN_SYMBOL Context
+{
+public :
+    Context();
+    static Context* getInstance(void);
+
+    /** Open a context scope i.e
+     ** open the heap table one
+     ** and the env table too. */
+    void scope_begin();
+
+    /** Close a context scope i.e
+     ** close the heap table one
+     ** and the env table too. */
+    void scope_end();
+
+    /** If key was associated to some Entry_T in the open scopes, return the
+     ** most recent insertion. Otherwise return the empty pointer. */
+    types::InternalType*	get(const symbol::Symbol& key) const;
+
+    /** If key was associated to some Entry_T in the last opened scope, return it.
+     ** Otherwise return the empty pointer. */
+    types::InternalType*	getCurrentLevel(const symbol::Symbol& key) const;
+
+    /** If key was associated to some Entry_T in the open scopes, return the
+     ** most recent insertion DESPITE the current/last one. Otherwise return the empty pointer. */
+    types::InternalType*	getAllButCurrentLevel(const symbol::Symbol& key) const;
+
+    /** If key was associated to some Entry_T in the open scopes, return the
+     ** most recent insertion. Otherwise return the empty pointer. */
+    types::InternalType*	get_fun(const symbol::Symbol& key) const;
+
+    /*return function list in the module _stModuleName*/
+    std::list<symbol::Symbol>& get_funlist(const std::wstring& _stModuleName);
+
+
+    /* global functions */
+
+    /*return global variable visibility status*/
+    bool isGlobalVisible(const symbol::Symbol& key) const;
+
+    /*return global variable, search in global scope ( highest )*/
+    types::InternalType* getGlobalValue(const symbol::Symbol& key) const;
+
+    /*return global variable existance status*/
+    bool isGlobalExists(const symbol::Symbol& key) const;
+
+    /*create or update a global variable*/
+    void setGlobalValue(const symbol::Symbol& key, types::InternalType &value);
+
+    /*remove global variable and all visibility references */
+    void removeGlobal(const symbol::Symbol& key);
+
+    /*remove all global variables and references */
+    void removeGlobalAll();
+
+    /*create an empty variable*/
+    void createEmptyGlobalValue(const symbol::Symbol& key);
+
+    /*set variable visible/hidden in current global scope*/
+    void setGlobalVisible(const symbol::Symbol& key, bool bVisible = true);
+
+    /*print all tables*/
+    void print();
+
+    /*add symbol and value in the stack*/
+    bool put(const symbol::Symbol& key, types::InternalType &type);
+    /*add symbol and value in the previous scope*/
+    bool put_in_previous_scope(const symbol::Symbol& key, types::InternalType &type);
+
+    /* remove symbol/value association */
+    bool remove(const symbol::Symbol& key);
+
+    bool AddFunction(types::Function *_info);
+    bool AddMacro(types::Macro *_info);
+    bool AddMacroFile(types::MacroFile *_info);
+    void print(std::wostream& ostr) const
     {
-    public :
-        Context();
-        static Context* getInstance(void);
-
-        /** Open a context scope i.e
-         ** open the heap table one
-         ** and the env table too. */
-        void scope_begin();
-
-        /** Close a context scope i.e
-         ** close the heap table one
-         ** and the env table too. */
-        void scope_end();
-
-        /** If key was associated to some Entry_T in the open scopes, return the
-         ** most recent insertion. Otherwise return the empty pointer. */
-        types::InternalType*	get(const symbol::Symbol& key) const;
-
-        /** If key was associated to some Entry_T in the last opened scope, return it.
-         ** Otherwise return the empty pointer. */
-        types::InternalType*	getCurrentLevel(const symbol::Symbol& key) const;
-
-        /** If key was associated to some Entry_T in the open scopes, return the
-         ** most recent insertion DESPITE the current/last one. Otherwise return the empty pointer. */
-        types::InternalType*	getAllButCurrentLevel(const symbol::Symbol& key) const;
-
-        /** If key was associated to some Entry_T in the open scopes, return the
-         ** most recent insertion. Otherwise return the empty pointer. */
-        types::InternalType*	get_fun(const symbol::Symbol& key) const;
-
-        /*return function list in the module _stModuleName*/
-        std::list<symbol::Symbol>& get_funlist(const std::wstring& _stModuleName);
-
-
-        /* global functions */
-
-        /*return global variable visibility status*/
-        bool isGlobalVisible(const symbol::Symbol& key) const;
-
-        /*return global variable, search in global scope ( highest )*/
-        types::InternalType* getGlobalValue(const symbol::Symbol& key) const;
-
-        /*return global variable existance status*/
-        bool isGlobalExists(const symbol::Symbol& key) const;
-
-        /*create or update a global variable*/
-        void setGlobalValue(const symbol::Symbol& key, types::InternalType &value);
-
-        /*remove global variable and all visibility references */
-        void removeGlobal(const symbol::Symbol& key);
-
-        /*remove all global variables and references */
-        void removeGlobalAll();
-
-        /*create an empty variable*/
-        void createEmptyGlobalValue(const symbol::Symbol& key);
-
-        /*set variable visible/hidden in current global scope*/
-        void setGlobalVisible(const symbol::Symbol& key, bool bVisible = true);
-
-        /*print all tables*/
-        void print();
-
-        /*add symbol and value in the stack*/
-        bool put(const symbol::Symbol& key, types::InternalType &type);
-        /*add symbol and value in the previous scope*/
-        bool put_in_previous_scope(const symbol::Symbol& key, types::InternalType &type);
-
-        /* remove symbol/value association */
-        bool remove(const symbol::Symbol& key);
-
-        bool AddFunction(types::Function *_info);
-        bool AddMacro(types::Macro *_info);
-        bool AddMacroFile(types::MacroFile *_info);
-        void print(std::wostream& ostr) const
-        {
-            //ostr << L"  Global Functions:" << std::endl;
-            //ostr << L"=====================" << std::endl;
-            //ostr << HeapFunTable;
-            //ostr << L"  Global Variables:" << std::endl;
-            //ostr << L"=====================" << std::endl;
-            //ostr << HeapVarTable;
-            ostr << L"  Environment Functions:" << std::endl;
-            ostr << L"==========================" << std::endl;
-            ostr << EnvFunTable;
-            ostr << std::endl;
-            ostr << L"  Environment Variables:" << std::endl;
-            ostr << L"==========================" << std::endl;
-            ostr << EnvVarTable;
-        };
-    private :
-        Stack PrivateFunTable;
-        Stack PrivateVarTable;
-        Heap HeapFunTable;
-        Heap HeapVarTable;
-        Stack EnvFunTable;
-        Stack EnvVarTable;
-
-        static Context* me;
+        ostr << L"  Environment Variables:" << std::endl;
+        ostr << L"==========================" << std::endl;
+        ostr << EnvVarTable;
     };
+private :
+    Stack PrivateVarTable;
+    Heap HeapVarTable;
+    Stack EnvVarTable;
 
-    inline std::wostream& operator<< (std::wostream& ostr, const Context &ctx)
-    {
-        ctx.print(ostr);
-        return ostr;
-    }
+    static Context* me;
+};
+
+inline std::wostream& operator<< (std::wostream& ostr, const Context &ctx)
+{
+    ctx.print(ostr);
+    return ostr;
+}
 
 }
 #endif /* !__CONTEXT_HXX__ */

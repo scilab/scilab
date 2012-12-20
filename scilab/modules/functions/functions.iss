@@ -21,6 +21,8 @@
 Source: bin\{#FUNCTIONS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#FUNCTIONS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#FUNCTIONS}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#FUNCTIONS}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#FUNCTIONS}_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FUNCTIONS}\license.txt; DestDir: {app}\modules\{#FUNCTIONS}; Components: {#COMPN_SCILAB}
 ;

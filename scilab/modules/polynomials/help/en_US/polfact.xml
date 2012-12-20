@@ -59,6 +59,18 @@
             that <literal>p=prod(f)</literal>
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = poly(0,"x")
+polfact(x^2-1)
+
+polfact(x^7-1)
+
+
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

@@ -14,15 +14,15 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xsegs">
     <refnamediv>
         <refname>xsegs</refname>
-        <refpurpose>draw unconnected
-            segments
+        <refpurpose>
+            draw unconnected segments
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            xsegs(xv,yv,[style])
-            xsegs(xv,yv,zv,[style])
+            xsegs(xv, yv, [style])
+            xsegs(xv, yv, zv,[style])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,7 +32,8 @@
                 <term>xv, yv, zv</term>
                 <listitem>
                     <para>
-                        matrices of the same size. If <literal>zv</literal> is not specified, a zero vector is used.
+                        matrices of the same size. If <varname>zv</varname> is
+                        not specified, a zero vector is used.
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,11 +41,12 @@
                 <term>style</term>
                 <listitem>
                     <para>
-                        vector or scalar. If <literal>style</literal> is a positive scalar,
-                        it gives the color to use for all segments. If <literal>style</literal> is
-                        a negative scalar, then current color is used. If <literal>style</literal>
-                        is a vector, then <literal>style(i)</literal> gives the color to use for
-                        segment <literal>i</literal>.
+                        vector or scalar. If <varname>style</varname> is a
+                        positive scalar, it gives the color to use for all
+                        segments. If <varname>style</varname> is a negative
+                        scalar, then current color is used. If <varname>style</varname>
+                        is a vector, then <literal>style(i)</literal> gives the
+                        color to use for segment <literal>i</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,18 +55,21 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xsegs</literal> draws a set of unconnected segments given by
-            <literal>xv</literal>, <literal>yv</literal> and <literal>zv</literal>.
-            If <literal>xv</literal>, <literal>yv</literal> and <literal>zv</literal> are matrices they are considered as vectors by
-            concatenating their columns. The coordinates of the two points defining a
-            segment are given by two consecutive values of <literal>xv</literal>, <literal>yv</literal> and
-            <literal>zv</literal>:
+            <function>xsegs</function> draws a set of unconnected segments given
+            by <varname>xv</varname>, <varname>yv</varname> and
+            <varname>zv</varname>. If <varname>xv</varname>,
+            <varname>yv</varname> and <varname>zv</varname> are matrices they
+            are considered as vectors by concatenating their columns. The
+            coordinates of the two points defining a segment are given by two
+            consecutive values of <varname>xv</varname>, <varname>yv</varname>
+            and <varname>zv</varname>:
         </para>
         <para>
             <literal>(xv(i),yv(i),zv(i))--&gt;(xv(i+1),yv(i+1),zv(i+1))</literal>.
         </para>
-        <para>For instance, using matrices of size (2,n), the segments can be defined
-            by:
+        <para>
+            For instance, using matrices of size <literal>(2,n)</literal>, the
+            segments can be defined by:
         </para>
         <programlisting role="no-scilab-exec"><![CDATA[ 
 xv=[xi_1 xi_2 ...; xf_1 xf_2...]
@@ -78,7 +83,6 @@ zv=[zi_1 zi_2 ...; zf_1 zf_2...]
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-
 // 2D example
 x=2*%pi*(0:9)/10;
 xv=[sin(x);9*sin(x)];
@@ -94,7 +98,6 @@ xsegs(xv,yv,1:10)
             xsegs(xv,yv,1:10)
         </scilab:image>
         <programlisting role="example"><![CDATA[
-
 // 2D example
 plot2d([-10,10],[-10,10],[-1,-1],"022")
 xsegs([9, -9],[9 , -9]) // Draw the line from X(9,9) to Y(-9, -9)

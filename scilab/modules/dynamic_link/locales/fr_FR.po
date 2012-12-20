@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-20 14:26+0000\n"
+"PO-Revision-Date: 2012-11-29 22:31+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: fr\n"
 
 #, c-format
@@ -137,11 +137,11 @@ msgstr "%s : Une erreur s'est produite : %s\n"
 
 #, c-format
 msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr "%s : Impossible de charger un dll x86 dans un environnement x64.\n"
+msgstr "%s : Impossible de charger une dll x86 dans un environnement x64.\n"
 
 #, c-format
 msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr "%s : Impossible de charger un dll x64 dans un environnement x86.\n"
+msgstr "%s : Impossible de charger une dll x64 dans un environnement x86.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist in PATH environment.\n"

@@ -14,7 +14,7 @@
     <refnamediv>
         <refname>strcmpi</refname>
         <refpurpose>
-            compare character strings (case independent)
+            сравнение символьных строк (без учёта регистра)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

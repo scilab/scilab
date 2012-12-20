@@ -18,11 +18,13 @@ namespace types
 //check argument types and compute, dimensions, count of combinations, max indexes
 int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list* _pArgsOut, int* _piMaxDim, int* _piCountDim)
 {
-    int iDims       = static_cast<int>(_pArgsIn->size());
-    int iSeqCount   = 1;
-    bool bUndefine  = false;
+    int iDims           = static_cast<int>(_pArgsIn->size());
+    int iSeqCount       = 1;
+    bool bUndefine      = false;
+
     for (int i = 0 ; i < iDims ; i++)
     {
+        bool bDeleteNeeded  = false;
         InternalType* pIT = (*_pArgsIn)[i];
         Double *pCurrentArg = NULL;
 
@@ -34,8 +36,15 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 return 0;
             }
 
+            if (pCurrentArg->isIdentity())
+            {
+                //extract with eye() <=> :
+                pIT = new Colon();
+                bDeleteNeeded = true;
+            }
         }
-        else if (pIT->isColon() || pIT->isImplicitList())
+
+        if (pIT->isColon() || pIT->isImplicitList())
         {
             //: or a:b:c
             ImplicitList* pIL = pIT->getAs<ImplicitList>()->clone()->getAs<ImplicitList>();
@@ -122,6 +131,11 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 }
             }
             pCurrentArg = pDbl;
+        }
+
+        if (bDeleteNeeded)
+        {
+            delete pIT;
         }
 
         if (pCurrentArg)

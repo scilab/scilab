@@ -50,7 +50,7 @@
                 <term>default_language</term>
                 <listitem>
                     <para>vector of strings: default languages associated to directory
-                        paths or []. If an XML file is missing in the dir_language, it's
+                        paths or []. If a XML file is missing in the dir_language, it's
                         copied from the default_language.
                     </para>
                 </listitem>

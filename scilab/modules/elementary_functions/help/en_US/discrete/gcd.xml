@@ -36,16 +36,16 @@
     <refsection>
         <title>Description</title>
         <para>
-          <code>[pgcd, U]=gcd(p)</code> computes the gcd of components of <varname>p</varname> (<varname>pgcd</varname>) and an
-          unimodular matrix (with polynomial inverse) <varname>U</varname>, with minimal degree such that
+            <code>[pgcd, U]=gcd(p)</code> computes the gcd of components of <varname>p</varname> (<varname>pgcd</varname>) and an
+            unimodular matrix (with polynomial inverse) <varname>U</varname>, with minimal degree such that
         </para>
         <para>
             <literal>p*U=[0 ... 0 pgcd]</literal>.
         </para>
         <para>
-          In mathematics, an <emphasis role='italic'>unimodular</emphasis> matrix
-          <literal>U</literal> is a square integer matrix having
-          determinant <literal>+1</literal> or <literal>-1</literal>.
+            In mathematics, an <emphasis role='italic'>unimodular</emphasis> matrix
+            <literal>U</literal> is a square integer matrix having
+            determinant <literal>+1</literal> or <literal>-1</literal>.
         </para>
     </refsection>
     <refsection>
@@ -61,6 +61,15 @@ p*u
 V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
 [thegcd,U]=gcd(V)
 V*U
+
+gcd([15 20])
+
+gcd(uint8([15 20]))
+
+gcd([iconvert(15,4) iconvert(20,4)])
+
+gcd(iconvert([15 20],4))
+
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

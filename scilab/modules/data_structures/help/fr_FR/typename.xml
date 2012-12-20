@@ -61,6 +61,18 @@
         </para>
         <para>Nombre max de types defini est 50.</para>
     </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+[typs,nams]=typename();
+disp("First type (double) : " + string(typs(1)) + " / " + nams(1));
+typename("mytype",1024);
+[typs,nams]=typename();
+disp(typs($))
+disp(nams($)) // retourne mytype
+]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

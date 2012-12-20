@@ -31,16 +31,21 @@
             The estimator <literal>a</literal> is a matrix of size <literal>(q,p)</literal> and <literal>b</literal> is a
             vector of size <literal>(q,1)</literal>
         </para>
-        <programlisting role=""><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 // simulation of data for a(3,5) and b(3,1)
 x=rand(5,100);
 aa=testmatrix('magi',5);aa=aa(1:3,:);
 bb=[9;10;11]
 y=aa*x +bb*ones(1,100)+ 0.1*rand(3,100);
-// identification 
+
+// identification
 [a,b,sig]=reglin(x,y);
 max(abs(aa-a))
 max(abs(bb-b))
+
 // an other example : fitting a polynomial
 f=1:100; x=[f.*f; f];
 y= [ 2,3]*x+ 10*ones(f) + 0.1*rand(f);

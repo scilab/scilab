@@ -11,7 +11,7 @@
 function y = flipdim(x, dim)
 
   // FLIPDIM function
-  // Given x, a scalar/vector/matix of reals and an integer dim, this function flips the x components  along the dimension number dim (x and y have the same size). 
+  // Given x, a scalar/vector/matix of reals and an integer dim, this function flips the x components  along the dimension number dim (x and y have the same size).
   // -Inputs :
   //  x : a scalar/vector/array of reals
   //  dim : a positive integer
@@ -33,7 +33,7 @@ function y = flipdim(x, dim)
 
   if ndims(x)==2 & type(x)<>1 then
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Real matrix expected.\n"),"flipdim",1));
-  elseif ndims(x)>2 & type(x.entries)<>1
+  elseif ndims(x)>2 & type(x)<>1
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Real matrix expected.\n"),"flipdim",1));
   end
 

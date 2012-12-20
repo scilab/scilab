@@ -77,7 +77,7 @@ case 'define' then
 	'xpoly(x,y,''lines'',0);';
 	'xstring(orig(1)+3,orig(2)+1.8,''sw'');';
 	'xset(''thickness'',Thick)'];
-  x=standard_define([2 0.18],model,exprs,list(gr_i,0))
+  x=standard_define([2 2],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I';'E']
   x.graphics.out_implicit=['I']
 end

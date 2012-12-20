@@ -127,6 +127,6 @@ case 'define' then
   gr_i=['rx=sz(1)*p/2;ry=sz(2)/2'
   'xsegs(orig(1)+rx*[1/2.3 1;2-1/2.3 1],orig(2)+ry*[1 2-1/2.3;1,1/2.3],0)']
   
-  x=standard_define([1 1]/1.2,model,exprs,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

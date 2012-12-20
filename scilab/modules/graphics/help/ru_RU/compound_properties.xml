@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="Compound_properties">
+    <refnamediv>
+        <refname>свойства составного объекта "Compound"</refname>
+        <refpurpose>
+            описание свойств составного объекта "Compound"
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Составной объект "Compound" является третьим в иерархии графических
+            объектов. Этот объект определяет взаимозависимости различных
+            графических объектов и их глобальное свойство видимости.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>parent: </term>
+                <listitem>
+                    <para>
+                        Это свойство содержит указатель на предка. Предок
+                        текстового объекта должен быть типа
+                        <literal>"Axes"</literal> ("Оси") или 
+                        <literal>"Compound"</literal> ("Составной").
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>children: </term>
+                <listitem>
+                    <para>
+                        Вектор, содержащий указатели всех графических
+                        объектов-потомков составного объекта "Compound". Эти
+                        графические объекты должны быть типа
+                        <literal>"Compound"</literal>,
+                        <literal>"Rectangle"</literal> ("Прямоугольник"),
+                        <literal>"Polyline"</literal> ("Ломаная линия"),
+                        <literal>"Patch"</literal> ("Пятно"),
+                        <literal>"Segs"</literal> ("Сегменты"),
+                        <literal>"Arc"</literal> ("Дуги"),
+                        <literal>"Grayplot"</literal> ("Палитра серого"), ...
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>visible: </term>
+                <listitem>
+                    <para>
+                        Это поле содержит значение свойства видимости
+                        <literal>visible</literal> объекта. Оно должно быть
+                        <literal>"on" </literal> ("вкл.") или
+                        <literal>"off"</literal> ("выкл"). По умолчанию значение
+                        равно <literal>"on"</literal> где графические объекты-потомки
+                        составного объекта "Compound" нарисованы в соответствии с
+                        их свойствами видимости. Если же                     <literal>"off"</literal>,
+                        то все потомки составного объекта "Compound" не
+                        отображаются на экране.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>user_data: </term>
+                <listitem>
+                    <para>
+                        Это поле может быть использовано для хранения любых переменных Scilab'а в структуре данных графического окна и для получения их.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="glue">glue</link>
+            </member>
+            <member>
+                <link linkend="unglue">unglue</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics entities</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -14,7 +14,7 @@
     <refnamediv>
         <refname>block_parameter_error</refname>
         <refpurpose>
-            Displays a parameter input error box for an Xcos block
+            Displays a parameter input error box for a Xcos block
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

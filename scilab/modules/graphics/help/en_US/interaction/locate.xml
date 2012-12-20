@@ -60,6 +60,10 @@
             If <literal>flag=1</literal> a cross is drawn at the points where the mouse is clicked.
         </para>
     </refsection>
+    plot2d(0,0,0,rect=[0,0,1,1])
+    xgrid(3)
+    X=locate(4)
+    xfpolys(X(1,:)',X(2,:)',4)
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

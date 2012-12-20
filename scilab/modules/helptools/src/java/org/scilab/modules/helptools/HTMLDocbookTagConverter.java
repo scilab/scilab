@@ -165,6 +165,13 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
+     * Replace special chars
+     */
+    public static final String replaceEntity(final String str) {
+        return str.replaceAll("&", "&amp;").replaceAll("<", "&#0060;").replaceAll(">", "&#0062;").replaceAll("\"", "&#0034;").replaceAll("\'", "&#0039;");
+    }
+
+    /**
      * Get the type of the generation
      * @return the generation type
      */

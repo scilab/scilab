@@ -51,6 +51,18 @@
             i.e. <literal>f=[f0 f1 ... fn]</literal> tel que <literal>p=prod(f)</literal>
         </para>
     </refsection>
+    
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+pol2str(%z)
+
+p = poly ([1, 2, 3], "x","coeff");
+pol2str(p)
+
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

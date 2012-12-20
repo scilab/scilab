@@ -114,9 +114,6 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_arl2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dhinf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ereduc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -135,13 +132,7 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_gspec.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_hinf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ldiv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_linmeq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ltitr.c">
@@ -150,22 +141,13 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lyap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mucomp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ppol.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rankqr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_residu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ricc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ricc2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rtitr.c">
@@ -181,9 +163,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tzer.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_zrankqr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="shrslv.c">
@@ -308,9 +287,6 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_arl2.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dhinf.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ereduc.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -329,13 +305,7 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_gspec.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_hinf.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ldiv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_linmeq.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ltitr.f">
@@ -344,22 +314,13 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lyap.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mucomp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ppol.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rankqr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_residu.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ricc.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ricc2.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rtitr.f">
@@ -375,9 +336,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tzer.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_zrankqr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="shrslv.f">

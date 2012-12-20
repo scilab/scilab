@@ -64,7 +64,7 @@ static OpTab Interfaces[INTERFACES_MAX] =
     /* 25  */ {gw_gui},
     /* 26  */ {NULL}, //gw_differential_equations2
     /* 27  */ {gw_sparse},
-    /* 28  */ {gw_slicot},
+    /* 28  */ {NULL}, //gw_slicot
     /* 29  */ {NULL}, //gw_differential_equations3
     /* 30  */ {NULL}, //gw_differential_equations4
     /* 31  */ {NULL}, //gw_dynamic_functions

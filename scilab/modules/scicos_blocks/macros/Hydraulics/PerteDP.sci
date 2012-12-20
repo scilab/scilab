@@ -42,11 +42,11 @@ case 'set' then
   while %t do
     [ok,L,D,lambda,z1,z2,p_rho,exprs]=scicos_getvalue('Parametres du tuyau', ..
     			   ['Longueur du tube : L (m)';..
-    			   'DiamËtre interne du tube : D (m)';..
+    			   'Diam√®tre interne du tube : D (m)';..
     			   'Coefficient de perte de charge-frottement(S.U) : lambda';..
-    			   'Altitude entrÈe tuyauterie : z1 (m)';..
+    			   'Altitude entr√©e tuyauterie : z1 (m)';..
     			   'Altitude sortie tuyauterie : z2 (m)';..
-    			   'Si >0, masse volumique imposÈe fu fluide : p_rho (kg/m3)'],..
+    			   'Si >0, masse volumique impos√©e fu fluide : p_rho (kg/m3)'],..
     			   list('vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec',-1),exprs)
     if ~ok then break,end
     model.rpar=[L;D;lambda;z1;z2;p_rho]
@@ -79,7 +79,7 @@ case 'define' then
   model.out=ones(size(mo.outputs,'*'),1)
   exprs=[string(L);string(D);string(lambda);string(z1);string(z2);string(p_rho)]
   gr_i=['xrects([orig(1);orig(2)+sz(2);sz(1);sz(2)],scs_color(15))'];
-  x=standard_define([2 0.5],model,exprs,list(gr_i,0))
+  x=standard_define([2 1],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I']
 end

@@ -95,7 +95,7 @@ function tbx_build_blocks(module, names, macros_path)
         files = gif_tlbx + "/" + names(i) + [".png" ".jpg" ".gif"];
         if ~or(isfile(files)) then
             if ~generateBlockImage(block, gif_tlbx, names(i), "gif", %t) then
-                error(msprintf(gettext("%s: Unable to export %s to %s.\n"),"tbx_build_blocks",names(i), gifFiles(i)));
+                error(msprintf(gettext("%s: Unable to export %s to %s.\n"),"tbx_build_blocks",names(i), files(i)));
             end
         end
 
@@ -103,7 +103,7 @@ function tbx_build_blocks(module, names, macros_path)
         files = svg_tlbx + "/" + names(i) + [".svg" ".png" ".jpg" ".gif"];
         if ~or(isfile(files)) then
             if ~generateBlockImage(block, svg_tlbx, names(i), "svg", %f) then
-                error(msprintf(gettext("%s: Unable to export %s to %s.\n"),"tbx_build_blocks",names(i), svgFiles(i)));
+                error(msprintf(gettext("%s: Unable to export %s to %s.\n"),"tbx_build_blocks",names(i), files(i)));
             end
         end
     end

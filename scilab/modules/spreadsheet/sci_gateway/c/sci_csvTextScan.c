@@ -159,6 +159,23 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
             }
             return 0;
         }
+
+        if (decimal[0] != '.' && decimal[0] != ',')
+        {
+            if (iRange)
+            {
+                FREE(iRange);
+                iRange = NULL;
+            }
+            if (conversion)
+            {
+                FREE(conversion);
+                conversion = NULL;
+            }
+
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"), fname, 3, ",", ".");
+            return 0;
+        }
     }
     else
     {
@@ -217,7 +234,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
             FREE(conversion);
             conversion = NULL;
         }
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Vector string expected.\n"), fname, 1);
         return 0;
     }
 

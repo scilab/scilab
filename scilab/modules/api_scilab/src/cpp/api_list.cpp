@@ -634,7 +634,7 @@ static SciErr getCommonMatrixOfDoubleInList(void* _pvCtx, int* _piParent, int _i
         return sciErr;
     }
 
-    sciErr = getCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _piRows, _piCols, _pdblReal, _pdblImg);
+    sciErr = getCommonMatrixOfDouble(_pvCtx, piAddr, '$', _iComplex, _piRows, _piCols, _pdblReal, _pdblImg);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_DOUBLE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), _iComplex ? "getComplexMatrixOfDoubleInList" : "getMatrixOfDoubleInList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
@@ -828,7 +828,7 @@ static SciErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pst
         return sciErr;
     }
 
-    sciErr = getCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _piRows, _piCols, &pdblReal, &pdblImg);
+    sciErr = getCommonMatrixOfDouble(_pvCtx, piAddr, '$', _iComplex, _piRows, _piCols, &pdblReal, &pdblImg);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_READ_DOUBLE_IN_NAMED_LIST, _("%s: Unable to get address of item #%d in variable \"%s\""), _iComplex ? "readComplexMatrixOfDoubleInNamedList" : "readMatrixOfDoubleInNamedList", _iItemPos + 1, _pstName);

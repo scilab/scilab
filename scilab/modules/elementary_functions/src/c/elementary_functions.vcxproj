@@ -202,6 +202,8 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\c\sci_chinesehat.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_spones.c" />
     <ClCompile Include="..\cpp\cumprod.cpp" />
     <ClCompile Include="..\cpp\cumsum.cpp" />
     <ClCompile Include="..\cpp\diag.cpp" />
@@ -247,10 +249,8 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="qsort-string.c" />
     <ClCompile Include="qsort.c" />
     <ClCompile Include="rea2db.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_chinesehat.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_spones.c" />
-    <ClCompile Include="sci_tools.c" />
     <ClCompile Include="scidcopy.c" />
+    <ClCompile Include="sci_tools.c" />
     <ClCompile Include="sign.c" />
     <ClCompile Include="sin.c" />
     <ClCompile Include="sinh.c" />
@@ -288,8 +288,8 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="..\..\includes\pythag.h" />
     <ClInclude Include="..\..\includes\rea2b.h" />
     <ClInclude Include="..\..\includes\rea2db.h" />
-    <ClInclude Include="..\..\includes\sci_tools.h" />
     <ClInclude Include="..\..\includes\scidcopy.h" />
+    <ClInclude Include="..\..\includes\sci_tools.h" />
     <ClInclude Include="..\..\includes\sign.h" />
     <ClInclude Include="..\..\includes\sin.h" />
     <ClInclude Include="..\..\includes\sqrt.h" />

@@ -48,7 +48,7 @@ end
 
 Pop = init_func(pop_size,param);
 
-if (nargout==4) then
+if (nargout>=3) then
   pop_init = Pop;
 end
 

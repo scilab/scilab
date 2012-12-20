@@ -207,7 +207,7 @@
                 <term>Marker type: </term>
                 <listitem>
                     <para>A string defining the marker type. note that if you specify a
-                        marker wihtout a line style, only the marker is drawn. This property
+                        marker without a line style, only the marker is drawn. This property
                         is linked to the object's <literal>mark_style</literal> and
                         <literal>mark_mode</literal> properties (see
                         <link linkend="polyline_properties">polyline_properties</link>).
@@ -320,7 +320,7 @@ plot(x,sin(x),'r.->') // plots a dash-dotted line with a right-pointing triangle
         <programlisting role="example"><![CDATA[
 clf();
 x=1:0.1:10;
-// If you specify a marker wihtout a line style, only the marker is drawn
+// If you specify a marker without a line style, only the marker is drawn
 plot(x,sin(x),'d') // plots a dash-dotted line with a right-pointing triangle centered on each points.
  ]]></programlisting>
         <scilab:image>

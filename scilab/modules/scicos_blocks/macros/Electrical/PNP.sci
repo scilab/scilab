@@ -75,7 +75,7 @@ mo.model=ModelName
 model.equations=mo                                 
 model.in=ones(size(MI,'*'),1)                    
 model.out=ones(size(MO,'*'),1)                   
-x=standard_define([2,1.2],model,exprs,list(gr_i,0))  
+x=standard_define([2,2],model,exprs,list(gr_i,0))  
 x.graphics.in_implicit=Typein;                     
 x.graphics.out_implicit=Typeout;                   
 end
