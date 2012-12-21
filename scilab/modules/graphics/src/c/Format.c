@@ -98,7 +98,10 @@ static void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
     /* format f minimal  */
     for ( des = 0 ; des < 5 ; des++)
     {
-        if (Fsepare("%.*f", des, &len, xmin, xmax, xpas)) break;
+        if (Fsepare("%.*f", des, &len, xmin, xmax, xpas))
+        {
+            break;
+        }
     }
     if ( des < 5 && len <= 6)
     {
@@ -109,7 +112,10 @@ static void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
     {
         for ( des = 0 ; des < 5 ; des++)
         {
-            if (Fsepare("%.*e", des, &len, xmin, xmax, xpas)) break;
+            if (Fsepare("%.*e", des, &len, xmin, xmax, xpas))
+            {
+                break;
+            }
         }
         c = 'e';
         strcpy(fmt, "%.*e");
@@ -135,8 +141,14 @@ static void FormatPrec(char *fmt, int *desres, double xmin, double xmax, double 
         sprintf(buf2, fmt, *desres, yy1 + xpas );
         sscanf(buf1, "%lf", &x1);
         sscanf(buf2, "%lf", &x2);
-        if (  Abs((x2 - x1 - xpas) / xpas) >= 0.1)  *desres += 1;
-        if (  Abs((x1 - yy1) / xpas) >= 0.01) *desres += 1;
+        if (  Abs((x2 - x1 - xpas) / xpas) >= 0.1)
+        {
+            *desres += 1;
+        }
+        if (  Abs((x1 - yy1) / xpas) >= 0.01)
+        {
+            *desres += 1;
+        }
         i++;
     }
 }
@@ -155,7 +167,9 @@ static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double 
     /**  Take care of : sprintf(buf1,"%.*f",0,1.d230) which overflow in buf1 **/
     /**  we don't use %.*f format if numbers are two big **/
     if (strcmp("%.*f", fmt) == 0 && (Abs(xmax) > 1.e+10 || Abs(xmin) > 1.e+10))
+    {
         return(0);
+    }
     sprintf(buf1, fmt, dec, xmin);
     while ( x < xmax )
     {
@@ -163,7 +177,10 @@ static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double 
         strcpy(buf2, buf1);
         sprintf(buf1, fmt, dec, x);
         *l = (((int)strlen(buf1) >= *l) ? (int) strlen(buf1) : *l) ;
-        if ( strcmp(buf1, buf2) == 0) return(0);
+        if ( strcmp(buf1, buf2) == 0)
+        {
+            return(0);
+        }
     }
     return(1);
 }
@@ -175,7 +192,10 @@ void ChoixFormatE1(char *fmt, double *xx, int nx)
     /* format f minimal  */
     for ( des = 0 ; des < 5 ; des++)
     {
-        if (Fsepare1("%.*f", des, &len, xx, nx)) break;
+        if (Fsepare1("%.*f", des, &len, xx, nx))
+        {
+            break;
+        }
     }
     if ( des < 5 && len <= 6)
     {
@@ -186,7 +206,10 @@ void ChoixFormatE1(char *fmt, double *xx, int nx)
     {
         for ( des = 0 ; des < 5 ; des++)
         {
-            if (Fsepare1("%.*e", des, &len, xx, nx)) break;
+            if (Fsepare1("%.*e", des, &len, xx, nx))
+            {
+                break;
+            }
         }
         c = 'e';
         strcpy(fmt, "%.*e");
@@ -217,8 +240,14 @@ static void FormatPrec1(char *fmt, int *desres, double *xx, int nx)
         xpas = xx[i + 1] - xx[i];
         if ( xpas != 0.0)
         {
-            if (Abs((x2 - x1 - xpas) / xpas) >= 0.1)  *desres += 1;
-            if (Abs((x1 - xx[i]) / xpas) >= 0.1) *desres += 1;
+            if (Abs((x2 - x1 - xpas) / xpas) >= 0.1)
+            {
+                *desres += 1;
+            }
+            if (Abs((x1 - xx[i]) / xpas) >= 0.1)
+            {
+                *desres += 1;
+            }
         }
         i++;
     }
@@ -232,14 +261,19 @@ static int Fsepare1(char *fmt, int dec, int *l, double *xx, int nx)
     /**  Take care of : sprintf(buf1,"%.*f",0,1.d230) which overflow in buf1 **/
     /**  we don't use %.*f format if numbers are two big **/
     if (strcmp("%.*f", fmt) == 0 && (Abs(xx[nx - 1]) > 1.e+10 || Abs(xx[0]) > 1.e+10))
+    {
         return(0);
+    }
     sprintf(buf1, fmt, dec, xx[0]);
     for ( i = 1 ; i < nx ; i++)
     {
         strcpy(buf2, buf1);
         sprintf(buf1, fmt, dec, xx[i]);
         *l = (((int)strlen(buf1) >= *l) ? (int) strlen(buf1) : *l) ;
-        if ( strcmp(buf1, buf2) == 0) return(0);
+        if ( strcmp(buf1, buf2) == 0)
+        {
+            return(0);
+        }
     }
     return(1);
 }
@@ -272,7 +306,9 @@ int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, int *np1, in
         graduate1(&xmi1, &xma1, xi, xa, np1, np2, kminr, kmaxr, ar, 0);
     }
     else
+    {
         graduate1(xmi, xma, xi, xa, np1, np2, kminr, kmaxr, ar, 0);
+    }
     return(0);
 }
 
@@ -329,9 +365,13 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1
             ,*kminr,*kmaxr,*ar,npr); */
         *np2 = npr;
         if ( *np2 <= 20 )
+        {
             break;
+        }
         else
+        {
             b--;
+        }
     }
     /*
       on veut essayer de ne pas depasser 10 intervalles ( *np2 <= 10)
@@ -341,7 +381,10 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1
       des nombres et une sous graduation np1 juste avec des tirets.
       */
     *np1 = 2 ;
-    if ( *np2 <= 10 ) return ;
+    if ( *np2 <= 10 )
+    {
+        return ;
+    }
     /* le nombre est > 10 : s'il est impair on rajoute 1
        pour diviser par deux */
     if ( *np2 % 2 == 1 )
@@ -401,7 +444,10 @@ static void gradua(double *xmi, double *xma, int *kminr, int *kmaxr, int *ar, in
         x0a = x1a;
     }
     loc = Min( floor(x0 * exp10((double) - x1a)), ((double)DMAX));
-    if ( loc < 0) loc = Max( loc, -((double) DMAX));
+    if ( loc < 0)
+    {
+        loc = Max( loc, -((double) DMAX));
+    }
     kmin1 = (int) loc;
     kmax1 = x1k;
     np1 = Abs(kmax1 - kmin1);
@@ -409,7 +455,9 @@ static void gradua(double *xmi, double *xma, int *kminr, int *kmaxr, int *ar, in
     if ( np1 > 10 )
     {
         if  ((np1 % 2) == 0)
+        {
             np1 /= 2;
+        }
         else
         {
             np1++;
@@ -427,7 +475,9 @@ static void gradua(double *xmi, double *xma, int *kminr, int *kmaxr, int *ar, in
     if ( np2 > 10 )
     {
         if ( np2 % 2 == 0)
+        {
             np2 /= 2;
+        }
         else
         {
             np2++;
@@ -525,7 +575,10 @@ static void decompSup(double x, int *xk, int *xa, int b)
             *xa = (int) ceil(log10(x)) - b ;
             *xk = (int) ceil(x / exp10((double) * xa));
             xd = (*xk - 1) * exp10((double) * xa);
-            if ( Abs((x - xd) / x) < epsilon ) *xk -= 1;
+            if ( Abs((x - xd) / x) < epsilon )
+            {
+                *xk -= 1;
+            }
         }
         else
         {
@@ -572,7 +625,10 @@ static void decompInf(double x, int *xk, int *xa, int b)
              * we increment xk
              */
             xup = (*xk + 1) * exp10((double) * xa);
-            if ( Abs((x - xup) / x) < epsilon ) *xk += 1;
+            if ( Abs((x - xup) / x) < epsilon )
+            {
+                *xk += 1;
+            }
         }
         else
         {
@@ -1039,7 +1095,9 @@ int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, 
         }
 
         for (i = 0; i < n; i++)
+        {
             (*vector)[i] = val[i];
+        }
     }
     else if (xy_type == 'r')
     {
@@ -1050,7 +1108,9 @@ int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, 
         if (checkdim)
         {
             if (nval != 3)
+            {
                 sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"), "tics_coord", "xy_type", "r", "tics_coord", 3);
+            }
 
             if (nval < 3)
             {
@@ -1069,7 +1129,9 @@ int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, 
         step = (val[1] - val[0]) / (n - 1);
 
         for (i = 0; i < n - 1; i++)
+        {
             (*vector)[i] = val[0] + i * step;
+        }
 
         (*vector)[n - 1] = val[1]; /* xmax */
 
@@ -1083,7 +1145,9 @@ int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, 
         if (checkdim)
         {
             if (nval != 4)
+            {
                 sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"), "tics_coord", "xy_type", "i", "tics_coord", 4);
+            }
 
             if (nval < 4)
             {
@@ -1103,7 +1167,9 @@ int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, 
 
 
         for (i = 0; i < n - 1; i++)
+        {
             (*vector)[i] = val[0] * exp10(val[2]) + i * step;
+        }
 
         (*vector)[n - 1] = val[1] * exp10(val[2]); /* xmax */
 
@@ -1130,7 +1196,7 @@ StringMatrix * computeDefaultTicsLabels( char * pobjUID )
 
     int tmp = 0;
     int* piTmp = &tmp;
-    char ticksStyle;
+    char ticksStyle = 'v';
 
     getGraphicObjectProperty(pobjUID, __GO_FORMATN__, jni_string, (void **)&c_format);
 
