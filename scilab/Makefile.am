@@ -84,7 +84,8 @@ endif
 JIT_LIBS = \
   modules/jit_ocaml/libscijit_ocaml-runtime.o \
   modules/jit_ocaml/jit_ocaml.o \
-  modules/jit_ocaml/libasmrun.a
+  modules/jit_ocaml/libunix.a \
+  modules/jit_ocaml/libasmrun.a 
 
 modules/jit_ocaml/libscijit_ocaml-runtime.o:
 	$(MAKE) -C modules/jit_ocaml libscijit_ocaml-runtime.o
@@ -92,6 +93,8 @@ modules/jit_ocaml/jit_ocaml.o:
 	$(MAKE) -C modules/jit_ocaml jit_ocaml.o
 modules/jit_ocaml/libasmrun.a:
 	$(MAKE) -C modules/jit_ocaml libasmrun.a
+modules/jit_ocaml/libunix.a:
+	$(MAKE) -C modules/jit_ocaml libunix.a
 
 scilab_bin_LDADD 		= $(COMMON_LIBS)
 if GUI

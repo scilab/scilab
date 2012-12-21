@@ -28,9 +28,14 @@ module Location = struct
 
 end
 
+(* Now, we use ScilabContext.symbol instead of Symbol.t
 module Symbol = struct
-  type t = string
+  type t = {
+    symbol_name : string;
+    symbol_binding : ScilabContext.binding;
+  }
 end
+*)
 
 module BigBool = struct
   type t = unit (* what is a BigBool ? *)
@@ -59,7 +64,7 @@ and dec =
 | FunctionDec of functionDec
 
 and varDec = {
-  varDec_name : Symbol.t;
+  varDec_name : ScilabContext.symbol;
   varDec_init : exp;
   varDec_kind : varDec_Kind;
 }
@@ -71,7 +76,7 @@ and varDec_Kind =
 
 and functionDec =  {
   functionDec_location : Location.t;
-  functionDec_symbol : Symbol.t;
+  functionDec_symbol : ScilabContext.symbol;
   functionDec_args : arrayListVar;
   functionDec_returns : arrayListVar;
   functionDec_body : exp;
@@ -365,7 +370,7 @@ and var = {
 and var_desc =
 | ColonVar  (* a ; *)
 | DollarVar (* a $ *)
-| SimpleVar of Symbol.t
+| SimpleVar of ScilabContext.symbol
 | ArrayListVar of var array
 
 and arrayListVar = {

@@ -11,6 +11,7 @@
  *)
 
 open ScilabAst
+open ScilabContext
 
 let debug = false
 
@@ -213,7 +214,7 @@ let rec buf_exp b exp =
     buf_ast b exp 8
   | Var { var_desc = SimpleVar symbol } ->
     buf_ast b exp 9;
-    buf_Symbol b symbol
+    buf_Symbol b (symbol_name symbol)
   | Var { var_desc = ColonVar } ->
     buf_ast b exp 10;
   | Var { var_desc = DollarVar } ->
@@ -294,7 +295,7 @@ let rec buf_exp b exp =
     buf_varDec b v
   | Dec (FunctionDec f) ->
     buf_ast b exp 29;
-    buf_Symbol b f.functionDec_symbol;
+    buf_Symbol b (symbol_name f.functionDec_symbol);
     buf_location b f.functionDec_args.arrayListVar_location;
     buf_location b f.functionDec_returns.arrayListVar_location;
     buf_exp b f.functionDec_body;
@@ -350,7 +351,7 @@ and buf_cases b cases =
   ) cases
 
 and buf_varDec b v =
-  buf_Symbol b v.varDec_name;
+  buf_Symbol b (symbol_name v.varDec_name);
   buf_VarDec_Kind b v.varDec_kind;
   buf_exp b v.varDec_init
 

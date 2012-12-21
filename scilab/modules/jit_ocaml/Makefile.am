@@ -70,24 +70,29 @@ OCAMLYACC=ocamlyacc
 OCAMLLEX=ocamllex
 OCAMLC_WHERE := `$(OCAMLOPT) -where`
 
-
 jit_ocaml.o: src/c/jit_ocaml.c
 	ocamlopt -c -I includes -fPIC src/c/jit_ocaml.c
 
 OCAML_AST_MLS = \
+	src/ocaml/scilabValue.ml \
+	src/ocaml/scilabContext.ml \
 	src/ocaml/scilabAst.ml \
 	src/ocaml/scilabTypes.ml \
 	src/ocaml/scilabAstPrinter.ml
 OCAML_AST_MLIS = \
+	src/ocaml/scilabValue.mli \
+	src/ocaml/scilabContext.mli \
 	src/ocaml/scilabAstPrinter.mli
 
 OCAML_SCILAB_MLS = \
 	src/ocaml/scilabString2Ast.ml \
 	src/ocaml/scilabAst2String.ml \
+	src/ocaml/scilabInterp.ml \
 	src/ocaml/scilabCallbacks.ml
 OCAML_SCILAB_MLIS = \
 	src/ocaml/scilabString2Ast.mli \
 	src/ocaml/scilabAst2String.mli \
+	src/ocaml/scilabInterp.mli \
 	src/ocaml/scilabCallbacks.mli
 
 OCAML_MLS = \
@@ -111,13 +116,15 @@ CLEANFILES= \
 	$(OCAML_CMXS)  \
 	$(OCAML_OBJS)  \
 	jit_ocaml.o \
-	libasmrun.a
+	libasmrun.a libunix.a
 
 libscijit_ocaml-runtime.o: $(OCAML_CMXS) jit_ocaml.o libasmrun.a
-	$(OCAMLOPT) -o libscijit_ocaml-runtime.o -output-obj $(OCAML_CMXS)
+	$(OCAMLOPT) -o libscijit_ocaml-runtime.o -output-obj unix.cmxa $(OCAML_CMXS)
 
 libasmrun.a:
 	cp $(OCAMLC_WHERE)/libasmrun.a .
+libunix.a:
+	cp $(OCAMLC_WHERE)/libunix.a .
 
 
 depend_ocaml:

@@ -1,26 +1,44 @@
-src/ocaml/scilabAst.cmo :
-src/ocaml/scilabAst.cmx :
+src/ocaml/scilabValue.cmo : src/ocaml/scilabValue.cmi
+src/ocaml/scilabValue.cmx : src/ocaml/scilabValue.cmi
+src/ocaml/scilabContext.cmo : src/ocaml/scilabValue.cmi \
+    src/ocaml/scilabContext.cmi
+src/ocaml/scilabContext.cmx : src/ocaml/scilabValue.cmx \
+    src/ocaml/scilabContext.cmi
+src/ocaml/scilabAst.cmo : src/ocaml/scilabContext.cmi
+src/ocaml/scilabAst.cmx : src/ocaml/scilabContext.cmx
 src/ocaml/scilabTypes.cmo :
 src/ocaml/scilabTypes.cmx :
-src/ocaml/scilabAstPrinter.cmo : src/ocaml/scilabAst.cmx \
-    src/ocaml/scilabAstPrinter.cmi
-src/ocaml/scilabAstPrinter.cmx : src/ocaml/scilabAst.cmx \
-    src/ocaml/scilabAstPrinter.cmi
-src/ocaml/scilabString2Ast.cmo : src/ocaml/scilabAst.cmx \
-    src/ocaml/scilabString2Ast.cmi
-src/ocaml/scilabString2Ast.cmx : src/ocaml/scilabAst.cmx \
-    src/ocaml/scilabString2Ast.cmi
-src/ocaml/scilabAst2String.cmo : src/ocaml/scilabAst.cmx \
-    src/ocaml/scilabAst2String.cmi
-src/ocaml/scilabAst2String.cmx : src/ocaml/scilabAst.cmx \
-    src/ocaml/scilabAst2String.cmi
-src/ocaml/scilabCallbacks.cmo : src/ocaml/scilabString2Ast.cmi \
+src/ocaml/scilabAstPrinter.cmo : src/ocaml/scilabContext.cmi \
+    src/ocaml/scilabAst.cmx src/ocaml/scilabAstPrinter.cmi
+src/ocaml/scilabAstPrinter.cmx : src/ocaml/scilabContext.cmx \
+    src/ocaml/scilabAst.cmx src/ocaml/scilabAstPrinter.cmi
+src/ocaml/scilabString2Ast.cmo : src/ocaml/scilabContext.cmi \
+    src/ocaml/scilabAst.cmx src/ocaml/scilabString2Ast.cmi
+src/ocaml/scilabString2Ast.cmx : src/ocaml/scilabContext.cmx \
+    src/ocaml/scilabAst.cmx src/ocaml/scilabString2Ast.cmi
+src/ocaml/scilabAst2String.cmo : src/ocaml/scilabContext.cmi \
+    src/ocaml/scilabAst.cmx src/ocaml/scilabAst2String.cmi
+src/ocaml/scilabAst2String.cmx : src/ocaml/scilabContext.cmx \
+    src/ocaml/scilabAst.cmx src/ocaml/scilabAst2String.cmi
+src/ocaml/scilabInterp.cmo : src/ocaml/scilabValue.cmi \
+    src/ocaml/scilabContext.cmi src/ocaml/scilabAst.cmx \
+    src/ocaml/scilabInterp.cmi
+src/ocaml/scilabInterp.cmx : src/ocaml/scilabValue.cmx \
+    src/ocaml/scilabContext.cmx src/ocaml/scilabAst.cmx \
+    src/ocaml/scilabInterp.cmi
+src/ocaml/scilabCallbacks.cmo : src/ocaml/scilabValue.cmi \
+    src/ocaml/scilabString2Ast.cmi src/ocaml/scilabInterp.cmi \
     src/ocaml/scilabAstPrinter.cmi src/ocaml/scilabAst2String.cmi \
     src/ocaml/scilabCallbacks.cmi
-src/ocaml/scilabCallbacks.cmx : src/ocaml/scilabString2Ast.cmx \
+src/ocaml/scilabCallbacks.cmx : src/ocaml/scilabValue.cmx \
+    src/ocaml/scilabString2Ast.cmx src/ocaml/scilabInterp.cmx \
     src/ocaml/scilabAstPrinter.cmx src/ocaml/scilabAst2String.cmx \
     src/ocaml/scilabCallbacks.cmi
+src/ocaml/scilabValue.cmi :
+src/ocaml/scilabContext.cmi : src/ocaml/scilabValue.cmi
 src/ocaml/scilabAstPrinter.cmi : src/ocaml/scilabAst.cmx
 src/ocaml/scilabString2Ast.cmi : src/ocaml/scilabAst.cmx
 src/ocaml/scilabAst2String.cmi : src/ocaml/scilabAst.cmx
+src/ocaml/scilabInterp.cmi : src/ocaml/scilabValue.cmi \
+    src/ocaml/scilabAst.cmx
 src/ocaml/scilabCallbacks.cmi :
