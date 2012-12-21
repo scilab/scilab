@@ -155,7 +155,7 @@ expression :
 | whileControl                                  { $1 }
 | tryControl                                    { $1 }
 | variable %prec TOPLEVEL                       { $1 }
-/*| implicitFunctionCall                          { $1 } */
+| implicitFunctionCall  %prec TOPLEVEL          { $1 }
 | BREAK						{ let off_st = Parsing.rhs_start_pos 1 in
                                                   let off_end = Parsing.rhs_end_pos 1 in
                                                   let loc = create_loc off_st off_end in
@@ -171,6 +171,39 @@ expression :
                                                   let loc = create_loc off_st off_end in
                                                   create_exp loc (ConstExp commentexp) }
 /*| error */
+
+/* IMPLICIT FUNCTIONCALL */
+/* Bash-like : foo bar titi <=> foo('bar', 'titi') */
+implicitFunctionCall :
+| ID implicitCallable                           { let varloc_st = Parsing.rhs_start_pos 1 in
+                                                  let varloc_end = Parsing.rhs_end_pos 1 in
+                                                  let varloc = create_loc varloc_st varloc_end in
+                                                  let varexp = 
+                                                    Var { var_location = varloc;
+                                                          var_desc = SimpleVar $1 } in
+                                                  let callexp = 
+                                                    { callExp_name = create_exp varloc varexp;
+                                                      callExp_args = Array.of_list (List.rev $2)} in
+                                                  let fcall_st = Parsing.rhs_start_pos 1 in
+                                                  let fcall_end = Parsing.rhs_end_pos 2 in
+                                                  let loc = create_loc fcall_st fcall_end in
+                                                  create_exp loc (CallExp callexp) }
+
+implicitCallable :
+| ID                                            { let strexp = StringExp
+                                                    { stringExp_value = $1 ;
+                                                      stringExp_bigString = () } in
+                                                  let str_st = Parsing.rhs_start_pos 1 in 
+                                                  let str_end = Parsing.rhs_end_pos 1 in
+                                                  let str_loc = create_loc str_st str_end in
+                                                  [ create_exp str_loc (ConstExp strexp) ] }
+| implicitCallable ID                           { let strexp = StringExp
+                                                    { stringExp_value = $2 ;
+                                                      stringExp_bigString = () } in
+                                                  let str_st = Parsing.rhs_start_pos 1 in 
+                                                  let str_end = Parsing.rhs_end_pos 1 in
+                                                  let str_loc = create_loc str_st str_end in
+                                                  create_exp str_loc (ConstExp strexp)::$1 }
 
 /* FUNCTIONCALL */
 functionCall :
@@ -1617,7 +1650,14 @@ variableDeclaration :
                                                                   let off_end = Parsing.rhs_end_pos 3 in
                                                                   let loc = create_loc off_st off_end in
                                                                   create_exp loc assignexp}
-| assignable ASSIGN functionCall %prec HIGHLEVEL                    { let assignexp = 
+| assignable ASSIGN functionCall %prec HIGHLEVEL                { let assignexp = 
+                                                                    AssignExp {assignExp_left_exp = $1;
+                                                                               assignExp_right_exp = $3 } in
+                                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                                  let loc = create_loc off_st off_end in
+                                                                  create_exp loc assignexp}
+| functionCall ASSIGN variable %prec HIGHLEVEL                  { let assignexp = 
                                                                     AssignExp {assignExp_left_exp = $1;
                                                                                assignExp_right_exp = $3 } in
                                                                   let off_st = Parsing.rhs_start_pos 1 in
@@ -1633,6 +1673,20 @@ assignable :
                                                                     Var { var_location = varloc;
                                                                           var_desc = SimpleVar $1 } in 
                                                                   create_exp varloc varexp}
+| multipleResults					        { $1 }
+| variable LPAREN functionArgs RPAREN                           { let callexp = 
+                                                                    { callExp_name = $1;
+                                                                      callExp_args = Array.of_list $3} in
+                                                                  let fcall_st = Parsing.rhs_start_pos 1 in
+                                                                  let fcall_end = Parsing.rhs_end_pos 4 in
+                                                                  let loc = create_loc fcall_st fcall_end in
+                                                                  create_exp loc (CallExp callexp) }
+
+multipleResults :
+| LBRACK matrixOrCellColumns RBRACK			{ let off_st = Parsing.rhs_start_pos 1 in
+                                                          let off_end = Parsing.rhs_end_pos 3 in
+                                                          let loc = create_loc off_st off_end in
+                                                          create_exp loc (AssignListExp (Array.of_list $2)) }
 
 /* COMMENTS */
 comments :
