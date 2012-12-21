@@ -28,7 +28,7 @@
 %token COMMA EOL DOLLAR SEMI IF THEN ELSE ELSEIF END WHILE DO 
 %token COLON ASSIGN ID FOR FUNCTION ENDFUNCTION HIDDEN HIDDENFUNCTION
 %token PLUS MINUS RDIVIDE LDIVIDE TIMES POWER EQ NE LT GT LE GE
-%token SELECT SWITCH OTHERWISE CASE TRY CATCH RETURN
+%token SELECT SWITCH OTHERWISE CASE TRY CATCH RETURN BREAK CONTINUE
 %token BOOLTRUE BOOLFALSE
 %token<float> VARINT
 %token<float> VARFLOAT
@@ -156,15 +156,20 @@ expression :
 | tryControl                                    { $1 }
 | variable %prec TOPLEVEL                       { $1 }
 /*| implicitFunctionCall                          { $1 } */
-/*| BREAK						{ }*/
-/*| CONTINUE						{ }*/
+| BREAK						{ let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 1 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (ControlExp BreakExp) }
+| CONTINUE					{ let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 1 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (ControlExp ContinueExp) }
 | returnControl					{ $1 }
 | COMMENT                                       { let commentexp = CommentExp { commentExp_comment = $1 } in
                                                   let off_st = Parsing.rhs_start_pos 1 in
                                                   let off_end = Parsing.rhs_end_pos 1 in
                                                   let loc = create_loc off_st off_end in
-                                                  create_exp loc (ConstExp commentexp)
-                                                }
+                                                  create_exp loc (ConstExp commentexp) }
 /*| error */
 
 /* FUNCTIONCALL */

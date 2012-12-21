@@ -116,6 +116,8 @@ rule token = parse
   | "try"                        { TRY }
   | "catch"                      { CATCH }
   | "return"                     { RETURN }
+  | "break"                      { BREAK }
+  | "continue"                   { CONTINUE }
   | "="                          { ASSIGN }
   | "for"                        { FOR }
   | "hidden"                     { HIDDEN }
