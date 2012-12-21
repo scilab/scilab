@@ -46,10 +46,14 @@ Removed functions
 * ricc_old() removed. Use ricc() instead.
 
 
-Deprecated functions
-=====================
+Obsolete functions
+===================
 
-* fit_dat has been deprecated for datafit. See bug #9306.
+* fit_dat() tagged as obsolete. Will be removed for Scilab 5.4.2.
+  Use datafit() instead. See bug #9306.
+
+* getlinestyle() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use ged() instead.
 
 
 Xcos
