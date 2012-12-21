@@ -101,6 +101,7 @@ rule token = parse
   | newline                      { (* Printf.printf "EOL\n"; *) Lexing.new_line lexbuf; EOL}
   | startlinecomment             { str_cmt := ""; comment lexbuf }
   | dquote                       { str := ""; doublestr lexbuf }
+  | quote                        { str := ""; simplestr lexbuf }
   | "if"                         { IF }
   | "then"                       { THEN }
   | "else"                       { ELSE }
@@ -157,10 +158,24 @@ and comment = parse
 and doublestr = parse
   | dquote                       { STR !str}
   | dquote dquote                { str := !str^"\""; doublestr lexbuf }
+  | dquote quote                 { str := !str^"\'"; doublestr lexbuf }
   | quote dquote                 { str := !str^"\""; doublestr lexbuf }
+  | quote quote                  { str := !str^"\'"; doublestr lexbuf }
+  | quote                        { failwith "Error : Heterogeneous string detected, starting with \" and ending with \'." }
   | newline                      { failwith "Error : unexpected newline in a string." }
   | eof                          { failwith "Error : unexpected end of file in a string." }
   | _ as c                       { str := !str^(String.make 1 c); doublestr lexbuf }
+
+and simplestr = parse
+  | quote                        { STR !str}
+  | dquote dquote                { str := !str^"\""; simplestr lexbuf }
+  | dquote quote                 { str := !str^"\'"; simplestr lexbuf }
+  | quote dquote                 { str := !str^"\""; simplestr lexbuf }
+  | quote quote                  { str := !str^"\'"; simplestr lexbuf }
+  | dquote                       { failwith "Error : Heterogeneous string detected, starting with \' and ending with \"." }
+  | newline                      { failwith "Error : unexpected newline in a string." }
+  | eof                          { failwith "Error : unexpected end of file in a string." }
+  | _ as c                       { str := !str^(String.make 1 c); simplestr lexbuf }
 
 (* and matrix = parse *)
 (*   | spaces+ *)
