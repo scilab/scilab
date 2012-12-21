@@ -113,6 +113,9 @@ rule token = parse
   | "case"                       { CASE }
   | "while"                      { WHILE }
   | "do"                         { DO }
+  | "try"                        { TRY }
+  | "catch"                      { CATCH }
+  | "return"                     { RETURN }
   | "="                          { ASSIGN }
   | "for"                        { FOR }
   | "hidden"                     { HIDDEN }
