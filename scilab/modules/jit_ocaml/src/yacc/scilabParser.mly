@@ -941,6 +941,7 @@ rightOperand :
                                                   OpExp (oper,args) }*/
 
 variable :
+| cell                                          { $1 }
 | matrix                                        { $1 }
 | operation %prec UPLEVEL		        { $1 }
 | ID %prec LISTABLE                             { let varloc_st = Parsing.rhs_start_pos 1 in
@@ -1404,6 +1405,83 @@ returnControl :
                                                      create_exp loc (ControlExp retexp) }
 
 
+/* CELL */
+cell :
+| LBRACE matrixOrCellLines RBRACE                         { let mle = Array.of_list (List.rev $2) in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 3 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE matrixOrCellLines matrixOrCellColumns RBRACE     { let st_line = Parsing.rhs_start_pos 3 in
+                                                            let end_line = Parsing.rhs_end_pos 3 in
+                                                            let loc_line = create_loc st_line end_line in
+                                                            let col = 
+                                                              { matrixLineExp_location = loc_line; 
+                                                                matrixLineExp_columns = Array.of_list $3 } in
+                                                            let mle = Array.of_list (List.rev (col::$2)) in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 4 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE EOL matrixOrCellLines matrixOrCellColumns RBRACE { let st_line = Parsing.rhs_start_pos 4 in
+                                                            let end_line = Parsing.rhs_end_pos 4 in
+                                                            let loc_line = create_loc st_line end_line in
+                                                            let col = 
+                                                              { matrixLineExp_location = loc_line; 
+                                                                matrixLineExp_columns = Array.of_list $4 } in
+                                                            let mle = Array.of_list (List.rev (col::$3)) in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 5 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE EOL matrixOrCellLines RBRACE                     { let mle = Array.of_list (List.rev $3) in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 4 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE matrixOrCellColumns RBRACE                       { let st_line = Parsing.rhs_start_pos 2 in
+                                                            let end_line = Parsing.rhs_end_pos 2 in
+                                                            let loc_line = create_loc st_line end_line in
+                                                            let mlec = 
+                                                              { matrixLineExp_location = loc_line;
+                                                                matrixLineExp_columns = Array.of_list (List.rev $2) } in
+                                                            let mle = Array.of_list [mlec] in
+                                                            let mathexp =
+                                                              CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 3 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE EOL matrixOrCellColumns RBRACE			  { let st_line = Parsing.rhs_start_pos 3 in
+                                                            let end_line = Parsing.rhs_end_pos 3 in
+                                                            let loc_line = create_loc st_line end_line in
+                                                            let mlec = 
+                                                              { matrixLineExp_location = loc_line;
+                                                                matrixLineExp_columns = Array.of_list (List.rev $3) } in
+                                                            let mle = Array.of_list [mlec] in
+                                                            let mathexp =
+                                                              CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 4 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE EOL RBRACE                                       { let mle = Array.of_list [] in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 3 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE RBRACE                                           { let mle = Array.of_list [] in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 2 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+    
 /* Matrix */
 
 matrix :
