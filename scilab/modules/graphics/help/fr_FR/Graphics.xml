@@ -143,20 +143,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="fcontour2d">fcontour2d</link>
-                </term>
-                <listitem>
-                    <para>courbes de niveau d'une surface (définie par une fonction)</para>
-                    <para>
-                        <emphasis role="bold">Exemple:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fcontour2d();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="grayplot">grayplot</link>
                 </term>
                 <listitem>

@@ -1798,7 +1798,6 @@ fac3d
 fac3d1
 fchamp
 fcontour
-fcontour2d
 fgrayplot
 fplot2d
 fplot3d

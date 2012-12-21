@@ -3431,7 +3431,6 @@ msgstr ""
 # File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 20
 # File: modules/graphics/macros/errbar.sci, line: 36
 # File: modules/graphics/macros/fcontour.sci, line: 52
-# File: modules/graphics/macros/fcontour2d.sci, line: 27
 # File: modules/graphics/macros/fgrayplot.sci, line: 38
 # File: modules/graphics/macros/fplot2d.sci, line: 30
 # File: modules/graphics/macros/fplot3d.sci, line: 33
