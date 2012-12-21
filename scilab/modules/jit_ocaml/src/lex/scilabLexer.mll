@@ -146,6 +146,8 @@ rule token = parse
                                    NUM num }
   | lparen                       { LPAREN }
   | rparen                       { RPAREN }
+  | lbrace                       { LBRACE }
+  | rbrace                       { RBRACE }
   | lbrack                       { LBRACK }
   | rbrack                       { RBRACK }
   | dollar                       { DOLLAR }
