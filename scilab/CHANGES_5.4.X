@@ -96,6 +96,12 @@ Documentation
 * Add the 'scilab:needs-examples="no"' tag to specify that the help page does not need any example.
 
 
+Compilation
+============
+
+* Enforce a minimal version of Scirenderer (1.0.3).
+
+
 Bug fixes
 ==========
 
