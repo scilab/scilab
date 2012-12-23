@@ -18,19 +18,24 @@
         is_continue = false;
         is_continuable  = false} in
     {exp_location = loc; exp_desc = desc; exp_info = infos}
-      
+     
+  let create_dummy_exp () =
+    create_exp dummy_loc (ConstExp (CommentExp { commentExp_comment = "dummy exp" }))
 
 %}
 
 %token LBRACK RBRACK LPAREN RPAREN LBRACE RBRACE DOLLAR SPACES
 %token COMMA EOL DOLLAR SEMI IF THEN ELSE ELSEIF END WHILE DO 
-%token COLON ASSIGN ID FOR
+%token COLON ASSIGN ID FOR FUNCTION ENDFUNCTION HIDDEN HIDDENFUNCTION
+%token PLUS MINUS RDIVIDE LDIVIDE TIMES POWER EQ NE LT GT LE GE
+%token SELECT SWITCH OTHERWISE CASE TRY CATCH RETURN BREAK CONTINUE
 %token BOOLTRUE BOOLFALSE
 %token<float> VARINT
 %token<float> VARFLOAT
 %token<float> NUM
 %token<string> ID
 %token<string> COMMENT
+%token<string> STR
 %token EOF
 
 %nonassoc TOPLEVEL
@@ -65,15 +70,45 @@
 
 %%
 program :
-| expressions                                   { $1 }
-| expressions EOF                               { $1 }
-
-expressions :
-| expression                                    { let seqexp = SeqExp [$1] in
+| expressions                                   { Exp $1 }
+| EOL expressions                               { Exp $2 }
+| expressionLineBreak                           { let seqexp = SeqExp [] in
                                                   let off_st = Parsing.rhs_start_pos 1 in
                                                   let off_end = Parsing.rhs_end_pos 1 in
                                                   let loc = create_loc off_st off_end in
                                                   Exp (create_exp loc seqexp) }
+| /* Empty */                                   { let seqexp = SeqExp [] in
+                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 1 in
+                                                  let loc = create_loc off_st off_end in
+                                                  Exp (create_exp loc seqexp) }
+    
+expressions :
+| recursiveExpression                          { let seqexp = SeqExp (List.rev $1) in
+                                                 let off_st = Parsing.rhs_start_pos 1 in
+                                                 let off_end = Parsing.rhs_end_pos 1 in
+                                                 let loc = create_loc off_st off_end in
+                                                 create_exp loc seqexp }
+| recursiveExpression expression               { let seqexp = SeqExp (List.rev ($2::$1)) in
+                                                 let off_st = Parsing.rhs_start_pos 1 in
+                                                 let off_end = Parsing.rhs_end_pos 2 in
+                                                 let loc = create_loc off_st off_end in
+                                                 create_exp loc seqexp }
+| recursiveExpression expression COMMENT       { let commentexp = CommentExp { commentExp_comment = $3 } in
+                                                 let cmt_st = Parsing.rhs_start_pos 3 in
+                                                 let cmt_end = Parsing.rhs_end_pos 3 in
+                                                 let cmt_loc = create_loc cmt_st cmt_end in
+                                                 let cmt_exp = create_exp cmt_loc (ConstExp commentexp) in
+                                                 let seqexp = SeqExp (List.rev ($2::cmt_exp::$1)) in
+                                                 let off_st = Parsing.rhs_start_pos 1 in
+                                                 let off_end = Parsing.rhs_end_pos 2 in
+                                                 let loc = create_loc off_st off_end in
+                                                 create_exp loc seqexp }
+| expression                                   { let seqexp = SeqExp [$1] in
+                                                 let off_st = Parsing.rhs_start_pos 1 in
+                                                 let off_end = Parsing.rhs_end_pos 1 in
+                                                 let loc = create_loc off_st off_end in
+                                                 create_exp loc seqexp }
 | expression COMMENT                           { let commentexp = CommentExp { commentExp_comment = $2 } in
                                                  let cmt_st = Parsing.rhs_start_pos 2 in
                                                  let cmt_end = Parsing.rhs_end_pos 2 in
@@ -83,21 +118,92 @@ expressions :
                                                  let off_st = Parsing.rhs_start_pos 1 in
                                                  let off_end = Parsing.rhs_end_pos 2 in
                                                  let loc = create_loc off_st off_end in
-                                                 Exp (create_exp loc seqexp) }
+                                                 create_exp loc seqexp }
 
-expression :
-| functionCall                                  { $1 }
+recursiveExpression :
+| recursiveExpression expression expressionLineBreak         { $2::$1 }
+| recursiveExpression expression COMMENT expressionLineBreak { let commentexp = CommentExp { commentExp_comment = $3 } in
+                                                               let cmt_st = Parsing.rhs_start_pos 3 in
+                                                               let cmt_end = Parsing.rhs_end_pos 3 in
+                                                               let cmt_loc = create_loc cmt_st cmt_end in
+                                                               let cmt_exp = create_exp cmt_loc (ConstExp commentexp) in 
+                                                               cmt_exp::$2::$1}
+| expression COMMENT expressionLineBreak                     { let commentexp = CommentExp { commentExp_comment = $2 } in
+                                                               let cmt_st = Parsing.rhs_start_pos 2 in
+                                                               let cmt_end = Parsing.rhs_end_pos 2 in
+                                                               let cmt_loc = create_loc cmt_st cmt_end in
+                                                               let cmt_exp = create_exp cmt_loc (ConstExp commentexp) in 
+                                                               $1::[cmt_exp]}
+| expression expressionLineBreak                             { [$1] }
+
+expressionLineBreak :
+| EOF                                         { }
+| SEMI                                        { }
+| COMMA                                       { }
+| EOL                                         { }
+| expressionLineBreak SEMI                    { }
+| expressionLineBreak COMMA                   { }
+| expressionLineBreak EOL                     { }
+
+expression :                              
+| functionDeclaration				{ $1 }
+| functionCall %prec TOPLEVEL                   { $1 }
 | variableDeclaration                           { $1 }
 | ifControl                                     { $1 }
+| selectControl                                 { $1 }
 | forControl                                    { $1 }
 | whileControl                                  { $1 }
-| variable                                      { $1 }
+| tryControl                                    { $1 }
+| variable %prec TOPLEVEL                       { $1 }
+| implicitFunctionCall  %prec TOPLEVEL          { $1 }
+| BREAK						{ let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 1 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (ControlExp BreakExp) }
+| CONTINUE					{ let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 1 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (ControlExp ContinueExp) }
+| returnControl					{ $1 }
 | COMMENT                                       { let commentexp = CommentExp { commentExp_comment = $1 } in
                                                   let off_st = Parsing.rhs_start_pos 1 in
                                                   let off_end = Parsing.rhs_end_pos 1 in
                                                   let loc = create_loc off_st off_end in
-                                                  create_exp loc (ConstExp commentexp)
-                                                }
+                                                  create_exp loc (ConstExp commentexp) }
+/*| error */
+
+/* IMPLICIT FUNCTIONCALL */
+/* Bash-like : foo bar titi <=> foo('bar', 'titi') */
+implicitFunctionCall :
+| ID implicitCallable                           { let varloc_st = Parsing.rhs_start_pos 1 in
+                                                  let varloc_end = Parsing.rhs_end_pos 1 in
+                                                  let varloc = create_loc varloc_st varloc_end in
+                                                  let varexp = 
+                                                    Var { var_location = varloc;
+                                                          var_desc = SimpleVar $1 } in
+                                                  let callexp = 
+                                                    { callExp_name = create_exp varloc varexp;
+                                                      callExp_args = Array.of_list (List.rev $2)} in
+                                                  let fcall_st = Parsing.rhs_start_pos 1 in
+                                                  let fcall_end = Parsing.rhs_end_pos 2 in
+                                                  let loc = create_loc fcall_st fcall_end in
+                                                  create_exp loc (CallExp callexp) }
+
+implicitCallable :
+| ID                                            { let strexp = StringExp
+                                                    { stringExp_value = $1 ;
+                                                      stringExp_bigString = () } in
+                                                  let str_st = Parsing.rhs_start_pos 1 in 
+                                                  let str_end = Parsing.rhs_end_pos 1 in
+                                                  let str_loc = create_loc str_st str_end in
+                                                  [ create_exp str_loc (ConstExp strexp) ] }
+| implicitCallable ID                           { let strexp = StringExp
+                                                    { stringExp_value = $2 ;
+                                                      stringExp_bigString = () } in
+                                                  let str_st = Parsing.rhs_start_pos 1 in 
+                                                  let str_end = Parsing.rhs_end_pos 1 in
+                                                  let str_loc = create_loc str_st str_end in
+                                                  create_exp str_loc (ConstExp strexp)::$1 }
 
 /* FUNCTIONCALL */
 functionCall :
@@ -175,10 +281,731 @@ functionArgs :
 | functionArgs COMMA variableDeclaration       { $3::$1 } 
 | functionArgs COMMA                           { $1 }
 
+/* FUNCTION DECLARATION */
+functionDeclaration :
+| FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody functionDelimiter {
+  let ret_st =  Parsing.rhs_start_pos 2 in
+  let ret_end = Parsing.rhs_end_pos 2 in
+  let ret_loc = create_loc ret_st ret_end in
+  let var_ret = { var_location = ret_loc ;
+                  var_desc = SimpleVar $2 } in
+  let ret_var_array = { arrayListVar_location = ret_loc;
+                        arrayListVar_vars = Array.of_list [var_ret] } in
+  let args_st = Parsing.rhs_start_pos 5 in
+  let args_end = Parsing.rhs_end_pos 5 in
+  let args_loc = create_loc args_st args_end in
+  let args_var_array = { arrayListVar_location = args_loc;
+                         arrayListVar_vars = Array.of_list $5 } in
+  let fundec_st = Parsing.rhs_start_pos 1 in
+  let fundec_end = Parsing.rhs_end_pos 8 in
+  let fundec_loc = create_loc fundec_st fundec_end in
+  let fundec = FunctionDec { functionDec_location = fundec_loc;
+                             functionDec_symbol = $4;
+                             functionDec_args = args_var_array;
+                             functionDec_returns = ret_var_array;
+                             functionDec_body = $7 } in
+  create_exp fundec_loc (Dec fundec) }
+| FUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody functionDelimiter {
+  let ret_st =  Parsing.rhs_start_pos 3 in
+  let ret_end = Parsing.rhs_end_pos 3 in
+  let ret_loc = create_loc ret_st ret_end in
+  let ret_var_array = { arrayListVar_location = ret_loc;
+                        arrayListVar_vars = Array.of_list $3 } in
+  let args_st = Parsing.rhs_start_pos 7 in
+  let args_end = Parsing.rhs_end_pos 7 in
+  let args_loc = create_loc args_st args_end in
+  let args_var_array = { arrayListVar_location = args_loc;
+                         arrayListVar_vars = Array.of_list $7 } in
+  let fundec_st = Parsing.rhs_start_pos 1 in
+  let fundec_end = Parsing.rhs_end_pos 10 in
+  let fundec_loc = create_loc fundec_st fundec_end in
+  let fundec = FunctionDec { functionDec_location = fundec_loc;
+                             functionDec_symbol = $6;
+                             functionDec_args = args_var_array;
+                             functionDec_returns = ret_var_array;
+                             functionDec_body = $9 } in
+  create_exp fundec_loc (Dec fundec) }
+| FUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody functionDelimiter {
+  let ret_st =  Parsing.rhs_start_pos 2 in
+  let ret_end = Parsing.rhs_end_pos 3 in
+  let ret_loc = create_loc ret_st ret_end in
+  let ret_var_array = { arrayListVar_location = ret_loc;
+                        arrayListVar_vars = Array.of_list [] } in
+  let args_st = Parsing.rhs_start_pos 6 in
+  let args_end = Parsing.rhs_end_pos 6 in
+  let args_loc = create_loc args_st args_end in
+  let args_var_array = { arrayListVar_location = args_loc;
+                         arrayListVar_vars = Array.of_list $6 } in
+  let fundec_st = Parsing.rhs_start_pos 1 in
+  let fundec_end = Parsing.rhs_end_pos 9 in
+  let fundec_loc = create_loc fundec_st fundec_end in
+  let fundec = FunctionDec { functionDec_location = fundec_loc;
+                             functionDec_symbol = $5;
+                             functionDec_args = args_var_array;
+                             functionDec_returns = ret_var_array;
+                             functionDec_body = $8 } in
+  create_exp fundec_loc (Dec fundec) }
+| FUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody functionDelimiter {
+  let ret_st =  Parsing.rhs_start_pos 1 in
+  let ret_end = Parsing.rhs_end_pos 6 in
+  let ret_loc = create_loc ret_st ret_end in
+  let ret_var_array = { arrayListVar_location = ret_loc;
+                        arrayListVar_vars = Array.of_list [] } in
+  let args_st = Parsing.rhs_start_pos 3 in
+  let args_end = Parsing.rhs_end_pos 3 in
+  let args_loc = create_loc args_st args_end in
+  let args_var_array = { arrayListVar_location = args_loc;
+                         arrayListVar_vars = Array.of_list $3 } in
+  let fundec_st = Parsing.rhs_start_pos 1 in
+  let fundec_end = Parsing.rhs_end_pos 6 in
+  let fundec_loc = create_loc fundec_st fundec_end in
+  let fundec = FunctionDec { functionDec_location = fundec_loc;
+                             functionDec_symbol = $2;
+                             functionDec_args = args_var_array;
+                             functionDec_returns = ret_var_array;
+                             functionDec_body = $5 } in
+  create_exp fundec_loc (Dec fundec) }
+/* HIDDEN FUNCTIONS */
+
+| hiddenFun ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody functionDelimiter {
+  let ret_st =  Parsing.rhs_start_pos 2 in
+  let ret_end = Parsing.rhs_end_pos 2 in
+  let ret_loc = create_loc ret_st ret_end in
+  let var_ret = { var_location = ret_loc ;
+                  var_desc = SimpleVar $2 } in
+  let ret_var_array = { arrayListVar_location = ret_loc;
+                        arrayListVar_vars = Array.of_list [var_ret] } in
+  let args_st = Parsing.rhs_start_pos 5 in
+  let args_end = Parsing.rhs_end_pos 5 in
+  let args_loc = create_loc args_st args_end in
+  let args_var_array = { arrayListVar_location = args_loc;
+                         arrayListVar_vars = Array.of_list $5 } in
+  let fundec_st = Parsing.rhs_start_pos 1 in
+  let fundec_end = Parsing.rhs_end_pos 8 in
+  let fundec_loc = create_loc fundec_st fundec_end in
+  let fundec = FunctionDec { functionDec_location = fundec_loc;
+                             functionDec_symbol = $4;
+                             functionDec_args = args_var_array;
+                             functionDec_returns = ret_var_array;
+                             functionDec_body = $7 } in
+  create_exp fundec_loc (Dec fundec) }
+
+/*
+| HIDDENFUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION
+| HIDDENFUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END
+| HIDDEN FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION
+| HIDDEN FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END
+*/
+
+| hiddenFun LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody functionDelimiter {
+  let ret_st =  Parsing.rhs_start_pos 3 in
+  let ret_end = Parsing.rhs_end_pos 3 in
+  let ret_loc = create_loc ret_st ret_end in
+  let ret_var_array = { arrayListVar_location = ret_loc;
+                        arrayListVar_vars = Array.of_list $3 } in
+  let args_st = Parsing.rhs_start_pos 7 in
+  let args_end = Parsing.rhs_end_pos 7 in
+  let args_loc = create_loc args_st args_end in
+  let args_var_array = { arrayListVar_location = args_loc;
+                         arrayListVar_vars = Array.of_list $7 } in
+  let fundec_st = Parsing.rhs_start_pos 1 in
+  let fundec_end = Parsing.rhs_end_pos 10 in
+  let fundec_loc = create_loc fundec_st fundec_end in
+  let fundec = FunctionDec { functionDec_location = fundec_loc;
+                             functionDec_symbol = $6;
+                             functionDec_args = args_var_array;
+                             functionDec_returns = ret_var_array;
+                             functionDec_body = $9 } in
+  create_exp fundec_loc (Dec fundec) }
+
+
+/*
+| HIDDENFUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION
+| HIDDENFUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END
+| HIDDEN FUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION
+| HIDDEN FUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END
+*/
+
+| hiddenFun LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody functionDelimiter {
+  let ret_st =  Parsing.rhs_start_pos 2 in
+  let ret_end = Parsing.rhs_end_pos 3 in
+  let ret_loc = create_loc ret_st ret_end in
+  let ret_var_array = { arrayListVar_location = ret_loc;
+                        arrayListVar_vars = Array.of_list [] } in
+  let args_st = Parsing.rhs_start_pos 6 in
+  let args_end = Parsing.rhs_end_pos 6 in
+  let args_loc = create_loc args_st args_end in
+  let args_var_array = { arrayListVar_location = args_loc;
+                         arrayListVar_vars = Array.of_list $6 } in
+  let fundec_st = Parsing.rhs_start_pos 1 in
+  let fundec_end = Parsing.rhs_end_pos 9 in
+  let fundec_loc = create_loc fundec_st fundec_end in
+  let fundec = FunctionDec { functionDec_location = fundec_loc;
+                             functionDec_symbol = $5;
+                             functionDec_args = args_var_array;
+                             functionDec_returns = ret_var_array;
+                             functionDec_body = $8 } in
+  create_exp fundec_loc (Dec fundec) }
+
+/*
+| HIDDENFUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION
+| HIDDENFUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END
+| HIDDEN FUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION
+| HIDDEN FUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END
+*/
+
+| hiddenFun ID functionDeclarationArguments functionDeclarationBreak functionBody functionDelimiter {
+  let ret_st =  Parsing.rhs_start_pos 1 in
+  let ret_end = Parsing.rhs_end_pos 6 in
+  let ret_loc = create_loc ret_st ret_end in
+  let ret_var_array = { arrayListVar_location = ret_loc;
+                        arrayListVar_vars = Array.of_list [] } in
+  let args_st = Parsing.rhs_start_pos 3 in
+  let args_end = Parsing.rhs_end_pos 3 in
+  let args_loc = create_loc args_st args_end in
+  let args_var_array = { arrayListVar_location = args_loc;
+                         arrayListVar_vars = Array.of_list $3 } in
+  let fundec_st = Parsing.rhs_start_pos 1 in
+  let fundec_end = Parsing.rhs_end_pos 6 in
+  let fundec_loc = create_loc fundec_st fundec_end in
+  let fundec = FunctionDec { functionDec_location = fundec_loc;
+                             functionDec_symbol = $2;
+                             functionDec_args = args_var_array;
+                             functionDec_returns = ret_var_array;
+                             functionDec_body = $5 } in
+  create_exp fundec_loc (Dec fundec) }
+
+/*
+| HIDDEN FUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION
+| HIDDEN FUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody END
+| HIDDENFUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION
+| HIDDENFUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody END
+*/
+
+functionDelimiter :
+| END                                               { }
+| ENDFUNCTION                                       { }
+
+hiddenFun :
+| HIDDENFUNCTION                                    { }
+| HIDDEN FUNCTION                                   { }
+
+functionDeclarationReturns :
+| idList                                        { $1 }
+
+functionDeclarationArguments :
+| LPAREN idList RPAREN                          { $2 }
+| LPAREN RPAREN                                 { [] }
+| /* Empty */                                   { [] }
+
+idList :
+| idList COMMA ID                               { let varloc_st = Parsing.rhs_start_pos 3 in
+                                                  let varloc_end = Parsing.rhs_end_pos 3 in
+                                                  let varloc = create_loc varloc_st varloc_end in
+                                                  let varexp = { var_location = varloc;
+                                                                 var_desc = SimpleVar $3 } in
+                                                  varexp::$1 }
+| ID                                            { let varloc_st = Parsing.rhs_start_pos 1 in
+                                                  let varloc_end = Parsing.rhs_end_pos 1 in
+                                                  let varloc = create_loc varloc_st varloc_end in
+                                                  let varexp = { var_location = varloc;
+                                                                 var_desc = SimpleVar $1 } in
+                                                  [varexp] }
+
+functionDeclarationBreak :
+| lineEnd			{ }
+| SEMI				{ }
+| SEMI EOL			{ }
+| COMMA				{ }
+| COMMA EOL			{ }
+
+functionBody :
+| expressions                    { $1 }
+| /* Empty */                    { let off_st = Parsing.rhs_start_pos 1 in
+                                   let off_end = Parsing.rhs_end_pos 1 in
+                                   let loc = 
+                                     create_loc off_st off_end in
+                                   create_exp loc (SeqExp []) }
+    
 
 condition :
 | functionCall 	%prec HIGHLEVEL                 { $1 }
 | variable      %prec HIGHLEVEL                 { $1 }
+
+/* comparable OP COLON ? */
+comparison :
+| variable EQ variable                          { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_eq in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| variable EQ functionCall                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_eq in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall EQ variable                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_eq in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall EQ functionCall                  { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_eq in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| variable NE variable                          { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_ne in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| variable NE functionCall                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_ne in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall NE variable                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_ne in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall NE functionCall                  { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_ne in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| variable LT variable                          { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_lt in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| variable LT functionCall                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_lt in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall LT variable                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_lt in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall LT functionCall                  { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_lt in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| variable GT variable                          { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_gt in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| variable GT functionCall                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_gt in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall GT variable                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_gt in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall GT functionCall                  { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_gt in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| variable LE variable                          { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_le in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| variable LE functionCall                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_le in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall LE variable                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_le in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall LE functionCall                  { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_le in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| variable GE variable                          { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_ge in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| variable GE functionCall                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_ge in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall GE variable                      { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_ge in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+| functionCall GE functionCall                  { let cmploc_st = Parsing.rhs_start_pos 1 in
+                                                  let cmploc_end = Parsing.rhs_end_pos 3 in
+                                                  let cmploc = create_loc cmploc_st cmploc_end in
+                                                  let oper = OpExp_ge in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp cmploc (MathExp (OpExp (oper,args))) }
+
+operation :
+/* '+' */
+| variable PLUS variable                        { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_plus in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| variable PLUS functionCall                    { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_plus in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall PLUS variable                    { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_plus in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall PLUS functionCall                { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_plus in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+/* '-' */
+| variable MINUS variable                       { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_minus in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| variable MINUS functionCall                   { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_minus in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall MINUS variable                   { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_minus in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall MINUS functionCall               { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_minus in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+/* '*' '.*' '.*.' '*.' */
+| variable TIMES variable                       { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_times in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| variable TIMES functionCall                   { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_times in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall TIMES variable                   { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_times in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall TIMES functionCall               { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_times in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+/* '/'   './'   './.'   '/.' */
+| variable RDIVIDE variable                     { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_rdivide in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| variable RDIVIDE functionCall                 { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_rdivide in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall RDIVIDE variable                 { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_rdivide in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall RDIVIDE functionCall             { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_rdivide in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+/* '\'   '.\'   '.\.'   '\.' */
+| variable LDIVIDE variable                     { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_ldivide in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| variable LDIVIDE functionCall                 { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_ldivide in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall LDIVIDE variable                 { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_ldivide in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall LDIVIDE functionCall             { let oploc_st = Parsing.rhs_start_pos 1 in
+                                                  let oploc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc oploc_st oploc_end in
+                                                  let oper = OpExp_ldivide in
+                                                  let args = { opExp_left  = $1 ;
+                                                               opExp_right = $3 ;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+
+| MINUS variable                                { let minloc_st = Parsing.rhs_start_pos 1 in
+                                                  let minloc_end = Parsing.rhs_end_pos 2 in
+                                                  let oploc = create_loc minloc_st minloc_end in
+                                                  let oper = OpExp_unaryMinus in
+                                                  let dummy_exp = DoubleExp 
+                                                    { doubleExp_value = 0.0;
+                                                      doubleExp_bigDouble = () } in
+                                                  let left = create_exp dummy_loc (ConstExp dummy_exp) in
+                                                  let right = $2 in
+                                                  let args = { opExp_left  = left ;
+                                                               opExp_right = right;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| MINUS functionCall                            { let minloc_st = Parsing.rhs_start_pos 1 in
+                                                  let minloc_end = Parsing.rhs_end_pos 2 in
+                                                  let oploc = create_loc minloc_st minloc_end in
+                                                  let oper = OpExp_unaryMinus in
+                                                  let dummy_exp = DoubleExp 
+                                                    { doubleExp_value = 0.0;
+                                                      doubleExp_bigDouble = () } in
+                                                  let left = create_exp dummy_loc (ConstExp dummy_exp) in
+                                                  let right = $2 in
+                                                  let args = { opExp_left  = left ;
+                                                               opExp_right = right;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| PLUS variable                                 { $2 }
+| PLUS functionCall                             { $2 }
+| variable POWER variable                       { let powloc_st = Parsing.rhs_start_pos 1 in
+                                                  let powloc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc powloc_st powloc_end in
+                                                  let oper = OpExp_power in
+                                                  let left = $1 in
+                                                  let right = $3 in
+                                                  let args = { opExp_left  = left ;
+                                                               opExp_right = right;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| variable POWER functionCall                   { let powloc_st = Parsing.rhs_start_pos 1 in
+                                                  let powloc_end = Parsing.rhs_end_pos 3 in
+                                                  let oploc = create_loc powloc_st powloc_end in
+                                                  let oper = OpExp_power in
+                                                  let left = $1 in
+                                                  let right = $3 in
+                                                  let args = { opExp_left  = left ;
+                                                               opExp_right = right;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall POWER variable		       { let powloc_st = Parsing.rhs_start_pos 1 in
+                                                 let powloc_end = Parsing.rhs_end_pos 3 in
+                                                 let oploc = create_loc powloc_st powloc_end in
+                                                 let oper = OpExp_power in
+                                                 let left = $1 in
+                                                 let right = $3 in
+                                                 let args = { opExp_left  = left ;
+                                                              opExp_right = right;
+                                                              opExp_kind  = OpExp_invalid_kind } in
+                                                 create_exp oploc (MathExp (OpExp (oper,args))) }
+| functionCall POWER functionCall              { let powloc_st = Parsing.rhs_start_pos 1 in
+                                                 let powloc_end = Parsing.rhs_end_pos 3 in
+                                                 let oploc = create_loc powloc_st powloc_end in
+                                                 let oper = OpExp_power in
+                                                 let left = $1 in
+                                                 let right = $3 in
+                                                 let args = { opExp_left  = left ;
+                                                              opExp_right = right;
+                                                              opExp_kind  = OpExp_invalid_kind } in
+                                                 create_exp oploc (MathExp (OpExp (oper,args))) }
+
+/*
+rightOperand :
+| PLUS variable                                 { let oper = OpExp_plus in
+                                                  let left = create_dummy_exp () in
+                                                  let right = $2 in
+                                                  let args = { opExp_left  = left ;
+                                                               opExp_right = right;
+                                                               opExp_kind  = OpExp_invalid_kind } in
+                                                  OpExp (oper,args) }*/
+
+variable :
+| cell                                          { $1 }
+| matrix                                        { $1 }
+| operation %prec UPLEVEL		        { $1 }
+| ID %prec LISTABLE                             { let varloc_st = Parsing.rhs_start_pos 1 in
+                                                  let varloc_end = Parsing.rhs_end_pos 1 in
+                                                  let varloc = create_loc varloc_st varloc_end in
+                                                  let varexp = 
+                                                    Var { var_location = varloc;
+                                                          var_desc = SimpleVar $1 } in 
+                                                  create_exp varloc varexp }
+| VARINT %prec LISTABLE                         { let doubleexp =
+                                                    DoubleExp { doubleExp_value = $1;
+                                                                doubleExp_bigDouble = ()} in
+                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 1 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (ConstExp doubleexp)}
+| NUM %prec LISTABLE                            { let doubleexp =
+                                                    DoubleExp { doubleExp_value = $1;
+                                                                doubleExp_bigDouble = ()} in
+                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 1 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (ConstExp doubleexp)} 
+| STR                                           { let strexp = StringExp
+                                                    { stringExp_value = $1 ;
+                                                      stringExp_bigString = () } in
+                                                  let str_st = Parsing.rhs_start_pos 1 in 
+                                                  let str_end = Parsing.rhs_end_pos 1 in
+                                                  let str_loc = create_loc str_st str_end in
+                                                  create_exp str_loc (ConstExp strexp) }
+| comparison                                    { $1 }
 
 /* IF THEN ELSE */
 
@@ -229,7 +1056,7 @@ thenBody :
 
 elseBody :
 | /* Empty */                                  { None }
-| expression                                   { Some $1 }
+| expressions                                  { Some $1 }
 
 
 ifConditionBreak :
@@ -299,6 +1126,167 @@ elseIfControl :
                                                           create_loc off_st off_end in
                                                         create_exp loc 
                                                           (SeqExp [create_exp loc ifexp]) }
+
+/* SELECT */
+selectControl :
+| select selectable selectConditionBreak casesControl END                              { let select_exp = SelectExp
+                                                                                           { selectExp_selectme = $2 ;
+                                                                                             selectExp_cases    = Array.of_list $4 ;
+                                                                                             selectExp_default  = None } in
+                                                                                         let select_st = Parsing.rhs_start_pos 1 in
+                                                                                         let select_end = Parsing.rhs_end_pos 5 in
+                                                                                         let select_loc = create_loc select_st select_end in
+                                                                                         create_exp select_loc (ControlExp select_exp) }
+| select selectable selectConditionBreak casesControl defaultCase elseBody END         { let default_st =  Parsing.rhs_start_pos 6 in
+                                                                                         let default_end = Parsing.rhs_end_pos 6 in
+                                                                                         let default_loc = create_loc default_st default_end in
+                                                                                         let default = 
+                                                                                           match $6 with
+                                                                                             | None -> None
+                                                                                             | Some seqexp -> Some (default_loc,[seqexp]) in 
+                                                                                         let select_exp = SelectExp
+                                                                                           { selectExp_selectme = $2 ;
+                                                                                             selectExp_cases    = Array.of_list $4 ;
+                                                                                             selectExp_default  = default } in
+                                                                                         let select_st = Parsing.rhs_start_pos 1 in
+                                                                                         let select_end = Parsing.rhs_end_pos 7 in
+                                                                                         let select_loc = create_loc select_st select_end in
+                                                                                         create_exp select_loc (ControlExp select_exp) }
+| select selectable COMMENT selectConditionBreak casesControl END                      { let select_exp = SelectExp
+                                                                                           { selectExp_selectme = $2 ;
+                                                                                             selectExp_cases    = Array.of_list $5 ;
+                                                                                             selectExp_default  = None } in
+                                                                                         let select_st = Parsing.rhs_start_pos 1 in
+                                                                                         let select_end = Parsing.rhs_end_pos 6 in
+                                                                                         let select_loc = create_loc select_st select_end in
+                                                                                         create_exp select_loc (ControlExp select_exp) }
+| select selectable COMMENT selectConditionBreak casesControl defaultCase elseBody END { let default_st =  Parsing.rhs_start_pos 7 in
+                                                                                         let default_end = Parsing.rhs_end_pos 7 in
+                                                                                         let default_loc = create_loc default_st default_end in
+                                                                                         let default =  match $7 with
+                                                                                           | None -> None
+                                                                                           | Some seqexp -> Some (default_loc,[seqexp]) in 
+                                                                                         let select_exp = SelectExp
+                                                                                           { selectExp_selectme = $2 ;
+                                                                                             selectExp_cases    = Array.of_list $5 ;
+                                                                                             selectExp_default  = default } in
+                                                                                         let select_st = Parsing.rhs_start_pos 1 in
+                                                                                         let select_end = Parsing.rhs_end_pos 8 in
+                                                                                         let select_loc = create_loc select_st select_end in
+                                                                                         create_exp select_loc (ControlExp select_exp) }
+
+select :
+| SELECT                           { }
+| SWITCH                           { }
+
+defaultCase :
+| elseTok                          { }
+| OTHERWISE                        { }
+| OTHERWISE COMMA                  { }
+| OTHERWISE SEMI                   { }
+| OTHERWISE EOL                    { }
+| OTHERWISE COMMA EOL              { }
+| OTHERWISE SEMI EOL               { }
+
+selectable :
+| variable                         { $1 }
+| functionCall                     { $1 }
+
+selectConditionBreak :
+| EOL                              { }
+| COMMA                            { }
+| SEMI                             { }
+| COMMA EOL                        { }
+| SEMI EOL                         { }
+
+casesControl :
+| CASE variable caseControlBreak caseBody                  { let casetest_st = Parsing.rhs_start_pos 2 in
+                                                             let casetest_end = Parsing.rhs_end_pos 2 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 4 in
+                                                             let casebody_end = Parsing.rhs_end_pos 4 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $2 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $4 } in
+                                                             [casexp] }
+| CASE functionCall caseControlBreak caseBody              { let casetest_st = Parsing.rhs_start_pos 2 in
+                                                             let casetest_end = Parsing.rhs_end_pos 2 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 4 in
+                                                             let casebody_end = Parsing.rhs_end_pos 4 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $2 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $4 } in
+                                                             [casexp] }
+| comments CASE variable caseControlBreak caseBody         { let casetest_st = Parsing.rhs_start_pos 3 in
+                                                             let casetest_end = Parsing.rhs_end_pos 3 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 5 in
+                                                             let casebody_end = Parsing.rhs_end_pos 5 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $3 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $5 } in
+                                                             [casexp] }
+| comments CASE functionCall caseControlBreak caseBody     { let casetest_st = Parsing.rhs_start_pos 3 in
+                                                             let casetest_end = Parsing.rhs_end_pos 3 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 5 in
+                                                             let casebody_end = Parsing.rhs_end_pos 5 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $3 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $5 } in
+                                                             [casexp] }
+| casesControl CASE variable caseControlBreak caseBody     { let casetest_st = Parsing.rhs_start_pos 3 in
+                                                             let casetest_end = Parsing.rhs_end_pos 3 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 5 in
+                                                             let casebody_end = Parsing.rhs_end_pos 5 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $3 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $5 } in
+                                                             casexp::$1 }
+| casesControl CASE functionCall caseControlBreak caseBody { let casetest_st = Parsing.rhs_start_pos 3 in
+                                                             let casetest_end = Parsing.rhs_end_pos 3 in
+                                                             let casetest_loc = create_loc casetest_st casetest_end in
+                                                             let casebody_st = Parsing.rhs_start_pos 5 in
+                                                             let casebody_end = Parsing.rhs_end_pos 5 in
+                                                             let casebody_loc = create_loc casebody_st casebody_end in
+                                                             let casexp = { caseExp_location = casetest_loc ;
+                                                                            caseExp_test = $3 ;
+                                                                            caseExp_body_location = casebody_loc ;
+                                                                            caseExp_body = $5 } in
+                                                             casexp::$1 }
+caseBody :
+| expressions                      { 
+  match $1.exp_desc with 
+    | SeqExp l -> l
+    | _ -> [] }
+| /* Empty */                      { [] }
+    
+caseControlBreak :
+| THEN                             { }
+| COMMA                            { }
+| SEMI                             { }
+| EOL                              { }
+| THEN EOL                         { }
+| COMMA EOL                        { }
+| SEMI EOL                         { }
+| THEN COMMA                       { }
+| THEN COMMA EOL                   { }
+| THEN SEMI                        { }
+| THEN SEMI EOL                    { }
+
+
 /* FOR */
 forControl :
 | FOR ID ASSIGN forIterator forConditionBreak forBody END               { let vardec_st = Parsing.rhs_start_pos 2 in
@@ -314,8 +1302,7 @@ forControl :
                                                                               forExp_body = $6 } in
                                                                           let off_st = Parsing.rhs_start_pos 1 in
                                                                           let off_end = Parsing.rhs_end_pos 7 in
-                                                                          let loc = 
-                                                                            create_loc off_st off_end in
+                                                                          let loc = create_loc off_st off_end in
                                                                           create_exp loc (ControlExp forexp) }
 | FOR LPAREN ID ASSIGN forIterator RPAREN forConditionBreak forBody END { let vardec_st = Parsing.rhs_start_pos 3 in
                                                                           let vardec_end = Parsing.rhs_end_pos 3 in
@@ -330,13 +1317,12 @@ forControl :
                                                                               forExp_body = $8 } in
                                                                           let off_st = Parsing.rhs_start_pos 1 in
                                                                           let off_end = Parsing.rhs_end_pos 9 in
-                                                                          let loc = 
-                                                                            create_loc off_st off_end in
+                                                                          let loc = create_loc off_st off_end in
                                                                           create_exp loc (ControlExp forexp)}
 
 forIterator :
-| functionCall                                  { $1 }
-| variable                                      { $1 }
+| functionCall  %prec UPLEVEL                   { $1 }
+| variable %prec UPLEVEL                        { $1 }
 
 forConditionBreak :
 | EOL						{ }
@@ -394,34 +1380,141 @@ whileConditionBreak :
 | THEN EOL              { }
 | THEN COMMA EOL        { }
 | THEN SEMI EOL         { }
-    
-    
-    
-variable :
-| matrix                                        { $1 }
-| VARINT %prec LISTABLE                         { let doubleexp =
-                                                    DoubleExp { doubleExp_value = $1;
-                                                                doubleExp_bigDouble = ()} in
-                                                  let off_st = Parsing.rhs_start_pos 1 in
-                                                  let off_end = Parsing.rhs_end_pos 1 in
-                                                  let loc = create_loc off_st off_end in
-                                                  create_exp loc (ConstExp doubleexp)}
-| NUM %prec LISTABLE                            { let doubleexp =
-                                                    DoubleExp { doubleExp_value = $1;
-                                                                doubleExp_bigDouble = ()} in
-                                                  let off_st = Parsing.rhs_start_pos 1 in
-                                                  let off_end = Parsing.rhs_end_pos 1 in
-                                                  let loc = create_loc off_st off_end in
-                                                  create_exp loc (ConstExp doubleexp)} 
-| ID %prec LISTABLE                           { let varloc_st = Parsing.rhs_start_pos 1 in
-                                                  let varloc_end = Parsing.rhs_end_pos 1 in
-                                                  let varloc = create_loc varloc_st varloc_end in
-                                                  let varexp = 
-                                                    Var { var_location = varloc;
-                                                          var_desc = SimpleVar $1 } in 
-                                                  create_exp varloc varexp }
+
+/* TRY */
+tryControl :
+| TRY catchBody CATCH catchBody END                { let test_loc_st = Parsing.rhs_start_pos 2 in
+                                                     let test_loc_end = Parsing.rhs_end_pos 2 in
+                                                     let test_loc = create_loc test_loc_st test_loc_end in
+                                                     let body_loc_st = Parsing.rhs_start_pos 4 in
+                                                     let body_loc_end = Parsing.rhs_start_pos 4 in
+                                                     let body_loc = create_loc body_loc_st body_loc_end in
+                                                     let tryexp = 
+                                                       TryCatchExp 
+                                                         { tryCatchExp_tryme_location = test_loc;
+                                                           tryCatchExp_tryme = $2;
+                                                           tryCatchExp_catchme_location = body_loc;
+                                                           tryCatchExp_catchme = $4} in
+                                                     let off_st = Parsing.rhs_start_pos 1 in
+                                                     let off_end = Parsing.rhs_end_pos 5 in
+                                                     let loc = create_loc off_st off_end in
+                                                     create_exp loc (ControlExp tryexp) }
+| TRY catchBody END                                { let test_loc_st = Parsing.rhs_start_pos 2 in
+                                                     let test_loc_end = Parsing.rhs_end_pos 2 in
+                                                     let test_loc = create_loc test_loc_st test_loc_end in
+                                                     let off_st = Parsing.rhs_start_pos 1 in
+                                                     let off_end = Parsing.rhs_end_pos 3 in
+                                                     let loc = create_loc off_st off_end in
+                                                     let tryexp = 
+                                                       TryCatchExp 
+                                                         { tryCatchExp_tryme_location = test_loc;
+                                                           tryCatchExp_tryme = $2;
+                                                           tryCatchExp_catchme_location = loc;
+                                                           tryCatchExp_catchme = []} in
+                                                     create_exp loc (ControlExp tryexp) }
+
+catchBody :
+| expressions                                      { match $1.exp_desc with | SeqExp l -> l | _ -> [] }
+| EOL expressions                                  { match $2.exp_desc with | SeqExp l -> l | _ -> [] }
+| COMMA expressions                                { match $2.exp_desc with | SeqExp l -> l | _ -> [] }
+| EOL                                              { [] }
+| /* Empty */                                      { [] }
 
 
+
+/* RETURN */
+returnControl :
+| RETURN                                           { let off_st = Parsing.rhs_start_pos 1 in
+                                                     let off_end = Parsing.rhs_end_pos 1 in
+                                                     let loc = create_loc off_st off_end in
+                                                     let retexp = 
+                                                       ReturnExp { returnExp_exp = None} in
+                                                     create_exp loc (ControlExp retexp) }
+| RETURN variable                                  { let off_st = Parsing.rhs_start_pos 1 in
+                                                     let off_end = Parsing.rhs_end_pos 1 in
+                                                     let loc = create_loc off_st off_end in
+                                                     let retexp = 
+                                                       ReturnExp { returnExp_exp = Some $2} in
+                                                     create_exp loc (ControlExp retexp) }
+
+
+/* CELL */
+cell :
+| LBRACE matrixOrCellLines RBRACE                         { let mle = Array.of_list (List.rev $2) in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 3 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE matrixOrCellLines matrixOrCellColumns RBRACE     { let st_line = Parsing.rhs_start_pos 3 in
+                                                            let end_line = Parsing.rhs_end_pos 3 in
+                                                            let loc_line = create_loc st_line end_line in
+                                                            let col = 
+                                                              { matrixLineExp_location = loc_line; 
+                                                                matrixLineExp_columns = Array.of_list $3 } in
+                                                            let mle = Array.of_list (List.rev (col::$2)) in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 4 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE EOL matrixOrCellLines matrixOrCellColumns RBRACE { let st_line = Parsing.rhs_start_pos 4 in
+                                                            let end_line = Parsing.rhs_end_pos 4 in
+                                                            let loc_line = create_loc st_line end_line in
+                                                            let col = 
+                                                              { matrixLineExp_location = loc_line; 
+                                                                matrixLineExp_columns = Array.of_list $4 } in
+                                                            let mle = Array.of_list (List.rev (col::$3)) in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 5 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE EOL matrixOrCellLines RBRACE                     { let mle = Array.of_list (List.rev $3) in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 4 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE matrixOrCellColumns RBRACE                       { let st_line = Parsing.rhs_start_pos 2 in
+                                                            let end_line = Parsing.rhs_end_pos 2 in
+                                                            let loc_line = create_loc st_line end_line in
+                                                            let mlec = 
+                                                              { matrixLineExp_location = loc_line;
+                                                                matrixLineExp_columns = Array.of_list (List.rev $2) } in
+                                                            let mle = Array.of_list [mlec] in
+                                                            let mathexp =
+                                                              CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 3 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE EOL matrixOrCellColumns RBRACE			  { let st_line = Parsing.rhs_start_pos 3 in
+                                                            let end_line = Parsing.rhs_end_pos 3 in
+                                                            let loc_line = create_loc st_line end_line in
+                                                            let mlec = 
+                                                              { matrixLineExp_location = loc_line;
+                                                                matrixLineExp_columns = Array.of_list (List.rev $3) } in
+                                                            let mle = Array.of_list [mlec] in
+                                                            let mathexp =
+                                                              CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 4 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE EOL RBRACE                                       { let mle = Array.of_list [] in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 3 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+| LBRACE RBRACE                                           { let mle = Array.of_list [] in
+                                                            let mathexp = CellExp { matrixExp_lines = mle } in
+                                                            let off_st = Parsing.rhs_start_pos 1 in
+                                                            let off_end = Parsing.rhs_end_pos 2 in
+                                                            let loc = create_loc off_st off_end in
+                                                            create_exp loc (MathExp mathexp) }
+    
 /* Matrix */
 
 matrix :
@@ -538,9 +1631,9 @@ matrixOrCellLine :
                                                                            Array.of_list (List.rev $1) } }
     
 matrixOrCellColumns :
-| matrixOrCellColumns matrixOrCellColumnsBreak variable         { $3::$1 }
-| matrixOrCellColumns variable                                  { $2::$1 }
-| variable                                                      { [$1] }
+| matrixOrCellColumns matrixOrCellColumnsBreak variable %prec HIGHLEVEL   { $3::$1 }
+| matrixOrCellColumns variable %prec HIGHLEVEL                            { $2::$1 }
+| variable %prec HIGHLEVEL                                                { [$1] }
 
 
 matrixOrCellColumnsBreak :
@@ -550,14 +1643,27 @@ matrixOrCellColumnsBreak :
 
 /* VARAIABLE DECLARATION */
 variableDeclaration :
-| assignable ASSIGN variable                                    { let assignexp = 
+| assignable ASSIGN variable %prec HIGHLEVEL                    { let assignexp = 
                                                                     AssignExp {assignExp_left_exp = $1;
                                                                                assignExp_right_exp = $3 } in
                                                                   let off_st = Parsing.rhs_start_pos 1 in
                                                                   let off_end = Parsing.rhs_end_pos 3 in
                                                                   let loc = create_loc off_st off_end in
                                                                   create_exp loc assignexp}
-
+| assignable ASSIGN functionCall %prec HIGHLEVEL                { let assignexp = 
+                                                                    AssignExp {assignExp_left_exp = $1;
+                                                                               assignExp_right_exp = $3 } in
+                                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                                  let loc = create_loc off_st off_end in
+                                                                  create_exp loc assignexp}
+| functionCall ASSIGN variable %prec HIGHLEVEL                  { let assignexp = 
+                                                                    AssignExp {assignExp_left_exp = $1;
+                                                                               assignExp_right_exp = $3 } in
+                                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                                  let loc = create_loc off_st off_end in
+                                                                  create_exp loc assignexp}
 
 assignable :
 | ID %prec LISTABLE                                             { let varloc_st = Parsing.rhs_start_pos 1 in
@@ -567,6 +1673,30 @@ assignable :
                                                                     Var { var_location = varloc;
                                                                           var_desc = SimpleVar $1 } in 
                                                                   create_exp varloc varexp}
+| multipleResults					        { $1 }
+| variable LPAREN functionArgs RPAREN                           { let callexp = 
+                                                                    { callExp_name = $1;
+                                                                      callExp_args = Array.of_list $3} in
+                                                                  let fcall_st = Parsing.rhs_start_pos 1 in
+                                                                  let fcall_end = Parsing.rhs_end_pos 4 in
+                                                                  let loc = create_loc fcall_st fcall_end in
+                                                                  create_exp loc (CallExp callexp) }
+
+multipleResults :
+| LBRACK matrixOrCellColumns RBRACK			{ let off_st = Parsing.rhs_start_pos 1 in
+                                                          let off_end = Parsing.rhs_end_pos 3 in
+                                                          let loc = create_loc off_st off_end in
+                                                          create_exp loc (AssignListExp (Array.of_list $2)) }
+
+/* COMMENTS */
+comments :
+| COMMENT EOL                                       { }
+| comments COMMENT EOL                              { } 
+
+/* LINE END */
+lineEnd :
+| EOL                                               { }
+| COMMENT EOL                                       { }
 
 /*
 

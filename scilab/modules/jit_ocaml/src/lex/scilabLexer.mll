@@ -3,13 +3,25 @@
   open Lexing
   open ScilabParser
 
-  let newline lexbuf =
+  let end_cmt lexbuf =
+    lexbuf.lex_curr_pos <- lexbuf.lex_start_pos;
     lexbuf.lex_curr_p <- { lexbuf.lex_curr_p with
-      pos_lnum = lexbuf.lex_curr_p.pos_lnum + 1;
-      pos_bol =  lexbuf.lex_curr_p.pos_cnum;
+      pos_cnum = lexbuf.lex_start_p.pos_cnum;
     }
 
+
+  let print_pos pos =
+    Printf.printf "%i %i %i" pos.pos_lnum pos.pos_bol pos.pos_cnum
+
+  let print_lexbuf lexbuf =
+    Printf.printf "st :"; print_pos lexbuf.lex_start_p;
+    Printf.printf "; curr :"; print_pos lexbuf.lex_curr_p;
+    Printf.printf "; st_pos :%i" lexbuf.lex_start_pos;
+    Printf.printf "; curr_pos :%i \n" lexbuf.lex_curr_pos
+
   let str_cmt = ref ""
+
+  let str = ref ""
 
 }
 
@@ -64,45 +76,113 @@ let startlinecomment  = "//"
 let startblockcomment = "/*"
 let endblockcomment   = "*/"
 
+let dquote = "\""
+let quote  = "'"
+
+let plus    = "+"
+let minus   = "-"
+let rdivide = "/"
+let ldivide = "\\"
+let times   = "*"
+let power   = "^" | "**"
+
+let equal        = "=="
+let notequal     = "~=" | "@=" | "<>"
+let lowerthan    = "<"
+let greaterthan	 = ">"
+let lowerequal   = "<="
+let greaterequal = ">="
+
 let assign = "="
 
 
 rule token = parse
   | blank                        { token lexbuf }
-  | newline                      { Printf.printf "\n"; newline lexbuf; EOL}
-  | startlinecomment             { str_cmt := "";comment lexbuf }
+  | newline                      { (* Printf.printf "EOL\n"; *) Lexing.new_line lexbuf; EOL}
+  | startlinecomment             { str_cmt := ""; comment lexbuf }
+  | dquote                       { str := ""; doublestr lexbuf }
+  | quote                        { str := ""; simplestr lexbuf }
   | "if"                         { IF }
   | "then"                       { THEN }
   | "else"                       { ELSE }
   | "elseif"                     { ELSEIF }
   | "end"                        { END }
+  | "select"                     { SELECT }
+  | "switch"                     { SWITCH }
+  | "otherwise"                  { OTHERWISE }
+  | "case"                       { CASE }
   | "while"                      { WHILE }
   | "do"                         { DO }
+  | "try"                        { TRY }
+  | "catch"                      { CATCH }
+  | "return"                     { RETURN }
+  | "break"                      { BREAK }
+  | "continue"                   { CONTINUE }
   | "="                          { ASSIGN }
   | "for"                        { FOR }
+  | "hidden"                     { HIDDEN }
+  | "function"                   { FUNCTION }
+  | "#function"                  { HIDDENFUNCTION }
+  | "endfunction"                { ENDFUNCTION }
+  | plus                         { PLUS }
+  | minus                        { MINUS }
+  | rdivide                      { RDIVIDE }
+  | ldivide                      { LDIVIDE }
+  | times                        { TIMES }
+  | power                        { POWER }
+  | equal                        { EQ }
+  | notequal                     { NE }
+  | lowerthan                    { LT }
+  | greaterthan                  { GT }
+  | lowerequal                   { LE }
+  | greaterequal                 { GE }
   | comma                        { COMMA }
   | semicolon                    { SEMI }
   | integer as inum              { let num = float_of_string inum in
-                                   VARINT num }
+                                   Printf.printf "varint[%f]" num; VARINT num }
   | number as nnum               { let num = float_of_string nnum in
                                    NUM num }
   | little as lnum               { let num = float_of_string lnum in
                                    NUM num }
   | lparen                       { LPAREN }
   | rparen                       { RPAREN }
+  | lbrace                       { LBRACE }
+  | rbrace                       { RBRACE }
   | lbrack                       { LBRACK }
   | rbrack                       { RBRACK }
   | dollar                       { DOLLAR }
   | booltrue                     { BOOLTRUE }
   | boolfalse                    { BOOLFALSE }
-  | id as str                    { (* Printf.printf "ID[%s]" str; *)ID str }
+  | id as str                    { Printf.printf "ID[%s]" str; ID str }
   | eof                          { EOF }
   | _ as c                       { Printf.printf "Lexing error : Unknow character \'%c\'" c;exit 1}
 
 and comment = parse
-  | newline                      { Printf.printf "\n"; newline lexbuf; COMMENT !str_cmt}
-  | eof                          { COMMENT !str_cmt}
+  | newline                      { (* Printf.printf "//%s" !str_cmt; *) end_cmt lexbuf; COMMENT !str_cmt}
+  | eof                          { COMMENT !str_cmt ; }
   | _ as c                       { str_cmt := !str_cmt^(String.make 1 c); comment lexbuf }
+
+and doublestr = parse
+  | dquote                       { STR !str}
+  | dquote dquote                { str := !str^"\""; doublestr lexbuf }
+  | dquote quote                 { str := !str^"\'"; doublestr lexbuf }
+  | quote dquote                 { str := !str^"\""; doublestr lexbuf }
+  | quote quote                  { str := !str^"\'"; doublestr lexbuf }
+  | quote                        { failwith "Error : Heterogeneous string detected, starting with \" and ending with \'." }
+  | newline                      { failwith "Error : unexpected newline in a string." }
+  | eof                          { failwith "Error : unexpected end of file in a string." }
+  | _ as c                       { str := !str^(String.make 1 c); doublestr lexbuf }
+
+and simplestr = parse
+  | quote                        { STR !str}
+  | dquote dquote                { str := !str^"\""; simplestr lexbuf }
+  | dquote quote                 { str := !str^"\'"; simplestr lexbuf }
+  | quote dquote                 { str := !str^"\""; simplestr lexbuf }
+  | quote quote                  { str := !str^"\'"; simplestr lexbuf }
+  | dquote                       { failwith "Error : Heterogeneous string detected, starting with \' and ending with \"." }
+  | newline                      { failwith "Error : unexpected newline in a string." }
+  | eof                          { failwith "Error : unexpected end of file in a string." }
+  | _ as c                       { str := !str^(String.make 1 c); simplestr lexbuf }
 
 (* and matrix = parse *)
 (*   | spaces+ *)
