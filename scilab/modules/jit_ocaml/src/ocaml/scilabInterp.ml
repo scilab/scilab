@@ -2,6 +2,13 @@ open ScilabAst
 open ScilabContext
 open ScilabValue.TYPES
 
+(* Problems:
+  - an identifier of a function in some position is evaluated as a call to the
+    function (statements)
+  -
+
+*)
+
 type interp_result = ScilabValue.t array
 
 exception InterpFailed
@@ -53,6 +60,7 @@ let rec interp env exp =
           *)
         | _ -> [||]
       end
+
     | _ ->
       Printf.fprintf stderr "ScilabInterp: Don't know how to asssign to:\n%s" (ScilabAstPrinter.to_string left);
       raise InterpFailed
@@ -72,6 +80,11 @@ let rec interp env exp =
 
   | ConstExp (DoubleExp { doubleExp_value = n }) ->
     [| ScilabValue.double n |]
+
+  | ConstExp (FloatExp { floatExp_value = n }) ->
+    [| ScilabValue.float n |]
+
+  | ConstExp NilExp -> [| ScilabValue.empty |]
 
   | SeqExp list ->
     interp_sexp env list
@@ -96,18 +109,13 @@ let rec interp env exp =
         match init.(0) with
           List (start, step, stop) ->
             let ctx = getInstance () in
-
             let v = ref start in
             let cond = ref (ScilabValue.lt !v stop) in
-
             let env = { env with can_break = true; can_return = true } in
-
             while !cond  do
               try
                 put ctx name !v;
-
                 ignore_interp env body;
-
                 v :=  ScilabValue.add !v step;
                 cond := (ScilabValue.lt !v stop)
               with
@@ -123,6 +131,18 @@ let rec interp env exp =
           raise InterpFailed
 
     end
+
+  | ControlExp (IfExp ifexp) ->
+    let test = interp_one env ifexp.ifExp_test in
+    if ScilabValue.is_true test then
+      ignore_interp env ifexp.ifExp_then
+    else begin
+      match ifexp.ifExp_else with
+        None -> ()
+      | Some ifexp_else ->
+        ignore_interp env ifexp_else
+    end;
+    [||]
 
   | ListExp listExp ->
     let start = interp_one env listExp.listExp_start in

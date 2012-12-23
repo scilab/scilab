@@ -31,9 +31,6 @@ JIT_OCAML_CPP_SOURCES = \
 			src/cpp/scicaml_ast2string.cpp \
 			src/cpp/scicaml_string2ast.cpp
 
-#JIT_OCAML_C_SOURCES = \
-#			src/c/jit_callback.c
-
 libscijit_ocaml_la_CFLAGS = -I$(srcdir)/includes
 
 libscijit_ocaml_la_CPPFLAGS = \

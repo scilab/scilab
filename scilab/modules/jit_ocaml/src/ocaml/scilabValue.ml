@@ -19,6 +19,7 @@ module TYPES = struct
   and scalar =
     Int of int32
   | Double of float
+  | Float of float
   | Bool of bool
 
 end
@@ -44,6 +45,7 @@ let string_of_unicode s =
 let bool b = Scalar (Bool b)
 let int n = Scalar (Int n)
 let double d = Scalar (Double d)
+let float d = Scalar (Float d)
 let string s = String s
 
 let b = Buffer.create 1000
@@ -55,6 +57,7 @@ let rec buf_value v =
       match s with
         Int i -> Printf.bprintf b "int32(%ld)" i
       | Double d -> Printf.bprintf b "%f" d
+      | Float d -> Printf.bprintf b "%f" d
       | Bool true -> Buffer.add_char b 'T'
       | Bool false -> Buffer.add_char b 'F'
     end
@@ -99,6 +102,7 @@ let to_int x =
   match x with
     Int n -> n
   | Double d -> Int32.of_float d
+  | Float d -> Int32.of_float d
   | Bool _ -> assert false
 
 let add v1 v2 =
@@ -114,7 +118,9 @@ let add v1 v2 =
         | Int _, _
         | _, Int _ ->
           Scalar (Int (Int32.add (to_int s1) (to_int s2)))
-        | Double d1, Double d2 ->
+        | Float d1, Float d2 ->
+          Scalar (Float (d1 +. d2))
+        | (Double d1 | Float d1), (Double d2 | Float d2) ->
           Scalar (Double (d1 +. d2))
 (*        | _ ->
           Printf.fprintf stderr "ScilabValue.add %s %s not implemented\n%!"
@@ -126,3 +132,15 @@ let add v1 v2 =
     Printf.fprintf stderr "ScilabValue.add %s %s not implemented\n%!"
       (to_string v1) (to_string v2);
     raise NotImplemented
+
+let is_true v =
+  match v with
+  | Scalar (Bool b) -> b
+  | Scalar (Double 0. | Float 0. | Int 0l) -> false
+  | Scalar (Double _ | Float _ | Int _ ) -> true
+  | Matrix { matrix_dims = 0 } -> false
+  | Matrix _ -> true
+  | Macro _ -> assert false
+  | List _ -> assert false
+  | String _ -> assert false
+

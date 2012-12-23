@@ -18,6 +18,7 @@ module TYPES : sig
   and scalar =
     Int of int32
   | Double of float
+  | Float of float
   | Bool of bool
 
 end
@@ -31,9 +32,10 @@ val to_string : t -> string
 val bool : bool -> t
 val int : int32 -> t
 val double : float -> t
+val float : float -> t
 val string : string -> t
 
 
 val lt : t -> t -> bool
 val add : t -> t -> t
-
+val is_true : t -> bool

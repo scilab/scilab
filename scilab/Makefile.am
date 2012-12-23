@@ -114,12 +114,12 @@ scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la 
 if NEED_JAVA
 # Don't do it for scilab_cli_bin. We want to be able to call it without
 # the java libs
-	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
+        scilab_bin_LDADD += $(JAVA_JNI_LIBS)
 endif
 
 if IS_SOLARIS
 # The binary itself needs this dep
-	scilab_bin_LDADD += $(BLAS_LIBS)
+        scilab_bin_LDADD += $(BLAS_LIBS)
 endif
 
 if ENABLE_STATIC

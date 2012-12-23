@@ -67,12 +67,19 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 # Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
 @GUI_TRUE@am__append_4 = $(top_builddir)/modules/jvm/libscijvm.la
 
+# Don't do it for scilab_cli_bin. We want to be able to call it without
+# the java libs
+@NEED_JAVA_TRUE@am__append_5 = $(JAVA_JNI_LIBS)
+
+# The binary itself needs this dep
+@IS_SOLARIS_TRUE@am__append_6 = $(BLAS_LIBS)
+
 #-static
-@ENABLE_STATIC_TRUE@am__append_5 = scilab-static-bin
+@ENABLE_STATIC_TRUE@am__append_7 = scilab-static-bin
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_6 = localization
-@COMPILATION_TESTS_TRUE@am__append_7 = check-java
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_8 = localization
+@COMPILATION_TESTS_TRUE@am__append_9 = check-java
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
 	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
@@ -208,9 +215,12 @@ am_scilab_bin_OBJECTS = scilab_bin-scilab.$(OBJEXT) \
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
+@NEED_JAVA_TRUE@am__DEPENDENCIES_3 = $(am__DEPENDENCIES_1)
+@IS_SOLARIS_TRUE@am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1)
 scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(am__append_4) \
 	$(top_builddir)/modules/libscilab.la $(JIT_LIBS) \
-	$(am__DEPENDENCIES_1)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_3) \
+	$(am__DEPENDENCIES_4)
 scilab_bin_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
@@ -681,7 +691,8 @@ JIT_LIBS = \
   modules/jit_ocaml/libasmrun.a 
 
 scilab_bin_LDADD = $(COMMON_LIBS) $(am__append_4) \
-	$(top_builddir)/modules/libscilab.la $(JIT_LIBS) $(FLIBS)
+	$(top_builddir)/modules/libscilab.la $(JIT_LIBS) $(FLIBS) \
+	$(am__append_5) $(am__append_6)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
@@ -694,7 +705,7 @@ scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_6) $(am__append_7)
+TARGETS_ALL = macros $(am__append_8) $(am__append_9)
 
 # check is performed with scilab
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
@@ -1919,13 +1930,6 @@ modules/jit_ocaml/libasmrun.a:
 	$(MAKE) -C modules/jit_ocaml libasmrun.a
 modules/jit_ocaml/libunix.a:
 	$(MAKE) -C modules/jit_ocaml libunix.a
-
-# Don't do it for scilab_cli_bin. We want to be able to call it without
-# the java libs
-@NEED_JAVA_TRUE@	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
-
-# The binary itself needs this dep
-@IS_SOLARIS_TRUE@	scilab_bin_LDADD += $(BLAS_LIBS)
 
 all-local: $(TARGETS_ALL)
 
