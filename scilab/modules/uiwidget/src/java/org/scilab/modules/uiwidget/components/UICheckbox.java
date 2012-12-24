@@ -12,9 +12,10 @@
 
 package org.scilab.modules.uiwidget.components;
 
+import java.awt.event.ActionEvent;
 import java.util.Map;
 
-import javax.swing.Action;
+import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.JCheckBox;
 
@@ -22,11 +23,15 @@ import org.scilab.modules.uiwidget.StringConverters;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
 public class UICheckbox extends UIComponent {
 
     private JCheckBox checkbox;
     private String buttonGroup;
+    private AbstractAction clicklistener;
+    private String onclickAction;
+    private boolean onclickEnable = true;
 
     public UICheckbox(UIComponent parent) throws UIWidgetException {
         super(parent);
@@ -74,11 +79,46 @@ public class UICheckbox extends UIComponent {
         super.setUiStyle(style);
     }
 
-    public void setOnclick(Action action) {
-        checkbox.addActionListener(action);
-    }
-
     public void setHorizontalAlignment(UIButton.Alignment alignment) {
         checkbox.setHorizontalAlignment(alignment.value());
+    }
+
+    public void removeActionListener() {
+        if (clicklistener != null) {
+            checkbox.removeActionListener(clicklistener);
+            clicklistener = null;
+        }
+    }
+
+    public void remove() {
+        removeActionListener();
+        super.remove();
+    }
+
+    public String getOnclick() {
+        return onclickAction;
+    }
+
+    public void setOnclick(final String onclickAction) {
+        if (this.onclickAction == null) {
+            removeActionListener();
+            clicklistener = new AbstractAction() {
+                public void actionPerformed(ActionEvent e) {
+                    if (onclickEnable) {
+                        UIWidgetTools.execAction(UICheckbox.this, UICheckbox.this.onclickAction);
+                    }
+                }
+            };
+            checkbox.addActionListener(clicklistener);
+        }
+        this.onclickAction = onclickAction;
+    }
+
+    public boolean getOnclickEnable() {
+        return onclickEnable;
+    }
+
+    public void setOnclickEnable(boolean b) {
+        onclickEnable = b;
     }
 }
