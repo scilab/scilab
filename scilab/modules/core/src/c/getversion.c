@@ -66,6 +66,26 @@ wchar_t *getScilabVersionAsWideString(void)
     return os_wcsdup(SCI_VERSION_WIDE_STRING);
 }
 /*--------------------------------------------------------------------------*/
+int getScilabVersionMajor()
+{
+    return (int)SCI_VERSION_MAJOR;
+}
+/*--------------------------------------------------------------------------*/
+int getScilabVersionMinor()
+{
+    return (int)SCI_VERSION_MINOR;
+}
+/*--------------------------------------------------------------------------*/
+int getScilabVersionMaintenance()
+{
+    return (int)SCI_VERSION_MAINTENANCE;
+}
+/*--------------------------------------------------------------------------*/
+int getScilabVersionTimestamp()
+{
+    return (int)SCI_VERSION_TIMESTAMP;
+}
+/*--------------------------------------------------------------------------*/
 int* getModuleVersion(wchar_t* _pwstModule, int *sizeArrayReturned)
 {
     int *returnedArray = NULL;

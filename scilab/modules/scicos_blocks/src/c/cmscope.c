@@ -53,8 +53,7 @@ typedef struct
     {
         int *numberOfPoints;
         int *maxNumberOfPoints;
-        double **time;
-        double ***data;
+        double ***coordinates;
     } internal;
 
     struct
@@ -257,14 +256,20 @@ static sco_data *getScoData(scicos_block * block)
 
         sco = (sco_data *) MALLOC(sizeof(sco_data));
         if (sco == NULL)
+        {
             goto error_handler_sco;
+        }
 
         sco->internal.numberOfPoints = (int *) MALLOC(block->nin * sizeof(int));
         if (sco->internal.numberOfPoints == NULL)
+        {
             goto error_handler_numberOfPoints;
+        }
         sco->internal.maxNumberOfPoints = (int *) MALLOC(block->nin * sizeof(int));
         if (sco->internal.maxNumberOfPoints == NULL)
+        {
             goto error_handler_maxNumberOfPoints;
+        }
 
         for (i = 0; i < block->nin; i++)
         {
@@ -272,44 +277,38 @@ static sco_data *getScoData(scicos_block * block)
             sco->internal.maxNumberOfPoints[i] = block->ipar[2];
         }
 
-        sco->internal.data = (double ***)CALLOC(block->nin, sizeof(double **));
-        if (sco->internal.data == NULL)
-            goto error_handler_data;
+        sco->internal.coordinates = (double ***)CALLOC(block->nin, sizeof(double **));
+        if (sco->internal.coordinates == NULL)
+        {
+            goto error_handler_coordinates;
+        }
 
         for (i = 0; i < block->nin; i++)
         {
-            sco->internal.data[i] = (double **)CALLOC(block->insz[i], sizeof(double *));
-            if (sco->internal.data[i] == NULL)
-                goto error_handler_data_i;
+            sco->internal.coordinates[i] = (double **)CALLOC(block->insz[i], sizeof(double *));
+            if (sco->internal.coordinates[i] == NULL)
+            {
+                goto error_handler_coordinates_i;
+            }
         }
         for (i = 0; i < block->nin; i++)
         {
             for (j = 0; j < block->insz[i]; j++)
             {
-                sco->internal.data[i][j] = (double *)CALLOC(block->ipar[2], sizeof(double));
+                sco->internal.coordinates[i][j] = (double *)CALLOC(3 * block->ipar[2], sizeof(double));
 
-                if (sco->internal.data[i][j] == NULL)
-                    goto error_handler_data_ij;
-            }
-        }
-
-        sco->internal.time = (double **) MALLOC(block->nin * sizeof(double));
-        if (sco->internal.time == NULL)
-        {
-            goto error_handler_time;
-        }
-        for (i = 0; i < block->nin; i++)
-        {
-            sco->internal.time[i] = (double *)CALLOC(block->ipar[2], sizeof(double));
-            if (sco->internal.time[i] == NULL)
-            {
-                goto error_handler_time_i;
+                if (sco->internal.coordinates[i][j] == NULL)
+                {
+                    goto error_handler_coordinates_ij;
+                }
             }
         }
 
         sco->scope.periodCounter = (int *) CALLOC(block->nin, sizeof(int));
         if (sco->scope.periodCounter == NULL)
+        {
             goto error_handler_periodCounter;
+        }
 
         sco->scope.cachedFigureUID = NULL;
         sco->scope.cachedAxeUID = (char **)CALLOC(block->nin, sizeof(char *));
@@ -329,31 +328,24 @@ static sco_data *getScoData(scicos_block * block)
      * Error management (out of normal flow)
      */
 error_handler_periodCounter:
-error_handler_time_i:
-    for (k = 0; k < i; k++)
-    {
-        FREE(sco->internal.time[i]);
-    }
     i = block->nin - 1;
     j = 2 ^ 31;
-    FREE(sco->internal.time);
-error_handler_time:
-error_handler_data_ij:
+error_handler_coordinates_ij:
     for (k = 0; k < i; k++)
     {
         for (l = 0; l < j && l < block->insz[i]; l++)
         {
-            FREE(sco->internal.data[k][l]);
+            FREE(sco->internal.coordinates[k][l]);
         }
     }
     i = block->nin - 1;
-error_handler_data_i:
+error_handler_coordinates_i:
     for (j = 0; j < i; j++)
     {
-        FREE(sco->internal.data[i]);
+        FREE(sco->internal.coordinates[i]);
     }
-    FREE(sco->internal.data);
-error_handler_data:
+    FREE(sco->internal.coordinates);
+error_handler_coordinates:
     FREE(sco->internal.maxNumberOfPoints);
 error_handler_maxNumberOfPoints:
     FREE(sco->internal.numberOfPoints);
@@ -376,17 +368,11 @@ static void freeScoData(scicos_block * block)
         {
             for (j = 0; j < block->insz[i]; j++)
             {
-                FREE(sco->internal.data[i][j]);
+                FREE(sco->internal.coordinates[i][j]);
             }
-            FREE(sco->internal.data[i]);
+            FREE(sco->internal.coordinates[i]);
         }
-        FREE(sco->internal.data);
-
-        for (i = 0; i < block->nin; i++)
-        {
-            FREE(sco->internal.time[i]);
-        }
-        FREE(sco->internal.time);
+        FREE(sco->internal.coordinates);
 
         for (i = 0; i < block->nin; i++)
         {
@@ -405,39 +391,41 @@ static void freeScoData(scicos_block * block)
 static sco_data *reallocScoData(scicos_block * block, int input, int numberOfPoints)
 {
     sco_data *sco = (sco_data *) * (block->work);
-    int i, j;
+    int i;
 
     double *ptr;
     int setLen;
     int previousNumberOfPoints = sco->internal.maxNumberOfPoints[input];
+    int newPoints = numberOfPoints - previousNumberOfPoints;
 
     LOG("%s: %s at %d to %d\n", "cmscope", "reallocScoData", input, numberOfPoints);
 
-    for (i = 0; i < block->nin; i++)
+    for (i = 0; i < block->insz[input]; i++)
     {
-        for (j = 0; j < block->insz[i]; j++)
+        ptr = (double *)REALLOC(sco->internal.coordinates[input][i], 3 * numberOfPoints * sizeof(double));
+        if (ptr == NULL)
         {
-            ptr = (double *)REALLOC(sco->internal.data[i][j], numberOfPoints * sizeof(double));
-            if (ptr == NULL)
-                goto error_handler;
-
-            for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
-            {
-                ptr[previousNumberOfPoints + setLen] = ptr[previousNumberOfPoints - 1];
-            }
-            sco->internal.data[i][j] = ptr;
+            goto error_handler;
         }
-    }
 
-    ptr = (double *)REALLOC(sco->internal.time[input], numberOfPoints * sizeof(double));
-    if (ptr == NULL)
-        goto error_handler;
+        // clear the last points, the Z-axis values
+        memset(ptr + 2 * numberOfPoints, 0, numberOfPoints * sizeof(double));
 
-    for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
-    {
-        ptr[previousNumberOfPoints + setLen] = ptr[previousNumberOfPoints - 1];
+        // memcpy existing Y-axis values (use memmove to handle memory overlapping)
+        memmove(ptr + numberOfPoints, ptr + previousNumberOfPoints, previousNumberOfPoints * sizeof(double));
+
+        // then set the last points to the last values for Y-axis and X-axis values
+        for (setLen = newPoints - 1; setLen >= 0; setLen--)
+        {
+            ptr[numberOfPoints + previousNumberOfPoints + setLen] = ptr[numberOfPoints + previousNumberOfPoints - 1];
+        }
+        for (setLen = newPoints - 1; setLen >= 0; setLen--)
+        {
+            ptr[previousNumberOfPoints + setLen] = ptr[previousNumberOfPoints - 1];
+        }
+
+        sco->internal.coordinates[input][i] = ptr;
     }
-    sco->internal.time[input] = ptr;
 
     sco->internal.maxNumberOfPoints[input] = numberOfPoints;
     return sco;
@@ -502,15 +490,19 @@ static void appendData(scicos_block * block, int input, double t, double *data)
 
         for (i = 0; i < block->insz[input]; i++)
         {
+            // X-axis values first
             for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
             {
-                sco->internal.data[input][i][numberOfPoints + setLen] = data[i];
+                sco->internal.coordinates[input][i][numberOfPoints + setLen] = t;
             }
-        }
 
-        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
-        {
-            sco->internal.time[input][numberOfPoints + setLen] = t;
+            // then Y-axis values
+            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+            {
+                sco->internal.coordinates[input][i][maxNumberOfPoints + numberOfPoints + setLen] = data[i];
+            }
+
+            // do not update Z-axis values, always cleared
         }
 
         sco->internal.numberOfPoints[input]++;
@@ -526,24 +518,20 @@ static BOOL pushData(scicos_block * block, int input, int row)
     double *data;
     sco_data *sco;
 
-    BOOL result = TRUE;
-
     pFigureUID = getFigure(block);
     pAxeUID = getAxe(pFigureUID, block, input);
     pPolylineUID = getPolyline(pAxeUID, block, input, row);
 
     sco = getScoData(block);
     if (sco == NULL)
+    {
         return FALSE;
-
+    }
 
     // select the right input and row
-    data = sco->internal.data[input][row];
+    data = sco->internal.coordinates[input][row];
 
-    result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_X__, sco->internal.time[input], jni_double_vector, sco->internal.maxNumberOfPoints[input]);
-    result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_Y__, data, jni_double_vector, sco->internal.maxNumberOfPoints[input]);
-
-    return result;
+    return setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_COORDINATES__, data, jni_double_vector, sco->internal.maxNumberOfPoints[input]);
 }
 
 /*****************************************************************************
@@ -741,7 +729,6 @@ static char *getAxe(char const* pFigureUID, scicos_block * block, int input)
 static char *getPolyline(char *pAxeUID, scicos_block * block, int input, int row)
 {
     char *pPolyline;
-    double d__0 = 0.0;
     BOOL b__true = TRUE;
 
     int color;
@@ -789,9 +776,6 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int input, int row
             int polylineSize[2] = { 1, block->ipar[2] };
             setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
         }
-
-        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_X__, &d__0, jni_double_vector, 1);
-        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_Y__, &d__0, jni_double_vector, 1);
 
         // ipar=[win;size(in,'*');N;wpos(:);wdim(:);in(:);clrs(:);heritance]
         //        1     1         1   2       2      nin   nin       1
@@ -875,6 +859,5 @@ static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounte
 
     pFigureUID = getFigure(block);
     pAxeUID = getAxe(pFigureUID, block, input);
-
     return setGraphicObjectProperty(pAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 }

@@ -1,0 +1,38 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Scilab Enterprises - Vincent COVUERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- WINDOWS ONLY -->
+//
+// <-- Non-regression test for bug 12097 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=12097
+//
+// <-- Short Description -->
+// Scilab wrongly detected DLL platform information.
+
+// Bug fix is tested through the ref file :
+// Ref file must not contain any message about platform.
+
+// bug_12097_x86.dll & bug_12097_x64.dll come from DDE toolbox v0.4 (gw_dde.dll renamed)
+
+curPath = pwd();
+testPath = "SCI\modules\dynamic_link\tests\nonreg_tests\";
+cd(testPath);
+
+refMsg = msprintf(_("%s: The shared archive was not loaded: %s\n"), "link", _("Unknown Error"));
+if win64() then
+    cmd = "link(""bug_12097_x64.dll"")";
+else
+    cmd = "link(""bug_12097_x86.dll"")";
+end
+
+assert_checkerror(cmd, refMsg, 236);
+cd(curPath);
+

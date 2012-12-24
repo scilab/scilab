@@ -48,7 +48,7 @@ typedef struct
     {
         int numberOfPoints;
         int maxNumberOfPoints;
-        double ***data;
+        double **coordinates;
     } internal;
 
     struct
@@ -208,7 +208,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy3d(scicos_block * block, scicos_flag flag)
 static sco_data *getScoData(scicos_block * block)
 {
     sco_data *sco = (sco_data *) * (block->work);
-    int i, j, k, l;
+    int i, j;
 
     if (sco == NULL)
     {
@@ -218,29 +218,26 @@ static sco_data *getScoData(scicos_block * block)
 
         sco = (sco_data *) MALLOC(sizeof(sco_data));
         if (sco == NULL)
+        {
             goto error_handler_sco;
+        }
 
         sco->internal.numberOfPoints = 0;
         sco->internal.maxNumberOfPoints = block->ipar[2];
 
-        sco->internal.data = (double ***)CALLOC(block->nin, sizeof(double **));
-        if (sco->internal.data == NULL)
-            goto error_handler_data;
-
-        for (i = 0; i < block->nin; i++)
+        sco->internal.coordinates = (double **)CALLOC(block->insz[0], sizeof(double *));
+        if (sco->internal.coordinates == NULL)
         {
-            sco->internal.data[i] = (double **)CALLOC(block->insz[i], sizeof(double *));
-            if (sco->internal.data[i] == NULL)
-                goto error_handler_data_i;
+            goto error_handler_coordinates;
         }
-        for (i = 0; i < block->nin; i++)
-        {
-            for (j = 0; j < block->insz[i]; j++)
-            {
-                sco->internal.data[i][j] = (double *)CALLOC(block->ipar[2], sizeof(double));
 
-                if (sco->internal.data[i][j] == NULL)
-                    goto error_handler_data_ij;
+        for (i = 0; i < block->insz[0]; i++)
+        {
+            sco->internal.coordinates[i] = (double *)CALLOC(3 * block->ipar[2], sizeof(double));
+
+            if (sco->internal.coordinates[i] == NULL)
+            {
+                goto error_handler_coordinates_i;
             }
         }
 
@@ -258,22 +255,13 @@ static sco_data *getScoData(scicos_block * block)
      * Error management (out of normal flow)
      */
 
-error_handler_data_ij:
-    for (k = 0; k < i; k++)
-    {
-        for (l = 0; l < j; l++)
-        {
-            FREE(sco->internal.data[k][l]);
-        }
-    }
-    i = block->nin - 1;
-error_handler_data_i:
+error_handler_coordinates_i:
     for (j = 0; j < i; j++)
     {
-        FREE(sco->internal.data[i]);
+        FREE(sco->internal.coordinates[i]);
     }
-    FREE(sco->internal.data);
-error_handler_data:
+    FREE(sco->internal.coordinates);
+error_handler_coordinates:
     FREE(sco);
 error_handler_sco:
     // allocation error
@@ -284,20 +272,15 @@ error_handler_sco:
 static void freeScoData(scicos_block * block)
 {
     sco_data *sco = (sco_data *) * (block->work);
-    int i, j;
+    int i;
 
     if (sco != NULL)
     {
-        for (i = 0; i < block->nin; i++)
+        for (i = 0; i < block->insz[0]; i++)
         {
-            for (j = 0; j < block->insz[i]; j++)
-            {
-                FREE(sco->internal.data[i][j]);
-            }
-            FREE(sco->internal.data[i]);
+            FREE(sco->internal.coordinates[i]);
         }
-
-        FREE(sco->internal.data);
+        FREE(sco->internal.coordinates);
 
         for (i = 0; i < block->insz[0]; i++)
         {
@@ -325,19 +308,19 @@ static void appendData(scicos_block * block, double *x, double *y, double *z)
      */
     if (sco != NULL && numberOfPoints >= maxNumberOfPoints)
     {
-        unsigned int setLen = (unsigned int)maxNumberOfPoints - 1;
+        int setLen = maxNumberOfPoints - 1;
 
         // on a full scope, push data
         for (i = 0; i < block->insz[0]; i++)
         {
-            memmove(sco->internal.data[0][i], &sco->internal.data[0][i][1], setLen * sizeof(double));
-            sco->internal.data[0][i][setLen] = x[i];
+            memmove(sco->internal.coordinates[i], sco->internal.coordinates[i] + 1, setLen * sizeof(double));
+            sco->internal.coordinates[i][setLen] = x[i];
 
-            memmove(sco->internal.data[1][i], &sco->internal.data[1][i][1], setLen * sizeof(double));
-            sco->internal.data[1][i][setLen] = y[i];
+            memmove(sco->internal.coordinates[i] + maxNumberOfPoints, sco->internal.coordinates[i] + maxNumberOfPoints + 1, setLen * sizeof(double));
+            sco->internal.coordinates[i][maxNumberOfPoints + setLen] = y[i];
 
-            memmove(sco->internal.data[2][i], &sco->internal.data[2][i][1], setLen * sizeof(double));
-            sco->internal.data[2][i][setLen] = z[i];
+            memmove(sco->internal.coordinates[i] + 2 * maxNumberOfPoints, sco->internal.coordinates[i] + 2 * maxNumberOfPoints + 1, setLen * sizeof(double));
+            sco->internal.coordinates[i][2 * maxNumberOfPoints + setLen] = z[i];
         }
 
         // then return
@@ -355,9 +338,17 @@ static void appendData(scicos_block * block, double *x, double *y, double *z)
         {
             for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
             {
-                sco->internal.data[0][i][numberOfPoints + setLen] = x[i];
-                sco->internal.data[1][i][numberOfPoints + setLen] = y[i];
-                sco->internal.data[2][i][numberOfPoints + setLen] = z[i];
+                sco->internal.coordinates[i][numberOfPoints + setLen] = x[i];
+            }
+
+            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+            {
+                sco->internal.coordinates[i][maxNumberOfPoints + numberOfPoints + setLen] = y[i];
+            }
+
+            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+            {
+                sco->internal.coordinates[i][2 * maxNumberOfPoints + numberOfPoints + setLen] = z[i];
             }
         }
 
@@ -371,12 +362,8 @@ static BOOL pushData(scicos_block * block, int row)
     char *pAxeUID;
     char *pPolylineUID;
 
-    double *x;
-    double *y;
-    double *z;
+    double *coordinates;
     sco_data *sco;
-
-    BOOL result = TRUE;
 
     pFigureUID = getFigure(block);
     pAxeUID = getAxe(pFigureUID, block);
@@ -384,18 +371,14 @@ static BOOL pushData(scicos_block * block, int row)
 
     sco = getScoData(block);
     if (sco == NULL)
+    {
         return FALSE;
+    }
 
     // select the right input and row
-    x = sco->internal.data[0][row];
-    y = sco->internal.data[1][row];
-    z = sco->internal.data[2][row];
+    coordinates = sco->internal.coordinates[row];
 
-    result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_X__, x, jni_double_vector, sco->internal.maxNumberOfPoints);
-    result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_Y__, y, jni_double_vector, sco->internal.maxNumberOfPoints);
-    result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_Z__, z, jni_double_vector, sco->internal.maxNumberOfPoints);
-
-    return result;
+    return setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_COORDINATES__, coordinates, jni_double_vector, sco->internal.maxNumberOfPoints);
 }
 
 /*****************************************************************************

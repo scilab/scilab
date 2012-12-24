@@ -10,3 +10,7 @@ setformat
 getieee
 getformat
 getformatwidth
+getScilabVersionMajor
+getScilabVersionMinor
+getScilabVersionMaintenance
+getScilabVersionTimestamp

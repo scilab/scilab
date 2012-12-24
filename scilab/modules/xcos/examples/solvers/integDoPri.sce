@@ -1,11 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - Scilab Enterprises - Paul Bignier
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING,
-// which you should have received as part of this distribution.
-// The terms are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 // Run with exec("SCI/modules/xcos/examples/solvers/integDoPri.sce");
 
@@ -15,7 +11,7 @@ loadXcosLibs();
 importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
 scs_m.props.tf = 30000;
 
-solverName=["BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functional", "Dormand-Price"];
+solverName=["BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functional", "Dormand-Prince"];
 
 for solver=1:5
 

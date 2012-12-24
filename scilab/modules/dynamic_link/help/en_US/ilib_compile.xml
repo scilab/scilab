@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ilib_compile">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" scilab:needs-examples="no" xml:lang="en" xml:id="ilib_compile">
     <refnamediv>
         <refname>ilib_compile</refname>
         <refpurpose>ilib_build utility: executes the Makefile produced by ilib_gen_Make</refpurpose>
@@ -60,6 +60,9 @@
         <title>Description</title>
         <para>
             Utility function used by <literal>ilib_build</literal>
+        </para>
+        <para>
+            <warning>This function should not be used directly.</warning>
         </para>
         <para>
             This executes the Makefile produced by <literal>ilib_gen_Make</literal>, compiles

@@ -16,7 +16,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_REVISION($Revision$)dnl
 AC_INIT([Scilab],[6],[http://bugzilla.scilab.org/])
-AC_PREREQ(2.62)
+AC_PREREQ(2.68)
 AC_CONFIG_MACRO_DIR([m4/])
 
 SCI_BUILDDIR="`pwd`"
@@ -889,14 +889,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 SCIRENDERER=$PACKAGE_JAR_FILE
                 AC_SUBST(SCIRENDERER)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[0.5.8],[PackageInfo.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.0.3],[PackageInfo.VERSION])
 
                # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.0],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.1],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")

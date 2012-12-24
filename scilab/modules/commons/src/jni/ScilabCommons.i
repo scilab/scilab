@@ -22,6 +22,7 @@
 #include "../../../system_env/includes/sci_tmpdir.h"
 #include "../../../fileio/includes/createtempfilename.h"
 #include "../../../localization/includes/setgetlanguage.h"
+#include "../../../core/includes/getversion.h"
 #include "../../../core/includes/setieee.h"
 #include "../../../core/includes/setformat.h"
 %}
@@ -171,3 +172,39 @@ char * getformat();
    */
 public";
 int getformatwidth();
+
+/* JavaDoc */
+%javamethodmodifiers getScilabVersionMajor() "
+ /**
+   * returns the Scilab version major number 
+   * @return version major
+   */
+public";
+int getScilabVersionMajor();
+
+/* JavaDoc */
+%javamethodmodifiers getScilabVersionMinor() "
+ /**
+   * returns the Scilab version minor number 
+   * @return version minor
+   */
+public";
+int getScilabVersionMinor();
+
+/* JavaDoc */
+%javamethodmodifiers getScilabVersionMaintenance() "
+ /**
+   * returns the Scilab version maintenance number 
+   * @return version maintenance
+   */
+public";
+int getScilabVersionMaintenance();
+
+/* JavaDoc */
+%javamethodmodifiers getScilabVersionTimestamp() "
+ /**
+   * returns the Scilab version timestamp number 
+   * @return version timestamp
+   */
+public";
+int getScilabVersionTimestamp();
