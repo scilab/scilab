@@ -55,6 +55,26 @@ int *getScilabVersion(int *sizeArrayReturned)
     return returnedArray;
 }
 /*--------------------------------------------------------------------------*/
+int getScilabVersionMajor()
+{
+    return (int)SCI_VERSION_MAJOR;
+}
+/*--------------------------------------------------------------------------*/
+int getScilabVersionMinor()
+{
+    return (int)SCI_VERSION_MINOR;
+}
+/*--------------------------------------------------------------------------*/
+int getScilabVersionMaintenance()
+{
+    return (int)SCI_VERSION_MAINTENANCE;
+}
+/*--------------------------------------------------------------------------*/
+int getScilabVersionTimestamp()
+{
+    return (int)SCI_VERSION_TIMESTAMP;
+}
+/*--------------------------------------------------------------------------*/
 char *getScilabVersionAsString(void)
 {
     return strdup(SCI_VERSION_STRING);

@@ -258,7 +258,7 @@
         <para>
             The objective function is expected to have the following header.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 function y = f ( x )
  ]]></programlisting>
         <para>
@@ -269,7 +269,7 @@ function y = f ( x )
         </para>
     </refsection>
     <refsection>
-        <title>A simple example</title>
+        <title>Examples</title>
         <para>
             In the following example, we search the minimum of the
             Rastriging function. This function has many local minimas, but only
@@ -300,6 +300,26 @@ mprintf("value of the objective function = %f\n", f_opt);
 t = 1:length(sa_mean_list);
 plot(t,sa_mean_list,"r",t,sa_var_list,"g");
  ]]></programlisting>
+        <scilab:image>
+function y = rastrigin(x)
+  y = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
+endfunction
+    
+x0          = [2 2];
+Proba_start = 0.7;
+It_Pre      = 100;
+It_extern   = 100;
+It_intern   = 1000;
+x_test = neigh_func_default(x0);
+
+T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre);
+
+Log = %T;
+[x_opt, f_opt, sa_mean_list, sa_var_list] = optim_sa(x0, rastrigin, It_extern, It_intern, T0, Log);
+
+t = 1:length(sa_mean_list);
+plot(t,sa_mean_list,"r",t,sa_var_list,"g");
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Configuring a neighbour function</title>
@@ -344,7 +364,7 @@ saparams = add_param(saparams,"neigh_func", myneigh_func);
 T0 = compute_initial_temp(x0, quad, Proba_start, It_Pre, saparams);
 Log = %f;
 // This should produce x_opt = [4 3]
-[x_opt, f_opt] = optim_sa(x0, quad, It_extern, It_intern, T0, Log,saparams);
+[x_opt, f_opt] = optim_sa(x0, quad, It_extern, It_intern, T0, Log,saparams)
  ]]></programlisting>
     </refsection>
     <refsection>
@@ -364,8 +384,10 @@ Log = %f;
 
   x0 = [-1 -1];
   p = [4 3];
+  Proba_start = 0.7;
+  It_Pre      = 100;
   T0 = compute_initial_temp(x0, list(quadp,p) , Proba_start, It_Pre);
-  [x_opt, f_opt] = optim_sa(x0, list(quadp,p) , 10, 1000, T0, %f);
+  [x_opt, f_opt] = optim_sa(x0, list(quadp,p) , 10, 1000, T0, %f)
  ]]></programlisting>
     </refsection>
     <refsection>
@@ -414,7 +436,7 @@ T0 = compute_initial_temp(x0, quad , 0.7, 100, saparams);
             if we had not initialize the seed of the uniform random number generator, 
             we would have produced a different result.
         </para>
-        <programlisting role="example">
+        <programlisting role="no-scilab-exec">
             Iter = #1, 	 x_best=[-1.000000 -1.000000], 	 f_best = 4.100000e+001, 	 T = 1.453537e+000
             Iter = #2, 	 x_best=[-0.408041 -0.318262], 	 f_best = 3.044169e+001, 	 T = 1.308183e+000
             Iter = #3, 	 x_best=[-0.231406 -0.481078], 	 f_best = 3.002270e+001, 	 T = 1.177365e+000

@@ -57,6 +57,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
+import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.event.DockingEvent;
@@ -76,10 +77,12 @@ import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
+import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 import org.scilab.modules.gui.bridge.uiimage.SwingScilabUiImage;
@@ -1139,6 +1142,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     @Override
     public void setMenuBar(MenuBar newMenuBar) {
+        if (this.menuBar != null) {
+            ((SwingScilabMenuBar) this.menuBar.getAsSimpleMenuBar()).close();
+        }
         this.menuBar = newMenuBar;
     }
 
@@ -1160,6 +1166,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     @Override
     public void setToolBar(ToolBar newToolBar) {
+        if (this.toolBar != null) {
+            ((SwingScilabToolBar) this.toolBar.getAsSimpleToolBar()).close();
+        }
         this.toolBar = newToolBar;
     }
 
@@ -1325,10 +1334,11 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         setInfoBar(null);
         setTitlebar(null);
         removeAll();
-        setActive(false);
+        //setActive(false);
 
         scrolling = null;
         contentPane = null;
+        DockingManager.unregisterDockable((Component) this);
 
         // without this children canvas are not released.
         Container dummyContainer = new Container();
@@ -1433,9 +1443,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         for (int kChild = 0; kChild < children.length; kChild++) {
             int childType = (Integer) GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
             if (childType == __GO_UIMENU__
-                    || childType == __GO_UIPARENTMENU__
-                    || childType == __GO_UICHILDMENU__
-                    || childType == __GO_UICHECKEDMENU__) {
+                || childType == __GO_UIPARENTMENU__
+                || childType == __GO_UICHILDMENU__
+                || childType == __GO_UICHECKEDMENU__) {
                 String cb = (String) GraphicController.getController().getProperty(children[kChild], __GO_CALLBACK__);
                 SwingView.getFromId(children[kChild]).update(__GO_CALLBACK__, replaceFigureID(cb, parentFigureId));
                 String[] menuChildren = (String[]) GraphicController.getController().getProperty(children[kChild], __GO_CHILDREN__);

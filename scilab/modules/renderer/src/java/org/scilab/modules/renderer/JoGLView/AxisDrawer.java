@@ -161,14 +161,14 @@ public class AxisDrawer {
      */
     private Vector3d computeTicksDirection(Axis.TicksDirection direction) {
         switch (direction) {
-            case TOP:
-                return new Vector3d(0, +1, 0);
-            case BOTTOM:
-                return new Vector3d(0, -1, 0);
-            case LEFT:
-                return new Vector3d(-1, 0, 0);
-            default:
-                return new Vector3d(+1, 0, 0);
+        case TOP:
+            return new Vector3d(0, +1, 0);
+        case BOTTOM:
+            return new Vector3d(0, -1, 0);
+        case LEFT:
+            return new Vector3d(-1, 0, 0);
+        default:
+            return new Vector3d(+1, 0, 0);
         }
     }
 
@@ -347,7 +347,7 @@ public class AxisDrawer {
             // 0 <= value <= 1
             // Should find right index through given labels.
             String[] ticksLabel = axis.getTicksLabels();
-            int index = (int) (value * (ticksLabel.length - 1));
+            int index = (int) Math.round(value * (ticksLabel.length - 1));
             if ((index < 0) || (index > ticksLabel.length)) {
                 return null;
             } else {

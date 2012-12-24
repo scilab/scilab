@@ -68,7 +68,7 @@ BOOL isDllW(const wchar_t *dllfilename)
     PIMAGE_NT_HEADERS peHeader = getPEHeader(dllfilename);
     if (peHeader)
     {
-        return (peHeader->FileHeader.Characteristics & IMAGE_FILE_DLL);
+        return ((peHeader->FileHeader.Characteristics & IMAGE_FILE_DLL) == IMAGE_FILE_DLL);
     }
     return FALSE;
 }
@@ -78,7 +78,7 @@ BOOL isX64DllW(const wchar_t *dllfilename)
     PIMAGE_NT_HEADERS peHeader = getPEHeader(dllfilename);
     if (peHeader)
     {
-        return (peHeader->FileHeader.Machine & IMAGE_FILE_MACHINE_AMD64);
+        return ((peHeader->FileHeader.Machine & IMAGE_FILE_MACHINE_AMD64) == IMAGE_FILE_MACHINE_AMD64);
     }
     return FALSE;
 }
@@ -88,7 +88,7 @@ BOOL isX86DllW(const wchar_t *dllfilename)
     PIMAGE_NT_HEADERS peHeader = getPEHeader(dllfilename);
     if (peHeader)
     {
-        return (peHeader->FileHeader.Machine & IMAGE_FILE_MACHINE_I386);
+        return ((peHeader->FileHeader.Machine & IMAGE_FILE_MACHINE_I386) == IMAGE_FILE_MACHINE_I386);
     }
     return FALSE;
 }

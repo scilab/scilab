@@ -325,7 +325,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Arc arc) {
-        if (arc.isValid() && arc.getVisible()) {
+	if (arc.isValid() && arc.getVisible()) {
             axesDrawer.enableClipping(currentAxes, arc.getClipProperty());
             try {
                 contouredObjectDrawer.draw(arc, currentAxes.getViewAsEnum() == ViewType.VIEW_2D);
@@ -371,15 +371,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Figure figure) {
-        synchronized (figure) {
-            /** Set the current {@see ColorMap}. */
-            colorMap = figure.getColorMap();
-
-            drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
-            drawingTools.clearDepthBuffer();
-            if (figure.getVisible() && figure.getImmediateDrawing()) {
-                askAcceptVisitor(figure.getChildren());
-            }
+	synchronized (figure) {
+	    /** Set the current {@see ColorMap}. */
+	    colorMap = figure.getColorMap();
+	    drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
+	    drawingTools.clearDepthBuffer();
+	    if (figure.getVisible() && figure.getImmediateDrawing()) {
+		askAcceptVisitor(figure.getChildren());
+	    }
         }
     }
 
@@ -853,12 +852,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
 
                 if (isImmediateDrawing(id)) {
-                    canvas.redraw();
+		    if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property) {
+			canvas.redrawAndWait();
+		    } else {
+			canvas.redraw();
+		    }
                 }
             }
 
             if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property && !isImmediateDrawing(id)) {
-                canvas.waitImage();
+		canvas.waitImage();
             }
 
         } catch (OutOfMemoryException e) {

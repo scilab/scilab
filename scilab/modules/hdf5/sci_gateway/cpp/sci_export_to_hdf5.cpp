@@ -10,6 +10,7 @@
 *
 */
 
+#include <hdf5.h>
 extern "C"
 {
 #include <string.h>

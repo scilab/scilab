@@ -247,6 +247,8 @@ static int CVYddNorm(CVodeMem cv_mem, realtype hg, realtype *yddnrm);
 
 static int CVStep(CVodeMem cv_mem);
 static int CVStepDoPri(CVodeMem cv_mem);
+static int CVStepExpRK(CVodeMem cv_mem);
+static int CVStepImpRK(CVodeMem cv_mem);
 
 static int CVsldet(CVodeMem cv_mem);
 
@@ -336,7 +338,7 @@ void *CVodeCreate(int lmm, int iter)
 
   /* Test inputs */
 
-  if ((lmm != CV_ADAMS) && (lmm != CV_BDF) && (lmm != CV_DOPRI)) { /* Integration mode : ADAMS, BDF or DOPRI */
+  if ((lmm != CV_ADAMS) && (lmm != CV_BDF) && (lmm != CV_DOPRI) && (lmm != CV_ExpRK) && (lmm != CV_ImpRK)) { /* Integration mode : ADAMS, BDF or RK-based */
     CVProcessError(NULL, 0, "CVODE", "CVodeCreate", MSGCV_BAD_LMM);
     return(NULL);
   }
@@ -355,8 +357,14 @@ void *CVodeCreate(int lmm, int iter)
 
   maxord = (lmm == CV_ADAMS) ? ADAMS_Q_MAX : BDF_Q_MAX;
 
-  /* If Runge-Kutta is selected, then maxord = 9 to use the 7 extra vectors allocated (zn[2, 3, 4, 5, 6, 7, 8]) */
+  /* If Dormand-Prince is selected, then maxord = 8 to use the 7 extra vectors allocated (zn[2, 3, 4, 5, 6, 7, 8]) */
   maxord = (lmm == CV_DOPRI) ? 8 : maxord;
+
+  /* If Runge-Kutta is selected, then maxord = 1 */
+  maxord = (lmm == CV_ExpRK) ? 1 : maxord;
+
+  /* If implicit Runge-Kutta is selected, then maxord = 4 to use the 3 extra vectors allocated (zn[2, 3, 4]) */
+  maxord = (lmm == CV_ImpRK) ? 4 : maxord;
 
   /* copy input parameters into cv_mem */
   cv_mem->cv_lmm  = lmm;
@@ -1291,7 +1299,7 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
     }
 
     /* Set initial h (from H0 or CVHin). 
-       If Dormand-Price is selected, then we choose to set h to hmax (= 1/hmax_inv). */
+       If an RK-based method is selected, then we choose to set h to hmax (= 1/hmax_inv). */
 
     if ((lmm == CV_ADAMS) || (lmm == CV_BDF)) {
     h = hin;
@@ -1538,7 +1546,7 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
       }
 
     } /* end of istop tests block */
-    if (lmm==CV_DOPRI) mxstep = CVHinFixed(cv_mem, tout, tret);
+    if ((lmm==CV_DOPRI) || (lmm==CV_ExpRK) || (lmm==CV_ImpRK)) mxstep = CVHinFixed(cv_mem, tout, tret);
   } /* end stopping tests block */  
 
   /*
@@ -1616,10 +1624,19 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
     }
 
     /* Call CVStep to take a step */
-    if (lmm == CV_DOPRI)
-    kflag = CVStepDoPri(cv_mem);
-	else
+    switch (lmm) {
+    case CV_DOPRI:
+        kflag = CVStepDoPri(cv_mem);
+        break;
+    case CV_ExpRK:
+        kflag = CVStepExpRK(cv_mem);
+        break;
+    case CV_ImpRK:
+        kflag = CVStepImpRK(cv_mem);
+        break;
+    default:
 	kflag = CVStep(cv_mem);
+    }
 
     /* Process failed step cases, and exit loop */
     if (kflag != CV_SUCCESS) {
@@ -2200,7 +2217,7 @@ static int CVHin(CVodeMem cv_mem, realtype tout)
  * - if it is divisible by hmax, then set h = hmax.
  * - if it is not, then "add an integration point" by setting h < hmax, just enough to fit the interval
  *
- * Dormand-Price being a fixed step size method, we know the maximum number of steps to take.
+ * RK-based methods using Fixed-size step, we know the maximum number of steps to take.
  * This procedure returns that number (minus 2 because nstloc starts at 0).
  */
 
@@ -2386,7 +2403,7 @@ static int CVStep(CVodeMem cv_mem)
 /*
  * CVStepDoPri
  *
- * This routine performs one internal cvode step using the Dormand-Price method, from tn to tn + h.
+ * This routine performs one internal cvode step using the Dormand-Prince 4(5) method, from tn to tn + h.
  * Proceed to computing the K[i] coefficients, build the final solution, increment tn and return CV_SUCCESS.
  *
  * In order to temporarily store the results, we use tempv and ftemp.
@@ -2476,11 +2493,11 @@ static int CVStepDoPri(CVodeMem cv_mem)
 
   /* Check for errors in the evaluations of f thanks to retval */
   if (retval < 0) {
-    CVProcessError(cv_mem, CV_RHSFUNC_FAIL, "Dormand-Price", "CVStepDoPri", MSGCV_RHSFUNC_FAILED, tn);
+    CVProcessError(cv_mem, CV_RHSFUNC_FAIL, "Dormand-Prince", "CVStepDoPri", MSGCV_RHSFUNC_FAILED, tn);
     return(CV_RHSFUNC_FAIL);
   }
   if (retval > 0) {
-    CVProcessError(cv_mem, CV_FIRST_RHSFUNC_ERR, "Dormand-Price", "CVStepDoPri", MSGCV_RHSFUNC_FIRST);
+    CVProcessError(cv_mem, CV_FIRST_RHSFUNC_ERR, "Dormand-Prince", "CVStepDoPri", MSGCV_RHSFUNC_FIRST);
     return(CV_FIRST_RHSFUNC_ERR);
   }
 
@@ -2492,6 +2509,150 @@ static int CVStepDoPri(CVodeMem cv_mem)
   retval = f(tn, zn[0], zn[1], f_data);    /* zn[1] = y'(tn) */
 
   return(CV_SUCCESS);
+}
+
+
+/*
+ * CVStepExpRK
+ *
+ * This routine performs one internal cvode step using the Runge-Kutta 4(5) method, from tn to tn + h.
+ * Proceed to :
+ * - K1 = F(Tn, Yn),
+ * - K2 = F(Tn + h/2, Yn + (h/2)*K1),
+ * - K3 = F(Tn + h/2, Yn + (h/2)*K2),
+ * - K4 = F(Tn + h, Yn + h*K3),
+ * - Yn+1 = Yn + (h/6)*(K1 + 2K2 + 2K3 + K4)
+ * - increment tn
+ *
+ * In order to temporarily store the results, we use tempv and ftemp, which will represent the Ki in turn.
+ */
+
+static int CVStepExpRK(CVodeMem cv_mem)
+{
+  int retval;
+
+  retval = f(tn, zn[0], ftemp, f_data);                /* ftemp = K1, */
+  N_VLinearSum_Serial (h/2, ftemp, 1., zn[0], y);      /* y = K1*h/2 + Yn */
+  retval = f(tn + h/2, y, tempv, f_data);              /* tempv = K2 = f(Tn+h/2, Yn + (h/2)*K1), */
+  N_VLinearSum_Serial (1., ftemp, 2., tempv, y);       /* y = K1 + 2K2 */
+
+  N_VLinearSum_Serial (h/2, tempv, 1., zn[0], ftemp);  /* ftemp = Yn + K2*h/2, */
+  retval = f(tn + h/2, ftemp, tempv, f_data);          /* tempv = K3 = f(Tn+h/2, Yn + (h/2)*K2), */
+  N_VLinearSum_Serial (1., y, 2., tempv, y);           /* y = K1 + 2K2 + 2K3, */
+
+  N_VLinearSum_Serial (h, tempv, 1., zn[0], ftemp);    /* ftemp = Yn + K3*h, */
+  retval = f(tn + h, ftemp, tempv, f_data);            /* tempv = K4 = f(Tn+h/2, Yn + h*K3), */
+  N_VLinearSum_Serial (1., y, 1., tempv, y);           /* y = K1 + 2K2 + 2K3 + K4, */
+
+  N_VLinearSum_Serial(1., zn[0], h/6, y, zn[0]);       /* zn[0] = Yn+1 = Yn + y*h/6 */
+
+  /* Check for errors in the evaluations of f thanks to retval */
+  if (retval < 0) {
+    CVProcessError(cv_mem, CV_RHSFUNC_FAIL, "Runge-Kutta", "CVStepExpRK", MSGCV_RHSFUNC_FAILED, tn);
+    return(CV_RHSFUNC_FAIL);
+  }
+  if (retval > 0) {
+    CVProcessError(cv_mem, CV_FIRST_RHSFUNC_ERR, "Runge-Kutta", "CVStepExpRK", MSGCV_RHSFUNC_FIRST);
+    return(CV_FIRST_RHSFUNC_ERR);
+  }
+
+  /* Increment tn => take a step. Increment solver calls as well */
+  tn += h;
+  nst++;
+
+  /* Update the Nordsieck history array */
+  retval = f(tn, zn[0], zn[1], f_data);  /* zn[1] = y'(tn) */
+
+  return(CV_SUCCESS);
+}
+
+/*
+ * CVStepImpRK
+ *
+ * This routine performs one internal cvode step using the implicit Runge-Kutta method, from tn to tn + h.
+ * In order to temporarily store the results, we use zn[2, 3, 4], tempv and ftemp, which will represent the Ki in turn.
+ */
+
+static int CVStepImpRK(CVodeMem cv_mem)
+{
+  int retval, nb_iter;
+  realtype difference;
+
+  /* Coefficients */
+  realtype a11, a21, a22, a31, a32, a33, b1, b2, b3, c1, c2, c3;
+  a11 =  0.377847764031163;
+  a21 =  0.385232756462588;
+  a22 =  0.461548399939329;
+  a31 =  0.675724855841358;
+  a32 = -0.061710969841169;
+  a33 =  0.241480233100410;
+  b1  =  0.750869573741408;
+  b2  = -0.362218781852651;
+  b3  =  0.611349208111243;
+  c1  =  0.257820901066211;
+  c2  =  0.434296446908075;
+  c3  =  0.758519768667167;
+
+  difference = 0;
+  nb_iter    = 1;
+  maxcor     = 30; /* Set maximum number of iterations */
+
+  /* Here, we use zn[2, 3, 4] to represent the Runge-Kutta coefficients K1, K2, K3.
+   * Set zn[1] = h*y'(tn) as the first guess for the K[i]. */
+  N_VScale (ONE, zn[1], zn[2]);
+  N_VScale (ONE, zn[1], zn[3]);
+  N_VScale (ONE, zn[1], zn[4]);
+
+  N_VLinearSum_Serial(ONE, zn[0], h*a11, zn[2], ftemp);   /* ftemp = a11K1 + Yn, */
+  retval = f(tn + c1*h, ftemp, zn[2], f_data);            /* K1 = f(tn+c1h, Yn + a11K1), */
+
+  N_VLinearSum_Serial(h*a21, zn[2], h*a22, zn[3], ftemp);  /* K2 = a21K1 + a22K2, */
+  N_VLinearSum_Serial(ONE, zn[0], ONE, ftemp, ftemp);      /* K2 = Yn + K2, */
+  retval = f(tn + c2*h, ftemp, zn[3], f_data);             /* K2 = f(tn+c2h, K2), */
+
+  N_VLinearSum_Serial(h*a32, zn[3], h*a33, zn[4], ftemp); /* K3 = a32K2 + a33K3, */
+  N_VLinearSum_Serial(h*a31, zn[2], ONE, ftemp, ftemp);    /* K3 = a31K1 + K3, */
+  N_VLinearSum_Serial(ONE, zn[0], ONE, ftemp, ftemp);      /* K3 = Yn + K3, */
+  retval = f(tn + c3*h, ftemp, zn[4], f_data);             /* K3 = f(tn+c3h, K3), */
+
+  N_VLinearSum_Serial(b2, zn[3], b3, zn[4], ftemp);       /* K3 = b2K2 + b3K3, */
+  N_VLinearSum_Serial(b1, zn[2], ONE, ftemp, ftemp);       /* K3 = b1K1 + K3, */
+  N_VLinearSum_Serial(ONE, zn[0], h, ftemp, tempv);        /* y = Yn+1 = Yn + K3 */
+
+  while (nb_iter <= maxcor) {  /* Same operations as above, but with K[i] updated and store result in y to compare with tempv */
+
+    N_VLinearSum_Serial(ONE, zn[0], h*a11, zn[2], ftemp);     /* ftemp = a11K1 + Yn, */
+    retval = f(tn + c1*h, ftemp, zn[2], f_data);              /* K1 = f(tn+c1h, Yn + a11K1), */
+    N_VLinearSum_Serial(h*a21, zn[2], h*a22, zn[3], ftemp);   /* K2 = a21K1 + a22K2, */
+    N_VLinearSum_Serial(ONE, zn[0], ONE, ftemp, ftemp);       /* K2 = Yn + K2, */
+    retval = f(tn + c2*h, ftemp, zn[3], f_data);              /* K2 = f(tn+c2h, K2), */
+
+    N_VLinearSum_Serial(h*a32, zn[3], h*a33, zn[4], ftemp);   /* K3 = a32K2 + a33K3, */
+    N_VLinearSum_Serial(h*a31, zn[2], ONE, ftemp, ftemp);      /* K3 = a31K1 + K3, */
+    N_VLinearSum_Serial(ONE, zn[0], ONE, ftemp, ftemp);        /* K3 = Yn + K3, */
+    retval = f(tn + c3*h, ftemp, zn[4], f_data);               /* K3 = f(tn+c3h, K3), */
+
+    N_VLinearSum_Serial(b2, zn[3], b3, zn[4], ftemp);     /* K3 = b2K2 + b3K3, */
+    N_VLinearSum_Serial(b1, zn[2], ONE, ftemp, ftemp);     /* K3 = b1K1 + K3, */
+    N_VLinearSum_Serial(ONE, zn[0], h, ftemp, y);          /* y = Yn+1 = Yn + K3 */
+
+    /* Convergence test */
+    N_VLinearSum_Serial(ONE, tempv, -ONE, y, ftemp);   /* ftemp = tempv-y, */
+    difference = N_VMaxNorm(ftemp);                    /* max = Max(ABS(ftemp)), */
+    if (difference < reltol) {  /* Converged */
+      tn += h;                               /* Increment tn, */
+      N_VScale (ONE, y, zn[0]);              /* Update Nordsziek array : - zn[0] = Yn+1, */
+      retval = f(tn, zn[0], zn[1], f_data);  /*							- zn[1] = Y'(tn), */
+      N_VScale (h, zn[1], zn[1]);            /* Scale zn[1] by h */
+      return (CV_SUCCESS);
+    }
+    else {  /* Not converged yet, put y in tempv and reiterate */
+      N_VScale(ONE, y, tempv);
+      nb_iter++;
+    }
+  }
+  /* End of while : maxiter attained, we consider that the algorithm has diverged */
+  return (CONV_FAIL);
 }
 
 /*
