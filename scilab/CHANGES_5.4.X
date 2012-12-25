@@ -212,6 +212,8 @@ Bug fixes
 
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
 
+* Bug #12190 fixed - Update the description of sprspn.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
