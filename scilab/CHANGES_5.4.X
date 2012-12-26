@@ -212,7 +212,9 @@ Bug fixes
 
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
 
-* Bug #12190 fixed - Update the description of sprspn.
+* Bug #12184 fixed - Performances of the function 'derivat' improved.
+
+* Bug #12190 fixed - Description of sprspn updated in help page.
 
 
                     Changes between version 5.3.3 and 5.4.0
