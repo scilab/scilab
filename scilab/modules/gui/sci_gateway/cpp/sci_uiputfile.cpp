@@ -52,14 +52,11 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
     char **description = NULL;
     char **titleBox = NULL, *selectionPathName = NULL;
     char **initialDirectory = NULL;
-    int multipleSelection = 0;
 
     char **selection = NULL;
     char **selectionFileNames = NULL;
     int selectionSize = 0;
     int filterIndex = 0;
-
-    char *menuCallback = NULL;
 
     CheckRhs(0, 3);
     CheckLhs(1, 3);
@@ -178,9 +175,7 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         selectionPathName = getJuigetfileSelectionPathName();
         selectionFileNames = getJuigetfileSelectionFileNames();
         selectionSize = getJuigetfileSelectionSize();
-        multipleSelection = getJuigetfileMultipleSelection();
         filterIndex = getJuigetfileFilterIndex();
-        menuCallback = getJuigetfileMenuCallback();
     }
     catch (const GiwsException::JniException & e)
     {
