@@ -141,6 +141,9 @@ Bug fixes
 
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
+* Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
+                     the last color in colormap.
+
 * Bug #11474 fixed - save_format help page was still refering to the old save
                      format. Use the SEP #64 content.
 
