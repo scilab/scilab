@@ -8,6 +8,10 @@ Scilab a better software.
 * Vorona Aleksey
     - Russian localization
 
+* Guillaume Azema
+    - Patches
+    - Feedbacks & bug reports
+
 * Jonathan Blanchard
     - Misc patches for Solaris
     - Testing and binary of Scilab under Solaris
@@ -82,6 +86,10 @@ Scilab a better software.
 * Sébastien Jourdain from Artenum ( http://www.artenum.com )
     - Scilab Console ( Jrosetta )
 
+* Alain Lamy
+    - Patches
+    - Feedbacks & bug reports
+
 * Vincent Lejeune
     - Patches
     - Feedbacks & bug reports
@@ -107,6 +115,10 @@ Scilab a better software.
 
 * Dan McMahill
       - Patches for NetBSD
+
+* Thierry Martin
+    - Patches
+    - Feedbacks & bug reports
 
 * Olivier Mehani
     - Advice
