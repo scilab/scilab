@@ -49,7 +49,6 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
             xmlXPathObjectPtr xpathObj = NULL;
             char *jvm_option_string = NULL;
             char *xpath_query = NULL;
-            char *heapSize = getJavaHeapSize();
 
             int indice = 0;
             {
@@ -71,7 +70,6 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                     FREE(encoding);
                     encoding = NULL;
                 }
-                FREE(heapSize);
                 *size_JavaVMOption = 0;
                 return NULL;
             }
@@ -90,6 +88,8 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                 /* the Xpath has been understood and there are node */
                 int i;
                 char heapSizeUsed = 0;
+                char *heapSize = getJavaHeapSize();
+
                 for (i = 0; i < xpathObj->nodesetval->nodeNr; i++)
                 {
 
@@ -146,8 +146,14 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                 }
             }
 
-            if (xpathObj) xmlXPathFreeObject(xpathObj);
-            if (xpathCtxt) xmlXPathFreeContext(xpathCtxt);
+            if (xpathObj)
+            {
+                xmlXPathFreeObject(xpathObj);
+            }
+            if (xpathCtxt)
+            {
+                xmlXPathFreeContext(xpathCtxt);
+            }
             xmlFreeDoc (doc);
 
             /* xmlCleanupParser is called in
