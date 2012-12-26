@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>Le status de sortie retournera  n (si specifie). Autrement, la valeur sera zero.</para>
+                    <para>Le statut de sortie retournera  n (si specifie). Autrement, la valeur sera zero.</para>
                 </listitem>
             </varlistentry>
         </variablelist>

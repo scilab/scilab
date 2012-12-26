@@ -168,10 +168,10 @@ counter
                 <link linkend="xcos">xcos: Block diagram editor and GUI for the hybrid simulator</link>
             </member>
             <member>
-                <link linkend="steadycos">steadycos: Finds an equilibrium state of an xcos diagram</link>
+                <link linkend="steadycos">steadycos: Finds an equilibrium state of a Xcos diagram</link>
             </member>
             <member>
-                <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from an xcos diagram</link>
+                <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from a Xcos diagram</link>
             </member>
         </simplelist>
     </refsection>

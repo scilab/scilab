@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste SILVY
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Cong WU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -23,6 +23,8 @@
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
+#include "sciprint.h"
+#include "warningmode.h"
 #include "isanan.h"
 
 /* Next define intruction put here instead of stack-c.h waiting for
@@ -66,10 +68,10 @@ int sci_gsort(char *fname, unsigned long fname_len)
         Type = VarType(1);
         switch (Type)
         {
-        case sci_strings:
-            GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &S);
-            break;
-        case sci_matrix:
+            case sci_strings:
+                GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &S);
+                break;
+            case sci_matrix:
             {
 #define COMPLEX 1
                 int *header = NULL;
@@ -102,14 +104,14 @@ int sci_gsort(char *fname, unsigned long fname_len)
                 }
             }
             break;
-        case sci_ints:
-            GetRhsVar(1, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m1, &n1, &Im);
-            break;
-        case sci_sparse:
-        default:
-            OverLoad(1);
-            return 0;
-            break;
+            case sci_ints:
+                GetRhsVar(1, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m1, &n1, &Im);
+                break;
+            case sci_sparse:
+            default:
+                OverLoad(1);
+                return 0;
+                break;
         }
     }
 
@@ -119,15 +121,25 @@ int sci_gsort(char *fname, unsigned long fname_len)
         char* pstData = NULL;
 
         SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 1;
         }
 
-        if(getAllocatedSingleString(pvApiCtx, piAddr, &pstData))
+        if (getAllocatedSingleString(pvApiCtx, piAddr, &pstData))
         {
             return 1;
+        }
+
+        if (strcmp(pstData, "i") && strcmp(pstData, "d"))
+        {
+            if (getWarningMode())
+            {
+                sciprint(_("WARNING: %s\n"), _("This usage of the third argument of gsort is obsolete."));
+                sciprint(_("WARNING: %s\n"), _("It will be more strict in Scilab 6."));
+                sciprint(_("WARNING: %s\n"), _("Please use 'd' or 'i' instead."));
+            }
         }
 
         iord[0] = pstData[0];
@@ -140,13 +152,13 @@ int sci_gsort(char *fname, unsigned long fname_len)
         char* pstData = NULL;
 
         SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 1;
         }
 
-        if(getAllocatedSingleString(pvApiCtx, piAddr, &pstData))
+        if (getAllocatedSingleString(pvApiCtx, piAddr, &pstData))
         {
             return 1;
         }
@@ -155,6 +167,16 @@ int sci_gsort(char *fname, unsigned long fname_len)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' expected.\n"), fname, 2, "r", "c", "g", "lr", "lc");
             return 1;
+        }
+
+        if (strcmp(pstData, "c") && strcmp(pstData, "r") && strcmp(pstData, "g") && strcmp(pstData, "lc") && strcmp(pstData, "lr"))
+        {
+            if (getWarningMode())
+            {
+                sciprint(_("WARNING: %s\n"), _("This usage of the second argument of gsort is obsolete."));
+                sciprint(_("WARNING: %s\n"), _("It will be more strict in Scilab 6."));
+                sciprint(_("WARNING: %s\n"), _("Please use 'r', 'c', 'g', 'lr' or 'lc' instead."));
+            }
         }
 
         strcpy(typex, pstData);
@@ -168,14 +190,18 @@ int sci_gsort(char *fname, unsigned long fname_len)
             ind_m1 = m1;
             ind_n1 = 1;
             if (ind_m1 != 0)
+            {
                 indices = (int *)MALLOC(sizeof(int) * (ind_m1));    /* Only return in row */
+            }
         }
         else if (typex[1] == COLUMN_SORT)
         {
             ind_m1 = 1;
             ind_n1 = n1;
             if (ind_n1 != 0)
+            {
                 indices = (int *)MALLOC(sizeof(int) * (ind_n1));    /*Only return in col */
+            }
         }
         else
         {
@@ -188,17 +214,23 @@ int sci_gsort(char *fname, unsigned long fname_len)
         ind_m1 = m1;
         ind_n1 = n1;
         if (ind_m1 * ind_n1 != 0)
-            indices = (int *)MALLOC(sizeof(int) * (ind_m1 * ind_n1));   /* return a matrix */
+        {
+            indices = (int *)MALLOC(sizeof(int) * (ind_m1 * ind_n1));    /* return a matrix */
+        }
     }
 
     if (Lhs == 2)
+    {
         iflag = 1;
+    }
     else
+    {
         iflag = 0;
+    }
 
     switch (Type)
     {
-    case sci_matrix:
+        case sci_matrix:
         {
             if (m1 * n1 != 0)
             {
@@ -219,7 +251,9 @@ int sci_gsort(char *fname, unsigned long fname_len)
 
                 tmp_matrix = stk(lr);
                 for (i = 0; i < m1 * n1; i++)
+                {
                     tmp_matrix[i] = matrix[i];
+                }
 
                 C2F(gsortd) (tmp_matrix, indices, &iflag, &m1, &n1, typex, iord);
                 LhsVar(1) = Rhs + 1;
@@ -247,7 +281,7 @@ int sci_gsort(char *fname, unsigned long fname_len)
         }
         break;
 
-    case sci_ints:
+        case sci_ints:
         {
             int lr;
 
@@ -265,75 +299,87 @@ int sci_gsort(char *fname, unsigned long fname_len)
 
             switch (Im.it)      /* Type defined in stack-c.h */
             {
-            case I_CHAR:
+                case I_CHAR:
                 {
                     char *matrix = Im.D;
                     char *tmp_matrix = (char *)istk(lr);
 
                     for (i = 0; i < m1 * n1; i++)
+                    {
                         tmp_matrix[i] = matrix[i];
+                    }
                     C2F(gsortchar) (tmp_matrix, indices, &iflag, &m1, &n1, typex, iord);
                 }
                 break;
 
-            case I_INT32:
+                case I_INT32:
                 {
                     int *matrix = Im.D;
                     int *tmp_matrix = istk(lr);
 
                     for (i = 0; i < m1 * n1; i++)
+                    {
                         tmp_matrix[i] = matrix[i];
+                    }
                     C2F(gsortint) (tmp_matrix, indices, &iflag, &m1, &n1, typex, iord);
                 }
                 break;
-            case I_UCHAR:
+                case I_UCHAR:
                 {
                     unsigned char *matrix = Im.D;
                     unsigned char *tmp_matrix = (unsigned char *)istk(lr);
 
                     for (i = 0; i < m1 * n1; i++)
+                    {
                         tmp_matrix[i] = matrix[i];
+                    }
                     C2F(gsortuchar) (tmp_matrix, indices, &iflag, &m1, &n1, typex, iord);
                 }
                 break;
-            case I_INT16:
+                case I_INT16:
                 {
                     short *matrix = Im.D;
                     short *tmp_matrix = (short *)istk(lr);
 
                     for (i = 0; i < m1 * n1; i++)
+                    {
                         tmp_matrix[i] = matrix[i];
+                    }
                     C2F(gsortshort) (tmp_matrix, indices, &iflag, &m1, &n1, typex, iord);
                 }
                 break;
-            case I_UINT16:
+                case I_UINT16:
                 {
                     unsigned short *matrix = Im.D;
                     unsigned short *tmp_matrix = (short *)istk(lr);
 
                     for (i = 0; i < m1 * n1; i++)
+                    {
                         tmp_matrix[i] = matrix[i];
+                    }
                     C2F(gsortushort) (tmp_matrix, indices, &iflag, &m1, &n1, typex, iord);
                 }
                 break;
-            case I_UINT32:
+                case I_UINT32:
                 {
                     unsigned int *matrix = Im.D;
                     unsigned int *tmp_matrix = (unsigned int *)istk(lr);
 
                     for (i = 0; i < m1 * n1; i++)
+                    {
                         tmp_matrix[i] = matrix[i];
+                    }
                     C2F(gsortuint) (tmp_matrix, indices, &iflag, &m1, &n1, typex, iord);
                 }
                 break;
-            default:
-                if (indices)
-                {
-                    FREE(indices);
-                    indices = NULL;
-                }
-                Scierror(999, _("%s: Wrong type for input argument #%d: Unknown type.\n"), fname, 1);
-                return 0;
+                default:
+                    if (indices)
+                    {
+                        FREE(indices);
+                        indices = NULL;
+                    }
+                    Scierror(999, _("%s: Wrong type for input argument #%d: Unknown type.\n"), fname, 1);
+                    return 0;
             }
 
             LhsVar(1) = Rhs + 1;
@@ -360,7 +406,7 @@ int sci_gsort(char *fname, unsigned long fname_len)
         }
         break;
 
-    case sci_strings:
+        case sci_strings:
         {
             C2F(gsorts) (S, indices, &iflag, &m1, &n1, typex, iord);
             if (!CreateVarFromPtrNoCheck(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, S))
@@ -397,15 +443,15 @@ int sci_gsort(char *fname, unsigned long fname_len)
         }
         break;
 
-    default:
-        if (indices)
-        {
-            FREE(indices);
-            indices = NULL;
-        }
-        Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
-        return 0;
-        break;
+        default:
+            if (indices)
+            {
+                FREE(indices);
+                indices = NULL;
+            }
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
+            return 0;
+            break;
     }
     return 0;
 }

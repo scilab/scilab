@@ -41,6 +41,7 @@ import javax.swing.SpinnerNumberModel;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -97,6 +98,7 @@ public class SetupDialog extends JDialog {
     }
 
     private final ScicosParameters parameters;
+    private final XcosDiagram rootGraph;
 
     private JFormattedTextField integration;
     private JFormattedTextField rts;
@@ -115,7 +117,7 @@ public class SetupDialog extends JDialog {
      * @param parameters
      *            the current parameters
      */
-    public SetupDialog(Component parent, ScicosParameters parameters) {
+    public SetupDialog(Component parent, XcosDiagram graph, ScicosParameters parameters) {
         super();
 
         this.parameters = parameters;
@@ -127,6 +129,7 @@ public class SetupDialog extends JDialog {
         setTitle(XcosMessages.SETUP_TITLE);
         setModal(false);
         setLocationRelativeTo(parent);
+        rootGraph = graph;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         ScilabSwingUtilities.closeOnEscape(this);
 
@@ -172,11 +175,11 @@ public class SetupDialog extends JDialog {
 
         JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
         final String[] solvers = new String[] { "LSodar", "Sundials/CVODE - BDF - NEWTON", "Sundials/CVODE - BDF - FUNCTIONAL",
-                                                "Sundials/CVODE - ADAMS - NEWTON", "Sundials/CVODE - ADAMS - FUNCTIONAL", "DOPRI5 - Dormand-Price 4(5)", "Sundials/IDA"
+                                                "Sundials/CVODE - ADAMS - NEWTON", "Sundials/CVODE - ADAMS - FUNCTIONAL", "DOPRI5 - Dormand-Prince 4(5)", "RK45 - Runge-Kutta 4(5)", "Implicit RK45 - Runge-Kutta 4(5)", "Sundials/IDA"
                                               };
         final String[] solversTooltips = new String[] { "Method: dynamic, Nonlinear solver= dynamic", "Method: BDF, Nonlinear solver= NEWTON",
                 "Method: BDF, Nonlinear solver= FUNCTIONAL", "Method: ADAMS, Nonlinear solver= NEWTON", "Method: ADAMS, Nonlinear solver= FUNCTIONAL",
-                "Method: Fixed step", "Sundials/IDA"
+                "Method: Fixed step", "Method: Fixed step", "Method: Fixed step, Nonlinear solver= FIXED-POINT", "Sundials/IDA"
                                                       };
 
         solver = new JComboBox(solvers);
@@ -374,7 +377,7 @@ public class SetupDialog extends JDialog {
         setContextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                final SetContextDialog dialog = new SetContextDialog(SetupDialog.this, parameters);
+                final SetContextDialog dialog = new SetContextDialog(SetupDialog.this, rootGraph, parameters);
 
                 dialog.pack();
                 dialog.setVisible(true);

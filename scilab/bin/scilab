@@ -201,7 +201,8 @@ detect_scilab_path() {
     # Use scilab-bin in the current dir if it exists
     # If not, then start resolving symlinks until we find scilab-bin
     found=0
-    curdir=$(dirname "$progname")
+    cd $(dirname "$progname")
+    curdir=$(pwd -P)
     PATH="$curdir:$PATH"
 
     progbase=$(basename "$progname")

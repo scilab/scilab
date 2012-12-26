@@ -10,9 +10,10 @@
 *
 */
 
+#include <hdf5.h>
+
 extern "C"
 {
-#include <hdf5.h>
 #include "gw_hdf5.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -36,20 +37,20 @@ int sci_is_hdf5_file(char *fname, unsigned long fname_len)
     CheckLhs(1, 4);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 1;
     }
 
-    if(getAllocatedSingleString(pvApiCtx, piAddr, &pstFile))
+    if (getAllocatedSingleString(pvApiCtx, piAddr, &pstFile))
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
 
     char* pstFileName = expandPathVariable(pstFile);
-    if(isHDF5File(pstFileName))
+    if (isHDF5File(pstFileName))
     {
         createScalarBoolean(pvApiCtx, Rhs + 1, 1);
     }

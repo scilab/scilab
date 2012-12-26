@@ -30,7 +30,7 @@
     </refsection>
     <refsection>
         <title>A few words about XML</title>
-        <para>An XML file resembles to a HTML file but with a more rigid syntax.
+        <para>A XML file is similar to a HTML file but with a more rigid syntax.
             The documentation of Scilab must be written using the strict subset of
             DocBook 5 defined in SCI/modules/helptools/schema/scilab.rnc. DocBook 5
             elements are fully documented in <ulink url="http://docbook.org/tdg5/en/html/docbook.html">"DocBook 5.0: The Definitive Guide"</ulink>

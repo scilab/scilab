@@ -130,7 +130,7 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
                 buffer.append("<tocitem target=\"");
                 buffer.append(c.id);
                 buffer.append("\" text=\"");
-                buffer.append(tocitem.get(c.id));
+                buffer.append(replaceEntity(tocitem.get(c.id)));
                 if (c.children == null) {
                     buffer.append("\"/>\n");
                 } else {

@@ -56,7 +56,7 @@
         <title>Description</title>
         <para>
             <caution>
-                This function is obsolete, use preferabily the <link
+                This function is obsolete and will be removed in Scilab 5.5.0, use preferabily the <link
         linkend="mfprintf">mfprintf</link> function which is much more
                 compatible with the C <function>fprintf</function> functionalities.
             </caution>
@@ -103,6 +103,15 @@ file('close',u) //close the result file
 
 fprintf(0,'My error which is going to be displayed on the stderr') 
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>Function tagged as obsolete. Will be removed in 5.5.0.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

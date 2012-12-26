@@ -454,8 +454,8 @@ ode("stiff",[0;1],0,1,f,Jacobian)
     </refsection>
     <refsection>
         <title>Fonctions Utilisées</title>
-        <para>Les sous programmes associés se trouvent dans le repertoire
-            SCI/modules/differential_equations/src/fortran: lsode.f lsoda.f lsodar.f
+        <para>Les sous programmes associés se trouvent dans le répertoire
+            SCI/modules/differential_equations/src/fortran/: lsode.f lsoda.f lsodar.f
         </para>
     </refsection>
 </refentry>

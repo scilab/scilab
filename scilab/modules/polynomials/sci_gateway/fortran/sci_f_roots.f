@@ -89,7 +89,7 @@ c
       endif
 
       it1=istk(il1+3)
-c If "fast" algo was chosen and polynomial is complex, 
+c If "fast" algo was chosen and polynomial is complex,
 c then produce an error.
       if ( .not.eigen  .and. it1 .eq. 1 ) then
         err=2
@@ -104,7 +104,10 @@ c     for Matlab compatibility root of the vector of coefficients
 
          n=mn1
          if(.not.ref) then
-            call dtild(n*(it1+1),stk(l1),1)
+            call dtild(n,stk(l1),1)
+            if(it1.eq.1) then
+                call dtild(n,stk(l1+n),1)
+            endif
             lc=l1
          else
             lc=lw
@@ -146,7 +149,7 @@ c     for Matlab compatibility root of the vector of coefficients
       endif
 
       if ( .not.eigen  .and.n.gt.100) then
-c If "fast" algo was chosen and polynomial has degree greater than 100, 
+c If "fast" algo was chosen and polynomial has degree greater than 100,
 c then produce an error.
         err=2
         call error(116)
@@ -234,7 +237,7 @@ c     polynome de degre 0
       istk(ilr+2)=0
       istk(ilr+3)=0
       lstk(top+1)=sadr(ilr+4)
-	  
+
       return
       end
 c			=======================================

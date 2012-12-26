@@ -7,8 +7,6 @@
 
 // <-- CLI SHELL MODE -->
 
-w=1;
-
 //ouvrir le fichier 
 FLN = 'SCI/modules/fileio/tests/unit_tests/text.txt';
 

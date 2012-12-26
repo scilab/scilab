@@ -2,7 +2,7 @@
 <!--
  * Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="assert_overview">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" scilab:needs-examples="no" xml:id="assert_overview">
     <refnamediv>
         <refname>Assert Overview</refname>
         <refpurpose>An overview of the Assert module.</refpurpose>
@@ -57,7 +57,7 @@ assert_checkalmostequal ( 1.23456 , 1.23457 , 1.e11*%eps );
             For example, consider the function <literal>assert_checktrue</literal>,
             which calling sequence is:
         </para>
-        <programlisting role="example"><![CDATA[
+        <programlisting role="no-scilab-exec"><![CDATA[
 flag = assert_checktrue ( condition )
 flag = assert_checktrue ( condition )
 [flag,errmsg] = assert_checktrue ( condition )

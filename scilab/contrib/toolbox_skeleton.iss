@@ -57,9 +57,10 @@ Source: contrib\{#XCOS_TOOLBOX_SKELETON}\DESCRIPTION-FUNCTIONS; DestDir: {app}\c
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\license.txt; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\builder.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\changelog.txt; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
-Source: contrib\{#XCOS_TOOLBOX_SKELETON}\demos\{#XCOS_TOOLBOX_SKELETON}.dem.gateway.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\demos; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\demos\*.*; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\demos; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\etc\{#XCOS_TOOLBOX_SKELETON}.quit; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\etc; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\etc\{#XCOS_TOOLBOX_SKELETON}.start; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\etc; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\examples\*.*; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\examples; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\help\builder_help.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\help; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\help\en_US\*.xml; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\help\en_US; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\help\en_US\build_help.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\help\en_US; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}

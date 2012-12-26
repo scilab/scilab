@@ -21,7 +21,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            path = atomsGetLoadedPathPath(module)
+            path = atomsGetLoadedPath(module)
         </synopsis>
     </refsynopsisdiv>
     <!-- ===================================================================== -->

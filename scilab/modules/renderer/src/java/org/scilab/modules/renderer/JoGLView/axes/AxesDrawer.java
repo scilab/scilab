@@ -276,10 +276,10 @@ public class AxesDrawer {
         double[] matrix = transformation.getMatrix();
         try {
             return TransformationFactory.getScaleTransformation(
-                       matrix[2] < 0 ? 1 : -1,
-                       matrix[6] < 0 ? 1 : -1,
-                       matrix[10] < 0 ? 1 : -1
-                   );
+                matrix[2] < 0 ? 1 : -1,
+                matrix[6] < 0 ? 1 : -1,
+                matrix[10] < 0 ? 1 : -1
+                );
         } catch (DegenerateMatrixException e) {
             // Should never happen.
             return TransformationFactory.getIdentity();
@@ -297,7 +297,7 @@ public class AxesDrawer {
         Double[] margins = axes.getMargins();
 
         // TODO :  zoom box.
-        double x = (axesBounds[0] + axesBounds[2] * margins[0]) * 2 - 1;  
+        double x = (axesBounds[0] + axesBounds[2] * margins[0]) * 2 - 1;
         double y = (1.0 - axesBounds[1] - axesBounds[3] * (1.0 - margins[3])) * 2 - 1;
         double w = (1 - margins[0] - margins[1]) * axesBounds[2];
         double h = (1 - margins[2] - margins[3]) * axesBounds[3];
@@ -344,26 +344,26 @@ public class AxesDrawer {
 
         // Reverse data if needed.
         Transformation transformation = TransformationFactory.getScaleTransformation(
-                                            axes.getAxes()[0].getReverse() ? 1 : -1,
-                                            axes.getAxes()[1].getReverse() ? 1 : -1,
-                                            axes.getAxes()[2].getReverse() ? 1 : -1
-                                        );
+            axes.getAxes()[0].getReverse() ? 1 : -1,
+            axes.getAxes()[1].getReverse() ? 1 : -1,
+            axes.getAxes()[2].getReverse() ? 1 : -1
+            );
 
         // Scale data.
         Transformation scaleTransformation = TransformationFactory.getScaleTransformation(
-                2.0 / (bounds[1] - bounds[0]),
-                2.0 / (bounds[3] - bounds[2]),
-                2.0 / (bounds[5] - bounds[4])
-                                             );
+            2.0 / (bounds[1] - bounds[0]),
+            2.0 / (bounds[3] - bounds[2]),
+            2.0 / (bounds[5] - bounds[4])
+            );
         transformation = transformation.rightTimes(scaleTransformation);
 
 
         // Translate data.
         Transformation translateTransformation = TransformationFactory.getTranslateTransformation(
-                    -(bounds[0] + bounds[1]) / 2.0,
-                    -(bounds[2] + bounds[3]) / 2.0,
-                    -(bounds[4] + bounds[5]) / 2.0
-                );
+            -(bounds[0] + bounds[1]) / 2.0,
+            -(bounds[2] + bounds[3]) / 2.0,
+            -(bounds[4] + bounds[5]) / 2.0
+            );
         transformation = transformation.rightTimes(translateTransformation);
         return transformation;
     }
@@ -1041,6 +1041,8 @@ public class AxesDrawer {
     public void disposeAll() {
         this.rulerDrawer.disposeAll();
         this.projectionMap.clear();
+        this.projection2dViewMap.clear();
+        this.sceneProjectionMap.clear();
     }
 
     public void update(String id, int property) {
@@ -1049,5 +1051,8 @@ public class AxesDrawer {
 
     public void dispose(String id) {
         this.rulerDrawer.dispose(id);
+        projectionMap.remove(id);
+        projection2dViewMap.remove(id);
+        sceneProjectionMap.remove(id);
     }
 }
