@@ -360,6 +360,7 @@ int get_optionals(char *fname, rhs_opts opts[])
     //        }
     //    }
     //}
+
     return 1;
 }
 

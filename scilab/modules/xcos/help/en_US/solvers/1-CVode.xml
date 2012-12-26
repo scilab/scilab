@@ -192,7 +192,7 @@ loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
 scs_m.props.tol(6) = 1;
-try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
@@ -204,14 +204,14 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
       loadScicos();
       loadXcosLibs();
       importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
-      scs_m.props.tf = 10000;
+      scs_m.props.tf = 5000;
 
       // Select the solver BDF / Newton
       scs_m.props.tol(6) = 1;
 
       // Start the timer, launch the simulation and display time
       tic();
-      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
+      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
       disp(t, "Time for BDF / Newton :");
       ]]></programlisting>
@@ -220,12 +220,12 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end;
             The Scilab console displays :
             <screen><![CDATA[
 Time for BDF / Newton :
- 33.997
+ 19.454
             ]]></screen>
         </para>
         <para>
             Now, in the following script, we compare the time difference between the methods by running the example with the four solvers in turn :
-            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integSundials.sce">
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integCVode.sce">
                 Open the script
             </link>
         </para>
@@ -233,16 +233,16 @@ Time for BDF / Newton :
             Results :
             <screen language="example"><![CDATA[
 Time for BDF / Newton :
- 12.998
+ 19.894
 
 Time for BDF / Functional :
- 12.256
+ 19.382
 
 Time for Adams / Newton :
- 8.577
+ 11.255
 
 Time for Adams / Functional :
- 8.002
+ 10.233
             ]]></screen>
         </para>
         <para>
@@ -262,7 +262,10 @@ Time for Adams / Functional :
                 <link linkend="RK">Runge-Kutta 4(5)</link>
             </member>
             <member>
-                <link linkend="DoPri">Dormand-Price 4(5)</link>
+                <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>

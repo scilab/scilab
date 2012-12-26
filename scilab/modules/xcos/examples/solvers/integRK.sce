@@ -1,11 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - Scilab Enterprises - Paul Bignier
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING,
-// which you should have received as part of this distribution.
-// The terms are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 // Run with exec("SCI/modules/xcos/examples/solvers/integRK.sce");
 
@@ -19,15 +15,16 @@ solverName=["BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functional", 
 
 for solver=1:5
 
- // Select the solver
+ // Select the solver (Runge-Kutta is solver number 6)
  scs_m.props.tol(6) = solver;
+ if (solver == 5) then scs_m.props.tol(6) = 6; end
 
- // Set max step size if Runge-Kutta
+ // Set max step size if Runge-Kutta is selected
  if (solver == 5) then scs_m.props.tol(7) = 0.01; end
 
  // Start the timer, launch the simulation and display time
  tic();
- try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end;
+ try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end
  t = toc();
  disp(t, "Time for " + solverName(solver) + " :");
 

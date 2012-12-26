@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="matfile_close">
     <refnamediv>
         <refname>matfile_close</refname>
-        <refpurpose>Closes a Matlab V5 binary MAT-file.</refpurpose>
+        <refpurpose>Closes a Matlab binary MAT-file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -46,6 +46,24 @@
             Closes a Matlab binary MAT-file opened by <link linkend="matfile_open">matfile_open</link>.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+fd = matfile_open("test_matfile.mat","w");
+matfile_varwrite(fd, "foo", "bar", %t);
+if matfile_close(fd) == %t then
+disp("close worked!");
+else
+disp("close failed!");
+end
+
+fd = matfile_open("test_matfile.mat");
+matfile_listvar(fd)
+matfile_close(fd);
+
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
