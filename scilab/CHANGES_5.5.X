@@ -35,7 +35,7 @@ Obsolete & Removed Functions
 
 * clear_pixmap removed, please use drawlater/drawnow instead.
 
-* demo_message removed.
+* demo_message and demo_mdialog removed.
 
 
 Scilab Bug Fixes
@@ -202,6 +202,8 @@ Scilab Bug Fixes
 * Bug #12082 fixed - convstr function did not work with non-ASCII symbols.
 
 * Bug #12121 fixed - inv function did not work for complex sparse matrices.
+
+* Bug #12145 fixed - Internal function demo_mdialog removed.
 
 * Bug #12156 fixed - Closing a Scilab session in Javasci could lead to a HDF5 error message.
 

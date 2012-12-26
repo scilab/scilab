@@ -308,7 +308,7 @@ Scilab
 
 * Bug #11851 fixed - Default EOL under Mac is now LF.
 
-* Bug #11860 fixed - wavwrite failed for 24-bit files due to an error in 
+* Bug #11860 fixed - wavwrite failed for 24-bit files due to an error in
                      savewave function.
 
 * Bug #11924 fixed - winclose() was not tagged as obsolete.

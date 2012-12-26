@@ -54,9 +54,6 @@ end
             <member>
                 <link linkend="x_choose">x_choose</link>
             </member>
-            <member>
-                <link linkend="demo_mdialog">demo_mdialog</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>
