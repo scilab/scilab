@@ -163,27 +163,42 @@ let string_of_realType = function
 | RealHandle -> "RealHandle"
 | RealUnknown -> "RealUnknown"
 
-
+(* extract the type of a scilab value *)
 external ocpsci_get_RealType_ml : t -> realType = "noalloc"
   "ocpsci_get_RealType_c"
 
+(* conversion between Scilab and OCaml doubles *)
 external ocpsci_ml2sci_double_ml : float -> t = "ocpsci_ml2sci_double_c"
 external ocpsci_sci2ml_double_ml : t -> float = "ocpsci_sci2ml_double_c"
 
-
+(* conversion between Scilab and OCaml bools *)
 external ocpsci_ml2sci_bool_ml : bool -> t = "ocpsci_ml2sci_bool_c"
 external ocpsci_sci2ml_bool_ml : t -> bool = "ocpsci_sci2ml_bool_c"
+
+(* get the list of all available functions in the current scope *)
 external ocpsci_get_funlist_ml : unit ->  string array = "ocpsci_get_funlist_c"
+
+(* extract a value by name from the current scope *)
 external ocpsci_context_get_ml : string -> t = "ocpsci_context_get_c"
 
+(* call a Scilab function:
+  [ocpsci_call_ml f args optionan_args nbrExpectedResults]
+*)
 external ocpsci_call_ml :
   t -> t array -> (string * t) array -> int -> t array option
     = "ocpsci_call_c"
 
+(* generate a Scilab matrix of doubles from an OCaml matrix *)
 external ocpsci_ml2sci_double_matrix_ml : float array array -> t =
   "ocpsci_ml2sci_double_matrix_c"
+
+(* generate a Scilab matrix with a given size and initial value.
+   We should probably use "ones(dy,dx) * initial" instead.
+ *)
 external ocpsci_create_double_matrix_ml : int -> int -> float -> t =
   "ocpsci_create_double_matrix_c"
+
+(* perform a binary operation. Logical operations are not yet implemented *)
 external ocpsci_operation_ml : binop -> t -> t -> t =
   "ocpsci_operation_c"
 
@@ -204,6 +219,7 @@ external ocpsci_operation_ml : binop -> t -> t -> t =
 - Recover an OCaml matrix from the Scilab matrix
 *)
 
+(* We use Scilab 'disp' function to print values on stdout. *)
 
 
 let multiply_matrix_by_double matrix double =
