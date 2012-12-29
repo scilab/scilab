@@ -6,10 +6,12 @@ extern "C" {
 #include <caml/custom.h>
 }
 
+#include "all.hxx"
 #include "visitor_common.hxx"
 #include "types_gw.hxx"
 #include "context.hxx"
 #include "generic_operations.hxx"
+#include "overload.hxx"
 
 /*
 We must declare all stubs as C functions, otherwise they cannot be
@@ -21,9 +23,14 @@ extern "C" {
   value ocpsci_ml2sci_double_c(value d_v);
   value ocpsci_sci2ml_bool_c(value d_v);
   value ocpsci_ml2sci_bool_c(value d_v);
+  value ocpsci_ml2sci_double_matrix_c(value matrix_v);
+  value ocpsci_create_double_matrix_c(value dy_v, value dx_v, value d_v);
+
   value ocpsci_get_funlist_c(value unit_v);
   value ocpsci_context_get_c(value unit_v);
   value ocpsci_call_c(value fun_v, value args_v, value opts_v, value iRetCount_v);
+  value ocpsci_operation_c(value oper_v, value left_v, value right_v);
+
 }
 
 #define Scilab_val(v) (*((types::InternalType**) Data_custom_val(v)))
@@ -297,4 +304,241 @@ value ocpsci_call_c(value fun_v, value args_v, value opts_v, value iRetCount_v)
     return Val_int(0); // None
   }
 
+}
+
+value ocpsci_ml2sci_double_matrix_c(value matrix_v)
+{
+  value res_v;
+  int dy = Wosize_val(matrix_v);
+  int dx = 0;
+  for(int i=0; i < dy; i++){
+    int rdx = Wosize_val(Field(matrix_v,i)) / Double_wosize;
+    if( rdx > dx ) dx = rdx;
+  }
+  types::Double *dbl_s = new types::Double(dy, dx, false);
+  for(int y=0; y < dy; y++){
+    value row_v = Field( matrix_v, y);
+    int dx = Wosize_val(row_v) / Double_wosize;
+    for(int x = 0; x < dx; x++)
+      dbl_s->set(y, x, Double_field( row_v, x ));
+  }
+  return Val_scilab(dbl_s);
+}
+
+value ocpsci_create_double_matrix_c(value dy_v, value dx_v, value d_v)
+{
+  value res_v;
+  int dx = Int_val(dx_v);
+  int dy = Int_val(dy_v);
+  double d = Double_val(d_v);
+  types::Double *dbl_s = new types::Double(dy,dx,false);
+  for(int iPos = 0; iPos < dx * dy; iPos++)
+    dbl_s->set(iPos, d);
+  return Val_scilab(dbl_s);
+}
+
+ast::OpExp::Oper OpExpOper_val(value oper_v)
+{
+  int code = Int_val(oper_v);
+
+  switch(code){
+   case 1 : return  ast::OpExp::plus;
+    case 2 : return  ast::OpExp::minus;
+    case 3 : return  ast::OpExp::times;
+    case 4 : return  ast::OpExp::rdivide;
+    case 5 : return  ast::OpExp::ldivide;
+    case 6 : return  ast::OpExp::power;
+
+    case 7 : return  ast::OpExp::dottimes;
+    case 8 : return  ast::OpExp::dotrdivide;
+    case 9 : return  ast::OpExp::dotldivide;
+    case 10 : return  ast::OpExp::dotpower;
+
+    case 11 : return  ast::OpExp::krontimes;
+    case 12 : return  ast::OpExp::kronrdivide;
+    case 13 : return  ast::OpExp::kronldivide;
+
+    case 14 : return  ast::OpExp::controltimes;
+    case 15 : return  ast::OpExp::controlrdivide;
+    case 16 : return  ast::OpExp::controlldivide;
+
+    case 17 : return  ast::OpExp::eq;
+    case 18 : return  ast::OpExp::ne;
+    case 19 : return  ast::OpExp::lt;
+    case 20 : return  ast::OpExp::le;
+    case 21 : return  ast::OpExp::gt;
+    case 22 : return  ast::OpExp::ge;
+
+    case 23 : return  ast::OpExp::unaryMinus;
+
+    case 24 : return  ast::OpExp::logicalAnd;
+    case 25 : return  ast::OpExp::logicalOr;
+    case 26 : return  ast::OpExp::logicalShortCutAnd;
+    case 27 : return  ast::OpExp::logicalShortCutOr;
+   }
+  caml_failwith("Unknown OpExp::Oper");
+}
+
+/* code from run_OpExp.hxx */
+/* TODO: check that replacing 'this' by 'NULL' in calls to Overload is OK */
+types::InternalType* callOverload(OpExp::Oper _oper, types::InternalType* _paramL, types::InternalType* _paramR)
+{
+    types::typed_list in;
+    types::typed_list out;
+
+    /*
+    ** Special case for unary minus => will call %{type_s}
+    */
+    if (_oper == OpExp::unaryMinus)
+    {
+        _paramR->IncreaseRef();
+        in.push_back(_paramR);
+        Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, NULL);
+
+        _paramR->DecreaseRef();
+        return out[0];
+    }
+    _paramL->IncreaseRef();
+    _paramR->IncreaseRef();
+    in.push_back(_paramL);
+    in.push_back(_paramR);
+
+    Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, NULL);
+
+    _paramL->DecreaseRef();
+    _paramR->DecreaseRef();
+    return out[0];
+}
+
+
+
+value ocpsci_operation_c(value oper_v, value left_v, value right_v)
+{
+  types::InternalType *left_s = Scilab_val(left_v);
+  types::InternalType *right_s = Scilab_val(right_v);
+  ast::OpExp::Oper oper_s = OpExpOper_val(oper_v);
+
+  types::InternalType *res_s = NULL;
+
+  try {
+        switch (oper_s)
+        {
+            case OpExp::plus :
+            {
+                res_s = GenericPlus(left_s, right_s);
+                break;
+            }
+            case OpExp::unaryMinus :
+            {
+                res_s = GenericUnaryMinus(right_s);
+                break;
+            }
+            case OpExp::minus :
+            {
+                res_s = GenericMinus(left_s, right_s);
+                break;
+            }
+            case OpExp::times:
+            {
+                res_s = GenericTimes(left_s, right_s);
+                break;
+            }
+            case OpExp::ldivide:
+            {
+                break;
+            }
+            case OpExp::rdivide:
+            {
+                res_s = GenericRDivide(left_s, right_s);
+                break;
+            }
+            case OpExp::dotrdivide :
+            {
+                res_s = GenericDotRDivide(left_s, right_s);
+                break;
+            }
+            case OpExp::dottimes :
+            {
+                res_s = GenericDotTimes(left_s, right_s);
+                break;
+            }
+            case OpExp::dotpower :
+            {
+                res_s = GenericDotPower(left_s, right_s);
+                break;
+            }
+            case OpExp::eq :
+            {
+                res_s = GenericComparisonEqual(left_s, right_s);
+                break;
+            }
+            case OpExp::ne :
+            {
+                res_s = GenericComparisonNonEqual(left_s, right_s);
+                break;
+            }
+            case OpExp::lt :
+            {
+                res_s = GenericLess(left_s, right_s);
+                break;
+            }
+            case OpExp::le :
+            {
+                res_s = GenericLessEqual(left_s, right_s);
+                break;
+            }
+            case OpExp::gt :
+            {
+                res_s = GenericGreater(left_s, right_s);
+                break;
+            }
+            case OpExp::ge :
+            {
+                res_s = GenericGreaterEqual(left_s, right_s);
+                break;
+            }
+            case OpExp::power :
+            {
+                res_s = GenericPower(left_s, right_s);
+                break;
+            }
+            case OpExp::krontimes :
+            {
+                res_s = GenericKrontimes(left_s, right_s);
+                break;
+            }
+            case OpExp::kronrdivide :
+            {
+                res_s = GenericKronrdivide(left_s, right_s);
+                break;
+            }
+            case OpExp::kronldivide :
+            {
+                res_s = GenericKronldivide(left_s, right_s);
+                break;
+            }
+	    /* For these ones, we must check if both arguments are boolean,
+	       otherwise we fall back in the overloaded case. */
+            case LogicalOpExp::logicalShortCutOr :
+            case LogicalOpExp::logicalOr :
+            case LogicalOpExp::logicalShortCutAnd :
+            case LogicalOpExp::logicalAnd :
+            default :
+                break;
+        }
+
+
+    if (res_s == NULL)
+      {
+	// We did not have any algorithm matching, so we try to call OverLoad
+	res_s = callOverload(oper_s, left_s, right_s);
+      }
+
+  } catch (ScilabError error)
+    {
+      /* TODO: how to convert ScilabError to string ? */
+      caml_failwith("ScilabError");
+    }
+  
+  return Val_scilab(res_s);
 }

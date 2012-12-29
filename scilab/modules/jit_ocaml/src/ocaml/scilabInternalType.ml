@@ -1,24 +1,75 @@
-(* This is an abstract type, giving access to Scilab internal type.
+(*
 
-   The goal of this module is to provide easy access to many Scilab
-   gateways.
+  The goal of this module is to provide easy access to Scilab
+  gateways.
 
-   For that, we should provide a function, that will iterate on Scilab
-   internal Context, and return wrappers to all Scilab functions, with
-   their name and module.
+  Scilab values are stored as finalizable OCaml custom types, for
+  which the finalizer decreases the ref counter, and if it is not
+  referenced anymore, destroy the value.
 
-   Scilab values should be stored as finalizable OCaml custom types,
-   for which the finalizer decreases the ref counter, and if it is not
-   referenced anymore, destroy the value. We can also provide
-   comparison between such internal types, using Scilab compare
-   functions.
+  The polymorphic compare function will work on scalar values, but not
+  on matrices. To be improved.
+
+  We have to be careful, as some functions only work on specific
+  types, and we currently don't check runtime types. For example,
+  ocpsci_sci2ml_double_ml assumes that the Scilab value is a Scilab
+  Double, and will silently fail, with unspecified behavior, if it is
+  not the case.
 
 *)
 
+(* This is an abstract type, giving access to Scilab internal
+   type.  *)
 type t
 
+type binop =
+  Unknown_oper (* first, because our C code starts with 1 for plus *)
+
+            (* Arithmetics *)
+            (* "+" *)        | Plus
+            (* "-" *)        | Minus
+            (* "*" *)        | Times
+            (* "/" *)        | Rdivide
+            (* \  *)         | Ldivide
+            (* "**" or "^" *)| Power
+
+            (*                       Unary minus *)
+            (* "-" *)        | UnaryMinus
+
+            (*                       Element Ways     *)
+            (* ".*" *)       | Dottimes
+            (* "./" *)       | Dotrdivide
+            (* .\ *)         | Dotldivide (* not run. used ? *)
+            (* ".^" *)       | Dotpower
+
+            (* Kroneckers *)
+            (* ".*." *)      | Krontimes
+            (* "./." *)      | Kronrdivide
+            (* ".\." *)      | Kronldivide
+
+            (*                       Control *)
+            (* FIXME : What the hell is this ??? *)
+            (* "*." *)       | Controltimes (* not run. used ? *)
+            (* "/." *)       | Controlrdivide  (* not run. used ? *)
+            (* "\." *)       | Controlldivide (* not run. used ? *)
+
+            (*                       Comparison     *)
+            (* "==" *)       | Eq
+           (* "<>" or "~=" *)| Ne
+            (* "<" *)        | Lt
+            (* "<=" *)       | Le
+            (* "<" *)        | Gt
+            (* ">=" *)       | Ge
+
+            (*                       Logical operators *)
+            (* "&" *)   | LogicalAnd
+            (* "|" *)   | LogicalOr
+            (* "&&" *)  | LogicalShortCutAnd
+            (* "||" *)  | LogicalShortCutOr
+
+
 type realType =
-            (* Internal Type *)
+(* Internal Type *)
 | RealInternal
             (* Generic Types *)
 | RealGeneric
@@ -113,14 +164,6 @@ let string_of_realType = function
 | RealUnknown -> "RealUnknown"
 
 
-(* The first milestone should be:
-
-- create a Scilab double from OCaml
-- create a Scilab matrix from OCaml
-- Multiply the Scilab matrix by the Scilab double
-- Recover an OCaml matrix from the Scilab matrix
-*)
-
 external ocpsci_get_RealType_ml : t -> realType = "noalloc"
   "ocpsci_get_RealType_c"
 
@@ -137,6 +180,29 @@ external ocpsci_call_ml :
   t -> t array -> (string * t) array -> int -> t array option
     = "ocpsci_call_c"
 
+external ocpsci_ml2sci_double_matrix_ml : float array array -> t =
+  "ocpsci_ml2sci_double_matrix_c"
+external ocpsci_create_double_matrix_ml : int -> int -> float -> t =
+  "ocpsci_create_double_matrix_c"
+external ocpsci_operation_ml : binop -> t -> t -> t =
+  "ocpsci_operation_c"
+
+
+(*********************************************************************)
+(*                                                                   *)
+(*                                                                   *)
+(*                            TESTS                                  *)
+(*                                                                   *)
+(*                                                                   *)
+(*********************************************************************)
+
+(* The first milestone should be:
+
+- create a Scilab double from OCaml
+- create a Scilab matrix from OCaml
+- Multiply the Scilab matrix by the Scilab double
+- Recover an OCaml matrix from the Scilab matrix
+*)
 
 
 
@@ -144,7 +210,10 @@ let multiply_matrix_by_double matrix double =
   let d = ocpsci_ml2sci_double_ml double in
   ()
 
-let test_double_and_compare () = (* WORKS !! *)
+(* We sort an array of Scilab doubles. It works because our
+generic comparison is compatible with Scilab comparison on
+scalars. It would not work on matrices. *)
+let test_double_and_compare () =
   let list = ref [] in
   for i = 1 to 1000 do
     let d1 = Random.float 1000. in
@@ -160,7 +229,8 @@ let test_double_and_compare () = (* WORKS !! *)
   ) list;
   Printf.fprintf stderr "\n%!"
 
-let _ =
+
+let print_all_primitives () =
   let fun_names = ocpsci_get_funlist_ml () in
 
   let map = Array.mapi (fun  i s ->
@@ -180,9 +250,21 @@ let _ =
   in
   ()
 
-let _ =
+let disp t =
   let disp = ocpsci_context_get_ml (ScilabMisc.unicode_of_ascii "disp") in
-  let res = ocpsci_call_ml disp [|ocpsci_ml2sci_double_ml 1.|] [||] 0 in
+  let res = ocpsci_call_ml disp [| t |] [||] 0 in
   match res with
     Some _ -> Printf.fprintf stderr "disp OK\n%!"
   | None -> Printf.fprintf stderr "disp ERRRO\n%!"
+
+let multiply_matrix_per_double () =
+  let d = ocpsci_ml2sci_double_ml 2.5 in
+  let m = ocpsci_ml2sci_double_matrix_ml
+          [|
+            [| 1.; 2.; 3. |];
+            [| 5.; 6.; 7. ; 8. |];
+          |] in
+  let r = ocpsci_operation_ml Times d m in
+  disp d;
+  disp m;
+  disp r;
