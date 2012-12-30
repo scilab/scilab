@@ -169,8 +169,13 @@ let rec interp env exp =
     let name = symbol_name sy in
     let f args =
       begin_scope ();
+      (* TODO: we can catch exceptions and recover the current scope,
+         i.e. remove all scopes above this one. *)
       let nparameters = Array.length f.functionDec_args.arrayListVar_vars in
       let nvalues = Array.length args in
+
+      (* TODO: if the last argument is called "varargin", we can accept many
+         more arguments, and copy all of them in this last argument. *)
       if nvalues > nparameters then
         raise (TooManyArguments (name, nparameters, nvalues));
       for i = 0 to nvalues-1 do
@@ -181,11 +186,18 @@ let rec interp env exp =
         | _ -> assert false
       done;
 
+      (* TODO: define "nargin" and "nargout" so that primitive "argn"
+         keeps working. *)
+
       begin
         try
           ignore_interp macro_env f.functionDec_body
         with ReturnExn -> ()
       end;
+
+      (* TODO: if the return argument is "varargout", we have to
+         destructure its content to recreate the list of returned
+         values.      *)
       let returns = Array.map (fun var ->
         match var.var_desc with
           SimpleVar sy ->
@@ -199,6 +211,9 @@ let rec interp env exp =
     [||]
 
   | CallExp c ->
+    (* TODO: We need to know how many return values arg expected by the
+       calling expression. *)
+
     let name = c.callExp_name in
     let args = c.callExp_args in
     let name = interp_one env name in
@@ -232,7 +247,11 @@ and interp_sexp env list =
     [] -> [||]
   | [ exp ] -> interp env exp
   | exp :: tail ->
+    (* TODO: if the returned value is a function, we should execute it,
+       to handle the case of function calls without (). *)
     ignore_interp env exp;
+    (* TODO: set "ans" if there is a return value, AND it is not
+       assigned, or just a variable. *)
     interp_sexp env tail
 
 and ignore_interp env exp =
@@ -278,5 +297,26 @@ let _ =
         | _ -> failwith "global with Wrong type of argument"
       ) args;
       [||]
-    )
+    );
+
+(* TODO: other functions that we need to define here, if we don't use
+   the scopes of Scilab.
+
+   "clear", "clearfun"
+
+Different behaviors between Scilab 5 and Scilab 6:
+- "clear()" removes all variables in Scilab 5, but removes no variables in
+    Scilab 6.
+- "who" is implemented, but with a different meaning ?
+
+Not implemented in Scilab 6:
+- "predef", "clearfun"
+- "comp"
+- "delbpt",
+- "deff"
+- "errcatch", "errclear", "iserror"
+- "fort"
+- "funptr", "funcprot", "getf", "newfun"
+- "what", "where", "whereami", "whos"
+*)
 

@@ -3,14 +3,23 @@ exception NotImplemented
 
 module TYPES = struct
 
+  (* TODO: Scilab has a special case for identity matrices: all
+     dimensions are of size -1. This is used to implement "eye()" whose
+     size depends on the context.
 
-(* TODO:
-  To avoid copies when passing arguments to functions, we should
-  have a lazy-copy mechanism: when a matrix should be copied, it
-  is tagged as copy-on-write, and a counter counts how many copies
-  have to be done. When the number of copies drops to 0, we can
-  clear the copy-on-write flag.
-*)
+     Not that most operators don't know what to do with identities, and
+     just return a NULL, leading to hard to understand error messages
+     about overloading. We should probably try to catch such calls
+     earlier, to give proper error messages to users.
+  *)
+
+  (* TODO:
+     To avoid copies when passing arguments to functions, we should
+     have a lazy-copy mechanism: when a matrix should be copied, it
+     is tagged as copy-on-write, and a counter counts how many copies
+     have to be done. When the number of copies drops to 0, we can
+     clear the copy-on-write flag.
+  *)
   type t =
   | Scalar of scalar
   | Matrix of matrix
