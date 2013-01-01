@@ -332,6 +332,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     if(lhs > 1)
         rvec = 1;
     end
+
     //**************************
     //First variable A :
     //**************************
@@ -357,7 +358,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     [mB, nB] = size(%_B);
 
     //Check if B is a square matrix
-    if(mB * nB == 1 | mB <> nB)
+    if(mB * nB <> 0 & (mB <> mA | nB <> nA))
         error(msprintf(gettext("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), "eigs", 2));
     end
 
@@ -543,15 +544,20 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     end
 
     if(cholB)
-        if(~and(triu(%_B) == %_B))
+        if(or(triu(%_B) <> %_B))
             error(msprintf(gettext("%s: Wrong type for input argument #%d: B must be symmetric or hermitian, definite, semi positive.\n"), "eigs", 2));
         end
-        R = %_B;
-        Rprime = R';
+        if(issparse(%_B)) //sparse cholesky decomposition is reversed...
+            Rprime = %_B;
+            R = Rprime';
+        else
+            R = %_B;
+            Rprime = R';
+        end
     end
 
-    if(~cholB & matB <> 0 & iparam(7) == 1)
-        if(~Breal)
+    if(~cholB & matB & iparam(7) == 1)
+        if(issparse(%_B) & ~Breal)
             error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "eigs"));
         else
             if(issparse(%_B))
@@ -562,9 +568,13 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                 iperm = iperm(:,2);
             else
                 R = chol(%_B);
+                Rprime = R';
             end
         end
-        Rprime = R';
+    end
+    if(matB & issparse(%_B) & iparam(7) ==1)
+        Rfact = umf_lufact(R);
+        Rprimefact = umf_lufact(R');
     end
 
     //Main
@@ -643,7 +653,14 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                         workd(ipntr(2):ipntr(2)+nA-1) = A * workd(ipntr(1):ipntr(1)+nA-1);
                     else
                         if(issparse(%_B))
-                            workd(ipntr(2):ipntr(2)+nA-1) = R \ A(iperm,iperm) * (Rprime \ workd(ipntr(1):ipntr(1)+nA-1));
+                            y = umf_lusolve(Rprimefact, workd(ipntr(1):ipntr(1)+nA-1));
+                            if(~cholB)
+                                y = A * y(perm);
+                                y = y(iperm);
+                            else
+                                y = A * y;
+                            end
+                            workd(ipntr(2):ipntr(2)+nA-1) = umf_lusolve(Rfact, y);
                         else
                             workd(ipntr(2):ipntr(2)+nA-1) = Rprime \ (A * (R \ workd(ipntr(1):ipntr(1)+nA-1)));
                         end
@@ -659,13 +676,13 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                 else
                     if(ido == 2)
                         if(cholB)
-                            workd(ipntr(2):ipntr(2)+nA-1) = Rprime * R * workd(ipntr(1):ipntr(1)+nA-1);
+                            workd(ipntr(2):ipntr(2)+nA-1) = Rprime * (R * workd(ipntr(1):ipntr(1)+nA-1));
                         else
                             workd(ipntr(2):ipntr(2)+nA-1) = %_B * workd(ipntr(1):ipntr(1)+nA-1);
                         end
                     elseif(ido == -1)
                         if(cholB)
-                            workd(ipntr(2):ipntr(2)+nA-1) = Rprime * R * workd(ipntr(1):ipntr(1)+nA-1);
+                            workd(ipntr(2):ipntr(2)+nA-1) = Rprime * (R * workd(ipntr(1):ipntr(1)+nA-1));
                         else
                             workd(ipntr(2):ipntr(2)+nA-1) = %_B * workd(ipntr(1):ipntr(1)+nA-1);
                         end
@@ -739,11 +756,13 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
         end
     end
     if rvec & iparam(7)==1 & matB<>0
-        if issparse(B) then
-             res_v = Rprime \ res_v;
-             res_v = res_v(perm,:);
+        if issparse(%_B)
+            res_v = umf_lusolve(Rprimefact, res_v);
+            if(~cholB)
+                res_v = res_v(perm, :);
+            end
         else
-             res_v = R \ res_v;
+            res_v = R \ res_v;
         end
     end
 endfunction
