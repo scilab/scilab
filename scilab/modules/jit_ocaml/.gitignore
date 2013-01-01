@@ -9,3 +9,4 @@
 *.cmxa
 *~
 .libs
+src/yacc/scilabParser.output

@@ -2,6 +2,15 @@
 exception NotImplemented
 
 module TYPES = struct
+
+
+(* TODO:
+  To avoid copies when passing arguments to functions, we should
+  have a lazy-copy mechanism: when a matrix should be copied, it
+  is tagged as copy-on-write, and a counter counts how many copies
+  have to be done. When the number of copies drops to 0, we can
+  clear the copy-on-write flag.
+*)
   type t =
   | Scalar of scalar
   | Matrix of matrix

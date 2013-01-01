@@ -12,57 +12,9 @@
 
 (* from types/includes/internal.hxx *)
 
-type realType =
-            (* Internal Type *)
-| RealInternal
-            (* Generic Types *)
-| RealGeneric
-| RealInt8
-| RealUInt8
-| RealInt16
-| RealUInt16
-| RealInt32
-| RealUInt32
-| RealInt64
-| RealUInt64
-| RealString
-| RealDouble
-| RealBool
-| RealFloat
-| RealPoly
-| RealSinglePoly
-            (* Callable *)
-| RealFunction
-| RealMacro
-| RealMacroFile
-            (* Implicit List *)
-| RealImplicitList
-            (* Container *)
-| RealContainer
-| RealList
-| RealTList
-| RealMList
-| RealSingleStruct
-| RealStruct
-| RealCell
-            (* User *)
-| RealUserType
-            (*For list operation*)
-| RealListOperation (* parent type *)
-| RealListInsertOperation
-| RealListDeleteOperation
-| RealListUndefinedOperation
-| RealFile
-| RealColon
-| RealDollar
-| RealThreadId
-| RealSparse
-| RealSparseBool
-| RealSingleHandle
-| RealHandle
-
+(*
 type genericType = {
-  m_iRealType : realType;
+  m_iRealType : ScilabInternalType.realType;
 (* from types/includes/types.hxx *)
   m_iRows : int;
   m_iCols : int;
@@ -71,7 +23,7 @@ type genericType = {
   m_piDims : int array; (* [50]; *)
   m_iDims : int;
 }
-
+*)
 
 (* in types/includes/arrayof.hxx
     bool                    m_bComplex;

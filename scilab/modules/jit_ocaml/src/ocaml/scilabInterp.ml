@@ -5,7 +5,10 @@ open ScilabValue.TYPES
 (* Problems:
   - an identifier of a function in some position is evaluated as a call to the
     function (statements)
-  -
+
+  TODO:
+  - add the copy operations when assigning/calling functions (depends on
+      the interface of the function !)
 
 *)
 
@@ -199,6 +202,20 @@ let rec interp env exp =
     let name = c.callExp_name in
     let args = c.callExp_args in
     let name = interp_one env name in
+
+    (* TODO:
+
+       do better, especially for optional function arguments.
+       If an argument is a AssignExp node, with an SimpleVar on the
+       left, the association should be put as an optional argument of
+       the function. Note that 'named' arguments can only be specified
+       if other arguments are expected. However, it is possible to
+       override the value of ANY external variable (including global)
+       using such arguments.
+
+       Interestingly, Scilab 5 complains about these arguments if
+       there are too many of them, while Scilab 6 accepts as many
+       named arguments as possible.  *)
     let args = Array.map (interp_one env) args in
     begin
       match name with
