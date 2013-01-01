@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nogui module"
             VALUE "FileVersion", "5, 4, 1, 0"
             VALUE "InternalName", "nogui module"
-            VALUE "LegalCopyright", "Copyright (C) 2012"
+            VALUE "LegalCopyright", "Copyright (C) 2013"
             VALUE "OriginalFilename", "noscigui.dll"
             VALUE "ProductName", " nogui"
             VALUE "ProductVersion", "5, 4, 1, 0"

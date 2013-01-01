@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "string_f module"
             VALUE "FileVersion", "5, 4, 1, 0"
             VALUE "InternalName", "string_f module"
-            VALUE "LegalCopyright", "Copyright (C) 2012"
+            VALUE "LegalCopyright", "Copyright (C) 2013"
             VALUE "OriginalFilename", "string_f.dll"
             VALUE "ProductName", "string_f module"
             VALUE "ProductVersion", "5, 4, 1, 0"

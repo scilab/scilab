@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "libst library for Scilab 5.x"
             VALUE "FileVersion", "5, 4, 1, 0"
             VALUE "InternalName", "libst library for Scilab 5.x"
-            VALUE "LegalCopyright", "Copyright (C) 2012"
+            VALUE "LegalCopyright", "Copyright (C) 2013"
             VALUE "OriginalFilename", "libst.dll"
             VALUE "ProductName", "libst library for Scilab 5.x"
             VALUE "ProductVersion", "5, 4, 1, 0"

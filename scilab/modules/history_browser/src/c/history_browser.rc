@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "history_browser module"
             VALUE "FileVersion", "5, 4, 1, 0"
             VALUE "InternalName", "history_browser module"
-            VALUE "LegalCopyright", "Copyright (C) 2012"
+            VALUE "LegalCopyright", "Copyright (C) 2013"
             VALUE "OriginalFilename", "history_browser.dll"
             VALUE "ProductName", "history_browser module"
             VALUE "ProductVersion", "5, 4, 1, 0"
