@@ -706,11 +706,12 @@ scilab_bin_CPPFLAGS = \
 COMMON_LIBS = $(LTLIBINTL)
 scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 	$(top_srcdir)/modules/core/src/cpp/tasks.cpp $(am__append_3)
+OCAMLLIB = $(shell ocamlc -where)
 JIT_LIBS = \
-  modules/jit_ocaml/libscijit_ocaml-runtime.o \
-  modules/jit_ocaml/jit_ocaml.o \
-  modules/jit_ocaml/libunix.a \
-  modules/jit_ocaml/libasmrun.a 
+  modules/jit_ocaml/ocamlcode.o \
+  modules/jit_ocaml/.libs/libocpsci.a \
+  $(OCAMLLIB)/libunix.a \
+  $(OCAMLLIB)/libasmrun.a 
 
 scilab_bin_LDADD = $(COMMON_LIBS) $(am__append_4) \
 	$(top_builddir)/modules/libscilab.la $(JIT_LIBS) $(FLIBS) \
@@ -1959,14 +1960,11 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	uninstall-valgrindDATA
 
 
-modules/jit_ocaml/libscijit_ocaml-runtime.o:
-	$(MAKE) -C modules/jit_ocaml libscijit_ocaml-runtime.o
-modules/jit_ocaml/jit_ocaml.o:
-	$(MAKE) -C modules/jit_ocaml jit_ocaml.o
-modules/jit_ocaml/libasmrun.a:
-	$(MAKE) -C modules/jit_ocaml libasmrun.a
-modules/jit_ocaml/libunix.a:
-	$(MAKE) -C modules/jit_ocaml libunix.a
+modules/jit_ocaml/.libs/libocpsci.a:
+	$(MAKE) -C modules/jit_ocaml libocpsci.la
+
+modules/jit_ocaml/ocamlcode.o:
+	$(MAKE) -C modules/jit_ocaml ocamlcode.o
 
 all-local: $(TARGETS_ALL)
 

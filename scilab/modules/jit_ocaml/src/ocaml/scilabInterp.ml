@@ -237,8 +237,29 @@ let rec interp env exp =
       | Macro (function_name, f) -> f args
       | _ -> assert false (* TODO: extraction *)
     end
+  | CellCallExp  _
+  | FieldExp  _
+  | ArrayListExp  _
+  | AssignListExp  _
+  | ControlExp ( ReturnExp  _ )
+  | ControlExp ( SelectExp  _ )
+  | ControlExp ( TryCatchExp  _ )
+  | ControlExp ( WhileExp  _ )
+    | MathExp ( MatrixExp  _ )
+  | MathExp ( CellExp  _ )
+  | MathExp ( NotExp  _ )
+  | MathExp ( LogicalOpExp ( _ ,  _ ))
+  | MathExp ( TransposeExp  _ )
 
-  | _ ->
+(* TODO: check fixError problem on this case ! *)
+  | MathExp ( OpExp  _ )
+
+
+  | Var  { var_desc =  ColonVar }
+  | Var  { var_desc =  DollarVar }
+  | Var  { var_desc =  ArrayListVar  _ }
+  | Dec ( VarDec  _ )
+    ->
     Printf.fprintf stderr "ScilabInterp: Don't know how to exec:\n%s" (ScilabAstPrinter.to_string exp);
     raise InterpFailed
 

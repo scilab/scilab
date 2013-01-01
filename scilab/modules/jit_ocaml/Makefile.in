@@ -27,6 +27,14 @@
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
+# We generate:
+# - libscijit_ocaml.la : a bridge between the C++ AST and a serialized
+#      representation
+# - libocpsci.la : some C++ code to be linked statically, to manipulate C++
+#      objects from OCaml
+# - ocamlcode.o : a module containing all the OCaml code, to be linked
+#      statically with libocpsci.la
+
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
@@ -138,8 +146,12 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscijit_ocaml_la_etcdir)" \
 	"$(DESTDIR)$(libscijit_ocaml_la_rootdir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscijit_ocaml_la_DEPENDENCIES = libscijit_ocaml-runtime.o
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libocpsci_la_LIBADD =
+am_libocpsci_la_OBJECTS = libocpsci_la-jit_ocaml.lo \
+	libocpsci_la-ocpsci_gw.lo libocpsci_la-ocpsci_stubs.lo
+libocpsci_la_OBJECTS = $(am_libocpsci_la_OBJECTS)
+libscijit_ocaml_la_DEPENDENCIES = ocamlcode.o
 am__objects_1 = libscijit_ocaml_la-scicaml_ast2string.lo \
 	libscijit_ocaml_la-scicaml_string2ast.lo
 am_libscijit_ocaml_la_OBJECTS = $(am__objects_1)
@@ -148,6 +160,15 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -157,8 +178,8 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscijit_ocaml_la_SOURCES)
-DIST_SOURCES = $(libscijit_ocaml_la_SOURCES)
+SOURCES = $(libocpsci_la_SOURCES) $(libscijit_ocaml_la_SOURCES)
+DIST_SOURCES = $(libocpsci_la_SOURCES) $(libscijit_ocaml_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -435,6 +456,7 @@ modulename = jit_ocaml
 #### jit_ocaml : Conf files ####
 libscijit_ocaml_la_rootdir = $(mydatadir)
 libscijit_ocaml_la_root_DATA = license.txt
+OCAMLLIB = $(shell ocamlc -where)
 
 #### jit_ocaml : init scripts ####
 libscijit_ocaml_la_etcdir = $(mydatadir)/etc
@@ -520,8 +542,11 @@ JIT_OCAML_CPP_SOURCES = \
 			src/cpp/scicaml_ast2string.cpp \
 			src/cpp/scicaml_string2ast.cpp
 
-libscijit_ocaml_la_CFLAGS = -I$(srcdir)/includes
-libscijit_ocaml_la_CPPFLAGS = \
+libscijit_ocaml_la_CFLAGS = \
+   -I$(srcdir)/includes \
+   -I $(OCAMLLIB)
+
+CLASSIC_CPPFLAGS = \
 	-I$(srcdir)/includes \
         -I$(top_srcdir)/libs/MALLOC/includes \
 	-I$(top_srcdir)/modules/elementary_functions/includes \
@@ -543,13 +568,26 @@ libscijit_ocaml_la_CPPFLAGS = \
 	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
+libscijit_ocaml_la_CPPFLAGS = $(CLASSIC_CPPFLAGS)
 pkglib_LTLIBRARIES = libscijit_ocaml.la
-#BUILT_SOURCES = libscijit_ocaml-runtime.a
+#BUILT_SOURCES = ocamlcode.o
 #
-libscijit_ocaml_la_LIBADD = libscijit_ocaml-runtime.o
+libscijit_ocaml_la_LIBADD = ocamlcode.o
 libscijit_ocaml_la_SOURCES = $(JIT_OCAML_CPP_SOURCES)
-OCAMLC_WHERE := `$(OCAMLOPT) -where`
+noinst_LTLIBRARIES = libocpsci.la
+libocpsci_la_SOURCES = \
+    src/c/jit_ocaml.c \
+    src/cpp/ocpsci_gw.cpp \
+    src/cpp/ocpsci_stubs.cpp
+
+EXTRA_libocpsci_la_DEPENDENCIES = ocamlcode.o
+libocpsci_la_CFLAGS = \
+   -I$(srcdir)/includes \
+   -I $(OCAMLLIB)
+
+libocpsci_la_CPPFLAGS = $(CLASSIC_CPPFLAGS) -I $(OCAMLLIB)
 OCAML_AST_MLS = \
+	src/ocaml/scilabMisc.ml \
 	src/ocaml/scilabValue.ml \
 	src/ocaml/scilabContext.ml \
 	src/ocaml/scilabAst.ml \
@@ -564,6 +602,7 @@ OCAML_AST_MLIS = \
 OCAML_SCILAB_MLS = \
 	src/ocaml/scilabString2Ast.ml \
 	src/ocaml/scilabAst2String.ml \
+	src/ocaml/scilabInternalType.ml \
 	src/ocaml/scilabInterp.ml \
 	src/ocaml/scilabCallbacks.ml
 
@@ -596,7 +635,7 @@ CLEANFILES = \
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .ml .mli .mll .mly .cmi .cmx .bin .cpp .lo .o .obj
+.SUFFIXES: .sci .ml .mli .mll .mly .cmi .cmx .bin .c .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(srcdir)/.depend_ocaml $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -628,6 +667,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	@list='$(pkglib_LTLIBRARIES)'; test -n "$(pkglibdir)" || list=; \
@@ -660,6 +708,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libocpsci.la: $(libocpsci_la_OBJECTS) $(libocpsci_la_DEPENDENCIES) $(EXTRA_libocpsci_la_DEPENDENCIES) 
+	$(CXXLINK)  $(libocpsci_la_OBJECTS) $(libocpsci_la_LIBADD) $(LIBS)
 libscijit_ocaml.la: $(libscijit_ocaml_la_OBJECTS) $(libscijit_ocaml_la_DEPENDENCIES) $(EXTRA_libscijit_ocaml_la_DEPENDENCIES) 
 	$(CXXLINK) -rpath $(pkglibdir) $(libscijit_ocaml_la_OBJECTS) $(libscijit_ocaml_la_LIBADD) $(LIBS)
 
@@ -669,8 +719,39 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libocpsci_la-jit_ocaml.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libocpsci_la-ocpsci_gw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libocpsci_la-ocpsci_stubs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijit_ocaml_la-scicaml_ast2string.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijit_ocaml_la-scicaml_string2ast.Plo@am__quote@
+
+.c.o:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c $<
+
+.c.obj:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+
+.c.lo:
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libocpsci_la-jit_ocaml.lo: src/c/jit_ocaml.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libocpsci_la_CPPFLAGS) $(CPPFLAGS) $(libocpsci_la_CFLAGS) $(CFLAGS) -MT libocpsci_la-jit_ocaml.lo -MD -MP -MF $(DEPDIR)/libocpsci_la-jit_ocaml.Tpo -c -o libocpsci_la-jit_ocaml.lo `test -f 'src/c/jit_ocaml.c' || echo '$(srcdir)/'`src/c/jit_ocaml.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libocpsci_la-jit_ocaml.Tpo $(DEPDIR)/libocpsci_la-jit_ocaml.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/jit_ocaml.c' object='libocpsci_la-jit_ocaml.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libocpsci_la_CPPFLAGS) $(CPPFLAGS) $(libocpsci_la_CFLAGS) $(CFLAGS) -c -o libocpsci_la-jit_ocaml.lo `test -f 'src/c/jit_ocaml.c' || echo '$(srcdir)/'`src/c/jit_ocaml.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -692,6 +773,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+libocpsci_la-ocpsci_gw.lo: src/cpp/ocpsci_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libocpsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libocpsci_la-ocpsci_gw.lo -MD -MP -MF $(DEPDIR)/libocpsci_la-ocpsci_gw.Tpo -c -o libocpsci_la-ocpsci_gw.lo `test -f 'src/cpp/ocpsci_gw.cpp' || echo '$(srcdir)/'`src/cpp/ocpsci_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libocpsci_la-ocpsci_gw.Tpo $(DEPDIR)/libocpsci_la-ocpsci_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/ocpsci_gw.cpp' object='libocpsci_la-ocpsci_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libocpsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libocpsci_la-ocpsci_gw.lo `test -f 'src/cpp/ocpsci_gw.cpp' || echo '$(srcdir)/'`src/cpp/ocpsci_gw.cpp
+
+libocpsci_la-ocpsci_stubs.lo: src/cpp/ocpsci_stubs.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libocpsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libocpsci_la-ocpsci_stubs.lo -MD -MP -MF $(DEPDIR)/libocpsci_la-ocpsci_stubs.Tpo -c -o libocpsci_la-ocpsci_stubs.lo `test -f 'src/cpp/ocpsci_stubs.cpp' || echo '$(srcdir)/'`src/cpp/ocpsci_stubs.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libocpsci_la-ocpsci_stubs.Tpo $(DEPDIR)/libocpsci_la-ocpsci_stubs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/ocpsci_stubs.cpp' object='libocpsci_la-ocpsci_stubs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libocpsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libocpsci_la-ocpsci_stubs.lo `test -f 'src/cpp/ocpsci_stubs.cpp' || echo '$(srcdir)/'`src/cpp/ocpsci_stubs.cpp
 
 libscijit_ocaml_la-scicaml_ast2string.lo: src/cpp/scicaml_ast2string.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijit_ocaml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscijit_ocaml_la-scicaml_ast2string.lo -MD -MP -MF $(DEPDIR)/libscijit_ocaml_la-scicaml_ast2string.Tpo -c -o libscijit_ocaml_la-scicaml_ast2string.lo `test -f 'src/cpp/scicaml_ast2string.cpp' || echo '$(srcdir)/'`src/cpp/scicaml_ast2string.cpp
@@ -879,7 +974,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -954,14 +1049,14 @@ uninstall-am: uninstall-libscijit_ocaml_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscijit_ocaml_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscijit_ocaml_la_etcDATA \
 	install-libscijit_ocaml_la_rootDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1178,16 +1273,13 @@ distclean-local:
 
 .PHONY: macros java swig giws
 
-jit_ocaml.o: src/c/jit_ocaml.c
-	ocamlopt -c -I includes -fPIC src/c/jit_ocaml.c
-
-libscijit_ocaml-runtime.o: $(OCAML_CMXS) jit_ocaml.o libasmrun.a
-	$(OCAMLOPT) -o libscijit_ocaml-runtime.o -output-obj unix.cmxa $(OCAML_CMXS)
+ocamlcode.o: $(OCAML_CMXS)
+	$(OCAMLOPT) -o ocamlcode.o -output-obj unix.cmxa $(OCAML_CMXS)
 
 libasmrun.a:
-	cp $(OCAMLC_WHERE)/libasmrun.a .
+	cp $(OCAMLLIB)/libasmrun.a .
 libunix.a:
-	cp $(OCAMLC_WHERE)/libunix.a .
+	cp $(OCAMLLIB)/libunix.a .
 
 depend_ocaml:
 	$(OCAMLDEP) -native $(OCAML_INCL) $(OCAML_MLS) $(OCAML_MLIS) > .depend_ocaml
@@ -1214,19 +1306,19 @@ src/ocaml/scilabAst2String.cmo : src/ocaml/scilabContext.cmi \
 src/ocaml/scilabAst2String.cmx : src/ocaml/scilabContext.cmx \
     src/ocaml/scilabAst.cmx src/ocaml/scilabAst2String.cmi
 src/ocaml/scilabInterp.cmo : src/ocaml/scilabValue.cmi \
-    src/ocaml/scilabContext.cmi src/ocaml/scilabAst.cmx \
-    src/ocaml/scilabInterp.cmi
+    src/ocaml/scilabContext.cmi src/ocaml/scilabAstPrinter.cmi \
+    src/ocaml/scilabAst.cmx src/ocaml/scilabInterp.cmi
 src/ocaml/scilabInterp.cmx : src/ocaml/scilabValue.cmx \
-    src/ocaml/scilabContext.cmx src/ocaml/scilabAst.cmx \
-    src/ocaml/scilabInterp.cmi
+    src/ocaml/scilabContext.cmx src/ocaml/scilabAstPrinter.cmx \
+    src/ocaml/scilabAst.cmx src/ocaml/scilabInterp.cmi
 src/ocaml/scilabCallbacks.cmo : src/ocaml/scilabValue.cmi \
     src/ocaml/scilabString2Ast.cmi src/ocaml/scilabInterp.cmi \
-    src/ocaml/scilabAstPrinter.cmi src/ocaml/scilabAst2String.cmi \
-    src/ocaml/scilabCallbacks.cmi
+    src/ocaml/scilabContext.cmi src/ocaml/scilabAstPrinter.cmi \
+    src/ocaml/scilabAst2String.cmi src/ocaml/scilabCallbacks.cmi
 src/ocaml/scilabCallbacks.cmx : src/ocaml/scilabValue.cmx \
     src/ocaml/scilabString2Ast.cmx src/ocaml/scilabInterp.cmx \
-    src/ocaml/scilabAstPrinter.cmx src/ocaml/scilabAst2String.cmx \
-    src/ocaml/scilabCallbacks.cmi
+    src/ocaml/scilabContext.cmx src/ocaml/scilabAstPrinter.cmx \
+    src/ocaml/scilabAst2String.cmx src/ocaml/scilabCallbacks.cmi
 src/ocaml/scilabValue.cmi :
 src/ocaml/scilabContext.cmi : src/ocaml/scilabValue.cmi
 src/ocaml/scilabAstPrinter.cmi : src/ocaml/scilabAst.cmx
@@ -1235,6 +1327,18 @@ src/ocaml/scilabAst2String.cmi : src/ocaml/scilabAst.cmx
 src/ocaml/scilabInterp.cmi : src/ocaml/scilabValue.cmi \
     src/ocaml/scilabAst.cmx
 src/ocaml/scilabCallbacks.cmi :
+src/yacc/scilabParser.cmo : src/ocaml/scilabContext.cmi \
+    src/ocaml/scilabAst.cmx src/yacc/scilabParser.cmi
+src/yacc/scilabParser.cmx : src/ocaml/scilabContext.cmx \
+    src/ocaml/scilabAst.cmx src/yacc/scilabParser.cmi
+src/lex/scilabLexer.cmo : src/yacc/scilabParser.cmi
+src/lex/scilabLexer.cmx : src/yacc/scilabParser.cmx
+src/ocaml/scilabParserMain.cmo : src/yacc/scilabParser.cmi \
+    src/lex/scilabLexer.cmx src/ocaml/scilabAstPrinter.cmi \
+    src/ocaml/scilabAst.cmx
+src/ocaml/scilabParserMain.cmx : src/yacc/scilabParser.cmx \
+    src/lex/scilabLexer.cmx src/ocaml/scilabAstPrinter.cmx \
+    src/ocaml/scilabAst.cmx
 
 .ml.cmx:
 	$(OCAMLOPT) $(OPTFLAGS) -c $<
