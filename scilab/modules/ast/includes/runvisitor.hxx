@@ -765,98 +765,18 @@ public :
         if (result_get()->isImplicitList())
         {
             bool bNeedUpdate = false;
-            ImplicitList* pVar = ((InternalType*)result_get())->getAs<ImplicitList>();
+            InternalType* pIL = result_get();
+            ImplicitList* pVar = pIL->getAs<ImplicitList>();
 
             InternalType *pIT = NULL;
             pIT = pVar->extractValue(0);
             symbol::Symbol varName = e.vardec_get().name_get();
 
-            //keep pIt as Double to optimize Double case
-            if (pIT->isDouble())
-            {
-                symbol::Context::getInstance()->put(varName, *pIT);
-            }
-
-            Double *pDouble = pIT->getAs<Double>();
             for (int i = 0 ; i < pVar->getSize() ; i++)
             {
-                //QueryPerformanceCounter(&liStart);
-                if (pIT->isRef(1))
-                {
-                    pIT = pIT->clone();
-                    //update pDouble after clone
-                    pDouble = pIT->getAs<Double>();
-                    bNeedUpdate = true;
-                }
 
-                if (pIT->isDouble())
-                {
-                    pDouble->set(0, pVar->extractValueInDouble(i));
-                }
-                else if (pIT->isInt())
-                {
-                    switch (pIT->getType())
-                    {
-                        case InternalType::RealInt8 :
-                        {
-                            Int8* pI = pIT->getAs<Int8>();
-                            pI->set(0, (char)pVar->extractValueInInteger(i));
-                            break;
-                        }
-                        case InternalType::RealUInt8 :
-                        {
-                            UInt8* pI = pIT->getAs<UInt8>();
-                            pI->set(0, (unsigned char)pVar->extractValueInInteger(i));
-                            break;
-                        }
-                        case InternalType::RealInt16 :
-                        {
-                            Int16* pI = pIT->getAs<Int16>();
-                            pI->set(0, (short)pVar->extractValueInInteger(i));
-                            break;
-                        }
-                        case InternalType::RealUInt16 :
-                        {
-                            UInt16* pI = pIT->getAs<UInt16>();
-                            pI->set(0, (unsigned short)pVar->extractValueInInteger(i));
-                            break;
-                        }
-                        case InternalType::RealInt32 :
-                        {
-                            Int32* pI = pIT->getAs<Int32>();
-                            pI->set(0, (int)pVar->extractValueInInteger(i));
-                            break;
-                        }
-                        case InternalType::RealUInt32 :
-                        {
-                            UInt32* pI = pIT->getAs<UInt32>();
-                            pI->set(0, (unsigned int)pVar->extractValueInInteger(i));
-                            break;
-                        }
-                        case InternalType::RealInt64 :
-                        {
-                            Int64* pI = pIT->getAs<Int64>();
-                            pI->set(0, (long long)pVar->extractValueInInteger(i));
-                            break;
-                        }
-                        case InternalType::RealUInt64 :
-                        {
-                            UInt64* pI = pIT->getAs<UInt64>();
-                            pI->set(0, (unsigned long long)pVar->extractValueInInteger(i));
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    pIT = pVar->extractValue(i);
-                }
-
-                if (pDouble == NULL || bNeedUpdate)
-                {
-                    symbol::Context::getInstance()->put(varName, *pIT);
-                    bNeedUpdate = false;
-                }
+                pIT = pVar->extractValue(i);
+                symbol::Context::getInstance()->put(varName, *pIT);
 
                 e.body_get().accept(*this);
                 if (e.body_get().is_break())
@@ -876,21 +796,9 @@ public :
                     const_cast<ForExp*>(&e)->return_set();
                     break;
                 }
-
-                //QueryPerformanceCounter(&liStop);
-                //llTotal += (liStop.QuadPart - liStart.QuadPart - llOverHead);
             }
-            //BpIT->DecreaseRef();
-            pVar->DecreaseRef();
-            //delete pVar;
 
-            //if(pVar->getSize() > 0 && llTotal > 0)
-            //{
-            //    //compute and display mean of time
-            //    long long llMean =  llTotal / pVar->getSize();
-            //    std::cout << L"Total time (ms): " << (((double)llTotal /  (double)liFresquency.QuadPart) * 1000) << std::endl;
-            //    std::cout << L"Mean time (ms): " << (((double)llMean /  (double)liFresquency.QuadPart) * 1000) << std::endl;
-            //}
+            pVar->DecreaseRef();
         }
         else if (result_get()->isList())
         {
@@ -903,11 +811,13 @@ public :
                 e.body_get().accept(*this);
                 if (e.body_get().is_break())
                 {
+                    const_cast<Exp*>(&(e.body_get()))->break_reset();
                     break;
                 }
 
                 if (e.body_get().is_continue())
                 {
+                    const_cast<Exp*>(&(e.body_get()))->continue_reset();
                     continue;
                 }
 
@@ -935,11 +845,13 @@ public :
                 e.body_get().accept(*this);
                 if (e.body_get().is_break())
                 {
+                    const_cast<Exp*>(&(e.body_get()))->break_reset();
                     break;
                 }
 
                 if (e.body_get().is_continue())
                 {
+                    const_cast<Exp*>(&(e.body_get()))->continue_reset();
                     continue;
                 }
 
@@ -950,6 +862,7 @@ public :
                 }
             }
         }
+
         result_set(NULL);
     }
 
