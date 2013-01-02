@@ -99,49 +99,50 @@ let assign = "="
 
 
 rule token = parse
-  | blank                        { is_transposable := false;token lexbuf }
-  | newline                      { (* Printf.printf "EOL\n"; *) is_transposable := false;Lexing.new_line lexbuf; EOL}
-  | startlinecomment             { is_transposable := false;str_cmt := ""; comment lexbuf }
-  | dquote                       { is_transposable := false;str := ""; doublestr lexbuf }
+  | blank                        { is_transposable := false; token lexbuf }
+  | newline                      { (* Printf.printf "EOL\n"; *) is_transposable := false; Lexing.new_line lexbuf; EOL}
+  | startlinecomment             { is_transposable := false; str_cmt := ""; comment lexbuf }
+  | dquote                       { is_transposable := false; str := ""; doublestr lexbuf }
   | quote                        { if !is_transposable 
                                    then QUOTE 
                                    else begin str := ""; simplestr lexbuf end}
-  | "if"                         { IF }
-  | "then"                       { THEN }
-  | "else"                       { ELSE }
-  | "elseif"                     { ELSEIF }
-  | "end"                        { END }
-  | "select"                     { SELECT }
-  | "switch"                     { SWITCH }
-  | "otherwise"                  { OTHERWISE }
-  | "case"                       { CASE }
-  | "while"                      { WHILE }
-  | "do"                         { DO }
-  | "try"                        { TRY }
-  | "catch"                      { CATCH }
-  | "return"                     { RETURN }
-  | "break"                      { BREAK }
-  | "continue"                   { CONTINUE }
-  | "="                          { ASSIGN }
-  | "for"                        { FOR }
-  | "hidden"                     { HIDDEN }
-  | "function"                   { FUNCTION }
-  | "#function"                  { HIDDENFUNCTION }
-  | "endfunction"                { ENDFUNCTION }
-  | plus                         { PLUS }
-  | minus                        { MINUS }
-  | rdivide                      { RDIVIDE }
-  | ldivide                      { LDIVIDE }
-  | times                        { TIMES }
-  | power                        { POWER }
-  | equal                        { EQ }
-  | notequal                     { NE }
-  | lowerthan                    { LT }
-  | greaterthan                  { GT }
-  | lowerequal                   { LE }
-  | greaterequal                 { GE }
-  | comma                        { COMMA }
-  | semicolon                    { SEMI }
+  | "if"                         { is_transposable := false; IF }
+  | "then"                       { is_transposable := false; THEN }
+  | "else"                       { is_transposable := false; ELSE }
+  | "elseif"                     { is_transposable := false; ELSEIF }
+  | "end"                        { is_transposable := false; END }
+  | "select"                     { is_transposable := false; SELECT }
+  | "switch"                     { is_transposable := false; SWITCH }
+  | "otherwise"                  { is_transposable := false; OTHERWISE }
+  | "case"                       { is_transposable := false; CASE }
+  | "while"                      { is_transposable := false; WHILE }
+  | "do"                         { is_transposable := false; DO }
+  | "try"                        { is_transposable := false; TRY }
+  | "catch"                      { is_transposable := false; CATCH }
+  | "return"                     { is_transposable := false; RETURN }
+  | "break"                      { is_transposable := false; BREAK }
+  | "continue"                   { is_transposable := false; CONTINUE }
+  | "="                          { is_transposable := false; ASSIGN }
+  | "for"                        { is_transposable := false; FOR }
+  | "hidden"                     { is_transposable := false; HIDDEN }
+  | "function"                   { is_transposable := false; FUNCTION }
+  | "#function"                  { is_transposable := false; HIDDENFUNCTION }
+  | "endfunction"                { is_transposable := false; ENDFUNCTION }
+  | plus                         { is_transposable := false; PLUS }
+  | minus                        { is_transposable := false; MINUS }
+  | rdivide                      { is_transposable := false; RDIVIDE }
+  | ldivide                      { is_transposable := false; LDIVIDE }
+  | times                        { is_transposable := false; TIMES }
+  | power                        { is_transposable := false; POWER }
+  | equal                        { is_transposable := false; EQ }
+  | notequal                     { is_transposable := false; NE }
+  | lowerthan                    { is_transposable := false; LT }
+  | greaterthan                  { is_transposable := false; GT }
+  | lowerequal                   { is_transposable := false; LE }
+  | greaterequal                 { is_transposable := false; GE }
+  | comma                        { is_transposable := false; COMMA }
+  | semicolon                    { is_transposable := false; SEMI }
+  | colon                        { is_transposable := false; COLON }
   | integer as inum              { is_transposable := true;
                                    let num = float_of_string inum in
                                    Printf.printf "varint[%f]" num; VARINT num }
@@ -151,17 +152,17 @@ rule token = parse
   | little as lnum               { is_transposable := true;
                                    let num = float_of_string lnum in
                                    NUM num }
-  | lparen                       { LPAREN }
-  | rparen                       { is_transposable := true;RPAREN }
-  | lbrace                       { LBRACE }
-  | rbrace                       { is_transposable := true;RBRACE }
-  | lbrack                       { LBRACK }
-  | rbrack                       { is_transposable := true;RBRACK }
-  | dollar                       { DOLLAR }
-  | booltrue                     { is_transposable := true;BOOLTRUE }
-  | boolfalse                    { is_transposable := true;BOOLFALSE }
+  | lparen                       { is_transposable := false; LPAREN }
+  | rparen                       { is_transposable := true; RPAREN }
+  | lbrace                       { is_transposable := false; LBRACE }
+  | rbrace                       { is_transposable := true; RBRACE }
+  | lbrack                       { is_transposable := false; LBRACK }
+  | rbrack                       { is_transposable := true; RBRACK }
+  | dollar                       { is_transposable := false; DOLLAR }
+  | booltrue                     { is_transposable := true; BOOLTRUE }
+  | boolfalse                    { is_transposable := true; BOOLFALSE }
   | id as str                    { is_transposable := true;Printf.printf "ID[%s]" str; ID str }
-  | eof                          { EOF }
+  | eof                          { is_transposable := false; EOF }
   | _ as c                       { Printf.printf "Lexing error : Unknow character \'%c\'" c;exit 1}
 
 and comment = parse
