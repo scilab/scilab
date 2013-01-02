@@ -979,7 +979,41 @@ rightOperand :
                                                                opExp_kind  = OpExp_invalid_kind } in
                                                   OpExp (oper,args) }*/
 
+
+
+listableBegin :
+| COLON variable                                { $2 }
+| COLON functionCall                            { $2 }
+
+listableEnd :
+| listableBegin COLON variable                  { { listExp_start = create_dummy_exp ();
+                                                    listExp_step  = $1;
+                                                    listExp_end   = $3 } }
+| listableBegin COLON functionCall              { { listExp_start = create_dummy_exp ();
+                                                    listExp_step  = $1;
+                                                    listExp_end   = $3 } }
+| listableBegin %prec LISTABLE                  { let step_st = Parsing.rhs_start_pos 1  in
+                                                  let step_end = Parsing.rhs_start_pos 1 in
+                                                  let steploc = create_loc step_st step_end in
+                                                  let stepexp =
+                                                    DoubleExp { doubleExp_value = 1.0;
+                                                                doubleExp_bigDouble = ()} in
+                                                  let step_1 = create_exp steploc (ConstExp stepexp) in
+                                                  { listExp_start = create_dummy_exp ();
+                                                    listExp_step  = step_1;
+                                                    listExp_end   = $1 } }
+
 variable :
+| variable listableEnd	                	{ let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 7 in
+                                                  let loc = create_loc off_st off_end in
+                                                  let lexp = { $2 with listExp_start = $1 } in
+                                                  create_exp loc (ListExp lexp) }
+| functionCall listableEnd %prec UPLEVEL        { let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 7 in
+                                                  let loc = create_loc off_st off_end in
+                                                  let lexp = { $2 with listExp_start = $1 } in
+                                                  create_exp loc (ListExp lexp) }
 | matrix                                        { $1 }
 | cell                                          { $1 }
 | operation %prec UPLEVEL		        { $1 }
@@ -996,14 +1030,14 @@ variable :
                                                   let off_st = Parsing.rhs_start_pos 1 in
                                                   let off_end = Parsing.rhs_end_pos 1 in
                                                   let loc = create_loc off_st off_end in
-                                                  create_exp loc (ConstExp doubleexp)}
+                                                  create_exp loc (ConstExp doubleexp) }
 | NUM %prec LISTABLE                            { let doubleexp =
                                                     DoubleExp { doubleExp_value = $1;
                                                                 doubleExp_bigDouble = ()} in
                                                   let off_st = Parsing.rhs_start_pos 1 in
                                                   let off_end = Parsing.rhs_end_pos 1 in
                                                   let loc = create_loc off_st off_end in
-                                                  create_exp loc (ConstExp doubleexp)} 
+                                                  create_exp loc (ConstExp doubleexp) } 
 | STR                                           { let strexp = StringExp
                                                     { stringExp_value = $1 ;
                                                       stringExp_bigString = () } in
