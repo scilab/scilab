@@ -1113,7 +1113,7 @@ thenBody :
                                                  let loc = 
                                                    create_loc off_st off_end in
                                                  create_exp loc (SeqExp []) }
-| expression                                   { $1 }
+| expressions                                  { $1 }
 
 
 elseBody :
