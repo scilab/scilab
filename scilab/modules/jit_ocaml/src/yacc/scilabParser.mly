@@ -1052,6 +1052,7 @@ variable :
                                                     Var { var_location = varloc;
                                                           var_desc = DollarVar } in 
                                                   create_exp varloc varexp }
+| LPAREN variable RPAREN			{ $2 }
 | comparison                                    { $1 }
 
 /* IF THEN ELSE */
