@@ -56,8 +56,11 @@ let id2  = ['a'-'z''A'-'Z''_''0'-'9''#''?''$'] | utf
 let id   = id1 id2*
 (* let id   = ['a'-'z''A'-'Z''_''%''#''?''$']['a'-'z''A'-'Z''_''0'-'9''#''?''$'] * *)
 
-let booltrue  = "%t" | "%T"
-let boolfalse = "%f" | "%F"
+let boolnot    = "@" | "~"
+let booltrue   = "%t" | "%T"
+let boolfalse  = "%f" | "%F"
+let booland    = "&"
+let boolandand = "&&"
 
 let lbrack = "["
 let rbrack = "]"
@@ -159,8 +162,11 @@ rule token = parse
   | lbrack                       { is_transposable := false; LBRACK }
   | rbrack                       { is_transposable := true; RBRACK }
   | dollar                       { is_transposable := false; DOLLAR }
+  | boolnot                      { is_transposable := false; NOT }
   | booltrue                     { is_transposable := true; BOOLTRUE }
   | boolfalse                    { is_transposable := true; BOOLFALSE }
+  | booland                      { is_transposable := false; AND }
+  | boolandand                   { is_transposable := false; ANDAND }
   | id as str                    { is_transposable := true;Printf.printf "ID[%s]" str; ID str }
   | eof                          { is_transposable := false; EOF }
   | _ as c                       { Printf.printf "Lexing error : Unknow character \'%c\'" c;exit 1}
