@@ -1052,6 +1052,20 @@ variable :
                                                     Var { var_location = varloc;
                                                           var_desc = DollarVar } in 
                                                   create_exp varloc varexp }
+| BOOLTRUE %prec BOOLTRUE                       { let doubleexp =
+                                                    BoolExp { boolExp_value = true;
+                                                              boolExp_bigBool = ()} in
+                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 1 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (ConstExp doubleexp) }
+| BOOLFALSE %prec BOOLFALSE                     { let doubleexp =
+                                                    BoolExp { boolExp_value = true;
+                                                              boolExp_bigBool = ()} in
+                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 1 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (ConstExp doubleexp) }
 | LPAREN variable RPAREN			{ $2 }
 | comparison                                    { $1 }
 
