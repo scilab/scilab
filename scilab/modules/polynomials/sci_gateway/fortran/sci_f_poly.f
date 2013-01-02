@@ -13,11 +13,14 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer iadr, sadr, w
       integer blank,racine,coeff
       logical roots,ref
-      data blank/40/,racine/27/,coeff/12/
-      integer r(5)/27, 24, 24, 29, 28/
-      integer c(5)/12, 24, 14, 15, 15/
+      integer r(5)
+      integer c(5)
       integer size
       character*256 tmpmsg
+c
+      data blank/40/,racine/27/,coeff/12/
+      data r/27, 24, 24, 29, 28/
+      data c/12, 24, 14, 15, 15/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
