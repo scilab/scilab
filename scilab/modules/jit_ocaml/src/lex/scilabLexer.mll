@@ -23,6 +23,8 @@
 
   let str = ref ""
 
+  let is_transposable = ref false
+
 }
 
 let newline = ('\010' | '\013' | "\013\010")
@@ -97,11 +99,13 @@ let assign = "="
 
 
 rule token = parse
-  | blank                        { token lexbuf }
-  | newline                      { (* Printf.printf "EOL\n"; *) Lexing.new_line lexbuf; EOL}
-  | startlinecomment             { str_cmt := ""; comment lexbuf }
-  | dquote                       { str := ""; doublestr lexbuf }
-  | quote                        { str := ""; simplestr lexbuf }
+  | blank                        { is_transposable := false;token lexbuf }
+  | newline                      { (* Printf.printf "EOL\n"; *) is_transposable := false;Lexing.new_line lexbuf; EOL}
+  | startlinecomment             { is_transposable := false;str_cmt := ""; comment lexbuf }
+  | dquote                       { is_transposable := false;str := ""; doublestr lexbuf }
+  | quote                        { if !is_transposable 
+                                   then QUOTE 
+                                   else begin str := ""; simplestr lexbuf end}
   | "if"                         { IF }
   | "then"                       { THEN }
   | "else"                       { ELSE }
@@ -138,22 +142,25 @@ rule token = parse
   | greaterequal                 { GE }
   | comma                        { COMMA }
   | semicolon                    { SEMI }
-  | integer as inum              { let num = float_of_string inum in
+  | integer as inum              { is_transposable := true;
+                                   let num = float_of_string inum in
                                    Printf.printf "varint[%f]" num; VARINT num }
-  | number as nnum               { let num = float_of_string nnum in
+  | number as nnum               { is_transposable := true;
+                                   let num = float_of_string nnum in
                                    NUM num }
-  | little as lnum               { let num = float_of_string lnum in
+  | little as lnum               { is_transposable := true;
+                                   let num = float_of_string lnum in
                                    NUM num }
   | lparen                       { LPAREN }
-  | rparen                       { RPAREN }
+  | rparen                       { is_transposable := true;RPAREN }
   | lbrace                       { LBRACE }
-  | rbrace                       { RBRACE }
+  | rbrace                       { is_transposable := true;RBRACE }
   | lbrack                       { LBRACK }
-  | rbrack                       { RBRACK }
+  | rbrack                       { is_transposable := true;RBRACK }
   | dollar                       { DOLLAR }
-  | booltrue                     { BOOLTRUE }
-  | boolfalse                    { BOOLFALSE }
-  | id as str                    { Printf.printf "ID[%s]" str; ID str }
+  | booltrue                     { is_transposable := true;BOOLTRUE }
+  | boolfalse                    { is_transposable := true;BOOLFALSE }
+  | id as str                    { is_transposable := true;Printf.printf "ID[%s]" str; ID str }
   | eof                          { EOF }
   | _ as c                       { Printf.printf "Lexing error : Unknow character \'%c\'" c;exit 1}
 

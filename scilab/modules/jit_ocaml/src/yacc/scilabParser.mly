@@ -29,7 +29,7 @@
 %token COLON ASSIGN ID FOR FUNCTION ENDFUNCTION HIDDEN HIDDENFUNCTION
 %token PLUS MINUS RDIVIDE LDIVIDE TIMES POWER EQ NE LT GT LE GE
 %token SELECT SWITCH OTHERWISE CASE TRY CATCH RETURN BREAK CONTINUE
-%token BOOLTRUE BOOLFALSE
+%token BOOLTRUE BOOLFALSE QUOTE
 %token<float> VARINT
 %token<float> VARFLOAT
 %token<float> NUM
@@ -962,6 +962,12 @@ operation :
                                                               opExp_right = right;
                                                               opExp_kind  = OpExp_invalid_kind } in
                                                  create_exp oploc (MathExp (OpExp (oper,args))) }
+| variable QUOTE			       { let tloc_st = Parsing.rhs_start_pos 1 in
+                                                 let tloc_end = Parsing.rhs_end_pos 2 in
+                                                 let tloc = create_loc tloc_st tloc_end in
+                                                 let texp = { transposeExp_exp = $1;
+                                                              transposeExp_conjugate = Conjugate} in
+                                                 create_exp tloc (MathExp (TransposeExp texp)) }
 
 /*
 rightOperand :
@@ -974,8 +980,8 @@ rightOperand :
                                                   OpExp (oper,args) }*/
 
 variable :
-| cell                                          { $1 }
 | matrix                                        { $1 }
+| cell                                          { $1 }
 | operation %prec UPLEVEL		        { $1 }
 | ID %prec LISTABLE                             { let varloc_st = Parsing.rhs_start_pos 1 in
                                                   let varloc_end = Parsing.rhs_end_pos 1 in
@@ -1005,6 +1011,13 @@ variable :
                                                   let str_end = Parsing.rhs_end_pos 1 in
                                                   let str_loc = create_loc str_st str_end in
                                                   create_exp str_loc (ConstExp strexp) }
+| DOLLAR                                        { let varloc_st = Parsing.rhs_start_pos 1 in
+                                                  let varloc_end = Parsing.rhs_end_pos 1 in
+                                                  let varloc = create_loc varloc_st varloc_end in
+                                                  let varexp = 
+                                                    Var { var_location = varloc;
+                                                          var_desc = DollarVar } in 
+                                                  create_exp varloc varexp }
 | comparison                                    { $1 }
 
 /* IF THEN ELSE */
