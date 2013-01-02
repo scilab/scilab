@@ -1382,7 +1382,7 @@ forConditionBreak :
 | /* Empty */					{ }
 
 forBody :
-| expression                                    { $1 }
+| expressions                                   { $1 }
 | /* Empty */                                   { let off_st = Parsing.rhs_start_pos 1 in
                                                   let off_end = Parsing.rhs_end_pos 1 in
                                                   let loc = 
