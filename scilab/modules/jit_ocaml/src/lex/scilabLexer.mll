@@ -84,6 +84,13 @@ let endblockcomment   = "*/"
 let dquote = "\""
 let quote  = "'"
 
+let dot        = "."
+let dotquote   = ".'"
+let dottimes   = ".*"
+let dotrdivide = "./"
+let dotldivide = ".\\"
+let dotpower   = ".^" | ".**"
+
 let plus    = "+"
 let minus   = "-"
 let rdivide = "/"
@@ -131,6 +138,7 @@ rule token = parse
   | "function"                   { is_transposable := false; FUNCTION }
   | "#function"                  { is_transposable := false; HIDDENFUNCTION }
   | "endfunction"                { is_transposable := false; ENDFUNCTION }
+  | dot                          { is_transposable := false; DOT }
   | plus                         { is_transposable := false; PLUS }
   | minus                        { is_transposable := false; MINUS }
   | rdivide                      { is_transposable := false; RDIVIDE }

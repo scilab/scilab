@@ -29,7 +29,7 @@
 %token COLON ASSIGN ID FOR FUNCTION ENDFUNCTION HIDDEN HIDDENFUNCTION
 %token PLUS MINUS RDIVIDE LDIVIDE TIMES POWER EQ NE LT GT LE GE
 %token SELECT SWITCH OTHERWISE CASE TRY CATCH RETURN BREAK CONTINUE
-%token BOOLTRUE BOOLFALSE QUOTE AND ANDAND NOT
+%token BOOLTRUE BOOLFALSE QUOTE AND ANDAND NOT DOT
 %token<float> VARINT
 %token<float> VARFLOAT
 %token<float> NUM
@@ -1053,6 +1053,38 @@ variable :
                                                   let loc = create_loc off_st off_end in
                                                   let nexp = NotExp { notExp_exp = $2 } in
                                                   create_exp loc (MathExp nexp) }
+| variable DOT ID %prec UPLEVEL	                { let varloc_st = Parsing.rhs_start_pos 3 in
+                                                  let varloc_end = Parsing.rhs_end_pos 3 in
+                                                  let varloc = create_loc varloc_st varloc_end in
+                                                  let varexp = 
+                                                    Var { var_location = varloc;
+                                                          var_desc = SimpleVar $3 } in 
+                                                  let fieldexp = { fieldExp_head = $1 ;
+                                                                  fieldExp_tail = create_exp varloc varexp } in
+                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (FieldExp fieldexp) }
+/*| variable DOT keywords %prec UPLEVEL	*/
+| variable DOT functionCall			{ let fieldexp = { fieldExp_head = $1 ;
+                                                                   fieldExp_tail = $3 } in
+                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (FieldExp fieldexp) }	
+| functionCall DOT variable			{ let fieldexp = { fieldExp_head = $1 ;
+                                                                   fieldExp_tail = $3 } in
+                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (FieldExp fieldexp) }	
+/*| functionCall DOT keywords */
+| functionCall DOT functionCall			{ let fieldexp = { fieldExp_head = $1 ;
+                                                                   fieldExp_tail = $3 } in
+                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                  let loc = create_loc off_st off_end in
+                                                  create_exp loc (FieldExp fieldexp) }	
 | variable listableEnd	                	{ let off_st = Parsing.rhs_start_pos 1 in
                                                   let off_end = Parsing.rhs_end_pos 7 in
                                                   let loc = create_loc off_st off_end in
@@ -1742,10 +1774,24 @@ matrixOrCellLine :
                                                                            Array.of_list (List.rev $1) } }
     
 matrixOrCellColumns :
-| matrixOrCellColumns matrixOrCellColumnsBreak variable %prec HIGHLEVEL   { $3::$1 }
-| matrixOrCellColumns variable %prec HIGHLEVEL                            { $2::$1 }
-| variable %prec HIGHLEVEL                                                { [$1] }
-
+| matrixOrCellColumns matrixOrCellColumnsBreak variable %prec HIGHLEVEL       { $3::$1 }
+| matrixOrCellColumns matrixOrCellColumnsBreak functionCall %prec HIGHLEVEL   { $3::$1 }
+| matrixOrCellColumns variable %prec HIGHLEVEL                                { $2::$1 }
+| matrixOrCellColumns functionCall %prec HIGHLEVEL                            { $2::$1 }
+| matrixOrCellColumns COMMENT %prec HIGHLEVEL                                 { let commentexp = CommentExp { commentExp_comment = $2 } in
+                                                                                let cmt_st = Parsing.rhs_start_pos 2 in
+                                                                                let cmt_end = Parsing.rhs_end_pos 2 in
+                                                                                let cmt_loc = create_loc cmt_st cmt_end in
+                                                                                let cmt_exp = create_exp cmt_loc (ConstExp commentexp) in
+                                                                                cmt_exp::$1 }
+| variable %prec HIGHLEVEL                                                    { [$1] }
+| functionCall %prec HIGHLEVEL                                                { [$1] }
+| COMMENT %prec HIGHLEVEL                                                     { let commentexp = CommentExp { commentExp_comment = $1 } in
+                                                                                let cmt_st = Parsing.rhs_start_pos 1 in
+                                                                                let cmt_end = Parsing.rhs_end_pos 1 in
+                                                                                let cmt_loc = create_loc cmt_st cmt_end in
+                                                                                let cmt_exp = create_exp cmt_loc (ConstExp commentexp) in 
+                                                                                [cmt_exp] }
 
 matrixOrCellColumnsBreak :
 | matrixOrCellColumnsBreak COMMA				{  }
@@ -1777,6 +1823,38 @@ variableDeclaration :
                                                                   create_exp loc assignexp}
 
 assignable :
+| variable DOT ID %prec UPLEVEL	                                { let varloc_st = Parsing.rhs_start_pos 3 in
+                                                                  let varloc_end = Parsing.rhs_end_pos 3 in
+                                                                  let varloc = create_loc varloc_st varloc_end in
+                                                                  let varexp = 
+                                                                    Var { var_location = varloc;
+                                                                          var_desc = SimpleVar $3 } in 
+                                                                  let fieldexp = { fieldExp_head = $1 ;
+                                                                                   fieldExp_tail = create_exp varloc varexp } in
+                                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                                  let loc = create_loc off_st off_end in
+                                                                  create_exp loc (FieldExp fieldexp) }
+/*| variable DOT keywords %prec UPLEVEL	*/
+| variable DOT functionCall			                { let fieldexp = { fieldExp_head = $1 ;
+                                                                                   fieldExp_tail = $3 } in
+                                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                                  let loc = create_loc off_st off_end in
+                                                                  create_exp loc (FieldExp fieldexp) }	
+| functionCall DOT variable			                { let fieldexp = { fieldExp_head = $1 ;
+                                                                                   fieldExp_tail = $3 } in
+                                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                                  let loc = create_loc off_st off_end in
+                                                                  create_exp loc (FieldExp fieldexp) }	
+/*| functionCall DOT keywords */
+| functionCall DOT functionCall			                { let fieldexp = { fieldExp_head = $1 ;
+                                                                                   fieldExp_tail = $3 } in
+                                                                  let off_st = Parsing.rhs_start_pos 1 in
+                                                                  let off_end = Parsing.rhs_end_pos 3 in
+                                                                  let loc = create_loc off_st off_end in
+                                                                  create_exp loc (FieldExp fieldexp) }
 | ID %prec LISTABLE                                             { let varloc_st = Parsing.rhs_start_pos 1 in
                                                                   let varloc_end = Parsing.rhs_end_pos 1 in
                                                                   let varloc = create_loc varloc_st varloc_end in
