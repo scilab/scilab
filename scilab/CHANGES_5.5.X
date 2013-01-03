@@ -35,6 +35,8 @@ Obsolete & Removed Functions
 
 * clear_pixmap removed, please use drawlater/drawnow instead.
 
+* demo_message removed.
+
 
 Scilab Bug Fixes
 ================
