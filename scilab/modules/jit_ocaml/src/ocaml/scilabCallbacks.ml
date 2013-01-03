@@ -51,7 +51,7 @@ let _ =
           try
             let t0 = Unix.gettimeofday () in
             Printf.fprintf stderr "ocamlvalue= %s\n%!"
-              (ScilabValue.to_string
+              (ScilabInternalType.to_string
                  (ScilabInterp.interp ast));
             let t1 = Unix.gettimeofday () in
             Printf.fprintf stderr "timing : %.3fs\n%!" (t1 -. t0);
@@ -59,7 +59,7 @@ let _ =
             Printf.fprintf stderr "ocamlvalue= exception %S\n%!"
               (Printexc.to_string e);
           end;
-          ScilabContext.clear ();
+          ScilabContext.clear (ScilabContext.getInstance());
           Printf.fprintf stderr "Context after:\n%s%!"
             (ScilabContext.to_string ());
 

@@ -1,12 +1,27 @@
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2012-2013 - OCAMLPRO INRIA - Fabrice LE FESSANT
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 extern "C" {
 #include <caml/memory.h>
 #include <caml/fail.h>
 #include <caml/alloc.h>
 #include <caml/custom.h>
+#include <caml/callback.h>
 }
 
 #include "all.hxx"
+#include "float.hxx"
+#include "int.hxx"
+#include "implicitlist.hxx"
 #include "visitor_common.hxx"
 #include "types_gw.hxx"
 #include "context.hxx"
@@ -19,18 +34,46 @@ referenced from OCaml code.
  */
 extern "C" {
   value ocpsci_get_RealType_c(value sci_v);
-  value ocpsci_sci2ml_double_c(value d_v);
+  value ocpsci_ml2sci_float_c(value d_v);
+  value ocpsci_ml2sci_int8_c(value d_v);
+  value ocpsci_ml2sci_int16_c(value d_v);
+  value ocpsci_ml2sci_int32_c(value d_v);
   value ocpsci_ml2sci_double_c(value d_v);
-  value ocpsci_sci2ml_bool_c(value d_v);
   value ocpsci_ml2sci_bool_c(value d_v);
+  value ocpsci_ml2sci_string_c(value d_v);
+  value ocpsci_ml2sci_implicitlist_c(value start_v, value step_v, value end_v);
+
+  value ocpsci_sci2ml_double_c(value d_v, value pos_v);
+  value ocpsci_sci2ml_bool_c(value d_v, value pos_v);
+  value ocpsci_sci2ml_string_c(value d_v, value pos_v);
+  value ocpsci_sci2ml_implicitlist_c(value l_v);
+  value ocpsci_sci2ml_int8_c(value sci_v, value pos_v);
+  value ocpsci_sci2ml_int16_c(value sci_v, value pos_v);
+  value ocpsci_sci2ml_int32_c(value sci_v, value pos_v);
+
   value ocpsci_ml2sci_double_matrix_c(value matrix_v);
   value ocpsci_create_double_matrix_c(value dy_v, value dx_v, value d_v);
+
+  value ocpsci_empty_double_c(value unit_v);
+
+  value ocpsci_set_double_c(value dbl_v, value pos_v, value d_v);
+  value ocpsci_set_int8_c(value dbl_v, value pos_v, value d_v);
+  value ocpsci_set_int16_c(value dbl_v, value pos_v, value d_v);
+  value ocpsci_set_int32_c(value dbl_v, value pos_v, value d_v);
 
   value ocpsci_get_funlist_c(value unit_v);
   value ocpsci_context_get_c(value unit_v);
   value ocpsci_call_c(value fun_v, value args_v, value opts_v, value iRetCount_v);
   value ocpsci_operation_c(value oper_v, value left_v, value right_v);
+  value ocpsci_ml2sci_ocamlfunction_c(value name_v, value fun_v);
+  value ocpsci_set_ocaml_functions_c(value function_array_v);
+  value ocpsci_clone_c(value sci_v);
 
+  value ocpsci_refcount_c(value ptr_v);
+  value ocpsci_incr_refcount_c(value ptr_v);
+  value ocpsci_decr_refcount_c(value ptr_v);
+
+  value ocpsci_get_size_c(value array_v);
 }
 
 #define Scilab_val(v) (*((types::InternalType**) Data_custom_val(v)))
@@ -174,7 +217,7 @@ int ocpsci_compare_scilab(value ptr1_v, value ptr2_v)
 }
 
 struct custom_operations ocpsci_custom_ops = {
-  "_ocpsci",
+  (char*)"_ocpsci",
   ocpsci_finalize_scilab,
   ocpsci_compare_scilab,
   custom_hash_default, // ocpsci_custom_hash,
@@ -185,10 +228,22 @@ struct custom_operations ocpsci_custom_ops = {
 value Val_scilab(types::InternalType *t_s)
 {
   t_s->IncreaseRef();
-  value res_v = caml_alloc_custom(&ocpsci_custom_ops, 4, 0, 1);
+  value res_v = caml_alloc_custom(&ocpsci_custom_ops, sizeof(t_s), 1, 1000);
   Scilab_val(res_v) = t_s;
   return res_v;
 }
+
+
+value Val_wstring(const std::wstring & w)
+{
+  int size = w.size();
+  const wchar_t *c_str = w.c_str();
+  int final_size = size * sizeof(wchar_t);
+  value name_v = caml_alloc_string(final_size);
+  memcpy( (void*)name_v, c_str, final_size);
+  return name_v;
+}
+
 
 value ocpsci_ml2sci_double_c(value d_v){
   value res_v;
@@ -197,11 +252,102 @@ value ocpsci_ml2sci_double_c(value d_v){
   return Val_scilab(dbl_s);
 }
 
-value ocpsci_sci2ml_double_c(value sci_v)
+value ocpsci_ml2sci_float_c(value d_v){
+  value res_v;
+  double d = Double_val(d_v);
+  types::Float *dbl_s = new types::Float(d);
+  return Val_scilab(dbl_s);
+}
+
+value ocpsci_ml2sci_int8_c(value d_v){
+  value res_v;
+  int d = Int32_val(d_v);
+  types::Int8 *dbl_s = new types::Int8(d);
+  return Val_scilab(dbl_s);
+}
+
+value ocpsci_ml2sci_int16_c(value d_v){
+  value res_v;
+  int d = Int32_val(d_v);
+  types::Int16 *dbl_s = new types::Int16(d);
+  return Val_scilab(dbl_s);
+}
+
+value ocpsci_ml2sci_int32_c(value d_v){
+  value res_v;
+  int d = Int32_val(d_v);
+  types::Int32 *dbl_s = new types::Int32(d);
+  return Val_scilab(dbl_s);
+}
+
+value ocpsci_empty_double_c(value unit_v){
+  types::Double *dbl_s = types::Double::Empty();
+  return Val_scilab(dbl_s);
+}
+
+value ocpsci_set_double_c(value dbl_v, value pos_v, value d_v)
+{
+  double d = Double_val(d_v);
+  types::Double *dbl_s = Scilab_val(dbl_v)->getAs<Double>();
+  dbl_s->set(Int_val(pos_v), d);
+  return Val_unit;
+}
+
+value ocpsci_get_size_c(value array_v)
+{
+  types::GenericType *array_s = Scilab_val(array_v)->getAs<GenericType>();
+  return Val_int( array_s->getSize() );
+}
+
+value ocpsci_sci2ml_double_c(value sci_v, value pos_v)
 {
   types::Double *ptr_s = Scilab_val(sci_v)->getAs<types::Double>();
-  return caml_copy_double(ptr_s->get(0));
+  return caml_copy_double(ptr_s->get(Int_val(pos_v)));
 }
+
+value ocpsci_sci2ml_int8_c(value sci_v, value pos_v)
+{
+  types::Int8 *ptr_s = Scilab_val(sci_v)->getAs<types::Int8>();
+  return caml_copy_int32(ptr_s->get( Int_val(pos_v) ));
+}
+
+value ocpsci_sci2ml_int16_c(value sci_v, value pos_v)
+{
+  types::Int16 *ptr_s = Scilab_val(sci_v)->getAs<types::Int16>();
+  return caml_copy_int32(ptr_s->get( Int_val(pos_v) ));
+}
+
+value ocpsci_sci2ml_int32_c(value sci_v, value pos_v)
+{
+  types::Int32 *ptr_s = Scilab_val(sci_v)->getAs<types::Int32>();
+  return caml_copy_int32(ptr_s->get( Int_val(pos_v) ));
+}
+
+
+value ocpsci_set_int8_c(value dbl_v, value pos_v, value d_v)
+{
+  int d = Int32_val(d_v);
+  types::Int8 *dbl_s = Scilab_val(dbl_v)->getAs<Int8>();
+  dbl_s->set( Int_val(pos_v), d);
+  return Val_unit;
+}
+
+value ocpsci_set_int16_c(value dbl_v, value pos_v, value d_v)
+{
+  int d = Int32_val(d_v);
+  types::Int16 *dbl_s = Scilab_val(dbl_v)->getAs<Int16>();
+  dbl_s->set( Int_val(pos_v) , d);
+  return Val_unit;
+}
+
+value ocpsci_set_int32_c(value dbl_v, value pos_v, value d_v)
+{
+  int d = Int32_val(d_v);
+  types::Int32 *dbl_s = Scilab_val(dbl_v)->getAs<Int32>();
+  dbl_s->set( Int_val(pos_v), d);
+  return Val_unit;
+}
+
 
 value ocpsci_ml2sci_bool_c(value d_v){
   value res_v;
@@ -210,10 +356,10 @@ value ocpsci_ml2sci_bool_c(value d_v){
   return Val_scilab(b_s);
 }
 
-value ocpsci_sci2ml_bool_c(value sci_v)
+value ocpsci_sci2ml_bool_c(value sci_v, value pos_v)
 {
   types::Bool *ptr_s = Scilab_val(sci_v)->getAs<types::Bool>();
-  return Val_int(ptr_s->get(0));
+  return Val_int(ptr_s->get(Int_val(pos_v)));
 }
 
 value ocpsci_get_funlist_c(value unit_v)
@@ -230,22 +376,54 @@ value ocpsci_get_funlist_c(value unit_v)
   res_v = caml_alloc(nvals, 0);
   int pos = 0;
   for(i = funs.begin(); i != funs.end(); ++i){
-    const symbol::Symbol sy = *i;
-    const std::wstring& w = (*i).name_get();
-    
-    int size = w.size();
-    const wchar_t *c_str = w.c_str();
-    int final_size = size * sizeof(wchar_t);
-    value str_v = caml_alloc_string(final_size);
-    memcpy( (void*)str_v, c_str, final_size);
+    value str_v = Val_wstring( (*i).name_get() );
     caml_modify( &Field(res_v,pos), str_v);
     pos++;
   }
   CAMLreturn(res_v);
 }
 
-/* TODO: this function does not always return values that
-   should be available. Why ? */
+value ocpsci_ml2sci_implicitlist_c(value start_v, value step_v, value end_v){
+  value res_v;
+  types::InternalType *start_s = Scilab_val(start_v);
+  types::InternalType *step_s = Scilab_val(step_v);
+  types::InternalType *end_s = Scilab_val(end_v);
+  types::ImplicitList *l_s = new types::ImplicitList(start_s, step_s, end_s);
+  return Val_scilab(l_s);
+}
+
+value ocpsci_sci2ml_implicitlist_c(value l_v)
+{
+  CAMLparam0();
+  CAMLlocal1(res_v);
+  
+  types::ImplicitList *l_s = Scilab_val(l_v)->getAs<types::ImplicitList>();  
+  res_v = caml_alloc(3,0);
+
+  value tmp_v = Val_scilab( l_s->getStart() );
+  caml_modify( &Field(res_v, 0), tmp_v );
+
+  tmp_v = Val_scilab( l_s->getStep() );
+  caml_modify( &Field(res_v, 1), tmp_v ); 
+  tmp_v = Val_scilab( l_s->getEnd() );
+  caml_modify( &Field(res_v, 2), tmp_v );
+
+  CAMLreturn(res_v);
+}
+
+value ocpsci_clone_c(value sci_v)
+{
+  types::InternalType *sci_s = Scilab_val(sci_v);
+
+  return Val_scilab( sci_s->clone() );
+}
+
+value ocpsci_sci2ml_string_c(value s_v, value pos_v)
+{
+  types::String *s_s = Scilab_val(s_v)->getAs<types::String>();
+  return Val_wstring( s_s->get(Int_val(pos_v)) );
+}
+
 
 static std::wstring Wstring_val(value s_v)
 {
@@ -253,6 +431,15 @@ static std::wstring Wstring_val(value s_v)
   const wchar_t *c_str = (const wchar_t *)(s_v);  
   return std::wstring(c_str, size / sizeof(wchar_t));
 }
+
+
+value ocpsci_ml2sci_string_c(value s_v){
+  value res_v;
+  std::wstring ws = Wstring_val(s_v);
+  types::String *s_s = new types::String(ws.c_str());
+  return Val_scilab(s_s);
+}
+
 
 value ocpsci_context_get_c(value name_v)
 {
@@ -262,48 +449,6 @@ value ocpsci_context_get_c(value name_v)
   types::InternalType *v_s = ctx->get(sy);
   if( v_s == NULL) caml_raise_not_found();
   return Val_scilab(v_s);
-}
-
-value ocpsci_call_c(value fun_v, value args_v, value opts_v, value iRetCount_v)
-{
-  types::InternalType* fun_s = Scilab_val(fun_v);
-  types::Callable *pCall = fun_s->getAs<types::Callable>();
-  types::typed_list out;
-  types::typed_list in;
-  types::optional_list opt;
-  int iRetCount = Int_val(iRetCount_v);
-  
-  int nargs = Wosize_val(args_v);
-  for(int i = 0; i < nargs; i++)
-    in.push_back(Scilab_val(Field(args_v, i)));
-
-  int nopts = Wosize_val(opts_v);
-  for(int i = 0; i < nopts; i++){
-    value pair_v = Field(opts_v, i);
-    const std::wstring s = Wstring_val( Field(pair_v, 0) );
-    types::InternalType *v_s = Scilab_val( Field(pair_v, 1) );
-    opt.push_back(std::pair<std::wstring, types::InternalType*>(s, v_s));
-  }
-
-  // TODO: last parameter should be a visitor. What for ?
-  types::Function::ReturnValue Ret = pCall->call(in, opt, iRetCount, out, NULL);
-
-  if( Ret == types::Callable::OK ){
-    CAMLparam0();
-    CAMLlocal1(rets_v);
-    int nrets = out.size();
-    rets_v = caml_alloc(nrets, 0);
-    for(int i = 0; i < nrets; i++){
-      value ret_v = Val_scilab(out[i]);
-      caml_modify( &Field(rets_v, i), ret_v );
-    }
-    value res_v = caml_alloc(1,0);
-    Field( res_v, 0 ) = rets_v;
-    CAMLreturn(res_v);
-  } else {
-    return Val_int(0); // None
-  }
-
 }
 
 value ocpsci_ml2sci_double_matrix_c(value matrix_v)
@@ -541,4 +686,196 @@ value ocpsci_operation_c(value oper_v, value left_v, value right_v)
     }
   
   return Val_scilab(res_s);
+}
+
+static value ocaml_functions_v = Val_int(0);
+
+value ocpsci_set_ocaml_functions_c(value function_array_v)
+{
+  if( ocaml_functions_v == Val_int(0) ){
+    caml_register_global_root( &ocaml_functions_v );
+  }
+  ocaml_functions_v = function_array_v;
+}
+
+namespace types 
+{
+
+class OCamlFunction : public Function
+{
+private :
+  OCamlFunction(OCamlFunction* _pOCamlFunction);
+public :
+  OCamlFunction(std::wstring _wstName, int _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
+  
+  Callable::ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+  InternalType*           clone();
+  int              getFunc() { return m_iOCamlFunc; }
+
+private :
+  int              m_iOCamlFunc;
+};
+}
+
+OCamlFunction::OCamlFunction(std::wstring _wstName, int _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
+{
+    m_wstName = _wstName;
+    m_iOCamlFunc = _pFunc;
+    m_wstModule = _wstModule;
+    m_pLoadDeps = _pLoadDeps;
+}
+
+OCamlFunction::OCamlFunction(OCamlFunction* _pOCamlFunction)
+{
+    m_wstModule  = _pOCamlFunction->getModule();
+    m_wstName    = _pOCamlFunction->getName();
+    m_iOCamlFunc  = _pOCamlFunction->getFunc();
+    m_pLoadDeps = _pOCamlFunction->getDeps();
+}
+
+InternalType* OCamlFunction::clone()
+{
+    return new OCamlFunction(this);
+}
+
+Function::ReturnValue OCamlFunction::call(typed_list &in, optional_list &opt, 
+					  int _iRetCount, typed_list &out, 
+					  ast::ConstVisitor* execFunc)
+{
+  CAMLparam0();
+  CAMLlocal3(args_v, opts_v, opt_v);
+
+    if (m_pLoadDeps != NULL)
+    {
+        m_pLoadDeps();
+    }
+
+    ReturnValue retVal = Callable::OK;
+
+    args_v = caml_alloc( in.size(), 0);
+    for(int i = 0 ; i < in.size() ; i++)
+    {
+      value arg_v = Val_scilab(in[i]->clone());
+      caml_modify( &Field(args_v, i), arg_v );
+    }
+
+    opts_v = caml_alloc( opt.size(), 0);
+    for(int i = 0 ; i < opt.size() ; i++)
+    {
+      opt_v = caml_alloc( 2, 0 );
+
+      value name_v = Val_wstring( opt[i].first );
+      caml_modify( &Field( opt_v,0), name_v );
+
+      value arg_v = Val_scilab(opt[i].second);
+      caml_modify( &Field( opt_v,1), arg_v );
+      
+      caml_modify( &Field( opts_v, i), opt_v );
+    }
+
+    value f = Field(ocaml_functions_v, m_iOCamlFunc);
+    value ret_v = caml_callback3(f, args_v, opts_v, Val_int(_iRetCount));
+
+    if( ret_v == Val_int(0) ) {
+      // TODO we need find the error message ?
+      retVal = Callable::Error;
+    } else     
+      if( Wosize_val(ret_v) == 0 ){
+	retVal = Callable::OK_NoResult;
+      } else {
+	retVal = Callable::OK;
+	int nreturns = Wosize_val(ret_v);
+	for(int i=0; i<nreturns; i++){
+	  out.push_back( Scilab_val(Field(ret_v,i)) );
+	}
+      }
+    
+
+    CAMLreturnT( ReturnValue, retVal );
+}
+
+value ocpsci_ml2sci_ocamlfunction_c(value name_v, value fun_v){
+  value res_v;
+  int iFunc = Int_val(fun_v);
+  const std::wstring wstName = Wstring_val( name_v );  
+
+  types::OCamlFunction *fun_s = new types::OCamlFunction(wstName, iFunc, NULL, L"__ocaml__");
+  return Val_scilab(fun_s);
+}
+
+
+
+value ocpsci_call_c(value fun_v, value args_v, value opts_v, value iRetCount_v)
+{
+  types::InternalType* fun_s = Scilab_val(fun_v);
+
+  OCamlFunction* pF = dynamic_cast<OCamlFunction*>(fun_s);
+  if( pF != NULL ){
+
+    int m_iOCamlFunc = pF->getFunc();
+    value f = Field(ocaml_functions_v, m_iOCamlFunc);    
+    
+    return caml_callback3(f, args_v, opts_v, iRetCount_v);
+
+  }
+
+  types::Callable *pCall = fun_s->getAs<types::Callable>();
+  types::typed_list out;
+  types::typed_list in;
+  types::optional_list opt;
+  int iRetCount = Int_val(iRetCount_v);
+  
+  int nargs = Wosize_val(args_v);
+  for(int i = 0; i < nargs; i++)
+    in.push_back(Scilab_val(Field(args_v, i)));
+
+  int nopts = Wosize_val(opts_v);
+  for(int i = 0; i < nopts; i++){
+    value pair_v = Field(opts_v, i);
+    const std::wstring s = Wstring_val( Field(pair_v, 0) );
+    types::InternalType *v_s = Scilab_val( Field(pair_v, 1) );
+    opt.push_back(std::pair<std::wstring, types::InternalType*>(s, v_s));
+  }
+
+  // TODO: last parameter should be a visitor. What for ?
+  types::Function::ReturnValue Ret = pCall->call(in, opt, iRetCount, out, NULL);
+
+  if( Ret == types::Callable::OK ){
+    CAMLparam0();
+    CAMLlocal1(rets_v);
+    int nrets = out.size();
+    rets_v = caml_alloc(nrets, 0);
+    for(int i = 0; i < nrets; i++){
+      value ret_v = Val_scilab(out[i]);
+      caml_modify( &Field(rets_v, i), ret_v );
+    }
+    value res_v = caml_alloc(1,0);
+    Field( res_v, 0 ) = rets_v;
+    CAMLreturn(res_v);
+  } else {
+    return Val_int(0); // None
+  }
+
+}
+
+
+
+value ocpsci_refcount_c(value ptr_v)
+{
+  types::InternalType* ptr_s = Scilab_val(ptr_v);
+  return Val_int( ptr_s->getRef() );
+}
+
+value ocpsci_incr_refcount_c(value ptr_v)
+{
+  types::InternalType* ptr_s = Scilab_val(ptr_v);
+  ptr_s->IncreaseRef();
+  return Val_unit;
+}
+
+value ocpsci_decr_refcount_c(value ptr_v)
+{
+  types::InternalType* ptr_s = Scilab_val(ptr_v);
+  ptr_s->DecreaseRef();
+  return Val_unit;
 }

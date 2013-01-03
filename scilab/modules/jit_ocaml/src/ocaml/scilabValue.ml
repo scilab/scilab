@@ -1,3 +1,14 @@
+(*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2012-2013 - OCAMLPRO INRIA - Fabrice LE FESSANT
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ *)
 
 exception NotImplemented
 
@@ -20,10 +31,11 @@ module TYPES = struct
      have to be done. When the number of copies drops to 0, we can
      clear the copy-on-write flag.
   *)
+
   type t =
-  | Scalar of scalar
+   | Scalar of scalar
   | Matrix of matrix
-  | List of t * t * t
+  | ImplicitList of t * t * t
   | Macro of string * (t array -> t array)
   | String of string
 
@@ -92,7 +104,7 @@ let rec buf_value v =
         Buffer.add_string b " ]";
       | dims -> Printf.bprintf b "<matrix%d>" dims
     end
-  | List (start, step, stop) ->
+  | ImplicitList (start, step, stop) ->
     buf_value start;
     Buffer.add_char b ':';
     buf_value step;
@@ -159,6 +171,6 @@ let is_true v =
   | Matrix { matrix_dims = 0 } -> false
   | Matrix _ -> true
   | Macro _ -> assert false
-  | List _ -> assert false
+  | ImplicitList _ -> assert false
   | String _ -> assert false
 

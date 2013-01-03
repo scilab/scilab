@@ -1,9 +1,9 @@
+src/ocaml/scilabMisc.cmo : src/ocaml/scilabMisc.cmi
+src/ocaml/scilabMisc.cmx : src/ocaml/scilabMisc.cmi
 src/ocaml/scilabValue.cmo : src/ocaml/scilabValue.cmi
 src/ocaml/scilabValue.cmx : src/ocaml/scilabValue.cmi
-src/ocaml/scilabContext.cmo : src/ocaml/scilabValue.cmi \
-    src/ocaml/scilabContext.cmi
-src/ocaml/scilabContext.cmx : src/ocaml/scilabValue.cmx \
-    src/ocaml/scilabContext.cmi
+src/ocaml/scilabContext.cmo : src/ocaml/scilabContext.cmi
+src/ocaml/scilabContext.cmx : src/ocaml/scilabContext.cmi
 src/ocaml/scilabAst.cmo : src/ocaml/scilabContext.cmi
 src/ocaml/scilabAst.cmx : src/ocaml/scilabContext.cmx
 src/ocaml/scilabTypes.cmo :
@@ -20,37 +20,29 @@ src/ocaml/scilabAst2String.cmo : src/ocaml/scilabContext.cmi \
     src/ocaml/scilabAst.cmx src/ocaml/scilabAst2String.cmi
 src/ocaml/scilabAst2String.cmx : src/ocaml/scilabContext.cmx \
     src/ocaml/scilabAst.cmx src/ocaml/scilabAst2String.cmi
-src/ocaml/scilabInterp.cmo : src/ocaml/scilabValue.cmi \
+src/ocaml/scilabInternalType.cmo : src/ocaml/scilabMisc.cmi \
+    src/ocaml/scilabContext.cmi src/ocaml/scilabInternalType.cmi
+src/ocaml/scilabInternalType.cmx : src/ocaml/scilabMisc.cmx \
+    src/ocaml/scilabContext.cmx src/ocaml/scilabInternalType.cmi
+src/ocaml/scilabInterp.cmo : src/ocaml/scilabInternalType.cmi \
     src/ocaml/scilabContext.cmi src/ocaml/scilabAstPrinter.cmi \
     src/ocaml/scilabAst.cmx src/ocaml/scilabInterp.cmi
-src/ocaml/scilabInterp.cmx : src/ocaml/scilabValue.cmx \
+src/ocaml/scilabInterp.cmx : src/ocaml/scilabInternalType.cmx \
     src/ocaml/scilabContext.cmx src/ocaml/scilabAstPrinter.cmx \
     src/ocaml/scilabAst.cmx src/ocaml/scilabInterp.cmi
-src/ocaml/scilabCallbacks.cmo : src/ocaml/scilabValue.cmi \
-    src/ocaml/scilabString2Ast.cmi src/ocaml/scilabInterp.cmi \
+src/ocaml/scilabCallbacks.cmo : src/ocaml/scilabString2Ast.cmi \
+    src/ocaml/scilabInterp.cmi src/ocaml/scilabInternalType.cmi \
     src/ocaml/scilabContext.cmi src/ocaml/scilabAstPrinter.cmi \
     src/ocaml/scilabAst2String.cmi src/ocaml/scilabCallbacks.cmi
-src/ocaml/scilabCallbacks.cmx : src/ocaml/scilabValue.cmx \
-    src/ocaml/scilabString2Ast.cmx src/ocaml/scilabInterp.cmx \
+src/ocaml/scilabCallbacks.cmx : src/ocaml/scilabString2Ast.cmx \
+    src/ocaml/scilabInterp.cmx src/ocaml/scilabInternalType.cmx \
     src/ocaml/scilabContext.cmx src/ocaml/scilabAstPrinter.cmx \
     src/ocaml/scilabAst2String.cmx src/ocaml/scilabCallbacks.cmi
 src/ocaml/scilabValue.cmi :
-src/ocaml/scilabContext.cmi : src/ocaml/scilabValue.cmi
+src/ocaml/scilabContext.cmi :
 src/ocaml/scilabAstPrinter.cmi : src/ocaml/scilabAst.cmx
 src/ocaml/scilabString2Ast.cmi : src/ocaml/scilabAst.cmx
 src/ocaml/scilabAst2String.cmi : src/ocaml/scilabAst.cmx
-src/ocaml/scilabInterp.cmi : src/ocaml/scilabValue.cmi \
+src/ocaml/scilabInterp.cmi : src/ocaml/scilabContext.cmi \
     src/ocaml/scilabAst.cmx
 src/ocaml/scilabCallbacks.cmi :
-src/yacc/scilabParser.cmo : src/ocaml/scilabContext.cmi \
-    src/ocaml/scilabAst.cmx src/yacc/scilabParser.cmi
-src/yacc/scilabParser.cmx : src/ocaml/scilabContext.cmx \
-    src/ocaml/scilabAst.cmx src/yacc/scilabParser.cmi
-src/lex/scilabLexer.cmo : src/yacc/scilabParser.cmi
-src/lex/scilabLexer.cmx : src/yacc/scilabParser.cmx
-src/ocaml/scilabParserMain.cmo : src/yacc/scilabParser.cmi \
-    src/lex/scilabLexer.cmx src/ocaml/scilabAstPrinter.cmi \
-    src/ocaml/scilabAst.cmx
-src/ocaml/scilabParserMain.cmx : src/yacc/scilabParser.cmx \
-    src/lex/scilabLexer.cmx src/ocaml/scilabAstPrinter.cmx \
-    src/ocaml/scilabAst.cmx
