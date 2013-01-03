@@ -32,8 +32,13 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.JToggleButton;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import org.scilab.modules.graphic_objects.PolylineData;
 
 /**
 * Preconfigured components in Grid Bag Constraints
@@ -204,7 +209,7 @@ public class ContentLayout extends JPanel{
         colorDialog.getContentPane().add(ok, gbc);
     }
 
-    public void addDataField(JPanel parentPanel, JPanel fieldPanel, JButton dataButton, JLabel dataLabel, int column, int row) {
+    public void addDataField(JPanel parentPanel, JPanel fieldPanel, JButton dataButton, JLabel dataLabel, int column, int row, String objectID) {
         fieldPanel.setBackground(new Color(255, 255, 255));
         fieldPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         fieldPanel.setMinimumSize(new Dimension(40, 20));
@@ -251,6 +256,142 @@ public class ContentLayout extends JPanel{
         gbc.weightx = 0.1;
         gbc.insets = new Insets(0, 4, 5, 0);
         parentPanel.add(fieldPanel, gbc);
+    }
+
+    public void addDataDialog(final JDialog dataDialog,
+                              final JScrollPane scroll,
+                              final JTable table,
+                                    JButton append,
+                                    JButton delete,
+                              final String objectID) {
+
+        dataDialog.setTitle(MessagesGED.data_editor);
+        dataDialog.setMinimumSize(new Dimension(150, 340));
+        dataDialog.setModal(true);
+        dataDialog.setResizable(true);
+        dataDialog.getContentPane().setLayout(new GridBagLayout());
+
+        table.setModel(new DefaultTableModel(
+            new Object[][] {null,null}, new String [] {"X", "Y"}
+        ) {
+            Class[] types = new Class [] {
+                Double.class, Double.class, Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        final DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        table.getColumnModel().getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        scroll.setViewportView(table);
+
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        dataDialog.getContentPane().add(scroll, gbc);
+
+        append.setText(MessagesGED.append);
+        append.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                try {
+                    appendActionPerformed();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ContentLayout.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            /**
+            * Implement the action on the APPEND button.
+            */
+            private void appendActionPerformed() throws ClassNotFoundException {
+                tableModel.addRow(new Object[]{0.0, 0.0});
+                PolylineData.insertPoint(objectID, tableModel.getRowCount(), 0, 0);
+            }
+        });
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(3, 10, 0, 0);
+        dataDialog.getContentPane().add(append, gbc);
+
+        delete.setText(MessagesGED.delete);
+        delete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                try {
+                    deleteActionPerformed(evt);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ContentLayout.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            /**
+            * Implement the action on the DELETE button.
+            */
+            private void deleteActionPerformed(ActionEvent evt) throws ClassNotFoundException {
+                if(table.getSelectedRow()!=-1) {
+                    PolylineData.removePoint(objectID, table.getSelectedRow());
+                    tableModel.removeRow(table.getSelectedRow());
+                }
+            }
+        });
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new java.awt.Insets(3, 3, 0, 0);
+        dataDialog.getContentPane().add(delete, gbc);
+    }
+
+    public void addShiftDialog (final JDialog shiftDialog,
+                                final JScrollPane scroll,
+                                final JTable table) {
+
+        shiftDialog.setTitle(MessagesGED.data_editor);
+        shiftDialog.setMinimumSize(new Dimension(150, 340));
+        shiftDialog.setModal(true);
+        shiftDialog.setResizable(true);
+        shiftDialog.getContentPane().setLayout(new GridBagLayout());
+
+        table.setModel(new DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Null", "Null"
+            }
+        ) {
+            Class[] types = new Class [] {
+                Double.class, Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+
+        scroll.setViewportView(table);
+
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        shiftDialog.getContentPane().add(scroll, gbc);
     }
 
     public void addJComboBox(JPanel panel, JComboBox combobox, String[] options, int column, int row) {

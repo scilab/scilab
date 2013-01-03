@@ -18,18 +18,26 @@ import java.awt.event.ActionListener;
 import java.awt.Insets;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.JToggleButton;
+import javax.swing.table.DefaultTableModel;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.gui.ged.ContentLayout;
 
 import org.scilab.modules.gui.ged.MessagesGED;
@@ -64,7 +72,11 @@ public class DataProperties extends BaseProperties {
     private JPanel pData;
     private JButton bData;
     private JLabel cData;
-    protected JDialog dataTableDialog;
+    private JDialog dataTableDialog;
+    private JScrollPane dataScroll;
+    private JTable dataTable;
+    private JButton delete;
+    private JButton append;
 
     /**
     * Initializes the properties and the icons of the buttons.
@@ -106,6 +118,11 @@ public class DataProperties extends BaseProperties {
         pData = new JPanel();
         bData = new JButton();
         cData = new JLabel();
+        dataTableDialog = new JDialog();
+        dataScroll = new JScrollPane();
+        dataTable = new JTable();
+        delete = new JButton();
+        append = new JButton();
 
 
         //Components of the header: Data Properties.
@@ -225,13 +242,31 @@ public class DataProperties extends BaseProperties {
         //Components of the property: Data.
         layout.addJLabel(pDataProperties, lData, MessagesGED.data, 1, 3, 0);
 
-        layout.addDataField(pDataProperties, pData, bData, cData, 2, 3);
+        layout.addDataDialog(dataTableDialog, dataScroll, dataTable, append, delete, currentpolyline);
+
+        dataTableDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent evt) {
+                dataTableDialogWindowClosing(evt);
+            }
+
+            private void dataTableDialogWindowClosing(WindowEvent evt) {
+                updateDataTable();
+            }
+        });
+
+        dataTable.getModel().addTableModelListener(new TableModelListener() { 
+            public void tableChanged(TableModelEvent evt) {
+                dataTableEvent(evt);
+            }
+        });
+
+        layout.addDataField(pDataProperties, pData, bData, cData, 2, 3, currentpolyline);
         bData.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 bDataActionPerformed(evt);
             }
         });
-
 
         //Components of the property: Tag.
         layout.addJLabel(pDataProperties, lTag, MessagesGED.tag, 1, 4, 0);
@@ -283,7 +318,7 @@ public class DataProperties extends BaseProperties {
                                 .getProperty(currentpolyline, GraphicObjectProperties.__GO_CLIP_STATE__) );
 
             // Get the current status of the property: Data
-            //Not implemented yet
+            updateDataTable();
 
             // Get the current status of the property: Tag
             cTag.setText( (String) GraphicController.getController()
@@ -427,8 +462,70 @@ public class DataProperties extends BaseProperties {
     * @param evt ActionEvent.
     */
     private void bDataActionPerformed(ActionEvent evt) {
-        //dataTableDialog.setVisible(true);
-        //Not implemented yet
+        updateDataTable();
+        dataTableDialog.setVisible(true);
+    }
+
+    /**
+    * Get all data from a polyline.
+    */
+    public Object[][] getData() {
+        double[] dataX = (double[]) PolylineData.getDataX(currentpolyline);
+        double[] dataY = (double[]) PolylineData.getDataY(currentpolyline);
+        double[] dataZ = (double[]) PolylineData.getDataZ(currentpolyline);
+        Object[][] data = new Object[dataX.length][3];
+        for (int i=0; i<dataX.length; i++){
+            data[i][0] = dataX[i];
+            data[i][1] = dataY[i];
+            data[i][2] = dataZ[i];
+        }
+        return data;
+    }
+
+    /**
+    * Checks if the polyline has 3 dimensions.
+    */
+    private boolean is3D(Object[][] data) {
+        boolean is3D = false;
+        for (int i=0; i<data.length; i++){
+            if((Double)data[i][2] != 0.0){
+                is3D = true;
+            }
+        }
+        return is3D;
+    }
+
+    /**
+    * Updates the data table.
+    */
+    private void updateDataTable() {
+        DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
+        Object[][] data = getData();
+        if(data.length!=0) {
+            if(is3D(data)){
+                tableModel.setDataVector(data, new String [] {"X", "Y", "Z"});
+                cData.setText(data.length + "x3");
+            } else {
+                tableModel.setDataVector(data, new String [] {"X", "Y"});
+                cData.setText(data.length + "x2");
+            }
+        }
+    }
+
+    /**
+    * Assigns the table changes.
+    */
+    private void dataTableEvent(TableModelEvent evt) {
+        if(dataTable.getSelectedRow()!=-1) {
+            Object xValue = dataTable.getValueAt(dataTable.getSelectedRow(), 0);
+            Object yValue = dataTable.getValueAt(dataTable.getSelectedRow(), 1);
+            if (xValue == null){
+                   xValue = 0.0;
+               } else if(yValue == null) {
+                   yValue = 0.0;
+               }
+               PolylineData.translatePoint(currentpolyline, dataTable.getSelectedRow(), (Double)xValue, (Double)yValue);
+        }
     }
 
     /**

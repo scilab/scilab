@@ -108,6 +108,11 @@ public class MessagesGED {
     public static final String figure_id_tooltip = Messages.gettext("Number of current figure.");
     public static final String figure_name_tooltip = Messages.gettext("Enter a figure name.");
 
+    //Data Table
+    public static final String append = Messages.gettext("Append");
+    public static final String data_editor = Messages.gettext("Data Editor");
+    public static final String delete = Messages.gettext("Delete");
+
     //Control - Labels
     public static final String control = Messages.gettext("Control");
     public static final String auto_resize = Messages.gettext("Auto Resize");

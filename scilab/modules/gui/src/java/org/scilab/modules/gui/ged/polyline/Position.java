@@ -118,7 +118,7 @@ public class Position extends DataProperties {
 
         //Components of the property: X Shift.
         layout.addJLabel(pPosition, lShiftX, MessagesGED.x_shift, 0, 1, 16);
-        layout.addDataField(pPosition, pShiftX, bShiftX, cShiftX, 1, 1);
+        layout.addDataField(pPosition, pShiftX, bShiftX, cShiftX, 1, 1, currentpolyline);
         bShiftX.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 bShiftXActionPerformed(evt);
@@ -127,7 +127,7 @@ public class Position extends DataProperties {
 
         //Components of the property: Y Shift.
         layout.addJLabel(pPosition, lShiftY, MessagesGED.y_shift, 0, 2, 16);
-        layout.addDataField(pPosition, pShiftY, bShiftY, cShiftY, 1, 2);
+        layout.addDataField(pPosition, pShiftY, bShiftY, cShiftY, 1, 2, currentpolyline);
         bShiftY.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 bShiftYActionPerformed(evt);
@@ -136,7 +136,7 @@ public class Position extends DataProperties {
 
         //Components of the property: Z Shift.
         layout.addJLabel(pPosition, lShiftZ, MessagesGED.z_shift, 0, 3, 16);
-        layout.addDataField(pPosition, pShiftZ, bShiftZ, cShiftZ, 1, 3);
+        layout.addDataField(pPosition, pShiftZ, bShiftZ, cShiftZ, 1, 3, currentpolyline);
         bShiftZ.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 bShiftZActionPerformed(evt);
