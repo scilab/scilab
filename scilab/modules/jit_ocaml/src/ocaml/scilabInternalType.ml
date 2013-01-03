@@ -45,9 +45,6 @@ type binop =
             (* \  *)         | Ldivide
             (* "**" or "^" *)| Power
 
-            (*                       Unary minus *)
-            (* "-" *)        | UnaryMinus
-
             (*                       Element Ways     *)
             (* ".*" *)       | Dottimes
             (* "./" *)       | Dotrdivide
@@ -72,6 +69,9 @@ type binop =
             (* "<=" *)       | Le
             (* "<" *)        | Gt
             (* ">=" *)       | Ge
+
+            (*                       Unary minus *)
+            (* "-" *)        | UnaryMinus
 
             (*                       Logical operators *)
             (* "&" *)   | LogicalAnd
@@ -396,14 +396,24 @@ let iterator_of_implicitlist t =
   | RealImplicitList ->
     let (start, step, stop) = get_implicitlist t in
     let iterator =
-      fun get add create set ->
+      fun get add create set to_string ->
         let start = get start 0 in
         let step = get step 0 in
         let stop = get stop 0 in
         let r = ref start in
         let v = create start in
+(*
+        Printf.eprintf "Iterator: %s:%s:%s\n%!\n%!"
+          (to_string start)
+          (to_string step)
+          (to_string stop);
+*)
         if !r <= stop then
           Some (fun () ->
+(*
+            Printf.eprintf "  test %s <= %s\n%!"
+              (to_string !r) (to_string stop);
+*)
             if !r <= stop then begin
               set v 0 !r;
               r := add !r step;
@@ -416,19 +426,19 @@ let iterator_of_implicitlist t =
         get_type step,
         get_type stop with
         | RealDouble, RealDouble, RealDouble ->
-          iterator get_double (+.) double unsafe_set_double
+          iterator get_double (+.) double unsafe_set_double string_of_float
         | RealInt8, _, _
         | RealDouble, RealInt8, _
         | RealDouble, RealDouble, RealInt8 ->
-          iterator get_int8 add_int8 int8 unsafe_set_int8
+          iterator get_int8 add_int8 int8 unsafe_set_int8 Int32.to_string
         | RealInt16, _, _
         | RealDouble, RealInt16, _
         | RealDouble, RealDouble, RealInt16 ->
-          iterator get_int16 add_int16 int8 unsafe_set_int16
+          iterator get_int16 add_int16 int8 unsafe_set_int16 Int32.to_string
         | RealInt32, _, _
         | RealDouble, RealInt32, _
         | RealDouble, RealDouble, RealInt32 ->
-          iterator get_int32 add_int32 int32 unsafe_set_int32
+          iterator get_int32 add_int32 int32 unsafe_set_int32 Int32.to_string
         | _ -> assert false
     end
   | _ -> assert false
@@ -468,6 +478,9 @@ let rec is_true t =
     end
   | _ -> false
 
+
+let get_funlist = ocpsci_get_funlist_ml
+let context_get = ocpsci_context_get_ml
 
 (*********************************************************************)
 (*                                                                   *)

@@ -322,6 +322,7 @@ let global ctx sy =
       s0.scope_locals <- b :: s0.scope_locals;
       b.binding_locals <- l0 :: b.binding_locals
 
+(* remove all local scopes, and keep only the global one *)
 let rec clear ctx =
   match ctx.context_scopes with
     [ _ ] -> ()

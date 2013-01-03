@@ -23,9 +23,6 @@ type binop =
             (* \  *)         | Ldivide
             (* "**" or "^" *)| Power
 
-            (*                       Unary minus *)
-            (* "-" *)        | UnaryMinus
-
             (*                       Element Ways     *)
             (* ".*" *)       | Dottimes
             (* "./" *)       | Dotrdivide
@@ -50,6 +47,9 @@ type binop =
             (* "<=" *)       | Le
             (* "<" *)        | Gt
             (* ">=" *)       | Ge
+
+            (*                       Unary minus *)
+            (* "-" *)        | UnaryMinus
 
             (*                       Logical operators *)
             (* "&" *)   | LogicalAnd
@@ -160,3 +160,8 @@ val incr_refcount : t -> unit
 val decr_refcount : t -> unit
 
 val is_true : t -> bool
+
+val get_funlist : unit -> string array
+val context_get : string -> t
+
+val iterator_of_implicitlist : t -> (unit -> t option) option

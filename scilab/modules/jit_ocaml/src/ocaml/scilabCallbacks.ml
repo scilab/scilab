@@ -45,8 +45,10 @@ let _ =
           end;
 
         if exec_ast then begin
+(*
           Printf.fprintf stderr "Context before:\n%s%!"
             (ScilabContext.to_string ());
+*)
           begin
           try
             let t0 = Unix.gettimeofday () in
@@ -60,8 +62,10 @@ let _ =
               (Printexc.to_string e);
           end;
           ScilabContext.clear (ScilabContext.getInstance());
+(*
           Printf.fprintf stderr "Context after:\n%s%!"
             (ScilabContext.to_string ());
+*)
 
         end;
 

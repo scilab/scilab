@@ -30,7 +30,7 @@ exception TooManyArguments of string * int * int
 
 exception BreakExn
 exception ContinueExn
-exception ReturnExn
+exception ReturnExn of (ScilabContext.symbol * Sci.t) list
 
 type env = {
   can_break : bool;
@@ -56,26 +56,25 @@ let binop_of_OpExp_Oper oper =
   | OpExp_minus -> Sci.Minus
   | OpExp_times -> Sci.Times
   | OpExp_rdivide -> Sci.Rdivide
-  | OpExp_ldivide
-  | OpExp_power
-  | OpExp_unaryMinus
-  | OpExp_dottimes
-  | OpExp_dotrdivide
-  | OpExp_dotldivide
-  | OpExp_dotpower
-  | OpExp_krontimes
-  | OpExp_kronrdivide
-  | OpExp_kronldivide
-  | OpExp_controltimes
-  | OpExp_controlrdivide
-  | OpExp_controlldivide
-  | OpExp_eq
-  | OpExp_ne
-  | OpExp_lt
-  | OpExp_le
-  | OpExp_gt
-  | OpExp_ge
-    -> assert false
+  | OpExp_ldivide -> Sci.Ldivide
+  | OpExp_power -> Sci.Power
+  | OpExp_unaryMinus -> Sci.UnaryMinus
+  | OpExp_dottimes -> Sci.Dottimes
+  | OpExp_dotrdivide -> Sci.Dotrdivide
+  | OpExp_dotldivide -> Sci.Dotldivide
+  | OpExp_dotpower -> Sci.Dotpower
+  | OpExp_krontimes -> Sci.Krontimes
+  | OpExp_kronrdivide -> Sci.Kronrdivide
+  | OpExp_kronldivide -> Sci.Kronldivide
+  | OpExp_controltimes -> Sci.Controltimes
+  | OpExp_controlrdivide -> Sci.Controlrdivide
+  | OpExp_controlldivide -> Sci.Controlldivide
+  | OpExp_eq -> Sci.Eq
+  | OpExp_ne -> Sci.Ne
+  | OpExp_lt -> Sci.Lt
+  | OpExp_le -> Sci.Le
+  | OpExp_gt -> Sci.Gt
+  | OpExp_ge -> Sci.Ge
 
 (* We use this to clone a value only if it is shared by something else. *)
 let increase_refcount v =
@@ -92,6 +91,8 @@ let increase_refcount v =
 let decrease_refcount v =
   Sci.decr_refcount v
 
+(* Initialize context methods, to create empty values, and copy on
+   share values, based on refcounts *)
 let _ =
   let ctx = ScilabContext.getInstance () in
   ScilabContext.set_context_create_empty_value ctx Sci.empty_double;
@@ -100,16 +101,105 @@ let _ =
     increase_refcount decrease_refcount;
   ()
 
+(* Initialize the context with gatways loaded from Scilab context *)
+let _ =
+  let ctx = ScilabContext.getInstance () in
+  let fun_names = Sci.get_funlist () in
+  Array.iter (fun name ->
+    let v = Sci.context_get name in
+    ScilabContext.put ctx (ScilabContext.new_symbol name) v
+  ) fun_names
+
 let rec interp env exp =
   match exp.exp_desc with
 
 (************************************************************ TOTAL   *)
 
+  | ConstExp (CommentExp _) -> None
+
+  | ConstExp (BoolExp { boolExp_value = b }) ->
+    Some (Sci.bool b)
+
+  | ConstExp (StringExp { stringExp_value = b }) ->
+    Some (Sci.string b)
+
+  | ConstExp (IntExp { intExp_value = n; intExp_prec = IntExp_8 }) ->
+    Some (Sci.int8 n)
+
+  | ConstExp (IntExp { intExp_value = n; intExp_prec = IntExp_16 }) ->
+    Some (Sci.int16 n)
+
+  | ConstExp (IntExp { intExp_value = n; intExp_prec = IntExp_32 }) ->
+    Some (Sci.int32 n)
+
+  | ConstExp (IntExp { intExp_value = n; intExp_prec = IntExp_64 }) ->
+    assert false
+
+  | ConstExp (DoubleExp { doubleExp_value = n }) ->
+    Some (Sci.double n)
+
+  | ConstExp (FloatExp { floatExp_value = n }) ->
+    Some (Sci.float n)
+
+  | ConstExp NilExp -> Some (Sci.empty_double ())
+
+  | SeqExp list ->
+    interp_sexp env list
+
+  (* In Scilab 5, a break at toplevel will cause an error, not in Scilab
+     6 (but in Scilab 5, a break in a function won't cause an error).
+  *)
+  | ControlExp BreakExp ->
+    if env.can_break then raise BreakExn else None
+
+  | ControlExp ContinueExp ->
+    if env.can_continue then raise ContinueExn else None
+
+
+  | ControlExp (IfExp ifexp) ->
+    let test = interp_one env ifexp.ifExp_test in
+    if Sci.is_true test then
+      ignore_interp env ifexp.ifExp_then
+    else begin
+      match ifexp.ifExp_else with
+        None -> ()
+      | Some ifexp_else ->
+        ignore_interp env ifexp_else
+    end;
+    None
+
+  | ControlExp ( WhileExp  whileExp ) ->
+    let env = { env with can_break = true; can_continue = true } in
+    begin try
+            while Sci.is_true (interp_one env whileExp.whileExp_test) do
+              try
+                ignore_interp env whileExp.whileExp_body
+              with ContinueExn -> ()
+            done;
+            None
+      with BreakExn -> None
+    end
+
+
+  | ControlExp ( ReturnExp { returnExp_exp = None } ) ->
+    if env.can_return then raise (ReturnExn[]);
+    None
+
+  | ControlExp ( ReturnExp { returnExp_exp = Some exp } ) ->
+    ignore_interp env exp;
+    if env.can_return then raise (ReturnExn[]);
+    None
+
 (************************************************************ PARTIAL *)
 
-  | AssignExp a ->
-    let left =  a.assignExp_left_exp in
-    let right = a.assignExp_right_exp in
+  | AssignExp { assignExp_left_exp = left;
+                assignExp_right_exp = {
+                  exp_desc = ControlExp (ReturnExp return);
+                }
+              } ->
+    assert false
+
+  | AssignExp { assignExp_left_exp = left; assignExp_right_exp = right } ->
     begin match left.exp_desc with
     | Var { var_desc = SimpleVar symbol } ->
 
@@ -154,46 +244,6 @@ let rec interp env exp =
 
     end
 
-  | ConstExp (CommentExp _) -> None
-
-  | ConstExp (BoolExp { boolExp_value = b }) ->
-    Some (Sci.bool b)
-
-  | ConstExp (StringExp { stringExp_value = b }) ->
-    Some (Sci.string b)
-
-  | ConstExp (IntExp { intExp_value = n; intExp_prec = IntExp_8 }) ->
-    Some (Sci.int8 n)
-
-  | ConstExp (IntExp { intExp_value = n; intExp_prec = IntExp_16 }) ->
-    Some (Sci.int16 n)
-
-  | ConstExp (IntExp { intExp_value = n; intExp_prec = IntExp_32 }) ->
-    Some (Sci.int32 n)
-
-  | ConstExp (IntExp { intExp_value = n; intExp_prec = IntExp_64 }) ->
-    assert false
-
-  | ConstExp (DoubleExp { doubleExp_value = n }) ->
-    Some (Sci.double n)
-
-  | ConstExp (FloatExp { floatExp_value = n }) ->
-    Some (Sci.float n)
-
-  | ConstExp NilExp -> Some (Sci.empty_double ())
-
-  | SeqExp list ->
-    interp_sexp env list
-
-  (* In Scilab 5, a break at toplevel will cause an error, not in Scilab
-     6 (but in Scilab 5, a break in a function won't cause an error).
-  *)
-  | ControlExp BreakExp ->
-    if env.can_break then raise BreakExn else None
-
-  | ControlExp ContinueExp ->
-    if env.can_continue then raise ContinueExn else None
-
   | ControlExp (ForExp forExp) ->
     let varDec = forExp.forExp_vardec in (* name, init, kind *)
     let body = forExp.forExp_body in
@@ -207,92 +257,42 @@ let rec interp env exp =
       | Some looper ->
         match Sci.get_type looper with
         | Sci.RealImplicitList ->
-          let (start, step, stop) = Sci.get_implicitlist looper in
           let ctx = ScilabContext.getInstance () in
-          let for_loop_double () =
-            let start = Sci.get_double start 0 in
-            let step = Sci.get_double step 0 in
-            let stop = Sci.get_double stop 0 in
-            let r = ref start in
-            let v = Sci.double start in
-            let cond = ref (!r <= stop) in
-            let env = { env with can_break = true; can_return = true } in
-            while !cond  do
-              try
-                ScilabContext.put ctx name v;
-                ignore_interp env body;
-                r := !r +. step;
-                Sci.set_double v 0 !r;
-                cond := (!r <= stop)
-              with
-              | BreakExn -> cond := false
-              | ContinueExn -> cond := true
-            done;
-            None
-
-          in
-          let for_loop get plus create set =
-            let start = get start 0 in
-            let step = get step 0 in
-            let stop = get stop 0 in
-            let r = ref start in
-            let v = create start in
-            let cond = ref (!r <= stop) in
-            let env = { env with can_break = true; can_return = true } in
-            while !cond  do
-              try
-                ScilabContext.put ctx name v;
-                ignore_interp env body;
-                r := plus !r step;
-                set v 0 !r;
-                cond := (!r <= stop)
-              with
-              | BreakExn -> cond := false
-              | ContinueExn -> cond := true
-            done;
-            None
-
-          in
           begin
-            match Sci.get_type start,
-              Sci.get_type step,
-              Sci.get_type stop with
-              | Sci.RealDouble, Sci.RealDouble, Sci.RealDouble ->
-                for_loop_double ()
-              (* for_loop Sci.get_double (+.) Sci.double Sci.unsafe_set_double *)
-              | Sci.RealInt8, _, _
-              | Sci.RealDouble, Sci.RealInt8, _
-              | Sci.RealDouble, Sci.RealDouble, Sci.RealInt8 ->
-                for_loop Sci.get_int8 Sci.add_int8 Sci.int8 Sci.unsafe_set_int8
-              | Sci.RealInt16, _, _
-              | Sci.RealDouble, Sci.RealInt16, _
-              | Sci.RealDouble, Sci.RealDouble, Sci.RealInt16 ->
-                for_loop Sci.get_int16 Sci.add_int16 Sci.int8 Sci.unsafe_set_int16
-              | Sci.RealInt32, _, _
-              | Sci.RealDouble, Sci.RealInt32, _
-              | Sci.RealDouble, Sci.RealDouble, Sci.RealInt32 ->
-                for_loop Sci.get_int32 Sci.add_int32 Sci.int32 Sci.unsafe_set_int32
-              | _ -> assert false
+            match Sci.iterator_of_implicitlist looper with
+              None -> None
+            | Some iterator ->
+              try
+                let env = { env with can_break = true; can_continue = true } in
+                let rec iter iterator =
+                  match iterator () with
+                    None -> None
+                  | Some v ->
+                    ScilabContext.put ctx name v;
+                    begin try
+                            ignore_interp env body
+                      with ContinueExn -> ()
+                    end;
+                    iter iterator
+                in
+                iter iterator
+              with
+              | ContinueExn -> None
           end
 
+        (*
+        | isList ->
+          iterate on the list (->getSize()) (->get(i))
+
+        | isGenericType ->
+          iterate on columns (->getCols()) (->getColumnValues(i))
+          *)
         (* TODO : what else can be used to iterate on it ? *)
         | x ->
           Printf.fprintf stderr "ScilabInterp: Don't know how to for:\n%s" (Sci.to_string looper);
           raise InterpFailed
 
     end
-
-  | ControlExp (IfExp ifexp) ->
-    let test = interp_one env ifexp.ifExp_test in
-    if Sci.is_true test then
-      ignore_interp env ifexp.ifExp_then
-    else begin
-      match ifexp.ifExp_else with
-        None -> ()
-      | Some ifexp_else ->
-        ignore_interp env ifexp_else
-    end;
-    None
 
 
   | ListExp listExp ->
@@ -345,11 +345,12 @@ let rec interp env exp =
       (* TODO: define "nargin" and "nargout" so that primitive "argn"
          keeps working. *)
 
-      begin
+      let bindings =
         try
-          ignore_interp macro_env f.functionDec_body
-        with ReturnExn -> ()
-      end;
+          ignore_interp macro_env f.functionDec_body;
+          []
+        with ReturnExn bindings -> bindings
+      in
 
       (* TODO: if the return argument is "varargout", we have to
          destructure its content to recreate the list of returned
@@ -361,6 +362,12 @@ let rec interp env exp =
         | _ -> assert false
       ) f.functionDec_returns.arrayListVar_vars in
       ScilabContext.end_scope ctx;
+
+      List.iter (fun (name, v) ->
+        ScilabContext.put ctx name v
+      ) (* bindings are assigned from right to left *)
+        (List.rev bindings);
+
       Some returns
     in
 
@@ -382,10 +389,8 @@ let rec interp env exp =
   | FieldExp  _
   | ArrayListExp  _
   | AssignListExp  _
-  | ControlExp ( ReturnExp  _ )
   | ControlExp ( SelectExp  _ )
   | ControlExp ( TryCatchExp  _ )
-  | ControlExp ( WhileExp  _ )
   | MathExp ( MatrixExp  _ )
   | MathExp ( CellExp  _ )
   | MathExp ( NotExp  _ )
