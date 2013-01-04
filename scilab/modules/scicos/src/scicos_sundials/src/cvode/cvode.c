@@ -2443,7 +2443,7 @@ static int CVStepDoPri(CVodeMem cv_mem)
   N_VLinearSum_Serial (a21*h, zn[2], 1., zn[0], y);        /* y = K1*a21*h + Yn */
   retval = f(tn + c2*h, y, zn[3], f_data);                 /* zn[3] = K2 = f(Tn+c2*h, Yn + a21*h*K1), */
   N_VScale(b1, zn[2], y);                                  /* y = b1*K1 + 0*K2, */
-  N_VScale(d1, zn[2], tempv);                              /* y = d1*K1 + 0*K2, */
+  N_VScale(d1, zn[2], tempv);                              /* tempv = d1*K1 + 0*K2, */
 
   /* K3 */
   N_VLinearSum_Serial (a31*h, zn[2], 1., zn[0], ftemp);    /* ftemp = Yn + K1*a31*h, */
