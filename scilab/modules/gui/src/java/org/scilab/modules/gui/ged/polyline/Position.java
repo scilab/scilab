@@ -16,16 +16,25 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Insets;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-import javax.swing.JComboBox;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.JToggleButton;
+import javax.swing.table.DefaultTableModel;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.gui.ged.ContentLayout;
 
 import org.scilab.modules.gui.ged.MessagesGED;
@@ -54,6 +63,10 @@ public class Position extends DataProperties {
     private JLabel cShiftZ;
     private JButton bShiftZ;
     private JPanel pShiftZ;
+
+    private JDialog shiftDialog;
+    private JScrollPane shiftScroll;
+    private JTable shiftTable;
 
     /**
     * Initializes the properties and the icons of the buttons.
@@ -90,6 +103,10 @@ public class Position extends DataProperties {
         bShiftZ = new JButton();
         pShiftZ = new JPanel();
 
+        shiftDialog = new JDialog();
+        shiftScroll = new JScrollPane();
+        shiftTable = new JTable();
+
         //Components of the header: Position.
         bPosition.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -115,6 +132,27 @@ public class Position extends DataProperties {
         layout.addJComboBox(pPosition, cMarkSizeUnit,
                 new String[] { MessagesGED.point, MessagesGED.tabulated },
                 1, 0);
+
+        //Shift Dialog
+        layout.addShiftDialog(shiftDialog, shiftScroll, shiftTable);
+
+        shiftDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent evt) {
+                dataTableDialogWindowClosing(evt);
+            }
+
+            private void dataTableDialogWindowClosing(WindowEvent evt) {
+                updateShiftTable(0);
+                updateShiftTable(1);
+            }
+        });
+
+        shiftTable.getModel().addTableModelListener(new TableModelListener() { 
+            public void tableChanged(TableModelEvent evt) {
+                shiftTableEvent(evt);
+            }
+        });
 
         //Components of the property: X Shift.
         layout.addJLabel(pPosition, lShiftX, MessagesGED.x_shift, 0, 1, 16);
@@ -168,15 +206,8 @@ public class Position extends DataProperties {
                                 .getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__) );
 
             //Get the current status of the property: Shift
-            String teste1 = (String) GraphicController.getController()
-                    .getProperty(currentpolyline, GraphicObjectProperties.__GO_X_SHIFT__);
-
-            //cShiftX.setText(teste.toString());
-            /*cShiftY.setText((String) GraphicController.getController()
-                    .getProperty(currentpolyline, GraphicObjectProperties.__GO_Y_SHIFT__));
-            cShiftZ.setText((String) GraphicController.getController()
-                    .getProperty(currentpolyline, GraphicObjectProperties.__GO_Z_SHIFT__));*/
-            //titleShift();
+            updateShiftTable(0);
+            updateShiftTable(1);
         }
     }
 
@@ -210,7 +241,8 @@ public class Position extends DataProperties {
     * @param evt ActionEvent.
     */
     private void bShiftXActionPerformed(ActionEvent evt) {
-        //Not implemented yet
+        updateShiftTable(0);
+        shiftDialog.setVisible(true);
     }
 
     /**
@@ -218,7 +250,8 @@ public class Position extends DataProperties {
     * @param evt ActionEvent.
     */
     private void bShiftYActionPerformed(ActionEvent evt) {
-        //Not implemented yet
+        updateShiftTable(1);
+        shiftDialog.setVisible(true);
     }
 
     /**
@@ -227,5 +260,95 @@ public class Position extends DataProperties {
     */
     private void bShiftZActionPerformed(ActionEvent evt) {
         //Not implemented yet
+    }
+
+    /**
+    * Assigns the table changes.
+    */
+    private void shiftTableEvent(TableModelEvent evt) {
+        if(shiftTable.getSelectedRow()!=-1) {
+            Object shiftValue = shiftTable.getValueAt(shiftTable.getSelectedRow(), 1);
+            if (shiftValue == null){
+                shiftValue = 0.0;
+            }
+            //set shift value here - not implemented yet
+        }
+    }
+
+    /**
+    * Updates the shift table.
+    * @param axis 0 to X - 1 to Y
+    */
+    public void updateShiftTable(int axis){
+        Object[][] data;
+        DefaultTableModel tableModel = (DefaultTableModel) shiftTable.getModel();
+        switch(axis) {
+            case 0:
+                if (PolylineData.isXShiftSet(currentpolyline)==0){
+                    data = getShift(0,true);
+                    cShiftX.setText("null");
+                } else {
+                    data = getShift(0,false);
+                    cShiftX.setText("1x" +data.length);
+                }
+                tableModel.setDataVector(data, new String [] {"X", MessagesGED.x_shift});
+                break;
+            case 1:
+                if (PolylineData.isYShiftSet(currentpolyline)==0){
+                    data = getShift(1,true);
+                    cShiftY.setText("null");
+                } else {
+                    data = getShift(1,false);
+                    cShiftY.setText("1x" +data.length);
+                }
+                tableModel.setDataVector(data, new String [] {"Y", MessagesGED.y_shift});
+                break;
+        }
+    }
+
+    /**
+    * Get all data from a polyline.
+    *
+    * @param axis 0 to X - 1 to Y - 2 to Z
+    * @param isNull use TRUE when SHIFT is null
+    * @return [data][shift]
+    */
+    public Object[][] getShift(int axis, boolean isNull) {
+        double[] point = null, shift = null;
+        switch(axis) {
+            case 0:
+                point = (double[]) PolylineData.getDataX(currentpolyline);
+                break;
+            case 1:
+                point = (double[]) PolylineData.getDataY(currentpolyline);
+                break;
+            case 2:
+                point = (double[]) PolylineData.getDataZ(currentpolyline);
+                break;
+        }
+        Object[][] data = new Object[point.length][2];
+        if(!isNull) {
+            switch(axis) {
+                case 0:
+                    shift = (double[]) PolylineData.getShiftX(currentpolyline);
+                    break;
+                case 1:
+                    shift = (double[]) PolylineData.getShiftY(currentpolyline);
+                    break;
+                case 2:
+                    shift = (double[]) PolylineData.getShiftZ(currentpolyline);
+                    break;
+            }
+            for (int i=0; i<point.length; i++){
+                data[i][0] = point[i];
+                data[i][1] = shift[i];
+            }
+        } else {
+            for (int i=0; i<point.length; i++){
+                data[i][0] = point[i];
+                data[i][1] = 0;
+            }
+        }
+        return data;
     }
 }
