@@ -524,7 +524,7 @@ public class DataProperties extends BaseProperties {
                } else if(yValue == null) {
                    yValue = 0.0;
                }
-               PolylineData.translatePoint(currentpolyline, dataTable.getSelectedRow(), (Double)xValue, (Double)yValue);
+               PolylineData.setPointValue(currentpolyline, dataTable.getSelectedRow(), (Double)xValue, (Double)yValue, 0.0);
         }
     }
 

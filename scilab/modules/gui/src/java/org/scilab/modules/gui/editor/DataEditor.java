@@ -231,7 +231,7 @@ public class DataEditor {
                 double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
                 double[] pos2 = {1.0 * newClick[0], 1.0 * newClick[1], 1.0};
                 double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos2);
-                PolylineData.translatePoint(curPolyline, picked.point, c2d2[0] - c2d[0], c2d2[1] - c2d[1]);
+                PolylineData.translatePoint(curPolyline, picked.point, c2d2[0] - c2d[0], c2d2[1] - c2d[1], 0.0);
 
             } else {
                 PolylineHandler.getInstance().dragPolyline(curPolyline, lastClick, newClick);
@@ -278,7 +278,7 @@ public class DataEditor {
                 /*double click over a segment insert a new point*/
                 double[] pos = {1.0 * event.getX(), 1.0 * event.getY(), 1.0};
                 double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
-                PolylineData.insertPoint(curPolyline, picked.point, c2d[0], c2d[1]);
+                PolylineData.insertPoint(curPolyline, picked.point, c2d[0], c2d[1], 0.0);
             }
         }
     }
@@ -298,7 +298,7 @@ public class DataEditor {
     void onClickInsert(Integer[] clickPos) {
         double[] pos = {1.0 * clickPos[0], 1.0 * clickPos[1], 1.0};
         double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
-        PolylineData.insertPoint(curPolyline, picked.point, c2d[0], c2d[1]);
+        PolylineData.insertPoint(curPolyline, picked.point, c2d[0], c2d[1],0.0);
     }
 
 }
