@@ -19,7 +19,7 @@ solverName = ["LSodar", "CVode BDF/Newton", "CVode BDF/Functional", "CVode Adams
 disp("--------------------------------");
 for solver = 0:7
 
- disp("Time for " + solverName(solver + 1) + " :");
+ disp("Time for " + solverName(solver + 1) + ":");
  tolerances(6) = solver;
 
  // Modify 'Max step size' if RK-based solver

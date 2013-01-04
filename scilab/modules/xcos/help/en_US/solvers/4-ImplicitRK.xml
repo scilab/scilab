@@ -13,13 +13,13 @@
     <refnamediv>
         <refname>Implicit Runge-Kutta 4(5)</refname>
         <refpurpose>
-            Runge-Kutta is a numerical solver providing an efficient and stable implicit method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. Called by <link linkend="xcos">xcos</link>.
+            <emphasis>Implicit Runge-Kutta</emphasis> is a numerical solver providing an efficient and stable implicit method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. Called by <link linkend="xcos">xcos</link>.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Runge-Kutta is a numerical solver providing an efficient and stable fixed-size step method to solve Initial Value Problems of the form :
+            <emphasis>Runge-Kutta</emphasis> is a numerical solver providing an efficient and stable fixed-size step method to solve Initial Value Problems of the form:
         </para>
         <para>
             <latex>
@@ -32,7 +32,7 @@
             <emphasis>CVode</emphasis> and <emphasis>IDA</emphasis> use variable-size steps for the integration.
         </para>
         <para>
-            A drawback of that is the unpredictable computation time. With Runge-Kutta, we do not adapt to the complexity of the problem, but we guarantee a stable computation time.
+            A drawback of that is the unpredictable computation time. With <emphasis>Runge-Kutta</emphasis>, we do not adapt to the complexity of the problem, but we guarantee a stable computation time.
         </para>
         <para>
             This method being explicit, it can be used on stiff problems.
@@ -55,7 +55,7 @@
             By convention, to use fixed-size steps, the program first computes a fitting <emphasis>h</emphasis> that approaches the simulation parameter <link linkend="Simulatemenu_Menu_entries">max step size</link>.
         </para>
         <para>
-            An important difference of implicit Runge-Kutta with the previous methods is that it computes up to the fourth derivative of <emphasis>y</emphasis>, while the others mainly use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
+            An important difference of <emphasis>implicit Runge-Kutta</emphasis> with the previous methods is that it computes up to the fourth derivative of <emphasis>y</emphasis>, while the others mainly use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
         </para>
         <para>
             Here, the next value is determined by the present value 
@@ -152,7 +152,7 @@
             .
         </para>
         <para>
-            That error analysis baptized the method <emphasis>implicit Runge-Kutta 4(5)</emphasis> : 
+            That error analysis baptized the method <emphasis>implicit Runge-Kutta 4(5)</emphasis>: 
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
@@ -195,7 +195,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            The integral block returns its continuous state, we can evaluate it with Runge-Kutta by running the example :
+            The integral block returns its continuous state, we can evaluate it with <emphasis>implicit RK</emphasis> by running the example:
         </para>
         <para>
             <programlisting language="example"><![CDATA[
@@ -214,42 +214,42 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Time for implicit Runge-Kutta :");
+      disp(t, "Time for implicit Runge-Kutta:");
       ]]></programlisting>
         </para>
         <para>
-            The Scilab console displays :
+            The Scilab console displays:
             <screen><![CDATA[
-Time for implicit Runge-Kutta :
- 17.003
+Time for implicit Runge-Kutta:
+ 8.911
             ]]></screen>
         </para>
         <para>
-            Now, in the following script, we compare the time difference between implicit RK and CVode by running the example with the five solvers in turn :
+            Now, in the following script, we compare the time difference between <emphasis>implicit RK</emphasis> and <emphasis>CVode</emphasis> by running the example with the five solvers in turn:
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integImpRK.sce">
                 Open the script
             </link>
         </para>
         <para>
             <screen><![CDATA[
-Time for BDF / Newton :
- 19.894
+Time for BDF / Newton:
+ 18.894
 
-Time for BDF / Functional :
- 19.382
+Time for BDF / Functional:
+ 18.382
 
-Time for Adams / Newton :
- 11.255
+Time for Adams / Newton:
+ 10.368
 
-Time for Adams / Functional :
- 10.233
+Time for Adams / Functional:
+ 9.815
 
-Time for implicit Runge-Kutta :
- 8.112
+Time for implicit Runge-Kutta:
+ 6.652
             ]]></screen>
         </para>
         <para>
-            These results show that on a nonstiff problem, for relatively same precision required and forcing the same step size, implicit Runge-Kutta competes with Adams / Functional.
+            These results show that on a nonstiff problem, for relatively same precision required and forcing the same step size, <emphasis>implicit Runge-Kutta</emphasis> competes with <emphasis>Adams / Functional</emphasis>.
         </para>
         <para>
             Variable-size step ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.

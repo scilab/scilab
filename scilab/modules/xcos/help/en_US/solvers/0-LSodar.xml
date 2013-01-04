@@ -19,7 +19,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Called by <link linkend="xcos">xcos</link>, <emphasis>LSodar</emphasis> (short for Livermore Solver for Ordinary Differential equations, with Automatic method switching for stiff and nonstiff problems, and with Root-finding) is a numerical solver providing an efficient and stable variable-size step method to solve Initial Value Problems of the form :
+            Called by <link linkend="xcos">xcos</link>, <emphasis>LSodar</emphasis> (short for Livermore Solver for Ordinary Differential equations, with Automatic method switching for stiff and nonstiff problems, and with Root-finding) is a numerical solver providing an efficient and stable variable-size step method to solve Initial Value Problems of the form:
         </para>
         <para>
             <latex>
@@ -29,7 +29,7 @@
             </latex>
         </para>
         <para>
-            LSodar is similar to <emphasis>CVode</emphasis> in many ways :
+            LSodar is similar to <emphasis>CVode</emphasis> in many ways:
             <itemizedlist>
                 <listitem>
                     It uses variable-size steps,
@@ -93,7 +93,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            The integral block returns its continuous state, we can evaluate it with LSodar by running the example :
+            The integral block returns its continuous state, we can evaluate it with <emphasis>LSodar</emphasis> by running the example:
         </para>
         <para>
             <programlisting language="example"><![CDATA[
@@ -110,42 +110,42 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Time for LSodar :");
+      disp(t, "Time for LSodar:");
       ]]></programlisting>
         </para>
         <para>
-            The Scilab console displays :
+            The Scilab console displays:
             <screen><![CDATA[
-Time for LSodar :
- 16.836
+Time for LSodar:
+ 9.546
             ]]></screen>
         </para>
         <para>
-            Now, in the following script, we compare the time difference between the methods by running the example with the five solvers in turn :
+            Now, in the following script, we compare the time difference between <emphasis>LSodar</emphasis> and <emphasis>CVode</emphasis> by running the example with the five solvers in turn:
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integLSodar.sce">
                 Open the script
             </link>
         </para>
         <para>
             <screen><![CDATA[
-Time for LSodar :
+Time for LSodar:
  6.115
 
-Time for BDF / Newton :
- 19.894
+Time for BDF / Newton:
+ 18.894
 
-Time for BDF / Functional :
- 19.382
+Time for BDF / Functional:
+ 18.382
 
-Time for Adams / Newton :
- 11.255
+Time for Adams / Newton:
+ 10.368
 
-Time for Adams / Functional :
- 10.233
+Time for Adams / Functional:
+ 9.815
             ]]></screen>
         </para>
         <para>
-            These results show that on a nonstiff problem, for the same precision required, LSodar is significantly faster. Other tests prove the proximity of the results. Indeed, we find that the solution difference order between LSodar and CVode is close to the order of the highest tolerance ( 
+            These results show that on a nonstiff problem, for the same precision required, <emphasis>LSodar</emphasis> is significantly faster. Other tests prove the proximity of the results. Indeed, we find that the solution difference order between <emphasis>LSodar</emphasis> and <emphasis>CVode</emphasis> is close to the order of the highest tolerance ( 
             <emphasis>
                 y<subscript>lsodar</subscript> - y<subscript>cvode</subscript>
             </emphasis>

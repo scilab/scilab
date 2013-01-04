@@ -25,6 +25,6 @@ for solver=1:5
  tic();
  try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end;
  t = toc();
- disp(t, "Time for " + solverName(solver) + " :");
+ disp(t, "Time for " + solverName(solver) + ":");
 
 end

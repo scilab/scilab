@@ -19,7 +19,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Called by <link linkend="xcos">xcos</link>, <emphasis>Runge-Kutta</emphasis> is a numerical solver providing an efficient fixed-size step method to solve Initial Value Problems of the form :
+            Called by <link linkend="xcos">xcos</link>, <emphasis>Runge-Kutta</emphasis> is a numerical solver providing an efficient fixed-size step method to solve Initial Value Problems of the form:
         </para>
         <para>
             <latex>
@@ -32,7 +32,7 @@
             <emphasis>CVode</emphasis> and <emphasis>IDA</emphasis> use variable-size steps for the integration.
         </para>
         <para>
-            A drawback of that is the unpredictable computation time. With Runge-Kutta, we do not adapt to the complexity of the problem, but we guarantee a stable computation time.
+            A drawback of that is the unpredictable computation time. With <emphasis>Runge-Kutta</emphasis>, we do not adapt to the complexity of the problem, but we guarantee a stable computation time.
         </para>
         <para>
             As of now, this method is explicit, so it is not concerned with Newton or Functional iterations, and not advised for stiff problems.
@@ -48,14 +48,14 @@
             By convention, to use fixed-size steps, the program first computes a fitting <emphasis>h</emphasis> that approaches the simulation parameter <link linkend="Simulatemenu_Menu_entries">max step size</link>.
         </para>
         <para>
-            An important difference of Runge-Kutta with the previous methods is that it computes up to the fourth derivative of <emphasis>y</emphasis>, while the others only use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
+            An important difference of <emphasis>Runge-Kutta</emphasis> with the previous methods is that it computes up to the fourth derivative of <emphasis>y</emphasis>, while the others only use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
         </para>
         <para>
             Here, the next value is determined by the present value 
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
-            plus the weighted average of four increments, where each increment is the product of the size of the interval, <emphasis>h</emphasis>, and an estimated slope specified by the function <emphasis>f(t,y)</emphasis> :
+            plus the weighted average of four increments, where each increment is the product of the size of the interval, <emphasis>h</emphasis>, and an estimated slope specified by the function <emphasis>f(t,y)</emphasis>:
             <itemizedlist>
                 <listitem>
                     <emphasis>k1</emphasis> is the increment based on the slope at the beginning of the interval, using 
@@ -153,7 +153,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            The integral block returns its continuous state, we can evaluate it with Runge-Kutta by running the example :
+            The integral block returns its continuous state, we can evaluate it with <emphasis>Runge-Kutta</emphasis> by running the example:
         </para>
         <para>
             <programlisting language="example"><![CDATA[
@@ -171,42 +171,42 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Time for Runge-Kutta :");
+      disp(t, "Time for Runge-Kutta:");
       ]]></programlisting>
         </para>
         <para>
-            The Scilab console displays :
+            The Scilab console displays:
             <screen><![CDATA[
-Time for Runge-Kutta :
- 15.624
+Time for Runge-Kutta:
+ 8.906
             ]]></screen>
         </para>
         <para>
-            Now, in the following script, we compare the time difference between Runge-Kutta and Sundials by running the example with the five solvers in turn :
+            Now, in the following script, we compare the time difference between <emphasis>Runge-Kutta</emphasis> and <emphasis>CVode</emphasis> by running the example with the five solvers in turn:
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integRK.sce">
                 Open the script
             </link>
         </para>
         <para>
             <screen><![CDATA[
-Time for BDF / Newton :
- 19.894
+Time for BDF / Newton:
+ 18.894
 
-Time for BDF / Functional :
- 19.382
+Time for BDF / Functional:
+ 18.382
 
-Time for Adams / Newton :
- 11.255
+Time for Adams / Newton:
+ 10.368
 
-Time for Adams / Functional :
- 10.233
+Time for Adams / Functional:
+ 9.815
 
-Time for Runge-Kutta :
- 5.502
+Time for Runge-Kutta:
+ 4.743
             ]]></screen>
         </para>
         <para>
-            These results show that on a nonstiff problem, for relatively same precision required and forcing the same step size, Runge-Kutta is faster.
+            These results show that on a nonstiff problem, for relatively same precision required and forcing the same step size, <emphasis>Runge-Kutta</emphasis> is faster.
         </para>
         <para>
             Variable-size step ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.

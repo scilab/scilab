@@ -23,13 +23,13 @@
         </para>
         <title>Variable-size and Fixed-size</title>
         <para>
-            The solvers can be divided into two distinct main families : the <emphasis>Variable</emphasis>-size and the <emphasis>Fixed</emphasis>-size step methods.
+            The solvers can be divided into two distinct main families: the <emphasis>Variable</emphasis>-size and the <emphasis>Fixed</emphasis>-size step methods.
         </para>
         <para>
             They both compute the next simulation time as the sum of the current simulation time and a quantity known as the step size, which is constant in the Fixed-size solvers and can change in the Variable-size ones, depending on the model dynamics and the input <link linkend="Simulatemenu_Menu_entries">tolerances</link>.
         </para>
         <para>
-            If looking for stable computation time, the user should select a Fixed-size step solver, because the computation overhead for a Variable-size step method cannot be properly foreseen.
+            If looking for stable computation time, the user should select a Fixed-size step solver, because the computation overhead for a Variable-size step method cannot be properly predicted.
         </para>
         <para>
             Although for a simple problem (or loose tolerances) a Variable-size solver can significantly improve the simulation time by computing bigger step sizes, a Fixed-size method is preferable if the ideal step size is known and roughly constant (the user should then mention it in <link linkend="Simulatemenu_Menu_entries">max step size</link>).
@@ -57,13 +57,13 @@
                     <td> Implicit Runge-Kutta </td>
                 </tr>
             </informaltable>-->
-            <emphasis role="bold">Variable</emphasis>-size step solvers :
+            <emphasis role="bold">Variable</emphasis>-size step solvers:
             <simplelist>
                 <member>LSodar</member>
                 <member>CVode</member>
                 <member>IDA</member>
             </simplelist>
-            <emphasis role="bold">Fixed</emphasis>-size step solvers :
+            <emphasis role="bold">Fixed</emphasis>-size step solvers:
             <simplelist>
                 <member>Runge-Kutta 4(5)</member>
                 <member>Dormand-Prince 4(5)</member>
@@ -84,14 +84,14 @@
             The family choice is usually determined by the <emphasis>stiffness</emphasis> of the problem, which is, when there is a big gap between the biggest and the smallest eigen values modules of the jacobian matrix (when it is ill-conditionned). It is generally a system that is sensitive to discontinuitues, meaning that the required precision is not constant.
         </para>
         <para>
-            <emphasis role="bold">Implicit</emphasis> solvers :
+            <emphasis role="bold">Implicit</emphasis> solvers:
             <simplelist>
                 <member>LSodar</member>
                 <member>CVode</member>
                 <member>IDA</member>
                 <member>Implicit Runge-Kutta 4(5)</member>
             </simplelist>
-            <emphasis role="bold">Explicit</emphasis> solvers :
+            <emphasis role="bold">Explicit</emphasis> solvers:
             <simplelist>
                 <member>Runge-Kutta 4(5)</member>
                 <member>Dormand-Prince 4(5)</member>
@@ -102,28 +102,28 @@
         </para>
         <title>So how to choose ?</title>
         <para>
-            Because it is not possible to know for sure wether a solver will be efficient for a given system or not, the best way is to run the most probable on it and to compare their results.
+            Because it is not possible to know for sure wether a solver will be efficient for a given system or not, the best way is to run the most probable one on it and to compare their results.
         </para>
         <para>
             The user should first establish the complexity of his problem (stability / stiffness) and if he desires high precision, rapid simulation, predictable time or an automated program.
             <para>
-                <emphasis role="bold">Precision :</emphasis> <emphasis>CVode</emphasis>,
+                <emphasis role="bold">Precision:</emphasis> <emphasis>CVode</emphasis>,
             </para>
             <para>
-                <emphasis role="bold">Predictable time :</emphasis> Fixed-size step.
+                <emphasis role="bold">Predictable time:</emphasis> Fixed-size step.
             </para>
             <para>
-                <emphasis role="bold">Simulation time :</emphasis> <emphasis>LSodar</emphasis>,
+                <emphasis role="bold">Simulation time:</emphasis> <emphasis>LSodar</emphasis>,
             </para>
             <para>
-                <emphasis role="bold">Automated :</emphasis> <emphasis>LSodar</emphasis>,
+                <emphasis role="bold">Automated:</emphasis> <emphasis>LSodar</emphasis>,
             </para>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <para>
-            We will begin with a simple nonstiff example : a Sinus integration.
+            We will begin with a simple nonstiff example: a Sinus integration.
         </para>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.xcos">
@@ -142,36 +142,36 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            In the following script, we compare the time difference between the solvers by running the example with the eight solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem) :
+            In the following script, we compare the time difference between the solvers by running the example with the eight solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem):
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchSinus.sce">
                 Open the script
             </link>
         </para>
         <para>
-            The Scilab console displays :
+            The Scilab console displays:
             <screen><![CDATA[
-Time for LSodar :
+Time for LSodar:
  10.1
 
-Time for CVode BDF/Newton :
+Time for CVode BDF/Newton:
  31
 
-Time for CVode BDF/Functional :
+Time for CVode BDF/Functional:
  30
 
-Time for CVode Adams/Newton :
+Time for CVode Adams/Newton:
  17.211
 
-Time for CVode Adams/Functional :
+Time for CVode Adams/Functional:
  16.305
 
-Time for Dormand-Prince :
+Time for Dormand-Prince:
  12.92
 
-Time for Runge-Kutta :
+Time for Runge-Kutta:
  7.663
 
-Time for implicit Runge-Kutta :
+Time for implicit Runge-Kutta:
  10.881
             ]]></screen>
         </para>
@@ -179,10 +179,10 @@ Time for implicit Runge-Kutta :
             These results show that on a nonstiff problem and for same precision required, <emphasis>Runge-Kutta</emphasis> is fastest.
         </para>
         <para>
-            In spite of the computational overhead of the step size, <emphasis>LSodar</emphasis> not too distant from the Fixed-size solvers because it is able to take long steps.
+            In spite of the computational overhead of the step size, <emphasis>LSodar</emphasis> is not too distant from the Fixed-size solvers because it is able to take long steps.
         </para>
         <para>
-            From the results, we can extract speed factors and set the following table :
+            From the results, we can extract speed factors and set the following table:
         </para>
         <para>
             <informaltable border="1">
@@ -314,44 +314,44 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            In the following script, we compare the time difference between the solvers by running the example with the eight solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem) :
+            In the following script, we compare the time difference between the solvers by running the example with the eight solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem):
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchBasic.sce">
                 Open the script
             </link>
         </para>
         <para>
-            The Scilab console displays :
+            The Scilab console displays:
             <screen><![CDATA[
-Time for LSodar :
+Time for LSodar:
  10
 
-Time for CVode BDF/Newton :
+Time for CVode BDF/Newton:
  28.254
 
-Time for CVode BDF/Functional :
+Time for CVode BDF/Functional:
  25.545
 
-Time for CVode Adams/Newton :
+Time for CVode Adams/Newton:
  15
 
-Time for CVode Adams/Functional :
+Time for CVode Adams/Functional:
  12.1
 
-Time for Dormand-Prince :
+Time for Dormand-Prince:
  2.359
 
-Time for Runge-Kutta :
+Time for Runge-Kutta:
  1.671
 
-Time for implicit Runge-Kutta :
+Time for implicit Runge-Kutta:
  5.612
             ]]></screen>
         </para>
         <para>
-            These results show that as stiffness appears, <emphasis>BDF/Newton</emphasis> starts picking up speed. But the problem is not yet complicated enough for that method to be interesting.
+            These results show that as stiffness appears, <emphasis>BDF / Newton</emphasis> starts picking up speed. But the problem is not yet complicated enough for that method to be interesting.
         </para>
         <para>
-            The updated speed factors table is as follows :
+            The updated speed factors table is as follows:
         </para>
         <para>
             <informaltable border="1">
@@ -483,36 +483,36 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            In the following script, we compare the time difference between the solvers by running the example with the eight solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem) :
+            In the following script, we compare the time difference between the solvers by running the example with the eight solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem):
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchKalman.sce">
                 Open the script
             </link>
         </para>
         <para>
-            The Scilab console displays :
+            The Scilab console displays:
             <screen><![CDATA[
-Time for LSodar :
+Time for LSodar:
  10
 
-Time for CVode BDF/Newton :
+Time for CVode BDF/Newton:
  21.3
 
-Time for CVode BDF/Functional :
+Time for CVode BDF/Functional:
  15.8
 
-Time for CVode Adams/Newton :
+Time for CVode Adams/Newton:
  12.5
 
-Time for CVode Adams/Functional :
+Time for CVode Adams/Functional:
  8.67
 
-Time for Dormand-Prince :
+Time for Dormand-Prince:
  1.244
 
-Time for Runge-Kutta :
+Time for Runge-Kutta:
  0.87
 
-Time for implicit Runge-Kutta :
+Time for implicit Runge-Kutta:
  4
             ]]></screen>
         </para>
@@ -520,7 +520,7 @@ Time for implicit Runge-Kutta :
             These results show that for a bigger problem (more continuous states implies more equations), the <emphasis>Newton iteration</emphasis> starts showing interest, for it comes closer to the other solvers.
         </para>
         <para>
-            The updated speed factors table is as follows :
+            The updated speed factors table is as follows:
         </para>
         <para>
             <informaltable border="1">
