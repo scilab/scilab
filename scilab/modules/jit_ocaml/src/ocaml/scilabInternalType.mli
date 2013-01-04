@@ -164,4 +164,18 @@ val is_true : t -> bool
 val get_funlist : unit -> string array
 val context_get : string -> t
 
+val dollar : unit -> t
+val colon : unit -> t
+val isGeneric : realType -> bool
+val list_get : t -> int -> t
+
 val iterator_of_implicitlist : t -> (unit -> t option) option
+val iterator_of_list : t -> (unit -> t option) option
+val iterator_of_generic : t -> (unit -> t option) option
+
+(* does something only for ImplicitList *)
+val extractFullMatrix : t -> t
+
+
+(* Only on Double, Bool, SparseBool *)
+val not_exp : t -> t

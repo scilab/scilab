@@ -27,6 +27,11 @@ extern "C" {
 #include "context.hxx"
 #include "generic_operations.hxx"
 #include "overload.hxx"
+#include "dollar.hxx"
+#include "colon.hxx"
+#include "cell.hxx"
+#include "graphichandle.hxx"
+#include "sparse.hxx"
 
 /*
 We must declare all stubs as C functions, otherwise they cannot be
@@ -57,9 +62,14 @@ extern "C" {
   value ocpsci_empty_double_c(value unit_v);
 
   value ocpsci_set_double_c(value dbl_v, value pos_v, value d_v);
+  value ocpsci_set_bool_c(value dbl_v, value pos_v, value d_v);
   value ocpsci_set_int8_c(value dbl_v, value pos_v, value d_v);
   value ocpsci_set_int16_c(value dbl_v, value pos_v, value d_v);
   value ocpsci_set_int32_c(value dbl_v, value pos_v, value d_v);
+
+  value ocpsci_sparsebool_set_c(value dbl_v, value row_v, value col_v, value d_v);
+  value ocpsci_sparsebool_get_c(value dbl_v, value row_v, value col_v);
+
 
   value ocpsci_get_funlist_c(value unit_v);
   value ocpsci_context_get_c(value unit_v);
@@ -73,7 +83,17 @@ extern "C" {
   value ocpsci_incr_refcount_c(value ptr_v);
   value ocpsci_decr_refcount_c(value ptr_v);
 
-  value ocpsci_get_size_c(value array_v);
+  value ocpsci_generic_getSize_c(value array_v);
+  value ocpsci_generic_getCols_c(value array_v);
+  value ocpsci_generic_getRows_c(value array_v);
+  value ocpsci_generic_getColumnValues_c(value array_v, value pos_v);
+  value ocpsci_colon_c(value unit_v);
+  value ocpsci_dollar_c(value unit_v);
+  value ocpsci_list_get_c(value list_v, value pos_v);
+  value ocpsci_implicitlist_extractFullMatrix_c(value list_v);
+  value ocpsci_arrayof_get_c(value array_v, value pos_v);
+  value ocpsci_arrayof_set_c(value array_v, value pos_v, value val_v);
+  value ocpsci_map_c(value array_v);
 }
 
 #define Scilab_val(v) (*((types::InternalType**) Data_custom_val(v)))
@@ -104,6 +124,8 @@ InternalType
 	      UInt16
 	      UInt32
 	      UInt64
+	 Sparse
+	 SparseBool
     Callable 
          Function
 	      OptFunction
@@ -293,7 +315,112 @@ value ocpsci_set_double_c(value dbl_v, value pos_v, value d_v)
   return Val_unit;
 }
 
-value ocpsci_get_size_c(value array_v)
+value ocpsci_arrayof_get_c(value array_v, value pos_v)
+{
+  types::ArrayOf<types::InternalType*> *array_s = Scilab_val(array_v)->getAs<ArrayOf<types::InternalType*> >();
+  return Val_scilab( array_s->get( Int_val(pos_v) ));
+}
+
+value ocpsci_arrayof_set_c(value array_v, value pos_v, value val_v)
+{
+  types::ArrayOf<types::InternalType*> *array_s = Scilab_val(array_v)->getAs<ArrayOf<types::InternalType*> >();
+  array_s->set( Int_val(pos_v), Scilab_val(val_v) );
+  return Val_unit;
+}
+
+value ocpsci_map_c(value sci_v)
+{
+  types::InternalType *sci_s = Scilab_val(sci_v)->getAs<types::InternalType>();  
+  types::InternalType *res_s = NULL;
+  switch(sci_s->getType()){
+  case types::InternalType::RealDouble: {
+    types::Double *pb = sci_s->getAs<types::Double>();
+    res_s = new Double(pb->getDims(), pb->getDimsArray());
+    break;
+  }
+  case types::InternalType::RealInt8: {
+    types::Int8 *pb = sci_s->getAs<types::Int8>();
+    res_s = new Int8(pb->getDims(), pb->getDimsArray());
+    break;
+  }
+  case types::InternalType::RealInt16: {
+    types::Int16 *pb = sci_s->getAs<types::Int16>();
+    res_s = new Int16(pb->getDims(), pb->getDimsArray());
+    break;
+  }
+  case types::InternalType::RealInt32: {
+    types::Int32 *pb = sci_s->getAs<types::Int32>();
+    res_s = new Int32(pb->getDims(), pb->getDimsArray());
+    break;
+  }
+  case types::InternalType::RealInt64: {
+    types::Int64 *pb = sci_s->getAs<types::Int64>();
+    res_s = new Int64(pb->getDims(), pb->getDimsArray());
+    break;
+  }
+  case types::InternalType::RealUInt8: {
+    types::UInt8 *pb = sci_s->getAs<types::UInt8>();
+    res_s = new UInt8(pb->getDims(), pb->getDimsArray());
+    break;
+  }
+  case types::InternalType::RealUInt16: {
+    types::UInt16 *pb = sci_s->getAs<types::UInt16>();
+    res_s = new UInt16(pb->getDims(), pb->getDimsArray());
+    break;
+  }
+  case types::InternalType::RealUInt32: {
+    types::UInt32 *pb = sci_s->getAs<types::UInt32>();
+    res_s = new UInt32(pb->getDims(), pb->getDimsArray());
+    break;
+  }
+  case types::InternalType::RealUInt64: {
+    types::UInt64 *pb = sci_s->getAs<types::UInt64>();
+    res_s = new UInt64(pb->getDims(), pb->getDimsArray());
+    break;
+  }
+  case types::InternalType::RealSparseBool: {
+    types::SparseBool *pb = sci_s->getAs<types::SparseBool>();
+    res_s = new SparseBool(pb->getRows(), pb->getCols());
+    break;
+  }
+
+  case types::InternalType::RealCell: 
+  case types::InternalType::RealHandle: 
+  case types::InternalType::RealString: 
+  case types::InternalType::RealStruct: 
+  case types::InternalType::RealPoly: 
+  case types::InternalType::RealDollar:
+  default:
+    res_s = sci_s->clone();
+  }
+  return Val_scilab(res_s);
+}
+
+value ocpsci_list_get_c(value list_v, value pos_v)
+{
+  types::List *list_s = Scilab_val(list_v)->getAs<List>();
+  return Val_scilab( list_s->get(Int_val(pos_v) ) );
+}
+
+value ocpsci_generic_getColumnValues_c(value array_v, value pos_v)
+{
+  types::GenericType *array_s = Scilab_val(array_v)->getAs<GenericType>();
+  return Val_scilab( array_s->getColumnValues( Int_val(pos_v) ) );
+}
+
+value ocpsci_generic_getCols_c(value array_v)
+{
+  types::GenericType *array_s = Scilab_val(array_v)->getAs<GenericType>();
+  return Val_int( array_s->getCols() );
+}
+
+value ocpsci_generic_getRows_c(value array_v)
+{
+  types::GenericType *array_s = Scilab_val(array_v)->getAs<GenericType>();
+  return Val_int( array_s->getRows() );
+}
+
+value ocpsci_generic_getSize_c(value array_v)
 {
   types::GenericType *array_s = Scilab_val(array_v)->getAs<GenericType>();
   return Val_int( array_s->getSize() );
@@ -362,6 +489,26 @@ value ocpsci_sci2ml_bool_c(value sci_v, value pos_v)
   return Val_int(ptr_s->get(Int_val(pos_v)));
 }
 
+value ocpsci_set_bool_c(value sci_v, value pos_v, value bool_v)
+{
+  types::Bool *ptr_s = Scilab_val(sci_v)->getAs<types::Bool>();
+  ptr_s->set( Int_val(pos_v), Int_val(bool_v) );
+  return Val_unit;
+}
+
+value ocpsci_sparsebool_get_c(value sci_v, value row_v, value col_v)
+{
+  types::SparseBool *ptr_s = Scilab_val(sci_v)->getAs<types::SparseBool>();
+  return Int_val(ptr_s->get( Int_val(row_v), Int_val(col_v)));
+}
+
+value ocpsci_sparsebool_set_c(value sci_v, value row_v, value col_v, value bool_v)
+{
+  types::SparseBool *ptr_s = Scilab_val(sci_v)->getAs<types::SparseBool>();
+  ptr_s->set( Int_val(row_v), Int_val(col_v), Int_val(bool_v) );
+  return Val_unit;
+}
+
 value ocpsci_get_funlist_c(value unit_v)
 {
   CAMLparam0();
@@ -411,6 +558,12 @@ value ocpsci_sci2ml_implicitlist_c(value l_v)
   CAMLreturn(res_v);
 }
 
+value ocpsci_implicitlist_extractFullMatrix_c(value l_v)
+{
+  types::ImplicitList *l_s = Scilab_val(l_v)->getAs<types::ImplicitList>();  
+  return Val_scilab( l_s->extractFullMatrix() );
+}
+
 value ocpsci_clone_c(value sci_v)
 {
   types::InternalType *sci_s = Scilab_val(sci_v);
@@ -423,7 +576,6 @@ value ocpsci_sci2ml_string_c(value s_v, value pos_v)
   types::String *s_s = Scilab_val(s_v)->getAs<types::String>();
   return Val_wstring( s_s->get(Int_val(pos_v)) );
 }
-
 
 static std::wstring Wstring_val(value s_v)
 {
@@ -879,3 +1031,14 @@ value ocpsci_decr_refcount_c(value ptr_v)
   ptr_s->DecreaseRef();
   return Val_unit;
 }
+
+value ocpsci_colon_c(value unit_v)
+{
+  return Val_scilab(new types::Colon());
+}
+
+value ocpsci_dollar_c(value unit_v)
+{
+  return Val_scilab(new types::Dollar());
+}
+

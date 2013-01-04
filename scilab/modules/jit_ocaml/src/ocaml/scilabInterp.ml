@@ -190,6 +190,99 @@ let rec interp env exp =
     if env.can_return then raise (ReturnExn[]);
     None
 
+
+  | Var  { var_desc =  ColonVar } ->
+  (* TODO: we should write that BUT isColon() is sometimes optimized
+     in the runtime, instead of optimizing 1:1:$, that is supposed to
+     be equivalent. Scilint should print a warning for 1:1:$ to use
+     (:) instead.
+
+     let start = Sci.double 1. in
+     let step = Sci.double 1. in
+     let stop = Sci.dollar () in
+     Some (Sci.implicitlist start step stop)
+  *)
+    Some (Sci.colon ())
+
+  | Var  { var_desc =  DollarVar } ->
+    (* TODO: why not set a context variable '$' everytime we do an
+       extraction from a matrix, and completely remove the need for
+       this. Is-it really optimized ? *)
+    Some (Sci.dollar ())
+
+  | Var { var_desc = SimpleVar sy } ->
+    let ctx = ScilabContext.getInstance () in
+    Some (ScilabContext.get ctx sy)
+
+
+  | ControlExp (ForExp forExp) ->
+    let varDec = forExp.forExp_vardec in (* name, init, kind *)
+    let body = forExp.forExp_body in
+    let name = varDec.varDec_name in
+    let init = varDec.varDec_init in
+
+    let init = interp env init in
+    let ctx = ScilabContext.getInstance () in
+
+    let loop iterator =
+              try
+                let env = { env with can_break = true; can_continue = true } in
+                let rec iter iterator =
+                  match iterator () with
+                    None -> None
+                  | Some v ->
+                    ScilabContext.put ctx name v;
+                    begin try
+                            ignore_interp env body
+                      with ContinueExn -> ()
+                    end;
+                    iter iterator
+                in
+                iter iterator
+              with
+              | ContinueExn -> None
+    in
+
+    begin
+      match init with
+        None -> None
+      | Some looper ->
+        let iterator =
+          match Sci.get_type looper with
+          | Sci.RealImplicitList ->
+            Sci.iterator_of_implicitlist looper
+
+          | Sci.RealList
+          | Sci.RealTList
+          | Sci.RealMList ->
+            Sci.iterator_of_list looper
+
+          | typ ->
+            if Sci.isGeneric typ then
+              Sci.iterator_of_generic looper
+            else begin
+              Printf.fprintf stderr "ScilabInterp: Don't know how to for:\n%s" (Sci.to_string looper);
+              raise InterpFailed
+            end
+        in
+        match iterator with
+          None -> None
+        | Some iterator -> loop iterator
+    end
+
+  | MathExp (OpExp (oper, args)) ->
+    let left = interp_one env args.opExp_left in
+    let right = interp_one env args.opExp_right in
+
+    let left = Sci.extractFullMatrix left in
+    let right = Sci.extractFullMatrix right in
+
+    Some (Sci.operation (binop_of_OpExp_Oper oper) left right)
+
+  | MathExp ( NotExp  { notExp_exp = exp } ) ->
+    Some (Sci.not_exp (interp_one env exp))
+
+
 (************************************************************ PARTIAL *)
 
   | AssignExp { assignExp_left_exp = left;
@@ -244,57 +337,6 @@ let rec interp env exp =
 
     end
 
-  | ControlExp (ForExp forExp) ->
-    let varDec = forExp.forExp_vardec in (* name, init, kind *)
-    let body = forExp.forExp_body in
-    let name = varDec.varDec_name in
-    let init = varDec.varDec_init in
-
-    let init = interp env init in
-    begin
-      match init with
-        None -> None
-      | Some looper ->
-        match Sci.get_type looper with
-        | Sci.RealImplicitList ->
-          let ctx = ScilabContext.getInstance () in
-          begin
-            match Sci.iterator_of_implicitlist looper with
-              None -> None
-            | Some iterator ->
-              try
-                let env = { env with can_break = true; can_continue = true } in
-                let rec iter iterator =
-                  match iterator () with
-                    None -> None
-                  | Some v ->
-                    ScilabContext.put ctx name v;
-                    begin try
-                            ignore_interp env body
-                      with ContinueExn -> ()
-                    end;
-                    iter iterator
-                in
-                iter iterator
-              with
-              | ContinueExn -> None
-          end
-
-        (*
-        | isList ->
-          iterate on the list (->getSize()) (->get(i))
-
-        | isGenericType ->
-          iterate on columns (->getCols()) (->getColumnValues(i))
-          *)
-        (* TODO : what else can be used to iterate on it ? *)
-        | x ->
-          Printf.fprintf stderr "ScilabInterp: Don't know how to for:\n%s" (Sci.to_string looper);
-          raise InterpFailed
-
-    end
-
-
   | ListExp listExp ->
     let start = interp_one env listExp.listExp_start in
     let step = interp_one env listExp.listExp_step in
@@ -306,16 +348,6 @@ let rec interp env exp =
   (* TODO: check fixError problem on this case ! *)
     | MathExp ( OpExp  _ )
   *)
-
-  | MathExp (OpExp (oper, args)) ->
-    let left = interp_one env args.opExp_left in
-    let right = interp_one env args.opExp_right in
-    (* TODO: if implicitlists, generate full matrices *)
-    Some (Sci.operation (binop_of_OpExp_Oper oper) left right)
-
-  | Var { var_desc = SimpleVar sy } ->
-    let ctx = ScilabContext.getInstance () in
-    Some (ScilabContext.get ctx sy)
 
   | Dec (FunctionDec f) ->
     let ctx = ScilabContext.getInstance () in
@@ -393,13 +425,10 @@ let rec interp env exp =
   | ControlExp ( TryCatchExp  _ )
   | MathExp ( MatrixExp  _ )
   | MathExp ( CellExp  _ )
-  | MathExp ( NotExp  _ )
   | MathExp ( LogicalOpExp ( _ ,  _ ))
   | MathExp ( TransposeExp  _ )
 
 
-  | Var  { var_desc =  ColonVar }
-  | Var  { var_desc =  DollarVar }
   | Var  { var_desc =  ArrayListVar  _ }
   | Dec ( VarDec  _ )
     ->

@@ -126,11 +126,10 @@ type realType =
 | RealThreadId
 | RealSparse
 | RealSparseBool
-| RealSingleHandle
-| RealHandle
+| RealSingleHandle (* unused *)
+| RealHandle  (* RealGraphicHandle *)
 
 | RealUnknown (* Unknown Scilab type ! *)
-
 
 let string_of_realType = function
 | RealInternal -> "RealInternal"
@@ -186,15 +185,15 @@ external ocpsci_get_RealType_ml : t -> realType = "noalloc"
   "ocpsci_get_RealType_c"
 
 (* conversion between Scilab and OCaml doubles *)
-external ocpsci_ml2sci_double_ml : float -> t = "noalloc" "ocpsci_ml2sci_double_c"
-external ocpsci_ml2sci_float_ml : float -> t = "noalloc" "ocpsci_ml2sci_float_c"
-external ocpsci_ml2sci_bool_ml : bool -> t = "noalloc" "ocpsci_ml2sci_bool_c"
-external ocpsci_ml2sci_int8_ml : int32 -> t = "noalloc" "ocpsci_ml2sci_int8_c"
-external ocpsci_ml2sci_int16_ml : int32 -> t = "noalloc" "ocpsci_ml2sci_int16_c"
-external ocpsci_ml2sci_int32_ml : int32 -> t = "noalloc" "ocpsci_ml2sci_int32_c"
-external ocpsci_ml2sci_string_ml : string -> t = "noalloc" "ocpsci_ml2sci_string_c"
+external ocpsci_ml2sci_double_ml : float -> t = "ocpsci_ml2sci_double_c"
+external ocpsci_ml2sci_float_ml : float -> t = "ocpsci_ml2sci_float_c"
+external ocpsci_ml2sci_bool_ml : bool -> t = "ocpsci_ml2sci_bool_c"
+external ocpsci_ml2sci_int8_ml : int32 -> t = "ocpsci_ml2sci_int8_c"
+external ocpsci_ml2sci_int16_ml : int32 -> t = "ocpsci_ml2sci_int16_c"
+external ocpsci_ml2sci_int32_ml : int32 -> t = "ocpsci_ml2sci_int32_c"
+external ocpsci_ml2sci_string_ml : string -> t = "ocpsci_ml2sci_string_c"
 
-external ocpsci_get_size_ml : t -> int = "noalloc" "ocpsci_get_size_c"
+external ocpsci_generic_getSize_ml : t -> int = "noalloc" "ocpsci_generic_getSize_c"
 
 external ocpsci_sci2ml_double_ml : t -> int -> float = "ocpsci_sci2ml_double_c"
 external ocpsci_sci2ml_bool_ml : t -> int -> bool = "ocpsci_sci2ml_bool_c"
@@ -203,10 +202,16 @@ external ocpsci_sci2ml_int16_ml : t -> int -> int32 = "ocpsci_sci2ml_int16_c"
 external ocpsci_sci2ml_int32_ml : t -> int -> int32 = "ocpsci_sci2ml_int32_c"
 external ocpsci_sci2ml_string_ml : t -> int -> string = "ocpsci_sci2ml_string_c"
 
+external ocpsci_set_bool_ml : t -> int -> bool -> unit = "noalloc" "ocpsci_set_bool_c"
 external ocpsci_set_double_ml : t -> int -> float -> unit = "noalloc" "ocpsci_set_double_c"
 external ocpsci_set_int8_ml : t -> int -> int32 -> unit = "noalloc" "ocpsci_set_int8_c"
 external ocpsci_set_int16_ml : t -> int -> int32 -> unit = "noalloc" "ocpsci_set_int16_c"
 external ocpsci_set_int32_ml : t -> int -> int32 -> unit = "noalloc" "ocpsci_set_int32_c"
+
+external ocpsci_sparsebool_set_ml : t -> int -> int -> bool -> unit =
+  "noalloc" "ocpsci_sparsebool_set_c"
+external ocpsci_sparsebool_get_ml : t -> int -> int -> bool =
+  "noalloc" "ocpsci_sparsebool_get_c"
 
 external ocpsci_empty_double_ml : unit -> t = "ocpsci_empty_double_c"
 
@@ -250,6 +255,27 @@ external ocpsci_operation_ml : binop -> t -> t -> t =
 external ocpsci_refcount_ml : t -> int = "noalloc" "ocpsci_refcount_c"
 external ocpsci_incr_refcount_ml : t -> unit = "noalloc" "ocpsci_incr_refcount_c"
 external ocpsci_decr_refcount_ml : t -> unit = "noalloc" "ocpsci_decr_refcount_c"
+external ocpsci_dollar_ml : unit -> t = "ocpsci_dollar_c"
+external ocpsci_colon_ml : unit -> t = "ocpsci_colon_c"
+external ocpsci_list_get_ml : t -> int -> t = "ocpsci_list_get_c"
+
+external ocpsci_generic_getCols_ml : t -> int =
+  "noalloc" "ocpsci_generic_getCols_c"
+external ocpsci_generic_getRows_ml : t -> int =
+  "noalloc" "ocpsci_generic_getRows_c"
+external ocpsci_generic_getColumnValues_ml : t -> int -> t =
+  "ocpsci_generic_getColumnValues_c"
+
+external ocpsci_implicitlist_extractFullMatrix_ml : t -> t =
+  "ocpsci_implicitlist_extractFullMatrix_c"
+
+external ocpsci_arrayof_get_ml : t -> int -> t =
+  "ocpsci_arrayof_get_c"
+
+external ocpsci_arrayof_set_ml : t -> int -> t -> unit =
+  "noalloc" "ocpsci_arrayof_set_c"
+
+external ocpsci_map_ml : t -> t =  "ocpsci_map_c"
 
 
 (*********************************************************************)
@@ -288,6 +314,33 @@ let int16 = ocpsci_ml2sci_int16_ml
 let int32 = ocpsci_ml2sci_int32_ml
 let implicitlist = ocpsci_ml2sci_implicitlist_ml
 
+
+let isGeneric typ =
+  match typ with
+  | RealGeneric
+  | RealContainer
+  | RealList
+  | RealTList
+  | RealMList
+  | RealFloat
+  | RealSinglePoly
+  | RealBool
+  | RealCell
+  | RealDouble
+  | RealHandle (* RealGraphicHandle *)
+  | RealInt8
+  | RealInt16
+  | RealInt32
+  | RealInt64
+  | RealPoly
+  | RealDollar
+  | RealString
+  | RealStruct
+  | RealUInt8
+  | RealUInt16
+  | RealUInt32
+  | RealUInt64 -> true
+  | _ -> false
 
 let unsafe_get_double = ocpsci_sci2ml_double_ml
 let unsafe_get_bool = ocpsci_sci2ml_bool_ml
@@ -386,9 +439,13 @@ let refcount = ocpsci_refcount_ml
 let incr_refcount = ocpsci_incr_refcount_ml
 let decr_refcount = ocpsci_decr_refcount_ml
 
+let get_size t =
+  if isGeneric (get_type t) then ocpsci_generic_getSize_ml t
+  else assert false
+
 let unsafe_get_size =
   (* TODO: we should probably check that the type has a size ! *)
-  ocpsci_get_size_ml
+  ocpsci_generic_getSize_ml
 
 
 let iterator_of_implicitlist t =
@@ -443,6 +500,38 @@ let iterator_of_implicitlist t =
     end
   | _ -> assert false
 
+let iterator_of_list t =
+  match get_type t with
+  | RealList
+  | RealTList
+  | RealMList ->
+    let size = unsafe_get_size t in
+    if size = 0 then None else
+      let count = ref 0 in
+      Some (fun () ->
+        let pos = !count in
+        if pos < size then begin
+          incr count;
+          Some (ocpsci_list_get_ml t pos)
+        end else None
+      )
+  | _ -> assert false
+
+let iterator_of_generic t =
+  if isGeneric (get_type t) then
+    let size = ocpsci_generic_getCols_ml t in
+    if size = 0 then None else
+      let count = ref 0 in
+      Some (fun () ->
+        let pos = !count in
+        if pos < size then begin
+          incr count;
+          Some (ocpsci_generic_getColumnValues_ml t pos)
+        end else None
+      )
+  else
+    assert false
+
 let rec is_true t =
   match get_type t with
   | RealDouble ->
@@ -481,6 +570,51 @@ let rec is_true t =
 
 let get_funlist = ocpsci_get_funlist_ml
 let context_get = ocpsci_context_get_ml
+
+let dollar = ocpsci_dollar_ml
+let colon = ocpsci_colon_ml
+
+let list_get t pos =
+  match get_type t with
+    RealList
+  | RealMList
+  | RealTList ->
+    ocpsci_list_get_ml t pos
+  | _ -> assert false
+
+let extractFullMatrix t =
+  match get_type t with
+    RealImplicitList -> ocpsci_implicitlist_extractFullMatrix_ml t
+  | _ -> t
+
+let not_exp t =
+  match get_type t with
+  | RealDouble ->
+    let t2 = ocpsci_map_ml t in
+    for i = 0 to ocpsci_generic_getSize_ml t - 1 do
+      let d = ocpsci_sci2ml_double_ml t i in
+      ocpsci_set_double_ml t2 i
+        (if d = 0. then 1. else 0.)
+    done;
+    t2
+  | RealBool ->
+    let t2 = ocpsci_map_ml t in
+    for i = 0 to ocpsci_generic_getSize_ml t - 1 do
+      let b = ocpsci_sci2ml_bool_ml t i in
+      ocpsci_set_bool_ml t2 i (not b)
+    done;
+    t2
+  | RealSparseBool ->
+    let t2 = ocpsci_map_ml t in
+    for row = 0 to ocpsci_generic_getRows_ml t - 1 do
+      for col = 0 to ocpsci_generic_getCols_ml t - 1 do
+        let b = ocpsci_sparsebool_get_ml t row col in
+        ocpsci_sparsebool_set_ml t2 row col (not b)
+      done;
+    done;
+    t2
+  | _ -> assert false
+
 
 (*********************************************************************)
 (*                                                                   *)
