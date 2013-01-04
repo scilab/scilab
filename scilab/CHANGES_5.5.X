@@ -1,6 +1,14 @@
                     Changes between version 5.4.X and 5.5.0
                     =======================================
 
+New features
+=============
+
+* New functions introduced:
+ - getURLcontent - Return the content of an URL (HTTP, HTTPS, FTP...)
+ - getURL - Download an URL (HTTP, HTTPS, FTP...)
+ - splitURL - Split a URL (HTTP, HTTPS, FTP...)
+
 
 Syntax changes
 ===============
