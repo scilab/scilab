@@ -11,6 +11,8 @@ function [fontId,fontSize]=getfont(S,v1)
   
 //returns the clicked font id and font size. 
   fontId=[];fontSize=[];
+
+  warnobsolete('ged', '5.5.0');
   
   if exists('S','local')==0 then S="a";end
   if type(S)<>10 then

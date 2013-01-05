@@ -254,7 +254,7 @@ extern "C"
             }
             else if (exportFormat == "jar-only")
             {
-                org_scilab_modules_helptools::SciDocMain::generateJavahelp(getScilabJavaVM(), (char *)outputDirectory.c_str(), (char *)language.c_str());
+                org_scilab_modules_helptools::SciDocMain::generateJavahelp(getScilabJavaVM(), (char *)outputDirectory.c_str(), (char *)language.c_str(), Rhs == 4);
             }
             else
             {

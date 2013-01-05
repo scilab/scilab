@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "dcd library"
             VALUE "FileVersion", "5, 5, 0, 0"
             VALUE "InternalName", "dcd library for scilab 5.x"
-            VALUE "LegalCopyright", "Copyright (C) 2012"
+            VALUE "LegalCopyright", "Copyright (C) 2013"
             VALUE "OriginalFilename", "dcd_f.dll"
             VALUE "ProductName", "dcd library for scilab 5.x"
             VALUE "ProductVersion", "5, 5, 0, 0"

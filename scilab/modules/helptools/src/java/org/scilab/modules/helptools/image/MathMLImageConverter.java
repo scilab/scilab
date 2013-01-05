@@ -43,10 +43,10 @@ public class MathMLImageConverter implements ExternalImageConverter {
 
     private static final Graphics2D TEMPGRAPHIC = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).createGraphics();
     private static MathMLImageConverter instance;
-    private final HTMLDocbookTagConverter.GenerationType type;
+    private final HTMLDocbookTagConverter conv;
 
-    private MathMLImageConverter(HTMLDocbookTagConverter.GenerationType type) {
-        this.type = type;
+    private MathMLImageConverter(HTMLDocbookTagConverter conv) {
+        this.conv = conv;
     }
 
     /**
@@ -67,9 +67,9 @@ public class MathMLImageConverter implements ExternalImageConverter {
      * Since it is a singleton class...
      * @return this
      */
-    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
+    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter conv) {
         if (instance == null) {
-            instance = new MathMLImageConverter(type);
+            instance = new MathMLImageConverter(conv);
         }
         return instance;
     }
@@ -97,7 +97,7 @@ public class MathMLImageConverter implements ExternalImageConverter {
 
         Image img = convertMathML(doc, fs);
         if (img != null && ImageConverter.convertIconToPNG(img.icon, imageFile)) {
-            return ImageConverter.generateCode(img, imageName, attributes);
+            return ImageConverter.generateCode(img, conv.getBaseImagePath() + imageName, attributes);
         }
 
         return null;
@@ -124,7 +124,7 @@ public class MathMLImageConverter implements ExternalImageConverter {
 
         Image img = convertMathML(doc, fs);
         if (img != null && ImageConverter.convertIconToPNG(img.icon, imageFile)) {
-            return ImageConverter.generateCode(img, imageName, attributes);
+            return ImageConverter.generateCode(img, conv.getBaseImagePath() + imageName, attributes);
         }
 
         return null;

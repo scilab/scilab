@@ -14,6 +14,7 @@
 #include "splitLine.h"
 #include "csv_strsubst.h"
 #include "MALLOC.h"
+#include "freeArrayOfString.h"
 /* ==================================================================== */
 char **splitLineCSV(const char *str, const char *sep, int *toks, char meta)
 {
@@ -37,7 +38,8 @@ char **splitLineCSV(const char *str, const char *sep, int *toks, char meta)
     sprintf(tokenreplacement_string, "%s%s%s", sep, EMPTYFIELD, sep);
     substitutedstring = csv_strsubst(str, tokenstring_to_search, tokenreplacement_string);
     /* in a string like foo;bar;;;, replace all the ;;, not only the first and last one */
-    while (strstr(substitutedstring, tokenstring_to_search) != NULL) {
+    while (strstr(substitutedstring, tokenstring_to_search) != NULL)
+    {
         substitutedstring = csv_strsubst(substitutedstring, tokenstring_to_search, tokenreplacement_string);
     }
 
@@ -102,6 +104,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks, char meta)
                             *toks = 0;
                             FREE(substitutedstring);
                             substitutedstring = NULL;
+                            freeArrayOfString(retstr, strlen(substitutedstring));
                             return NULL;
                         }
                         memcpy(retstr[curr_str], (idx - len), len);
@@ -156,6 +159,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks, char meta)
                 FREE(substitutedstring);
                 substitutedstring = NULL;
             }
+            freeArrayOfString(retstr, strlen(substitutedstring));
             return NULL;
         }
 

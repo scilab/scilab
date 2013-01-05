@@ -36,10 +36,10 @@ import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 public class SVGImageConverter implements ExternalImageConverter {
 
     private static SVGImageConverter instance;
-    private final HTMLDocbookTagConverter.GenerationType type;
+    private final HTMLDocbookTagConverter conv;
 
-    private SVGImageConverter(HTMLDocbookTagConverter.GenerationType type) {
-        this.type = type;
+    private SVGImageConverter(HTMLDocbookTagConverter conv) {
+        this.conv = conv;
     }
 
     /**
@@ -60,9 +60,9 @@ public class SVGImageConverter implements ExternalImageConverter {
      * Since this a singleton class...
      * @return this
      */
-    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
+    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter conv) {
         if (instance == null) {
-            instance = new SVGImageConverter(type);
+            instance = new SVGImageConverter(conv);
         }
 
         return instance;
@@ -80,7 +80,7 @@ public class SVGImageConverter implements ExternalImageConverter {
      */
     public String convertToImage(File svg, Map<String, String> attributes, File imageFile, String imageName) {
         try {
-            return convertToPNG(new TranscoderInput(new FileInputStream(svg)), imageFile, imageName);
+            return convertToPNG(new TranscoderInput(new FileInputStream(svg)), imageFile, conv.getBaseImagePath() + imageName);
         } catch (FileNotFoundException e) {
             System.err.println("Problem when exporting SVG to " + imageFile + "!\n" + e.toString());
         }

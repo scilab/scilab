@@ -95,9 +95,6 @@
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="xbasr">xbasr</link>
-            </member>
-            <member>
                 <link linkend="clf">clf</link>
             </member>
         </simplelist>
