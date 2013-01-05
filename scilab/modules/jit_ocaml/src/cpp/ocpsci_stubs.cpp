@@ -45,6 +45,7 @@ extern "C" {
   value ocpsci_ml2sci_int32_c(value d_v);
   value ocpsci_ml2sci_double_c(value d_v);
   value ocpsci_ml2sci_bool_c(value d_v);
+  value ocpsci_new_bool_c(value dims_v);
   value ocpsci_ml2sci_string_c(value d_v);
   value ocpsci_ml2sci_implicitlist_c(value start_v, value step_v, value end_v);
 
@@ -84,6 +85,7 @@ extern "C" {
   value ocpsci_decr_refcount_c(value ptr_v);
 
   value ocpsci_generic_getSize_c(value array_v);
+  value ocpsci_generic_getDimsArray_c(value array_v);
   value ocpsci_generic_getCols_c(value array_v);
   value ocpsci_generic_getRows_c(value array_v);
   value ocpsci_generic_getColumnValues_c(value array_v, value pos_v);
@@ -408,6 +410,22 @@ value ocpsci_generic_getColumnValues_c(value array_v, value pos_v)
   return Val_scilab( array_s->getColumnValues( Int_val(pos_v) ) );
 }
 
+value ocpsci_generic_getDimsArray_c(value array_v)
+{
+  types::GenericType *array_s = Scilab_val(array_v)->getAs<GenericType>();
+  
+  int ndims = array_s->getDims();
+  if( ndims == 0 ){
+    return Atom(0);
+  } else {
+    value res_v = caml_alloc( ndims, 0);
+    int *dims = array_s->getDimsArray();
+    for( int i=0; i < ndims; i++ )
+      Field( res_v, i ) = Val_int ( dims[i] );
+    return res_v;
+  }
+}
+
 value ocpsci_generic_getCols_c(value array_v)
 {
   types::GenericType *array_s = Scilab_val(array_v)->getAs<GenericType>();
@@ -480,6 +498,16 @@ value ocpsci_ml2sci_bool_c(value d_v){
   value res_v;
   int d = Int_val(d_v);
   types::Bool *b_s = new types::Bool(d);
+  return Val_scilab(b_s);
+}
+
+value ocpsci_new_bool_c(value dims_v){
+  int ndims = Wosize_val(dims_v);
+  int dims[ ndims ];
+  for(int i = 0; i < ndims; i++)
+    dims[i] = Int_val( Field(dims_v, i) );
+
+  types::Bool *b_s = new types::Bool(ndims, dims);
   return Val_scilab(b_s);
 }
 

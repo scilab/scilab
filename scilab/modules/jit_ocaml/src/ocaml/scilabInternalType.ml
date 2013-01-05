@@ -277,6 +277,8 @@ external ocpsci_arrayof_set_ml : t -> int -> t -> unit =
 
 external ocpsci_map_ml : t -> t =  "ocpsci_map_c"
 
+external ocpsci_new_bool_ml : int array -> t = "ocpsci_new_bool_c"
+external ocpsci_generic_getDimsArray_ml : t -> int array = "ocpsci_generic_getDimsArray_c"
 
 (*********************************************************************)
 (*                                                                   *)
@@ -590,7 +592,7 @@ let extractFullMatrix t =
 let not_exp t =
   match get_type t with
   | RealDouble ->
-    let t2 = ocpsci_map_ml t in
+    let t2 = ocpsci_new_bool_ml (ocpsci_generic_getDimsArray_ml t) in
     for i = 0 to ocpsci_generic_getSize_ml t - 1 do
       let d = ocpsci_sci2ml_double_ml t i in
       ocpsci_set_double_ml t2 i
@@ -598,7 +600,7 @@ let not_exp t =
     done;
     t2
   | RealBool ->
-    let t2 = ocpsci_map_ml t in
+    let t2 = ocpsci_new_bool_ml (ocpsci_generic_getDimsArray_ml t) in
     for i = 0 to ocpsci_generic_getSize_ml t - 1 do
       let b = ocpsci_sci2ml_bool_ml t i in
       ocpsci_set_bool_ml t2 i (not b)
