@@ -409,6 +409,7 @@ endif
 
 # How help files look like.
 DOCMASK=scilab_*_help.jar
+DOCIMAGES=scilab_images.jar
 
 # Path to builded files
 PATHTOHELPFILES = modules/helptools/jar/
@@ -439,7 +440,7 @@ if BUILD_HELP
 	@$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
 	echo $(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
 	if ls -lLd $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) >/dev/null 2>&1; then \
-		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK); do \
+		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) $(top_builddir)/$(PATHTOHELPFILES)/$(DOCIMAGES); do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES)" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES) ; \
 		done; \

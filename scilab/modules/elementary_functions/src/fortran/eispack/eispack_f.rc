@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "eispack library"
             VALUE "FileVersion", "5, 5, 0, 0"
             VALUE "InternalName", "eispack library for scilab 5.x"
-            VALUE "LegalCopyright", "Copyright (C) 2012"
+            VALUE "LegalCopyright", "Copyright (C) 2013"
             VALUE "OriginalFilename", "eispack.dll"
             VALUE "ProductName", "eispack library for scilab 5.x"
             VALUE "ProductVersion", "5, 5, 0, 0"

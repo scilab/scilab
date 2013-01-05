@@ -20,6 +20,7 @@
 #endif
 #include "with_module.h"
 #include "loadversion.h"
+#include "freeArrayOfString.h"
 #include "MALLOC.h"
 #include "../../../io/includes/getenvc.h"
 /*--------------------------------------------------------------------------*/
@@ -181,7 +182,7 @@ char **getScilabVersionOptions(int *sizeArrayReturned)
             }
             else
             {
-                FREE(options);
+                freeArrayOfString(options, nbOptions);
                 return NULL;
             }
         }
@@ -196,7 +197,7 @@ char **getScilabVersionOptions(int *sizeArrayReturned)
             }
             else
             {
-                FREE(options);
+                freeArrayOfString(options, nbOptions);
                 return NULL;
             }
         }
@@ -209,7 +210,7 @@ char **getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            FREE(options);
+            freeArrayOfString(options, nbOptions);
             return NULL;
         }
 
@@ -221,7 +222,7 @@ char **getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            FREE(options);
+            freeArrayOfString(options, nbOptions);
             return NULL;
         }
 
@@ -233,7 +234,7 @@ char **getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            FREE(options);
+            freeArrayOfString(options, nbOptions);
             return NULL;
         }
 

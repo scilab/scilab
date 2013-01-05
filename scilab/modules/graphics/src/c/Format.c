@@ -141,11 +141,11 @@ static void FormatPrec(char *fmt, int *desres, double xmin, double xmax, double 
         sprintf(buf2, fmt, *desres, yy1 + xpas);
         sscanf(buf1, "%lf", &x1);
         sscanf(buf2, "%lf", &x2);
-        if ( Abs((x2 - x1 - xpas) / xpas) >= 0.1)
+        if (  Abs((x2 - x1 - xpas) / xpas) >= 0.1)
         {
             *desres += 1;
         }
-        if ( Abs((x1 - yy1) / xpas) >= 0.01)
+        if (  Abs((x1 - yy1) / xpas) >= 0.01)
         {
             *desres += 1;
         }
@@ -380,10 +380,10 @@ static void graduate1(double *xmi, double *xma, double *xi, double *xa, int *np1
       est divisible. on aura alors une graduation en np2 pour l'ecriture
       des nombres et une sous graduation np1 juste avec des tirets.
       */
-    *np1 = 2;
-    if (*np2 <= 10)
+    *np1 = 2 ;
+    if ( *np2 <= 10 )
     {
-        return;
+        return ;
     }
     /* le nombre est > 10 : s'il est impair on rajoute 1
        pour diviser par deux */
@@ -1196,7 +1196,7 @@ StringMatrix * computeDefaultTicsLabels(char * pobjUID)
 
     int tmp = 0;
     int* piTmp = &tmp;
-    char ticksStyle;
+    char ticksStyle = 'v';
 
     getGraphicObjectProperty(pobjUID, __GO_FORMATN__, jni_string, (void **)&c_format);
 

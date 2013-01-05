@@ -55,7 +55,7 @@ public :
      * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
      */
     static void getColor(double s, double smin, double srange, double indexOffset, double* colormap, int minIndex, int maxIndex,
-        int colormapSize, float* returnedColor);
+                         int colormapSize, float* returnedColor);
 
     /**
      * Outputs an RGB color directly mapped to a scalar value s.
@@ -67,8 +67,9 @@ public :
      * @param[in] a pointer to the colormap used.
      * @param[in] the colormap's size.
      * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
+     * @param[in] a boolean to indicate if the color is clamped (by default true).
      */
-    static void getDirectColor(double s, double* colormap, int colormapSize, float* returnedColor);
+    static void getDirectColor(double s, double* colormap, int colormapSize, float* returnedColor, bool clamped = true);
 
     /**
      * Outputs an RGB color directly mapped to a scalar value s.
@@ -80,8 +81,9 @@ public :
      * @param[in] a pointer to the colormap used.
      * @param[in] the colormap's size.
      * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
+     * @param[in] a boolean to indicate if the color is clamped (by default true).
      */
-    static void getDirectByteColor(double s, double* colormap, int colormapSize, unsigned char* returnedColor);
+    static void getDirectByteColor(double s, double* colormap, int colormapSize, unsigned char* returnedColor, bool clamped = true);
 
     /**
      * Returns a colormap index from a scalar value s.
@@ -145,7 +147,8 @@ public :
 /**
  * Special color index values.
  */
-enum SpecialColorIndexValues {
+enum SpecialColorIndexValues
+{
     WHITE_LOWER_INDEX = -4,
     BLACK_LOWER_INDEX = -3,
     BLACK_UPPER_INDEX = 0
@@ -178,3 +181,4 @@ enum SpecialColorIndexValues {
 #define COLOR_TEXTURE_OFFSET    0.5
 
 #endif
+

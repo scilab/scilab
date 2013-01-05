@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "console module"
             VALUE "FileVersion", "5, 5, 0, 0"
             VALUE "InternalName", "console module"
-            VALUE "LegalCopyright", "Copyright (C) 2012"
+            VALUE "LegalCopyright", "Copyright (C) 2013"
             VALUE "OriginalFilename", "sciconsole.dll"
             VALUE "ProductName", " console module"
             VALUE "ProductVersion", "5, 5, 0, 0"
