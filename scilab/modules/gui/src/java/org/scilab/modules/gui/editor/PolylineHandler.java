@@ -97,7 +97,7 @@ public class PolylineHandler {
             double[] coord0 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos0);
             double[] coord1 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos1);
             double[] coordDiff = {coord1[0] - coord0[0], coord1[1] - coord0[1]};
-            PolylineData.translatePolyline(polyline, coordDiff[0], coordDiff[1]);
+            PolylineData.translatePolyline(polyline, coordDiff[0], coordDiff[1], 0.0);
             GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_DATA_MODEL__, polyline);
         }
     }
