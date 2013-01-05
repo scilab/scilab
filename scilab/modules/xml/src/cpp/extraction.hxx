@@ -190,7 +190,7 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
         if (err.iErr)
         {
             printError(&err, 0);
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
 
