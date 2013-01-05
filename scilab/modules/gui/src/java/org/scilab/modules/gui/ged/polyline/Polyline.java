@@ -27,6 +27,5 @@ public class Polyline extends Style {
     */
     public Polyline(String objectID) {
         super(objectID);
-        setPreferredSize(new Dimension(100, 800));
     }
 }

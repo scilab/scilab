@@ -88,8 +88,7 @@ public class ContentLayout extends JPanel{
     }
 
     public void addSeparator(JPanel panel, JSeparator separator, int row) {
-        separator.setMinimumSize(new Dimension(40, 10));
-        separator.setPreferredSize(new Dimension(40, 10));
+        separator.setPreferredSize(new Dimension(5, 10));
 
         gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.LINE_START;
@@ -104,8 +103,7 @@ public class ContentLayout extends JPanel{
     public void addColorField(JPanel parentPanel, JPanel fieldPanel, JButton colorButton, JLabel fieldColor, int column, int row) {
         fieldPanel.setBackground(new Color(255, 255, 255));
         fieldPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        fieldPanel.setMinimumSize(new Dimension(40, 20));
-        fieldPanel.setPreferredSize(new Dimension(70, 20));
+        fieldPanel.setPreferredSize(new Dimension(5, 20));
         fieldPanel.setLayout(new GridBagLayout());
 
         colorButton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
@@ -212,8 +210,7 @@ public class ContentLayout extends JPanel{
     public void addDataField(JPanel parentPanel, JPanel fieldPanel, JButton dataButton, JLabel dataLabel, int column, int row, String objectID) {
         fieldPanel.setBackground(new Color(255, 255, 255));
         fieldPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        fieldPanel.setMinimumSize(new Dimension(40, 20));
-        fieldPanel.setPreferredSize(new Dimension(70, 20));
+        fieldPanel.setPreferredSize(new Dimension(5, 20));
         fieldPanel.setLayout(new GridBagLayout());
 
         dataButton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
@@ -395,8 +392,7 @@ public class ContentLayout extends JPanel{
     }
 
     public void addJComboBox(JPanel panel, JComboBox combobox, String[] options, int column, int row) {
-        combobox.setPreferredSize(new Dimension(70, 20));
-        combobox.setMinimumSize(new Dimension(40, 20));
+        combobox.setPreferredSize(new Dimension(5, 20));
         combobox.setModel(new DefaultComboBoxModel(options));
 
         gbc = new GridBagConstraints();
@@ -414,8 +410,7 @@ public class ContentLayout extends JPanel{
         label.setBackground(new Color(255, 255, 255));
         label.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         label.setOpaque(true);
-        label.setPreferredSize(new Dimension(70, 20));
-        label.setMinimumSize(new Dimension(40, 20));
+        label.setPreferredSize(new Dimension(5, 20));
         label.setText(" " + text);
 
         gbc = new GridBagConstraints();
@@ -431,8 +426,7 @@ public class ContentLayout extends JPanel{
 
     public void addJTextField(JPanel panel, JTextField textField, boolean editable, int column, int row, int insetLeft) {
         textField.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        textField.setPreferredSize(new Dimension(70, 20));
-        textField.setMinimumSize(new Dimension(40, 20));
+        textField.setPreferredSize(new Dimension(5, 20));
         textField.setEditable(editable);
 
         gbc = new GridBagConstraints();
