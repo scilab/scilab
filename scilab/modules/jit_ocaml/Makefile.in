@@ -1291,19 +1291,11 @@ distclean-local:
 
 .PHONY: macros java swig giws
 
-<<<<<<< HEAD
-ocamlcode.o: $(OCAML_CMXS)
-	$(OCAMLOPT) -o ocamlcode.o -output-obj unix.cmxa $(OCAML_CMXS)
-=======
-jit_ocaml.o: src/c/jit_ocaml.c
-	ocamlopt -c -I includes -fPIC src/c/jit_ocaml.c
-
 scilab_parser : $(OCAML_PARSER_CMXS)
 	$(OCAMLOPT) -o scilab_parser $(OCAML_PARSER_CMXS)
 
-libscijit_ocaml-runtime.o: $(OCAML_CMXS) jit_ocaml.o libasmrun.a
-	$(OCAMLOPT) -o libscijit_ocaml-runtime.o -output-obj $(OCAML_CMXS)
->>>>>>> jit-michael
+ocamlcode.o: $(OCAML_CMXS)
+	$(OCAMLOPT) -o ocamlcode.o -output-obj unix.cmxa $(OCAML_CMXS)
 
 libasmrun.a:
 	cp $(OCAMLLIB)/libasmrun.a .
@@ -1311,8 +1303,7 @@ libunix.a:
 	cp $(OCAMLLIB)/libunix.a .
 
 depend_ocaml:
-<<<<<<< HEAD
-	$(OCAMLDEP) -native $(OCAML_INCL) $(OCAML_MLS) $(OCAML_MLIS) > .depend_ocaml
+	$(OCAMLDEP) -native $(OCAML_INCL) $(OCAML_MLS) $(OCAML_MLIS) $(OCAML_PARSER_MLS) > .depend_ocaml
 src/ocaml/scilabMisc.cmo : src/ocaml/scilabMisc.cmi
 src/ocaml/scilabMisc.cmx : src/ocaml/scilabMisc.cmi
 src/ocaml/scilabValue.cmo : src/ocaml/scilabValue.cmi
@@ -1321,11 +1312,6 @@ src/ocaml/scilabContext.cmo : src/ocaml/scilabContext.cmi
 src/ocaml/scilabContext.cmx : src/ocaml/scilabContext.cmi
 src/ocaml/scilabAst.cmo : src/ocaml/scilabContext.cmi
 src/ocaml/scilabAst.cmx : src/ocaml/scilabContext.cmx
-=======
-	$(OCAMLDEP) -native $(OCAML_INCL) $(OCAML_MLS) $(OCAML_MLIS) $(OCAML_PARSER_MLS) > .depend_ocaml
-src/ocaml/scilabAst.cmo :
-src/ocaml/scilabAst.cmx :
->>>>>>> jit-michael
 src/ocaml/scilabTypes.cmo :
 src/ocaml/scilabTypes.cmx :
 src/ocaml/scilabAstPrinter.cmo : src/ocaml/scilabContext.cmi \

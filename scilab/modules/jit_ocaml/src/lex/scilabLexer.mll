@@ -23,6 +23,7 @@
 
   let str = ref ""
 
+  let is_transposable = ref false
 }
 
 let newline = ('\010' | '\013' | "\013\010")
@@ -54,8 +55,11 @@ let id2  = ['a'-'z''A'-'Z''_''0'-'9''#''?''$'] | utf
 let id   = id1 id2*
 (* let id   = ['a'-'z''A'-'Z''_''%''#''?''$']['a'-'z''A'-'Z''_''0'-'9''#''?''$'] * *)
 
-let booltrue  = "%t" | "%T"
-let boolfalse = "%f" | "%F"
+let boolnot    = "@" | "~"
+let booltrue   = "%t" | "%T"
+let boolfalse  = "%f" | "%F"
+let booland    = "&"
+let boolandand = "&&"
 
 let lbrack = "["
 let rbrack = "]"
@@ -79,6 +83,13 @@ let endblockcomment   = "*/"
 let dquote = "\""
 let quote  = "'"
 
+let dot        = "."
+let dotquote   = ".'"
+let dottimes   = ".*"
+let dotrdivide = "./"
+let dotldivide = ".\\"
+let dotpower   = ".^" | ".**"
+
 let plus    = "+"
 let minus   = "-"
 let rdivide = "/"
@@ -97,64 +108,74 @@ let assign = "="
 
 
 rule token = parse
-  | blank                        { token lexbuf }
-  | newline                      { (* Printf.printf "EOL\n"; *) Lexing.new_line lexbuf; EOL}
-  | startlinecomment             { str_cmt := ""; comment lexbuf }
-  | dquote                       { str := ""; doublestr lexbuf }
-  | quote                        { str := ""; simplestr lexbuf }
-  | "if"                         { IF }
-  | "then"                       { THEN }
-  | "else"                       { ELSE }
-  | "elseif"                     { ELSEIF }
-  | "end"                        { END }
-  | "select"                     { SELECT }
-  | "switch"                     { SWITCH }
-  | "otherwise"                  { OTHERWISE }
-  | "case"                       { CASE }
-  | "while"                      { WHILE }
-  | "do"                         { DO }
-  | "try"                        { TRY }
-  | "catch"                      { CATCH }
-  | "return"                     { RETURN }
-  | "break"                      { BREAK }
-  | "continue"                   { CONTINUE }
-  | "="                          { ASSIGN }
-  | "for"                        { FOR }
-  | "hidden"                     { HIDDEN }
-  | "function"                   { FUNCTION }
-  | "#function"                  { HIDDENFUNCTION }
-  | "endfunction"                { ENDFUNCTION }
-  | plus                         { PLUS }
-  | minus                        { MINUS }
-  | rdivide                      { RDIVIDE }
-  | ldivide                      { LDIVIDE }
-  | times                        { TIMES }
-  | power                        { POWER }
-  | equal                        { EQ }
-  | notequal                     { NE }
-  | lowerthan                    { LT }
-  | greaterthan                  { GT }
-  | lowerequal                   { LE }
-  | greaterequal                 { GE }
-  | comma                        { COMMA }
-  | semicolon                    { SEMI }
-  | integer as inum              { let num = float_of_string inum in
+  | blank                        { is_transposable := false; token lexbuf }
+  | newline                      { (* Printf.printf "EOL\n"; *) is_transposable := false; Lexing.new_line lexbuf; EOL}
+  | startlinecomment             { is_transposable := false; str_cmt := ""; comment lexbuf }
+  | dquote                       { is_transposable := false; str := ""; doublestr lexbuf }
+  | quote                        { if !is_transposable
+                                   then QUOTE
+                                   else begin str := ""; simplestr lexbuf end}
+  | "if"                         { is_transposable := false; IF }
+  | "then"                       { is_transposable := false; THEN }
+  | "else"                       { is_transposable := false; ELSE }
+  | "elseif"                     { is_transposable := false; ELSEIF }
+  | "end"                        { is_transposable := false; END }
+  | "select"                     { is_transposable := false; SELECT }
+  | "switch"                     { is_transposable := false; SWITCH }
+  | "otherwise"                  { is_transposable := false; OTHERWISE }
+  | "case"                       { is_transposable := false; CASE }
+  | "while"                      { is_transposable := false; WHILE }
+  | "do"                         { is_transposable := false; DO }
+  | "try"                        { is_transposable := false; TRY }
+  | "catch"                      { is_transposable := false; CATCH }
+  | "return"                     { is_transposable := false; RETURN }
+  | "break"                      { is_transposable := false; BREAK }
+  | "continue"                   { is_transposable := false; CONTINUE }
+  | "="                          { is_transposable := false; ASSIGN }
+  | "for"                        { is_transposable := false; FOR }
+  | "hidden"                     { is_transposable := false; HIDDEN }
+  | "function"                   { is_transposable := false; FUNCTION }
+  | "#function"                  { is_transposable := false; HIDDENFUNCTION }
+  | "endfunction"                { is_transposable := false; ENDFUNCTION }
+  | dot                          { is_transposable := false; DOT }
+  | plus                         { is_transposable := false; PLUS }
+  | minus                        { is_transposable := false; MINUS }
+  | rdivide                      { is_transposable := false; RDIVIDE }
+  | ldivide                      { is_transposable := false; LDIVIDE }
+  | times                        { is_transposable := false; TIMES }
+  | power                        { is_transposable := false; POWER }
+  | equal                        { is_transposable := false; EQ }
+  | notequal                     { is_transposable := false; NE }
+  | lowerthan                    { is_transposable := false; LT }
+  | greaterthan                  { is_transposable := false; GT }
+  | lowerequal                   { is_transposable := false; LE }
+  | greaterequal                 { is_transposable := false; GE }
+  | comma                        { is_transposable := false; COMMA }
+  | semicolon                    { is_transposable := false; SEMI }
+  | colon                        { is_transposable := false; COLON }
+  | integer as inum              { is_transposable := true;
+                                   let num = float_of_string inum in
                                    Printf.printf "varint[%f]" num; VARINT num }
-  | number as nnum               { let num = float_of_string nnum in
+  | number as nnum               { is_transposable := true;
+                                   let num = float_of_string nnum in
                                    NUM num }
-  | little as lnum               { let num = float_of_string lnum in
+  | little as lnum               { is_transposable := true;
+                                   let num = float_of_string lnum in
                                    NUM num }
-  | lparen                       { LPAREN }
-  | rparen                       { RPAREN }
-  | lbrace                       { LBRACE }
-  | rbrace                       { RBRACE }
-  | lbrack                       { LBRACK }
-  | rbrack                       { RBRACK }
-  | dollar                       { DOLLAR }
-  | booltrue                     { BOOLTRUE }
-  | boolfalse                    { BOOLFALSE }
-  | id as str                    { Printf.printf "ID[%s]" str; ID str }
-  | eof                          { EOF }
+  | lparen                       { is_transposable := false; LPAREN }
+  | rparen                       { is_transposable := true; RPAREN }
+  | lbrace                       { is_transposable := false; LBRACE }
+  | rbrace                       { is_transposable := true; RBRACE }
+  | lbrack                       { is_transposable := false; LBRACK }
+  | rbrack                       { is_transposable := true; RBRACK }
+  | dollar                       { is_transposable := false; DOLLAR }
+  | boolnot                      { is_transposable := false; NOT }
+  | booltrue                     { is_transposable := true; BOOLTRUE }
+  | boolfalse                    { is_transposable := true; BOOLFALSE }
+  | booland                      { is_transposable := false; AND }
+  | boolandand                   { is_transposable := false; ANDAND }
+  | id as str                    { is_transposable := true;Printf.printf "ID[%s]" str; ID str }
+  | eof                          { is_transposable := false; EOF }
   | _ as c                       { Printf.printf "Lexing error : Unknow character \'%c\'" c;exit 1}
 
 and comment = parse

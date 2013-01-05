@@ -162,7 +162,6 @@ CLEANFILES= \
 scilab_parser : $(OCAML_PARSER_CMXS)
 	$(OCAMLOPT) -o scilab_parser $(OCAML_PARSER_CMXS)
 
->>>>>>> jit-michael
 
 ocamlcode.o: $(OCAML_CMXS)
 	$(OCAMLOPT) -o ocamlcode.o -output-obj unix.cmxa $(OCAML_CMXS)
