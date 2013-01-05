@@ -125,6 +125,7 @@ OCAML_MLIS = \
 	$(OCAML_SCILAB_MLIS)
 
 OCAML_PARSER_MLS = \
+	src/ocaml/scilabContext.ml \
 	src/ocaml/scilabAst.ml \
 	src/ocaml/scilabAstPrinter.ml \
 	src/yacc/scilabParser.ml \
