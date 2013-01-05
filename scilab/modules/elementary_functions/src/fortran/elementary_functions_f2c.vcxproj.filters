@@ -524,9 +524,6 @@
     <f2c_rule Include="bdiag.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="calerf.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="cbal.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>

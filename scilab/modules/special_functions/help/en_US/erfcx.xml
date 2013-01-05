@@ -64,4 +64,14 @@
             </member>
         </simplelist>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Improve the behavior of erfcx on big values.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
 </refentry>

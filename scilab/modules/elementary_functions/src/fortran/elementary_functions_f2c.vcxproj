@@ -453,7 +453,6 @@ cd ..
   <ItemGroup>
     <f2c_rule Include="arcosh.f" />
     <f2c_rule Include="bdiag.f" />
-    <f2c_rule Include="calerf.f" />
     <f2c_rule Include="cbal.f" />
     <f2c_rule Include="cerr.f" />
     <f2c_rule Include="coef.f" />
