@@ -48,6 +48,7 @@ import org.scilab.modules.graphic_objects.PolylineData;
 public class ContentLayout extends JPanel{
     private GridBagLayout layout;  
     protected GridBagConstraints gbc;  
+    private static String imagepath = System.getenv("SCI") + "/modules/gui/images/icons/";
 
     public ContentLayout() {  
        layout = new GridBagLayout();  
@@ -207,7 +208,13 @@ public class ContentLayout extends JPanel{
         colorDialog.getContentPane().add(ok, gbc);
     }
 
-    public void addDataField(JPanel parentPanel, JPanel fieldPanel, JButton dataButton, JLabel dataLabel, int column, int row, String objectID) {
+    public void addDataField(JPanel parentPanel,
+                             JPanel fieldPanel,
+                             JButton dataButton,
+                             JLabel dataLabel,
+                             int column,
+                             int row,
+                             String objectID) {
         fieldPanel.setBackground(new Color(255, 255, 255));
         fieldPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         fieldPanel.setPreferredSize(new Dimension(5, 20));
@@ -260,8 +267,9 @@ public class ContentLayout extends JPanel{
                               final JTable table,
                                     JButton append,
                                     JButton delete,
+                                    JButton refresh,
+                                    JButton ok,
                               final String objectID) {
-
         dataDialog.setTitle(MessagesGED.data_editor);
         dataDialog.setMinimumSize(new Dimension(150, 340));
         dataDialog.setModal(true);
@@ -286,14 +294,15 @@ public class ContentLayout extends JPanel{
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 3;
+        gbc.gridwidth = 4;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.NORTHWEST;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         dataDialog.getContentPane().add(scroll, gbc);
 
-        append.setText(MessagesGED.append);
+        append.setIcon(new ImageIcon(imagepath + "16x16/actions/list-add.png"));
+        append.setToolTipText(MessagesGED.append);
         append.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 try {
@@ -318,7 +327,8 @@ public class ContentLayout extends JPanel{
         gbc.insets = new Insets(3, 10, 0, 0);
         dataDialog.getContentPane().add(append, gbc);
 
-        delete.setText(MessagesGED.delete);
+        delete.setIcon(new ImageIcon(imagepath + "16x16/actions/list-remove.png"));
+        delete.setToolTipText(MessagesGED.delete);
         delete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 try {
@@ -344,6 +354,24 @@ public class ContentLayout extends JPanel{
         gbc.anchor = GridBagConstraints.NORTHWEST;
         gbc.insets = new java.awt.Insets(3, 3, 0, 0);
         dataDialog.getContentPane().add(delete, gbc);
+
+        refresh.setIcon(new ImageIcon(imagepath + "16x16/actions/view-refresh.png"));
+        refresh.setToolTipText(MessagesGED.refresh);
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gbc.insets = new java.awt.Insets(3, 3, 0, 0);
+        dataDialog.getContentPane().add(refresh, gbc);
+
+        ok.setIcon(new ImageIcon(imagepath + "16x16/actions/dynamic-blue-up.png"));
+        ok.setToolTipText(MessagesGED.submit_close);
+        gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(3, 3, 0, 0);
+        dataDialog.getContentPane().add(ok, gbc);
     }
 
     public void addShiftDialog (final JDialog shiftDialog,

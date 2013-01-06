@@ -107,6 +107,8 @@ public class MessagesGED {
     //Data - Tooltip
     public static final String figure_id_tooltip = Messages.gettext("Number of current figure.");
     public static final String figure_name_tooltip = Messages.gettext("Enter a figure name.");
+    public static final String refresh = Messages.gettext("Refresh");
+    public static final String submit_close = Messages.gettext("Submit and close");
 
     //Data Table
     public static final String append = Messages.gettext("Append");

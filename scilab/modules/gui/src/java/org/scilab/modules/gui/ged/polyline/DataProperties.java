@@ -75,8 +75,10 @@ public class DataProperties extends BaseProperties {
     private JDialog dataTableDialog;
     private JScrollPane dataScroll;
     private JTable dataTable;
-    private JButton delete;
     private JButton append;
+    private JButton delete;
+    private JButton refresh;
+    private JButton ok;
 
     /**
     * Initializes the properties and the icons of the buttons.
@@ -121,8 +123,10 @@ public class DataProperties extends BaseProperties {
         dataTableDialog = new JDialog();
         dataScroll = new JScrollPane();
         dataTable = new JTable();
-        delete = new JButton();
         append = new JButton();
+        delete = new JButton();
+        refresh = new JButton();
+        ok = new JButton();
 
 
         //Components of the header: Data Properties.
@@ -242,8 +246,7 @@ public class DataProperties extends BaseProperties {
         //Components of the property: Data.
         layout.addJLabel(pDataProperties, lData, MessagesGED.data, 1, 3, 0);
 
-        layout.addDataDialog(dataTableDialog, dataScroll, dataTable, append, delete, currentpolyline);
-
+        layout.addDataDialog(dataTableDialog, dataScroll, dataTable, append, delete, refresh, ok, currentpolyline);
         dataTableDialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent evt) {
@@ -254,10 +257,34 @@ public class DataProperties extends BaseProperties {
                 updateDataTable();
             }
         });
-
         dataTable.getModel().addTableModelListener(new TableModelListener() { 
             public void tableChanged(TableModelEvent evt) {
                 dataTableEvent(evt);
+            }
+        });
+        refresh.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+
+            /**
+            * Implement the action on the REFRESH button.
+            */
+            private void refreshActionPerformed(ActionEvent evt) {
+                updateDataTable();
+            }
+        });
+        ok.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                okActionPerformed(evt);
+            }
+
+            /**
+            * Implement the action on the OK button.
+            */
+            public void okActionPerformed(ActionEvent evt) {
+                updateDataTable();
+                dataTableDialog.dispose();
             }
         });
 
@@ -517,6 +544,9 @@ public class DataProperties extends BaseProperties {
     */
     private void dataTableEvent(TableModelEvent evt) {
         if(dataTable.getSelectedRow()!=-1) {
+            if (dataTable.getRowCount() <= dataTable.getSelectedRow()) {
+                return;
+            }
             Object xValue = dataTable.getValueAt(dataTable.getSelectedRow(), 0);
             Object yValue = dataTable.getValueAt(dataTable.getSelectedRow(), 1);
             if (xValue == null){
