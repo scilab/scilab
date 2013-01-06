@@ -371,7 +371,8 @@ and var_desc =
 | ColonVar  (* a ; *)
 | DollarVar (* a $ *)
 | SimpleVar of ScilabContext.symbol
-| ArrayListVar of var array
+| ArrayListVar of var array  (* should never occur, automatically encoded
+    in functionDec *)
 
 and arrayListVar = {
   arrayListVar_location : Location.t;

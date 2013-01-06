@@ -32,6 +32,11 @@ exception BreakExn
 exception ContinueExn
 exception ReturnExn of (ScilabContext.symbol * Sci.t) list
 
+let nargin_sy = ScilabContext.new_symbol "nargin"
+let nargout_sy = ScilabContext.new_symbol "nargout"
+let varargin_sy = ScilabContext.new_symbol "varargin"
+let varargout_sy = ScilabContext.new_symbol "varargout"
+
 type env = {
   can_break : bool;
   can_continue : bool;
@@ -283,42 +288,95 @@ let rec interp env exp =
     Some (Sci.not_exp (interp_one env exp))
 
 
+(* These ones can only happen within other constructs, in specific positions.
+   Do the pattern-matching directly there for them ! *)
+  | ArrayListExp  _ -> assert false
+  | AssignListExp  _ -> assert false
+  | Var  { var_desc =  ArrayListVar _ } -> assert false
+
 (************************************************************ PARTIAL *)
+
+(* OCAML TODO: it would be nice to have "binding code" in pattern-matching, i.e.
+ the ability to bind values not only inside the pattern, but also complementary to
+ the pattern:
+
+   AssignListExp vars
+|  _exp /{ _exp -> vars = [| _exp |] } ->
+*)
+
 
   | AssignExp { assignExp_left_exp = left;
                 assignExp_right_exp = {
-                  exp_desc = ControlExp (ReturnExp return);
-                }
-              } ->
-    assert false
+                  exp_desc = ControlExp (ReturnExp return) }
+              }
+      when env.can_return ->
+    let vars =
+      match left.exp_desc with
+      | AssignListExp vars -> vars
+      | _ -> [| left |]
+    in
+    let exps =
+      match return.returnExp_exp with
+        None ->
+          (* With Scilab 5, it works if only one variable is assigned, the
+             variable is just left undefined, no ? *)
+          assert false
+      | Some { exp_desc = ArrayListExp exps } -> exps
+      | Some exp -> [| exp |]
+    in
+    let nvars = Array.length vars in
+    let nexps = Array.length exps in
+    if nvars <> nexps then
+      failwith "ScilabInterp: incompatible number of returned arguments";
 
+(* TODO: incorrect, arguments should be evaluated in the opposite order *)
+    let exps = Array.map (interp_one env) exps in
+    let bindings = ref [] in
+    for iArg = 0 to nvars-1 do
+      match vars.(iArg) with
+      | { exp_desc = Var { var_desc = SimpleVar sy } } ->
+        let exp = Sci.extractFullMatrix exps.(iArg) in
+        bindings := (sy, exp) :: !bindings
+      | _ -> assert false
+    done;
+    raise (ReturnExn (List.rev !bindings));
+
+(* If this expression cannot return, the bindings are directly
+   inserted in the current environment (i.e. toplevel only). *)
+  | AssignExp { assignExp_left_exp = left;
+                assignExp_right_exp = {
+                  exp_desc = ControlExp (ReturnExp
+                                           { returnExp_exp = Some right }) }
+              }
   | AssignExp { assignExp_left_exp = left; assignExp_right_exp = right } ->
-    begin match left.exp_desc with
-    | Var { var_desc = SimpleVar symbol } ->
 
-      begin
+    let vars =
+      match left.exp_desc with
+      | AssignListExp vars -> vars
+      | _ -> [| left |]
+    in
+    let nvars = Array.length vars in
+    let rhs = match right.exp_desc with
+      | ArrayListExp exps ->
+(* TODO: incorrect, arguments should be evaluated in the opposite order *)
+        Array.map (interp_one env) exps
+      | _ -> interp_rhs nvars env right in
+    let nrhs = Array.length rhs in
+    if nrhs < nvars &&
+      nvars > 1 (* In scilab 5, it is OK to have nrhs=0, nvars=1, the variable remains undefined *)
+    then
+      failwith (Printf.sprintf "ScilabInterp: trying to assign %d values to %d variables" nrhs nvars);
 
-        match interp env right with
-        | Some v ->
-          let ctx = ScilabContext.getInstance () in
+    for iArg = 0 to (min nvars nrhs)-1 do
+      match vars.(iArg) with
+      | { exp_desc = Var { var_desc = SimpleVar sy } } ->
+        let ctx = ScilabContext.getInstance () in
+        let exp = rhs.(iArg) in
+        let exp = Sci.extractFullMatrix exp in
+        ScilabContext.put ctx sy exp
 
-          (* TODO:     v = Matrix => do a copy
-             in run_AssignExp, there are special cases for:
-             v = IsImplicitList => extract a real matrix
-             right = ReturnExp _ => modify values in the previous scope
-             | ControlExp ( ReturnExp  _ )
-          *)
-          ScilabContext.put ctx symbol v;
-          None
 
-        (*
-          In Scilab 6, this is an error.
-          In Scilab 5, no error
-        *)
-
-        | _ -> None
-      end
-
+(*
     | CellCallExp _ (* TODO *)
     (* we have to compute [c] to know what has to be modified, e.g. a.b(1) = x,
        in particular extraction in a cell field. It is either a variable,
@@ -327,8 +385,6 @@ let rec interp env exp =
     | CallExp _ (* TODO *)
     (* Field assignment avec extraction *)
 
-    | AssignListExp _ (* TODO *)
-
     | FieldExp _ (* TODO *)
 
     | _ ->
@@ -336,6 +392,12 @@ let rec interp env exp =
       raise InterpFailed
 
     end
+*)
+
+
+      | _ -> assert false
+    done;
+    None
 
   | ListExp listExp ->
     let start = interp_one env listExp.listExp_start in
@@ -374,9 +436,13 @@ let rec interp env exp =
         | _ -> assert false
       done;
 
-      (* TODO: define "nargin" and "nargout" so that primitive "argn"
+      (* define "nargin" and "nargout" so that primitive "argn"
          keeps working. *)
-
+      ScilabContext.put ctx nargin_sy (Sci.double (float_of_int nvalues));
+      ScilabContext.put ctx nargout_sy (Sci.double (float_of_int iRetCount));
+      (* TODO: if the return argument is "varargout", we need to
+         create it as an empty list so that assignments like varargout(1) = 1
+         will not create it as a vector. *)
       let bindings =
         try
           ignore_interp macro_env f.functionDec_body;
@@ -419,8 +485,6 @@ let rec interp env exp =
 (************************************************************ TODO    *)
 
   | FieldExp  _
-  | ArrayListExp  _
-  | AssignListExp  _
   | ControlExp ( SelectExp  _ )
   | ControlExp ( TryCatchExp  _ )
   | MathExp ( MatrixExp  _ )
@@ -428,22 +492,29 @@ let rec interp env exp =
   | MathExp ( LogicalOpExp ( _ ,  _ ))
   | MathExp ( TransposeExp  _ )
 
-
-  | Var  { var_desc =  ArrayListVar  _ }
   | Dec ( VarDec  _ )
     ->
     Printf.fprintf stderr "ScilabInterp: Don't know how to exec:\n%s" (ScilabAstPrinter.to_string exp);
       raise InterpFailed
 
+(* When calling a function, we need to provide the number of results
+   that are expected in return. Since this only appears in a few places
+   (assigns and returns) and is not propagated through other
+   expressions we have a specific function to execute it. *)
 and interp_rhs expected_size env exp =
   match exp.exp_desc with
 
-  | CallExp c ->
+  (* This is supposed to be the only use case of ArrayListExp *)
+  | CallExp {
+    callExp_name = name;
+    callExp_args = [| { exp_desc = ArrayListExp args } |] }
+
+  | CallExp {
+    callExp_name = name;
+    callExp_args = args; } ->
     (* TODO: We need to know how many return values arg expected by the
        calling expression. *)
 
-    let name = c.callExp_name in
-    let args = c.callExp_args in
     let name = interp_one env name in
 
     (* TODO:
@@ -528,6 +599,8 @@ let declare_macro macro_name f =
   ScilabContext.put ctx (ScilabContext.new_symbol macro_name)
     (Sci.ocamlfunction macro_name f)
 
+exception FromToplevel
+
 let _ =
   declare_macro "global"
     (fun args opt_args iRetCount->
@@ -542,6 +615,47 @@ let _ =
       ) args;
       Some [||]
     );
+
+  declare_macro "argn"
+    (fun args opt_args iRetCount->
+      try
+        assert (opt_args = [||]);
+        let ctx = ScilabContext.getInstance () in
+        let args = match args with
+            [| |] -> None
+          | [| t |] ->
+            if Sci.get_type t = Sci.RealDouble then
+              Some (Sci.get_double t 0)
+            else
+              failwith "ScilabInterp.argn: expect one double"
+          | _ ->
+            failwith "ScilabInterp.argn: expect at most one argument"
+        in
+        let nargin =
+          try
+            ScilabContext.get ctx nargin_sy
+          with _ -> raise FromToplevel
+        in
+        let nargout =
+          try ScilabContext.get ctx nargout_sy
+          with _ ->
+            (* Someone is playing with "nargin"... *)
+            assert false
+        in
+
+        match args, iRetCount with
+          ((None | Some 0.), 1) (* [lhs]= argn() or [lhs]=argn(0) *)
+        | (Some 1. , _)         (* [lhs]= argn(1) *)
+          -> Some [| nargin |]
+        | (None | Some 0.), 2  (* [lhs,rhs]=argn() or [lhs,rhs]=argn(0) *)
+          -> Some [| nargin; nargout |]
+        | (Some 2. , _)          (* [rhs]= argn(2) *)
+        | _ ->
+          failwith "ScilabInterp.argn: wrong value of argument"
+      with FromToplevel ->
+        Some [| Sci.double 0. |]
+    );
+
 
 (* TODO: other functions that we need to define here, if we don't use
    the scopes of Scilab.
