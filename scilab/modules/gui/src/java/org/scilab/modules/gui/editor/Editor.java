@@ -255,7 +255,9 @@ public class Editor {
         } else {
             switch (event.getKeyCode()) {
                 case KeyEvent.VK_DELETE:
-                    onClickDelete();
+                    if (!dataEditEnabled) {
+                        onClickDelete();
+                    }
                     break;
                 case KeyEvent.VK_ESCAPE:
                     leaveDataEditor();
@@ -816,9 +818,9 @@ public class Editor {
         if (selectedLegend != null) {
             selectedType = SelectionType.LEGEND;
             return selectedLegend.legend;
-        } else {		
-            /*try pick a polyline*/		
-            String picked = entityPicker.pick(figureUid, pos[0], pos[1]);		
+        } else {
+            /*try pick a polyline*/
+            String picked = entityPicker.pick(figureUid, pos[0], pos[1]);
             if (picked != null) {
                 selectedType = SelectionType.POLYLINE;
                 return picked;

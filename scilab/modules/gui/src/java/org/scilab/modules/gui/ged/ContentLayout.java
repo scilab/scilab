@@ -45,20 +45,20 @@ import org.scilab.modules.graphic_objects.PolylineData;
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class ContentLayout extends JPanel{
-    private GridBagLayout layout;  
-    protected GridBagConstraints gbc;  
+public class ContentLayout extends JPanel {
+    private GridBagLayout layout;
+    protected GridBagConstraints gbc;
     private static String imagepath = System.getenv("SCI") + "/modules/gui/images/icons/";
 
-    public ContentLayout() {  
-       layout = new GridBagLayout();  
-       setLayout(layout);  
-       gbc = new GridBagConstraints();  
-       gbc.weightx = 1;  
-       gbc.weighty = 1;  
-       gbc.insets = new Insets(0, 0, 0, 0);  
+    public ContentLayout() {
+        layout = new GridBagLayout();
+        setLayout(layout);
+        gbc = new GridBagConstraints();
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.insets = new Insets(0, 0, 0, 0);
     }
- 
+
     public void addSHbutton(JPanel panel, JToggleButton showHideButton, int column, int row) {
         showHideButton.setBorder(null);
         showHideButton.setBorderPainted(false);
@@ -144,7 +144,7 @@ public class ContentLayout extends JPanel{
 
     public void addColorDialog(final JDialog colorDialog,
                                final JColorChooser colorChooser,
-                                     JButton ok,
+                               JButton ok,
                                final JLabel colorField,
                                final String parentFigure,
                                final String packClass,
@@ -175,7 +175,7 @@ public class ContentLayout extends JPanel{
             * Implement the action on the OK button to save the color chosen by the user.
             */
             private void okActionPerformed() throws ClassNotFoundException {
-                
+
                 Color choice = colorChooser.getColor();
                 double red = choice.getRed();
                 double green = choice.getGreen();
@@ -194,7 +194,7 @@ public class ContentLayout extends JPanel{
 
                     meth.invoke(methobj, arglist);
                 } catch (Throwable e) {
-                    System.err.println(e);  
+                    System.err.println(e);
                 }
                 colorField.setBackground(choice);
                 colorDialog.dispose();
@@ -277,7 +277,7 @@ public class ContentLayout extends JPanel{
         dataDialog.getContentPane().setLayout(new GridBagLayout());
 
         table.setModel(new DefaultTableModel(
-            new Object[][] {null,null}, new String [] {"X", "Y"}
+                           new Object[][] {null, null}, new String [] {"X", "Y"}
         ) {
             Class[] types = new Class [] {
                 Double.class, Double.class, Double.class
@@ -316,8 +316,9 @@ public class ContentLayout extends JPanel{
             * Implement the action on the APPEND button.
             */
             private void appendActionPerformed() throws ClassNotFoundException {
-                tableModel.addRow(new Object[]{0.0, 0.0});
-                PolylineData.insertPoint(objectID, tableModel.getRowCount()-1, 0, 0, 0);
+                if (PolylineData.insertPoint(objectID, tableModel.getRowCount() - 1, 0, 0, 0) != 0) {
+                    tableModel.addRow(new Object[] {0.0, 0.0});
+                }
             }
         });
         gbc = new GridBagConstraints();
@@ -342,9 +343,10 @@ public class ContentLayout extends JPanel{
             * Implement the action on the DELETE button.
             */
             private void deleteActionPerformed(ActionEvent evt) throws ClassNotFoundException {
-                if(table.getSelectedRow()!=-1) {
-                    PolylineData.removePoint(objectID, table.getSelectedRow());
-                    tableModel.removeRow(table.getSelectedRow());
+                if (table.getSelectedRow() != -1) {
+                    if (PolylineData.removePoint(objectID, table.getSelectedRow()) != 0) {
+                        tableModel.removeRow(table.getSelectedRow());
+                    }
                 }
             }
         });
@@ -385,12 +387,12 @@ public class ContentLayout extends JPanel{
         shiftDialog.getContentPane().setLayout(new GridBagLayout());
 
         table.setModel(new DefaultTableModel(
-            new Object [][] {
-                {null, null}
-            },
-            new String [] {
-                "Null", "Null"
-            }
+        new Object [][] {
+            {null, null}
+        },
+        new String [] {
+            "Null", "Null"
+        }
         ) {
             Class[] types = new Class [] {
                 Double.class, Double.class
