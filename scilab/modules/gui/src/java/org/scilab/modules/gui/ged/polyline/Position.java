@@ -63,10 +63,11 @@ public class Position extends DataProperties {
     private JLabel cShiftZ;
     private JButton bShiftZ;
     private JPanel pShiftZ;
-
     private JDialog shiftDialog;
     private JScrollPane shiftScroll;
     private JTable shiftTable;
+    private JButton refresh;
+    private JButton ok;
 
     /**
     * Initializes the properties and the icons of the buttons.
@@ -102,10 +103,11 @@ public class Position extends DataProperties {
         cShiftZ = new JLabel();
         bShiftZ = new JButton();
         pShiftZ = new JPanel();
-
         shiftDialog = new JDialog();
         shiftScroll = new JScrollPane();
         shiftTable = new JTable();
+        refresh = new JButton();
+        ok = new JButton();
 
         //Components of the header: Position.
         bPosition.addActionListener(new ActionListener() {
@@ -134,8 +136,7 @@ public class Position extends DataProperties {
                 1, 0);
 
         //Shift Dialog
-        layout.addShiftDialog(shiftDialog, shiftScroll, shiftTable);
-
+        layout.addShiftDialog(shiftDialog, shiftScroll, shiftTable, refresh, ok);
         shiftDialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent evt) {
@@ -145,6 +146,42 @@ public class Position extends DataProperties {
             private void dataTableDialogWindowClosing(WindowEvent evt) {
                 updateShiftTable(0);
                 updateShiftTable(1);
+                updateShiftTable(2);
+            }
+        });
+
+        refresh.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+
+            /**
+            * Implement the action on the REFRESH button.
+            */
+            private void refreshActionPerformed(ActionEvent evt) {
+                String axis = shiftTable.getColumnName(0);
+                if ("X".equals(axis)) {
+                    updateShiftTable(0);
+                } else if ("Y".equals(axis)) {
+                    updateShiftTable(1);
+                } else if ("Z".equals(axis)) {
+                    updateShiftTable(2);
+                }
+            }
+        });
+        ok.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                okActionPerformed(evt);
+            }
+
+            /**
+            * Implement the action on the OK button.
+            */
+            public void okActionPerformed(ActionEvent evt) {
+                updateShiftTable(0);
+                updateShiftTable(1);
+                updateShiftTable(2);
+                shiftDialog.dispose();
             }
         });
 
@@ -208,6 +245,7 @@ public class Position extends DataProperties {
             //Get the current status of the property: Shift
             updateShiftTable(0);
             updateShiftTable(1);
+            updateShiftTable(2);
         }
     }
 
@@ -259,7 +297,8 @@ public class Position extends DataProperties {
     * @param evt ActionEvent.
     */
     private void bShiftZActionPerformed(ActionEvent evt) {
-        //Not implemented yet
+        updateShiftTable(2);
+        shiftDialog.setVisible(true);
     }
 
     /**
@@ -277,7 +316,7 @@ public class Position extends DataProperties {
 
     /**
     * Updates the shift table.
-    * @param axis 0 to X - 1 to Y
+    * @param axis 0 to X - 1 to Y - 2 to Z
     */
     public void updateShiftTable(int axis){
         Object[][] data;
@@ -302,6 +341,16 @@ public class Position extends DataProperties {
                     cShiftY.setText("1x" +data.length);
                 }
                 tableModel.setDataVector(data, new String [] {"Y", MessagesGED.y_shift});
+                break;
+            case 2:
+                if (PolylineData.isZShiftSet(currentpolyline)==0){
+                    data = getShift(2,true);
+                    cShiftZ.setText("null");
+                } else {
+                    data = getShift(2,false);
+                    cShiftZ.setText("1x" +data.length);
+                }
+                tableModel.setDataVector(data, new String [] {"Z", MessagesGED.z_shift});
                 break;
         }
     }

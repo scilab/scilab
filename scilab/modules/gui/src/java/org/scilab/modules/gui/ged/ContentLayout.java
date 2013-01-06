@@ -378,10 +378,12 @@ public class ContentLayout extends JPanel {
 
     public void addShiftDialog (final JDialog shiftDialog,
                                 final JScrollPane scroll,
-                                final JTable table) {
+                                final JTable table,
+                                      JButton refresh,
+                                      JButton ok) {
 
         shiftDialog.setTitle(MessagesGED.data_editor);
-        shiftDialog.setMinimumSize(new Dimension(150, 340));
+        shiftDialog.setMinimumSize(new Dimension(140, 340));
         shiftDialog.setModal(true);
         shiftDialog.setResizable(true);
         shiftDialog.getContentPane().setLayout(new GridBagLayout());
@@ -413,12 +415,30 @@ public class ContentLayout extends JPanel {
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 3;
+        gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.NORTHWEST;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         shiftDialog.getContentPane().add(scroll, gbc);
+
+        refresh.setIcon(new ImageIcon(imagepath + "16x16/actions/view-refresh.png"));
+        refresh.setToolTipText(MessagesGED.refresh);
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gbc.insets = new java.awt.Insets(3, 10, 0, 0);
+        shiftDialog.getContentPane().add(refresh, gbc);
+
+        ok.setIcon(new ImageIcon(imagepath + "16x16/actions/dynamic-blue-up.png"));
+        ok.setToolTipText(MessagesGED.submit_close);
+        gbc = new java.awt.GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gbc.insets = new java.awt.Insets(3, 3, 0, 0);
+        shiftDialog.getContentPane().add(ok, gbc);
     }
 
     public void addJComboBox(JPanel panel, JComboBox combobox, String[] options, int column, int row) {
