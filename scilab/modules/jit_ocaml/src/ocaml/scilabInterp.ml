@@ -96,6 +96,15 @@ let increase_refcount v =
 let decrease_refcount v =
   Sci.decr_refcount v
 
+
+let only_one v =
+  match v with
+    None -> assert false
+  | Some [| |] -> None
+  | Some returns -> Some returns.(0)
+
+
+
 (* Initialize context methods, to create empty values, and copy on
    share values, based on refcounts *)
 let _ =
@@ -118,7 +127,7 @@ let _ =
 let rec interp env exp =
   match exp.exp_desc with
 
-(************************************************************ TOTAL   *)
+  (************************************************************ TOTAL   *)
 
   | ConstExp (CommentExp _) -> None
 
@@ -197,16 +206,16 @@ let rec interp env exp =
 
 
   | Var  { var_desc =  ColonVar } ->
-  (* TODO: we should write that BUT isColon() is sometimes optimized
-     in the runtime, instead of optimizing 1:1:$, that is supposed to
-     be equivalent. Scilint should print a warning for 1:1:$ to use
-     (:) instead.
+    (* TODO: we should write that BUT isColon() is sometimes optimized
+       in the runtime, instead of optimizing 1:1:$, that is supposed to
+       be equivalent. Scilint should print a warning for 1:1:$ to use
+       (:) instead.
 
-     let start = Sci.double 1. in
-     let step = Sci.double 1. in
-     let stop = Sci.dollar () in
-     Some (Sci.implicitlist start step stop)
-  *)
+       let start = Sci.double 1. in
+       let step = Sci.double 1. in
+       let stop = Sci.dollar () in
+       Some (Sci.implicitlist start step stop)
+    *)
     Some (Sci.colon ())
 
   | Var  { var_desc =  DollarVar } ->
@@ -230,22 +239,22 @@ let rec interp env exp =
     let ctx = ScilabContext.getInstance () in
 
     let loop iterator =
-              try
-                let env = { env with can_break = true; can_continue = true } in
-                let rec iter iterator =
-                  match iterator () with
-                    None -> None
-                  | Some v ->
-                    ScilabContext.put ctx name v;
-                    begin try
-                            ignore_interp env body
-                      with ContinueExn -> ()
-                    end;
-                    iter iterator
-                in
-                iter iterator
-              with
-              | ContinueExn -> None
+      try
+        let env = { env with can_break = true; can_continue = true } in
+        let rec iter iterator =
+          match iterator () with
+            None -> None
+          | Some v ->
+            ScilabContext.put ctx name v;
+            begin try
+                    ignore_interp env body
+              with ContinueExn -> ()
+            end;
+            iter iterator
+        in
+        iter iterator
+      with
+      | ContinueExn -> None
     in
 
     begin
@@ -282,27 +291,45 @@ let rec interp env exp =
     let left = Sci.extractFullMatrix left in
     let right = Sci.extractFullMatrix right in
 
-    Some (Sci.operation (binop_of_OpExp_Oper oper) left right)
+    let binop = binop_of_OpExp_Oper oper in
+    begin try
+            Some (Sci.operation binop left right)
+      with Failure "OVERLOAD" ->
+        let name = Sci.overload_getNameFromOper binop in
+        let ctx = ScilabContext.getInstance () in
+        only_one (
+        match binop with
+        | Sci.UnaryMinus ->
+          let name = Sci.overload_buildName1 name right in
+          let f = ScilabContext.get ctx (ScilabContext.new_symbol name) in
+          Sci.call f [| right |] [| |] 1
+        | _ ->
+          let name = Sci.overload_buildName2 name left right in
+          let f = ScilabContext.get ctx (ScilabContext.new_symbol name) in
+          Sci.call f [| left; right |] [| |] 1
+        )
+    end
+
 
   | MathExp ( NotExp  { notExp_exp = exp } ) ->
     Some (Sci.not_exp (interp_one env exp))
 
 
-(* These ones can only happen within other constructs, in specific positions.
-   Do the pattern-matching directly there for them ! *)
+  (* These ones can only happen within other constructs, in specific positions.
+     Do the pattern-matching directly there for them ! *)
   | ArrayListExp  _ -> assert false
   | AssignListExp  _ -> assert false
   | Var  { var_desc =  ArrayListVar _ } -> assert false
 
-(************************************************************ PARTIAL *)
+  (************************************************************ PARTIAL *)
 
-(* OCAML TODO: it would be nice to have "binding code" in pattern-matching, i.e.
- the ability to bind values not only inside the pattern, but also complementary to
- the pattern:
+  (* OCAML TODO: it would be nice to have "binding code" in pattern-matching, i.e.
+     the ability to bind values not only inside the pattern, but also complementary to
+     the pattern:
 
-   AssignListExp vars
-|  _exp /{ _exp -> vars = [| _exp |] } ->
-*)
+     AssignListExp vars
+     |  _exp /{ _exp -> vars = [| _exp |] } ->
+  *)
 
 
   | AssignExp { assignExp_left_exp = left;
@@ -329,7 +356,7 @@ let rec interp env exp =
     if nvars <> nexps then
       failwith "ScilabInterp: incompatible number of returned arguments";
 
-(* TODO: incorrect, arguments should be evaluated in the opposite order *)
+    (* TODO: incorrect, arguments should be evaluated in the opposite order *)
     let exps = Array.map (interp_one env) exps in
     let bindings = ref [] in
     for iArg = 0 to nvars-1 do
@@ -341,8 +368,8 @@ let rec interp env exp =
     done;
     raise (ReturnExn (List.rev !bindings));
 
-(* If this expression cannot return, the bindings are directly
-   inserted in the current environment (i.e. toplevel only). *)
+  (* If this expression cannot return, the bindings are directly
+     inserted in the current environment (i.e. toplevel only). *)
   | AssignExp { assignExp_left_exp = left;
                 assignExp_right_exp = {
                   exp_desc = ControlExp (ReturnExp
@@ -358,7 +385,7 @@ let rec interp env exp =
     let nvars = Array.length vars in
     let rhs = match right.exp_desc with
       | ArrayListExp exps ->
-(* TODO: incorrect, arguments should be evaluated in the opposite order *)
+        (* TODO: incorrect, arguments should be evaluated in the opposite order *)
         Array.map (interp_one env) exps
       | _ -> interp_rhs nvars env right in
     let nrhs = Array.length rhs in
@@ -376,23 +403,23 @@ let rec interp env exp =
         ScilabContext.put ctx sy exp
 
 
-(*
-    | CellCallExp _ (* TODO *)
+      (*
+        | CellCallExp _ (* TODO *)
     (* we have to compute [c] to know what has to be modified, e.g. a.b(1) = x,
-       in particular extraction in a cell field. It is either a variable,
-       or a CallExp. *)
+        in particular extraction in a cell field. It is either a variable,
+        or a CallExp. *)
 
-    | CallExp _ (* TODO *)
+        | CallExp _ (* TODO *)
     (* Field assignment avec extraction *)
 
-    | FieldExp _ (* TODO *)
+        | FieldExp _ (* TODO *)
 
-    | _ ->
-      Printf.fprintf stderr "ScilabInterp: Don't know how to asssign to:\n%s" (ScilabAstPrinter.to_string left);
-      raise InterpFailed
+        | _ ->
+        Printf.fprintf stderr "ScilabInterp: Don't know how to asssign to:\n%s" (ScilabAstPrinter.to_string left);
+        raise InterpFailed
 
-    end
-*)
+        end
+      *)
 
 
       | _ -> assert false
@@ -407,7 +434,7 @@ let rec interp env exp =
     Some (Sci.implicitlist (Sci.clone start) (Sci.clone step) (Sci.clone stop))
 
   (*
-  (* TODO: check fixError problem on this case ! *)
+    (* TODO: check fixError problem on this case ! *)
     | MathExp ( OpExp  _ )
   *)
 
@@ -482,14 +509,118 @@ let rec interp env exp =
     | array -> Some array.(0)
     end
 
-(************************************************************ TODO    *)
+  | MathExp ( MatrixExp  { matrixExp_lines = [| |] } ) ->
+    (* could be None ? *)
+    Some (Sci.empty_double())
+
+  | MathExp ( MatrixExp  { matrixExp_lines = rows } ) ->
+    let matrix = ref None in
+    Array.iter (fun row ->
+      let new_row = ref None in
+      Array.iter (fun col ->
+        match interp env col with
+          None -> ()
+        | Some t ->
+          let kind = Sci.get_type t in
+          if not (Sci.isGeneric kind) then
+            failwith "ScilabInterp: not an array in MatrixExp";
+
+          let t = Sci.extractFullMatrix t in
+          let size = Sci.generic_get_size t in
+          if kind = Sci.RealDouble && size = 0 then (* an empty matrix ! *)
+            () (* do nothing *)
+          else
+            let dims = Sci.generic_get_dims t in
+            if Array.length dims <> 2 then
+              failwith "ScilabInterp: not a box for MatrixExp";
+            match !new_row with
+              None ->
+                new_row := Some (t, dims.(0), ref [], ref dims.(1))
+            | Some (row, row_nrows, ref_cols, ref_ncols) ->
+            (* TODO : more checks, transform non-sparse to sparse *)
+              if row_nrows <> dims.(0) then
+                failwith "ScilabInterp: inconsistent number of rows for MatrixExp";
+              let ncols = !ref_ncols in
+              ref_ncols := !ref_ncols + dims.(1);
+              ref_cols := (ncols, t) :: !ref_cols
+      ) row.matrixLineExp_columns;
+      match !new_row with
+        None -> ()
+      | Some (row, row_nrows, ref_cols, ref_ncols) ->
+        let ncols = !ref_ncols in
+        let cols = List.rev !ref_cols in
+        let t = Sci.addElementToVariable None row row_nrows ncols in
+        let row = List.fold_left (fun t (pos, col) ->
+          Sci.addElementToVariable (Some t) col 0 pos
+        ) t cols in
+        match !matrix with
+          None ->
+            matrix := Some (row, ncols, ref [], ref row_nrows)
+        | Some (_, matrix_ncols, ref_rows, ref_nrows) ->
+          if matrix_ncols <> ncols then
+            failwith "ScilabInterp: inconsistent number of cols in MatrixExp";
+          let nrows = !ref_nrows in
+          ref_nrows := nrows + row_nrows;
+          ref_rows := (nrows, row) :: !ref_rows
+    ) rows;
+    begin
+      match !matrix with
+        None -> Some (Sci.empty_double ()) (* Could be None ? *)
+      | Some (first_row, ncols, next_rows, total_nrows) ->
+        let total_nrows = !total_nrows in
+        let next_rows = List.rev !next_rows in
+        let matrix = Sci.addElementToVariable None first_row
+          total_nrows ncols in
+        let matrix = List.fold_left (fun matrix (pos, row) ->
+          Sci.addElementToVariable (Some matrix) row pos 0
+        ) matrix next_rows in
+        Some matrix
+    end
+
+  | MathExp ( LogicalOpExp ( oper ,  args )) ->
+    let left = interp_one env args.opExp_left in
+    let right = args.opExp_right in (* not evaluated *)
+    begin
+      match Sci.get_type left with
+        Sci.RealBool ->
+          Some
+          begin
+            match oper with
+            | OpLogicalExp_logicalShortCutAnd ->
+              if not (Sci.is_true left) then
+                Sci.bool false
+              else Sci.bool (Sci.is_true (interp_one env right))
+            | OpLogicalExp_logicalShortCutOr ->
+              if Sci.is_true left then
+                Sci.bool true
+              else Sci.bool (Sci.is_true (interp_one env right))
+            | OpLogicalExp_logicalAnd
+            | OpLogicalExp_logicalOr
+              -> assert false (* TODO *)
+          end
+
+
+      | Sci.RealInt8
+      | Sci.RealInt16
+      | Sci.RealInt32
+      | Sci.RealInt64
+      | Sci.RealUInt8
+      | Sci.RealUInt16
+      | Sci.RealUInt32
+      | Sci.RealUInt64
+        ->
+        assert false (* TODO *)
+      | _ ->
+        assert false (* TODO *)
+
+    end
+
+  (************************************************************ TODO    *)
 
   | FieldExp  _
   | ControlExp ( SelectExp  _ )
   | ControlExp ( TryCatchExp  _ )
-  | MathExp ( MatrixExp  _ )
   | MathExp ( CellExp  _ )
-  | MathExp ( LogicalOpExp ( _ ,  _ ))
   | MathExp ( TransposeExp  _ )
 
   | Dec ( VarDec  _ )

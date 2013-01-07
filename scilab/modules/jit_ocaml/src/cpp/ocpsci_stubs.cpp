@@ -17,7 +17,12 @@ extern "C" {
 #include <caml/custom.h>
 #include <caml/callback.h>
 }
-
+extern "C"
+{
+#include "stdarg.h"
+#include "localization.h"
+#include "os_swprintf.h"
+}
 #include "all.hxx"
 #include "float.hxx"
 #include "int.hxx"
@@ -96,6 +101,15 @@ extern "C" {
   value ocpsci_arrayof_get_c(value array_v, value pos_v);
   value ocpsci_arrayof_set_c(value array_v, value pos_v, value val_v);
   value ocpsci_map_c(value array_v);
+  value ocpsci_addElementToVariable_c(value option_v, value added_v, 
+				      value iRows_v, value iCols_v);
+
+
+  value ocpsci_overload_buildName0_c(value name_v);
+  value ocpsci_overload_buildName1_c(value name_v, value arg1_v);
+  value ocpsci_overload_buildName2_c(value name_v, value arg1_v, value arg2_v);
+  value ocpsci_getShortTypeStr_c(value val_v);
+  value ocpsci_overload_getNameFromOper_c(value oper_v);
 }
 
 #define Scilab_val(v) (*((types::InternalType**) Data_custom_val(v)))
@@ -251,6 +265,9 @@ struct custom_operations ocpsci_custom_ops = {
 
 value Val_scilab(types::InternalType *t_s)
 {
+  if( t_s == NULL )
+    caml_failwith("Val_scilab(NULL)");
+
   t_s->IncreaseRef();
   value res_v = caml_alloc_custom(&ocpsci_custom_ops, sizeof(t_s), 1, 1000);
   Scilab_val(res_v) = t_s;
@@ -704,38 +721,6 @@ ast::OpExp::Oper OpExpOper_val(value oper_v)
   caml_failwith("Unknown OpExp::Oper");
 }
 
-/* code from run_OpExp.hxx */
-/* TODO: check that replacing 'this' by 'NULL' in calls to Overload is OK */
-types::InternalType* callOverload(OpExp::Oper _oper, types::InternalType* _paramL, types::InternalType* _paramR)
-{
-    types::typed_list in;
-    types::typed_list out;
-
-    /*
-    ** Special case for unary minus => will call %{type_s}
-    */
-    if (_oper == OpExp::unaryMinus)
-    {
-        _paramR->IncreaseRef();
-        in.push_back(_paramR);
-        Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, NULL);
-
-        _paramR->DecreaseRef();
-        return out[0];
-    }
-    _paramL->IncreaseRef();
-    _paramR->IncreaseRef();
-    in.push_back(_paramL);
-    in.push_back(_paramR);
-
-    Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, NULL);
-
-    _paramL->DecreaseRef();
-    _paramR->DecreaseRef();
-    return out[0];
-}
-
-
 
 value ocpsci_operation_c(value oper_v, value left_v, value right_v)
 {
@@ -854,10 +839,7 @@ value ocpsci_operation_c(value oper_v, value left_v, value right_v)
 
 
     if (res_s == NULL)
-      {
-	// We did not have any algorithm matching, so we try to call OverLoad
-	res_s = callOverload(oper_s, left_s, right_s);
-      }
+      caml_failwith( "OVERLOAD" );
 
   } catch (ScilabError error)
     {
@@ -1070,3 +1052,61 @@ value ocpsci_dollar_c(value unit_v)
   return Val_scilab(new types::Dollar());
 }
 
+value ocpsci_addElementToVariable_c(value option_v, value added_v, 
+				      value iRows_v, value iCols_v)
+{
+  InternalType *p_s;
+  
+  if( option_v == Val_int(0) ) { p_s = NULL; } 
+  else {
+    p_s = Scilab_val( Field(option_v, 0) );
+  }
+
+  InternalType *added_s = Scilab_val(added_v);
+  InternalType *res_s = 
+    AddElementToVariable(p_s, added_s, 
+			 Int_val(iRows_v), Int_val(iCols_v));
+
+  if( res_s == p_s ) return Field(option_v, 0);
+  return Val_scilab( res_s );
+}
+
+value ocpsci_overload_buildName0_c(value name_v)
+{
+  std::wstring _stFunctionName = Wstring_val(name_v);
+  return Val_wstring( L"%_" + _stFunctionName );
+}
+
+value ocpsci_overload_buildName1_c(value name_v, value arg1_v)
+{
+  std::wstring _stFunctionName = Wstring_val(name_v);
+  InternalType *arg1_s = Scilab_val( arg1_v );
+
+  return 
+    Val_wstring( L"%" + _stFunctionName + L"_" + arg1_s->getShortTypeStr() );
+}
+
+value ocpsci_overload_buildName2_c(value name_v, value arg1_v, value arg2_v)
+{
+  std::wstring _stFunctionName = Wstring_val(name_v);
+  InternalType *arg1_s = Scilab_val( arg1_v );
+  InternalType *arg2_s = Scilab_val( arg2_v );
+
+  return 
+    Val_wstring( L"%" + arg1_s->getShortTypeStr() + L"_"
+		 + _stFunctionName + L"_" + arg2_s->getShortTypeStr() );
+}
+
+value ocpsci_getShortTypeStr_c(value val_v)
+{
+  return Val_wstring( Scilab_val(val_v)->getShortTypeStr() );
+}
+
+
+
+
+value ocpsci_overload_getNameFromOper_c(value oper_v)
+{
+  int code = Int_val(oper_v);
+  return Val_wstring( Overload::getNameFromOper( OpExpOper_val(oper_v) ) );
+}

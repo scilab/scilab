@@ -280,6 +280,22 @@ external ocpsci_map_ml : t -> t =  "ocpsci_map_c"
 external ocpsci_new_bool_ml : int array -> t = "ocpsci_new_bool_c"
 external ocpsci_generic_getDimsArray_ml : t -> int array = "ocpsci_generic_getDimsArray_c"
 
+external ocpsci_addElementToVariable_ml :
+  t option -> t -> int -> int -> t = "ocpsci_addElementToVariable_c"
+
+
+external ocpsci_overload_buildName0_ml :
+  string -> string = "ocpsci_overload_buildName0_c"
+external ocpsci_overload_buildName1_ml :
+  string -> t -> string = "ocpsci_overload_buildName1_c"
+external ocpsci_overload_buildName2_ml :
+  string -> t -> t -> string = "ocpsci_overload_buildName2_c"
+external ocpsci_getShortTypeStr_ml :
+  t -> string = "ocpsci_getShortTypeStr_c"
+external ocpsci_overload_getNameFromOper_ml :
+  binop -> string = "ocpsci_overload_getNameFromOper_c"
+
+
 (*********************************************************************)
 (*                                                                   *)
 (*                                                                   *)
@@ -316,6 +332,7 @@ let int16 = ocpsci_ml2sci_int16_ml
 let int32 = ocpsci_ml2sci_int32_ml
 let implicitlist = ocpsci_ml2sci_implicitlist_ml
 
+let addElementToVariable = ocpsci_addElementToVariable_ml
 
 let isGeneric typ =
   match typ with
@@ -441,7 +458,7 @@ let refcount = ocpsci_refcount_ml
 let incr_refcount = ocpsci_incr_refcount_ml
 let decr_refcount = ocpsci_decr_refcount_ml
 
-let get_size t =
+let generic_get_size t =
   if isGeneric (get_type t) then ocpsci_generic_getSize_ml t
   else assert false
 
@@ -534,6 +551,18 @@ let iterator_of_generic t =
   else
     assert false
 
+let unsafe_get_rows = ocpsci_generic_getRows_ml
+let generic_get_rows t =
+  if isGeneric (get_type t) then ocpsci_generic_getRows_ml t
+  else assert false
+
+let unsafe_get_cols = ocpsci_generic_getCols_ml
+
+let generic_get_cols t =
+  if isGeneric (get_type t) then
+    ocpsci_generic_getCols_ml t
+  else assert false
+
 let rec is_true t =
   match get_type t with
   | RealDouble ->
@@ -589,6 +618,13 @@ let extractFullMatrix t =
     RealImplicitList -> ocpsci_implicitlist_extractFullMatrix_ml t
   | _ -> t
 
+let unsafe_get_dims = ocpsci_generic_getDimsArray_ml
+
+let generic_get_dims t =
+  if isGeneric (get_type t) then
+    ocpsci_generic_getDimsArray_ml t
+  else assert false
+
 let not_exp t =
   match get_type t with
   | RealDouble ->
@@ -617,6 +653,11 @@ let not_exp t =
     t2
   | _ -> assert false
 
+let overload_buildName0 = ocpsci_overload_buildName0_ml
+let overload_buildName1 = ocpsci_overload_buildName1_ml
+let overload_buildName2 = ocpsci_overload_buildName2_ml
+let getShortTypeStr = ocpsci_getShortTypeStr_ml
+let overload_getNameFromOper = ocpsci_overload_getNameFromOper_ml
 
 (*********************************************************************)
 (*                                                                   *)
@@ -699,4 +740,5 @@ let multiply_matrix_per_double () =
   disp d;
   disp m;
   disp r;
+
 
