@@ -101,7 +101,7 @@ if COMPILATION_TESTS
 TARGETS_ALL+=check-java
 endif
 
-# check is performed with scilab
+# check is performed with scilab
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
 TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 
@@ -194,6 +194,11 @@ doc-ru_RU:
 doc-ja_JP:
 	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=ja_JP
 
+# Regenerate all images
+doc-images:
+	rm -rf $(top_srcdir)/modules/helptools/images/
+	mkdir $(top_srcdir)/modules/helptools/images/
+	$(MAKE) doc
 
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
