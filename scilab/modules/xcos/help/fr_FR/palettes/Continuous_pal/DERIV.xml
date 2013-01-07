@@ -52,11 +52,6 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <xref linkend="Example_DERIV">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
                             <xref linkend="Interfacingfunction_DERIV">Fonction d'interfaçage</xref>
                         </para>
                     </listitem>
@@ -185,12 +180,19 @@
             sinusoïdal, d'amplitude 2 et de frequence 1,25 Hz.
         </para>
         <para>Les formes d'onde de l'entrée et de la sortie du bloc DERIVATIVE sont montrées ci-dessous :</para>
+        
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/derivative_diag.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/DERIV_Example.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/continuous_pal/DERIV_Example.xcos"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/DERIV_Example.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </para>
     </refsection>
     <refsection id="Interfacingfunction_DERIV">
@@ -208,17 +210,5 @@
                 <para>SCI/modules/scicos_blocks/src/c/deriv.c (Type 4)</para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection id="Example_DERIV">
-        <title>Example</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/DERIV_Example.xcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/DERIV_Example.xcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
     </refsection>
 </refentry>

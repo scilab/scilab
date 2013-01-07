@@ -219,7 +219,7 @@
         <para/>
         <mediaobject>
             <imageobject>
-                <imagedata fileref="../../../examples/annotations_pal/fr_FR/text_f_diagram_fr_FR.png" align="center"/>
+                <imagedata fileref="../../../../examples/annotations_pal/fr_FR/text_f_fr_FR.xcos" align="center"/>
             </imageobject>
         </mediaobject>
     </refsection>

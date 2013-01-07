@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XcosDiagram background="-1" title="Sans titre - 17:23:50">
+    <!--Xcos - 1.0 - Scilab-Branch-5.4-GIT - 20121107 1533-->
+    <mxGraphModel as="model">
+        <root>
+            <mxCell id="-5f360967:13af56c978c:-7cc6"/><mxCell id="-5f360967:13af56c978c:-7cc7" parent="-5f360967:13af56c978c:-7cc6"/>
+            <ExplicitOutBlock id="-5f360967:13af56c978c:-7cb7" ordering="1" parent="-5f360967:13af56c978c:-7cc7" simulationFunctionType="DEFAULT" style="OUT_f;flip=false;mirror=false">
+                <ScilabString as="exprs" height="1" width="1">
+                    <data column="0" line="0" value="1"/>
+                </ScilabString>
+                <ScilabDouble as="integerParameters" height="1" width="1">
+                    <data column="0" line="0" realPart="1.0"/>
+                </ScilabDouble>
+                <Array as="objectsParameters" scilabClass="ScilabList"/>
+                <Array as="equations" scilabClass="ScilabList"/>
+                <mxGeometry as="geometry" height="40.0" width="40.0" x="270.0" y="100.0"/>
+            </ExplicitOutBlock>
+            <ExplicitInputPort dataType="UNKNOW_TYPE" id="-5f360967:13af56c978c:-7cb6" ordering="1" parent="-5f360967:13af56c978c:-7cb7" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="16.0"/>
+            </ExplicitInputPort>
+            <ExplicitInBlock id="-5f360967:13af56c978c:-7cb5" ordering="2" parent="-5f360967:13af56c978c:-7cc7" simulationFunctionType="DEFAULT" style="IN_f;flip=false;mirror=false">
+                <ScilabString as="exprs" height="1" width="1">
+                    <data column="0" line="0" value="1"/>
+                </ScilabString>
+                <ScilabDouble as="integerParameters" height="1" width="1">
+                    <data column="0" line="0" realPart="1.0"/>
+                </ScilabDouble>
+                <Array as="objectsParameters" scilabClass="ScilabList"/>
+                <Array as="equations" scilabClass="ScilabList"/>
+                <mxGeometry as="geometry" height="40.0" width="40.0" x="40.0" y="100.0"/>
+            </ExplicitInBlock>
+            <ExplicitOutputPort dataType="UNKNOW_TYPE" id="-5f360967:13af56c978c:-7cb4" ordering="1" parent="-5f360967:13af56c978c:-7cb5" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+            </ExplicitOutputPort>
+            <BasicBlock dependsOnU="1" id="-5f360967:13af56c978c:-7cb3" interfaceFunctionName="DEADBAND" ordering="3" parent="-5f360967:13af56c978c:-7cc7" simulationFunctionName="deadband" simulationFunctionType="C_OR_FORTRAN" style="DEADBAND;flip=false;mirror=false">
+                <ScilabString as="exprs" height="3" width="1">
+                    <data column="0" line="0" value="0.5"/><data column="0" line="1" value="-0.5"/>
+                    <data column="0" line="2" value="1"/>
+                </ScilabString>
+                <ScilabDouble as="realParameters" height="2" width="1">
+                    <data column="0" line="0" realPart="0.5"/><data column="0" line="1" realPart="-0.5"/>
+                </ScilabDouble>
+                <ScilabDouble as="integerParameters" height="0" width="0"/>
+                <Array as="objectsParameters" scilabClass="ScilabList"/>
+                <ScilabDouble as="nbZerosCrossing" height="1" width="1">
+                    <data column="0" line="0" realPart="2.0"/>
+                </ScilabDouble>
+                <ScilabDouble as="nmode" height="1" width="1">
+                    <data column="0" line="0" realPart="1.0"/>
+                </ScilabDouble>
+                <Array as="oDState" scilabClass="ScilabList"/>
+                <Array as="equations" scilabClass="ScilabList"/>
+                <mxGeometry as="geometry" height="40.0" width="40.0" x="120.0" y="100.0"/>
+            </BasicBlock>
+            <ExplicitOutputPort dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="-5f360967:13af56c978c:-7cb2" ordering="1" parent="-5f360967:13af56c978c:-7cb3" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+            </ExplicitOutputPort>
+            <ExplicitInputPort dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="-5f360967:13af56c978c:-7cb1" ordering="1" parent="-5f360967:13af56c978c:-7cb3" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="16.0"/>
+            </ExplicitInputPort>
+            <mxCell connectable="0" id="-5f360967:13af56c978c:-7cb3#identifier" parent="-5f360967:13af56c978c:-7cb3" style="noLabel=0;opacity=0;fontStyle=0;fontSize=12" value="-1, +1" vertex="1">
+                <mxGeometry as="geometry" relative="1" x="0.5" y="1.1">
+                    <mxPoint as="offset" y="-50.0"/>
+                </mxGeometry>
+            </mxCell>
+            <BasicBlock dependsOnU="1" id="-5f360967:13af56c978c:-7cb0" interfaceFunctionName="SATURATION" ordering="4" parent="-5f360967:13af56c978c:-7cc7" simulationFunctionName="satur" simulationFunctionType="C_OR_FORTRAN" style="SATURATION;flip=false;mirror=false">
+                <ScilabString as="exprs" height="3" width="1">
+                    <data column="0" line="0" value="2"/><data column="0" line="1" value="-2"/>
+                    <data column="0" line="2" value="1"/>
+                </ScilabString>
+                <ScilabDouble as="realParameters" height="2" width="1">
+                    <data column="0" line="0" realPart="2.0"/><data column="0" line="1" realPart="-2.0"/>
+                </ScilabDouble>
+                <ScilabDouble as="integerParameters" height="0" width="0"/>
+                <Array as="objectsParameters" scilabClass="ScilabList"/>
+                <ScilabDouble as="nbZerosCrossing" height="1" width="1">
+                    <data column="0" line="0" realPart="2.0"/>
+                </ScilabDouble>
+                <ScilabDouble as="nmode" height="1" width="1">
+                    <data column="0" line="0" realPart="1.0"/>
+                </ScilabDouble>
+                <Array as="oDState" scilabClass="ScilabList"/>
+                <Array as="equations" scilabClass="ScilabList"/>
+                <mxGeometry as="geometry" height="40.0" width="40.0" x="190.0" y="100.0"/>
+            </BasicBlock>
+            <ExplicitOutputPort dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="-5f360967:13af56c978c:-7caf" ordering="1" parent="-5f360967:13af56c978c:-7cb0" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+            </ExplicitOutputPort>
+            <ExplicitInputPort dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="-5f360967:13af56c978c:-7cae" ordering="1" parent="-5f360967:13af56c978c:-7cb0" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="16.0"/>
+            </ExplicitInputPort>
+            <mxCell connectable="0" id="-5f360967:13af56c978c:-7cb0#identifier" parent="-5f360967:13af56c978c:-7cb0" style="noLabel=0;opacity=0;fontStyle=0;fontSize=12" value="-2,+2" vertex="1">
+                <mxGeometry as="geometry" relative="1" x="0.5" y="1.1">
+                    <mxPoint as="offset" y="-50.0"/>
+                </mxGeometry>
+            </mxCell>
+            <ExplicitLink id="-5f360967:13af56c978c:-7cad">
+                <mxGeometry as="geometry" x="10.0" y="10.0">
+                    <mxPoint as="sourcePoint" x="84.0" y="120.0"/><mxPoint as="targetPoint" x="110.0" y="120.0"/>
+                </mxGeometry>
+                <mxCell as="parent" id="-5f360967:13af56c978c:-7cc7" parent="-5f360967:13af56c978c:-7cc6"/>
+                <ExplicitOutputPort as="source" dataType="UNKNOW_TYPE" id="-5f360967:13af56c978c:-7cb4" ordering="1" parent="-5f360967:13af56c978c:-7cb5" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                    <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+                </ExplicitOutputPort>
+                <ExplicitInputPort as="target" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="-5f360967:13af56c978c:-7cb1" ordering="1" parent="-5f360967:13af56c978c:-7cb3" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                    <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="16.0"/>
+                </ExplicitInputPort>
+            </ExplicitLink>
+            <ExplicitLink id="-5f360967:13af56c978c:-7cac">
+                <mxGeometry as="geometry" x="10.0" y="10.0">
+                    <mxPoint as="sourcePoint" x="164.0" y="120.0"/><mxPoint as="targetPoint" x="190.0" y="120.0"/>
+                </mxGeometry>
+                <mxCell as="parent" id="-5f360967:13af56c978c:-7cc7" parent="-5f360967:13af56c978c:-7cc6"/>
+                <ExplicitOutputPort as="source" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="-5f360967:13af56c978c:-7cb2" ordering="1" parent="-5f360967:13af56c978c:-7cb3" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                    <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+                </ExplicitOutputPort>
+                <ExplicitInputPort as="target" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="-5f360967:13af56c978c:-7cae" ordering="1" parent="-5f360967:13af56c978c:-7cb0" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                    <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="16.0"/>
+                </ExplicitInputPort>
+            </ExplicitLink>
+            <ExplicitLink id="-5f360967:13af56c978c:-7cab">
+                <mxGeometry as="geometry" x="10.0" y="10.0">
+                    <mxPoint as="sourcePoint" x="234.0" y="120.0"/><mxPoint as="targetPoint" x="260.0" y="120.0"/>
+                </mxGeometry>
+                <mxCell as="parent" id="-5f360967:13af56c978c:-7cc7" parent="-5f360967:13af56c978c:-7cc6"/>
+                <ExplicitOutputPort as="source" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="-5f360967:13af56c978c:-7caf" ordering="1" parent="-5f360967:13af56c978c:-7cb0" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                    <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+                </ExplicitOutputPort>
+                <ExplicitInputPort as="target" dataType="UNKNOW_TYPE" id="-5f360967:13af56c978c:-7cb6" ordering="1" parent="-5f360967:13af56c978c:-7cb7" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+                    <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="16.0"/>
+                </ExplicitInputPort>
+            </ExplicitLink>
+        </root>
+    </mxGraphModel>
+    <mxCell as="defaultParent" id="-5f360967:13af56c978c:-7cc7" parent="-5f360967:13af56c978c:-7cc6"/>
+</XcosDiagram>
