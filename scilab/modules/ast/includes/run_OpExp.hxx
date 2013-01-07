@@ -43,26 +43,21 @@ void visitprivate(const OpExp &e)
             throw ScilabError(os.str(), 999, e.right_get().location_get());
         }
 
-        GenericType::RealType TypeL = pITL->getType();
-        GenericType::RealType TypeR = pITR->getType();
-
-        if (TypeL == GenericType::RealImplicitList)
+        if (pITL->getType() == GenericType::RealImplicitList)
         {
             ImplicitList* pIL = pITL->getAs<ImplicitList>();
             if (pIL->isComputable())
             {
                 pITL = pIL->extractFullMatrix();
-                TypeL = pITL->getType();
             }
         }
 
-        if (TypeR == GenericType::RealImplicitList)
+        if (pITR->getType() == GenericType::RealImplicitList)
         {
             ImplicitList* pIR = pITR->getAs<ImplicitList>();
             if (pIR->isComputable())
             {
                 pITR = pIR->extractFullMatrix();
-                TypeR = pITR->getType();
             }
         }
 

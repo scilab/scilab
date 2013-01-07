@@ -59,4 +59,5 @@
     <module name="operations" activate="yes"/>
     <module name="jit_ocaml" activate="yes"/>
     <module name="api_scilab" activate="yes"/>
+    <module name="ast" activate="yes"/>
 </modules>
