@@ -251,6 +251,8 @@ Bug fixes
 
 * Bug #12190 fixed - Description of sprspn updated in help page.
 
+* Bug #12204 fixed - Fix a typo in the French localization
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
