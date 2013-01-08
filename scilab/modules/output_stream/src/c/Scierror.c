@@ -26,7 +26,6 @@
 int  Scierror(int iv,const char *fmt,...)
 {
 	int retval = 0;
-	int lstr = 0;
 	char s_buf[bsiz];
 	va_list ap;
 	
@@ -39,7 +38,6 @@ int  Scierror(int iv,const char *fmt,...)
 #endif
 	if (retval < 0) s_buf[bsiz-1]='\0';
 
-	lstr = (int) strlen(s_buf);
 	va_end(ap);
 
 	error_internal(&iv,s_buf);

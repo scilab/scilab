@@ -107,7 +107,6 @@ int sci_mputl(char *fname, unsigned long fname_len)
             switch (ierr)
             {
                 case MOPEN_NO_ERROR:
-                    bCloseFile = TRUE;
                     break;
                 case MOPEN_NO_MORE_LOGICAL_UNIT:
                 {
