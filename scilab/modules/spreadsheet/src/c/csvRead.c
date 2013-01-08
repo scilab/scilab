@@ -235,7 +235,6 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
         const char *blankMode = getCsvDefaultCsvIgnoreBlankLine();
         if (strcmp(blankMode, "on") == 0)
         {
-            int nbLinesBackup = nbLines;
             char **tmpLines = removeAllBlankLines(lines, &nbLines);
             if (tmpLines)
             {
