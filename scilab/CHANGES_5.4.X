@@ -106,8 +106,6 @@ Xcos
 * Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
                      NullPointerException.
 
-* Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
-
 * Bug #12101 fixed - Port ordering was not preserved on parameters change.
 
 * Bug #12014 fixed - dep_ut help was wrongly detailed.
@@ -203,6 +201,8 @@ Bug fixes
 
 * Bug #11991 fixed - Under Windows, some empty lines were added by csvWrite.
 
+* Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
+
 * Bug #11999 fixed - Blank lines ignored by default by csvRead / read_csv.
 
 * Bug #12003 fixed - Fix a typo in the spreadsheet module.
@@ -236,6 +236,8 @@ Bug fixes
 * Bug #12119 fixed - bar and barh had wrong x/y bounds.
 
 * Bug #12120 fixed - eigs was broken for complex sparse matrices.
+
+* Bug #12021 fixed - Improve the help page of eigs.
 
 * Bug #12135 fixed - stacksize('max') failed silently.
 
