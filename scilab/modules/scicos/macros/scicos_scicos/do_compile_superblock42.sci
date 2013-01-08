@@ -1548,10 +1548,10 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   AfterCG_WinList = winsid();
 
   AfterCG_size = size(AfterCG_WinList); //** matrix
-  AfterCG_size = AfterCG_size(2) ; //** vector lenght
+  AfterCG_size = AfterCG_size(2) ; //** vector length
 
   BeforeCG_size = size(BeforeCG_WinList); //** matrix
-  BeforeCG_size = BeforeCG_size(2) ; //** vector lenght
+  BeforeCG_size = BeforeCG_size(2) ; //** vector length
 
   if (or(AfterCG_WinList<>BeforeCG_WinList)) & (AfterCG_size>BeforeCG_size) then
      //** means that a scope or other scicos object has created some
@@ -2001,7 +2001,8 @@ function Code=make_actuator(standalone)
   if standalone then
     a_actuator=['  /* skeleton to be customized */'
                 '    switch (*flag) {'
-                '    case 2 :'
+                '    /* OutputUpdate (*flag==1) will be called on each iteration */'
+                '    case 1 :'
                 '      /*if(*nevprt>0) { get the input value */'
                 '        switch (*ut) {'
                 '        case 10 :'
@@ -4125,10 +4126,7 @@ function make_standalone42(filename)
          '}'
          ''
          '/*'+part('-',ones(1,40))+'  Lapack messag function */';
-         'void C2F(xerbla)(SRNAME,INFO,L)'
-         '     char *SRNAME;'
-         '     int *INFO;'
-         '     long int L;'
+         'void C2F(xerbla)(char *SRNAME,int *INFO,long int L)'
          '{'
          '  printf(""** On entry to %s, parameter number %d""'
          '         ""  had an illegal value\n"",SRNAME,*INFO);'

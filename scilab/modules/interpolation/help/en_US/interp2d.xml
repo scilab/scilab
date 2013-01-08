@@ -6,30 +6,59 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[zp[,dzpdx,dzpdy[,d2zpdxx,d2zpdxy,d2zpdyy]]]=interp2d(xp,yp,x,y,C [,out_mode])</synopsis>
+        <synopsis>[zp[, dzpdx, dzpdy[, d2zpdxx, d2zpdxy, d2zpdyy]]]=interp2d(xp, yp, x, y, C [,out_mode])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>xp, yp</term>
+                <term>xp</term>
                 <listitem>
-                    <para>real vectors or matrices of same size</para>
+                    <para>
+                        a mx-by-my matrix of doubles, the <varname>x</varname> coordinates of the points where the spline is to be evaluated.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x,y,C</term>
+                <term>yp</term>
                 <listitem>
-                    <para>real vectors defining a bicubic spline or sub-spline function
-                        (called <literal>s</literal> in the following)
+                    <para>
+                        a mx-by-my matrix of doubles, the <varname>y</varname> coordinates of the points where the spline is to be evaluated.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        a 1-by-nx matrix of doubles, the <varname>x</varname> coordinate of the interpolation points.
+                        We must have x(i)&lt;x(i+1), for i=1,2,...,nx-1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        a 1-by-ny matrix of doubles, the <varname>y</varname> coordinate of the interpolation points.
+                        We must have y(i)&lt;y(i+1), for i=1,2,...,ny-1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>
+                        The coefficients of the bicubic spline. The input argument of the interp2d function is the output argument of the <link linkend="splin2d">splin2d</link> function.                    
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>out_mode</term>
                 <listitem>
-                    <para>(optional) string defining the evaluation of
-                        <literal>s</literal> outside [x(1),x(nx)]x[y(1),y(ny)]
+                    <para>a 1-by-1 matrix of strings, the evaluation of s outside the range [x(1),x(nx)] by [y(1),y(ny)].
                     </para>
                 </listitem>
             </varlistentry>
@@ -37,29 +66,53 @@
                 <term>zp</term>
                 <listitem>
                     <para>
-                        vector or matrix of same format than <literal>xp</literal> and
-                        <literal>yp</literal>, elementwise evaluation of
-                        <literal>s</literal> on these points.
+                        a mx-by-my matrix of doubles, the evaluation of the <varname>z</varname> coordinate of the spline, i.e. zp(i,j)=s(xp(i,j),yp(i,j)), for i=1,2,...,mx and j = 1,2,...,my.
                     </para>
                 </listitem>
             </varlistentry>
+            
             <varlistentry>
-                <term>dzpdx, dzpdy</term>
+                <term>dzpdx</term>
                 <listitem>
-                    <para>vectors (or matrices) of same format than
-                        <literal>xp</literal> and <literal>yp</literal>, elementwise
-                        evaluation of the first derivatives of <literal>s</literal> on these
-                        points.
+                    <para>a mx-by-my matrix of doubles, the first derivative of the spline with
+                        respect to <varname>x</varname>.
                     </para>
                 </listitem>
             </varlistentry>
+            
             <varlistentry>
-                <term>d2zpdxx, d2zpdxy, d2zpdyy</term>
+                <term>dzpdy</term>
                 <listitem>
-                    <para>vectors (or matrices) of same format than
-                        <literal>xp</literal> and <literal>yp</literal>, elementwise
-                        evaluation of the second derivatives of <literal>s</literal> on
-                        these points.
+                    <para>a mx-by-my matrix of doubles, the first derivative of the spline with
+                        respect to <varname>y</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>d2zpdxx</term>
+                <listitem>
+                    <para>a mx-by-my matrix of doubles, the second derivative of the spline with
+                        respect to <varname>x</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>d2zpdxy</term>
+                <listitem>
+                    <para> a mx-by-my matrix of doubles, the second derivative of the spline with
+                        respect to <varname>x</varname> and <varname>y</varname>.
+                        
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>d2zpdyy</term>
+                <listitem>
+                    <para>a mx-by-my matrix of doubles, the second derivative of the spline with
+                        respect to <varname>y</varname>.
                     </para>
                 </listitem>
             </varlistentry>

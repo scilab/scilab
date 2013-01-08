@@ -91,6 +91,6 @@ case 'define' then
 
   gr_i=['xstringb(orig(1),orig(2),[''num(z)'';''den(z)''],sz(1),sz(2),''fill'')';
 	'xpoly([orig(1)+.1*sz(1),orig(1)+.9*sz(1)],[1,1]*(orig(2)+sz(2)/2))']
-  x=standard_define([2.5 2.5],model,exprs,gr_i)
+  x=standard_define([2 2],model,exprs,gr_i)
 end
 endfunction

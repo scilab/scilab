@@ -24,6 +24,21 @@
             actuelle par l'instruction <link linkend="ged">ged</link>.
         </para>
     </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>Fonction marquée comme obsolète. Sera supprimée en version 5.5.0.
+                    Voir les
+                    fonctions <link linkend="set">set</link> et <link linkend="get">get</link>
+                    ainsi que la page d'aide <link linkend="graphics_entities">graphics_entities</link>). Il est possible de
+                    lancer un éditeur de propriété graphiques mieux adapté à la structure
+                    actuelle par l'instruction <link linkend="ged">ged</link>.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

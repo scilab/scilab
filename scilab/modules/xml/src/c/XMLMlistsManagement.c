@@ -38,30 +38,38 @@ int createXMLObjectAtPos(int type, int pos, int id, void *pvApiCtx)
 
     switch (type)
     {
-    case XMLDOCUMENT:;
-        fields = _XMLDoc;
-        break;
-    case XMLELEMENT:;
-        fields = _XMLElem;
-        break;
-    case XMLATTRIBUTE:;
-        fields = _XMLAttr;
-        break;
-    case XMLNAMESPACE:;
-        fields = _XMLNs;
-        break;
-    case XMLLIST:;
-        fields = _XMLList;
-        break;
-    case XMLNOTHANDLED:;
-        fields = _XMLNotHandled;
-        break;
-    case XMLSET:;
-        fields = _XMLSet;
-        break;
-    case XMLVALID:;
-        fields = _XMLValid;
-        break;
+        case XMLDOCUMENT:
+            ;
+            fields = _XMLDoc;
+            break;
+        case XMLELEMENT:
+            ;
+            fields = _XMLElem;
+            break;
+        case XMLATTRIBUTE:
+            ;
+            fields = _XMLAttr;
+            break;
+        case XMLNAMESPACE:
+            ;
+            fields = _XMLNs;
+            break;
+        case XMLLIST:
+            ;
+            fields = _XMLList;
+            break;
+        case XMLNOTHANDLED:
+            ;
+            fields = _XMLNotHandled;
+            break;
+        case XMLSET:
+            ;
+            fields = _XMLSet;
+            break;
+        case XMLVALID:
+            ;
+            fields = _XMLValid;
+            break;
     }
 
     err = createMList(pvApiCtx, pos, 2, &mlistaddr);
@@ -104,30 +112,38 @@ int createXMLObjectAtPosInList(int *list, int stackPos, int type, int pos, int i
 
     switch (type)
     {
-    case XMLDOCUMENT:;
-        fields = _XMLDoc;
-        break;
-    case XMLELEMENT:;
-        fields = _XMLElem;
-        break;
-    case XMLATTRIBUTE:;
-        fields = _XMLAttr;
-        break;
-    case XMLNAMESPACE:;
-        fields = _XMLNs;
-        break;
-    case XMLLIST:;
-        fields = _XMLList;
-        break;
-    case XMLNOTHANDLED:;
-        fields = _XMLNotHandled;
-        break;
-    case XMLSET:;
-        fields = _XMLSet;
-        break;
-    case XMLVALID:;
-        fields = _XMLValid;
-        break;
+        case XMLDOCUMENT:
+            ;
+            fields = _XMLDoc;
+            break;
+        case XMLELEMENT:
+            ;
+            fields = _XMLElem;
+            break;
+        case XMLATTRIBUTE:
+            ;
+            fields = _XMLAttr;
+            break;
+        case XMLNAMESPACE:
+            ;
+            fields = _XMLNs;
+            break;
+        case XMLLIST:
+            ;
+            fields = _XMLList;
+            break;
+        case XMLNOTHANDLED:
+            ;
+            fields = _XMLNotHandled;
+            break;
+        case XMLSET:
+            ;
+            fields = _XMLSet;
+            break;
+        case XMLVALID:
+            ;
+            fields = _XMLValid;
+            break;
     }
 
     err = createMatrixOfStringInList(pvApiCtx, stackPos, mlistaddr, 1, 1, 2, fields);
@@ -193,11 +209,18 @@ int isXMLSet(int *mlist, void *pvApiCtx)
 int isXMLValid(int *mlist, void *pvApiCtx)
 {
     return compareStrToMlistType(XMLObjects + 7, 1, mlist, pvApiCtx);
-}/*--------------------------------------------------------------------------*/
+}
 
+/*--------------------------------------------------------------------------*/
 int isXMLObject(int *mlist, void *pvApiCtx)
 {
     return compareStrToMlistType(XMLObjects, NB_XMLOBJECTS, mlist, pvApiCtx);
+}
+
+/*--------------------------------------------------------------------------*/
+int isXMLObjects(const char ** types, int nb, int *mlist, void *pvApiCtx)
+{
+    return compareStrToMlistType(types, nb, mlist, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/

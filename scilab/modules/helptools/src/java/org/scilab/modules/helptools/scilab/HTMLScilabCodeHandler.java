@@ -24,7 +24,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
     private static HTMLScilabCodeHandler handler = new HTMLScilabCodeHandler();
     private static LinkWriter linkWriter = new LinkWriter();
 
-    private List<String> undoc = new ArrayList();
+    private List<String> undoc = new ArrayList<String>();
 
     protected String currentCommand;
     protected String currentFileName;

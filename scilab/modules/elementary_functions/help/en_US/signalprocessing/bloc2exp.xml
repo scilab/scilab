@@ -110,6 +110,9 @@ list('link','name_of_link',
             <literal>S2</literal> to the output (port 0 of fictitious block -1,
             omitted) and to (input)port 2 of the adder.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
         <programlisting role="example"><![CDATA[
 //Initialization
 syst=list('blocd'); l=1;
@@ -144,7 +147,6 @@ w=bloc2exp(syst);
             symbolic names of named links. This is useful to set names to inputs and
             outputs.
         </para>
-        <para>[2] second example</para>
         <programlisting role="example"><![CDATA[ 
 //Initialization
 syst=list('blocd'); l=1;

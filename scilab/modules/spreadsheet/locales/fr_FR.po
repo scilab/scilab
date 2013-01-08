@@ -8,65 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-09-28 14:33+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2012-11-13 20:39+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: fr\n"
-
-#, c-format
-msgid "The file %s does not exist.\n"
-msgstr "Le fichier %s n'existe pas.\n"
-
-#, c-format
-msgid "%s: File %s is not an ole2 file.\n"
-msgstr "%s : Le fichier %s n'est pas un fichier ole2.\n"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s : Impossible d'ouvrir le fichier %s.\n"
-
-#, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s : Il n'y a pas de flux xls dans le fichier ole2 %s.\n"
-
-#, c-format
-msgid "%s: Not an ole2 file.\n"
-msgstr "%s : Ce n'est pas un fichier ole2.\n"
-
-#, c-format
-msgid "%s: The file has no Workbook directory.\n"
-msgstr "%s : Le fichier n'a pas de répertoire Workbook.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s : Plus de mémoire disponible.\n"
-
-#, c-format
-msgid "%s: Incorrect or corrupted file.\n"
-msgstr "%s : Fichier incorrect ou corrompu.\n"
-
-#, c-format
-msgid "%s: Only BIFF8 file format is handled.\n"
-msgstr "%s : Seul le format de fichier BIFF8 est pris en charge.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
-
-#, c-format
-msgid "%s: Failed to read expected data, may be invalid xls file.\n"
-msgstr ""
-"%s : Échec de lecture des données attendues, le fichier xls est peut être "
-"invalide.\n"
-
-#, c-format
-msgid "%s: End of file.\n"
-msgstr "%s : Fin de fichier.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -118,32 +67,36 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' , '%s', '%s' '%s' or '%s' "
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' , '%s', '%s' "
-"'%s' ou '%s' attendue.\n"
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s', '%s', "
+"'%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"
+"%s: Wrong value for input argument #%d: A double (value %d to %d) expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un double (de valeur 1 à "
-"17) attendu.\n"
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un double (de %d à %d) "
+"attendu.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' ,'%s' , '%s', '%s', '%s', "
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' , '%s', '%s', '%s', "
 "'%s' or '%s' expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ,'%s' , '%s', "
-"'%s', '%s', '%s' ou '%s' attendue.\n"
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s' , '%s', "
+"'%s', '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
 "caractères attendue.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
@@ -229,6 +182,13 @@ msgstr ""
 "caractères de taille 1-par-n ou m-par-1 attendu.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un double (de valeur 1 à "
+"17) attendu.\n"
+
+#, c-format
 msgid "%s: Not supported format %s.\n"
 msgstr "%s : Format %s non supporté.\n"
 
@@ -248,6 +208,61 @@ msgstr ""
 #, c-format
 msgid "%s: error.\n"
 msgstr "%s : Erreur.\n"
+
+#, c-format
+msgid "The file %s does not exist.\n"
+msgstr "Le fichier %s n'existe pas.\n"
+
+#, c-format
+msgid "%s: File %s is not an ole2 file.\n"
+msgstr "%s : Le fichier %s n'est pas un fichier ole2.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s : Impossible d'ouvrir le fichier %s.\n"
+
+#, c-format
+msgid "%s: There is no xls stream in the ole2 file %s.\n"
+msgstr "%s : Il n'y a pas de flux xls dans le fichier ole2 %s.\n"
+
+#, c-format
+msgid "%s: Not an ole2 file.\n"
+msgstr "%s : Ce n'est pas un fichier ole2.\n"
+
+#, c-format
+msgid "%s: The file has no Workbook directory.\n"
+msgstr "%s : Le fichier n'a pas de répertoire Workbook.\n"
+
+#, c-format
+msgid "%s: Incorrect or corrupted file.\n"
+msgstr "%s : Fichier incorrect ou corrompu.\n"
+
+#, c-format
+msgid "%s: Only BIFF8 file format is handled.\n"
+msgstr "%s : Seul le format de fichier BIFF8 est pris en charge.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Failed to read expected data, may be invalid xls file.\n"
+msgstr ""
+"%s : Échec de lecture des données attendues, le fichier xls est peut être "
+"invalide.\n"
+
+#, c-format
+msgid "%s: End of file.\n"
+msgstr "%s : Fin de fichier.\n"
+
+#, c-format
+msgid ""
+"%s: Inconsistency found in the columns. At line %d, found %d columns while "
+"the previous had %d.\n"
+msgstr ""
+"%s : Une incohérence a été trouvée dans les colonnes. À la ligne %d, %d "
+"colonnes ont été trouvées, alors que la précédente en avait %d.\n"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -435,8 +450,3 @@ msgstr "Feuille de calcul"
 
 msgid "Read a xls file"
 msgstr "Lire un fichier xls"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: Unconsistent range.\n"
-#~ msgstr ""
-#~ "%s : Valeur erronée de l'argument d'entrée n°%d : Plage inconsistante.\n"

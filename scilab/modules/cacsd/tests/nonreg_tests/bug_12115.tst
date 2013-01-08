@@ -1,0 +1,21 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Scilab Enterprises - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- Non-regression test for bug 12115 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=12115
+//
+// <-- Short Description -->
+// phaseplot(frq,db,phi) did not work.
+
+s=poly(0,"s");
+h=syslin("c",(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+h1=h*syslin("c",(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225));
+[frq,repf]=repfreq([h;h1],0.01,100);
+[phi,db]=phasemag(repf);
+phaseplot(frq,db,phi)

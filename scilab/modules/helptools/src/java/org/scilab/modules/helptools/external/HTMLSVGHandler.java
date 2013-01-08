@@ -18,6 +18,7 @@ import java.util.Map;
 
 import org.xml.sax.Attributes;
 
+import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 import org.scilab.modules.helptools.image.ImageConverter;
 
 /**
@@ -83,9 +84,13 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
         if (SVG.equals(localName)) {
             recreateTag(buffer, localName, null);
             File f = new File(outputDir, BASENAME + (compt++) + ".png");
-            Map<String, String> attributes = new HashMap();
+            Map<String, String> attributes = new HashMap<String, String>();
+            String baseImagePath = "";
+            if (getConverter() instanceof HTMLDocbookTagConverter) {
+                baseImagePath = ((HTMLDocbookTagConverter) getConverter()).getBaseImagePath();
+            }
 
-            String ret = ImageConverter.getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/svg", f, baseDir + f.getName());
+            String ret = ImageConverter.getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/svg", f, baseDir + f.getName(), baseImagePath);
             buffer.setLength(0);
 
             return ret;

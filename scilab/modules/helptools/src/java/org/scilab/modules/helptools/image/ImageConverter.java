@@ -39,7 +39,7 @@ import javax.swing.JLabel;
  */
 public final class ImageConverter {
 
-    private static Map<String, ExternalImageConverter> externalConverters = new HashMap();
+    private static Map<String, ExternalImageConverter> externalConverters = new HashMap<String, ExternalImageConverter>();
     private static MimetypesFileTypeMap mimeMap = new MimetypesFileTypeMap();
 
     static {
@@ -47,6 +47,7 @@ public final class ImageConverter {
         mimeMap.addMimeTypes("type=image/mathml exts=mml,mathml");
         mimeMap.addMimeTypes("type=image/svg exts=svg");
         mimeMap.addMimeTypes("type=image/scilab exts=sce");
+        mimeMap.addMimeTypes("type=image/scilab-xcos exts=xcos,zcos");
     }
 
     /**
@@ -66,7 +67,7 @@ public final class ImageConverter {
      * @param destDir the destination directory
      * @return the HTML code to insert the image
      */
-    public static String getImageByFile(Map<String, String> attrs, String path, String image, String outputDir, String destDir) {
+    public static String getImageByFile(Map<String, String> attrs, String path, String image, String outputDir, String destDir, String baseImagePath) {
         File f = new File(image);
         if (!f.isAbsolute()) {
             f = new File(path + File.separator + image);
@@ -85,10 +86,10 @@ public final class ImageConverter {
             if (conv != null) {
                 return conv.convertToImage(f, attrs, imageFile, imageName);
             }
-            copyImageFile(f, destDir);
+            copyImageFile(f, outputDir + File.separator + destDir);
         }
 
-        return "<img src=\'" + imageName + "\'/>";
+        return "<img src=\'" + baseImagePath + imageName + "\'/>";
     }
 
 
@@ -99,7 +100,7 @@ public final class ImageConverter {
      * @param imageFile the filename
      * @return the HTML code to insert the image
      */
-    public static String getImageByCode(String currentFile, String code, Map<String, String> attrs, String mime, File imageFile, String imageName) {
+    public static String getImageByCode(String currentFile, String code, Map<String, String> attrs, String mime, File imageFile, String imageName, String baseImagePath) {
         File current = null;
         try {
             current = new File(new URI(currentFile));
@@ -115,7 +116,7 @@ public final class ImageConverter {
             return conv.convertToImage(currentFile, code, attrs, imageFile, imageName);
         }
 
-        return "<img src=\'" + imageName + "\'/>";
+        return "<img src=\'" + baseImagePath + imageName + "\'/>";
     }
 
     /**
@@ -152,15 +153,19 @@ public final class ImageConverter {
      * Test if an image file exists.
      * @param path of the parsed file
      * @param image the image name
-     * @return true if the image exists
+     * @return null if the image exists, the expected file path otherwise.
      */
-    public static boolean imageExists(String path, String image) {
+    public static File imageExists(String path, String image) {
         File f = new File(image);
         if (!f.isAbsolute()) {
             f = new File(path + File.separator + image);
         }
 
-        return f.exists();
+        if (f.exists()) {
+            return null;
+        } else {
+            return f;
+        }
     }
 
     /**

@@ -60,10 +60,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function designed to work with the <link linkend="xset">xset</link> function <emphasis role="bold">is also
-                obsolete
-            </emphasis>
-            .Use the property editor <link linkend="ged">ged</link> instead.
+            This function designed to work with the <link linkend="xset">xset</link> function <emphasis role="bold">is also obsolete</emphasis>.
+            Use the property editor <link linkend="ged">ged</link> instead.
         </para>
         <para>
             <literal>getfont</literal> opens a graphic window to select a font.
@@ -87,6 +85,17 @@ xstring(5,5,"string")
     </scilab:image>
 -->
         
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>
+                    Function tagged obsolete. Will be removed in 5.5.0. Please use <link linkend="ged">ged</link> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

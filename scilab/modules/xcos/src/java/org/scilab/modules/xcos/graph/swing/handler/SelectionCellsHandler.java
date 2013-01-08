@@ -39,6 +39,10 @@ public class SelectionCellsHandler extends mxSelectionCellsHandler {
      * @return the removed handler
      */
     public mxCellHandler clearCellHandler(Object cell) {
+        if (handlers == null) {
+            return null;
+        }
+
         Object removed = handlers.remove(cell);
         return (mxCellHandler) removed;
     }

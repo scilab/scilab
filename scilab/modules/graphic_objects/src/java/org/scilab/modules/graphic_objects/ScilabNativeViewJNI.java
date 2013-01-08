@@ -22,4 +22,8 @@ public class ScilabNativeViewJNI {
     public final static native void ScilabNativeView__createObject(String jarg1);
     public final static native void ScilabNativeView__deleteObject(String jarg1);
     public final static native void ScilabNativeView__updateObject(String jarg1, int jarg2);
+    public final static native void ScilabNativeView__setCurrentFigure(String jarg1);
+    public final static native void ScilabNativeView__setCurrentSubWin(String jarg1);
+    public final static native void ScilabNativeView__setCurrentObject(String jarg1);
+    public final static native int ScilabNativeView__getValidDefaultFigureId();
 }

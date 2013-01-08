@@ -162,35 +162,60 @@ int sci_dct(char *fname, unsigned long fname_len)
     }
 
     if (option != NULL)
-      {
-        if (isn== FFTW_FORWARD)
-          {
-            if (strcmp("dct1", option) == 0)  iopt = 1;
-            else if (strcmp("dct2", option) == 0)  iopt = 2;
-            else if (strcmp("dct", option) == 0)   iopt = 0;
-            else if (strcmp("dct4", option) == 0)  iopt = 4;
+    {
+        if (isn == FFTW_FORWARD)
+        {
+            if (strcmp("dct1", option) == 0)
+            {
+                iopt = 1;
+            }
+            else if (strcmp("dct2", option) == 0)
+            {
+                iopt = 2;
+            }
+            else if (strcmp("dct", option) == 0)
+            {
+                iopt = 0;
+            }
+            else if (strcmp("dct4", option) == 0)
+            {
+                iopt = 4;
+            }
             else
-              {
+            {
                 Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), fname, Rhs,
                          "\"dct\", \"dct1\",\"dct2\",\"dct4\"");
                 freeAllocatedSingleString(option);
                 option = NULL;
                 return 0;
-              }
-          }
-        else {
-            if (strcmp("dct1", option) == 0)  iopt = 1;
-            else if (strcmp("dct3", option) == 0)  iopt = 3;
-            else if (strcmp("idct", option) == 0)  iopt = 0;
-            else if (strcmp("dct4", option) == 0)  iopt = 4;
+            }
+        }
+        else
+        {
+            if (strcmp("dct1", option) == 0)
+            {
+                iopt = 1;
+            }
+            else if (strcmp("dct3", option) == 0)
+            {
+                iopt = 3;
+            }
+            else if (strcmp("idct", option) == 0)
+            {
+                iopt = 0;
+            }
+            else if (strcmp("dct4", option) == 0)
+            {
+                iopt = 4;
+            }
             else
-              {
+            {
                 Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), fname, Rhs,
                          "\"idct\", \"dct1\",\"dct3\",\"dct4\"");
                 freeAllocatedSingleString(option);
                 option = NULL;
                 return 0;
-              }
+            }
 
         }
         freeAllocatedSingleString(option);
@@ -212,7 +237,7 @@ int sci_dct(char *fname, unsigned long fname_len)
     if (rhs < 3)
     {
         /* dct(A ,sign)*/
-      sci_dct_2args(pvApiCtx, fname, ndimsA, dimsA, Ar, Ai, isn, iopt);
+        sci_dct_2args(pvApiCtx, fname, ndimsA, dimsA, Ar, Ai, isn, iopt);
     }
     else if (rhs == 3)
     {
@@ -247,7 +272,10 @@ int sci_dct_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
         if (dimsA[i] > 1)
         {
             ndims++;
-            if (first_nonsingleton < 0) first_nonsingleton = i;
+            if (first_nonsingleton < 0)
+            {
+                first_nonsingleton = i;
+            }
         }
     }
 
@@ -285,7 +313,7 @@ int sci_dct_2args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     gdim.howmany_dims = NULL;
 
 
-    if (!sci_dct_gen(_pvCtx, fname, ndimsA, dimsA,  Ar,  Ai, isn, gdim,iopt))
+    if (!sci_dct_gen(_pvCtx, fname, ndimsA, dimsA,  Ar,  Ai, isn, gdim, iopt))
     {
         FREE(gdim.dims);
         FREE(gdim.howmany_dims);
@@ -331,7 +359,10 @@ int  sci_dct_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
         if (dimsA[i] > 1)
         {
             ndims++;
-            if (first_nonsingleton < 0) first_nonsingleton = i;
+            if (first_nonsingleton < 0)
+            {
+                first_nonsingleton = i;
+            }
         }
     }
 
@@ -410,7 +441,10 @@ int  sci_dct_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
     j = 0;
     for (i = 0; i < ndimsA; i++)
     {
-        if (j >= gdim.rank) break;
+        if (j >= gdim.rank)
+        {
+            break;
+        }
         if (Sel[j] == i + 1)
         {
             gdim.dims[j].n = dimsA[i];
@@ -422,26 +456,32 @@ int  sci_dct_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
     }
     /* Compute howmany_rank based on jumps in the Sel sequence */
     gdim.howmany_rank = 0;
-    if ((Sel[0] != 1) && (Sel[0] != ndimsA)) gdim.howmany_rank++;
+    if ((Sel[0] != 1) && (Sel[0] != ndimsA))
+    {
+        gdim.howmany_rank++;
+    }
     for (i = 1; i <= rank - 1; i++)
-      {
-        if (Sel[i] != Sel[i-1] + 1)
-          {
+    {
+        if (Sel[i] != Sel[i - 1] + 1)
+        {
             /*check if all dimensions between Sel[i-1]+1 and Sel[i]-1 are
               equal to one, in this case they can be ignored and there is
               no jump*/
             for (j = Sel[i - 1] + 1; j <= Sel[i] - 1; j++)
-              {
+            {
                 if (dimsA[j - 1] != 1)
-                  {
+                {
                     gdim.howmany_rank++;
                     break;
-                  }
-              }
-          }
-      }
+                }
+            }
+        }
+    }
 
-    if ((Sel[rank - 1] != ndimsA) || (rank == 1)) gdim.howmany_rank++;
+    if ((Sel[rank - 1] != ndimsA) || (rank == 1))
+    {
+        gdim.howmany_rank++;
+    }
     /* Fill the howmany_dims struct */
     if (gdim.howmany_rank > 0)
     {
@@ -454,7 +494,10 @@ int  sci_dct_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
             return 0;
         }
         pd = 1;
-        for (j = 1; j <= (Sel[0] - 1); j++) pd *= dimsA[j - 1]; /*prod(Dims(1:(sel(1)-1)))*/
+        for (j = 1; j <= (Sel[0] - 1); j++)
+        {
+            pd *= dimsA[j - 1];    /*prod(Dims(1:(sel(1)-1)))*/
+        }
         ih = 0;
         if ((Sel[0] != 1) && (Sel[0] != ndimsA))
         {
@@ -465,36 +508,42 @@ int  sci_dct_3args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar
             ih++;
         }
         pd *= dimsA[Sel[0] - 1]; /*prod(Dims(1:sel(1)))*/
-        for (i = 1; i <= rank -1; i++)
-          {
+        for (i = 1; i <= rank - 1; i++)
+        {
             /* intermediate selected dimensions */
             if (Sel[i] != Sel[i - 1] + 1)
-              {
+            {
                 pds = 1;
-                for (j = (Sel[i - 1] + 1); j <= (Sel[i] - 1); j++) pds *= dimsA[j - 1]; /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+                for (j = (Sel[i - 1] + 1); j <= (Sel[i] - 1); j++)
+                {
+                    pds *= dimsA[j - 1];    /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+                }
                 /*check again if all dimensions between Sel[i-1]+1 and
                   Sel[i]-1 are equal to one, in this case they can be
                   ignored and there is no jump*/
                 for (j = (Sel[i - 1] + 1); j <= (Sel[i] - 1); j++)
-                  {
+                {
                     if (dimsA[j - 1] != 1)
-                      {
+                    {
                         gdim.howmany_dims[ih].is = pd;
                         gdim.howmany_dims[ih].os = pd;
                         gdim.howmany_dims[ih].n = pds;
                         ih++;
                         break;
-                      }
-                  }
-              }
+                    }
+                }
+            }
             pd *= pds * dimsA[Sel[i] - 1]; /*prod(Dims(1:sel(i)))*/
-          }
+        }
 
         if (Sel[rank - 1] != ndimsA)
         {
             /* last selected dimension*/
             pds = 1;
-            for (j = (Sel[rank - 1] + 1); j <= ndimsA; j++) pds *= dimsA[j - 1]; /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+            for (j = (Sel[rank - 1] + 1); j <= ndimsA; j++)
+            {
+                pds *= dimsA[j - 1];    /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+            }
             gdim.howmany_dims[ih].is = pd;
             gdim.howmany_dims[ih].os = pd;
             gdim.howmany_dims[ih].n = pds;
@@ -788,7 +837,10 @@ int sci_dct_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     j = 0;
     for (i = 0; i < ndims; i++)
     {
-        if (j >= gdim.rank) break;
+        if (j >= gdim.rank)
+        {
+            break;
+        }
         if (Sel[j] == i + 1)
         {
             gdim.dims[j].n = Dim[i];
@@ -800,26 +852,32 @@ int sci_dct_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     }
     /* Compute howmany_rank based on jumps in the Sel sequence */
     gdim.howmany_rank = 0;
-    if ((Sel[0] != 1) && (Sel[0] != ndims)) gdim.howmany_rank++;
+    if ((Sel[0] != 1) && (Sel[0] != ndims))
+    {
+        gdim.howmany_rank++;
+    }
 
     for (i = 1; i <= rank - 1; i++)
-      {
-        if (Sel[i] != Sel[i-1] + 1)
-          {
+    {
+        if (Sel[i] != Sel[i - 1] + 1)
+        {
             /*check if all dimensions between Sel[i-1]+1 and Sel[i]-1 are
               equal to one, in this case they can be ignored and there is
               no jump*/
             for (j = Sel[i - 1] + 1; j <= Sel[i] - 1; j++)
-              {
+            {
                 if (Dim[j - 1] != 1)
-                  {
+                {
                     gdim.howmany_rank++;
                     break;
-                  }
-              }
-          }
-      }
-    if ((Sel[rank - 1] != ndims) || (rank == 1)) gdim.howmany_rank++;
+                }
+            }
+        }
+    }
+    if ((Sel[rank - 1] != ndims) || (rank == 1))
+    {
+        gdim.howmany_rank++;
+    }
     /* Fill the howmany_dims struct */
     if (gdim.howmany_rank > 0)
     {
@@ -838,7 +896,10 @@ int sci_dct_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
             return 0;
         }
         pd = 1;
-        for (j = 1; j <= (Sel[0] - 1); j++) pd *= Dim[j - 1]; /*prod(Dims(1:(sel(1)-1)))*/
+        for (j = 1; j <= (Sel[0] - 1); j++)
+        {
+            pd *= Dim[j - 1];    /*prod(Dims(1:(sel(1)-1)))*/
+        }
         ih = 0;
         if ((Sel[0] != 1) && (Sel[0] != ndims))
         {
@@ -850,37 +911,43 @@ int sci_dct_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
         }
         pd *= Dim[Sel[0] - 1]; /*prod(Dims(1:sel(1)))*/
 
-        for (i = 1; i <= rank -1; i++)
-          {
+        for (i = 1; i <= rank - 1; i++)
+        {
             /* intermediate selected dimensions */
             if (Sel[i] != Sel[i - 1] + 1)
-              {
+            {
                 pds = 1;
-                for (j = (Sel[i - 1] + 1); j <= (Sel[i] - 1); j++) pds *= Dim[j - 1]; /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+                for (j = (Sel[i - 1] + 1); j <= (Sel[i] - 1); j++)
+                {
+                    pds *= Dim[j - 1];    /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+                }
                 /*check again if all dimensions between Sel[i-1]+1 and
                   Sel[i]-1 are equal to one, in this case they can be
                   ignored and there is no jump*/
                 for (j = (Sel[i - 1] + 1); j <= (Sel[i] - 1); j++)
-                  {
+                {
                     if (Dim[j - 1] != 1)
-                      {
+                    {
                         gdim.howmany_dims[ih].is = pd;
                         gdim.howmany_dims[ih].os = pd;
                         gdim.howmany_dims[ih].n = pds;
                         ih++;
                         break;
-                      }
-                  }
-              }
+                    }
+                }
+            }
 
             pd *= pds * Dim[Sel[i] - 1]; /*prod(Dims(1:sel(i)))*/
-          }
+        }
 
         if (Sel[rank - 1] != ndims)
         {
             /* last selected dimension*/
             pds = 1;
-            for (j = (Sel[rank - 1] + 1); j <= ndims; j++) pds *= Dim[j - 1]; /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+            for (j = (Sel[rank - 1] + 1); j <= ndims; j++)
+            {
+                pds *= Dim[j - 1];    /*prod(Dims(sel(i-1)+1:(sel(i)-1)))*/
+            }
             gdim.howmany_dims[ih].is = pd;
             gdim.howmany_dims[ih].os = pd;
             gdim.howmany_dims[ih].n = pds;
@@ -930,7 +997,7 @@ int sci_dct_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
     /*FFTW specific library variable */
     enum Plan_Type type;
     fftw_r2r_kind *kind = NULL;
-    fftw_plan p=NULL;
+    fftw_plan p = NULL;
 
     /* for MKL special cases */
     int * dims1 = NULL;
@@ -941,64 +1008,88 @@ int sci_dct_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
     int i = 0;
     int errflag = 0;
 
-    for (i = 0; i < ndimsA; i++) lA *= dimsA[i];
+    for (i = 0; i < ndimsA; i++)
+    {
+        lA *= dimsA[i];
+    }
 
 
     AssignOutputVariable(_pvCtx, 1) =  1;/* assume inplace transform*/
-    if (isn==1&iopt==0) {
-      /* normalization */
-      if (dct_scale_array(Ar, Ai, gdim,isn) == -1)
+    if (isn == 1 && iopt == 0)
+    {
+        /* normalization */
+        if (dct_scale_array(Ar, Ai, gdim, isn) == -1)
         {
-          Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-          return 0;
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            return 0;
         }
     }
     /* use inplace transform*/
     type = R2R_PLAN;
-    if ((kind = (fftw_r2r_kind *)MALLOC(sizeof(fftw_r2r_kind) *gdim.rank)) == NULL)
-      {
+    if ((kind = (fftw_r2r_kind *)MALLOC(sizeof(fftw_r2r_kind) * gdim.rank)) == NULL)
+    {
         Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
         return 0;
-      }
+    }
 
-    if (isn==-1)
-      {
-      if (iopt==0|iopt==2)
-        for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_REDFT10;
-      else if (iopt==1)
-         for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_REDFT00;
-      else if (iopt==4)
-         for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_REDFT11;
-      }
+    if (isn == -1)
+    {
+        if (iopt == 0 || iopt == 2)
+            for (i = 0; i < gdim.rank; i++)
+            {
+                kind[i] = FFTW_REDFT10;
+            }
+        else if (iopt == 1)
+            for (i = 0; i < gdim.rank; i++)
+            {
+                kind[i] = FFTW_REDFT00;
+            }
+        else if (iopt == 4)
+            for (i = 0; i < gdim.rank; i++)
+            {
+                kind[i] = FFTW_REDFT11;
+            }
+    }
     else
-      {
-      if (iopt==0|iopt==3)
-        for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_REDFT01;
-      else if (iopt==1)
-         for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_REDFT00;
-      else if (iopt==4)
-         for (i = 0; i < gdim.rank; i++)  kind[i] = FFTW_REDFT11;
-      }
+    {
+        if (iopt == 0 || iopt == 3)
+            for (i = 0; i < gdim.rank; i++)
+            {
+                kind[i] = FFTW_REDFT01;
+            }
+        else if (iopt == 1)
+            for (i = 0; i < gdim.rank; i++)
+            {
+                kind[i] = FFTW_REDFT00;
+            }
+        else if (iopt == 4)
+            for (i = 0; i < gdim.rank; i++)
+            {
+                kind[i] = FFTW_REDFT11;
+            }
+    }
 
     if (!WITHMKL || gdim.howmany_rank <= 1)
-      {
+    {
         /* Set Plan */
         p = GetFFTWPlan(type, &gdim, Ar, NULL, Ar, NULL, getCurrentFftwFlags(), isn , kind, &errflag);
         if (errflag == 1)
-          {
+        {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
             return 0;
-          }
+        }
         else if (errflag == 2)
-          {
+        {
             Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
             return 0;
-          }
+        }
         /* execute FFTW plan */
         ExecuteFFTWPlan(type, p, Ar, NULL, Ar, NULL);
         if (!isrealA)
-          ExecuteFFTWPlan(type, p, Ai, NULL, Ai, NULL);
-      }
+        {
+            ExecuteFFTWPlan(type, p, Ai, NULL, Ai, NULL);
+        }
+    }
     else
     {
         /*FFTW MKL does not implement yet guru plan with howmany_rank>1             */
@@ -1040,15 +1131,18 @@ int sci_dct_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
             return 0;
         }
         dims1[0] = howmany_dims[0].n;
-        for (i = 1; i < howmany_rank; i++) dims1[i] = dims1[i - 1] * howmany_dims[i].n;
+        for (i = 1; i < howmany_rank; i++)
+        {
+            dims1[i] = dims1[i - 1] * howmany_dims[i].n;
+        }
         nloop = dims1[howmany_rank - 1];
 
         if ((incr1 = (int *)MALLOC(sizeof(int) * howmany_rank)) == NULL)
         {
-          Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-          FREE(dims1);
-          FREE(incr1);
-          return 0;
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            FREE(dims1);
+            FREE(incr1);
+            return 0;
         }
         t = 1;
         for (i = 0; i < howmany_rank; i++)
@@ -1065,7 +1159,9 @@ int sci_dct_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
                previous steps of sci_dct_gen*/
             ExecuteFFTWPlan(type, p, &Ar[i], NULL, &Ar[i], NULL);
             if (!isrealA)
-              ExecuteFFTWPlan(type, p, &Ai[i], NULL, &Ai[i], NULL);
+            {
+                ExecuteFFTWPlan(type, p, &Ai[i], NULL, &Ai[i], NULL);
+            }
 
             i += howmany_dims[0].is;
             /* check if  a loop ends*/
@@ -1087,13 +1183,14 @@ int sci_dct_gen(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,  
         gdim.howmany_dims = howmany_dims;
 
     }
-    if (isn==-1&iopt==0) {
-      /* normalization */
+    if (isn == -1 && iopt == 0)
+    {
+        /* normalization */
 
-      if (dct_scale_array(Ar, Ai, gdim,isn) == -1)
+        if (dct_scale_array(Ar, Ai, gdim, isn) == -1)
         {
-          Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-          return 0;
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            return 0;
         }
     }
     return 1;

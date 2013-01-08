@@ -21,4 +21,20 @@ public class ScilabNativeView {
         ScilabNativeViewJNI.ScilabNativeView__updateObject(pstId, iProperty);
     }
 
+    public static void ScilabNativeView__setCurrentFigure(String pstId) {
+        ScilabNativeViewJNI.ScilabNativeView__setCurrentFigure(pstId);
+    }
+
+    public static void ScilabNativeView__setCurrentSubWin(String pstId) {
+        ScilabNativeViewJNI.ScilabNativeView__setCurrentSubWin(pstId);
+    }
+
+    public static void ScilabNativeView__setCurrentObject(String pstId) {
+        ScilabNativeViewJNI.ScilabNativeView__setCurrentObject(pstId);
+    }
+
+    public static int ScilabNativeView__getValidDefaultFigureId() {
+        return ScilabNativeViewJNI.ScilabNativeView__getValidDefaultFigureId();
+    }
+
 }

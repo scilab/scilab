@@ -296,11 +296,20 @@
             </link>
             .
         </para>
-        <para />
-        <inlinemediaobject><imageobject>
-                <imagedata align="center" fileref="../../../examples/sinks_pal/en_US/wfile_f_diagram_en_US.png" />
-            </imageobject>
-        </inlinemediaobject>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/en_US/wfile_f_en_US.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/sinks_pal/en_US/wfile_f_en_US.xcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/sinks_pal/en_US/wfile_f_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
         <para>
             <emphasis>After the simulation</emphasis> of this example, you can see the contents of the file with <emphasis>Scinotes</emphasis> with the following command:
         </para>

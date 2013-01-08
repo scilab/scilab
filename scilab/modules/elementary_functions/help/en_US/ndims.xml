@@ -18,7 +18,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            n=ndims(A)
+            n = ndims(A)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -27,13 +27,13 @@
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>an array</para>
+                    <para>an array.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>integer, the number of dimensions of the array</para>
+                    <para>an integer, the number of dimensions of the array.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -41,9 +41,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>n=ndims(A)</literal> return the number of dimension of the
-            array <literal>A</literal>. <literal>n</literal> is greater than or equal
-            to 2.
+            <code>n = ndims(A)</code> return the number of dimension of the
+            array <varname>A</varname>. <varname>n</varname> is greater than or equal
+            to <literal>2</literal>.
         </para>
     </refsection>
     <refsection>

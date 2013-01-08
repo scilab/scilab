@@ -101,7 +101,7 @@ if COMPILATION_TESTS
 TARGETS_ALL+=check-java
 endif
 
-# check is performed with scilab
+# check is performed with scilab
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
 TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 
@@ -194,6 +194,11 @@ doc-ru_RU:
 doc-ja_JP:
 	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=ja_JP
 
+# Regenerate all images
+doc-images:
+	rm -rf $(top_srcdir)/modules/helptools/images/
+	mkdir $(top_srcdir)/modules/helptools/images/
+	$(MAKE) doc
 
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
@@ -232,6 +237,12 @@ if BUILD_HELP
 	fi
 else
 	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
+endif
+
+doxygen: modules/development_tools/etc/doxyfile
+if DOXYGEN
+	mkdir $(top_builddir)/reports/
+	$(DOXYGEN_BIN) modules/development_tools/etc/doxyfile
 endif
 
 check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
@@ -296,7 +307,9 @@ clean-help:
 	echo "rm -f $(top_builddir)/modules/scicos/jar/"; \
 	rm -rf $(top_builddir)/modules/scicos/jar/; \
 	echo "rm -rf $(top_builddir)/modules/javasci/javadoc"; \
-	rm -rf $(top_builddir)/modules/javasci/javadoc;
+	rm -rf $(top_builddir)/modules/javasci/javadoc; \
+	echo "rm -rf $(top_builddir)/html"; \
+	rm -rf $(top_builddir)/html;
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
@@ -399,6 +412,7 @@ endif
 
 # How help files look like.
 DOCMASK=scilab_*_help.jar
+DOCIMAGES=scilab_images.jar
 
 # Path to builded files
 PATHTOHELPFILES = modules/helptools/jar/
@@ -429,7 +443,7 @@ if BUILD_HELP
 	@$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
 	echo $(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
 	if ls -lLd $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) >/dev/null 2>&1; then \
-		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK); do \
+		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) $(top_builddir)/$(PATHTOHELPFILES)/$(DOCIMAGES); do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES)" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES) ; \
 		done; \

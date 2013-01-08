@@ -53,7 +53,7 @@ function  M=createstruct(index,N)
 	  Li=list();for kl=1:prod(Dims),Li(kl)=[];end
 	  
 	  //set fields pointed to by I to N
-	  I1=sub2ind(Dims,I(:)) // build one dimensionnal index equivalent to I
+	  I1=sub2ind(Dims,I(:)) // build one dimensional index equivalent to I
 	  for kl=1:size(I1,'*'), Li(I1(kl))=N;end
 	  
 	  M=mlist(["st","dims",index(2)],int32(Dims),Li);

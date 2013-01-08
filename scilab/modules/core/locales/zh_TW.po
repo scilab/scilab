@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -443,6 +443,12 @@ msgstr "%s 模組找不到.\n"
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr "錯誤: 模組檔案 %s 不正確(不以 '%s'　編碼) , 編碼為 '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for "
+"element wise operation \n"
+msgstr ""
 
 #
 # File: src/c/inisci-c.c, line: 110

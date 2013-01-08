@@ -708,6 +708,8 @@ c     left division by a scalar
          call error(20)
          return
       endif
+C     obsolescence warning
+      if ( op.eq.dstar.and.(m1.ne.1 .or. n1.ne.1)) call msgs(116) 
 *     so the following concerns only element wise power
 *
 ************end of the modif for bug 1769****************

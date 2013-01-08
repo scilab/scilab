@@ -232,7 +232,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/RELAY_f_Example.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/signalrouting_pal/RELAY_f_Example.png" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/signalrouting_pal/RELAY_f_Example.xcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

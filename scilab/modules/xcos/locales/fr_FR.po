@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: fr\n"
 
 #, c-format
@@ -115,9 +115,6 @@ msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur de chaîne de "
 "caractères attendu.\n"
-
-msgid "a graphical environment is needed."
-msgstr "Un environnement graphique est nécessaire."
 
 #, c-format
 msgid ""

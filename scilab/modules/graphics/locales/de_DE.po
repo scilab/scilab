@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: de\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -638,8 +638,8 @@ msgid "Number of elements must be %d (%d if %s coordinate).\n"
 msgstr "Anzahl der Elemente muß %d sein (%d wenn %s Koordinate).\n"
 
 #, c-format
-msgid "Number of elements must be %d (%d if z coordinate )\n"
-msgstr "Anzahl der Elemente muß sich in %d (%d wenn z Koordinate) befinden\n"
+msgid "Number of elements must be %d (%d if z coordinate)\n"
+msgstr ""
 
 msgid "Number of rows must be a multiple of 2.\n"
 msgstr ""

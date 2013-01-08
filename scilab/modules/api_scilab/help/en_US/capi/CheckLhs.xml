@@ -61,6 +61,26 @@
             This function has been replaced by <link linkend="CheckOutputArgument">CheckOutputArgument</link>.
         </para>
     </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "stack-c.h"
+
+#error This code is deprecated
+
+int sci_my_function(char *fname, unsigned long l)
+{
+/* The expected profile of the function will be:
+* a = my_function(a,b,c);
+*/
+  CheckRhs(3,3);
+  CheckLhs(1,1);
+
+}
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

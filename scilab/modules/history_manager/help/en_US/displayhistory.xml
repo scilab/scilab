@@ -23,6 +23,13 @@
         <title>Description</title>
         <para>displays current scilab history.</para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+displayhistory()
+]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

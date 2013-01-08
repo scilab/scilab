@@ -119,12 +119,14 @@
     </refsection>
     <refsection id="Examples_scicos_simulate">
         <title>Examples</title>
-        The xcos diagram in <literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>
-        <mediaobject>
-            <imageobject>
-                <imagedata align="center" fileref="../../images/batch_simulation.png"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            The xcos diagram in <link type="scilab" linkend="scilab.xcos/xcos/demos/batch_simulation.xcos">SCI/modules/xcos/demos/batch_simulation.xcos</link>.
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../demos/batch_simulation.xcos"/>
+                </imageobject>
+            </mediaobject>
+        </para>
         <programlisting role="example"><![CDATA[ 
 importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
 
@@ -166,10 +168,10 @@ counter
                 <link linkend="xcos">xcos: Block diagram editor and GUI for the hybrid simulator</link>
             </member>
             <member>
-                <link linkend="steadycos">steadycos: Finds an equilibrium state of an xcos diagram</link>
+                <link linkend="steadycos">steadycos: Finds an equilibrium state of a Xcos diagram</link>
             </member>
             <member>
-                <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from an xcos diagram</link>
+                <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from a Xcos diagram</link>
             </member>
         </simplelist>
     </refsection>

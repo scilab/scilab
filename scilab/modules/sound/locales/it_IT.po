@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-19 08:35+0000\n"
-"Last-Translator: Christos Spyroglou <Unknown>\n"
+"PO-Revision-Date: 2012-09-30 16:37+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: it\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -53,7 +53,7 @@ msgid "Scilab sound module not installed.\n"
 msgstr "Il modulo di Scilab per il suono non è installato.\n"
 
 msgid "Sound file handling"
-msgstr ""
+msgstr "Gestione dei file del suono"
 
 msgid "FFT on a wav file"
 msgstr "FFT su file wav"
@@ -91,8 +91,7 @@ msgstr "Errore durante la scrittura del file di suono."
 
 msgid "Mu-law can only be used with 8 bit data. Use method='linear' instead."
 msgstr ""
-"La Mu-law può essere usata solo con dati a 8 bit.Usare invece "
-"metodo='lineare'"
+"La Mu-law può essere usata solo con dati a 8 bit.Usare invece metodo='linear'"
 
 msgid "Unrecognized data format."
 msgstr "Formato di dati non riconosciuto."
@@ -112,7 +111,7 @@ msgstr "%s: Il numero degli argomenti in uscita è sbagliato.\n"
 
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
-msgstr ""
+msgstr "%s: Impossibile riprodurre il suono con il seg. comando: %s.\n"
 
 #, c-format
 msgid "%s: Audio capabilities not available.\n"
@@ -178,12 +177,12 @@ msgstr ""
 
 msgid "Invalid .wav file: found data before format information."
 msgstr ""
-"File .wav non valido: sono stati trovati dei dati prima dell'informatione "
+"File .wav non valido: sono stati trovati dei dati prima dell'informazione "
 "sul formato"
 
 msgid "Incorrect chunk size information in RIFF file."
 msgstr ""
-"C'è una informazione sulla grandezza del blocco inesatto nel file RIFF"
+"Nel file RIFF l'informazione sulla dimensione del frammento non è corretta."
 
 msgid "Invalid wav format."
 msgstr "Formato wav non valido"

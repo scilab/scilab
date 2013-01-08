@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-08-16 04:31+0000\n"
-"Last-Translator: Wang Dianjin <Unknown>\n"
+"PO-Revision-Date: 2012-11-28 13:01+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: \n"
 
 #, c-format
@@ -109,10 +109,10 @@ msgstr "Scilab消息"
 
 #, c-format
 msgid "%s: Feature %s is obsolete.\n"
-msgstr ""
+msgstr "%s：特性%s已废弃。\n"
 
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #, c-format
 msgid "%s: Please use %s instead.\n"
@@ -123,18 +123,20 @@ msgid ""
 "%s: This feature will be permanently removed in Scilab %s\n"
 "\n"
 msgstr ""
+"%s：此特性将在Scilab %s中被永久移除。\n"
+"\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串向量。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串向量。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串向量。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个图形句柄。\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为图形句柄。\n"
 
 #, c-format
 msgid ""
@@ -490,13 +492,13 @@ msgid "&Close"
 msgstr "关闭(&C)"
 
 msgid "&Incremental Search"
-msgstr "增量搜索（I）"
+msgstr "增量搜索(&I)"
 
 msgid "In&crease font size"
-msgstr "增大字体（C）"
+msgstr "增大字体(&c)"
 
 msgid "&Decrease font size"
-msgstr "缩小字体（D）"
+msgstr "减小字体(&D)"
 
 msgid "&Execute..."
 msgstr "执行...(&E)"
@@ -538,7 +540,7 @@ msgid "Clear &History"
 msgstr "清除历史(&H)"
 
 msgid "Clear C&onsole"
-msgstr "清除控制台(&o)"
+msgstr "清空控制台(&o)"
 
 msgid "P&references"
 msgstr ""
@@ -559,7 +561,7 @@ msgid "&Applications"
 msgstr "应用程序(&A)"
 
 msgid "&SciNotes"
-msgstr "SciNotes（S）"
+msgstr "SciNotes(&S)"
 
 msgid "&Xcos"
 msgstr "Xcos(&X)"
@@ -568,46 +570,46 @@ msgid "&Matlab to Scilab translator"
 msgstr "Matlab到Scilab转换器(&M)"
 
 msgid "M&odule manager - ATOMS"
-msgstr "模块管理器（M）- ATOMS"
+msgstr "模块管理器(&M) - ATOMS"
 
 msgid "&Variable Browser"
-msgstr "变量浏览器（V）"
+msgstr "变量浏览器(&V)"
 
 msgid "&Command History"
-msgstr "命令历史（C）"
+msgstr "命令历史(&C)"
 
 msgid "&File Browser"
-msgstr "文件浏览器（F）"
+msgstr "文件浏览器(&F)"
 
 msgid "Scilab &Help"
 msgstr "Scilab帮助(&H)"
 
 msgid "Scilab &Demonstrations"
-msgstr "Scilab &Demos"
+msgstr "Scilab示例(&D)"
 
 msgid "&Links"
-msgstr "网页链接(&W)"
+msgstr "链接(&L)"
 
 msgid "Scilab &Web Site"
 msgstr "Scilab网站(&W)"
 
 msgid "Scilab &Online Help"
-msgstr "Scilab在线帮助（O）"
+msgstr "Scilab在线帮助(&O)"
 
 msgid "Scilab &Wiki"
-msgstr "Scilab百科（W）"
+msgstr "Scilab百科(&W)"
 
 msgid "Scilab &ATOMS Web Site"
-msgstr "Scilab &ATOMS网页"
+msgstr "Scilab ATOMS 网站(&A)"
 
 msgid "&File Exchange"
-msgstr "文件交换（F）"
+msgstr "文件交换(&F)"
 
 msgid "&Mailing Lists"
-msgstr "邮件列表（M）"
+msgstr "邮件列表(&M)"
 
 msgid "Mailing Lists &Archives"
-msgstr "邮件列表存档（A）"
+msgstr "邮件列表存档(&A)"
 
 msgid "&Forge"
 msgstr ""
@@ -634,7 +636,7 @@ msgid "Help Browser"
 msgstr "帮助浏览器"
 
 msgid "Launch SciNotes"
-msgstr ""
+msgstr "启动SciNotes"
 
 msgid "Open a file"
 msgstr "打开文件"
@@ -658,10 +660,10 @@ msgid "Xcos"
 msgstr "Xcos"
 
 msgid "Scilab Preferences"
-msgstr ""
+msgstr "Scilab首选项"
 
 msgid "Scilab Demonstrations"
-msgstr ""
+msgstr "Scilab示例"
 
 msgid "Select a file to load"
 msgstr "装载文件"
@@ -679,28 +681,28 @@ msgid "Select a file name"
 msgstr "选择文件名"
 
 msgid "Colors"
-msgstr ""
+msgstr "颜色"
 
 msgid "Desktop color"
-msgstr ""
+msgstr "桌面颜色"
 
 msgid "Use system color"
-msgstr ""
+msgstr "使用系统颜色"
 
 msgid "Text "
-msgstr ""
+msgstr "文字 "
 
 msgid "Background "
-msgstr ""
+msgstr "背景 "
 
 msgid "Cursor "
-msgstr ""
+msgstr "光标 "
 
 msgid "Syntax highlighting colors"
-msgstr ""
+msgstr "高亮颜色"
 
 msgid "Keyword color "
-msgstr ""
+msgstr "关键词颜色 "
 
 msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
 msgstr ""
@@ -715,19 +717,19 @@ msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
 msgstr ""
 
 msgid "Fonts"
-msgstr ""
+msgstr "字体"
 
 msgid "Desktop font"
-msgstr ""
+msgstr "桌面字体"
 
 msgid "Use system font"
-msgstr ""
+msgstr "使用系统字体"
 
 msgid "Desktop text font: "
 msgstr ""
 
 msgid "Custom font"
-msgstr ""
+msgstr "自定义字体"
 
 msgid "Fonts to use:"
 msgstr ""
@@ -736,7 +738,7 @@ msgid "Desktop text font"
 msgstr ""
 
 msgid "Custom:"
-msgstr ""
+msgstr "自定义："
 
 msgid "Web"
 msgstr ""
@@ -745,7 +747,7 @@ msgid "Web browser and mailer"
 msgstr ""
 
 msgid "Use default web browser"
-msgstr ""
+msgstr "使用默认网络浏览器"
 
 msgid "Command for web browser: "
 msgstr ""
@@ -992,22 +994,22 @@ msgid "Are you sure you want to clear the console ?"
 msgstr ""
 
 msgid "Do not show this message again"
-msgstr ""
+msgstr "不再显示此消息"
 
 msgid "Clear History"
-msgstr "清空历史"
+msgstr "清除历史"
 
 msgid "Select All"
 msgstr "全选"
 
 msgid "Help on a selected keyword"
-msgstr "选定关键词的帮助"
+msgstr "所选关键词的帮助"
 
 msgid "Help about a selected text"
-msgstr "选定文字的帮助"
+msgstr "所选文字的帮助"
 
 msgid "Help about '"
-msgstr "帮助之‘"
+msgstr "帮助'"
 
 msgid "Evaluate selection with echo"
 msgstr ""
@@ -1105,7 +1107,7 @@ msgid "Cancel"
 msgstr "取消"
 
 msgid "Loading help browser..."
-msgstr "载入帮助浏览器中..."
+msgstr "加载帮助浏览器..."
 
 msgid "Feature not available in this mode..."
 msgstr ""
@@ -1161,7 +1163,7 @@ msgid "Exit"
 msgstr "退出"
 
 msgid "An error occurred: "
-msgstr ""
+msgstr "发生错误： "
 
 msgid "Scilab SCI files"
 msgstr ""
@@ -1191,7 +1193,7 @@ msgid "Scilab Quit files"
 msgstr ""
 
 msgid "Scilab Demo files"
-msgstr ""
+msgstr "Scilab示例文件"
 
 msgid "All PDF files"
 msgstr "所有PDF文件"

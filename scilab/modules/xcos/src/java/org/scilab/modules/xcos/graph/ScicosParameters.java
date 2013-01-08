@@ -297,13 +297,14 @@ public class ScicosParameters implements Serializable, Cloneable {
 
     /**
      * <ul>
-     * <li>0 : Lsodar : Method: BDF, Nonlinear solver= NEWTON (not available
-     * yet)
+     * <li>0 : LSodar : Method: DYNAMIC, Nonlinear solver= DYNAMIC
      * <li>1 : Sundials/CVODE : Method: BDF, Nonlinear solver= FUNCTIONAL
      * <li>2 : Sundials/CVODE : Method: BDF, Nonlinear solver= FUNCTIONAL
      * <li>3 : Sundials/CVODE : Method: ADAMS, Nonlinear solver= NEWTON
      * <li>4 : Sundials/CVODE : Method: ADAMS, Nonlinear solver= FUNCTIONAL
-     * <li>5 : DOPRI5 : Method: Runge-Kutta 4(5) (not available yet)
+     * <li>5 : DOPRI5 : Method: Dormand-Prince 4(5)
+     * <li>6 : RK45 : Method: Runge-Kutta 4(5)
+     * <li>7 : Implicit RK45 : Method: Runge-Kutta 4(5), Nonlinear solver= Fixed-point
      * <li>100 : Sundials/IDA
      *
      *
@@ -315,13 +316,14 @@ public class ScicosParameters implements Serializable, Cloneable {
 
     /**
      * <ul>
-     * <li>0 : Lsodar : Method: BDF, Nonlinear solver= NEWTON (not available
-     * yet)
+     * <li>0 : LSodar : Method: DYNAMIC, Nonlinear solver= DYNAMIC
      * <li>1 : Sundials/CVODE : Method: BDF, Nonlinear solver= FUNCTIONAL
      * <li>2 : Sundials/CVODE : Method: BDF, Nonlinear solver= FUNCTIONAL
      * <li>3 : Sundials/CVODE : Method: ADAMS, Nonlinear solver= NEWTON
      * <li>4 : Sundials/CVODE : Method: ADAMS, Nonlinear solver= FUNCTIONAL
-     * <li>5 : DOPRI5 : Method: Runge-Kutta 4(5) (not available yet)
+     * <li>5 : DOPRI5 : Method: Dormand-Prince 4(5)
+     * <li>6 : RK45 : Method: Runge-Kutta 4(5)
+     * <li>7 : Implicit RK45 : Method: Runge-Kutta 4(5), Nonlinear solver= FIXED-POINT
      * <li>100 : Sundials/IDA
      *
      *

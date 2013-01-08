@@ -92,9 +92,9 @@ subdir = modules/core
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -180,8 +180,8 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/storeCommand.c src/c/backtrace.c src/c/signal_mgmt.c \
 	src/c/suspendProcess.c src/c/windowsChangeManagement.c \
 	src/c/setieee.c src/c/setlines.c src/c/setformat.c \
-	src/c/InitializePreferences.c src/c/scimem64.c \
-	src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
+	src/c/InitializePreferences.c src/c/sci_tools.c \
+	src/c/scimem64.c src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
 	src/cpp/search_functions.cpp src/cpp/demangle.cpp \
 	src/cpp/backtrace_print.cpp src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
@@ -288,7 +288,8 @@ am__objects_2 = libscicore_algo_la-inffic.lo \
 	libscicore_algo_la-windowsChangeManagement.lo \
 	libscicore_algo_la-setieee.lo libscicore_algo_la-setlines.lo \
 	libscicore_algo_la-setformat.lo \
-	libscicore_algo_la-InitializePreferences.lo $(am__objects_1)
+	libscicore_algo_la-InitializePreferences.lo \
+	libscicore_algo_la-sci_tools.lo $(am__objects_1)
 am__objects_3 = libscicore_algo_la-hashtable_core.lo \
 	libscicore_algo_la-namstr.lo \
 	libscicore_algo_la-search_functions.lo \
@@ -439,6 +440,7 @@ DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
+DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -688,7 +690,8 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/storeCommand.c src/c/backtrace.c src/c/signal_mgmt.c \
 	src/c/suspendProcess.c src/c/windowsChangeManagement.c \
 	src/c/setieee.c src/c/setlines.c src/c/setformat.c \
-	src/c/InitializePreferences.c $(am__append_1)
+	src/c/InitializePreferences.c src/c/sci_tools.c \
+	$(am__append_1)
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
 src/cpp/search_functions.cpp \
@@ -1120,6 +1123,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-returnPropertyList.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-returnanan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-run.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-sci_tools.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-scilabmode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-scimem.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-scimem64.Plo@am__quote@
@@ -1837,6 +1841,13 @@ libscicore_algo_la-InitializePreferences.lo: src/c/InitializePreferences.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializePreferences.c' object='libscicore_algo_la-InitializePreferences.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-InitializePreferences.lo `test -f 'src/c/InitializePreferences.c' || echo '$(srcdir)/'`src/c/InitializePreferences.c
+
+libscicore_algo_la-sci_tools.lo: src/c/sci_tools.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-sci_tools.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-sci_tools.Tpo -c -o libscicore_algo_la-sci_tools.lo `test -f 'src/c/sci_tools.c' || echo '$(srcdir)/'`src/c/sci_tools.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-sci_tools.Tpo $(DEPDIR)/libscicore_algo_la-sci_tools.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sci_tools.c' object='libscicore_algo_la-sci_tools.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-sci_tools.lo `test -f 'src/c/sci_tools.c' || echo '$(srcdir)/'`src/c/sci_tools.c
 
 libscicore_algo_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-scimem64.Tpo -c -o libscicore_algo_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c

@@ -111,6 +111,7 @@ voidremovejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NULL;
 voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidgeneratePaletteIconjstringjava_lang_StringID=NULL;
+voidgenerateAllImagesjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 
 
 }
@@ -140,6 +141,7 @@ voidremovejobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidenablejobjectArray_java_lang_Stringjava_lang_StringjbooleanbooleanID=NULL;
 voidmovejobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 voidgeneratePaletteIconjstringjava_lang_StringID=NULL;
+voidgenerateAllImagesjobjectArray_java_lang_Stringjava_lang_StringID=NULL;
 
 
 }
@@ -450,6 +452,48 @@ throw GiwsException::JniBadAllocException(curEnv);
 
                          curEnv->CallStaticVoidMethod(cls, voidgeneratePaletteIconjstringjava_lang_StringID ,iconPath_);
                         curEnv->DeleteLocalRef(iconPath_);
+curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Palette::generateAllImages (JavaVM * jvm_, char const* const* path, int pathSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidgenerateAllImagesjobjectArray_java_lang_Stringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "generateAllImages", "([Ljava/lang/String;)V" ) ;
+if (voidgenerateAllImagesjobjectArray_java_lang_Stringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "generateAllImages");
+}
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+
+// create java array of strings.
+jobjectArray path_ = curEnv->NewObjectArray( pathSize, stringArrayClass, NULL);
+if (path_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < pathSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( path[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetObjectArrayElement( path_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidgenerateAllImagesjobjectArray_java_lang_Stringjava_lang_StringID ,path_);
+                        curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(path_);
 curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

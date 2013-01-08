@@ -8,72 +8,16 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-09-21 13:53+0000\n"
+"PO-Revision-Date: 2012-10-27 13:18+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
-
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 81
-#, c-format
-msgid "The file %s does not exist.\n"
-msgstr "ファイル %s は存在しません。\n"
-
-#, c-format
-msgid "%s: File %s is not an ole2 file.\n"
-msgstr "%s: ファイル %s は OLE2ファイルではありません.\n"
-
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 93
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: ファイル %s を開けません。\n"
-
-#, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s: OLE2ファイル %s にxlsストリームがありません.\n"
-
-#
-# File: sci_gateway/c/sci_xls_open.c, line: 124
-#, c-format
-msgid "%s: Not an ole2 file.\n"
-msgstr "%s: OLE2 ファイルではありません。\n"
-
-#, c-format
-msgid "%s: The file has no Workbook directory.\n"
-msgstr "%s: このファイルにはワークブックディレクトリがありません.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: メモリ不足です.\n"
-
-#, c-format
-msgid "%s: Incorrect or corrupted file.\n"
-msgstr "%s: 無効または破損したファイルです.\n"
-
-#, c-format
-msgid "%s: Only BIFF8 file format is handled.\n"
-msgstr "%s: 処理できるのは,BIFF8ファイル形式のみです.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
-
-#
-# File: sci_gateway/c/sci_xls_read.c, line: 66
-#, c-format
-msgid "%s: Failed to read expected data, may be invalid xls file.\n"
-msgstr "%s: 予想したデータを読み込めません、無効なxlsファイルかもしれません。\n"
-
-#, c-format
-msgid "%s: End of file.\n"
-msgstr "%s: ファイルの終端に達しました.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -115,27 +59,31 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 整数の値を有�
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' , '%s', '%s' '%s' or '%s' "
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s' , '%s', '%s' '%s' または '%s' を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s', '%s', '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: double (値は 1 から 17) を指定してください.\n"
+"%s: Wrong value for input argument #%d: A double (value %d to %d) expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: double (値 %d から %d) を指定してください.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' ,'%s' , '%s', '%s', '%s', "
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' , '%s', '%s', '%s', "
 "'%s' or '%s' expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s' ,'%s' , '%s', '%s', '%s', '%s' または '%s' "
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' , '%s', '%s', '%s', '%s' または '%s' "
 "を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
@@ -148,7 +96,7 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 列または�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Inconsistent range.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 範囲が一致しません.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -181,7 +129,7 @@ msgstr "%s: ファイル %s をオープンできません.\n"
 
 #, c-format
 msgid "%s: can not read file %s: Error in the column structure\n"
-msgstr ""
+msgstr "%s: ファイル %s を読み込めません: 列構造体にエラーがあります\n"
 
 #, c-format
 msgid "%s: can not read file %s.\n"
@@ -193,7 +141,7 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を�
 
 #, c-format
 msgid "%s: can not read text: Error in the column structure\n"
-msgstr ""
+msgstr "%s: テキストを読み込めません: 列構造体にエラーがあります\n"
 
 #, c-format
 msgid "%s: can not read text.\n"
@@ -204,6 +152,11 @@ msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array of strings "
 "expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 1行n列またはm行1列の文字列配列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: double (値は 1 から 17) を指定してください.\n"
 
 #, c-format
 msgid "%s: Not supported format %s.\n"
@@ -222,6 +175,64 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列行列ま�
 #, c-format
 msgid "%s: error.\n"
 msgstr "%s: エラー.\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 81
+#, c-format
+msgid "The file %s does not exist.\n"
+msgstr "ファイル %s は存在しません。\n"
+
+#, c-format
+msgid "%s: File %s is not an ole2 file.\n"
+msgstr "%s: ファイル %s は OLE2ファイルではありません.\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 93
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: ファイル %s を開けません。\n"
+
+#, c-format
+msgid "%s: There is no xls stream in the ole2 file %s.\n"
+msgstr "%s: OLE2ファイル %s にxlsストリームがありません.\n"
+
+#
+# File: sci_gateway/c/sci_xls_open.c, line: 124
+#, c-format
+msgid "%s: Not an ole2 file.\n"
+msgstr "%s: OLE2 ファイルではありません。\n"
+
+#, c-format
+msgid "%s: The file has no Workbook directory.\n"
+msgstr "%s: このファイルにはワークブックディレクトリがありません.\n"
+
+#, c-format
+msgid "%s: Incorrect or corrupted file.\n"
+msgstr "%s: 無効または破損したファイルです.\n"
+
+#, c-format
+msgid "%s: Only BIFF8 file format is handled.\n"
+msgstr "%s: 処理できるのは,BIFF8ファイル形式のみです.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+
+#
+# File: sci_gateway/c/sci_xls_read.c, line: 66
+#, c-format
+msgid "%s: Failed to read expected data, may be invalid xls file.\n"
+msgstr "%s: 予想したデータを読み込めません、無効なxlsファイルかもしれません。\n"
+
+#, c-format
+msgid "%s: End of file.\n"
+msgstr "%s: ファイルの終端に達しました.\n"
+
+#, c-format
+msgid ""
+"%s: Inconsistency found in the columns. At line %d, found %d columns while "
+"the previous had %d.\n"
+msgstr "%s: 列内に不整合があります.  %d行目は %d 列ですが,  その前の行は %d 列です.\n"
 
 #
 # File: src/c/ripole/logger.c, line: 117
@@ -427,7 +438,3 @@ msgstr "表計算"
 
 msgid "Read a xls file"
 msgstr "xlsファイルを読み込む"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: Unconsistent range.\n"
-#~ msgstr "%s: 入力引数 #%d の値が間違っています: 範囲が不整合です.\n"

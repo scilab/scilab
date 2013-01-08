@@ -170,7 +170,7 @@ extern "C" {
     long int cv_nni;              /* number of Newton iterations performed      */
     long int cv_nsetups;          /* number of setup calls                      */
     int cv_nhnil;                 /* number of messages issued to the user that */
-    /* t + h == t for the next iternal step       */
+    /* t + h == t for the next internal step       */
 
     realtype cv_etaqm1;      /* ratio of new to old h for order q-1        */
     realtype cv_etaq;        /* ratio of new to old h for order q          */
@@ -473,6 +473,7 @@ extern "C" {
 
   /* CVode Error Messages */
 
+#define MSGCV_BAD_INPUT "One of the arguments is illegal"
 #define MSGCV_LSOLVE_NULL "The linear solver's solve routine is NULL."
 #define MSGCV_YOUT_NULL "yout = NULL illegal."
 #define MSGCV_TRET_NULL "tret = NULL illegal."

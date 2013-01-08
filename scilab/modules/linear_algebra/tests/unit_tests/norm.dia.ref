@@ -18,9 +18,9 @@ assert_checkalmostequal ( norm(x,1) , sum(abs(x))               , eps );
 assert_checkalmostequal ( norm(x,2) , sqrt(sum(abs(x).*abs(x))) , eps );
 assert_checkalmostequal ( norm(x,2) , norm(x)                   , eps );
 p=0.5;
-assert_checkalmostequal ( norm(x,p) , sum(abs(x)^p)^(1/p)       , eps );
+assert_checkalmostequal ( norm(x,p) , sum(abs(x).^p).^(1/p)       , eps );
 p=2.5;
-assert_checkalmostequal ( norm(x,p) ,     sum(abs(x)^p)^(1/p)   , eps );
+assert_checkalmostequal ( norm(x,p) ,     sum(abs(x).^p).^(1/p)   , eps );
 assert_checkalmostequal ( norm(x,'inf') , max(abs(x))           , eps );
 assert_checkalmostequal ( norm(x,'inf') , norm(x,%inf)          , eps );
 assert_checkalmostequal ( norm(x,'fro') , norm(x,2)             , eps );
@@ -31,9 +31,9 @@ assert_checkalmostequal ( norm(x,2) , sqrt(sum(abs(x).*abs(x))) , eps );
 assert_checkalmostequal ( norm(x,2) , norm(x)                   , eps );
 p=0.5;
 // 100*%eps is needed for linux 
-assert_checkalmostequal ( norm(x,p) , max(abs(x))*sum((abs(x)/max(abs(x)))^p)^(1/p) , 100*%eps );
+assert_checkalmostequal ( norm(x,p) , max(abs(x))*sum((abs(x)/max(abs(x))).^p).^(1/p) , 100*%eps );
 p=2.5;
-assert_checkalmostequal ( norm(x,p) , max(abs(x))*sum((abs(x)/max(abs(x)))^p)^(1/p) , 100*%eps );
+assert_checkalmostequal ( norm(x,p) , max(abs(x))*sum((abs(x)/max(abs(x))).^p).^(1/p) , 100*%eps );
 assert_checkalmostequal ( norm(x,'inf') , max(abs(x))   , 100*%eps);
 assert_checkalmostequal ( norm(x,'inf') , norm(x,%inf)  , 100*%eps);
 // The Frobenius norm of this complex input x can be numerically complex,

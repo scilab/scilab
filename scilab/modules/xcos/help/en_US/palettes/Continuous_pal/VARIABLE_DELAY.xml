@@ -272,19 +272,19 @@
             below:
         </para>
         <para/>
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.xcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../examples/continuous_pal/en_US/variable_delay_diagram_en_US.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-            <para/>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../examples/continuous_pal/en_US/variable_delay_plot_en_US.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_VARIABLE_DELAY">
         <title>Interfacing function</title>

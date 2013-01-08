@@ -14,7 +14,7 @@ function xf=dft(x,flag);
 // flag :indicates dft or idft
 // xf   :output vector
 //!
-
+warnobsolete('fft', '5.4.2');
 n=max(size(x));
 arg=(0:n-1);
 am=-2*%pi*%i*arg'*arg/n;

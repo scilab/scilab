@@ -78,7 +78,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <xref linkend="Example_INTEGRAL_m">Example</xref>
+                            <xref linkend="Examples_INTEGRAL_m">Examples</xref>
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -301,32 +301,46 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_INTEGRAL_m">
-        <title>Example 1</title>
-        <para>This sample model demonstrates how to use the integrator's state
-            port.
-        </para>
-        <para>The re-initialization parameter is set to 1, the Upper limit to 1
-            and the lower limit to -1.
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/INTEGRAL_diagram.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-    </refsection>
-    <refsection id="Example2_INTEGRAL_m">
-        <title>Example 2</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_Example.xcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_Example.png" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
+    <refsection id="Examples_INTEGRAL_m">
+        <title>Examples</title>
+        <refsection id="Example_INTEGRAL_m_1">
+            <title>Example 1</title>
+            <para>This sample model demonstrates how to use the integrator's state
+                port.
+            </para>
+            <para>The re-initialization parameter is set to 1, the Upper limit to 1
+                and the lower limit to -1.
+            </para>
+            <para>
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_1_Example.xcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_1_Example.xcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_1_Example.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+             
+        </refsection>
+        <refsection id="Example_INTEGRAL_m_2">
+            <title>Example 2</title>
+            <para>
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.xcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_2_Example.xcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsection>
     </refsection>
 </refentry>

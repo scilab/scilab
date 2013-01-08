@@ -17,8 +17,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[m[,x]]=secto3d(seclist,npas)
-            [m]=secto3d(seclist ,x)
+        <synopsis>[m[,x]]=secto3d(seclist, npas)
+            [m]=secto3d(seclist, x)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

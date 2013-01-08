@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-10-15 10:34+0100\n"
+"Revision-Date: 2013-01-07 15:57+0100\n"
 
 # File: sci_gateway/c/sci_exec.c, line: 52
 # File: sci_gateway/c/sci_exec.c, line: 60
@@ -210,7 +210,6 @@ msgstr ""
 
 #
 # File: macros/genlib.sci, line: 119
-# File: macros/genlib_old.sci, line: 52
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr ""
@@ -223,35 +222,30 @@ msgstr ""
 
 #
 # File: macros/genlib.sci, line: 147
-# File: macros/genlib_old.sci, line: 72
 #, c-format
 msgid "%s: %s file compilation forced\n"
 msgstr ""
 
 #
 # File: macros/genlib.sci, line: 171
-# File: macros/genlib_old.sci, line: 93
 #, c-format
 msgid "%s: Processing file: %s\n"
 msgstr ""
 
 #
 # File: macros/genlib.sci, line: 191
-# File: macros/genlib_old.sci, line: 104
 #, c-format
 msgid "%s: Regenerate names and lib\n"
 msgstr ""
 
 #
 # File: macros/genlib.sci, line: 207
-# File: macros/genlib_old.sci, line: 114
 #, c-format
 msgid "%s: %s file cannot be created\n"
 msgstr ""
 
 #
 # File: macros/genlib.sci, line: 218
-# File: macros/genlib_old.sci, line: 123
 #, c-format
 msgid ""
 "Library file %s has been updated,\n"
@@ -260,21 +254,18 @@ msgstr ""
 
 #
 # File: macros/genlib.sci, line: 239
-# File: macros/genlib_old.sci, line: 139
 #, c-format
 msgid "%s: Warning: Error in file %s : %s. File ignored\n"
 msgstr ""
 
 #
 # File: macros/genlib.sci, line: 261
-# File: macros/genlib_old.sci, line: 153
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
 msgstr ""
 
 #
 # File: macros/genlib.sci, line: 273
-# File: macros/genlib_old.sci, line: 159
 #, c-format
 msgid "%s: File %s does not contain any function.\n"
 msgstr ""

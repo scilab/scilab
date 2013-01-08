@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-27 12:35+0000\n"
+"PO-Revision-Date: 2012-09-29 03:40+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: ru\n"
 
 #, c-format
@@ -39,6 +39,8 @@ msgstr "%s: Неверное значение входного параметр�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: должно быть из множества "
+"{%s}.\n"
 
 #, c-format
 msgid ""
@@ -113,7 +115,7 @@ msgstr "%s: Несовместимые входные аргументы №%d �
 
 #, c-format
 msgid "%s: Creation of requested fftw plan failed.\n"
-msgstr ""
+msgstr "%s: Не удалось создание запрошенного плана fftw.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"

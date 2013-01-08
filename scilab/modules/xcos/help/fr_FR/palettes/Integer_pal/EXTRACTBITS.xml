@@ -492,11 +492,15 @@
             </link>
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata align="center" fileref="../../../examples/integer_pal/fr_FR/extractbits_diagram_fr_FR.png"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/EXTRACTBITS_fr_FR.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/integer_pal/fr_FR/EXTRACTBITS_fr_FR.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_EXTRACTBITS">
         <title>Fonction d'interfaçage</title>

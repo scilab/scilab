@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16335)\n"
 
 msgid "Polynomials"
 msgstr "Polynomy"
@@ -34,9 +34,6 @@ msgid ""
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno desetinné číslo, polynom, "
 "nebo pole racionálních zlomků.\n"
-
-msgid "Computing determinant: Be patient...\n"
-msgstr "Vypočítávám determinant: Strpení, prosím...\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"

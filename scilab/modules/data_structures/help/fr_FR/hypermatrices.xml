@@ -40,7 +40,7 @@ a(1,1,:)
 
 size(a)
 
-a(:,:,1) //dimensionnality reduction 
+a(:,:,1) //dimensionality reduction 
 type(a(:,:,1))
 
 [a a]

@@ -209,9 +209,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_testmatrix.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_tools.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_tril.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -278,9 +275,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\rea2db.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\sci_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scidcopy.h">

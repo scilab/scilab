@@ -23,11 +23,13 @@ import java.util.regex.Pattern;
 
 import org.xml.sax.SAXException;
 
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.helptools.image.ImageConverter;
 import org.scilab.modules.helptools.image.LaTeXImageConverter;
 import org.scilab.modules.helptools.image.MathMLImageConverter;
 import org.scilab.modules.helptools.image.ScilabImageConverter;
 import org.scilab.modules.helptools.image.SVGImageConverter;
+import org.scilab.modules.helptools.image.XcosImageConverter;
 import org.scilab.modules.helptools.scilab.ScilabLexer;
 import org.scilab.modules.helptools.scilab.HTMLScilabCodeHandler;
 import org.scilab.modules.helptools.scilab.AbstractScilabCodeHandler;
@@ -54,12 +56,13 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     private StringBuilder buffer = new StringBuilder(8192);
     private int latexCompt;
     private String imageDir;
-    private String outName;
     private String urlBase;
     private boolean linkToTheWeb;
     private boolean hasExamples;
     private int warnings;
     private int nbFiles;
+    protected String outName;
+    protected String outImages;
 
     protected Map<String, String> mapId;
     protected Map<String, String> tocitem;
@@ -112,6 +115,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         this.version = version;
         this.imageDir = imageDir;
         this.outName = outName + File.separator;
+        this.outImages = this.outName;
         HTMLDocbookLinkResolver resolver = new HTMLDocbookLinkResolver(inName);
         mapId = resolver.getMapId();
         tocitem = resolver.getToc();
@@ -156,10 +160,18 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         javaLexer = new JavaLexer();
         File tpl = new File(template);
         templateHandler = new TemplateHandler(this, tpl, language);
-        ImageConverter.registerExternalImageConverter(LaTeXImageConverter.getInstance(type));
-        ImageConverter.registerExternalImageConverter(MathMLImageConverter.getInstance(type));
-        ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance(type));
-        ImageConverter.registerExternalImageConverter(ScilabImageConverter.getInstance(type));
+        ImageConverter.registerExternalImageConverter(LaTeXImageConverter.getInstance(this));
+        ImageConverter.registerExternalImageConverter(MathMLImageConverter.getInstance(this));
+        ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance(this));
+        ImageConverter.registerExternalImageConverter(ScilabImageConverter.getInstance(this));
+        ImageConverter.registerExternalImageConverter(XcosImageConverter.getInstance(this));
+    }
+
+    /**
+     * Replace special chars
+     */
+    public static final String replaceEntity(final String str) {
+        return str.replaceAll("&", "&amp;").replaceAll("<", "&#0060;").replaceAll(">", "&#0062;").replaceAll("\"", "&#0034;").replaceAll("\'", "&#0039;");
     }
 
     /**
@@ -168,6 +180,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public final GenerationType getGenerationType() {
         return type;
+    }
+
+    public String getBaseImagePath() {
+        return "";
+    }
+
+    public String getLanguage() {
+        return language;
     }
 
     /**
@@ -207,11 +227,13 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         buffer.append(tag);
         if (attrs != null) {
             for (int i = 0; i < attrs.length; i += 2) {
-                buffer.append(" ");
-                buffer.append(attrs[i]);
-                buffer.append("=\"");
-                buffer.append(attrs[i + 1]);
-                buffer.append("\"");
+                if (attrs[i + 1] != null && !attrs[i + 1].isEmpty()) {
+                    buffer.append(" ");
+                    buffer.append(attrs[i]);
+                    buffer.append("=\"");
+                    buffer.append(attrs[i + 1]);
+                    buffer.append("\"");
+                }
             }
         }
 
@@ -505,10 +527,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             currentId = id;
         }
         String fileName = mapId.get(currentId);
+        String needsExampleAttr = attributes.get("needs-examples");
         createHTMLFile(currentId, fileName, refpurpose, contents);
-        if (!hasExamples) {
+        if (!hasExamples && (needsExampleAttr == null || !needsExampleAttr.equals("no"))) {
             warnings++;
-            //System.err.println("Warning (should be fixed): no example in " + currentFileName);
+            System.err.println("Warning (should be fixed): no example in " + currentFileName);
         } else {
             hasExamples = false;
         }
@@ -849,8 +872,10 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             if (role.equals("xml")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "xmlcode", xmlLexer.convert(HTMLXMLCodeHandler.getInstance(), contents)));
             } else if (role.equals("c") || role.equals("cpp") || role.equals("code_gateway")) {
+                hasExamples = true;
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", cLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
             } else if (role.equals("java")) {
+                hasExamples = true;
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", javaLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
             } else if (role.equals("exec")) {
                 String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
@@ -862,6 +887,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 }
                 str = encloseContents("div", "programlisting", code);
             } else if (role.equals("no-scilab-exec")) {
+                hasExamples = true;
                 String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 str = encloseContents("div", "programlisting", code);
             } else {
@@ -965,7 +991,19 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
 
         Stack<DocbookElement> stack = getStack();
         String refnameTarget = mapIdRefname.get(link);
-        String href = encloseContents("a", new String[] {"href", id, "class", "link"}, refnameTarget);
+        String str;
+        if (contents != null && !contents.isEmpty()) {
+            str = contents;
+        } else {
+            str = refnameTarget;
+        }
+
+        if (str == null) {
+            warnings++;
+            System.err.println("Warning (should be fixed): empty link (no text will be printed) to " + link + " in " + currentFileName + "\nat line " + locator.getLineNumber());
+        }
+
+        String href = encloseContents("a", new String[] {"href", id, "class", "link"}, str);
 
         int s = stack.size();
         if (s >= 3) {
@@ -1079,7 +1117,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         if (fs == null) {
             attributes.put("fontsize", "16");
         }
-        return ImageConverter.getImageByCode(currentFileName, contents, attributes, "image/latex", f, imageDir + "/" + f.getName());
+        return ImageConverter.getImageByCode(currentFileName, contents, attributes, "image/latex", f, imageDir + "/" + f.getName(), getBaseImagePath());
     }
 
     /**
@@ -1180,7 +1218,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleTr(final Map<String, String> attributes, final String contents) throws SAXException {
-        return encloseContents("tr", contents);
+        String bgcolor = attributes.get("bgcolor");
+        return encloseContents("tr", new String[] {"bgcolor", bgcolor}, contents);
     }
 
     /**
@@ -1192,10 +1231,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleTd(final Map<String, String> attributes, final String contents) throws SAXException {
         String align = attributes.get("align");
-        if (align == null) {
-            return encloseContents("td", new String[] {"align", align}, contents);
-        }
-        return encloseContents("td", contents);
+        String bgcolor = attributes.get("bgcolor");
+        return encloseContents("td", new String[] {"align", align, "bgcolor", bgcolor}, contents);
     }
 
     /**
@@ -1207,18 +1244,10 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleInformaltable(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
+        String bgcolor = attributes.get("bgcolor");
         String border = attributes.get("border");
-        if (border == null) {
-            border = "";
-        }
         String cellpadding = attributes.get("cellpadding");
-        if (cellpadding == null) {
-            cellpadding = "";
-        }
         String width = attributes.get("width");
-        if (width == null) {
-            width = "";
-        }
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + encloseContents("table", new String[] {"class", "informaltable", "border", border, "cellpadding", cellpadding, "width", width}, contents);
         } else {
@@ -1245,11 +1274,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
 
         try {
             String path = new File(new URI(currentFileName)).getParent();
-            if (!ImageConverter.imageExists(path, fileref)) {
-                throw new SAXException("The given fileref is not on an existing image file:\n" + fileref);
+            File file = ImageConverter.imageExists(path, fileref);
+            if (file != null) {
+                throw new SAXException("The given fileref is not on an existing image file:\n" + fileref + " [" + file + "]");
             }
 
-            return ImageConverter.getImageByFile(attributes, path, fileref, outName, imageDir);
+            return ImageConverter.getImageByFile(attributes, path, fileref, outImages, imageDir, getBaseImagePath());
         }  catch (URISyntaxException e) {
             System.err.println(e);
         }
@@ -1466,10 +1496,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleTable(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
+        String bgcolor = attributes.get("bgcolor");
+        String border = attributes.get("border");
+        String cellpadding = attributes.get("cellpadding");
+
         if (id != null) {
-            return "<a name=\"" + id + "\"></a>" + encloseContents("table", "doctable", contents);
+            return "<a name=\"" + id + "\"></a>" + encloseContents("table", new String[] {"class", "doctable", "bgcolor", bgcolor, "border", border, "cellpadding", cellpadding}, contents);
         } else {
-            return encloseContents("table", "doctable", contents);
+            return encloseContents("table", new String[] {"class", "doctable", "bgcolor", bgcolor, "border", border, "cellpadding", cellpadding}, contents);
         }
     }
 
@@ -1608,7 +1642,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleNote(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"ScilabNote.png\"/></td><td valign=\"top\">" + encloseContents("div", "note", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabNote.png\"/></td><td valign=\"top\">" + encloseContents("div", "note", contents) + "</tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1625,7 +1659,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleWarning(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"ScilabWarning.png\"/></td><td valign=\"top\">" + encloseContents("div", "warning", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabWarning.png\"/></td><td valign=\"top\">" + encloseContents("div", "warning", contents) + "</tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1642,7 +1676,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleCaution(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"ScilabCaution.png\"/></td><td valign=\"top\">" + encloseContents("div", "caution", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabCaution.png\"/></td><td valign=\"top\">" + encloseContents("div", "caution", contents) + "</tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1659,7 +1693,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleTip(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"ScilabTip.png\"/></td><td valign=\"top\">" + encloseContents("div", "tip", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabTip.png\"/></td><td valign=\"top\">" + encloseContents("div", "tip", contents) + "</tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1676,7 +1710,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleImportant(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"ScilabImportant.png\"/></td><td valign=\"top\">" + encloseContents("div", "important", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabImportant.png\"/></td><td valign=\"top\">" + encloseContents("div", "important", contents) + "</tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {

@@ -16,7 +16,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_REVISION($Revision$)dnl
 AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
-AC_PREREQ(2.62)
+AC_PREREQ(2.68)
 AC_CONFIG_MACRO_DIR([m4/])
 
 SCI_BUILDDIR="`pwd`"
@@ -859,14 +859,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 SCIRENDERER=$PACKAGE_JAR_FILE
                 AC_SUBST(SCIRENDERER)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.0.2],[PackageInfo.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.0.3],[PackageInfo.VERSION])
 
                # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.0],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.1],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
@@ -1617,6 +1617,18 @@ if test "$with_install_help_xml" != no -a "$with_install_help_xml" != ""; then
    HELP_INSTALL_ENABLE=yes
 fi
 AM_CONDITIONAL(INSTALL_HELP_XML, test "$HELP_INSTALL_ENABLE" != "")
+
+## Doxygen help generation
+AC_ARG_ENABLE(build-doxygen,
+    AC_HELP_STRING([--enable-build-doxygen],[Generate doxygen C/C++ documentation]))
+
+DOXYGEN_ENABLE=yes
+if test "$enable_build_doxygen" != no -a "$enable_build_doxygen" != ""; then
+    AC_DOXYGEN()
+else
+    DOXYGEN_ENABLE=no
+fi
+AM_CONDITIONAL(DOXYGEN, test $DOXYGEN_ENABLE = yes)
 
 ##############################################################
 ## Javasci module

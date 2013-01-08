@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="contour2di">
+    <refnamediv>
+        <refname>contour2di</refname>
+        <refpurpose>
+            вычисляет кривые уровней поверхности на двумерном графике
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[xc, yc] = contour2di(x, y, z, nz)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>
+                        два вещественных вектора размерами <literal>n1</literal> и <literal>n2</literal>: сетка.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>
+                        вещественная матрица размером <literal>(n1,n2)</literal>,
+                        значения функции.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nz</term>
+                <listitem>
+                    <para>
+                        значения уровней, либо число уровней.
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>
+                                Если <literal>nz</literal> - целое число
+                            </term>
+                            <listitem>
+                                <para>
+                                    его значение указывает количество кривых
+                                    уровня, равномерно распределённых от
+                                    <literal>zmin</literal> до <literal>zmax</literal>,
+                                    как показано ниже:
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
+z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+ ]]></programlisting>
+                                <para>
+                                    <note>
+                                    Заметьте, что уровни <literal>zmin</literal>
+                                    и <literal>zmax</literal> не рисуются (вообще, они сводятся в точку), но их можно
+                                    добавить следующим образом:
+                                    </note>
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
+[im,jm] = find(z == zmin);     // или zmax
+plot2d(x(im)',y(jm)',-9,"000")
+ ]]></programlisting>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                Если <literal>nz</literal> - вектор
+                            </term>
+                            <listitem>
+                                <para>
+                                    <literal>nz(i)</literal> указывает значение
+                                    <literal>i</literal>-той кривой уровня.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xc, yc</term>
+                <listitem>
+                    <para>
+                        векторы одинаковых размеров, содержащие определения
+                        контуров. Подробности указаны ниже.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>contour2di</function> вычисляет кривые уровней
+            поверхности <literal>z = f(x, y)</literal> на двумерном графике.
+            Значения <literal>f(x,y)</literal> задаются матрицей
+            <varname>z</varname> в точках сетки, определённой через
+            <varname>x</varname> и <varname>y</varname>.
+        </para>
+        <para>
+            <literal>xc(1)</literal> содержит уровень, связанный с траекторией
+            первого контура, <literal>yc(1)</literal> содержит количество
+            <literal>N1</literal> точек, определяющих траекторию этого контура,
+            а (<literal>xc(1+(1:N1))</literal>, <literal>yc(1+(1:N1))</literal>)
+            содержат координаты точек траекторий. Вторая траектория начинается в
+            <literal>xc(2+N1)</literal> и <literal>yc(2+N1)</literal> и так далее.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+[xc,yc]=contour2di(1:10,1:10,rand(10,10),5);
+k=1;n=yc(k);c=1;
+while k+yc(k)<size(xc,'*')
+  n=yc(k);
+  plot2d(xc(k+(1:n)),yc(k+(1:n)),c)
+  c=c+1;
+  k=k+n+1;
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="contour">contour</link>
+            </member>
+            <member>
+                <link linkend="contour2d">contour2d</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

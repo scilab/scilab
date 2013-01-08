@@ -13,11 +13,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="strncpy">
     <refnamediv>
         <refname>strncpy</refname>
-        <refpurpose>Copy characters from strings</refpurpose>
+        <refpurpose>copy characters from strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>res = strncpy(str1,num)</synopsis>
+        <synopsis>res = strncpy(str1, num)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,19 +25,25 @@
             <varlistentry>
                 <term>str1</term>
                 <listitem>
-                    <para>A character string or matrix of character strings</para>
+                    <para>
+                        a character string or matrix of character strings.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>num</term>
                 <listitem>
-                    <para>matrix Maximum number of characters to be copied from source</para>
+                    <para>
+                        an integer or a matrix of integers, maximum number of characters to be copied from source.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>A character string or matrix of character strings</para>
+                    <para>
+                        a character string or matrix of character strings.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,9 +51,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>res = strncpy(str1,num)</literal> Copies the first num characters of source to destination.
+            <code>res = strncpy(str1, num)</code> copies the first <varname>num</varname> characters of source <varname>str1</varname> to destination <varname>res</varname>.
         </para>
-        <para> num must have same dimensions than str1 or str2 must be a number. </para>
+        <para>
+            <varname>num</varname> must have same dimensions than
+            <varname>str1</varname> or <varname>num</varname> must be an integer number.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

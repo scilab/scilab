@@ -99,7 +99,7 @@ c     .        ierr should be always 0
             call dfft2(stk(lr),stk(li),1,mn,1,isn,ierr,stk(libre),lw)
          endif
       else
-c     .  2 dimensionnal fft
+c     .  2 dimensional fft
 cxx         call dfft2(stk(lr),stk(li),n,m,1,isn,ierr,stk(libre),lw)
 cxx         if(ierr.lt.0) goto 21
 cxx         call dfft2(stk(lr),stk(li),1,n,m,isn,ierr,stk(libre),lw)

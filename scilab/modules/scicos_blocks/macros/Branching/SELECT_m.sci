@@ -82,6 +82,6 @@ case 'define' then
   
   exprs=[sci2exp(1);sci2exp(nin);sci2exp(z0)]
   gr_i=['xstringb(orig(1),orig(2),''Selector'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,exprs,gr_i)
+  x=standard_define([3 2],model,exprs,gr_i)
 end
 endfunction

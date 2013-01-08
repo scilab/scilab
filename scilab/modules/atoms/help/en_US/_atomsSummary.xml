@@ -58,7 +58,23 @@
                         <link linkend="atomsIsInstalled">atomsIsInstalled</link>
                     </td>
                     <td>
-                        Determines whether the module is installed or not
+                        Determine whether the module is installed or not
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <link linkend="atomsIsInstalled">atomsTest</link>
+                    </td>
+                    <td>
+                        Execute the tests of an installed module
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <link linkend="atomsIsInstalled">atomsCheckModule</link>
+                    </td>
+                    <td>
+                        Install, load, test and remove one or several modules
                     </td>
                 </tr>
             </informaltable>
@@ -77,6 +93,14 @@
                     </td>
                     <td>
                         Load one or several modules
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <link linkend="atomsLoad">atomsAutoLoad</link>
+                    </td>
+                    <td>
+                        Load the modules marked as "autoload"
                     </td>
                 </tr>
                 <tr>
@@ -119,6 +143,14 @@
                         Remove one or several modules from autoload system.
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <link linkend="atomsAutoloadDel">atomsQuit</link>
+                    </td>
+                    <td>
+                        Launch the .quit file of all loaded modules
+                    </td>
+                </tr>
             </informaltable>
         </para>
     </refsection>
@@ -139,6 +171,14 @@
                 </tr>
                 <tr>
                     <td>
+                        <link linkend="atomsList">atomsCategoryList</link>
+                    </td>
+                    <td>
+                        List available categories
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <link linkend="atomsSearch">atomsSearch</link>
                     </td>
                     <td>
@@ -150,7 +190,7 @@
                         <link linkend="atomsShow">atomsShow</link>
                     </td>
                     <td>
-                        Show the caracteristics of a module
+                        Show the characteristics of a module
                     </td>
                 </tr>
                 <tr>
@@ -159,6 +199,30 @@
                     </td>
                     <td>
                         Show the dependency tree of a module
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <link linkend="atomsDepTreeShow">atomsGetInstalledPath</link>
+                    </td>
+                    <td>
+                        Get the installation path of an module
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <link linkend="atomsDepTreeShow">atomsGetLoadedPath</link>
+                    </td>
+                    <td>
+                        Get the installation path of a loaded module
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <link linkend="atomsDepTreeShow">atomsVersion</link>
+                    </td>
+                    <td>
+                        Get the ATOMS's module version
                     </td>
                 </tr>
             </informaltable>
@@ -219,6 +283,38 @@
                     </td>
                     <td>
                         Manage ATOMS parameters
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <link linkend="atomsSetConfig">atomsGetConfig</link>
+                    </td>
+                    <td>
+                        Get the list of ATOMS parameters
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <link linkend="atomsSetConfig">atomsRestoreConfig</link>
+                    </td>
+                    <td>
+                        Restore the configuration from the backup file
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <link linkend="atomsSetConfig">atomsSaveConfig</link>
+                    </td>
+                    <td>
+                        Make a backup of the configuration file
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <link linkend="atomsSetConfig">atomsSystemInit</link>
+                    </td>
+                    <td>
+                        Set the rightful write access for the ATOMS system
                     </td>
                 </tr>
             </informaltable>

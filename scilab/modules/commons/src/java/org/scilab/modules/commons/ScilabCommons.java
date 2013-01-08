@@ -77,4 +77,39 @@ public class ScilabCommons {
         return ScilabCommonsJNI.getformatwidth();
     }
 
+    /**
+      * returns the Scilab version major number
+      * @return version major
+      */
+    public static int getScilabVersionMajor() {
+        return ScilabCommonsJNI.getScilabVersionMajor();
+    }
+
+
+    /**
+      * returns the Scilab version minor number
+      * @return version minor
+      */
+    public static int getScilabVersionMinor() {
+        return ScilabCommonsJNI.getScilabVersionMinor();
+    }
+
+
+    /**
+      * returns the Scilab version maintenance number
+      * @return version maintenance
+      */
+    public static int getScilabVersionMaintenance() {
+        return ScilabCommonsJNI.getScilabVersionMaintenance();
+    }
+
+
+    /**
+      * returns the Scilab version timestamp number
+      * @return version timestamp
+      */
+    public static int getScilabVersionTimestamp() {
+        return ScilabCommonsJNI.getScilabVersionTimestamp();
+    }
+
 }

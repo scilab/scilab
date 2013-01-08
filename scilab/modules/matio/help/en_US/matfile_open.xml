@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="matfile_open">
     <refnamediv>
         <refname>matfile_open</refname>
-        <refpurpose>Opens a Matlab V5 binary MAT-file.</refpurpose>
+        <refpurpose>Opens a Matlab binary MAT-file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -61,6 +61,25 @@
         <para>
             Opens a Matlab binary MAT-file for reading or writing data.
         </para>
+        <para>
+            <warning>
+                If <varname>mode</varname> is set to <literal>w</literal>, the content of <varname>filename</varname> will be reseted.
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A = rand(10,10);
+B = sprand(100,100,0.1);
+savematfile('test_matfile.mat','A','B','-v6');
+clear();
+fd = matfile_open("test_matfile.mat");
+matfile_listvar(fd)
+matfile_close(fd);
+
+//fd = matfile_open("test_matfile.mat","w"); // Empty test_matfile.mat
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

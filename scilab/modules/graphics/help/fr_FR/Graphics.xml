@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -274,7 +274,7 @@
                     <link linkend="plot3d">plot3d</link>
                 </term>
                 <listitem>
-                    <para>représentation en en couleurs d'une surface</para>
+                    <para>représentation en couleurs d'une surface</para>
                     <para>
                         <emphasis role="bold">Exemple:</emphasis>
                     </para>
@@ -288,7 +288,7 @@
                     <link linkend="plot3d1">plot3d1</link>
                 </term>
                 <listitem>
-                    <para>représentation en en couleurs d'une surface</para>
+                    <para>représentation en couleurs d'une surface</para>
                     <para>
                         <emphasis role="bold">Exemple:</emphasis>
                     </para>
@@ -976,14 +976,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xbasr">xbasr</link>
-                </term>
-                <listitem>
-                    <para>redessine une fenêtre graphique</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="replot">replot</link>
                 </term>
                 <listitem>
@@ -1221,7 +1213,7 @@
                         <scilab:image>s=poly(0,'s');
                             n=[1+s   2+3*s+4*s^2        5; 0        1-s             s];
                             d=[1+3*s   5-s^3           s+1;1+s     1+s+s^2      3*s-1];
-                            h=syslin('c',n./d); 
+                            h=syslin('c',n./d);
                             plzr(h);
                         </scilab:image>
                     </para>

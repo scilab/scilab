@@ -334,11 +334,14 @@ xmlNode *XMLNodeList::getListNode(int index)
     return XMLList::getListElement < xmlNode > (index, size, &prev, &prevNode);
 }
 
-inline int XMLNodeList::getNodeListSize(xmlNode * node)
+int XMLNodeList::getNodeListSize(xmlNode * node)
 {
     int i = 0;
 
-    for (xmlNode * n = node; n; n = n->next, i++) ;
+    for (xmlNode * n = node; n; n = n->next, i++)
+    {
+        ;
+    }
 
     return i;
 }

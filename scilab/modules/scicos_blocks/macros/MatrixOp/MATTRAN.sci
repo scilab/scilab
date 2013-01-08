@@ -80,7 +80,7 @@ case 'define' then
 
   label=[sci2exp(1)]
   gr_i=['xstringb(orig(1),orig(2),[''MATTRAN''],sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([3 2],model,label,gr_i)
 end
 endfunction
 

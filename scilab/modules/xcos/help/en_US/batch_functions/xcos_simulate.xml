@@ -78,10 +78,10 @@
     <refsection id="Examples_xcos_simulate">
         <title>Examples</title>
         <para>
-            The xcos diagram in <literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>
+            The xcos diagram in <link type="scilab" linkend="scilab.xcos/xcos/demos/batch_simulation.xcos">SCI/modules/xcos/demos/batch_simulation.xcos</link>.
             <mediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../images/batch_simulation.png"/>
+                    <imagedata align="center" fileref="../../../demos/batch_simulation.xcos"/>
                 </imageobject>
             </mediaobject>
             Simulate this diagram in batch mode and change some context values.
@@ -155,10 +155,10 @@ function continueSimulation=pre_xcos_simulate(scs_m, needcompile)
       ]]></programlisting>
         </para>
         <para>
-            The xcos diagram: <literal>SCI/modules/xcos/demos/Command.xcos</literal>
+            The xcos diagram: <link type="scilab" linkend="scilab.xcos/xcos/demos/Command.xcos">SCI/modules/xcos/demos/Command.xcos</link>
             <mediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../images/Command.png"/>
+                    <imagedata align="center" fileref="../../../demos/Command.xcos"/>
                 </imageobject>
             </mediaobject>
             Simulate this diagram in batch mode and perform bode plotting of transfert function using post_xcos_simulate,
@@ -203,10 +203,10 @@ xcos_simulate(scs_m, 4);
       ]]></programlisting>
         </para>
         <para>
-            The xcos diagram: <literal>SCI/modules/xcos/demos/Command_bode.xcos</literal>
+            The xcos diagram: <link type="scilab" linkend="scilab.xcos/xcos/demos/Command_bode.xcos">SCI/modules/xcos/demos/Command_bode.xcos</link>
             <mediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../images/Command_bode.png"/>
+                    <imagedata align="center" fileref="../../../demos/Command_bode.xcos"/>
                 </imageobject>
             </mediaobject>
             Simulate this diagram in batch mode and perform bode plotting of transfert function using post_xcos_simulate,
@@ -270,10 +270,10 @@ xcos_simulate(scs_m, 4);
                 <link linkend="xcos">xcos: Block diagram editor and GUI for the hybrid simulator</link>
             </member>
             <member>
-                <link linkend="steadycos">steadycos: Finds an equilibrium state of an xcos diagram</link>
+                <link linkend="steadycos">steadycos: Finds an equilibrium state of a Xcos diagram</link>
             </member>
             <member>
-                <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from an xcos diagram</link>
+                <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from a Xcos diagram</link>
             </member>
         </simplelist>
     </refsection>

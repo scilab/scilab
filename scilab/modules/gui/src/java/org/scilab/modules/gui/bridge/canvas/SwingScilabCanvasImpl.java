@@ -240,11 +240,11 @@ public class SwingScilabCanvasImpl {
              * Use MacOSXGLJPanel as OpenGL component for now since GLJPanel will
              * lead to deadlock on deletion.
              */
-            if (OS.get() == OS.MAC) {
-                return new MacOSXGLJPanel();
-            } else {
+            //if (OS.get() == OS.MAC) {
+            //    return new MacOSXGLJPanel();
+            //} else {
                 return new GLJPanel();
-            }
+            //}
         }
     }
 

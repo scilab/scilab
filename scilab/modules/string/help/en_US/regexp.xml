@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="regexp" xml:lang="en">
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA -
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+xmlns:mml="http://www.w3.org/1998/Math/MathML"
+xmlns:db="http://docbook.org/ns/docbook"
+xml:id="regexp" xml:lang="en">
     <refnamediv>
         <refname>regexp</refname>
-        <refpurpose>find a substring that matches the regular expression
-            string
+        <refpurpose>
+            find a substring that matches the regular expression string
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[start]=regexp(input,pattern,[flag])
-            [start,end,match]=regexp(input,pattern,[flag])
-            [start,end]=regexp(input,pattern,[flag])
-            [start,end,match]=regexp(input,pattern,[flag])
+        <synopsis>
+            [start] = regexp(input, pattern, [flag])
+            [start, end] = regexp(input, pattern, [flag])
+            [start, end, match] = regexp(input, pattern, [flag])
+            [start, end, match, foundString] = regexp(input, pattern, [flag])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -37,64 +43,104 @@
             <varlistentry>
                 <term>pattern</term>
                 <listitem>
-                    <para>a character string (under the rules of regular
-                        expression)
-                    </para>
+                <para>
+                    a character string (under the rules of regular expression).
+                </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>start</term>
                 <listitem>
-                    <para>the starting index of each substring of str that matches the
-                        regular expression string pattern
+                    <para>
+                        the starting index of each substring of
+                        <varname>input</varname> that matches the regular
+                        expression string <varname>pattern</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>end</term>
                 <listitem>
-                    <para>the ending index of each substring of str that matches the
-                        regular expression string pattern
+                    <para>
+                        the ending index of each substring of
+                        <varname>input</varname> that matches the regular
+                        expression string <varname>pattern</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>match</term>
                 <listitem>
-                    <para>the text of each substring of str that matches
-                        <literal>pattern</literal>.
+                    <para>
+                        the text of each substring of <varname>input</varname>
+                        that matches <varname>pattern</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>foundString</term>
+                <listitem>
+                    <para>
+                        the captured parenthesized <literal>subpatterns</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>[flag]</term>
                 <listitem>
-                    <para>'o' for matching the pattern once .</para>
+                    <para>
+                        <literal>'o'</literal> for matching the pattern once.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>The rules of regular expression are similar to perl language. For a
-            quick start , see <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
-            For a more in-depth tutorial on , see <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
-            and for the reference page, see <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>
+        <para>
+            The rules of regular expression are similar to Perl language. For a
+            quick start, see
+            <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
+            For a more in-depth tutorial on, see
+            <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
+            and for the reference page, see
+            <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>
         </para>
-        <para>A difference with Perl is that matching a position but no character
-            (for example, with /^/ or /(?=o)/) is a successful match in Perl but not
+        <para>
+            A difference with Perl is that matching a position but no character
+            (for example, with <literal>/^/</literal> or
+            <literal>/(?=o)/</literal>) is a successful match in Perl but not
             in Scilab.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 regexp('xabyabbbz','/ab*/','o')
 regexp('a!','/((((((((((a))))))))))\041/')
 regexp('ABCC','/^abc$/i')
 regexp('ABC','/ab|cd/i')
 [a b c]=regexp('XABYABBBZ','/ab*/i')
- ]]></programlisting>
+
+piString="3.14"
+[a,b,c,piStringSplit]=regexp(piString,"/(\d+)\.(\d+)/")
+disp(piStringSplit(1))
+disp(piStringSplit(2))
+
+[a,b,c,d]=regexp('xabyabbbz','/ab(.*)b(.*)/')
+size(d)
+
+// get host name from URL
+myURL="http://www.scilab.org/download/";
+[a,b,c,d]=regexp(myURL,'@^(?:http://)?([^/]+)@i')
+
+str='foobar: 2012';
+// Using named subpatterns
+[a,b,c,d]=regexp(str,'/(?P<name>\w+): (?P<digit>\d+)/')
+d(1)=="foobar"
+d(2)=="2012"
+
+    ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -103,5 +149,16 @@ regexp('ABC','/ab|cd/i')
                 <link linkend="strindex">strindex</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    A new output argument, foundString, has been added to retrieve subpatterns matches.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -234,15 +234,15 @@
     <ClInclude Include="includes\xmlObjects.h" />
     <ClInclude Include="includes\xml_constants.h" />
     <ClInclude Include="includes\xml_mlist.h" />
-    <ClInclude Include="src\cpp\extraction.hpp" />
-    <ClInclude Include="src\cpp\insertion.hpp" />
+    <ClInclude Include="src\cpp\extraction.hxx" />
+    <ClInclude Include="src\cpp\insertion.hxx" />
     <ClInclude Include="src\cpp\SplitString.hxx" />
     <ClInclude Include="src\cpp\VariableScope.hxx" />
     <ClInclude Include="src\cpp\XMLAttr.hxx" />
     <ClInclude Include="src\cpp\XMLDocument.hxx" />
     <ClInclude Include="src\cpp\XMLElement.hxx" />
     <ClInclude Include="src\cpp\XMLList.hxx" />
-    <ClInclude Include="src\cpp\XMLList_insertion.hpp" />
+    <ClInclude Include="src\cpp\XMLList_insertion.hxx" />
     <ClInclude Include="src\cpp\XMLNodeList.hxx" />
     <ClInclude Include="src\cpp\XMLNodeSet.hxx" />
     <ClInclude Include="src\cpp\XMLNotHandledElement.hxx" />
@@ -270,6 +270,7 @@
     <ClCompile Include="sci_gateway\cpp\sci_percent_XMLList_size.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_print.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlAddNs.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlAppend.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlAsNumber.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlAsText.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlDelete.cpp" />
@@ -281,6 +282,7 @@
     <ClCompile Include="sci_gateway\cpp\sci_xmlGetNsByPrefix.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlGetOpenDocs.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlIsValidObject.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlName.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlNs.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlRead.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlReadStr.cpp" />

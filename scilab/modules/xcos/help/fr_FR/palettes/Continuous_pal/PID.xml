@@ -67,7 +67,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <link linkend="Example_PID">Exemple</link>
+                            <link linkend="Examples_PID">Exemples</link>
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -213,33 +213,48 @@
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../images/PID_img3_eng.gif" align="center" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_internal.xcos" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>
     </refsection>
-    <refsection id="Example_PID">
-        <title>Exemple 1</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_Example.xcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_Example.png" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
-    </refsection>
-    <refsection id="Example_2_PID">
-        <title>Exemple 2</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID2_Example.xcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID2_Example.png" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
+    <refsection id="Examples_PID">
+        <title>Exemples</title>
+        <refsection id="Example_1_PID">
+            <title>Exemple 1</title>
+            <para>
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_1_Example.xcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_1_Example.xcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+            </para>
+        </refsection>
+        <refsection id="Example_2_PID">
+            <title>Exemple 2</title>
+            <para>
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_2_Example.xcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_2_Example.xcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+            </para>
+        </refsection>
+        <refsection id="Example_3_PID">
+            <title>Exemple 3</title>
+            <para>
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_3_Example.xcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_3_Example.xcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+            </para>
+        </refsection>
     </refsection>
 </refentry>

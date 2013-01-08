@@ -13,11 +13,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcspn" xml:lang="en">
     <refnamediv>
         <refname>strcspn</refname>
-        <refpurpose>Get span until character in string</refpurpose>
+        <refpurpose>get span until character in string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>res = strcspn(string_one,string_two)</synopsis>
+        <synopsis>res = strcspn(string_one, string_two)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,19 +25,23 @@
             <varlistentry>
                 <term>string_one</term>
                 <listitem>
-                    <para>A character string or matrix of character strings</para>
+                    <para>
+                        a character string or matrix of character strings.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>string_two</term>
                 <listitem>
-                    <para>A character string or matrix of character strings</para>
+                    <para>
+                        a character string or matrix of character strings.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>matrix.</para>
+                    <para>a matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,12 +49,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>res = strcspn(string_one,string_two)</literal> Scans
-            string_one for the first occurrence of any of the characters that are part
-            of string_two, returning the number of characters of string_one read
+            <code>res = strcspn(string_one,string_two)</code> scans
+            <varname>string_one</varname> for the first occurrence of any of the
+            characters that are part of <varname>string_two</varname>, returning
+            the number of characters of <varname>string_one</varname> read
             before this first occurrence.
         </para>
-        <para>string_one must have same dimensions than string_two or string_one
+        <para>
+            <varname>string_two</varname> must have same dimensions than <varname>string_one</varname> or <varname>string_two</varname>
             must be a string.
         </para>
     </refsection>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="grep" xml:lang="ru">
+    <refnamediv>
+        <refname>grep</refname>
+        <refpurpose>поиск соответствий строки в векторе строк</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>row = grep(haystack, needle )
+            [row, which] = grep(haystack, needle )
+            row = grep(haystack, needle, [flag])
+            [row, which] = grep(haystack, needle, [flag])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>haystack</term>
+                <listitem>
+                    <para>вектор-строка символьных строк.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>needle</term>
+                <listitem>
+                    <para>
+                        символьная строка или вектор-строка символьных строк.
+                        Строка (строки), которая ищется в <varname>haystack</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>row</term>
+                <listitem>
+                    <para>
+                        вектор индексов: строка, где было найдено соответствие
+                        или пустая матрица, если соответствие не найдено.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>which</term>
+                <listitem>
+                    <para>
+                        вектор индексов: индекс найденной строки
+                        <varname>needle</varname> или пустая матрица, если
+                        соответствия не найдено.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        символ (<literal>"r"</literal> для регулярного выражения).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Для каждого элемента <varname>haystack</varname> функция <function>grep</function>
+            ищет соответствие подстроки со строкой в <varname>needle</varname>.
+            Индекс элементов <varname>haystack</varname>, где было найдено
+            соответствие, возвращается в выходном аргументе
+            <varname>row</varname>. Необязательный выходной аргумент
+            <varname>which</varname> даёт индекс первого найденного строкового
+            значения в <varname>needle</varname>.
+        </para>
+        <para>
+            Когда используется третий параметр <varname>flag</varname><literal>="r"</literal>,
+            то ожидается, что <varname>needle</varname> будет строкой
+            регулярного выражения. В этом случае <function>grep</function>
+            использует <varname>needle</varname> в качестве регулярного
+            выражения и сравнивает его с <varname>haystack</varname> в
+            соответствии с правилами регулярного выражения. См. подробности по регулярным выражениям в функции <link linkend="regexp">regexp</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Пример №1</title>
+        <para>
+            В следующем примере мы ищем одну или две строки в тексте, который
+            хранится в переменной <varname>txt</varname>.
+        </para>
+        <programlisting role="example"><![CDATA[ 
+txt=['поиск соответствий строк в векторе строк'
+     'поиск положения символьной строки в другой строке'
+     'Сравнение Строк'];
+grep(txt,'строк')
+grep(txt,['строк' 'Строк'])
+[r,w]=grep(txt,['строк' 'Строк'])
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Пример №2</title>
+        <para>
+            В следующем примере выполняется поиск с помощью регулярных выражений.
+        </para>
+        <programlisting role="example"><![CDATA[ 
+str = ["hat";"cat";"hhat";"chat";"hcat";"ccchat";"at";"dog"]
+grep(str,'/[hc]+at/','r')
+grep(str,'/[hc]?at/','r')
+grep(str,'/cat|dog/','r')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strindex">strindex</link>
+            </member>
+            <member>
+                <link linkend="regexp">regexp</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

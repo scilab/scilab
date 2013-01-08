@@ -82,9 +82,9 @@ subdir = modules/elementary_functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -158,8 +158,7 @@ am__objects_2 = dgesl.lo wpade.lo util.lo dgefa.lo dgbfa.lo dgeco.lo \
 	dgedi.lo dqrdc.lo dqrsl.lo dqrsm.lo hhdml.lo wgeco.lo wgefa.lo \
 	wgesl.lo dpofa.lo
 am__objects_3 = balbak.lo
-am__objects_4 = libscielementary_functions_algo_la-sci_tools.lo \
-	libscielementary_functions_algo_la-finite.lo \
+am__objects_4 = libscielementary_functions_algo_la-finite.lo \
 	libscielementary_functions_algo_la-vfinite.lo \
 	libscielementary_functions_algo_la-cmp.lo \
 	libscielementary_functions_algo_la-vceil.lo \
@@ -355,6 +354,7 @@ DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
+DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -571,7 +571,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-ELEMENTARIES_FUNCTIONS_C_SOURCES = src/c/sci_tools.c \
+ELEMENTARIES_FUNCTIONS_C_SOURCES = \
 src/c/finite.c \
 src/c/vfinite.c \
 src/c/cmp.c \
@@ -1151,7 +1151,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_algo_la-qsort-string.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_algo_la-qsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_algo_la-rea2db.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_algo_la-sci_tools.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_algo_la-scidcopy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_algo_la-vceil.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_algo_la-vfinite.Plo@am__quote@
@@ -1231,13 +1230,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libscielementary_functions_algo_la-sci_tools.lo: src/c/sci_tools.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscielementary_functions_algo_la-sci_tools.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_algo_la-sci_tools.Tpo -c -o libscielementary_functions_algo_la-sci_tools.lo `test -f 'src/c/sci_tools.c' || echo '$(srcdir)/'`src/c/sci_tools.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_algo_la-sci_tools.Tpo $(DEPDIR)/libscielementary_functions_algo_la-sci_tools.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sci_tools.c' object='libscielementary_functions_algo_la-sci_tools.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_algo_la-sci_tools.lo `test -f 'src/c/sci_tools.c' || echo '$(srcdir)/'`src/c/sci_tools.c
 
 libscielementary_functions_algo_la-finite.lo: src/c/finite.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscielementary_functions_algo_la-finite.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_algo_la-finite.Tpo -c -o libscielementary_functions_algo_la-finite.lo `test -f 'src/c/finite.c' || echo '$(srcdir)/'`src/c/finite.c

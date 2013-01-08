@@ -43,9 +43,18 @@
         </para>
         <para>
             <note>
-                Note that <literal>clc([nblines])</literal> cannot be used under Unix/Linux platforms when Scilab used in no window mode.
+                Note that <literal>clc([nblines])</literal> cannot be used under Unix/Linux platforms when Scilab used in cli or adv-cli (no window) modes.
             </note>
         </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
+rand(10,10)
+clc();
+rand(10,10)
+clc(5); // Delete the 5 previous lines
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

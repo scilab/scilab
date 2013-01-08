@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-05-06 00:28+0000\n"
-"Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
+"PO-Revision-Date: 2012-10-29 12:09+0000\n"
+"Last-Translator: Henrique Andrade <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -31,7 +31,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Não foi possível ler o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"

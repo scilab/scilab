@@ -118,7 +118,7 @@
         <title>例</title><literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>のxcosダイアグラム
         <mediaobject>
             <imageobject>
-                <imagedata align="center" fileref="../../images/batch_simulation.png"/>
+                <imagedata align="center" fileref="../../../demos/batch_simulation.xcos"/>
             </imageobject>
         </mediaobject>
         <programlisting role="example"><![CDATA[ 

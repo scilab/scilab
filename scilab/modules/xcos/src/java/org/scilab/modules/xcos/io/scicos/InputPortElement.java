@@ -191,7 +191,6 @@ public final class InputPortElement extends AbstractElement<InputPort> {
         // The number of column of the port
         int nbColumns;
         if (dataColumns.getRealPart() != null) {
-
             try {
                 nbColumns = (int) dataColumns.getRealPart()[alreadyDecodedCount][0];
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -247,7 +246,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
 
         final ScilabString labels = (ScilabString) graphics.get(GRAPHICS_INLABEL_INDEX);
 
-        isColumnDominant = styles.getHeight() >= styles.getWidth();
+        isColumnDominant = labels.getHeight() >= labels.getWidth();
         indexes = getIndexes(alreadyDecodedCount, isColumnDominant);
 
         if (canGet(labels, indexes)) {

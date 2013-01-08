@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ilib_gen_cleaner">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" scilab:needs-examples="no" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ilib_gen_cleaner">
     <refnamediv>
         <refname>ilib_gen_cleaner</refname>
         <refpurpose>utility for ilib_build: generates a cleaner file</refpurpose>
@@ -53,6 +53,9 @@
         <para>
             This is internal function used by <literal>ilib_build and ilib_for_link</literal>
             This function generates a cleaner file.
+        </para>
+        <para>
+            <warning>This function should not be used directly.</warning>
         </para>
         <para>
             <emphasis role="bold">Only use this function is you know what you are doing (it is a semi-private function).</emphasis>

@@ -131,7 +131,7 @@ case 'define' then
          sci2exp(model.nzcross);
          sci2exp(model.firing);'y';'n'];
   gr_i=['xstringb(orig(1),orig(2),''GENERIC'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([4 2],model,label,gr_i)
 end
 endfunction
 

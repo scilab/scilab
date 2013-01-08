@@ -13,11 +13,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="tokens">
     <refnamediv>
         <refname>tokens</refname>
-        <refpurpose>returns the tokens of a character string.  </refpurpose>
+        <refpurpose>returns the tokens of a character string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>T=tokens(str [,delimiter])</synopsis>
+        <synopsis>T = tokens(str [,delimiter])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,19 +25,25 @@
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                    <para>A character string. The string where to search the tokens.</para>
+                    <para>
+                        a character string. The string where to search the tokens.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>delimiter</term>
                 <listitem>
-                    <para>(optional) a character or a vector of characters. The tokens delimeters.</para>
+                    <para>
+                        (optional) a character or a vector of characters. The tokens delimiters.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>T</term>
                 <listitem>
-                    <para>column vector of found tokens</para>
+                    <para>
+                        a column vector of found tokens.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,9 +51,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>T=tokens(str [,delimiter]) </literal> searches the tokens included in the
-            string <literal>str</literal>. The <literal>delimiter</literal> default value is [" ",&lt;Tab&gt;]
-            where &lt;Tab&gt; stands for <literal>ascii(9)</literal>.
+            <code>T = tokens(str [,delimiter]) </code> searches the tokens
+            included in the string <varname>str</varname>. The
+            <varname>delimiter</varname> default value is <literal>[" ",&lt;Tab&gt;]</literal>
+            where <literal>&lt;Tab&gt;</literal> stands for <code>ascii(9)</code>.
         </para>
     </refsection>
     <refsection>

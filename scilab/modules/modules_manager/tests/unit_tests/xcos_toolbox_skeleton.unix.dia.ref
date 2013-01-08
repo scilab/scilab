@@ -17,7 +17,9 @@ exec("TMPDIR/xcos_toolbox_skeleton/builder.sce");
 Building macros...
 -- Creation of [xcos_toolbox_skeletonlib] (Macros) --
 genlib: Processing file: TBX_MUT_STYLE.sci
+genlib: Processing file: TBX_SUM_sim.sci
 genlib: Processing file: TBX_SUM_c.sci
+genlib: Processing file: TBX_SUM_sci.sci
 genlib: Regenerate names and lib
 Building blocks...
 Building sources...

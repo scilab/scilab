@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-05-30 08:55+0000\n"
+"PO-Revision-Date: 2012-11-27 14:03+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16043)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -375,6 +375,12 @@ msgstr "没有发现模块 %s。\n"
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr "出错：未找到有效的以“%s”编码的模块文件 %s（不以“%s”编码）。\n"
+
+#, c-format
+msgid ""
+"%s: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for "
+"element wise operation \n"
+msgstr "%s：\"%d.%s ...\"被解析为\"%d.0%s ...\"。 点乘操作请使用\"%d .%s ...\" \n"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "未定义 SCI 环境变量。\n"

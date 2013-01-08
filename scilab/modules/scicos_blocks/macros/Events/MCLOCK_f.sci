@@ -137,7 +137,7 @@ case 'set' then
 				ct=[10,-1],from=[11,2],to=[7,1])  
    x=scicos_block()
     x.gui='MCLOCK_f'
-    x.graphics.sz=[2,2]
+    x.graphics.sz=[3,2]
     x.graphics.gr_i=gr_i
     x.model.sim='csuper'
     x.model.evtout=[1;1]

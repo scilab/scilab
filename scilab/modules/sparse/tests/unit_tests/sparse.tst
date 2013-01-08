@@ -776,3 +776,7 @@ a=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],1:9,[6 6]);
 b=sparse([1 6;1 2;5 5],[10;-1;-1],[5 6]);
 if a==b<>%f then pause,end
 if a<>b<>%t then pause,end
+
+a=sparse([%f %t %f %t]);
+b=sparse([%t %f %t %f]);
+assert_checkequal(~a, b);

@@ -60,6 +60,17 @@
             <literal>b</literal>).
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+function y=f(z)
+  y = z^(3 + %pi * %i)
+endfunction
+
+intl(1,2,1+%i, 3, f)
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
