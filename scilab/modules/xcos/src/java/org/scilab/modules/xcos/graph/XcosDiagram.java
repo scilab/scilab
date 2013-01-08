@@ -2218,7 +2218,7 @@ public class XcosDiagram extends ScilabGraph {
         }
 
         if (GraphicsEnvironment.isHeadless()) {
-            System.err.printf("%s: %s: %s", "warnCell", uid, message);
+            System.err.printf("%s at %s\n    %s: %s\n", "warnCell", getRootDiagram().getTitle(), uid, message);
             return;
         }
 
