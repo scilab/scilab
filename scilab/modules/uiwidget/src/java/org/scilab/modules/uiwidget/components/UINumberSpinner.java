@@ -32,15 +32,19 @@ public class UINumberSpinner extends UIComponent {
     private static final String defaultIntPattern = ((JSpinner.NumberEditor) new JSpinner(new SpinnerNumberModel(0, 0, 0, 0)).getEditor()).getFormat().toPattern();
 
     private JSpinner spinner;
+    private SpinnerNumberModel model;
     private ChangeListener listener;
     private String action;
+    private String type;
+    private String unit;
 
     public UINumberSpinner(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
     public Object newInstance() {
-        spinner = new JSpinner(new SpinnerNumberModel());
+        model = new SpinnerNumberModel();
+        spinner = new JSpinner(model);
 
         return spinner;
     }
@@ -48,8 +52,10 @@ public class UINumberSpinner extends UIComponent {
     @UIComponentAnnotation(attributes = {"type", "value", "min", "max", "step", "unit"})
     public Object newInstance(String type, String value, String min, String max, String step, String unit) {
         Number v, mi, ma, s;
+        this.unit = unit;
 
         if (type != null && type.equalsIgnoreCase("double")) {
+            this.type = "double";
             if (min == null || min.isEmpty()) {
                 mi = Double.MIN_VALUE;
             } else {
@@ -87,11 +93,13 @@ public class UINumberSpinner extends UIComponent {
                 }
             }
 
-            spinner = new JSpinner(new SpinnerNumberModel(v, (Double) mi, (Double) ma, s));
+            model = new SpinnerNumberModel(v, (Double) mi, (Double) ma, s);
+            spinner = new JSpinner(model);
             if (unit != null && !unit.isEmpty()) {
                 spinner.setEditor(new JSpinner.NumberEditor(spinner, defaultDoublePattern + " " + unit));
             }
         } else {
+            this.type = "integer";
             if (min == null || min.isEmpty()) {
                 mi = Integer.MIN_VALUE;
             } else {
@@ -128,13 +136,127 @@ public class UINumberSpinner extends UIComponent {
                     s = 1;
                 }
             }
-            spinner = new JSpinner(new SpinnerNumberModel(v, (Integer) mi, (Integer) ma, s));
+
+            model = new SpinnerNumberModel(v, (Integer) mi, (Integer) ma, s);
+            spinner = new JSpinner(model);
             if (unit != null && !unit.isEmpty()) {
                 spinner.setEditor(new JSpinner.NumberEditor(spinner, defaultIntPattern + " " + unit));
             }
         }
 
         return spinner;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        if (type != null && !this.type.equalsIgnoreCase(type)) {
+            if (type.equalsIgnoreCase("double")) {
+                this.type = "double";
+                double min = (double) ((Integer) model.getMinimum());
+                double max = (double) ((Integer) model.getMaximum());
+                double step = (double) ((Integer) model.getStepSize());
+                double value = (double) ((Integer) model.getValue());
+                model = new SpinnerNumberModel(value, min, max, step);
+                spinner.setModel(model);
+            } else {
+                this.type = "integer";
+                int min = (int) (double) ((Double) model.getMinimum());
+                int max = (int) (double) ((Double) model.getMaximum());
+                int step = (int) (double) ((Double) model.getStepSize());
+                int value = (int) (double) ((Double) model.getValue());
+                model = new SpinnerNumberModel(value, min, max, step);
+                spinner.setModel(model);
+            }
+        }
+    }
+
+    public void setValue(double value) {
+        if (type.equals("double")) {
+            spinner.setValue(value);
+        } else {
+            spinner.setValue(new Integer((int) value));
+        }
+    }
+
+    public double getValue() {
+        if (type.equals("double")) {
+            return (Double) spinner.getValue();
+        } else {
+            return (Integer) spinner.getValue();
+        }
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        if (type.equals("double")) {
+            if (unit != null && !unit.isEmpty()) {
+                spinner.setEditor(new JSpinner.NumberEditor(spinner, defaultDoublePattern + " " + unit));
+            } else {
+                spinner.setEditor(new JSpinner.NumberEditor(spinner, defaultDoublePattern));
+            }
+        } else {
+            if (unit != null && !unit.isEmpty()) {
+                spinner.setEditor(new JSpinner.NumberEditor(spinner, defaultIntPattern + " " + unit));
+            } else {
+                spinner.setEditor(new JSpinner.NumberEditor(spinner, defaultIntPattern));
+            }
+        }
+
+        this.unit = unit;
+    }
+
+    public void setMin(double value) {
+        if (type.equals("double")) {
+            model.setMinimum(value);
+        } else {
+            model.setMinimum(new Integer((int) value));
+        }
+    }
+
+    public double getMin() {
+        if (type.equals("double")) {
+            return (Double) model.getMinimum();
+        } else {
+            return (int) (Integer) model.getMinimum();
+        }
+    }
+
+    public void setMax(double value) {
+        if (type.equals("double")) {
+            model.setMaximum(value);
+        } else {
+            model.setMaximum(new Integer((int) value));
+        }
+    }
+
+    public double getMax() {
+        if (type.equals("double")) {
+            return (Double) model.getMaximum();
+        } else {
+            return (int) (Integer) model.getMaximum();
+        }
+    }
+
+    public void setStep(double value) {
+        if (type.equals("double")) {
+            model.setStepSize(value);
+        } else {
+            model.setStepSize(new Integer((int) value));
+        }
+    }
+
+    public double getStep() {
+        if (type.equals("double")) {
+            return (Double) model.getStepSize();
+        } else {
+            return (int) (Integer) model.getStepSize();
+        }
     }
 
     public void removeListener() {
