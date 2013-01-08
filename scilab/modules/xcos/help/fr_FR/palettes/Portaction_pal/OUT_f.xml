@@ -213,7 +213,7 @@
         <para/>
         <mediaobject>
             <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/fr_FR/out_f_diagram_fr_FR.png"/>
+                <imagedata fileref="../../../../examples/portaction_pal/fr_FR/OUT_f_fr_FR.xcos"/>
             </imageobject>
         </mediaobject>
     </refsection>

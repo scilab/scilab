@@ -13,8 +13,13 @@ function [k1,k2]=getmark()
 //and mark size. 
   [lhs,rhs]=argn(0)
   k1=[];k2=[];
+
+  warnobsolete('ged', '5.5.0');
+
   win=max(winsid()+1);
   f=scf(win)
+
+
 
   nbMarks = 14;
   nbSizes = 6;

@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nojvm module"
             VALUE "FileVersion", "5, 5, 0, 0"
             VALUE "InternalName", "nojvm module"
-            VALUE "LegalCopyright", "Copyright (C) 2012"
+            VALUE "LegalCopyright", "Copyright (C) 2013"
             VALUE "OriginalFilename", "nolibjvm.dll"
             VALUE "ProductName", " nojvm"
             VALUE "ProductVersion", "5, 5, 0, 0"

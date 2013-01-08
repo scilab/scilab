@@ -311,7 +311,7 @@ Simulated Annealing:
 	+ compute_initial_temp - Compute the initial temperature of the simulated annealing
 	+ neigh_func_csa       - The classical neighborhood relationship for the simulated annealing 
 	+ neigh_func_default   - Computes a neighbor of a given point
-	+ neigh_func_fsa       - The Fast Simulated Annealing neghborhood relationship 
+	+ neigh_func_fsa       - The Fast Simulated Annealing neighborhood relationship 
 	+ neigh_func_vfsa      - The Very Fast Simulated Annealing neighborhood relationship 
 	+ optim_sa             - Simulated Annealing optimization method 
 	+ temp_law_csa         - The classical temperature decrease law

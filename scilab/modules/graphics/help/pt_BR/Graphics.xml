@@ -569,12 +569,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xbasr</term>
-                <listitem>
-                    <para>desenha novamente uma janela de gráficos</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>replot</term>
                 <listitem>
                     <para>redesenha a janela de gráficos corrente com novas

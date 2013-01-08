@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="matfile_varreadnext">
     <refnamediv>
         <refname>matfile_varreadnext</refname>
-        <refpurpose>Reads next variable in a Matlab V5 binary MAT-file.</refpurpose>
+        <refpurpose>Reads next variable in a Matlab binary MAT-file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -69,6 +69,30 @@
         <para>
             Reads next variable in a Matlab binary MAT-file opened by <link linkend="matfile_open">matfile_open</link>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A = rand(10,10);
+B = sprand(10,10,0.1);
+C = "foo";
+D = "bar";
+savematfile('test_matfile.mat','A','B','C','D','-v6');
+clear();
+fd = matfile_open("test_matfile.mat");
+//-- Loop on the stored variables
+while %t
+   [Name, Value, Type] = matfile_varreadnext(fd);
+   if Name == "" then
+      break;
+   else
+      disp("The variable " + Name + " has type " + string(Type) + " and contains:");
+      disp(Value);
+   end
+end
+matfile_close(fd);
+
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

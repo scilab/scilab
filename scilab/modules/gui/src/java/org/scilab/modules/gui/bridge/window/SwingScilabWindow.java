@@ -24,6 +24,7 @@ import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.docking.defaults.DefaultDockingStrategy;
 import org.flexdock.docking.drag.effects.EffectsManager;
 import org.flexdock.docking.drag.preview.GhostPreview;
+import org.flexdock.docking.event.hierarchy.DockingPortTracker;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
@@ -399,7 +400,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             tab.close();
             DockingManager.close(tab);
         }
-        if (getDockingPort().getDockables().isEmpty()) {
+
+        if (getDockingPort() == null || getDockingPort().getDockables().isEmpty()) {
             // remove xxxBars
             if (toolBar != null) {
                 ((SwingScilabToolBar) toolBar).close();
@@ -411,12 +413,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             // clean all
             this.removeAll();
             close();
-
-            // disable docking port
-            ActiveDockableTracker.getTracker(this).setActive(null);
-            sciDockingPort.removeDockingListener(sciDockingListener);
-            sciDockingPort = null;
-            sciDockingListener = null;
         } else {
             /* Make sur a Tab is active */
             Set<SwingScilabTab> docks = sciDockingPort.getDockables();
@@ -538,6 +534,14 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     public void close() {
         try {
             dispose();
+            // disable docking port
+            ActiveDockableTracker.getTracker(this).setActive(null);
+            if (sciDockingPort != null) {
+                sciDockingPort.removeDockingListener(sciDockingListener);
+                sciDockingPort = null;
+                sciDockingListener = null;
+            }
+            DockingPortTracker.remove(this);
         } catch (IllegalStateException e) {
             enableInputMethods(false);
         }

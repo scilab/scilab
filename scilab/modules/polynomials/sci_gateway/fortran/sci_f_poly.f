@@ -10,16 +10,23 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       INCLUDE 'stack.h'
       integer id(nsiz)
-      integer iadr, sadr
+      integer iadr, sadr, w
       integer blank,racine,coeff
       logical roots,ref
+      integer r(5)
+      integer c(5)
+      integer size
+      character*256 tmpmsg
+c
       data blank/40/,racine/27/,coeff/12/
+      data r/27, 24, 24, 29, 28/
+      data c/12, 24, 14, 15, 15/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
       lw=lstk(top+1)
-
+      w = 0
       if(lhs.ne.1) then
          call error(41)
          return
@@ -51,6 +58,10 @@ c
             call error(55)
             return
          endif
+         size = istk(il+5)-1
+         if (size.ne.5 .and. size.ne.1) then
+            w = 1
+         endif
          il=il+5+istk(il+1)*istk(il+2)
          if(abs(istk(il)).ne.racine) then
             roots=.false.
@@ -60,8 +71,23 @@ c
                return
             endif
          endif
-      else
+         if(w.eq.0) then
+            do 22 i=1,size
+                if(c(i).ne.abs(istk(il+i-1)).and.
+     $             r(i).ne.abs(istk(il+i-1))) then
+                    w = 1
+                endif
+ 22         continue
+         endif
+       else
         roots=.true.
+      endif
+
+      if(w.eq.1) then
+        call msgstxt('Warning:')
+        call msgstxt('This usage of 3rd argument of poly is obsolete.')
+        call msgstxt('It will be more strict in scilab 6.0.0.')
+        call msgstxt('Please use roots, coeff, r or c instead.')
       endif
 
 c     formal variable
@@ -93,7 +119,7 @@ c     formal variable
                return
             endif
             id(i)=istk(il+5+i)
-         else 
+         else
 c     .     fill with space
             id(i)=blank
          endif

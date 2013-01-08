@@ -47,7 +47,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            This Scilab function is used to get the position (<varname>x</varname>,<varname>y</varname>) of each input port of an Xcos block.
+            This Scilab function is used to get the position (<varname>x</varname>,<varname>y</varname>) of each input port of a Xcos block.
         </para>
     </refsection>
     <refsection>

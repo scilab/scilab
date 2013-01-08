@@ -1,4 +1,4 @@
-﻿                    Changes between version 5.4.0 and 5.4.1
+                    Changes between version 5.4.0 and 5.4.1
                     =======================================
 
 Syntax changes
@@ -47,6 +47,30 @@ Removed functions
 
 * ricc_old() removed. Use ricc() instead.
 
+* xbasr() removed. Automatically managed by Scilab now.
+
+
+Obsolete functions
+===================
+
+* fit_dat() tagged as obsolete. Will be removed for Scilab 5.4.2.
+  Use datafit() instead. See bug #9306.
+
+* getlinestyle() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use ged() instead.
+
+* getmark() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use ged() instead.
+
+* getsymbol() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use ged() instead.
+
+* getfont() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use ged() instead.
+
+* xsetm() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use set(), get() and ged() instead.
+
 
 Xcos
 =====
@@ -54,6 +78,14 @@ Xcos
 * New Flowmeter block in the thermohydraulics palette.
 
 * Update the Palette icons and the rendering of some blocks.
+
+* xcosPalGenerateAllIcons added as an Xcos palette utility function.
+
+* Add a new ODE solver : LSodar. Automatically switches methods to efficiently solve both stiff and nonstiff problems. Includes a rootfinding feature.
+
+* Add two new Fixed-size step ODE solvers : Dormand-Prince 4(5) then Runge-Kutta 4(5). Included in the CVode package, so benefit from the rootfinding feature.
+
+* Add an implicit Fixed-size stop ODE solver : Implicit Runge-Kutta 4(5). Also benefits from the CVode rootfinding feature.
 
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
@@ -78,13 +110,28 @@ Xcos
 
 * Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
 
+* Bug #12101 fixed - Port ordering was not preserved on parameters change.
+
 * Bug #12014 fixed - dep_ut help was wrongly detailed.
+
+* Bug #12031 fixed - Changes in context of superblock did not always have
+                     effect.
+
+* Bug #12162 fixed - tbx_build_blocks did not report errors.
 
 
 Documentation
 ==============
 
 * Add the 'scilab:needs-examples="no"' tag to specify that the help page does not need any example.
+
+
+Compilation
+============
+
+* Enforce a minimal version of Scirenderer (1.0.3).
+
+* Enforce a minimal version of Flexdock (1.2.1).
 
 
 Bug fixes
@@ -120,7 +167,13 @@ Bug fixes
 
 * Bug #9005 fixed - The bitset function did not have any tests.
 
+* Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
+                    created.
+
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
+
+* Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
+                     the last color in colormap.
 
 * Bug #11474 fixed - save_format help page was still refering to the old save
                      format. Use the SEP #64 content.
@@ -137,6 +190,8 @@ Bug fixes
                     containing a \E.
 
 * Bug #11962 fixed - event_handler may be called on wrong figure_id.
+
+* Bug #11965 fixed - Export to SVG converted texts in shapes.
 
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
@@ -156,6 +211,8 @@ Bug fixes
 
 * Bug #12022 fixed - ftuneq had a bad example.
 
+* Bug #12028 fixed - The pair drawlater/drawnow did not work as expected.
+
 * Bug #12033 fixed - assert_checkalmostequal was failing with two %inf values.
 
 * Bug #12043 fixed - Fix a typo in the ATOMS module help pages.
@@ -174,9 +231,27 @@ Bug fixes
 
 * Bug #12087 fixed - profile help page did not mention add_profiling.
 
+* Bug #12097 fixed - Scilab wrongly detected DLL platform information.
+
 * Bug #12115 fixed - phaseplot(frq,db,phi) did not work.
 
 * Bug #12119 fixed - bar and barh had wrong x/y bounds.
+
+* Bug #12120 fixed - eigs was broken for complex sparse matrices.
+
+* Bug #12135 fixed - stacksize('max') failed silently.
+
+* Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
+
+* Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
+
+* Bug #12166 fixed - There was a bad label with drawaxis.
+
+* Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
+
+* Bug #12184 fixed - Performances of the function 'derivat' improved.
+
+* Bug #12190 fixed - Description of sprspn updated in help page.
 
 
                     Changes between version 5.3.3 and 5.4.0

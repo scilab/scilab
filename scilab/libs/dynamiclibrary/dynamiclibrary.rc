@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "dynamiclibrary library for Scilab 5.x"
             VALUE "FileVersion", "5, 5, 0, 0"
             VALUE "InternalName", "dynamiclibrary library for Scilab 5.x"
-            VALUE "LegalCopyright", "Copyright (C) 2012"
+            VALUE "LegalCopyright", "Copyright (C) 2013"
             VALUE "OriginalFilename", "dynamiclibrary.dll"
             VALUE "ProductName", "dynamiclibrary library for Scilab 5.x"
             VALUE "ProductVersion", "5, 5, 0, 0"

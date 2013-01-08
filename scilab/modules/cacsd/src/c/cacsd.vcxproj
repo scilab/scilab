@@ -194,6 +194,13 @@ lib /DEF:"$(ProjectDir)slicot_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\c\sci_dhinf.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_hinf.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_linmeq.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_mucomp.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_ricc2.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_rrankqr.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_zrankqr.c" />
     <ClCompile Include="DllmainCacsd.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_cacsd0.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_cacsd1.c" />

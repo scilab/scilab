@@ -440,12 +440,14 @@ static char **getStringsFromLines(const char **lines, int sizelines,
             for (j = 0; j < m; j++)
             {
 
-                if (decimal)
+                if (!decimal)
                 {
                     results[i + n * j] = strdup(lineStrings[j]);
                 }
                 else
                 {
+                    /* Proceed to the remplacement of the provided decimal to the default on
+                     * usually, it converts "," => "." */
                     results[i + n * j] = csv_strsubst(lineStrings[j], decimal, getCsvDefaultDecimal());
                 }
 

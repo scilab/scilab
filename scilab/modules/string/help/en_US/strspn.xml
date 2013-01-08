@@ -52,7 +52,7 @@
             <code>res = strspn(str1, str2)</code> returns the length of the initial portion of <varname>str1</varname> which consists only of characters that are part of <varname>str2</varname>.
         </para>
         <para>
-            <varname>str2</varname> must have same dimensions than <varname>str1</varname> or <varname>str2</varname> must be a string.
+            <varname>str1</varname> must have same dimensions as <varname>str2</varname> or <varname>str2</varname> must be 1x1 string.  The output will be the same dimensions as <varname>str1</varname> in both cases.
         </para>
     </refsection>
     <refsection>

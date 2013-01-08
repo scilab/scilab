@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="matfile_listvar">
     <refnamediv>
         <refname>matfile_listvar</refname>
-        <refpurpose>Lists variables of a Matlab V5 binary MAT-file.</refpurpose>
+        <refpurpose>Lists variables of a Matlab binary MAT-file.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -55,6 +55,24 @@
         <para>
             Lists variables of a Matlab binary MAT-file opened by <link linkend="matfile_open">matfile_open</link>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A = rand(10,10);
+B = sprand(100,100,0.1);
+C = "foo";
+D = "bar";
+savematfile('test_matfile.mat','A','B','C','D','-v6');
+clear();
+fd = matfile_open("test_matfile.mat");
+[name, classes, types]=matfile_listvar(fd);
+matfile_close(fd);
+
+for i=1:size(name,"*") do
+disp("The variable " + name(i) + " has type " + string(types(i)) + " and class " + string(classes(i)))
+end
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

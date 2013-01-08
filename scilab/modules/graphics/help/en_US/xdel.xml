@@ -33,9 +33,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>xdel</function> deletes the graphics windows
-            <varname>win_nums</varname> or the current graphics window if no
-            argument is given.
+            <function>xdel</function> deletes the graphics windows whose numbers
+            are included in the vector <varname>win_nums</varname> or the current
+            graphics window if no argument is given.
         </para>
     </refsection>
     <refsection>

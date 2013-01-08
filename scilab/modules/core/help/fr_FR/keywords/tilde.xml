@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="tilde">
+    <refnamediv>
+        <refname>tilde</refname>
+        <refpurpose>(~) négation logique  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>~m</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>m  </term>
+                <listitem>
+                    <para>matrice booléenne
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>~m</literal> est la négation logique élément-par-élement de tous les éléments de la matrice booléenne <literal>m</literal>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="not">not</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

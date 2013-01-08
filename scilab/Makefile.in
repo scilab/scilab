@@ -658,7 +658,7 @@ scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $
 LANG_DOMAIN = scilab
 TARGETS_ALL = macros $(am__append_4) $(am__append_5)
 
-# check is performed with scilab
+# check is performed with scilab
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
 TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 rootdir = $(pkgdatadir)/etc/
@@ -703,6 +703,7 @@ valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
 # How help files look like.
 DOCMASK = scilab_*_help.jar
+DOCIMAGES = scilab_images.jar
 
 # Path to builded files
 PATHTOHELPFILES = modules/helptools/jar/
@@ -1849,6 +1850,12 @@ doc-ru_RU:
 doc-ja_JP:
 	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=ja_JP
 
+# Regenerate all images
+doc-images:
+	rm -rf $(top_srcdir)/modules/helptools/images/
+	mkdir $(top_srcdir)/modules/helptools/images/
+	$(MAKE) doc
+
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@	@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
@@ -2053,7 +2060,7 @@ codecoverage-java: clean-reports
 @BUILD_HELP_TRUE@	@$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
 @BUILD_HELP_TRUE@	echo $(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
 @BUILD_HELP_TRUE@	if ls -lLd $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) >/dev/null 2>&1; then \
-@BUILD_HELP_TRUE@		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK); do \
+@BUILD_HELP_TRUE@		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) $(top_builddir)/$(PATHTOHELPFILES)/$(DOCIMAGES); do \
 @BUILD_HELP_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES)" ; \
 @BUILD_HELP_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES) ; \
 @BUILD_HELP_TRUE@		done; \

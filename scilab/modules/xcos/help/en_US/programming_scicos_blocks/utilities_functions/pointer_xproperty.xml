@@ -48,7 +48,7 @@
         <para>
         </para>
         <programlisting role="example"><![CDATA[ 
-[xprop]=pointer_xproperty
+[xprop]=pointer_xproperty()
  ]]></programlisting>
     </refsection>
     <refsection id="Parameters_pointer_xproperty">

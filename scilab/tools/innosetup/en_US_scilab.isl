@@ -139,7 +139,7 @@ en_US.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and
 ;
 en_US.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab (Default library will be used).
 en_US.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library (Default library will be used).
-en_US.NextButtonClickwpReadyMsg3 =Impossible to download CHM files(files will be not installed).
+en_US.NextButtonClickwpReadyMsg3 =Impossible to download CHM files (files will be not installed).
 ;
 en_US.DescriptionAtoms =ATOMS
 ;

@@ -169,7 +169,7 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/tree.c \
 	src/c/il_state.c src/c/il_sim.c src/c/createblklist.c \
 	src/c/var2sci.c src/c/copyvarfromlistentry.c \
 	src/c/MlistGetFieldNumber.c src/c/extractblklist.c \
-	src/fortran/scitovv.f src/fortran/vvtosci.f \
+	src/c/lsodar.c src/fortran/scitovv.f src/fortran/vvtosci.f \
 	src/fortran/skipvars.f src/fortran/coselm.f \
 	src/fortran/scitod.f src/fortran/sctree.f src/fortran/scierr.f \
 	src/fortran/ftree2.f src/fortran/ftree3.f \
@@ -191,7 +191,8 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/tree.c \
 @XCOS_TRUE@	libsciscicos_algo_la-var2sci.lo \
 @XCOS_TRUE@	libsciscicos_algo_la-copyvarfromlistentry.lo \
 @XCOS_TRUE@	libsciscicos_algo_la-MlistGetFieldNumber.lo \
-@XCOS_TRUE@	libsciscicos_algo_la-extractblklist.lo
+@XCOS_TRUE@	libsciscicos_algo_la-extractblklist.lo \
+@XCOS_TRUE@	libsciscicos_algo_la-lsodar.lo
 @XCOS_TRUE@am__objects_2 = scitovv.lo vvtosci.lo skipvars.lo coselm.lo \
 @XCOS_TRUE@	scitod.lo sctree.lo scierr.lo ftree2.lo ftree3.lo \
 @XCOS_TRUE@	list2vars.lo ftree4.lo scitoi.lo scifunc.lo
@@ -872,7 +873,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@src/c/var2sci.c \
 @XCOS_TRUE@src/c/copyvarfromlistentry.c \
 @XCOS_TRUE@src/c/MlistGetFieldNumber.c \
-@XCOS_TRUE@src/c/extractblklist.c
+@XCOS_TRUE@src/c/extractblklist.c \
+@XCOS_TRUE@src/c/lsodar.c
 
 @XCOS_TRUE@SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
 @XCOS_TRUE@src/fortran/vvtosci.f \
@@ -1217,6 +1219,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-il_sim.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-il_state.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-import.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-lsodar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-sciblk2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-sciblk4.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_algo_la-scicos.Plo@am__quote@
@@ -1416,6 +1419,13 @@ libsciscicos_algo_la-extractblklist.lo: src/c/extractblklist.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/extractblklist.c' object='libsciscicos_algo_la-extractblklist.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciscicos_algo_la-extractblklist.lo `test -f 'src/c/extractblklist.c' || echo '$(srcdir)/'`src/c/extractblklist.c
+
+libsciscicos_algo_la-lsodar.lo: src/c/lsodar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciscicos_algo_la-lsodar.lo -MD -MP -MF $(DEPDIR)/libsciscicos_algo_la-lsodar.Tpo -c -o libsciscicos_algo_la-lsodar.lo `test -f 'src/c/lsodar.c' || echo '$(srcdir)/'`src/c/lsodar.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_algo_la-lsodar.Tpo $(DEPDIR)/libsciscicos_algo_la-lsodar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/lsodar.c' object='libsciscicos_algo_la-lsodar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsciscicos_algo_la-lsodar.lo `test -f 'src/c/lsodar.c' || echo '$(srcdir)/'`src/c/lsodar.c
 
 libsciscicos_la-noscicos.lo: src/c/noscicos/noscicos.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsciscicos_la-noscicos.lo -MD -MP -MF $(DEPDIR)/libsciscicos_la-noscicos.Tpo -c -o libsciscicos_la-noscicos.lo `test -f 'src/c/noscicos/noscicos.c' || echo '$(srcdir)/'`src/c/noscicos/noscicos.c
