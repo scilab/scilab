@@ -239,6 +239,9 @@ Bug fixes
 
 * Bug #12021 fixed - Improve the help page of eigs.
 
+* Bug #12123 fixed - Provide a more comprensible error message in some cases of
+                     of usage of eigs.
+
 * Bug #12135 fixed - stacksize('max') failed silently.
 
 * Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
@@ -253,7 +256,7 @@ Bug fixes
 
 * Bug #12190 fixed - Description of sprspn updated in help page.
 
-* Bug #12204 fixed - Fix a typo in the French localization
+* Bug #12204 fixed - Fix a typo in the French localization.
 
 
                     Changes between version 5.3.3 and 5.4.0

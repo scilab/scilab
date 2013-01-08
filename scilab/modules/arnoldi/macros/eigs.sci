@@ -357,8 +357,8 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     end
     [mB, nB] = size(%_B);
 
-    //Check if B is a square matrix
-    if(mB * nB <> 0 & (mB <> mA | nB <> nA))
+    //Check if B has same size as A
+    if(mB <> mA | mB <> nB)
         error(msprintf(gettext("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), "eigs", 2));
     end
 
