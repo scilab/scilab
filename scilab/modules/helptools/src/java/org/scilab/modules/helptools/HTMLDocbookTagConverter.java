@@ -1108,7 +1108,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleLatex(final Map<String, String> attributes, final String contents) throws SAXException {
-        File f = new File(outName + imageDir, LATEXBASENAME + (latexCompt++) + ".png");
+        File f = new File(outImages + "/" + imageDir, LATEXBASENAME + (latexCompt++) + ".png");
         String parent = getParentTagName();
         if (parent.equals("para") && !attributes.containsKey("style")) {
             attributes.put("style", "text");
