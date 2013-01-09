@@ -138,6 +138,19 @@ public class UIComboBox extends UIComponent {
         }
     }
 
+    public String[] getItems() {
+        if (!vector.isEmpty()) {
+            String[] arr = new String[vector.size()];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = vector.get(i).toString();
+            }
+
+            return arr;
+        }
+
+        return null;
+    }
+
     private void resetIndex() {
         boolean old = onchangeEnable;
         onchangeEnable = false;
