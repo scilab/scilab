@@ -694,7 +694,10 @@ assign			"="
       unput(yytext[yyleng -1]);
       if (last_token == ID
           || last_token == RPAREN
-          || last_token == QUOTE)
+          || last_token == QUOTE
+          || last_token == VARINT
+          || last_token == VARFLOAT
+          || last_token == NUM)
       {
           return scan_throw(COMMA);
       }
