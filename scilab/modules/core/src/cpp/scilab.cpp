@@ -578,14 +578,14 @@ int main(int argc, char *argv[])
      */
 #if defined(linux) && defined(__i386__)
     setFPUToDouble();
+#endif
 
-
+#ifndef _MSC_VER
     /* Management of the signals (seg fault, floating point exception, etc) */
     if (getenv("SCI_DISABLE_EXCEPTION_CATCHING") == NULL)
     {
         base_error_init();
     }
-
 #endif
 
 #if defined(netbsd) || defined(freebsd)
