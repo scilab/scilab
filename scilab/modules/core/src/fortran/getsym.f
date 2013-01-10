@@ -92,6 +92,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       isBlank(c)    = abs(c) .eq. blank
 
       fin=1
+
 *     go to the first "no like blank" char
       do while ( isBlank(char1) )
          call fortrangetch
@@ -104,7 +105,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       if ( isDigit(char1) ) then 
 *        -> number (beginning with a digit => 2d arg of getval : dotdet = .false.)
          sym = num
-         call getval(syv, .false.,opt)
+         call getval(syv, .false.)
          stk(lstk(isiz)) = syv
 
       elseif ( isAlphaNum(char1) .or. char1.eq.percen) then
@@ -135,7 +136,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
          elseif (sym.eq.dot .and. isDigit(char1)) then
 *           -> it is a number (beginning with a dot => 2d arg of getval : dotdet = .true.)
             sym = num
-            call getval(syv, .true.,opt)
+            call getval(syv, .true.)
             stk(lstk(isiz)) = syv
          endif
       endif

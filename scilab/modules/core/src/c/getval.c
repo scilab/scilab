@@ -159,7 +159,7 @@
 extern int C2F(fortrangetch)();
 
 
-int C2F(getval)(double *s, int *dotdet, int *opt)
+int C2F(getval)(double *s, int *dotdet)
 {
     /* Initialized constants */
     static double toto = 0.;
@@ -212,7 +212,7 @@ int C2F(getval)(double *s, int *dotdet, int *opt)
         {
             detdot = TRUE;
             C2F(fortrangetch)();
-            if (opt == 0 && getWarningMode())
+            if (getWarningMode())
             {
                 if ((abs(C2F(com).char1) == slash) || (abs(C2F(com).char1) == bchar_slash))
                 {

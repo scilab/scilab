@@ -37,7 +37,7 @@
             <emphasis>
                 [t<subscript>lo</subscript>, t<subscript>hi</subscript>]
             </emphasis>
-            .A loop is entered to locate the
+            . A loop is entered to locate the
             root to within a rather tight tolerance, given by the <emphasis>unit roudoff</emphasis>, the <emphasis>current time</emphasis> and the <emphasis>step size</emphasis>.
         </para>
         <para>
@@ -77,7 +77,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            Simple example of a Sinus crossing zero several times :
+            Simple example of a Sinus crossing zero several times:
         </para>
         <para>
             <programlisting language="example"><![CDATA[
@@ -90,42 +90,42 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Time for LSodar :");
+      disp(t, "Time for LSodar:");
       ]]></programlisting>
         </para>
         <para>
             The blue bars represent the "positive to negative" zero crossings, while the red ones are for "negative to positive".
         </para>
         <para>
-            Now, in the two following scripts, we test the computational overhead of the rootfinding with <emphasis>LSodar</emphasis> :
+            Now, in the two following scripts, we test the computational overhead of the rootfinding with <emphasis>LSodar</emphasis>:
         </para>
         <para>
-            First, a Sinus that crosses zero every &#928; period :
+            First, a Sinus that crosses zero every &#960; period:
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/Rootfinding.sce">
                 Open the script
             </link>
         </para>
         <para>
             <screen><![CDATA[
-Time with rootfinding :
+Time with rootfinding:
  15.021
 
-Time without rootfinding :
+Time without rootfinding:
  10.573
             ]]></screen>
         </para>
         <para>
-            Then, a simple straight line that crosses zero only once, in the middle of the interval :
+            Then, a simple straight line that crosses zero only once, in the middle of the interval:
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/RootfindingSimple.sce">
                 Open the script
             </link>
         </para>
         <para>
             <screen><![CDATA[
-Time with rootfinding :
+Time with rootfinding:
  0.114
 
-Time without rootfinding :
+Time without rootfinding:
  0.09
             ]]></screen>
         </para>

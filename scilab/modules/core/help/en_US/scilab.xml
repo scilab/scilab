@@ -401,6 +401,10 @@ echo $? ]]></programlisting>
                 <revnumber>5.4.0</revnumber>
                 <revremark>-noatomsautoload added.</revremark>
             </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>scinotes and xcos individual scripts introduced. See SEP #87.</revremark>
+            </revision>
         </revhistory>
     </refsection>
 </refentry>

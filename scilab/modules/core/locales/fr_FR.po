@@ -1242,7 +1242,7 @@ msgstr "%s appelé sous %s"
 # File: macros/whereami.sci, line: 21
 #, c-format
 msgid "%s called at line %s of macro %s"
-msgstr "%s appellé à la ligne %s de la macro %s"
+msgstr "%s appelé à la ligne %s de la macro %s"
 
 #
 # File: sci_gateway/c/sci_who.c, line: 303

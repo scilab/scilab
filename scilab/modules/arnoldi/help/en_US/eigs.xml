@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eigs" xml:lang="en">
     <refnamediv>
         <refname>eigs</refname>
-        <refpurpose>calculates eigenvalues and eigenvectors of matrices</refpurpose>
+        <refpurpose>calculates largest eigenvalues and eigenvectors of matrices</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -92,8 +92,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
-        <variablelist>
+      <title>Description</title>
+      <para>
+        The purpose of the eigs function is to compute the largest eigenvalues of sparse, large matrices.
+      </para>
+      <variablelist>
             <varlistentry>
                 <term>d = eigs(A) or d = eigs(Af, n)</term>
                 <listitem>

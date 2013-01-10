@@ -33,6 +33,7 @@ public final class BuildJavaHelp {
     private static final String RIGHT_PAR = " )";
     private static final String JAR_EXT = ".jar";
     private static final String SLASH = "/";
+    private static final int JAR_COMPRESSION_LEVEL = 9;
     private static Indexer indexer = new Indexer();
 
     /**
@@ -70,13 +71,13 @@ public final class BuildJavaHelp {
     public static boolean buildJarImages(String inputDirectory, String outputDirectory) {
         JarOutputStream jarFile = null;
         FileOutputStream fileOutputStream = null;
-        final int compressionLevel = 5;
+
         /* Stored into SCI/modules/helptools/jar */
         String fileName = outputDirectory + SLASH + "scilab_images" + JAR_EXT;
         try {
             fileOutputStream = new FileOutputStream(fileName);
             jarFile = new JarOutputStream(fileOutputStream);
-            jarFile.setLevel(compressionLevel);
+            jarFile.setLevel(JAR_COMPRESSION_LEVEL);
         } catch (java.io.FileNotFoundException e) {
             System.err.println(COULD_NOT_FIND + fileName + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
         } catch (java.io.IOException e) {
@@ -125,7 +126,7 @@ public final class BuildJavaHelp {
         String baseName = Helpers.getBaseName(language);
         JarOutputStream jarFile = null;
         FileOutputStream fileOutputStream = null;
-        final int compressionLevel = 5;
+
         /* Stored into SCI/modules/helptools/jar */
         String fileName = outputDirectory + SLASH + baseName + JAR_EXT;
         /* bug 4407 */
@@ -141,7 +142,7 @@ public final class BuildJavaHelp {
             System.err.println(COULD_NOT_FIND + fileName + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
         }
 
-        jarFile.setLevel(compressionLevel);
+        jarFile.setLevel(JAR_COMPRESSION_LEVEL);
 
         File[] allFiles = fileList.toArray(new File [fileList.size()]);
         for (int i = 0; i < allFiles.length; i++) {

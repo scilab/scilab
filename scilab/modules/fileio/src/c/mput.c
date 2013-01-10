@@ -72,7 +72,7 @@ extern int swap; /* defined in mget.c */
 void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr)
 {
   char c1,c2;
-  int i,swap2,n;
+  int i,n;
   FILE *fa;
   n=*n1;
   *ierr=0;
@@ -84,7 +84,6 @@ void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr)
     *ierr=3;
     return;
   }
-  swap2 = GetSwapStatus(*fd);
 
   c1 = ( strlen(type) > 1) ? type[1] : ' ';
   c2 = ( strlen(type) > 2) ? type[2] : ' ';

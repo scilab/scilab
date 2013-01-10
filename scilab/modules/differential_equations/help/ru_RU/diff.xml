@@ -97,4 +97,15 @@ dy=diff(sin(t))/step; //аппроксимированное вычислени�
 norm(dy-cos(t(1:$-1)),%inf)
  ]]></programlisting>
     </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="derivative">derivative</link>
+            </member>
+            <member>
+                <link linkend="numdiff">numdiff</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
