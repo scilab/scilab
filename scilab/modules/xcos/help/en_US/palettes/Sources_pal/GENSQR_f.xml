@@ -203,19 +203,19 @@ v(k)=\begin{cases}-M\\+M\end{cases}\ \ \mbox{,switch on activation}
                 Open this exemple into Xcos
             </link>
         </para>
+        <para/>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../examples/sources_pal/en_US/GENSQR_f_diagram_en_US.png" valign="middle"/>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/GENSQR_f_diagram_en_US.xcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/sources_pal/en_US/GENSQR_f_plot_en_US.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </para>
         <para>
             First the sink block is a <link linkend="CMSCOPE">scope</link> with a sample rate set to <emphasis>1 second</emphasis>. This parameter will affect the printed results of all the diagram branches.

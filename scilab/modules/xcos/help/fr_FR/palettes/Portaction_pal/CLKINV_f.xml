@@ -194,20 +194,25 @@
             .
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/fr_FR/clkinv_f_superbloc_fr_FR.png"/>
-            </imageobject>
-        </mediaobject>
-        <para><para/>
+        <para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.xcos"/>
+                </imageobject>
+            </mediaobject>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../..//examples/portaction_pal/en_US/CLKINV_f_internal_en_US.xcos"/>
+                </imageobject>
+            </mediaobject>
+        </para>
+        <para>
             La figure suivante montre la sortie du Super bloc :
         </para>
-        <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/fr_FR/clkinv_f_diagram_fr_FR.png"/>
-            </imageobject>
-        </mediaobject>
+        <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_CLKINV_f">
         <title>Fonction d'interfaçage</title>

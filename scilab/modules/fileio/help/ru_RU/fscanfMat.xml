@@ -175,6 +175,9 @@
             <member>
                 <link linkend="mdelete">mdelete</link>
             </member>
+            <member>
+                <link linkend="csvRead">csvRead</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

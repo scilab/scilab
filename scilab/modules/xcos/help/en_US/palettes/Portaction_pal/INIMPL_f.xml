@@ -202,17 +202,36 @@
             The following example shows the use of the INIMPL_f block. The Super block contains a simple electrical circuit with two inputs, one on the
             resistor and the other for the ground. These inputs are connected to the external environment of the bloc via two INIMPL_f blocks numbered 1
             and 2. The Super block output is connected via a <link linkend="OUTIMPL_f">OUTIMPL_f</link> block.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.xcos">
+        </para>
+        <para><link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.xcos">
                 Open this example in Xcos
             </link>
-            .
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/en_US/inimpl_f_diagram_en_US.png"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/INIMPL_f_en_US.xcos"/>
+                </imageobject>
+            </mediaobject>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/INIMPL_f_internal_en_US.xcos"/>
+                </imageobject>
+            </mediaobject>
+        </para>
+        <para>
+            The following figure shows the output of the bloc :
+        </para>
+        <scilab:image><![CDATA[
+// overload messagebox to avoid the "modelica compiler" message
+function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+	btn=1;
+endfunction
+
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_INIMPL_f">
         <title>Interfacing function</title>

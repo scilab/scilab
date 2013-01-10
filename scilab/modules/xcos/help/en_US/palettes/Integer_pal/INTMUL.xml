@@ -295,7 +295,7 @@
         <para/>
         <mediaobject>
             <imageobject>
-                <imagedata align="center" fileref="../../../examples/integer_pal/en_US/intmul_diagram_en_US.png"/>
+                <imagedata align="center" fileref="../../../../examples/integer_pal/en_US/INTMUL_en_US.xcos"/>
             </imageobject>
         </mediaobject>
     </refsection>

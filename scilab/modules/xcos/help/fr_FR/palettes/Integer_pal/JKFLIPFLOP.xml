@@ -386,11 +386,16 @@
                 Ouvrir cet exemple dans Xcos
             </link>
         </para>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/integer_pal/fr_FR/jkflipflop_diagram_fr_FR.png" align="center"/>
-            </imageobject>
-        </mediaobject>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/JKFLIPFLOP_fr_FR.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/integer_pal/fr_FR/JKFLIPFLOP_fr_FR.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_JKFLIPFLOP">
         <title>Fonction d'interfaçage</title>

@@ -19,6 +19,18 @@ Improvements
 * test_run no longer take in account skipped tests in the summary.
   See bug #12117
 
+* Add two new commands:
+ - scinotes
+   scinotes modules/core/macros/whos.sci
+   Support also the -indent argument to indent automatically a Scilab file.
+   For example: ./bin/scinotes -indent modules/core/macros/whos.sci
+   If the file does not exist, propose to create it.
+
+ - xcos
+   xcos modules/xcos/examples/integral.xcos will open the integral Xcos
+   schema
+   If the file does not exist, propose to create it.
+
 
 Removed functions
 ==================
@@ -108,7 +120,7 @@ Xcos
 * Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
                      NullPointerException.
 
-* Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
+* Bug #12101 fixed - Port ordering was not preserved on parameters change.
 
 * Bug #12014 fixed - dep_ut help was wrongly detailed.
 
@@ -170,6 +182,8 @@ Bug fixes
 
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
+* Bug #10815 fixed - diff help page did not have a "See Also" section.
+
 * Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
                      the last color in colormap.
 
@@ -202,6 +216,8 @@ Bug fixes
 * Bug #11986 fixed - Wrong xclick behaviour on keyboard input fixed.
 
 * Bug #11991 fixed - Under Windows, some empty lines were added by csvWrite.
+
+* Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
 
 * Bug #11999 fixed - Blank lines ignored by default by csvRead / read_csv.
 
@@ -237,6 +253,8 @@ Bug fixes
 
 * Bug #12120 fixed - eigs was broken for complex sparse matrices.
 
+* Bug #12021 fixed - Improve the help page of eigs.
+
 * Bug #12135 fixed - stacksize('max') failed silently.
 
 * Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
@@ -250,6 +268,8 @@ Bug fixes
 * Bug #12184 fixed - Performances of the function 'derivat' improved.
 
 * Bug #12190 fixed - Description of sprspn updated in help page.
+
+* Bug #12204 fixed - Fix a typo in the French localization
 
 
                     Changes between version 5.3.3 and 5.4.0
