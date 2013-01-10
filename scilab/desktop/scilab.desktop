@@ -9,7 +9,6 @@ GenericName[de]=Wissenschaftssoftware
 Icon=scilab
 MimeType=application/x-scilab-sci;application/x-scilab-sce;application/x-scilab-tst;application/x-scilab-dem;application/x-scilab-sod;application/x-scilab-xcos;application/x-scilab-zcos;application/x-scilab-bin;application/x-scilab-cosf;application/x-scilab-cos;
 Name=Scilab
-Name[de]=Scilab
 StartupNotify=false
 Terminal=false
 Type=Application

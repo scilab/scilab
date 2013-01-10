@@ -103,7 +103,6 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
     char *res = NULL;
 
     int lencurrentline = 0;
-    int lenstringToAdd = 0;
 
     int iposInsert = 0;
 
@@ -167,7 +166,6 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
             {
                 FREE(filePatternBuf);
                 filePatternBuf = NULL;
-                bfilePatternBuf = FALSE;
             }
 
             if ( strcmp(drv,"") || strcmp(dir,"") )
@@ -200,7 +198,6 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
         }
     }
 
-    lenstringToAdd = (int)strlen(stringToAdd);
     iposInsert = findMatchingPrefixSuffix(currentline, stringToAdd, stringToAddIsPath);
     res = strstr(stringToAdd, &currentline[iposInsert]);
 

@@ -69,9 +69,15 @@ clear %modalWarning;
 PWD = pwd();
 
 // Startup message  ===================================================
-if (sciargs()<>"-nb") & ~fromjava() & ~fromc() then
+if (sciargs() <> "-nb") & ~fromjava() & ~fromc() & getscilabmode() == "STD" then
   write(%io(2),[" ";gettext("Startup execution:")]);
   write(%io(2),gettext("  loading initial environment"));
+end
+
+if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & sciargs()<>"-nb")
+   [v, opts] = getversion()
+   write(%io(2), strsubst(v, "scilab-", "Scilab ") + " (" + opts($-1) + ", " + opts($) + ")");
+   clear v, opts;
 end
 
 // loads modules ======================================================
