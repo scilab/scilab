@@ -188,6 +188,8 @@ Bug fixes
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
 
+* Bug #10606 fixed - unix_g did not return stdout in somes cases.
+
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
 * Bug #10815 fixed - diff help page did not have a "See Also" section.
