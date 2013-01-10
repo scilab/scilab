@@ -25,3 +25,8 @@ Obsolete
 * Arguments option and direction of gsort will be more strict in all case.
   Only the following string will be allowed : option : "r" "c" "g" "lr" "lc"
                                               direction : "d" "i"
+
+Xcos
+====
+
+* Update Sundials to lastest "2.5.0", keeping our modifications

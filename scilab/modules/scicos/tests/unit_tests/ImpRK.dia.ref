@@ -22,7 +22,7 @@ for i=2:4  // 'max step size' = 10^-i, precision
  rkval = res.values;   // Results
  time = res.time;      // Time
  // Modify solver and reltol + run CVode + save results
- scs_m.props.tol(6) = 1; scs_m.props.tol(2) = 1.0e-15;
+ scs_m.props.tol(6) = 4; scs_m.props.tol(2) = 1.0e-15;
  try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end
  cvval = res.values;
  // Compare results

@@ -41,14 +41,18 @@
 /* Sundials includes */
 #include <cvode/cvode.h>           /* prototypes for CVODES fcts. and consts. */
 #include <cvode/cvode_dense.h>     /* prototype for CVDense */
+#include <cvode/cvode_direct.h>    /* prototypes for various DlsMat operations */
 #include <ida/ida.h>
 #include <ida/ida_dense.h>
+#include <ida/ida_direct.h>
 #include <nvector/nvector_serial.h>  /* serial N_Vector types, fcts., and macros */
-#include <sundials/sundials_dense.h> /* definitions DenseMat and DENSE_ELEM */
+#include <sundials/sundials_dense.h> /* prototypes for various DlsMat operations */
+#include <sundials/sundials_direct.h> /* definitions DlsMat and DENSE_ELEM */
 #include <sundials/sundials_types.h> /* definition of type realtype */
 #include <sundials/sundials_math.h>
 #include <kinsol/kinsol.h>
 #include <kinsol/kinsol_dense.h>
+#include <kinsol/kinsol_direct.h>
 #include <sundials/sundials_extension.h> /* uses extension for scicos */
 #include "ida_impl.h"
 
@@ -236,8 +240,8 @@ static int synchro_g_nev(ScicosImport *scs_imp, double *g, int kf, int *ierr);
 static void Multp(double *A, double *B, double *R, int ra, int rb, int ca, int cb);
 static int read_id(ezxml_t *elements, char *id, double *value);
 static int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *rdata);
-static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
-                     N_Vector resvec, realtype cj, void *jdata, DenseMat Jacque,
+static int Jacobians(long int Neq, realtype tt, realtype cj, N_Vector yy,
+                     N_Vector yp, N_Vector resvec, DlsMat Jacque, void *jdata,
                      N_Vector tempv1, N_Vector tempv2, N_Vector tempv3);
 static void call_debug_scicos(scicos_block *block, scicos_flag *flag, int flagi, int deb_blk);
 static int synchro_nev(ScicosImport *scs_imp, int kf, int *ierr);
@@ -1410,11 +1414,11 @@ static void cossim(double *told)
 
         if (!C2F(cmsolver).solver)
         {
-            flag = LSodarMalloc(cvode_mem, simblklsodar, T0, y, CV_SS, reltol, &abstol);
+            flag = LSodarInit(cvode_mem, simblklsodar, T0, y);
         }
         else
-        flag = CVodeMalloc(cvode_mem, simblk, T0, y, CV_SS, reltol, &abstol);
-        if (check_flag(&flag, "CVodeMalloc", 1))
+        flag = CVodeInit(cvode_mem, simblk, T0, y);
+        if (check_flag(&flag, "CVodeInit", 1))
         {
             *ierr = 300 + (-flag);
             freeall
@@ -1423,10 +1427,23 @@ static void cossim(double *told)
 
         if (!C2F(cmsolver).solver)
         {
-            flag = LSodarRootInit(cvode_mem, ng, grblklsodar, NULL);
+            flag = LSodarSStolerances(cvode_mem, reltol, abstol);
         }
         else
-        flag = CVodeRootInit(cvode_mem, ng, grblk, NULL);
+        flag = CVodeSStolerances(cvode_mem, reltol, abstol);
+        if (check_flag(&flag, "CVodeSStolerances", 1))
+        {
+            *ierr = 300 + (-flag);
+            freeall
+            return;
+        }
+
+        if (!C2F(cmsolver).solver)
+        {
+            flag = LSodarRootInit(cvode_mem, ng, grblklsodar);
+        }
+        else
+        flag = CVodeRootInit(cvode_mem, ng, grblk);
         if (check_flag(&flag, "CVodeRootInit", 1))
         {
             *ierr = 300 + (-flag);
@@ -1460,8 +1477,8 @@ static void cossim(double *told)
             }
         }
         /* Set the Jacobian routine to Jac (user-supplied)
-        flag = CVDenseSetJacFn(cvode_mem, Jac, NULL);
-        if (check_flag(&flag, "CVDenseSetJacFn", 1)) return(1);  */
+        flag = CVDlsSetDenseJacFn(cvode_mem, Jac);
+        if (check_flag(&flag, "CVDlsSetDenseJacFn", 1)) return(1);  */
 
     }/* testing if neq>0 */
 
@@ -1629,10 +1646,10 @@ L30:
 
                     if (!C2F(cmsolver).solver)
                     {
-                        flag = LSodarReInit(cvode_mem, simblklsodar, (realtype)(*told), y, CV_SS, reltol, &abstol);
+                        flag = LSodarReInit(cvode_mem, (realtype)(*told), y);
                     }
                     else
-                    flag = CVodeReInit(cvode_mem, simblk, (realtype)(*told), y, CV_SS, reltol, &abstol);
+                    flag = CVodeReInit(cvode_mem, (realtype)(*told), y);
                     if (check_flag(&flag, "CVodeReInit", 1))
                     {
                         *ierr = 300 + (-flag);
@@ -1683,7 +1700,7 @@ L30:
                         flag = LSodar(cvode_mem, t, y, told, LS_NORMAL);
                     }
                     else
-                    flag = CVode(cvode_mem, t, y, told, CV_NORMAL_TSTOP);
+                    flag = CVode(cvode_mem, t, y, told, CV_NORMAL);
                     if (*ierr != 0)
                     {
                         freeall;
@@ -1943,7 +1960,7 @@ static void cossimdaskr(double *told)
     int Discrete_Jump = 0;
     N_Vector IDx = NULL;
     realtype *scicos_xproperty = NULL;
-    DenseMat TJacque = NULL;
+    DlsMat TJacque = NULL;
 
     void *ida_mem = NULL;
     UserData data = NULL;
@@ -2034,7 +2051,7 @@ static void cossimdaskr(double *told)
             return;
         }
 
-        /* Call IDACreate and IDAMalloc to initialize IDA memory */
+        /* Call IDACreate and IDAInit to initialize IDA memory */
         ida_mem = NULL;
         ida_mem = IDACreate();
         if (check_flag((void *)ida_mem, "IDACreate", 0))
@@ -2049,8 +2066,8 @@ static void cossimdaskr(double *told)
         }
         copy_IDA_mem = (IDAMem) ida_mem;
 
-        flag = IDAMalloc(ida_mem, simblkdaskr, T0, yy, yp, IDA_SS, reltol, &abstol);
-        if (check_flag(&flag, "IDAMalloc", 1))
+        flag = IDAInit(ida_mem, simblkdaskr, T0, yy, yp);
+        if (check_flag(&flag, "IDAInit", 1))
         {
             *ierr = 200 + (-flag);
             if (*neq > 0)IDAFree(&ida_mem);
@@ -2063,8 +2080,21 @@ static void cossimdaskr(double *told)
             return;
         }
 
+        flag = IDASStolerances(ida_mem, reltol, abstol);
+        if (check_flag(&flag, "IDASStolerances", 1))
+        {
+            *ierr = 200 + (-flag);
+            if (*neq > 0)IDAFree(&ida_mem);
+            if (*neq > 0)N_VDestroy_Serial(IDx);
+            if (*neq > 0) N_VDestroy_Serial(yp);
+            if (*neq > 0)N_VDestroy_Serial(yy);
+            if (ng != 0) FREE(jroot);
+            if (ng != 0) FREE(zcros);
+            if (nmod != 0) FREE(Mode_save);
+            return;
+        }
 
-        flag = IDARootInit(ida_mem, ng, grblkdaskr, NULL);
+        flag = IDARootInit(ida_mem, ng, grblkdaskr);
         if (check_flag(&flag, "IDARootInit", 1))
         {
             *ierr = 200 + (-flag);
@@ -2175,18 +2205,18 @@ static void cossimdaskr(double *told)
             return;
         }
 
-        flag = IDADenseSetJacFn(ida_mem, Jacobians, data);
-        if (check_flag(&flag, "IDADenseSetJacFn", 1))
+        flag = IDADlsSetDenseJacFn(ida_mem, Jacobians);
+        if (check_flag(&flag, "IDADlsSetDenseJacFn", 1))
         {
             *ierr = 200 + (-flag);
             freeallx
             return;
         }
 
-        TJacque = (DenseMat) DenseAllocMat(*neq, *neq);
+        TJacque = (DlsMat) NewDenseMat(*neq, *neq);
 
-        flag = IDASetRdata(ida_mem, data);
-        if (check_flag(&flag, "IDASetRdata", 1))
+        flag = IDASetUserData(ida_mem, data);
+        if (check_flag(&flag, "IDASetUserData", 1))
         {
             *ierr = 200 + (-flag);
             freeallx
@@ -2488,7 +2518,7 @@ L30:
                         }
 
                         /* yy->PH */
-                        flag = IDAReInit(ida_mem, simblkdaskr, (realtype)(*told), yy, yp, IDA_SS, reltol, &abstol);
+                        flag = IDAReInit(ida_mem, (realtype)(*told), yy, yp);
                         if (check_flag(&flag, "CVodeReInit", 1))
                         {
                             *ierr = 200 + (-flag);
@@ -2633,7 +2663,7 @@ L30:
                 if (Discrete_Jump == 0) /* if there was a dzero, its event should be activated*/
                 {
                     phase = 2;
-                    flagr = IDASolve(ida_mem, t, told, yy, yp, IDA_NORMAL_TSTOP);
+                    flagr = IDASolve(ida_mem, t, told, yy, yp, IDA_NORMAL);
                     phase = 1;
                     if (*ierr != 0)
                     {
@@ -5421,8 +5451,8 @@ double Get_Scicos_SQUR(void)
     return  SQuround;
 }
 /*--------------------------------------------------------------------------*/
-static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
-                     N_Vector resvec, realtype cj, void *jdata, DenseMat Jacque,
+static int Jacobians(long int Neq, realtype tt, realtype cj, N_Vector yy,
+                     N_Vector yp, N_Vector resvec, DlsMat Jacque, void *jdata,
                      N_Vector tempv1, N_Vector tempv2, N_Vector tempv3)
 {
     double  ttx = 0;
@@ -6059,7 +6089,7 @@ static int CallKinsol(double *told)
         return -1;
     }
 
-    status = KINMalloc(kin_mem, simblkKinsol, y);
+    status = KINInit(kin_mem, simblkKinsol, y);
     strategy = KIN_NONE; /*without LineSearch */
     status = KINDense(kin_mem, N);
 
