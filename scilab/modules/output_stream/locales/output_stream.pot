@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-07 15:56+0100\n"
+"Revision-Date: 2013-01-10 17:03+0100\n"
 
 # File: sci_gateway/c/sci_mprintf.c, line: 64
 # File: sci_gateway/c/sci_msprintf.c, line: 156
@@ -82,7 +82,7 @@ msgstr ""
 # File: sci_gateway/c/sci_msprintf.c, line: 110
 # File: sci_gateway/c/sci_msprintf.c, line: 116
 # File: sci_gateway/c/sci_msprintf.c, line: 129
-# File: sci_gateway/c/sci_msprintf.c, line: 413
+# File: sci_gateway/c/sci_msprintf.c, line: 412
 # File: sci_gateway/cpp/sci_diary.cpp, line: 104
 # File: sci_gateway/cpp/sci_diary.cpp, line: 122
 # File: sci_gateway/cpp/sci_diary.cpp, line: 136
@@ -126,10 +126,10 @@ msgstr ""
 # File: sci_gateway/c/sci_msprintf.c, line: 254
 # File: sci_gateway/c/sci_msprintf.c, line: 268
 # File: sci_gateway/c/sci_msprintf.c, line: 288
-# File: sci_gateway/c/sci_msprintf.c, line: 324
-# File: sci_gateway/c/sci_msprintf.c, line: 339
-# File: sci_gateway/c/sci_msprintf.c, line: 354
-# File: sci_gateway/c/sci_msprintf.c, line: 374
+# File: sci_gateway/c/sci_msprintf.c, line: 323
+# File: sci_gateway/c/sci_msprintf.c, line: 338
+# File: sci_gateway/c/sci_msprintf.c, line: 353
+# File: sci_gateway/c/sci_msprintf.c, line: 373
 # File: src/c/sciprint_full.c, line: 50
 # File: src/c/sciprint_full.c, line: 60
 #, c-format

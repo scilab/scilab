@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-07 15:56+0100\n"
+"Revision-Date: 2013-01-10 17:04+0100\n"
 
 # File: sci_gateway/c/gw_csv_helpers.c, line: 72
 # File: sci_gateway/c/gw_csv_helpers.c, line: 128
@@ -349,7 +349,7 @@ msgid "%s: End of file.\n"
 msgstr ""
 
 #
-# File: src/c/csvRead.c, line: 360
+# File: src/c/csvRead.c, line: 359
 #, c-format
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
