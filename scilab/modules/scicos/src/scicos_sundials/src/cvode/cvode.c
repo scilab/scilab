@@ -338,7 +338,7 @@ void *CVodeCreate(int lmm, int iter)
 
   /* Test inputs */
 
-  if ((lmm != CV_ADAMS) && (lmm != CV_BDF) && (lmm != CV_DOPRI) && (lmm != CV_ExpRK) && (lmm != CV_ImpRK)) { /* Integration mode : ADAMS, BDF or RK-based */
+  if ((lmm != CV_ADAMS) && (lmm != CV_BDF) && (lmm != CV_DOPRI) && (lmm != CV_ExpRK) && (lmm != CV_ImpRK)) { /* Integration mode: ADAMS, BDF or RK-based */
     CVProcessError(NULL, 0, "CVODE", "CVodeCreate", MSGCV_BAD_LMM);
     return(NULL);
   }
@@ -2516,7 +2516,7 @@ static int CVStepDoPri(CVodeMem cv_mem)
  * CVStepExpRK
  *
  * This routine performs one internal cvode step using the Runge-Kutta 4(5) method, from tn to tn + h.
- * Proceed to :
+ * Proceed to:
  * - K1 = F(Tn, Yn),
  * - K2 = F(Tn + h/2, Yn + (h/2)*K1),
  * - K3 = F(Tn + h/2, Yn + (h/2)*K2),
@@ -2641,8 +2641,8 @@ static int CVStepImpRK(CVodeMem cv_mem)
     difference = N_VMaxNorm(ftemp);                    /* max = Max(ABS(ftemp)), */
     if (difference < reltol) {  /* Converged */
       tn += h;                               /* Increment tn, */
-      N_VScale (ONE, y, zn[0]);              /* Update Nordsziek array : - zn[0] = Yn+1, */
-      retval = f(tn, zn[0], zn[1], f_data);  /*							- zn[1] = Y'(tn), */
+      N_VScale (ONE, y, zn[0]);              /* Update Nordsziek array: - zn[0] = Yn+1, */
+      retval = f(tn, zn[0], zn[1], f_data);  /*                         - zn[1] = Y'(tn), */
       N_VScale (h, zn[1], zn[1]);            /* Scale zn[1] by h */
       return (CV_SUCCESS);
     }
@@ -2651,7 +2651,7 @@ static int CVStepImpRK(CVodeMem cv_mem)
       nb_iter++;
     }
   }
-  /* End of while : maxiter attained, we consider that the algorithm has diverged */
+  /* End of while: maxiter attained, we consider that the algorithm has diverged */
   return (CONV_FAIL);
 }
 

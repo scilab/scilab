@@ -187,7 +187,7 @@ static int get_hmat(int num, HyperMat *H)
 int C2F(ishm)()
 {
     /* teste si l'argument en Top est une hypermatrice */
-    int il, il1, il2;
+    int il, il1;
     il = iadr(*Lstk( Top ));
     if ( *istk(il) < 0 )
     {
@@ -205,9 +205,7 @@ int C2F(ishm)()
 
     /*  get the pointer of the first and second fields */
     il1 = sadr(il + 6);
-    il2 = il1 + *istk(il + 3) - 1;
     il1 = iadr(il1);
-    il2 = iadr(il2);
 
     /*  test if the first field is a matrix string with 3 components
      *  and that the first is "hm" (ie 17 22  in scilab char code)

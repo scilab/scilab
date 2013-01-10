@@ -58,7 +58,7 @@ int sci_eigs(char *fname, unsigned long fname_len)
     int iColsFour			= 0;
     int iLen				= 0;
     char* pstData			= NULL;
-    doublecomplex* SIGMA	= NULL;
+    doublecomplex SIGMA;
 
     int *piAddressVarFive	= NULL;
     double dblMAXITER		= 0;
@@ -86,11 +86,15 @@ int sci_eigs(char *fname, unsigned long fname_len)
 
     int *piAddressVarTen	= NULL;
     int iINFO				= 0;
-
+    int RVEC                = 0;
     // Output arguments
-    doublecomplex* eigenvalue		= NULL;
-    doublecomplex* mat_eigenvalue	= NULL;
-    doublecomplex* eigenvector		= NULL;
+    double* eigenvalue      = NULL;
+    double* eigenvector     = NULL;
+    doublecomplex* eigenvalueC  = NULL;
+    doublecomplex* eigenvectorC	= NULL;
+
+    double* mat_eigenvalue	= NULL;
+    doublecomplex* mat_eigenvalueC  = NULL;
     int INFO_EUPD					= 0;
     int error						= 0;
 
@@ -173,13 +177,13 @@ int sci_eigs(char *fname, unsigned long fname_len)
     }
 
     sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &iRowsTwo, &iColsTwo);
-    if (iRowsTwo * iColsTwo == 1 || iRowsTwo != iColsTwo)
+    matB = iRowsTwo * iColsTwo;
+    if (matB && (iRowsTwo != iRowsOne || iColsTwo != iColsOne))
     {
         Scierror(999, _("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), "eigs", 2);
         return 0;
     }
 
-    matB = iRowsTwo * iColsTwo;
     if (isVarComplex(pvApiCtx, piAddressVarTwo))
     {
         sciErr = getComplexZMatrixOfDouble(pvApiCtx, piAddressVarTwo, &iRowsTwo, &iColsTwo, &Bcplx);
@@ -310,9 +314,8 @@ int sci_eigs(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        SIGMA = (doublecomplex*)malloc(1 * sizeof(doublecomplex));
-        SIGMA[0].r = 0;
-        SIGMA[0].i = 0;
+        SIGMA.r = 0;
+        SIGMA.i = 0;
     }
 
     if (iTypeVarFour == sci_matrix)
@@ -324,15 +327,14 @@ int sci_eigs(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        SIGMA = (doublecomplex*)MALLOC(1 * sizeof(doublecomplex));
-        if (getScalarComplexDouble(pvApiCtx, piAddressVarFour, &SIGMA[0].r, &SIGMA[0].i))
+        if (getScalarComplexDouble(pvApiCtx, piAddressVarFour, &SIGMA.r, &SIGMA.i))
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
             return 0;
         }
 
-        if (C2F(isanan)(&SIGMA[0].r) || C2F(isanan)(&SIGMA[0].i))
+        if (C2F(isanan)(&SIGMA.r) || C2F(isanan)(&SIGMA.i))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: sigma must be a real.\n"), "eigs", 4);
             return 0;
@@ -349,7 +351,6 @@ int sci_eigs(char *fname, unsigned long fname_len)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 5);
-        free(SIGMA);
         return 0;
     }
 
@@ -494,6 +495,54 @@ int sci_eigs(char *fname, unsigned long fname_len)
         }
     }
 
+    if ( dblCHOLB ) // check that B is upper triangular with non zero element on the diagonal
+    {
+        if (!Bcomplex)
+        {
+            for (i = 0; i < N; i++)
+            {
+                for (j = 0; j <= i; j++)
+                {
+                    if (i == j && Breal[i + j * N] == 0)
+                    {
+                        Scierror(999, _("%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"), "eigs");
+                        return 0;
+                    }
+                    else
+                    {
+                        if ( j < i && Breal[i + j * N] != 0 )
+                        {
+                            Scierror(999, _("%s: If opts.cholB is true, B should be upper triangular.\n"), "eigs");
+                            return 0;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (i = 0; i < N; i++)
+            {
+                for (j = 0; j <= i; j++)
+                {
+                    if (i == j && Bcplx[i + i * N].r == 0 && Bcplx[i + i * N].i == 0)
+                    {
+                        Scierror(999, _("%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"), "eigs");
+                        return 0;
+                    }
+                    else
+                    {
+                        if ( j < i && (Bcplx[i + j * N].r != 0 || Bcplx[i + j * N].i != 0) )
+                        {
+                            Scierror(999, _("%s: If opts.cholB is true, B should be upper triangular.\n"), "eigs");
+                            return 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     /****************************************
     *    			RESID    			*
     *****************************************/
@@ -570,20 +619,29 @@ int sci_eigs(char *fname, unsigned long fname_len)
     }
 
     // Initialization output arguments
-    eigenvalue = (doublecomplex*) malloc((iNEV + 1) * sizeof(doublecomplex));
-    memset(eigenvalue, 0, (iNEV + 1) * sizeof(doublecomplex));
-
     if (Lhs > 1)
     {
-        mat_eigenvalue = (doublecomplex*) malloc((iNEV + 1) * (iNEV + 1) * sizeof(doublecomplex));
-        memset(mat_eigenvalue, 0, (iNEV + 1) * (iNEV + 1) * sizeof(doublecomplex));
+        RVEC = 1;
+    }
 
-        eigenvector = (doublecomplex*) malloc(N * (iNEV + 1) * sizeof(doublecomplex));
-        memset(eigenvector, 0, N * (iNEV + 1) * sizeof(doublecomplex));
+    if (Acomplex || Bcomplex || !Asym)
+    {
+        eigenvalueC = (doublecomplex*)CALLOC((iNEV + 1), sizeof(doublecomplex));
+        if (RVEC)
+        {
+            eigenvectorC = (doublecomplex*)CALLOC(N * (iNEV + 1), sizeof(doublecomplex));
+        }
+    }
+    else
+    {
+        eigenvalue = (double*)CALLOC(iNEV, sizeof(double));
+        /* we should allocate eigenvector only if RVEC is true, but dseupd segfaults
+         if Z is not allocated even when RVEC is false, contrary to the docs.*/
+        eigenvector = (double*)CALLOC(iNEV * N, sizeof(double));
     }
 
     error = eigs(Areal, Acplx, N, Acomplex, Asym, Breal, Bcplx, Bcomplex, matB, iNEV, SIGMA, pstData, &dblMAXITER,
-                 &dblTOL, dblNCV, RESID, RESIDC, &iINFO, &dblCHOLB, INFO_EUPD, eigenvalue, eigenvector);
+                 &dblTOL, dblNCV, RESID, RESIDC, &iINFO, &dblCHOLB, INFO_EUPD, eigenvalue, eigenvector, eigenvalueC, eigenvectorC, RVEC);
 
     switch (error)
     {
@@ -619,8 +677,8 @@ int sci_eigs(char *fname, unsigned long fname_len)
             return 0;
 
         case -3 :
-            Scierror(999, _("%s: Wrong type for input argument #%d: B must be symmetric or hermitian, definite, semi positive.\n"), "eigs", 2);
-            PutLhsVar();
+            Scierror(999, _("%s: Error with input argument #%d: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"), "eigs", 2);
+            ReturnArguments(pvApiCtx);
             return 0;
 
         case -4 :
@@ -675,16 +733,30 @@ int sci_eigs(char *fname, unsigned long fname_len)
             }
             else
             {
-                Scierror(999, _("%s: Error with %s: info = %d \n"), "eigs", "ZNEUPD", INFO_EUPD);
+                Scierror(999,  _("%s: Error with %s: info = %d \n"), "eigs", "ZNEUPD", INFO_EUPD);
             }
             PutLhsVar();
-            free(mat_eigenvalue);
+            return 0;
+
+        case -7 :
+            Scierror(999, _("%s: A - sigma * B is not inversible, try with a different value of sigma.\n"), "eigs");
+            PutLhsVar();
             return 0;
     }
 
     if (Lhs <= 1)
     {
-        sciErr = createComplexZMatrixOfDouble(pvApiCtx, Rhs + 1, iNEV, 1, eigenvalue);
+        if (eigenvalue)
+        {
+            sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iNEV, 1, eigenvalue);
+            FREE(eigenvalue);
+            FREE(eigenvector);
+        }
+        else if (eigenvalueC)
+        {
+            sciErr = createComplexZMatrixOfDouble(pvApiCtx, Rhs + 1, iNEV, 1, eigenvalueC);
+            FREE(eigenvalueC);
+        }
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -697,13 +769,29 @@ int sci_eigs(char *fname, unsigned long fname_len)
     else
     {
         // create a matrix which contains the eigenvalues
-        for (i = 0; i < iNEV ; i++)
+        if (eigenvalue)
         {
-            mat_eigenvalue[i * iNEV + i].r = eigenvalue[i].r;
-            mat_eigenvalue[i * iNEV + i].i = eigenvalue[i].i;
+            mat_eigenvalue = (double*)CALLOC(iNEV * iNEV, sizeof(double));
+            for (i = 0; i < iNEV; i++)
+            {
+                mat_eigenvalue[i * iNEV + i] = eigenvalue[i];
+            }
+            sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iNEV, iNEV, mat_eigenvalue);
+            FREE(eigenvalue);
+            FREE(mat_eigenvalue);
+        }
+        else if (eigenvalueC)
+        {
+            mat_eigenvalueC = (doublecomplex*)CALLOC(iNEV * iNEV, sizeof(doublecomplex));
+            for (i = 0; i < iNEV; i++)
+            {
+                mat_eigenvalueC[i * iNEV + i] = eigenvalueC[i];
+            }
+            sciErr = createComplexZMatrixOfDouble(pvApiCtx, Rhs + 1, iNEV, iNEV, mat_eigenvalueC);
+            FREE(eigenvalueC);
+            FREE(mat_eigenvalueC);
         }
 
-        sciErr = createComplexZMatrixOfDouble(pvApiCtx, Rhs + 1, iNEV, iNEV, mat_eigenvalue);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -711,7 +799,16 @@ int sci_eigs(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        sciErr = createComplexZMatrixOfDouble(pvApiCtx, Rhs + 2, N, iNEV, eigenvector);
+        if (eigenvector)
+        {
+            sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, N, iNEV, eigenvector);
+            FREE(eigenvector);
+        }
+        else if (eigenvectorC)
+        {
+            sciErr = createComplexZMatrixOfDouble(pvApiCtx, Rhs + 2, N, iNEV, eigenvectorC);
+            FREE(eigenvectorC);
+        }
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -728,10 +825,6 @@ int sci_eigs(char *fname, unsigned long fname_len)
         freeAllocatedSingleString(pstData);
     }
 
-    free(SIGMA);
-
-    free(eigenvalue);
-
     if (matB != 0)
     {
         if (Acomplex && !Bcomplex)
@@ -744,12 +837,6 @@ int sci_eigs(char *fname, unsigned long fname_len)
         }
     }
 
-    if (Lhs > 1)
-    {
-        free(mat_eigenvalue);
-        free(eigenvector);
-    }
     PutLhsVar();
     return 0;
 }
-

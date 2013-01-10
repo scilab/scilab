@@ -1,0 +1,13 @@
+[Desktop Entry]
+Comment=Hybrid simulator
+Exec=xcos
+GenericName=Scientific Software Package
+GenericName[fr]=Logiciel de calcul numérique
+GenericName[de]=Wissenschaftssoftware
+Icon=xcos
+MimeType=application/x-scilab-xcos;application/x-scilab-zcos;application/x-scilab-cosf;application/x-scilab-cos;
+Name=Xcos
+StartupNotify=false
+Terminal=false
+Type=Application
+Categories=Education;Science;Math;Development;Physics;

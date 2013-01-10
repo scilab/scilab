@@ -112,4 +112,13 @@ public class ScilabCommons {
         return ScilabCommonsJNI.getScilabVersionTimestamp();
     }
 
+
+    /**
+      * returns the Scilab version as string
+      * @return version Scilab version as a string
+      */
+    public static String getScilabVersionAsString() {
+        return ScilabCommonsJNI.getScilabVersionAsString();
+    }
+
 }

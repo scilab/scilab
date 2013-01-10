@@ -291,7 +291,6 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                     strncpy(&(pOutputStrings[mOut - 1][ll]), pStrTmp1, k);
                     pOutputStrings[mOut - 1][k + ll] = EMPTY_CHAR;
                 }
-                k = 0;
                 pStrTmp += lengthSplitChar;
                 pStrTmp1 = pStrTmp;
                 cat_to_last = 0;
