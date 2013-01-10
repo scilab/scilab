@@ -29,23 +29,21 @@
 /*--------------------------------------------------------------------------*/
 int  Scierror(int iv,const char *fmt,...)
 {
-  int retval = 0;
-  int lstr = 0;
-  char s_buf[bsiz];
+	int retval = 0;
     wchar_t* pwstError = NULL;
-  va_list ap;
+	char s_buf[bsiz];
+	va_list ap;
+	
+	va_start(ap,fmt);
 
-  va_start(ap,fmt);
-
-#if _MSC_VER
-  retval = vsnprintf(s_buf,bsiz-1, fmt, ap );
+#if defined (vsnprintf) || defined (linux)
+	retval = vsnprintf(s_buf,bsiz-1, fmt, ap );
 #else
   retval = vsnprintf(s_buf, bsiz - 1, fmt, ap);
 #endif
   if (retval < 0) s_buf[bsiz-1]='\0';
 
-  lstr = (int) strlen(s_buf);
-  va_end(ap);
+	va_end(ap);
 
     pwstError = to_wide_string(s_buf);
     setLastError(iv, pwstError, 0, NULL);

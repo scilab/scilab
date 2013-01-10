@@ -10,8 +10,9 @@
  *
  */
 
-#include "extraction.hpp"
+#include "extraction.hxx"
 #include "gw_xml.h"
+
 using namespace org_modules_xml;
 
 int sci_percent_XMLDoc_e(char *fname, void* pvApiCtx)

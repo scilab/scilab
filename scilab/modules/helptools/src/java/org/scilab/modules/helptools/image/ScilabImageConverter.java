@@ -33,11 +33,11 @@ public class ScilabImageConverter implements ExternalImageConverter {
 
     private static ScilabImageConverter instance;
     private final StringBuilder buffer;
-    private final HTMLDocbookTagConverter.GenerationType type;
+    private final HTMLDocbookTagConverter conv;
 
-    private ScilabImageConverter(HTMLDocbookTagConverter.GenerationType type) {
+    private ScilabImageConverter(HTMLDocbookTagConverter conv) {
         buffer = new StringBuilder(8192);
-        this.type = type;
+        this.conv = conv;
     }
 
     public String getMimeType() {
@@ -78,9 +78,9 @@ public class ScilabImageConverter implements ExternalImageConverter {
      * Since this a singleton class...
      * @return this
      */
-    public static ScilabImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
+    public static ScilabImageConverter getInstance(HTMLDocbookTagConverter conv) {
         if (instance == null) {
-            instance = new ScilabImageConverter(type);
+            instance = new ScilabImageConverter(conv);
         }
 
         return instance;
@@ -138,18 +138,17 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("endfunction\n");
         buffer.append("_generate_image_from_doc();\n");
         buffer.append("clear _generate_image_from_doc;\n");
-
         */
-        return getHTMLCodeToReturn(code, "<img src=\'" + imageName + "\'/>");
+        return getHTMLCodeToReturn(code, "<img src=\'" + conv.getBaseImagePath() + imageName + "\'/>");
     }
 
     public String getHTMLCodeToReturn(String code, String imageTag) {
-        if (type == HTMLDocbookTagConverter.GenerationType.WEB) {
+        if (conv.getGenerationType() == HTMLDocbookTagConverter.GenerationType.WEB) {
             /* Prepare the code for the html inclusion */
             code = convertCode(code);
             /* Provide a tooltip */
             return "<div rel='tooltip' title='" + code + "'>" + imageTag + "</div>";
-        } else {
+    } else {
             /* No tooltip in the javahelp browser ...
              * too limited html capabilities */
             return imageTag;

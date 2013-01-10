@@ -160,7 +160,7 @@
 extern int C2F(fortrangetch)();
 
 
-int C2F(getval)(double *s, int *dotdet, int *opt)
+int C2F(getval)(double *s, int *dotdet)
 {
     ///* Initialized constants */
     //static double toto = 0.;

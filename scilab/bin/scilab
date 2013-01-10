@@ -135,6 +135,18 @@ detect_type_of_scilab(){
         DISABLE_JAVA_DETECTION=1
     fi
 
+    if (echo "$progname"|grep "scinotes$" 2>&1 > /dev/null;) then
+        SCILAB_MODE="scinotes"
+        SCILABBIN="scilab-bin"
+        extraarg=1
+    fi
+
+    if (echo "$progname"|grep "xcos$" 2>&1 > /dev/null;) then
+        SCILAB_MODE="xcos"
+        SCILABBIN="scilab-bin"
+        extraarg=1
+    fi
+
     if test $SCIVERBOSE -ne 0; then
         echo "SCILABBIN : $SCILABBIN"
         echo "DISABLE_JAVA_DETECTION : $DISABLE_JAVA_DETECTION"
@@ -805,13 +817,111 @@ fi
 # Check if SELINUX is enable. If it is the case, disable it for Scilab
 check_and_disable_selinux
 
+do_scinotes()
+{
+    INDENT=""
+    if test $# -gt 0; then
+    # scinotes is called. We process the arguments
+    ARGS="["
+
+    for SCIARG in "$@"; do
+        if test "$SCIARG" = "-indent"; then
+            INDENT="'actions=indent,trailing,quote'"
+        else
+            ARGS="$ARGS '$SCIARG', "
+        fi
+    done
+    ARGS="$ARGS]"
+    fi
+
+    if test -n "$INDENT"; then
+    # Call scinotes with the arguments
+        if test $SCIVERBOSE -ne 0; then
+            echo "Will start scinotes with: $SCILABBIN -nb -nw -e scinotes($ARGS, $INDENT);exit()"
+        fi
+        "$SCILABBIN" -nb -nw -e "scinotes($ARGS, $INDENT);exit()"
+    else
+        if test $SCIVERBOSE -ne 0; then
+            echo "Will start scinotes with: $SCILABBIN -e scinotes($ARGS)"
+        fi
+
+    # Call scinotes with no argument
+        "$SCILABBIN" -e "scinotes($ARGS)"
+    fi
+}
+
+do_xcos()
+{
+    SIMULATE=0
+    if test $# -gt 0; then
+    # xcos is called. We process the arguments
+        ARGS="["
+        for SCIARG in "$@"; do
+            if test "$SCIARG" = "-simulate"; then
+                if test $# -ne 2; then
+                    echo "Wrong syntax: When -simulate is used, only one file must be provided."
+                    exit 43
+                fi
+                SIMULATE=1
+            else
+                ARGS="$ARGS '$SCIARG', "
+            fi
+        done
+        ARGS="$ARGS ]"
+    fi
+
+    if test $SIMULATE -eq 1; then
+        if test $SCIVERBOSE -ne 0; then
+            echo "Will start Xcos with: $SCILABBIN -e 'importXcosDiagram($ARGS);xcos_simulate(scs_m, 4)'"
+        fi
+
+    # Call xcos with the arguments to simulate
+        "$SCILABBIN" -e "importXcosDiagram($ARGS);xcos_simulate(scs_m, 4)"
+    else
+        if test $SCIVERBOSE -ne 0; then
+            echo "Will start Xcos with: $SCILABBIN -e xcos($ARGS)"
+        fi
+
+    # Call xcos with the arguments
+        "$SCILABBIN" -e "xcos($ARGS)"
+    fi
+
+}
+
 do_scilex()
 {
-    "$SCILABBIN" "$@"
+    if test "$SCILAB_MODE" = "xcos"; then
+        do_xcos "$@"
+    else
+        if test "$SCILAB_MODE" = "scinotes"; then
+            do_scinotes "$@"
+        else
+            "$SCILABBIN" "$@"
+        fi
+    fi
 }
 
 do_help()
 {
+    if test "$SCILAB_MODE" = "xcos"; then
+        echo "Start Xcos, the hybrid simulator"
+        echo "Usage:"
+        echo "xcos [ file1.xcos, [ file2.xcos ]]"
+        echo     " "
+        echo     "  Possible arguments are:"
+        echo     "  -simulate : Start the simulation. Only one file will be accepted."
+        exit
+    fi
+    if test "$SCILAB_MODE" = "scinotes"; then
+        echo "Start Scinotes, the Scilab text editor"
+        echo "Usage:"
+        echo     "scinotes [ file1.sci, [ file2.sce ]]"
+        echo     " "
+        echo     "  Possible arguments are:"
+        echo     "  -indent : format (indent, trailing spaces, quote mismatch) the files"
+        exit
+    fi
+
     echo "Usage:"
     echo     "scilab <arguments>"
     echo     "scilab-cli <arguments>"
@@ -826,7 +936,7 @@ do_help()
     echo     "                    -e and -f arguments are mutually exclusive."
     echo     "  -l Lang         : set the current language. Lang can be equal to fr or en."
     echo     "  -mem N          : set the initial stacksize, for use with -ns argument."
-    echo     "  -nb             : do not display Scilab loading message at starting time."
+    echo     "  -nb             : do not display Scilab loading on start."
     echo     "  -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
     echo     "  -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
     echo     "  -noatomsautoload: do not load ATOMS installed module."

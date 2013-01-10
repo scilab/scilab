@@ -40,7 +40,6 @@ char *utftolatin(char *utfString)
                 switch (state)
                 {
                     case 0: /* start of utf8 char */
-                        ucs4 = 0; /* reset ucs4 char */
                         if ((c & 0xfe) == 0xfc)
                         {
                             /* 6 octets */

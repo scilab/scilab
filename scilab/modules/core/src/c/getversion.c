@@ -18,6 +18,7 @@
 #include "os_strdup.h"
 #include "with_module.h"
 #include "loadversion.h"
+#include "freeArrayOfString.h"
 #include "MALLOC.h"
 #include "../../../io/includes/getenvc.h"
 #include "os_wcsdup.h"
@@ -187,7 +188,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
             }
             else
             {
-                FREE(options);
+                freeArrayOfString(options, nbOptions);
                 return NULL;
             }
         }
@@ -202,7 +203,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
             }
             else
             {
-                FREE(options);
+                freeArrayOfString(options, nbOptions);
                 return NULL;
             }
         }
@@ -215,7 +216,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            FREE(options);
+            freeArrayOfString(options, nbOptions);
             return NULL;
         }
 
@@ -227,7 +228,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            FREE(options);
+            freeArrayOfString(options, nbOptions);
             return NULL;
         }
 
@@ -239,7 +240,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            FREE(options);
+            freeArrayOfString(options, nbOptions);
             return NULL;
         }
 

@@ -179,7 +179,6 @@ static int ParseNumber(const char* tx)
     {
         len++;
     }
-    lookahead = len;
 
     while (isdigit(tx[len]))
     {

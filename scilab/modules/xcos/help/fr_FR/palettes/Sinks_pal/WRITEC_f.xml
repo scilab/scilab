@@ -292,11 +292,15 @@
             </link>
             .
         </para>
-        <para />
-        <inlinemediaobject><imageobject>
-                <imagedata align="center" fileref="../../../../help/examples/sinks_pal/fr_FR/writec_f_diagram_fr_FR.png" />
-            </imageobject>
-        </inlinemediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/sinks_pal/fr_FR/writec_f_fr_FR.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
     </refsection>
     
     <refsection id="Interfacingfunction_WRITEC_f">

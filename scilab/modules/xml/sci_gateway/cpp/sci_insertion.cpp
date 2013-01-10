@@ -10,8 +10,8 @@
  *
  */
 
-#include "insertion.hpp"
-#include "XMLList_insertion.hpp"
+#include "insertion.hxx"
+#include "XMLList_insertion.hxx"
 
 int sci_percent_c_i_XMLDoc(char *fname, void* pvApiCtx)
 {

@@ -20,6 +20,7 @@ import java.util.Map;
 
 import org.xml.sax.Attributes;
 
+import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 import org.scilab.modules.helptools.image.ImageConverter;
 import org.scilab.modules.helptools.image.ScilabImageConverter;
 
@@ -105,16 +106,26 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
             if (dotpos != -1) {
                 baseName = baseName.substring(0, dotpos);
             }
-            String fileName = baseName + BASENAME + (compt++) + ".png";
+            String fileName;
+            if (isLocalized) {
+                fileName = baseName + BASENAME + ((HTMLDocbookTagConverter) getConverter()).getLanguage() + BASENAME + (compt++) + ".png";
+            } else {
+                fileName = baseName + BASENAME + (compt++) + ".png";
+            }
+
             File f = new File(outputDir, fileName);
             Map<String, String> attributes = new HashMap<String, String>();
 
             String ret;
             File existing;
+            String baseImagePath = "";
+            if (getConverter() instanceof HTMLDocbookTagConverter) {
+                baseImagePath = ((HTMLDocbookTagConverter) getConverter()).getBaseImagePath();
+            }
             if (isLocalized || (existing = getExistingFile(outputDir, fileName)) == null) {
-                ret = ImageConverter.getImageByCode(currentFileName, buffer.toString(), attributes, "image/scilab", f, baseDir + f.getName());
+                ret = ImageConverter.getImageByCode(currentFileName, buffer.toString(), attributes, "image/scilab", f, baseDir + f.getName(), baseImagePath);
             } else {
-                ret = ImageConverter.getImageByFile(attributes, null, existing.getAbsolutePath(), outputDir, ".");
+                ret = ImageConverter.getImageByFile(attributes, null, existing.getAbsolutePath(), outputDir, ".", baseImagePath);
                 ret = ScilabImageConverter.getInstance().getHTMLCodeToReturn(buffer.toString(), ret);
             }
 
@@ -132,10 +143,10 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
         try {
             final File outDir = new File(outputDir).getCanonicalFile();
             FileFilter filter = new FileFilter() {
-                    public boolean accept(File f) {
-                        return f.isDirectory() && !f.equals(outDir);
-                    }
-                };
+                public boolean accept(File f) {
+                    return f.isDirectory() && !f.equals(outDir);
+                }
+            };
             File[] dirs = outDir.getParentFile().listFiles(filter);
             File im = new File(filename);
             for (File dir : dirs) {

@@ -208,3 +208,12 @@ int getScilabVersionMaintenance();
    */
 public";
 int getScilabVersionTimestamp();
+
+/* JavaDoc */
+%javamethodmodifiers getScilabVersionAsString() "
+ /**
+   * returns the Scilab version as string
+   * @return version Scilab version as a string
+   */
+public";
+char* getScilabVersionAsString();

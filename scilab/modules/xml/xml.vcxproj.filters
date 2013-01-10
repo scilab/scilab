@@ -7,7 +7,7 @@
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <Extensions>h.hxx;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
@@ -40,7 +40,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\cpp\extraction.hpp">
+    <ClInclude Include="src\cpp\extraction.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\VariableScope.hxx">
@@ -76,10 +76,10 @@
     <ClInclude Include="src\cpp\XMLXPath.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cpp\insertion.hpp">
+    <ClInclude Include="src\cpp\insertion.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cpp\XMLList_insertion.hpp">
+    <ClInclude Include="src\cpp\XMLList_insertion.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\XMLRhsValue.hxx">
