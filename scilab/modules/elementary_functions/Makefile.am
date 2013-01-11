@@ -285,8 +285,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/danints.f
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_tril.c \
-    sci_gateway/c/sci_triu.c \
     sci_gateway/c/sci_sqrt.c \
     sci_gateway/c/sci_sign.c \
     sci_gateway/c/gw_elementary_functions.c \
@@ -304,13 +302,11 @@ GATEWAY_FORTRAN_SOURCES =  \
     sci_gateway/fortran/sci_f_testmatrix.f \
     sci_gateway/fortran/sci_f_matrix.f \
     sci_gateway/fortran/sci_f_size.f \
-    sci_gateway/fortran/sci_f_tril.f \
     sci_gateway/fortran/sci_f_ceil.f \
     sci_gateway/fortran/sci_f_clean.f \
     sci_gateway/fortran/sci_f_eye.f \
     sci_gateway/fortran/sci_f_tan.f \
     sci_gateway/fortran/sci_f_atan.f \
-    sci_gateway/fortran/sci_f_triu.f \
     sci_gateway/fortran/sci_f_cos.f \
     sci_gateway/fortran/sci_f_rand.f \
     sci_gateway/fortran/sci_f_acos.f \
@@ -367,7 +363,10 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_log1p.cpp \
     sci_gateway/cpp/sci_max.cpp \
     sci_gateway/cpp/sci_min.cpp \
-    sci_gateway/cpp/sci_rat.cpp
+    sci_gateway/cpp/sci_rat.cpp \
+    sci_gateway/cpp/sci_triu.cpp \
+    sci_gateway/cpp/sci_tril.cpp
+
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 

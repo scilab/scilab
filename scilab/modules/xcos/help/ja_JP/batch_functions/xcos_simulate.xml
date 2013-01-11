@@ -80,7 +80,7 @@
             xcosダイアグラム.
             <mediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../images/batch_simulation.png"/>
+                    <imagedata align="center" fileref="../../../demos/batch_simulation.xcos"/>
                 </imageobject>
             </mediaobject>
             このダイアグラムをバッチモードで実行し,
@@ -159,7 +159,7 @@ function continueSimulation=pre_xcos_simulate(scs_m, needcompile)
             xcosダイアグラム: <literal>SCI/modules/xcos/demos/Command.xcos</literal>
             <mediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../images/Command.png"/>
+                    <imagedata align="center" fileref="../../../demos/Command.xcos"/>
                 </imageobject>
             </mediaobject>
             このダイアグラムをバッチモードでシミュレートし,
@@ -208,7 +208,7 @@ xcos_simulate(scs_m, 4);
             xcosダイアグラム: <literal>SCI/modules/xcos/demos/Command_bode.xcos</literal>
             <mediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../images/Command_bode.png"/>
+                    <imagedata align="center" fileref="../../../demos/Command_bode.xcos"/>
                 </imageobject>
             </mediaobject>
             このダイアグラムをバッチモードでシミュレートし,

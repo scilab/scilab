@@ -68,7 +68,12 @@ int sci_matfile_listvar(char* fname, void* pvApiCtx)
 
   /* Gets the corresponding matfile */
   matfile_manager(MATFILEMANAGER_GETFILE, &fileIndex, &matfile);
-
+  if (matfile == NULL)
+  {
+      Scierror(999, _("%s: Invalid file identifier.\n"), fname);
+      return FALSE;
+  }
+  
   /* Back to the beginning of the file */
   if (Mat_Rewind(matfile) != 0)
     {

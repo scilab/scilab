@@ -522,11 +522,19 @@
             </link>
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata align="center" fileref="../../../examples/integer_pal/en_US/extractbits_diagram_en_US.png"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/EXTRACTBITS_en_US.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/integer_pal/en_US/EXTRACTBITS_en_US.xcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/en_US/EXTRACTBITS_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_EXTRACTBITS">
         <title>Interfacing function</title>

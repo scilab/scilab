@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "io_f module"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "io_f module"
-            VALUE "LegalCopyright", "Copyright (C) 2012"
+            VALUE "LegalCopyright", "Copyright (C) 2013"
             VALUE "OriginalFilename", "io_f.dll"
             VALUE "ProductName", "io_f module"
             VALUE "ProductVersion", "6, 0, 0, 0"

@@ -18,6 +18,7 @@ import java.util.UUID;
 
 import javax.swing.JTextArea;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.gui.ScilabTermination;
 import org.scilab.modules.gui.bridge.CallScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -58,21 +59,21 @@ public class ConsoleTab {
 
             ClosingOperationsManager.registerClosingOperation(tab, new ClosingOperationsManager.ClosingOperation() {
 
-                    public int canClose() {
-                        return 1;
-                    }
+                public int canClose() {
+                    return 1;
+                }
 
-                    public void destroy() { }
+                public void destroy() { }
 
-                    public String askForClosing(final List<SwingScilabTab> list) {
-                        return null;
-                    }
+                public String askForClosing(final List<SwingScilabTab> list) {
+                    return null;
+                }
 
-                    @Override
-                    public void updateDependencies(List<SwingScilabTab> list,
-                                                   ListIterator<SwingScilabTab> it) {
-                    }
-                });
+                @Override
+                public void updateDependencies(List<SwingScilabTab> list,
+                ListIterator<SwingScilabTab> it) {
+                }
+            });
 
             ClosingOperationsManager.addDependencyWithRoot(tab);
             WindowsConfigurationManager.restorationFinished((SwingScilabTab) tab.getAsSimpleTab());
@@ -86,35 +87,36 @@ public class ConsoleTab {
             /* CONSOLE */
             /* Create a tab to put console into */
             LoadClassPath.loadOnUse("Console");
+            String tabName = String.format(Messages.gettext("Scilab %s Console"), ScilabCommonsUtils.getScilabVersionAsString());
             if (uuid == null) {
-                consoleTab = ScilabTab.createTab(Messages.gettext("Scilab Console"), UUID.randomUUID().toString());
+                consoleTab = ScilabTab.createTab(tabName, UUID.randomUUID().toString());
             } else {
-                consoleTab = ScilabTab.createTab(Messages.gettext("Scilab Console"), uuid);
+                consoleTab = ScilabTab.createTab(tabName, uuid);
             }
 
             ClosingOperationsManager.registerClosingOperation(consoleTab, new ClosingOperationsManager.ClosingOperation() {
 
-                    public int canClose() {
-                        CallScilabBridge.unblockConsole();
+                public int canClose() {
+                    CallScilabBridge.unblockConsole();
 
-                        return 1;
-                    }
+                    return 1;
+                }
 
-                    public void destroy() {
-                        if (!Scilab.getExitCalled()) {
-                            ScilabTermination.ScilabExit();
-                        }
+                public void destroy() {
+                    if (!Scilab.getExitCalled()) {
+                        ScilabTermination.ScilabExit();
                     }
+                }
 
-                    public String askForClosing(final List<SwingScilabTab> list) {
-                        return "Scilab";
-                    }
+                public String askForClosing(final List<SwingScilabTab> list) {
+                    return "Scilab";
+                }
 
-                    @Override
-                    public void updateDependencies(List<SwingScilabTab> list,
-                                                   ListIterator<SwingScilabTab> it) {
-                    }
-                });
+                @Override
+                public void updateDependencies(List<SwingScilabTab> list,
+                ListIterator<SwingScilabTab> it) {
+                }
+            });
 
             ClosingOperationsManager.setRoot(consoleTab);
 

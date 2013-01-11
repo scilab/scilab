@@ -565,24 +565,41 @@ int AddDoubleToPoly(Polynom *_pPoly, Double *_pDouble, Polynom ** _pPolyOut)
 
     if (_pDouble->isScalar())
     {
-        //Clone original poly
         (*_pPolyOut) = _pPoly->clone()->getAs<Polynom>();
-        for (int i = 0 ; i < (*_pPolyOut)->getSize() ; i++)
-        {
-            SinglePoly *pOutPoly    = (*_pPolyOut)->get(i);
-            double *pOutPolyR       = pOutPoly->getCoef()->get();
-            pOutPolyR[0]   += pInDblR[0];
-        }
 
-        if ((*_pPolyOut)->isComplex() || _pDouble->isComplex())
+        if (bComplex1 && bComplex2)
+        {
+            for (int i = 0 ; i < (*_pPolyOut)->getSize() ; i++)
+            {
+                SinglePoly *pSPOut   = (*_pPolyOut)->get(i);
+                double *pOutPolyR    = pSPOut->getCoef()->getReal();
+                double *pOutPolyI    = pSPOut->getCoef()->getImg();
+
+                pOutPolyR[0] += pInDblR[0];
+                pOutPolyI[0] += pInDblI[0];
+            }
+        }
+        else if (bComplex2)
         {
             (*_pPolyOut)->setComplex(true);
             for (int i = 0 ; i < (*_pPolyOut)->getSize() ; i++)
             {
-                SinglePoly *pOutPoly    = (*_pPolyOut)->get(i);
-                double *pOutPolyI       = pOutPoly->getCoef()->getImg();
+                SinglePoly *pSPOut   = (*_pPolyOut)->get(i);
+                double *pOutPolyR    = pSPOut->getCoef()->getReal();
+                double *pOutPolyI    = pSPOut->getCoef()->getImg();
 
-                pOutPolyI[0]            +=  (pInDblI == NULL ? 0 : pInDblI[0]);
+                pOutPolyR[0] += pInDblR[0];
+                pOutPolyI[0] = pInDblI[0];
+            }
+        }
+        else
+        {
+            for (int i = 0 ; i < (*_pPolyOut)->getSize() ; i++)
+            {
+                SinglePoly *pSPOut = (*_pPolyOut)->get(i);
+                double *pOutPolyR  = pSPOut->getCoef()->getReal();
+
+                pOutPolyR[0] += pInDblR[0];
             }
         }
 
@@ -608,33 +625,43 @@ int AddDoubleToPoly(Polynom *_pPoly, Double *_pDouble, Polynom ** _pPolyOut)
         }
     }
 
-    (*_pPolyOut) = new Polynom();
-    //Create new SinglePoly
-    **_pPolyOut = *_pPoly;
-
-    for (int i = 0 ; i < (*_pPolyOut)->getSize() ; i++)
+    (*_pPolyOut) = _pPoly->clone()->getAs<Polynom>();
+    if (bComplex1 && bComplex2)
     {
-        SinglePoly *pInPoly  = _pPoly->get(i);
-        SinglePoly *pOutPoly = (*_pPolyOut)->get(i);
-        double *pInPolyR     = pInPoly->getCoef()->getReal();
-        double *pOutPolyR    = pOutPoly->getCoef()->getReal();
+        for (int i = 0 ; i < (*_pPolyOut)->getSize() ; i++)
+        {
+            SinglePoly *pSPOut   = (*_pPolyOut)->get(i);
+            double *pOutPolyR    = pSPOut->getCoef()->getReal();
+            double *pOutPolyI    = pSPOut->getCoef()->getImg();
 
-        pOutPolyR[0] = pInDblR[i] + pInPolyR[0];
+            pOutPolyR[0] += pInDblR[i];
+            pOutPolyI[0] += pInDblI[i];
+        }
     }
-
-    if (bComplex1 || bComplex2)
+    else if (bComplex2)
     {
         (*_pPolyOut)->setComplex(true);
         for (int i = 0 ; i < (*_pPolyOut)->getSize() ; i++)
         {
-            SinglePoly *pInPoly  = _pPoly->get(i);
-            SinglePoly *pOutPoly = (*_pPolyOut)->get(i);
-            double *pInPolyI     = pInPoly->getCoef()->getImg();
-            double *pOutPolyI    = pOutPoly->getCoef()->getImg();
+            SinglePoly *pSPOut   = (*_pPolyOut)->get(i);
+            double *pOutPolyR    = pSPOut->getCoef()->getReal();
+            double *pOutPolyI    = pSPOut->getCoef()->getImg();
 
-            pOutPolyI[0] = (pInDblI != NULL ? pInDblI[i] : 0) + (pInPolyI != NULL ? pInPolyI[0] : 0);
+            pOutPolyR[0] += pInDblR[i];
+            pOutPolyI[0] = pInDblI[i];
         }
     }
+    else
+    {
+        for (int i = 0 ; i < (*_pPolyOut)->getSize() ; i++)
+        {
+            SinglePoly *pSPOut = (*_pPolyOut)->get(i);
+            double *pOutPolyR  = pSPOut->getCoef()->getReal();
+
+            pOutPolyR[0] += pInDblR[i];
+        }
+    }
+
     return 0;
 }
 

@@ -72,7 +72,7 @@
         <title>Description</title>
         <para>
             <literal>deff</literal> can be used to define functions from sequences of instructions
-            written in text strings. The resulting function object has the same proprerties
+            written in text strings. The resulting function object has the same properties
             of any other function defined in a text file and loaded with <literal>exec</literal>.
         </para>
         <para>

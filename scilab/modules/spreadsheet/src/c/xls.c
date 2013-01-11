@@ -200,7 +200,6 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 }
                 if ((*chainesind = (int *) MALLOC((capacite + 1) * sizeof(int))) == NULL)
                 {
-                    FREE(valeur);
                     goto ErrL;
                 }
                 for (i = 0; i <= capacite; i++)

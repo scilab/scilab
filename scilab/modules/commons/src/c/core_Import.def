@@ -14,3 +14,4 @@ getScilabVersionMajor
 getScilabVersionMinor
 getScilabVersionMaintenance
 getScilabVersionTimestamp
+getScilabVersionAsString

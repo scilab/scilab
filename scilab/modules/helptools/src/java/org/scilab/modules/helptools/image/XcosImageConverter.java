@@ -24,10 +24,10 @@ import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 public class XcosImageConverter implements ExternalImageConverter {
 
     private static XcosImageConverter instance;
-    private final HTMLDocbookTagConverter.GenerationType type;
+    private final HTMLDocbookTagConverter conv;
 
-    private XcosImageConverter(HTMLDocbookTagConverter.GenerationType type) {
-        this.type = type;
+    private XcosImageConverter(HTMLDocbookTagConverter conv) {
+        this.conv = conv;
     }
 
     @Override
@@ -48,9 +48,9 @@ public class XcosImageConverter implements ExternalImageConverter {
      *
      * @return this
      */
-    public static XcosImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
+    public static XcosImageConverter getInstance(HTMLDocbookTagConverter conv) {
         if (instance == null) {
-            instance = new XcosImageConverter(type);
+            instance = new XcosImageConverter(conv);
         }
 
         return instance;
@@ -94,11 +94,11 @@ public class XcosImageConverter implements ExternalImageConverter {
         final Method convertToPNG = export.getDeclaredMethod("convertToPNG", String.class, String.class, File.class, String.class);
         convertToPNG.invoke(null, helpID, xcosFile, imageFile, imageName);
 
-        return getHTMLCodeToReturn(helpID, "<img src=\'" + imageName + "\'/>");
+        return getHTMLCodeToReturn(helpID, "<img src=\'" + conv.getBaseImagePath() + imageName + "\'/>");
     }
 
     public String getHTMLCodeToReturn(String filename, String imageTag) {
-        if (type == HTMLDocbookTagConverter.GenerationType.WEB) {
+        if (conv.getGenerationType() == HTMLDocbookTagConverter.GenerationType.WEB) {
             /* Provide a tooltip */
             return "<div rel='tooltip' title='" + filename + "'>" + imageTag + "</div>";
         } else {

@@ -242,9 +242,7 @@ libscielementary_functions_algo_la_OBJECTS =  \
 libscielementary_functions_la_DEPENDENCIES =  \
 	libdummy-elementary_functions.la \
 	libscielementary_functions-algo.la
-am__objects_7 = libscielementary_functions_la-sci_tril.lo \
-	libscielementary_functions_la-sci_triu.lo \
-	libscielementary_functions_la-sci_sqrt.lo \
+am__objects_7 = libscielementary_functions_la-sci_sqrt.lo \
 	libscielementary_functions_la-sci_sign.lo \
 	libscielementary_functions_la-gw_elementary_functions.lo \
 	libscielementary_functions_la-sci_number_properties.lo \
@@ -257,12 +255,12 @@ am__objects_7 = libscielementary_functions_la-sci_tril.lo \
 	libscielementary_functions_la-sci_base2dec.lo \
 	libscielementary_functions_la-sci_dec2base.lo
 am__objects_8 = sci_f_testmatrix.lo sci_f_matrix.lo sci_f_size.lo \
-	sci_f_tril.lo sci_f_ceil.lo sci_f_clean.lo sci_f_eye.lo \
-	sci_f_tan.lo sci_f_atan.lo sci_f_triu.lo sci_f_cos.lo \
-	sci_f_rand.lo sci_f_acos.lo sci_f_sin.lo sci_f_sqrt.lo \
-	sci_f_asin.lo sci_f_sign.lo sci_f_zeros.lo sci_f_ones.lo \
-	sci_f_diag.lo sci_f_number_properties.lo sci_f_spones.lo \
-	sci_f_nearfloat.lo sci_f_real.lo sci_f_round.lo sci_f_conj.lo
+	sci_f_ceil.lo sci_f_clean.lo sci_f_eye.lo sci_f_tan.lo \
+	sci_f_atan.lo sci_f_cos.lo sci_f_rand.lo sci_f_acos.lo \
+	sci_f_sin.lo sci_f_sqrt.lo sci_f_asin.lo sci_f_sign.lo \
+	sci_f_zeros.lo sci_f_ones.lo sci_f_diag.lo \
+	sci_f_number_properties.lo sci_f_spones.lo sci_f_nearfloat.lo \
+	sci_f_real.lo sci_f_round.lo sci_f_conj.lo
 am__objects_9 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-elem_func_gw.lo \
 	libscielementary_functions_la-sci_size.lo \
@@ -301,7 +299,9 @@ am__objects_9 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_log1p.lo \
 	libscielementary_functions_la-sci_max.lo \
 	libscielementary_functions_la-sci_min.lo \
-	libscielementary_functions_la-sci_rat.lo
+	libscielementary_functions_la-sci_rat.lo \
+	libscielementary_functions_la-sci_triu.lo \
+	libscielementary_functions_la-sci_tril.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_7) \
 	$(am__objects_8) $(am__objects_9)
 libscielementary_functions_la_OBJECTS =  \
@@ -898,8 +898,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/danints.f
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_tril.c \
-    sci_gateway/c/sci_triu.c \
     sci_gateway/c/sci_sqrt.c \
     sci_gateway/c/sci_sign.c \
     sci_gateway/c/gw_elementary_functions.c \
@@ -917,13 +915,11 @@ GATEWAY_FORTRAN_SOURCES = \
     sci_gateway/fortran/sci_f_testmatrix.f \
     sci_gateway/fortran/sci_f_matrix.f \
     sci_gateway/fortran/sci_f_size.f \
-    sci_gateway/fortran/sci_f_tril.f \
     sci_gateway/fortran/sci_f_ceil.f \
     sci_gateway/fortran/sci_f_clean.f \
     sci_gateway/fortran/sci_f_eye.f \
     sci_gateway/fortran/sci_f_tan.f \
     sci_gateway/fortran/sci_f_atan.f \
-    sci_gateway/fortran/sci_f_triu.f \
     sci_gateway/fortran/sci_f_cos.f \
     sci_gateway/fortran/sci_f_rand.f \
     sci_gateway/fortran/sci_f_acos.f \
@@ -980,7 +976,9 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_log1p.cpp \
     sci_gateway/cpp/sci_max.cpp \
     sci_gateway/cpp/sci_min.cpp \
-    sci_gateway/cpp/sci_rat.cpp
+    sci_gateway/cpp/sci_rat.cpp \
+    sci_gateway/cpp/sci_triu.cpp \
+    sci_gateway/cpp/sci_tril.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
@@ -1651,20 +1649,6 @@ libscielementary_functions_algo_la-convertbase.lo: src/c/convertbase.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_algo_la-convertbase.lo `test -f 'src/c/convertbase.c' || echo '$(srcdir)/'`src/c/convertbase.c
 
-libscielementary_functions_la-sci_tril.lo: sci_gateway/c/sci_tril.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_tril.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_tril.Tpo -c -o libscielementary_functions_la-sci_tril.lo `test -f 'sci_gateway/c/sci_tril.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tril.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_tril.Tpo $(DEPDIR)/libscielementary_functions_la-sci_tril.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_tril.c' object='libscielementary_functions_la-sci_tril.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_tril.lo `test -f 'sci_gateway/c/sci_tril.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tril.c
-
-libscielementary_functions_la-sci_triu.lo: sci_gateway/c/sci_triu.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_triu.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_triu.Tpo -c -o libscielementary_functions_la-sci_triu.lo `test -f 'sci_gateway/c/sci_triu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_triu.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_triu.Tpo $(DEPDIR)/libscielementary_functions_la-sci_triu.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_triu.c' object='libscielementary_functions_la-sci_triu.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_triu.lo `test -f 'sci_gateway/c/sci_triu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_triu.c
-
 libscielementary_functions_la-sci_sqrt.lo: sci_gateway/c/sci_sqrt.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_sqrt.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_sqrt.Tpo -c -o libscielementary_functions_la-sci_sqrt.lo `test -f 'sci_gateway/c/sci_sqrt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sqrt.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_sqrt.Tpo $(DEPDIR)/libscielementary_functions_la-sci_sqrt.Plo
@@ -2105,6 +2089,20 @@ libscielementary_functions_la-sci_rat.lo: sci_gateway/cpp/sci_rat.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_rat.cpp' object='libscielementary_functions_la-sci_rat.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_rat.lo `test -f 'sci_gateway/cpp/sci_rat.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_rat.cpp
+
+libscielementary_functions_la-sci_triu.lo: sci_gateway/cpp/sci_triu.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_triu.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_triu.Tpo -c -o libscielementary_functions_la-sci_triu.lo `test -f 'sci_gateway/cpp/sci_triu.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_triu.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_triu.Tpo $(DEPDIR)/libscielementary_functions_la-sci_triu.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_triu.cpp' object='libscielementary_functions_la-sci_triu.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_triu.lo `test -f 'sci_gateway/cpp/sci_triu.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_triu.cpp
+
+libscielementary_functions_la-sci_tril.lo: sci_gateway/cpp/sci_tril.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_tril.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_tril.Tpo -c -o libscielementary_functions_la-sci_tril.lo `test -f 'sci_gateway/cpp/sci_tril.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_tril.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_tril.Tpo $(DEPDIR)/libscielementary_functions_la-sci_tril.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_tril.cpp' object='libscielementary_functions_la-sci_tril.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_tril.lo `test -f 'sci_gateway/cpp/sci_tril.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_tril.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -2787,9 +2785,6 @@ sci_f_matrix.lo: sci_gateway/fortran/sci_f_matrix.f
 sci_f_size.lo: sci_gateway/fortran/sci_f_size.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_size.lo `test -f 'sci_gateway/fortran/sci_f_size.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_size.f
 
-sci_f_tril.lo: sci_gateway/fortran/sci_f_tril.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_tril.lo `test -f 'sci_gateway/fortran/sci_f_tril.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_tril.f
-
 sci_f_ceil.lo: sci_gateway/fortran/sci_f_ceil.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_ceil.lo `test -f 'sci_gateway/fortran/sci_f_ceil.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ceil.f
 
@@ -2804,9 +2799,6 @@ sci_f_tan.lo: sci_gateway/fortran/sci_f_tan.f
 
 sci_f_atan.lo: sci_gateway/fortran/sci_f_atan.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_atan.lo `test -f 'sci_gateway/fortran/sci_f_atan.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_atan.f
-
-sci_f_triu.lo: sci_gateway/fortran/sci_f_triu.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_triu.lo `test -f 'sci_gateway/fortran/sci_f_triu.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_triu.f
 
 sci_f_cos.lo: sci_gateway/fortran/sci_f_cos.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_cos.lo `test -f 'sci_gateway/fortran/sci_f_cos.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_cos.f

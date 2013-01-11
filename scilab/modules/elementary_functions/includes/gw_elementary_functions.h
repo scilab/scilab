@@ -61,8 +61,8 @@ C_GATEWAY_PROTOTYPE(sci_sign);
 C_GATEWAY_PROTOTYPE(sci_sqrt);
 //C_GATEWAY_PROTOTYPE(sci_tan);
 C_GATEWAY_PROTOTYPE(sci_testmatrix);
-C_GATEWAY_PROTOTYPE(sci_tril);
-C_GATEWAY_PROTOTYPE(sci_triu);
+//C_GATEWAY_PROTOTYPE(sci_tril);
+//C_GATEWAY_PROTOTYPE(sci_triu);
 C_GATEWAY_PROTOTYPE(sci_base2dec);
 C_GATEWAY_PROTOTYPE(sci_dec2base);
 

@@ -95,6 +95,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                 else
                 {
                     freeAllocatedSingleString(param1);
+
                     Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "paste", "pastespecial");
                     return FALSE;
                 }
@@ -257,6 +258,8 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                             {
                                 freeAllocatedMatrixOfString(m2, n2, Str);
                                 Scierror(999, _("%s: No more memory.\n"), fname);
+                                freeArrayOfString(buffer, m2 * n2);
+
                                 return FALSE;
                             }
 
@@ -280,7 +283,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
 
                             FREE(buffer);
                             buffer = NULL;
-
+                            freeArrayOfString(buffer, m2 * n2);
                             FREE(TextToSendInClipboard);
                             TextToSendInClipboard = NULL;
                         }

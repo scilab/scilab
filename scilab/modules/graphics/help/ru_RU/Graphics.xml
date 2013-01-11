@@ -150,7 +150,7 @@
                     <para>
                         Кривые уровней поверхности, определённой функцией, на
                         двумерном графике.
-                        </para>
+                    </para>
                     <para>
                         <emphasis role="bold">Пример:</emphasis>
                     </para>
@@ -1018,7 +1018,7 @@
                 </term>
                 <listitem>
                     <para>
-                       Очистка графического окна или сброс в исходные значения
+                        Очистка графического окна или сброс в исходные значения
                     </para>
                 </listitem>
             </varlistentry>
@@ -1060,14 +1060,6 @@
                     <para>
                         Закрытие графической сессии
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xbasr">xbasr</link>
-                </term>
-                <listitem>
-                    <para>Перерисовка графического окна</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

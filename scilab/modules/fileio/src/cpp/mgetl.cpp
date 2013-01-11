@@ -230,7 +230,7 @@ wchar_t *removeEOL(wchar_t *_inString)
 /*
 * convert ansi to Utf
 */
-char *convertAnsiToUtf(char *_inString)
+static char *convertAnsiToUtf(char *_inString)
 {
     char *outString = NULL;
     if (_inString)
@@ -280,7 +280,7 @@ char *convertAnsiToUtf(char *_inString)
             int len = (int)strlen(_inString);
             int i = 0;
 
-            outString = (char*)MALLOC(((len*3) + 1) * sizeof(char));
+            outString = (char*)MALLOC(((len * 3) + 1) * sizeof(char));
             if (outString == NULL)
             {
                 return NULL;
@@ -335,4 +335,3 @@ char *convertAnsiToUtf(char *_inString)
     return outString;
 }
 /*--------------------------------------------------------------------------*/
-

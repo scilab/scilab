@@ -219,16 +219,19 @@
             <latex>y=u(1) - u(2) - u(3)</latex>
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/userdefinedfunctions_pal/en_US/EXPRESSION_diagram_en_US.png" align="center"/>
-            </imageobject>
-        </mediaobject>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/userdefinedfunctions_pal/en_US/EXPRESSION_scope_en_US.png" align="center"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.xcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_EXPRESSION">
         <title>Interfacing function</title>

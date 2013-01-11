@@ -96,20 +96,22 @@
         </para>
         <para>Un exemple de graphique d'une zone morte particulière est donné ci-dessous :</para>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/discontinuities_pal/fr_FR/deadband_desc_fr_FR.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
-        <para>It is defined by:</para>
+        <para>Défini par:</para>
         <para>
             <latex><![CDATA[
         v\left(k\right)=\begin{cases}u\left(k\right)-c_{S} & \textrm{ for }u\left(k\right)<c_{S}\\0 & \textrm{ for }c_{S}\leq u\left(k\right)\leq c_{E}\\u\left(k\right)-c_{E} & \textrm{ for }u\left(k\right)>c_{E}
         \end{cases}
       ]]></latex>
         </para>
-        <para>Where </para>
+        <para>Avec </para>
         <para>
             <latex><![CDATA[c_{E}>c_{S}]]></latex>
         </para>
@@ -242,16 +244,15 @@
     <refsection id="Example_DEADBAND">
         <title>Exemple</title>
         <para>Ce qui suit est un exemple de système avec zone morte.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos">
-                Ouvrir cet exemple dans Xcos
-            </link>
         </para>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/discontinuities_pal/fr_FR/deadband_d_fr_FR.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
         <para>L'entrée est un signal sinusoïdal. L'amplitude est initialisée à 2, la fréquence
             à 1,25 et la phase à 0. Le bloc Zone morte a les paramètres suivants :
@@ -261,11 +262,10 @@
         </para>
         <para>Ce graphique montre l'effet de la zone morte sur un signal sinusoïdal.</para>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/discontinuities_pal/fr_FR/deadband_c_fr_FR.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </para>
     </refsection>
     <refsection id="Interfacingfunction_DEADBAND">

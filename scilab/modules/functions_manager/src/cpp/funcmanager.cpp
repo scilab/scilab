@@ -324,6 +324,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"optimization", &OptimizationModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"special_functions", &SpecialFunctionModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"graphic_export", &GraphicExportModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"polynomials", &PolynomialsModule::Load));
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {

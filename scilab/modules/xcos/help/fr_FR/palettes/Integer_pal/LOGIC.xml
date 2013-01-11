@@ -62,12 +62,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <link linkend="Example_1_LOGIC">Exemple 1</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="Example_2_LOGIC">Exemple 2</link>
+                            <link linkend="Examples_LOGIC">Exemples</link>
                         </para>
                     </listitem>
                     <listitem>
@@ -265,51 +260,53 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_1_LOGIC">
-        <title>Exemple 1</title>
-        <para>
-            L'exemple le plus simple à considérer est le OR. Dans ce cas nous avons deux entrées et seulement une sortie. La table 
-            de vérité pour cet exemple est :
-        </para>
-        <para/>
-        <informaltable border="1" cellpadding="3">
-            <tr>
-                <td>
-                    <emphasis role="bold">input 1</emphasis>
-                </td>
-                <td>
-                    <emphasis role="bold">input 2</emphasis>
-                </td>
-                <td>
-                    <emphasis role="bold">output</emphasis>
-                </td>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>1</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>0</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-            </tr>
-        </informaltable>
-        <para>
-            et le paramètre <emphasis role="bold">Truth Table</emphasis> est écrit :
-        </para>
-        <para/>
-        <programlisting role="example"><![CDATA[[0;1;1;1]]]></programlisting>
+    <refsection id="Examples_LOGIC">
+        <title>Exemples</title>
+        <refsection id="Example_1_LOGIC">
+            <title>Exemple 1</title>
+            <para>
+                L'exemple le plus simple à considérer est le OR. Dans ce cas nous avons deux entrées et seulement une sortie. La table 
+                de vérité pour cet exemple est :
+            </para>
+            <para/>
+            <informaltable border="1" cellpadding="3">
+                <tr>
+                    <td>
+                        <emphasis role="bold">input 1</emphasis>
+                    </td>
+                    <td>
+                        <emphasis role="bold">input 2</emphasis>
+                    </td>
+                    <td>
+                        <emphasis role="bold">output</emphasis>
+                    </td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+            </informaltable>
+            <para>
+                et le paramètre <emphasis role="bold">Truth Table</emphasis> est écrit :
+            </para>
+            <para/>
+            <programlisting role="example"><![CDATA[[0;1;1;1]]]></programlisting>
   </refsection>
   <refsection id="Example_2_LOGIC">
     <title>Exemple 2</title>
@@ -398,37 +395,47 @@
     <programlisting role="example"><![CDATA[
       [zeros(4,4) ; eye(4,4)]
     ]]></programlisting>
-        <para/>
-        <para>
-            La figure suivante montre les sorties 
-            <emphasis><literal>
-                    Q<subscript>0</subscript>
-                </literal>
-            </emphasis>
-            à 
-            <emphasis><literal>
-                    Q<subscript>3</subscript>
-                </literal>
-            </emphasis>
-            obtenues pendant la simulation quand les entrées
-            <emphasis>
-                <literal>a</literal>
-            </emphasis>
-            et 
-            <emphasis>
-                <literal>b</literal>
-            </emphasis>
-            de sélection du bloc sont générées par 
-            un compteur binaire.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.xcos">
-                Ouvrir cet exemple dans Xcos
-            </link>
-        </para>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/integer_pal/fr_FR/logic_diagram_fr_FR.png" align="center"/>
-            </imageobject>
-        </mediaobject>
+            <para/>
+            <para>
+                La figure suivante montre les sorties 
+                <emphasis><literal>
+                        Q<subscript>0</subscript>
+                    </literal>
+                </emphasis>
+                à 
+                <emphasis><literal>
+                        Q<subscript>3</subscript>
+                    </literal>
+                </emphasis>
+                obtenues pendant la simulation quand les entrées
+                <emphasis>
+                    <literal>a</literal>
+                </emphasis>
+                et 
+                <emphasis>
+                    <literal>b</literal>
+                </emphasis>
+                de sélection du bloc sont générées par 
+                un compteur binaire.
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.xcos">
+                    Ouvrir cet exemple dans Xcos
+                </link>
+            </para>
+            <para/>
+            <para>
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.xcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../../../../examples/integer_pal/fr_FR/LOGIC_fr_FR.xcos" align="center" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsection>
     </refsection>
     <refsection id="Interfacingfunction_LOGIC">
         <title>Fonction d'interfaçage</title>

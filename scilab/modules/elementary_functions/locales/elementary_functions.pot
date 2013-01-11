@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-11-14 11:00+0100\n"
+"Revision-Date: 2013-01-10 17:04+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -60,10 +60,6 @@ msgstr ""
 # File: sci_gateway/c/sci_dec2base.c, line: 132
 # File: sci_gateway/c/sci_dec2base.c, line: 166
 # File: sci_gateway/c/sci_dec2base.c, line: 187
-# File: src/c/sci_tools.c, line: 107
-# File: src/c/sci_tools.c, line: 134
-# File: src/c/sci_tools.c, line: 166
-# File: src/c/sci_tools.c, line: 203
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -343,7 +339,6 @@ msgstr ""
 # File: macros/atanhm.sci, line: 16
 # File: macros/atanm.sci, line: 21
 # File: macros/bin2dec.sci, line: 37
-# File: macros/binomial.sci, line: 29
 # File: macros/bitand.sci, line: 35
 # File: macros/bitcmp.sci, line: 45
 # File: macros/bitget.sci, line: 37
@@ -482,53 +477,6 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: macros/binomial.sci, line: 33
-# File: macros/modulo.sci, line: 21
-# File: macros/modulo.sci, line: 25
-# File: macros/pmodulo.sci, line: 22
-# File: macros/pmodulo.sci, line: 26
-# File: macros/primes.sci, line: 26
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-
-#
-# File: macros/binomial.sci, line: 37
-# File: macros/factor.sci, line: 31
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr ""
-
-#
-# File: macros/binomial.sci, line: 41
-# File: macros/primes.sci, line: 28
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr ""
-
-#
-# File: macros/binomial.sci, line: 45
-# File: macros/factor.sci, line: 29
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr ""
-
-#
-# File: macros/binomial.sci, line: 49
-# File: macros/bitcmp.sci, line: 80
-# File: macros/bitget.sci, line: 83
-# File: macros/bitset.sci, line: 71
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-
-#
-# File: macros/binomial.sci, line: 53
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
-msgstr ""
-
-#
 # File: macros/bitand.sci, line: 39
 # File: macros/bitor.sci, line: 40
 # File: macros/bitxor.sci, line: 37
@@ -575,6 +523,14 @@ msgstr ""
 # File: macros/bitcmp.sci, line: 65
 #, c-format
 msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
+msgstr ""
+
+#
+# File: macros/bitcmp.sci, line: 80
+# File: macros/bitget.sci, line: 83
+# File: macros/bitset.sci, line: 71
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 
 #
@@ -687,6 +643,18 @@ msgid ""
 msgstr ""
 
 #
+# File: macros/factor.sci, line: 29
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#
+# File: macros/factor.sci, line: 31
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#
 # File: macros/factorial.sci, line: 23
 #, c-format
 msgid ""
@@ -774,6 +742,16 @@ msgid ""
 msgstr ""
 
 #
+# File: macros/modulo.sci, line: 21
+# File: macros/modulo.sci, line: 25
+# File: macros/pmodulo.sci, line: 22
+# File: macros/pmodulo.sci, line: 26
+# File: macros/primes.sci, line: 26
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+
+#
 # File: macros/ndgrid.sci, line: 40
 # File: macros/num2cell.sci, line: 33
 #, c-format
@@ -829,6 +807,12 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: At least the size of input argument #"
 "%d expected.\n"
+msgstr ""
+
+#
+# File: macros/primes.sci, line: 28
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 
 #

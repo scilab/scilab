@@ -55,7 +55,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=poly(0,'x');
 p1=(1+x^2)*(1-x);p2=1-x;
 [r,q]=pdiv(p1,p2)
@@ -76,4 +76,10 @@ p2*q+r-p1
             </member>
         </simplelist>
     </refsection>
+    <revhistory>
+        <revision>
+            <revnumber>6.0.0</revnumber>
+            <revremark>pdiv return a matrix of type 'constant' when all ranks are 0.</revremark>
+        </revision>
+    </revhistory>
 </refentry>

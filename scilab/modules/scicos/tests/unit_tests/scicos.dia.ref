@@ -333,13 +333,21 @@ while %t do
   if %noooo>0 then
     str = gettext("%s: invalid dimension for ''%s'', waiting for %s");
     mess = msprintf(str, 'setvalue', %lables(%noooo), %ssss);
-    warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
+    if length(arg1.doc) > 0 then
+        warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
+    else
+        disp(mess);
+    end
     %ini=%str
     %ok=%f;break
   elseif %noooo<0 then
     str = gettext("%s: incorrect type for ''%s'', getting %s");
     mess = msprintf(str, 'setvalue', %lables(-%noooo), %typ(-2*%noooo-1));
-    warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
+    if length(arg1.doc) > 0 then
+        warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
+    else
+        disp(mess);
+    end
     %ini=%str
     %ok=%f;break
   else

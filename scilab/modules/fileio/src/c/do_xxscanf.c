@@ -61,7 +61,6 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
     wchar_t sformat[MAX_STR];
     wchar_t backupcurrrentchar;
     wchar_t directive;
-    wchar_t *p = NULL;
     wchar_t *p1 = NULL;
     wchar_t *target = NULL;
     wchar_t *sval = NULL;
@@ -76,7 +75,6 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
     while (TRUE)
     {
         /* scanf */
-        p = currentchar;
         while (*currentchar != '%' && *currentchar != '\0')
             currentchar++;
         if (*currentchar == '%' && *(currentchar + 1) == '%')

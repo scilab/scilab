@@ -1909,7 +1909,6 @@ with_tk
 write_csv
 x_choices
 x_matrix
-xbasr
 xclear
 xcosBlockEval
 xcosBlockInterface

@@ -161,27 +161,6 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath=".\recbez.f"/>
 		<File RelativePath=".\residu.f"/>
 		<File RelativePath=".\rpoly.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_bezout.f">
-			<FileConfiguration Name="Release|x64">
-				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration>
-			<FileConfiguration Name="Release|Win32">
-				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration></File>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_coeff.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_degree.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_diag.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_div.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_pclean.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_poly.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_prod.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_psimp.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_roots.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_rsimp.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sfact.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_simp.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_simpmd.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sum.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_triu_tril.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_varn.f"/>
 		<File RelativePath=".\sfact1.f"/>
 		<File RelativePath=".\sfact2.f"/>
 		<File RelativePath=".\wdmpad.f"/>

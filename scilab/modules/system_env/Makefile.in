@@ -120,7 +120,8 @@ am__objects_1 = libscisystem_env_la-setenvvar.lo \
 	libscisystem_env_la-lasterror.lo \
 	libscisystem_env_la-promptmode.lo \
 	libscisystem_env_la-formatmode.lo \
-	libscisystem_env_la-sci_ieee.lo
+	libscisystem_env_la-sci_ieee.lo \
+	libscisystem_env_la-sci_simpMode.lo
 am_libscisystem_env_la_OBJECTS = $(am__objects_1)
 libscisystem_env_la_OBJECTS = $(am_libscisystem_env_la_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
@@ -419,7 +420,8 @@ SYSTEM_ENV_CPP_SOURCES = \
 	src/cpp/lasterror.cpp \
 	src/cpp/promptmode.cpp \
 	src/cpp/formatmode.cpp \
-	src/cpp/sci_ieee.cpp
+	src/cpp/sci_ieee.cpp \
+	src/cpp/sci_simpMode.cpp
 
 pkglib_LTLIBRARIES = libscisystem_env.la
 libscisystem_env_la_SOURCES = $(SYSTEM_ENV_CPP_SOURCES)
@@ -531,6 +533,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_ieee.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_mode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_path.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_simpMode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_tmpdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-sci_warning.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisystem_env_la-setenvvar.Plo@am__quote@
@@ -639,6 +642,13 @@ libscisystem_env_la-sci_ieee.lo: src/cpp/sci_ieee.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/sci_ieee.cpp' object='libscisystem_env_la-sci_ieee.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-sci_ieee.lo `test -f 'src/cpp/sci_ieee.cpp' || echo '$(srcdir)/'`src/cpp/sci_ieee.cpp
+
+libscisystem_env_la-sci_simpMode.lo: src/cpp/sci_simpMode.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisystem_env_la-sci_simpMode.lo -MD -MP -MF $(DEPDIR)/libscisystem_env_la-sci_simpMode.Tpo -c -o libscisystem_env_la-sci_simpMode.lo `test -f 'src/cpp/sci_simpMode.cpp' || echo '$(srcdir)/'`src/cpp/sci_simpMode.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscisystem_env_la-sci_simpMode.Tpo $(DEPDIR)/libscisystem_env_la-sci_simpMode.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/sci_simpMode.cpp' object='libscisystem_env_la-sci_simpMode.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisystem_env_la-sci_simpMode.lo `test -f 'src/cpp/sci_simpMode.cpp' || echo '$(srcdir)/'`src/cpp/sci_simpMode.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

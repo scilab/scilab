@@ -223,22 +223,18 @@
     <refsection id="Example_DOLLAR_f">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/delay_commons.xcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.xcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../examples/discrete_pal/delay_commons_diagram.png" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/discrete_pal/en_US/DELAY_f_2_en_US.xcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../examples/discrete_pal/delay_commons_scope.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
     </refsection>
     <refsection id="Interfacingfunction_DOLLAR_f">
         <title>Interfacing function</title>

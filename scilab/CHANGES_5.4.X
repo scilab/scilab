@@ -19,6 +19,18 @@ Improvements
 * test_run no longer take in account skipped tests in the summary.
   See bug #12117
 
+* Add two new commands:
+ - scinotes
+   scinotes modules/core/macros/whos.sci
+   Support also the -indent argument to indent automatically a Scilab file.
+   For example: ./bin/scinotes -indent modules/core/macros/whos.sci
+   If the file does not exist, propose to create it.
+
+ - xcos
+   xcos modules/xcos/examples/integral.xcos will open the integral Xcos
+   schema
+   If the file does not exist, propose to create it.
+
 
 Removed functions
 ==================
@@ -47,6 +59,30 @@ Removed functions
 
 * ricc_old() removed. Use ricc() instead.
 
+* xbasr() removed. Automatically managed by Scilab now.
+
+
+Obsolete functions
+===================
+
+* fit_dat() tagged as obsolete. Will be removed for Scilab 5.4.2.
+  Use datafit() instead. See bug #9306.
+
+* getlinestyle() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use ged() instead.
+
+* getmark() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use ged() instead.
+
+* getsymbol() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use ged() instead.
+
+* getfont() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use ged() instead.
+
+* xsetm() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use set(), get() and ged() instead.
+
 
 Xcos
 =====
@@ -70,6 +106,8 @@ Xcos
 
 * Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
 
+* Bug #11193 fixed - Lincos did not honor context values.
+
 * Bug #11775 fixed - xcos.tst crashed on Linux and MacOS X.
 
 * Bug #11821 fixed - Running XcosPalAdd example from help led to deadlock
@@ -84,7 +122,7 @@ Xcos
 * Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
                      NullPointerException.
 
-* Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
+* Bug #12101 fixed - Port ordering was not preserved on parameters change.
 
 * Bug #12014 fixed - dep_ut help was wrongly detailed.
 
@@ -141,7 +179,15 @@ Bug fixes
 
 * Bug #9005 fixed - The bitset function did not have any tests.
 
+* Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
+                    created.
+
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
+
+* Bug #10815 fixed - diff help page did not have a "See Also" section.
+
+* Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
+                     the last color in colormap.
 
 * Bug #11474 fixed - save_format help page was still refering to the old save
                      format. Use the SEP #64 content.
@@ -159,6 +205,8 @@ Bug fixes
 
 * Bug #11962 fixed - event_handler may be called on wrong figure_id.
 
+* Bug #11965 fixed - Export to SVG converted texts in shapes.
+
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
 
@@ -170,6 +218,8 @@ Bug fixes
 * Bug #11986 fixed - Wrong xclick behaviour on keyboard input fixed.
 
 * Bug #11991 fixed - Under Windows, some empty lines were added by csvWrite.
+
+* Bug #11998 fixed - listvar_in_hdf5 did not close the hdf5 file.
 
 * Bug #11999 fixed - Blank lines ignored by default by csvRead / read_csv.
 
@@ -203,11 +253,27 @@ Bug fixes
 
 * Bug #12119 fixed - bar and barh had wrong x/y bounds.
 
+* Bug #12120 fixed - eigs was broken for complex sparse matrices.
+
+* Bug #12021 fixed - Improve the help page of eigs.
+
+* Bug #12135 fixed - stacksize('max') failed silently.
+
+* Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
+
+* Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
+
 * Bug #12166 fixed - There was a bad label with drawaxis.
+
+* Bug #12168 fixed - matfile_listvar crashed when listing variables of a closed MAT-file.
 
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
 
-* Bug #11965 fixed - Export to SVG converted texts in shapes.
+* Bug #12184 fixed - Performances of the function 'derivat' improved.
+
+* Bug #12190 fixed - Description of sprspn updated in help page.
+
+* Bug #12204 fixed - Fix a typo in the French localization
 
 
                     Changes between version 5.3.3 and 5.4.0

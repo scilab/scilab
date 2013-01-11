@@ -19,7 +19,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Called by <link linkend="xcos">xcos</link>, <emphasis>CVode</emphasis> (short for C-language Variable-coefficients ODE solver) is a numerical solver providing an efficient and stable method to solve Initial Value Problems of the form :
+            Called by <link linkend="xcos">xcos</link>, <emphasis>CVode</emphasis> (short for C-language Variable-coefficients ODE solver) is a numerical solver providing an efficient and stable method to solve Initial Value Problems of the form:
         </para>
         <para>
             <latex>
@@ -37,7 +37,7 @@
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
-            with the formula :
+            with the formula:
         </para>
         <para>
             <latex>
@@ -73,11 +73,11 @@
             .
         </para>
         <para>
-            This is where the difference between <emphasis>BDF</emphasis> and <emphasis>Adams</emphasis> intervenes (<emphasis>Backward Differenciation Formula</emphasis> and <emphasis>Adams-Moulton formula</emphasis>) :
+            This is where the difference between <emphasis>BDF</emphasis> and <emphasis>Adams</emphasis> intervenes (<emphasis>Backward Differentiation Formula</emphasis> and <emphasis>Adams-Moulton formula</emphasis>):
         </para>
         <para>
             <caution>
-                If the problem is stiff, the user should select <emphasis>BDF</emphasis> :
+                If the problem is stiff, the user should select <emphasis>BDF</emphasis>:
             </caution>
         </para>
         <itemizedlist>
@@ -89,7 +89,7 @@
             </listitem>
         </itemizedlist>
         <para>
-            In the case of nonstiffness, <emphasis>Adams</emphasis> is preferred :
+            In the case of nonstiffness, <emphasis>Adams</emphasis> is preferred:
         </para>
         <itemizedlist>
             <listitem>
@@ -107,7 +107,7 @@
             .
         </para>
         <para>
-            For either choice and at each step, injecting this integration in <emphasis>(1)</emphasis> yields the nonlinear system :
+            For either choice and at each step, injecting this integration in <emphasis>(1)</emphasis> yields the nonlinear system:
         </para>
         <para>
             <latex>
@@ -127,11 +127,11 @@
         <itemizedlist>
             <para>  </para>
             <listitem>
-                <emphasis role="bold">Functional :</emphasis> this method only involves evaluations of <emphasis>f</emphasis>, it simply computes 
+                <emphasis role="bold">Functional:</emphasis> this method only involves evaluations of <emphasis>f</emphasis>, it simply computes 
                 <emphasis>
                     y<subscript>n(0)</subscript>
                 </emphasis>
-                by iterating the formula :
+                by iterating the formula:
                 <para>
                     <latex>
                         y_{n(m+1)} = h_n &#x3B2;_{n,0} f(t_n,y_{n(m+1)}) + a_n
@@ -143,7 +143,7 @@
             </listitem>
             <para>  </para>
             <listitem>
-                <emphasis role="bold">Newton :</emphasis> here, we use an implemented direct dense solver on the linear system :
+                <emphasis role="bold">Newton:</emphasis> here, we use an implemented direct dense solver on the linear system:
                 <para>
                     <latex>
                         M[y_{n(m+1)}-y_{n(m)}]=-G(y_{n(m)}), \hspace{4 mm} M \approx I-\gamma J, \hspace{2 mm} J=\frac{\partial f}{\partial y}, \hspace{2 mm} and \hspace{2 mm} \gamma = h_n\beta_{n,0}
@@ -196,7 +196,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            The integral block returns its continuous state, we can evaluate it with BDF / Newton by running the example :
+            The integral block returns its continuous state, we can evaluate it with <emphasis>BDF / Newton</emphasis> by running the example:
         </para>
         <para>
             <programlisting language="example"><![CDATA[
@@ -213,40 +213,40 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Time for BDF / Newton :");
+      disp(t, "Time for BDF / Newton:");
       ]]></programlisting>
         </para>
         <para>
-            The Scilab console displays :
+            The Scilab console displays:
             <screen><![CDATA[
-Time for BDF / Newton :
- 19.454
+Time for BDF / Newton:
+ 13.438
             ]]></screen>
         </para>
         <para>
-            Now, in the following script, we compare the time difference between the methods by running the example with the four solvers in turn :
+            Now, in the following script, we compare the time difference between the methods by running the example with the four solvers in turn:
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integCVode.sce">
                 Open the script
             </link>
         </para>
         <para>
-            Results :
+            Results:
             <screen language="example"><![CDATA[
-Time for BDF / Newton :
- 19.894
+Time for BDF / Newton:
+ 18.894
 
-Time for BDF / Functional :
- 19.382
+Time for BDF / Functional:
+ 18.382
 
-Time for Adams / Newton :
- 11.255
+Time for Adams / Newton:
+ 10.368
 
-Time for Adams / Functional :
- 10.233
+Time for Adams / Functional:
+ 9.815
             ]]></screen>
         </para>
         <para>
-            The results show that for a simple nonstiff continuous problem, Adams / Functional is fastest.
+            The results show that for a simple nonstiff continuous problem, <emphasis>Adams / Functional</emphasis> is fastest.
         </para>
     </refsection>
     <refsection>
@@ -266,6 +266,9 @@ Time for Adams / Functional :
             </member>
             <member>
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="Comparisons">Comparisons</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>

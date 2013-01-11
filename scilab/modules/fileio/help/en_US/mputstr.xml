@@ -45,6 +45,20 @@
             The <function>mputstr</function> function allows to write a character string <varname>str</varname> in a binary file.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+
+this_file = pathconvert(TMPDIR+"/mputstr.txt", %F);
+
+fd = mopen(this_file, "wt");
+mputstr("Scilab", fd);
+mclose(fd);
+
+mgetl(this_file) // Scilab
+
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

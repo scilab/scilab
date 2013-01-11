@@ -36,7 +36,7 @@
 /* 13 */						#include "gw_core.h"
 /* 14  gw_user(); RESERVED to gw_user (see callinter.h) */
 /* 15  gw_user(); FREE */
-/* 16 */						#include "../../polynomials/includes/gw_polynomials.h"
+/* 16 						#include "../../polynomials/includes/gw_polynomials.h"*/
 /* 17 */						#include "../../data_structures/includes/gw_data_structures1.h"
 /* 18 */						#include "dynamic_gateways.h" /* signal_processing */
 /* 19 */						#include "dynamic_gateways.h" /* interpolation */
