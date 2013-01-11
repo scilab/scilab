@@ -717,7 +717,10 @@ c     puissance de matrice
          return
       endif
       if(m1.ne.n1) then
-         if(mn2.eq.1.and.(m1.eq.1.or.n1.eq.1)) goto 70
+         if(mn2.eq.1.and.(m1.eq.1.or.n1.eq.1)) then
+            call msgs(116)
+            goto 70
+         endif
          err=1
          call error(20)
          return

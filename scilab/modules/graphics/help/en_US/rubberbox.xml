@@ -17,10 +17,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[final_rect,btn]=rubberbox()
-            [final_rect,btn]=rubberbox(initial_rect)
-            [final_rect,btn]=rubberbox(edition_mode)
-            [final_rect,btn]=rubberbox(initial_rect, edition_mode)
+        <synopsis>
+            [final_rect, btn] = rubberbox()
+            [final_rect, btn] = rubberbox(initial_rect)
+            [final_rect, btn] = rubberbox(edition_mode)
+            [final_rect, btn] = rubberbox(initial_rect, edition_mode)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -29,9 +30,13 @@
             <varlistentry>
                 <term>initial_rect</term>
                 <listitem>
-                    <para>vector with two or four entries. With four entries it gives the
-                        initial rectangle defined by [x_min, y_max, width, height], with
-                        two entries width and height are supposed to be 0.
+                    <para>
+                        a vector with two or four entries. With four entries it
+                        gives the initial rectangle defined by <literal>[x_min,
+                        y_max, width, height]</literal> (where
+                        <literal>x_min</literal> and <literal>y_max</literal>
+                        are coordinates of initial corner position, with two
+                        entries width and height are supposed to be 0.
                     </para>
                 </listitem>
             </varlistentry>
@@ -39,23 +44,27 @@
                 <term>edition_mode</term>
                 <listitem>
                     <para>
-                        a boolean, if edition_mode is <literal>%t</literal> button press selects the first corner, release
-                        selects the opposite corner. If edition_mode is <literal>%f</literal>, a button press or
-                        click selects the first corner, a click is requested to select the
-                        opposite corner. The default value is %f.
+                        a boolean, if <varname>edition_mode</varname> is
+                        <constant>%t</constant> button press selects the first
+                        corner, release selects the opposite corner. If
+                        <varname>edition_mode</varname> is
+                        <constant>%f</constant>, a button press or click selects
+                        the first corner, a click is requested to select the
+                        opposite corner. The default value is
+                        <constant>%f</constant>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>final_rect</term>
                 <listitem>
-                    <para>a rectangle defined by [x_min, y_max, width, height]</para>
+                    <para>a rectangle defined by <literal>[x_min, y_max, width, height]</literal>.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>btn</term>
                 <listitem>
-                    <para>an integer, the number of the mouse button clicked</para>
+                    <para>an integer, the number of the mouse button clicked.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -63,11 +72,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>rubberbox(initial_rect)</literal>  tracks a rubberband box in
-            the current graphic window, following the mouse. When a button is clicked <literal>rubberbox</literal> returns the final
-            rectangles definition in <literal>final_Rect</literal>. If the argument
-            <literal>initial_rect</literal> is not specified, a click is needed to fix the initial
-            corner position.
+            <code>rubberbox(initial_rect)</code> tracks a rubberband box in
+            the current graphic window, following the mouse. When a button is
+            clicked <function>rubberbox</function> returns the final
+            rectangles definition in <varname>final_Rect</varname>. If the
+            argument <varname>initial_rect</varname> is not specified, a click
+            is needed to fix the initial corner position.
         </para>
     </refsection>
     <refsection>

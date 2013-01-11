@@ -50,7 +50,7 @@
         </para>
         <para>
             If <varname>x</varname> is a <literal>lib</literal> variable
-            (library), text is a character string column vector. The first element
+            (library), <varname>text</varname> is a character string column vector. The first element
             contains the path of library file and the other the name of functions it
             defines.
         </para>

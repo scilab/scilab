@@ -85,6 +85,6 @@ case 'define' then
   label=list([sci2exp(model.in);sci2exp(model.out);..
   strcat(sci2exp(model.rpar));funam],list([]))
   gr_i=['xstringb(orig(1),orig(2),''Fortran'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([4 2],model,label,gr_i)
 end
 endfunction

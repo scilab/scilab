@@ -194,7 +194,7 @@ case 'define' then
   label=list(params_pde,[],'');
 	gr_i=['txt=CCC;';
         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
-  x=standard_define([4 4],model,label,gr_i)
+  x=standard_define([3 3],model,label,gr_i)
   
 end
 endfunction

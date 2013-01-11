@@ -98,4 +98,15 @@ dy=diff(sin(t))/step; //diferenciação aproximada da função seno
 norm(dy-cos(t(1:$-1)),%inf)
  ]]></programlisting>
     </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="derivative">derivative</link>
+            </member>
+            <member>
+                <link linkend="numdiff">numdiff</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

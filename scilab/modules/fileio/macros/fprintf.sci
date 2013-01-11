@@ -13,6 +13,8 @@ function fprintf(fil, frmt, varargin)
 // fprintf - Emulator of C language fprintf
 //
 
+  warnobsolete("mfprintf","5.5.0");
+
   [lhs, rhs] = argn(0);
   if rhs < 2 then
     error(999, msprintf(gettext("%s: Wrong number of input argument(s).\n"), "fprintf"));

@@ -30,14 +30,14 @@
             <varlistentry>
                 <term>T</term>
                 <listitem>
-                    <para>a matrix of character string.</para>
+                    <para>a matrix of character strings.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Tj</term>
                 <listitem>
                 <para>
-                    a matrix of character string. the justified result.
+                    a matrix of character strings. The justified result.
                 </para>
             </listitem>
             </varlistentry>
@@ -49,7 +49,7 @@
                     </para>
                     <variablelist>
                         <varlistentry>
-                            <term>'r'or 'right'</term>
+                            <term>'r' or 'right'</term>
                             <listitem>
                                 <para>for right justification;</para>
                             </listitem>
@@ -75,7 +75,7 @@
         <title>Description</title>
         <para>
             The <function>justify</function> function justifies the column of a
-                matrix of string according to the given option <varname>opt</varname>.
+            matrix of string according to the given option <varname>opt</varname>.
         </para>
     </refsection>
     <refsection>

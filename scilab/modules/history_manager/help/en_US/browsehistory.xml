@@ -78,6 +78,12 @@
         </para>
     </refsection>
     <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+browsehistory()
+]]></programlisting>
+    </refsection>
+    <refsection>
         <title>History</title>
         <revhistory>
             <revision>

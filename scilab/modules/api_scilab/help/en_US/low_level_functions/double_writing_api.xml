@@ -109,6 +109,7 @@
         <para>Input argument profile:</para>
         <synopsis>SciErr allocMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal)</synopsis>
         <synopsis>SciErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)</synopsis>
+        <synopsis>SciErr allocComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal, doublecomplex** _pdblData)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -159,6 +160,15 @@
                     <para>
                         Returns address of imaginary data array (size: _iCols * _iRows).
                         This argument does not exist with allocMatrixOfDouble.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblData</term>
+                <listitem>
+                    <para>
+                        Returns address of doublecomplex data array (size: _iCols * _iRows).
+                        This argument exists only in allocComplexZMatrixOfDouble.
                     </para>
                 </listitem>
             </varlistentry>

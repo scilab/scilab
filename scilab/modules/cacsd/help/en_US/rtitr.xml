@@ -110,41 +110,60 @@ yp = [y(-d1), ...  y(-1)  ]
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 z=poly(0,'z');
-Num=1+z;Den=1+z;u=[1,2,3,4,5];
+Num=1+z;
+Den=1+z;
+u=[1,2,3,4,5];
 rtitr(Num,Den,u)-u
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[ 
 //Other examples
 //siso
 //causal
-n1=1;d1=poly([1 1],'z','coeff');       // y(j)=-y(j-1)+u(j-1)
+n1=1;
+d1=poly([1 1],'z','coeff');       // y(j)=-y(j-1)+u(j-1)
 r1=[0 1 0 1 0 1 0 1 0 1 0];
-r=rtitr(n1,d1,ones(1,10));norm(r1-r,1)
+r=rtitr(n1,d1,ones(1,10));
+norm(r1-r,1)
 //hot restart
-r=rtitr(n1,d1,ones(1,9),1,0);norm(r1(2:11)-r)
+r=rtitr(n1,d1,ones(1,9),1,0);
+norm(r1(2:11)-r)
 //non causal
-n2=poly([1 1 1],'z','coeff');d2=d1;    // y(j)=-y(j-1)+u(j-1)+u(j)+u(j+1)
+n2=poly([1 1 1],'z','coeff');
+d2=d1;    // y(j)=-y(j-1)+u(j-1)+u(j)+u(j+1)
 r2=[2 1 2 1 2 1 2 1 2];
-r=rtitr(n2,d2,ones(1,10));norm(r-r2,1)
+r=rtitr(n2,d2,ones(1,10));
+norm(r-r2,1)
 //hot restart
-r=rtitr(n2,d2,ones(1,9),1,2);norm(r2(2:9)-r,1)
+r=rtitr(n2,d2,ones(1,9),1,2);
+norm(r2(2:9)-r,1)
 //
 //MIMO example
 //causal
-d1=d1*diag([1 0.5]);n1=[1 3 1;2 4 1];r1=[5;14]*r1;
-r=rtitr(n1,d1,ones(3,10));norm(r1-r,1)
+d1=d1*diag([1 0.5]);
+n1=[1 3 1;2 4 1];
+r1=[5;14]*r1;
+r=rtitr(n1,d1,ones(3,10));
+norm(r1-r,1)
 //
 r=rtitr(n1,d1,ones(3,9),[1;1;1],[0;0]);
 norm(r1(:,2:11)-r,1)
 //polynomial n1  (same ex.)
-n1(1,1)=poly(1,'z','c');r=rtitr(n1,d1,ones(3,10));norm(r1-r,1)
+n1(1,1)=poly(1,'z','c');
+r=rtitr(n1,d1,ones(3,10));
+norm(r1-r,1)
 //
 r=rtitr(n1,d1,ones(3,9),[1;1;1],[0;0]);
 norm(r1(:,2:11)-r,1)
 //non causal
-d2=d1;n2=n2*n1;r2=[5;14]*r2;
-r=rtitr(n2,d2,ones(3,10));norm(r2-r)
+d2=d1;n2=n2*n1;
+r2=[5;14]*r2;
+r=rtitr(n2,d2,ones(3,10));
+norm(r2-r)
 //
 r=rtitr(n2,d2,ones(3,9),[1;1;1],[10;28]);
 norm(r2(:,2:9)-r,1)
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[ 
 //
 //  State-space or transfer
 a = [0.21 , 0.63 , 0.56 , 0.23 , 0.31
@@ -162,9 +181,13 @@ c = [0.28 , 0.78 , 0.11 , 0.15 , 0.84
 d = [0.41 , 0.11 , 0.56
      0.88 , 0.2 , 0.59];
 s=syslin('d',a,b,c,d);
-h=ss2tf(s);num=h('num');den=h('den');den=den(1,1)*eye(2,2);
-u=1;u(3,10)=0;r3=flts(u,s);
-r=rtitr(num,den,u);norm(r3-r,1)
+h=ss2tf(s);num=h('num');
+den=h('den');
+den=den(1,1)*eye(2,2);
+u=1;u(3,10)=0;
+r3=flts(u,s);
+r=rtitr(num,den,u);
+norm(r3-r,1)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

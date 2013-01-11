@@ -31,7 +31,7 @@
                 <term>string_in</term>
                 <listitem>
                     <para>
-                        a matrix of character string. The strings where to
+                        a matrix of character strings. The strings where to
                         search occurrences of <varname>searchStr</varname>.
                     </para>
                 </listitem>
@@ -59,7 +59,7 @@
                     <para>
                         a matrix of character strings. The result of the
                         substitution on <varname>searchStr</varname> by
-                        <varname>replaceStr</varname> in <varname>string_in</varname>
+                        <varname>replaceStr</varname> in <varname>string_in</varname>.
                     </para>
                 </listitem>
             </varlistentry>

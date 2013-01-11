@@ -235,7 +235,6 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
         const char *blankMode = getCsvDefaultCsvIgnoreBlankLine();
         if (strcmp(blankMode, "on") == 0)
         {
-            int nbLinesBackup = nbLines;
             char **tmpLines = removeAllBlankLines(lines, &nbLines);
             if (tmpLines)
             {
@@ -440,12 +439,14 @@ static char **getStringsFromLines(const char **lines, int sizelines,
             for (j = 0; j < m; j++)
             {
 
-                if (decimal)
+                if (!decimal)
                 {
                     results[i + n * j] = strdup(lineStrings[j]);
                 }
                 else
                 {
+                    /* Proceed to the remplacement of the provided decimal to the default on
+                     * usually, it converts "," => "." */
                     results[i + n * j] = csv_strsubst(lineStrings[j], decimal, getCsvDefaultDecimal());
                 }
 

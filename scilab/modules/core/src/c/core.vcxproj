@@ -349,6 +349,7 @@ cd ..
     <ClCompile Include="sciquit.c" />
     <ClCompile Include="scirun.c" />
     <ClCompile Include="..\cpp\search_functions.cpp" />
+    <ClCompile Include="sci_tools.c" />
     <ClCompile Include="setformat.c" />
     <ClCompile Include="setgetSCIpath.c" />
     <ClCompile Include="setieee.c" />

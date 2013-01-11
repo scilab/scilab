@@ -10,7 +10,7 @@
  *
  */
 
-#include "extraction.hpp"
+#include "extraction.hxx"
 
 using namespace org_modules_xml;
 

@@ -10,9 +10,6 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-    <info>
-        <pubdate>$LastChangedDate$</pubdate>
-    </info>
     
     <refnamediv>
         <refname>csvRead</refname>
@@ -59,6 +56,7 @@
                 
                 <listitem>
                     <para>a 1-by-1 matrix of strings, the decimal used.</para>
+                    <para>If <literal>decimal</literal> is different of <literal>[]</literal> and <literal>conversion</literal> is set to <literal>string</literal>, the decimal conversion will be done.</para>
                 </listitem>
             </varlistentry>
             
@@ -105,11 +103,13 @@
                 <listitem>
                     <para>a 1-by-4 matrix of floating point integers, the range of rows
                         and columns which must be read (default range=[], meaning that all
-                        the rows and columns). Specify range using the format <literal>[R1
-                            C1 R2 C2]
+                        the rows and columns). Specify range using the format <literal>[Row1 Column1 Row2 Column2]
                         </literal>
                         where (R1,C1) is the upper left corner of the
                         data to be read and (R2,C2) is the lower right corner.
+                    </para>
+                    <para>
+                        <note>Note that the file has to be correctly formated. The range will be done in the memory on the parsed elements.</note>
                     </para>
                 </listitem>
             </varlistentry>
@@ -227,7 +227,7 @@ filename = fullfile(TMPDIR , 'foo.csv');
 sep = ",";
 fd = mopen(filename,'wt');
 for i = 1 : size(Astr,"r")
-mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
+        mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
 end
 mclose(fd);
 // To see the file : edit(filename)
@@ -240,7 +240,7 @@ filename = fullfile(TMPDIR , 'foo.csv');
 sep = ";";
 fd = mopen(filename,'wt');
 for i = 1 : size(Astr,"r")
-mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
+        mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
 end
 mclose(fd);
 
@@ -253,7 +253,8 @@ csvRead ( filename , sep )
             of the <literal>csvRead</literal> function.
         </para>
         
-        <programlisting role="example"><![CDATA[CSV = ["// tata"; ..
+        <programlisting role="example"><![CDATA[
+CSV = ["// tata"; ..
 "1,0,0,0,0"; ..
 "// titi"; ..
 "0,1,0,0,0"; ..
@@ -279,41 +280,41 @@ csvRead(TMPDIR + "/example.csv", [], [], "double")
     </refsection>
     
     <programlisting role="example"><![CDATA[
-        // Define a matrix of strings
-        Astr = [
-        "1" "8" "15" "22" "29" "36" "43" "50"
-        "2" "9" "16" "23" "30" "37" "44" "51"
-        "3" "10" "17" "6+3*I" "31" "38" "45" "52"
-        "4" "11" "18" "25" "32" "39" "46" "53"
-        "5" "12" "19" "26" "33" "40" "47" "54"
-        "6" "13" "20" "27" "34" "41" "48" "55"
-        "+0" "-0" "Inf" "-Inf" "Nan" "1.D+308" "1.e-308" "1.e-323"
-        ];
-        
-        // Create a file with some data separated with commas
-        filename = fullfile(TMPDIR , 'foo.csv');
-        sep = ",";
-        fd = mopen(filename,'wt');
-        for i = 1 : size(Astr,"r")
+// Define a matrix of strings
+Astr = [
+"1" "8" "15" "22" "29" "36" "43" "50"
+"2" "9" "16" "23" "30" "37" "44" "51"
+"3" "10" "17" "6+3*I" "31" "38" "45" "52"
+"4" "11" "18" "25" "32" "39" "46" "53"
+"5" "12" "19" "26" "33" "40" "47" "54"
+"6" "13" "20" "27" "34" "41" "48" "55"
+"+0" "-0" "Inf" "-Inf" "Nan" "1.D+308" "1.e-308" "1.e-323"
+];
+
+// Create a file with some data separated with commas
+filename = fullfile(TMPDIR , 'foo.csv');
+sep = ",";
+fd = mopen(filename,'wt');
+for i = 1 : size(Astr,"r")
         mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
-        end
-        mclose(fd);
-        // To see the file : edit(filename)
-        
-        // Read this file
-        Bstr = csvRead ( filename )
-        
-        // Create a file with a particular separator: here ";"
-        filename = fullfile(TMPDIR , 'foo.csv');
-        sep = ";";
-        fd = mopen(filename,'wt');
-        for i = 1 : size(Astr,"r")
+end
+mclose(fd);
+// To see the file : edit(filename)
+
+// Read this file
+Bstr = csvRead ( filename )
+
+// Create a file with a particular separator: here ";"
+filename = fullfile(TMPDIR , 'foo.csv');
+sep = ";";
+fd = mopen(filename,'wt');
+for i = 1 : size(Astr,"r")
         mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
-        end
-        mclose(fd);
-        //
-        // Read the file and customize the separator
-        csvRead ( filename , sep )
+end
+mclose(fd);
+//
+// Read the file and customize the separator
+csvRead ( filename , sep )
     ]]></programlisting>
     
     <refsection>
@@ -367,7 +368,24 @@ T=3.151 (s)
 T=210.1 (ms/cell)
 etc....
         ]]></programlisting>
+        
+        Example with range
+        <programlisting role="example"><![CDATA[
+CSV = ["1,0,0,0,0"; ..
+"0,1,0,0,0"; ..
+"0,0,1,0,0"; ..
+"4,4,1,2,0"; ..
+"4,63,1,2,0"; ..
+"4,63,1,4,233"; ..
+"42,3,23,2,23"; ..
+];
+filename = fullfile(TMPDIR , 'foo.csv');
+mputl(CSV, filename);
+// Extract a subset of the csv file
+csvRead(filename, [], [], "double", [], [], [5 3 7 6])
+    ]]></programlisting>
     </refsection>
+    
     
     <refsection>
         <title>See Also</title>
@@ -386,6 +404,13 @@ etc....
                 <revremark>
                     Function introduced. Based on the 'csv_readwrite' module. The only difference in the behavior compared to <link linkend="read_csv">read_csv</link> is that csvRead will try to convert value to double by default when read_csv will return value as string. 
                 </revremark>
+      <revision>
+        <revnumber>5.4.1</revnumber>
+        <revremark>
+          If <literal>decimal</literal> is different of <literal>[]</literal> and <literal>conversion</literal> is set to <literal>string</literal>, the decimal conversion will be done.
+          </revremark>
+      </revision>
+
             </revision>
         </revhistory>
     </refsection>

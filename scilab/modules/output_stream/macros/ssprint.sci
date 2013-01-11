@@ -79,7 +79,7 @@ function [] = ssprint(sl, out)
   [nc, nb] = size(d);
   if na > 0 then
     blank = [];
-    for k = 1:na, blank = [blank; '     '],end
+    for k = 1:na, blank = [blank; '           '],end
     ta = %cv(a);
     tb = %cv(b);
     //
@@ -92,9 +92,9 @@ function [] = ssprint(sl, out)
     end
     if nb > 0 then
       if na == 1 then
-        t = t + ['  ';' + ']+[' ';tb]+[' ';'u   ']
+        t = t + ['    ';' + ']+[' ';tb]+[' ';'u   ']
       else
-        blank([na/2, na/2+1]) = ['  '; 'x + ']
+        blank([na/2, na/2+1]) = ['    '; 'x + ']
         t = t + blank + tb
         t(na/2+1) = t(na/2 + 1) + 'u   '
       end
@@ -124,7 +124,7 @@ function [] = ssprint(sl, out)
   if nc == 0 then if fil then file('close',out);end;return,end
   write(out, ' ');
   blank=[];
-  for k = 1:nc, blank = [blank; '     '], end
+  for k = 1:nc, blank = [blank; '           '], end
   if na == 0 then
     td = %cv(d)
     if nc == 1 then

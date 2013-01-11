@@ -11,46 +11,51 @@ package org.scilab.modules.commons;
 
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /** 
-   * Some commons values from Scilab engine to Java
-   * @author Sylvestre LEDRU
-   * @copyright DIGITEO 2010
-   */
+/**
+  * Some commons values from Scilab engine to Java
+  * @author Sylvestre LEDRU
+  * @copyright DIGITEO 2010
+  */
 public class ScilabCommonsJNI {
 
-  /**
-    * Constructor
-    */
-  protected ScilabCommonsJNI() {
-    throw new UnsupportedOperationException();
-  }
+    /**
+      * Constructor
+      */
+    protected ScilabCommonsJNI() {
+        throw new UnsupportedOperationException();
+    }
 
-  static {
-    try {
-        System.loadLibrary("scicommons");
-    } catch (SecurityException e) {
-        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
-        System.err.println(e.getLocalizedMessage());
-        System.exit(-1);
-    } catch (UnsatisfiedLinkError e)    {
-           System.err.println("The native library scicommons does not exist or cannot be found.");
-        if (System.getenv("CONTINUE_ON_JNI_ERROR") == null) {
-           System.err.println(e.getLocalizedMessage());
-           System.err.println("Current java.library.path is : "+System.getProperty("java.library.path"));
-           System.exit(-1);
-        }else{
-           System.err.println("Continuing anyway because of CONTINUE_ON_JNI_ERROR");
+    static {
+        try {
+            System.loadLibrary("scicommons");
+        } catch (SecurityException e) {
+            System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+            System.err.println(e.getLocalizedMessage());
+            System.exit(-1);
+        } catch (UnsatisfiedLinkError e)    {
+            System.err.println("The native library scicommons does not exist or cannot be found.");
+            if (System.getenv("CONTINUE_ON_JNI_ERROR") == null) {
+                System.err.println(e.getLocalizedMessage());
+                System.err.println("Current java.library.path is : " + System.getProperty("java.library.path"));
+                System.exit(-1);
+            } else {
+                System.err.println("Continuing anyway because of CONTINUE_ON_JNI_ERROR");
+            }
         }
     }
-  }
 
-  public final static native String getSCIHOME();
-  public final static native String getTMPDIR();
-  public final static native String getlanguage();
-  public final static native String createtempfilename(String jarg1, int jarg2);
-  public final static native int getieee();
-  public final static native void setieee(int jarg1);
-  public final static native void setformat(String jarg1, int jarg2);
-  public final static native String getformat();
-  public final static native int getformatwidth();
+    public final static native String getSCIHOME();
+    public final static native String getTMPDIR();
+    public final static native String getlanguage();
+    public final static native String createtempfilename(String jarg1, int jarg2);
+    public final static native int getieee();
+    public final static native void setieee(int jarg1);
+    public final static native void setformat(String jarg1, int jarg2);
+    public final static native String getformat();
+    public final static native int getformatwidth();
+    public final static native int getScilabVersionMajor();
+    public final static native int getScilabVersionMinor();
+    public final static native int getScilabVersionMaintenance();
+    public final static native int getScilabVersionTimestamp();
+    public final static native String getScilabVersionAsString();
 }

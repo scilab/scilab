@@ -116,6 +116,6 @@ case 'define' then
   model.blocktype='c'
   model.dep_ut=[%t %f]
 
-  x=standard_define([1 1]/1.2,model,[],[])
+  x=standard_define([1 1],model,[],[])
 end
 endfunction

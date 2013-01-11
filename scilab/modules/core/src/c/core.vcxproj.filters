@@ -470,6 +470,9 @@
     <ClCompile Include="setlines.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_tools.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="banier.h">

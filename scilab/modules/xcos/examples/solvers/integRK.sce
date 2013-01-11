@@ -1,60 +1,31 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - Paul Bignier
+// Copyright (C) 2012 - Scilab Enterprises - Paul Bignier
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-// Run with exec("SCI/modules/xcos/help/en_US/solvers/integRK.sce");
+// Run with exec("SCI/modules/xcos/examples/solvers/integRK.sce");
 
 // Import the diagram and augment the ending time
+loadScicos();
+loadXcosLibs();
 importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
-scs_m.props.tf = 3500;
+scs_m.props.tf = 30000;
 
-// BDF / Newton
-// Select the solver
-scs_m.props.tol(6) = 0;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for BDF / Newton :");
+solverName=["BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functional", "Runge-Kutta"];
 
-// BDF / Functional
-// Select the solver
-scs_m.props.tol(6) = 1;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for BDF / Functional :");
+for solver=1:5
 
-// Adams / Functional
-// Select the solver
-scs_m.props.tol(6) = 3;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for Adams / Functional :");
+ // Select the solver (Runge-Kutta is solver number 6)
+ scs_m.props.tol(6) = solver;
+ if (solver == 5) then scs_m.props.tol(6) = 6; end
 
-// Adams / Newton
-// Select the solver
-scs_m.props.tol(6) = 2;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for Adams / Newton :");
+ // Set max step size if Runge-Kutta is selected
+ if (solver == 5) then scs_m.props.tol(7) = 0.01; end
 
-// Runge-Kutta
-// Select the solver and set abstol to 10^-2
-scs_m.props.tol(6) = 4;
-scs_m.props.tol(1) = 0.01;
-// Start the timer, launch the simulation and display time
-timer();
-xcos_simulate(scs_m, 4);
-t = timer();
-disp(t, "Time for Runge-Kutta :");
+ // Start the timer, launch the simulation and display time
+ tic();
+ try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end
+ t = toc();
+ disp(t, "Time for " + solverName(solver) + ":");
+
+end

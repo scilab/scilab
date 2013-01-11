@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-10-01 21:32+0000\n"
-"Last-Translator: Petersen <Unknown>\n"
+"PO-Revision-Date: 2012-11-08 15:38+0000\n"
+"Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: de\n"
 
 #, c-format
@@ -24,10 +24,11 @@ msgstr "%s: falsche Anzahl von Eingangsargumenten: höchstens %d erwartet.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr ""
+"%s: Falsche Anzahl an Eingangsargumenten: Daten passen nicht zum Format.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Eingangsargument #%d kann nicht gelesen werden.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -48,6 +49,7 @@ msgstr ""
 msgid ""
 "%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
+"%s: Falscher Wert des Eingangsarguments #%d: Daten passen nicht zum Format.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -387,7 +389,7 @@ msgstr ""
 "Eingangsargument.\n"
 
 msgid "Wrong number of input arguments."
-msgstr ""
+msgstr "Falsche Anzahl an Eingangsargumenten."
 
 msgid ""
 "Wrong number of output arguments: This function has no output argument.\n"
@@ -396,7 +398,7 @@ msgstr ""
 "Ausgangsargument.\n"
 
 msgid "Wrong number of output arguments.\n"
-msgstr ""
+msgstr "Falsche Anzahl an Ausgangsargumenten.\n"
 
 msgid "Wrong size for argument: Incompatible dimensions.\n"
 msgstr "Falsche Größe für Argument: inkompatible Dimension.\n"
@@ -428,12 +430,13 @@ msgstr "unbekanntes Dateiformat.\n"
 #, c-format
 msgid "Fatal error!!! Your variables have been saved in the file : %s\n"
 msgstr ""
+"Schwerer Fehler! Ihre Variablen wurden in dieser Datei gespeichert: %s\n"
 
 msgid "Bad call to a scilab function ?\n"
-msgstr ""
+msgstr "Ungültiger Aufruf einer Scilab-Funktion?\n"
 
 msgid "Otherwise, send a bug report to :"
-msgstr ""
+msgstr "Senden Sie anderenfalls einen Fehlerbericht an:"
 
 msgid "Floating point exception.\n"
 msgstr "Fließpunkt Ausnahme.\n"
@@ -1052,7 +1055,7 @@ msgid "Input arguments should have the same formal variable name.\n"
 msgstr "Eingangsargumenten sollten dieselbe Variablenamen haben.\n"
 
 msgid "Unknown data.\n"
-msgstr ""
+msgstr "Unbekannte Daten.\n"
 
 msgid "Warning :\n"
 msgstr "Warnung:\n"
@@ -1482,20 +1485,26 @@ msgstr "%s: Typ %s wird nicht gehandhabt: Definieren Sie die Funktion %s2%s."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr ""
+msgstr "%s: Falsche Anzahl an Eingangsargumenten.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
 msgstr ""
+"%s: Falsche Größe für Eingangsargument #%d: Eine Zeichenkette mit Buchstaben "
+"wird erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
+"%s: Falscher Typ des Eingangsarguments #%d: Eine Zeichenkette mit Buchstaben "
+"wird erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
+"%s: Falscher Typ des Eingangsarguments #%d: Zustandsraummodell wird "
+"erwartet.\n"
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

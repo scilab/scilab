@@ -61,7 +61,6 @@ int do_xxscanf(char *fname, FILE * fp, char *format, int *nargs, char *strv, int
     char sformat[MAX_STR];
     char backupcurrrentchar;
     char directive;
-    char *p = NULL;
     char *p1 = NULL;
     char *target = NULL;
     char *sval = NULL;
@@ -76,7 +75,6 @@ int do_xxscanf(char *fname, FILE * fp, char *format, int *nargs, char *strv, int
     while (TRUE)
     {
         /* scanf */
-        p = currentchar;
         while (*currentchar != '%' && *currentchar != '\0')
             currentchar++;
         if (*currentchar == '%' && *(currentchar + 1) == '%')

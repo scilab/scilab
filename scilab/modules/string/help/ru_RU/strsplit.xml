@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strsplit" xml:lang="ru">
+    <refnamediv>
+        <refname>strsplit</refname>
+        <refpurpose>деление строки на вектор строк</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            v = strsplit(str,ind)
+            [v, matched_separators] = strsplit(str)
+            [v, matched_separators] = strsplit(str, matrix_of_strings, limit)
+            [v, matched_separators] = strsplit(str, regexp_pattern, limit)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>символьная строка, которую следует разделить.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>
+                        вектор индексов в строго возрастающем порядке в интервале <literal>[1 length(str)-1]</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>
+                        результирующий вектор-столбец строк (размер &gt;<literal>size(ind,'*')+1</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>matched_separators</term>
+                <listitem>
+                    <para>
+                        вектор-столбец совпавших разделителей.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>matrix_of_strings</term>
+                <listitem>
+                    <para>
+                        матрица строк, которые ищутся в  <varname>str</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>regexp_pattern</term>
+                <listitem>
+                    <para>шаблон регулярного выражения.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>limit</term>
+                <listitem>
+                    <para>максимальный предел элементов.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>v= strsplit(str, ind)</code> делит строку
+            <varname>str</varname> на вектор строк в местах, указанных с
+            помощью индексов <varname>ind</varname> (после каждого символа,
+            на который указывает индекс в <varname>ind</varname>).
+        </para>
+        <para>
+            <code>strsplit(str)</code> возвращает то же, что и
+            <code>strsplit(str,1:length(str)-1).</code>
+        </para>
+        <para>
+            <code>strsplit(str, regexp_pattern, limit)</code> возвращает вектор
+            строк, каждая из которых является подстрокой из
+            <varname>str</varname>, сформированной делением
+            <varname>str</varname> на интервалы, сформированные шаблоном
+            регулярного выражения, чувствительного к регистру.
+        </para>
+        <para>
+            Если есть <literal>n</literal> совпадений с шаблоном, то
+            возвращённый массив будет содержать <literal>n+1</literal>
+            элементов.
+        </para>
+        <para>
+            Например, если нет совпадений с шаблоном, то будет возвращён массив
+            только с одним элементом. Конечно это так же будет и в случае,
+            когда <varname>str</varname> пустая.
+        </para>
+        <para>
+            Если установлен предел <varname>limit</varname>, то возвращённый
+            массив будет содержать максимальное разрешённое количество
+            элементов с последним элементом, содержащим весь остаток строки.
+        </para>
+        <para>
+            <code>strsplit(str, matrix_of_strings, limit)</code> делит
+            <varname>str</varname> любое количество элементов. Это позволяет
+            пользователям, не знающим регулярные выражения, делить по разным
+            разделителям.
+        </para>
+        <para>
+            Если вызывается <code>strsplit()</code> со вторым выходным
+            аргументом, то возвращается вектор-столбец совпавших разделителей.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+S='strsplit делит строку на вектор строк';
+strsplit(S,[15 21 25])
+ind=strindex(S,' ')
+    
+[r_1, r_2] = strsplit("abcd")
+    
+[r_1, r_2] = strsplit("root:x:0:0:root:/root:/bin/bash",":",5)
+    
+[r_1, r_2] = strsplit("abc,def:ijk,:lmo","/:|,/")
+   
+[r_1, r_2] = strsplit("abc,def:ijk,:lmo",[":";","])    
+    
+strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/")
+
+[r_1, r_2] = strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/",2) 
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="part"> part</link>
+            </member>
+            <member>
+                <link linkend="strcat"> strcat</link>
+            </member>
+            <member>
+                <link linkend="tokens"> tokens</link>
+            </member>
+            <member>
+                <link linkend="regexp"> regexp</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

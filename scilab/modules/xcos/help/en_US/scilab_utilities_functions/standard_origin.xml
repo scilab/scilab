@@ -35,7 +35,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            This Scilab function is used to get the origin position (<varname>x</varname>,<varname>y</varname>) of an Xcos block.
+            This Scilab function is used to get the origin position (<varname>x</varname>,<varname>y</varname>) of a Xcos block.
         </para>
     </refsection>
     <refsection>

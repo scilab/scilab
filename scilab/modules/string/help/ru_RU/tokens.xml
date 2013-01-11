@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="tokens">
+    <refnamediv>
+        <refname>tokens</refname>
+        <refpurpose>возвращает лексемы символьной строки</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>T = tokens(str [,delimiter])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>
+                        символьная строка. Строка в которой ищутся лексемы.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>delimiter</term>
+                <listitem>
+                    <para>
+                        (необязательный) символ или вектор символов. Разделители лексем.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>T</term>
+                <listitem>
+                    <para>
+                        вектор-столбец найденных лексем.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>T = tokens(str [,delimiter])</code> ищет лексемы, содержащиеся
+            в строке <varname>str</varname>. Значение разделителя
+            <varname>delimiter</varname> по умолчанию <literal>[" ",&lt;Tab&gt;]</literal>,
+            где <literal>&lt;Tab&gt;</literal> стоит вместо <code>ascii(9)</code>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+tokens('Это символьная строка.')
+tokens('SCI/demos/scicos','/')
+tokens('y=a+b*2',['=','+','*'])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strindex">strindex</link>
+            </member>
+            <member>
+                <link linkend="tokenpos">tokenpos</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.
+ * The terms are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="RootFinding">
+    <refnamediv>
+        <refname>Rootfinding</refname>
+        <refpurpose>
+            This feature finds roots of continuous functions for Zero-crossing Blocks.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Some problems require zero crossing detection of continuous functions (for instance, regulation systems), also named <emphasis>rootfinding</emphasis>.
+            This feature is common to all solvers, and is realized by following the same process.
+        </para>
+        <para>
+            Each Zero-crossing Block defines one of these functions, noted <emphasis>g(t)</emphasis>.
+        </para>
+        <para>
+            Generally, the feature only finds roots of odd multiplicity, corresponding to changes
+            in sign of <emphasis>g(t)</emphasis>. If a user root function has a root of even multiplicity (no sign change), it will probably be missed. If such a root is desired, the user should reformulate the root function so that it changes sign at the desired root.
+        </para>
+        <para>
+            The basic scheme used is to check for sign changes of any <emphasis>g(t)</emphasis> over each time step taken, and then (when a sign change is found) to home in on the root (or roots) with a modified secant method.
+        </para>
+        <para>
+            After suitable checking and adjusting has been done, the roots are to be sought within 
+            <emphasis>
+                [t<subscript>lo</subscript>, t<subscript>hi</subscript>]
+            </emphasis>
+            . A loop is entered to locate the
+            root to within a rather tight tolerance, given by the <emphasis>unit roudoff</emphasis>, the <emphasis>current time</emphasis> and the <emphasis>step size</emphasis>.
+        </para>
+        <para>
+            We then determine which root function is more likely to have its roots occur first by comparing the secant method values, and set a new value 
+            <emphasis>
+                t<subscript>mid</subscript>
+            </emphasis>
+            and restrain the research interval to either 
+            <emphasis>
+                [t<subscript>lo</subscript>, t<subscript>mid</subscript>]
+            </emphasis>
+            or 
+            <emphasis>
+                [t<subscript>mid</subscript>, t<subscript>hi</subscript>]
+            </emphasis>
+            ,following which does the sign change occur in.
+        </para>
+        <para>
+            Since the tolerance depends on the step size, the smaller it is, the more accurate the homing in will be.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples and Overhead</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/demos/Threshold_ZeroCrossing.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../demos/Threshold_ZeroCrossing.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/demos/Threshold_ZeroCrossing.xcos");
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            Simple example of a Sinus crossing zero several times:
+        </para>
+        <para>
+            <programlisting language="example"><![CDATA[
+      // Import the diagram and set the ending time
+      loadScicos();
+      loadXcosLibs();
+      importXcosDiagram("SCI/modules/xcos/demos/Threshold_ZeroCrossing.xcos");
+
+      // Start the timer, launch the simulation and display time
+      tic();
+      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+      t = toc();
+      disp(t, "Time for LSodar:");
+      ]]></programlisting>
+        </para>
+        <para>
+            The blue bars represent the "positive to negative" zero crossings, while the red ones are for "negative to positive".
+        </para>
+        <para>
+            Now, in the two following scripts, we test the computational overhead of the rootfinding with <emphasis>LSodar</emphasis>:
+        </para>
+        <para>
+            First, a Sinus that crosses zero every &#960; period:
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/Rootfinding.sce">
+                Open the script
+            </link>
+        </para>
+        <para>
+            <screen><![CDATA[
+Time with rootfinding:
+ 15.021
+
+Time without rootfinding:
+ 10.573
+            ]]></screen>
+        </para>
+        <para>
+            Then, a simple straight line that crosses zero only once, in the middle of the interval:
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/RootfindingSimple.sce">
+                Open the script
+            </link>
+        </para>
+        <para>
+            <screen><![CDATA[
+Time with rootfinding:
+ 0.114
+
+Time without rootfinding:
+ 0.09
+            ]]></screen>
+        </para>
+        <para>
+            Following the number of zero crossings, the aspect of the function near these crossings, the tolerances, ..., the computational overhead ranges between 25% and 45%. 
+        </para>
+    </refsection>
+    <refsection>
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="LSodar">LSodar</link>
+            </member>
+            <member>
+                <link linkend="CVode">CVode</link>
+            </member>
+            <member>
+                <link linkend="IDA">IDA</link>
+            </member>
+            <member>
+                <link linkend="RK">Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="Comparisons">Comparisons</link>
+            </member>
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
+            <member>
+                <link linkend="ode_root">ode_root</link>
+            </member>
+            <member>
+                <link linkend="odedc">odedc</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>
+            <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Sundials Documentation</ulink>
+        </para>
+    </refsection>
+</refentry>

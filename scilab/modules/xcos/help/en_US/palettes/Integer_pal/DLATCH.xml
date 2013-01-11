@@ -313,11 +313,25 @@
                 Open this example in Xcos
             </link>
         </para>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/integer_pal/en_US/dlatch_diagram_en_US.png" align="center"/>
-            </imageobject>
-        </mediaobject>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/DLATCH_en_US.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/integer_pal/en_US/DLATCH_en_US.xcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+// overload messagebox to avoid the "no continuous states" messages
+function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+	btn=1;
+endfunction
+
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/en_US/DLATCH_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_DLATCH">
         <title>Interfacing function</title>

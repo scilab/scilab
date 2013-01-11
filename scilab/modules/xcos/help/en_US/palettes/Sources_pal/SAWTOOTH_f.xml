@@ -202,12 +202,19 @@
                 Open this example in Xcos
             </link>
         </para>
+        <para/>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../examples/sources_pal/en_US/sawtooth_f_diagram_en_US.png"/>
-                </imageobject>
-            </inlinemediaobject>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/sawtooth_f_en_US.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/sawtooth_f_en_US.xcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/sawtooth_f_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </para>
     </refsection>
     <refsection id="Interfacingfunction_SAWTOOTH_f">

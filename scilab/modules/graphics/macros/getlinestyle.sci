@@ -9,6 +9,9 @@
 
 function k=getlinestyle()
 [lhs,rhs]=argn(0)
+
+warnobsolete('ged', '5.5.0');
+
 win=max(winsid()+1)
 scf(win);
 

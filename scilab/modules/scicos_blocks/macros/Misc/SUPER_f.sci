@@ -43,10 +43,10 @@ case 'define' then
   
   in = IN_f('define');
   in.graphics.orig = [40, 40];
-  in.graphics.sz = [40, 40];
+  in.graphics.sz = [20, 20];
   out = OUT_f('define');
   out.graphics.orig = [240, 40];
-  out.graphics.sz = [40, 40];
+  out.graphics.sz = [20, 20];
 
   scs.objs(1) = in;
   scs.objs(2) = out;

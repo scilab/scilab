@@ -129,19 +129,25 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 t = linspace(0,10*%pi,500);
-clf();set(gca(),"isoview","on"); //set isoview axes
-comet(t.*sin(t),t.*cos(t))
+clf();
+set(gca(),"isoview","on"); //set isoview axes
+comet(t.*sin(t), t.*cos(t))
     ]]></programlisting>
         <programlisting role="example"><![CDATA[
 t = linspace(0,10*%pi,500)';
-clf();comet(t.*sin(t),[t.*sin(2*t) t.*sin(3*t)])
+clf();
+comet(t.*sin(t), [t.*sin(2*t) t.*sin(3*t)])
     ]]></programlisting>
         <programlisting role="example"><![CDATA[
-function y=traj(x),y=1.5*sin(x^2),endfunction
-clf();comet(linspace(0,5,500),traj)
+function y=traj(x)
+  y=1.5*sin(x^2)
+endfunction
+clf();
+comet(linspace(0,5,500),traj)
     ]]></programlisting>
         <programlisting role="example"><![CDATA[
-clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
+clf();
+comet(linspace(-2,4,500), (%s-3)/(%s^3+2*%s^2+1))
     ]]></programlisting>
     </refsection>
     <refsection>

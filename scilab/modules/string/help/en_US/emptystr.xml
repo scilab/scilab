@@ -62,7 +62,8 @@
         </para>
         <para>
             With two integer arguments <function>emptystr</function> returns a
-            <literal>m x n</literal> zero length character strings matrix.
+            <varname>m</varname> <literal>x</literal> <varname>n</varname> zero
+            length character strings matrix.
         </para>
     </refsection>
     <refsection>

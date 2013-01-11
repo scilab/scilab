@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>style</term>
                 <listitem>
-                    <para>integer</para>
+                    <para>an integer.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,9 +33,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xgrid</literal> adds a grid on a 2D plot. <literal>style</literal> is the dash id
-            or the color id to use for the grid plotting. Use <literal>xset()</literal> for the
-            meaning of id.
+            <function>xgrid</function> adds a grid on a 2D plot.
+            <varname>style</varname> is the dash id or the color id to use for
+            the grid plotting. Use <code>xset()</code> for the meaning of id.
         </para>
     </refsection>
     <refsection>
@@ -43,7 +43,7 @@
         <programlisting role="example"><![CDATA[ 
 x=[0:0.1:2*%pi]';
 plot2d(sin(x))
-xgrid(2)
+xgrid(5)
  ]]></programlisting>
         <scilab:image>
             x=[0:0.1:2*%pi]';

@@ -86,6 +86,21 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection>
+      <title>Examples</title>
+      <programlisting role="example"><![CDATA[
+
+pop_in = list();
+pop_in(1) = 2;
+
+pop_out = coding_ga_binary(pop_in,'code',[])
+// Will return 11111111
+
+pop_in_2 = coding_ga_binary(pop_out,'decode',[])
+// Should be 2
+
+]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

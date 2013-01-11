@@ -39,10 +39,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function designed to work with the <link linkend="xset">xset</link> function <emphasis role="bold">is also
-                obsolete
-            </emphasis>
-            .Use the property editor <link linkend="ged">ged</link> instead.
+            This function designed to work with the <link linkend="xset">xset</link> function <emphasis role="bold">is also obsolete</emphasis>.
+            Use the property editor <link linkend="ged">ged</link> instead.
         </para>
         <para>
             <literal>getlinestyle</literal> opens a graphic window to select a
@@ -57,6 +55,17 @@ plot2d(x,sin(x))
 e=gce(); // store the Compound containing the plot
 e.children(1).line_style = getlinestyle();
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>
+                    Function tagged obsolete. Will be removed in 5.5.0. Please use <link linkend="ged">ged</link> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

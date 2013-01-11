@@ -184,7 +184,7 @@ am__objects_5 = libscixml_la-sci_xmlRead.lo \
 	libscixml_la-sci_xmlAsNumber.lo libscixml_la-sci_xmlAsText.lo \
 	libscixml_la-sci_xmlRemove.lo \
 	libscixml_la-sci_xmlSetAttributes.lo \
-	libscixml_la-sci_xmlName.lo
+	libscixml_la-sci_xmlName.lo libscixml_la-sci_xmlAppend.lo
 am_libscixml_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscixml_la_OBJECTS = $(am_libscixml_la_OBJECTS)
 libscixml_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -615,7 +615,8 @@ GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
 		      sci_gateway/cpp/sci_xmlAsText.cpp \
 		      sci_gateway/cpp/sci_xmlRemove.cpp \
 		      sci_gateway/cpp/sci_xmlSetAttributes.cpp \
-		      sci_gateway/cpp/sci_xmlName.cpp
+		      sci_gateway/cpp/sci_xmlName.cpp \
+		      sci_gateway/cpp/sci_xmlAppend.cpp
 
 libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \
@@ -765,6 +766,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_percent_s_i_XMLList.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_print.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlAddNs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlAppend.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlAsNumber.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlAsText.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlDelete.Plo@am__quote@
@@ -1185,6 +1187,13 @@ libscixml_la-sci_xmlName.lo: sci_gateway/cpp/sci_xmlName.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xmlName.cpp' object='libscixml_la-sci_xmlName.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlName.lo `test -f 'sci_gateway/cpp/sci_xmlName.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlName.cpp
+
+libscixml_la-sci_xmlAppend.lo: sci_gateway/cpp/sci_xmlAppend.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlAppend.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlAppend.Tpo -c -o libscixml_la-sci_xmlAppend.lo `test -f 'sci_gateway/cpp/sci_xmlAppend.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAppend.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlAppend.Tpo $(DEPDIR)/libscixml_la-sci_xmlAppend.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xmlAppend.cpp' object='libscixml_la-sci_xmlAppend.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlAppend.lo `test -f 'sci_gateway/cpp/sci_xmlAppend.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlAppend.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

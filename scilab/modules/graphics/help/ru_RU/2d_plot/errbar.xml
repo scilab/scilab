@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="errbar">
+    <refnamediv>
+        <refname>errbar</refname>
+        <refpurpose>
+            добавление вертикальных полос ошибок на двумерном графике
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>errbar(x, y, em, ep)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y, em, ep</term>
+                <listitem>
+                    <para>
+                        четыре матрицы одного и того же размера.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>errbar</function> добавляет вертикальные полосы
+            ошибок на двумерном графике. <varname>x</varname> и
+            <varname>y</varname> имеют тот же смысл, что и в функции
+            <function>plot2d</function>.
+        </para>
+        <para>
+            <literal>em(i,j)</literal> и <literal>ep(i,j)</literal> указывают
+            интервал ошибки для значения <literal>y(i,j)</literal>:
+            <literal>[y(i,j)-em(i,j),y(i,j)+ep(i,j)]</literal>.
+        </para>
+        <para>
+            Введите команду <code>errbar()</code>, чтобы посмотреть демонстрацию.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+t=[0:0.1:2*%pi]';
+y=[sin(t) cos(t)]; x=[t t];
+plot2d(x,y)
+errbar(x,y,0.05*ones(x),0.03*ones(x))
+ ]]></programlisting>
+        <scilab:image>
+            t=[0:0.1:2*%pi]';
+            y=[sin(t) cos(t)]; x=[t t];
+            plot2d(x,y)
+            errbar(x,y,0.05*ones(x),0.03*ones(x))
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

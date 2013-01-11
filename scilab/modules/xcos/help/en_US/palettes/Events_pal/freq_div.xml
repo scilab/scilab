@@ -205,20 +205,22 @@
         <title>Examples</title>
         <para>
             The following example divides a frequence per three.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/en_US/FREQ_DIV_en_US.xcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/en_US/freq_div_en_US.xcos">
                 Open this example in Xcos
             </link>
         </para>
-        <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/events_pal/en_US/FREQ_DIV_diagram_en_US.png" align="center"/>
-            </imageobject>
-        </mediaobject>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/events_pal/en_US/FREQ_DIV_plot_en_US.png" align="center"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/en_US/freq_div_en_US.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/events_pal/en_US/freq_div_en_US.xcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/events_pal/en_US/freq_div_en_US.xcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
     </refsection>
 </refentry>

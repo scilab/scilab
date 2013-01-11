@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16335)\n"
 "Language: pt_BR\n"
 
 msgid "Polynomials"
@@ -36,9 +36,6 @@ msgid ""
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de números reais, de polinômios ou frações racionais.\n"
-
-msgid "Computing determinant: Be patient...\n"
-msgstr "Computando o determinante: Tenha paciência...\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"

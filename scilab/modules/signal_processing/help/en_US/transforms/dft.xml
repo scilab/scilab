@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="dft">
     <refnamediv>
-        <refname>dft</refname>
-        <refpurpose>discrete Fourier transform</refpurpose>
+        <refname>dft (deprecated)</refname>
+        <refpurpose>discrete Fourier transform
+            <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -51,6 +53,19 @@ fft(x,1)
 dft(x,1)
  ]]></programlisting>
     </refsection>
+    
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    dft is obsolete. The algorithm has been moved to the <link linkend="fft">fft</link> help page.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

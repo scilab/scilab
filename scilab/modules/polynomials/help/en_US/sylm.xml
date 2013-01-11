@@ -54,7 +54,7 @@
         <para>
             <literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> and the instructions
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 u = sylm(a,b) \ eye(na+nb,1)
 x = poly(u(1:nb),'z','coeff')
 y = poly(u(nb+1:na+nb),'z','coeff')
@@ -64,4 +64,15 @@ y = poly(u(nb+1:na+nb),'z','coeff')
             such that <literal>a*x+b*y = 1</literal>
         </para>
     </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = poly(0,"x")
+y = poly ([1, 2, 3], "x","coeff");
+sylm(x,y)
+
+ ]]></programlisting>
+    </refsection>
+    
 </refentry>

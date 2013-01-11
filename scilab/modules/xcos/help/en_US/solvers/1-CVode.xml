@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.
+ * The terms are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="CVode">
+    <refnamediv>
+        <refname>CVode</refname>
+        <refpurpose>
+            <emphasis>CVode</emphasis> (short for C-language Variable-coefficients ODE solver) is a numerical solver providing an efficient and stable method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. It uses either <emphasis>BDF</emphasis> or <emphasis>Adams</emphasis> as implicit integration method, and <emphasis>Newton</emphasis> or <emphasis>Functional</emphasis> iterations
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Called by <link linkend="xcos">xcos</link>, <emphasis>CVode</emphasis> (short for C-language Variable-coefficients ODE solver) is a numerical solver providing an efficient and stable method to solve Initial Value Problems of the form:
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                \dot{y} = f(t,y), \hspace{3 mm} y(t_0) = y_0, \hspace{3 mm} y \in R^N
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            Starting with 
+            <emphasis>
+                y<subscript>0</subscript>
+            </emphasis>
+            , <emphasis>CVode</emphasis> approximates 
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            with the formula:
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                \sum_{i=0}^{K_1} \alpha_{n,i} y_{n-i} + h_n\sum_{i=0}^{K_2} \beta_{n,i} \dot{y}_{n-i} = 0,\hspace{10 mm} (1)
+                \end{eqnarray}
+            </latex>
+            <para>
+                &#160; with 
+                <emphasis>
+                    y<subscript>n</subscript>
+                </emphasis>
+                the approximation of 
+                <emphasis>
+                    y(t<subscript>n</subscript>)
+                </emphasis>
+                , and 
+                <emphasis>
+                    h<subscript>n</subscript>
+                </emphasis>
+                =
+                <emphasis>
+                    t<subscript>n</subscript> - t<subscript>n-1</subscript>
+                </emphasis>
+                the step size.
+            </para>
+        </para>
+        <para>
+            These implicit methods are characterized by their respective order <emphasis>q</emphasis>, which indicates the number of intermediate points required to compute 
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            .
+        </para>
+        <para>
+            This is where the difference between <emphasis>BDF</emphasis> and <emphasis>Adams</emphasis> intervenes (<emphasis>Backward Differentiation Formula</emphasis> and <emphasis>Adams-Moulton formula</emphasis>):
+        </para>
+        <para>
+            <caution>
+                If the problem is stiff, the user should select <emphasis>BDF</emphasis>:
+            </caution>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <emphasis>q</emphasis>, the order of the method, is set between 1 and 5 (automated),
+            </listitem>
+            <listitem>
+                <emphasis>K1 = q</emphasis> and <emphasis>K2 = 0</emphasis>.
+            </listitem>
+        </itemizedlist>
+        <para>
+            In the case of nonstiffness, <emphasis>Adams</emphasis> is preferred:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <emphasis>q</emphasis> is set between 1 and 12 (automated),
+            </listitem>
+            <listitem>
+                <emphasis>K1 = 1</emphasis> and <emphasis>K2 = q</emphasis>.
+            </listitem>
+        </itemizedlist>
+        <para>
+            The coefficients are fixed, uniquely determined by the method type, its order, the history of the step sizes, and the normalization 
+            <emphasis>
+                &#x3B1;<subscript>n, 0</subscript> = -1
+            </emphasis>
+            .
+        </para>
+        <para>
+            For either choice and at each step, injecting this integration in <emphasis>(1)</emphasis> yields the nonlinear system:
+        </para>
+        <para>
+            <latex>
+                G(y_n)\equiv y_n-h_n\beta_{n,0}f(t_n,y_n)-a_n=0, \hspace{2 mm} where \hspace{2 mm} a_n\equiv \sum_{i>0} (\alpha_{n,i} y_{n-i} + h_n\beta_{n,i}\dot{y}_{n-i})
+            </latex>
+        </para>
+        <para>
+            This system can be solved by either <emphasis>Functional</emphasis> or <emphasis>Newton</emphasis> iterations, described hereafter.
+        </para>
+        <para>
+            In both following cases, the initial "predicted" 
+            <emphasis>
+                y<subscript>n(0)</subscript>
+            </emphasis>
+            is explicitly computed from the history data, by adding derivatives.
+        </para>
+        <itemizedlist>
+            <para>  </para>
+            <listitem>
+                <emphasis role="bold">Functional:</emphasis> this method only involves evaluations of <emphasis>f</emphasis>, it simply computes 
+                <emphasis>
+                    y<subscript>n(0)</subscript>
+                </emphasis>
+                by iterating the formula:
+                <para>
+                    <latex>
+                        y_{n(m+1)} = h_n &#x3B2;_{n,0} f(t_n,y_{n(m+1)}) + a_n
+                    </latex>
+                    <latex>
+                        where \hspace{2 mm} a_n\equiv \sum_{i>0} (\alpha_{n,i} y_{n-i} + h_n\beta_{n,i}\dot{y}_{n-i})
+                    </latex>
+                </para>
+            </listitem>
+            <para>  </para>
+            <listitem>
+                <emphasis role="bold">Newton:</emphasis> here, we use an implemented direct dense solver on the linear system:
+                <para>
+                    <latex>
+                        M[y_{n(m+1)}-y_{n(m)}]=-G(y_{n(m)}), \hspace{4 mm} M \approx I-\gamma J, \hspace{2 mm} J=\frac{\partial f}{\partial y}, \hspace{2 mm} and \hspace{2 mm} \gamma = h_n\beta_{n,0}
+                    </latex>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            In both situations, <emphasis>CVode</emphasis> uses the history array to control the local error 
+            <emphasis>
+                y<subscript>n(m)</subscript> - y<subscript>n(0)</subscript>
+            </emphasis>
+            and recomputes 
+            <emphasis>
+                h<subscript>n</subscript>
+            </emphasis>
+            if that error is not satisfying.
+        </para>
+        <para>
+            <emphasis role="bold">
+                The recommended choices are <emphasis>BDF / Newton</emphasis> for stiff problems and <emphasis>Adams / Functional</emphasis> for the nonstiff ones.
+            </emphasis>
+        </para>
+        <para>
+            The function is called in between activations, because a discrete activation may change the system.
+        </para>
+        <para>
+            Following the criticality of the event (its effect on the continuous problem), we either relaunch the solver with different start and final times as if nothing happened, or, if the system has been modified, we need to "cold-restart" the problem by reinitializing it anew and relaunching the solver.
+        </para>
+        <para>
+            Averagely, <emphasis>CVode</emphasis> accepts tolerances up to 10<superscript>-16</superscript>. Beyond that, it returns a <emphasis>Too much accuracy</emphasis> requested error.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.xcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.xcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
+scs_m.props.tol(6) = 1;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            The integral block returns its continuous state, we can evaluate it with <emphasis>BDF / Newton</emphasis> by running the example:
+        </para>
+        <para>
+            <programlisting language="example"><![CDATA[
+      // Import the diagram and set the ending time
+      loadScicos();
+      loadXcosLibs();
+      importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
+      scs_m.props.tf = 5000;
+
+      // Select the solver BDF / Newton
+      scs_m.props.tol(6) = 1;
+
+      // Start the timer, launch the simulation and display time
+      tic();
+      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+      t = toc();
+      disp(t, "Time for BDF / Newton:");
+      ]]></programlisting>
+        </para>
+        <para>
+            The Scilab console displays:
+            <screen><![CDATA[
+Time for BDF / Newton:
+ 13.438
+            ]]></screen>
+        </para>
+        <para>
+            Now, in the following script, we compare the time difference between the methods by running the example with the four solvers in turn:
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integCVode.sce">
+                Open the script
+            </link>
+        </para>
+        <para>
+            Results:
+            <screen language="example"><![CDATA[
+Time for BDF / Newton:
+ 18.894
+
+Time for BDF / Functional:
+ 18.382
+
+Time for Adams / Newton:
+ 10.368
+
+Time for Adams / Functional:
+ 9.815
+            ]]></screen>
+        </para>
+        <para>
+            The results show that for a simple nonstiff continuous problem, <emphasis>Adams / Functional</emphasis> is fastest.
+        </para>
+    </refsection>
+    <refsection>
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="LSodar">LSodar</link>
+            </member>
+            <member>
+                <link linkend="IDA">IDA</link>
+            </member>
+            <member>
+                <link linkend="RK">Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="Comparisons">Comparisons</link>
+            </member>
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
+            <member>
+                <link linkend="ode_root">ode_root</link>
+            </member>
+            <member>
+                <link linkend="odedc">odedc</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>
+            <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Sundials Documentation</ulink>
+        </para>
+    </refsection>
+</refentry>

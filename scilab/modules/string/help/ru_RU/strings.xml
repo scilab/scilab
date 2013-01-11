@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="strings">
+    <refnamediv>
+        <refname>strings</refname>
+        <refpurpose>объект Scilab'а, символьные строки</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Строки определяются как <code>'строка'</code> (между одинарными
+            кавычками) или <code>"строка"</code> (между двойными кавычками);
+            матрицы строк определяются как обычные матрицы.
+        </para>
+        <para>
+            Связка двух строк выполняется с помощью операции <literal>+</literal>: <code>string1 + string2</code>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+['это','матрица'; 'размером','2x2']
+"матрица"=="мат"+"рица"
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="part">part</link>
+            </member>
+            <member>
+                <link linkend="length">length</link>
+            </member>
+            <member>
+                <link linkend="strcat">strcat</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

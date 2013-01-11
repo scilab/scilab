@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ascii" xml:lang="ru">
+    <refnamediv>
+        <refname>ascii</refname>
+        <refpurpose>преобразование в строку ASCII</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>a = ascii(txt)
+            txt = ascii(a)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>
+                        символьная строка или матрица символьных строк.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>вектор целочисленных значений: ASCII-коды.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция преобразует Scilab-строку в вектор ASCII-кодов (первые
+            127 кодов являются ASCII) или вектор ASCII-кодов в Scilab-строки.
+        </para>
+        <para>
+            Если <varname>txt</varname> является матрицей строк, то
+            <code>ascii(txt)</code> эквивалентна <code>ascii(strcat(txt))</code>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+ascii(["hello";"world"])
+ascii("scilab")
+ascii([115 99 105 108 97 98])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="code2str">code2str</link>
+            </member>
+            <member>
+                <link linkend="str2code">str2code</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

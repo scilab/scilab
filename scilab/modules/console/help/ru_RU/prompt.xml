@@ -11,11 +11,6 @@
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="prompt" xml:lang="ru">
-    <info>
-        <pubdate>$LastChangedDate: 2007-05-13 12:13:33 +0200 (dim., 13 mai 2007)
-            $
-        </pubdate>
-    </info>
     <refnamediv>
         <refname>prompt</refname>
         <refpurpose>получение/установка текущего приглашения командной строки</refpurpose>
@@ -69,6 +64,19 @@
             Инструкция <literal>prompt(userprompt)</literal> устанавливает приглашение 
             командной строки.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+currentPrompt = prompt();
+disp(currentPrompt); // Вероятно "-->"
+
+[currentPrompt, pauseLevel] = prompt();
+disp(pauseLevel); // Вероятно 0
+
+prompt(">>"); // Создать новое приглашение командной строки лишь для следующей команды
+
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

@@ -57,6 +57,14 @@ p*u
 V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
 [thegcd,U]=gcd(V)
 V*U
+
+gcd([15 20])
+
+gcd(uint8([15 20]))
+
+gcd([iconvert(15,4) iconvert(20,4)])
+
+gcd(iconvert([15 20],4))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

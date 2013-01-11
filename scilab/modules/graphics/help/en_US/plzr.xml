@@ -35,8 +35,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            produces a pole-zero plot of the linear system
-            <literal>sl</literal> (<literal>syslin</literal> list)
+            <code>plzr(sl)</code> produces a pole-zero plot of the linear system
+            <varname>sl</varname> (<literal>syslin</literal> list).
         </para>
     </refsection>
     <!--  

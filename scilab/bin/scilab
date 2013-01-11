@@ -57,12 +57,6 @@ fi
 DISABLE_JAVA_DETECTION=0
 IS_SCILAB_BINARY=0
 
-# Electric fence is a tool to check problem of memory
-start_electric_fence() {
-    echo "Running Scilab with Electric Fence : "  LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" "$@"
-    LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" "$@"
-}
-
 start_debug() {
     if test -n "$DEVENV"; then
         echo "Running debug of Scilab [gdb]  : " "$SCI"/libtool --mode=execute gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
@@ -141,6 +135,18 @@ detect_type_of_scilab(){
         DISABLE_JAVA_DETECTION=1
     fi
 
+    if (echo "$progname"|grep "scinotes$" 2>&1 > /dev/null;) then
+        SCILAB_MODE="scinotes"
+        SCILABBIN="scilab-bin"
+        extraarg=1
+    fi
+
+    if (echo "$progname"|grep "xcos$" 2>&1 > /dev/null;) then
+        SCILAB_MODE="xcos"
+        SCILABBIN="scilab-bin"
+        extraarg=1
+    fi
+
     if test $SCIVERBOSE -ne 0; then
         echo "SCILABBIN : $SCILABBIN"
         echo "DISABLE_JAVA_DETECTION : $DISABLE_JAVA_DETECTION"
@@ -207,7 +213,8 @@ detect_scilab_path() {
     # Use scilab-bin in the current dir if it exists
     # If not, then start resolving symlinks until we find scilab-bin
     found=0
-    curdir=$(dirname "$progname")
+    cd $(dirname "$progname")
+    curdir=$(pwd -P)
     PATH="$curdir:$PATH"
 
     progbase=$(basename "$progname")
@@ -810,13 +817,111 @@ fi
 # Check if SELINUX is enable. If it is the case, disable it for Scilab
 check_and_disable_selinux
 
+do_scinotes()
+{
+    INDENT=""
+    if test $# -gt 0; then
+    # scinotes is called. We process the arguments
+    ARGS="["
+
+    for SCIARG in "$@"; do
+        if test "$SCIARG" = "-indent"; then
+            INDENT="'actions=indent,trailing,quote'"
+        else
+            ARGS="$ARGS '$SCIARG', "
+        fi
+    done
+    ARGS="$ARGS]"
+    fi
+
+    if test -n "$INDENT"; then
+    # Call scinotes with the arguments
+        if test $SCIVERBOSE -ne 0; then
+            echo "Will start scinotes with: $SCILABBIN -nb -nw -e scinotes($ARGS, $INDENT);exit()"
+        fi
+        "$SCILABBIN" -nb -nw -e "scinotes($ARGS, $INDENT);exit()"
+    else
+        if test $SCIVERBOSE -ne 0; then
+            echo "Will start scinotes with: $SCILABBIN -e scinotes($ARGS)"
+        fi
+
+    # Call scinotes with no argument
+        "$SCILABBIN" -e "scinotes($ARGS)"
+    fi
+}
+
+do_xcos()
+{
+    SIMULATE=0
+    if test $# -gt 0; then
+    # xcos is called. We process the arguments
+        ARGS="["
+        for SCIARG in "$@"; do
+            if test "$SCIARG" = "-simulate"; then
+                if test $# -ne 2; then
+                    echo "Wrong syntax: When -simulate is used, only one file must be provided."
+                    exit 43
+                fi
+                SIMULATE=1
+            else
+                ARGS="$ARGS '$SCIARG', "
+            fi
+        done
+        ARGS="$ARGS ]"
+    fi
+
+    if test $SIMULATE -eq 1; then
+        if test $SCIVERBOSE -ne 0; then
+            echo "Will start Xcos with: $SCILABBIN -e 'importXcosDiagram($ARGS);xcos_simulate(scs_m, 4)'"
+        fi
+
+    # Call xcos with the arguments to simulate
+        "$SCILABBIN" -e "importXcosDiagram($ARGS);xcos_simulate(scs_m, 4)"
+    else
+        if test $SCIVERBOSE -ne 0; then
+            echo "Will start Xcos with: $SCILABBIN -e xcos($ARGS)"
+        fi
+
+    # Call xcos with the arguments
+        "$SCILABBIN" -e "xcos($ARGS)"
+    fi
+
+}
+
 do_scilex()
 {
-    "$SCILABBIN" "$@"
+    if test "$SCILAB_MODE" = "xcos"; then
+        do_xcos "$@"
+    else
+        if test "$SCILAB_MODE" = "scinotes"; then
+            do_scinotes "$@"
+        else
+            "$SCILABBIN" "$@"
+        fi
+    fi
 }
 
 do_help()
 {
+    if test "$SCILAB_MODE" = "xcos"; then
+        echo "Start Xcos, the hybrid simulator"
+        echo "Usage:"
+        echo "xcos [ file1.xcos, [ file2.xcos ]]"
+        echo     " "
+        echo     "  Possible arguments are:"
+        echo     "  -simulate : Start the simulation. Only one file will be accepted."
+        exit
+    fi
+    if test "$SCILAB_MODE" = "scinotes"; then
+        echo "Start Scinotes, the Scilab text editor"
+        echo "Usage:"
+        echo     "scinotes [ file1.sci, [ file2.sce ]]"
+        echo     " "
+        echo     "  Possible arguments are:"
+        echo     "  -indent : format (indent, trailing spaces, quote mismatch) the files"
+        exit
+    fi
+
     echo "Usage:"
     echo     "scilab <arguments>"
     echo     "scilab-cli <arguments>"
@@ -831,7 +936,7 @@ do_help()
     echo     "                    -e and -f arguments are mutually exclusive."
     echo     "  -l Lang         : set the current language. Lang can be equal to fr or en."
     echo     "  -mem N          : set the initial stacksize, for use with -ns argument."
-    echo     "  -nb             : do not display Scilab loading message at starting time."
+    echo     "  -nb             : do not display Scilab loading on start."
     echo     "  -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
     echo     "  -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
     echo     "  -noatomsautoload: do not load ATOMS installed module."
@@ -855,7 +960,6 @@ do_help()
     echo     "  -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
     echo     "                    define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
     echo     "                    callgrind (and override the existing callgrind arguments)."
-    echo     "  -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
     echo     "  -disable-exception-catching : Disable Scilab exception catching system."
     echo     " "
     echo     "  All these arguments can be retrieved by the Scilab function sciargs."
@@ -871,40 +975,6 @@ do_help()
     exit
 }
 
-do_compile()
-{
-    umask 002
-    rm -f report
-    name=$(basename $1 .sci)
-    echo generating $name.bin
-    echo "predef();exec('$name.sci');save('$name.bin');quit"\
-          | $SCILABBIN -ns -nwni | sed 1,8d 1>report 2>&1
-    if (grep error report 1> /dev/null  2>&1);
-    then cat report;echo " "
-        echo see $(pwd)/report for more information
-        grep libok report>/dev/null;
-    else rm -f report;
-    fi
-    umask 022
-    exit 0
-}
-
-do_lib()
-{
-    umask 002
-    rm -f report
-    echo "$1=lib('$2/');save('$2/lib',$1);quit"\
-          | $SCILABBIN -ns -nwni |sed 1,/--\>/d 1>report 2>&1
-    if (grep error report 1> /dev/null  2>&1);
-    then cat report;echo " "
-        echo see $(pwd)/report for more information
-        grep libok report>/dev/null;
-    else rm -f report;
-    fi
-    umask 022
-    exit 0
-}
-
 MORE_OPT=""
 if test "$SCILAB_MODE" = "nw"; then
     MORE_OPT="-nw"
@@ -915,26 +985,6 @@ rest="no"
 case $# in
     0) # No arg, run Scilab
         do_scilex $MORE_OPT
-        ;;
-    2) # Only two arg
-        case $1 in
-            -comp)
-                do_compile $2
-                ;;
-            *)
-                rest="yes"
-                ;;
-        esac
-        ;;
-    3)
-        case $1 in
-            -lib)
-                do_lib $2 $3
-                ;;
-            *)
-                rest="yes"
-                ;;
-        esac
         ;;
     *)
         case $1 in
@@ -952,7 +1002,6 @@ if test "$rest" = "yes"; then
     debug_kdbg=
     profiling=
     profiling_visu=
-    electric_fence=
     prevarg=
     for sciarg in "$@"
     do
@@ -1000,9 +1049,6 @@ if test "$rest" = "yes"; then
             -profiling-visu)
                 PROFILING_VISU="-profiling-visu"
                 ;;
-            -electric-fence)
-                ELECTRIC_FENCE="-electric-fence"
-                ;;
             -disable-exception-catching)
                 SCI_DISABLE_EXCEPTION_CATCHING=1
                 export SCI_DISABLE_EXCEPTION_CATCHING
@@ -1036,11 +1082,7 @@ if test "$rest" = "yes"; then
                 if test -n "$PROFILING_VISU"; then
                     start_profiling_visu "$@" $MORE_OPT
                 else
-                    if test -n "$ELECTRIC_FENCE"; then
-                        start_electric_fence "$@" $MORE_OPT
-                    else
-                        do_scilex "$@" $MORE_OPT
-                    fi # not electric fense
+                    do_scilex "$@" $MORE_OPT
                 fi # not profiling visu
             fi # not profiling
         fi # not debug kdbg

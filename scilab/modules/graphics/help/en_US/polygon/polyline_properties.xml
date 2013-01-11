@@ -395,16 +395,10 @@ p.thickness=3;
 p.mark_style=9;
 d=p.data;d(1,:)=[0 0];p.data=d;
 a.rotation_angles=[0 45];
-   
-p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
-p.mark_mode="off";
-p.polyline_style=3;
-p.line_style=4;
  ]]></programlisting>
         <scilab:image>
             a=get("current_axes")
             a.data_bounds=[-2,-2;2,2];
-            
             xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
             p=get("hdl");
             p.foreground=2;
@@ -413,7 +407,22 @@ p.line_style=4;
             d=p.data;d(1,:)=[0 0];p.data=d;
             a.rotation_angles=[0 45];
         </scilab:image>
-        
+        <programlisting role="example"><![CDATA[
+xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
+p=get("hdl"); //get handle on current entity (here the polyline entity)
+p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
+p.mark_mode="off";
+p.polyline_style=3;
+p.line_style=4;
+ ]]></programlisting>
+        <scilab:image>
+            xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
+            p=get("hdl");
+            p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
+            p.mark_mode="off";
+            p.polyline_style=3;
+            p.line_style=4;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

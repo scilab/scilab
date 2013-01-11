@@ -191,6 +191,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "../../../core/includes/tmpdir.h"
 #include "../../../fileio/includes/createtempfilename.h"
 #include "../../../localization/includes/setgetlanguage.h"
+#include "../../../core/includes/getversion.h"
 #include "../../../core/includes/setieee.h"
 #include "../../../core/includes/setformat.h"
 
@@ -315,6 +316,66 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getform
   (void)jcls;
   result = (int)getformatwidth();
   jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getScilabVersionMajor(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)getScilabVersionMajor();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getScilabVersionMinor(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)getScilabVersionMinor();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getScilabVersionMaintenance(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)getScilabVersionMaintenance();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getScilabVersionTimestamp(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)getScilabVersionTimestamp();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getScilabVersionAsString(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (char *)getScilabVersionAsString();
+  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
   return jresult;
 }
 

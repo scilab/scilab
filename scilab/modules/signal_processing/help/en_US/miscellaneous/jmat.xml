@@ -23,12 +23,28 @@
                     <para>size of the (square) blocks</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>j</term>
+                <listitem>
+                    <para>(m*n,m*n) matrix with m*m eyed blocks</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            This function permutes block rows or block columns of a matrix
+            This function yields a square matrix <varname>j</varname> of size (m*n, m*n) that can be used for permuting the n blocks of m consecutive columns of a (m*n, m*n) square matrix W by W*j. For permuting the <varname>n</varname> blocks of <varname>m</varname> consecutive rows, use: j'*W
         </para>
     </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
+m=grand(4,4,"uin",0,9).*.ones(2,2)
+j=jmat(4,2)
+m*j   // permutes blocks of columns
+j'*m  // permutes blocks of rows
+ ]]></programlisting>
+    </refsection>
+    
 </refentry>

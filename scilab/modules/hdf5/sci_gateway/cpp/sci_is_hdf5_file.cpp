@@ -10,9 +10,10 @@
 *
 */
 
+#include <hdf5.h>
+
 extern "C"
 {
-#include <hdf5.h>
 #include "gw_hdf5.h"
 #include "Scierror.h"
 #include "localization.h"

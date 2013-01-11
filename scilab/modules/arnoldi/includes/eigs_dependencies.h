@@ -10,8 +10,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#ifndef __RTIMESRprime_H__
-#define __RTIMESRprime_H__
+#ifndef __PROCESS_DNEUPD_H__
+#define __PROCESS_DNEUPD_H__
 #include "doublecomplex.h"
 #include <string.h>
 #include <math.h>
@@ -24,67 +24,21 @@
 /**
  * @TODO add comment
  *
- * @param result
- * @param R
- * @param Rprime
+ * @param DR
+ * @param DI
+ * @param Z
  * @param N
+ * @param nev
+ * @param AR
+ * @param eigenvalue
+ * @param eigenvector
+ * @param sigma_imaginary
+ * @param RVEC
  */
-void RtimesRprime(double* result, double* R, double* Rprime, int N);
 
-/**
- * @TODO add comment
- *
- * @param result
- * @param R
- * @param A
- * @param Rprime
- * @param N
- */
-void invR_times_A_times_invRprime(double* result, double* R, double* A, double* Rprime, int N);
+void process_dneupd_data(double* DR, double* DI, double* Z, int N, int nev, double* AR,
+                         doublecomplex* eigenvalue, doublecomplex* eigenvector,
+                         int sigma_imaginary);
 
-/**
- * @TODO add comment
- *
- * @param result
- * @param U
- * @param L
- * @param E
- * @param N
- */
-void invU_times_invL_times_E(double* result, double* U, double* L, double* E, int N);
-
-/**
- * @TODO add comment
- *
- * @param result
- * @param R
- * @param Rprime
- * @param N
- */
-void RCtimesRCprime(doublecomplex* result, doublecomplex* R, doublecomplex* Rprime, int N);
-
-/**
- * @TODO add comment
- *
- * @param result
- * @param R
- * @param A
- * @param Rprime
- * @param N
- */
-void invRC_times_AC_times_invRCprime(doublecomplex* result, doublecomplex* R, doublecomplex* A, doublecomplex* Rprime, int N);
-
-/**
- * @TODO add comment
- *
- * @param result
- * @param U
- * @param L
- * @param E
- * @param N
- */
-void invUC_times_invLC_times_EC(doublecomplex* result, doublecomplex* U, doublecomplex* L, doublecomplex* E, int N);
-
-#endif /* __RTIMESRprime_H__ */
+#endif /* __PROCESS_DNEUPD_H__ */
 /*--------------------------------------------------------------------------*/
-

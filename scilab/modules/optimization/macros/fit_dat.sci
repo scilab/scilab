@@ -49,6 +49,8 @@ function [p,err]=fit_dat(G,p0,Z,W,pmin,pmax,DG)
 //a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')
 //
 //
+warnobsolete("datafit","5.4.2");
+
 [lhs,rhs]=argn(0)
 boun=%f
 if rhs==3 then 
