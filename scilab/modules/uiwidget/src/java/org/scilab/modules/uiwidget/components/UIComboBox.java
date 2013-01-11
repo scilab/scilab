@@ -53,30 +53,30 @@ public class UIComboBox extends UIComponent {
         combo.setModel(model);
         combo.setRenderer(new DefaultListCellRenderer() {
 
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof UIListElement.ListElement) {
-                    UIListElement.ListElement l = (UIListElement.ListElement) value;
-                    label.setIcon(l.getIcon());
+                public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                    JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                    if (value instanceof UIListElement.ListElement) {
+                        UIListElement.ListElement l = (UIListElement.ListElement) value;
+                        label.setIcon(l.getIcon());
 
-                    Font f = l.getFont();
-                    if (f != null) {
-                        label.setFont(f);
+                        Font f = l.getFont();
+                        if (f != null) {
+                            label.setFont(f);
+                        }
+
+                        Color c = l.getBackground();
+                        if (c != null && !isSelected) {
+                            label.setBackground(l.getBackground());
+                        }
+                        c = l.getForeground();
+                        if (c != null) {
+                            label.setForeground(l.getForeground());
+                        }
                     }
 
-                    Color c = l.getBackground();
-                    if (c != null && !isSelected) {
-                        label.setBackground(l.getBackground());
-                    }
-                    c = l.getForeground();
-                    if (c != null) {
-                        label.setForeground(l.getForeground());
-                    }
+                    return label;
                 }
-
-                return label;
-            }
-        });
+            });
 
         return combo;
     }
@@ -111,6 +111,10 @@ public class UIComboBox extends UIComponent {
     }
 
     public String getString() {
+        if (getSelectedIndex() == -1) {
+            return null;
+        }
+
         return getSelectedItem();
     }
 
@@ -188,12 +192,12 @@ public class UIComboBox extends UIComponent {
         if (this.action == null) {
             removeListener();
             listener = new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    if (onchangeEnable && combo.getSelectedItem() != null) {
-                        UIWidgetTools.execAction(UIComboBox.this, UIComboBox.this.action, "\"" + combo.getSelectedItem().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                    public void actionPerformed(ActionEvent e) {
+                        if (onchangeEnable && combo.getSelectedItem() != null) {
+                            UIWidgetTools.execAction(UIComboBox.this, UIComboBox.this.action, "\"" + combo.getSelectedItem().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                        }
                     }
-                }
-            };
+                };
             combo.addActionListener(listener);
         }
         this.action = action;
