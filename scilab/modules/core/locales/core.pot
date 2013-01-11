@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-07 15:56+0100\n"
+"Revision-Date: 2013-01-10 17:04+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -1738,21 +1738,21 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 43
+# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 44
 msgid ""
 "No available console !\n"
 "Please use STD mode."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 44
+# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 45
 msgid "Empty tab"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 90
-# File: src/java/org/scilab/modules/core/ConsoleTab.java, line: 92
-msgid "Scilab Console"
+#, c-format
+msgid "Scilab %s Console"
 msgstr ""
 
 #
@@ -1778,41 +1778,41 @@ msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 151
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 157
 msgid "&File"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 152
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 158
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 153
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 159
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 154
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 160
 msgid "&Control"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 155
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 157
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 160
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 161
 # File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 163
 # File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 166
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 169
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 172
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 168
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 174
 msgid "&?"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 169
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 175
 msgid "&Toolboxes"
 msgstr ""
 

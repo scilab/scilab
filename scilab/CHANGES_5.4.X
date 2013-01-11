@@ -106,6 +106,8 @@ Xcos
 
 * Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
 
+* Bug #11193 fixed - Lincos did not honor context values.
+
 * Bug #11775 fixed - xcos.tst crashed on Linux and MacOS X.
 
 * Bug #11821 fixed - Running XcosPalAdd example from help led to deadlock
@@ -262,6 +264,8 @@ Bug fixes
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
 
 * Bug #12166 fixed - There was a bad label with drawaxis.
+
+* Bug #12168 fixed - matfile_listvar crashed when listing variables of a closed MAT-file.
 
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
 

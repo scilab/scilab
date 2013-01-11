@@ -45,10 +45,8 @@ void process_dneupd_data(double* DR, double* DI, double* Z, int N, int nev, doub
             if (DI[i] == 0)
             {
                 C2F(dgemv) ("n", &N, &N, &alpha, AR, &N, Z + N * i, &iOne, &beta, temp1, &iOne);
-                eigenvalue[i] = (doublecomplex)
-                {
-                    C2F(ddot) (&N, Z + N * i, &iOne, temp1, &iOne), 0
-                };
+                eigenvalue[i].r = C2F(ddot) (&N, Z + N * i, &iOne, temp1, &iOne);
+                eigenvalue[i].i = 0;
                 i = i + 1;
             }
             else
@@ -59,14 +57,10 @@ void process_dneupd_data(double* DR, double* DI, double* Z, int N, int nev, doub
                             C2F(ddot) (&N, Z + N * (i + 1), &iOne, temp2, &iOne);
                 imag_part = C2F(ddot) (&N, Z + N * i, &iOne, temp2, &iOne) - \
                             C2F(ddot) (&N, Z + N * (i + 1), &iOne, temp1, &iOne);
-                eigenvalue[i] = (doublecomplex)
-                {
-                    real_part, imag_part
-                };
-                eigenvalue[i + 1] = (doublecomplex)
-                {
-                    real_part, -imag_part
-                };
+                eigenvalue[i].r = real_part;
+                eigenvalue[i].i = imag_part;
+                eigenvalue[i + 1].r = real_part;
+                eigenvalue[i + 1].i = -imag_part;
                 i = i + 2;
             }
         }
@@ -77,10 +71,8 @@ void process_dneupd_data(double* DR, double* DI, double* Z, int N, int nev, doub
     {
         for (i = 0; i < nev + 1; i++)
         {
-            eigenvalue[i] = (doublecomplex)
-            {
-                DR[i], DI[i]
-            };
+            eigenvalue[i].r = DR[i];
+            eigenvalue[i].i = DI[i];
         }
     }
 
@@ -94,26 +86,22 @@ void process_dneupd_data(double* DR, double* DI, double* Z, int N, int nev, doub
             {
                 for (j = 0; j < N; j++)
                 {
-                    eigenvector[i * N + j] = (doublecomplex)
-                    {
-                        Z[i * N + j], Z[(i + 1) * N + j]
-                    };
-                    eigenvector[(i + 1) * N + j] = (doublecomplex)
-                    {
-                        Z[i * N + j], -Z[(i + 1) * N + j]
-                    };
+                    eigenvector[i * N + j].r = Z[i * N + j];
+                    eigenvector[i * N + j].i = Z[(i + 1) * N + j];
+                    eigenvector[(i + 1) * N + j].r = Z[i * N + j];
+                    eigenvector[(i + 1) * N + j].i = -Z[(i + 1) * N + j];
                 }
+
                 i = i + 2;
             }
             else
             {
                 for (j = 0; j < N; j++)
                 {
-                    eigenvector[i * N + j] = (doublecomplex)
-                    {
-                        Z[i * N + j], 0
-                    };
+                    eigenvector[i * N + j].r = Z[i * N + j];
+                    eigenvector[i * N + j].i = 0;
                 }
+
                 i = i + 1;
             }
         }
