@@ -22,15 +22,6 @@
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
-// dgemm performs one of the matrix-matrix operations
-extern int C2F(dgemm)(char* transa, char* transb, int* m, int* n, int* k,
-                      double* alpha, double* A, int* lda, double* B, int* ldb,
-                      double* beta, double* C, int* ldc);
-// zgemm performs one of the matrix-matrix operations
-extern int C2F(zgemm)(char* transa, char* transb, int* m, int* n, int* k,
-                      doublecomplex* alpha, doublecomplex* A, int* lda, doublecomplex* B,
-                      int* ldb, doublecomplex* beta, doublecomplex* C, int* ldc);
-
 // dgemv performs matrix-vector operations
 extern int C2F(dgemv) (char* trans, int* m, int* n, double* alpha, double* A, int* lda,
                        double* x, int* incx, double* beta, double* y, int* incy);
@@ -121,6 +112,18 @@ extern int C2F(zneupd)(int * rvec, char * howmny, int * select,
                        int * lworkl, double * rwork, int * info);
 /*--------------------------------------------------------------------------*/
 
+/*--------------------------------------------------------------------------*/
+extern int C2F(dsymv)(char* UPLO, int* N, double* ALPHA, double* A, int* LDA, double* X, int* INCX, double* BETA, double* Y, int* INCY);
+/*--------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------*/
+extern int C2F(daxpy)(int* N, double* DA, double* DX, int* INCX, double* DY, int* INCY);
+/*--------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------*/
+extern int C2F(zaxpy)(int* N, doublecomplex* ZA, doublecomplex* ZX, int* INCX, doublecomplex* ZY, int* INCY);
+/*--------------------------------------------------------------------------*/
+
 static double alpha = 1.;
 static double beta = 0.;
 
@@ -181,7 +184,7 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym,
     double* WORKEV			= NULL;
     doublecomplex* WORKEVC	= NULL;
 
-    doublecomplex mSIGMA = {.r = -SIGMA.r, .i = -SIGMA.i };
+    doublecomplex mSIGMA = { -SIGMA.r, -SIGMA.i };
 
     double* R         = NULL;
     doublecomplex* RC = NULL;
