@@ -90,6 +90,20 @@ if typeof(scs_m)<>"diagram" then
   error(msprintf(gettext("%s: Wrong type for input argument #%d: A diagram expected.\n"), "lincos", 1));
 end
 
+// Propagate context through all blocks
+%state0     = list();
+needcompile = 4;
+%cpr        = struct();
+%cpr.state  = %state0;
+%scicos_context = struct();
+context = scs_m.props.context;
+
+[%scicos_context, ierr] = script2var(context, %scicos_context);
+[scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr, %scicos_context);
+if ~ok then
+    error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "lincos"));
+end
+
 IN  = [];
 OUT = [];
 
