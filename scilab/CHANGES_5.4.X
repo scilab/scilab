@@ -129,6 +129,8 @@ Xcos
 
 * Bug #12162 fixed - tbx_build_blocks did not report errors.
 
+* Bug #12167 fixed - Text of ports in superblocks were not updated.
+
 
 Documentation
 ==============
