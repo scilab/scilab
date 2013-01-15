@@ -20,12 +20,15 @@
 #include "loadBackGroundClassPath.h"
 #include "loadOnUseClassPath.h"
 #include "localization.h"
+
+#ifdef _MSC_VER
 #include "getScilabJNIEnv.h"
 #include "getScilabJavaVM.h"
 #include "getScilabObject.h"
 #include "addToClasspath.h"
 #include "addToLibrarypath.h"
 #include "catchIfJavaException.h"
+#endif
 
 /*--------------------------------------------------------------------------*/
 JVM_IMPEXP int gw_jvm(void)
@@ -34,6 +37,7 @@ JVM_IMPEXP int gw_jvm(void)
     return 0;
 }
 
+#ifdef _MSC_VER
 JNIEnv *getScilabJNIEnv(void)
 {
     return NULL;
@@ -63,7 +67,7 @@ BOOL catchIfJavaException(char *errorMsg)
 {
     return FALSE;
 }
-
+#endif
 /*--------------------------------------------------------------------------*/
 JVM_IMPEXP BOOL InitializeJVM(void)
 {
@@ -90,14 +94,14 @@ JVM_IMPEXP BOOL loadOnUseClassPath(char const* tag)
 
 /*--------------------------------------------------------------------------*/
 /* BUG 10325: FORCE EXPORT canCloseMainScilabObject on Windows */
-JVM_IMPEXP BOOL canCloseMainScilabObject(void)
+BOOL canCloseMainScilabObject(void)
 {
     return TRUE;
 }
 
 /*--------------------------------------------------------------------------*/
 /* BUG 10325: FORCE EXPORT forceCloseMainScilabObject on Windows */
-JVM_IMPEXP void forceCloseMainScilabObject(void)
+void forceCloseMainScilabObject(void)
 {
 }
 
