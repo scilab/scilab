@@ -192,6 +192,8 @@ Bug fixes
 * Bug #11474 fixed - save_format help page was still refering to the old save
                      format. Use the SEP #64 content.
 
+* Bug #11477 fixed - There were memory leaks with textures.
+
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
