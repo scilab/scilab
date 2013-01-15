@@ -20,11 +20,48 @@
 #include "loadBackGroundClassPath.h"
 #include "loadOnUseClassPath.h"
 #include "localization.h"
+#include "getScilabJNIEnv.h"
+#include "getScilabJavaVM.h"
+#include "getScilabObject.h"
+#include "addToClasspath.h"
+#include "addToLibrarypath.h"
+#include "catchIfJavaException.h"
+
 /*--------------------------------------------------------------------------*/
 JVM_IMPEXP int gw_jvm(void)
 {
     Scierror(999, _("Scilab Java module not installed.\n"));
     return 0;
+}
+
+JNIEnv *getScilabJNIEnv(void)
+{
+    return NULL;
+}
+
+JavaVM *getScilabJavaVM(void)
+{
+    return NULL;
+}
+
+jobject getScilabObject(void)
+{
+    return NULL;
+}
+
+BOOL addToClasspath(char *classpathstring, typeOfLoad load)
+{
+    return FALSE;
+}
+
+BOOL addToLibrarypath(char *librarypathstring)
+{
+    return FALSE;
+}
+
+BOOL catchIfJavaException(char *errorMsg)
+{
+    return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
