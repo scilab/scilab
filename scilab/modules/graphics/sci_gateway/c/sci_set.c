@@ -299,6 +299,11 @@ int sci_set(char *fname, unsigned long fname_len)
             }
         }
 
+        if (isMatrixOfString)
+        {
+            freeArrayOfString((char **)_pvData, iRows3 * iCols3);
+        }
+
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
     }
