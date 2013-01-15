@@ -32,6 +32,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -123,6 +124,25 @@ public class UIPanel extends UIComponent {
                 enabledComponents.add(panel);
                 disableDescendants(panel);
             }
+            if (panel.getParent() instanceof JTabbedPane) {
+                JTabbedPane tab = (JTabbedPane) panel.getParent();
+                int index = tab.indexOfComponent(panel);
+                if (index != -1) {
+                    tab.setEnabledAt(index, enable);
+                    if (!enable) {
+                        int nb = tab.getTabCount();
+                        if (nb >= 2) {
+                            for (int i = (index + 1) % nb; i != index; i = (i + 1) % nb) {
+                                if (tab.isEnabledAt(i)) {
+                                    tab.setSelectedIndex(i);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             panel.setEnabled(enable);
         }
     }

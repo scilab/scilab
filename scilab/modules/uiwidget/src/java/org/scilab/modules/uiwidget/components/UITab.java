@@ -17,6 +17,7 @@ import java.awt.LayoutManager;
 import java.util.Map;
 
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
@@ -70,13 +71,13 @@ public class UITab extends UIComponent {
     public Object newInstance(Placement placement) {
         tab = new JTabbedPane(placement.value());
         /*tab.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                Component c = tab.getSelectedComponent();
-                if (c != null && !c.isValid()) {
-                    c.validate();
-                }
-            }
-        });*/
+          public void stateChanged(ChangeEvent e) {
+          Component c = tab.getSelectedComponent();
+          if (c != null && !c.isValid()) {
+          c.validate();
+          }
+          }
+          });*/
         return tab;
     }
 
@@ -85,7 +86,11 @@ public class UITab extends UIComponent {
             UIAccessTools.execOnEDT(new Runnable() {
                 public void run() {
                     try {
-                        tab.addTab(comp.getTabTitle() == null ? "" : comp.getTabTitle(), comp.getJComponent());
+                        JComponent jc = comp.getJComponent();
+                        tab.addTab(comp.getTabTitle() == null ? "" : comp.getTabTitle(), jc);
+                        if (jc instanceof JPanel && !((JPanel) jc).isEnabled()) {
+                            tab.setEnabledAt(tab.getTabCount() - 1, false);
+                        }
                     } catch (Exception e) { }
                 }
             });
