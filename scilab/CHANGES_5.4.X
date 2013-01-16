@@ -141,7 +141,7 @@ Documentation
 Compilation
 ============
 
-* Enforce a minimal version of Scirenderer (1.0.3).
+* Enforce a minimal version of Scirenderer (1.0.4).
 
 * Enforce a minimal version of Flexdock (1.2.1).
 
