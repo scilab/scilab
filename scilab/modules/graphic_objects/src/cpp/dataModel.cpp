@@ -56,16 +56,6 @@ void DataModel::getGraphicObjectProperty(char const* _pstID, int _iName, void **
     dataObject->getDataProperty(property, _pvData);
 }
 
-void DataModel::getGraphicObjectIntProperty(char const* _pstID, int _iName, void **_pvData)
-{
-    Data3D* dataObject = NULL;
-    int property = 0;
-
-    property = (*m_dataMap)[std::string(_pstID)]->getPropertyFromName(_iName);
-
-    dataObject->getDataProperty(property, _pvData);
-}
-
 char const* DataModel::createDataObject(char const* _pstID, int _iType)
 {
     Data3D* newObject = NULL;
@@ -75,27 +65,28 @@ char const* DataModel::createDataObject(char const* _pstID, int _iType)
      * (getTypeFromName) in order to avoid strcmp calls.
      */
 
-    switch (_iType) {
-    case __GO_GRAYPLOT__ :
-        newObject = new NgonGridData();
-        break;
-    case __GO_MATPLOT__ :
-        newObject = new NgonGridMatplotData();
-        break;
-    case __GO_FAC3D__ :
-        newObject = new NgonGeneralData();
-        break;
-    case __GO_PLOT3D__ :
-        newObject = new NgonGridData();
-        break;
-    case __GO_POLYLINE__ :
-        newObject = new NgonPolylineData();
-        break;
-    case __GO_FEC__ :
-        newObject = new TriangleMeshFecData();
-        break;
-    default :
-        return NULL;
+    switch (_iType)
+    {
+        case __GO_GRAYPLOT__ :
+            newObject = new NgonGridData();
+            break;
+        case __GO_MATPLOT__ :
+            newObject = new NgonGridMatplotData();
+            break;
+        case __GO_FAC3D__ :
+            newObject = new NgonGeneralData();
+            break;
+        case __GO_PLOT3D__ :
+            newObject = new NgonGridData();
+            break;
+        case __GO_POLYLINE__ :
+            newObject = new NgonPolylineData();
+            break;
+        case __GO_FEC__ :
+            newObject = new TriangleMeshFecData();
+            break;
+        default :
+            return NULL;
     }
 
     (*m_dataMap)[std::string(_pstID)] = newObject;

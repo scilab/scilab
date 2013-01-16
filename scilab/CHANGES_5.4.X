@@ -131,6 +131,8 @@ Xcos
 
 * Bug #12162 fixed - tbx_build_blocks did not report errors.
 
+* Bug #12167 fixed - Text of ports in superblocks were not updated.
+
 
 Documentation
 ==============
@@ -141,7 +143,7 @@ Documentation
 Compilation
 ============
 
-* Enforce a minimal version of Scirenderer (1.0.3).
+* Enforce a minimal version of Scirenderer (1.0.4).
 
 * Enforce a minimal version of Flexdock (1.2.1).
 
@@ -274,6 +276,8 @@ Bug fixes
 * Bug #12190 fixed - Description of sprspn updated in help page.
 
 * Bug #12204 fixed - Fix a typo in the French localization
+
+* Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
 
 
                     Changes between version 5.3.3 and 5.4.0

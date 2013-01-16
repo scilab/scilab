@@ -16,6 +16,9 @@
     <Filter Include="Libraries Dependencies">
       <UniqueIdentifier>{9c8bab13-f3d2-452b-9c1c-1694fefd0ef9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies\Exports">
+      <UniqueIdentifier>{a507bbeb-a681-469c-b873-32951fed3162}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nojvm.c">
@@ -26,5 +29,10 @@
     <ResourceCompile Include="nojvm.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="nolibjvm_export.def">
+      <Filter>Libraries Dependencies\Exports</Filter>
+    </None>
   </ItemGroup>
 </Project>
