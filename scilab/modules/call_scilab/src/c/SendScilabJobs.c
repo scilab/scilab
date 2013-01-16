@@ -181,7 +181,9 @@ BOOL GetLastJob(char *JOB, int nbcharsJOB)
             strcpy(JOB, lastjob);
         }
         else
+        {
             strncpy(JOB, lastjob, nbcharsJOB);
+        }
         return TRUE;
     }
     return FALSE;
@@ -227,6 +229,7 @@ int SendScilabJobs(char **jobs, int numberjobs)
                 else
                 {
                     fprintf(stderr, "Error: SendScilabJobs (2) 'jobs[%d] == NULL'.\n", i);
+                    FREE(LOCALJOBS);
                     return retcode;
                 }
             }
@@ -326,7 +329,9 @@ static BOOL RemoveCharsFromEOL(char *line, char CharToRemove)
             bOK = TRUE;
         }
         else
+        {
             break;
+        }
     }
     return bOK;
 }
@@ -355,7 +360,9 @@ static BOOL RemoveComments(char *line)
     }
 
     if (idx >= 0)
+    {
         line[idx] = '\0';
+    }
 
     return FALSE;
 }

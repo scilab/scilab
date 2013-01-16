@@ -234,7 +234,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
             FREE(conversion);
             conversion = NULL;
         }
-        Scierror(999, _("%s: Wrong size for input argument #%d: Vector string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: String vector expected.\n"), fname, 1);
         return 0;
     }
 

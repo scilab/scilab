@@ -1,0 +1,15 @@
+LIBRARY    nolibjvm.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; jvm module explicit export (SEP 35)
+; --------------------------------------- 
+getScilabJavaVM
+getScilabJNIEnv
+addToClasspath
+addToLibrarypath
+getScilabObject
+; --------------------------------------- 
+canCloseMainScilabObject
+forceCloseMainScilabObject
