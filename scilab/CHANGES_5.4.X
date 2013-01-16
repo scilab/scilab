@@ -271,6 +271,8 @@ Bug fixes
 
 * Bug #12184 fixed - Performances of the function 'derivat' improved.
 
+* Bug #12186 fixed - Performances of the function 'horner' improved.
+
 * Bug #12190 fixed - Description of sprspn updated in help page.
 
 * Bug #12204 fixed - Fix a typo in the French localization
