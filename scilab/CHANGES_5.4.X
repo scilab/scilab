@@ -124,7 +124,7 @@ Xcos
 
 * Bug #12014 fixed - dep_ut help was wrongly detailed.
 
-* Bug #12031 fixed - Changes in context of superblock did not always have 
+* Bug #12031 fixed - Changes in context of superblock did not always have
                      effect.
 
 * Bug #12162 fixed - tbx_build_blocks did not report errors.
@@ -274,6 +274,8 @@ Bug fixes
 * Bug #12190 fixed - Description of sprspn updated in help page.
 
 * Bug #12204 fixed - Fix a typo in the French localization
+
+* Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
 
 
                     Changes between version 5.3.3 and 5.4.0
