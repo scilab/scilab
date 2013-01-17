@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -302,6 +302,7 @@ cd ..
     <ClCompile Include="d1mach.c" />
     <ClCompile Include="dad.c" />
     <ClCompile Include="dadd.c" />
+    <ClCompile Include="danints.c" />
     <ClCompile Include="dclmat.c" />
     <ClCompile Include="ddif.c" />
     <ClCompile Include="ddpow.c" />
@@ -461,6 +462,7 @@ cd ..
     <f2c_rule Include="d1mach.f" />
     <f2c_rule Include="dad.f" />
     <f2c_rule Include="dadd.f" />
+    <f2c_rule Include="danints.f" />
     <f2c_rule Include="dclmat.f" />
     <f2c_rule Include="ddif.f" />
     <f2c_rule Include="ddpow.f" />

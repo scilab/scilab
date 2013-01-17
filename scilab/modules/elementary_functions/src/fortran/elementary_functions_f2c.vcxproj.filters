@@ -492,6 +492,9 @@
     <ClCompile Include="old_pythag.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="danints.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="arcosh.f">
@@ -965,6 +968,9 @@
     <f2c_rule Include="old_pythag.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
+    <f2c_rule Include="danints.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
   </ItemGroup>
   <ItemGroup>
     <None Include="elementary_functions_Import.def">
@@ -1003,9 +1009,6 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="elementary_functions_gw_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>
