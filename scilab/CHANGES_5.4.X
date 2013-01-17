@@ -131,6 +131,9 @@ Xcos
 
 * Bug #12167 fixed - Text of ports in superblocks were not updated.
 
+* Bug #12213 fixed - lincos help page example produced undefined variable
+                     warnings.
+
 
 Documentation
 ==============
