@@ -280,6 +280,8 @@ Bug fixes
 
 * Bug #12190 fixed - Description of sprspn updated in help page.
 
+* Bug #12196 fixed - There were no log-scales with Fec & Fac3d.
+
 * Bug #12204 fixed - Fix a typo in the French localization
 
 * Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
