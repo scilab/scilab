@@ -19,7 +19,7 @@
 ;
 Source: modules\{#COMMONS}\jar\org.scilab.modules.{#COMMONS}.jar;DestDir: {app}\modules\{#COMMONS}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-Source: bin\sci{#COMMONS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: bin\sci{#COMMONS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#COMMONS}\license.txt; DestDir: {app}\modules\{#COMMONS}; Components: {#COMPN_SCILAB}
 ;
