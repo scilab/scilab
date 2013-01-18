@@ -1,5 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Clément DAVID
 // Copyright (C) 2011 - DIGITEO - Clément DAVID
 //
 //  This file is distributed under the same license as the Scilab package.
@@ -43,11 +44,10 @@ function assert_checkcmscope()
     assert_checkequal(a2.y_label.text, "y");
     assert_checkequal(a3.y_label.text, "y");
     
-    // check removed due to junk data at the end
-    // assert_checkequal(size(p11.data), [299 2]);
-    // assert_checkequal(size(p12.data), [299 2]);
-    // assert_checkequal(size(p21.data), [299 2]);
-    // assert_checkequal(size(p31.data), [299 2]);
+    assert_checkequal(size(p11.data), [299 2]);
+    assert_checkequal(size(p12.data), [299 2]);
+    assert_checkequal(size(p21.data), [299 2]);
+    assert_checkequal(size(p31.data), [299 2]);
 endfunction
 assert_checkcmscope();
 
