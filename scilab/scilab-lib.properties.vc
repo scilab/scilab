@@ -6,7 +6,7 @@ flexdock.jar=${thirdparty.dir}/flexdock-1.2.1.jar
 
 jgraphx.jar=${thirdparty.dir}/jgraphx.jar
 
-scirenderer.jar=${thirdparty.dir}/scirenderer-1.0.4.jar
+scirenderer.jar=${thirdparty.dir}/scirenderer-1.0.5.jar
 
 jogl2.jar=${thirdparty.dir}/jogl2.jar
 
