@@ -86,35 +86,35 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     /** Set of properties changed during a draw if auto-ticks is on for X axis. */
     private static final Set<Integer> X_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                                                                                       GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
-                                                                                       GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
-                                                                                       GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
-                                                                                       ));
+                                                                                         GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
+                                                                                         GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
+                                                                                         GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
+                                                                                         ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Y axis. */
     private static final Set<Integer> Y_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                                                                                       GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
-                                                                                       GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
-                                                                                       GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
-                                                                                       ));
+                                                                                         GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
+                                                                                         GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
+                                                                                         GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
+                                                                                         ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Z axis. */
     private static final Set<Integer> Z_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                                                                                       GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
-                                                                                       GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
-                                                                                       GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
-                                                                                       ));
+                                                                                         GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
+                                                                                         GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
+                                                                                         GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
+                                                                                         ));
 
     /** Set of figure properties for witch a change doesn't lead to a redraw */
     private static final Set<Integer> SILENT_FIGURE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                GraphicObjectProperties.__GO_ROTATION_TYPE__,
-                GraphicObjectProperties.__GO_INFO_MESSAGE__,
-                GraphicObjectProperties.__GO_FIGURE_NAME__,
-                GraphicObjectProperties.__GO_AUTORESIZE__,
-                GraphicObjectProperties.__GO_POSITION__,
-                GraphicObjectProperties.__GO_SIZE__,
-                GraphicObjectProperties.__GO_ID__
-            ));
+                                                                                          GraphicObjectProperties.__GO_ROTATION_TYPE__,
+                                                                                          GraphicObjectProperties.__GO_INFO_MESSAGE__,
+                                                                                          GraphicObjectProperties.__GO_FIGURE_NAME__,
+                                                                                          GraphicObjectProperties.__GO_AUTORESIZE__,
+                                                                                          GraphicObjectProperties.__GO_POSITION__,
+                                                                                          GraphicObjectProperties.__GO_SIZE__,
+                                                                                          GraphicObjectProperties.__GO_ID__
+                                                                                          ));
 
     private static final boolean DEBUG_MODE = false;
 
@@ -325,7 +325,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Arc arc) {
-	if (arc.isValid() && arc.getVisible()) {
+        if (arc.isValid() && arc.getVisible()) {
             axesDrawer.enableClipping(currentAxes, arc.getClipProperty());
             try {
                 contouredObjectDrawer.draw(arc, currentAxes.getViewAsEnum() == ViewType.VIEW_2D);
@@ -371,14 +371,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Figure figure) {
-	synchronized (figure) {
-	    /** Set the current {@see ColorMap}. */
-	    colorMap = figure.getColorMap();
-	    drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
-	    drawingTools.clearDepthBuffer();
-	    if (figure.getVisible() && figure.getImmediateDrawing()) {
-		askAcceptVisitor(figure.getChildren());
-	    }
+        synchronized (figure) {
+            /** Set the current {@see ColorMap}. */
+            colorMap = figure.getColorMap();
+            drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
+            drawingTools.clearDepthBuffer();
+            if (figure.getVisible() && figure.getImmediateDrawing()) {
+                askAcceptVisitor(figure.getChildren());
+            }
         }
     }
 
@@ -852,16 +852,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
 
                 if (isImmediateDrawing(id)) {
-		    if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property) {
-			canvas.redrawAndWait();
-		    } else {
-			canvas.redraw();
-		    }
+                    if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property) {
+                        canvas.redrawAndWait();
+                    } else {
+                        canvas.redraw();
+                    }
                 }
             }
 
             if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property && !isImmediateDrawing(id)) {
-		canvas.waitImage();
+                canvas.waitImage();
             }
 
         } catch (OutOfMemoryException e) {
@@ -938,6 +938,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         axesDrawer.dispose(id);
         legendDrawer.dispose(id);
         fecDrawer.dispose(id);
+        textureManager.dispose(id);
 
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         if (object instanceof Figure && visitorMap.containsKey(id)) {

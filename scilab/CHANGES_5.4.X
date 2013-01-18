@@ -133,6 +133,9 @@ Xcos
 
 * Bug #12167 fixed - Text of ports in superblocks were not updated.
 
+* Bug #12213 fixed - lincos help page example produced undefined variable
+                     warnings.
+
 
 Documentation
 ==============
@@ -143,7 +146,7 @@ Documentation
 Compilation
 ============
 
-* Enforce a minimal version of Scirenderer (1.0.4).
+* Enforce a minimal version of Scirenderer (1.0.5).
 
 * Enforce a minimal version of Flexdock (1.2.1).
 
@@ -193,6 +196,8 @@ Bug fixes
 
 * Bug #11474 fixed - save_format help page was still refering to the old save
                      format. Use the SEP #64 content.
+
+* Bug #11477 fixed - There were memory leaks with textures.
 
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
@@ -272,6 +277,8 @@ Bug fixes
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
 
 * Bug #12184 fixed - Performances of the function 'derivat' improved.
+
+* Bug #12186 fixed - Performances of the function 'horner' improved.
 
 * Bug #12190 fixed - Description of sprspn updated in help page.
 
