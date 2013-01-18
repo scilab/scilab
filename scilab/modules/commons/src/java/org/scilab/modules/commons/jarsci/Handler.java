@@ -24,23 +24,23 @@ import org.scilab.modules.commons.ScilabConstants;
  * A {@link URLStreamHandler} that handles images resource.
  */
 public class Handler extends URLStreamHandler {
-    
-    private static String JARPATH = new File(ScilabConstants.SCI, "/modules/helptools/jar/scilab_images.jar").getAbsolutePath();
+
+    private static String JARPATH = new File(ScilabConstants.SCI, "/modules/helptools/jar/scilab_images.jar").getAbsoluteFile().toURI().toString();
 
     public Handler() {
-	
+
     }
 
     @Override
     protected URLConnection openConnection(URL u) throws IOException {
-	String path = u.getPath();
-	if (path.startsWith("./")) {
-	    path = path.substring(1);
-	} else {
-	    path = "/" + path;
-	}
+        String path = u.getPath();
+        if (path.startsWith("./")) {
+            path = path.substring(1);
+        } else {
+            path = "/" + path;
+        }
 
-        URL jar = new URL("jar:file://" + JARPATH + "!" + path);
-	return jar.openConnection();
+        URL jar = new URL("jar:" + JARPATH + "!" + path);
+        return jar.openConnection();
     }
 }
