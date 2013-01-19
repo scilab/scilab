@@ -66,6 +66,8 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
             }
         }
 
+        releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
+
         return bufferLength;
     }
     else
@@ -99,6 +101,9 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
                 k += 4;
             }
         }
+
+        releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
+
         return bufferLength;
     }
     else

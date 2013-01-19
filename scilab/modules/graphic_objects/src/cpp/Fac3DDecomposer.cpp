@@ -153,11 +153,7 @@ void Fac3DDecomposer::fillTextureCoordinates(char* id, float* buffer, int buffer
         return;
     }
 
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
-
     getGraphicObjectProperty(id, __GO_COLOR_FLAG__, jni_int, (void**) &piColorFlag);
-
     getGraphicObjectProperty(id, __GO_DATA_MAPPING__, jni_int, (void**) &piDataMapping);
 
     /* Do not fill */
@@ -165,6 +161,9 @@ void Fac3DDecomposer::fillTextureCoordinates(char* id, float* buffer, int buffer
     {
         return;
     }
+
+    getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
+    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
 
     if (numColors == numGons*numVerticesPerGon)
     {
@@ -205,6 +204,7 @@ void Fac3DDecomposer::fillTextureCoordinates(char* id, float* buffer, int buffer
                                          colors, colorFlag, perVertex, dataMapping, numGons, numVerticesPerGon);
     }
 
+    releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
 }
 
 void Fac3DDecomposer::fillNormalizedZColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
