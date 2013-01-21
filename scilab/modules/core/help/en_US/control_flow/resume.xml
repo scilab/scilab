@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+ <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="resume">
     <refnamediv>
         <refname>resume</refname>
@@ -67,6 +67,24 @@ foo(42);
 assert_checkequal(b,43);
 // c does not exist
 
+]]></programlisting>
+        <programlisting role="example"><![CDATA[
+
+// with several function calls
+function foo1()
+  a=1;
+  b=2;
+  c=3;
+  [x,y,z]=resume(a, b, c)
+endfunction
+
+function foo2()
+  foo1()
+  x, y, z // Declared
+endfunction
+
+foo2()
+// x y z does not exist here
 ]]></programlisting>
     </refsection>
     <refsection role="see also">
