@@ -21,17 +21,20 @@
                 <term>vname </term>
                 <listitem>
                     <para>chaîne de caractères, nom de l'indéterminée du
-                        polynôme.Si la chaîne comprend plus de 4 caractères, seuls les 4
-                        premiers sont pris en compte.
+                        polynôme. La châine ne doit pas dépasser les 4 caractères.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"flag"  </term>
+                <term>"flag"</term>
                 <listitem>
                     <para>chaîne de caractères ("roots", "coeff"), la
                         valeur par défaut est "roots".
                     </para>
+                    <para>
+                        Des raccourcis peuvent être aussi utilisés: <literal>"r"</literal> pour <literal>"roots"</literal> et <literal>"c"</literal> pour <literal>"coeff"</literal>.
+                    </para>
+                    
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -86,7 +89,7 @@
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
 s=poly(0,"s");
-p=1+s+2*s^2;
+p=1+s+2*s^2
 A=rand(2,2);
 poly(A,"x")
  ]]></programlisting>
