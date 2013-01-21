@@ -18,12 +18,15 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.reflect.Field;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.ListModel;
 
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
@@ -33,7 +36,9 @@ public class UIList extends UIComponent {
 
     private JList list;
     private MouseListener listener;
-    private DefaultListModel model;
+    private boolean onclickEnable = true;
+    private MyListModel model;
+    private Vector<Object> vector;
     private boolean isFinished;
     private String action;
 
@@ -43,7 +48,9 @@ public class UIList extends UIComponent {
 
     public Object newInstance() {
         list = new JList();
-        model = new DefaultListModel();
+        vector = new Vector<Object>();
+        model = new MyListModel(vector);
+        list.setModel(model);
         list.setCellRenderer(new DefaultListCellRenderer() {
 
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -73,12 +80,12 @@ public class UIList extends UIComponent {
     }
 
     public void finish() {
-        list.setModel(model);
-        list.setSelectedIndex(0);
+        model.fireContentsChanged(model, 0, vector.size() - 1);
+        resetIndex();
     }
 
     public void add(Object obj) {
-        model.addElement(obj);
+        vector.addElement(obj);
         if (obj instanceof UIListElement.ListElement) {
             ((UIListElement.ListElement) obj).setParent(list);
         }
@@ -96,6 +103,98 @@ public class UIList extends UIComponent {
         super.remove();
     }
 
+    public void setString(String item) {
+        setSelectedItem(item);
+    }
+
+    public String getString() {
+        if (getSelectedIndex() == -1) {
+            return null;
+        }
+
+        return getSelectedItem();
+    }
+
+    public void setSelectedItem(String item) {
+        if (item != null) {
+            ListModel model = list.getModel();
+            for (int i = 0; i < model.getSize(); i++) {
+                Object o = model.getElementAt(i);
+                if (o != null && o.toString().equals(item)) {
+                    list.setSelectedValue(o, true);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void setItems(String[] items) {
+        if (items != null) {
+            vector.clear();
+            for (String item : items) {
+                add(new UIListElement.ListElement(item, null));
+            }
+            model.fireContentsChanged(model, 0, vector.size() - 1);
+            resetIndex();
+        }
+    }
+
+    public String[] getItems() {
+        if (!vector.isEmpty()) {
+            String[] arr = new String[vector.size()];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = vector.get(i).toString();
+            }
+
+            return arr;
+        }
+
+        return null;
+    }
+
+    private void resetIndex() {
+        setSelectedIndex(0);
+    }
+
+    public String getSelectedItem() {
+        if (list.getSelectedIndex() != -1) {
+            return list.getSelectedValue().toString();
+        }
+
+        return null;
+    }
+
+    public void setSelectedIndex(int index) {
+        try {
+            list.setSelectedIndex(index);
+        } catch (IllegalArgumentException e) { }
+    }
+
+    public int getSelectedIndex() {
+        return list.getSelectedIndex();
+    }
+
+    public int getValue() {
+        return getSelectedIndex();
+    }
+
+    public void setValue(int index) {
+        setSelectedIndex(index);
+    }
+
+    public void setPositionSelected(int index) {
+        int selected = list.getSelectedIndex();
+        if (index >= 0 && index < vector.size() && selected != -1 && index != selected) {
+            Object o = vector.remove(selected);
+            vector.insertElementAt(o, index);
+            model.fireContentsChanged(model, 0, vector.size() - 1);
+        }
+    }
+
+    public String getOnclick() {
+        return action;
+    }
+
     public void setOnclick(String action) {
         if (this.action == null) {
             removeListener();
@@ -107,5 +206,31 @@ public class UIList extends UIComponent {
             list.addMouseListener(listener);
         }
         this.action = action;
+    }
+
+    public boolean getOnclickEnable() {
+        return onclickEnable;
+    }
+
+    public void setOnclickEnable(boolean b) {
+        onclickEnable = b;
+    }
+
+    private static class MyListModel extends DefaultListModel {
+
+        public MyListModel(Vector v) {
+            super();
+            try {
+                Field delegate = DefaultListModel.class.getDeclaredField("delegate");
+                delegate.setAccessible(true);
+                delegate.set(this, v);
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }
+
+        public void fireContentsChanged(Object o, int i, int f) {
+            super.fireContentsChanged(o, i, f);
+        }
     }
 }
