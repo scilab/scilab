@@ -64,9 +64,6 @@
     <ClInclude Include="..\..\includes\dynlib_polynomials.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\gw_polynomials.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\polynomials_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
