@@ -183,7 +183,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
 
     //copy input parameter to prevent calling gateway modifies input data
     typed_list inCopy;
-    for(int i = 0 ; i < in.size() ; i++)
+    for (int i = 0 ; i < in.size() ; i++)
     {
         inCopy.push_back(in[i]->clone());
     }
@@ -218,9 +218,9 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
                 std::size_t const iPos(outOrder[i] - 1);
                 //protect variable to deletion
                 inCopy[iPos]->IncreaseRef();
-                if(inCopy[iPos]->isDouble() && ((types::Double*)inCopy[iPos])->isViewAsInteger())
+                if (inCopy[iPos]->isDouble() && ((types::Double*)inCopy[iPos])->isViewAsInteger())
                 {
-                    types::Double* pD = in[iPos]->getAs<types::Double>();
+                    types::Double* pD = inCopy[iPos]->getAs<types::Double>();
                     pD->convertFromInteger();
                 }
 
@@ -228,8 +228,8 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
             }
             else
             {
-                std::size_t const iPos(outOrder[i] - in.size() - 1);
-                if(tmpOut[iPos]->isDouble() && ((types::Double*)tmpOut[iPos])->isViewAsInteger())
+                std::size_t const iPos(outOrder[i] - inCopy.size() - 1);
+                if (tmpOut[iPos]->isDouble() && ((types::Double*)tmpOut[iPos])->isViewAsInteger())
                 {
                     types::Double* pD = tmpOut[iPos]->getAs<types::Double>();
                     pD->convertFromInteger();
@@ -240,23 +240,31 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
             }
         }
     }
+
     for (std::size_t i(0); i != MAX_OUTPUT_VARIABLE; ++i)
     {
         delete tmpOut[i];// delete 0 is safe cf.5.3.5/2
     }
 
-    //clean input copy
-    for(int i = 0 ; i < in.size() ; i++)
+    //protect outputs
+    for (int i = 0 ; i < out.size() ; i++)
     {
-        if(inCopy[i]->isDeletable())
+        out[i]->IncreaseRef();
+    }
+
+    //clean input copy
+    for (int i = 0 ; i < in.size() ; i++)
+    {
+        if (inCopy[i]->isDeletable())
         {
             delete inCopy[i];
         }
-        else
-        {
-            //remove protection
-            inCopy[i]->DecreaseRef();
-        }
+    }
+
+    //unprotect outputs
+    for (int i = 0 ; i < out.size() ; i++)
+    {
+        out[i]->DecreaseRef();
     }
 
     FREE(gStr.m_pstName);

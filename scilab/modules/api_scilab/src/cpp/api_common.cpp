@@ -71,17 +71,17 @@ int* getNbInputArgument(void* _pvCtx)
 {
     GatewayStruct *pStr =  (GatewayStruct*)_pvCtx;
 
-	if(pStr == NULL)
-	{
-		std::cout << "pStr == NULL" << std::endl;
-		return 0;
-	}
+    if (pStr == NULL)
+    {
+        std::cout << "pStr == NULL" << std::endl;
+        return 0;
+    }
 
-	if(pStr->m_pIn == NULL)
-	{
-		std::cout << "pStr->m_pin == NULL" << std::endl;
-		return 0;
-	}
+    if (pStr->m_pIn == NULL)
+    {
+        std::cout << "pStr->m_pin == NULL" << std::endl;
+        return 0;
+    }
 
     return &pStr->m_iIn;;
 }
@@ -89,39 +89,39 @@ int* getNbInputArgument(void* _pvCtx)
 /* Replaces Lhs */
 int* getNbOutputArgument(void* _pvCtx)
 {
-	GatewayStruct *pStr =  (GatewayStruct*)_pvCtx;
+    GatewayStruct *pStr =  (GatewayStruct*)_pvCtx;
 
-	if(pStr == NULL)
-	{
-		return 0;
-	}
+    if (pStr == NULL)
+    {
+        return 0;
+    }
 
-	if(pStr->m_piRetCount == NULL)
-	{
-		return 0;
-	}
+    if (pStr->m_piRetCount == NULL)
+    {
+        return 0;
+    }
 
     return &pStr->m_iOut;
 }
 
 int* assignOutputVariable(void* _pvCtx, int _iVal)
 {
-	//do nothing but don't crash
-	if(_pvCtx == NULL)
-	{
-		return &api_fake_int;
-	}
+    //do nothing but don't crash
+    if (_pvCtx == NULL)
+    {
+        return &api_fake_int;
+    }
 
-	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
 
-	//do nothing but don't crash
-	if(_iVal > *pStr->m_piRetCount)
-	{
-		return &api_fake_int;
-	}
+    //do nothing but don't crash
+    if (_iVal > *pStr->m_piRetCount)
+    {
+        return &api_fake_int;
+    }
 
-	int* pVal = &(pStr->m_pOutOrder[_iVal - 1]);
-	return pVal;
+    int* pVal = &(pStr->m_pOutOrder[_iVal - 1]);
+    return pVal;
 }
 
 int returnArguments(void* _pvCtx)
@@ -199,7 +199,7 @@ int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
         return 1;
     }
 
-    if(_iMax == _iMin)
+    if (_iMax == _iMin)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), ((GatewayStruct*)_pvCtx)->m_pstName, _iMax);
     }
@@ -253,7 +253,7 @@ int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _
     wchar_t* pwstName = to_wide_string(pStr->m_pstName);
     std::wstring wsFunName;
 
-    if(_iVar == 0)
+    if (_iVar == 0)
     {
         wsFunName = std::wstring(L"%_") + std::wstring(pwstName);
     }
@@ -262,7 +262,20 @@ int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _
         wsFunName = std::wstring(L"%") + (*pStr->m_pIn)[_iVar - 1]->getShortTypeStr() + L"_" + std::wstring(pwstName);
     }
 
+    //protect input arguments
+    for (int i = 0 ; i < pStr->m_pIn->size() ; i++)
+    {
+        (*pStr->m_pIn)[i]->IncreaseRef();
+    }
+
     callResult = Overload::call(wsFunName, *(pStr->m_pIn), *(pStr->m_piRetCount), tlReturnedValues, pStr->m_pVisitor);
+
+    //unprotect input arguments
+    for (int i = 0 ; i < pStr->m_pIn->size() ; i++)
+    {
+        (*pStr->m_pIn)[i]->DecreaseRef();
+    }
+
     if (callResult == Function::OK)
     {
         int i = 0;
@@ -294,7 +307,7 @@ SciErr getVarDimension(void *_pvCtx, int *_piAddress, int *_piRows, int *_piCols
     {
         *_piRows = 0;
         *_piCols = 0;
-        if(_piAddress == NULL)
+        if (_piAddress == NULL)
         {
             addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarDimension");
         }
@@ -355,7 +368,7 @@ static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
     int iAddr = 0;
     int iValType = 0;
 
-    if(_pvCtx == NULL)
+    if (_pvCtx == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POSITION, _("%s: bad call to %s! (1rst argument).\n"), "",
                         "getVarAddressFromPosition");
@@ -367,7 +380,7 @@ static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
     int*    piRetCount = pStr->m_piRetCount;
 
     /* we accept a call to getVarAddressFromPosition after a create... call */
-    if(_iVar > in.size())
+    if (_iVar > in.size())
     {
         //manage case where _iVar > in.size(), then look in out to get recent create variable.
         addErrorMessage(&sciErr, API_ERROR_INVALID_POSITION, _("%s: bad call to %s! (1rst argument).\n"), pStr->m_pstName, "getVarAddressFromPosition");
@@ -397,8 +410,8 @@ int getNewVarAddressFromPosition(void *_pvCtx, int _iVar, int **_piAddress)
 SciErr getVarAddressFromName(void *_pvCtx, const char *_pstName, int **_piAddress)
 {
     SciErr sciErr;
-	sciErr.iErr = 0;
-	sciErr.iMsgCount = 0;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     // FIXME
 
     wchar_t* pwstName = to_wide_string(_pstName);
@@ -406,7 +419,7 @@ SciErr getVarAddressFromName(void *_pvCtx, const char *_pstName, int **_piAddres
     InternalType* pVar = pCtx->get(symbol::Symbol(pwstName));
     FREE(pwstName);
 
-    if(pVar == NULL)
+    if (pVar == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Unable to get address of variable \"%s\""), "getVarAddressFromName", _pstName);
     }
@@ -431,75 +444,75 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
         return sciErr;
     }
 
-    switch(((InternalType*)_piAddress)->getType())
+    switch (((InternalType*)_piAddress)->getType())
     {
-    case GenericType::RealDouble :
-        *_piType = sci_matrix;
-        break;
-    case GenericType::RealPoly :
-        *_piType = sci_poly;
-        break;
-    case GenericType::RealBool :
-        *_piType = sci_boolean;
-        break;
-    case GenericType::RealSparse :
-        *_piType = sci_sparse;
-        break;
-    case GenericType::RealSparseBool :
-        *_piType = sci_boolean_sparse;
-        break;
-    //case GenericType::RealMatlabSparse :
-    //    *_piType = sci_matlab_sparse;
-    //    break;
-    case GenericType::RealInt8 :
-    case GenericType::RealUInt8 :
-    case GenericType::RealInt16 :
-    case GenericType::RealUInt16 :
-    case GenericType::RealInt32 :
-    case GenericType::RealUInt32 :
-    case GenericType::RealInt64 :
-    case GenericType::RealUInt64 :
-        *_piType = sci_ints;
-        break;
-    case GenericType::RealHandle :
-        *_piType = sci_handles;
-        break;
-    case GenericType::RealString :
-        *_piType = sci_strings;
-        break;
-    case GenericType::RealMacroFile :
-        *_piType = sci_u_function;
-        break;
-    case GenericType::RealMacro :
-        *_piType = sci_c_function;
-        break;
-    case GenericType::RealList :
-        *_piType = sci_list;
-        break;
-    case GenericType::RealCell :
-        *_piType = sci_mlist;
-        break;
-    case GenericType::RealTList :
-        *_piType = sci_tlist;
-        break;
-    case GenericType::RealMList :
-        *_piType = sci_mlist;
-        break;
-    case GenericType::RealStruct :
-        // Scilab < 6 compatibility... Struct have type 17;
-        *_piType = sci_mlist;
-        break;
-    case GenericType::RealUserType :
-        *_piType = sci_pointer;
-        break;
-    case GenericType::RealImplicitList :
-        *_piType = sci_implicit_poly;
-        break;
-    case GenericType::RealFunction :
-        *_piType = sci_intrinsic_function;
-        break;
-    default :
-        *_piType = 0;
+        case GenericType::RealDouble :
+            *_piType = sci_matrix;
+            break;
+        case GenericType::RealPoly :
+            *_piType = sci_poly;
+            break;
+        case GenericType::RealBool :
+            *_piType = sci_boolean;
+            break;
+        case GenericType::RealSparse :
+            *_piType = sci_sparse;
+            break;
+        case GenericType::RealSparseBool :
+            *_piType = sci_boolean_sparse;
+            break;
+            //case GenericType::RealMatlabSparse :
+            //    *_piType = sci_matlab_sparse;
+            //    break;
+        case GenericType::RealInt8 :
+        case GenericType::RealUInt8 :
+        case GenericType::RealInt16 :
+        case GenericType::RealUInt16 :
+        case GenericType::RealInt32 :
+        case GenericType::RealUInt32 :
+        case GenericType::RealInt64 :
+        case GenericType::RealUInt64 :
+            *_piType = sci_ints;
+            break;
+        case GenericType::RealHandle :
+            *_piType = sci_handles;
+            break;
+        case GenericType::RealString :
+            *_piType = sci_strings;
+            break;
+        case GenericType::RealMacroFile :
+            *_piType = sci_u_function;
+            break;
+        case GenericType::RealMacro :
+            *_piType = sci_c_function;
+            break;
+        case GenericType::RealList :
+            *_piType = sci_list;
+            break;
+        case GenericType::RealCell :
+            *_piType = sci_mlist;
+            break;
+        case GenericType::RealTList :
+            *_piType = sci_tlist;
+            break;
+        case GenericType::RealMList :
+            *_piType = sci_mlist;
+            break;
+        case GenericType::RealStruct :
+            // Scilab < 6 compatibility... Struct have type 17;
+            *_piType = sci_mlist;
+            break;
+        case GenericType::RealUserType :
+            *_piType = sci_pointer;
+            break;
+        case GenericType::RealImplicitList :
+            *_piType = sci_implicit_poly;
+            break;
+        case GenericType::RealFunction :
+            *_piType = sci_intrinsic_function;
+            break;
+        default :
+            *_piType = 0;
     }
 
     return sciErr;
@@ -538,7 +551,7 @@ int isVarComplex(void *_pvCtx, int *_piAddress)
     int iType = 0;
     int iComplex = 0;
 
-    if(_piAddress == NULL)
+    if (_piAddress == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "isVarComplex");
         return 0;
@@ -546,7 +559,7 @@ int isVarComplex(void *_pvCtx, int *_piAddress)
 
     InternalType* pIT = (InternalType*)_piAddress;
     GenericType* pGT = dynamic_cast<GenericType*>(pIT);
-    if(pGT == NULL)
+    if (pGT == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "isVarComplex");
         return 0;
@@ -986,9 +999,9 @@ int getRhsFromAddress(void *_pvCtx, int *_piAddress)
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     typed_list in = *pStr->m_pIn;
 
-    for(i = 0 ; i < in.size() ; i++)
+    for (i = 0 ; i < in.size() ; i++)
     {
-        if(_piAddress == (int*)in[i])
+        if (_piAddress == (int*)in[i])
         {
             return i + 1;
         }
@@ -1480,7 +1493,7 @@ int isNamedVarExist(void *_pvCtx, const char *_pstName)
     int *piAddr = NULL;
 
     sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
-    if(sciErr.iErr || piAddr == NULL)
+    if (sciErr.iErr || piAddr == NULL)
     {
         return 0;
     }
@@ -1501,7 +1514,10 @@ int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
     }
 
     // check length _pstName <> 0
-    if (strlen(_pstName) == 0) iRet = 0;
+    if (strlen(_pstName) == 0)
+    {
+        iRet = 0;
+    }
 
     // forbidden characters
     if (strpbrk(_pstName, FORBIDDEN_CHARS) != NULL)
