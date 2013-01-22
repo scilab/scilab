@@ -38,7 +38,8 @@ if (sciargs() <> "-nb") & getscilabmode() == "STD" then
   printf(gettext("  loading initial environment") + "\n");
 end
 
-if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & ~fromjava() & ~fromc() & sciargs()<>"-nb")
+//if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & ~fromjava() & ~fromc() & sciargs()<>"-nb")
+if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & sciargs()<>"-nb")
    [v, opts] = getversion()
    printf(strsubst(v, "scilab-", "Scilab ") + " (" + opts($-1) + ", " + opts($) + ")");
    clear v, opts;
