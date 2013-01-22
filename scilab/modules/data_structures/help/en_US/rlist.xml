@@ -33,6 +33,18 @@
             checking is done on <literal>ai</literal>'s.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+W=[1/s,1/(s+1)]
+W'*W
+Num=[s,s+2;1,s];
+Den=[s*s,s;s,s*s];
+rlist(Num,Den,[])
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
@@ -41,6 +53,9 @@
             </member>
             <member>
                 <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="rational">rational</link>
             </member>
         </simplelist>
     </refsection>

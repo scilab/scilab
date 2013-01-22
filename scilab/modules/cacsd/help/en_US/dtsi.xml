@@ -90,6 +90,17 @@
             </member>
         </simplelist>
     </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+a=0.5;
+b=1;
+c=2;
+sl=syslin('c',a,b,c);
+dtsi(sl)
+ ]]></programlisting>
+    </refsection>
     <refsection>
         <title>History</title>
         <revhistory>

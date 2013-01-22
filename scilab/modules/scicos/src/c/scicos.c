@@ -5829,6 +5829,11 @@ int write_xml_states(int nvar, const char * xmlfile, char **ids, double *x)
     if (fd < 0)
     {
         sciprint(_("Error: cannot write to  '%s'  \n"), xmlfile);
+        for (i = 0; i < nvar; i++)
+        {
+            FREE(xv[i]);
+        }
+        FREE(xv);
         return -3;/* cannot write to file*/
     }
 
@@ -5927,7 +5932,11 @@ int C2F(hfjac)(double *x, double *jac, int *col)
 
     job = 0;
     fx_(x, jac);
-    if (*ierr < 0) return *ierr;
+    if (*ierr < 0)
+    {
+        FREE(work);
+        return *ierr;
+    }
 
     inc_inv = ONE / inc;
 

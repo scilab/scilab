@@ -15,6 +15,9 @@
 // <-- Short Description -->
 // regression fscanf
 
+wMode = warning("query");
+warning("off");
+
 fln = TMPDIR + filesep() +'bug_3905.txt';
 strs = ['txt1','txt2','txt3'];
 mputl(strs, fln);
@@ -36,3 +39,5 @@ file('close',fi);
 
 ierr = execstr("fscanf(9999,''%s'');","errcatch");
 if ierr <> 999 then pause,end
+
+warning(wMode);

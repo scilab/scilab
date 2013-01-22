@@ -80,7 +80,10 @@ olddir=pwd();
     // =========================================================================
     fd = mopen(fileName+'_open','w');
     if (fileinfo(fileName+'_open')==[]) then pause, end
+    wMode = warning("query");
+    warning("off");
     fprintf(fd,'%s %f',specialName+'3',%pi);
+    warning(wMode);
     filestuff=fileinfo(fileName+'_open');
     if (filestuff==[] & filestuff(1)>0) then pause, end
     mclose(fd);

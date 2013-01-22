@@ -88,6 +88,7 @@ BOOL InitializeLocalization(void)
     if (ret==NULL)
     {
         fprintf(stderr, "Localization: Error while declaring the text domain %s\n", NAMELOCALIZATIONDOMAIN);
+        FREE(pathLocales);
         return FALSE;
     }
     bind_textdomain_codeset (NAMELOCALIZATIONDOMAIN,"UTF-8"); /*such that gettext and dgettext return UTF8 string*/

@@ -57,6 +57,13 @@ public class ScilabTextureManager {
         return texture;
     }
 
+    public void dispose(String identifier) {
+        Texture texture = hashMap.get(identifier);
+        if (texture != null) {
+            hashMap.remove(identifier);
+            canvas.getTextureManager().dispose(texture);
+        }
+    }
 
     private class ScilabTextureDataProvider extends AbstractTextureDataProvider implements GraphicView {
         private final String identifier;

@@ -224,7 +224,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_csvTextScan.c, line: 239
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Vector string expected.\n"
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
 msgstr ""
 
 #

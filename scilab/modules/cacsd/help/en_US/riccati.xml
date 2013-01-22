@@ -76,6 +76,38 @@ A'*X*A-(A'*X*B1/(B2+B1'*X*B1))*(B1'*X*A)+C-X
             such that <literal>X=X1/X2</literal>.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Continuous
+n = 10;
+A = rand(n,n);
+B = rand(n,n);
+C = rand(n,n);
+C = C*C';
+R = rand(n,n);
+R = R*R'+eye();
+B = B*inv(R)*B';
+
+
+X = riccati(A,B,C,'c','eigen')
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Discrete
+
+n = 10;
+F = rand(n,n);
+G1      = rand(n,n);
+G2 = rand(n,n);
+G2 = G2*G2'+eye();
+G      = G1/G2*G1';
+H      = rand(n,n);
+H = H*H';
+
+[X1,X2]= riccati(F,G,H,'d','schur')
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
