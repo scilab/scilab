@@ -19,8 +19,8 @@
 #define OPERATIONS "operations"
 ;
 Source: bin\{#OPERATIONS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#OPERATIONS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#OPERATIONS}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;Source: bin\{#OPERATIONS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;Source: bin\{#OPERATIONS}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#OPERATIONS}\license.txt; DestDir: {app}\modules\{#OPERATIONS}; Components: {#COMPN_SCILAB}
 ;
