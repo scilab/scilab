@@ -34,7 +34,7 @@
                     <para>
                         Des raccourcis peuvent être aussi utilisés: <literal>"r"</literal> pour <literal>"roots"</literal> et <literal>"c"</literal> pour <literal>"coeff"</literal>.
                     </para>
-                    
+
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -49,7 +49,7 @@
                         <literal>p</literal> est le polynôme
                         caractéristique de a, c'est à dire
                         <literal>déterminant(x*eye()-a)</literal>, <literal>x</literal> étant
-                        l'indéterminée. 
+                        l'indéterminée.
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,8 +63,11 @@
                                 dont les racines sont égales aux termes de <literal>v</literal> et
                                 <literal>"x"</literal> l'indéterminée. Dans ce cas
                                 <literal>roots</literal> et <literal>poly</literal> sont des fonctions inverses
-                                l'une de l'autre. Notez qye les racines infinies produisent des
-                                coefficients de haut degré egaux a zéro.
+                                l'une de l'autre.
+                                <note>
+                                    Notez qye les racines infinies produisent des
+                                    coefficients de haut degré egaux a zéro.
+                                </note>
                             </para>
                         </listitem>
                         <listitem>
@@ -87,11 +90,13 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,"s");
 p=1+s+2*s^2
 A=rand(2,2);
 poly(A,"x")
+// Fractions rationnelles
+h=(1+2*%s)/poly(1:4,'s','c')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
