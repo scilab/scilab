@@ -41,6 +41,12 @@ int set_color_map_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
         return SET_PROPERTY_ERROR ;
     }
 
+    if (nbCol != 3)
+    {
+        Scierror(999, _("Wrong dimension for '%s' property: The number of columns must be 3.\n"), "color_map");
+        return SET_PROPERTY_ERROR ;
+    }
+
     status = setGraphicObjectProperty(pobjUID, __GO_COLORMAP__, stk(stackPointer), jni_double_vector, nbRow * nbCol);
 
     if (status == TRUE)
