@@ -271,6 +271,9 @@ Bug fixes
 
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
 
+* Bug #12151 fixed - Axes did not pass through (0,0) when x_location and
+                     y_location were set to 'origin'.
+
 * Bug #12166 fixed - There was a bad label with drawaxis.
 
 * Bug #12168 fixed - matfile_listvar crashed when listing variables of a closed MAT-file.

@@ -49,37 +49,37 @@ public class Axes extends GraphicObject {
     /** Axes properties names */
     private enum AxesProperty {
         XAXISVISIBLE, XAXISREVERSE, XAXISGRIDCOLOR, XAXISLABEL, XAXISLOCATION, XAXISLOGFLAG,
-        XAXISTICKS, XAXISAUTOTICKS, XAXISNUMBERTICKS, XAXISTICKSLOCATIONS, XAXISTICKSLABELS, XAXISSUBTICKS,
-        YAXISVISIBLE, YAXISREVERSE, YAXISGRIDCOLOR, YAXISLABEL, YAXISLOCATION, YAXISLOGFLAG,
-        YAXISTICKS, YAXISAUTOTICKS, YAXISNUMBERTICKS, YAXISTICKSLOCATIONS, YAXISTICKSLABELS, YAXISSUBTICKS,
-        ZAXISVISIBLE, ZAXISREVERSE, ZAXISGRIDCOLOR, ZAXISLABEL, ZAXISLOCATION, ZAXISLOGFLAG,
-        ZAXISTICKS, ZAXISAUTOTICKS, ZAXISNUMBERTICKS, ZAXISTICKSLOCATIONS, ZAXISTICKSLABELS, ZAXISSUBTICKS,
-        AUTOSUBTICKS,
-        FONT_STYLE, FONT_SIZE, FONT_COLOR, FONT_FRACTIONAL,
-        GRIDPOSITION, TITLE, AUTOCLEAR, FILLED, BACKGROUND,
-        MARGINS, AXESBOUNDS,
-        HIDDENCOLOR
-    };
+            XAXISTICKS, XAXISAUTOTICKS, XAXISNUMBERTICKS, XAXISTICKSLOCATIONS, XAXISTICKSLABELS, XAXISSUBTICKS,
+            YAXISVISIBLE, YAXISREVERSE, YAXISGRIDCOLOR, YAXISLABEL, YAXISLOCATION, YAXISLOGFLAG,
+            YAXISTICKS, YAXISAUTOTICKS, YAXISNUMBERTICKS, YAXISTICKSLOCATIONS, YAXISTICKSLABELS, YAXISSUBTICKS,
+            ZAXISVISIBLE, ZAXISREVERSE, ZAXISGRIDCOLOR, ZAXISLABEL, ZAXISLOCATION, ZAXISLOGFLAG,
+            ZAXISTICKS, ZAXISAUTOTICKS, ZAXISNUMBERTICKS, ZAXISTICKSLOCATIONS, ZAXISTICKSLABELS, ZAXISSUBTICKS,
+            AUTOSUBTICKS,
+            FONT_STYLE, FONT_SIZE, FONT_COLOR, FONT_FRACTIONAL,
+            GRIDPOSITION, TITLE, AUTOCLEAR, FILLED, BACKGROUND,
+            MARGINS, AXESBOUNDS,
+            HIDDENCOLOR
+            };
 
     /** Specifies the grid position relative to the graphics entities */
     public static enum GridPosition { BACKGROUND, FOREGROUND;
 
-                                      /**
-                                       * Converts an integer to the corresponding enum
-                                       * @param intValue the integer value
-                                       * @return the grid position enum
-                                       */
-    public static GridPosition intToEnum(Integer intValue) {
-        switch (intValue) {
+        /**
+         * Converts an integer to the corresponding enum
+         * @param intValue the integer value
+         * @return the grid position enum
+         */
+        public static GridPosition intToEnum(Integer intValue) {
+            switch (intValue) {
             case 0:
                 return GridPosition.BACKGROUND;
             case 1:
                 return GridPosition.FOREGROUND;
             default:
                 return null;
+            }
         }
-    }
-                                    };
+    };
 
 
     /** 3-element array (properties of the X, Y and Z axes) */
@@ -216,162 +216,162 @@ public class Axes extends GraphicObject {
      */
     public Object getPropertyFromName(int propertyName) {
         switch (propertyName) {
-            case __GO_X_AXIS_VISIBLE__ :
-                return AxesProperty.XAXISVISIBLE;
-            case __GO_X_AXIS_REVERSE__ :
-                return AxesProperty.XAXISREVERSE;
-            case __GO_X_AXIS_GRID_COLOR__ :
-                return AxesProperty.XAXISGRIDCOLOR;
-            case __GO_X_AXIS_LABEL__ :
-                return AxesProperty.XAXISLABEL;
-            case __GO_X_AXIS_LOCATION__ :
-                return AxesProperty.XAXISLOCATION;
-            case __GO_X_AXIS_LOG_FLAG__ :
-                return AxesProperty.XAXISLOGFLAG;
-            case __GO_X_AXIS_TICKS__ :
-                return AxesProperty.XAXISTICKS;
-            case __GO_X_AXIS_AUTO_TICKS__ :
-                return AxesProperty.XAXISAUTOTICKS;
-            case __GO_X_AXIS_NUMBER_TICKS__ :
-                return AxesProperty.XAXISNUMBERTICKS;
-            case __GO_X_AXIS_TICKS_LOCATIONS__:
-                return AxesProperty.XAXISTICKSLOCATIONS;
-            case __GO_X_AXIS_TICKS_LABELS__ :
-                return AxesProperty.XAXISTICKSLABELS;
-            case __GO_X_AXIS_SUBTICKS__ :
-                return AxesProperty.XAXISSUBTICKS;
-            case __GO_Y_AXIS_VISIBLE__ :
-                return AxesProperty.YAXISVISIBLE;
-            case __GO_Y_AXIS_REVERSE__ :
-                return AxesProperty.YAXISREVERSE;
-            case __GO_Y_AXIS_GRID_COLOR__ :
-                return AxesProperty.YAXISGRIDCOLOR;
-            case __GO_Y_AXIS_LABEL__ :
-                return AxesProperty.YAXISLABEL;
-            case __GO_Y_AXIS_LOCATION__ :
-                return AxesProperty.YAXISLOCATION;
-            case __GO_Y_AXIS_LOG_FLAG__ :
-                return AxesProperty.YAXISLOGFLAG;
-            case __GO_Y_AXIS_TICKS__ :
-                return AxesProperty.YAXISTICKS;
-            case __GO_Y_AXIS_AUTO_TICKS__ :
-                return AxesProperty.YAXISAUTOTICKS;
-            case __GO_Y_AXIS_NUMBER_TICKS__ :
-                return AxesProperty.YAXISNUMBERTICKS;
-            case __GO_Y_AXIS_TICKS_LOCATIONS__ :
-                return AxesProperty.YAXISTICKSLOCATIONS;
-            case __GO_Y_AXIS_TICKS_LABELS__ :
-                return AxesProperty.YAXISTICKSLABELS;
-            case __GO_Y_AXIS_SUBTICKS__ :
-                return AxesProperty.YAXISSUBTICKS;
-            case __GO_Z_AXIS_VISIBLE__ :
-                return AxesProperty.ZAXISVISIBLE;
-            case __GO_Z_AXIS_REVERSE__ :
-                return AxesProperty.ZAXISREVERSE;
-            case __GO_Z_AXIS_GRID_COLOR__ :
-                return AxesProperty.ZAXISGRIDCOLOR;
-            case __GO_Z_AXIS_LABEL__ :
-                return AxesProperty.ZAXISLABEL;
-            case __GO_Z_AXIS_LOCATION__ :
-                return AxesProperty.ZAXISLOCATION;
-            case __GO_Z_AXIS_LOG_FLAG__ :
-                return AxesProperty.ZAXISLOGFLAG;
-            case __GO_Z_AXIS_TICKS__ :
-                return AxesProperty.ZAXISTICKS;
-            case __GO_Z_AXIS_AUTO_TICKS__ :
-                return AxesProperty.ZAXISAUTOTICKS;
-            case __GO_Z_AXIS_NUMBER_TICKS__ :
-                return AxesProperty.ZAXISNUMBERTICKS;
-            case __GO_Z_AXIS_TICKS_LOCATIONS__ :
-                return AxesProperty.ZAXISTICKSLOCATIONS;
-            case __GO_Z_AXIS_TICKS_LABELS__ :
-                return AxesProperty.ZAXISTICKSLABELS;
-            case __GO_Z_AXIS_SUBTICKS__ :
-                return AxesProperty.ZAXISSUBTICKS;
-            case __GO_AUTO_SUBTICKS__ :
-                return AxesProperty.AUTOSUBTICKS;
-            case __GO_FONT_STYLE__ :
-                return AxesProperty.FONT_STYLE;
-            case __GO_FONT_SIZE__ :
-                return AxesProperty.FONT_SIZE;
-            case __GO_FONT_COLOR__ :
-                return AxesProperty.FONT_COLOR;
-            case __GO_FONT_FRACTIONAL__ :
-                return AxesProperty.FONT_FRACTIONAL;
-            case __GO_GRID_POSITION__ :
-                return AxesProperty.GRIDPOSITION;
-            case __GO_TITLE__ :
-                return AxesProperty.TITLE;
-            case __GO_AUTO_CLEAR__ :
-                return AxesProperty.AUTOCLEAR;
-            case __GO_FILLED__ :
-                return AxesProperty.FILLED;
-            case __GO_BACKGROUND__ :
-                return AxesProperty.BACKGROUND;
-            case __GO_VIEW__ :
-                return Camera.CameraProperty.VIEW;
-            case __GO_ISOVIEW__ :
-                return Camera.CameraProperty.ISOVIEW;
-            case __GO_CUBE_SCALING__ :
-                return Camera.CameraProperty.CUBESCALING;
-            case __GO_ROTATION_ANGLES__ :
-                return Camera.CameraProperty.ROTATIONANGLES;
-            case __GO_ROTATION_ANGLES_3D__ :
-                return Camera.CameraProperty.ROTATIONANGLES3D;
-            case __GO_BOX_TYPE__ :
-                return Box.BoxProperty.BOX;
-            case __GO_HIDDEN_AXIS_COLOR__ :
-                return Box.BoxProperty.HIDDENAXISCOLOR;
-            case __GO_TIGHT_LIMITS__ :
-                return Box.BoxProperty.TIGHTLIMITS;
-            case __GO_DATA_BOUNDS__ :
-                return Box.BoxProperty.DATABOUNDS;
-            case __GO_REAL_DATA_BOUNDS__ :
-                return Box.BoxProperty.REALDATABOUNDS;
-            case __GO_ZOOM_ENABLED__ :
-                return Box.BoxProperty.ZOOMENABLED;
-            case __GO_ZOOM_BOX__ :
-                return Box.BoxProperty.ZOOMBOX;
-            case __GO_AUTO_SCALE__ :
-                return Box.BoxProperty.AUTOSCALE;
-            case __GO_FIRST_PLOT__ :
-                return Box.BoxProperty.FIRSTPLOT;
-            case __GO_MARGINS__ :
-                return AxesProperty.MARGINS;
-            case __GO_AXES_BOUNDS__ :
-                return AxesProperty.AXESBOUNDS;
-            case __GO_HIDDEN_COLOR__ :
-                return AxesProperty.HIDDENCOLOR;
-            case __GO_LINE_MODE__ :
-                return LinePropertyType.MODE;
-            case __GO_LINE_STYLE__ :
-                return LinePropertyType.LINESTYLE;
-            case __GO_LINE_THICKNESS__ :
-                return LinePropertyType.THICKNESS;
-            case __GO_LINE_COLOR__ :
-                return LinePropertyType.COLOR;
-            case __GO_MARK_MODE__ :
-                return MarkPropertyType.MODE;
-            case __GO_MARK_STYLE__ :
-                return MarkPropertyType.STYLE;
-            case __GO_MARK_SIZE_UNIT__ :
-                return MarkPropertyType.SIZEUNIT;
-            case __GO_MARK_SIZE__ :
-                return MarkPropertyType.SIZE;
-            case __GO_MARK_FOREGROUND__ :
-                return MarkPropertyType.FOREGROUND;
-            case __GO_MARK_BACKGROUND__ :
-                return MarkPropertyType.BACKGROUND;
-            case __GO_CLIP_STATE__ :
-                return ClippablePropertyType.CLIPSTATE;
-            case __GO_CLIP_BOX__ :
-                return ClippablePropertyType.CLIPBOX;
-            case __GO_CLIP_BOX_SET__ :
-                return ClippablePropertyType.CLIPBOXSET;
-            case __GO_ARC_DRAWING_METHOD__ :
-                return ArcProperty.ARCDRAWINGMETHOD;
-            default :
-                return super.getPropertyFromName(propertyName);
+        case __GO_X_AXIS_VISIBLE__ :
+            return AxesProperty.XAXISVISIBLE;
+        case __GO_X_AXIS_REVERSE__ :
+            return AxesProperty.XAXISREVERSE;
+        case __GO_X_AXIS_GRID_COLOR__ :
+            return AxesProperty.XAXISGRIDCOLOR;
+        case __GO_X_AXIS_LABEL__ :
+            return AxesProperty.XAXISLABEL;
+        case __GO_X_AXIS_LOCATION__ :
+            return AxesProperty.XAXISLOCATION;
+        case __GO_X_AXIS_LOG_FLAG__ :
+            return AxesProperty.XAXISLOGFLAG;
+        case __GO_X_AXIS_TICKS__ :
+            return AxesProperty.XAXISTICKS;
+        case __GO_X_AXIS_AUTO_TICKS__ :
+            return AxesProperty.XAXISAUTOTICKS;
+        case __GO_X_AXIS_NUMBER_TICKS__ :
+            return AxesProperty.XAXISNUMBERTICKS;
+        case __GO_X_AXIS_TICKS_LOCATIONS__:
+            return AxesProperty.XAXISTICKSLOCATIONS;
+        case __GO_X_AXIS_TICKS_LABELS__ :
+            return AxesProperty.XAXISTICKSLABELS;
+        case __GO_X_AXIS_SUBTICKS__ :
+            return AxesProperty.XAXISSUBTICKS;
+        case __GO_Y_AXIS_VISIBLE__ :
+            return AxesProperty.YAXISVISIBLE;
+        case __GO_Y_AXIS_REVERSE__ :
+            return AxesProperty.YAXISREVERSE;
+        case __GO_Y_AXIS_GRID_COLOR__ :
+            return AxesProperty.YAXISGRIDCOLOR;
+        case __GO_Y_AXIS_LABEL__ :
+            return AxesProperty.YAXISLABEL;
+        case __GO_Y_AXIS_LOCATION__ :
+            return AxesProperty.YAXISLOCATION;
+        case __GO_Y_AXIS_LOG_FLAG__ :
+            return AxesProperty.YAXISLOGFLAG;
+        case __GO_Y_AXIS_TICKS__ :
+            return AxesProperty.YAXISTICKS;
+        case __GO_Y_AXIS_AUTO_TICKS__ :
+            return AxesProperty.YAXISAUTOTICKS;
+        case __GO_Y_AXIS_NUMBER_TICKS__ :
+            return AxesProperty.YAXISNUMBERTICKS;
+        case __GO_Y_AXIS_TICKS_LOCATIONS__ :
+            return AxesProperty.YAXISTICKSLOCATIONS;
+        case __GO_Y_AXIS_TICKS_LABELS__ :
+            return AxesProperty.YAXISTICKSLABELS;
+        case __GO_Y_AXIS_SUBTICKS__ :
+            return AxesProperty.YAXISSUBTICKS;
+        case __GO_Z_AXIS_VISIBLE__ :
+            return AxesProperty.ZAXISVISIBLE;
+        case __GO_Z_AXIS_REVERSE__ :
+            return AxesProperty.ZAXISREVERSE;
+        case __GO_Z_AXIS_GRID_COLOR__ :
+            return AxesProperty.ZAXISGRIDCOLOR;
+        case __GO_Z_AXIS_LABEL__ :
+            return AxesProperty.ZAXISLABEL;
+        case __GO_Z_AXIS_LOCATION__ :
+            return AxesProperty.ZAXISLOCATION;
+        case __GO_Z_AXIS_LOG_FLAG__ :
+            return AxesProperty.ZAXISLOGFLAG;
+        case __GO_Z_AXIS_TICKS__ :
+            return AxesProperty.ZAXISTICKS;
+        case __GO_Z_AXIS_AUTO_TICKS__ :
+            return AxesProperty.ZAXISAUTOTICKS;
+        case __GO_Z_AXIS_NUMBER_TICKS__ :
+            return AxesProperty.ZAXISNUMBERTICKS;
+        case __GO_Z_AXIS_TICKS_LOCATIONS__ :
+            return AxesProperty.ZAXISTICKSLOCATIONS;
+        case __GO_Z_AXIS_TICKS_LABELS__ :
+            return AxesProperty.ZAXISTICKSLABELS;
+        case __GO_Z_AXIS_SUBTICKS__ :
+            return AxesProperty.ZAXISSUBTICKS;
+        case __GO_AUTO_SUBTICKS__ :
+            return AxesProperty.AUTOSUBTICKS;
+        case __GO_FONT_STYLE__ :
+            return AxesProperty.FONT_STYLE;
+        case __GO_FONT_SIZE__ :
+            return AxesProperty.FONT_SIZE;
+        case __GO_FONT_COLOR__ :
+            return AxesProperty.FONT_COLOR;
+        case __GO_FONT_FRACTIONAL__ :
+            return AxesProperty.FONT_FRACTIONAL;
+        case __GO_GRID_POSITION__ :
+            return AxesProperty.GRIDPOSITION;
+        case __GO_TITLE__ :
+            return AxesProperty.TITLE;
+        case __GO_AUTO_CLEAR__ :
+            return AxesProperty.AUTOCLEAR;
+        case __GO_FILLED__ :
+            return AxesProperty.FILLED;
+        case __GO_BACKGROUND__ :
+            return AxesProperty.BACKGROUND;
+        case __GO_VIEW__ :
+            return Camera.CameraProperty.VIEW;
+        case __GO_ISOVIEW__ :
+            return Camera.CameraProperty.ISOVIEW;
+        case __GO_CUBE_SCALING__ :
+            return Camera.CameraProperty.CUBESCALING;
+        case __GO_ROTATION_ANGLES__ :
+            return Camera.CameraProperty.ROTATIONANGLES;
+        case __GO_ROTATION_ANGLES_3D__ :
+            return Camera.CameraProperty.ROTATIONANGLES3D;
+        case __GO_BOX_TYPE__ :
+            return Box.BoxProperty.BOX;
+        case __GO_HIDDEN_AXIS_COLOR__ :
+            return Box.BoxProperty.HIDDENAXISCOLOR;
+        case __GO_TIGHT_LIMITS__ :
+            return Box.BoxProperty.TIGHTLIMITS;
+        case __GO_DATA_BOUNDS__ :
+            return Box.BoxProperty.DATABOUNDS;
+        case __GO_REAL_DATA_BOUNDS__ :
+            return Box.BoxProperty.REALDATABOUNDS;
+        case __GO_ZOOM_ENABLED__ :
+            return Box.BoxProperty.ZOOMENABLED;
+        case __GO_ZOOM_BOX__ :
+            return Box.BoxProperty.ZOOMBOX;
+        case __GO_AUTO_SCALE__ :
+            return Box.BoxProperty.AUTOSCALE;
+        case __GO_FIRST_PLOT__ :
+            return Box.BoxProperty.FIRSTPLOT;
+        case __GO_MARGINS__ :
+            return AxesProperty.MARGINS;
+        case __GO_AXES_BOUNDS__ :
+            return AxesProperty.AXESBOUNDS;
+        case __GO_HIDDEN_COLOR__ :
+            return AxesProperty.HIDDENCOLOR;
+        case __GO_LINE_MODE__ :
+            return LinePropertyType.MODE;
+        case __GO_LINE_STYLE__ :
+            return LinePropertyType.LINESTYLE;
+        case __GO_LINE_THICKNESS__ :
+            return LinePropertyType.THICKNESS;
+        case __GO_LINE_COLOR__ :
+            return LinePropertyType.COLOR;
+        case __GO_MARK_MODE__ :
+            return MarkPropertyType.MODE;
+        case __GO_MARK_STYLE__ :
+            return MarkPropertyType.STYLE;
+        case __GO_MARK_SIZE_UNIT__ :
+            return MarkPropertyType.SIZEUNIT;
+        case __GO_MARK_SIZE__ :
+            return MarkPropertyType.SIZE;
+        case __GO_MARK_FOREGROUND__ :
+            return MarkPropertyType.FOREGROUND;
+        case __GO_MARK_BACKGROUND__ :
+            return MarkPropertyType.BACKGROUND;
+        case __GO_CLIP_STATE__ :
+            return ClippablePropertyType.CLIPSTATE;
+        case __GO_CLIP_BOX__ :
+            return ClippablePropertyType.CLIPBOX;
+        case __GO_CLIP_BOX_SET__ :
+            return ClippablePropertyType.CLIPBOXSET;
+        case __GO_ARC_DRAWING_METHOD__ :
+            return ArcProperty.ARCDRAWINGMETHOD;
+        default :
+            return super.getPropertyFromName(propertyName);
         }
     }
 
@@ -1823,14 +1823,38 @@ public class Axes extends GraphicObject {
             bounds[1] = Math.log10(bounds[1]);
         }
 
+        if (getXAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
+            if (0 < bounds[0]) {
+                bounds[0] = 0.;
+            } else if (bounds[1] < 0) {
+                bounds[1] = 0.;
+            }
+        }
+
         if (getYAxisLogFlag()) {
             bounds[2] = Math.log10(bounds[2]);
             bounds[3] = Math.log10(bounds[3]);
         }
 
+        if (getYAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
+            if (0 < bounds[2]) {
+                bounds[2] = 0.;
+            } else if (bounds[3] < 0) {
+                bounds[3] = 0.;
+            }
+        }
+
         if (getZAxisLogFlag()) {
             bounds[4] = Math.log10(bounds[4]);
             bounds[5] = Math.log10(bounds[5]);
+        }
+
+        if (getZAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
+            if (0 < bounds[4]) {
+                bounds[4] = 0.;
+            } else if (bounds[5] < 0) {
+                bounds[5] = 0.;
+            }
         }
 
         if (!getTightLimits()) {
