@@ -70,6 +70,7 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   char   * strf     = NULL  ;
   char   * legend   = NULL  ;
   char   * logFlags = NULL  ;
+  char     strfl[4];
 
   if (Rhs <= 0) {
     /* lauch the default routines depending on the name of the calling funtion */
@@ -198,7 +199,6 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   if (iskip==0) GetLogflags(fname,8,opts,&logFlags);
 
   if ( isDefStrf( strf ) ) {
-    char strfl[4];
     strcpy(strfl,DEFSTRFN);
 
     strf = strfl;
