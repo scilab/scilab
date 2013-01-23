@@ -19,8 +19,11 @@
 #define UMFPACK "umfpack"
 ;
 Source: bin\no{#UMFPACK}.dll; DestDir: {app}\bin; DestName: {#UMFPACK}.dll; Components: not ({#COMPN_UMFPACK})
+Source: bin\no{#UMFPACK}.lib; DestDir: {app}\bin; DestName: {#UMFPACK}.lib; Components: not ({#COMPN_UMFPACK})
 Source: bin\lib{#UMFPACK}.dll; DestDir: {app}\bin; Components: {#COMPN_UMFPACK}
+Source: bin\lib{#UMFPACK}.lib; DestDir: {app}\bin; Components: {#COMPN_UMFPACK}
 Source: bin\{#UMFPACK}.dll; DestDir: {app}\bin; Components: {#COMPN_UMFPACK}
+Source: bin\{#UMFPACK}.lib; DestDir: {app}\bin; Components: {#COMPN_UMFPACK}
 ;
 Source: modules\{#UMFPACK}\license.txt; DestDir: {app}\modules\{#UMFPACK}; Components: {#COMPN_UMFPACK}
 ;
@@ -34,7 +37,7 @@ Source: modules\{#UMFPACK}\etc\{#UMFPACK}.start; DestDir: {app}\modules\{#UMFPAC
 Source: modules\{#UMFPACK}\macros\buildmacros.sce; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_UMFPACK}
 Source: modules\{#UMFPACK}\macros\buildmacros.bat; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_UMFPACK}
 Source: modules\{#UMFPACK}\macros\cleanmacros.bat; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_UMFPACK}
-;Source: modules\{#UMFPACK}\macros\lib; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_UMFPACK}
+Source: modules\{#UMFPACK}\macros\lib; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_UMFPACK}
 Source: modules\{#UMFPACK}\macros\*.sci; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_UMFPACK}
 ;
 Source: modules\{#UMFPACK}\examples\*.*; DestDir: {app}\modules\{#UMFPACK}\examples; Flags: recursesubdirs;  Components: {#COMPN_UMFPACK}

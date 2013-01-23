@@ -18,6 +18,8 @@
 #define TYPES "types"
 ;
 Source: bin\{#TYPES}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#TYPES}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#TYPES}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TYPES}\jar\org.scilab.modules.{#TYPES}.jar;DestDir: {app}\modules\{#TYPES}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

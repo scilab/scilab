@@ -19,7 +19,9 @@
 #define DIFFEQU "differential_equations"
 ;
 Source: bin\{#DIFFEQU}_f.dll; DestDir: {app}\bin; Components: {#COMPN_EQUDIF}
+Source: bin\{#DIFFEQU}_f.lib; DestDir: {app}\bin; Components: {#COMPN_EQUDIF}
 Source: bin\{#DIFFEQU}.dll; DestDir: {app}\bin; Components: {#COMPN_EQUDIF}
+Source: bin\{#DIFFEQU}.lib; DestDir: {app}\bin; Components: {#COMPN_EQUDIF}
 ;
 Source: modules\{#DIFFEQU}\license.txt; DestDir: {app}\modules\{#DIFFEQU}; Components: {#COMPN_EQUDIF}
 ;
@@ -30,7 +32,7 @@ Source: modules\{#DIFFEQU}\etc\{#DIFFEQU}.start; DestDir: {app}\modules\{#DIFFEQ
 ;
 ;Source: modules\{#DIFFEQU}\includes\*.h; DestDir: {app}\modules\{#DIFFEQU}\includes; Components: {#COMPN_EQUDIF}
 ;
-;Source: modules\{#DIFFEQU}\macros\lib; DestDir: {app}\modules\{#DIFFEQU}\macros; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
+Source: modules\{#DIFFEQU}\macros\lib; DestDir: {app}\modules\{#DIFFEQU}\macros; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\macros\*.sci; DestDir: {app}\modules\{#DIFFEQU}\macros; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\macros\buildmacros.sce; DestDir: {app}\modules\{#DIFFEQU}\macros; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}
 Source: modules\{#DIFFEQU}\macros\buildmacros.bat; DestDir: {app}\modules\{#DIFFEQU}\macros; Flags: recursesubdirs; Components: {#COMPN_EQUDIF}

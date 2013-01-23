@@ -19,7 +19,9 @@
 #define POLYNOMIALS "polynomials"
 ;
 Source: bin\{#POLYNOMIALS}.dll; DestDir: {app}\bin; Components: {#COMPN_POLY}
+Source: bin\{#POLYNOMIALS}.lib; DestDir: {app}\bin; Components: {#COMPN_POLY}
 Source: bin\{#POLYNOMIALS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_POLY}
+Source: bin\{#POLYNOMIALS}_f.lib; DestDir: {app}\bin; Components: {#COMPN_POLY}
 ;
 Source: modules\{#POLYNOMIALS}\license.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
 ;
@@ -33,7 +35,7 @@ Source: modules\{#POLYNOMIALS}\etc\{#POLYNOMIALS}.start; DestDir: {app}\modules\
 Source: modules\{#POLYNOMIALS}\macros\buildmacros.sce; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\macros\buildmacros.bat; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
-;Source: modules\{#POLYNOMIALS}\macros\lib; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
+Source: modules\{#POLYNOMIALS}\macros\lib; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\macros\*.sci; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}
 ;
 Source: modules\{#POLYNOMIALS}\demos\*.*; DestDir: {app}\modules\{#POLYNOMIALS}\demos; Flags: recursesubdirs; Components: {#COMPN_POLY}

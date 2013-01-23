@@ -13,74 +13,87 @@
 //
 //------------------------------------------------------------------------------
 function CreateModulesFile: Boolean;
-    Var ModuleFileName : String;
-    i : Integer;
-    d : Integer;
-    ModulesXmlFileLines: TArrayOfString;
+Var ModuleFileName : String;
+i : Integer;
+d : Integer;
+ModulesXmlFileLines: TArrayOfString;
+begin
+    i := 0;
+
+    setArrayLength(ModulesXmlFileLines, 256);
+    for d := 0 to GetArrayLength(ModulesXmlFileLines)-1 do
     begin
-        i := 0;
+        ModulesXmlFileLines[d] := '';
+    end;
 
-        setArrayLength(ModulesXmlFileLines, 256);
-        for d := 0 to GetArrayLength(ModulesXmlFileLines)-1 do
-          begin
-            ModulesXmlFileLines[d] := '';
-          end;
+    ModuleFileName := ExpandConstant('{app}') +'\etc\modules.xml';
 
-        ModuleFileName := ExpandConstant('{app}') +'\etc\modules.xml';
+    ModulesXmlFileLines[i] := '<?xml version="1.0" encoding="UTF-8" standalone="no"?>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<!DOCTYPE modules SYSTEM "../modules/core/xml/modules.dtd">'; i := i + 1;
+    ModulesXmlFileLines[i] := '<!-- =================== -->'; i := i + 1;
+    ModulesXmlFileLines[i] := '<!--'; i := i + 1;
+    ModulesXmlFileLines[i] := ' Modules list for Scilab'; i := i + 1;
+    ModulesXmlFileLines[i] := ' @date Scilab Enterprises 2013'; i := i + 1;
+    ModulesXmlFileLines[i] := ' ==================='; i := i + 1;
+    ModulesXmlFileLines[i] := ' Do not touch if you do not know what you are doing'; i := i + 1;
+    ModulesXmlFileLines[i] := ' Warning "core" module must be always the first module'; i := i + 1;
+    ModulesXmlFileLines[i] := ' activate="yes" module will be launched ( or not "no")'; i := i + 1;
+    ModulesXmlFileLines[i] := ' -->'; i := i + 1;
+    ModulesXmlFileLines[i] := '<!-- =================== -->'; i := i + 1;
+    ModulesXmlFileLines[i] := '<modules>'; i := i + 1;
 
-        ModulesXmlFileLines[i] := '<?xml version="1.0" encoding="UTF-8" standalone="no"?>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<!DOCTYPE modules SYSTEM "../modules/core/xml/modules.dtd">'; i := i + 1;
-        ModulesXmlFileLines[i] := '<!-- =================== -->'; i := i + 1;
-        ModulesXmlFileLines[i] := '<!--'; i := i + 1;
-        ModulesXmlFileLines[i] := ' Modules list for Scilab'; i := i + 1;
-        ModulesXmlFileLines[i] := ' @author Allan CORNET'; i := i + 1;
-        ModulesXmlFileLines[i] := ' @date DIGITEO 2010'; i := i + 1;
-        ModulesXmlFileLines[i] := ' ==================='; i := i + 1;
-        ModulesXmlFileLines[i] := ' Do not touch if you do not know what you are doing'; i := i + 1;
-        ModulesXmlFileLines[i] := ' Warning "core" module must be always the first module'; i := i + 1;
-        ModulesXmlFileLines[i] := ' activate="yes" module will be launched ( or not "no")'; i := i + 1;
-        ModulesXmlFileLines[i] := ' -->'; i := i + 1;
-        ModulesXmlFileLines[i] := '<!-- =================== -->'; i := i + 1;
-        ModulesXmlFileLines[i] := '<modules>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="core" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="types" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="elementary_functions" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="boolean" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="integer" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="io" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="functions" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="output_stream" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="matio" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="fileio" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="development_tools" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="gui" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="time" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="overloading" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="string" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="scinotes" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="data_structures" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="localization" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="windows_tools" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="jvm" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="helptools" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="hdf5" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="dynamic_link" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="action_binding" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="mexlib" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="history_manager" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="console" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="modules_manager" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="signal_processing" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="linear_algebra" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="statistics" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="differential_equations" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="spreadsheet" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="randlib" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="atoms" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="interpolation" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="cacsd" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="sound" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="umfpack" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="optimization" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="special_functions" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="graphics" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="demo_tools" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="graphic_export" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="operations" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="api_scilab" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="ast" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '    <module name="polynomials" activate="yes"/>'; i := i + 1;
 
-        ModulesXmlFileLines[i] := '<module name="core" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="double" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="elementary_functions" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="boolean" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="integer" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="io" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="functions" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="output_stream" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="matio" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="fileio" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="development_tools" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="gui" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="time" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="overloading" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="string" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="scinotes" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="data_structures" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="localization" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="windows_tools" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="jvm" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="helptools" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="hdf5" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="dynamic_link" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="action_binding" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="mexlib" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="history_manager" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="console" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="modules_manager" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="signal_processing" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="linear_algebra" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="statistics" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
-		ModulesXmlFileLines[i] := '<module name="operations" activate="yes"/>'; i := i + 1;
-
-        ModulesXmlFileLines[i] := '</modules>'; i := i + 1;
+    ModulesXmlFileLines[i] := '</modules>'; i := i + 1;
 
     Result := SaveStringsToFile(ModuleFileName, ModulesXmlFileLines, False);
 
-    end;
+end;
 //------------------------------------------------------------------------------

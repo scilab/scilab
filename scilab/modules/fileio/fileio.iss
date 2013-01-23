@@ -18,6 +18,8 @@
 ;
 #define FILEIO "fileio"
 ;
+Source: bin\{#FILEIO}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#FILEIO}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#FILEIO}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FILEIO}\license.txt; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}
@@ -30,9 +32,6 @@ Source: modules\{#FILEIO}\etc\{#FILEIO}.start; DestDir: {app}\modules\{#FILEIO}\
 ;Source: modules\{#FILEIO}\includes\*.h; DestDir: {app}\modules\{#FILEIO}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\includes\getFullFilename.h; DestDir: {app}\modules\{#FILEIO}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\includes\dynlib_fileio.h; DestDir: {app}\modules\{#FILEIO}\includes; Components: {#COMPN_SCILAB}
-;
-Source: bin\fileio.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\fileio.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FILEIO}\macros\buildmacros.sce; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\macros\buildmacros.bat; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}

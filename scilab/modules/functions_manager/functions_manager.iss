@@ -1,6 +1,7 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) DIGITEO - 2011 - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Pierre MARECHAL
+; Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -12,14 +13,12 @@
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
 ;
 ;--------------------------------------------------------------------------------------------------------------
-; threads module
+; functions_manager module
 ;--------------------------------------------------------------------------------------------------------------
+
+#define FUNC_MAN "functions_manager"
 ;
-#define THREADS "threads"
+Source: bin\{#FUNC_MAN}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#FUNC_MAN}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: bin\{#THREADS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#THREADS}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#THREADS}\includes\dynlib_threads.h; DestDir: {app}\modules\{#THREADS}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#THREADS}\includes\Thread_Wrapper.h; DestDir: {app}\modules\{#THREADS}\includes; Components: {#COMPN_SCILAB}
 ;--------------------------------------------------------------------------------------------------------------

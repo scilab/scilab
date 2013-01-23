@@ -19,8 +19,9 @@
 #define STRING "string"
 ;
 Source: bin\{#STRING}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#STRING}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#STRING}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;
+Source: bin\{#STRING}_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#STRING}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STRING}\license.txt; DestDir: {app}\modules\{#STRING}; Components: {#COMPN_SCILAB}
@@ -30,7 +31,7 @@ Source: modules\{#STRING}\sci_gateway\{#STRING}_gateway.xml; DestDir: {app}\modu
 Source: modules\{#STRING}\etc\{#STRING}.quit; DestDir: {app}\modules\{#STRING}\etc; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#STRING}\etc\{#STRING}.start; DestDir: {app}\modules\{#STRING}\etc; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#STRING}\includes\*.h; DestDir: {app}\modules\{#STRING}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#STRING}\includes\*.h; DestDir: {app}\modules\{#STRING}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STRING}\macros\buildmacros.sce; DestDir: {app}\modules\{#STRING}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#STRING}\macros\buildmacros.bat; DestDir: {app}\modules\{#STRING}\macros; Components: {#COMPN_SCILAB}

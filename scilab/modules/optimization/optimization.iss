@@ -21,6 +21,7 @@
 Source: bin\{#OPTIMIZATION}_f.dll; DestDir: {app}\bin; Components: {#COMPN_OPTIM}
 Source: bin\{#OPTIMIZATION}_f.lib; DestDir: {app}\bin; Components: {#COMPN_OPTIM}
 Source: bin\{#OPTIMIZATION}.dll; DestDir: {app}\bin; Components: {#COMPN_OPTIM}
+Source: bin\{#OPTIMIZATION}.lib; DestDir: {app}\bin; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\license.txt; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}
 ;
@@ -34,7 +35,7 @@ Source: modules\{#OPTIMIZATION}\etc\{#OPTIMIZATION}.start; DestDir: {app}\module
 Source: modules\{#OPTIMIZATION}\macros\buildmacros.sce; DestDir: {app}\modules\{#OPTIMIZATION}\macros; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\macros\buildmacros.bat; DestDir: {app}\modules\{#OPTIMIZATION}\macros; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\macros\cleanmacros.bat; DestDir: {app}\modules\{#OPTIMIZATION}\macros; Components: {#COMPN_OPTIM}
-;Source: modules\{#OPTIMIZATION}\macros\lib; DestDir: {app}\modules\{#OPTIMIZATION}\macros;Flags: recursesubdirs; Components: {#COMPN_OPTIM}
+Source: modules\{#OPTIMIZATION}\macros\lib; DestDir: {app}\modules\{#OPTIMIZATION}\macros;Flags: recursesubdirs; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\macros\*.sci; DestDir: {app}\modules\{#OPTIMIZATION}\macros;Flags: recursesubdirs; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\demos\*.*; DestDir: {app}\modules\{#OPTIMIZATION}\demos; Flags: recursesubdirs; Components: {#COMPN_OPTIM}

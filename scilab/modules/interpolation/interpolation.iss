@@ -19,7 +19,9 @@
 #define INTERPOLATION "interpolation"
 ;
 Source: bin\{#INTERPOLATION}_f.dll; DestDir: {app}\bin; Components: {#COMPN_INTERP}
+Source: bin\{#INTERPOLATION}_f.lib; DestDir: {app}\bin; Components: {#COMPN_INTERP}
 Source: bin\{#INTERPOLATION}.dll; DestDir: {app}\bin; Components: {#COMPN_INTERP}
+Source: bin\{#INTERPOLATION}.lib; DestDir: {app}\bin; Components: {#COMPN_INTERP}
 ;
 Source: modules\{#INTERPOLATION}\license.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 ;
@@ -30,7 +32,7 @@ Source: modules\{#INTERPOLATION}\etc\{#INTERPOLATION}.start; DestDir: {app}\modu
 ;
 ;Source: modules\{#INTERPOLATION}\includes\*.h; DestDir: {app}\modules\{#INTERPOLATION}\includes; Components: {#COMPN_INTERP}
 ;
-;Source: modules\{#INTERPOLATION}\macros\lib; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
+Source: modules\{#INTERPOLATION}\macros\lib; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\macros\*.sci; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\macros\buildmacros.sce; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\macros\buildmacros.bat; DestDir: {app}\modules\{#INTERPOLATION}\macros; Flags: recursesubdirs; Components: {#COMPN_INTERP}
