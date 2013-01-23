@@ -143,10 +143,10 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
         try {
             final File outDir = new File(outputDir).getCanonicalFile();
             FileFilter filter = new FileFilter() {
-                public boolean accept(File f) {
-                    return f.isDirectory() && !f.equals(outDir);
-                }
-            };
+                    public boolean accept(File f) {
+                        return f.isDirectory() && !f.equals(outDir);
+                    }
+                };
             File[] dirs = outDir.getParentFile().listFiles(filter);
             File im = new File(filename);
             for (File dir : dirs) {

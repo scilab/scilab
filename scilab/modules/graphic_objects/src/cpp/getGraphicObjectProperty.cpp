@@ -17,6 +17,7 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
+#include <stdio.h>
 }
 
 #include "CallGraphicController.hxx"
@@ -64,7 +65,7 @@ void getGraphicObjectProperty(char const* _pstID, int _iName, _ReturnType_ _retu
         || _iName == __GO_DATA_MODEL_Y_DIMENSIONS__
         || _iName == __GO_DATA_MODEL_MATPLOT_BOUNDS__
         || _iName == __GO_DATA_MODEL_MATPLOT_TYPE__
-               )
+        )
     {
         DataController::getGraphicObjectProperty(_pstID, _iName, _pvData);
         return;
@@ -74,49 +75,49 @@ void getGraphicObjectProperty(char const* _pstID, int _iName, _ReturnType_ _retu
     {
         switch (_returnType)
         {
-            case jni_string:
-            {
-                *(_pvData) = CallGraphicController::getGraphicObjectPropertyAsString(getScilabJavaVM(), _pstID, _iName);
-                return;
-            }
-            case jni_string_vector:
-            {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), _pstID, _iName);
-                return;
-            }
-            case jni_double:
-            {
-                ((double *)*_pvData)[0] = (double)CallGraphicController::getGraphicObjectPropertyAsDouble(getScilabJavaVM(), _pstID, _iName);
-                return;
-            }
-            case jni_double_vector:
-            {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _iName);
-                return;
-            }
-            case jni_bool:
-            {
-                ((int *)*_pvData)[0] = (int)CallGraphicController::getGraphicObjectPropertyAsBoolean(getScilabJavaVM(), _pstID, _iName);
-                return;
-            }
-            case jni_bool_vector:
-            {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _iName);
-                return;
-            }
-            case jni_int:
-            {
-                ((int *)*_pvData)[0] = CallGraphicController::getGraphicObjectPropertyAsInteger(getScilabJavaVM(), _pstID, _iName);
-                return;
-            }
-            case jni_int_vector:
-            {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _iName);
-                return;
-            }
-            default:
-                *_pvData = NULL;
-                return;
+        case jni_string:
+        {
+            *(_pvData) = CallGraphicController::getGraphicObjectPropertyAsString(getScilabJavaVM(), _pstID, _iName);
+            return;
+        }
+        case jni_string_vector:
+        {
+            *_pvData = CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), _pstID, _iName);
+            return;
+        }
+        case jni_double:
+        {
+            ((double *)*_pvData)[0] = (double)CallGraphicController::getGraphicObjectPropertyAsDouble(getScilabJavaVM(), _pstID, _iName);
+            return;
+        }
+        case jni_double_vector:
+        {
+            *_pvData = CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _iName);
+            return;
+        }
+        case jni_bool:
+        {
+            ((int *)*_pvData)[0] = (int)CallGraphicController::getGraphicObjectPropertyAsBoolean(getScilabJavaVM(), _pstID, _iName);
+            return;
+        }
+        case jni_bool_vector:
+        {
+            *_pvData = CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _iName);
+            return;
+        }
+        case jni_int:
+        {
+            ((int *)*_pvData)[0] = CallGraphicController::getGraphicObjectPropertyAsInteger(getScilabJavaVM(), _pstID, _iName);
+            return;
+        }
+        case jni_int_vector:
+        {
+            *_pvData = CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _iName);
+            return;
+        }
+        default:
+            *_pvData = NULL;
+            return;
         }
     }
     catch (std::exception &e)
@@ -134,7 +135,38 @@ void releaseGraphicObjectProperty(int _iName, void * _pvData, enum _ReturnType_ 
 {
 
     /* All the Data model properties have the DATA_MODEL prefix */
-    if (_iName == __GO_DATA_MODEL__)
+    if (_iName == __GO_DATA_MODEL__
+        || _iName == __GO_DATA_MODEL_COORDINATES__
+        || _iName == __GO_DATA_MODEL_X__
+        || _iName == __GO_DATA_MODEL_Y__
+        || _iName == __GO_DATA_MODEL_Z__
+        || _iName == __GO_DATA_MODEL_X_COORDINATES_SHIFT__
+        || _iName == __GO_DATA_MODEL_Y_COORDINATES_SHIFT__
+        || _iName == __GO_DATA_MODEL_Z_COORDINATES_SHIFT__
+        || _iName == __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__
+        || _iName == __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__
+        || _iName == __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__
+        || _iName == __GO_DATA_MODEL_NUM_ELEMENTS__
+        || _iName == __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__
+        || _iName == __GO_DATA_MODEL_NUM_VERTICES_PER_GON__
+        || _iName == __GO_DATA_MODEL_NUM_GONS__
+        || _iName == __GO_DATA_MODEL_Z_COORDINATES_SET__
+        || _iName == __GO_DATA_MODEL_COLORS__
+        || _iName == __GO_DATA_MODEL_NUM_COLORS__
+        || _iName == __GO_DATA_MODEL_NUM_VERTICES__
+        || _iName == __GO_DATA_MODEL_NUM_INDICES__
+        || _iName == __GO_DATA_MODEL_INDICES__
+        || _iName == __GO_DATA_MODEL_VALUES__
+        || _iName == __GO_DATA_MODEL_FEC_TRIANGLES__
+        || _iName == __GO_DATA_MODEL_NUM_X__
+        || _iName == __GO_DATA_MODEL_NUM_Y__
+        || _iName == __GO_DATA_MODEL_NUM_Z__
+        || _iName == __GO_DATA_MODEL_GRID_SIZE__
+        || _iName == __GO_DATA_MODEL_X_DIMENSIONS__
+        || _iName == __GO_DATA_MODEL_Y_DIMENSIONS__
+        || _iName == __GO_DATA_MODEL_MATPLOT_BOUNDS__
+        || _iName == __GO_DATA_MODEL_MATPLOT_TYPE__
+        )
     {
         // passed by reference, do not free them
         return;
@@ -142,53 +174,53 @@ void releaseGraphicObjectProperty(int _iName, void * _pvData, enum _ReturnType_ 
 
     switch (_returnType)
     {
-        case jni_string:
+    case jni_string:
+    {
+        delete[] (char*) _pvData;
+        return;
+    }
+    case jni_string_vector:
+    {
+        char** data = (char**) _pvData;
+        for (int i = 0; i < numElements; ++i)
         {
-            delete[] (char*) _pvData;
-            return;
+            delete[] data[i];
         }
-        case jni_string_vector:
-        {
-            char** data = (char**) _pvData;
-            for (int i = 0; i < numElements; ++i)
-            {
-                delete[] data[i];
-            }
-            delete[] data;
-            return;
-        }
-        case jni_double:
-        {
-            // passed by value
-            return;
-        }
-        case jni_double_vector:
-        {
-            delete[] (double*) _pvData;
-            return;
-        }
-        case jni_bool:
-        {
-            // passed by value
-            return;
-        }
-        case jni_bool_vector:
-        {
-            delete[] (int*) _pvData;
-            return;
-        }
-        case jni_int:
-        {
-            // passed by value
-            return;
-        }
-        case jni_int_vector:
-        {
-            delete[] (int*) _pvData;
-            return;
-        }
-        default:
-            return;
+        delete[] data;
+        return;
+    }
+    case jni_double:
+    {
+        // passed by value
+        return;
+    }
+    case jni_double_vector:
+    {
+        delete[] (double*) _pvData;
+        return;
+    }
+    case jni_bool:
+    {
+        // passed by value
+        return;
+    }
+    case jni_bool_vector:
+    {
+        delete[] (int*) _pvData;
+        return;
+    }
+    case jni_int:
+    {
+        // passed by value
+        return;
+    }
+    case jni_int_vector:
+    {
+        delete[] (int*) _pvData;
+        return;
+    }
+    default:
+        return;
     }
 
 }

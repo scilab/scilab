@@ -36,6 +36,7 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
     private StringBuilder buffer = new StringBuilder(8192);
     private String baseDir;
     private String outputDir;
+    private boolean isLocalized;
 
     /**
      * Constructor
@@ -69,6 +70,11 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
      * {@inheritDoc}
      */
     public StringBuilder startExternalXML(String localName, Attributes attributes) {
+	if (SVG.equals(localName)) {
+	    String v = attributes.getValue(getScilabURI(), "localized");
+	    isLocalized = "true".equalsIgnoreCase(v);
+	}
+
         recreateTag(buffer, localName, attributes);
         if (SVG.equals(localName)) {
             return buffer;
@@ -83,7 +89,19 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
     public String endExternalXML(String localName) {
         if (SVG.equals(localName)) {
             recreateTag(buffer, localName, null);
-            File f = new File(outputDir, BASENAME + (compt++) + ".png");
+	    File f;
+	    String language = ((HTMLDocbookTagConverter) getConverter()).getLanguage();
+	    if (isLocalized) {
+		f = new File(outputDir, BASENAME + language + "_" + (compt++) + ".png");
+	    } else {
+		if ("ru_RU".equals(language) && HTMLDocbookTagConverter.containsCyrillic(buffer)) {
+		    System.err.println("Warning: SVG code in " + getConverter().getCurrentFileName() + " contains cyrillic character. The tag <svg> should contain the attribute scilab:localized=\"true\"");
+		} else if ("ja_JP".equals(language) && HTMLDocbookTagConverter.containsCJK(buffer)) {
+		    System.err.println("Warning: SVG code in " + getConverter().getCurrentFileName() + " contains CJK character. The tag <svg> should contain the attribute scilab:localized=\"true\"");
+		}
+		f = new File(outputDir, BASENAME + (compt++) + ".png");
+	    }
+
             Map<String, String> attributes = new HashMap<String, String>();
             String baseImagePath = "";
             if (getConverter() instanceof HTMLDocbookTagConverter) {
