@@ -298,6 +298,8 @@ Bug fixes
 
 * Bug #12232 fixed - There were several memleaks in various fillers.
 
+* Bug #12235 fixed - Matplot did not update on color_map change.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
