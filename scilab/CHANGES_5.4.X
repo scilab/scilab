@@ -205,6 +205,9 @@ Bug fixes
 
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
 
+* Bug #11931 fixed - In graphics, white space was not used as default thousand
+                     separator.
+
 * Bug #11939 fixed - ssprint formatting was slightly not right.
 
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
@@ -282,9 +285,13 @@ Bug fixes
 
 * Bug #12190 fixed - Description of sprspn updated in help page.
 
+* Bug #12196 fixed - There were no log-scales with Fec & Fac3d.
+
 * Bug #12204 fixed - Fix a typo in the French localization
 
 * Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
+
+* Bug #12232 fixed - There were several memleaks in various fillers.
 
 
                     Changes between version 5.3.3 and 5.4.0

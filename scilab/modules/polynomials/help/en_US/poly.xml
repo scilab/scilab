@@ -20,8 +20,7 @@
             <varlistentry>
                 <term>vname</term>
                 <listitem>
-                    <para>String, the symbolic variable name. If the string have more
-                        than 4 characters only the first 4 are taken into account.
+                    <para>String, the symbolic variable name. The string must be 4 characters max.
                     </para>
                 </listitem>
             </varlistentry>
@@ -30,6 +29,9 @@
                 <listitem>
                     <para>
                         string ("roots" or "r", "coeff" or "c"), default value is <literal>"roots"</literal>.
+                    </para>
+                    <para>
+                        Shortcuts can be also used: <literal>"r"</literal> for <literal>"roots"</literal> and <literal>"c"</literal> for <literal>"coeff"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -85,7 +87,7 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 s=poly(0,"s");
-p=1+s+2*s^2;
+p=1+s+2*s^2
 A=rand(2,2);
 poly(A,"x")
 //rational fractions
