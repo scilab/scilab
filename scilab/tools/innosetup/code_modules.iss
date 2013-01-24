@@ -33,8 +33,8 @@ function CreateModulesFile: Boolean;
         ModulesXmlFileLines[i] := '<!-- =================== -->'; i := i + 1;
         ModulesXmlFileLines[i] := '<!--'; i := i + 1;
         ModulesXmlFileLines[i] := ' Modules list for Scilab'; i := i + 1;
-        ModulesXmlFileLines[i] := ' @author Allan CORNET'; i := i + 1;
-        ModulesXmlFileLines[i] := ' @date DIGITEO 2010'; i := i + 1;
+        ModulesXmlFileLines[i] := ' @author Scilab Enterprises'; i := i + 1;
+        ModulesXmlFileLines[i] := ' @date 2013'; i := i + 1;
         ModulesXmlFileLines[i] := ' ==================='; i := i + 1;
         ModulesXmlFileLines[i] := ' Do not touch if you do not know what you are doing'; i := i + 1;
         ModulesXmlFileLines[i] := ' Warning "core" module must be always the first module'; i := i + 1;
@@ -123,17 +123,10 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="history_browser" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_INTERSCI}') ) then
-            begin
-                ModulesXmlFileLines[i] := '<module name="intersci" activate="yes"/>'; i := i + 1;
-            end;
+        ModulesXmlFileLines[i] := '<module name="intersci" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="interpolation" activate="yes"/>'; i := i + 1;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_INTERP}') ) then
-            begin
-                ModulesXmlFileLines[i] := '<module name="interpolation" activate="yes"/>'; i := i + 1;
-            end;
-
-        if IsComponentSelected( ExpandConstant('{#COMPN_OPTIM}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="optimization" activate="yes"/>'; i := i + 1;
             end;
@@ -143,17 +136,17 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="overloading" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_POLY}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="polynomials" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_SIGPROC}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="signal_processing" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_SPARSE}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="sparse" activate="yes"/>'; i := i + 1;
             end;
@@ -164,7 +157,7 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="string" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_SYMB}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="symbolic" activate="yes"/>'; i := i + 1;
             end;
@@ -175,19 +168,19 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="windows_tools" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_STATS}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="statistics" activate="yes"/>'; i := i + 1;
             end;
 
         ModulesXmlFileLines[i] := '<!-- comments -->'; i := i + 1;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_ARNOLDI}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="arnoldi" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_COMPATFUNCTIONS}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="compatibility_functions" activate="yes"/>'; i := i + 1;
             end;
@@ -197,12 +190,12 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_M2SCI}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="m2sci" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_MEXLIB}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="mexlib" activate="yes"/>'; i := i + 1;
             end;
@@ -212,17 +205,17 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_SOUND}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="sound" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_EXTERNAL_OBJECTS}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="external_objects" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_RANDLIB}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="randlib" activate="yes"/>'; i := i + 1;
             end;
@@ -237,7 +230,7 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="demo_tools" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_SPREADSHEET}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="spreadsheet" activate="yes"/>'; i := i + 1;
             end;
@@ -263,7 +256,7 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="fftw" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_UMFPACK}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="umfpack" activate="yes"/>'; i := i + 1;
             end;
@@ -277,12 +270,12 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="parameters" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_MATIO}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="matio" activate="yes"/>'; i := i + 1;
             end;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_ATOMS}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="atoms" activate="yes"/>'; i := i + 1;
             end;
@@ -305,7 +298,7 @@ function CreateModulesFile: Boolean;
             end;
             
 #ifndef SCILAB_F2C
-        if IsComponentSelected( ExpandConstant('{#COMPN_PARALLEL}') ) then
+        if IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
             end;
