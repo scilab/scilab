@@ -9319,7 +9319,7 @@ if test -n "$F77"; then
      gfortran*)
         ## With GNU Compiler enable the code coverage
         if test "$enable_code_coverage" = yes; then
-            CODE_COVERAGE_FFLAGS="-fprofile-arcs -ftest-coverage"
+            CODECOVERAGE_FFLAGS="-fprofile-arcs -ftest-coverage"
         fi
      ;;
      g77*)
@@ -9494,7 +9494,7 @@ case "$CXX" in
 
         # enable the code coverage
         if test "$enable_code_coverage" = yes; then
-            CODE_COVERAGE_CXXFLAGS="-fprofile-arcs -ftest-coverage"
+            CODECOVERAGE_CXXFLAGS="-fprofile-arcs -ftest-coverage"
         fi
 
         if test "$enable_debug_CXX" = yes; then
@@ -9535,7 +9535,7 @@ case "$CC" in
 
    # enable the code coverage
    if test "$enable_code_coverage" = yes; then
-    CODE_COVERAGE_CFLAGS="-fprofile-arcs -ftest-coverage"
+    CODECOVERAGE_CFLAGS="-fprofile-arcs -ftest-coverage"
    fi
 
    if test "$enable_debug_C" = yes; then
@@ -9750,7 +9750,7 @@ fi
    if test -z "$GENHTML" ; then
         as_fn_error $? "Cannot find genhtml. Please install it (package lcov under Debian) or remove the option --enable-code-coverage" "$LINENO" 5
    fi
-   CODE_COVERAGE_LDFLAGS="-coverage"
+   CODECOVERAGE_LDFLAGS="-coverage -lgcov"
 fi
  if test "$enable_code_coverage" = yes; then
   CODE_COVERAGE_TRUE=

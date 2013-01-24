@@ -21,7 +21,7 @@
 ;
 Source: bin\sci{#CONSOLE}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\sci{#CONSOLE}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: bin\{#CONSOLE}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: bin\{#CONSOLE}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\no{#CONSOLE}.dll; DestDir: {app}\bin; DestName: sci{#CONSOLE}.dll; Components: {#COMPN_SCILAB} and not ({#COMPN_JVM_MODULE})
 Source: bin\no{#CONSOLE}.lib; DestDir: {app}\bin; DestName: sci{#CONSOLE}.lib; Components: {#COMPN_SCILAB} and not ({#COMPN_JVM_MODULE})
 ;

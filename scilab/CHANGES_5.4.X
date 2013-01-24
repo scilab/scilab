@@ -201,6 +201,8 @@ Bug fixes
 
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
+* Bug #11801 fixed - Bug with isoview="on" on subplots.
+
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
@@ -212,6 +214,8 @@ Bug fixes
 
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
+
+* Bug #11958 fixed - axesflag=0 was not taken into account in plot2d3.
 
 * Bug #11962 fixed - event_handler may be called on wrong figure_id.
 
@@ -272,6 +276,9 @@ Bug fixes
 * Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
 
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
+
+* Bug #12151 fixed - Axes did not pass through (0,0) when x_location and
+                     y_location were set to 'origin'.
 
 * Bug #12166 fixed - There was a bad label with drawaxis.
 

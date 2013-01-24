@@ -29,6 +29,7 @@ Source: bin\{#GRAPHICS}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS
 ;
 Source: bin\no{#GRAPHICS}.dll; DestDir: {app}\bin; DestName: {#GRAPHICS}.dll; Components: not ({#COMPN_GRAPHICS})
 Source: bin\no{#GRAPHICS}.lib; DestDir: {app}\bin; DestName: {#GRAPHICS}.lib; Components: not ({#COMPN_GRAPHICS})
+Source: bin\no{#GRAPHICS}.dll; DestDir: {app}\bin; DestName: {#GRAPHICS}_gw.dll; Components: not ({#COMPN_GRAPHICS})
 ;
 Source: modules\{#GRAPHICS}\sci_gateway\{#GRAPHICS}_gateway.xml; DestDir: {app}\modules\{#GRAPHICS}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;

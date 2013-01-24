@@ -20,7 +20,8 @@
 ;
 Source: bin\sci{#GUI}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\{#GUI}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;Source: bin\no{#GUI}.dll; DestDir: {app}\bin; DestName: sci{#GUI}.dll; Components: not( {#COMPN_JVM_MODULE} )
+Source: bin\no{#GUI}.dll; DestDir: {app}\bin; DestName: sci{#GUI}.dll; Components: not( {#COMPN_JVM_MODULE} )
+Source: bin\no{#GUI}.dll; DestDir: {app}\bin; DestName: {#GUI}_gw.dll; Components: not( {#COMPN_JVM_MODULE} )
 ;
 
 Source: modules\{#GUI}\jar\org.scilab.modules.{#GUI}.jar; DestDir: {app}\modules\{#GUI}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}

@@ -18,11 +18,13 @@
 ;
 #DEFINE JVM "jvm"
 ;
-Source: bin\lib{#JVM}.lib; DestDir: {app}\bin; Components: {#COMPN_JVM_MODULE}
 ;
 Source: bin\lib{#JVM}.dll; DestDir: {app}\bin; Components: {#COMPN_JVM_MODULE}
+Source: bin\lib{#JVM}.lib; DestDir: {app}\bin; Components: {#COMPN_JVM_MODULE}
 Source: bin\lib{#JVM}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_JVM_MODULE}
-;Source: bin\nolib{#JVM}.dll; DestDir: {app}\bin; DestName: lib{#JVM}.dll; Components: not ({#COMPN_JVM_MODULE})
+Source: bin\nolib{#JVM}.dll; DestDir: {app}\bin; DestName: lib{#JVM}.dll; Components: not ({#COMPN_JVM_MODULE})
+Source: bin\nolib{#JVM}.lib; DestDir: {app}\bin; DestName: lib{#JVM}.lib; Components: not ({#COMPN_JVM_MODULE})
+Source: bin\nolib{#JVM}.dll; DestDir: {app}\bin; DestName: lib{#JVM}_gw.dll; Components: not ({#COMPN_JVM_MODULE})
 ;
 Source: etc\classpath.xml; DestDir: {app}\etc; Components: {#COMPN_JVM_MODULE}
 Source: etc\librarypath.xml; DestDir: {app}\etc; Components: {#COMPN_JVM_MODULE}

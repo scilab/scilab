@@ -18,26 +18,20 @@
 ;
 #define SYMBOLIC "symbolic"
 ;
-Source: bin\{#SYMBOLIC}.dll; DestDir: {app}\bin; DestName: {#SYMBOLIC}.dll; Components: {#COMPN_SYMB}
-Source: bin\{#SYMBOLIC}_f.dll; DestDir: {app}\bin; DestName: {#SYMBOLIC}_f.dll; Components: {#COMPN_SYMB}
+Source: bin\{#SYMBOLIC}.dll; DestDir: {app}\bin; DestName: {#SYMBOLIC}.dll; Components: {#COMPN_SCILAB}
+Source: bin\{#SYMBOLIC}_f.dll; DestDir: {app}\bin; DestName: {#SYMBOLIC}_f.dll; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SYMBOLIC}\license.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\license.txt; DestDir: {app}\modules\{#SYMBOLIC}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SYMBOLIC}\sci_gateway\{#SYMBOLIC}_gateway.xml; DestDir: {app}\modules\{#SYMBOLIC}\sci_gateway; Components: {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\sci_gateway\{#SYMBOLIC}_gateway.xml; DestDir: {app}\modules\{#SYMBOLIC}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SYMBOLIC}\etc\{#SYMBOLIC}.quit; DestDir: {app}\modules\{#SYMBOLIC}\etc; Components: {#COMPN_SYMB}
-Source: modules\{#SYMBOLIC}\etc\{#SYMBOLIC}.start; DestDir: {app}\modules\{#SYMBOLIC}\etc; Components: {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\etc\{#SYMBOLIC}.quit; DestDir: {app}\modules\{#SYMBOLIC}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#SYMBOLIC}\etc\{#SYMBOLIC}.start; DestDir: {app}\modules\{#SYMBOLIC}\etc; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#SYMBOLIC}\includes\*.h; DestDir: {app}\modules\{#SYMBOLIC}\includes; Components: {#COMPN_SYMB}
+Source: modules\{#SYMBOLIC}\macros\buildmacros.sce; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#SYMBOLIC}\macros\buildmacros.bat; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#SYMBOLIC}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#SYMBOLIC}\macros\lib; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}
-;Source: modules\{#SYMBOLIC}\macros\*.sci; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}
-Source: modules\{#SYMBOLIC}\macros\buildmacros.sce; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}
-Source: modules\{#SYMBOLIC}\macros\buildmacros.bat; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}
-Source: modules\{#SYMBOLIC}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SYMBOLIC}\macros; Flags: recursesubdirs; Components: {#COMPN_SYMB}
-;
-;Source: modules\{#SYMBOLIC}\demos\*.*; DestDir: {app}\modules\{#SYMBOLIC}\demos; Flags: recursesubdirs; Components: {#COMPN_SYMB}
-;
-Source: modules\{#SYMBOLIC}\tests\*.*; DestDir: {app}\modules\{#SYMBOLIC}\tests; Flags: recursesubdirs; Components: {#COMPN_SYMB} and {#COMPN_TESTS}
+Source: modules\{#SYMBOLIC}\tests\*.*; DestDir: {app}\modules\{#SYMBOLIC}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

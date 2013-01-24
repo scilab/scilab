@@ -67,7 +67,7 @@
 #include BinariesSourcePath + "\modules\symbolic\symbolic.iss"
 #include BinariesSourcePath + "\modules\interpolation\interpolation.iss"
 #include BinariesSourcePath + "\modules\umfpack\umfpack.iss"
-#include BinariesSourcePath + "\modules\fftw\fftw.iss"
+;#include BinariesSourcePath + "\modules\fftw\fftw.iss"
 #include BinariesSourcePath + "\modules\spreadsheet\spreadsheet.iss"
 #include BinariesSourcePath + "\modules\differential_equations\differential_equations.iss"
 #include BinariesSourcePath + "\modules\compatibility_functions\compatibility_functions.iss"
@@ -84,9 +84,9 @@
 #include BinariesSourcePath + "\modules\scinotes\scinotes.iss"
 #include BinariesSourcePath + "\modules\xcos\xcos.iss"
 #include BinariesSourcePath + "\modules\graph\graph.iss"
-#ifndef SCILAB_F2C
-#include BinariesSourcePath + "\modules\parallel\parallel.iss"
-#endif
+;#ifndef SCILAB_F2C
+;#include BinariesSourcePath + "\modules\parallel\parallel.iss"
+;#endif
 #include BinariesSourcePath + "\modules\modules_manager\modules_manager.iss"
 #include BinariesSourcePath + "\modules\ui_data\ui_data.iss"
 #include BinariesSourcePath + "\modules\history_browser\history_browser.iss"
@@ -100,4 +100,3 @@
 #include BinariesSourcePath + "\modules\parse\parse.iss"
 #include BinariesSourcePath + "\modules\system_env\system_env.iss"
 ;-------------------------------------------------------------------------------
-;

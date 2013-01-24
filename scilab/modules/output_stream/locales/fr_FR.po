@@ -756,7 +756,7 @@ msgid "%s: df0 must be positive !\n"
 msgstr "%s : df0 doit être positif !\n"
 
 msgid "Undefined operation for the given operands.\n"
-msgstr "Opération non définie pour les opérandes données.\n"
+msgstr "Opération non définie pour les opérandes donnés.\n"
 
 #, c-format
 msgid "check or define function %s for overloading.\n"

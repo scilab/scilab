@@ -18,30 +18,26 @@
 ;
 #define MEXLIB "mexlib"
 ;
-Source: bin\libmx.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
-Source: bin\libmx.lib; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
-Source: bin\libmex.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
-Source: bin\libmex.lib; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
-Source: bin\libmat.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
-Source: bin\libmat.lib; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
+Source: bin\libmx.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libmx.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libmex.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libmex.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libmat.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libmat.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#MEXLIB}\license.txt; DestDir: {app}\modules\{#MEXLIB}; Components: {#COMPN_MEXLIB}
+Source: modules\{#MEXLIB}\license.txt; DestDir: {app}\modules\{#MEXLIB}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#MEXLIB}\etc\{#MEXLIB}.quit; DestDir: {app}\modules\{#MEXLIB}\etc; Components: {#COMPN_MEXLIB}
-Source: modules\{#MEXLIB}\etc\{#MEXLIB}.start; DestDir: {app}\modules\{#MEXLIB}\etc; Components: {#COMPN_MEXLIB}
+Source: modules\{#MEXLIB}\etc\{#MEXLIB}.quit; DestDir: {app}\modules\{#MEXLIB}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#MEXLIB}\etc\{#MEXLIB}.start; DestDir: {app}\modules\{#MEXLIB}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#MEXLIB}\includes\*.h; DestDir: {app}\modules\{#MEXLIB}\includes; Components: {#COMPN_MEXLIB}
+Source: modules\{#MEXLIB}\includes\*.h; DestDir: {app}\modules\{#MEXLIB}\includes; Components: {#COMPN_SCILAB}
 ;
-;;Source: modules\{#MEXLIB}\macros\lib; DestDir: {app}\modules\{#MEXLIB}\macros; Components: {#COMPN_MEXLIB}
-;Source: modules\{#MEXLIB}\macros\*.sci; DestDir: {app}\modules\{#MEXLIB}\macros; Components: {#COMPN_MEXLIB}
-Source: modules\{#MEXLIB}\macros\buildmacros.sce; DestDir: {app}\modules\{#MEXLIB}\macros; Components: {#COMPN_MEXLIB}
-Source: modules\{#MEXLIB}\macros\buildmacros.bat; DestDir: {app}\modules\{#MEXLIB}\macros; Components: {#COMPN_MEXLIB}
-Source: modules\{#MEXLIB}\macros\cleanmacros.bat; DestDir: {app}\modules\{#MEXLIB}\macros; Components: {#COMPN_MEXLIB}
+Source: modules\{#MEXLIB}\macros\buildmacros.sce; DestDir: {app}\modules\{#MEXLIB}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#MEXLIB}\macros\buildmacros.bat; DestDir: {app}\modules\{#MEXLIB}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#MEXLIB}\macros\cleanmacros.bat; DestDir: {app}\modules\{#MEXLIB}\macros; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#MEXLIB}\demos\*.*; DestDir: {app}\modules\{#MEXLIB}\demos; Flags: recursesubdirs; Components: {#COMPN_MEXLIB}
+Source: modules\{#MEXLIB}\examples\*.*; DestDir: {app}\modules\{#MEXLIB}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#MEXLIB}\examples\*.*; DestDir: {app}\modules\{#MEXLIB}\examples; Flags: recursesubdirs; Components: {#COMPN_MEXLIB}
-;
-Source: modules\{#MEXLIB}\tests\*.*; DestDir: {app}\modules\{#MEXLIB}\tests; Flags: recursesubdirs; Components: {#COMPN_MEXLIB} and {#COMPN_TESTS}
+Source: modules\{#MEXLIB}\tests\*.*; DestDir: {app}\modules\{#MEXLIB}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

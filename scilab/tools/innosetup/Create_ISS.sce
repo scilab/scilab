@@ -267,8 +267,8 @@ function bOK = generateAdditionnalIss()
   dir_list(grep(dir_list, list_default_ATOMS)) = [];
   if dir_list <> [] then
     name_list = basename(dir_list);
-    ISS = "Source: contrib\" + name_list  +"\*.*; DestDir: {app}\contrib\" + name_list + "; Flags: recursesubdirs; Components: {#COMPN_ATOMS}";
-    ISS = [ISS; "Source: .atoms\*.*; DestDir: {app}\.atoms; Flags: recursesubdirs; Components: {#COMPN_ATOMS}"];
+    ISS = "Source: contrib\" + name_list  +"\*.*; DestDir: {app}\contrib\" + name_list + "; Flags: recursesubdirs; Components: {#COMPN_SCILAB}";
+    ISS = [ISS; "Source: .atoms\*.*; DestDir: {app}\.atoms; Flags: recursesubdirs; Components: {#COMPN_SCILAB}"];
   else
     ISS = '';
   end

@@ -49,7 +49,6 @@ int sci_plot2d1_4 (char *fname, void *pvApiCtx)
 int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
 {
     SciErr sciErr;
-
     int* piAddrl1 = NULL;
     double* l1 = NULL;
     int* piAddrl2 = NULL;
@@ -62,6 +61,7 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
     int *axes = &axes_def;
     int iskip = 0, test  = 0;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, i = 0, j = 0;
+    char strfl[4];
 
     static rhs_opts opts[] =
     {

@@ -160,7 +160,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../operations/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../fileio/includes;../../../jvm/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../operations/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../fileio/includes;../../../jvm/includes;../../../../libs/MALLOC/includes;../../../core/includes../../../../libs/intl;../../../localization/includes;../../../string/includes;../../../system_env/includes;../../../fileio/includes;../../../history_manager/includes;../../../api_scilab/includes;../../../completion/includes;../../../output_stream/includes;../../../operations/includes;../../../threads/includes;../../../windows_tools/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../types/includes;../../../ast/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -192,6 +192,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="..\..\sci_gateway\c\sci_lines.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_prompt.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_tohome.c" />
+    <ClCompile Include="..\cpp\scilabRead.cpp" />
     <ClCompile Include="..\c\clc.c" />
     <ClCompile Include="..\c\DllmainConsole.c" />
     <ClCompile Include="..\c\GetCommandLine.c" />
