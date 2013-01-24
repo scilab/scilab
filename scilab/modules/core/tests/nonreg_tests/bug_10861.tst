@@ -16,5 +16,5 @@
 //
 // debug([]) returns a wrong error message
 
-msgerr = msprintf(gettext("%s: Wrong size for argument %d: Real scalar expected.\n"), "debug", 1);
+msgerr = msprintf(gettext("%s: Wrong size for argument #%d: Real scalar expected.\n"), "debug", 1);
 assert_checkerror("debug([])", msgerr);

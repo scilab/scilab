@@ -318,7 +318,7 @@ msgstr ""
 "непрерывным временем.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: Неверный тип аргумента %d: ожидался вещественный вектор.\n"
 
 #, c-format
@@ -364,7 +364,7 @@ msgstr ""
 "%s: Неверное количество входных параметров: ожидалось как минимум %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: In continuous time expected.\n"
+msgid "%s: Wrong type for argument #%d: In continuous time expected.\n"
 msgstr "%s: Неверный тип агрумента %d: Ожидалось непрерывное время.\n"
 
 #, c-format
@@ -380,7 +380,7 @@ msgstr ""
 "плавающей запятой.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Неверный размер аргумента %d: ожидался размер %d.\n"
 
 #, c-format
@@ -849,7 +849,7 @@ msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Неверный размер аргумента %d: Ожидался размер (%d,%d).\n"
 
 #, c-format
@@ -861,7 +861,7 @@ msgstr ""
 "больше первой.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "Неверный тип аргумента %d: Ожидалось SISO (один вход, один выход).\n"
 
 #, c-format

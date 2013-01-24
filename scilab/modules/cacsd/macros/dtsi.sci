@@ -29,7 +29,7 @@ function [ga,gs,gi]=dtsi(g,tol)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"dtsi",1))
   end
   if g.dt<>"c" then
-    error(msprintf(gettext("%s: Wrong type for argument %d: In continuous time expected.\n"),"dtsi",1))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: In continuous time expected.\n"),"dtsi",1))
   end
   if rhs==1 then 
     tol=100*%eps,

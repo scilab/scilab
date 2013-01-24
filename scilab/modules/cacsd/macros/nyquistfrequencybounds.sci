@@ -13,7 +13,7 @@ function [fmin,fmax]=nyquistfrequencybounds(H,bounds)
   fname="nyquistFrequencyBounds" //for error messages
 
   if or(size(bounds)<>[2 2]) then
-    error(msprintf(_("%s: Wrong size for argument %d: (%d,%d) expected.\n"),fname,2,2,2))
+    error(msprintf(_("%s: Wrong size for argument #%d: (%d,%d) expected.\n"),fname,2,2,2))
   end
   if or(bounds(2,:)<bounds(1,:)) then
     error(msprintf(_("%s: Wrong value for input argument #%d: second row must be greater than first one.\n"),fname,2))
@@ -22,7 +22,7 @@ function [fmin,fmax]=nyquistfrequencybounds(H,bounds)
     error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),fname,1))
   end
   if size(H,'*')<>1 then
-    error(msprintf(_("Wrong type for argument %d: SISO expected.\n"),fname,1))
+    error(msprintf(_("Wrong type for argument #%d: SISO expected.\n"),fname,1))
   end
 
   if typeof(H)=="state-space" then

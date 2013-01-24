@@ -48,11 +48,11 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
 msgstr ""
 
 #, c-format
@@ -570,25 +570,25 @@ msgstr ""
 "%s: L'argument %d hauria de ser una llista amb una mida mínima de %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu real.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
 "%s: L'argument %d té una mida incorrecta: Ha d'estar a l'interval (%d,%d).\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
+"%s: Wrong type for argument #%d (List element: %d): Real or complex matrix "
 "expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte (Element de la llista: %d): Ha de "
 "ser una matriu real o complexa.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu real o "
 "complexa.\n"
@@ -598,132 +598,132 @@ msgid "%s: Too many names.\n"
 msgstr "%s: Hi ha massa noms.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
+msgid "%s: Wrong type for argument #%d: List of size at least %d expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una llista amb una "
 "mida mínima de %d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Int matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte (Element de la llista: %d): Ha de "
 "ser una matriu d'enters.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgid "%s: Wrong size for argument #%d: At least %d expected.\n"
 msgstr ""
 "%s: L'argument %d té una mida incorrecta: Han de ser com a mínim %d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Boolean matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte (Element de la llista: %d): Ha de "
 "ser una matriu booleana.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu booleana.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Sparse matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte (Element de la llista: %d): Ha de "
 "ser una matriu estesa.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu estesa.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
+msgid "%s: Wrong type for argument #%d (List element: %d): Vector expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte (Element de la llista: %d): Ha de "
 "ser un vector.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un vector.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un vector real.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: L'argument %d té una mida incorrecta: Ha de ser %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
+msgid "%s: Wrong type for argument #%d (List element: %d): Scalar expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte (Element de la llista: %d): Ha de "
 "ser un escalar.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser escalar, '%s' o '%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of strings "
+"%s: Wrong type for argument #%d (List element: %d): Matrix of strings "
 "expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte (Element de la llista: %d): Ha de "
 "ser una matriu de cadenes de text.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de cadenes "
 "de text.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): String matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte (Element de la llista: %d): Ha de "
 "ser una matriu de cadenes de text.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de cadenes "
 "de text.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una llista.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de "
 "polinomis.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu d'enters.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Row vector expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte (Element de la llista: %d): Ha de "
 "ser un vector fila.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Row vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un vector fila.\n"
 
@@ -732,23 +732,23 @@ msgid "%s: argument %d >(%d) should be a column vector.\n"
 msgstr "%s: L'argument %d >(%d) hauria de ser un vector columna.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Column vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Column vector expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un vector columna.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Boxed pointer expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte (Element de la llista: %d): Ha de "
 "ser un punter.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
+msgid "%s: Wrong type for argument #%d: Boxed pointer expected.\n"
 msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un punter.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu.\n"
 
 #, c-format
@@ -759,7 +759,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una funció o una "
@@ -781,14 +781,14 @@ msgstr "%f: No queda més espai per als arguments de cadena de text.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of handle "
+"%s: Wrong type for argument #%d (List element: %d): Matrix of handle "
 "expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte (Element de la llista: %d): Ha de "
 "ser una matriu de tractaments.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de "
 "tractaments.\n"

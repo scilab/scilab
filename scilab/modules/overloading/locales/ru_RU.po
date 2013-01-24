@@ -81,11 +81,11 @@ msgid "%s is not a valid field name."
 msgstr "%s является недопустимым именем поля."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался вещественный вектор.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался вещественный скаляр.\n"
 
 #, c-format

@@ -26,7 +26,7 @@ function comet(varargin)
   if nv>=3&varargin(nv-1)=='colors' then
     c=round(varargin(nv))
     if type(c)<>1|~isreal(c) then
-      error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"comet",nv))
+      error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet",nv))
     end
     varargin=list(varargin(1:$-2))
   else
@@ -50,7 +50,7 @@ function comet(varargin)
     error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"comet",1,3))
   end
   if type(x)<>1|~isreal(x) then
-    error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"comet",1))
+    error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet",1))
   end
   if or(type(y)==[11 13]) then //a function
     prot=funcprot();funcprot(0)
@@ -62,10 +62,10 @@ function comet(varargin)
     y=horner(y,x)
   end
   if type(y)<>1|~isreal(y) then
-    error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"comet",2))
+    error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet",2))
   end
   if type(p)<>1|~isreal(p)|size(p,'*')>1 then
-    error(msprintf(_("%s: Wrong type for argument %d: Real scalar expected.\n"),"comet",3))
+    error(msprintf(_("%s: Wrong type for argument #%d: Real scalar expected.\n"),"comet",3))
   end
   if p<0|p>=1 then
     error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the interval %s.\n"),"comet",3,"[0 1["))
@@ -99,7 +99,7 @@ function comet(varargin)
     c=1:m
   else
     if size(c,'*')<>m then
-      error(msprintf(_("%s: Wrong size for argument %d: %d expected.\n"),"comet",nv,m))
+      error(msprintf(_("%s: Wrong size for argument #%d: %d expected.\n"),"comet",nv,m))
     end
     if min(c)<1|max(c)>size(fig.color_map,1) then
       error(msprintf(_( "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"comet",nv,"1,...,"+string(size(fig.color_map,1))))

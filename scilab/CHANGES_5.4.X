@@ -305,6 +305,8 @@ Bug fixes
 
 * Bug #12235 fixed - Matplot did not update on color_map change.
 
+* Bug #12247 fixed - Fix a typo in some error messages.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================

@@ -1057,7 +1057,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s : '%s' trouvé au lieu d'un bloc.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr ""
 "%s : Type erroné de l'argument %d : Une structure du diagramme attendue."
 
@@ -1079,7 +1079,7 @@ msgstr ""
 "disposez des droits d'écriture sur ce répertoire.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr ""
 "%s : Type erroné de l'argument %d : Une chaîne de caractères ou une "
 "structure du diagramme attendue."
@@ -1213,7 +1213,7 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s : Impossible d'exporter la palette vers hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr ""
 "%s : Type erroné de l'argument %d : Une chaîne de caractères attendue."
 

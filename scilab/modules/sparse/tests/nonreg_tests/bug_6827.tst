@@ -31,6 +31,6 @@ X=[3.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ; ...
 X(1,1) = X(1,1) + %i;
 X      = sparse(X);
 
-msgerr = msprintf(gettext("Wrong type for argument %d: Real matrix expected.\n"), 1);
+msgerr = msprintf(gettext("Wrong type for argument #%d: Real matrix expected.\n"), 1);
 assert_checkerror('[R,P] = spchol(X);', msgerr);
 

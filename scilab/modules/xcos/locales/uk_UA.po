@@ -1062,7 +1062,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s: замість блоку виявлено «%s».\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr ""
 "%s: помилковий тип вхідного параметра %d: слід використовувати тип структури "
 "діаграми."
@@ -1085,7 +1085,7 @@ msgstr ""
 "доступу на запис до відповідного каталогу.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr ""
 "%s: помилковий тип вхідного параметра %d: слід використовувати тип «string» "
 "або тип структури діаграми."
@@ -1222,7 +1222,7 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: не вдалося експортувати палітру до hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string»."
 

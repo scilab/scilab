@@ -141,7 +141,7 @@ msgid "%s: Unable to get argument data"
 msgstr "%s：无法获取参数数据"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s：参数%d的大小错误：应该为(%d,%d)。\n"
 
 #, c-format
@@ -154,7 +154,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该是实数矩阵。\n"
 
 #, c-format

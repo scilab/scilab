@@ -1183,7 +1183,7 @@ msgstr ""
 "4."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr "%s: помилковий тип параметра %d: мало бути використано %s.\n"
 
 #, c-format
@@ -1249,7 +1249,7 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: у векторі індексів виключення %d рядків замість 1."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
 "значень.\n"

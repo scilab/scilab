@@ -260,7 +260,7 @@ msgstr ""
 "Помилковий тип першого параметра: слід використовувати квадратну матрицю.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgid "Wrong type for argument #%d: Square matrix expected.\n"
 msgstr ""
 "Помилковий тип параметра №%d: слід використовувати квадратну матрицю.\n"
 
@@ -369,7 +369,7 @@ msgid "subroutine not found: %s\n"
 msgstr "підпрограми не знайдено: %s\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "Помилковий тип параметра %d: слід використовувати матрицю дійсних значень.\n"
 
@@ -385,11 +385,11 @@ msgstr ""
 "Помилковий тип вхідного параметра №%d: слід використовувати поліном.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: String expected.\n"
+msgid "Wrong type for argument #%d: String expected.\n"
 msgstr "Помилковий тип параметра №%d: слід використовувати тип «string».\n"
 
 #, c-format
-msgid "Wrong type for argument %d: List expected.\n"
+msgid "Wrong type for argument #%d: List expected.\n"
 msgstr "Помилковий тип параметра №%d: слід використовувати тип списку.\n"
 
 msgid "Problem with comparison symbol...\n"
@@ -494,25 +494,25 @@ msgid "Incorrect function (argument n: %d).\n"
 msgstr "Помилкова функція (параметр n: %d).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати матрицю з дійсних або "
 "комплексних значень.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
 "значень.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати вектор дійсних "
 "чисел.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати скалярний тип.\n"
 
@@ -530,34 +530,34 @@ msgid "%s: singular or asymmetric problem.\n"
 msgstr "%s: вироджена або несиметрична задача.\n"
 
 #, c-format
-msgid "Wrong size for argument %d.\n"
+msgid "Wrong size for argument #%d.\n"
 msgstr "Помилкова розмірність параметра %d.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgid "Wrong type for argument #%d: Transfer matrix expected.\n"
 msgstr ""
 "Помилковий тип параметра %d: слід використовувати матрицю переходів.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In state space form expected.\n"
+msgid "Wrong type for argument #%d: In state space form expected.\n"
 msgstr "Помилковий тип параметра %d: мала бути форма у просторі станів.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational matrix expected.\n"
 msgstr ""
 "Помилковий тип параметра %d: слід використовувати матрицю з раціональних "
 "чисел.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgid "Wrong type for argument #%d: In continuous time expected.\n"
 msgstr "Помилковий тип параметра %d: мав бути неперервним за часом.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgid "Wrong type for argument #%d: In discrete time expected.\n"
 msgstr "Помилковий тип параметра %d: мав бути дискретним за часом.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr ""
 "Помилковий тип параметра %d: мало бути SISO (один вхід — один вихід).\n"
 
@@ -567,7 +567,7 @@ msgstr "Часову область параметра №%d не визначе
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: A system in state space or transfer matrix form "
+"Wrong type for argument #%d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
 "Помилковий тип параметра %d: слід використовувати систему у просторі станів "
@@ -658,7 +658,7 @@ msgstr ""
 "Будь ласка, повідомте про цю помилку:\n"
 
 #, c-format
-msgid "Wrong value for argument %d.\n"
+msgid "Wrong value for argument #%d.\n"
 msgstr "Помилкове значення параметра №%d.\n"
 
 #, c-format
@@ -667,7 +667,7 @@ msgstr "Елемент списку з номером %d не визначено
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: Named variable not an expression expected.\n"
+"Wrong type for argument #%d: Named variable not an expression expected.\n"
 msgstr ""
 "Помилковий тип параметра №%d: слід використовувати іменовану змінну, а не "
 "вираз.\n"
@@ -763,52 +763,52 @@ msgid "check or define function %s for overloading.\n"
 msgstr "перевірте або визначте перевантаження функції %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: помилкова розмірність параметра №%d: мало бути (%d,%d).\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: помилкова розмірність параметра №%d: мало бути %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати матрицю з рядків.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю булівських "
 "значень.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: помилковий тип параметра %d: слід використовувати матрицю.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s: помилковий тип параметра №%d: слід використовувати тип списку.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати функцію або рядок "
 "(посилання на зовнішню функцію).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr "%s: помилковий тип параметра %d: слід використовувати поліном.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати робочу матрицю з "
 "цілих чисел.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s: помилковий тип параметра №%d: слід використовувати вектор.\n"
 
 #, c-format
@@ -819,19 +819,19 @@ msgid "Argument type must be boolean.\n"
 msgstr "Типом параметра має бути «boolean».\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgid "Wrong type for argument #%d: Boolean or scalar expected.\n"
 msgstr ""
 "Помилковий тип параметра %d: слід використовувати тип «boolean» або "
 "скалярний тип.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgid "Wrong type for argument #%d: Sparse matrix of scalars expected.\n"
 msgstr ""
 "Помилковий тип параметра №%d: слід використовувати розріджену числову "
 "матрицю.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgid "Wrong type for argument #%d: Handle to sparse lu factors expected.\n"
 msgstr ""
 "Помилковий тип параметра %d: слід було використовувати елемент керування "
 "множників LU-розкладу розрідженої матриці.\n"
@@ -945,19 +945,19 @@ msgid "Function not defined for given argument type(s),\n"
 msgstr "Функцію не визначено для вказаних типів параметрів,\n"
 
 #, c-format
-msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr ""
 "Помилкове значення параметра №%d: елемент керування LU-розкладом втратив "
 "чинність.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgid "Wrong value for argument #%d: Valid variable name expected.\n"
 msgstr ""
 "Помилкове значення вхідного параметра №%d: слід використовувати чинну назву "
 "змінної.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Empty string expected.\n"
+msgid "Wrong value for argument #%d: Empty string expected.\n"
 msgstr "Помилкове значення параметра №%d: мав бути порожній рядок.\n"
 
 msgid "Recursive extraction is not valid in this context.\n"
@@ -1012,7 +1012,7 @@ msgstr ""
 "Помилка під час спроби запису до файла: диск переповнено або файл вилучено.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgid "Wrong value for argument #%d: Must not contain NaN or Inf.\n"
 msgstr ""
 "Помилкове значення вхідного параметра №%d: значення не повинно містити NaN "
 "та Inf.\n"
@@ -1036,14 +1036,14 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+"Wrong value for argument #%d: eigenvalues must have negative real parts.\n"
 msgstr ""
 "Помилкове значення параметра №%d: дійсні частини власних значень мають бути "
 "від’ємними.\n"
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+"Wrong value for argument #%d: eigenvalues modulus must be less than one.\n"
 msgstr ""
 "Помилкове значення параметра №%d: модуль власного значення має бути меншим "
 "за одиницю.\n"

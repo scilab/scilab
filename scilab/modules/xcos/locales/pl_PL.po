@@ -1054,7 +1054,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s: Zamiast bloku znaleziono '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr "%s: Nieprawidłowy typ argumentu %d: oczekiwano struktury schematu"
 
 #, c-format
@@ -1074,7 +1074,7 @@ msgstr ""
 "do tego katalogu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu %d: oczekiwano łańcucha lub schematu "
 "struktury."
@@ -1201,7 +1201,7 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: Nie udało się eksportować palety do hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr ""
 
 msgid "Interface function does not exist or can not be called."

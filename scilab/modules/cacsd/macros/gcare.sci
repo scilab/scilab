@@ -16,7 +16,7 @@ function [X,F]=gcare(Sl)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space expected.\n"),"gcare",1))
   end
   if Sl.dt<>"c" then
-    error(msprintf(gettext("%s: Wrong type for argument %d: In continuous time expected.\n"),"gcare",1))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: In continuous time expected.\n"),"gcare",1))
   end
 
   [A,B,C,D]=abcd(Sl);
