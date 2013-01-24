@@ -19,6 +19,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
@@ -27,6 +29,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
@@ -76,6 +79,8 @@ public class UIList extends UIComponent {
             }
         });
 
+        setMultiple(false);
+
         return list;
     }
 
@@ -113,6 +118,56 @@ public class UIList extends UIComponent {
         }
 
         return getSelectedItem();
+    }
+
+    public void setStrings(String[] items) {
+        if (items != null && items.length != 0) {
+            ListModel model = list.getModel();
+            List<Integer> indices = new ArrayList<Integer>(items.length);
+            for (int i = 0; i < items.length; i++) {
+                for (int j = 0; j < model.getSize(); j++) {
+                    Object o = model.getElementAt(j);
+                    if (o != null && o.toString().equals(items[i])) {
+                        indices.add(j);
+                        break;
+                    }
+                }
+            }
+            if (!indices.isEmpty()) {
+                int[] ind = new int[indices.size()];
+                for (int i = 0; i < ind.length; i++) {
+                    ind[i] = indices.get(i);
+                }
+                list.setSelectedIndices(ind);
+            }
+        }
+    }
+
+    public String[] getStrings() {
+        Object[] objs = list.getSelectedValues();
+        if (objs != null) {
+            String[] strs = new String[objs.length];
+            for (int i = 0; i < objs.length; i++) {
+                strs[i] = objs[i] == null ? "" : objs[i].toString();
+            }
+
+            return strs;
+        }
+
+        return null;
+    }
+
+    public void setMultiple(boolean multiple) {
+        if (multiple) {
+            list.getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        } else {
+            list.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        }
+    }
+
+    public boolean getMultiple() {
+        int m = list.getSelectionModel().getSelectionMode();
+        return m == ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
     }
 
     public void setSelectedItem(String item) {
@@ -172,6 +227,12 @@ public class UIList extends UIComponent {
 
     public int getSelectedIndex() {
         return list.getSelectedIndex();
+    }
+
+    public void setSelectedIndices(int[] indices) {
+        try {
+            list.setSelectedIndices(indices);
+        } catch (IllegalArgumentException e) { }
     }
 
     public int getValue() {

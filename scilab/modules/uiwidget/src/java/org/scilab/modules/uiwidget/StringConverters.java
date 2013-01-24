@@ -234,7 +234,7 @@ public final class StringConverters {
                     return null;
                 }
 
-                String[] toks = str.split(" +");
+                String[] toks = str.split("[ +]");
                 StringBuilder buffer = new StringBuilder();
                 for (int i = 0; i < toks.length - 1; i++) {
                     buffer.append(toks[i].toLowerCase());
@@ -518,7 +518,7 @@ public final class StringConverters {
                 }
 
                 int[] ints = new int[4];
-                String[] toks = str.split(" ,;");
+                String[] toks = str.split("[ ,;]");
                 for (int i = 0; i < toks.length && i < 4; i++) {
                     try {
                         ints[i] = Integer.parseInt(toks[i]);
@@ -526,7 +526,7 @@ public final class StringConverters {
                         try {
                             ints[i] = (int) Double.parseDouble(toks[i]);
                         } catch (NumberFormatException ee) {
-                            ints[i] = 0;;
+                            ints[i] = 0;
                         }
                     }
                 }
@@ -541,7 +541,7 @@ public final class StringConverters {
                 }
 
                 int[] ints = new int[4];
-                String[] toks = str.split(" ,;");
+                String[] toks = str.split("[ ,;]");
                 for (int i = 0; i < toks.length && i < 4; i++) {
                     try {
                         ints[i] = Integer.parseInt(toks[i]);
@@ -564,7 +564,7 @@ public final class StringConverters {
                 }
 
                 int[] ints = new int[2];
-                String[] toks = str.split(" ,;");
+                String[] toks = str.split("[ ,;]");
                 for (int i = 0; i < toks.length && i < 2; i++) {
                     try {
                         ints[i] = Integer.parseInt(toks[i]);
@@ -587,7 +587,7 @@ public final class StringConverters {
                 }
 
                 int[] ints = new int[2];
-                String[] toks = str.split(" ,;");
+                String[] toks = str.split("[ ,;]");
                 for (int i = 0; i < toks.length && i < 2; i++) {
                     try {
                         ints[i] = Integer.parseInt(toks[i]);
@@ -619,7 +619,7 @@ public final class StringConverters {
                 }
 
                 int[] ints = new int[2];
-                String[] toks = str.split(" ,;");
+                String[] toks = str.split("[ ,;]");
                 for (int i = 0; i < toks.length && i < 2; i++) {
                     try {
                         ints[i] = Integer.parseInt(toks[i]);
@@ -642,7 +642,7 @@ public final class StringConverters {
                 }
 
                 int[] ints = new int[2];
-                String[] toks = str.split(" ,;");
+                String[] toks = str.split("[ ,;]");
                 for (int i = 0; i < toks.length && i < 2; i++) {
                     try {
                         ints[i] = Integer.parseInt(toks[i]);

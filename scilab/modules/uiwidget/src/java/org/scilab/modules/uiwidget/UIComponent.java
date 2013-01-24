@@ -986,7 +986,7 @@ public abstract class UIComponent {
     }
 
     protected Object getPropertyViaReflectionInComponent(final String name) throws UIWidgetException {
-        return UIAccessTools.getPropertyViaReflection(getComponent(), name);
+        return UIAccessTools.getPropertyViaReflection(getModifiableComponent(), name);
     }
 
     private void createNewInstance(final ConvertableMap attributes) throws UIWidgetException {

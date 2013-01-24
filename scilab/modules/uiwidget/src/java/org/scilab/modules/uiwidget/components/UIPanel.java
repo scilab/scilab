@@ -21,6 +21,7 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -221,6 +222,7 @@ public class UIPanel extends UIComponent {
         gbc.weighty = StringConverters.getObjectFromValue(double.class, attrs.get("weighty"), 1d);
         gbc.ipadx = StringConverters.getObjectFromValue(int.class, attrs.get("ipadx"), 0);
         gbc.ipady = StringConverters.getObjectFromValue(int.class, attrs.get("ipady"), 0);
+        gbc.insets = StringConverters.getObjectFromValue(Insets.class, attrs.get("insets"), new Insets(0, 0, 0, 0));
 
         String str = attrs.get("anchor");
         if (str != null) {

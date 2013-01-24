@@ -169,6 +169,33 @@ public final class ObjectToScilabConverters {
                 ScilabStackPutter.put(stackPos, (String[][]) o, false);
             }
         });
+        converters.put(Object.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                ScilabStackPutter.put(stackPos, o.toString());
+            }
+        });
+        converters.put(Object[].class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                String[] strs = new String[((Object[]) o).length];
+                for (int i = 0; i < strs.length; i++) {
+                    Object ob = ((Object[]) o)[i];
+                    strs[i] = ob == null ? "" : ob.toString();
+                }
+                ScilabStackPutter.put(stackPos, strs, false);
+            }
+        });
+        converters.put(Object[][].class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                String[][] strs = new String[((Object[][]) o).length][((Object[][]) o)[0].length];
+                for (int i = 0; i < strs.length; i++) {
+                    for (int j = 0; j < strs[0].length; j++) {
+                        Object ob = ((Object[][]) o)[i][j];
+                        strs[i][j] = ob == null ? "" : ob.toString();
+                    }
+                }
+                ScilabStackPutter.put(stackPos, strs, false);
+            }
+        });
         converters.put(Color.class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
                 Color c = (Color) o;
