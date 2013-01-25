@@ -10,7 +10,6 @@
 function [d, v] = eigs(varargin)
     lhs = argn(1);
     rhs = argn(2);
-
     if(rhs == 0 | rhs > 6)
         error(msprintf(gettext("%s : Wrong number of input arguments : %d to %d expected.\n"), "eigs", 1, 6));
     end
@@ -25,8 +24,9 @@ function [d, v] = eigs(varargin)
         if(isreal(varargin(1)))
             resid = rand(size(varargin(1), "r"), 1);
         else
-            resid = rand(size(varargin(1), "r"), 1).* %i;
+            resid = complex(rand(size(varargin(1), "r"), 1), rand(size(varargin(1), "r"), 1));
         end
+        A = varargin(1);
     end
 
     if(rhs > 1 & typeof(varargin(1)) ==  "function")
@@ -37,6 +37,8 @@ function [d, v] = eigs(varargin)
         a_sym = 0;
         resid = rand(varargin(2),1);
         info = 0;
+        Af = varargin(1);
+        Asize = varargin(2);
     end
 
     maxiter = 300;
@@ -44,7 +46,8 @@ function [d, v] = eigs(varargin)
     ncv = [];
     cholB = 0;
     info = 0;
-
+    B = [];
+    sigma = 'LM';
     if(rhs == 1)
         if(~issparse(varargin(1)))
             info = int32(0);
@@ -55,275 +58,139 @@ function [d, v] = eigs(varargin)
         end
     end
 
-
     if(typeof(varargin(1)) <> "function")
         select rhs
         case 1
-            nev =  min(size(varargin(1), 'r'), 6)
-            select lhs
-            case 1
-                if(issparse(varargin(1)))
-                    d = speigs(varargin(1), [], nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
-                else
-                    d = %_eigs(varargin(1), [], nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
-                end
-            case 2
-                if(issparse(varargin(1)))
-                    [d, v] = speigs(varargin(1), [], nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
-                else
-                    [d, v] = %_eigs(varargin(1), [], nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
-                end
-            end
-
+            nev =  min(size(A, 'r'), 6);
         case 2
-            nev = min(size(varargin(1), 'r'), 6)
-            select lhs
-            case 1
-                if(issparse(varargin(1)) | issparse(varargin(2)))
-                    d = speigs(varargin(1), varargin(2), nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
-                else
-                    d = %_eigs(varargin(1), varargin(2), nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
-                end
-            case 2
-                if(issparse(varargin(1)) | issparse(varargin(2)))
-                    [d, v] = speigs(varargin(1), varargin(2), nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
-                else
-                    [d, v] = %_eigs(varargin(1), varargin(2), nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
-                end
-            end
-
+            nev = min(size(A, 'r'), 6);
+            B = varargin(2);
         case 3
-            select lhs
-            case 1
-                if(issparse(varargin(1)) | issparse(varargin(2)))
-                    d = speigs(varargin(1), varargin(2), varargin(3), 'LM', maxiter, tol, ncv, cholB, resid, info);
-                else
-                    d = %_eigs(varargin(1), varargin(2), varargin(3), 'LM', maxiter, tol, ncv, cholB, resid, info);
-                end
-            case 2
-                if(issparse(varargin(1)) | issparse(varargin(2)))
-                    [d, v] = speigs(varargin(1), varargin(2), varargin(3), 'LM', maxiter, tol, ncv, cholB, resid, info);
-                else
-                    [d, v] = %_eigs(varargin(1), varargin(2), varargin(3), 'LM', maxiter, tol, ncv, cholB, resid, info);
-                end
-            end
-
+            B = varargin(2);
+            nev = varargin(3);
         case 4
-            select lhs
-            case 1
+            B = varargin(2);
+            nev = varargin(3);
+            sigma = varargin(4);
+        case 5
+            B = varargin(2);
+            nev = varargin(3);
+            sigma = varargin(4);
+            opts = varargin(5);
+            if(~isstruct(opts))
+                error(msprintf(gettext("%s: Wrong type for input argument #%d: A structure expected"), "eigs", 5));
+            end
+            if(size(intersect(fieldnames(opts), ["tol", "maxiter", "ncv", "resid", "cholB"]), "*") < size(fieldnames(opts),"*"))
+                error(msprintf(gettext("%s: Wrong type for input argument: If A is a matrix, use opts with tol, maxiter, ncv, resid, cholB"), "eigs"));
+            end
+            if(isfield(opts, "tol"))
+                tol = opts.tol;
+            end
+            if(isfield(opts, "maxiter"))
+                maxiter = opts.maxiter;
+            end
+            if(isfield(opts, "ncv"))
+                ncv = opts.ncv;
+            end
+            if(isfield(opts, "resid"))
+                resid = opts.resid;
                 if(issparse(varargin(1)) | issparse(varargin(2)))
-                    d = speigs(varargin(1), varargin(2), varargin(3), varargin(4), maxiter, tol, ncv, cholB, resid, info);
+                    info = 1;
                 else
-                    d = %_eigs(varargin(1), varargin(2), varargin(3), varargin(4), maxiter, tol, ncv, cholB, resid, info);
+                    info = int32(1);
                 end
-            case 2
-                if(issparse(varargin(1)) | issparse(varargin(2)))
-                    [d, v] = speigs(varargin(1), varargin(2), varargin(3), varargin(4), maxiter, tol, ncv, cholB, resid, info);
-                else
-                    [d, v] = %_eigs(varargin(1), varargin(2), varargin(3), varargin(4), maxiter, tol, ncv, cholB, resid, info);
+                if(and(resid==0))
+                    if(issparse(varargin(1)) | issparse(varargin(2)))
+                        info = 0;
+                    else
+                        info = int32(0);
+                    end
                 end
             end
+            if(isfield(opts,"cholB"))
+                cholB = opts.cholB;
+            end
+        end
 
-        case 5
-            select lhs
-            case 1
-                opts = varargin(5);
-                if(~isstruct(opts))
-                    error(msprintf(gettext("%s: Wrong type for input argument #%d: A structure expected"), "eigs", 5));
-                end
-                if(and(~isfield(opts, ["tol", "maxiter", "ncv", "resid", "cholB"])))
-                    error(msprintf(gettext("%s: Wrong type for input argument: If A is a matrix, use opts with tol, maxiter, ncv, resid, cholB"), "eigs"));
-                end
-                if(isfield(opts, "tol"))
-                    tol = opts.tol;
-                end
-                if(isfield(opts, "maxiter"))
-                    maxiter = opts.maxiter;
-                end
-                if(isfield(opts, "ncv"))
-                    ncv = opts.ncv;
-                end
-                if(isfield(opts, "resid"))
-                    resid = opts.resid;
-                    if(issparse(varargin(1)) | issparse(varargin(2)))
-                        info = 1;
-                    else
-                        info = int32(1);
-                    end
-                    if(and(resid==0))
-                        if(issparse(varargin(1)) | issparse(varargin(2)))
-                            info = 0;
-                        else
-                            info = int32(0);
-                        end
-                    end
-                end
-                if(isfield(opts,"cholB"))
-                    cholB = opts.cholB;
-                end
-                if(issparse(varargin(1)) | issparse(varargin(2)))
-                    d = speigs(varargin(1), varargin(2), varargin(3), varargin(4), maxiter, tol, ncv, cholB, resid, info);
-                else
-                    d = %_eigs(varargin(1), varargin(2), varargin(3), varargin(4), maxiter, tol, ncv, cholB, resid, info);
-                end
-            case 2
-                opts = varargin(5);
-                if(~isstruct(opts))
-                    error(msprintf(gettext("%s: Wrong type for input argument #%d: A structure expected"), "eigs",5));
-                end
-                if(and(~isfield(opts, ["tol", "maxiter", "ncv", "resid", "cholB"])))
-                    error(msprintf(gettext("%s: Wrong type for input argument: If A is a matrix, use opts with tol, maxiter, ncv, resid, cholB"), "eigs"));
-                end
-                if(isfield(opts, "tol"))
-                    tol = opts.tol;
-                end
-                if(isfield(opts, "maxiter"))
-                    maxiter = opts.maxiter;
-                end
-                if(isfield(opts, "ncv"))
-                    ncv = opts.ncv;
-                end
-                if(isfield(opts, "resid"))
-                    resid = opts.resid;
-                    if(issparse(varargin(1)) | issparse(varargin(2)))
-                        info = 1;
-                    else
-                        info = int32(1);
-                    end
-                    if(and(resid==0))
-                        if(issparse(varargin(1)) | issparse(varargin(2)))
-                            info = 0;
-                        else
-                            info = int32(0);
-                        end
-                    end
-                end
-                if(isfield(opts, "cholB"))
-                    cholB = opts.cholB;
-                end
-                if(issparse(varargin(1)))
-                    [d, v] = speigs(varargin(1), varargin(2), varargin(3), varargin(4), maxiter, tol, ncv, cholB, resid, info);
-                else
-                    [d, v] = %_eigs(varargin(1), varargin(2), varargin(3), varargin(4), maxiter, tol, ncv, cholB, resid, info);
-                end
+        select lhs
+        case 1
+            if(issparse(A) | issparse(B))
+                d = speigs(A, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info);
+            else
+                d = %_eigs(A, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info);
+            end
+        case 2
+            if(issparse(A) | issparse(B))
+                [d, v] = speigs(A, B, nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
+            else
+                [d, v] = %_eigs(A, B, nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
             end
         end
     else
         select rhs
         case 2
-            nev = min(varargin(2), 6)
-            select lhs
-            case 1
-                d = feigs(varargin(1), varargin(2), [], nev, 'LM', maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
-            case 2
-                [d, v] = feigs(varargin(1), varargin(2), [], nev, 'LM', maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
-            end
+            nev = min(Asize, 6)
+
         case 3
-            nev = min(varargin(2), 6);
-            select lhs
-            case 1
-                d = feigs(varargin(1), varargin(2), varargin(3), nev, 'LM', maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
-            case 2
-                [d, v] = feigs(varargin(1), varargin(2), varargin(3), nev, 'LM', maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
-            end
+            nev = min(Asize, 6);
+            B = varargin(3);
 
         case 4
-            select lhs
-            case 1
-                d = feigs(varargin(1), varargin(2), varargin(3), varargin(4), 'LM', maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
-            case 2
-                [d, v] = feigs(varargin(1), varargin(2), varargin(3), varargin(4), 'LM', maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
-            end
+            B = varagin(3);
+            nev = varargin(4);
 
         case 5
-            select lhs
-            case 1
-                d = feigs(varargin(1), varargin(2), varargin(3), varargin(4), varargin(5), maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
-            case 2
-                [d, v] = feigs(varargin(1), varargin(2), varargin(3), varargin(4), varargin(5), maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
-            end
+            B = varagin(3);
+            nev = varargin(4);
+            sigma = varargin(5);
 
         case 6
-            select lhs
-            case 1
-                opts = varargin(6);
-                if(~isstruct(opts)) then
-                    error(msprintf(gettext("%s: Wrong type for input argument #%d: A structure expected"), "eigs",5));
+            B = varargin(3);
+            nev = varargin(4);
+            sigma = varargin(5);
+            opts = varargin(6);
+            if(~isstruct(opts)) then
+                error(msprintf(gettext("%s: Wrong type for input argument #%d: A structure expected"), "eigs",5));
+            end
+            if(size(intersect(fieldnames(opts), ["tol", "maxiter", "ncv", "resid", "cholB", "issym", "isreal"]), "*") < size(fieldnames(opts),"*"))
+                error(msprintf(gettext("%s: Wrong type for input argument: If A is a matrix, use opts with tol, maxiter, ncv, resid, cholB"), "eigs"));
+            end
+            if(isfield(opts,"tol"))
+                tol = opts.tol;
+            end
+            if(isfield(opts,"maxiter"))
+                maxiter = opts.maxiter;
+            end
+            if(isfield(opts, "ncv"))
+                ncv = opts.ncv;
+            end
+            if(isfield(opts,"resid"))
+                resid = opts.resid;
+                info = 1;
+                if(and(resid==0))
+                    info = 0;
                 end
-                if(and(~isfield(opts, ["tol", "maxiter", "ncv", "resid", "cholB", "issym", "isreal"])))
-                    error(msprintf(gettext("%s: Wrong type for input argument: Use opts with tol, maxiter, ncv, resid, cholB, issym, isreal"), "eigs"));
+            end
+            if(isfield(opts,"cholB"))
+                cholB = opts.cholB;
+            end
+            if(isfield(opts,"issym"))
+                a_sym = opts.issym;
+            end
+            if(isfield(opts,"isreal"))
+                a_real = opts.isreal;
+                if(~a_real & ~isfield(opts,"resid"))
+                    resid = complex(rand(Asize, 1), rand(Asize, 1));
                 end
-                if(isfield(opts,"tol"))
-                    tol = opts.tol;
-                end
-                if(isfield(opts,"maxiter"))
-                    maxiter = opts.maxiter;
-                end
-                if(isfield(opts, "ncv"))
-                    ncv = opts.ncv;
-                end
-                if(isfield(opts,"resid"))
-                    resid = opts.resid;
-                    info = 1;
-                    if(and(resid==0))
-                        info = 0;
-                    end
-                end
-                if(isfield(opts,"cholB"))
-                    cholB = opts.cholB;
-                end
-                if(isfield(opts,"issym"))
-                    a_sym = opts.issym;
-                end
-                if(isfield(opts,"isreal"))
-                    a_real = opts.isreal;
-                    if(~a_real & ~isfield(opts,"resid"))
-                        resid = rand(varargin(2),1).*%i;
-                    end
-                end
-
-                d = feigs(varargin(1), varargin(2), varargin(3), varargin(4), varargin(5), maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
-            case 2
-                opts = varargin(6);
-                if (~isstruct(opts)) then
-                    error(msprintf(gettext("%s: Wrong type for input argument #%d: A structure expected"), "eigs",5));
-                end
-                if (and(~isfield(opts, ["tol", "maxiter", "ncv", "resid", "cholB" ])))
-                    error(msprintf(gettext("%s: Wrong type for input argument: Use opts with tol, maxiter, ncv, resid, cholB, issym, isreal"), "eigs"));
-                end
-                if (isfield(opts,"tol"))
-                    tol = opts.tol;
-                end
-                if (isfield(opts,"maxiter"))
-                    maxiter = opts.maxiter;
-                end
-                if (isfield(opts, "ncv"))
-                    ncv = opts.ncv;
-                end
-                if(isfield(opts,"resid"))
-                    resid = opts.resid;
-                    info = 1;
-                    if(and(resid==0))
-                        info = 0;
-                    end
-                end
-                if (isfield(opts,"cholB"))
-                    cholB = opts.cholB;
-                end
-                if (isfield(opts,"isreal"))
-                    a_real = opts.isreal;
-                    if(~a_real & ~isfield(opts,"resid"))
-                        resid = rand(varargin(2),1).*%i;
-                    end
-                end
-                if (isfield(opts,"issym"))
-                    a_sym = opts.issym;
-                end
-                [d, v] = feigs(varargin(1), varargin(2), varargin(3), varargin(4), varargin(5), maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
             end
         end
+        select lhs
+        case 1
+            d = feigs(Af, Asize, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
+        case 2
+            [d, v] = feigs(Af, Asize, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
+        end
     end
-
 endfunction
 
 function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, resid, info)
