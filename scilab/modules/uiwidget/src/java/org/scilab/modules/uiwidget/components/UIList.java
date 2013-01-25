@@ -190,7 +190,9 @@ public class UIList extends UIComponent {
                 add(new UIListElement.ListElement(item, null));
             }
             model.fireContentsChanged(model, 0, vector.size() - 1);
-            resetIndex();
+        } else {
+            vector.clear();
+            model.fireContentsChanged(model, 0, 0);
         }
     }
 
