@@ -19,12 +19,19 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * Class to help to locate a component given its path composed of ids
+ */
 public final class UILocator {
 
     private static final Map<String, UIComponent> roots = new HashMap<String, UIComponent>();
     private static final Map<String, UIComponent> pathToUI = new HashMap<String, UIComponent>();
     private static final Map<Integer, UIComponent> uids = new HashMap<Integer, UIComponent>();
 
+    /**
+     * Add a root component
+     * @param ui the root
+     */
     public static void addRoot(final UIComponent ui) {
         String id = ui.getId();
         if (id != null && !id.isEmpty()) {
@@ -34,6 +41,10 @@ public final class UILocator {
         }
     }
 
+    /**
+     * Register a component by its uid
+     * @param ui the component to register
+     */
     public static void add(final UIComponent ui) {
         if (ui.isRoot()) {
             addRoot(ui);
@@ -41,6 +52,11 @@ public final class UILocator {
         uids.put(ui.getUid(), ui);
     }
 
+    /**
+     * Paths to access components are cached, so give a way to remove the paths pointing to
+     * the component from the cache.
+     * @param ui the component to remove from the paths cache
+     */
     public static void removeFromCachedPaths(final UIComponent ui) {
         final String id = ui.getId();
         if (ui.isRoot()) {
@@ -58,15 +74,27 @@ public final class UILocator {
         }
     }
 
+    /**
+     * Test if an uid has been registered
+     * @param uid the uid
+     * @return true if the uid has been registered
+     */
     public static boolean isValid(final int uid) {
         return uids.get(uid) != null;
     }
 
+    /**
+     * Remove a component from caches
+     * @param ui the component to remove
+     */
     public static void remove(final UIComponent ui) {
         removeFromCachedPaths(ui);
         uids.remove(ui.getUid());
     }
 
+    /**
+     * Remove all components
+     */
     public static void removeAll() {
         UIComponent[] uis = (UIComponent[]) roots.keySet().toArray();
         for (UIComponent ui : uis) {
@@ -74,10 +102,22 @@ public final class UILocator {
         }
     }
 
+    /**
+     * Get a component according to its uid
+     * @param uid the uid
+     * @return the corresponding component
+     */
     public static UIComponent get(final int uid) {
         return uids.get(uid);
     }
 
+    /**
+     * Get a component corresponding to the given path.
+     * The path is constituted of ids separated by '/'.
+     * It is possible to use '..' and '*' to make the navigation easier.
+     * @param path a path
+     * @return the corresponding component.
+     */
     public static UIComponent get(final String path) {
         UIComponent ui = pathToUI.get(path);
         int start = 0;
@@ -106,6 +146,13 @@ public final class UILocator {
             String el = pathElements.get(i);
             if (el.equals("..")) {
                 root = root.parent;
+            } else if (el.equals("*")) {
+                if (i != pathElements.size() - 1) {
+                    el = pathElements.get(++i);
+                    root = search(el, root.children);
+                } else {
+                    root = null;
+                }
             } else if (!el.equals(".")) {
                 if (root.children != null) {
                     root = root.children.get(el);
@@ -123,6 +170,12 @@ public final class UILocator {
         return root;
     }
 
+    /**
+     * Search a component with an id in a children map
+     * @param base the id of the component
+     * @param map a children map
+     * @return the corresponding component or null
+     */
     private static final UIComponent search(final String base, final Map<String, UIComponent> map) {
         UIComponent c = map.get(base);
         if (c != null) {
@@ -142,6 +195,11 @@ public final class UILocator {
         return null;
     }
 
+    /**
+     * Split a path.
+     * @param path the path to split
+     * @return a List containing the path components
+     */
     private static final List<String> splitPath(final String path) {
         final char[] c = path.toCharArray();
         final List<String> list = new ArrayList<String>(16);
