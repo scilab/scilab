@@ -183,12 +183,32 @@
     datatipCreate(p2,750);
 
     ]]></programlisting>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../images/datatips2.svg"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <!--        <scilab:image><![CDATA[
+    t=linspace(0,10,1000);
+    plot(t.*sin(t),t.*cos(t),1.5*t.*sin(t),1.5*t.*cos(1.5*t));
+    e=gce();
+    p1=e.children(1);//get the handle on the polyline
+    p2=e.children(2);//get the handle on the polyline
+
+
+    function str=mytipfmt(curve,pt,index)
+      ds=datatipGetStruct(curve)
+      if index<>[] then
+        t=ds.param(index);
+      else //interpolated
+        [d,ptp,i,c]=orthProj(curve.data,pt);
+        t=ds.param(i)+(ds.param(i+1)-ds.param(i))*c;
+      end
+      str=msprintf("%s\nt=%-0.3g",ds.name,t);
+    endfunction
+
+    ok=datatipInitStruct(p1,"formatfunction","mytipfmt","param",t,"name","curve");
+    ok=datatipInitStruct(p2,"formatfunction","mytipfmt","param",t,"name","spiral","style",[2 0]);
+
+    datatipCreate(p1,500);
+    datatipCreate(p1,900);
+    datatipCreate(p2,750);
+
+            ]]></scilab:image>-->
     </refsection>
 </refentry>
