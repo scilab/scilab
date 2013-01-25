@@ -545,7 +545,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
 
     if(cholB)
         if(or(triu(%_B) <> %_B))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: B must be symmetric or hermitian, definite, semi positive.\n"), "eigs", 2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: if opts.cholB is true, B must be upper triangular.\n"), "eigs", 2));
         end
         if(issparse(%_B)) //sparse cholesky decomposition is reversed...
             Rprime = %_B;
@@ -605,7 +605,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
             z = zeros(nA, nev);
         else
             lworkl = 3 * ncv * (ncv + 2);
-            v = zeros(nA, ncv);  
+            v = zeros(nA, ncv);
             workl = zeros(lworkl, 1);
             workd = zeros(3 * nA, 1);
             dr = zeros(nev+1, 1);
@@ -646,7 +646,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
 
         if(ido == -1 | ido == 1 | ido == 2)
             if(iparam(7) == 1)
-                if(ido==2)
+                if(ido == 2)
                     workd(ipntr(2):ipntr(2)+nA-1) = workd(ipntr(1):ipntr(1)+nA-1);
                 else
                     if(matB == 0)
@@ -704,8 +704,8 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
             end
         end
     end
-    if(iparam(7)==3)
-	 umf_ludel(Lup);
+    if(iparam(7) == 3)
+        umf_ludel(Lup);
     end
 
     if(Areal & Breal)
@@ -723,22 +723,40 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
         else
             sigmar = real(sigma);
             sigmai = imag(sigma);
-            [dr, di, z, resid, v, iparam, ipntr, workd, workl, info_eupd] = dneupd(rvec, howmny, _select, dr, di, z, sigmar, sigmai, workev, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_eupd);
+            computevec = rvec;
+            if iparam(7) == 3 & sigmai then
+                computevec = 1;
+            end
+            [dr, di, z, resid, v, iparam, ipntr, workd, workl, info_eupd] = dneupd(computevec, howmny, _select, dr, di, z, sigmar, sigmai, workev, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_eupd);
             if(info_eupd <> 0)
                 error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DNEUPD", info_eupd));
             else
-                res_d = complex(dr,di);
-                res_d(nev+1) = [];
-                if(rvec)
-                    res_d = diag(res_d)
-                    res_v = z;
-                    c1 = 1:2:nev + 1;
-                    c2 = 2:2:nev + 1;
-                    if(modulo(nev + 1, 2) == 1)
-                        c1($) = [];
+                if iparam(7) == 3 & sigmai then
+                    res_d = complex(zeros(nev + 1,1));
+                    i = 1;
+                    while i <= nev
+                        if(~di(i))
+                            res_d(i) = complex(z(:,i)'*A*z(:,i), 0);
+                            i = i + 1;
+                        else
+                            real_part = z(:,i)' * A * z(:,i) + z(:,i+1)' * A * z(:,i+1);
+                            imag_part = z(:,i)' * A * z(:,i+1) - z(:,i+1)' * A * z(:,i)
+                            res_d(i) = complex(real_part, imag_part);
+                            res_d(i+1) = complex(real_part, -imag_part);
+                            i = i + 2;
+                        end
                     end
-                    res_v(:,[c1, c2]) = [res_v(:,c1) + res_v(:,c2) * %i res_v(:,c1) - res_v(:,c2) * %i];
-                    res_v(:,$) = [];
+                else
+                    res_d = complex(dr, di);
+                end
+                res_d = res_d(1:nev);
+                if(rvec)
+                    index = find(di~=0);
+                    index = index(1:2:$);
+                    res_v = z;
+                    res_v(:,[index index+1]) = [complex(res_v(:,index),res_v(:,index+1)), complex(res_v(:,index),-res_v(:,index+1))];
+                    res_d = diag(res_d);
+                    res_v = res_v(:,1:nev);
                 end
             end
         end
@@ -755,7 +773,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
             end
         end
     end
-    if rvec & iparam(7)==1 & matB<>0
+    if(rvec & iparam(7) == 1 & matB)
         if issparse(%_B)
             res_v = umf_lusolve(Rprimefact, res_v);
             if(~cholB)
@@ -1134,7 +1152,6 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
                 error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DSEUPD", info));
             else
                 res_d = d;
-
                 if(rvec)
                     res_d = diag(res_d);
                     res_v = z;
@@ -1143,12 +1160,33 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
         else
             sigmar = real(sigma);
             sigmai = imag(sigma);
-            [dr, di, z, resid, v, iparam, ipntr, workd, workl, info_eupd] = dneupd(rvec, howmny, _select, dr, di, z, sigmar, sigmai, workev, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info);
+            computevec = rvec;
+            if iparam(7) == 3 & sigmai then
+                computevec = 1;
+            end
+            [dr, di, z, resid, v, iparam, ipntr, workd, workl, info_eupd] = dneupd(computevec, howmny, _select, dr, di, z, sigmar, sigmai, workev, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info);
             if(info <> 0)
                 error(msprintf(gettext("%s: Error with %s: info = %d.\n"), "eigs", "DNEUPD", info));
             else
-                res_d = complex(dr,di);
-                res_d(nev+1) = [];
+                if iparam(7) == 3 & sigmai then
+                    res_d = complex(zeros(nev + 1,1));
+                    i = 1;
+                    while i <= nev
+                        if(~di(i))
+                            res_d(i) = complex(z(:,i)'*A*z(:,i), 0);
+                            i = i + 1;
+                        else
+                            real_part = z(:,i)' * A * z(:,i) + z(:,i+1)' * A * z(:,i+1);
+                            imag_part = z(:,i)' * A * z(:,i+1) - z(:,i+1)' * A * z(:,i)
+                            res_d(i) = complex(real_part, imag_part);
+                            res_d(i+1) = complex(real_part, -imag_part);
+                            i = i + 2;
+                        end
+                    end
+                else
+                    res_d = complex(dr,di);
+                end
+                res_d = res_d(1:nev);
                 if(rvec)
                     res_d = diag(res_d)
                     res_v = z;

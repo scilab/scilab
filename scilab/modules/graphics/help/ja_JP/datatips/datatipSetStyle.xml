@@ -92,13 +92,6 @@
     d2=datatipCreate(e(2),200);
     
     ]]></programlisting>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../images/datatips6.svg"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
