@@ -102,12 +102,5 @@
     e=gce();e.polyline_style=4;e.arrow_size_factor = 1.5;
 
     ]]></programlisting>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../images/orthProj.svg"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
     </refsection>
 </refentry>
