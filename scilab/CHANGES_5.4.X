@@ -307,6 +307,10 @@ Bug fixes
 
 * Bug #12238 fixed - [d v] = eigs(A) was broken for sparse matrices.
 
+* Bug #12239 fixed - Apply some of the recent changes in eigs to feigs.
+
+* Bug #12240 fixed - Refactoring of the eigs function.
+
 * Bug #12247 fixed - Fix a typo in some error messages.
 
 

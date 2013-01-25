@@ -679,14 +679,14 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
     end
     [mB, nB] = size(%_B);
 
+    matB = mB * nB;
     //Check if B is a square matrix
-    if(mB * nB == 1 | mB <> nB)
+    if(matB & (mB <> nA |nB <> nA))
         error(msprintf(gettext("%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"), "eigs", 3));
     end
 
     //check if B is complex
     Breal = isreal(%_B);
-    matB = mB * nB;
 
     //*************************
     //NEV :
@@ -865,24 +865,36 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
     end
 
     if(cholB)
-        if(~and(triu(%_B) == %_B))
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: B must be symmetric or hermitian, definite, semi positive.\n"), "eigs", 2));
+        if(or(triu(%_B) <> %_B))
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: if opts.cholB is true, B must be upper triangular.\n"), "eigs", 2));
         end
-        R = %_B;
-        Rprime = R';
+        if(issparse(%_B)) //sparse cholesky decomposition is reversed...
+            Rprime = %_B;
+            R = Rprime;
+        else
+            R = %_B;
+            Rprime = R';
+        end
     end
-
-    if(~cholB & matB <> 0 & iparam(7) == 1)
-        if(~Breal)
+    if(~cholB & matB & iparam(7) == 1)
+        if(issparse(%_B) & ~Breal)
             error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "eigs"));
         else
             if(issparse(%_B))
                 [R,P] = spchol(%_B);
+                perm = spget(P);
+                perm = perm(:,2);
+                iperm = spget(P');
+                iperm = iperm(:,2);
             else
                 R = chol(%_B);
+                Rprime = R';
             end
-            Rprime = R';
         end
+    end
+    if(matB & issparse(%_B) & iparam(7) == 1)
+        Rfact = umf_lufact(R);
+        Rprimefact = umf_lufact(R');
     end
 
     //Main
@@ -897,8 +909,8 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
             v = zeros(nA, ncv);
             workl = zeros(lworkl, 1);
             workd = zeros(3 * nA, 1);
-            d = zeros(nev, 1); 
-            z = zeros(nA, nev); 
+            d = zeros(nev, 1);
+            z = zeros(nA, nev);
         else
             lworkl = 3 * ncv * (ncv + 2);
             v = zeros(nA, ncv);
@@ -941,54 +953,71 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
 
         if(ido == -1 | ido == 1 | ido == 2)
             if(iparam(7) == 1)
-                if(matB == 0)
-                    ierr = execstr('A_fun(workd(ipntr(1):ipntr(1)+nA-1))', 'errcatch');
-                    if(ierr <> 0)
-                        break;
-                    end
-                    workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(1):ipntr(1)+nA-1));
+                if(ido == 2)
+                    workd(ipntr(2):ipntr(2)+nA-1) = workd(ipntr(1):ipntr(1)+nA-1);
                 else
-                    ierr = execstr('A_fun(inv(R) * workd(ipntr(1):ipntr(1)+nA-1))', 'errcatch');
-                    if(ierr <> 0)
-                        break;
+                    if(matB == 0)
+                        ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(1):ipntr(1)+nA-1))', 'errcatch');
+                        if(ierr <> 0)
+                            break;
+                        end
+                    else
+                        if(issparse(%_B))
+                            y = umf_lusolve(Rprimefact, workd(ipntr(1):ipntr(1)+nA-1));
+                            if(~cholB)
+                                ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun( y(perm) )', 'errcatch');
+                                if(ierr <> 0)
+                                    break;
+                                end
+                                y = y(iperm);
+                            else
+                                ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun(y)', 'errcatch');
+                                if(ierr <> 0)
+                                    break;
+                                end
+                            end
+                            workd(ipntr(2):ipntr(2)+nA-1) = umf_lusolve(Rfact, y);
+                        else
+                            ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun( R \ workd(ipntr(1):ipntr(1)+nA-1) )', 'errcatch');
+                            if(ierr <> 0)
+                                break;
+                            end
+                            workd(ipntr(2):ipntr(2)+nA-1) = Rprime \ workd(ipntr(2):ipntr(2)+nA-1);
+                        end
                     end
-                    workd(ipntr(2):ipntr(2)+nA-1) = inv(Rprime) * A_fun(inv(R) * workd(ipntr(1):ipntr(1)+nA-1));
                 end
             elseif(iparam(7) == 3)
                 if(matB == 0)
                     if(ido == 2)
                         workd(ipntr(2):ipntr(2)+nA-1) = workd(ipntr(1):ipntr(1)+nA-1);
                     else
-                        ierr = execstr('A_fun(workd(ipntr(1):ipntr(1)+nA-1))', 'errcatch');
+                        ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(1):ipntr(1)+nA-1))', 'errcatch');
                         if(ierr <> 0)
                             break;
                         end
-                        workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(1):ipntr(1)+nA-1));
                     end
                 else
                     if(ido == 2)
                         if(cholB)
-                            workd(ipntr(2):ipntr(2)+nA-1) = Rprime * R * workd(ipntr(1):ipntr(1)+nA-1);
+                            workd(ipntr(2):ipntr(2)+nA-1) = Rprime * (R * workd(ipntr(1):ipntr(1)+nA-1));
                         else
                             workd(ipntr(2):ipntr(2)+nA-1) = %_B * workd(ipntr(1):ipntr(1)+nA-1);
                         end
                     elseif(ido == -1)
                         if(cholB)
-                            workd(ipntr(2):ipntr(2)+nA-1) = Rprime * R * workd(ipntr(1):ipntr(1)+nA-1);
+                            workd(ipntr(2):ipntr(2)+nA-1) = Rprime * (R * workd(ipntr(1):ipntr(1)+nA-1));
                         else
                             workd(ipntr(2):ipntr(2)+nA-1) = %_B * workd(ipntr(1):ipntr(1)+nA-1);
                         end
-                        ierr = execstr('A_fun(workd(ipntr(2):ipntr(2)+nA-1))', 'errcatch');
+                        ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(2):ipntr(2)+nA-1))', 'errcatch');
                         if(ierr <> 0)
                             break;
                         end
-                        workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(2):ipntr(2)+nA-1));
                     else
-                        ierr = execstr('A_fun(workd(ipntr(3):ipntr(3)+nA-1))', 'errcatch');
+                        ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(3):ipntr(3)+nA-1))', 'errcatch');
                         if(ierr <> 0)
                             break;
                         end
-                        workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(3):ipntr(3)+nA-1));
                     end
                 end
             else
@@ -1055,15 +1084,12 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
                 end
                 res_d = res_d(1:nev);
                 if(rvec)
-                    res_d = diag(res_d)
+                    index = find(di~=0);
+                    index = index(1:2:$);
                     res_v = z;
-                    c1 = 1:2:nev + 1;
-                    c2 = 2:2:nev + 1;
-                    if(modulo(nev,2) == 1)
-                        c1($) = [];
-                    end
-                    res_v(:,[c1, c2]) = [res_v(:,c1) + res_v(:,c2) * %i res_v(:,c1) - res_v(:,c2) * %i];
-                    res_v(:,$) = [];
+                    res_v(:,[index index+1]) = [complex(res_v(:,index), res_v(:,index+1)), complex(res_v(:,index), -res_v(:,index+1))];
+                    res_d = diag(res_d);
+                    res_v = res_v(:,1:nev);
                 end
             end
         end
@@ -1078,6 +1104,16 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
                 res_d = diag(d);
                 res_v = z;
             end
+        end
+    end
+    if(rvec & iparam(7) == 1 & matB)
+        if issparse(%_B)
+            res_v = umf_lusolve(Rprimefact, res_v);
+            if(~cholB)
+                res_v = res_v(perm, :);
+            end
+        else
+            res_v = R \ res_v;
         end
     end
 endfunction
