@@ -18,7 +18,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>hallchart([ modules [,args [,colors]]])</synopsis>
-        <synopsis/>
+        
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

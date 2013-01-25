@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-10 17:04+0100\n"
+"Revision-Date: 2013-01-24 00:28+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -1681,24 +1681,30 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/tmpdir.c, line: 56
+# File: src/c/tmpdir.c, line: 59
 msgid "Cannot find Windows temporary directory (1)."
 msgstr ""
 
 #
-# File: src/c/tmpdir.c, line: 56
-# File: src/c/tmpdir.c, line: 78
+# File: src/c/tmpdir.c, line: 59
+# File: src/c/tmpdir.c, line: 81
 msgid "Error"
 msgstr ""
 
 #
-# File: src/c/tmpdir.c, line: 77
+# File: src/c/tmpdir.c, line: 80
 #, c-format
 msgid "Impossible to create : %s"
 msgstr ""
 
 #
-# File: src/c/tmpdir.c, line: 139
+# File: src/c/tmpdir.c, line: 141
+#, c-format
+msgid "Warning: Could not resolve the realpath of %s.\n"
+msgstr ""
+
+#
+# File: src/c/tmpdir.c, line: 147
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr ""

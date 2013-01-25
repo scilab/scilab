@@ -188,6 +188,11 @@ int sci_delete(char *fname, unsigned long fname_len)
                             deleteGraphicObject(childrenUID[i]);
                         }
                     }
+                    /*
+                     * Clone a new Axes object using the Axes model which is then
+                     * attached to the 'cleaned' Figure.
+                     */
+                    cloneAxesModel(pFigureUID);
 
                     AssignOutputVariable(pvApiCtx, 1) = 0;
                     ReturnArguments(pvApiCtx);

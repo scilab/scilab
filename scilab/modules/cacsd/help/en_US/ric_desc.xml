@@ -103,6 +103,15 @@ E=[eye(n,n),G;               H=[A, 0*ones(n,n);
             with <literal>G=B/R*B'</literal>
         </para>
     </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+h=[0.5,4;
+0,-0.5]
+x=ric_desc(h)
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

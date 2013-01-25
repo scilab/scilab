@@ -9199,7 +9199,7 @@ if test -n "$F77"; then
      gfortran*)
         ## With GNU Compiler enable the code coverage
         if test "$enable_code_coverage" = yes; then
-            CODE_COVERAGE_FFLAGS="-fprofile-arcs -ftest-coverage"
+            CODECOVERAGE_FFLAGS="-fprofile-arcs -ftest-coverage"
         fi
      ;;
      g77*)
@@ -9374,7 +9374,7 @@ case "$CXX" in
 
         # enable the code coverage
         if test "$enable_code_coverage" = yes; then
-            CODE_COVERAGE_CXXFLAGS="-fprofile-arcs -ftest-coverage"
+            CODECOVERAGE_CXXFLAGS="-fprofile-arcs -ftest-coverage"
         fi
 
         if test "$enable_debug_CXX" = yes; then
@@ -9415,7 +9415,7 @@ case "$CC" in
 
    # enable the code coverage
    if test "$enable_code_coverage" = yes; then
-    CODE_COVERAGE_CFLAGS="-fprofile-arcs -ftest-coverage"
+    CODECOVERAGE_CFLAGS="-fprofile-arcs -ftest-coverage"
    fi
 
    if test "$enable_debug_C" = yes; then
@@ -9630,7 +9630,7 @@ fi
    if test -z "$GENHTML" ; then
         as_fn_error $? "Cannot find genhtml. Please install it (package lcov under Debian) or remove the option --enable-code-coverage" "$LINENO" 5
    fi
-   CODE_COVERAGE_LDFLAGS="-coverage"
+   CODECOVERAGE_LDFLAGS="-coverage -lgcov"
 fi
  if test "$enable_code_coverage" = yes; then
   CODE_COVERAGE_TRUE=
@@ -12724,8 +12724,8 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar scirendere
 
 
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.0.3) of scirenderer" >&5
-$as_echo_n "checking minimal version (1.0.3) of scirenderer... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.0.5) of scirenderer" >&5
+$as_echo_n "checking minimal version (1.0.5) of scirenderer... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$SCIRENDERER:$ac_java_classpath"
    if test "x" == "x"; then
@@ -12738,7 +12738,7 @@ import org.scilab.forge.scirenderer.PackageInfo;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.0.3";
+        String minVersion="1.0.5";
 
                             System.out.println(PackageInfo.VERSION);
                                   if (compare(minVersion, PackageInfo.VERSION) > 0) {
@@ -12787,7 +12787,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of scirenderer. Expected at least 1.0.3. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of scirenderer. Expected at least 1.0.5. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -12797,7 +12797,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of scirenderer. Expected at least 1.0.3. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of scirenderer. Expected at least 1.0.5. Found $STDOUT" "$LINENO" 5
             fi
 
    else
@@ -12810,7 +12810,7 @@ import org.scilab.forge.scirenderer.PackageInfo;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.0.3";
+        String minVersion="1.0.5";
 
                             System.out.println(PackageInfo.VERSION);
                                   if (compare(minVersion, PackageInfo.VERSION) != 0) {
@@ -12859,7 +12859,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of scirenderer. Expected exact version 1.0.3. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of scirenderer. Expected exact version 1.0.5. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -12869,7 +12869,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of scirenderer. Expected exact version 1.0.3. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of scirenderer. Expected exact version 1.0.5. Found $STDOUT" "$LINENO" 5
             fi
 
     fi
@@ -12994,8 +12994,8 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar flexdock u
 
 
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.2.1) of flexdock" >&5
-$as_echo_n "checking minimal version (1.2.1) of flexdock... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.2.2) of flexdock" >&5
+$as_echo_n "checking minimal version (1.2.2) of flexdock... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$FLEXDOCK:$ac_java_classpath"
    if test "x" == "x"; then
@@ -13008,7 +13008,7 @@ import org.flexdock.util.Utilities;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.2.1";
+        String minVersion="1.2.2";
 
                             System.out.println(Utilities.VERSION);
                                   if (compare(minVersion, Utilities.VERSION) > 0) {
@@ -13057,7 +13057,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of flexdock. Expected at least 1.2.1. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of flexdock. Expected at least 1.2.2. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -13067,7 +13067,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of flexdock. Expected at least 1.2.1. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of flexdock. Expected at least 1.2.2. Found $STDOUT" "$LINENO" 5
             fi
 
    else
@@ -13080,7 +13080,7 @@ import org.flexdock.util.Utilities;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.2.1";
+        String minVersion="1.2.2";
 
                             System.out.println(Utilities.VERSION);
                                   if (compare(minVersion, Utilities.VERSION) != 0) {
@@ -13129,7 +13129,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of flexdock. Expected exact version 1.2.1. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of flexdock. Expected exact version 1.2.2. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -13139,7 +13139,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of flexdock. Expected exact version 1.2.1. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of flexdock. Expected exact version 1.2.2. Found $STDOUT" "$LINENO" 5
             fi
 
     fi

@@ -399,7 +399,7 @@ if test -n "$F77"; then
      gfortran*)
         ## With GNU Compiler enable the code coverage
         if test "$enable_code_coverage" = yes; then
-            CODE_COVERAGE_FFLAGS="-fprofile-arcs -ftest-coverage"
+            CODECOVERAGE_FFLAGS="-fprofile-arcs -ftest-coverage"
         fi
      ;;
      g77*)
@@ -519,7 +519,7 @@ case "$CXX" in
 
         # enable the code coverage
         if test "$enable_code_coverage" = yes; then
-            CODE_COVERAGE_CXXFLAGS="-fprofile-arcs -ftest-coverage"
+            CODECOVERAGE_CXXFLAGS="-fprofile-arcs -ftest-coverage"
         fi
 
         if test "$enable_debug_CXX" = yes; then
@@ -560,7 +560,7 @@ case "$CC" in
 
    # enable the code coverage
    if test "$enable_code_coverage" = yes; then
-    CODE_COVERAGE_CFLAGS="-fprofile-arcs -ftest-coverage"
+    CODECOVERAGE_CFLAGS="-fprofile-arcs -ftest-coverage"
    fi
 
    if test "$enable_debug_C" = yes; then
@@ -696,7 +696,7 @@ if test "$enable_code_coverage" = yes; then
    if test -z "$GENHTML" ; then
         AC_MSG_ERROR([Cannot find genhtml. Please install it (package lcov under Debian) or remove the option --enable-code-coverage])
    fi
-   CODE_COVERAGE_LDFLAGS="-coverage"
+   CODECOVERAGE_LDFLAGS="-coverage -lgcov"
 fi
 AM_CONDITIONAL(CODE_COVERAGE, test "$enable_code_coverage" = yes)
 
@@ -859,14 +859,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 SCIRENDERER=$PACKAGE_JAR_FILE
                 AC_SUBST(SCIRENDERER)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.0.3],[PackageInfo.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.0.5],[PackageInfo.VERSION])
 
                # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.1],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.2],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
