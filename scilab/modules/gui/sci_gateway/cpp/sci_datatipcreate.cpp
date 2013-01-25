@@ -10,7 +10,7 @@
  *
  */
 
-#include "DatatipFunctions.hxx"
+#include "DatatipCreate.hxx"
 #include "ScilabView.hxx"
 
 extern "C"

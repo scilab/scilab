@@ -185,5 +185,6 @@ int set_tip_data_property(void* _pvCtx, char* pobj, void* _pvData, int valueType
 int set_tip_orientation_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_tip_3component_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_tip_auto_orientation_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_tip_interp_mode_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

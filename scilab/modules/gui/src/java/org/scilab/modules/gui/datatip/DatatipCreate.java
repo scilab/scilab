@@ -48,12 +48,9 @@ public class DatatipCreate {
     */
     public static String createDatatip(String figureUid, Integer coordIntX, Integer coordIntY) {
 
-        Integer[] pixelMouseCoordInt = { coordIntX , coordIntY };
-        String polylineUid = ep.pick (figureUid, coordIntX, coordIntY);
-        String axesUid = datatipAxesHandler(figureUid, pixelMouseCoordInt);
-        double[] pixelMouseCoordDouble = transformPixelCoordToDouble(pixelMouseCoordInt);
-        double[] graphicCoord = transformPixelCoordToGraphic(axesUid, pixelMouseCoordDouble);
-        String newDatatip = datatipProperties (graphicCoord, polylineUid);
+        String polylineUid = ep.pick(figureUid, coordIntX, coordIntY);
+        double[] graphicCoord = DatatipCommon.getTransformedPosition(figureUid, new Integer[] {coordIntX, coordIntY});
+        String newDatatip = datatipProperties(graphicCoord, polylineUid);
         return newDatatip;
     }
 
@@ -68,21 +65,14 @@ public class DatatipCreate {
     public static String createDatatipProgramCoord(String polylineUid, double[] coordDoubleXY) {
 
         if (polylineUid != null) {
-            String polylineInterp = null;
-            polylineInterp = (String) GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_TAG__);
 
             DatatipCommon.Segment seg = DatatipCommon.getSegment(coordDoubleXY[0], polylineUid);
 
-            double[] position = null;
 
-            if (polylineInterp.equals("d_i")) {
-                Double[] pos = DatatipCommon.Interpolate(coordDoubleXY[0], seg);
-                position = new double[] {pos[0], pos[1], 0.0};
-            } else {
-                position = new double[] {seg.x0, seg.y0, 0.0};
-            }
+            Double[] pos = DatatipCommon.Interpolate(coordDoubleXY[0], seg);
+            double[] position = new double[] {pos[0], pos[1], 0.0};
 
-            String newDatatip = datatipProperties (position, polylineUid);
+            String newDatatip = datatipProperties(position, polylineUid);
             return newDatatip;
 
         }
@@ -115,13 +105,13 @@ public class DatatipCreate {
     }
 
     /**
-    * Get integer datatip position on a specific axes
+    * Get the datatip position in pixels on a specific axes
     *
     * @param coordinates Datatip coordinates x, y in double precision
     * @param axesUid Axes unique identifier
-    * @return integer datatip position
+    * @return datatip position in pixels
     */
-    public static Integer[] getDatatipPositionInteger (double[] coordinates, String axesUid) {
+    public static Integer[] getDatatipPositionInteger(double[] coordinates, String axesUid) {
 
         double[] graphCoordDouble = new double[] {0.0, 0.0, 0.0};
         graphCoordDouble[0] = coordinates[0];
@@ -141,103 +131,24 @@ public class DatatipCreate {
         return coordInteger;
     }
 
-    /**
-    * Get the axes handler of the figure which mouse click belongs
-    *
-    * @param figureUid Figure unique identifier.
-    * @param pixelMouseCoordInt Vector with pixel mouse position x and y.
-    * @return Axes handler string.
-    */
-    public static String datatipAxesHandler(String figureUid, Integer[] pixelMouseCoordInt) {
-
-        return AxesHandler.clickedAxes(figureUid, pixelMouseCoordInt);
-    }
 
     /**
-    * Transform integer pixel coordinate to double precision
+    * Creates and setup the datatip.
     *
-    * @param pixelMouseCoordInt Vector with pixel mouse position x and y.
-    * @return Pixel coordinates in double precision.
+    * @param coord double array with graphic position x and y.
+    * @param polyline the polyline uid string.
+    * @return Datatip uid string.
     */
-    public static double[] transformPixelCoordToDouble(Integer[] pixelMouseCoordInt) {
-
-        double[] pixelMouseCoordDouble = new double[3];
-        for (int i = 0 ; i < pixelMouseCoordInt.length ; i++) {
-            pixelMouseCoordDouble[i] = (double) pixelMouseCoordInt[i];
-        }
-        return pixelMouseCoordDouble;
-    }
-
-    /**
-    * Transform pixel screen coordinates in graphic coordinates
-    *
-    * @param axesUid Axes handler of clicked figure.
-    * @param pixelMouseCoordDouble Mouse click pixel coordinates in double precision.
-    * @return Graphic coordinates related to inserted pixel coordinates.
-    */
-    public static double[] transformPixelCoordToGraphic(String axesUid, double[] pixelMouseCoordDouble) {
-        return CallRenderer.get2dViewFromPixelCoordinates(axesUid, pixelMouseCoordDouble);
-    }
-
-    /**
-    * Ask to create an object in graphic window
-    *
-    * @return Datatip object handle
-    */
-    public static String askToCreateObject() {
+    private static String datatipProperties(double[] coord, String polyline) {
 
         String newDatatip = GraphicController.getController().askObject(GraphicObject.getTypeFromName(GraphicObjectProperties.__GO_DATATIP__));
-        return newDatatip;
-    }
-
-
-    /**
-    * Set the position which datatip will be shown in graphic
-    *
-    * @param graphicCoord Vector containing the graphic coordinates in double precision.
-    * @return Graphic coordinates x, y that datatip will be shown.
-    */
-    public static Double[] setDatatipPosition (double[] graphicCoord) {
-
-        Double[] datatipPosition = new Double[3];
-        datatipPosition[0] = graphicCoord[0];
-        datatipPosition[1] = graphicCoord[1];
-        datatipPosition[2] = 0.0;
-        return datatipPosition;
-    }
-
-    /**
-    * Set all default datatip properties;
-    *
-    * @param graphicCoord double array with graphic position x and y.
-    * @param polyline the polyline handler string.
-    * @return Datatip handler string.
-    */
-    private static String datatipProperties (double[] graphicCoord, String polyline) {
-
-        String newDatatip = askToCreateObject();
-        Double[] datatipPosition = setDatatipPosition(graphicCoord);
+        Double[] datatipPosition = new Double[] {coord[0], coord[1], 0.0};
 
         GraphicController.getController().setProperty(newDatatip, GraphicObjectProperties.__GO_DATATIP_DATA__, datatipPosition);
         GraphicController.getController().setGraphicObjectRelationship(polyline, newDatatip);
         return newDatatip;
     }
 
-    /**
-     * Set interpolation mode of a polyline;
-     *
-     * @param polylineUid Polyline handler string.
-     * @param interpMode Boolean to control interpolation mode
-     */
-    public static void datatipSetInterp (String polylineUid, boolean interpMode) {
 
-        if (interpMode) {
-            String interpString = "d_i";
-            GraphicController.getController().setProperty(polylineUid, GraphicObjectProperties.__GO_TAG__, interpString);
-        } else {
-            String interpString = "";
-            GraphicController.getController().setProperty(polylineUid, GraphicObjectProperties.__GO_TAG__, interpString);
-        }
-    }
 
 }

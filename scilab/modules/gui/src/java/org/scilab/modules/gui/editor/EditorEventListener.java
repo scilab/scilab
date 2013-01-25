@@ -20,12 +20,12 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import org.scilab.modules.gui.datatip.DatatipCreate;
-import org.scilab.modules.gui.datatip.DatatipSelect;
 import org.scilab.modules.gui.datatip.DatatipDelete;
 import org.scilab.modules.gui.datatip.DatatipMove;
 import org.scilab.modules.gui.datatip.DatatipDrag;
 import org.scilab.modules.gui.datatip.DatatipOrientation;
 import org.scilab.modules.gui.datatip.DatatipManagerMode;
+import org.scilab.modules.gui.datatip.DatatipManager;
 
 import org.scilab.modules.gui.editor.Editor;
 import org.scilab.modules.gui.editor.EditorManager;
@@ -54,7 +54,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     String picked;
     EntityPicker ep;
 
-    String selectedDatatip = null;
+    DatatipManagerMode datatipManagerMode;
     String lastDatatip = null;
     Integer[] lastClick = new Integer[2];
     boolean changeOrientation = false; 
@@ -68,23 +68,24 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
         windowUid = uid;
         editor = EditorManager.newEditor(uid);
         ep = new EntityPicker();
-        DatatipManagerMode.setFigure(uid);
+        datatipManagerMode = DatatipManager.newDatatipManagerMode(uid);
     }
 
     public void onExit() {
         EditorManager.deleteEditor(editor.getFigureUid());
+	DatatipManager.deleteDatatipManager(windowUid);
     }
 
     public void keyPressed(KeyEvent arg0) {
 
         editor.onKeyPressed(arg0);
 
-        if (DatatipManagerMode.getDatatipManagerMode()) {
-            if (selectedDatatip != null) {
+        if (datatipManagerMode.isEnabled()) {
+            if (datatipManagerMode.getSelectedTip() != null) {
                 if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    DatatipMove.moveRight (selectedDatatip);
+                    DatatipMove.moveRight(datatipManagerMode.getSelectedTip());
                 } else if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
-                    DatatipMove.moveLeft (selectedDatatip);
+                    DatatipMove.moveLeft(datatipManagerMode.getSelectedTip());
                 }
             }
         }
@@ -119,7 +120,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
 
                 isLeftButtonPressed = true;
 
-            if (!DatatipManagerMode.getDatatipManagerMode()) {
+            if (!datatipManagerMode.isEnabled()) {
                 editor.onLeftMouseDown(arg0);
 
                 // Part responsible for the exchange of properties of the GED.
@@ -131,8 +132,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
                     PlotBrowser.getPlotBrowser(windowUid);
                 }
             } else {
-                selectedDatatip = DatatipSelect.selectDatatip(windowUid, arg0.getX(), arg0.getY());
-                if (selectedDatatip == null) {
+                if (!datatipManagerMode.pickAndHighlight(arg0.getX(), arg0.getY())) {
                     picked = ep.pick(windowUid, arg0.getX(), arg0.getY());
                     if (picked != null) {
                         lastClick[0] = arg0.getX();
@@ -152,7 +152,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
      * @param arg0 MouseEvent
      */
     public void mouseReleased(MouseEvent arg0) {
-        if (!DatatipManagerMode.getDatatipManagerMode()) {
+        if (!datatipManagerMode.isEnabled()) {
 
             if (arg0.getButton() == 3) {
                 if (!isInRotation) {
@@ -164,12 +164,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
 
         } else {
             if (arg0.getButton() == 3 && !isInRotation) {
-                Integer pos[] = {arg0.getX(), arg0.getY()};
-                selectedDatatip = ep.pickDatatip(windowUid, pos);
-                if (selectedDatatip != null) {
-                    DatatipDelete.deleteDatatip(selectedDatatip);
-                    selectedDatatip = null;
-                }
+                datatipManagerMode.pickAndDelete(arg0.getX(), arg0.getY());
             }
         }
         isInRotation = false;
@@ -184,7 +179,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
      */
     public void mouseDragged(MouseEvent arg0) {
 
-        if (!DatatipManagerMode.getDatatipManagerMode()) {
+        if (!datatipManagerMode.isEnabled()) {
 
             if (isLeftButtonPressed) {
                 editor.onMouseDragged(arg0);
@@ -195,8 +190,8 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
             if (changeOrientation) {
                 Integer[] curClick = {arg0.getX(), arg0.getY()};
                 DatatipOrientation.setOrientation(lastDatatip, lastClick, curClick);
-            } else if (selectedDatatip != null && isLeftButtonPressed) {
-                DatatipDrag.dragDatatip(selectedDatatip, arg0.getX(), arg0.getY());
+            } else if (datatipManagerMode.getSelectedTip() != null && isLeftButtonPressed) {
+                DatatipDrag.dragDatatip(datatipManagerMode.getSelectedTip(), arg0.getX(), arg0.getY());
             }
         }
     }

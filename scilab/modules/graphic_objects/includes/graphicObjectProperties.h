@@ -360,6 +360,8 @@
 #define __GO_DATATIP_ORIENTATION__         299
 #define __GO_DATATIP_3COMPONENT__          300
 #define __GO_DATATIP_AUTOORIENTATION__          301
+#define __GO_DATATIP_INTERP_MODE__          302
+#define __GO_DATATIP_DISPLAY_FNC__          303
 
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

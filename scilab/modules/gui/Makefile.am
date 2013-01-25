@@ -133,8 +133,10 @@ src/cpp/displaytree.cpp \
 src/jni/ScilabDisplayTree.cpp \
 src/jni/EditorManager.cpp \
 src/jni/StartGED.cpp \
-src/jni/DatatipFunctions.cpp \
-src/jni/StartPlotBrowser.cpp
+src/jni/StartPlotBrowser.cpp \
+src/jni/DatatipManager.cpp \
+src/jni/DatatipCreate.cpp \
+src/jni/DatatipDelete.cpp
 
 GIWS_WRAPPERS = \
 src/jni/SwingView.giws.xml \
@@ -205,8 +207,7 @@ sci_gateway/cpp/sci_openged.cpp \
 sci_gateway/cpp/sci_datatipcreate.cpp \
 sci_gateway/cpp/sci_datatipremove.cpp \
 sci_gateway/cpp/sci_plotbrowser.cpp \
-sci_gateway/cpp/sci_datatipsetinterp.cpp
-
+sci_gateway/cpp/sci_datatip_manager_mode.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \

@@ -42,6 +42,15 @@ public class DatatipCommon {
      * the segment from the polyline that x belongs
      */
     public static Segment getSegment(double x, String polyline) {
+        return getSegment(x, polyline, 0);
+    }
+
+
+    /*
+     * Given a polyline and a position x in X axis return
+     * the segment+offset from the polyline that x belongs
+     */
+    public static Segment getSegment(double x, String polyline, int offset) {
 
         double dataX[] = (double[])PolylineData.getDataX(polyline);
         double dataY[] = (double[])PolylineData.getDataY(polyline);
@@ -52,6 +61,7 @@ public class DatatipCommon {
                 double min = Math.min(dataX[i], dataX[i + 1]);
                 double max = Math.max(dataX[i], dataX[i + 1]);
 
+                // using "if (x >= min && x < max)" seems to have no difference
                 if (x >= min && x <= max) {
                     index = i;
                     break;
@@ -70,6 +80,10 @@ public class DatatipCommon {
                     index = (max == dataX[0]) ? 0 : (dataX.length - 2);
                 }
             }
+            //check upper bound
+            index = (index + offset + 1) < dataX.length ? (index + offset) : dataX.length-2;
+            //check lower bound
+            index = (index + offset) >= 0 ? index : 0;
             return new Segment(index, dataX[index], dataX[index + 1], dataY[index], dataY[index + 1]);
         }
         return null;

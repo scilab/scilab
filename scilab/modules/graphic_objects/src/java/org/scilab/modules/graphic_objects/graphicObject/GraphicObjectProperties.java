@@ -361,6 +361,8 @@ public class GraphicObjectProperties {
     public static final int __GO_DATATIP_ORIENTATION__ =    299;
     public static final int __GO_DATATIP_3COMPONENT__ =     300;
     public static final int __GO_DATATIP_AUTOORIENTATION__ =     301;
+    public static final int __GO_DATATIP_INTERP_MODE__ =     302;
+    public static final int __GO_DATATIP_DISPLAY_FNC__ =     303;
 
 
 }

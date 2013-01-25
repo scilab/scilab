@@ -12,9 +12,13 @@
 
 package org.scilab.modules.gui.datatip;
 
+
+import org.scilab.modules.gui.datatip.DatatipCommon;
+import org.scilab.modules.gui.datatip.DatatipOrientation;
+
+import org.scilab.modules.renderer.CallRenderer;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-import org.scilab.modules.renderer.CallRenderer;
 
 
 /**
@@ -31,21 +35,58 @@ public class DatatipMove {
     *
     * @param markerUid datatip marker unique identifier
     */
-    public static void moveRight (String datatipUid) {
-        Integer[] pix_pos = getCoordInteger(datatipUid);
-        pix_pos[0] += 1;
-        DatatipDrag.dragDatatip(datatipUid, pix_pos[0], pix_pos[1]);
+    public static void moveRight(String datatipUid) {
+        move(datatipUid, 1, 2);
     }
+
 
     /**
     * Move a datatip to the left using keyboard
     *
     * @param datatipUid datatip unique identifier
     */
-    public static void moveLeft (String datatipUid) {
-        Integer[] pix_pos = getCoordInteger(datatipUid);
-        pix_pos[0] -= 1;
-        DatatipDrag.dragDatatip(datatipUid, pix_pos[0], pix_pos[1]);
+    public static void moveLeft(String datatipUid) {
+        move(datatipUid, -1, 0);
+    }
+
+    /*
+     * moves the datatip in the given dir(X axis)
+     * seg_offset is used when interp_mode is off so the
+     * datatip is shifted in the right direction (0 -> left, 2 -> right,
+     * the number 0 and 2 is because getSegment returns one segment more
+     * the right would be -1, 1. Probably this is because float round error.
+     */
+    private static void move(String datatipUid, int dir, int seg_offset) {
+
+        String parentPolyline = DatatipCommon.getParentPolyline(datatipUid);
+
+        if (parentPolyline != null) {
+            String figure = (String)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_FIGURE__);
+            Boolean useInterp = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_INTERP_MODE__);
+            Integer[] pos = getCoordInteger(datatipUid);
+
+
+            DatatipCommon.Segment seg;
+            Double[] newPos;
+            if (useInterp) {
+                pos[0] += dir;
+                double[] c2d = DatatipCommon.getTransformedPosition(figure, pos);
+                seg = DatatipCommon.getSegment(c2d[0], parentPolyline);
+                newPos = DatatipCommon.Interpolate(c2d[0], seg);
+            } else {
+                double[] c2d = DatatipCommon.getTransformedPosition(figure, pos);
+                seg = DatatipCommon.getSegment(c2d[0], parentPolyline, seg_offset);
+                newPos = new Double[] {seg.x0, seg.y0, 0.0};
+            }
+
+            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_DATA__, newPos);
+
+            Boolean AutoOrientation = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__);
+            if (AutoOrientation) {
+                DatatipOrientation.setOrientation(datatipUid, seg);
+            }
+
+        }
     }
 
     /**

@@ -24,7 +24,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
-import org.scilab.modules.gui.datatip.DatatipSelect;
+import org.scilab.modules.gui.datatip.DatatipManager;
 import org.scilab.modules.gui.editor.ScilabClipboard;
 import org.scilab.modules.gui.editor.SystemClipboard;
 import org.scilab.modules.gui.editor.PolylineHandler;
@@ -750,9 +750,8 @@ public class Editor {
         if (lastClick[0] != 0 && lastClick[1] != 0) {
 
             /*first try pick datatip*/
-            String selectedDatatip = DatatipSelect.selectDatatip(figureUid, lastClick[0], lastClick[1]);
-            if (selectedDatatip != null) {
-                Inspector.getInspector(SelectionEnum.DATATIP , selectedDatatip, 0, 0);
+            if (DatatipManager.getFromUid(figureUid).pickAndHighlight(lastClick[0], lastClick[1])) {
+                Inspector.getInspector(SelectionEnum.DATATIP , DatatipManager.getFromUid(figureUid).getSelectedTip(), 0, 0);
             } else {
 
                 String picked = tryPickAnyObject(lastClick);

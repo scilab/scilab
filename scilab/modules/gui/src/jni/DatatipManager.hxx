@@ -42,8 +42,8 @@ knowledge of the CeCILL-B license and that you accept its terms.
 */
 
 
-#ifndef __ORG_SCILAB_MODULES_GUI_DATATIP_DATATIPCREATE__
-#define __ORG_SCILAB_MODULES_GUI_DATATIP_DATATIPCREATE__
+#ifndef __ORG_SCILAB_MODULES_GUI_DATATIP_DATATIPMANAGER__
+#define __ORG_SCILAB_MODULES_GUI_DATATIP_DATATIPMANAGER__
 #include <iostream>
 #include <string>
 #include <string.h>
@@ -76,14 +76,16 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #endif
 
 namespace org_scilab_modules_gui_datatip {
-class GIWSEXPORT DatatipCreate {
+class GIWSEXPORT DatatipManager {
 
 private:
 JavaVM * jvm;
 
 protected:
-jmethodID jstringcreateDatatipProgramCoordjstringjava_lang_StringjdoubleArray_doubledoubleID; // cache method id
-jmethodID jstringcreateDatatipProgramIndexjstringjava_lang_StringjintintID; // cache method id
+jmethodID voidsetEnabledjstringjava_lang_StringjbooleanbooleanID; // cache method id
+jmethodID jbooleanisEnabledjstringjava_lang_StringID; // cache method id
+jmethodID jstringgetSelectedjstringjava_lang_StringID; // cache method id
+jmethodID voidsetSelectedjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
 
 
 
@@ -106,7 +108,7 @@ public:
 * It will call the default constructor
 * @param JEnv_ the Java Env
 */
-DatatipCreate(JavaVM * jvm_);
+DatatipManager(JavaVM * jvm_);
 
 /**
 * Create a wrapping of an already existing object from a JNIEnv.
@@ -114,7 +116,7 @@ DatatipCreate(JavaVM * jvm_);
 * @param JEnv_ the Java Env
 * @param JObj the object
 */
-DatatipCreate(JavaVM * jvm_, jobject JObj);
+DatatipManager(JavaVM * jvm_, jobject JObj);
 
 
 /** 
@@ -122,11 +124,11 @@ DatatipCreate(JavaVM * jvm_, jobject JObj);
 * chaining when dealing with extended giws classes 
 */
 #ifdef FAKEGIWSDATATYPE
-DatatipCreate(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
+DatatipManager(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
 #endif
 
 // Destructor
-~DatatipCreate();
+~DatatipManager();
 
 // Generic method
 // Synchronization methods
@@ -143,9 +145,13 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static char* createDatatipProgramCoord(JavaVM * jvm_, char const* polylineUid, double const* coordDoubleXY, int coordDoubleXYSize);
+static void setEnabled(JavaVM * jvm_, char const* uid, bool b);
 
-static char* createDatatipProgramIndex(JavaVM * jvm_, char const* polylineUid, int indexPoint);
+static bool isEnabled(JavaVM * jvm_, char const* uid);
+
+static char* getSelected(JavaVM * jvm_, char const* uid);
+
+static void setSelected(JavaVM * jvm_, char const* figureUid, char const* tipUid);
 
 
                         /**
@@ -155,7 +161,7 @@ static char* createDatatipProgramIndex(JavaVM * jvm_, char const* polylineUid, i
                         
                 static const std::string className()
                 {
-                return "org/scilab/modules/gui/datatip/DatatipCreate";
+                return "org/scilab/modules/gui/datatip/DatatipManager";
                 }
                 
 };

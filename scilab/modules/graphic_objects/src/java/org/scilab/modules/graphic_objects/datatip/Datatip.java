@@ -27,13 +27,17 @@ public class Datatip extends Text {
     Double[] tipData;
     /** false = display only (X, Y), true = display (X, Y, Z)*/
     Boolean use3component;
+    /** false = no interpolation between point segments*/
+    Boolean interpMode;
     /** Displayed number format*/
     DecimalFormat tipTextFormat;
+    /** Display function*/
+    String displayFnc;
     /** For automatic update the datatip orientation*/
     Boolean autoOrientation;
 
 
-    enum DatatipObjectProperty { TIP_DATA, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_3COMPONENT };
+    enum DatatipObjectProperty { TIP_DATA, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_3COMPONENT, TIP_INTERP_MODE, TIP_DISPLAY_FNC };
     enum TipOrientation { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT;
 
                           /**
@@ -68,6 +72,8 @@ public class Datatip extends Text {
         autoOrientation = true;
         setOrientationAsEnum(TipOrientation.TOP_RIGHT);
         tipTextFormat = new DecimalFormat("#.####");
+        interpMode = true;
+        displayFnc = null;
         setBox(true);
         setLineMode(true);
         setFillMode(true);
@@ -99,6 +105,10 @@ public class Datatip extends Text {
                 return DatatipObjectProperty.TIP_3COMPONENT;
             case __GO_DATATIP_AUTOORIENTATION__:
                 return DatatipObjectProperty.TIP_AUTOORIENTATION;
+          case __GO_DATATIP_INTERP_MODE__:
+                return DatatipObjectProperty.TIP_INTERP_MODE;
+          case __GO_DATATIP_DISPLAY_FNC__:
+                return DatatipObjectProperty.TIP_DISPLAY_FNC;
             default:
                 return super.getPropertyFromName(propertyName);
         }
@@ -116,6 +126,10 @@ public class Datatip extends Text {
             return isUsing3Component();
         } else if (property == DatatipObjectProperty.TIP_AUTOORIENTATION) {
             return isAutoOrientationEnabled();
+        } else if (property == DatatipObjectProperty.TIP_INTERP_MODE) {
+            return getInterpMode();
+        } else if (property == DatatipObjectProperty.TIP_DISPLAY_FNC) {
+            return getDisplayFunction();
         } else {
             return super.getProperty(property);
         }
@@ -135,6 +149,10 @@ public class Datatip extends Text {
             setUse3Component((Boolean)value);
         } else if (property == DatatipObjectProperty.TIP_AUTOORIENTATION) {
             setAutoOrientation((Boolean)value);
+        } else if (property == DatatipObjectProperty.TIP_INTERP_MODE) {
+            setInterpMode((Boolean) value);
+        } else if (property == DatatipObjectProperty.TIP_DISPLAY_FNC) {
+            setDisplayFunction((String) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -239,6 +257,22 @@ public class Datatip extends Text {
 
         setTextArrayDimensions(dim);
         setTextStrings(textArray);
+    }
+
+    public Boolean getInterpMode() {
+        return interpMode;
+    }
+    
+    public String getDisplayFunction() {
+        return displayFnc;
+    }
+
+    public void setInterpMode(Boolean mode) {
+        interpMode = mode;
+    }
+    
+    public void setDisplayFunction(String fnc) {
+        displayFnc = fnc;
     }
 
     @Override

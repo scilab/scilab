@@ -8,5 +8,13 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function datatipSetOrientation(tip_handle,o)
-// to be removed
+    if o == "upper left" then
+        tip_handle.tip_orientation = 0;
+    elseif o == "upper right" then
+        tip_handle.tip_orientation = 1;
+    elseif o == "lower left" then
+        tip_handle.tip_orientation = 2;
+    elseif o == "lower right" then
+        tip_handle.tip_orientation = 3;
+    end
 endfunction

@@ -12,9 +12,9 @@
 
 package org.scilab.modules.gui.datatip;
 
+import org.scilab.modules.localization.Messages;
+import org.scilab.modules.gui.editor.EntityPicker;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 /**
@@ -23,57 +23,27 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
  */
 public class DatatipManagerMode {
 
-    public static String figureUid = null;
-    public static boolean datatipManagerModeStatus = false;
-    public static String datatipMessage = "Left click on the curve creates a datatip and right click on the datatip removes it.";
+    private String selectedTip;
+    private Integer markColor;
+
+    private String figureUid;
+    private boolean datatipManagerModeStatus;
+
+    private static String datatipMessage = Messages.gettext("Left click on the curve creates a datatip and right click on the datatip removes it.");
 
     public DatatipManagerMode() {
-        setFigure(null);
+        selectedTip = null;
+        figureUid = null;
+        datatipManagerModeStatus = false;
     }
 
-    /**
-    * Set the datatip manager mode between on/off
-    * for graphics toolbar's toggle button
-    *
-    * @return Datatip manager mode status.
-    */
-    public static boolean setDatatipManagerModeToggle() {
-        if (datatipManagerModeStatus) {
-            datatipManagerModeStatus = false;
+    public void setEnabled(boolean b) {
+        datatipManagerModeStatus = b;
+        if (!datatipManagerModeStatus) {
             GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, "");
         } else {
-            datatipManagerModeStatus = true;
             GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, datatipMessage);
         }
-        return datatipManagerModeStatus;
-    }
-
-    /**
-    * Set the datatip manager mode on
-    * for graphics menubar's button
-    *
-    * @return Datatip manager mode status on.
-    */
-    public static boolean setDatatipManagerModeButtonOn() {
-        if (!datatipManagerModeStatus) {
-            datatipManagerModeStatus = true;
-            GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, datatipMessage);
-        }
-        return datatipManagerModeStatus;
-    }
-
-    /**
-    * Set the datatip manager mode off
-    * for graphics menubar's button
-    *
-    * @return Datatip manager mode status off.
-    */
-    public static boolean setDatatipManagerModeButtonOff() {
-        if (datatipManagerModeStatus) {
-            datatipManagerModeStatus = false;
-            GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, "");
-        }
-        return datatipManagerModeStatus;
     }
 
     /**
@@ -81,20 +51,71 @@ public class DatatipManagerMode {
     *
     * @return Datatip manager mode status.
     */
-    public static boolean getDatatipManagerMode() {
-        if (datatipManagerModeStatus) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isEnabled() {
+        return datatipManagerModeStatus;
     }
+
+
+    public void setSelectedTip(String uid) {
+        markColor = highlightSelected(uid, selectedTip, markColor);
+        selectedTip = uid;
+    }
+
+    public String getSelectedTip() {
+        return selectedTip;
+    }
+
+
 
     /**
     * Set figure uid
     *
     * @param uid Figure unique identifier.
     */
-    public static void setFigure(String uid) {
+    public void setFigure(String uid) {
         figureUid = uid;
     }
+
+
+    /**
+    * Highlight the datatip mark when selected
+    *
+    * @param newTip datatip to highlight.
+    * @param odTip datatip to restore the orginal color.
+    * @param oldTipColor coor to restore.
+    * @return the original datatip mark color.
+    */
+    private Integer highlightSelected(String newTip, String oldTip, Integer oldTipColor) {
+
+        Integer color = 0;
+        if (oldTip != null) {
+            GraphicController.getController().setProperty(oldTip, GraphicObjectProperties.__GO_MARK_BACKGROUND__, oldTipColor);
+        }
+        if (newTip != null){
+            color = (Integer) GraphicController.getController().getProperty(newTip, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
+            GraphicController.getController().setProperty(newTip, GraphicObjectProperties.__GO_MARK_BACKGROUND__, -3);
+        }
+        return color;
+    }
+
+
+    public boolean pickAndHighlight(Integer x, Integer y) {
+        Integer pos[] = {x, y};
+        String datatip = (new EntityPicker()).pickDatatip(figureUid, pos);
+        setSelectedTip(datatip);
+        return (datatip != null);
+    }
+
+    public boolean pickAndDelete(Integer x, Integer y) {
+        Integer pos[] = {x, y};
+        String datatip = (new EntityPicker()).pickDatatip(figureUid, pos);
+
+        if (datatip != null) {
+            DatatipDelete.deleteDatatip(datatip);
+            if (datatip.equals(selectedTip)) {
+                selectedTip = null;
+            }
+        }
+        return (datatip != null);
+    } 
 }

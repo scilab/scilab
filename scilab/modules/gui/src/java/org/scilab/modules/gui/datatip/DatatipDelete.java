@@ -38,7 +38,6 @@ public class DatatipDelete {
         graphCoordDouble[1] = datatipPosition[1];
         graphCoordDouble[2] = datatipPosition[2];
 
-        String polylineUid = DatatipCommon.getParentPolyline(datatipUid);
 
         GraphicController.getController().removeRelationShipAndDelete(datatipUid);
     }

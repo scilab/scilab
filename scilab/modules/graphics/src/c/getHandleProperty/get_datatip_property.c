@@ -97,7 +97,33 @@ int get_tip_auto_orientation_property(void* _pvCtx, char* pobjUID)
 
     if (piTip_auto_orientation == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_3component");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_auto_orientation");
+        return -1;
+    }
+
+    if (tip_auto_orientation)
+    {
+        return sciReturnString(_pvCtx, "on");
+    }
+    else
+    {
+        return sciReturnString(_pvCtx, "off");
+    }
+}
+
+/**
+ * Get the datatip interpolation mode (on/off).
+ */
+int get_tip_interp_mode_property(void* _pvCtx, char* pobjUID)
+{
+    int tip_auto_orientation;
+    int *piTip_auto_orientation = &tip_auto_orientation;
+
+    getGraphicObjectProperty(pobjUID, __GO_DATATIP_INTERP_MODE__, jni_bool, (void **)&piTip_auto_orientation);
+
+    if (piTip_auto_orientation == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_interp_mode");
         return -1;
     }
 

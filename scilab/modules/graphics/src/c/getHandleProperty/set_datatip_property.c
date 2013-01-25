@@ -138,3 +138,28 @@ int set_tip_auto_orientation_property(void* _pvCtx, char* pobj, void* _pvData, i
     }
 }
 
+
+/**
+ * Set the datatip interpolation mode (on/off).
+ */
+int set_tip_interp_mode_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
+{
+    BOOL status = FALSE;
+    int interp_mode = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_interp_mode");
+    if (interp_mode == NOT_A_BOOLEAN_VALUE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
+    status = setGraphicObjectProperty(pobj, __GO_DATATIP_INTERP_MODE__, &interp_mode, jni_bool, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_interp_mode");
+        return SET_PROPERTY_ERROR;
+    }
+}
+
