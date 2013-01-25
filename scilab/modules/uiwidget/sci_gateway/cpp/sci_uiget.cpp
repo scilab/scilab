@@ -73,7 +73,11 @@ int sci_uiget(char *fname, unsigned long fname_len)
 
     if (uid == -1)
     {
-        Scierror(999, _("%s: The handle is not valid.\n"), fname);
+        createEmptyMatrix(pvApiCtx, nbIn + 1);
+
+        AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+        ReturnArguments(pvApiCtx);
+
         return 0;
     }
 
