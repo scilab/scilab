@@ -1372,13 +1372,13 @@ msgstr ""
 "nell'insieme {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso %d è di tipo sbagliato: era atteso un vettore "
 "reale.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso %d è di tipo sbagliato: era atteso uno scalare "
 "reale.\n"
@@ -1403,7 +1403,7 @@ msgstr ""
 "stesso numero di righe.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso %d ha una dimensione sbagliata: era atteso %d.\n"
 

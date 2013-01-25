@@ -34,7 +34,7 @@
                     <para>
                         Des raccourcis peuvent être aussi utilisés: <literal>"r"</literal> pour <literal>"roots"</literal> et <literal>"c"</literal> pour <literal>"coeff"</literal>.
                     </para>
-                    
+
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -63,8 +63,11 @@
                                 dont les racines sont égales aux termes de <literal>v</literal> et
                                 <literal>"x"</literal> l'indéterminée. Dans ce cas
                                 <literal>roots</literal> et <literal>poly</literal> sont des fonctions inverses
-                                l'une de l'autre. Notez qye les racines infinies produisent des
-                                coefficients de haut degré egaux a zéro.
+                                l'une de l'autre.
+                                <note>
+                                    Notez qye les racines infinies produisent des
+                                    coefficients de haut degré egaux a zéro.
+                                </note>
                             </para>
                         </listitem>
                         <listitem>

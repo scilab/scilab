@@ -125,7 +125,7 @@ int C2F(getrmat) (char *fname, int *topk, int *lw, int *m, int *n, int *lr, unsi
 
     if (it != 0)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: Real matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(202, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     }
     return TRUE;
@@ -144,7 +144,7 @@ int C2F(getcmat) (char *fname, int *topk, int *lw, int *m, int *n, int *lr, unsi
 
     if (it != 1)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: Real matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(202, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     }
     return TRUE;
@@ -164,7 +164,7 @@ int C2F(matsize) (char *fname, int *topk, int *lw, int *m, int *n, unsigned long
         return FALSE;
     if (*m != m1 || *n != n1)
     {
-        Scierror(205, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk), *m, *n);
+        Scierror(205, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk), *m, *n);
         return FALSE;
     }
     return TRUE;
@@ -186,12 +186,12 @@ static int C2F(getmati) (char *fname, int *topk, int *spos, int *lw, int *it, in
     {
         if (*inlistx)
         {
-            Scierror(999, _("%s: Wrong type for argument %d (List element: %d): Real or complex matrix expected.\n"), get_fname(fname, fname_len),
+            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Real or complex matrix expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk), *nel);
         }
         else
         {
-            Scierror(201, _("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), get_fname(fname, fname_len),
+            Scierror(201, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk));
         }
         return FALSE;
@@ -444,7 +444,7 @@ int C2F(getlistimat) (char *fname, int *topk, int *spos, int *lnum, int *it, int
 
     if (*lnum > nv)
     {
-        Scierror(999, _("%s: Wrong type for argument %d: List of size at least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk),
+        Scierror(999, _("%s: Wrong type for argument #%d: List of size at least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk),
                  *lnum);
         return FALSE;
     }
@@ -483,10 +483,10 @@ static int C2F(getimati) (char *fname, int *topk, int *spos, int *lw, int *it, i
     if (*istk(il) != 8)
     {
         if (*inlistx)
-            Scierror(999, _("%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"), get_fname(fname, fname_len),
+            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Int matrix expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk), *nel);
         else
-            Scierror(201, _("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), get_fname(fname, fname_len),
+            Scierror(201, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk));
         return FALSE;
     }
@@ -604,7 +604,7 @@ int C2F(getlistbmat) (char *fname, int *topk, int *spos, int *lnum, int *m, int 
 
     if (*lnum > nv)
     {
-        Scierror(999, _("%s: Wrong size for argument %d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
+        Scierror(999, _("%s: Wrong size for argument #%d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
         return FALSE;
     }
 
@@ -641,7 +641,7 @@ int C2F(matbsize) (char *fname, int *topk, int *lw, int *m, int *n, unsigned lon
         return FALSE;
     if (*m != m1 || *n != n1)
     {
-        Scierror(205, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk), *m, *n);
+        Scierror(205, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk), *m, *n);
         return FALSE;
     }
     return TRUE;
@@ -662,10 +662,10 @@ static int C2F(getbmati) (char *fname, int *topk, int *spos, int *lw, int *m, in
     if (*istk(il) != 4)
     {
         if (*inlistx)
-            Scierror(999, _("%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"), get_fname(fname, fname_len),
+            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Boolean matrix expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk), *nel);
         else
-            Scierror(208, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
+            Scierror(208, _("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
         return FALSE;
     };
     *m = *istk(il + 1);
@@ -810,7 +810,7 @@ int C2F(getlistsparse) (char *fname, int *topk, int *spos, int *lnum, int *it, i
 
     if (*lnum > nv)
     {
-        Scierror(999, _("%s: Wrong size for argument %d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
+        Scierror(999, _("%s: Wrong size for argument #%d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
         return FALSE;
     }
 
@@ -847,7 +847,7 @@ int C2F(getrsparse) (char *fname, int *topk, int *lw, int *m, int *n, int *nel, 
 
     if (it != 0)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: Real matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(202, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     }
     return TRUE;
@@ -869,10 +869,10 @@ static int C2F(getsparsei) (char *fname, int *topk, int *spos, int *lw, int *it,
     if (*istk(il) != sci_sparse)
     {
         if (*inlistx)
-            Scierror(999, _("%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"), get_fname(fname, fname_len),
+            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Sparse matrix expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk), *nellist);
         else
-            Scierror(999, _("%s: Wrong type for argument %d: Sparse matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
+            Scierror(999, _("%s: Wrong type for argument #%d: Sparse matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
         return FALSE;
     }
     *m = *istk(il + 1);
@@ -1003,7 +1003,7 @@ int C2F(getlistvect) (char *fname, int *topk, int *spos, int *lnum, int *it, int
 
     if (*m != 1 && *n != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument %d (List element: %d): Vector expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk),
+        Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Vector expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk),
                  *lnum);
         return FALSE;
     }
@@ -1029,7 +1029,7 @@ int C2F(getvect) (char *fname, int *topk, int *lw, int *it, int *m, int *n, int 
 
     if (*m != 1 && *n != 1)
     {
-        Scierror(214, _("%s: Wrong type for argument %d: Vector expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(214, _("%s: Wrong type for argument #%d: Vector expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     };
     return TRUE;
@@ -1046,7 +1046,7 @@ int C2F(getrvect) (char *fname, int *topk, int *lw, int *m, int *n, int *lr, uns
 
     if (*m != 1 && *n != 1)
     {
-        Scierror(203, _("%s: Wrong type for argument %d: Real vector expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(203, _("%s: Wrong type for argument #%d: Real vector expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     }
     return TRUE;
@@ -1067,7 +1067,7 @@ int C2F(vectsize) (char *fname, int *topk, int *lw, int *n, unsigned long fname_
 
     if (*n != m1 * n1)
     {
-        Scierror(206, _("%s: Wrong size for argument %d: %d expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk), *n);
+        Scierror(206, _("%s: Wrong size for argument #%d: %d expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk), *n);
         return FALSE;
     }
     return TRUE;
@@ -1092,7 +1092,7 @@ int C2F(getlistscalar) (char *fname, int *topk, int *spos, int *lnum, int *lr, u
 
     if (*lnum > nv)
     {
-        Scierror(999, _("%s: Wrong size for argument %d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
+        Scierror(999, _("%s: Wrong size for argument #%d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
         return FALSE;
     }
 
@@ -1101,7 +1101,7 @@ int C2F(getlistscalar) (char *fname, int *topk, int *spos, int *lnum, int *lr, u
 
     if (m * n != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk),
+        Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Scalar expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk),
                  *lnum);
         return FALSE;
     }
@@ -1127,7 +1127,7 @@ int C2F(getscalar) (char *fname, int *topk, int *lw, int *lr, unsigned long fnam
 
     if (m * n != 1)
     {
-        Scierror(204, _("%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk), "min",
+        Scierror(204, _("%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk), "min",
                  "max");
         return FALSE;
     };
@@ -1164,7 +1164,7 @@ int C2F(getlistsmat) (char *fname, int *topk, int *spos, int *lnum, int *m, int 
 
     if (*lnum > nv)
     {
-        Scierror(999, _("%s: Wrong size for argument %d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
+        Scierror(999, _("%s: Wrong size for argument #%d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
         return FALSE;
     }
     return C2F(getsmati) (fname, topk, spos, &ili, m, n, ix, j, lr, nlr, &c_true, lnum, fname_len);
@@ -1226,7 +1226,7 @@ int C2F(getlistwsmat) (char *fname, int *topk, int *spos, int *lnum, int *m, int
 
     if (*lnum > nv)
     {
-        Scierror(999, _("%s: Wrong size for argument %d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
+        Scierror(999, _("%s: Wrong size for argument #%d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
         return FALSE;
     }
     return C2F(getwsmati) (fname, topk, spos, &ili, m, n, ilr, ilrd, &c_true, lnum, fname_len);
@@ -1260,12 +1260,12 @@ static int C2F(getwsmati) (char *fname, int *topk, int *spos, int *lw, int *m, i
     {
         if (*inlistx)
         {
-            Scierror(999, _("%s: Wrong type for argument %d (List element: %d): Matrix of strings expected.\n"), get_fname(fname, fname_len),
+            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Matrix of strings expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk), *nel);
         }
         else
         {
-            Scierror(207, _("%s: Wrong type for argument %d: Matrix of strings expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
+            Scierror(207, _("%s: Wrong type for argument #%d: Matrix of strings expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
         }
         return FALSE;
     }
@@ -1291,12 +1291,12 @@ static int C2F(getsmati) (char *fname, int *topk, int *spos, int *lw, int *m, in
     {
         if (*inlistx)
         {
-            Scierror(999, _("%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"), get_fname(fname, fname_len),
+            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): String matrix expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk), *nel);
         }
         else
         {
-            Scierror(201, _("%s: Wrong type for argument %d: String matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
+            Scierror(201, _("%s: Wrong type for argument #%d: String matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
         }
         return FALSE;
     }
@@ -2103,7 +2103,7 @@ int C2F(getilist) (char *fname, int *topk, int *lw, int *n, int *ix, int *ili, u
     itype = *istk(il);
     if (itype < sci_list || itype > sci_mlist)
     {
-        Scierror(210, _("%s: Wrong type for argument %d: List expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(210, _("%s: Wrong type for argument #%d: List expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     }
     *n = *istk(il + 1);
@@ -2151,7 +2151,7 @@ int C2F(getpoly) (char *fname, int *topk, int *lw, int *it, int *m, int *n, char
     il = iadr(*Lstk(*lw));
     if (*istk(il) != 2)
     {
-        Scierror(212, _("%s: Wrong type for argument %d: Polynomial matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(212, _("%s: Wrong type for argument #%d: Polynomial matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     };
     *m = *istk(il + 1);
@@ -2194,7 +2194,7 @@ int C2F(getonepoly) (char *fname, int *topk, int *lw, int *it, int *md, char *na
 
     if (m * n != 1)
     {
-        Scierror(998, _("%s: Wrong type for argument %d: Polynomial expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(998, _("%s: Wrong type for argument #%d: Polynomial expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     }
     *md = *istk(ilp + 1) - *istk(ilp) - 1;
@@ -2365,7 +2365,7 @@ int C2F(getwimat) (char *fname, int *topk, int *lw, int *m, int *n, int *lr, uns
     }
     if (*istk(il) != sci_boolean)
     {
-        Scierror(213, _("%s: Wrong type for argument %d: Working int matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(213, _("%s: Wrong type for argument #%d: Working int matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     };
     *m = *istk(il + 1);
@@ -2540,7 +2540,7 @@ int C2F(getlistvectrow) (char *fname, int *topk, int *spos, int *lnum, int *it, 
 
     if (*lnum > nv)
     {
-        Scierror(999, _("%s: Wrong size for argument %d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
+        Scierror(999, _("%s: Wrong size for argument #%d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
         return FALSE;
     }
 
@@ -2548,7 +2548,7 @@ int C2F(getlistvectrow) (char *fname, int *topk, int *spos, int *lnum, int *it, 
         return FALSE;
     if (*m != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"), get_fname(fname, fname_len),
+        Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Row vector expected.\n"), get_fname(fname, fname_len),
                  Rhs + (*spos - *topk), *lnum);
         return FALSE;
     }
@@ -2580,7 +2580,7 @@ int C2F(getvectrow) (char *fname, int *topk, int *spos, int *it, int *m, int *n,
 
     if (*m != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument %d: Row vector expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
+        Scierror(999, _("%s: Wrong type for argument #%d: Row vector expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
         return FALSE;
     }
     return TRUE;
@@ -2600,7 +2600,7 @@ int C2F(getlistvectcol) (char *fname, int *topk, int *spos, int *lnum, int *it, 
 
     if (*lnum > nv)
     {
-        Scierror(999, _("%s: Wrong size for argument %d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
+        Scierror(999, _("%s: Wrong size for argument #%d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
         return FALSE;
     }
     if (C2F(getmati) (fname, topk, spos, &ili, it, m, n, lr, lc, &c_true, lnum, fname_len) == FALSE)
@@ -2640,7 +2640,7 @@ int C2F(getvectcol) (char *fname, int *topk, int *spos, int *it, int *m, int *n,
 
     if (*n != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument %d: Column vector expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
+        Scierror(999, _("%s: Wrong type for argument #%d: Column vector expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
         return FALSE;
     }
     return TRUE;
@@ -2656,7 +2656,7 @@ int C2F(getlistsimat) (char *fname, int *topk, int *spos, int *lnum, int *m, int
 
     if (*lnum > nv)
     {
-        Scierror(999, _("%s: Wrong size for argument %d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
+        Scierror(999, _("%s: Wrong size for argument #%d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
         return FALSE;
     }
     return C2F(getsmati) (fname, topk, spos, &ili, m, n, ix, j, lr, nlr, &c_true, lnum, fname_len);
@@ -2693,7 +2693,7 @@ int C2F(getlistpointer) (char *fname, int *topk, int *spos, int *lnum, int *lw, 
 
     if (*lnum > nv)
     {
-        Scierror(999, _("%s: Wrong size for argument %d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
+        Scierror(999, _("%s: Wrong size for argument #%d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
         return FALSE;
     }
     return C2F(getpointeri) (fname, topk, spos, &ili, lw, &c_true, lnum, fname_len);
@@ -2714,10 +2714,10 @@ static int C2F(getpointeri) (char *fname, int *topk, int *spos, int *lw, int *lr
     {                           /* used to be sci_lufact_pointer before Scilab 5.2 */
         sciprint("----%d\n", *istk(il));
         if (*inlistx)
-            Scierror(197, _("%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"), get_fname(fname, fname_len),
+            Scierror(197, _("%s: Wrong type for argument #%d (List element: %d): Boxed pointer expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk), *nel);
         else
-            Scierror(198, _("%s: Wrong type for argument %d: Boxed pointer expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
+            Scierror(198, _("%s: Wrong type for argument #%d: Boxed pointer expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
         return FALSE;
     }
     *lr = sadr(il + 4);
@@ -3048,7 +3048,7 @@ int C2F(allmat) (char *fname, int *topk, int *lw, int *m, int *n, unsigned long 
     itype = *istk(il);
     if (itype != sci_matrix && itype != sci_poly && itype != sci_strings)
     {
-        Scierror(209, _("%s: Wrong type for argument %d: Matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
+        Scierror(209, _("%s: Wrong type for argument #%d: Matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     }
     *m = *istk(il + 1);
@@ -3147,7 +3147,7 @@ int C2F(getexternal) (char *fname, int *topk, int *lw, char *namex, int *typex, 
         }
         break;
     default:
-        Scierror(211, _("%s: Wrong type for argument %d: Function or string (external function) expected.\n"), get_fname(fname, fname_len),
+        Scierror(211, _("%s: Wrong type for argument #%d: Function or string (external function) expected.\n"), get_fname(fname, fname_len),
                  Rhs + (*lw - *topk));
         ret_value = FALSE;
         break;
@@ -3360,7 +3360,7 @@ int C2F(getlisthmat) (char *fname, int *topk, int *spos, int *lnum, int *m, int 
 
     if (*lnum > nv)
     {
-        Scierror(999, _("%s: Wrong size for argument %d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
+        Scierror(999, _("%s: Wrong size for argument #%d: At least %d expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk), *lnum);
         return FALSE;
     }
     return C2F(gethmati) (fname, topk, spos, &ili, m, n, lr, &c_true, lnum, fname_len);
@@ -3397,10 +3397,10 @@ static int C2F(gethmati) (char *fname, int *topk, int *spos, int *lw, int *m, in
     if (*istk(il) != sci_handles)
     {
         if (*inlistx)
-            Scierror(999, _("%s: Wrong type for argument %d (List element: %d): Matrix of handle expected.\n"), get_fname(fname, fname_len),
+            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Matrix of handle expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk), *nel);
         else
-            Scierror(200, _("%s: Wrong type for argument %d: Matrix of handle expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
+            Scierror(200, _("%s: Wrong type for argument #%d: Matrix of handle expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
         return FALSE;
     }
     *m = *istk(il + 1);

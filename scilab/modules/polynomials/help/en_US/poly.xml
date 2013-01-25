@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>p=poly(a,vname, ["flag"])</synopsis>
+        <synopsis>p = poly(a, vname, ["flag"])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -14,21 +14,22 @@
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para>matrix or real number</para>
+                    <para>a matrix or real number</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>vname</term>
                 <listitem>
-                    <para>String, the symbolic variable name. The string must be 4 characters max.
+                    <para>a string, the symbolic variable name. The string must be 4 characters max.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"flag"  </term>
+                <term>"flag"</term>
                 <listitem>
                     <para>
-                        string ("roots" or "r", "coeff" or "c"), default value is <literal>"roots"</literal>.
+                        string (<literal>"roots"</literal>, <literal>"coeff"</literal>),
+                        default value is <literal>"roots"</literal>.
                     </para>
                     <para>
                         Shortcuts can be also used: <literal>"r"</literal> for <literal>"roots"</literal> and <literal>"c"</literal> for <literal>"coeff"</literal>.
@@ -46,32 +47,33 @@
                 </term>
                 <listitem>
                     <para>
-                        <literal>p</literal> is the characteristic
-                        polynomial i.e. <literal>determinant(x*eye()-a)</literal>, <literal>x</literal> being
+                        <varname>p</varname> is the characteristic
+                        polynomial i.e. <code>determinant(x*eye()-a)</code>, <literal>x</literal> being
                         the symbolic variable.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>If v is a vector,</term>
+                <term>If <literal>v</literal> is a vector,</term>
                 <listitem>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>poly(v,"x",["roots"])</literal>  is the polynomial
-                                with <literal>roots</literal> the entries of <literal>v</literal> and
+                                <code>poly(v,"x",["roots"])</code>  is the polynomial
+                                with <literal>roots</literal> the entries of <varname>v</varname> and
                                 <literal>"x"</literal> as formal variable. (In this case,
-                                <literal>roots</literal> and   <literal>poly</literal> are inverse functions).
-                                Note that Infinite roots gives zero  highest degree coefficients.
+                                <function>roots</function> and <function>poly</function> are inverse functions).
+                                <note>
+                                    Note that Infinite roots gives zero highest degree coefficients.
+                                </note>
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>poly(v,"x","coeff")</literal> creates the
+                                <code>poly(v,"x","coeff")</code> creates the
                                 polynomial with symbol <literal>"x"</literal> and with coefficients
-                                the entries of <literal>v</literal> (<literal>v(1)</literal> is the constant term
-                                of the polynomial). (Here <literal>poly</literal> and <literal>coeff</literal> are
-                                inverse functions).
+                                the entries of <varname>v</varname> (<code>v(1)</code> is the constant term
+                                of the polynomial). (Here <function>poly</function> and <function>coeff</function> are inverse functions).
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -79,7 +81,7 @@
             </varlistentry>
         </variablelist>
         <para>
-            <literal>s=poly(0,"s")</literal> is the seed for defining
+            <code>s=poly(0,"s")</code> is the seed for defining
             polynomials with symbol <literal>"s"</literal>.
         </para>
     </refsection>

@@ -22,15 +22,15 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
 msgstr "%s: 引数 %d の大きさが間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format

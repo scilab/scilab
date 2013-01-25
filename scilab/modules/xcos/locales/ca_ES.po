@@ -1049,7 +1049,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s: S'ha trobat '%s' en comptes d'un bloc.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un diagrama"
 
 #, c-format
@@ -1070,7 +1070,7 @@ msgstr ""
 "d'escriptura.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una cadena de text o "
 "un diagrama"
@@ -1201,7 +1201,7 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: No s'ha pogut exportar la paleta a hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr ""
 
 msgid "Interface function does not exist or can not be called."

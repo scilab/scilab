@@ -76,7 +76,7 @@ int intinterp3d(char *fname, unsigned long fname_len)
 
         if (isVarComplex(pvApiCtx, piAddressVar))
         {
-            Scierror(202, _("%s: Wrong type for argument %d: Real matrix expected.\n"), fname, i);
+            Scierror(202, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), fname, i);
             return 0;
         }
     }

@@ -147,7 +147,7 @@ msgid "%s: Unable to get argument data"
 msgstr "%s : Impossible d'obtenir la donnée de l'argument"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s : Dimension erronée de l'argument %d : (%d,%d) attendu.\n"
 
 #, c-format
@@ -163,7 +163,7 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Une matrice réelle attendue.\n"
 
 #, c-format

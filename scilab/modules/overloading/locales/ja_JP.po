@@ -75,11 +75,11 @@ msgid "%s is not a valid field name."
 msgstr "%s は有効なフィールド名ではありません."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　実数ベクトルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format

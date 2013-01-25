@@ -1148,7 +1148,7 @@ msgstr ""
 "%s: Неверное количество входных параметров: задано %d, а ожидалось от 2 до 4."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr "%s: Неверный тип аргумента %d: ожидалось %s.\n"
 
 #, c-format
@@ -1211,7 +1211,7 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: Вектор индекса исключений имеет %d строк вместо 1."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: Неверный тип аргумента %d: Ожидалась матрица вещественных чисел.\n"
 

@@ -98,6 +98,8 @@ void Objrect (double* x         ,
 
     setCurrentObject(newObjUID);
     *hdl = getHandle(newObjUID);
+
+    releaseGraphicObjectProperty(-1, newObjUID, jni_string, 0);
 }
 
 
@@ -169,6 +171,8 @@ void Objpoly (double  * x     ,
 
     setCurrentObject(pobjUID);
     *hdl = getHandle(pobjUID);
+
+    releaseGraphicObjectProperty(__GO_POLYLINE__, pobjUID, jni_string, 1);
 }
 
 
@@ -273,6 +277,7 @@ void Objsegs (int * style,
     }
 
     setCurrentObject(pobjUID);
+    releaseGraphicObjectProperty(__GO_SEGS__, pobjUID, jni_string, 1);
 }
 /*-----------------------------------------------------------
  * Objstring:

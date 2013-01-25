@@ -239,7 +239,7 @@ msgid "Wrong type for first argument: Square matrix expected.\n"
 msgstr "Špatný typ prvního argumentu: Očekávána čtvercová matice.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgid "Wrong type for argument #%d: Square matrix expected.\n"
 msgstr "Špatný typ argumentu %d: Očekávána čtvercová matice.\n"
 
 msgid "Invalid index.\n"
@@ -347,7 +347,7 @@ msgid "subroutine not found: %s\n"
 msgstr "podrutina není nalezena: %s\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "Špatný typ argumentu %d: Očekávána reálná matice.\n"
 
 #, c-format
@@ -360,11 +360,11 @@ msgid "Wrong type for input argument %d: Polynomial expected.\n"
 msgstr "Špatný typ prvního argumentu %d: Očekáván polynom.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: String expected.\n"
+msgid "Wrong type for argument #%d: String expected.\n"
 msgstr "Špatný typ argumentu %d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: List expected.\n"
+msgid "Wrong type for argument #%d: List expected.\n"
 msgstr "Špatný typ argumentu %d: Očekáván seznam.\n"
 
 msgid "Problem with comparison symbol...\n"
@@ -466,20 +466,20 @@ msgid "Incorrect function (argument n: %d).\n"
 msgstr "Nesprávná funkce (argument n: %d).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 "%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána reálná matice.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekáván reálný vektor.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekáván skalár.\n"
 
 msgid "Host does not answer...\n"
@@ -496,31 +496,31 @@ msgid "%s: singular or asymmetric problem.\n"
 msgstr "%s: jednotný nebo nesouměrný problém.\n"
 
 #, c-format
-msgid "Wrong size for argument %d.\n"
+msgid "Wrong size for argument #%d.\n"
 msgstr "Špatná velikost argumentu %d.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgid "Wrong type for argument #%d: Transfer matrix expected.\n"
 msgstr "Špatný typ argumentu %d: Očekávána matice převodu.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In state space form expected.\n"
+msgid "Wrong type for argument #%d: In state space form expected.\n"
 msgstr "Špatný typ argumentu %d: Očekáváno ve formě stavového prostoru.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational matrix expected.\n"
 msgstr "Špatný typ argumentu %d: Očekávána racionální matice.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgid "Wrong type for argument #%d: In continuous time expected.\n"
 msgstr "Špatný typ argumentu %d: Očekáváno v nepřetržitém čase.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgid "Wrong type for argument #%d: In discrete time expected.\n"
 msgstr "Špatný typ argumentu %d: Očekáváno v diskrétním čase.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "Špatný typ argumentu %d: Očekáváno SISO.\n"
 
 #, c-format
@@ -529,7 +529,7 @@ msgstr "Časová doména argumentu %d není určena.\n"
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: A system in state space or transfer matrix form "
+"Wrong type for argument #%d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
 "Špatný typ argumentu %d: Očekáván systém ve stavovém prostoru nebo matice "
@@ -617,7 +617,7 @@ msgstr ""
 "Prosíme, nahlaste tuto chybu :\n"
 
 #, c-format
-msgid "Wrong value for argument %d.\n"
+msgid "Wrong value for argument #%d.\n"
 msgstr "Špatná hodnota argumentu %d.\n"
 
 #, c-format
@@ -626,7 +626,7 @@ msgstr "Prvek seznamu číslo %d je Neurčený.\n"
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: Named variable not an expression expected.\n"
+"Wrong type for argument #%d: Named variable not an expression expected.\n"
 msgstr "Špatný typ argumentu %d: Očekávána pojmenovaná proměnná ne výraz.\n"
 
 msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
@@ -718,47 +718,47 @@ msgid "check or define function %s for overloading.\n"
 msgstr "zkontrolujte nebo určete funkci %s pro přetížení.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Špatná velikost argumentu %d: očekáváno (%d,%d).\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Špatná velikost argumentu %d: očekáváno %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána matice řetězců.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána booleovská matice.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána matice.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekáván seznam.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr ""
 "%s: Špatný typ argumentu %d: Očekávána funkce nebo řetězec (vnější funkce).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekáván polynom.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr ""
 "%s: Špatný typ argumentu %d: Očekávána fungující matice celých čísel.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekáván vektor.\n"
 
 #, c-format
@@ -769,15 +769,15 @@ msgid "Argument type must be boolean.\n"
 msgstr "Typ argumentu musí být boolean.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgid "Wrong type for argument #%d: Boolean or scalar expected.\n"
 msgstr "Špatný typ argumentu %d: Očekáván boolean nebo skalár.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgid "Wrong type for argument #%d: Sparse matrix of scalars expected.\n"
 msgstr "Špatný typ argumentu %d: Očekávána řídká matice skalárů.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgid "Wrong type for argument #%d: Handle to sparse lu factors expected.\n"
 msgstr ""
 "Špatný typ argumentu %d: Očekávána obslužná rutina řídkých faktorů lu.\n"
 
@@ -885,15 +885,15 @@ msgid "Function not defined for given argument type(s),\n"
 msgstr "Funkce není určena pro zadané typy argumentů.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr "Špatná hodnota argumentu %d: Obslužná rutina lu již není platná.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgid "Wrong value for argument #%d: Valid variable name expected.\n"
 msgstr "Špatná hodnota argumentu %d: Očekáváno platný název proměnné.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Empty string expected.\n"
+msgid "Wrong value for argument #%d: Empty string expected.\n"
 msgstr "Špatná hodnota argumentu %d: Očekáván jeden řetězec.\n"
 
 msgid "Recursive extraction is not valid in this context.\n"
@@ -946,7 +946,7 @@ msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr "Chyba při zápisu do souboru: disk zaplněn nebo soubor smazán.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgid "Wrong value for argument #%d: Must not contain NaN or Inf.\n"
 msgstr "Špatná hodnota argumentu %d: Nesmí obsahovat Nan nebo Inf.\n"
 
 #, c-format
@@ -967,13 +967,13 @@ msgstr "V argumentu %d předána neplatná návratová hodnota pro funkci.\n"
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+"Wrong value for argument #%d: eigenvalues must have negative real parts.\n"
 msgstr ""
 "Špatná hodnota argumentu %d: Vlastní čísla musí mít záporné reálné části.\n"
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+"Wrong value for argument #%d: eigenvalues modulus must be less than one.\n"
 msgstr ""
 "Špatná hodnota argumentu %d: Modulus vlastních čísel musí být menší než "
 "jedna.\n"

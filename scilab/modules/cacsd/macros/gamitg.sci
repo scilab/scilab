@@ -60,7 +60,7 @@ function [gopt]=gamitg(g,r,PREC,options)
     iopt=4
   end
   if typeof(r)<>"constant"|~isreal(r) then
-    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"gamitg",2))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: Real vector expected.\n"),"gamitg",2))
   end
   if size(r,'*')<>2 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"gamitg",2,2))

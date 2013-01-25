@@ -1256,11 +1256,11 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekáván reálný vektor.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
 
 #, c-format
@@ -1280,7 +1280,7 @@ msgstr ""
 "%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáván stejný počet řádků\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Špatná velikost argumentu %d: očekáváno %d.\n"
 
 #, c-format

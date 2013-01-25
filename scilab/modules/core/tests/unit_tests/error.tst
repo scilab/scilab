@@ -59,7 +59,7 @@ assert_checkerror ( "error(18)" , msgerror );
 msgerror = msprintf(gettext("Problem is singular.\n"));
 assert_checkerror ( "error(19)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: Square matrix expected.\n"), 3);
+msgerror = msprintf(gettext("Wrong type for argument #%d: Square matrix expected.\n"), 3);
 assert_checkerror ( "error(20,3)" , msgerror );
 
 msgerror = msprintf(gettext("Invalid index.\n"));
@@ -161,7 +161,7 @@ assert_checkerror ( "error(50)" , msgerror );
 msgerror = "";
 assert_checkerror ( "error(51)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: Real matrix expected.\n"), 69);
+msgerror = msprintf(gettext("Wrong type for argument #%d: Real matrix expected.\n"), 69);
 assert_checkerror ( "error(52, 69)" , msgerror );
 
 msgerror = msprintf(gettext("Wrong type for input argument %d: Real or complex matrix expected.\n"), 69);
@@ -170,10 +170,10 @@ assert_checkerror ( "error(53, 69)" , msgerror );
 msgerror = msprintf(gettext("Wrong type for input argument %d: Polynomial expected.\n"), 69);
 assert_checkerror ( "error(54, 69)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: String expected.\n"), 69);
+msgerror = msprintf(gettext("Wrong type for argument #%d: String expected.\n"), 69);
 assert_checkerror ( "error(55, 69)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: List expected.\n"), 69);
+msgerror = msprintf(gettext("Wrong type for argument #%d: List expected.\n"), 69);
 assert_checkerror ( "error(56, 69)" , msgerror );
 
 msgerror = msprintf(gettext("Problem with comparison symbol...\n"));
@@ -245,16 +245,16 @@ assert_checkerror ( "error(79)" , msgerror );
 msgerror = msprintf(gettext("Incorrect function (argument n: %d).\n"), 99);
 assert_checkerror ( "error(80, 99)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), "error", 99);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), "error", 99);
 assert_checkerror ( "error(81, 99)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "error", 99);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "error", 99);
 assert_checkerror ( "error(82, 99)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"), "error", 99);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Real vector expected.\n"), "error", 99);
 assert_checkerror ( "error(83, 99)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Scalar expected.\n"), "error", 99);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Scalar expected.\n"), "error", 99);
 assert_checkerror ( "error(84, 99)" , msgerror );
 
 msgerror = msprintf(gettext("Host does not answer...\n"));
@@ -269,31 +269,31 @@ assert_checkerror ( "error(87)" , msgerror );
 msgerror = msprintf(gettext("%s: singular or asymmetric problem.\n"), "sfact");
 assert_checkerror ( "error(88)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong size for argument %d.\n"), 38);
+msgerror = msprintf(gettext("Wrong size for argument #%d.\n"), 38);
 assert_checkerror ( "error(89, 38)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: Transfer matrix expected.\n"), 38);
+msgerror = msprintf(gettext("Wrong type for argument #%d: Transfer matrix expected.\n"), 38);
 assert_checkerror ( "error(90, 38)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: In state space form expected.\n"), 38);
+msgerror = msprintf(gettext("Wrong type for argument #%d: In state space form expected.\n"), 38);
 assert_checkerror ( "error(91, 38)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: Rational matrix expected.\n"), 38);
+msgerror = msprintf(gettext("Wrong type for argument #%d: Rational matrix expected.\n"), 38);
 assert_checkerror ( "error(92, 38)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: In continuous time expected.\n"), 38);
+msgerror = msprintf(gettext("Wrong type for argument #%d: In continuous time expected.\n"), 38);
 assert_checkerror ( "error(93, 38)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: In discrete time expected.\n"), 38);
+msgerror = msprintf(gettext("Wrong type for argument #%d: In discrete time expected.\n"), 38);
 assert_checkerror ( "error(94, 38)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: SISO expected.\n"), 38);
+msgerror = msprintf(gettext("Wrong type for argument #%d: SISO expected.\n"), 38);
 assert_checkerror ( "error(95, 38)" , msgerror );
 
 msgerror = msprintf(gettext("time domain of argument %d is not defined.\n"), 38);
 assert_checkerror ( "error(96, 38)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: A system in state space or transfer matrix form expected.\n"), 38);
+msgerror = msprintf(gettext("Wrong type for argument #%d: A system in state space or transfer matrix form expected.\n"), 38);
 assert_checkerror ( "error(97, 38)" , msgerror );
 
 msgerror = msprintf(gettext("Variable returned by scilab argument function is incorrect.\n"));
@@ -347,13 +347,13 @@ assert_checkerror ( "error(113)" , msgerror );
 msgerror = msprintf(gettext("Too many linked routines.\n"));
 assert_checkerror ( "error(114)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong value for argument %d.\n"), 18);
+msgerror = msprintf(gettext("Wrong value for argument #%d.\n"), 18);
 assert_checkerror ( "error(116, 18)" , msgerror );
 
 msgerror = msprintf(gettext("List element number %d is Undefined.\n"), 18);
 assert_checkerror ( "error(117, 18)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: Named variable not an expression expected.\n"), 18);
+msgerror = msprintf(gettext("Wrong type for argument #%d: Named variable not an expression expected.\n"), 18);
 assert_checkerror ( "error(118, 18)" , msgerror );
 
 msgerror = "";
@@ -434,58 +434,58 @@ assert_checkerror ( "error(143)" , msgerror );
 msgerror = "";
 assert_checkerror ( "error(200)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), "error", 22);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), "error", 22);
 assert_checkerror ( "error(201, 22)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "error", 22);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "error", 22);
 assert_checkerror ( "error(202, 22)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"), "error", 22);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Real vector expected.\n"), "error", 22);
 assert_checkerror ( "error(203, 22)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Scalar expected.\n"), "error", 22);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Scalar expected.\n"), "error", 22);
 assert_checkerror ( "error(204, 22)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "error", 0, 1 , 301);
+msgerror = msprintf(gettext("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), "error", 0, 1 , 301);
 assert_checkerror ( "error(205)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong size for argument %d: %d expected.\n"), "error", 0, 1);
+msgerror = msprintf(gettext("%s: Wrong size for argument #%d: %d expected.\n"), "error", 0, 1);
 assert_checkerror ( "error(206)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Matrix of strings expected.\n"), "error", 0);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Matrix of strings expected.\n"), "error", 0);
 assert_checkerror ( "error(207)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Boolean matrix expected.\n"), "error", 20);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), "error", 20);
 assert_checkerror ( "error(208, 20)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Matrix expected.\n"), "error", 20);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "error", 20);
 assert_checkerror ( "error(209, 20)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: List expected.\n"), "error", 20);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: List expected.\n"), "error", 20);
 assert_checkerror ( "error(210, 20)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Function or string (external function) expected.\n"), "error", 20);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Function or string (external function) expected.\n"), "error", 20);
 assert_checkerror ( "error(211, 20)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Polynomial expected.\n"), "error", 20);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Polynomial expected.\n"), "error", 20);
 assert_checkerror ( "error(212, 20)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Working int matrix expected.\n"), "error", 20);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Working int matrix expected.\n"), "error", 20);
 assert_checkerror ( "error(213, 20)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument %d: Vector expected.\n"), "error", 20);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Vector expected.\n"), "error", 20);
 assert_checkerror ( "error(214, 20)" , msgerror );
 
 msgerror = msprintf(gettext("%dth argument type must be boolean.\n"), 20);
 assert_checkerror ( "error(215, 20)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: Boolean or scalar expected.\n"), 20);
+msgerror = msprintf(gettext("Wrong type for argument #%d: Boolean or scalar expected.\n"), 20);
 assert_checkerror ( "error(216, 20)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: Sparse matrix of scalars expected.\n"), 20);
+msgerror = msprintf(gettext("Wrong type for argument #%d: Sparse matrix of scalars expected.\n"), 20);
 assert_checkerror ( "error(217, 20)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for argument %d: Handle to sparse lu factors expected.\n"), 20);
+msgerror = msprintf(gettext("Wrong type for argument #%d: Handle to sparse lu factors expected.\n"), 20);
 assert_checkerror ( "error(218, 20)" , msgerror );
 
 msgerror = msprintf(gettext("Wrong type argument %d: Sparse or full scalar matrix expected.\n"), 20);
@@ -572,13 +572,13 @@ assert_checkerror ( "error(244)" , msgerror );
 msgerror = msprintf(gettext("No input file associated to logical unit %d.\n"), 23);
 assert_checkerror ( "error(245, 23)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong value for argument %d: the lu handle is no more valid.\n"), 45);
+msgerror = msprintf(gettext("Wrong value for argument #%d: the lu handle is no more valid.\n"), 45);
 assert_checkerror ( "error(247, 45)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong value for argument %d: Valid variable name expected.\n"), 45);
+msgerror = msprintf(gettext("Wrong value for argument #%d: Valid variable name expected.\n"), 45);
 assert_checkerror ( "error(248, 45)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong value for argument %d: Empty string expected.\n"), 45);
+msgerror = msprintf(gettext("Wrong value for argument #%d: Empty string expected.\n"), 45);
 assert_checkerror ( "error(249, 45)" , msgerror );
 
 msgerror = msprintf(gettext("Recursive extraction is not valid in this context.\n"));
@@ -620,7 +620,7 @@ assert_checkerror ( "error(261)" , msgerror );
 msgerror = msprintf(gettext("Error while writing in file: disk full or deleted file.\n"));
 assert_checkerror ( "error(263)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong value for argument %d: Must not contain NaN or Inf.\n"), 2);
+msgerror = msprintf(gettext("Wrong value for argument #%d: Must not contain NaN or Inf.\n"), 2);
 assert_checkerror ( "error(264, 2)" , msgerror );
 
 msgerror = msprintf(gettext("%s and %s must have equal number of rows.\n"), "A", "B");
@@ -635,10 +635,10 @@ assert_checkerror ( "error(267)" , msgerror );
 msgerror = msprintf(gettext("Invalid return value for function passed in arg %d.\n"), 8);
 assert_checkerror ( "error(268, 8)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong value for argument %d: eigenvalues must have negative real parts.\n"), 8);
+msgerror = msprintf(gettext("Wrong value for argument #%d: eigenvalues must have negative real parts.\n"), 8);
 assert_checkerror ( "error(269, 8)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong value for argument %d: eigenvalues modulus must be less than one.\n"), 8);
+msgerror = msprintf(gettext("Wrong value for argument #%d: eigenvalues modulus must be less than one.\n"), 8);
 assert_checkerror ( "error(270, 8)" , msgerror );
 
 msgerror = msprintf(gettext("Size varying argument a*eye(), (arg %d) not allowed here.\n"), 8);

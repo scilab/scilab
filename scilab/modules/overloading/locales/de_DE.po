@@ -85,11 +85,11 @@ msgid "%s is not a valid field name."
 msgstr "%s ist kein gültiger Feldname."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: Falscher Argumenttyp %d: Echter Vektor erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: Falscher Argumenttyp %d: Echtes Skalar erwartet.\n"
 
 #, c-format

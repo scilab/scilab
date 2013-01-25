@@ -31,7 +31,7 @@ function version = getDiagramVersion(diagram)
     end
 
     if typeof(diagram) <> "diagram" then //check inputs
-        error(999 ,msprintf(_("%s: Wrong type for argument %d: diagram structure expected"), "getDiagramVersion", 1));
+        error(999 ,msprintf(_("%s: Wrong type for argument #%d: diagram structure expected"), "getDiagramVersion", 1));
     end
 
     // check version

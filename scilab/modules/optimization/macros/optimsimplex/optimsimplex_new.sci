@@ -474,7 +474,7 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
             // Check inputs
             //
             if (typeof(simplex0)<> "TSIMPLEX") then
-                errmsg = msprintf(gettext ( "%s: Wrong type for argument %d: %s expected.\n") , "optimsimplex_new",2,"TSIMPLEX")
+                errmsg = msprintf(gettext ( "%s: Wrong type for argument #%d: %s expected.\n") , "optimsimplex_new",2,"TSIMPLEX")
                 error(errmsg)
             end
             if (fun <> [] ) then

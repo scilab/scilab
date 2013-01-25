@@ -837,6 +837,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     axesDrawer.disposeAll();
                     fecDrawer.updateAll();
                     colorMapTextureDataProvider.update();
+                    textureManager.disposeAll();
                 } else {
                     labelManager.update(id, property);
                     dataManager.update(id, property);

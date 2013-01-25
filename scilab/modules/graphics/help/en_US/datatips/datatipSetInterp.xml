@@ -63,6 +63,16 @@
     datatipSetInterp(p,%t);
     datatipCreate(p,[0.8,0.512]);
     ]]></programlisting>
+        <scilab:image>
+            x=linspace(0,1,8)';
+            y=x.^3;
+            plot(x,y);
+            e=gce();p=e.children(1);//get the handle on the polyline
+            p.mark_mode="on";p.mark_style=2;p.mark_size=5;
+            datatipCreate(p,[0.8,0.512]);
+            datatipSetInterp(p,%t);
+            datatipCreate(p,[0.8,0.512]);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
