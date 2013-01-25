@@ -172,7 +172,7 @@
             error(errmsg)
             end
             if ( typeof(x) &lt;&gt; "constant" ) then
-            lstr = gettext("%s: Wrong type for argument %d: Matrix expected.\n")
+            lstr = gettext("%s: Wrong type for argument #%d: Matrix expected.\n")
             errmsg = msprintf ( lstr , "f" , 1 )
             error(errmsg,123456789)
             end
@@ -194,7 +194,7 @@
         <programlisting role="example">lcl1 = "%s: Wrong number of input argument: %d expected.\n";
             assert_checkerror ( "y = f()"      , lcl1 , [] , "f" , 1);
             
-            lcl2 = "%s: Wrong type for argument %d: Matrix expected.\n";
+            lcl2 = "%s: Wrong type for argument #%d: Matrix expected.\n";
             assert_checkerror ( "y = f(""a"")" , lcl2 , [] , "f" , 1);    
         </programlisting>
         <para>
@@ -208,7 +208,7 @@
         <programlisting role="example">lcl1="%s: Wrong number of input argument: %d expected.\n";
             assert_checkerror ( "y=f()" ,      lcl1 , 10000     , "f" , 1);
             
-            lcl2 = "%s: Wrong type for argument %d: Matrix expected.\n";
+            lcl2 = "%s: Wrong type for argument #%d: Matrix expected.\n";
             assert_checkerror ( "y=f(""a"")" , lcl2 , 123456789 , "f" , 1);    
         </programlisting>
         <para>以下の2つのテストは失敗します.</para>
@@ -239,7 +239,7 @@
         <programlisting role="example">msg1 = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "f", 1);
             assert_checkerror ( "y = f()"      , msg1 );
             
-            msg2 = msprintf(gettext("%s: Wrong type for argument %d: Matrix expected.\n"), "f", 1);
+            msg2 = msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "f", 1);
             assert_checkerror ( "y = f(""a"")" , msg2 );
         </programlisting>
         <para>

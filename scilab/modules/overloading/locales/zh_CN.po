@@ -73,11 +73,11 @@ msgid "%s is not a valid field name."
 msgstr "%s不是有效的域名称。"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该为实数向量。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s：参数%d的类型错误：应该为实数标量。\n"
 
 #, c-format

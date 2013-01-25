@@ -259,7 +259,7 @@ msgstr ""
 "El primer argument és d'un tipus incorrecte: Ha de ser una matriu quadrada.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgid "Wrong type for argument #%d: Square matrix expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser una matriu quadrada.\n"
 
@@ -369,7 +369,7 @@ msgid "subroutine not found: %s\n"
 msgstr "No s'ha trobat la subrutina: %s\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de nombres "
 "reals.\n"
@@ -386,12 +386,12 @@ msgstr ""
 "L'argument d'entrada %d és d'un tipus incorrecte: Ha de ser un polinomi.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: String expected.\n"
+msgid "Wrong type for argument #%d: String expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser una cadena de text.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: List expected.\n"
+msgid "Wrong type for argument #%d: List expected.\n"
 msgstr "L'argument %d és d'un tipus incorrecte: Ha de ser una llista.\n"
 
 msgid "Problem with comparison symbol...\n"
@@ -495,23 +495,23 @@ msgid "Incorrect function (argument n: %d).\n"
 msgstr "La funció és incorrecta (argument n: %d).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu real o "
 "complexa.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu real.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un vector real.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
 msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un escalar.\n"
 
 msgid "Host does not answer...\n"
@@ -528,37 +528,37 @@ msgid "%s: singular or asymmetric problem.\n"
 msgstr "%s: problema singular o asimètric.\n"
 
 #, c-format
-msgid "Wrong size for argument %d.\n"
+msgid "Wrong size for argument #%d.\n"
 msgstr "L'argument %d té una mida incorrecta.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgid "Wrong type for argument #%d: Transfer matrix expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de "
 "transferència.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In state space form expected.\n"
+msgid "Wrong type for argument #%d: In state space form expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha d'estar en estat espacial.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational matrix expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser una matriu racional.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgid "Wrong type for argument #%d: In continuous time expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser de temps continu.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgid "Wrong type for argument #%d: In discrete time expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser de temps discret.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "L'argument %d és d'un tipus incorrecte: Ha de ser un SISO.\n"
 
 #, c-format
@@ -567,7 +567,7 @@ msgstr "no s'ha definit el domini temporal de l'argument %d.\n"
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: A system in state space or transfer matrix form "
+"Wrong type for argument #%d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser un sistema d'espai "
@@ -661,7 +661,7 @@ msgstr ""
 "Informeu d'aquest error:\n"
 
 #, c-format
-msgid "Wrong value for argument %d.\n"
+msgid "Wrong value for argument #%d.\n"
 msgstr "L'argument %d té un valor incorrecte.\n"
 
 #, c-format
@@ -670,7 +670,7 @@ msgstr "No s'ha definit l'element de la llista número %d.\n"
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: Named variable not an expression expected.\n"
+"Wrong type for argument #%d: Named variable not an expression expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser una variable, i no una "
 "expressió.\n"
@@ -767,52 +767,52 @@ msgid "check or define function %s for overloading.\n"
 msgstr "comproveu o definiu la funció %s per a sobrecarregar-la.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
 "%s: L'argument %d té una mida incorrecta: Ha d'estar a l'interval (%d,%d).\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: L'argument %d té una mida incorrecta: Ha de ser %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de cadenes "
 "de text.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu booleana.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una llista.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una funció o una "
 "cadena de caràcters (funció externa).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un polinomi.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu d'enters.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un vector.\n"
 
 #, c-format
@@ -823,18 +823,18 @@ msgid "Argument type must be boolean.\n"
 msgstr "L'argument ha de ser un booleà.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgid "Wrong type for argument #%d: Boolean or scalar expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser un booleà o un escalar.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgid "Wrong type for argument #%d: Sparse matrix of scalars expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser una matriu dispersa o "
 "escalars.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgid "Wrong type for argument #%d: Handle to sparse lu factors expected.\n"
 msgstr ""
 "L'argument %d és d'un tipus incorrecte: Ha de ser un tractament de factors "
 "lu.\n"
@@ -950,17 +950,17 @@ msgid "Function not defined for given argument type(s),\n"
 msgstr "La funció no està definida per a aquests tipus d'arguments,\n"
 
 #, c-format
-msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr ""
 "L'argument %d té un valor incorrecte: Ja no és vàlid el tractament lu.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgid "Wrong value for argument #%d: Valid variable name expected.\n"
 msgstr ""
 "L'argument %d té un valor incorrecte: Ha de ser un nom de variable vàlid.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Empty string expected.\n"
+msgid "Wrong value for argument #%d: Empty string expected.\n"
 msgstr ""
 "L'argument %d té un valor incorrecte: Ha de ser una cadena de text buida.\n"
 
@@ -1015,7 +1015,7 @@ msgstr ""
 "Error d'escriptura al fitxer: el disc és ple o s'ha esborrat el fitxer.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgid "Wrong value for argument #%d: Must not contain NaN or Inf.\n"
 msgstr "L'argument %d té un valor incorrecte: No pot contenir NaN ni Inf.\n"
 
 #, c-format
@@ -1037,14 +1037,14 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+"Wrong value for argument #%d: eigenvalues must have negative real parts.\n"
 msgstr ""
 "L'argument %d té un valor incorrecte: Els valors propis han de tenir part "
 "real negativa.\n"
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+"Wrong value for argument #%d: eigenvalues modulus must be less than one.\n"
 msgstr ""
 "L'argument %d té un valor incorrecte: El mòdul dels valors propis ha de ser "
 "com a mínim 1.\n"

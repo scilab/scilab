@@ -96,7 +96,7 @@ function [x,frequ]=linfn(G,PREC,RELTOL,options);
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space  expected.\n"),"linfn",1))
   end
   if G.dt<>"c" then
-    error(msprintf(gettext("%s: Wrong type for argument %d: In continuous time expected.\n"),"linfn",1))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: In continuous time expected.\n"),"linfn",1))
   end
 
   if type(options)<>10|and(options<>["t","nul"]) then

@@ -61,6 +61,14 @@
     curve_handles.visible='off';
     curve_handles.visible='on';
     ]]></programlisting>
+        <scilab:image>
+            plot2d();
+            xarrows([3;2.72],[1.6;0.96],3,2);
+            xstring(3,1.6,'sin(t)')
+            curve_handles=datatipGetEntities()
+            curve_handles.visible='off';
+            curve_handles.visible='on';
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

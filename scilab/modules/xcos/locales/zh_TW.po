@@ -1013,7 +1013,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s: 找到 '%s' 並不是 block.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr "%s: 第 %d 個 參數型別有誤: diagram structure才對"
 
 #, c-format
@@ -1031,7 +1031,7 @@ msgid ""
 msgstr "%s: 無法建立 %s 目錄, 請檢查你是否有存取該目錄的權限.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr "%s: 第 %d 個 參數型別有誤: 字串或 diagram structure才對"
 
 #, c-format
@@ -1141,7 +1141,7 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s:不能匯出( export) palette到 hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr ""
 
 msgid "Interface function does not exist or can not be called."

@@ -21,17 +21,17 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: no es pot llegir el paràmetre d'entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: tipus incorrecte del paràmetre %d: s'esperava una matriu de nombres "
 "reals.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: tipus incorrecte del paràmetre %d: s'esperava un escalar real.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: mida incorrecta del paràmetre %d: s'esperava una matriu de nombres "
 "reals.\n"

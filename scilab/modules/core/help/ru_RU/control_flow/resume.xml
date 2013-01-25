@@ -7,20 +7,20 @@
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
         <synopsis>resume
-            [x1,..,xn]=resume(a1,..,an)
+            [x1, ..., xn] = resume(a1, ..., an)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x1,..,xn</term>
+                <term>x1, ..., xn</term>
                 <listitem>
                     <para>переменные в вызывающем окружении</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>a1,..,an</term>
+                <term>a1, ..., an</term>
                 <listitem>
                     <para>локальные переменные</para>
                 </listitem>
@@ -30,27 +30,34 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Внутри функции инструкция <literal>resume</literal> останавливает исполнение функции;
-            <literal>[x1,..,xn]=resume(a1,..,an)</literal> останавливает исполнение функции и 
-            передаёт локальные переменные <literal>ai</literal> в вызывающее окружение под именами 
+            Внутри функции инструкция <literal>resume</literal>
+            останавливает исполнение функции;
+            <literal>[x1, ..., xn] = resume(a1, ..., an)</literal>
+            останавливает исполнение функции и передаёт локальные
+            переменные <literal>ai</literal> в вызывающее окружение под
+            именами <literal>xi</literal>.
+        </para>
+        <para>
+            В режиме <literal>pause</literal>, можно вернуться на более
+            высокий уровень.
+            <literal>[x1, ..., xn] = resume(a1, ..., an)</literal>
+            возвращает на верхний уровень и передаёт локальные
+            переменные <literal>ai</literal> под именами
             <literal>xi</literal>.
         </para>
         <para>
-            В режиме <literal>pause</literal>, можно вернуться на более высокий уровень.
-            <literal>[x1,..,xn]=resume(a1,..,an)</literal> возвращает на верхний уровень и передаёт локальные переменные 
-            <literal>ai</literal> под именами <literal>xi</literal>.
-        </para>
-        <para>
-            В <literal>execstr</literal>, вызванной функцией <literal>[x1,..,xn]=resume(a1,..,an)</literal> 
-            прекращает исполнение функции и выдаёт локальные переменные <literal>ai</literal> 
-            в вызывающее окружение под именами <literal>xi</literal>.      
+            В <literal>execstr</literal>, вызванной функцией,
+            <literal>[x1, ..., xn] = resume(a1, ..., an)</literal>
+            прекращает исполнение функции и выдаёт локальные переменные
+            <literal>ai</literal> в вызывающее окружение под именами
+            <literal>xi</literal>.
         </para>
         <para>
             Инструкция <literal>resume</literal> эквивалентна инструкции <literal>return</literal>.
         </para>
         <para>
             <note>
-                Примечание: Использование этой возможности может усложнить код. Вместо этого рекомендуется синтаксис <code>function b = foo()</code>.
+                Примечание: использование этой возможности может усложнить код. Вместо этого рекомендуется синтаксис <code>function b = foo()</code>.
             </note>
         </para>
     </refsection>
@@ -67,6 +74,24 @@ foo(42);
 assert_checkequal(b,43);
 // c не существует
 
+]]></programlisting>
+       <programlisting role="example"><![CDATA[
+
+// при наличии нескольких вызовов функции
+function foo1()
+  a=1;
+  b=2;
+  c=3;
+  [x, y, z] = resume(a, b, c)
+endfunction
+
+function foo2()
+  foo1()
+  x, y, z // объявлены
+endfunction
+
+foo2()
+// x, y и z здесь не существуют
 ]]></programlisting>
     </refsection>
     <refsection role="see also">
