@@ -15,7 +15,7 @@ function [status, msg] = xcosValidateBlockSet(interfFunctionName)
     msg = "";
 
     if typeof(interfFunctionName) <> "string" | size(interfFunctionName) <> [1, 1]
-        error(999, sprintf(_("%s: Wrong type for argument %d: A String expected."), "xcosValidateBlockSet", 1))
+        error(999, sprintf(_("%s: Wrong type for argument #%d: A String expected."), "xcosValidateBlockSet", 1))
     end
 
     // Check function is defined

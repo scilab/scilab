@@ -129,7 +129,15 @@ Xcos
 * Bug #12031 fixed - Changes in context of superblock did not always have
                      effect.
 
+* Bug #12057 fixed - Scopes with big scope buffer size simulation was much
+                     more slower.
+
 * Bug #12162 fixed - tbx_build_blocks did not report errors.
+
+* Bug #12167 fixed - Text of ports in superblocks were not updated.
+
+* Bug #12213 fixed - lincos help page example produced undefined variable
+                     warnings.
 
 
 Documentation
@@ -141,9 +149,9 @@ Documentation
 Compilation
 ============
 
-* Enforce a minimal version of Scirenderer (1.0.3).
+* Enforce a minimal version of Scirenderer (1.0.5).
 
-* Enforce a minimal version of Flexdock (1.2.1).
+* Enforce a minimal version of Flexdock (1.2.2).
 
 
 Bug fixes
@@ -192,16 +200,27 @@ Bug fixes
 * Bug #11474 fixed - save_format help page was still refering to the old save
                      format. Use the SEP #64 content.
 
+* Bug #11477 fixed - There were memory leaks with textures.
+
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
+
+* Bug #11778 fixed - Bad color_map dims did not return an error.
+
+* Bug #11801 fixed - Bug with isoview="on" on subplots.
 
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
 
+* Bug #11931 fixed - In graphics, white space was not used as default thousand
+                     separator.
+
 * Bug #11939 fixed - ssprint formatting was slightly not right.
 
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
+
+* Bug #11958 fixed - axesflag=0 was not taken into account in plot2d3.
 
 * Bug #11962 fixed - event_handler may be called on wrong figure_id.
 
@@ -263,6 +282,9 @@ Bug fixes
 
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
 
+* Bug #12151 fixed - Axes did not pass through (0,0) when x_location and
+                     y_location were set to 'origin'.
+
 * Bug #12166 fixed - There was a bad label with drawaxis.
 
 * Bug #12168 fixed - matfile_listvar crashed when listing variables of a closed MAT-file.
@@ -271,9 +293,27 @@ Bug fixes
 
 * Bug #12184 fixed - Performances of the function 'derivat' improved.
 
+* Bug #12186 fixed - Performances of the function 'horner' improved.
+
 * Bug #12190 fixed - Description of sprspn updated in help page.
 
+* Bug #12196 fixed - There were no log-scales with Fec & Fac3d.
+
 * Bug #12204 fixed - Fix a typo in the French localization
+
+* Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
+
+* Bug #12232 fixed - There were several memleaks in various fillers.
+
+* Bug #12235 fixed - Matplot did not update on color_map change.
+
+* Bug #12238 fixed - [d v] = eigs(A) was broken for sparse matrices.
+
+* Bug #12239 fixed - Apply some of the recent changes in eigs to feigs.
+
+* Bug #12240 fixed - Refactoring of the eigs function.
+
+* Bug #12247 fixed - Fix a typo in some error messages.
 
 
                     Changes between version 5.3.3 and 5.4.0

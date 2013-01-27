@@ -34,74 +34,83 @@
 /* MAXCHARSSCIPRINT_FULL is for sciprint_full - more than this gets truncated */
 #define MAXCHARSSCIPRINT_FULL 5000
 /*--------------------------------------------------------------------------*/
-void sciprint_full(char *fmt,...)
+void sciprint_full(char *fmt, ...)
 {
-	int lstr;
-	va_list ap;
-	char *s_buf=NULL;
-	char *split_s_buf=NULL;
-	int count=0;
-	int p_s=0;
-	static int colwidth;
+    int lstr;
+    va_list ap;
+    char *s_buf = NULL;
+    char *split_s_buf = NULL;
+    int count = 0;
+    int p_s = 0;
+    static int colwidth;
 
-	s_buf=MALLOC(sizeof(char)*(MAXCHARSSCIPRINT_FULL+1));
-	if (s_buf == (char *) 0)
-	{
-		sciprint(_("%s: No more memory.\n"),"sciprint_full");
-		return;
-	}
+    s_buf = MALLOC(sizeof(char) * (MAXCHARSSCIPRINT_FULL + 1));
+    if (s_buf == (char *) 0)
+    {
+        sciprint(_("%s: No more memory.\n"), "sciprint_full");
+        return;
+    }
 
-	/* number of columns as set by command lines() */
-	colwidth = getColumnsSize();
+    /* number of columns as set by command lines() */
+    colwidth = getColumnsSize();
 
-	split_s_buf=MALLOC(sizeof(char)*(colwidth+1));
-	if (split_s_buf == (char *) 0)
-	{
-		sciprint(_("%s: No more memory.\n"),"sciprint_full");
-		return;
-	}
+    split_s_buf = MALLOC(sizeof(char) * (colwidth + 1));
+    if (split_s_buf == (char *) 0)
+    {
+        sciprint(_("%s: No more memory.\n"), "sciprint_full");
+        FREE(s_buf);
+        return;
+    }
 
-	va_start(ap,fmt);
+    va_start(ap, fmt);
 
 #if defined(linux) || defined(_MSC_VER)
-	count = vsnprintf (s_buf,MAXCHARSSCIPRINT_FULL-1, fmt, ap );
-	if (count == -1)
-	{
-		s_buf[MAXCHARSSCIPRINT_FULL-1]='\0';
-	}
+    count = vsnprintf (s_buf, MAXCHARSSCIPRINT_FULL - 1, fmt, ap );
+    if (count == -1)
+    {
+        s_buf[MAXCHARSSCIPRINT_FULL - 1] = '\0';
+    }
 #else
-	(void )vsprintf(s_buf, fmt, ap );
+    (void )vsprintf(s_buf, fmt, ap );
 #endif
 
-	va_end(ap);
+    va_end(ap);
 
-	lstr=(int) strlen(s_buf);
+    lstr = (int) strlen(s_buf);
 
-	if (lstr<colwidth)
-	{
-		sciprint("%s",s_buf);
-	}
-	else
-	{
-		strncpy(split_s_buf,s_buf+p_s,colwidth-1);
-		split_s_buf[colwidth]='\0';
-		p_s=p_s+colwidth-1;
-		sciprint("%s",split_s_buf);
-		sciprint("\n");
-		while (p_s+colwidth-1<(int)lstr)
-		{
-			strncpy(split_s_buf,s_buf+p_s,colwidth-1);
-			split_s_buf[colwidth]='\0';
-			p_s=p_s+colwidth-1;
-			sciprint(_("  (cont'd) %s\n"),split_s_buf);
-		}
-		strncpy(split_s_buf,s_buf+p_s,lstr-p_s);
-		split_s_buf[lstr-p_s]='\0';
-		sciprint(_("     (end) %s\n"),split_s_buf);
-	}
+    if (lstr < colwidth)
+    {
+        sciprint("%s", s_buf);
+    }
+    else
+    {
+        strncpy(split_s_buf, s_buf + p_s, colwidth - 1);
+        split_s_buf[colwidth] = '\0';
+        p_s = p_s + colwidth - 1;
+        sciprint("%s", split_s_buf);
+        sciprint("\n");
+        while (p_s + colwidth - 1 < (int)lstr)
+        {
+            strncpy(split_s_buf, s_buf + p_s, colwidth - 1);
+            split_s_buf[colwidth] = '\0';
+            p_s = p_s + colwidth - 1;
+            sciprint(_("  (cont'd) %s\n"), split_s_buf);
+        }
+        strncpy(split_s_buf, s_buf + p_s, lstr - p_s);
+        split_s_buf[lstr - p_s] = '\0';
+        sciprint(_("     (end) %s\n"), split_s_buf);
+    }
 
-	if (s_buf){FREE(s_buf);s_buf=NULL;}
-	if (split_s_buf){FREE(split_s_buf);split_s_buf=NULL;}
+    if (s_buf)
+    {
+        FREE(s_buf);
+        s_buf = NULL;
+    }
+    if (split_s_buf)
+    {
+        FREE(split_s_buf);
+        split_s_buf = NULL;
+    }
 
 }
 /*--------------------------------------------------------------------------*/

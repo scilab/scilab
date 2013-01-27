@@ -1060,7 +1060,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s: Encontrou '%s' em vez de um bloco.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr ""
 "%s: Tipo incorreto para o argumento %d: esperava-se uma estrutura de diagrama"
 
@@ -1082,7 +1082,7 @@ msgstr ""
 "permissão de escrita neste diretório.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr ""
 "%s: Tipo incorreto para o argumento %d: esperava-se uma estrutura de "
 "diagrama ou um texto"
@@ -1219,7 +1219,7 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: Incapaz de exportar a paleta para hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr "%s: tipo errado para argumento %d: uma String é esperada."
 
 msgid "Interface function does not exist or can not be called."

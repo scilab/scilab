@@ -141,7 +141,7 @@ msgid "%s: Unable to get argument data"
 msgstr "%s: Nelze získat data argumentu"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Špatná velikost argumentu %d: očekáváno (%d,%d).\n"
 
 #, c-format
@@ -156,7 +156,7 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', nebo '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána reálná matice.\n"
 
 #, c-format

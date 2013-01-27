@@ -628,6 +628,11 @@ function status = test_single(_module, _testPath, _testName)
   clear MPITestPos
 
   if ~isempty(grep(sciFile, "<-- XCOS TEST -->")) then
+    if _module.wanted_mode == "NWNI" then
+      status.id = 10;
+      status.message = "skipped: Test with xcos";
+      return;
+    end
     xcosNeeded = %T;
     jvm = %T;
   end

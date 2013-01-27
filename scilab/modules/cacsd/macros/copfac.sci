@@ -35,7 +35,7 @@ function [n,m,xt,yt]=copfac(g,polf,polc,tol)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"copfac",1))
   end
   if g.dt<>"c" then
-    error(msprintf(gettext("%s: Wrong type for argument %d: In continuous time expected.\n"),"copfac",1))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: In continuous time expected.\n"),"copfac",1))
   end
 
   [r,p,t]=size(g);
@@ -59,13 +59,13 @@ function [n,m,xt,yt]=copfac(g,polf,polc,tol)
      error(msprintf(gettext("%s: Wrong type for input argument #%d: Vector of floats expected.\n"),"copfac",2))
   end
   if size(polf,'*')<>n2 then
-    error(msprintf(gettext( "%s: Wrong size for argument %d: %d expected.\n"),"copfac",2,n2))
+    error(msprintf(gettext( "%s: Wrong size for argument #%d: %d expected.\n"),"copfac",2,n2))
   end
   if type(polc)<>1 then
      error(msprintf(gettext("%s: Wrong type for input argument #%d: Vector of floats expected.\n"),"copfac",3))
   end
   if size(polc,'*')<>n1 then
-    error(msprintf(gettext( "%s: Wrong size for argument %d: %d expected.\n"),"copfac",3,n1))
+    error(msprintf(gettext( "%s: Wrong size for argument #%d: %d expected.\n"),"copfac",3,n1))
   end
 
  

@@ -1461,7 +1461,7 @@ int C2F(getmatdims) (int *number, int *m, int *n)
     typ = *istk(il);
     if (typ > sci_strings)
     {
-        Scierror(199, _("%s: Wrong type for argument %d: Matrix expected.\n"), fname, *number);
+        Scierror(199, _("%s: Wrong type for argument #%d: Matrix expected.\n"), fname, *number);
         return FALSE;
     }
     *m = *istk(il + 1);
@@ -1833,7 +1833,7 @@ int C2F(elementtype) (int *lnumber, int *number)
     if (itype < sci_list || itype > sci_mlist)
     {
         /* check if it is really a list */
-        Scierror(210, _("%s: Wrong type for argument %d: List expected.\n"), fname, *lnumber);
+        Scierror(210, _("%s: Wrong type for argument #%d: List expected.\n"), fname, *lnumber);
         return FALSE;
     }
     n = *istk(il + 1);          /* number of elements in the list */

@@ -477,6 +477,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             setGraphicObjectRelationship(psubwinUID, compoundUID);
             getGraphicObjectProperty(psubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piParentVisible);
             setGraphicObjectProperty(compoundUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
+	    releaseGraphicObjectProperty(__GO_PARENT__, compoundUID, jni_string, 1);
         }
         FREE(hdltab);
 

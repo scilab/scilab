@@ -1019,7 +1019,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s: ブロックの代わりに '%s' が見つかりました.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr "%s: 引数 %d で不正な型: 図形構造体が予想されます"
 
 #, c-format
@@ -1037,7 +1037,7 @@ msgid ""
 msgstr "%s: ディレクトリー %s を作成できません. このディレクトリーへの書き込みアクセス権の有無を確認ください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr "%s: 引数 %d で不正な型: 文字、または図形構造体が予想されます。"
 
 #, c-format
@@ -1145,7 +1145,7 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: パレットを hdf5にエクスポートできません.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr "%s: 引数 %dの型が間違っています: 文字列を指定してください."
 
 msgid "Interface function does not exist or can not be called."

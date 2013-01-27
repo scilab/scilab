@@ -54,7 +54,7 @@
             <literal>R</literal> is strictly proper and <literal>- R~</literal> is stable 
             (i.e. <literal>R</literal> is anti stable).
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 || R - X ||oo = min || R - Y ||oo
               Y in Hoo
  ]]></programlisting>

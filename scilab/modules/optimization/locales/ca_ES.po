@@ -1119,7 +1119,7 @@ msgstr ""
 "ser de 2 a 4."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -1185,7 +1185,7 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: El vector d'índexs d'exclusió té %d files en comptes d'1."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #, c-format

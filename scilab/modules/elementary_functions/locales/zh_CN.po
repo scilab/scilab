@@ -305,7 +305,7 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目出错：应该为%d到%d个。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该为矩阵。\n"
 
 #, c-format

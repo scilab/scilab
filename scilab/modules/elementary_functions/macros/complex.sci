@@ -32,10 +32,10 @@ function  y=complex(varargin)
   //
   // Check type of input arguments
   if ( typeof(a)<>"constant" ) then
-    error(msprintf(gettext("%s: Wrong type for argument %d: Matrix expected.\n"),"complex",1));
+    error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"),"complex",1));
   end
   if ( typeof(b)<>"constant" ) then
-    error(msprintf(gettext("%s: Wrong type for argument %d: Matrix expected.\n"),"complex",2));
+    error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"),"complex",2));
   end
   //
   // Check size

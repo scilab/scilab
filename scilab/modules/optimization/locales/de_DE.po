@@ -1112,7 +1112,7 @@ msgstr ""
 "vier erwartet."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -1180,7 +1180,7 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: der Exklusion Index Vektor hat %d Reihen, anstatt 1."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #, c-format

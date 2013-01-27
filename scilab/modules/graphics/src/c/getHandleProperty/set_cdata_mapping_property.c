@@ -59,7 +59,6 @@ int set_cdata_mapping_property(void* _pvCtx, char* pobjUID, void* _pvData, int v
         return SET_PROPERTY_ERROR;
     }
 
-    FREE(cdataMapping);
     if (setGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, &cdataMapping, jni_int, 1) == FALSE)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "cdata_mapping");

@@ -30,11 +30,6 @@ public :
         return DataModel::get()->getGraphicObjectProperty(_pstID, _iName, _pvData);
     }
 
-    static void getGraphicObjectIntProperty(char const* _pstID, int _iName, void **_pvData)
-    {
-        return DataModel::get()->getGraphicObjectIntProperty(_pstID, _iName, _pvData);
-    }
-
     static char const* createDataObject(char const* _pstID, int _iType)
     {
         return DataModel::get()->createDataObject(_pstID, _iType);

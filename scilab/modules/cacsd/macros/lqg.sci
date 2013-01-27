@@ -15,7 +15,7 @@ function K=lqg(P,r)
   end
   
   if typeof(r)<>"constant"|~isreal(r) then
-    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"lqg",2))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: Real vector expected.\n"),"lqg",2))
   end
   if size(r,'*')<>2 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"lqg",2,2))

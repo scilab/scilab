@@ -64,6 +64,16 @@
     datatips_struct=datatipGetStruct(p)
     datatips_struct.formatfunction
     ]]></programlisting>
+        <scilab:image>
+            x=linspace(0,1,100)';
+            y=x.^3;
+            plot(x,y);
+            e=gce();p=e.children(1);//get the handle on the polyline
+            datatipCreate(p,50);
+            datatipCreate(p,20);
+            datatips_struct=datatipGetStruct(p)
+            datatips_struct.formatfunction
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
