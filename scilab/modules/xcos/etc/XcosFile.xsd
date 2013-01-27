@@ -446,7 +446,7 @@
       <xs:attribute name="simulationFunctionName" use="required" type="xs:NCName"/>
       <xs:attribute name="simulationFunctionType" use="required" type="xs:NCName"/>
       <xs:attribute name="style" use="required"/>
-      <xs:attribute name="value" use="required"/>
+      <xs:attribute name="value"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="RoundBlock">
