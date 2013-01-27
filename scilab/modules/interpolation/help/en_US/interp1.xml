@@ -141,9 +141,9 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=linspace(0,3,20);
-y=x^2;
+y=x.^2;
 xx=linspace(0,3,100);
 yy1=interp1(x,y,xx,'linear');
 yy2=interp1(x,y,xx,'spline');
@@ -154,7 +154,7 @@ legend(['linear','spline','nearest'],a=2)
  ]]></programlisting>
         <scilab:image>
             x=linspace(0,3,20);
-            y=x^2;
+            y=x.^2;
             xx=linspace(0,3,100);
             yy1=interp1(x,y,xx,'linear');
             yy2=interp1(x,y,xx,'spline');
