@@ -249,7 +249,6 @@
     <ClInclude Include="src\c\ripole\pldstr.h" />
     <ClInclude Include="src\c\ripole\ripole.h" />
     <ClInclude Include="src\c\splitLine.h" />
-    <ClInclude Include="src\c\stringsToDoubles.h" />
     <ClInclude Include="src\c\stringToComplex.h" />
     <ClInclude Include="src\c\utftolatin.h" />
     <ClInclude Include="src\c\xls.h" />
@@ -260,7 +259,6 @@
     <ClCompile Include="sci_gateway\c\sci_csvDefault.c" />
     <ClCompile Include="sci_gateway\c\sci_csvIsnum.c" />
     <ClCompile Include="sci_gateway\c\sci_csvRead.c" />
-    <ClCompile Include="sci_gateway\c\sci_csvStringToDouble.c" />
     <ClCompile Include="sci_gateway\c\sci_csvTextScan.c" />
     <ClCompile Include="sci_gateway\c\sci_csvWrite.c" />
     <ClCompile Include="sci_gateway\c\sci_xls_open.c" />
@@ -283,7 +281,6 @@
     <ClCompile Include="src\c\ripole\pldstr.c" />
     <ClCompile Include="src\c\ripole\ripole.c" />
     <ClCompile Include="src\c\splitLine.c" />
-    <ClCompile Include="src\c\stringsToDoubles.c" />
     <ClCompile Include="src\c\stringToComplex.c" />
     <ClCompile Include="src\c\utftolatin.c" />
     <ClCompile Include="src\c\xls.c" />
