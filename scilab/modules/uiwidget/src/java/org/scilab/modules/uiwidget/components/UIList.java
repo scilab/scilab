@@ -237,6 +237,15 @@ public class UIList extends UIComponent {
         } catch (IllegalArgumentException e) { }
     }
 
+    public int[] getSelectedIndices() {
+        int[] indices = list.getSelectedIndices();
+        if (indices.length == 0) {
+            return null;
+        }
+
+        return indices;
+    }
+
     public int getValue() {
         return getSelectedIndex();
     }
