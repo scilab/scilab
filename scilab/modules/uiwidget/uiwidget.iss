@@ -19,6 +19,8 @@
 ;
 Source: modules\{#UIWIDGET}\license.txt; DestDir: {app}\modules\{#UIWIDGET}; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#UIWIDGET}\jar\org.scilab.modules.{#UIWIDGET}.jar; DestDir: {app}\modules\{#UIWIDGET}\jar; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#UIWIDGET}\sci_gateway\{#UIWIDGET}_gateway.xml; DestDir: {app}\modules\{#UIWIDGET}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#UIWIDGET}\etc\{#UIWIDGET}.quit; DestDir: {app}\modules\{#UIWIDGET}\etc; Components: {#COMPN_SCILAB}
