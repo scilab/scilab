@@ -69,6 +69,11 @@ extern "C"
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"
 #endif
+
+#if defined(linux) && defined(__i386__)
+#include "setPrecisionFPU.h"
+#endif
+
     /*
     ** HACK HACK HACK
     */
@@ -88,11 +93,6 @@ extern "C"
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "runner.hxx"
-
-
-#if defined(linux) && defined(__i386__)
-#include "setPrecisionFPU.h"
-#endif
 
 #define INTERACTIVE     -1
 
