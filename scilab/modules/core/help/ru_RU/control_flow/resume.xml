@@ -62,7 +62,7 @@
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 function foo(a)
          a=a+1
