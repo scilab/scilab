@@ -89,6 +89,7 @@ void * LSodarCreate (int * neq, int ng)
     lsodar_mem->g_fun      = NULL;
     lsodar_mem->ng_fun     = ng;
     lsodar_mem->jroot      = NULL;
+    lsodar_mem->ehfun      = NULL;
 
     return ((void *) lsodar_mem);
 }
@@ -522,8 +523,33 @@ void LSFreeVectors (LSodarMem ls_mem)
     free (jroot);
 }
 
-#define ehfun    LSErrHandler
-#define eh_data  (void *) lsodar_mem
+/* =============================
+ *
+ *     LSodarSetErrHandlerFn
+ *
+ * =============================
+ *
+ * Specifies the error handler function.
+ */
+
+int LSodarSetErrHandlerFn (void * lsodar_mem, LSErrHandlerFn ehfun, void * eh_data)
+{
+    LSodarMem ls_mem;
+
+    if (lsodar_mem == NULL)
+    {
+        LSProcessError(NULL, CV_MEM_NULL, "LSODAR", "LSodarSetErrHandlerFn", MSGCV_NO_MEM);
+        return(CV_MEM_NULL);
+    }
+
+    ls_mem = (LSodarMem) lsodar_mem;
+
+    ls_mem->ehfun = ehfun;
+
+    return(CV_SUCCESS);
+}
+
+#define ehfun    ls_mem->ehfun
 
 /* =============================
  *
@@ -534,7 +560,7 @@ void LSFreeVectors (LSodarMem ls_mem)
  * Error handling function.
  */
 
-void LSProcessError (LSodarMem lsodar_mem, int error_code, const char *module, const char *fname, const char *msgfmt, ...)
+void LSProcessError (LSodarMem ls_mem, int error_code, const char *module, const char *fname, const char *msgfmt, ...)
 {
     va_list ap;
     char msg[256];
@@ -543,7 +569,7 @@ void LSProcessError (LSodarMem lsodar_mem, int error_code, const char *module, c
        (msgfmt is the last required argument to LSProcessError) */
     va_start(ap, msgfmt);
 
-    if (lsodar_mem == NULL)      /* We write to stderr */
+    if (ls_mem == NULL)      /* We write to stderr */
     {
 #ifndef NO_FPRINTF_OUTPUT
         fprintf(stderr, "\n[%s ERROR]  %s\n  ", module, fname);
@@ -557,46 +583,11 @@ void LSProcessError (LSodarMem lsodar_mem, int error_code, const char *module, c
         vsprintf(msg, msgfmt, ap);
 
         /* Call ehfun */
-        ehfun(error_code, module, fname, msg, eh_data);
+        ehfun(error_code, module, fname, msg, NULL);
     }
 
     /* Finalize argument processing */
     va_end(ap);
-
-    return;
-}
-
-#define errfp    stderr
-
-/* =============================
- *
- *          LSErrHandler
- *
- * =============================
- *
- * Default error handling function.
- */
-
-void LSErrHandler (int error_code, const char *module, const char *function, char *msg, void *data)
-{
-    char err_type[10];
-
-    if (error_code == CV_WARNING)
-    {
-        sprintf(err_type, "WARNING");
-    }
-    else
-    {
-        sprintf(err_type, "ERROR");
-    }
-
-#ifndef NO_FPRINTF_OUTPUT
-    if (errfp != NULL)
-    {
-        fprintf(errfp, "\n[%s %s]  %s\n", module, err_type, function);
-        fprintf(errfp, "  %s\n\n", msg);
-    }
-#endif
 
     return;
 }

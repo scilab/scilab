@@ -38,8 +38,8 @@ struct rWork_t
 // Derivative computation and Root functions
 typedef int (*LSRhsFn) (int * neq, realtype * t, realtype * y, realtype * rwork);
 typedef int (*LSRootFn) (int * neq, realtype * t, realtype * y, int * ng, realtype * rwork);
+typedef void (*LSErrHandlerFn) (int error_code, const char *module, const char *function, char *msg, void *user_data);
 
-// Potential tasks
 enum iTask_t
 {
     LS_NORMAL = 1,
@@ -71,6 +71,7 @@ typedef struct LSodarMemRec
     LSRootFn g_fun;
     int ng_fun;
     int * jroot;
+    LSErrHandlerFn ehfun;
 } *LSodarMem;
 
 // Creating the problem
@@ -106,10 +107,10 @@ void LSodarFree (void ** lsodar_mem);
 // Freeing the lsodar vectors allocated in lsodarAllocVectors
 void LSFreeVectors (LSodarMem lsodar_mem);
 
-// Error handling function
-void LSProcessError (LSodarMem lsodar_mem, int error_code, const char *module, const char *fname, const char *msgfmt, ...);
+// Specifies the error handler function
+int LSodarSetErrHandlerFn (void * lsodar_mem, LSErrHandlerFn ehfun, void * eh_data);
 
-// Default error handling function
-void LSErrHandler (int error_code, const char *module, const char *function, char *msg, void *data);
+// Error handling function
+void LSProcessError (LSodarMem ls_mem, int error_code, const char *module, const char *fname, const char *msgfmt, ...);
 
 #endif

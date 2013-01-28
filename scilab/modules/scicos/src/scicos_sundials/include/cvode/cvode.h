@@ -94,8 +94,6 @@ extern "C" {
  * CVODE return flags
  * ----------------------------------------
  */
-/* SUNDIALS EXTENSION */
-#define CV_ZERO_DETACH_RETURN    3
 
 #define CV_SUCCESS               0
 #define CV_TSTOP_RETURN          1
@@ -127,23 +125,7 @@ extern "C" {
 #define CV_TOO_CLOSE            -27
 
 /* SUNDIALS EXTENSION */
-#define CV_YOUT_NULL            -28
-#define CV_TRET_NULL            -29
-#define CV_BAD_ITASK            -30
-#define CV_BAD_H0               -32
-#define CV_BAD_TSTOP            -33
-#define CV_EWT_FAIL             -36
-#define CV_BAD_EWT              -37
-#define CV_LSOLVE_NULL          -38
-#define CV_NULL_Y0              -39
-#define CV_BAD_ITOL             -40
-#define CV_NULL_F               -41
-#define CV_BAD_NVECTOR          -42
-#define CV_BAD_RELTOL           -44
-#define CV_BAD_ABSTOL           -45
-#define CV_NULL_G               -46
-#define CV_BAD_TOUT             -47
-#define CV_CLOSE_ROOTS          -48
+#define CV_ZERO_DETACH_RETURN    3
 
 /*
  * =================================================================

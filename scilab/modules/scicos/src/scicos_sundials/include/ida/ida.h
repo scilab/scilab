@@ -61,9 +61,6 @@ extern "C" {
  * ----------------------------------------
  */
 
-/* SUNDIALS EXTENSION */
-#define IDA_ZERO_DETACH_RETURN   3
-
 #define IDA_SUCCESS          0
 #define IDA_TSTOP_RETURN     1
 #define IDA_ROOT_RETURN      2
@@ -97,27 +94,7 @@ extern "C" {
 #define IDA_BAD_DKY         -27
 
 /* SUNDIALS EXTENSION */
-#define IDA_TRET_NULL       -29
-#define IDA_BAD_ITASK       -30
-#define IDA_BAD_TSTOP       -33
-#define IDA_EWT_FAIL        -36
-#define IDA_LSOLVE_NULL     -38
-#define IDA_NULL_Y0         -39
-#define IDA_BAD_ITOL        -40
-#define IDA_BAD_NVECTOR     -42
-#define IDA_BAD_RELTOL      -44
-#define IDA_BAD_ABSTOL      -45
-#define IDA_NULL_G          -46
-#define IDA_BAD_TOUT        -47
-#define IDA_YP0_NULL        -48
-#define IDA_RES_NULL        -49
-#define IDA_YRET_NULL       -50
-#define IDA_YPRET_NULL      -51
-#define IDA_BAD_HINIT       -52
-#define IDA_MISSING_ID      -53
-#define IDA_Y0_FAIL_CONSTR  -54
-#define IDA_TOO_CLOSE       -55
-#define IDA_CLOSE_ROOTS     -56
+#define IDA_ZERO_DETACH_RETURN   3
 
 /*
  * ----------------------------------------------------------------
