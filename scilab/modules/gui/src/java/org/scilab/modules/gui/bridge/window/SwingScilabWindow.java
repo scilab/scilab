@@ -102,6 +102,14 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * Constructor
      */
     public SwingScilabWindow() {
+        this(false);
+    }
+
+    /**
+     * Constructor
+     * @param manageClosing, if false Scilab won't manage the SwingScilabWindow closing.
+     */
+    public SwingScilabWindow(boolean manageClosing) {
         super();
         this.uuid = UUID.randomUUID().toString();
 
@@ -149,12 +157,14 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         // let the OS choose the window position if not specified by user.
         setLocationByPlatform(true);
 
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                ClosingOperationsManager.startClosingOperation(SwingScilabWindow.this);
-            }
-        });
+        if (!manageClosing) {
+            addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    ClosingOperationsManager.startClosingOperation(SwingScilabWindow.this);
+                }
+            });
+        }
 
         if (MAC_OS_X) {
             registerForMacOSXEvents();
