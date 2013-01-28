@@ -88,6 +88,8 @@ public class UIScilabWindow extends UIComponent {
             }
         });
 
+        win.setDefaultCloseOperation(SwingScilabWindow.DISPOSE_ON_CLOSE);
+
         return win;
     }
 
