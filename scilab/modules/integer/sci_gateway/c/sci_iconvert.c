@@ -40,7 +40,7 @@ int sci_iconvert(char *fname, unsigned long fname_len)
 
     if (isVarComplex(pvApiCtx, piAddressVarOne))
     {
-        Scierror(202, _("%s: Wrong type for argument %d: Real matrix expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), fname, 1);
         return 0;
     }
 
@@ -54,19 +54,19 @@ int sci_iconvert(char *fname, unsigned long fname_len)
 
     if (!isDoubleType(pvApiCtx, piAddressVarTwo))
     {
-        Scierror(202, _("%s: Wrong type for argument %d: Real scalar expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: Real scalar expected.\n"), fname, 2);
         return 0;
     }
 
     if (isVarComplex(pvApiCtx, piAddressVarTwo))
     {
-        Scierror(202, _("%s: Wrong type for argument %d: Real scalar expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: Real scalar expected.\n"), fname, 2);
         return 0;
     }
 
     if (!isScalar(pvApiCtx, piAddressVarTwo))
     {
-        Scierror(202, _("%s: Wrong size for argument %d: Real scalar expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong size for argument #%d: Real scalar expected.\n"), fname, 2);
         return 0;
     }
 

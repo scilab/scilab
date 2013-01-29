@@ -30,7 +30,7 @@ function [K]=ccontrg(PP,r,Gamma);
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"ccontrg",1))
   end
   if typeof(r)<>"constant"|~isreal(r) then
-    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"ccontrg",2))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: Real vector expected.\n"),"ccontrg",2))
   end
   if size(r,'*')<>2 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ccontrg",2,2))

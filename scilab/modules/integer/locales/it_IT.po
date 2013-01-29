@@ -22,19 +22,19 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
 "reale.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso %d è di tipo sbagliato: era atteso uno scalare "
 "reale.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: La dimensione dell'argomento in ingresso %d è sbagliata: era atteso uno "
 "scalare reale.\n"

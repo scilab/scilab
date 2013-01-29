@@ -1138,7 +1138,7 @@ msgstr ""
 "se pasaron %d."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento de entrada %d: Se esperaba %s.\n"
 
@@ -1206,7 +1206,7 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: El vector de exclusión de indices tiene %d filas en lugar de 1."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz de reales.\n"
 

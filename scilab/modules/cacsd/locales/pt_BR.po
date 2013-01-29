@@ -327,7 +327,7 @@ msgstr ""
 "de tempo contínuo.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento %d: esperava-se um vetor de números "
 "reais.\n"
@@ -377,7 +377,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: In continuous time expected.\n"
+msgid "%s: Wrong type for argument #%d: In continuous time expected.\n"
 msgstr ""
 "%s: Tipo inválido para argumento %d: esperava-se em tempo contínuo.\n"
 
@@ -394,7 +394,7 @@ msgstr ""
 "números reais.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Tamanho incorreto para o argumento %d: esperava-se %d.\n"
 
 #, c-format
@@ -878,7 +878,7 @@ msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Tamanho incorreto para o argumento %d: esperava-se (%d,%d).\n"
 
 #, c-format
@@ -890,7 +890,7 @@ msgstr ""
 "ser maior que a primeira.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "Tipo incorreto para o argumento %d: esperava-se SISO.\n"
 
 #, c-format

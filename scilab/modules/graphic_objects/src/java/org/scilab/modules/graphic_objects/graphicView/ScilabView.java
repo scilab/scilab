@@ -12,6 +12,7 @@
 package org.scilab.modules.graphic_objects.graphicView;
 
 import org.scilab.modules.graphic_objects.ScilabNativeView;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 public class ScilabView extends ScilabNativeView implements GraphicView {
 
@@ -36,7 +37,8 @@ public class ScilabView extends ScilabNativeView implements GraphicView {
     }
 
     public void updateObject(String id, int property) {
-        ScilabNativeView__updateObject(id, property);
+        if (property == GraphicObjectProperties.__GO_ID__) {
+            ScilabNativeView__updateObject(id, property);
+        }
     }
-
 }

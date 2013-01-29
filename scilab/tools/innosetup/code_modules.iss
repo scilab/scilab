@@ -78,7 +78,6 @@ begin
     ModulesXmlFileLines[i] := '<module name="statistics" activate="yes"/>'; i := i + 1;
     //ModulesXmlFileLines[i] := '<module name="arnoldi" activate="yes"/>'; i := i + 1;
     //ModulesXmlFileLines[i] := '<module name="compatibility_functions" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
     //ModulesXmlFileLines[i] := '<module name="m2sci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="mexlib" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="sound" activate="yes"/>'; i := i + 1;
@@ -115,6 +114,7 @@ begin
         ModulesXmlFileLines[i] := '<module name="commons" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="history_browser" activate="yes"/>'; i := i + 1;
         //ModulesXmlFileLines[i] := '<module name="graph" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
     end;
 
     ModulesXmlFileLines[i] := '<!-- Scinotes dependencies -->'; i := i + 1;
@@ -128,8 +128,8 @@ begin
     begin
         ModulesXmlFileLines[i] := '<module name="gui" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="graphics" activate="yes"/>'; i := i + 1;
-        //ModulesXmlFileLines[i] := '<module name="renderer" activate="yes"/>'; i := i + 1;
-        //ModulesXmlFileLines[i] := '<module name="graphic_objects" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="renderer" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="graphic_objects" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="graphic_export" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="ui_data" activate="yes"/>'; i := i + 1;
     end;

@@ -1042,7 +1042,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s: Nalezeno '%s' místo bloku.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr "%s: Špatný typ argumentu %d: očekávána struktura grafu"
 
 #, c-format
@@ -1062,7 +1062,7 @@ msgstr ""
 "složky přístup k zápisu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr "%s: Špatný typ argumentu %d: Očekáván řetězec nebo struktura grafu"
 
 #, c-format
@@ -1176,7 +1176,7 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: Nelze exportovat paletu do hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr "%s: Špatný typ argumentu %d: Očekáván řetězec."
 
 msgid "Interface function does not exist or can not be called."

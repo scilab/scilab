@@ -1291,11 +1291,11 @@ msgstr ""
 "{%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался вещественный вектор.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался вещественный скаляр.\n"
 
 #, c-format
@@ -1317,7 +1317,7 @@ msgstr ""
 "строк.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Неверный размер параметра %d: ожидался размер %d.\n"
 
 #, c-format

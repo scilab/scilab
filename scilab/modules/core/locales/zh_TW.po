@@ -40,11 +40,11 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 無法讀取第 #%d 個參數.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s:參數%d的型別錯誤:應該為一實數純量.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
 msgstr "%s:參數%d的長度錯誤:應該為一實數純量.\n"
 
 #
@@ -637,21 +637,21 @@ msgid "%s: argument %d should be a list of size at least %d.\n"
 msgstr "%s: 參數 %d 須為大小至少為 %d 之串列 (list).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為實數矩陣.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: 參數 %d 大小 (size) 錯誤: 應為 (%d,%d) .\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
+"%s: Wrong type for argument #%d (List element: %d): Real or complex matrix "
 "expected.\n"
 msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為實數或複數矩陣\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為實數或複數矩陣.\n"
 
 #
@@ -684,12 +684,12 @@ msgid "%s: Too many names.\n"
 msgstr "%s: 太多名稱.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
+msgid "%s: Wrong type for argument #%d: List of size at least %d expected.\n"
 msgstr "%s: 參數 %d 型態錯誤 : 應為最小個數為 %d 之串列 (List).\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Int matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為  Int 矩陣.\n"
 
 #
@@ -704,93 +704,93 @@ msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為  Int 矩陣.\n"
 # File: src/c/stack1.c, line: 2519
 # File: src/c/stack1.c, line: 3144
 #, c-format
-msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgid "%s: Wrong size for argument #%d: At least %d expected.\n"
 msgstr "%s: 參數 %d 大小 (size) 錯誤: 預期最小為 %d .\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Boolean matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為  Boolean 矩陣.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為 Boolean 矩陣.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Sparse matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為 稀疏矩陣.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為稀疏矩陣.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
+msgid "%s: Wrong type for argument #%d (List element: %d): Vector expected.\n"
 msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為向量.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s: 參數 %d 型態錯誤 : 應為向量.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: 參數 %d 型態錯誤 : 應為實數向量.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: 參數 %d 大小 (size) 錯誤: 應為 %d .\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
+msgid "%s: Wrong type for argument #%d (List element: %d): Scalar expected.\n"
 msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為純量.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
 msgstr "%s: 參數 %d 型態錯誤 : 應為純量, '%s' 或 '%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of strings "
+"%s: Wrong type for argument #%d (List element: %d): Matrix of strings "
 "expected.\n"
 msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為矩陣或字串.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr "%s: 參數 %d 型態錯誤 : 應為矩陣或字串.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): String matrix expected.\n"
 msgstr "%s: 第 %d 參數的型態錯誤 (列出元素: %d): 應該是字串矩陣.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為字串矩陣.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為串列 (list).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為多項式矩陣 (Polynomial matrix).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr "%s: 第 %d 個參數的資料型別錯誤: 應該是一多項式.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為整數矩陣.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Row vector expected.\n"
 msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為 Row vector expected.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Row vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為行向量.\n"
 
 #
@@ -800,20 +800,20 @@ msgid "%s: argument %d >(%d) should be a column vector.\n"
 msgstr "%s: 參數 %d >(%d) 應該為一列向量.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Column vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Column vector expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為列向量.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Boxed pointer expected.\n"
 msgstr "%s: 參數 %d 型態錯誤 (List 元素: %d): 應為 Boxed 指標 (pointer).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
+msgid "%s: Wrong type for argument #%d: Boxed pointer expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為 Boxed 指標 (pointer).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為矩陣.\n"
 
 #
@@ -824,7 +824,7 @@ msgstr "%s: 進入點(entry point) %s 不在事先已定義之表或連結表內
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr "%s: 參數 %d 型態錯誤 : 應為函數字串 (外部函數)\n"
 
@@ -848,12 +848,12 @@ msgstr "%f: 儲存字串參數的空間已用完.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of handle "
+"%s: Wrong type for argument #%d (List element: %d): Matrix of handle "
 "expected.\n"
 msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為 handle 之矩陣.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為 handle 之矩陣.\n"
 
 #, c-format

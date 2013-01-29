@@ -42,7 +42,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"h_inf",1))
   end
   if typeof(r)<>"constant"|~isreal(r) then
-    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"h_inf",2))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: Real vector expected.\n"),"h_inf",2))
   end
   if size(r,'*')<>2 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"h_inf",2,2))
@@ -54,7 +54,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
   
   
   if typeof(mumin)<>"constant"|~isreal(mumin) then
-    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"h_inf",3))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: Real vector expected.\n"),"h_inf",3))
   end
   if size(mumin,'*')<>1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"h_inf",3))
@@ -65,7 +65,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
 
   
   if typeof(mumax)<>"constant"|~isreal(mumax) then
-    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"h_inf",4))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: Real vector expected.\n"),"h_inf",4))
   end
   if size(mumax,'*')<>1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"h_inf",4))
@@ -74,7 +74,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
     error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be positive.\n"),"h_inf",4))
   end
   if typeof(nmax)<>"constant"|~isreal(nmax) then
-    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"h_inf",5))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: Real vector expected.\n"),"h_inf",5))
   end
 
   if nmax<>int(nmax)|nmax<=0 then

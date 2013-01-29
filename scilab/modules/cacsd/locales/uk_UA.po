@@ -329,7 +329,7 @@ msgstr ""
 "неперервну за часом систему.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: мало бути вказано вектор дійсних значень.\n"
 
@@ -376,7 +376,7 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: In continuous time expected.\n"
+msgid "%s: Wrong type for argument #%d: In continuous time expected.\n"
 msgstr "%s: помилковий тип параметра %d: мав бути неперервним за часом.\n"
 
 #, c-format
@@ -392,7 +392,7 @@ msgstr ""
 "дійсних значень.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: помилкова розмірність параметра №%d: мало бути %d.\n"
 
 #, c-format
@@ -880,7 +880,7 @@ msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
 "%s: помилкова розмірність параметра %d: розмірність мала бути такою: "
 "(%d,%d).\n"
@@ -894,7 +894,7 @@ msgstr ""
 "мають бути більшими за значення у першому.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "Помилковий тип параметра %d: мало бути використано тип SISO.\n"
 
 #, c-format

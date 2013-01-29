@@ -129,6 +129,9 @@ Xcos
 * Bug #12031 fixed - Changes in context of superblock did not always have
                      effect.
 
+* Bug #12057 fixed - Scopes with big scope buffer size simulation was much
+                     more slower.
+
 * Bug #12162 fixed - tbx_build_blocks did not report errors.
 
 * Bug #12167 fixed - Text of ports in superblocks were not updated.
@@ -200,6 +203,8 @@ Bug fixes
 * Bug #11477 fixed - There were memory leaks with textures.
 
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
+
+* Bug #11778 fixed - Bad color_map dims did not return an error.
 
 * Bug #11801 fixed - Bug with isoview="on" on subplots.
 
@@ -299,6 +304,16 @@ Bug fixes
 * Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
 
 * Bug #12232 fixed - There were several memleaks in various fillers.
+
+* Bug #12235 fixed - Matplot did not update on color_map change.
+
+* Bug #12238 fixed - [d v] = eigs(A) was broken for sparse matrices.
+
+* Bug #12239 fixed - Apply some of the recent changes in eigs to feigs.
+
+* Bug #12240 fixed - Refactoring of the eigs function.
+
+* Bug #12247 fixed - Fix a typo in some error messages.
 
 
                     Changes between version 5.3.3 and 5.4.0

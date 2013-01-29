@@ -24,7 +24,7 @@ function [nh]=h2norm(g,tol)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"h2norm",1))
   end
   if g.dt<>"c" then
-    error(msprintf(gettext("%s: Wrong type for argument %d: In continuous time expected.\n"),"h2norm",1))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: In continuous time expected.\n"),"h2norm",1))
   end
 
   [lhs,rhs]=argn(0),

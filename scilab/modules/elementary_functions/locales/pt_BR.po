@@ -390,7 +390,7 @@ msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: Tipo incorreto para o argumento %d: esperava-se uma matriz.\n"
 
 #, c-format

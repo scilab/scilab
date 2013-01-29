@@ -373,7 +373,7 @@ msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
 
 #, c-format

@@ -12,13 +12,13 @@ function M=%st_matrix(M,varargin)
   if size(varargin)==1 then
     sz=varargin(1)
      if type(sz)<>1 then
-       error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"matrix",2))
+       error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"matrix",2))
      end
   else
     sz=[];
     for k=1:size(varargin)
       if size(varargin(k),'*')<>1|type(varargin(k))<>1 then
-        error(msprintf(_("%s: Wrong type for argument %d: Real scalar expected.\n"),"matrix",k+1))
+        error(msprintf(_("%s: Wrong type for argument #%d: Real scalar expected.\n"),"matrix",k+1))
       end
       sz=[sz varargin(k)]
     end

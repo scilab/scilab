@@ -18,18 +18,18 @@ function [M,sel]=pack(M,blocksizes)
     //
     // Check type
     if typeof(M) <> "constant" then
-        error(msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"),"pack",1));
+        error(msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"),"pack",1));
     end
     if typeof(blocksizes) <> "constant" then
-        error(msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"),"pack",2));
+        error(msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"),"pack",2));
     end
     //
     // Check content
     if ~isreal(M) then
-        error(msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"),"pack",1));
+        error(msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"),"pack",1));
     end
     if ~isreal(blocksizes) then
-        error(msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"),"pack",2));
+        error(msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"),"pack",2));
     end
     if or(blocksizes<1) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Non-negative integers expected.\n"),"pack",2));

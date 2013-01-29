@@ -73,11 +73,11 @@ msgid "%s is not a valid field name."
 msgstr "%s 不是一個有效的欄位名稱。"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: 參數 %d 型態錯誤 : 應為實數向量.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: 參數%d型別錯誤  : 應該是純量實數.\n"
 
 #, c-format
