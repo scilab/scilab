@@ -15,6 +15,7 @@
 #include "gw_mpi.h"
 #include "sci_mpi.h"
 #include "Scierror.h"
+#include "localization.h"
 #include "MALLOC.h"
 #include "deserialization.h"
 
@@ -78,7 +79,11 @@ int sci_mpi_irecv(char *fname, unsigned long fname_len)
         return 1;
     }
 
-
+    if (RequestID < 0)
+    {
+        Scierror(999, _("%s: Wrong values for input argument #%d: Positive value expected.\n"), fname, 3);
+        return 0;
+    }
     /*
         iRet = mpi_my_recv(&piBuffer, &iBufferSize);
         if(iRet)

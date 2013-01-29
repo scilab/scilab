@@ -63,6 +63,12 @@ int sci_mpi_isend(char *fname, unsigned long fname_len)
         return 1;
     }
 
+    if (RequestID < 0)
+    {
+        Scierror(999, _("%s: Wrong values for input argument #%d: Positive value expected.\n"), fname, 3);
+        return 0;
+    }
+
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
     {

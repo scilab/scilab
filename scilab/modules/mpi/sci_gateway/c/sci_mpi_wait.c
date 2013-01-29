@@ -51,6 +51,12 @@ int sci_mpi_wait(char *fname, unsigned long fname_len)
         return 1;
     }
 
+    if (RequestID < 0)
+    {
+        Scierror(999, _("%s: Wrong values for input argument #%d: Positive value expected.\n"), fname, 1);
+        return 0;
+    }
+
     iRet = MPI_Wait(&request[(int)RequestID], MPI_STATUS_IGNORE); /* TODO: MPI_COMM_WORLD should be changed */
     if (iRet != MPI_SUCCESS)
     {
