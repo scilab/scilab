@@ -17,17 +17,17 @@
 
 extern "C"
 {
-    #include "gw_console.h"
+#include "gw_console.h"
 }
 
 #define MODULE_NAME L"console"
 
 int ConsoleModule::Load()
 {
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"clc", &sci_clc, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"tohome", &sci_tohome, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"lines", &sci_lines, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"prompt", &sci_prompt, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"iswaitingforinput",   &sci_iswaitingforinput, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"clc", &sci_clc, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tohome", &sci_tohome, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"lines", &sci_lines, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"prompt", &sci_prompt, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"iswaitingforinput",   &sci_iswaitingforinput, MODULE_NAME));
     return true;
 }

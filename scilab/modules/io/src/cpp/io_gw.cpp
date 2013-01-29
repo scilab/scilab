@@ -23,12 +23,12 @@ using namespace types;
 
 int IoModule::Load()
 {
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"load", &sci_load, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"genlib", &sci_genlib, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"file", &sci_file, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"host", &sci_host, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"unix", &sci_unix, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getenv", &sci_getenv, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"setenv", &sci_setenv, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"load", &sci_load, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"genlib", &sci_genlib, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"file", &sci_file, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"host", &sci_host, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"unix", &sci_unix, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"getenv", &sci_getenv, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"setenv", &sci_setenv, MODULE_NAME));
     return 1;
 }

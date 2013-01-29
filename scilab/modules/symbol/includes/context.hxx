@@ -60,11 +60,10 @@ public :
 
     /** If key was associated to some Entry_T in the open scopes, return the
      ** most recent insertion. Otherwise return the empty pointer. */
-    types::InternalType*	get_fun(const symbol::Symbol& key) const;
+    types::InternalType*	getFunction(const symbol::Symbol& key) const;
 
     /*return function list in the module _stModuleName*/
-    std::list<symbol::Symbol>& get_funlist(const std::wstring& _stModuleName);
-
+    std::list<symbol::Symbol>& getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd = true);
 
     /* global functions */
 
@@ -98,12 +97,12 @@ public :
     /*add symbol and value in the stack*/
     bool put(const symbol::Symbol& key, types::InternalType &type);
     /*add symbol and value in the previous scope*/
-    bool put_in_previous_scope(const symbol::Symbol& key, types::InternalType &type);
+    bool putInPreviousScope(const symbol::Symbol& key, types::InternalType &type);
 
     /* remove symbol/value association */
     bool remove(const symbol::Symbol& key);
 
-    bool AddFunction(types::Function *_info);
+    bool addFunction(types::Function *_info);
     bool AddMacro(types::Macro *_info);
     bool AddMacroFile(types::MacroFile *_info);
     void print(std::wostream& ostr) const

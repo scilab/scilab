@@ -122,7 +122,7 @@ int ScinotesModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &ScinotesModule::LoadDeps, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &ScinotesModule::LoadDeps, wstModuleName));
     }
 
     return 1;
@@ -143,7 +143,7 @@ int FunctionsModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -163,7 +163,7 @@ int StatisticsModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -183,7 +183,7 @@ int SignalProcessingModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -212,7 +212,7 @@ int HelptoolsModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &HelptoolsModule::LoadDeps, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &HelptoolsModule::LoadDeps, wstModuleName));
     }
 
     return 1;
@@ -232,7 +232,7 @@ int MatioModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -250,7 +250,7 @@ int Hdf5Module::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -270,7 +270,7 @@ int ActionBindingModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -290,7 +290,7 @@ int DifferentialEquationsModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -308,7 +308,7 @@ int SpreadsheetModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -328,7 +328,7 @@ int InterpolationModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -348,7 +348,7 @@ int SoundModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -366,7 +366,7 @@ int RandlibModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -384,7 +384,7 @@ int CacsdModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -402,7 +402,7 @@ int UmfpackModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -420,7 +420,7 @@ int OptimizationModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -438,7 +438,7 @@ int SpecialFunctionModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;
@@ -456,7 +456,7 @@ int GraphicExportModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->AddFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
     return 1;

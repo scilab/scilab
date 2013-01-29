@@ -110,7 +110,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     {
         types::Double* pDblIn = in[0]->getAs<types::Double>();
         // doc says : "With complex numbers, gsort can be overloaded"
-        if (pDblIn->isComplex() && symbol::Context::getInstance()->get_fun(symbol::Symbol(L"%_gsort")))
+        if (pDblIn->isComplex() && symbol::Context::getInstance()->getFunction(symbol::Symbol(L"%_gsort")))
         {
             if (_iRetCount == 2)
             {
