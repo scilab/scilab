@@ -73,8 +73,25 @@ end
 if rhs < 1 then
   error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "steadycos", 1));
 end
-if typeof(scs_m)<>"diagram" then
+if typeof(scs_m)<>"diagram" & typeof(scs_m)<>"cpr" then
   error(msprintf(gettext("%s: Wrong type for input argument #%d: A diagram expected.\n"), "steadycos", 1));
+end
+
+// compile and post-process the diagram
+if typeof(scs_m)=="diagram" then
+
+// Propagate context through all blocks
+%state0     = list();
+needcompile = 4;
+%cpr        = struct();
+%cpr.state  = %state0;
+%scicos_context = struct();
+context = scs_m.props.context;
+
+[%scicos_context, ierr] = script2var(context, %scicos_context);
+[scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr, %scicos_context);
+if ~ok then
+    error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "lincos"));
 end
 
 IN  = [];
@@ -136,7 +153,11 @@ if %cpr==list() then
 end
 if ~ok then
   error(msprintf(gettext("%s: Diagram does not compile in pass %d.\n"),"steadycos",2));
+end
+
+// compile and post-process the diagram end
 end 
+
 sim=%cpr.sim;state=%cpr.state;
 //
 inplnk=sim.inplnk;inpptr=sim.inpptr;
@@ -232,7 +253,7 @@ zer(Indy) = 0;
 err       = zer.*(Y-y);
 f=.5*(norm(xp,2)+norm(err,2));
 
-sys = lincos(scs_m,X,U,param); //** lincos is used here 
+sys = lincos(%cpr,X,U,param); //** lincos is used here 
 
 g  = xp'*[sys.B(:,Indu) sys.A(:,Indx)] - err'*[sys.D(:,Indu) sys.C(:,Indx)];
 
