@@ -137,6 +137,9 @@ Xcos
 * Bug #12213 fixed - lincos help page example produced undefined variable
                      warnings.
 
+* Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
+                     due to CLR blocks.
+
 
 Documentation
 ==============
