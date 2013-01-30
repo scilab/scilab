@@ -125,13 +125,16 @@ public final class UIBorderFactory {
                     }
                 }
 
+                Font f;
                 if (font == null || font.isEmpty()) {
-                    return BorderFactory.createTitledBorder(b, title, ijustification, iposition);
+                    TitledBorder tb = BorderFactory.createTitledBorder(b, title, ijustification, iposition);
+                    f = tb.getTitleFont();
+                    f = UITools.getFont(null, null, f, StringConverters.getObjectFromValue(double.class, size), false, StringConverters.getObjectFromValue(boolean.class, bold), StringConverters.getObjectFromValue(boolean.class, italic), false, null);
+                } else {
+                    f = UITools.getFont(null, null, font, StringConverters.getObjectFromValue(double.class, size), false, StringConverters.getObjectFromValue(boolean.class, bold), StringConverters.getObjectFromValue(boolean.class, italic), false, null);
                 }
 
-                Font f = UITools.getFont(null, null, font, StringConverters.getObjectFromValue(double.class, size), false, StringConverters.getObjectFromValue(boolean.class, bold), StringConverters.getObjectFromValue(boolean.class, italic), false, null);
                 Color color = StringConverters.getObjectFromValue(Color.class, map.get("color"));
-
                 if (color == null) {
                     return BorderFactory.createTitledBorder(b, title, ijustification, iposition, f);
                 }
