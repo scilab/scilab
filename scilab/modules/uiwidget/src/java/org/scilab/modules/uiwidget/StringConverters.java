@@ -26,6 +26,7 @@ import java.net.URL;
 import java.net.MalformedURLException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Date;
@@ -715,15 +716,24 @@ public final class StringConverters {
                     return null;
                 }
 
+                DecimalFormat format;
                 if (str.isEmpty()) {
-                    return new DecimalFormat();
+                    format = new DecimalFormat();
                 }
 
                 try {
-                    return new DecimalFormat(str);
+                    format = new DecimalFormat(str);
                 } catch (IllegalArgumentException e) {
-                    return NumberFormat.getNumberInstance();
+                    format = (DecimalFormat) NumberFormat.getNumberInstance();
                 }
+
+                DecimalFormatSymbols symbols = format.getDecimalFormatSymbols();
+                symbols.setDecimalSeparator('.');
+                symbols.setGroupingSeparator('\u00A0');
+
+                format.setDecimalFormatSymbols(symbols);
+
+                return format;
             }
         });
     }
