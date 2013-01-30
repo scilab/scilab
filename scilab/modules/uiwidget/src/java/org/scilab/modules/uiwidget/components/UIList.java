@@ -121,7 +121,9 @@ public class UIList extends UIComponent {
     }
 
     public void setStrings(String[] items) {
-        if (items != null && items.length != 0) {
+        if (items == null) {
+            list.setSelectedIndices(new int[0]);
+        } else {
             ListModel model = list.getModel();
             List<Integer> indices = new ArrayList<Integer>(items.length);
             for (int i = 0; i < items.length; i++) {
@@ -139,13 +141,15 @@ public class UIList extends UIComponent {
                     ind[i] = indices.get(i);
                 }
                 list.setSelectedIndices(ind);
+            } else {
+                list.setSelectedIndices(new int[0]);
             }
         }
     }
 
     public String[] getStrings() {
         Object[] objs = list.getSelectedValues();
-        if (objs != null) {
+        if (objs != null && objs.length != 0) {
             String[] strs = new String[objs.length];
             for (int i = 0; i < objs.length; i++) {
                 strs[i] = objs[i] == null ? "" : objs[i].toString();
@@ -232,9 +236,11 @@ public class UIList extends UIComponent {
     }
 
     public void setSelectedIndices(int[] indices) {
-        try {
+        if (indices == null) {
+            list.setSelectedIndices(new int[0]);
+        } else {
             list.setSelectedIndices(indices);
-        } catch (IllegalArgumentException e) { }
+        }
     }
 
     public int[] getSelectedIndices() {

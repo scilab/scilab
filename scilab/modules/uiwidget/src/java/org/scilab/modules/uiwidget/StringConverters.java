@@ -603,6 +603,48 @@ public final class StringConverters {
                 return new Point(ints[0], ints[1]);
             }
         });
+        converters.put(int[].class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                String[] toks = str.split("[ ,;]");
+                int[] ints = new int[toks.length];
+                for (int i = 0; i < toks.length; i++) {
+                    try {
+                        ints[i] = Integer.parseInt(toks[i]);
+                    } catch (NumberFormatException e) {
+                        try {
+                            ints[i] = (int) Double.parseDouble(toks[i]);
+                        } catch (NumberFormatException ee) {
+                            ints[i] = 0;
+                        }
+                    }
+                }
+
+                return ints;
+            }
+        });
+        converters.put(double[].class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                String[] toks = str.split("[ ,;]");
+                double[] dbls = new double[toks.length];
+                for (int i = 0; i < toks.length; i++) {
+                    try {
+                        dbls[i] = Double.parseDouble(toks[i]);
+                    } catch (NumberFormatException e) {
+                        dbls[i] = 0;
+                    }
+                }
+
+                return dbls;
+            }
+        });
         converters.put(String[].class, new StringConverter() {
             public Object convert(String str) {
                 if (str == null || str.isEmpty()) {

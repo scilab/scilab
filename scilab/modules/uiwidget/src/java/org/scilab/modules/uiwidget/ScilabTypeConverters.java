@@ -209,6 +209,40 @@ public final class ScilabTypeConverters {
                 return ret;
             }
         });
+        converters.put(int[].class, new ScilabTypeConverter() {
+            public int[] convert(ScilabType value) {
+                if (value == null || value.getType() != ScilabTypeEnum.sci_matrix || value.isEmpty()) {
+                    return null;
+                }
+                double[][] s = ((ScilabDouble) value).getRealPart();
+                int r = s.length;
+                int c = s[0].length;
+                int[] ret = new int[r * c];
+                for (int i = 0; i < r; i++) {
+                    for (int j = 0; j < c; j++) {
+                        ret[j + c * i] = (int) s[i][j];
+                    }
+                }
+                return ret;
+            }
+        });
+        converters.put(double[].class, new ScilabTypeConverter() {
+            public double[] convert(ScilabType value) {
+                if (value == null || value.getType() != ScilabTypeEnum.sci_matrix || value.isEmpty()) {
+                    return null;
+                }
+                double[][] s = ((ScilabDouble) value).getRealPart();
+                int r = s.length;
+                int c = s[0].length;
+                double[] ret = new double[r * c];
+                for (int i = 0; i < r; i++) {
+                    for (int j = 0; j < c; j++) {
+                        ret[j + c * i] = s[i][j];
+                    }
+                }
+                return ret;
+            }
+        });
         converters.put(Color.class, new ScilabTypeConverter() {
             public Color convert(ScilabType value) {
                 if (value == null || value.isEmpty()) {
