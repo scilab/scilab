@@ -736,5 +736,14 @@ public final class StringConverters {
                 return format;
             }
         });
+        converters.put(UIComponent.class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                return UILocator.get(str);
+            }
+        });
     }
 }

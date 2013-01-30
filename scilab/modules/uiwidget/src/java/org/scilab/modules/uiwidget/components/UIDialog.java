@@ -13,7 +13,10 @@
 package org.scilab.modules.uiwidget.components;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -43,11 +46,27 @@ public class UIDialog extends UIComponent {
         return win;
     }
 
-    @UIComponentAnnotation(attributes = {"title", "width", "height", "posX", "posY", "background", "icon", "visible"})
-    public Object newInstance(String title, int width, int height, int posX, int posY, Color background, ImageIcon icon, boolean visible) {
+    @UIComponentAnnotation(attributes = {"title", "width", "height", "posX", "posY", "background", "icon", "visible", "parent", "modal"})
+    public Object newInstance(String title, int width, int height, int posX, int posY, Color background, ImageIcon icon, boolean visible, UIComponent parent, boolean modal) {
         this.visible = visible;
         this.icon = icon;
-        win = new JDialog();
+
+        if (parent == null) {
+            win = new JDialog();
+        } else {
+            Object c = parent.getComponent();
+            if (c instanceof Frame) {
+                win = new JDialog((Frame) c, modal);
+            } else if (c instanceof Dialog) {
+                win = new JDialog((Dialog) c, modal);
+            } else {
+                win = new JDialog();
+            }
+
+            if (c instanceof Component) {
+                win.setLocationRelativeTo((Component) c);
+            }
+        }
 
         win.setName(title);
         win.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
