@@ -469,7 +469,7 @@ static void freeScoData(scicos_block * block)
         FREE(sco->scope.disableBufferUpdate);
         FREE(sco->scope.historyUpdateCounter);
 
-        for (i = 0; i < block->insz[0]; i++)
+        for (i = 0; i < block->nin; i++)
         {
             FREE(sco->scope.cachedHistoryPolylinesUIDs[i]);
             FREE(sco->scope.cachedBufferPolylinesUIDs[i]);
