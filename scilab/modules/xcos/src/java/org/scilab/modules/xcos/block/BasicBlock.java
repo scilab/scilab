@@ -1294,7 +1294,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 
         // sort children according to the ordering parameter (useful on
         // scilab-5.2.x diagrams)
-        sort(children);
+        sortChildren();
 
         final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
         if (handler == null) {
