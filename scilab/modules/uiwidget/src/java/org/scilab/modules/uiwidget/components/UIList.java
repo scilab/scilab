@@ -188,16 +188,16 @@ public class UIList extends UIComponent {
     }
 
     public void setItems(String[] items) {
+        vector.clear();
         if (items != null) {
-            vector.clear();
             for (String item : items) {
                 add(new UIListElement.ListElement(item, null));
             }
             model.fireContentsChanged(model, 0, vector.size() - 1);
         } else {
-            vector.clear();
             model.fireContentsChanged(model, 0, 0);
         }
+        list.setSelectedIndices(new int[0]);
     }
 
     public String[] getItems() {
