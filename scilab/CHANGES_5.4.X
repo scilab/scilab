@@ -32,6 +32,9 @@ Improvements
 * Search is now possible in the console. Shortcut F3 or CTRL+F enables it.
   See Bug #11841.
 
+* editvar propose direct save to the CSV format of the whole variable or the
+  selection.
+
 
 Removed functions
 ==================
