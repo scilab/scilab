@@ -294,6 +294,9 @@ Bug fixes
 
 * Bug #12168 fixed - matfile_listvar crashed when listing variables of a closed MAT-file.
 
+* Bug #12174 fixed - The function "routh_t" gave incorrect output for all
+                     denominators that include gain value "k".
+
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
 
 * Bug #12184 fixed - Performances of the function 'derivat' improved.
