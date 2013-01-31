@@ -308,6 +308,8 @@ Bug fixes
 
 * Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
 
+* Bug #12221 fixed - fspec was not documented and there was an error message "undefined variable: Sl".
+
 * Bug #12232 fixed - There were several memleaks in various fillers.
 
 * Bug #12235 fixed - Matplot did not update on color_map change.
