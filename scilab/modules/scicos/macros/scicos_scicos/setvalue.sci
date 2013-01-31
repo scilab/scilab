@@ -264,7 +264,7 @@ while %t do
     %ok=%f;break
   elseif %noooo<0 then
     str = gettext("%s: Wrong type for block parameter ''%s'': %s(%s) expected, getting %s");
-    mess = msprintf(str, arg1.gui + '(''set'')', %lables(-%noooo), %typ(-2*%noooo-1), string(%typ(-2*%noooo)), %ini(-%noooo));
+    mess = msprintf(str, arg1.gui + '(''set'')', %lables(-%noooo), %typ(-2*%noooo-1), strcat(string(%typ(-2*%noooo))," by "), %ini(-%noooo));
     if length(arg1.doc) > 0 then
         warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
     else
