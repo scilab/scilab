@@ -68,7 +68,7 @@ function xcos_nonreg(varargin)
   
   // Check number of input arguments
   if rhs > MAX_ARGS
-    error(mprintf('%s: Wrong number of input arguments: At most %d expected.\n', ..
+    error(msprintf('%s: Wrong number of input arguments: At most %d expected.\n', ..
       'xcos_nonreg', MAX_ARGS))
   elseif rhs > 0
     // Replace any default value with user-provided one

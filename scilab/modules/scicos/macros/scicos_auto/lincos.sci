@@ -86,9 +86,12 @@ end
 if rhs < 1 then
   error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "lincos", 1));
 end
-if typeof(scs_m)<>"diagram" then
+if typeof(scs_m)<>"diagram" & typeof(scs_m)<>"cpr" then
   error(msprintf(gettext("%s: Wrong type for input argument #%d: A diagram expected.\n"), "lincos", 1));
 end
+
+// compile and post-process the diagram
+if typeof(scs_m)=="diagram" then
 
 // Propagate context through all blocks
 %state0     = list();
@@ -165,7 +168,10 @@ end
 if ~ok then
   error(msprintf(gettext("%s: Diagram does not compile in pass %d.\n"),"lincos",2))
 end
- 
+
+// compile and post-process the diagram end
+end 
+
 sim   = %cpr.sim;
 state = %cpr.state;
 //

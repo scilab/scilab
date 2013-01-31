@@ -430,11 +430,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for "
+"Warning: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for "
 "element wise operation \n"
 msgstr ""
-"%s: \"%d.%s ...\" est interprété comme \"%d.0%s ...\". Utilisez \"%d .%s "
-"...\" pour l'exploitation judicieux de l'élément \n"
+"Attention: \"%d.%s ...\" est interprété comme l'opération matricielle \"%d.0%s ...\". Utilisez \"%d .%s "
+"...\" pour obtenir l'opération sur les éléments.\n"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "La variable d'environnement SCI n'est pas définie.\n"

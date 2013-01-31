@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: 2013-01-24 17:14+0100\n"
 
-# File: sci_gateway/c/gw_graphic_objects.c, line: 33
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
-
 #
 # File: src/nographic_objects/nographic_objects.c, line: 20
 #, c-format
