@@ -1,0 +1,64 @@
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcosPalDelete" xml:lang="en">
+    <refnamediv>
+        <refname>xcosPalDelete</refname>
+        <refpurpose>Remove an Xcos palette.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            xcosPalDelete(category);
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>category:</term>
+                <listitem>
+                    <para> string array; the category path to delete</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Remove an existing palette.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+loadXcosLibs();
+
+// add a palette
+pal = xcosPal("My sum palette");
+pal = xcosPalAddBlock(pal, "SUM_f");
+pal = xcosPalAddBlock(pal, "BIGSOM_f");
+xcosPalAdd(pal);
+
+// remove the palette
+xcosPalDelete("My sum palette")
+   ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xcosPal">xcosPal</link>
+            </member>
+            <member>
+                <link linkend="xcosPalAdd">xcosPalAdd</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function added in Scilab 5.4.0</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
