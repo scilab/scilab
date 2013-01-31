@@ -23,8 +23,10 @@ import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.net.MalformedURLException;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -34,6 +36,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
@@ -255,16 +258,27 @@ public final class StringConverters {
                 if (str.lastIndexOf('.') == -1) {
                     String path = ScilabSwingUtilities.findIcon(str);
                     if (path != null) {
-                        return new ImageIcon(path);
+                        try {
+                            BufferedImage img = ImageIO.read(new File(path));
+                            return new ImageIcon(img);
+                        } catch (Exception e) {
+                            return null;
+                        }
                     }
                 }
 
                 try {
                     URL url = new URL(str);
-                    return new ImageIcon(url);
-                } catch (MalformedURLException e) { }
+                    BufferedImage img = ImageIO.read(url);
+                    return new ImageIcon(img);
+                } catch (Exception e) { }
 
-                return new ImageIcon(UIWidgetTools.getFile(str).getAbsolutePath());
+                try {
+                    BufferedImage img = ImageIO.read(new File(UIWidgetTools.getFile(str).getAbsolutePath()));
+                    return new ImageIcon(img);
+                } catch (Exception e) {
+                    return null;
+                }
             }
         });
         converters.put(Icon.class, converters.get(ImageIcon.class));
@@ -277,16 +291,24 @@ public final class StringConverters {
                 if (str.lastIndexOf('.') == -1) {
                     String path = ScilabSwingUtilities.findIcon(str);
                     if (path != null) {
-                        return new ImageIcon(path).getImage();
+                        try {
+                            return ImageIO.read(new File(path));
+                        } catch (Exception e) {
+                            return null;
+                        }
                     }
                 }
 
                 try {
                     URL url = new URL(str);
-                    return new ImageIcon(url);
-                } catch (MalformedURLException e) { }
+                    return ImageIO.read(url);
+                } catch (Exception e) { }
 
-                return new ImageIcon(str).getImage();
+                try {
+                    return ImageIO.read(new File(UIWidgetTools.getFile(str).getAbsolutePath()));
+                } catch (Exception e) {
+                    return null;
+                }
             }
         });
         converters.put(UILabel.Alignment.class, new StringConverter() {

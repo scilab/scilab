@@ -47,7 +47,7 @@ public class UILayer extends UIComponent {
         if (c != null) {
             layer.remove(current.getJComponent());
             layer.add(c.getJComponent(), BorderLayout.CENTER);
-            layer.doLayout();
+            layer.revalidate();
             layer.repaint();
             current = c;
         }

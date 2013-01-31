@@ -12,6 +12,8 @@
 
 package org.scilab.modules.uiwidget.components;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
 
 import javax.swing.Icon;
@@ -23,11 +25,14 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
+import org.scilab.modules.uiwidget.UIWidgetTools;
 
 public class UIMenuItem extends UIComponent {
 
     private MenuType type = MenuType.NORMAL;
     private JMenuItem menu;
+    private ActionListener clicklistener;
+    private String clickaction;
 
     public enum MenuType {
         NORMAL, RADIO, CHECK;
@@ -67,5 +72,34 @@ public class UIMenuItem extends UIComponent {
         }
 
         return menu;
+    }
+
+    public void removeClickListener() {
+        if (clicklistener != null) {
+            menu.removeActionListener(clicklistener);
+            clicklistener = null;
+        }
+    }
+
+    public void remove() {
+        removeClickListener();
+        super.remove();
+    }
+
+    public String getOnclick() {
+        return this.clickaction;
+    }
+
+    public void setOnclick(final String action) {
+        if (this.clickaction == null) {
+            removeClickListener();
+            clicklistener = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    UIWidgetTools.execAction(UIMenuItem.this, UIMenuItem.this.clickaction);
+                }
+            };
+            menu.addActionListener(clicklistener);
+        }
+        this.clickaction = action;
     }
 }
