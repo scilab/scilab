@@ -220,6 +220,9 @@ Bug fixes
 
 * Bug #11477 fixed - There were memory leaks with textures.
 
+* Bug #11497 fixed - A lot of EDT violation was detected by the
+                     ThreadCheckingRepaintManager tool.
+
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
 * Bug #11778 fixed - Bad color_map dims did not return an error.
