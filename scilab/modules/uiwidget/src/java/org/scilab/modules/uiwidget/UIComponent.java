@@ -139,16 +139,16 @@ public abstract class UIComponent {
             ui.setId(id);
             attributes.remove("id");
             ui.setMapStyle(style);
+            String tabTitle = (String) attributes.get(String.class, "tab-title", null);
+            if (tabTitle != null) {
+                ui.setTabTitle(tabTitle);
+                attributes.remove("tab-title");
+            }
             ui.createNewInstance(attributes);
             if (ui.component instanceof JComponent) {
                 JComponent jc = (JComponent) ui.component;
                 Dimension d = jc.getPreferredSize();
                 ui.position = new Rectangle(0, 0, d.width, d.height);
-            }
-            String tabTitle = (String) attributes.get(String.class, "tab-title", null);
-            if (tabTitle != null) {
-                ui.setTabTitle(tabTitle);
-                attributes.remove("tab-title");
             }
             return ui;
         } catch (ClassNotFoundException e) {
@@ -458,7 +458,7 @@ public abstract class UIComponent {
     }
 
     public void setTabTitle(String title) throws UIWidgetException {
-        if (parent instanceof UITab && title != null) {
+        if (parent instanceof UITab && title != null && component != null) {
             JComponent c = getJComponent();
             JTabbedPane tab = (JTabbedPane) ((UITab) parent).getJComponent();
             int index = tab.indexOfTabComponent(c);
@@ -470,15 +470,6 @@ public abstract class UIComponent {
     }
 
     public String getTabTitle() throws UIWidgetException {
-        if (parent instanceof UITab) {
-            JComponent c = getJComponent();
-            JTabbedPane tab = (JTabbedPane) ((UITab) parent).getJComponent();
-            int index = tab.indexOfTabComponent(c);
-            if (index != -1) {
-                return tab.getTitleAt(index);
-            }
-        }
-
         return tabTitle;
     }
 
