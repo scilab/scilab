@@ -290,6 +290,9 @@ Bug fixes
 
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
 
+* Bug #12141 fixed - Remove calls to gettext in rubberbox help page examples.
+                     Translation of items will be made in each language help page.
+
 * Bug #12151 fixed - Axes did not pass through (0,0) when x_location and
                      y_location were set to 'origin'.
 
