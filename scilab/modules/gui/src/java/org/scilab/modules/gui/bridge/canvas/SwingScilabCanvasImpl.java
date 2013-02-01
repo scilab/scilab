@@ -69,11 +69,11 @@ public class SwingScilabCanvasImpl {
                 if (noGLJPanel) {
                     /** Inform the users */
                     InterpreterManagement.requestScilabExec(
-                        String.format("disp(\"%s\"), disp(\"%s\")",
-                                      String.format(Messages.gettext("WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type %s for more information."), "\"\"help usecanvas\"\""),
-                                      String.format(Messages.gettext("In some cases, %s fixes the issue"), "\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\"")
-                                     )
-                    );
+                            String.format("disp(\"%s\"), disp(\"%s\")",
+                                    String.format(Messages.gettext("WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type %s for more information."), "\"\"help usecanvas\"\""),
+                                    String.format(Messages.gettext("In some cases, %s fixes the issue"), "\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\"")
+                                    )
+                            );
                 }
             }
 
@@ -136,8 +136,8 @@ public class SwingScilabCanvasImpl {
                             // available through ATI 8.8 installer
                             // and driver newer than 8.52.3
                             Debug.DEBUG("SwingScilabCanvasImpl", "majorVersion = "
-                                        + majorVersion + " minorVersion = " + minorVersion
-                                        + " releaseVersion = " + releaseVersion);
+                                    + majorVersion + " minorVersion = " + minorVersion
+                                    + " releaseVersion = " + releaseVersion);
                             if (majorVersion > 2
                                     || majorVersion == 2 && minorVersion > 1
                                     || majorVersion == 2 && minorVersion == 1 && releaseVersion >= 7873) {
@@ -149,21 +149,21 @@ public class SwingScilabCanvasImpl {
                     if (noGLJPanel) {
                         /** Inform the users */
                         InterpreterManagement.requestScilabExec(
-                            String.format("disp(\"%s\"), disp(\"%s\")",
-                                          String.format(Messages.gettext("WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type %s for more information."), "\"\"help usecanvas\"\""),
-                                          String.format(Messages.gettext("In some cases, %s fixes the issue"), "\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\"")
-                                         )
-                        );
+                                String.format("disp(\"%s\"), disp(\"%s\")",
+                                        String.format(Messages.gettext("WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type %s for more information."), "\"\"help usecanvas\"\""),
+                                        String.format(Messages.gettext("In some cases, %s fixes the issue"), "\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\"")
+                                        )
+                                );
                     }
                 } catch (GLException e) {
                     noGLJPanel = true;
                     /** Inform the users */
                     InterpreterManagement.requestScilabExec(
-                        String.format("disp(\"%s\"), disp(\"%s\")",
-                                      Messages.gettext("Due to your video card drivers limitations, that are not able to manage OpenGL, Scilab will not be able to draw any graphics. Please update your driver."),
-                                      String.format(Messages.gettext("In some cases, %s fixes the issue"), "\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\"")
-                                     )
-                    );
+                            String.format("disp(\"%s\"), disp(\"%s\")",
+                                    Messages.gettext("Due to your video card drivers limitations, that are not able to manage OpenGL, Scilab will not be able to draw any graphics. Please update your driver."),
+                                    String.format(Messages.gettext("In some cases, %s fixes the issue"), "\"\"system_setproperty(''jogl.gljpanel.nohw'','''');\"\"")
+                                    )
+                            );
                 } catch (HeadlessException e) {
                     // do not print anything on a CLI only environment
                     noGLJPanel = true;
@@ -216,16 +216,24 @@ public class SwingScilabCanvasImpl {
                 super.display();
             }
         }
-        
-       // protected void paintComponent(final Graphics g) {
-       //     try {
-       //         super.paintComponent(g);
-       //     } catch (Exception e) {
-       //         // Catch JoGL Exceptions and hide it ...
-       //         // Make another try
-       //         System.err.println("[SafeGLJPanel.paintComponent] catching "+e.toString());
-       //     }
-       // }
+
+        // protected void paintComponent(final Graphics g) {
+        //     try {
+        //         super.paintComponent(g);
+        //     } catch (Exception e) {
+        //         // Catch JoGL Exceptions and hide it ...
+        //         // Make another try
+        //         System.err.println("[SafeGLJPanel.paintComponent] catching "+e.toString());
+        //     }
+        // }
+    }
+    
+    /*
+    * Empty class to allow xlick/xgetmouse
+    * catch same cannonical name
+    */
+    private final class SafeGLCanvas extends GLCanvas {
+        private static final long serialVersionUID = -3315164314205693678L;
     }
 
     private static SwingScilabCanvasImpl me = null;
@@ -240,7 +248,7 @@ public class SwingScilabCanvasImpl {
 
     public Component createOpenGLComponent() {
         if (enableGLCanvas) {
-            return new GLCanvas();
+            return new SafeGLCanvas();
         } else {
             return new SafeGLJPanel();
         }
