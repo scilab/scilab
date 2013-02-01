@@ -169,7 +169,8 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
          * and the event is not comming from a Canvas itself.
          * and got a RELEASED
          */
-        if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas 
+        if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas
+                && mouseEvent.getSource().getClass().getCanonicalName().contains(ScilabOpenGLComponentCanonicalName)
                 && (clickTranslator.getClickAction() == SciTranslator.UNMANAGED 
                 || clickTranslator.getClickAction() == SciTranslator.MOVED)) {
             clickTranslator.setClickAction(SciTranslator.RELEASED);

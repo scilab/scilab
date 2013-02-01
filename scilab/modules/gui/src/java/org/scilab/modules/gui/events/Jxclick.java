@@ -57,6 +57,12 @@ public final class Jxclick {
                 mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);
             }
         });
+        
+        /*
+         *  Force xclick not to catch/disable callback execution.
+         */
+        GlobalEventWatcher.enableCatchingCallback();
+        
         synchronized (ClickInfos.getInstance()) {
             try {
                 ClickInfos.getInstance().init();

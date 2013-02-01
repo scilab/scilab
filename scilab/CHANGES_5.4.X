@@ -210,6 +210,8 @@ Bug fixes
 
 * Bug #10815 fixed - diff help page did not have a "See Also" section.
 
+* Bug #11134 fixed - xgetmouse() prevented callback menu execution.
+
 * Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
                      the last color in colormap.
 
