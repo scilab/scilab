@@ -17,6 +17,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
@@ -478,6 +479,15 @@ public final class StringConverters {
 
                 str = str.toLowerCase();
                 return UITools.mapWeight.get(str);
+            }
+        });
+        converters.put(Font.class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                return UITools.getFont(StyleParser.parseLine(str));
             }
         });
         converters.put(UIPanel.ImageFill.class, new StringConverter() {

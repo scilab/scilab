@@ -19,6 +19,7 @@ import java.awt.CompositeContext;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Font;
+import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.font.TextAttribute;
 import java.awt.image.ColorModel;
@@ -28,6 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.Icon;
+import javax.swing.UIManager;
 
 import org.scilab.modules.uiwidget.StringConverters;
 
@@ -109,6 +111,25 @@ public class UITools {
         public Float value() {
             return value;
         }
+    }
+
+    public static Font getFont(Map<String, String> style) {
+        Font f = UIManager.getFont("Label.font");
+        if (style == null || style.isEmpty()) {
+            return f;
+        } else {
+            return getFont(f, style);
+        }
+    }
+
+    public static Color getFontColor(Font font) {
+        Map<TextAttribute, Object> map = (Map<TextAttribute, Object>) font.getAttributes();
+        Paint p = (Paint) map.get(TextAttribute.FOREGROUND);
+        if (p instanceof Color) {
+            return (Color) p;
+        }
+
+        return Color.BLACK;
     }
 
     public static Font getFont(Font font, Map<String, String> style) {
