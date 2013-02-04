@@ -170,6 +170,8 @@ Bug fixes
 
 * Bug #6583 fixed - jmat() was poorly documented.
 
+* Bug #7190 fixed - is_absolute_path was not documented.
+
 * Bug #7583 fixed - binomial function moved in the distribution function
                     chapter.
 
