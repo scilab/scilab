@@ -235,6 +235,9 @@ Bug fixes
 
 * Bug #11939 fixed - ssprint formatting was slightly not right.
 
+* Bug #11941 fixed - show_margins() failed in 'nyquist' mode if the system is
+                     in state-space form.
+
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
 
