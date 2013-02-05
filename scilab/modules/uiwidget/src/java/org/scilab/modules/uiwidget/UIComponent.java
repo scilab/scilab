@@ -49,6 +49,9 @@ import org.scilab.modules.uiwidget.components.UITools;
 
 import org.scilab.modules.types.ScilabType;
 
+/**
+ * Main class to handle Java components.
+ */
 public abstract class UIComponent {
 
     private static int UID = 0;
@@ -71,8 +74,15 @@ public abstract class UIComponent {
     protected Rectangle position = new Rectangle();
     protected String tabTitle;
 
+    /**
+     * Default empty constrructor
+     */
     protected UIComponent() { }
 
+    /**
+     * Constructor
+     * @param parent the parent UIComponent
+     */
     public UIComponent(UIComponent parent) throws UIWidgetException {
         this.parent = parent;
         this.uid = UID++;
@@ -87,6 +97,9 @@ public abstract class UIComponent {
         registerToParent();
     }
 
+    /**
+     * Register this component to its parent
+     */
     private final void registerToParent() {
         if (!isRoot()) {
             if (parent.childrenList == null) {
@@ -96,6 +109,9 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Register id to parent
+     */
     private final void registerIdToParent() {
         if (parent != null && parent.path != null && id != null) {
             if (parent.children == null) {
@@ -106,6 +122,11 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get a Map from Attributes object
+     * @param attributes the attributes
+     * @return a Map containing the pairs attribute-name -- attribute-value
+     */
     public static final StringMap getMapFromAttributes(Attributes attributes) {
         final int len = attributes != null ? attributes.getLength() : 0;
         StringMap map = new StringMap(len);
@@ -116,6 +137,14 @@ public abstract class UIComponent {
         return map;
     }
 
+    /**
+     * Construct an UIComponent
+     * @param pack the Java package name containing the component to instantiate
+     * @param name the UIComponent name
+     * @param attributes an array of length 2xN containing attributes name and value
+     * @param parent the parent UIComponent
+     * @return the newly constructed UIComponent
+     */
     public static final UIComponent getUIComponent(String pack, String name, String[] attributes, UIComponent parent) throws UIWidgetException {
         final int len = attributes != null ? (attributes.length % 2 == 0 ? attributes.length : attributes.length - 1) : 0;
         StringMap map = new StringMap(len);
@@ -126,10 +155,26 @@ public abstract class UIComponent {
         return getUIComponent(pack, name, map, parent, parent == null ? null : parent.style);
     }
 
+    /**
+     * Construct an UIComponent
+     * @param pack the Java package name containing the component to instantiate
+     * @param name the UIComponent name
+     * @param attributes the attributes
+     * @param parent the parent UIComponent
+     * @return the newly constructed UIComponent
+     */
     public static final UIComponent getUIComponent(String pack, String name, Attributes attributes, UIComponent parent, Map<String, Map<String, String>> style) throws UIWidgetException {
         return getUIComponent(pack, name, getMapFromAttributes(attributes), parent, style);
     }
 
+    /**
+     * Construct an UIComponent
+     * @param pack the Java package name containing the component to instantiate
+     * @param name the UIComponent name
+     * @param attributes the attributes
+     * @param parent the parent UIComponent
+     * @return the newly constructed UIComponent
+     */
     public static final UIComponent getUIComponent(String pack, String name, ConvertableMap attributes, UIComponent parent, Map<String, Map<String, String>> style) throws UIWidgetException {
         try {
             Class clazz = Class.forName(pack + "." + name);
@@ -170,14 +215,185 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Create a new instance of this UIComponent
+     * @return the created instance
+     */
+    public abstract Object newInstance();
+
+    /**
+     * Get the backed component
+     * @return the component
+     */
+    public Object getComponent() {
+        return component;
+    }
+
+    /**
+     * Set the component
+     * @param o the component
+     */
+    public void setComponent(Object o) {
+        this.component = o;
+    }
+
+    /**
+     * Get the modifiable component (can be different of component, e.g. with a JScrollPane containing the component)xs
+     * @return the modfifiable component
+     */
+    public Object getModifiableComponent() {
+        return modifiableComponent == null ? component : modifiableComponent;
+    }
+
+    /**
+     * Get the modifiable component as a JComponent
+     * @return modifiable JComponent
+     */
+    public JComponent getModifiableJComponent() throws UIWidgetException {
+        Object c = getModifiableComponent();
+        if (c instanceof JComponent) {
+            return (JComponent) c;
+        }
+
+        throw new UIWidgetException("Not a JComponent");
+    }
+
+    /**
+     * Get the component as a JComponent
+     * @return the JComponent
+     */
+    public JComponent getJComponent() throws UIWidgetException {
+        Object c = getComponent();
+        if (c instanceof JComponent) {
+            return (JComponent) c;
+        }
+
+        throw new UIWidgetException("Not a JComponent");
+    }
+
+    /**
+     * Get the modifiable component as a Container
+     * @return the Container
+     */
+    public Container getModifiableContainer() throws UIWidgetException {
+        Object c = getModifiableComponent();
+        if (c instanceof Container) {
+            return (Container) c;
+        }
+
+        throw new UIWidgetException("Not a Container");
+    }
+
+    /**
+     * Get the component as a Container
+     * @return the Container
+     */
+    public Container getContainer() throws UIWidgetException {
+        Object c = getComponent();
+        if (c instanceof Container) {
+            return (Container) c;
+        }
+
+        throw new UIWidgetException("Not a Container");
+    }
+
+    /**
+     * Get the layout constraint
+     * @return the constraint
+     */
+    public Map<String, String> getLayoutConstraint() {
+        return this.constraint;
+    }
+
+    /**
+     * @return the UIComponent name
+     */
     public String getType() {
         return this.getClass().getSimpleName();
     }
 
+    /**
+     * @return the uid
+     */
     public int getUid() {
         return uid;
     }
 
+    /**
+     * Set the preferred size
+     * @param dim the preferred dimension
+     */
+    public void setPreferredSize(Dimension dim) throws UIWidgetException {
+        getJComponent().setPreferredSize(dim);
+    }
+
+    /**
+     * Get the preferred size
+     * @return the preferred dimension
+     */
+    public Dimension getPreferredSize() throws UIWidgetException {
+        return getJComponent().getPreferredSize();
+    }
+
+    /**
+     * Set the size
+     * @param d the size
+     */
+    public void setSize(Dimension d) throws UIWidgetException {
+        position.width = d.width;
+        position.height = d.height;
+        Container p = getJComponent().getParent();
+        if (p != null) {
+            p.invalidate();
+            p.doLayout();
+            p.repaint();
+        }
+    }
+
+    /**
+     * Get the size
+     * @return the dimension
+     */
+    public Dimension getSize() throws UIWidgetException {
+        return getJComponent().getSize();
+    }
+
+    /**
+     * Set the minimum size
+     * @param dim the minimum dimension
+     */
+    public void setMinimumSize(Dimension dim) throws UIWidgetException {
+        getJComponent().setMinimumSize(dim);
+    }
+
+    /**
+     * Get the minimum size
+     * @return the minimum dimension
+     */
+    public Dimension getMinimumSize() throws UIWidgetException {
+        return getJComponent().getMinimumSize();
+    }
+
+    /**
+     * Set the maximum size
+     * @param dim the maximum dimension
+     */
+    public void setMaximumSize(Dimension dim) throws UIWidgetException {
+        getJComponent().setMaximumSize(dim);
+    }
+
+    /**
+     * Get the maximum size
+     * @return the maximum dimension
+     */
+    public Dimension getMaximumSize() throws UIWidgetException {
+        return getJComponent().getMaximumSize();
+    }
+
+    /**
+     * Set the parent
+     * @param parent the parent
+     */
     public void setParent(UIComponent parent) throws UIWidgetException {
         if (parent != this.parent) {
             if (parent != null && parent.children != null && id != null) {
@@ -206,6 +422,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set the root element
+     * @param root the root element
+     */
     private void setRoot(UIComponent root) {
         this.root = root;
         for (UIComponent c : childrenList) {
@@ -213,6 +433,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set the parent with the given id
+     * @param parentId the id of the parent
+     */
     public void setParent(String parentId) throws UIWidgetException {
         UIComponent parent = UILocator.get(parentId);
         if (parent != null) {
@@ -220,6 +444,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set the id
+     * @param id the id to set
+     */
     public void setId(String id) {
         if ((id != null && !id.equals(this.id)) || (id == null && this.id != null)) {
             if (!isRoot() && this.id != null && parent.children != null) {
@@ -236,22 +464,33 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get the id of this UIComponent
+     *@return the id
+     */
     public String getId() {
         return this.id;
     }
 
+    /**
+     * Set the tag (Scilab's UIControl compatibility)
+     * @param tag the tag
+     */
     public void setTag(String tag) {
         setId(tag);
     }
 
+    /**
+     * Get the tag (id) of this UIComponent
+     *@return the tag
+     */
     public String getTag() {
         return getId();
     }
 
-    public String getMlistCode() {
-        return "mlist([''UIWidget'',''_id'']," + Integer.toString(uid);
-    }
-
+    /**
+     * Invalidate the path to this UIComponent
+     */
     private void invalidateUIPath() {
         if (id != null) {
             if (isRoot()) {
@@ -267,22 +506,43 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get the path to this UIComponent
+     * @return the path
+     */
     public String getUIPath() {
         return this.path;
     }
 
+    /**
+     * Get the path to this UIComponent
+     * @return the path
+     */
     public String getPath() {
         return getUIPath();
     }
 
+    /**
+     * Get the root id of this UIComponent
+     * @return the root id
+     */
     public String getRootId() {
-        return root.id;
+        return getRoot().id;
     }
 
+    /**
+     * Get the root element
+     * @return the root
+     */
     public UIComponent getRoot() {
         return root;
     }
 
+    /**
+     * Add a button to a button-group
+     * @param name the name of the button-group
+     * @param button the button to add
+     */
     public void addToButtonGroup(String name, AbstractButton button) {
         if (isRoot()) {
             if (buttonGroups == null) {
@@ -297,6 +557,11 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Remove a button from a button-group
+     * @param name the name of the button-group
+     * @param button the button to remove
+     */
     public void removeFromButtonGroup(String name, AbstractButton button) {
         if (isRoot() && buttonGroups != null) {
             ButtonGroup bg = buttonGroups.get(name);
@@ -306,16 +571,31 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Check if this UIComponent is a root element (no parent)
+     * @return true if it is a root element
+     */
     public boolean isRoot() {
         return parent == null;
     }
 
+    /**
+     * Get the child with the given id
+     * @param if the child id
+     * @return the corresponding UIComponent
+     */
     public UIComponent getUIComponent(final String id) {
         return children.get(id);
     }
 
+    /**
+     * Close this UIComponent
+     */
     public void closeUIComponent() { }
 
+    /**
+     * Remove the UIComponent from differents cache and delete its children
+     */
     public void remove() {
         UserData.removeUIWidgetUserData(uid);
         UILocator.remove(this);
@@ -355,24 +635,40 @@ public abstract class UIComponent {
         root = null;
     }
 
-    public abstract Object newInstance();
-
+    /**
+     * Set the map containing style element
+     */
     private void setMapStyle(Map<String, Map<String, String>> style) {
         this.style = style;
     }
 
+    /**
+     * Finish the UIComponent creation
+     */
     public void finish() {
 
     }
 
+    /**
+     * Get the parent UIComponent
+     * @return the parent
+     */
     public UIComponent getParent() {
         return parent;
     }
 
+    /**
+     * Get the id of this UIComponent
+     * @return the id
+     */
     public String getID() {
         return id;
     }
 
+    /**
+     * Check if the root element is visible
+     * @return true if the root element is visible
+     */
     public boolean isRootVisible() throws UIWidgetException {
         if (isRoot()) {
             if (component instanceof Component) {
@@ -384,67 +680,26 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get the children
+     * @return the children as an array
+     */
     public UIComponent[] getChildren() {
         return childrenList.toArray(new UIComponent[childrenList.size()]);
     }
 
-    public Object getComponent() {
-        return component;
-    }
-
-    public void setComponent(Object o) {
-        this.component = o;
-    }
-
-    public Object getModifiableComponent() {
-        return modifiableComponent == null ? component : modifiableComponent;
-    }
-
-
-    public JComponent getModifiableJComponent() throws UIWidgetException {
-        Object c = getModifiableComponent();
-        if (c instanceof JComponent) {
-            return (JComponent) c;
-        }
-
-        throw new UIWidgetException("Not a JComponent");
-    }
-
-    public JComponent getJComponent() throws UIWidgetException {
-        Object c = getComponent();
-        if (c instanceof JComponent) {
-            return (JComponent) c;
-        }
-
-        throw new UIWidgetException("Not a JComponent");
-    }
-
-    public Map<String, String> getLayoutConstraint() {
-        return this.constraint;
-    }
-
-    public Container getModifiableContainer() throws UIWidgetException {
-        Object c = getModifiableComponent();
-        if (c instanceof Container) {
-            return (Container) c;
-        }
-
-        throw new UIWidgetException("Not a Container");
-    }
-
-    public Container getContainer() throws UIWidgetException {
-        Object c = getComponent();
-        if (c instanceof Container) {
-            return (Container) c;
-        }
-
-        throw new UIWidgetException("Not a Container");
-    }
-
+    /**
+     * Set the uistyle
+     * @param style a String containing style definition as a CSS string
+     */
     public void setUiStyle(String style) throws UIWidgetException {
         setUiStyle(StyleParser.parseLine(style));
     }
 
+    /**
+     * Set the uistyle
+     * @param style a map
+     */
     public void setUiStyle(Map<String, String> style) throws UIWidgetException {
         Object c = getModifiableComponent();
         if (c instanceof JComponent) {
@@ -457,6 +712,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set the tab title if the component is in a JTabbedPane
+     * @param title the tab title
+     */
     public void setTabTitle(String title) throws UIWidgetException {
         if (parent instanceof UITab && title != null && component != null) {
             JComponent c = getJComponent();
@@ -469,22 +728,66 @@ public abstract class UIComponent {
         this.tabTitle = title;
     }
 
+    /**
+     * Get the tab title if the component is in a JTabbedPane
+     * @return the tab title
+     */
     public String getTabTitle() throws UIWidgetException {
         return tabTitle;
     }
 
+    /**
+     * Set the tooltip text
+     * @param text the tooltip text
+     */
     public void setTooltip(String text) throws UIWidgetException {
         getModifiableJComponent().setToolTipText(text);
     }
 
+    /**
+     * Get the tooltip text
+     * @return the tooltip text
+     */
+    public String getTooltip() throws UIWidgetException {
+        return getModifiableJComponent().getToolTipText();
+    }
+
+    /**
+     * Set the tooltip text
+     * @param text the tooltip text
+     */
     public void setTooltipString(String text) throws UIWidgetException {
         setTooltip(text);
     }
 
+    /**
+     * Get the tooltip text
+     * @return the tooltip text
+     */
+    public String getTooltipString() throws UIWidgetException {
+        return getTooltip();
+    }
+
+    /**
+     * Set the foreground color
+     * @param c the color
+     */
     public void setColor(Color c) throws UIWidgetException {
         getModifiableJComponent().setForeground(c);
     }
 
+    /**
+     * Get the foreground color
+     * @return the foreground color
+     */
+    public Color getColor() throws UIWidgetException {
+        return getModifiableJComponent().getForeground();
+    }
+
+    /**
+     * Set the font name
+     * @param name the font name
+     */
     public void setFontName(String name) throws UIWidgetException {
         Font f = getFont();
         if (f != null) {
@@ -494,6 +797,23 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get the font name
+     * @return name the font name
+     */
+    public String getFontName() throws UIWidgetException {
+        Font f = getFont();
+        if (f != null) {
+            return f.getFontName();
+        }
+
+        return null;
+    }
+
+    /**
+     * Set the font size
+     * @param size the font size
+     */
     public void setFontSize(double size) throws UIWidgetException {
         Font f = getFont();
         if (f != null) {
@@ -503,6 +823,23 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get the font size
+     * @return the font size
+     */
+    public double getFontSize() throws UIWidgetException {
+        Font f = getFont();
+        if (f != null) {
+            return f.getSize2D();
+        }
+
+        return -1;
+    }
+
+    /**
+     * Set the font weight
+     * @param weight the font weight
+     */
     public void setFontWeight(UITools.FontWeight weight) throws UIWidgetException {
         if (weight != null) {
             Font f = getFont();
@@ -514,11 +851,30 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get the font weight
+     * @return the font weight
+     */
+    public String getFontWeight() throws UIWidgetException {
+        Font f = getFont();
+        if (f != null) {
+            Map<TextAttribute, Object> map = (Map<TextAttribute, Object>) f.getAttributes();
+            Float fl = (Float) map.get(TextAttribute.WEIGHT);
+            return UITools.mapTextAttribute.get(fl);
+        }
+
+        return null;
+    }
+
+    /**
+     * Set the font angle
+     * @param angle the font angle
+     */
     public void setFontAngle(String angle) throws UIWidgetException {
         if (angle != null && !angle.isEmpty()) {
             angle = angle.toLowerCase();
-            boolean italic = angle.equals("italic") || angle.equals("oblique");
-            Font f = getModifiableJComponent().getFont();
+            boolean italic = angle.equals("italic") || angle.equals("oblique") || angle.equals("it");
+            Font f = getFont();
             if (f != null) {
                 Map<TextAttribute, Object> map = (Map<TextAttribute, Object>) f.getAttributes();
                 map.put(TextAttribute.POSTURE, italic ? TextAttribute.POSTURE_OBLIQUE : TextAttribute.POSTURE_REGULAR);
@@ -527,14 +883,41 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get the font angle
+     * @return the font angle
+     */
+    public String getFontAngle() throws UIWidgetException {
+        Font f = getFont();
+        if (f != null) {
+            Map<TextAttribute, Object> map = (Map<TextAttribute, Object>) f.getAttributes();
+            Float fl = (Float) map.get(TextAttribute.POSTURE);
+            return UITools.mapTextAttribute.get(fl);
+        }
+
+        return null;
+    }
+
+    /**
+     * Set the font
+     * @param f the font
+     */
     public void setFont(Font f) throws UIWidgetException {
         getModifiableJComponent().setFont(f);
     }
 
+    /**
+     * Get the font
+     * @return the font
+     */
     public Font getFont() throws UIWidgetException {
         return getModifiableJComponent().getFont();
     }
 
+    /**
+     * Set the position (when NoLayout has been set)
+     * @param r the position
+     */
     public void setPosition(Rectangle r) throws UIWidgetException {
         Container p = getJComponent().getParent();
         if (p == null || p.getLayout() instanceof NoLayout) {
@@ -554,6 +937,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get the position
+     * @return the position
+     */
     public Rectangle getPosition() throws UIWidgetException {
         Container p = getJComponent().getParent();
         if (p == null || p.getLayout() instanceof NoLayout) {
@@ -566,29 +953,46 @@ public abstract class UIComponent {
         return new Rectangle(pt.x, pt.y, d.width, d.height);
     }
 
-    public void setSize(Dimension d) throws UIWidgetException {
-        position.width = d.width;
-        position.height = d.height;
-        Container p = getJComponent().getParent();
-        if (p != null) {
-            p.invalidate();
-            p.doLayout();
-            p.repaint();
-        }
-    }
-
+    /**
+     * Set the foreground color
+     * @param c the color
+     */
     public void setForegroundColor(Color c) throws UIWidgetException {
         if (c != null) {
             getModifiableJComponent().setForeground(c);
         }
     }
 
+    /**
+     * Get the foreground color
+     * @return the foreground color
+     */
+    public Color getForegroundColor() throws UIWidgetException {
+        return getModifiableJComponent().getForeground();
+    }
+
+    /**
+     * Set the background color
+     * @param c the color
+     */
     public void setBackgroundColor(Color c) throws UIWidgetException {
         if (c != null) {
             getModifiableJComponent().setBackground(c);
         }
     }
 
+    /**
+     * Get the background color
+     * @return the background color
+     */
+    public Color getBackgroundColor() throws UIWidgetException {
+        return getModifiableJComponent().getBackground();
+    }
+
+    /**
+     * Set the component scrollable or not
+     * @param b if true the component will be scrollable
+     */
     public void setScrollable(boolean b) {
         if (component instanceof JScrollPane) {
             JScrollPane scroll = (JScrollPane) component;
@@ -613,30 +1017,57 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Check if the component is scrollable
+     * @return true if the component is scrollable
+     */
     public boolean getScrollable() {
         return component instanceof JScrollPane && ((JScrollPane) component).getHorizontalScrollBarPolicy() == ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
     }
 
+    /**
+     * Set the component constraints
+     * @param constraint a string containing layout constraints (CSS style)
+     */
     public void setConstraint(String constraint) {
         setConstraint(StyleParser.parseLine(constraint));
     }
 
+    /**
+     * Set the component constraints
+     * @param constraint a map containing layout constraints
+     */
     public void setConstraint(Map<String, String> constraint) {
         this.constraint = constraint;
     }
 
+    /**
+     * Set the layout
+     * @param layout the layout informations (CSS style)
+     */
     public void setLayout(String layout) throws UIWidgetException {
         getModifiableContainer().setLayout(UILayoutFactory.getLayout(getModifiableJComponent(), layout));
     }
 
+    /**
+     * Enable or not the component
+     * @param enable if true, the component is enabled
+     */
     public void setEnable(boolean enable) throws UIWidgetException {
         getJComponent().setEnabled(enable);
     }
 
+    /**
+     * Check if the component is enabled
+     * @return true if the component is enabled
+     */
     public boolean getEnable() throws UIWidgetException {
         return getJComponent().isEnabled();
     }
 
+    /**
+     * Create a MouseListener on this component
+     */
     private final void createMouseListener() throws UIWidgetException {
         if (mouseListener == null) {
             mouseListener = new UIMouseListener(this);
@@ -645,6 +1076,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set onmouseclick action
+     * @param command the command to execute
+     */
     public void setOnmouseclick(String command) throws UIWidgetException {
         if (command != null && !command.isEmpty()) {
             createMouseListener();
@@ -652,6 +1087,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set onmouseover action
+     * @param command the command to execute
+     */
     public void setOnmouseover(String command) throws UIWidgetException {
         if (command != null && !command.isEmpty()) {
             createMouseListener();
@@ -659,6 +1098,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set onmouseenter action
+     * @param command the command to execute
+     */
     public void setOnmouseenter(String command) throws UIWidgetException {
         if (command != null && !command.isEmpty()) {
             createMouseListener();
@@ -666,6 +1109,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set onmouseexit action
+     * @param command the command to execute
+     */
     public void setOnmouseexit(String command) throws UIWidgetException {
         if (command != null && !command.isEmpty()) {
             createMouseListener();
@@ -673,6 +1120,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set onmousepress action
+     * @param command the command to execute
+     */
     public void setOnmousepress(String command) throws UIWidgetException {
         if (command != null && !command.isEmpty()) {
             createMouseListener();
@@ -680,6 +1131,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set onmouserelease action
+     * @param command the command to execute
+     */
     public void setOnmouserelease(String command) throws UIWidgetException {
         if (command != null && !command.isEmpty()) {
             createMouseListener();
@@ -687,6 +1142,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set onmousewheel action
+     * @param command the command to execute
+     */
     public void setOnmousewheel(String command) throws UIWidgetException {
         if (command != null && !command.isEmpty()) {
             createMouseListener();
@@ -694,6 +1153,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set onmousedrag action
+     * @param command the command to execute
+     */
     public void setOnmousedrag(String command) throws UIWidgetException {
         if (command != null && !command.isEmpty()) {
             createMouseListener();
@@ -701,6 +1164,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get onmouseclick action
+     * @return the command to execute
+     */
     public String getOnmouseclick() {
         if (mouseListener != null) {
             return mouseListener.getOnmouseclick();
@@ -709,6 +1176,10 @@ public abstract class UIComponent {
         return null;
     }
 
+    /**
+     * Get onmouseover action
+     * @return the command to execute
+     */
     public String getOnmouseover() {
         if (mouseListener != null) {
             return mouseListener.getOnmouseover();
@@ -717,6 +1188,10 @@ public abstract class UIComponent {
         return null;
     }
 
+    /**
+     * Get onmouseenter action
+     * @return the command to execute
+     */
     public String getOnmouseenter() {
         if (mouseListener != null) {
             return mouseListener.getOnmouseenter();
@@ -725,6 +1200,10 @@ public abstract class UIComponent {
         return null;
     }
 
+    /**
+     * Get onmouseexit action
+     * @return the command to execute
+     */
     public String getOnmouseexit() {
         if (mouseListener != null) {
             return mouseListener.getOnmouseexit();
@@ -733,6 +1212,10 @@ public abstract class UIComponent {
         return null;
     }
 
+    /**
+     * Get onmousepress action
+     * @return the command to execute
+     */
     public String getOnmousepress() {
         if (mouseListener != null) {
             return mouseListener.getOnmousepress();
@@ -741,6 +1224,10 @@ public abstract class UIComponent {
         return null;
     }
 
+    /**
+     * Get onmouserelease action
+     * @return the command to execute
+     */
     public String getOnmouserelease() {
         if (mouseListener != null) {
             return mouseListener.getOnmouserelease();
@@ -749,6 +1236,10 @@ public abstract class UIComponent {
         return null;
     }
 
+    /**
+     * Get onmousedrag action
+     * @return the command to execute
+     */
     public String getOnmousedrag() {
         if (mouseListener != null) {
             return mouseListener.getOnmousedrag();
@@ -757,6 +1248,10 @@ public abstract class UIComponent {
         return null;
     }
 
+    /**
+     * Get onmousewheel action
+     * @return the command to execute
+     */
     public String getOnmousewheel() {
         if (mouseListener != null) {
             return mouseListener.getOnmousewheel();
@@ -765,54 +1260,185 @@ public abstract class UIComponent {
         return null;
     }
 
+    /**
+     * Enable onmouseclick
+     * @param b, if true the action is enabled
+     */
     public void setOnmouseclickEnable(boolean b) {
         if (mouseListener != null) {
             mouseListener.setOnmouseclickEnable(b);
         }
     }
 
+    /**
+     * Check if onmouseclick is enabled
+     * @return true the action is enabled
+     */
+    public boolean getOnmouseclickEnable() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmouseclickEnable();
+        }
+
+        return false;
+    }
+
+    /**
+     * Enable onmouseover
+     * @param b, if true the action is enabled
+     */
     public void setOnmouseoverEnable(boolean b) {
         if (mouseListener != null) {
             mouseListener.setOnmouseoverEnable(b);
         }
     }
 
+    /**
+     * Check if onmouseover is enabled
+     * @return true the action is enabled
+     */
+    public boolean getOnmouseoverEnable() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmouseoverEnable();
+        }
+
+        return false;
+    }
+
+    /**
+     * Enable onmouseenter
+     * @param b, if true the action is enabled
+     */
     public void setOnmouseenterEnable(boolean b) {
         if (mouseListener != null) {
             mouseListener.setOnmouseenterEnable(b);
         }
     }
 
+    /**
+     * Check if onmouseenter is enabled
+     * @return true the action is enabled
+     */
+    public boolean getOnmouseenterEnable() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmouseenterEnable();
+        }
+
+        return false;
+    }
+
+    /**
+     * Enable onmouseexit
+     * @param b, if true the action is enabled
+     */
     public void setOnmouseexitEnable(boolean b) {
         if (mouseListener != null) {
             mouseListener.setOnmouseexitEnable(b);
         }
     }
 
+    /**
+     * Check if onmouseexit is enabled
+     * @return true the action is enabled
+     */
+    public boolean getOnmouseexitEnable() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmouseexitEnable();
+        }
+
+        return false;
+    }
+
+    /**
+     * Enable onmousepress
+     * @param b, if true the action is enabled
+     */
     public void setOnmousepressEnable(boolean b) {
         if (mouseListener != null) {
             mouseListener.setOnmousepressEnable(b);
         }
     }
 
+    /**
+     * Check if onmousepress is enabled
+     * @return true the action is enabled
+     */
+    public boolean getOnmousepressEnable() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmousepressEnable();
+        }
+
+        return false;
+    }
+
+    /**
+     * Enable onmouserelease
+     * @param b, if true the action is enabled
+     */
     public void setOnmousereleaseEnable(boolean b) {
         if (mouseListener != null) {
             mouseListener.setOnmousereleaseEnable(b);
         }
     }
 
+    /**
+     * Check if onmouserelease is enabled
+     * @return true the action is enabled
+     */
+    public boolean getOnmousereleaseEnable() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmousereleaseEnable();
+        }
+
+        return false;
+    }
+
+    /**
+     * Enable onmousewheel
+     * @param b, if true the action is enabled
+     */
     public void setOnmousewheelEnable(boolean b) {
         if (mouseListener != null) {
             mouseListener.setOnmousewheelEnable(b);
         }
     }
 
+    /**
+     * Check if onmousewheel is enabled
+     * @return true the action is enabled
+     */
+    public boolean getOnmousewheelEnable() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmousewheelEnable();
+        }
+
+        return false;
+    }
+
+    /**
+     * Enable onmousedrag
+     * @param b, if true the action is enabled
+     */
     public void setOnmousedragEnable(boolean b) {
         if (mouseListener != null) {
             mouseListener.setOnmousedragEnable(b);
         }
     }
 
+    /**
+     * Check if onmousedrag is enabled
+     * @return true the action is enabled
+     */
+    public boolean getOnmousedragEnable() {
+        if (mouseListener != null) {
+            return mouseListener.getOnmousedragEnable();
+        }
+
+        return false;
+    }
+
+    /**
+     * Create a FocusListener on this component
+     */
     private final void createFocusListener() throws UIWidgetException {
         if (focusListener == null) {
             focusListener = new UIFocusListener(this);
@@ -821,6 +1447,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set onfocusgain action
+     * @param command the command to execute
+     */
     public void setOnfocusgain(String command) throws UIWidgetException {
         if (command != null && !command.isEmpty()) {
             createFocusListener();
@@ -828,6 +1458,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set onfocusloss action
+     * @param command the command to execute
+     */
     public void setOnfocusloss(String command) throws UIWidgetException {
         if (command != null && !command.isEmpty()) {
             createFocusListener();
@@ -835,6 +1469,10 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get onfocusgain action
+     * @return the command to execute
+     */
     public String getOnfocusgain() {
         if (focusListener != null) {
             return focusListener.getOnfocusgain();
@@ -843,6 +1481,10 @@ public abstract class UIComponent {
         return null;
     }
 
+    /**
+     * Get onfocusloss action
+     * @return the command to execute
+     */
     public String getOnfocusloss() {
         if (focusListener != null) {
             return focusListener.getOnfocusloss();
@@ -851,36 +1493,88 @@ public abstract class UIComponent {
         return null;
     }
 
+    /**
+     * Enable onfocusgain
+     * @param b, if true the action is enabled
+     */
     public void setOnfocusgainEnable(boolean b) {
         if (focusListener != null) {
             focusListener.setOnfocusgainEnable(b);
         }
     }
 
+    /**
+     * Check if onfocusgain is enabled
+     * @return true the action is enabled
+     */
+    public boolean getOnfocusgainEnable() {
+        if (focusListener != null) {
+            return focusListener.getOnfocusgainEnable();
+        }
+
+        return false;
+    }
+
+    /**
+     * Enable onfocusloss
+     * @param b, if true the action is enabled
+     */
     public void setOnfocuslossEnable(boolean b) {
         if (focusListener != null) {
             focusListener.setOnfocuslossEnable(b);
         }
     }
 
+    /**
+     * Check if onfocusloss is enabled
+     * @return true the action is enabled
+     */
+    public boolean getOnfocuslossEnable() {
+        if (focusListener != null) {
+            return focusListener.getOnfocuslossEnable();
+        }
+
+        return false;
+    }
+
+    /**
+     * Change the parent and update the dependencies
+     * @param parent the parent
+     */
     public void updateDependencies(UIComponent parent) throws UIWidgetException {
         setParent(parent);
     }
 
+    /**
+     * Add a list of children
+     * @param list the children
+     */
     public void add(List<UIComponent> list) throws UIWidgetException {
         for (UIComponent uicomp : list) {
             add(uicomp);
         }
     }
 
+    /**
+     * Add an UIComponent to the children list
+     * @parent uicomp the child to add
+     */
     public void add(final UIComponent uicomp) throws UIWidgetException {
         UIAccessTools.add(this, uicomp);
     }
 
+    /**
+     * Add an UIListener
+     * @parent uicomp the listener to add
+     */
     public void addListener(final UIListener uicomp) throws UIWidgetException {
         uicomp.addListenerToComponent(getModifiableJComponent());
     }
 
+    /**
+     * Add a popup menu
+     * @param popup the popup menu
+     */
     public void addPopupMenu(final JPopupMenu popup) {
         UIAccessTools.execOnEDT(new Runnable() {
             public void run() {
@@ -893,6 +1587,11 @@ public abstract class UIComponent {
         });
     }
 
+    /**
+     * Set a property of this component
+     * @param name the property name
+     * @param value the property value
+     */
     public void setProperty(final String name, final String value) throws UIWidgetException {
         try {
             if (thisOrComponent) {
@@ -909,14 +1608,29 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set a property (via relection) of this component
+     * @param name the property name
+     * @param value the property value
+     */
     protected final void setPropertyViaReflectionInThis(final String name, final String value) throws UIWidgetException {
         UIAccessTools.setPropertyViaReflection(this, name, value);
     }
 
+    /**
+     * Set a property (via relection) of the modifiable component
+     * @param name the property name
+     * @param value the property value
+     */
     protected final void setPropertyViaReflectionInComponent(final String name, final String value) throws UIWidgetException {
         UIAccessTools.setPropertyViaReflection(getModifiableComponent(), name, value);
     }
 
+    /**
+     * Set a property of this component
+     * @param name the property name
+     * @param value the property value
+     */
     public void setProperty(final String name, final ScilabType value) throws UIWidgetException {
         try {
             if (thisOrComponent) {
@@ -933,14 +1647,28 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Set a property (via relection) of this component
+     * @param name the property name
+     * @param value the property value
+     */
     protected final void setPropertyViaReflectionInThis(final String name, final ScilabType value) throws UIWidgetException {
         UIAccessTools.setPropertyViaReflection(this, name, value);
     }
 
+    /**
+     * Set a property (via relection) of the modifiable component
+     * @param name the property name
+     * @param value the property value
+     */
     protected final void setPropertyViaReflectionInComponent(final String name, final ScilabType value) throws UIWidgetException {
         UIAccessTools.setPropertyViaReflection(getModifiableComponent(), name, value);
     }
 
+    /**
+     * Get the pairs property name -- method name
+     * @return the pairs
+     */
     public String[][] getPropertiesPairs() {
         Map<String, Method> map = new TreeMap<String, Method>();
         if (thisOrComponent) {
@@ -956,6 +1684,10 @@ public abstract class UIComponent {
         return null;
     }
 
+    /**
+     * Get a property value
+     * @param name the property name
+     */
     public Object getProperty(final String name) throws UIWidgetException {
         try {
             if (thisOrComponent) {
@@ -972,17 +1704,28 @@ public abstract class UIComponent {
         }
     }
 
+    /**
+     * Get a property value (via reflection)
+     * @param name the property name
+     */
     protected Object getPropertyViaReflectionInThis(final String name) throws UIWidgetException {
         return UIAccessTools.getPropertyViaReflection(this, name);
     }
 
+    /**
+     * Get a property value (via reflection) in the modifiable component
+     * @param name the property name
+     */
     protected Object getPropertyViaReflectionInComponent(final String name) throws UIWidgetException {
         return UIAccessTools.getPropertyViaReflection(getModifiableComponent(), name);
     }
 
+    /**
+     * Create a new instance
+     * @param attributes the attributes
+     */
     private void createNewInstance(final ConvertableMap attributes) throws UIWidgetException {
         Set<String> uselessAttrs = UIAccessTools.createNewInstance(this, attributes);
-
         if (uselessAttrs.contains("scrollable")) {
             boolean scrollable = (Boolean) attributes.get(boolean.class, "scrollable", false);
             if (scrollable && component instanceof JComponent) {
@@ -995,6 +1738,11 @@ public abstract class UIComponent {
         setAttributesAndStyle(attributes, uselessAttrs);
     }
 
+    /**
+     * Set the attributes and style
+     * @param attributes the attributes
+     * @param uselessAttrs the useless attributes
+     */
     private void setAttributesAndStyle(final ConvertableMap attributes, final Set<String> uselessAttrs) {
         if (!uselessAttrs.isEmpty()) {
             UIAccessTools.execOnEDT(new Runnable() {
@@ -1047,6 +1795,9 @@ public abstract class UIComponent {
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected void finalize() throws Throwable {
         UserData.removeUIWidgetUserData(uid);
         super.finalize();

@@ -65,28 +65,59 @@ public class UITools {
         mapWeight.put("extra_light", FontWeight.EXTRA_LIGHT);
         mapWeight.put("extra-light", FontWeight.EXTRA_LIGHT);
         mapWeight.put("extralight", FontWeight.EXTRA_LIGHT);
+        mapWeight.put("el", FontWeight.EXTRA_LIGHT);
         mapWeight.put("light", FontWeight.LIGHT);
+        mapWeight.put("l", FontWeight.LIGHT);
         mapWeight.put("demi_light", FontWeight.DEMILIGHT);
         mapWeight.put("demi-light", FontWeight.DEMILIGHT);
         mapWeight.put("demilight", FontWeight.DEMILIGHT);
+        mapWeight.put("dl", FontWeight.DEMILIGHT);
         mapWeight.put("regular", FontWeight.REGULAR);
+        mapWeight.put("r", FontWeight.REGULAR);
         mapWeight.put("normal", FontWeight.REGULAR);
+        mapWeight.put("n", FontWeight.REGULAR);
         mapWeight.put("semi_bold", FontWeight.SEMIBOLD);
         mapWeight.put("semi-bold", FontWeight.SEMIBOLD);
         mapWeight.put("semibold", FontWeight.SEMIBOLD);
+        mapWeight.put("sb", FontWeight.SEMIBOLD);
         mapWeight.put("medium", FontWeight.MEDIUM);
+        mapWeight.put("m", FontWeight.MEDIUM);
         mapWeight.put("demi_bold", FontWeight.DEMIBOLD);
         mapWeight.put("demi-bold", FontWeight.DEMIBOLD);
         mapWeight.put("demibold", FontWeight.DEMIBOLD);
+        mapWeight.put("db", FontWeight.DEMIBOLD);
         mapWeight.put("demi", FontWeight.DEMIBOLD);
+        mapWeight.put("d", FontWeight.DEMIBOLD);
         mapWeight.put("bold", FontWeight.BOLD);
+        mapWeight.put("b", FontWeight.BOLD);
         mapWeight.put("heavy", FontWeight.HEAVY);
+        mapWeight.put("h", FontWeight.HEAVY);
         mapWeight.put("extra_bold", FontWeight.EXTRABOLD);
         mapWeight.put("extra-bold", FontWeight.EXTRABOLD);
         mapWeight.put("extrabold", FontWeight.EXTRABOLD);
+        mapWeight.put("eb", FontWeight.EXTRABOLD);
         mapWeight.put("ultra_bold", FontWeight.ULTRABOLD);
         mapWeight.put("ultra-bold", FontWeight.ULTRABOLD);
         mapWeight.put("ultrabold", FontWeight.ULTRABOLD);
+        mapWeight.put("ub", FontWeight.ULTRABOLD);
+    }
+
+    public static final Map<Float, String> mapTextAttribute = new HashMap<Float, String>();
+    static {
+        mapTextAttribute.put(TextAttribute.WEIGHT_EXTRA_LIGHT, "extra-light");
+        mapTextAttribute.put(TextAttribute.WEIGHT_LIGHT, "light");
+        mapTextAttribute.put(TextAttribute.WEIGHT_DEMILIGHT, "demi-light");
+        mapTextAttribute.put(TextAttribute.WEIGHT_REGULAR, "regular");
+        mapTextAttribute.put(TextAttribute.WEIGHT_SEMIBOLD, "semi-bold");
+        mapTextAttribute.put(TextAttribute.WEIGHT_MEDIUM, "medium");
+        mapTextAttribute.put(TextAttribute.WEIGHT_DEMIBOLD, "demi-bold");
+        mapTextAttribute.put(TextAttribute.WEIGHT_BOLD, "bold");
+        mapTextAttribute.put(TextAttribute.WEIGHT_HEAVY, "heavy");
+        mapTextAttribute.put(TextAttribute.WEIGHT_EXTRABOLD, "extra-bold");
+        mapTextAttribute.put(TextAttribute.WEIGHT_ULTRABOLD, "ultra-bold");
+        mapTextAttribute.put(TextAttribute.POSTURE_OBLIQUE, "italic");
+        mapTextAttribute.put(TextAttribute.POSTURE_REGULAR, "regular");
+        mapTextAttribute.put(null, null);
     }
 
     public enum FontWeight {

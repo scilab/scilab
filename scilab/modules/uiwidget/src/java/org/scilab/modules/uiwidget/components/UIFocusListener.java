@@ -91,8 +91,16 @@ public class UIFocusListener extends UIListener {
         gainEnable = b;
     }
 
+    public boolean getOnfocusgainEnable() {
+        return gainEnable;
+    }
+
     public void setOnfocuslossEnable(boolean b) {
         lossEnable = b;
+    }
+
+    public boolean getOnfocuslossEnable() {
+        return lossEnable;
     }
 
     public String getOnfocusgain() {

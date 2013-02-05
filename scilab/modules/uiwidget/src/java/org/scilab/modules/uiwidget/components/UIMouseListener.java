@@ -260,32 +260,64 @@ public class UIMouseListener extends UIListener {
         clickedEnable = b;
     }
 
+    public boolean getOnmouseclickEnable() {
+        return clickedEnable;
+    }
+
     public void setOnmouseoverEnable(boolean b) {
         movedEnable = b;
+    }
+
+    public boolean getOnmouseoverEnable() {
+        return movedEnable;
     }
 
     public void setOnmouseenterEnable(boolean b) {
         enteredEnable = b;
     }
 
+    public boolean getOnmouseenterEnable() {
+        return enteredEnable;
+    }
+
     public void setOnmouseexitEnable(boolean b) {
         exitedEnable = b;
+    }
+
+    public boolean getOnmouseexitEnable() {
+        return exitedEnable;
     }
 
     public void setOnmousepressEnable(boolean b) {
         pressedEnable = b;
     }
 
+    public boolean getOnmousepressEnable() {
+        return pressedEnable;
+    }
+
     public void setOnmousereleaseEnable(boolean b) {
         releasedEnable = b;
+    }
+
+    public boolean getOnmousereleaseEnable() {
+        return releasedEnable;
     }
 
     public void setOnmousewheelEnable(boolean b) {
         wheelMovedEnable = b;
     }
 
+    public boolean getOnmousewheelEnable() {
+        return wheelMovedEnable;
+    }
+
     public void setOnmousedragEnable(boolean b) {
         draggedEnable = b;
+    }
+
+    public boolean getOnmousedragEnable() {
+        return draggedEnable;
     }
 
     public static MouseAdapter getMouseAdapter(Type type, UIComponent uicomp, String command) {
