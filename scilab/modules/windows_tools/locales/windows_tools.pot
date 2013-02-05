@@ -16,35 +16,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: 2013-01-24 17:14+0100\n"
 
-# File: sci_gateway/c/sci_chartooem.c, line: 31
-# File: sci_gateway/c/sci_oemtochar.c, line: 31
-#, c-format
-msgid "%s: Feature %s is obsolete.\n"
-msgstr ""
-
 #
-# File: sci_gateway/c/sci_chartooem.c, line: 31
-# File: sci_gateway/c/sci_chartooem.c, line: 32
-# File: sci_gateway/c/sci_oemtochar.c, line: 31
-# File: sci_gateway/c/sci_oemtochar.c, line: 32
-msgid "Warning"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_chartooem.c, line: 32
-# File: sci_gateway/c/sci_oemtochar.c, line: 32
-#, c-format
-msgid ""
-"%s: This feature will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_chartooem.c, line: 57
 # File: sci_gateway/c/sci_findfileassociation.c, line: 39
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 32
 # File: sci_gateway/c/sci_mcisendstring.c, line: 119
-# File: sci_gateway/c/sci_oemtochar.c, line: 57
 # File: sci_gateway/c/sci_winqueryreg.c, line: 53
 # File: sci_gateway/c/sci_winqueryreg.c, line: 80
 # File: sci_gateway/c/sci_winqueryreg.c, line: 100

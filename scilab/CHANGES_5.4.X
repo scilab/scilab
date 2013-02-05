@@ -59,6 +59,8 @@ Removed functions
 
 * xbasr() removed. Automatically managed by Scilab now.
 
+* chartoeom() and eomtochar() removed.
+
 
 Obsolete functions
 ===================
