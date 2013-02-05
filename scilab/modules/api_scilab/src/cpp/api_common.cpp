@@ -231,13 +231,62 @@ int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
 }
 
 /*--------------------------------------------------------------------------*/
+int callScilabFunction(void* _pvCtx, char* _pstName, int _iStart, int _iLhs, int _iRhs)
+{
+    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    Function::ReturnValue callResult;
+
+    wchar_t* pwstName = to_wide_string(_pstName);
+    std::wstring wsFunName(pwstName);
+
+    typed_list in;
+    typed_list out;
+
+
+    for (int i = 0 ; i < _iRhs ; i++)
+    {
+        in.push_back((*pStr->m_pIn)[i + (_iStart - 1)]);
+        in[i]->IncreaseRef();
+    }
+
+    callResult = Overload::call(wsFunName, in, _iLhs, out, pStr->m_pVisitor);
+
+    //unprotect input arguments
+    for (int i = 0 ; i < _iRhs ; i++)
+    {
+        in[i]->DecreaseRef();
+    }
+
+    if (callResult == Function::OK)
+    {
+        int iCallerRhs = pStr->m_pIn->size();
+        pStr->m_pIn->resize(iCallerRhs + _iRhs + _iLhs, NULL);
+        for (int i = 0 ; i < _iLhs ; i++)
+        {
+            (*pStr->m_pIn)[iCallerRhs + _iRhs + i] = out[i];
+            //pStr->m_pOutOrder[i] = i + 1;
+        }
+    }
+
+    FREE(pwstName);
+    return 0;
+}
+
 int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _iNameLen)
 {
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     Function::ReturnValue callResult;
     typed_list tlReturnedValues;
 
-    wchar_t* pwstName = to_wide_string(pStr->m_pstName);
+    wchar_t* pwstName = NULL;
+    if (_pstName == NULL || strlen(_pstName) == 0)
+    {
+        pwstName = to_wide_string(pStr->m_pstName);
+    }
+    else
+    {
+        pwstName = to_wide_string(_pstName);
+    }
     std::wstring wsFunName;
 
     if (_iVar == 0)

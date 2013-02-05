@@ -23,7 +23,7 @@
 
 extern "C"
 {
-    #include "os_wcsdup.h"
+#include "os_wcsdup.h"
 }
 
 namespace types
@@ -120,7 +120,6 @@ int TList::getIndexFromString(const std::wstring& _sKey)
 std::vector<InternalType*> TList::extractStrings(const std::list<std::wstring>& _stFields)
 {
     std::vector<InternalType*> Result;
-
     std::list<std::wstring>::const_iterator it;
     for (it = _stFields.begin() ; it != _stFields.end() ; it++)
     {
@@ -154,41 +153,12 @@ std::wstring TList::getShortTypeStr()
 
 bool TList::set(const std::wstring& _sKey, InternalType* _pIT)
 {
-    return set(getIndexFromString(_sKey), _pIT);
+    return List::set(getIndexFromString(_sKey), _pIT);
 }
 
 bool TList::set(const int _iIndex, InternalType* _pIT)
 {
-    if (_iIndex < 0)
-    {
-        return false;
-    }
-
-    while (m_plData->size() < _iIndex)
-    {
-        //incease list size and fill with "Undefined"
-        m_plData->push_back(new ListUndefined());
-        m_iSize = getSize();
-    }
-
-    // replace an existing element
-    if (m_plData->size() > _iIndex)
-    {
-        InternalType* pOld = (*m_plData)[_iIndex];
-        if (pOld && pOld->isDeletable())
-        {
-            delete pOld;
-        }
-
-        (*m_plData)[_iIndex] = _pIT->clone();
-    }
-    else // insert a new element
-    {
-        m_plData->push_back(_pIT->clone());
-    }
-
-    (*m_plData)[_iIndex]->IncreaseRef();
-    return true;
+    return List::set(_iIndex, _pIT);
 }
 
 String* TList::getFieldNames()
@@ -209,16 +179,16 @@ bool TList::toString(std::wostringstream& ostr)
     {
         ostr << wcsVarName << L"()" << std::endl;
     }
-    else if((*m_plData)[0]->isString() &&
-            (*m_plData)[0]->getAs<types::String>()->getSize() > 0 &&
-            wcscmp((*m_plData)[0]->getAs<types::String>()->get(0), L"lss") == 0)
+    else if ((*m_plData)[0]->isString() &&
+             (*m_plData)[0]->getAs<types::String>()->getSize() > 0 &&
+             wcscmp((*m_plData)[0]->getAs<types::String>()->get(0), L"lss") == 0)
     {
         int iPosition = 1;
         wchar_t* wcsDesc[7] = {L"  (state-space system:)", L"= A matrix =", L"= B matrix =", L"= C matrix =", L"= D matrix =", L"= X0 (initial state) =", L"= Time domain ="};
         std::vector<InternalType *>::iterator itValues;
         for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
         {
-            ostr << "     " << wcsVarName << L"(" << iPosition << L") " << wcsDesc[iPosition-1] << std::endl;
+            ostr << "     " << wcsVarName << L"(" << iPosition << L") " << wcsDesc[iPosition - 1] << std::endl;
             //maange lines
             bool bFinish = (*itValues)->toString(ostr);
             ostr << std::endl;
@@ -240,4 +210,4 @@ bool TList::toString(std::wostringstream& ostr)
     free(wcsVarName);
     return true;
 }
-}
+} // end namespace types

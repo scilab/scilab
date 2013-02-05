@@ -84,8 +84,39 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
         }
         else if (pIT->isString())
         {
-            //see later for extract from struct or Tlist
-            _pArgsOut->push_back(NULL);
+            String* pStr = pIT->getAs<String>();
+            if (_pArgsIn->size() != 1 || pStr->isScalar() == false)
+            {
+                bUndefine = true;
+                continue;
+            }
+
+            wchar_t* pFieldName = pStr->get(0);
+
+            if (_pRef->isStruct())
+            {
+                Struct* pStruct = _pRef->getAs<Struct>();
+                // pCurrent arg is indexed to 1 unlike the return of "getFieldIndex"
+                int iIndex = pStruct->get(0)->getFieldIndex(pFieldName) + 1;
+                if (iIndex == -1)
+                {
+                    bUndefine = true;
+                    continue;
+                }
+
+                pCurrentArg = new Double((double)iIndex);
+            }
+            else if (_pRef->isList())
+            {
+            }
+            else if (_pRef->isCell())
+            {
+            }
+            else
+            {
+            }
+
+            //_pArgsOut->push_back(NULL);
             bUndefine = true;
             break;
         }

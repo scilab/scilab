@@ -165,7 +165,8 @@ am_libsciast_la_OBJECTS = src/cpp/libsciast_la-libAst.lo \
 	src/cpp/libsciast_la-mutevisitor.lo \
 	src/cpp/libsciast_la-shortcutvisitor.lo \
 	src/cpp/libsciast_la-scilabexception.lo \
-	src/cpp/libsciast_la-macrovarvisitor.lo
+	src/cpp/libsciast_la-macrovarvisitor.lo \
+	src/cpp/libsciast_la-expHistory.lo
 libsciast_la_OBJECTS = $(am_libsciast_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -526,7 +527,8 @@ libsciast_la_SOURCES = \
 	src/cpp/mutevisitor.cpp \
 	src/cpp/shortcutvisitor.cpp \
 	src/cpp/scilabexception.cpp \
-	src/cpp/macrovarvisitor.cpp
+	src/cpp/macrovarvisitor.cpp \
+	src/cpp/expHistory.cpp
 
 libsciast_la_CPPFLAGS = \
 	-Iincludes \
@@ -721,6 +723,8 @@ src/cpp/libsciast_la-scilabexception.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciast_la-macrovarvisitor.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciast_la-expHistory.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libsciast.la: $(libsciast_la_OBJECTS) $(libsciast_la_DEPENDENCIES) $(EXTRA_libsciast_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libsciast_la_OBJECTS) $(libsciast_la_LIBADD) $(LIBS)
@@ -734,6 +738,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-debugvisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-expHistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-libAst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-macrovarvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-mutevisitor.Plo@am__quote@
@@ -821,6 +826,13 @@ src/cpp/libsciast_la-macrovarvisitor.lo: src/cpp/macrovarvisitor.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/macrovarvisitor.cpp' object='src/cpp/libsciast_la-macrovarvisitor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciast_la-macrovarvisitor.lo `test -f 'src/cpp/macrovarvisitor.cpp' || echo '$(srcdir)/'`src/cpp/macrovarvisitor.cpp
+
+src/cpp/libsciast_la-expHistory.lo: src/cpp/expHistory.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciast_la-expHistory.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciast_la-expHistory.Tpo -c -o src/cpp/libsciast_la-expHistory.lo `test -f 'src/cpp/expHistory.cpp' || echo '$(srcdir)/'`src/cpp/expHistory.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciast_la-expHistory.Tpo src/cpp/$(DEPDIR)/libsciast_la-expHistory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/expHistory.cpp' object='src/cpp/libsciast_la-expHistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciast_la-expHistory.lo `test -f 'src/cpp/expHistory.cpp' || echo '$(srcdir)/'`src/cpp/expHistory.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -66,6 +66,7 @@ public :
     InternalType*                   insert(typed_list* _pArgs, InternalType* _pSource);
     std::vector<InternalType*>      extract(typed_list* _pArgs);
     virtual InternalType*           get(const int _iIndex);
+    virtual bool                    set(const int _iIndex, InternalType* _pIT);
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring            getTypeStr()

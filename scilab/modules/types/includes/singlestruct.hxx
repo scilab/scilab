@@ -30,7 +30,6 @@ public :
 
 private :
     SingleStruct(SingleStruct *_oListCopyMe);
-    int                                     getFieldIndex(const std::wstring& _field);
 
 public :
     SingleStruct*                           clone();
@@ -49,9 +48,12 @@ public :
     std::vector<InternalType*>              extract(std::list<std::wstring> _stFields);
     String*                                 getFieldNames();
     bool                                    addField(const std::wstring& _sKey);
-    std::vector<InternalType *>             getData();
-    std::vector<std::wstring>               getFields();
-
+    bool                                    addFieldFront(const std::wstring& _sKey);
+    std::list<InternalType *>               getData();
+    std::list<std::wstring>                 getFields();
+    int                                     getFieldIndex(const std::wstring& _field);
+    bool                                    removeField(const std::wstring& _sKey);
+    void                                    addFieldsFront(String* _pStrFieldNames);
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring                    getTypeStr()
@@ -65,8 +67,8 @@ public :
     }
 
 private :
-    std::vector<std::wstring> m_wstFields;
-    std::vector<InternalType *> m_Data;
+    std::list<std::wstring> m_wstFields;
+    std::list<InternalType *> m_Data;
 };
 }
 

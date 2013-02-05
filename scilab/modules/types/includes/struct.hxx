@@ -13,6 +13,7 @@
 #ifndef __STRUCT_HXX__
 #define __STRUCT_HXX__
 
+#include "list.hxx"
 #include "arrayof.hxx"
 #include "singlestruct.hxx"
 #include "dynlib_types.h"
@@ -81,11 +82,15 @@ public :
     String*                     getFieldNames();
     bool                        exists(const std::wstring& _sKey);
     bool                        addField(const std::wstring& _sKey);
+    bool                        addFieldFront(const std::wstring& _sKey);
+    bool                        removeField(const std::wstring& _sKey);
     bool                        toString(std::wostringstream& ostr);
+    List*                       extractFieldWithoutClone(std::wstring _wstField);
     std::vector<InternalType*>  extractFields(std::vector<std::wstring> _wstFields);
     std::vector<InternalType*>  extractFields(typed_list* _pArgs);
 
-
+    bool                        resize(int* _piDims, int _iDims);
+    bool                        resize(int _iNewRows, int _iNewCols);
 
     /*specials functions to disable clone operation during copydata*/
     InternalType*               insertWithoutClone(typed_list* _pArgs, InternalType* _pSource);

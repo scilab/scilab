@@ -41,7 +41,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
             // Dedicated case for lists.
         case InternalType::RealMList:
         {
-            std::wstring wstFuncName = L"%"  + in[0]->getTypeStr() + L"_size";
+            std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_size";
             Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
             break;
         }

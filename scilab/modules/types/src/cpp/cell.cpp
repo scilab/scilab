@@ -119,6 +119,11 @@ bool Cell::set(int _iRows, int _iCols, const InternalType* _pIT)
 
 bool Cell::set(int _iIndex, InternalType* _pIT)
 {
+    if (m_pRealData[_iIndex] == _pIT)
+    {
+        return true;
+    }
+
     if (_iIndex < getSize())
     {
         if (m_pRealData[_iIndex] != NULL)

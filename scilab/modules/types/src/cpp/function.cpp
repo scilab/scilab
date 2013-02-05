@@ -16,11 +16,14 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "gatewaystruct.hxx"
+#include "lasterror.h"
+
 extern "C"
 {
 #include "core_math.h"
 #include "charEncoding.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 #include "sci_path.h"
 #include "MALLOC.h"
@@ -202,18 +205,19 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
 
     char* pFunctionName = wide_string_to_UTF8(m_wstName.c_str());
 
-    //call gateway (thoses cast should looks  suspicious)
+    //call gateway
     iRet = m_pOldFunc(pFunctionName, reinterpret_cast<int*>(&gStr));
     FREE(pFunctionName);
     if (isError())
     {
         retVal = Callable::Error;
+        resetError();
     }
     else
     {
         for (std::size_t i(0); i != _iRetCount && outOrder[i] != -1 && outOrder[i] != 0 ; ++i)
         {
-            if (outOrder[i] - 1 < inCopy.size())
+            if (outOrder[i] - 1 < in.size())
             {
                 std::size_t const iPos(outOrder[i] - 1);
                 //protect variable to deletion
@@ -234,7 +238,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
             }
             else
             {
-                std::size_t const iPos(outOrder[i] - gStr.m_iIn - 1);
+                std::size_t const iPos(outOrder[i] - in.size() - 1);
                 if (tmpOut[iPos]->isDouble() && ((types::Double*)tmpOut[iPos])->isViewAsInteger())
                 {
                     types::Double* pD = tmpOut[iPos]->getAs<types::Double>();

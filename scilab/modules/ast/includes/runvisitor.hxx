@@ -473,101 +473,104 @@ public :
             throw error;
         }
 
+        SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
+        std::wstring wstField = L"";
+        if (psvRightMember != NULL)
+        {
+            wstField = psvRightMember->name_get().name_get();
+        }
+        else
+        {
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
+            throw ScilabError(szError, 999, e.location_get());
+        }
+
         if (result_get() != NULL && result_get()->isStruct())
         {
-            SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
-            if (psvRightMember != NULL)
+            InternalType* pTemp = result_get();
+            result_set(NULL);
+            Struct* psValue = pTemp->getAs<Struct>();
+            if (psValue->exists(wstField))
             {
-                InternalType* pTemp = result_get();
-                result_set(NULL);
-                Struct* psValue = pTemp->getAs<Struct>();
-                if (psValue->exists(psvRightMember->name_get().name_get()))
+                if (psValue->getSize() != 1)
                 {
-                    if (psValue->getSize() != 1)
-                    {
-                        std::vector<std::wstring> wstFields;
-                        wstFields.push_back(psvRightMember->name_get().name_get());
-
-                        std::vector<InternalType*> result;
-                        result = psValue->extractFields(wstFields);
-
-                        result_set(result[0]);
-                    }
-                    else
-                    {
-                        InternalType* pIT = psValue->get(0)->get(psvRightMember->name_get().name_get())->clone();
-                        result_set(pIT);
-                    }
+                    std::vector<std::wstring> wstFields;
+                    wstFields.push_back(wstField);
+                    std::vector<InternalType*> result;
+                    result = psValue->extractFields(wstFields);
+                    result_set(result[0]);
                 }
                 else
                 {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().name_get().c_str());
-                    throw ScilabError(szError, 999, psvRightMember->location_get());
-                }
-            }
-            else
-            {
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-                throw ScilabError(szError, 999, e.location_get());
-            }
-        }
-        else if (result_get() != NULL && result_get()->isMList())
-        {
-            SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
-            if (psvRightMember != NULL)
-            {
-                TList* psValue = ((InternalType*)result_get())->getAs<MList>();
-                result_set(NULL);
-                if (psValue->exists(psvRightMember->name_get().name_get()))
-                {
-                    InternalType* pIT = psValue->getField(psvRightMember->name_get().name_get());
+                    InternalType* pIT = psValue->get(0)->get(wstField)->clone();
                     result_set(pIT);
                 }
-                else
-                {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().name_get().c_str());
-                    throw ScilabError(szError, 999, psvRightMember->location_get());
-                }
             }
             else
             {
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-                throw ScilabError(szError, 999, e.location_get());
+                os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), wstField.c_str());
+                throw ScilabError(szError, 999, e.tail_get()->location_get());
             }
         }
-        else if (result_get() != NULL && result_get()->isTList())
+        else if (result_get() != NULL && (result_get()->isMList() || result_get()->isTList()))
         {
-            SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
-            if (psvRightMember != NULL)
+            TList* psValue = ((InternalType*)result_get())->getAs<MList>();
+
+            if (psValue->exists(wstField))
             {
-                TList* psValue = ((InternalType*)result_get())->getAs<TList>();
-                result_set(NULL);
-                if (psValue->exists(psvRightMember->name_get().name_get()))
-                {
-                    InternalType* pIT = psValue->getField(psvRightMember->name_get().name_get());
-                    result_set(pIT);
-                }
-                else
-                {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), psvRightMember->name_get().name_get().c_str());
-                    throw ScilabError(szError, 999, psvRightMember->location_get());
-                }
+                //without overloading function, extract by name
+                result_set(psValue->getField(wstField));
             }
             else
             {
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-                throw ScilabError(szError, 999, e.location_get());
+                //call %mlisttype_e
+                std::wostringstream ostr;
+                types::typed_list in;
+                types::optional_list opt;
+                types::typed_list out;
+
+                //firt argument: index
+                String* pS = new String(wstField.c_str());
+                pS->IncreaseRef();
+                in.push_back(pS);
+
+                //second argument: me ( mlist or tlist )
+                psValue->IncreaseRef();
+                in.push_back(psValue);
+
+                Callable::ReturnValue Ret = Overload::call(L"%" + psValue->getShortTypeStr() + L"_e", in, 1, out, this);
+
+                if (Ret != Callable::OK)
+                {
+                    throw ScilabError(L"", 999, e.location_get());
+                }
+
+                if (out.size() == 0)
+                {
+                    result_set(NULL);
+                }
+                else if (out.size() == 1)
+                {
+                    out[0]->DecreaseRef();
+                    result_set(out[0]);
+                }
+                else
+                {
+                    for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                    {
+                        out[i]->DecreaseRef();
+                        result_set(i, out[i]);
+                    }
+                }
+
+                psValue->DecreaseRef();
+                pS->DecreaseRef();
             }
         }
         else if (result_get() != NULL && result_get()->isHandle())
         {
-            SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
             typed_list in;
             typed_list out;
             optional_list opt;

@@ -82,6 +82,7 @@ void setLastError(int _iError, const wchar_t* _pwstError, int _iLine, const wcha
     setLastErrorLine(_iLine);
     setLastErrorFunction(_pwstFunction);
 }
+
 /*--------------------------------------------------------------------------*/
 void SetError()
 {

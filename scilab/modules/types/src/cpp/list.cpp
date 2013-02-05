@@ -223,7 +223,10 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         os << _W("Unable to insert multiple item in a list.\n");
         throw ast::ScilabError(os.str());
     }
-
+    else if (iSeqCount < 0)
+    {
+        return NULL;
+    }
 
     int idx = (int)pArg[0]->getAs<Double>()->get(0);
     if (_pSource->isListDelete())
@@ -318,6 +321,38 @@ InternalType* List::get(const int _iIndex)
         return (*m_plData)[_iIndex];
     }
     return NULL;
+}
+
+bool List::set(const int _iIndex, InternalType* _pIT)
+{
+    if (_iIndex < 0)
+    {
+        return false;
+    }
+
+    while (m_plData->size() <= _iIndex)
+    {
+        //incease list size and fill with "Undefined"
+        m_plData->push_back(new ListUndefined());
+        m_iSize = getSize();
+    }
+
+    InternalType* pOld = (*m_plData)[_iIndex];
+
+    _pIT->IncreaseRef();
+    (*m_plData)[_iIndex] = _pIT;
+
+    //manage ref on the old value
+    if (pOld)
+    {
+        pOld->DecreaseRef();
+        if (pOld->isDeletable())
+        {
+            delete pOld;
+        }
+    }
+
+    return true;
 }
 
 bool List::operator==(const InternalType& it)

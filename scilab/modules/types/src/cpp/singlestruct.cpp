@@ -33,12 +33,13 @@ SingleStruct::~SingleStruct()
 {
     if (isDeletable() == true)
     {
-        for (int i = 0 ; i < m_Data.size() ; i++)
+        std::list<InternalType*>::iterator iterFieldData;
+        for (iterFieldData = m_Data.begin(); iterFieldData != m_Data.end() ; iterFieldData++)
         {
-            m_Data[i]->DecreaseRef();
-            if (m_Data[i]->isDeletable())
+            (*iterFieldData)->DecreaseRef();
+            if ((*iterFieldData)->isDeletable())
             {
-                delete m_Data[i];
+                delete (*iterFieldData);
             }
         }
     }
@@ -46,33 +47,36 @@ SingleStruct::~SingleStruct()
 
 SingleStruct::SingleStruct(SingleStruct *_oSingleStructCopyMe)
 {
-    std::vector<std::wstring> wstFields = _oSingleStructCopyMe->getFields();
-    std::vector<InternalType *> Data = _oSingleStructCopyMe->getData();
+    std::list<std::wstring> wstFields = _oSingleStructCopyMe->getFields();
+    std::list<InternalType *> Data = _oSingleStructCopyMe->getData();
 
-    for (int i = 0 ; i < Data.size() ; i++)
+    std::list<InternalType*>::iterator iterFieldData;
+    std::list<std::wstring>::iterator iterFieldName = wstFields.begin();
+    for (iterFieldData = Data.begin(); iterFieldData != Data.end() ; iterFieldData++, iterFieldName++)
     {
-        m_wstFields.push_back(wstFields[i]);
-        m_Data.push_back(Data[i]->clone());
+        m_wstFields.push_back(*iterFieldName);
+        m_Data.push_back((*iterFieldData)->clone());
     }
 }
 
-std::vector<InternalType *> SingleStruct::getData()
+std::list<InternalType *> SingleStruct::getData()
 {
     return m_Data;
 }
 
-std::vector<std::wstring> SingleStruct::getFields()
+std::list<std::wstring> SingleStruct::getFields()
 {
     return m_wstFields;
 }
 
 int SingleStruct::getFieldIndex(const std::wstring& _field)
 {
-    for (int i = 0 ; i < m_wstFields.size() ; i++)
+    std::list<std::wstring>::iterator iterFieldNames = m_wstFields.begin();
+    for (int idx = 0; iterFieldNames != m_wstFields.end() ; iterFieldNames++, idx++)
     {
-        if (m_wstFields[i] == _field)
+        if (*iterFieldNames == _field)
         {
-            return i;
+            return idx;
         }
     }
 
@@ -87,24 +91,31 @@ bool SingleStruct::set(const std::wstring& _sKey, InternalType *_typedValue)
         return false;
     }
 
-    /* Look if we are replacing some existing value */
-    if (m_Data[index] != NULL)
-    {
-        m_Data[index]->DecreaseRef();
-        if (m_Data[index]->isDeletable())
-        {
-            delete m_Data[index];
-        }
-    }
+    std::list<InternalType*>::iterator iterFieldData = m_Data.begin();
+    std::advance(iterFieldData, index);
 
-    if (_typedValue)
+    InternalType* pOld = *iterFieldData;
+    if (pOld != _typedValue)
     {
-        _typedValue->IncreaseRef();
-        m_Data[index] = _typedValue;
-    }
-    else
-    {
-        m_Data[index] = NULL;
+        /* Look if we are replacing some existing value */
+        if (pOld != NULL)
+        {
+            pOld->DecreaseRef();
+            if (pOld->isDeletable())
+            {
+                delete pOld;
+            }
+        }
+
+        if (_typedValue)
+        {
+            _typedValue->IncreaseRef();
+            *iterFieldData = _typedValue;
+        }
+        else
+        {
+            *iterFieldData = NULL;
+        }
     }
     return true;
 }
@@ -119,7 +130,10 @@ InternalType* SingleStruct::get(const std::wstring& _sKey)
         return NULL;
     }
 
-    return m_Data[index];
+    std::list<InternalType*>::iterator iterFieldData = m_Data.begin();
+    std::advance(iterFieldData, index);
+
+    return *iterFieldData;
 }
 
 bool SingleStruct::exists(const std::wstring& _sKey)
@@ -182,28 +196,42 @@ std::vector<InternalType*> SingleStruct::extract(std::list<std::wstring> _stFiel
 String* SingleStruct::getFieldNames()
 {
     String* pOut = new String((int)m_wstFields.size(), 1);
+    std::list<std::wstring>::iterator iterFieldNames = m_wstFields.begin();
 
-    for (int i = 0 ; i < m_wstFields.size() ; i++)
+    for (int i = 0 ; iterFieldNames != m_wstFields.end() ; iterFieldNames++, i++)
     {
-        pOut->set(i, m_wstFields[i].c_str());
+        pOut->set(i, (*iterFieldNames).c_str());
     }
     return pOut;
 }
 
-bool SingleStruct::toString(std::wostringstream& ostr)
+bool SingleStruct::removeField(const std::wstring& _sKey)
 {
-    if (m_Data.size() == 0)
+    std::list<std::wstring>::iterator iterFieldNames = m_wstFields.begin();
+    std::list<InternalType*>::iterator iterFieldData = m_Data.begin();
+    std::list<std::wstring> wstFields;
+    std::list<InternalType *> Data;
+
+    for (int i = 0; iterFieldNames != m_wstFields.end(); iterFieldNames++, iterFieldData++, i++)
     {
-        ostr << L"empty SingleStruct";
-        return true;
-    }
-    else
-    {
-        for (int i = 0 ; i < m_Data.size() ; i++)
+        if (*iterFieldNames == _sKey)
         {
-            ostr << m_wstFields[i] << L" : " << m_Data[i]->getTypeStr() << std::endl;
+            (*iterFieldData)->DecreaseRef();
+            if ((*iterFieldData)->isDeletable())
+            {
+                delete (*iterFieldData);
+            }
+
+            continue;
         }
+
+        wstFields.push_back(*iterFieldNames);
+        Data.push_back(*iterFieldData);
     }
+
+    m_wstFields = wstFields;
+    m_Data = Data;
+
     return true;
 }
 
@@ -220,4 +248,38 @@ bool SingleStruct::addField(const std::wstring& _sKey)
     m_Data.push_back(Double::Empty());
     return true;
 }
+
+bool SingleStruct::addFieldFront(const std::wstring& _sKey)
+{
+    if (exists(_sKey))
+    {
+        //field already exists, do nothing and return false
+        return false;
+    }
+
+    //not found so add field with []
+    m_wstFields.push_front(_sKey);
+    m_Data.push_front(Double::Empty());
+    return true;
+}
+
+bool SingleStruct::toString(std::wostringstream& ostr)
+{
+    if (m_Data.size() == 0)
+    {
+        ostr << L"empty SingleStruct";
+        return true;
+    }
+    else
+    {
+        std::list<std::wstring>::iterator iterFieldNames;
+        std::list<InternalType*>::iterator iterFieldData = m_Data.begin();
+        for (iterFieldNames = m_wstFields.begin() ; iterFieldNames != m_wstFields.end(); iterFieldNames++, iterFieldData++)
+        {
+            ostr << *iterFieldNames << L" : " << (*iterFieldData)->getTypeStr() << std::endl;
+        }
+    }
+    return true;
+}
+
 }

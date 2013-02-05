@@ -167,6 +167,7 @@ public :
     static void setError();
     static bool isError();
     static void resetError();
+
     //Last Error Line
 private :
     static int m_iErrorLine;

@@ -223,7 +223,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
             }
 
             List* pVarOut = pOut->getAs<List>();
-            for (int i = 0 ; i < Min(pVarOut->getSize(), _iRetCount) ; i++)
+            for (int i = 0 ; i < Max(pVarOut->getSize(), _iRetCount) ; i++)
             {
                 InternalType* pIT = pVarOut->get(i)->clone();
                 if (pIT->isListUndefined())

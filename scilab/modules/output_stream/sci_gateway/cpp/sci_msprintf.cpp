@@ -117,7 +117,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
 
     int iOutputRows = 0;
     int iNewLine = 0;
-    wchar_t** pwstOutput = scilab_sprintf(L"msprintf", pwstInput, in, pArgs, iNumberPercent, &iOutputRows, &iNewLine);
+    wchar_t** pwstOutput = scilab_sprintf("msprintf", pwstInput, in, pArgs, iNumberPercent, &iOutputRows, &iNewLine);
 
     types::String* pOut = new types::String(iOutputRows, 1);
     pOut->set(pwstOutput);

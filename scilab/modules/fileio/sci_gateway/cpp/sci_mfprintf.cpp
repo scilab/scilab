@@ -202,7 +202,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     }
 
     int iNewLine = 0;
-    wcsStringToWrite = scilab_sprintf(L"mfprintf", wcsInput, in, pArgs, iNumberPercent, &nbrOfLines, &iNewLine);
+    wcsStringToWrite = scilab_sprintf("mfprintf", wcsInput, in, pArgs, iNumberPercent, &nbrOfLines, &iNewLine);
 
     if (isSTD)
     {

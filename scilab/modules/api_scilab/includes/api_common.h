@@ -183,6 +183,9 @@ extern "C" {
 #undef OverLoad
 #endif
 #define OverLoad(x) callOverloadFunction(pvApiCtx, x, fname, (unsigned int)strlen(fname))
+
+    int callScilabFunction(void* _pvCtx, char* _pstName, int _iStart, int _iLhs, int _iRhs);
+
     /**
      * Get the memory address of a variable from the variable position
      * @param[in] _iVar variable number

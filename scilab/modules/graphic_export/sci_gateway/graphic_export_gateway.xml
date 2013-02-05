@@ -18,7 +18,7 @@
 
  Don't touch if you do not know what you are doing
 -->
-<module name="sound">
+<module name="graphic_export">
     <gateway name="sci_xs2bmp"  function="xs2bmp"   type="0" />
     <gateway name="sci_xs2gif"  function="xs2gif"   type="0" />
     <gateway name="sci_xs2jpg"  function="xs2jpg"   type="0" />

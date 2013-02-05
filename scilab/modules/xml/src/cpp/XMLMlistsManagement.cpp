@@ -10,11 +10,19 @@
  *
  */
 
+extern "C"
+{
 #include <string.h>
 #include "xml_mlist.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+}
+
+#include "mlist.hxx"
+#include "tlist.hxx"
+#include "internal.hxx"
+#include "string.hxx"
 
 static const char *_XMLDoc[] = { "XMLDoc", "_id" };
 static const char *_XMLElem[] = { "XMLElem", "_id" };
@@ -250,48 +258,56 @@ int getXMLObjectId(int *mlist, void *pvApiCtx)
 /*--------------------------------------------------------------------------*/
 int getMListType(int * mlist, void * pvApiCtx)
 {
-    if (mlist[0] != sci_mlist || mlist[1] != 2)
+    types::InternalType* pIT = (types::InternalType*)mlist;
+    types::MList* m = dynamic_cast<types::MList*>(pIT);
+
+    if (m == NULL || m->getSize() != 2)
     {
         return -1;
     }
 
-    if (mlist[6] != sci_strings || mlist[7] != 1 || mlist[8] != 2)
+    types::String* pS = m->getFieldNames();
+
+    if (pS->getRows() != 1 || pS->getCols() != 2)
     {
         // first field is not a matrix 1x2 of strings
         return -1;
     }
 
-    if (mlist[13] == -33 && mlist[14] == -22 && mlist[15] == -21)
+    wchar_t* pwstType = pS->get(0);
+    int iLen = (int)wcslen(pwstType);
+
+    if (wcsncmp(pwstType, L"XML", 3) == 0)
     {
-        if (mlist[11] - 1 == strlen("XMLDoc") && mlist[16] == -13 && mlist[17] == 24  && mlist[18] == 12)
+        if (iLen == 6 /*strlen("XMLDoc")*/ && wcscmp(pwstType + 3, L"Doc") == 0)
         {
             return XMLDOCUMENT;
         }
-        if (mlist[11] - 1 == strlen("XMLElem") && mlist[16] == -14 && mlist[17] == 21 && mlist[18] == 14 && mlist[19] == 22)
+        if (iLen == 7 /*strlen("XMLElem")*/ && wcscmp(pwstType + 3, L"Elem") == 0)
         {
             return XMLELEMENT;
         }
-        if (mlist[11] - 1 == strlen("XMLAttr") && mlist[16] == -10 && mlist[17] == 29 && mlist[18] == 29 && mlist[19] == 27)
+        if (iLen == 7 /*strlen("XMLAttr")*/ && wcscmp(pwstType + 3, L"Attr") == 0)
         {
             return XMLATTRIBUTE;
         }
-        if (mlist[11] - 1 == strlen("XMLNs") && mlist[16] == -23 && mlist[17] == 28)
+        if (iLen == 5 /*strlen("XMLNs")*/ && wcscmp(pwstType + 3, L"Ns") == 0)
         {
             return XMLNAMESPACE;
         }
-        if (mlist[11] - 1 == strlen("XMLList") && mlist[16] == -21 && mlist[17] == 18 && mlist[18] == 28 && mlist[19] == 29)
+        if (iLen == 7 /*strlen("XMLList")*/ && wcscmp(pwstType + 3, L"List") == 0)
         {
             return XMLLIST;
         }
-        if (mlist[11] - 1 == strlen("XMLNH") && mlist[16] == -23 && mlist[17] == 17)
+        if (iLen == 5 /*strlen("XMLNH")*/ && wcscmp(pwstType + 3, L"NH") == 0)
         {
             return XMLNOTHANDLED;
         }
-        if (mlist[11] - 1 == strlen("XMLSet") && mlist[16] == -28 && mlist[17] == 14 && mlist[18] == 29)
+        if (iLen == 6 /*strlen("XMLSet")*/ && wcscmp(pwstType + 3, L"Set") == 0)
         {
             return XMLSET;
         }
-        if (mlist[11] - 1 == strlen("XMLValid") && mlist[16] == -31 && mlist[17] == 10 && mlist[18] == 21 && mlist[19] == 18 && mlist[20] == 13)
+        if (iLen == 8 /*strlen("XMLValid")*/ && wcscmp(pwstType + 3, L"Valid") == 0)
         {
             return XMLVALID;
         }

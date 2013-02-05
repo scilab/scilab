@@ -11,12 +11,12 @@
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
 assert_checktrue(xmlIsValidObject(xmlFile));
 a=xmlGetOpenDocs();
+
 if getos() == "Windows" then
     assert_checkequal(a(1).url, "file:///" + SCI+"/etc/modules.xml");
 else
     assert_checkequal(a(1).url, SCI+"/etc/modules.xml");
 end
-
 
 content=xmlDump(xmlFile);
 assert_checktrue(length(content)>0);

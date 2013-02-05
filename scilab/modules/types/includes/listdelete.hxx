@@ -46,7 +46,7 @@ public :
     /* return type as short string ( s, i, ce, l, ... )*/
     virtual std::wstring    getShortTypeStr()
     {
-        return L"";
+        return L"0";
     }
 };
 }

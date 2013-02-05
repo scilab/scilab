@@ -181,6 +181,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\debugvisitor.cpp" />
+    <ClCompile Include="src\cpp\expHistory.cpp" />
     <ClCompile Include="src\cpp\libAst.cpp" />
     <ClCompile Include="src\cpp\macrovarvisitor.cpp" />
     <ClCompile Include="src\cpp\mutevisitor.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="includes\dummyvisitor.hxx" />
     <ClInclude Include="includes\execvisitor.hxx" />
     <ClInclude Include="includes\exp.hxx" />
+    <ClInclude Include="includes\expHistory.hxx" />
     <ClInclude Include="includes\fieldexp.hxx" />
     <ClInclude Include="includes\floatexp.hxx" />
     <ClInclude Include="includes\forexp.hxx" />

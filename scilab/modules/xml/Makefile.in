@@ -168,10 +168,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscixml_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscixml_algo_la_LIBADD =
+am__objects_1 =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/c/libscixml_algo_la-XMLMlistsManagement.lo
-am__objects_2 =
-am__objects_3 = src/cpp/libscixml_algo_la-VariableScope.lo \
+am__objects_2 = src/cpp/libscixml_algo_la-VariableScope.lo \
 	src/cpp/libscixml_algo_la-XMLObject.lo \
 	src/cpp/libscixml_algo_la-XMLDocument.lo \
 	src/cpp/libscixml_algo_la-XMLElement.lo \
@@ -185,9 +184,9 @@ am__objects_3 = src/cpp/libscixml_algo_la-VariableScope.lo \
 	src/cpp/libscixml_algo_la-XMLValidation.lo \
 	src/cpp/libscixml_algo_la-XMLValidationDTD.lo \
 	src/cpp/libscixml_algo_la-XMLValidationSchema.lo \
-	src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo
-am_libscixml_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3)
+	src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo \
+	src/cpp/libscixml_algo_la-XMLMlistsManagement.lo
+am_libscixml_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscixml_algo_la_OBJECTS = $(am_libscixml_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -195,8 +194,8 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 am__DEPENDENCIES_1 =
 libscixml_la_DEPENDENCIES = libscixml-algo.la $(am__DEPENDENCIES_1)
-am__objects_4 = sci_gateway/c/libscixml_la-gw_xml.lo
-am__objects_5 = sci_gateway/cpp/libscixml_la-sci_xmlRead.lo \
+am__objects_3 = sci_gateway/c/libscixml_la-gw_xml.lo
+am__objects_4 = sci_gateway/cpp/libscixml_la-sci_xmlRead.lo \
 	sci_gateway/cpp/libscixml_la-sci_xmlXPath.lo \
 	sci_gateway/cpp/libscixml_la-sci_extraction.lo \
 	sci_gateway/cpp/libscixml_la-sci_insertion.lo \
@@ -235,7 +234,7 @@ am__objects_5 = sci_gateway/cpp/libscixml_la-sci_xmlRead.lo \
 	sci_gateway/cpp/libscixml_la-sci_htmlReadStr.lo \
 	sci_gateway/cpp/libscixml_la-sci_htmlWrite.lo \
 	sci_gateway/cpp/libscixml_la-sci_htmlDump.lo
-am_libscixml_la_OBJECTS = $(am__objects_4) $(am__objects_5)
+am_libscixml_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscixml_la_OBJECTS = $(am_libscixml_la_OBJECTS)
 libscixml_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -610,7 +609,7 @@ modulename = xml
 
 #### xml : Conf files ####
 libscixml_la_rootdir = $(mydatadir)
-libscixml_la_root_DATA = license.txt 
+libscixml_la_root_DATA = license.txt
 
 #### scinotes : init scripts & configuration files ####
 libscixml_la_etcdir = $(mydatadir)/etc
@@ -691,22 +690,23 @@ HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 XML_JNI_SOURCES = 
-XML_C_SOURCES = src/c/XMLMlistsManagement.c
-XML_CXX_SOURCES = src/cpp/VariableScope.cpp \
-          src/cpp/XMLObject.cpp \
-          src/cpp/XMLDocument.cpp \
-          src/cpp/XMLElement.cpp \
-          src/cpp/XMLAttr.cpp \
-          src/cpp/XMLNs.cpp \
-          src/cpp/XMLNodeList.cpp \
-          src/cpp/XMLNodeSet.cpp \
-          src/cpp/XMLXPath.cpp \
-          src/cpp/XMLList.cpp \
-          src/cpp/XMLNotHandledElement.cpp \
-          src/cpp/XMLValidation.cpp \
-          src/cpp/XMLValidationDTD.cpp \
-          src/cpp/XMLValidationSchema.cpp \
-          src/cpp/XMLValidationRelaxNG.cpp
+XML_CXX_SOURCES = \
+src/cpp/VariableScope.cpp \
+src/cpp/XMLObject.cpp \
+src/cpp/XMLDocument.cpp \
+src/cpp/XMLElement.cpp \
+src/cpp/XMLAttr.cpp \
+src/cpp/XMLNs.cpp \
+src/cpp/XMLNodeList.cpp \
+src/cpp/XMLNodeSet.cpp \
+src/cpp/XMLXPath.cpp \
+src/cpp/XMLList.cpp \
+src/cpp/XMLNotHandledElement.cpp \
+src/cpp/XMLValidation.cpp \
+src/cpp/XMLValidationDTD.cpp \
+src/cpp/XMLValidationSchema.cpp \
+src/cpp/XMLValidationRelaxNG.cpp \
+src/cpp/XMLMlistsManagement.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xml.c
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
@@ -760,19 +760,21 @@ libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/operations/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/types/includes/ \
+	-I$(top_srcdir)/modules/ast/includes/ \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscixml.la
 noinst_LTLIBRARIES = libscixml-algo.la
-libscixml_algo_la_SOURCES = $(XML_C_SOURCES) $(XML_JNI_SOURCES) $(XML_CXX_SOURCES)
+libscixml_algo_la_SOURCES = $(XML_JNI_SOURCES) $(XML_CXX_SOURCES)
 libscixml_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscixml_algo_la_CPPFLAGS = $(libscixml_la_CPPFLAGS)
 libscixml_la_LDFLAGS = $(AM_LDFLAGS)
 libscixml_la_LIBADD = libscixml-algo.la $(XML_LIBS)
 
 # For the code check (splint)
-CHECK_SRC = $(XML_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixml_la_CPPFLAGS)
 
 #### xml : include files ####
@@ -862,14 +864,6 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
-src/c/$(am__dirstamp):
-	@$(MKDIR_P) src/c
-	@: > src/c/$(am__dirstamp)
-src/c/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/c/$(DEPDIR)
-	@: > src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscixml_algo_la-XMLMlistsManagement.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp
 	@: > src/cpp/$(am__dirstamp)
@@ -905,6 +899,8 @@ src/cpp/libscixml_algo_la-XMLValidationDTD.lo:  \
 src/cpp/libscixml_algo_la-XMLValidationSchema.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscixml_algo_la-XMLMlistsManagement.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscixml-algo.la: $(libscixml_algo_la_OBJECTS) $(libscixml_algo_la_DEPENDENCIES) $(EXTRA_libscixml_algo_la_DEPENDENCIES) 
@@ -1050,8 +1046,6 @@ mostlyclean-compile:
 	-rm -f sci_gateway/c/*.lo
 	-rm -f sci_gateway/cpp/*.$(OBJEXT)
 	-rm -f sci_gateway/cpp/*.lo
-	-rm -f src/c/*.$(OBJEXT)
-	-rm -f src/c/*.lo
 	-rm -f src/cpp/*.$(OBJEXT)
 	-rm -f src/cpp/*.lo
 
@@ -1098,12 +1092,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlValidationFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlWrite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlXPath.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-VariableScope.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLAttr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLDocument.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLElement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLList.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNodeList.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNodeSet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixml_algo_la-XMLNotHandledElement.Plo@am__quote@
@@ -1138,13 +1132,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
-
-src/c/libscixml_algo_la-XMLMlistsManagement.lo: src/c/XMLMlistsManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscixml_algo_la-XMLMlistsManagement.lo -MD -MP -MF src/c/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Tpo -c -o src/c/libscixml_algo_la-XMLMlistsManagement.lo `test -f 'src/c/XMLMlistsManagement.c' || echo '$(srcdir)/'`src/c/XMLMlistsManagement.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Tpo src/c/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/XMLMlistsManagement.c' object='src/c/libscixml_algo_la-XMLMlistsManagement.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscixml_algo_la-XMLMlistsManagement.lo `test -f 'src/c/XMLMlistsManagement.c' || echo '$(srcdir)/'`src/c/XMLMlistsManagement.c
 
 sci_gateway/c/libscixml_la-gw_xml.lo: sci_gateway/c/gw_xml.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscixml_la-gw_xml.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscixml_la-gw_xml.Tpo -c -o sci_gateway/c/libscixml_la-gw_xml.lo `test -f 'sci_gateway/c/gw_xml.c' || echo '$(srcdir)/'`sci_gateway/c/gw_xml.c
@@ -1281,6 +1268,13 @@ src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo: src/cpp/XMLValidationRelaxNG.
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLValidationRelaxNG.cpp' object='src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLValidationRelaxNG.lo `test -f 'src/cpp/XMLValidationRelaxNG.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationRelaxNG.cpp
+
+src/cpp/libscixml_algo_la-XMLMlistsManagement.lo: src/cpp/XMLMlistsManagement.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscixml_algo_la-XMLMlistsManagement.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Tpo -c -o src/cpp/libscixml_algo_la-XMLMlistsManagement.lo `test -f 'src/cpp/XMLMlistsManagement.cpp' || echo '$(srcdir)/'`src/cpp/XMLMlistsManagement.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Tpo src/cpp/$(DEPDIR)/libscixml_algo_la-XMLMlistsManagement.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/XMLMlistsManagement.cpp' object='src/cpp/libscixml_algo_la-XMLMlistsManagement.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixml_algo_la-XMLMlistsManagement.lo `test -f 'src/cpp/XMLMlistsManagement.cpp' || echo '$(srcdir)/'`src/cpp/XMLMlistsManagement.cpp
 
 sci_gateway/cpp/libscixml_la-sci_xmlRead.lo: sci_gateway/cpp/sci_xmlRead.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixml_la-sci_xmlRead.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixml_la-sci_xmlRead.Tpo -c -o sci_gateway/cpp/libscixml_la-sci_xmlRead.lo `test -f 'sci_gateway/cpp/sci_xmlRead.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlRead.cpp
@@ -1562,7 +1556,6 @@ clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
 	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
-	-rm -rf src/c/.libs src/c/_libs
 	-rm -rf src/cpp/.libs src/cpp/_libs
 install-libscixml_la_etcDATA: $(libscixml_la_etc_DATA)
 	@$(NORMAL_INSTALL)
@@ -1748,8 +1741,6 @@ distclean-generic:
 	-rm -f sci_gateway/c/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(am__dirstamp)
-	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
-	-rm -f src/c/$(am__dirstamp)
 	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/cpp/$(am__dirstamp)
 
@@ -1762,7 +1753,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1810,7 +1801,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
