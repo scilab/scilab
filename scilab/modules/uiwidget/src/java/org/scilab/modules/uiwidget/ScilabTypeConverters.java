@@ -209,6 +209,23 @@ public final class ScilabTypeConverters {
                 return ret;
             }
         });
+        converters.put(String[][].class, new ScilabTypeConverter() {
+            public String[][] convert(ScilabType value) {
+                if (value == null || value.getType() != ScilabTypeEnum.sci_strings || value.isEmpty()) {
+                    return null;
+                }
+
+                String[][] s = ((ScilabString) value).getData();
+                String[][] ss = new String[s[0].length][s.length];
+                for (int i = 0; i < s[0].length; i++) {
+                    for (int j = 0; j < s.length; j++) {
+                        ss[i][j] = s[j][i];
+                    }
+                }
+
+                return ss;
+            }
+        });
         converters.put(int[].class, new ScilabTypeConverter() {
             public int[] convert(ScilabType value) {
                 if (value == null || value.getType() != ScilabTypeEnum.sci_matrix || value.isEmpty()) {

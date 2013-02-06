@@ -222,15 +222,7 @@ public final class StringConverters {
         });
         converters.put(Color.class, new StringConverter() {
             public Object convert(String str) {
-                if (str == null) {
-                    return null;
-                }
-
-                try {
-                    return Color.decode(str);
-                } catch (NumberFormatException e) {
-                    return Color.BLACK;
-                }
+                return UITools.getColor(str);
             }
         });
         converters.put(KeyStroke.class, new StringConverter() {
@@ -684,7 +676,24 @@ public final class StringConverters {
                     return null;
                 }
 
-                return new String[] { str };
+                String[] toks = str.split("[ ,]");
+
+                return toks;
+            }
+        });
+        converters.put(String[][].class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                String[] toks = str.split("[;]");
+                String[][] strs = new String[toks.length][];
+                for (int i = 0; i < toks.length; i++) {
+                    strs[i] = toks[i].split("[ ,]");
+                }
+
+                return strs;
             }
         });
         converters.put(Position.class, new StringConverter() {

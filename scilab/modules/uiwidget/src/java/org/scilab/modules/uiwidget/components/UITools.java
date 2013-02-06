@@ -12,10 +12,12 @@
 
 package org.scilab.modules.uiwidget.components;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Composite;
 import java.awt.CompositeContext;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Font;
@@ -59,6 +61,61 @@ public class UITools {
             };
         }
     };
+
+    public static final Map<String, Color> mapColor = new HashMap<String, Color>();
+    static {
+        mapColor.put("blue", Color.BLUE);
+        mapColor.put("black", Color.BLACK);
+        mapColor.put("white", Color.WHITE);
+        mapColor.put("orange", Color.ORANGE);
+        mapColor.put("cyan", Color.CYAN);
+        mapColor.put("green", Color.GREEN);
+        mapColor.put("pink", Color.PINK);
+        mapColor.put("gray", Color.GRAY);
+        mapColor.put("magenta", Color.MAGENTA);
+        mapColor.put("red", Color.RED);
+        mapColor.put("yellow", Color.YELLOW);
+        mapColor.put("lightgray", Color.LIGHT_GRAY);
+        mapColor.put("darkgray", Color.DARK_GRAY);
+    }
+
+    public static final Color getColor(String s) {
+        if (s == null || s.isEmpty()) {
+            return null;
+        }
+
+        Color color = null;
+        if (s.charAt(0) != '#') {
+            color = mapColor.get(s);
+        }
+
+        if (color == null) {
+            try {
+                color = Color.decode(s);
+            } catch (NumberFormatException e) {
+            }
+        }
+
+        if (color == null) {
+            String[] toks = s.split("[ ,;]");
+            if (toks.length == 3) {
+                int[] comp = new int[3];
+                for (int i = 0; i < 3; i++) {
+                    try {
+                        comp[i] = Integer.parseInt(toks[i]);
+                        comp[i] = comp[i] > 255 ? 255 : (comp[i] < 0 ? 0 : comp[i]);
+                    } catch (NumberFormatException e) {
+                        comp[i] = 0;
+                    }
+                }
+                color = new Color(comp[0], comp[1], comp[2]);
+            } else {
+                color = Color.BLACK;
+            }
+        }
+
+        return color;
+    }
 
     public static final Map<String, FontWeight> mapWeight = new HashMap<String, FontWeight>();
     static {
@@ -234,9 +291,43 @@ public class UITools {
         return new Font(map);
     }
 
+    public static Icon getColoredIcon(Dimension dim, Color color, Color border) {
+        return new ColoredIcon(dim, color, border);
+    }
+
+    private static class ColoredIcon implements Icon {
+        protected Color color;
+        protected Color border;
+        protected Dimension dim;
+
+        public ColoredIcon(Dimension dim, Color color, Color border) {
+            this.dim = dim;
+            this.color = color;
+            this.border = border;
+        }
+
+        public int getIconHeight() {
+            return dim.height;
+        }
+
+        public int getIconWidth() {
+            return dim.width;
+        }
+
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(color);
+            g2d.setStroke(new BasicStroke(1.0f));
+            g2d.fillRect(x, y, dim.width, dim.height);
+            if (border != null) {
+                g2d.setColor(border);
+                g2d.drawRect(x, y, dim.width, dim.height);
+            }
+        }
+    }
+
     public static Icon getRolloverIcon(Icon icon) {
-        return new RolloverIcon(icon) {
-        };
+        return new RolloverIcon(icon);
     }
 
     private static class RolloverIcon implements Icon {
@@ -255,11 +346,11 @@ public class UITools {
         }
 
         public void paintIcon(Component c, Graphics g, int x, int y) {
-            Graphics2D graphics2d = (Graphics2D) g;
-            Composite oldComposite = graphics2d.getComposite();
-            graphics2d.setComposite(rolloverComposite);
+            Graphics2D g2d = (Graphics2D) g;
+            Composite oldComposite = g2d.getComposite();
+            g2d.setComposite(rolloverComposite);
             this.icon.paintIcon(c, g, x, y);
-            graphics2d.setComposite(oldComposite);
+            g2d.setComposite(oldComposite);
         }
     }
 }

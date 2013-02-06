@@ -22,8 +22,17 @@ public final class UIWidgetTools {
 
     private static final Set<File> bases = new HashSet<File>();
 
-    public static void addBaseDir(File f) {
+    public static boolean addBaseDir(File f) {
+        if (bases.contains(f)) {
+            return false;
+        }
+
         bases.add(f);
+        return true;
+    }
+
+    public static void removeBaseDir(File f) {
+        bases.remove(f);
     }
 
     public static File getFile(String f) {

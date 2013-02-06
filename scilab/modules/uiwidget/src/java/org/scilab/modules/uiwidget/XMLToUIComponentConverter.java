@@ -67,24 +67,28 @@ public class XMLToUIComponentConverter extends DefaultHandler {
 
     /**
      * Start the conversion
-     * @throws SAXException if a problem is encountered during the parsing
-     * @throws IOException if an IO problem is encountered
      */
-    public void convert() throws SAXException, IOException {
+    public void convert() throws Exception {
         convert(this.in);
     }
 
     /**
      * Start the conversion
-     * @throws SAXException if a problem is encountered during the parsing
-     * @throws IOException if an IO problem is encountered
      */
-    public void convert(String in) throws SAXException, IOException {
+    public void convert(String in) throws Exception {
         if (in != null) {
             File f = new File(in);
             if (f.exists() && f.canRead()) {
-                UIWidgetTools.addBaseDir(f.getAbsoluteFile().getParentFile());
-                convert(f);
+                boolean added = UIWidgetTools.addBaseDir(f.getAbsoluteFile().getParentFile());
+                try {
+                    convert(f);
+                } catch (Exception e) {
+                    throw e;
+                } finally {
+                    if (added) {
+                        UIWidgetTools.removeBaseDir(f.getAbsoluteFile().getParentFile());
+                    }
+                }
             } else {
                 try {
                     URL url = new URL(in);
@@ -99,34 +103,35 @@ public class XMLToUIComponentConverter extends DefaultHandler {
 
     /**
      * Start the conversion
-     * @throws SAXException if a problem is encountered during the parsing
-     * @throws IOException if an IO problem is encountered
      */
-    public void convert(File f) throws SAXException, IOException {
+    public void convert(File f) throws Exception {
         convert(new FileInputStream(f));
     }
 
     /**
      * Start the conversion
-     * @throws SAXException if a problem is encountered during the parsing
-     * @throws IOException if an IO problem is encountered
      */
-    public void convert(InputStream is) throws SAXException, IOException {
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setValidating(false);
-        factory.setNamespaceAware(true);
-
+    public void convert(InputStream is) throws Exception {
         try {
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            factory.setValidating(false);
+            factory.setNamespaceAware(true);
             factory.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
+
             SAXParser parser = factory.newSAXParser();
             parser.parse(is, this);
+        } catch (Exception e) {
+            System.err.println(e);
+            while (!stack.empty()) {
+                UIComponent c = stack.pop();
+                if (c != null) {
+                    c.remove();
+                }
+            }
+
+            throw e;
+        } finally {
             is.close();
-        } catch (ParserConfigurationException e) {
-            System.err.println(e);
-        } catch (SAXException e) {
-            System.err.println(e);
-        } catch (IOException e) {
-            System.err.println(e);
         }
     }
 
@@ -282,25 +287,20 @@ public class XMLToUIComponentConverter extends DefaultHandler {
 
     protected void handleInclude(String file) throws SAXException {
         if (file != null && !file.isEmpty()) {
-            String ff = file;
-            File f = new File(file);
-            if (!f.isAbsolute()) {
-                File main = new File(this.in);
-                f = new File(main.getParentFile(), file);
-                ff = f.getAbsolutePath();
-            }
+            String ff = UIWidgetTools.getFile(file).getAbsolutePath();
 
             try {
                 convert(ff);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 System.err.println(e);
+                throw new SAXException("Cannot parse the file: " + ff);
             }
         }
     }
 
     protected void handleStyle(String css) {
         if (css != null && !css.isEmpty()) {
-            String[] files = css.split(" ,;");
+            String[] files = css.split("[ ,;]");
             for (String f : files) {
                 File file = new File(f);
                 if (file.exists() && file.canRead()) {

@@ -62,6 +62,14 @@ public class UIListElement extends UIComponent {
             this.parent = c;
         }
 
+        public void setText(String text) {
+            this.text = text == null ? "" : text;
+        }
+
+        public String getText() {
+            return text;
+        }
+
         public void setFont(Font f) {
             this.font = f;
             update();
