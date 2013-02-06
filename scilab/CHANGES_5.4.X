@@ -177,6 +177,8 @@ Bug fixes
 * Bug #7583 fixed - binomial function moved in the distribution function
                     chapter.
 
+* Bug #7769 fixed - get_function_path didn't have an unit test.
+
 * Bug #8213 fixed - geom3d had no examples.
 
 * Bug #8395 fixed - dft has been deprecated to fft.
