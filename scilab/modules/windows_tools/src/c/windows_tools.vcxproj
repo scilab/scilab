@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -257,7 +257,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="httpdownloadfile.c" />
     <ClCompile Include="InitializeWindows_tools.c" />
     <ClCompile Include="registry.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_chartooem.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_consolebox.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_createGUID.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_dos.c" />
@@ -265,7 +264,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="..\..\sci_gateway\c\sci_getsystemmetrics.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_istssession.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_mcisendstring.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_oemtochar.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_win64.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_winopen.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_winqueryreg.c" />

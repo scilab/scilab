@@ -232,41 +232,47 @@ cd ..
   <ItemGroup>
     <ClCompile Include="src\cvode\cvode.c" />
     <ClCompile Include="src\cvode\cvode_dense.c" />
+    <ClCompile Include="src\cvode\cvode_direct.c" />
     <ClCompile Include="src\cvode\cvode_io.c" />
     <ClCompile Include="src\ida\ida.c" />
     <ClCompile Include="src\ida\ida_dense.c" />
+    <ClCompile Include="src\ida\ida_direct.c" />
     <ClCompile Include="src\ida\ida_ic.c" />
     <ClCompile Include="src\ida\ida_io.c" />
     <ClCompile Include="src\kinsol\kinsol.c" />
     <ClCompile Include="src\kinsol\kinsol_dense.c" />
+    <ClCompile Include="src\kinsol\kinsol_direct.c" />
     <ClCompile Include="src\kinsol\kinsol_io.c" />
     <ClCompile Include="src\nvec_ser\nvector_serial.c" />
     <ClCompile Include="src\sundials\sundials_dense.c" />
+    <ClCompile Include="src\sundials\sundials_direct.c" />
     <ClCompile Include="src\sundials\sundials_extension.c" />
     <ClCompile Include="src\sundials\sundials_math.c" />
     <ClCompile Include="src\sundials\sundials_nvector.c" />
-    <ClCompile Include="src\sundials\sundials_smalldense.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\cvode\cvode.h" />
     <ClInclude Include="include\cvode\cvode_dense.h" />
-    <ClInclude Include="src\cvode\cvode_dense_impl.h" />
+    <ClInclude Include="include\cvode\cvode_direct.h" />
+    <ClInclude Include="src\cvode\cvode_direct_impl.h" />
     <ClInclude Include="src\cvode\cvode_impl.h" />
     <ClInclude Include="include\ida\ida.h" />
     <ClInclude Include="include\ida\ida_dense.h" />
-    <ClInclude Include="src\ida\ida_dense_impl.h" />
+    <ClInclude Include="include\ida\ida_direct.h" />
+    <ClInclude Include="src\ida\ida_direct_impl.h" />
     <ClInclude Include="src\ida\ida_impl.h" />
     <ClInclude Include="include\kinsol\kinsol.h" />
     <ClInclude Include="include\kinsol\kinsol_dense.h" />
-    <ClInclude Include="src\kinsol\kinsol_dense_impl.h" />
+    <ClInclude Include="include\kinsol\kinsol_direct.h" />
+    <ClInclude Include="src\kinsol\kinsol_direct_impl.h" />
     <ClInclude Include="src\kinsol\kinsol_impl.h" />
     <ClInclude Include="include\nvector\nvector_serial.h" />
     <ClInclude Include="include\sundials\sundials_config.h" />
     <ClInclude Include="include\sundials\sundials_dense.h" />
+    <ClInclude Include="include\sundials\sundials_direct.h" />
     <ClInclude Include="include\sundials\sundials_extension.h" />
     <ClInclude Include="include\sundials\sundials_math.h" />
     <ClInclude Include="include\sundials\sundials_nvector.h" />
-    <ClInclude Include="include\sundials\sundials_smalldense.h" />
     <ClInclude Include="include\sundials\sundials_types.h" />
   </ItemGroup>
   <ItemGroup>

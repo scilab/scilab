@@ -90,7 +90,7 @@ function scicos_unitary(varargin)
   MAX_ARGS  = length(inputArgs)
 
   if rhs > MAX_ARGS
-    error(mprintf(gettext('%s: Wrong number of input arguments: At most %d expected.\n'), ..
+    error(msprintf(gettext('%s: Wrong number of input arguments: At most %d expected.\n'), ..
       'scicos_unitary', MAX_ARGS))
   elseif rhs > 0
     for k = 1:rhs

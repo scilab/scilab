@@ -61,6 +61,8 @@ Removed functions
 
 * xbasr() removed. Automatically managed by Scilab now.
 
+* chartoeom() and eomtochar() removed.
+
 
 Obsolete functions
 ===================
@@ -98,6 +100,8 @@ Xcos
 * Add two new Fixed-size step ODE solvers : Dormand-Prince 4(5) then Runge-Kutta 4(5). Included in the CVode package, so benefit from the rootfinding feature.
 
 * Add an implicit Fixed-size stop ODE solver : Implicit Runge-Kutta 4(5). Also benefits from the CVode rootfinding feature.
+
+* Improve block parameters errors (types and sizes) reporting.
 
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
@@ -139,6 +143,14 @@ Xcos
 * Bug #12213 fixed - lincos help page example produced undefined variable
                      warnings.
 
+* Bug #12259 fixed - Wrong translation for "Filled" fixed in Scinotes.
+
+* Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
+                     due to CLR blocks.
+
+* Bug #12266 fixed - Stopping "Papillon de lorentz" demonstration
+                     while simulation was on made CMSCOPE crash.
+
 
 Documentation
 ==============
@@ -162,8 +174,12 @@ Bug fixes
 
 * Bug #6583 fixed - jmat() was poorly documented.
 
+* Bug #7190 fixed - is_absolute_path was not documented.
+
 * Bug #7583 fixed - binomial function moved in the distribution function
                     chapter.
+
+* Bug #7769 fixed - get_function_path didn't have an unit test.
 
 * Bug #8213 fixed - geom3d had no examples.
 
@@ -189,6 +205,8 @@ Bug fixes
 
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
+
+* Bug #10606 fixed - unix_g did not return stdout in somes cases.
 
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
@@ -282,12 +300,18 @@ Bug fixes
 
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
 
+* Bug #12141 fixed - Remove calls to gettext in rubberbox help page examples.
+                     Translation of items will be made in each language help page.
+
 * Bug #12151 fixed - Axes did not pass through (0,0) when x_location and
                      y_location were set to 'origin'.
 
 * Bug #12166 fixed - There was a bad label with drawaxis.
 
 * Bug #12168 fixed - matfile_listvar crashed when listing variables of a closed MAT-file.
+
+* Bug #12174 fixed - The function "routh_t" gave incorrect output for all
+                     denominators that include gain value "k".
 
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
 
@@ -302,6 +326,8 @@ Bug fixes
 * Bug #12204 fixed - Fix a typo in the French localization
 
 * Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
+
+* Bug #12221 fixed - fspec was not documented and there was an error message "undefined variable: Sl".
 
 * Bug #12232 fixed - There were several memleaks in various fillers.
 

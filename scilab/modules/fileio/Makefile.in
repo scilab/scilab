@@ -80,11 +80,11 @@ DIST_COMMON = $(libscifileio_la_include_HEADERS) $(srcdir)/Makefile.am \
 subdir = modules/fileio
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+	$(top_srcdir)/m4/eigen.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -172,7 +172,8 @@ am__objects_1 = libscifileio_algo_la-FileExist.lo \
 	libscifileio_algo_la-os_wfopen.lo \
 	libscifileio_algo_la-fscanfMat.lo \
 	libscifileio_algo_la-fprintfMat.lo \
-	libscifileio_algo_la-createtempfilename.lo
+	libscifileio_algo_la-createtempfilename.lo \
+	libscifileio_algo_la-dlManager.lo
 am__objects_2 = libscifileio_algo_la-expandPathVariable.lo \
 	libscifileio_algo_la-mopen.lo libscifileio_algo_la-mclose.lo \
 	libscifileio_algo_la-mput.lo libscifileio_algo_la-mget.lo \
@@ -184,6 +185,9 @@ am__objects_2 = libscifileio_algo_la-expandPathVariable.lo \
 	libscifileio_algo_la-scilab_sscanf.lo
 am_libscifileio_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscifileio_algo_la_OBJECTS = $(am_libscifileio_algo_la_OBJECTS)
+libscifileio_algo_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(libscifileio_algo_la_LDFLAGS) $(LDFLAGS) -o $@
 @MAINTAINER_MODE_FALSE@am_libscifileio_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscifileio_algo_la_rpath =
 libscifileio_la_DEPENDENCIES = libscifileio-algo.la
@@ -192,7 +196,9 @@ am__objects_3 = libscifileio_la-gw_fileio.lo \
 	libscifileio_la-sci_fscanfMat.lo libscifileio_la-sci_chdir.lo \
 	libscifileio_la-sci_pwd.lo libscifileio_la-sci_copyfile.lo \
 	libscifileio_la-sci_tempname.lo \
-	libscifileio_la-sci_movefile.lo
+	libscifileio_la-sci_movefile.lo libscifileio_la-sci_getURL.lo \
+	libscifileio_la-sci_getURLcontent.lo \
+	libscifileio_la-sci_splitURL.lo
 am__objects_4 = libscifileio_la-fileio_gw.lo \
 	libscifileio_la-sci_mopen.lo libscifileio_la-sci_mclose.lo \
 	libscifileio_la-sci_mget.lo libscifileio_la-sci_mput.lo \
@@ -287,6 +293,10 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CURL_CFLAGS = @CURL_CFLAGS@
+CURL_CONFIG = @CURL_CONFIG@
+CURL_LIBS = @CURL_LIBS@
+CURL_VERSION = @CURL_VERSION@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -559,7 +569,8 @@ FILEIO_C_SOURCES = \
     src/c/os_wfopen.c \
     src/c/fscanfMat.c \
     src/c/fprintfMat.c \
-    src/c/createtempfilename.c
+    src/c/createtempfilename.c \
+	src/c/dlManager.c
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_fileio.c \
@@ -569,7 +580,10 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_pwd.c \
     sci_gateway/c/sci_copyfile.c \
     sci_gateway/c/sci_tempname.c \
-    sci_gateway/c/sci_movefile.c
+    sci_gateway/c/sci_movefile.c \
+	sci_gateway/c/sci_getURL.c \
+	sci_gateway/c/sci_getURLcontent.c \
+	sci_gateway/c/sci_splitURL.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/fileio_gw.cpp \
@@ -647,6 +661,7 @@ libscifileio_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/localization/includes \
     -I$(top_srcdir)/libs/dynamiclibrary/includes \
 	$(HDF5_CFLAGS) \
+	$(XML_FLAGS) \
     $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
@@ -656,6 +671,7 @@ libscifileio_la_CPPFLAGS = \
 libscifileio_algo_la_SOURCES = $(FILEIO_C_SOURCES) $(FILEIO_CPP_SOURCES)
 libscifileio_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscifileio_algo_la_CPPFLAGS = $(libscifileio_la_CPPFLAGS)
+libscifileio_algo_la_LDFLAGS = $(CURL_LIBS)
 
 # For the code check (splint)
 CHECK_SRC = $(FILEIO_C_SOURCES) $(FILEIO_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
@@ -834,7 +850,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscifileio-algo.la: $(libscifileio_algo_la_OBJECTS) $(libscifileio_algo_la_DEPENDENCIES) $(EXTRA_libscifileio_algo_la_DEPENDENCIES) 
-	$(CXXLINK) $(am_libscifileio_algo_la_rpath) $(libscifileio_algo_la_OBJECTS) $(libscifileio_algo_la_LIBADD) $(LIBS)
+	$(libscifileio_algo_la_LINK) $(am_libscifileio_algo_la_rpath) $(libscifileio_algo_la_OBJECTS) $(libscifileio_algo_la_LIBADD) $(LIBS)
 libscifileio.la: $(libscifileio_la_OBJECTS) $(libscifileio_la_DEPENDENCIES) $(EXTRA_libscifileio_la_DEPENDENCIES) 
 	$(CXXLINK) $(am_libscifileio_la_rpath) $(libscifileio_la_OBJECTS) $(libscifileio_la_LIBADD) $(LIBS)
 
@@ -856,6 +872,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_algo_la-createtempfilename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_algo_la-deleteafile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_algo_la-delfile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_algo_la-dlManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_algo_la-do_xxscanf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_algo_la-expandPathVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_algo_la-fileinfo.Plo@am__quote@
@@ -911,6 +928,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_fprintfMat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_fscanfMat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_fullpath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getURL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getURLcontent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_get_absolute_file_path.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getdrives.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getlongpathname.Plo@am__quote@
@@ -941,6 +960,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_pathsep.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_pwd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_removedir.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_splitURL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_tempname.Plo@am__quote@
 
 .c.o:
@@ -1237,6 +1257,13 @@ libscifileio_algo_la-createtempfilename.lo: src/c/createtempfilename.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifileio_algo_la-createtempfilename.lo `test -f 'src/c/createtempfilename.c' || echo '$(srcdir)/'`src/c/createtempfilename.c
 
+libscifileio_algo_la-dlManager.lo: src/c/dlManager.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifileio_algo_la-dlManager.lo -MD -MP -MF $(DEPDIR)/libscifileio_algo_la-dlManager.Tpo -c -o libscifileio_algo_la-dlManager.lo `test -f 'src/c/dlManager.c' || echo '$(srcdir)/'`src/c/dlManager.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifileio_algo_la-dlManager.Tpo $(DEPDIR)/libscifileio_algo_la-dlManager.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dlManager.c' object='libscifileio_algo_la-dlManager.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifileio_algo_la-dlManager.lo `test -f 'src/c/dlManager.c' || echo '$(srcdir)/'`src/c/dlManager.c
+
 libscifileio_la-gw_fileio.lo: sci_gateway/c/gw_fileio.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifileio_la-gw_fileio.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-gw_fileio.Tpo -c -o libscifileio_la-gw_fileio.lo `test -f 'sci_gateway/c/gw_fileio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_fileio.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifileio_la-gw_fileio.Tpo $(DEPDIR)/libscifileio_la-gw_fileio.Plo
@@ -1292,6 +1319,27 @@ libscifileio_la-sci_movefile.lo: sci_gateway/c/sci_movefile.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_movefile.c' object='libscifileio_la-sci_movefile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifileio_la-sci_movefile.lo `test -f 'sci_gateway/c/sci_movefile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_movefile.c
+
+libscifileio_la-sci_getURL.lo: sci_gateway/c/sci_getURL.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifileio_la-sci_getURL.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-sci_getURL.Tpo -c -o libscifileio_la-sci_getURL.lo `test -f 'sci_gateway/c/sci_getURL.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getURL.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifileio_la-sci_getURL.Tpo $(DEPDIR)/libscifileio_la-sci_getURL.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getURL.c' object='libscifileio_la-sci_getURL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifileio_la-sci_getURL.lo `test -f 'sci_gateway/c/sci_getURL.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getURL.c
+
+libscifileio_la-sci_getURLcontent.lo: sci_gateway/c/sci_getURLcontent.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifileio_la-sci_getURLcontent.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-sci_getURLcontent.Tpo -c -o libscifileio_la-sci_getURLcontent.lo `test -f 'sci_gateway/c/sci_getURLcontent.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getURLcontent.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifileio_la-sci_getURLcontent.Tpo $(DEPDIR)/libscifileio_la-sci_getURLcontent.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getURLcontent.c' object='libscifileio_la-sci_getURLcontent.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifileio_la-sci_getURLcontent.lo `test -f 'sci_gateway/c/sci_getURLcontent.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getURLcontent.c
+
+libscifileio_la-sci_splitURL.lo: sci_gateway/c/sci_splitURL.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscifileio_la-sci_splitURL.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-sci_splitURL.Tpo -c -o libscifileio_la-sci_splitURL.lo `test -f 'sci_gateway/c/sci_splitURL.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splitURL.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifileio_la-sci_splitURL.Tpo $(DEPDIR)/libscifileio_la-sci_splitURL.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_splitURL.c' object='libscifileio_la-sci_splitURL.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscifileio_la-sci_splitURL.lo `test -f 'sci_gateway/c/sci_splitURL.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splitURL.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

@@ -14,7 +14,6 @@
 <modules>
 <module name="core" activate="yes"/>
 <module name="differential_equations" activate="yes"/>
-<module name="double" activate="yes"/>
 <module name="elementary_functions" activate="yes"/>
 <module name="functions" activate="yes"/>
 <module name="fileio" activate="yes"/>
@@ -34,7 +33,6 @@
 <module name="interpolation" activate="yes"/>
 <module name="io" activate="yes"/>
 <module name="output_stream" activate="yes"/>
-<module name="intersci" activate="yes"/>
 <module name="jvm" activate="@JAVA_ENABLE@"/>
 <module name="commons" activate="yes"/>
 <module name="linear_algebra" activate="yes"/>

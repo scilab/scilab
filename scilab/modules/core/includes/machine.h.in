@@ -14,6 +14,15 @@
 /* Cname */
 #undef CNAME
 
+/* CURL flags */
+#undef CURL_CFLAGS
+
+/* CURL library */
+#undef CURL_LIBS
+
+/* CURL version */
+#undef CURL_VERSION
+
 /* Define to 1 if translation of program messages to the user's native
    language is requested. */
 #undef ENABLE_NLS
@@ -59,6 +68,9 @@
 
 /* HAVE_CPLUS_DEMANGLE */
 #undef HAVE_CPLUS_DEMANGLE
+
+/* Define to 1 if you have the <curl.h> header file. */
+#undef HAVE_CURL_H
 
 /* Define to 1 if you have the <curses.h> header file. */
 #undef HAVE_CURSES_H
@@ -136,6 +148,9 @@
 
 /* Define to 1 if you have the `iswprint' function. */
 #undef HAVE_ISWPRINT
+
+/* Define to 1 if you have the `curl' library (-lcurl). */
+#undef HAVE_LIBCURL
 
 /* Define to 1 if you have the `curses' library (-lcurses). */
 #undef HAVE_LIBCURSES

@@ -5,3 +5,4 @@ EXPORTS
 getScilabMode
 getWarningMode
 getTMPDIRW
+getSCIHOME

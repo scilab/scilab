@@ -25,4 +25,5 @@ getmatdims_
 overload_
 xscion_
 getwsmat_
-
+getOSRelease
+getOSFullName

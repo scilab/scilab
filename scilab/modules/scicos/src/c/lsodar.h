@@ -77,13 +77,16 @@ typedef struct LSodarMemRec
 void * LSodarCreate (int * neq, int ng);
 
 // Allocating the problem
-int LSodarMalloc (void * lsodar_mem, LSRhsFn f, realtype t0, N_Vector y, int itol, realtype reltol, void * abstol);
+int LSodarInit (void * lsodar_mem, LSRhsFn f, realtype t0, N_Vector y);
 
 // Reinitializing the problem
-int LSodarReInit (void * lsodar_mem, LSRhsFn f, realtype tOld, N_Vector y, int itol, realtype reltol, void * abstol);
+int LSodarReInit (void * lsodar_mem, realtype tOld, N_Vector y);
+
+// Specifying the tolerances
+int LSodarSStolerances(void *cvode_mem, realtype reltol, realtype abstol);
 
 // Initializing the root-finding problem
-int LSodarRootInit (void * lsodar_mem, int ng, LSRootFn g, void *gdata);
+int LSodarRootInit (void * lsodar_mem, int ng, LSRootFn g);
 
 // Specifying the maximum step size
 int LSodarSetMaxStep (void * lsodar_mem, realtype hmax);

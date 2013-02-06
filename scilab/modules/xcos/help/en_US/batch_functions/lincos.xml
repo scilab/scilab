@@ -64,8 +64,8 @@ M  = 10;
 m  = 3;
 l  = 3;
 ph = 0.1;
-z0=-4;
-th0=.02;
+z0 = -4;
+th0 = .02;
 
 // looking for the Superblock to linearize
 for i=1:length(scs_m.objs)

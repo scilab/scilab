@@ -17,10 +17,12 @@ function plot(varargin)
 if ~rhs
 	//LineSpec and PropertySpec examples:
 	t = 0:%pi/20:2*%pi;
+	drawlater();
 	subplot(211);
 	plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo');
 	subplot(212);
 	plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2]);
+	drawnow();
 	return;
 end
 

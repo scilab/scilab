@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -75,13 +75,17 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
     while (TRUE)
     {
         /* scanf */
-        while (*currentchar != '%' && *currentchar != '\0')
+        while (*currentchar != L'%' && *currentchar != L'\0')
+        {
             currentchar++;
-        if (*currentchar == '%' && *(currentchar + 1) == '%')
+        }
+        if (*currentchar == L'%' && *(currentchar + 1) == L'%')
         {
             currentchar = currentchar + 2;
-            while (*currentchar != '%' && *currentchar != '\0')
+            while (*currentchar != L'%' && *currentchar != L'\0')
+            {
                 currentchar++;
+            }
         }
 
         if (*currentchar == 0)
@@ -93,7 +97,9 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
         p1 = currentchar - 1;
 
         while (isdigit(((int)*currentchar)))
+        {
             currentchar++;
+        }
 
         width_flag = 0;
 
@@ -101,7 +107,7 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
         {
             wchar_t w = *currentchar;
 
-            *currentchar = '\0';
+            *currentchar = L'\0';
             width_flag = 1;
             swscanf(p1 + 1, L"%d", &width_val);
             *currentchar = w;
@@ -109,7 +115,7 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
 
         ignore_flag = 0;
 
-        if (*currentchar == '*')
+        if (*currentchar == L'*')
         {
             ignore_flag = 1;
             currentchar++;
@@ -119,12 +125,12 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
             l_flag = h_flag = 0;
         }
 
-        if (*currentchar == 'l')
+        if (*currentchar == L'l')
         {
             currentchar++;
             l_flag = 1;
         }
-        else if (*currentchar == 'h')
+        else if (*currentchar == L'h')
         {
             currentchar++;
             h_flag = 1;
@@ -134,26 +140,30 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
 
         directive = *currentchar++;
 
-        if (directive == '[')
+        if (directive == L'[')
         {
             wchar_t *currentchar1 = currentchar--;
 
-            while (*currentchar1 != '\0' && *currentchar1 != ']')
+            while (*currentchar1 != L'\0' && *currentchar1 != L']')
+            {
                 currentchar1++;
+            }
 
-            if (*currentchar1 == '\0')
+            if (*currentchar1 == L'\0')
             {
                 Scierror(998, _("%s: An error occurred: %s\n"), fname, _("unclosed [ directive."));
                 return DO_XXPRINTF_RET_BUG;
             }
 
-            if (currentchar1 == currentchar +1 || wcsncmp(currentchar,"[^]", 3) == 0)
+            if (currentchar1 == currentchar + 1 || wcsncmp(currentchar, L"[^]", 3) == 0)
             {
                 currentchar1++;
-                while (*currentchar1 != '\0' && *currentchar1 != ']')
+                while (*currentchar1 != L'\0' && *currentchar1 != L']')
+                {
                     currentchar1++;
+                }
 
-                if (*currentchar1 == '\0')
+                if (*currentchar1 == L'\0')
                 {
                     Scierror(998, _("%s: An error occurred: %s\n"), fname, _("unclosed [ directive."));
                     return DO_XXPRINTF_RET_BUG;
@@ -178,142 +188,156 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
 
             switch (directive)
             {
-            case ']':
-                if (width_flag == 0)
-                    str_width_flag = 1;
+                case L']':
+                    if (width_flag == 0)
+                    {
+                        str_width_flag = 1;
+                    }
 
-                if (width_flag == 1 && width_val > MAX_STR - 1)
-                {
-                    Scierror(998, _("%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"), fname, width_val, MAX_STR - 1);
-                    return DO_XXPRINTF_RET_BUG;
-                }
+                    if (width_flag == 1 && width_val > MAX_STR - 1)
+                    {
+                        Scierror(998, _("%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"), fname, width_val, MAX_STR - 1);
+                        return DO_XXPRINTF_RET_BUG;
+                    }
 
-                if ((buf[num_conversion].c = MALLOC(MAX_STR)) == NULL)
-                    return DO_XXPRINTF_MEM_LACK;
-                ptrtab[num_conversion] = buf[num_conversion].c;
-                type[num_conversion] = SF_S;
-                break;
+                    if ((buf[num_conversion].c = MALLOC(MAX_STR)) == NULL)
+                    {
+                        return DO_XXPRINTF_MEM_LACK;
+                    }
+                    ptrtab[num_conversion] = buf[num_conversion].c;
+                    type[num_conversion] = SF_S;
+                    break;
 
-            case 's':
-                if (l_flag + h_flag)
-                {
-                    Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
-                    return DO_XXPRINTF_RET_BUG;
-                }
+                case L's':
+                    if (l_flag + h_flag)
+                    {
+                        Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
+                        return DO_XXPRINTF_RET_BUG;
+                    }
 
-                if (width_flag == 0)
-                    str_width_flag = 1;
-                if (width_flag == 1 && width_val > MAX_STR - 1)
-                {
-                    Scierror(998, _("%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"), fname, width_val, MAX_STR - 1);
-                    return DO_XXPRINTF_RET_BUG;
-                }
+                    if (width_flag == 0)
+                    {
+                        str_width_flag = 1;
+                    }
+                    if (width_flag == 1 && width_val > MAX_STR - 1)
+                    {
+                        Scierror(998, _("%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"), fname, width_val, MAX_STR - 1);
+                        return DO_XXPRINTF_RET_BUG;
+                    }
 
-                if ((buf[num_conversion].c = MALLOC(MAX_STR)) == NULL)
-                    return DO_XXPRINTF_MEM_LACK;
+                    if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR)) == NULL)
+                    {
+                        return DO_XXPRINTF_MEM_LACK;
+                    }
 
-                ptrtab[num_conversion] = buf[num_conversion].c;
-                type[num_conversion] = SF_S;
-                break;
+                    ptrtab[num_conversion] = buf[num_conversion].c;
+                    type[num_conversion] = SF_S;
+                    break;
 
-            case 'c':
-                if (l_flag + h_flag)
-                {
-                    Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
-                    return DO_XXPRINTF_RET_BUG;
-                }
+                case L'c':
+                    if (l_flag + h_flag)
+                    {
+                        Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
+                        return DO_XXPRINTF_RET_BUG;
+                    }
 
-                if (width_flag == 1)
-                    nc[num_conversion] = width_val;
-                else
-                    nc[num_conversion] = 1;
+                    if (width_flag == 1)
+                    {
+                        nc[num_conversion] = width_val;
+                    }
+                    else
+                    {
+                        nc[num_conversion] = 1;
+                    }
 
-                if (width_flag == 1 && width_val > MAX_STR - 1)
-                {
-                    Scierror(998, _("%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"), fname, width_val, MAX_STR - 1);
-                    return DO_XXPRINTF_RET_BUG;
-                }
+                    if (width_flag == 1 && width_val > MAX_STR - 1)
+                    {
+                        Scierror(998, _("%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"), fname, width_val, MAX_STR - 1);
+                        return DO_XXPRINTF_RET_BUG;
+                    }
 
-                if ((buf[num_conversion].c = MALLOC(MAX_STR)) == NULL)
-                    return DO_XXPRINTF_MEM_LACK;
+                    if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR)) == NULL)
+                    {
+                        return DO_XXPRINTF_MEM_LACK;
+                    }
 
-                ptrtab[num_conversion] = buf[num_conversion].c;
-                type[num_conversion] = SF_C;
-                break;
+                    ptrtab[num_conversion] = buf[num_conversion].c;
+                    type[num_conversion] = SF_C;
+                    break;
 
-            case 'o':
-            case 'u':
-            case 'x':
-            case 'X':
-                if (l_flag)
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].lui;
-                    type[num_conversion] = SF_LUI;
-                }
-                else if (h_flag)
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].sui;
-                    type[num_conversion] = SF_SUI;
-                }
-                else
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].ui;
-                    type[num_conversion] = SF_UI;
-                }
-                break;
+                case L'o':
+                case L'u':
+                case L'x':
+                case L'X':
+                    if (l_flag)
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].lui;
+                        type[num_conversion] = SF_LUI;
+                    }
+                    else if (h_flag)
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].sui;
+                        type[num_conversion] = SF_SUI;
+                    }
+                    else
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].ui;
+                        type[num_conversion] = SF_UI;
+                    }
+                    break;
 
-            case 'D':
-                ptrtab[num_conversion] = &buf[num_conversion].li;
-                type[num_conversion] = SF_LI;
-                break;
-
-            case 'n':
-                n_directive_count++;
-
-            case 'i':
-            case 'd':
-                if (l_flag)
-                {
+                case L'D':
                     ptrtab[num_conversion] = &buf[num_conversion].li;
                     type[num_conversion] = SF_LI;
-                }
-                else if (h_flag)
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].si;
-                    type[num_conversion] = SF_SI;
-                }
-                else
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].i;
-                    type[num_conversion] = SF_I;
-                }
-                break;
+                    break;
 
-            case 'e':
-            case 'f':
-            case 'g':
-            case 'E':
-            case 'G':
-                if (h_flag)
-                {
+                case L'n':
+                    n_directive_count++;
+
+                case L'i':
+                case L'd':
+                    if (l_flag)
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].li;
+                        type[num_conversion] = SF_LI;
+                    }
+                    else if (h_flag)
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].si;
+                        type[num_conversion] = SF_SI;
+                    }
+                    else
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].i;
+                        type[num_conversion] = SF_I;
+                    }
+                    break;
+
+                case L'e':
+                case L'f':
+                case L'g':
+                case L'E':
+                case L'G':
+                    if (h_flag)
+                    {
+                        Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
+                        return DO_XXPRINTF_RET_BUG;
+                    }
+                    else if (l_flag)
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].lf;
+                        type[num_conversion] = SF_LF;
+                    }
+                    else
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].f;
+                        type[num_conversion] = SF_F;
+                    }
+                    break;
+
+                default:
                     Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
                     return DO_XXPRINTF_RET_BUG;
-                }
-                else if (l_flag)
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].lf;
-                    type[num_conversion] = SF_LF;
-                }
-                else
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].f;
-                    type[num_conversion] = SF_F;
-                }
-                break;
-
-            default:
-                Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
-                return DO_XXPRINTF_RET_BUG;
             }
             *currentchar = backupcurrrentchar;
         }
@@ -326,32 +350,32 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
         wchar_t *slast = sformat + MAX_STR - 1 - 4;
 
         int bFirst = 1;
-        while (*f1 != '\0')
+        while (*f1 != L'\0')
         {
             int n;
-            if(*(f1) == '%')
+            if (*(f1) == L'%')
             {
                 bFirst = 1;
             }
             *f2++ = *f1++;
-            if(bFirst && ( *(f1) == 's'  || *(f1) == '[' || *(f1) == 'c'))
+            if (bFirst && ( *(f1) == L's'  || *(f1) == L'[' || *(f1) == L'c'))
             {
                 bFirst = 0;
-                if(*(f1-1) != 'l' && *(f1-1) != 'L')
+                if (*(f1 - 1) != L'l' && *(f1 - 1) != L'L')
                 {
                     *f2++  = L'l';
                 }
             }
-            if( (*(f1) == 's' || *(f1) == '[')
-                &&
-                (   (*(f1-1) == '%')
-                    ||
-                    ((*(f1-1) == 'l' || *(f1-1) == 'L') && (*(f1-2) == '%'))
-                )
-              )
+            if ( (*(f1) == L's' || *(f1) == L'[')
+                    &&
+                    (   (*(f1 - 1) == L'%')
+                        ||
+                        ((*(f1 - 1) == L'l' || *(f1 - 1) == L'L') && (*(f1 - 2) == L'%'))
+                    )
+               )
             {
                 f2--;
-                n=swprintf(f2, MAX_STR - 1, L"%d%c", MAX_STR - 1, L'l');
+                n = swprintf(f2, MAX_STR - 1, L"%d%c", MAX_STR - 1, L'l');
                 f2 += n;
                 *f2++ = *f1++;
             }
@@ -363,7 +387,7 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
             }
         }
 
-        *f2 = '\0';
+        *f2 = L'\0';
         format = sformat;
     }
 
@@ -387,7 +411,7 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
         if (type[i - 1] == SF_C)
         {
             sval = (wchar_t *)ptrtab[i - 1];
-            sval[nc[i - 1]] = '\0';
+            sval[nc[i - 1]] = L'\0';
         }
     }
 

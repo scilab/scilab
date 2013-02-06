@@ -16,6 +16,9 @@
 
 #define MODULE_NAME L"fileio"
 
+#pragma comment(lib,"../../../../bin/libxml2.lib")
+#pragma comment(lib,"../../../../bin/libcurl.lib")
+
 extern "C"
 {
 #include "gw_fileio.h"

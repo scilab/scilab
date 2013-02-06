@@ -238,7 +238,7 @@ void N_VDestroyVectorArray_Serial(N_Vector *vs, int count)
 }
 
 /* ----------------------------------------------------------------------------
- * Function to print a serial vector 
+ * Function to print the a serial vector 
  */
  
 void N_VPrint_Serial(N_Vector x)
