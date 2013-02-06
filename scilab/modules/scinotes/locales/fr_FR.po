@@ -418,7 +418,7 @@ msgid "Style: "
 msgstr "Style : "
 
 msgid "Filled"
-msgstr "Justifié"
+msgstr "Surligné"
 
 msgid "Framed"
 msgstr "Encadré"

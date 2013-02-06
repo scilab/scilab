@@ -61,6 +61,8 @@ Removed functions
 
 * xbasr() removed. Automatically managed by Scilab now.
 
+* chartoeom() and eomtochar() removed.
+
 
 Obsolete functions
 ===================
@@ -141,6 +143,8 @@ Xcos
 * Bug #12213 fixed - lincos help page example produced undefined variable
                      warnings.
 
+* Bug #12259 fixed - Wrong translation for "Filled" fixed in Scinotes.
+
 * Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
                      due to CLR blocks.
 
@@ -170,8 +174,12 @@ Bug fixes
 
 * Bug #6583 fixed - jmat() was poorly documented.
 
+* Bug #7190 fixed - is_absolute_path was not documented.
+
 * Bug #7583 fixed - binomial function moved in the distribution function
                     chapter.
+
+* Bug #7769 fixed - get_function_path didn't have an unit test.
 
 * Bug #8213 fixed - geom3d had no examples.
 
@@ -291,6 +299,9 @@ Bug fixes
 * Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
 
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
+
+* Bug #12141 fixed - Remove calls to gettext in rubberbox help page examples.
+                     Translation of items will be made in each language help page.
 
 * Bug #12151 fixed - Axes did not pass through (0,0) when x_location and
                      y_location were set to 'origin'.

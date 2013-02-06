@@ -34,13 +34,11 @@ msgstr ""
 "%s: この機能は Scilab %s 以降廃止されます\n"
 "\n"
 
-# File: sci_gateway/c/sci_chartooem.c, line: 48
 # File: sci_gateway/c/sci_dos.c, line: 50
 # File: sci_gateway/c/sci_dos.c, line: 62
 # File: sci_gateway/c/sci_findfileassociation.c, line: 38
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
 # File: sci_gateway/c/sci_mcisendstring.c, line: 106
-# File: sci_gateway/c/sci_oemtochar.c, line: 48
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
@@ -72,24 +70,20 @@ msgstr "%s: 入力引数で不正な型: スカラーを想定します。\n"
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
-# File: sci_gateway/c/sci_chartooem.c, line: 48
 # File: sci_gateway/c/sci_dos.c, line: 50
 # File: sci_gateway/c/sci_dos.c, line: 62
 # File: sci_gateway/c/sci_findfileassociation.c, line: 38
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
 # File: sci_gateway/c/sci_mcisendstring.c, line: 106
-# File: sci_gateway/c/sci_oemtochar.c, line: 48
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
-# File: sci_gateway/c/sci_chartooem.c, line: 48
 # File: sci_gateway/c/sci_dos.c, line: 50
 # File: sci_gateway/c/sci_dos.c, line: 62
 # File: sci_gateway/c/sci_findfileassociation.c, line: 38
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
 # File: sci_gateway/c/sci_mcisendstring.c, line: 106
-# File: sci_gateway/c/sci_oemtochar.c, line: 48
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
