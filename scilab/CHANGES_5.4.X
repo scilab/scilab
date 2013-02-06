@@ -342,6 +342,8 @@ Bug fixes
 
 * Bug #12050 fixed - Fix a typo: dimensionnal => dimensional.
 
+* Bug #12059 fixed - Index returned by gsort of sparse were wrong.
+
 * Bug #12062 fixed - getsystemmetrics() failed for some properties such as 'SM_CXMAXIMIZED'.
 
 * Bug #12071 fixed - Printed info of a XML object were inconsistent with
