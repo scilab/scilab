@@ -53,6 +53,14 @@ public class UILayer extends UIComponent {
         }
     }
 
+    public String getFront() {
+        if (current != null) {
+            return current.getID();
+        }
+
+        return null;
+    }
+
     public void add(final UIComponent c) throws UIWidgetException {
         Object o = c.getComponent();
         if (o instanceof Component && !(o instanceof JPopupMenu)) {
