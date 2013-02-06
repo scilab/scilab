@@ -28,7 +28,6 @@ public class UILayer extends UIComponent {
 
     JPanel layer;
     UIComponent current;
-    Map<String, UIComponent> children;
 
     public UILayer(UIComponent parent) throws UIWidgetException {
         super(parent);
@@ -37,14 +36,13 @@ public class UILayer extends UIComponent {
     public Object newInstance() {
         layer = new JPanel();
         layer.setLayout(new BorderLayout());
-        children = new HashMap<String, UIComponent>();
 
         return layer;
     }
 
     public void setFront(String id) throws UIWidgetException {
         UIComponent c = children.get(id);
-        if (c != null) {
+        if (c != null && current != c) {
             layer.remove(current.getJComponent());
             layer.add(c.getJComponent(), BorderLayout.CENTER);
             layer.revalidate();
@@ -67,10 +65,6 @@ public class UILayer extends UIComponent {
             if (current == null) {
                 layer.add((Component) o, BorderLayout.CENTER);
                 current = c;
-            }
-            String id = c.getId();
-            if (id != null && !id.isEmpty()) {
-                children.put(id, c);
             }
         } else {
             super.add(c);
