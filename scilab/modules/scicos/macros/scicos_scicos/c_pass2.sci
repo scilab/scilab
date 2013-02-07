@@ -55,7 +55,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
 // define some constants
   if argn(2) <6 then flag="verbose",end
   show_trace=%f
-  if show_trace then mprintf('c_pass1:'+string(timer())),end
+  if show_trace then mprintf('c_pass1:\t%f\n', timer()),end
 
   show_pause=%f;
   show_comment=%f;
@@ -82,7 +82,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
   [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,..
    typ_l,typ_r,typ_m,tblock,typ_cons,typ_zx,ok]=mini_extract_info(bllst,..
                                                 connectmat,clkconnect)
-  if show_trace then mprintf('c_pass20:'+string(timer())),end
+  if show_trace then mprintf('c_pass20:\t%f\n', timer()),end
   if ~ok then 
       cpr=list()
       return
@@ -109,7 +109,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     pause
   end
 
-  if show_trace then mprintf('c_pass31:'+string(timer())),end
+  if show_trace then mprintf('c_pass31:\t%f\n', timer()),end
 
   //extract various info from bllst
   [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
@@ -126,19 +126,19 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     return,
   end
 
-  if show_trace then mprintf('c_pass41:'+string(timer())),end
+  if show_trace then mprintf('c_pass41:\t%f\n', timer()),end
  
   //form a matrix which gives destinations of each block
   [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
   [evoutoin,evoutoinptr]=synch_clkconnect(typ_l,clkconnect)
   //
-  if show_trace then mprintf('c_pass50:'+string(timer())),end
+  if show_trace then mprintf('c_pass50:\t%f\n', timer()),end
   
   [execlk_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
 
   clkconnect=[];exe_cons=[]
 
-  if show_trace then mprintf('c_pass501:'+string(timer())),end
+  if show_trace then mprintf('c_pass501:\t%f\n', timer()),end
 
   // Set execution scheduling tables 
   [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_cons,..
@@ -150,7 +150,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     return,
   end
 
-  if show_trace then mprintf('c_pass51:'+string(timer())),end
+  if show_trace then mprintf('c_pass51:\t%f\n', timer()),end
   //form scicos arguments
 
   nb=size(typ_z,'*');
@@ -188,7 +188,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
 
   //initialize agenda
   [tevts,evtspt,pointi]=init_agenda(initexe,clkptr)
-  if show_trace then mprintf('c_pass61:'+string(timer())),end
+  if show_trace then mprintf('c_pass61:\t%f\n', timer()),end
 
   //mod=0*ones(modptr($)-1,1)
 
@@ -215,7 +215,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
 
   cpr=scicos_cpr(state=state,sim=sim,cor=cor,corinv=corinv);
 
-  if show_trace then mprintf('c_pass71:'+string(timer())),end
+  if show_trace then mprintf('c_pass71:\t%f\n', timer()),end
 
 endfunction
 
@@ -2155,7 +2155,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   for k=ind'
     clkconnect=[clkconnect;[all_out,ones(all_out)*[k,0;0,0]]]
   end
-  if show_trace then mprintf('c_pass4444:'+string(timer())),end
+  if show_trace then mprintf('c_pass4444:\t%f\n', timer()),end
   ind1=find(typ_cons)
   ind=[ind;ind1(:)]
   exe_cons=[ind,zeros(ind)]
@@ -2166,7 +2166,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   
   exe_cons=[exe_cons;r]
 
-  if show_trace then mprintf('c_pass4445:'+string(timer())),end
+  if show_trace then mprintf('c_pass4445:\t%f\n', timer()),end
 
   [clkr,clkc]=size(clkconnect);
   mm=max(clkconnect(:,2))+1;
@@ -2195,7 +2195,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
     clkconnect=[clkconnect;[all_out,ones(all_out)*[k,0;0,0]]]
   end
   // end of  temoprary fix
-  if show_trace then mprintf('c_pass4446:'+string(timer())),end 
+  if show_trace then mprintf('c_pass4446:\t%f\n', timer()),end 
 endfunction
 
 function [r,ok]=tree4(vec,outoin,outoinptr,typ_r)
@@ -2297,7 +2297,7 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
   
     //
   end
-  if show_trace then mprintf('c_pass22222222:'+string(timer())),end //'
+  if show_trace then mprintf('c_pass22222222:\t%f\n', timer()),end //'
   nlnk=size(connectmat,1)
   inplnk=zeros(inpptr($)-1,1);outlnk=zeros(outptr($)-1,1);ptlnk=1;
 
