@@ -84,3 +84,5 @@ SEP #084: fft improvements
 SEP #085: cond improvements
 SEP #086: Improvement of the regexp function
 SEP #087: New binaries: xcos scinotes
+SEP #088: /* RESERVED IN MASTER */
+SEP #089: New parameter added at routh_t function (normalized).
