@@ -52,7 +52,7 @@ int sci_addhistory(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        piLen = (int*)malloc(sizeof(int) * m1 * n1);
+        piLen = (int*)MALLOC(sizeof(int) * m1 * n1);
 
         //second call to retrieve length of each string
         sciErr = getMatrixOfString(pvApiCtx, piAddr1, &m1, &n1, piLen, NULL);
@@ -62,10 +62,10 @@ int sci_addhistory(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        lines = (char**)malloc(sizeof(char*) * m1 * n1);
+        lines = (char**)MALLOC(sizeof(char*) * m1 * n1);
         for (i = 0 ; i < m1 * n1 ; i++)
         {
-            lines[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+            lines[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
         }
 
         //third call to retrieve data
