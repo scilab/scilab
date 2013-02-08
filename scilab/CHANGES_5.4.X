@@ -174,6 +174,9 @@ Bug fixes
 * Bug #7583 fixed - binomial function moved in the distribution function
                     chapter.
 
+* Bug #7698 fixed - The "Graphics\Animations\Riemann surface" demo
+                    background is black (instead of white).
+
 * Bug #7769 fixed - get_function_path didn't have an unit test.
 
 * Bug #8213 fixed - geom3d had no examples.
