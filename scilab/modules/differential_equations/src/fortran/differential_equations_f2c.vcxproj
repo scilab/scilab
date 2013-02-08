@@ -273,6 +273,7 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_bvode.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_daskr.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dasrt.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dassl.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_feval.c" />
@@ -292,6 +293,8 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\bjacd.c" />
     <ClCompile Include="bnorm.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bresd.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\bpsold.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\bpjacd.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bresid.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bsurf.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bsurfd.c" />
@@ -301,6 +304,7 @@ cd ..
     <ClCompile Include="colnew.c" />
     <ClCompile Include="..\c\commons_f2c.c" />
     <ClCompile Include="dcutet.c" />
+    <ClCompile Include="ddaskr.c" />
     <ClCompile Include="ddasrt.c" />
     <ClCompile Include="ddassl.c" />
     <ClCompile Include="dgbsl.c" />
@@ -309,6 +313,7 @@ cd ..
     <ClCompile Include="epsalg.c" />
     <ClCompile Include="ewset.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-bvode.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\Ex-daskr.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-dasrt.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-dassl.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-impl.c" />
@@ -385,6 +390,8 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\bjacd.f" />
     <f2c_rule Include="bnorm.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bresd.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\bpsold.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\bpjacd.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bresid.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bsurf.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bsurfd.f" />

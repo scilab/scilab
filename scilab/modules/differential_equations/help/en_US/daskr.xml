@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA
- * ...
- * 
+ * Copyright (C) 2013 - Scilab Enterprises
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
+ * you should have received as part of this distribution.
+ * The terms are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dasrt" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="daskr" xml:lang="en">
     <refnamediv>
-        <refname>dasrt</refname>
+        <refname>daskr</refname>
         <refpurpose>DAE solver with zero crossing</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[r,nn,[,hd]]=dasrt(x0,t0,t [,atol,[rtol]],res [,jac],ng, surf [,info] [,hd])</synopsis>
+        <synopsis>[r, nn [, hd]] = daskr(x0, t0, t [, atol [, rtol]], res [, jac], ng, surf [, info [, psol] [, jac]] [, hd])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -102,11 +101,11 @@
                             <para>A Scilab function.</para>
                             <para>Its calling sequence must be
                                 <literal>[r,ires]=res(t,y,ydot)</literal> and
-                                <literal>res</literal> must return the residue
+                                <literal>res</literal> must return the residual
                                 <literal>r=g(t,y,ydot)</literal> and error flag
                                 <literal>ires</literal>. <literal>ires = 0</literal> if
                                 <literal>res</literal> succeeds to compute <literal>r</literal>,
-                                <literal>=-1</literal> if residue is locally not defined for
+                                <literal>=-1</literal> if residual is locally not defined for
                                 <literal>(t,y,ydot)</literal>, <literal>=-2</literal> if
                                 parameters are out of admissible range.
                             </para>
@@ -116,7 +115,7 @@
                             <para>This form allows to pass parameters other than t,y,ydot to
                                 the function. It must be as follows:
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 list(res,x1,x2,...)
  ]]></programlisting>
                             <para>where the calling sequence of the function
@@ -142,7 +141,7 @@ r=res(t,y,ydot,x1,x2,...)
                             <para>In C The calling sequence must be:</para>
                             <programlisting role="no-scilab-exec"><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
-         int *ires, double rpar[], int ipar[]) 
+         int *ires, double rpar[], int ipar[])
  ]]></programlisting>
                             <para>In Fortran it must be:</para>
                             <programlisting role="no-scilab-exec"><![CDATA[
@@ -266,8 +265,8 @@ integer ny,ng
                 <term>info</term>
                 <listitem>
                     <para>
-                        list which contains <literal>7</literal> elements. Default
-                        value is <literal>list([],0,[],[],[],0,0)</literal>.
+                        list which contains <literal>14</literal> elements. Default
+                        value is <literal>list([],0,[],[],[],0,[],0,[],0,[],[],[],1)</literal>.
                     </para>
                     <variablelist>
                         <varlistentry>
@@ -300,8 +299,10 @@ integer ny,ng
                                     by <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) =
                                         "dg(i)/dy(j)+cj*dg(i)/dydot(j)"
                                     </literal>
-                                    .If <literal>jac</literal> returns a full matrix set
+                                    . If <literal>jac</literal> returns a full matrix set
                                     <literal>info(3)=[]</literal>.
+                                    Treat as dummmy if
+                                    <literal>info(8)=1</literal>.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -335,14 +336,244 @@ integer ny,ng
                             <term>info(7)</term>
                             <listitem>
                                 <para>
-                                    set <literal>info(7)=1</literal> if
-                                    <literal>ydot0</literal> is just an estimation,
-                                    <literal>info(7)=0</literal> if
-                                    <literal>g(t0,y0,ydot0)=0</literal>.
+                                    if ydot0 is set so that
+                                    <literal>g(t0,y0,ydot0)=0</literal> then set
+                                    <literal>info(7)=[]</literal>. Otherwise, set
+                                    <literal>info(7)=[+-1, ..., +-1]</literal>, with
+                                    <literal>info(7)(i)=1</literal> if y(i) is a differential variable and
+                                    <literal>info(7)(i)=-1</literal> if y(i) is an algebraic variable
+                                    (if its derivatives do not appear explicitly in the function g(t,y,ydot)).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(8)</term>
+                            <listitem>
+                                <para>
+                                    direct / Krylov. Set <literal>info(8)=1</literal> and provide a routine in <literal>psol</literal>
+                                    if you want the solver to use Krylov iterations, else (dassl's direct method) set
+                                    <literal>info(8)=0</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(9)</term>
+                            <listitem>
+                                <para>
+                                    Krylov parameters. Treat as dummy argument if you have set
+                                    <literal>info(8)=0</literal>. Otherwise, set
+                                    <literal>info(9)=[maxl kmp nrmax epli]</literal>, where:
+                                </para>
+                                <para>
+                                    - maxl = maximum number of iterations in the SPIGMR algorithm (default
+                                    <literal>min(5,neq)</literal>),
+                                </para>
+                                <para>
+                                    - kmp = number of vectors on which orthogonalization is done in the SPIGMR algorithm
+                                    (default maxl),
+                                </para>
+                                <para>
+                                    - nrmax = maximum number of restarts of the SPIGMR algorithm per nonlinear iteration
+                                    (default <literal>5</literal>),
+                                </para>
+                                <para>
+                                    - epli = convergence test constant in SPIGMR algorithm (default <literal>0.05</literal>).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(10)</term>
+                            <listitem>
+                                <para>
+                                    initial conditions. Treat as dummy argument if
+                                    <literal>info(7)=[]</literal>. Set
+                                    <literal>info(10)=1</literal> if the solver should stop right after
+                                    computation of the initial conditions, else set
+                                    <literal>info(10)=0</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(11)</term>
+                            <listitem>
+                                <para>
+                                    preconditioner computation and LU-factorisation routine for <literal>psol</literal>.
+                                    Treat as dummy argument if <literal>info(8)=0</literal>. Set
+                                    <literal>info(11)=1</literal> and provide a <literal>pjac</literal> routine if the
+                                    <link linkend="external">external</link> <literal>psol</literal> should use a specific routine, else set
+                                    <literal>info(11)=0</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(12)</term>
+                            <listitem>
+                                <para>
+                                    if you wish to control errors locally on all the variables then set
+                                    <literal>info(12)=[]</literal>. Otherwise, set
+                                    <literal>info(12)=[+-1, ..., +-1]</literal>, with
+                                    <literal>info(12)(i)=1</literal> if y(i) is a differential variable and
+                                    <literal>info(12)(i)=-1</literal> if y(i) is an algebraic variable
+                                    (if its derivatives do not appear explicitly in the function g(t,y,ydot)).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(13)</term>
+                            <listitem>
+                                <para>
+                                    heuristic parameters. Treat as dummy argument if
+                                    <literal>info(7)=[]</literal>. Otherwise, set
+                                    <literal>info(13)=[mxnit mxnj mxnh lsoff stptol epinit]</literal>, where:
+                                </para>
+                                <para>
+                                    - mxnit = maximum number of Newton iterations per Jacobian or preconditioner evaluation (default
+                                    <literal>5</literal> if <literal>info(8)=0</literal>, <literal>15</literal> otherwise),
+                                </para>
+                                <para>
+                                    - mxnj = maximum number of Jacobian or preconditioner evaluations (default
+                                    <literal>6</literal> if <literal>info(8)=0</literal>, <literal>2</literal> otherwise),
+                                </para>
+                                <para>
+                                    - mxnh = maximum number of values of the artificial stepsize parameter H to be tried if info(7) &#8800; [] (default
+                                    <literal>5</literal>),
+                                </para>
+                                <para>
+                                    - lsoff = flag to turn off the linesearch algorithm (lsoff = 0 means linesearch is on, lsoff = 1 means it is turned off)
+                                    (default <literal>0</literal>),
+                                </para>
+                                <para>
+                                    - stptol = minimum scaled step in linesearch algorithm (default <literal>(unit roundoff)^(2/3)</literal>),
+                                </para>
+                                <para>
+                                    - epinit = swing factor in the Newton iteration convergence test (default <literal>0.01</literal>).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(14)</term>
+                            <listitem>
+                                <para>
+                                    verbosity. Set <literal>info(14)=1</literal> for minimal extra printing,
+                                    <literal>info(14)=2</literal> for full printing, else set
+                                    <literal>info(14)=0</literal>.
                                 </para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>psol</term>
+                <listitem>
+                    <para>
+                        <link linkend="external">external</link> (function or list or string). Solves a linear system
+                        <literal>P*x = b</literal>, with P being the preconditioner that routine <literal>pjac</literal>
+                        computed beforehand and stocked in wp and iwp.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>A Scilab function.</para>
+                            <para>Its calling sequence must be
+                                <literal>[r,ier] = psol(neq,R,iR,b)</literal> and the
+                                <literal>psol</literal> function must return the solution of that system in
+                                <literal>r</literal> and an error flag <literal>ier</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>A list.</para>
+                            <para>It must be as follows</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+list(psol,x1,x2,...)
+ ]]></programlisting>
+                            <para>where the calling sequence of the function
+                                <literal>psol</literal> is now
+                            </para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+psol(R,iR,b,x1,x2,...)
+ ]]></programlisting>
+                            <para>
+                                <literal>psol</literal> still returns the solution in <literal>r</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>A character string.</para>
+                            <para>It must refer to the name of a Fortran subroutine linked
+                                with scilab
+                            </para>
+                            <para>In C The calling sequence must be:</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+void psol (int*neq, double*t, double*y, double*ydot, double*savr,
+  double*wk, double*cj, double*wght, double*wp, int*iwp, double*b, double*eplin, int*ier, double*rpar, int*ipar)
+ ]]></programlisting>
+                            where the arrays <literal>wp</literal> and <literal>iwp</literal> contain matrix elements of preconditioner
+                            <literal>P</literal> in compressed row format.
+                            <para>In Fortran it must be:</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+subroutine psol (neq, t, y, ydot, savr, wk, cj, wght,
+  wp, iwp, b, eplin, ier, rpar, ipar)
+double precision t,y(*),ydot(*),savr(*),wk(*),cj,wght(*),wp(*),
+  b(*),eplin,rpar(*)
+integer neq,iwp(*),ier,ipar(*)
+ ]]></programlisting>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pjac</term>
+                <listitem>
+                    <para>
+                        <link linkend="external">external</link> (function or list or string). Computes the value of
+                        <literal>dg/dy + cj*dg/dydot</literal> for a given value of parameter
+                        <literal>cj</literal> and LU-factorises it in double and int arrays.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>A Scilab function.</para>
+                            <para>Its calling sequence must be
+                                <literal>[R,iR,ier] = pjac(neq,t,y,ydot,h,cj)</literal> and in return,
+                                the arrays R and iR must contain all preconditioner information in compressed sparse row format.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>A list.</para>
+                            <para>It must be as follows</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+list(pjac,x1,x2,...)
+ ]]></programlisting>
+                            <para>where the calling sequence of the function
+                                <literal>pjac</literal> is now
+                            </para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+pjac(neq,t,y,ydot,h,cj,x1,x2,...)
+ ]]></programlisting>
+                            <para>
+                                <literal>pjac</literal> still returns factorised
+                                <literal>dg/dy + cj*dg/dydot</literal> as a function of
+                                <literal>(neq,t,y,ydot,h,cj,x1,x2,...)</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>A character string.</para>
+                            <para>It must refer to the name of a Fortran subroutine linked
+                                with scilab
+                            </para>
+                            <para>In C The calling sequence must be:</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+void pjac (double*res, int*ires, int*neq, double*t, double*y, double*ydot, double*rewt, double*savr,
+double*wk, double*h, double*cj, double*wp, int*iwp, int*ier, double*rpar, int*ipar)
+ ]]></programlisting>
+                            <para>In Fortran it must be:</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+subroutine pjac (res, ires, neq, t, y, ydot, rewt, savr,
+  wk, h, cj, wp, iwp, ier, rpar, ipar)
+double precision res(*), t, y(*), ydot(*), rewt(*), savr(*),
+  wk(*), h, cj, wp(*), rpar(*)
+integer ires, neq, iwp(*), ier, ipar(*)
+ ]]></programlisting>
+                        </listitem>
+                    </itemizedlist>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -369,28 +600,30 @@ integer ny,ng
         <title>Description</title>
         <para>Solution of the implicit differential equation.</para>
         <programlisting role="no-scilab-exec"><![CDATA[
-g(t,y,ydot)=0
-y(t0)=y0  and   ydot(t0)=ydot0
+g(t,y,ydot) = 0
+y(t0) = y0  and   ydot(t0) = ydot0
  ]]></programlisting>
         <para>Returns the surface crossing instants and the number of the surface
             reached in <literal>nn</literal>.
         </para>
-        <para>Detailed examples can be found in SCIDIR/tests/unit_tests/dassldasrt.tst</para>
+        <para>Detailed examples can be found in SCI/modules/differential_equations/tests/unit_tests/daskr.tst</para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-//dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1<=t<=6
-//g1 = ((2*log(y)+8)/t - 5)*y 
-//g2 = log(y) - 2.2491 
-y0=1;t=2:6;t0=1;y0d=3;
-atol=1.d-6;rtol=0;ng=2;
+        <programlisting role="example"><![CDATA[
+// dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1 <= t <=6
+// g1 = ((2*log(y)+8)/t - 5)*y
+// g2 = log(y) - 2.2491
+y0 = 1; t = 2:6; t0 = 1; y0d = 3;
+atol = 1.d-6; rtol = 0; ng = 2;
 
-deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2*log(y)+8)/t-5)*y')
-deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
+deff('[delta,ires] = res1(t,y,ydot)','ires = 0; delta = ydot-((2*log(y)+8)/t-5)*y')
+deff('[rts] = gr1(t,y)','rts = [((2*log(y)+8)/t-5)*y; log(y)-2.2491]')
 
-[yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res1,ng,gr1);
-//(Should return nn=[2.4698972 2])
+[yy,nn] = daskr([y0,y0d],t0,t,atol,rtol,res1,ng,gr1);
+nn
+
+// Should return nn = [2.4698972 2]
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -400,10 +633,10 @@ deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
                 <link linkend="ode">ode</link>
             </member>
             <member>
-                <link linkend="dassl">dassl</link>
+                <link linkend="dasrt">dasrt</link>
             </member>
             <member>
-                <link linkend="daskr">daskr</link>
+                <link linkend="dassl">dassl</link>
             </member>
             <member>
                 <link linkend="impl">impl</link>
@@ -418,5 +651,14 @@ deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
                 <link linkend="external">external</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>daskr solver added</revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

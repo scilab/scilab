@@ -132,6 +132,8 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="..\..\sci_gateway\fortran\bjacd.f"/>
 		<File RelativePath=".\bnorm.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\bresd.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bpsold.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bpjacd.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\bresid.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\bsurf.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\bsurfd.f"/>
@@ -143,7 +145,9 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration>
 			<FileConfiguration Name="Release|Win32">
 				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration></File>
+		<File RelativePath=".\daux.f"/>
 		<File RelativePath=".\dcutet.f"/>
+		<File RelativePath=".\ddaskr.f"/>
 		<File RelativePath=".\ddasrt.f"/>
 		<File RelativePath=".\ddassl.f"/>
 		<File RelativePath=".\dgbsl.f"/>
@@ -152,6 +156,7 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath=".\epsalg.f"/>
 		<File RelativePath=".\ewset.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-bvode.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-daskr.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-dasrt.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-dassl.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-impl.f"/>
@@ -197,6 +202,7 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration>
 			<FileConfiguration Name="Release|Win32">
 				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration></File>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_daskr.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_dasrt.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_dassl.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_feval.f"/>

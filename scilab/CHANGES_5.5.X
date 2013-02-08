@@ -10,10 +10,15 @@ New features
 
 * Functions erf, erfc, erfcx and calerf support complex arguments.
 
+* New Solver:
+ - daskr - differential-algebraic system solver with rootfinding 'daskr', using
+BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
+
 * New functions introduced:
  - getURLcontent - Return the content of an URL (HTTP, HTTPS, FTP...)
  - getURL - Download an URL (HTTP, HTTPS, FTP...)
  - splitURL - Split a URL (HTTP, HTTPS, FTP...)
+
 
 
 Syntax changes
@@ -43,3 +48,4 @@ Bug fixes
 
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
+

@@ -60,6 +60,12 @@
     <ClCompile Include="..\..\sci_gateway\fortran\bresd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bpsold.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bpjacd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\bresid.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -87,6 +93,9 @@
     <ClCompile Include="dcutet.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ddaskr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="ddasrt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -109,6 +118,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-bvode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\Ex-daskr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-dasrt.c">
@@ -276,6 +288,9 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_bvode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_daskr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dasrt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -335,6 +350,12 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\bresd.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bpsold.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bpjacd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\bresid.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -359,6 +380,12 @@
     <f2c_rule Include="dcutet.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
+    <f2c_rule Include="ddaskr.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="daux.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
     <f2c_rule Include="ddasrt.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -381,6 +408,9 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-bvode.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-daskr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-dasrt.f">
@@ -546,6 +576,9 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_bvode.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_daskr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dasrt.f">
