@@ -46,7 +46,7 @@ static void saveAndResetShellAttr(struct termios *shellAttr)
     }
     else if (shellAttr == NULL && savedAttr != NULL)
     {
-        if (tcsetattr(0, 0, savedAttr) == -1)
+        if (tcsetattr(0, TCSAFLUSH, savedAttr) == -1)
         {
             fprintf(stderr, "Cannot reset the shell attributes: %s\n", strerror(errno));
         }
@@ -89,7 +89,7 @@ int setAttr(int bin)
     {
         rawMode(&shellAttr);
     }
-    if (tcsetattr(0, 0, &shellAttr) == -1)
+    if (tcsetattr(0, TCSAFLUSH, &shellAttr) == -1)
     {
         fprintf(stderr, "Cannot change the term attributes: %s\n", strerror(errno));
         return -1;

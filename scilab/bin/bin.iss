@@ -68,6 +68,7 @@ Source: bin\lapack.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\scilab_windows.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libxml2.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libcurl.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\MALLOC.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\pcre.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\pcreposix.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

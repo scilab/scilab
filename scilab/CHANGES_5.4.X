@@ -148,9 +148,6 @@ Xcos
 * Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
                      due to CLR blocks.
 
-* Bug #12266 fixed - Stopping "Papillon de lorentz" demonstration
-                     while simulation was on made CMSCOPE crash.
-
 
 Documentation
 ==============
@@ -178,6 +175,9 @@ Bug fixes
 
 * Bug #7583 fixed - binomial function moved in the distribution function
                     chapter.
+
+* Bug #7698 fixed - The "Graphics\Animations\Riemann surface" demo
+                    background is black (instead of white).
 
 * Bug #7769 fixed - get_function_path didn't have an unit test.
 
@@ -212,6 +212,8 @@ Bug fixes
 
 * Bug #10815 fixed - diff help page did not have a "See Also" section.
 
+* Bug #11134 fixed - xgetmouse() prevented callback menu execution.
+
 * Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
                      the last color in colormap.
 
@@ -219,6 +221,9 @@ Bug fixes
                      format. Use the SEP #64 content.
 
 * Bug #11477 fixed - There were memory leaks with textures.
+
+* Bug #11497 fixed - A lot of EDT violation was detected by the
+                     ThreadCheckingRepaintManager tool.
 
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
@@ -235,6 +240,9 @@ Bug fixes
 
 * Bug #11939 fixed - ssprint formatting was slightly not right.
 
+* Bug #11941 fixed - show_margins() failed in 'nyquist' mode if the system is
+                     in state-space form.
+
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
 
@@ -248,6 +256,9 @@ Bug fixes
                     toolbar opened SciNotes anyway.
 
 * Bug #11976 fixed - Check csvTextScan 3rd parameter validity.
+
+* Bug #11980 fixed - csim returned an error message in some cases: "Submatrix
+                     incorrectly defined".
 
 * Bug #11981 fixed - Smooth french help page had a wrong declaration
                      (colonnes => lignes).
@@ -310,9 +321,6 @@ Bug fixes
 
 * Bug #12168 fixed - matfile_listvar crashed when listing variables of a closed MAT-file.
 
-* Bug #12174 fixed - The function "routh_t" gave incorrect output for all
-                     denominators that include gain value "k".
-
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
 
 * Bug #12184 fixed - Performances of the function 'derivat' improved.
@@ -327,8 +335,6 @@ Bug fixes
 
 * Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
 
-* Bug #12221 fixed - fspec was not documented and there was an error message "undefined variable: Sl".
-
 * Bug #12232 fixed - There were several memleaks in various fillers.
 
 * Bug #12235 fixed - Matplot did not update on color_map change.
@@ -338,6 +344,9 @@ Bug fixes
 * Bug #12239 fixed - Apply some of the recent changes in eigs to feigs.
 
 * Bug #12240 fixed - Refactoring of the eigs function.
+
+* Bug #12246 fixed - Return an error message when reading invalid excel files
+                     (which have declared wrong column/row count)
 
 * Bug #12247 fixed - Fix a typo in some error messages.
 

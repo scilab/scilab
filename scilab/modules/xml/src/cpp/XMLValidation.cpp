@@ -42,7 +42,7 @@ void XMLValidation::errorFunction(void *ctx, const char *msg, ...)
 #ifdef _MSC_VER
     _vsnprintf(str, BUFFER_SIZE, msg, args);
 #else
-    std::vsnprintf(str, BUFFER_SIZE, msg, args);
+    vsnprintf(str, BUFFER_SIZE, msg, args);
 #endif
     va_end(args);
     errorBuffer->append(str);
