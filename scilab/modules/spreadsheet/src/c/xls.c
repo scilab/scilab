@@ -129,6 +129,12 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 if (*err > 0) goto ErrL;
                 C2F(mgetnc) (fd, (void*)&col, &one, typ_ushort, err);
                 if (*err > 0) goto ErrL;
+                // Check col and row are in bounds
+                if ((col >= longueur) || (row >= hauteur))
+                {
+                    *err = 2;
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*)&xf , &one, typ_ushort, err);
                 if (*err > 0) goto ErrL;
                 C2F(mgetnc) (fd, (void*) &rkvalue , &one, typ_int, err);
@@ -140,6 +146,12 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 if (*err > 0) goto ErrL;
                 C2F(mgetnc) (fd, (void*)&col, &one, typ_ushort, err);
                 if (*err > 0) goto ErrL;
+                // Check col and row are in bounds
+                if ((col >= longueur) || (row >= hauteur))
+                {
+                    *err = 2;
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*)&xf , &one, typ_ushort, err);
                 if (*err > 0) goto ErrL;
                 C2F(mgetnc) (fd, (void*) &resultat , &one, typ_double, err);
@@ -152,6 +164,12 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 if (*err > 0) goto ErrL;
                 C2F(mgetnc) (fd,  (void*)&colFirst, &one, typ_short, err);
                 if (*err > 0) goto ErrL;
+                // Check col and row are in bounds
+                if ((colFirst >= longueur) || (row >= hauteur))
+                {
+                    *err = 2;
+                    goto ErrL;
+                }
                 /*List of nc=lc-fc+1  XF/RK structures*/
                 ncol = (Len - 6) / 6;
                 for (i = 0; i < ncol; i++)
@@ -174,7 +192,15 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 C2F(mgetnc) (fd, (void*) &indsst , &one, typ_int, err);
                 if (*err > 0) goto ErrL;
                 /*Allocation dans le tableau final*/
-                (*chainesind)[(labelsst1[1]) * (hauteur) + labelsst1[0]] = indsst + 1;
+                col = labelsst1[1];
+                row = labelsst1[0];
+                // Check col and row are in bounds
+                if ((col >= longueur) || (row >= hauteur))
+                {
+                    *err = 2;
+                    goto ErrL;
+                }
+                (*chainesind)[col * (hauteur) + row] = indsst + 1;
                 break;
             case 512:/* DIMENSIONS*/
                 C2F(mgetnc) (fd, (void*) &f_row, &one, typ_int, err);
@@ -213,6 +239,12 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 if (*err > 0) goto ErrL;
                 C2F(mgetnc) (fd, (void*) &col, &one, typ_ushort, err);
                 if (*err > 0) goto ErrL;
+                // Check col and row are in bounds
+                if ((col >= longueur) || (row >= hauteur))
+                {
+                    *err = 2;
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*) &xf, &one, typ_ushort, err);
                 if (*err > 0) goto ErrL;
 
