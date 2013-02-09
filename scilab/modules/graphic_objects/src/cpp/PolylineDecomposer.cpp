@@ -708,8 +708,6 @@ void PolylineDecomposer::fillColors(char* id, float* buffer, int bufferLength, i
     }
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**) &piNPoints);
-    getGraphicObjectProperty(id, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, (void**) &interpColorVector);
-
     getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
 
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
@@ -735,9 +733,6 @@ void PolylineDecomposer::fillColors(char* id, float* buffer, int bufferLength, i
         return;
     }
 
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
-
     /*
      * The interpolated color vector is a 3- or 4-element vector.
      * However, if nPoints is greater than 4, we choose to output
@@ -747,6 +742,10 @@ void PolylineDecomposer::fillColors(char* id, float* buffer, int bufferLength, i
     {
         return;
     }
+
+    getGraphicObjectProperty(id, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, (void**) &interpColorVector);
+    getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
+    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
 
     if (nPoints > 4)
     {
@@ -764,6 +763,9 @@ void PolylineDecomposer::fillColors(char* id, float* buffer, int bufferLength, i
 
         bufferOffset += elementsSize;
     }
+
+    releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
+    releaseGraphicObjectProperty(__GO_INTERP_COLOR_VECTOR__, interpColorVector, jni_int_vector, 0);
 }
 
 void PolylineDecomposer::fillTextureCoordinates(char* id, float* buffer, int bufferLength)
@@ -799,8 +801,6 @@ void PolylineDecomposer::fillTextureCoordinates(char* id, float* buffer, int buf
     }
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**) &piNPoints);
-    getGraphicObjectProperty(id, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, (void**) &interpColorVector);
-
     getGraphicObjectProperty(id, __GO_PARENT__, jni_string, (void**) &parent);
 
     /* Temporary: to avoid getting a null parent_figure property when the object is built */
@@ -826,9 +826,6 @@ void PolylineDecomposer::fillTextureCoordinates(char* id, float* buffer, int buf
         return;
     }
 
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
-
     /*
      * The interpolated color vector is a 3- or 4-element vector.
      * However, if nPoints is greater than 4, we choose to output
@@ -838,6 +835,10 @@ void PolylineDecomposer::fillTextureCoordinates(char* id, float* buffer, int buf
     {
         return;
     }
+
+    getGraphicObjectProperty(id, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, (void**) &interpColorVector);
+    getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
+    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
 
     if (nPoints > 4)
     {
@@ -855,6 +856,9 @@ void PolylineDecomposer::fillTextureCoordinates(char* id, float* buffer, int buf
 
         bufferOffset += 4;
     }
+
+    releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
+    releaseGraphicObjectProperty(__GO_INTERP_COLOR_VECTOR__, interpColorVector, jni_int_vector, 0);
 }
 
 /*
@@ -1199,8 +1203,6 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
 int PolylineDecomposer::fillArrowTriangleIndices(char* id, int* buffer, int bufferLength,
                                                  int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
 {
-    double coordsi[3];
-
     int closed = 0;
     int* piClosed = &closed;
 
@@ -1548,9 +1550,6 @@ int PolylineDecomposer::fillSegmentsDecompositionSegmentIndices(char* id, int* b
 int PolylineDecomposer::fillStairDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
                                                              int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed)
 {
-    double coordsi[3];
-    double coordsip1[3];
-
     int currentValid = 0;
     int middleVertexValid = 0;
     int nextValid = 0;

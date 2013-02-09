@@ -27,6 +27,7 @@ public final class GlobalEventWatcher {
     private static GlobalMouseEventWatcher mouseWatcher;
     private static boolean activated;
     private static String axesUID = null;
+    private static boolean catchingCallback = false;
 
     /**
      * Private Constructor : SINGLETON.
@@ -75,9 +76,10 @@ public final class GlobalEventWatcher {
      * Disable the global watcher
      */
     public static void disable() {
-        Toolkit.getDefaultToolkit().removeAWTEventListener(GlobalEventWatcher.keyWatcher);
-        Toolkit.getDefaultToolkit().removeAWTEventListener(GlobalEventWatcher.mouseWatcher);
-        activated = false;
+		Toolkit.getDefaultToolkit().removeAWTEventListener(GlobalEventWatcher.keyWatcher);
+		Toolkit.getDefaultToolkit().removeAWTEventListener(GlobalEventWatcher.mouseWatcher);
+		activated = false;
+		catchingCallback = false;
     }
 
     /**
@@ -96,4 +98,16 @@ public final class GlobalEventWatcher {
         return axesUID ;
     }
 
+    public static void enableCatchingCallback() {
+        catchingCallback = true;  
+    }
+
+    public static void disableableCatchingCallback() {
+        catchingCallback = false;  
+    }
+
+    public static boolean isCatchingCallback() {
+        return catchingCallback;  
+    }
+    
 }

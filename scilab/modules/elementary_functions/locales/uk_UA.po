@@ -397,7 +397,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: помилковий тип параметра %d: слід було вказати матрицю.\n"
 
 #, c-format

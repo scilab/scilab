@@ -1107,7 +1107,7 @@ msgid ""
 msgstr "%s: 入力引数の数が間違っています: 仕様は2から4個ですが %d 個指定されています."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr "%s: 引数 %d の型が間違っています: %s を指定してください.\n"
 
 #, c-format
@@ -1165,7 +1165,7 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: 除外添字ベクトルが 1行ではなく %d 行となっています."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
 
 #, c-format

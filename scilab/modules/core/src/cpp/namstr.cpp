@@ -18,7 +18,7 @@
 
 extern "C"
 {
-    void C2F(namstr)(int* id, int* str, int* n, char* job);
+    void C2F(namstr)(int* id, int* str, int* n, int* job);
 }
 
 namespace
@@ -44,7 +44,7 @@ namespace
  *
  * TODO: now that function search has been ported to C++, should expose a saner API that would not require strlen call nor a job arg.
  */
-void C2F(namstr)(int* id,int* str, int* n, char* job)
+void C2F(namstr)(int* id,int* str, int* n, int* job)
 {
     if (*job)  /* id -> str */
     {

@@ -153,7 +153,7 @@ msgid "%s: Unable to get argument data"
 msgstr "%s: Impossível obter o conteúdo do argumento"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Tamanho incorreto para o argumento %d: esperava-se (%d,%d).\n"
 
 #, c-format
@@ -170,7 +170,7 @@ msgstr ""
 "\"%s\".\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento %d: esperava-se uma matriz de números "
 "reais.\n"

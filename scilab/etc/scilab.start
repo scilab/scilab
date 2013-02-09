@@ -74,10 +74,10 @@ if (sciargs() <> "-nb") & ~fromjava() & ~fromc() & getscilabmode() == "STD" then
   write(%io(2),gettext("  loading initial environment"));
 end
 
-if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & sciargs()<>"-nb")
+if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & ~fromjava() & ~fromc() & sciargs()<>"-nb")
    [v, opts] = getversion()
    write(%io(2), strsubst(v, "scilab-", "Scilab ") + " (" + opts($-1) + ", " + opts($) + ")");
-   clear v, opts;
+   clear v opts;
 end
 
 // loads modules ======================================================

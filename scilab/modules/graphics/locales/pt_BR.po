@@ -1354,13 +1354,13 @@ msgstr ""
 "conjunto {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento %d: esperava-se um vetor de números "
 "reais.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento %d: esperava-se um escalar real.\n"
 
@@ -1384,7 +1384,7 @@ msgstr ""
 "número de linhas.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Tamanho incorreto para o argumento %d: esperava-se %d.\n"
 
 #, c-format

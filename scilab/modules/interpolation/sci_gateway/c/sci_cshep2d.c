@@ -53,7 +53,7 @@ int intcshep2d(char *fname,unsigned long fname_len)
 
         if (isVarComplex(pvApiCtx, piAddressVarOne))
         {
-            Scierror(202, _("%s: Wrong type for argument %d: Real matrix expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), fname, 1);
             return 0;
         }
     }

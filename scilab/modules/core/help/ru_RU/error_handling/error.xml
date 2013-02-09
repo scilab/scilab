@@ -100,6 +100,9 @@ lasterror()]]></programlisting>
             <member>
                 <link linkend="error_table">таблица ошибок</link>
             </member>
+            <member>
+                <link linkend="messagebox">messagebox</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection>

@@ -186,11 +186,8 @@ s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// see the examples of splin2d
-
-// this example shows some different extrapolation features
-// interpolation of cos(x)cos(y)
+        
+        <programlisting role="example"><![CDATA[
 n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
@@ -201,23 +198,8 @@ m = 80; // discretisation parameter of the evaluation grid
 xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
 [XX,YY] = ndgrid(xx,yy);
 zz1 = interp2d(XX,YY, x, y, C, "C0");
-zz2 = interp2d(XX,YY, x, y, C, "by_zero");
-zz3 = interp2d(XX,YY, x, y, C, "periodic");
-zz4 = interp2d(XX,YY, x, y, C, "natural");
-clf()
-subplot(2,2,1)
 plot3d(xx, yy, zz1, flag=[2 6 4])
 xtitle("extrapolation with the C0 outmode")
-subplot(2,2,2)
-plot3d(xx, yy, zz2, flag=[2 6 4])
-xtitle("extrapolation with the by_zero outmode")
-subplot(2,2,3)
-plot3d(xx, yy, zz3, flag=[2 6 4])
-xtitle("extrapolation with the periodic outmode")
-subplot(2,2,4)
-plot3d(xx, yy, zz4, flag=[2 6 4])
-xtitle("extrapolation with the natural outmode")
-show_window()
  ]]></programlisting>
         <scilab:image>
             n = 7;  // a n x n interpolation grid
@@ -230,23 +212,95 @@ show_window()
             xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
             [XX,YY] = ndgrid(xx,yy);
             zz1 = interp2d(XX,YY, x, y, C, "C0");
-            zz2 = interp2d(XX,YY, x, y, C, "by_zero");
-            zz3 = interp2d(XX,YY, x, y, C, "periodic");
-            zz4 = interp2d(XX,YY, x, y, C, "natural");
-            clf()
-            subplot(2,2,1)
             plot3d(xx, yy, zz1, flag=[2 6 4])
             xtitle("extrapolation with the C0 outmode")
-            subplot(2,2,2)
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[
+n = 7;  // a n x n interpolation grid
+x = linspace(0,2*%pi,n); y = x;
+z = cos(x')*cos(y);
+C = splin2d(x, y, z, "periodic");
+
+// now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+m = 80; // discretisation parameter of the evaluation grid
+xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+[XX,YY] = ndgrid(xx,yy);
+zz2 = interp2d(XX,YY, x, y, C, "by_zero");
+plot3d(xx, yy, zz2, flag=[2 6 4])
+xtitle("extrapolation with the by_zero outmode")
+ ]]></programlisting>
+        <scilab:image>
+            n = 7;  // a n x n interpolation grid
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
+            
+            // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+            m = 80; // discretisation parameter of the evaluation grid
+            xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz2 = interp2d(XX,YY, x, y, C, "by_zero");
             plot3d(xx, yy, zz2, flag=[2 6 4])
             xtitle("extrapolation with the by_zero outmode")
-            subplot(2,2,3)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+n = 7;  // a n x n interpolation grid
+x = linspace(0,2*%pi,n); y = x;
+z = cos(x')*cos(y);
+C = splin2d(x, y, z, "periodic");
+
+// now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+m = 80; // discretisation parameter of the evaluation grid
+xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+[XX,YY] = ndgrid(xx,yy);
+zz3 = interp2d(XX,YY, x, y, C, "periodic");
+plot3d(xx, yy, zz3, flag=[2 6 4])
+xtitle("extrapolation with the periodic outmode")
+ ]]></programlisting>
+        <scilab:image>
+            n = 7;  // a n x n interpolation grid
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
+            
+            // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+            m = 80; // discretisation parameter of the evaluation grid
+            xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz3 = interp2d(XX,YY, x, y, C, "periodic");
             plot3d(xx, yy, zz3, flag=[2 6 4])
             xtitle("extrapolation with the periodic outmode")
-            subplot(2,2,4)
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[
+n = 7;  // a n x n interpolation grid
+x = linspace(0,2*%pi,n); y = x;
+z = cos(x')*cos(y);
+C = splin2d(x, y, z, "periodic");
+
+// now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+m = 80; // discretisation parameter of the evaluation grid
+xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+[XX,YY] = ndgrid(xx,yy);
+zz4 = interp2d(XX,YY, x, y, C, "natural");
+plot3d(xx, yy, zz4, flag=[2 6 4])
+xtitle("extrapolation with the natural outmode")
+ ]]></programlisting>
+        <scilab:image>
+            
+            n = 7;  // a n x n interpolation grid
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
+            
+            // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+            m = 80; // discretisation parameter of the evaluation grid
+            xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz4 = interp2d(XX,YY, x, y, C, "natural");
             plot3d(xx, yy, zz4, flag=[2 6 4])
             xtitle("extrapolation with the natural outmode")
-            show_window()
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -262,7 +316,7 @@ show_window()
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
+                <revremark>Previously, imaginary part of input arguments were implicitly ignored.</revremark>
             </revision>
         </revhistory>
     </refsection>

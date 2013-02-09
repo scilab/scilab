@@ -136,7 +136,7 @@ while %t do
       if and(type(%vv)<>[1 8]) then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       [%mmmm,%nnnnn]=size(%vv)
-      %ssss=string(%sz(1))+' x '+string(%sz(2))
+      %ssss=string(%sz(1))+'-by-'+string(%sz(2)) + " matrix"
       if %mmmm*%nnnnn==0 then
 	if  %sz(1)>=0&%sz(2)>=0&%sz(1)*%sz(2)<>0 then %noooo=%kk,break,end
       else
@@ -183,9 +183,9 @@ while %t do
       if and(type(%vv)<>[1 8]) then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       if %sz(1)<0 then
-	%ssss='1 x *'
+	%ssss='1-by-n matrix'
       else
-	%ssss='1 x '+string(%sz(1))
+	%ssss='1-by-'+string(%sz(1))+' matrix'
       end
       [%mmmm,%nnnnn]=size(%vv)
       if %mmmm<>1 then %noooo=%kk,break,end,
@@ -199,9 +199,9 @@ while %t do
       if and(type(%vv)<>[1 8]) then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       if %sz(1)<0 then
-	%ssss='* x 1'
+        %ssss='m-by-1 matrix'
       else
-	%ssss=string(%sz(1))+' x 1'
+        %ssss=string(%sz(1))+'-by-1 matrix'
       end
       [%mmmm,%nnnnn]=size(%vv)
       if %nnnnn<>1 then %noooo=%kk,break,end,
@@ -231,7 +231,7 @@ while %t do
       if typeof(%vv)<>'rational' then %noooo=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       [%mmmm,%nnnnn]=size(%vv(2))
-      %ssss=string(%sz(1))+' x '+string(%sz(2))
+      %ssss=string(%sz(1))+'-by-'+string(%sz(2))
       if %mmmm*%nnnnn==0 then
 	if  %sz(1)>=0&%sz(2)>=0&%sz(1)*%sz(2)<>0 then %noooo=%kk,break,end
       else
@@ -242,26 +242,29 @@ while %t do
       //accept all
     else
       str = gettext("%s: Type %s is not implemented.\n");
-      mess = msprintf(str, 'setvalue', %typ(2*%kk-1));
-      warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
-      error(mess);
+      mess = msprintf(str, arg1.gui + '(''set'')', %typ(2*%kk-1));
+      if length(arg1.doc) > 0 then
+        warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
+      else
+        error(mess);
+      end
     end
     execstr('%'+string(%kk)+'=%vv')
     clear %vv
   end
   if %noooo>0 then
-    str = gettext("%s: invalid dimension for ''%s'', waiting for %s");
-    mess = msprintf(str, 'setvalue', %lables(%noooo), %ssss);
+    str = gettext("%s: Wrong size for block parameter ''%s'': %s expected, getting %s");
+    mess = msprintf(str, arg1.gui + '(''set'')', %lables(%noooo), %ssss, %ini(%noooo));
     if length(arg1.doc) > 0 then
         warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
-    else
+    else    
         disp(mess);
     end
     %ini=%str
     %ok=%f;break
   elseif %noooo<0 then
-    str = gettext("%s: incorrect type for ''%s'', getting %s");
-    mess = msprintf(str, 'setvalue', %lables(-%noooo), %typ(-2*%noooo-1));
+    str = gettext("%s: Wrong type for block parameter ''%s'': %s(%s) expected, getting %s");
+    mess = msprintf(str, arg1.gui + '(''set'')', %lables(-%noooo), %typ(-2*%noooo-1), strcat(string(%typ(-2*%noooo))," by "), %ini(-%noooo));
     if length(arg1.doc) > 0 then
         warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
     else

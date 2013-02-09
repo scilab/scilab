@@ -399,7 +399,7 @@ if test -n "$F77"; then
      gfortran*)
         ## With GNU Compiler enable the code coverage
         if test "$enable_code_coverage" = yes; then
-            CODE_COVERAGE_FFLAGS="-fprofile-arcs -ftest-coverage"
+            CODECOVERAGE_FFLAGS="-fprofile-arcs -ftest-coverage"
         fi
      ;;
      g77*)
@@ -519,7 +519,7 @@ case "$CXX" in
 
         # enable the code coverage
         if test "$enable_code_coverage" = yes; then
-            CODE_COVERAGE_CXXFLAGS="-fprofile-arcs -ftest-coverage"
+            CODECOVERAGE_CXXFLAGS="-fprofile-arcs -ftest-coverage"
         fi
 
         if test "$enable_debug_CXX" = yes; then
@@ -560,7 +560,7 @@ case "$CC" in
 
    # enable the code coverage
    if test "$enable_code_coverage" = yes; then
-    CODE_COVERAGE_CFLAGS="-fprofile-arcs -ftest-coverage"
+    CODECOVERAGE_CFLAGS="-fprofile-arcs -ftest-coverage"
    fi
 
    if test "$enable_debug_C" = yes; then
@@ -696,7 +696,7 @@ if test "$enable_code_coverage" = yes; then
    if test -z "$GENHTML" ; then
         AC_MSG_ERROR([Cannot find genhtml. Please install it (package lcov under Debian) or remove the option --enable-code-coverage])
    fi
-   CODE_COVERAGE_LDFLAGS="-coverage"
+   CODECOVERAGE_LDFLAGS="-coverage -lgcov"
 fi
 AM_CONDITIONAL(CODE_COVERAGE, test "$enable_code_coverage" = yes)
 
@@ -859,14 +859,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 SCIRENDERER=$PACKAGE_JAR_FILE
                 AC_SUBST(SCIRENDERER)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.0.3],[PackageInfo.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.0.5],[PackageInfo.VERSION])
 
                # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.1],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.2],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
@@ -896,9 +896,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    # Provide known paths where distribs/OS can store JNI libs
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
-                   LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jogl2 -L/usr/lib64/jogl2"               # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
-                   AC_CHECK_LIB([jogl_desktop], [glTexParameterf], [JOGL2_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl_desktop. Will try against -ljogl2 -lGL])])
+                   AC_CHECK_LIB([jogl_desktop], [glTexParameterf], [JOGL2_LIBS="-ljogl_desktop"],[AC_MSG_WARN([Could not link against -ljogl_desktop. Will try against -ljogl_desktop -lGL])])
                    if test -z "$JOGL2_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
                        # purpose to disable the cache
@@ -925,10 +925,10 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                    # Provide known paths where distribs/OS can store JNI libs
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
-                   LDFLAGS="$LDFLAGS -L/usr/lib/gluegen -L/usr/lib64/gluegen"           # RedHat
+                   LDFLAGS="$LDFLAGS -L/usr/lib/gluegen2 -L/usr/lib64/gluegen2"         # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    symbol="Java_jogamp_common_jvm_JVMUtil_initialize"
-                   AC_CHECK_LIB([gluegen2-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
+                   AC_CHECK_LIB([gluegen2-rt], [$symbol], [GLUEGEN2_RT_LIBS="-lgluegen2-rt"],
                    [AC_MSG_ERROR([libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
                    [-ldl])
                    LDFLAGS=$LDFLAGS_save
@@ -1470,6 +1470,12 @@ AM_CONDITIONAL(UMFPACK, test "$with_umfpack" != no)
 #######################
 
 AC_PCRE()
+
+#######################
+## Test for CURL
+#######################
+
+AC_CURL()
 
 #################
 ## Tcl/Tk library
@@ -2189,6 +2195,12 @@ echo "PCRE configuration:"
 echo "  PCRE_CFLAGS ........ = $PCRE_CFLAGS"
 echo "  PCRE_LIBS .......... = $PCRE_LIBS"
 echo "  PCRE_VERSION ....... = $PCRE_VERSION"
+
+echo ""
+echo "CURL configuration:"
+echo "  CURL_CFLAGS ........ = $CURL_CFLAGS"
+echo "  CURL_LIBS .......... = $CURL_LIBS"
+echo "  CURL_VERSION ....... = $CURL_VERSION"
 
 
 echo ""

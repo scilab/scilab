@@ -144,12 +144,5 @@
     datatipCreate(p2,750);
 
     ]]></programlisting>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../images/datatips2.svg"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
     </refsection>
 </refentry>

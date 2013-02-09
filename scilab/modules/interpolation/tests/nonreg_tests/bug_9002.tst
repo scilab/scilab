@@ -35,7 +35,7 @@ zp = grand(1,1,"unf",0,2*%pi);
 f_i = bsplin3val(xp, yp, zp, tl, [0 0 0]);
 
 yp = yp + %i;
-msgerr = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "bsplin3val", 2);
+msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "bsplin3val", 2);
 assert_checkerror ("f_i = bsplin3val(xp, yp, zp, tl, [0 0 0]);", msgerr);
 
 // test with cshep2d
@@ -47,7 +47,7 @@ xyz = [xy z];
 tl_coef = cshep2d(xyz);
 
 xyz = [xy z] + %i;
-msgerr = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "cshep2d", 1);
+msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "cshep2d", 1);
 assert_checkerror ("tl_coef = cshep2d(xyz);", msgerr);
 
 // test with eval_cshep2d
@@ -64,7 +64,7 @@ xx = linspace(-1.5,0.5,m);
 zp = eval_cshep2d(xp, yp, S);
 
 yp = yp + %i;
-msgerr = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "eval_cshep2d", 2);
+msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "eval_cshep2d", 2);
 assert_checkerror ("eval_cshep2d(xp, yp, S)", msgerr);
 
 // test with interp
@@ -76,7 +76,7 @@ xx = linspace(-0.5,1.5,401)';
 yy0 = interp(xx,x,y,d,"C0");
 
 y = y + %i;
-msgerr = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "interp", 3);
+msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "interp", 3);
 assert_checkerror ("yy0 = interp(xx,x,y,d,''C0'')", msgerr);
 
 
@@ -94,7 +94,7 @@ yy = xx;
 zz1 = interp2d(XX,YY, x, y, C, "C0");
 
 YY = YY + %i;
-msgerr = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "interp2d", 2);
+msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "interp2d", 2);
 assert_checkerror ("zz1 = interp2d(XX,YY, x, y, C, ''C0'')", msgerr);
 
 // test with interp3d
@@ -106,7 +106,7 @@ zp = grand(m,1,"def");
 vp_interp = interp3d(xp,yp,zp, tl);
 
 zp = zp + %i;
-msgerr = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "interp3d", 3);
+msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "interp3d", 3);
 assert_checkerror ("vp_interp = interp3d(xp,yp,zp, tl)", msgerr);
 
 // test with linear_interpn
@@ -117,7 +117,7 @@ xx = linspace(-2*%pi,4*%pi,400)';
 yy = linear_interpn(xx, x, y, "periodic");
 
 xx = xx + %i;
-msgerr = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "linear_interpn", 1);
+msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "linear_interpn", 1);
 assert_checkerror ("yy = linear_interpn(xx, x, y, ''periodic'')", msgerr);
 
 // test with splin2d
@@ -129,7 +129,7 @@ z = cos(x') * cos(y);
 C = splin2d(x, y, z, "periodic");
 
 z = z + %i;
-msgerr = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "splin2d", 3);
+msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "splin2d", 3);
 assert_checkerror ("C = splin2d(x, y, z, ''periodic'')", msgerr);
 
 // test with splin2d
@@ -144,7 +144,7 @@ V = f(X,Y,Z);
 tl = splin3d(x,y,z,V,[5 5 5]);
 
 x = x + %i;
-msgerr = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "splin3d", 1);
+msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "splin3d", 1);
 assert_checkerror ("tl = splin3d(x,y,z,V,[5 5 5])", msgerr);
 
 // test with splin2d
@@ -159,5 +159,5 @@ y = runge(x);
 d = splin(x, y);
 
 y = y + %i;
-msgerr = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "splin", 2);
+msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "splin", 2);
 assert_checkerror ("d = splin(x, y);", msgerr);

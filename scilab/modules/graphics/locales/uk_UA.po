@@ -1405,12 +1405,12 @@ msgstr ""
 "з набору {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: мало бути вказано вектор дійсних значень.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: мало бути вказано дійсне числове значення.\n"
 
@@ -1434,7 +1434,7 @@ msgstr ""
 "однаковою.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: помилкова розмірність параметра №%d: мало бути %d.\n"
 
 #, c-format

@@ -39,11 +39,11 @@ function out = importScicosDiagram(source)
       out = scs_m;
       clear scs_m;
     else
-      error(999 ,msprintf(_("%s: Wrong type for argument %d: String or diagram structure expected"), "importScicosDiagram", 1));
+      error(999 ,msprintf(_("%s: Wrong type for argument #%d: String or diagram structure expected"), "importScicosDiagram", 1));
       return;
     end
   else
-    error(999, msprintf(_("%s: Wrong type for argument %d: String or diagram structure expected"), "importScicosDiagram", 1));
+    error(999, msprintf(_("%s: Wrong type for argument #%d: String or diagram structure expected"), "importScicosDiagram", 1));
     return;
   end
   

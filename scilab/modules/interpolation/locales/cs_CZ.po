@@ -21,7 +21,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána reálná matice.\n"
 
 #, c-format

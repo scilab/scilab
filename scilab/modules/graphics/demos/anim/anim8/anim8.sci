@@ -48,7 +48,7 @@ function demo_riemann()
 
   my_handle.axes_size  = [ 600 650 ];
 
-  my_handle.background = -1;                 // black
+  my_handle.background = -2;                 // white
   my_axe.background    = -1;                 // gray
   my_axe.foreground    = 14;                 // white
   my_fac3d.color_mode  =  1;                 // no lines

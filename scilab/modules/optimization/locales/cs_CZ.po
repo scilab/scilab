@@ -1137,7 +1137,7 @@ msgstr ""
 "4."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekáváno %s.\n"
 
 #, c-format
@@ -1200,7 +1200,7 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: Vektor vyloučení indexu má %d řádků místo 1."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána reálná matice.\n"
 
 #, c-format

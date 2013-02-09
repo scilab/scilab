@@ -7,6 +7,9 @@
 
 // <-- CLI SHELL MODE -->
 
+wMode = warning("query");
+warning("off");
+
 n = 50;
 nstr = strcat(string(1:n),' ');
 fstr = strcat(strsubst(string(ones(1,n)),'1','%d'), ' ');
@@ -112,3 +115,5 @@ if a<>4|b<>'test'|c<>23.45 then pause,end
 
 [a,b]=sscanf('123\n456','%e%e')
 if a<>123|b<>456 then pause,end
+
+warning(wMode);

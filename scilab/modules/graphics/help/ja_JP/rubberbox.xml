@@ -84,13 +84,13 @@ x0 = (db(1)*2+db(2))/3;
 dx = (db(2)-db(1))/3;
 y0 = (db(3)+db(4)*2)/3;
 dy = (db(4)-db(3))/3;
-disp(gettext("With an initial starting corner:"))
+disp("With an initial starting corner:")
 r = rubberbox([x0 y0])
-disp(gettext("With an initial box:"))
+disp("With an initial box:")
 r = rubberbox([x0-dx/4 y0+dy/5 2*dx dy])
-disp(gettext("In press -- drag -- release mode selection:"))
+disp("In press -- drag -- release mode selection:")
 r = rubberbox(%t)
-disp(gettext("In starting click -- drag -- stopping click mode selection:"))
+disp("In starting click -- drag -- stopping click mode selection:")
 r = rubberbox()
  ]]></programlisting>
     </refsection>

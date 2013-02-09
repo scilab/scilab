@@ -267,7 +267,7 @@ msgstr "第一參數型態錯誤: 應為方陣.\n"
 #
 # File: src/c/errmsg.c, line: 177
 #, c-format
-msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgid "Wrong type for argument #%d: Square matrix expected.\n"
 msgstr "參數 %d 型態錯誤: 應為方陣.\n"
 
 #
@@ -442,7 +442,7 @@ msgstr "副函式 (subroutine) 找不到: %s\n"
 #
 # File: src/c/errmsg.c, line: 387
 #, c-format
-msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "參數 %d 之型態錯誤: 應為實數矩陣.\n"
 
 #
@@ -460,13 +460,13 @@ msgstr "輸入參數 %d 之型態錯誤: 應為多項式.\n"
 #
 # File: src/c/errmsg.c, line: 402
 #, c-format
-msgid "Wrong type for argument %d: String expected.\n"
+msgid "Wrong type for argument #%d: String expected.\n"
 msgstr "輸入參數 %d 之型態錯誤: 應為字串.\n"
 
 #
 # File: src/c/errmsg.c, line: 407
 #, c-format
-msgid "Wrong type for argument %d: List expected.\n"
+msgid "Wrong type for argument #%d: List expected.\n"
 msgstr "輸入參數 %d 之型態錯誤: 應為串列 (list).\n"
 
 #
@@ -607,28 +607,28 @@ msgstr "函數不正確  (參數 n: %d).\n"
 # File: src/c/errmsg.c, line: 577
 # File: src/c/errmsg.c, line: 998
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為實數或複數矩陣.\n"
 
 #
 # File: src/c/errmsg.c, line: 588
 # File: src/c/errmsg.c, line: 1011
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為實數矩陣.\n"
 
 #
 # File: src/c/errmsg.c, line: 599
 # File: src/c/errmsg.c, line: 1024
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為實數向量.\n"
 
 #
 # File: src/c/errmsg.c, line: 610
 # File: src/c/errmsg.c, line: 1037
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為實數純量.\n"
 
 #
@@ -653,43 +653,43 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 638
 #, c-format
-msgid "Wrong size for argument %d.\n"
+msgid "Wrong size for argument #%d.\n"
 msgstr "參數 %d 長度錯誤.\n"
 
 #
 # File: src/c/errmsg.c, line: 643
 #, c-format
-msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgid "Wrong type for argument #%d: Transfer matrix expected.\n"
 msgstr "參數 %d 型態錯誤: 應為轉移函數.\n"
 
 #
 # File: src/c/errmsg.c, line: 648
 #, c-format
-msgid "Wrong type for argument %d: In state space form expected.\n"
+msgid "Wrong type for argument #%d: In state space form expected.\n"
 msgstr "參數 %d 型態錯誤: 應為狀態空間.\n"
 
 #
 # File: src/c/errmsg.c, line: 653
 #, c-format
-msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational matrix expected.\n"
 msgstr "參數 %d 型態錯誤: 應為有理矩陣 (Rational matrix).\n"
 
 #
 # File: src/c/errmsg.c, line: 658
 #, c-format
-msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgid "Wrong type for argument #%d: In continuous time expected.\n"
 msgstr "參數 %d 型態錯誤: 應為連續時間型態.\n"
 
 #
 # File: src/c/errmsg.c, line: 663
 #, c-format
-msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgid "Wrong type for argument #%d: In discrete time expected.\n"
 msgstr "參數 %d 型態錯誤: 應為離散時間型態.\n"
 
 #
 # File: src/c/errmsg.c, line: 668
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "參數 %d 型態錯誤: 應為 SISO 型態.\n"
 
 #
@@ -702,7 +702,7 @@ msgstr "參數 %d 的時間域未定義.\n"
 # File: src/c/errmsg.c, line: 678
 #, c-format
 msgid ""
-"Wrong type for argument %d: A system in state space or transfer matrix form "
+"Wrong type for argument #%d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr "參數 %d 型態錯誤: 應為以狀態空間或轉換函數定義之系統.\n"
 
@@ -832,7 +832,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 828
 #, c-format
-msgid "Wrong value for argument %d.\n"
+msgid "Wrong value for argument #%d.\n"
 msgstr "參數 %d 數值錯誤.\n"
 
 #
@@ -845,7 +845,7 @@ msgstr "List 之第 %d 元素誤定義.\n"
 # File: src/c/errmsg.c, line: 839
 #, c-format
 msgid ""
-"Wrong type for argument %d: Named variable not an expression expected.\n"
+"Wrong type for argument #%d: Named variable not an expression expected.\n"
 msgstr "參數 %d 之型態錯誤: 應為已命名之變數而非運算式.\n"
 
 #
@@ -981,61 +981,61 @@ msgstr "檢查或定義函數 %s 以便重載 (overloading).\n"
 #
 # File: src/c/errmsg.c, line: 1051
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: 參數 %d 長度錯誤: 應為 (%d,%d).\n"
 
 #
 # File: src/c/errmsg.c, line: 1064
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: 參數 %d 長度錯誤: 應為 %d.\n"
 
 #
 # File: src/c/errmsg.c, line: 1075
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr "%s: 參數 %d 之型態錯誤: 應為字串矩陣.\n"
 
 #
 # File: src/c/errmsg.c, line: 1086
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s: 參數 %d 之型態錯誤: 應為 Boolean 矩陣.\n"
 
 #
 # File: src/c/errmsg.c, line: 1097
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: 參數 %d 之型態錯誤: 應為矩陣.\n"
 
 #
 # File: src/c/errmsg.c, line: 1108
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s: 參數 %d 之型態錯誤: 應為 list.\n"
 
 #
 # File: src/c/errmsg.c, line: 1119
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr "%s: 參數 %d 之型態錯誤: 應為函數或字串(外部函數).\n"
 
 #
 # File: src/c/errmsg.c, line: 1130
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr "%s: 參數 %d 之型態錯誤: 應為多項式.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 1152
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s: 參數 %d 之型態錯誤: 應為向量.\n"
 
 #
@@ -1052,19 +1052,19 @@ msgstr "參數型態須為  boolean.\n"
 #
 # File: src/c/errmsg.c, line: 1172
 #, c-format
-msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgid "Wrong type for argument #%d: Boolean or scalar expected.\n"
 msgstr "參數 %d 之型態錯誤: 應為 Boolean 或純量.\n"
 
 #
 # File: src/c/errmsg.c, line: 1177
 #, c-format
-msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgid "Wrong type for argument #%d: Sparse matrix of scalars expected.\n"
 msgstr "參數 %d 之型態錯誤: 應為純量之稀疏矩陣.\n"
 
 #
 # File: src/c/errmsg.c, line: 1182
 #, c-format
-msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgid "Wrong type for argument #%d: Handle to sparse lu factors expected.\n"
 msgstr "參數 %d 之型態錯誤: 應為稀疏矩陣之 lu 分解之 handle.\n"
 
 #
@@ -1217,19 +1217,19 @@ msgid "Function not defined for given argument type(s),\n"
 msgstr "此參數型態沒有對應之函數定義,\n"
 
 #, c-format
-msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 1364
 #, c-format
-msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgid "Wrong value for argument #%d: Valid variable name expected.\n"
 msgstr "參數 %d 數值錯誤 : 應為合法之變數名稱.\n"
 
 #
 # File: src/c/errmsg.c, line: 1369
 #, c-format
-msgid "Wrong value for argument %d: Empty string expected.\n"
+msgid "Wrong value for argument #%d: Empty string expected.\n"
 msgstr "參數 %d 數值錯誤 : 應為空字串.\n"
 
 #
@@ -1304,7 +1304,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1440
 #, c-format
-msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgid "Wrong value for argument #%d: Must not contain NaN or Inf.\n"
 msgstr "參數 %d 數值錯誤 : 應不含 NaN 或 Inf.\n"
 
 #
@@ -1335,14 +1335,14 @@ msgstr "由參數 %d 傳入之參數之傳回值不合法.\n"
 # File: src/c/errmsg.c, line: 1465
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+"Wrong value for argument #%d: eigenvalues must have negative real parts.\n"
 msgstr "參數 %d 數值錯誤 : 特徵值之實部應為負.\n"
 
 #
 # File: src/c/errmsg.c, line: 1470
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+"Wrong value for argument #%d: eigenvalues modulus must be less than one.\n"
 msgstr "參數 %d 數值錯誤 : 特徵值之模 (modulus) 應小於 1.\n"
 
 #

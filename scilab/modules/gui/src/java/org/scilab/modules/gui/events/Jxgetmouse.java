@@ -77,6 +77,12 @@ public final class Jxgetmouse {
                 mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);
             }
         });
+        
+        /*
+         *  Force xgetmouse not to catch/disable callback execution.
+         */
+        GlobalEventWatcher.disableableCatchingCallback();
+        
         synchronized (ClickInfos.getInstance()) {
             try {
                 ClickInfos.getInstance().init();

@@ -61,6 +61,8 @@ Removed functions
 
 * xbasr() removed. Automatically managed by Scilab now.
 
+* chartoeom() and eomtochar() removed.
+
 
 Obsolete functions
 ===================
@@ -99,6 +101,8 @@ Xcos
 
 * Add an implicit Fixed-size stop ODE solver : Implicit Runge-Kutta 4(5). Also benefits from the CVode rootfinding feature.
 
+* Improve block parameters errors (types and sizes) reporting.
+
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
 
@@ -129,7 +133,20 @@ Xcos
 * Bug #12031 fixed - Changes in context of superblock did not always have
                      effect.
 
+* Bug #12057 fixed - Scopes with big scope buffer size simulation was much
+                     more slower.
+
 * Bug #12162 fixed - tbx_build_blocks did not report errors.
+
+* Bug #12167 fixed - Text of ports in superblocks were not updated.
+
+* Bug #12213 fixed - lincos help page example produced undefined variable
+                     warnings.
+
+* Bug #12259 fixed - Wrong translation for "Filled" fixed in Scinotes.
+
+* Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
+                     due to CLR blocks.
 
 
 Documentation
@@ -141,9 +158,9 @@ Documentation
 Compilation
 ============
 
-* Enforce a minimal version of Scirenderer (1.0.3).
+* Enforce a minimal version of Scirenderer (1.0.5).
 
-* Enforce a minimal version of Flexdock (1.2.1).
+* Enforce a minimal version of Flexdock (1.2.2).
 
 
 Bug fixes
@@ -154,8 +171,15 @@ Bug fixes
 
 * Bug #6583 fixed - jmat() was poorly documented.
 
+* Bug #7190 fixed - is_absolute_path was not documented.
+
 * Bug #7583 fixed - binomial function moved in the distribution function
                     chapter.
+
+* Bug #7698 fixed - The "Graphics\Animations\Riemann surface" demo
+                    background is black (instead of white).
+
+* Bug #7769 fixed - get_function_path didn't have an unit test.
 
 * Bug #8213 fixed - geom3d had no examples.
 
@@ -182,9 +206,13 @@ Bug fixes
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
 
+* Bug #10606 fixed - unix_g did not return stdout in somes cases.
+
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
 * Bug #10815 fixed - diff help page did not have a "See Also" section.
+
+* Bug #11134 fixed - xgetmouse() prevented callback menu execution.
 
 * Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
                      the last color in colormap.
@@ -192,16 +220,33 @@ Bug fixes
 * Bug #11474 fixed - save_format help page was still refering to the old save
                      format. Use the SEP #64 content.
 
+* Bug #11477 fixed - There were memory leaks with textures.
+
+* Bug #11497 fixed - A lot of EDT violation was detected by the
+                     ThreadCheckingRepaintManager tool.
+
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
+
+* Bug #11778 fixed - Bad color_map dims did not return an error.
+
+* Bug #11801 fixed - Bug with isoview="on" on subplots.
 
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
 
+* Bug #11931 fixed - In graphics, white space was not used as default thousand
+                     separator.
+
 * Bug #11939 fixed - ssprint formatting was slightly not right.
+
+* Bug #11941 fixed - show_margins() failed in 'nyquist' mode if the system is
+                     in state-space form.
 
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
+
+* Bug #11958 fixed - axesflag=0 was not taken into account in plot2d3.
 
 * Bug #11962 fixed - event_handler may be called on wrong figure_id.
 
@@ -211,6 +256,9 @@ Bug fixes
                     toolbar opened SciNotes anyway.
 
 * Bug #11976 fixed - Check csvTextScan 3rd parameter validity.
+
+* Bug #11980 fixed - csim returned an error message in some cases: "Submatrix
+                     incorrectly defined".
 
 * Bug #11981 fixed - Smooth french help page had a wrong declaration
                      (colonnes => lignes).
@@ -263,6 +311,12 @@ Bug fixes
 
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
 
+* Bug #12141 fixed - Remove calls to gettext in rubberbox help page examples.
+                     Translation of items will be made in each language help page.
+
+* Bug #12151 fixed - Axes did not pass through (0,0) when x_location and
+                     y_location were set to 'origin'.
+
 * Bug #12166 fixed - There was a bad label with drawaxis.
 
 * Bug #12168 fixed - matfile_listvar crashed when listing variables of a closed MAT-file.
@@ -271,9 +325,30 @@ Bug fixes
 
 * Bug #12184 fixed - Performances of the function 'derivat' improved.
 
+* Bug #12186 fixed - Performances of the function 'horner' improved.
+
 * Bug #12190 fixed - Description of sprspn updated in help page.
 
+* Bug #12196 fixed - There were no log-scales with Fec & Fac3d.
+
 * Bug #12204 fixed - Fix a typo in the French localization
+
+* Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
+
+* Bug #12232 fixed - There were several memleaks in various fillers.
+
+* Bug #12235 fixed - Matplot did not update on color_map change.
+
+* Bug #12238 fixed - [d v] = eigs(A) was broken for sparse matrices.
+
+* Bug #12239 fixed - Apply some of the recent changes in eigs to feigs.
+
+* Bug #12240 fixed - Refactoring of the eigs function.
+
+* Bug #12246 fixed - Return an error message when reading invalid excel files
+                     (which have declared wrong column/row count)
+
+* Bug #12247 fixed - Fix a typo in some error messages.
 
 
                     Changes between version 5.3.3 and 5.4.0

@@ -1,6 +1,14 @@
                     Changes between version 5.4.X and 5.5.0
                     =======================================
 
+New features
+=============
+
+* New functions introduced:
+ - getURLcontent - Return the content of an URL (HTTP, HTTPS, FTP...)
+ - getURL - Download an URL (HTTP, HTTPS, FTP...)
+ - splitURL - Split a URL (HTTP, HTTPS, FTP...)
+
 
 * Interactive point-and-click curve editor, now the user can select/unselect
   hide/unhide and delete curves, copy, cut and paste selected curves between figures,
@@ -30,4 +38,9 @@ Obsolete
 * Arguments option and direction of gsort will be more strict in all case.
   Only the following string will be allowed : option : "r" "c" "g" "lr" "lc"
                                               direction : "d" "i"
+
+Xcos
+====
+
+* Update Sundials to lastest "2.5.0", keeping our modifications
 

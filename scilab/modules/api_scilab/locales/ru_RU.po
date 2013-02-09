@@ -146,7 +146,7 @@ msgid "%s: Unable to get argument data"
 msgstr "%s: Невозможно получить данные параметра"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Неверный размер параметра %d: ожидался размер (%d,%d).\n"
 
 #, c-format
@@ -161,7 +161,7 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
 

@@ -129,14 +129,25 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-l = list(1,["a" "b"])
-l(0) = "foo"
-l($+1) = "hello"
-l(2) = "toto"
-l(3) = rand(1,2)
-l(3) = null()
-lbis = list("gewurtz", "caipirina" ,"debug")
-lter = lstcat(l,lbis)
+l = list(1,["a" "b"]) // declaration of a basic list with a double & a vector of two strings
+size(l) // Size is 2
+// l(0) - Does not exist!
+l(1) // Access to the double value
+l(2) // Access to the vector of strings
+size(l(2)) // Size is 1,2
+
+l(0) = "foo" // Insert at the beginning of the list
+// l(0) - still does not exist
+l(1) // Is "foo"
+
+l($+1) = "hello" // Insert at the end
+l(2) = "toto" // Override my double
+l(3) = rand(1,2) // Override my vector of string
+
+l(3) = null() // Remove the third element
+
+lbis = list("gewurtz", "caipirina" ,"debug") // Declare a new list
+lter = lstcat(l,lbis) // Merge the two list
 size(lter) - size(lbis) - size(l)  // must be zero
  ]]></programlisting>
     </refsection>

@@ -33,7 +33,10 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
     private long eventMask;
     private SciTranslator clickTranslator;
     private MouseEvent lastMouse;
-
+    
+    // Match through Canonical name to have both GLCanvas and GLJPanel wrapper. 
+    private final String ScilabOpenGLComponentCanonicalName = "org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl";
+    
     /**
      * Constructor.
      *
@@ -55,11 +58,6 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
      * @see java.awt.event.AWTEventListener#eventDispatched(java.awt.AWTEvent)
      */
     public void eventDispatched(AWTEvent mouseEvent) {
-        // DEBUG
-        Debug.DEBUG(this.getClass().getSimpleName(), ((MouseEvent) mouseEvent).toString());
-        //if (this.axes != null) {
-        //Debug.DEBUG("axes number " + this.axes.getFigureId());
-        //}
         /*
          * Managing Canvas
          * PRESSED
@@ -73,7 +71,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
          * Use match on package name to match GLJPanel and GLCanvas
          * GLJPanel are still used under MacOSX
          */
-        if (mouseEvent.getSource().getClass().getCanonicalName().contains("javax.media.opengl")) {
+        if (mouseEvent.getSource().getClass().getCanonicalName().contains(ScilabOpenGLComponentCanonicalName)) {
             this.isControlDown = lastMouse.isControlDown();
             switch (mouseEvent.getID()) {
                     /* CLICKED */
@@ -145,7 +143,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
          * Use match on package name to match GLJPanel and GLCanvas
          * GLJPanel are still used under MacOSX
          */
-        if (mouseEvent.getSource().getClass().getCanonicalName().contains("javax.media.opengl")) {
+        if (mouseEvent.getSource().getClass().getCanonicalName().contains(ScilabOpenGLComponentCanonicalName)) {
             switch (mouseEvent.getID()) {
                 case MouseEvent.MOUSE_ENTERED :
                     this.inCanvas = true;
@@ -166,8 +164,9 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
          * and got a RELEASED
          */
         if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas
-                && (clickTranslator.getClickAction() == SciTranslator.UNMANAGED
-                    || clickTranslator.getClickAction() == SciTranslator.MOVED)) {
+                && mouseEvent.getSource().getClass().getCanonicalName().contains(ScilabOpenGLComponentCanonicalName)
+                && (clickTranslator.getClickAction() == SciTranslator.UNMANAGED 
+                || clickTranslator.getClickAction() == SciTranslator.MOVED)) {
             clickTranslator.setClickAction(SciTranslator.RELEASED);
             mouseEventFilter(lastMouse, GlobalEventWatcher.getAxesUID(), clickTranslator.getClickAction(), this.isControlDown);
         }

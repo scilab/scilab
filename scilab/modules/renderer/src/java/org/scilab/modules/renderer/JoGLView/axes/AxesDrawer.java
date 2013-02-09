@@ -302,13 +302,15 @@ public class AxesDrawer {
         double w = (1 - margins[0] - margins[1]) * axesBounds[2];
         double h = (1 - margins[2] - margins[3]) * axesBounds[3];
 
-        if (axes.getIsoview()) {
-            double minSize = Math.min(w, h);
-            y += (h - minSize);
-            h = minSize;
-            x += (w - minSize);
-            w = minSize;
-        }
+        // Don't know what's the goal of this code (finally w=h=minSize, so why a square ???)
+        // Comment it: that fixes bug 11801.
+        /*if (axes.getIsoview()) {
+          double minSize = Math.min(w, h);
+          y += (h - minSize);
+          h = minSize;
+          x += (w - minSize);
+          w = minSize;
+          }*/
 
         return new Rectangle2D.Double(x, y, w, h);
     }

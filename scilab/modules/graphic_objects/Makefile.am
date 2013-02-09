@@ -82,10 +82,6 @@ BUILT_SOURCES += giws
 endif
 
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_objects.c
-
-GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_graphicfunction.cpp
-
 libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/cpp/ \

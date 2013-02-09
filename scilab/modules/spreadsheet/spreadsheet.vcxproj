@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -249,7 +249,6 @@
     <ClInclude Include="src\c\ripole\pldstr.h" />
     <ClInclude Include="src\c\ripole\ripole.h" />
     <ClInclude Include="src\c\splitLine.h" />
-    <ClInclude Include="src\c\stringsToDoubles.h" />
     <ClInclude Include="src\c\stringToComplex.h" />
     <ClInclude Include="src\c\utftolatin.h" />
     <ClInclude Include="src\c\xls.h" />
@@ -283,7 +282,6 @@
     <ClCompile Include="src\c\ripole\pldstr.c" />
     <ClCompile Include="src\c\ripole\ripole.c" />
     <ClCompile Include="src\c\splitLine.c" />
-    <ClCompile Include="src\c\stringsToDoubles.c" />
     <ClCompile Include="src\c\stringToComplex.c" />
     <ClCompile Include="src\c\utftolatin.c" />
     <ClCompile Include="src\c\xls.c" />
