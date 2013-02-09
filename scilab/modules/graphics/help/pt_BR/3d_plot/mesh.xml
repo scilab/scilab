@@ -31,20 +31,18 @@
                 <term>Z</term>
                 <listitem>
                     <para>matriz de reais definindo a altura da superfície. Não pode ser
-                        omitida. O dado Z é uma matriz<literal>
-                            m
-                        </literal>
-                        x<literal>n</literal>.
+                        omitida. O dado <varname>Z</varname> é uma matriz
+						<literal>m</literal> x <literal>n</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>X,Y</term>
+                <term>X, Y</term>
                 <listitem>
                     <para>duas matrizes de reais: sempre ajustadas juntas, esses dados
                         definem um novo grid padrão. Estes novos componentes
-                        <literal>X</literal> e <literal>Y</literal> do grid devem coincidir
-                        com as dimensões de <literal>Z</literal> (ver descrição abaixo).
+                        <varname>X</varname> e <varname>Y</varname> do grid devem coincidir
+                        com as dimensões de <varname>Z</varname> (ver descrição abaixo).
                     </para>
                 </listitem>
             </varlistentry>
@@ -71,7 +69,7 @@
                 <term>&lt;axes_handle&gt;</term>
                 <listitem>
                     <para>este argumento opcional força o esboço a aparecer dentro dos
-                        eixos selecionados por <literal>axes_handle</literal> ao invés dos
+                        eixos selecionados por <varname>axes_handle</varname> ao invés dos
                         eixos correntes (ver <link linkend="gca">gca</link>).
                     </para>
                 </listitem>
@@ -81,29 +79,29 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>mesh</literal> desenha uma superfície parametrizada
+            <function>mesh</function> desenha uma superfície parametrizada
             utilizando um grid retangular definido pelas coordenadas
-            <literal>X</literal> e <literal>Y</literal> (se <literal>{X,Y}</literal>
+             <varname>X</varname>  e  <varname>Y</varname>  (se <literal>{X,Y}</literal>
             não são especificados, este grid é determinado utilizando-se as dimensões
-            da matriz <literal>Z</literal> ) ; em cada ponto deste grid, uma
-            coordenada Z é dada utilizando-se a matriz <literal>Z</literal>.
-            <literal>mesh</literal> é baseado no comando <literal>surf</literal> com a
+            da matriz  <varname>Z</varname>) ; em cada ponto deste grid, uma
+            coordenada <varname>Z</varname> é dada utilizando-se a matriz <varname>Z</varname>.
+            <function>mesh</function> é baseado no comando <function>surf</function> com a
             opção padrão <literal>color_mode</literal> = índice de branco (dentro do
             mapa de cores corrente) e <literal>color_flag</literal> = 0.
         </para>
         <para>Especificação de dados de entrada:</para>
         <para>Neste parágrafo, para sermos mais claros, não mencionaremos os
-            argumentos opcionais <literal>GlobalProperty</literal> já que eles não
+            argumentos opcionais <varname> GlobalProperty</varname>  já que eles não
             interferem na entrada de dados (exceto pelas propriedades
             <literal>"Xdata"</literal>, <literal>"Ydata"</literal> e
             <literal>"Zdata"</literal>, ver <link linkend="GlobalProperty">GlobalProperty</link>). Assume-se que todos estes
             argumentos opcionais poderiam estar presentes também.
         </para>
         <para>
-            Se <literal>Z</literal> é a única matriz especificada, (Z) esboça a
-            matriz <literal>Z</literal> versus o grid definido por
-            <literal>1:size(Z,2)</literal> ao longo do eixo x e
-            <literal>1:size(Z,1)</literal> ao longo do eixo y.
+            Se  <varname>Z</varname>  é a única matriz especificada, <code>mesh(Z)</code> esboça a
+            matriz  <varname>Z</varname>  versus o grid definido por
+            <code>1:size(Z,2)</code> ao longo do eixo x e
+            <code>1:size(Z,1)</code> ao longo do eixo y.
         </para>
     </refsection>
     <refsection>
@@ -117,9 +115,15 @@
         <programlisting role="example"><![CDATA[ 
 [X,Y]=meshgrid(-1:.1:1,-1:.1:1);
 Z=X.^2-Y.^2;
-xtitle('z=x2-y ^2');
+xtitle('z=x^2-y^2');
 mesh(X,Y,Z);
  ]]></programlisting>
+        <scilab:image>
+            [X,Y]=meshgrid(-1:.1:1,-1:.1:1);
+            Z=X.^2-Y.^2;
+            xtitle('z=x^2-y^2');
+            mesh(X,Y,Z);
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Ver Também </title>
