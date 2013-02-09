@@ -31,9 +31,9 @@
                 <term>Z</term>
                 <listitem>
                     <para>
-			a real matrix defining the surface height. It can not be
+                        a real matrix defining the surface height. It can not be
                         omitted. The <varname>Z</varname> data is a 
-			<literal>m</literal>-by-<literal>n</literal> matrix.
+                        <literal>m</literal>-by-<literal>n</literal> matrix.
                     </para>
                 </listitem>
             </varlistentry>
@@ -41,7 +41,7 @@
                 <term>X, Y</term>
                 <listitem>
                     <para>
-			two real matrices : always set together, these data defines a
+                        two real matrices : always set together, these data defines a
                         new standard grid. This new <varname>X</varname> and <varname>Y</varname> 
                         components of the grid must match <varname>Z</varname> dimensions (see
                         description below).
@@ -52,7 +52,7 @@
                 <term>color</term>
                 <listitem>
                     <para>
-			an optional real matrix defining a color value for each
+                        an optional real matrix defining a color value for each
                         <literal>(X(j),Y(i))</literal> point of the grid (see description
                         below).
                     </para>
@@ -62,7 +62,7 @@
                 <term>&lt;GlobalProperty&gt;</term>
                 <listitem>
                     <para>
-			this optional argument represents a sequence of couple
+                        this optional argument represents a sequence of couple
                         statements <literal>{PropertyName,PropertyValue}</literal> that defines
                         global objects' properties applied to all the curves created by this
                         plot. For a complete view of the available properties (see
@@ -74,7 +74,7 @@
                 <term>&lt;axes_handle&gt;</term>
                 <listitem>
                     <para>
-			this optional argument forces the plot to appear inside the
+                        this optional argument forces the plot to appear inside the
                         selected axes given by <varname>axes_handle</varname> rather than the
                         current axes (see <link linkend="gca">gca</link>).
                     </para>
@@ -96,25 +96,25 @@
         </para>
         <para>Data entry specification :</para>
         <para>
-	    In this paragraph and to be more clear, we won't mention
+            In this paragraph and to be more clear, we won't mention
             <varname>GlobalProperty</varname> optional arguments as they do not interfer
             with entry data (except for <literal>"Xdata"</literal>,
-	    <literal>"Ydata"</literal> and <literal>"Zdata"</literal>
-	    property, see <link linkend="GlobalProperty">GlobalProperty</link>). It is
+            <literal>"Ydata"</literal> and <literal>"Zdata"</literal>
+            property, see <link linkend="GlobalProperty">GlobalProperty</link>). It is
             assumed that all those optional arguments could be present too.
         </para>
         <para>
             If <varname>Z</varname> is the only matrix specified, <code>mesh(Z)</code>
-	    plots the matrix <varname>Z</varname> versus the grid defined by
-	    <code>1:size(Z,2)</code> along the x axis and <code>1:size(Z,1)</code>
-	    along the y axis.
+            plots the matrix <varname>Z</varname> versus the grid defined by
+            <code>1:size(Z,2)</code> along the x axis and <code>1:size(Z,1)</code>
+            along the y axis.
         </para>
     </refsection>
     <refsection>
         <title>Remarks</title>
         <para>
             To enable the tranparency mode you should set the 
-	    <literal>color_mode</literal> option to 0.
+            <literal>color_mode</literal> option to 0.
         </para>
     </refsection>
     <refsection>
@@ -122,13 +122,13 @@
         <programlisting role="example"><![CDATA[ 
 [X,Y]=meshgrid(-1:.1:1,-1:.1:1);
 Z=X.^2-Y.^2;
-xtitle('z=x^2-y^2');
+xtitle('$\huge z=x^2-y^2$');
 mesh(X,Y,Z);
  ]]></programlisting>
         <scilab:image>
             [X,Y]=meshgrid(-1:.1:1,-1:.1:1);
             Z=X.^2-Y.^2;
-            xtitle('z=x^2-y^2');
+            xtitle('$\huge z=x^2-y^2$');
             mesh(X,Y,Z);
         </scilab:image>
     </refsection>

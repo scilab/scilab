@@ -32,7 +32,7 @@
                 <listitem>
                     <para>matriz de reais definindo a altura da superfície. Não pode ser
                         omitida. O dado <varname>Z</varname> é uma matriz
-						<literal>m</literal> x <literal>n</literal>.
+                        <literal>m</literal> x <literal>n</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -81,7 +81,7 @@
         <para>
             <function>mesh</function> desenha uma superfície parametrizada
             utilizando um grid retangular definido pelas coordenadas
-             <varname>X</varname>  e  <varname>Y</varname>  (se <literal>{X,Y}</literal>
+            <varname>X</varname>  e  <varname>Y</varname>  (se <literal>{X,Y}</literal>
             não são especificados, este grid é determinado utilizando-se as dimensões
             da matriz  <varname>Z</varname>) ; em cada ponto deste grid, uma
             coordenada <varname>Z</varname> é dada utilizando-se a matriz <varname>Z</varname>.
@@ -115,13 +115,13 @@
         <programlisting role="example"><![CDATA[ 
 [X,Y]=meshgrid(-1:.1:1,-1:.1:1);
 Z=X.^2-Y.^2;
-xtitle('z=x^2-y^2');
+xtitle('$\huge z=x^2-y^2$');
 mesh(X,Y,Z);
  ]]></programlisting>
         <scilab:image>
             [X,Y]=meshgrid(-1:.1:1,-1:.1:1);
             Z=X.^2-Y.^2;
-            xtitle('z=x^2-y^2');
+            xtitle('$\huge z=x^2-y^2$');
             mesh(X,Y,Z);
         </scilab:image>
     </refsection>
