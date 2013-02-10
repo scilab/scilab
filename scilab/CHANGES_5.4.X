@@ -348,6 +348,7 @@ Bug fixes
 
 * Bug #12247 fixed - Fix a typo in some error messages.
 
+* Bug #12272 fixed - Fix a presentation of Cyrillic letters on sample images of russian help page for grand function.
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
