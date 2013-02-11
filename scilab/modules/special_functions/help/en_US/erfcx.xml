@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real vector or matrix</para>
+                    <para>vector or matrix</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>real vector or matrix (of same size than x)</para>
+                    <para>vector or matrix (of same size than x)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,16 +39,24 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>erfcx</literal> computes the scaled complementary error
-            function:
+            Compute the scaled complementary error function of x, defined by <latex>e^{x^2} \operatorname{erfc}(x)</latex>. Note also that <latex>\operatorname{erfcx}(-ix)</latex> computes the Faddeeva function w(x).
+            
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/erfcx_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = [1+2*%i,-1+2*%i,1e-6+2e-6*%i,0+2*%i];
+erfcx(x)
+// Equivalent to
+exp (x.^2) .* erfc(x)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Algorithms</title>
+        <para>
+            This function is based on the <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeeva package</ulink> library.
+        </para>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

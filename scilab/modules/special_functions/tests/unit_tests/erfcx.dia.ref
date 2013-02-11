@@ -1,0 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - S/E - Sylvestre Ledru
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+a=erfcx(1.234 + 0.5678*%i);
+assert_checkalmostequal(a, 0.33821874798-%i*0.111607747081);
+assert_checkerror("erfcx(''foo'')",[],999);
+assert_checkerror("erfcx(sparse([1,2;4,5;3,10],[1,2,3]))",[],999);

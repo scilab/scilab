@@ -23,9 +23,11 @@ int SCI_FADDEEVA(char *fname, unsigned long fname_len)
 
     double* wr = NULL;
     double* wi = NULL;
+    int iType = 0;
 
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 1, 1);
+
 
     /* get z */
     //get variable address of the input argument
@@ -34,6 +36,21 @@ int SCI_FADDEEVA(char *fname, unsigned long fname_len)
     {
         printError(&sciErr, 0);
         return 1;
+    }
+
+    // check type
+    sciErr = getVarType(pvApiCtx, zAddr, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
+    }
+
+    if (iType != sci_matrix)
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), fname, 1);
+        return 0;
     }
 
     sciErr = getComplexMatrixOfDouble(pvApiCtx, zAddr, &m, &n, &zr, &zi);

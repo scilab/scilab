@@ -14,6 +14,7 @@ extern "C" {
 #include "gw_special_functions.h"
 #include "Scierror.h"
 #include "api_scilab.h"
+#include "localization.h"
 }
 
 #include "faddeeva.h"
