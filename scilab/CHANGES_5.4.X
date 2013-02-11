@@ -231,6 +231,8 @@ Bug fixes
 
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
+* Bug #11812 fixed - Upper/lower case issues in the Xcos documentation fixed.
+
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
 
 * Bug #11931 fixed - In graphics, white space was not used as default thousand

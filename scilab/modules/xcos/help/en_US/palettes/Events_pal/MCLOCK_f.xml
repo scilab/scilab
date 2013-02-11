@@ -113,14 +113,14 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">basic period (1/f)</emphasis>
+                    <emphasis role="bold">Basic period (1/f)</emphasis>
                 </para>
                 <para> The parameter description 1.</para>
                 <para> Properties : Type 'vec' of size 1. </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">multiply by (n)</emphasis>
+                    <emphasis role="bold">Multiply by (n)</emphasis>
                 </para>
                 <para> The parameter description 2.</para>
                 <para> Properties : Type 'vec' of size 1.</para>
