@@ -1265,7 +1265,11 @@ variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::Sim
                                             }
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT keywords				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
-| functionCall DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
+| functionCall DOT functionCall				{
+							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
+							  $3->location_set(@$);
+							  $$ = $3;
+                                            }
 | ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); }
 | multipleResults					{ $$ = $1; }
 | variable LPAREN functionArgs RPAREN { $$ = new ast::CallExp(@$, *$1, *$3); }
