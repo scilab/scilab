@@ -35,6 +35,7 @@ public class UIDialog extends UIComponent {
     private JDialog win;
     private ImageIcon icon;
     private Boolean visible;
+    private UIComponent parentWindow;
 
     public UIDialog(UIComponent parent) throws UIWidgetException {
         super(parent);
@@ -50,6 +51,7 @@ public class UIDialog extends UIComponent {
     public Object newInstance(String title, int width, int height, int posX, int posY, Color background, ImageIcon icon, boolean visible, UIComponent parent, boolean modal) {
         this.visible = visible;
         this.icon = icon;
+        this.parentWindow = parent;
 
         if (parent == null) {
             win = new JDialog();
@@ -109,9 +111,19 @@ public class UIDialog extends UIComponent {
     public void finish() {
         win.pack();
         if (visible != null) {
-            win.setVisible(visible);
+            setVisible(visible);
             visible = null;
         }
+    }
+
+    public void setVisible(boolean b) {
+        if (parentWindow != null && parentWindow.getComponent() instanceof Component) {
+            ScreenInfo.center(win, (Component) parentWindow.getComponent());
+        } else {
+            ScreenInfo.center(win, null);
+        }
+
+        win.setVisible(b);
     }
 
     public void remove() {
