@@ -214,7 +214,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     Areal = isreal(A);
 
     //check if A is symetric
-    Asym = and(A == A');
+    Asym = norm(A-A') == 0;
 
     //*************************
     //Second variable B :

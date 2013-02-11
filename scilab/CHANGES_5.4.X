@@ -309,6 +309,8 @@ Bug fixes
 
 * Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
 
+* Bug #12139 fixed - eigs ran out of memory for sparse matrices.
+
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
 
 * Bug #12141 fixed - Remove calls to gettext in rubberbox help page examples.
