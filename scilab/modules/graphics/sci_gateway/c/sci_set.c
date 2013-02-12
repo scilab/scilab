@@ -121,7 +121,6 @@ int sci_set(char *fname, unsigned long fname_len)
             }
 
             hdl = (long) * hstk(l1);
-            pobjUID = (char*)getObjectFromHandle(hdl);
 
             GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);   /* Gets the command name */
 

@@ -90,8 +90,6 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
     }
 
     *u_nxgrads = cmpteur;
-    cmpteur = 0;
-    cmpteur2 = 0;
 
     return u_xlabels;
 }

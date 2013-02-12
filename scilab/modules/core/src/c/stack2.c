@@ -2557,7 +2557,7 @@ L9999:
 int C2F(scistring) (int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned long thestring_len)
 {
     int ret = FALSE;
-    int ifin = 0, ifun = 0, tops = 0, moutputs = 0;
+    int ifin = 0, ifun = 0, tops = 0;
     int id[nsiz];
     int lf = 0, op = 0, ils = 0, nnn = thestring_len;
 
@@ -2585,7 +2585,6 @@ int C2F(scistring) (int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned
         {
             lf = *Lstk(Fin);
             ils = iadr(lf) + 1;
-            moutputs = *istk(ils);
             ret = C2F(scifunction) (ifirst, &lf, mlhs, mrhs);
         }
         else

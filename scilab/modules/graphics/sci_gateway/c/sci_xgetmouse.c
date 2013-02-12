@@ -47,8 +47,6 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
 
     int selPosition = 0;
 
-    char *pstWindowUID = NULL;
-
     int iFigureId = 0;
 
     CheckRhs(0,1);
@@ -96,7 +94,6 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     mouseButtonNumber = getJxgetmouseMouseButtonNumber();
     pixelCoords[0] = (int) getJxgetmouseXCoordinate();
     pixelCoords[1] = (int) getJxgetmouseYCoordinate();
-    pstWindowUID = getJxgetmouseWindowsID();
 
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
     // No need to calculate coordinates if callback or close is trapped

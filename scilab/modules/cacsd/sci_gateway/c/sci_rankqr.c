@@ -27,11 +27,11 @@ int intrankqr(char* fname)
 	header1 = (int *) GetData(1);
 	Cmplx=header1[3];
 	if (Cmplx==0) {
-		ret = C2F(intmb03od)("rankqr",6L);
+		C2F(intmb03od)("rankqr",6L);
 		return 0; } 
 	else
 	{
-		ret = C2F(intzb03od)("rankqr",6L);
+		C2F(intzb03od)("rankqr",6L);
 		return 0; } 
 }
 /*--------------------------------------------------------------------------*/ 
