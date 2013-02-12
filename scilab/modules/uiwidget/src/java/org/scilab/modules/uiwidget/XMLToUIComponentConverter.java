@@ -37,6 +37,10 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import org.scilab.modules.uiwidget.components.TextData;
 
+/**
+ * UIWidget XML parser class
+ * @author Calixte DENIZET
+ */
 public class XMLToUIComponentConverter extends DefaultHandler {
 
     private final static Map<String, String> mapUriToPackage = new HashMap<String, String>();
@@ -48,6 +52,10 @@ public class XMLToUIComponentConverter extends DefaultHandler {
     private Map<String, Map<String, String>> style;
     private String modeleNS;
 
+    /**
+     * Default constructor
+     * @param in a string containing file path or URL
+     */
     public XMLToUIComponentConverter(String in) throws IOException {
         this.in = in;
         this.stack = new Stack<UIComponent>();
@@ -57,10 +65,19 @@ public class XMLToUIComponentConverter extends DefaultHandler {
         registerURI("http://forge.scilab.org/uicontrol2", "org.scilab.modules.uiwidget.components");
     }
 
+    /**
+     * Register an URI for a given Java package
+     * @param uri the URI
+     * @param pack the Java package name containing UIComponents
+     */
     public static void registerURI(String uri, String pack) {
         mapUriToPackage.put(uri, pack);
     }
 
+    /**
+     * Get the style associated with this XML file
+     * @return the CSS style
+     */
     public Map<String, Map<String, String>> getStyle() {
         return style;
     }
@@ -74,8 +91,9 @@ public class XMLToUIComponentConverter extends DefaultHandler {
 
     /**
      * Start the conversion
+     * @param in the path or URL to the given XML
      */
-    public void convert(String in) throws Exception {
+    protected void convert(String in) throws Exception {
         if (in != null) {
             File f = new File(in);
             if (f.exists() && f.canRead()) {
@@ -103,15 +121,17 @@ public class XMLToUIComponentConverter extends DefaultHandler {
 
     /**
      * Start the conversion
+     * @param f a File
      */
-    public void convert(File f) throws Exception {
+    protected void convert(File f) throws Exception {
         convert(new FileInputStream(f));
     }
 
     /**
      * Start the conversion
+     * @param in an InputStream
      */
-    public void convert(InputStream is) throws Exception {
+    protected void convert(InputStream is) throws Exception {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setValidating(false);
@@ -240,6 +260,12 @@ public class XMLToUIComponentConverter extends DefaultHandler {
         }
     }
 
+    /**
+     * Create an UIComponent
+     * @param pack Java package name
+     * @param name Java class name
+     * @param attributes the XML attributes
+     */
     protected void createUIComponent(String pack, String name, Attributes attributes) throws SAXException {
         UIComponent parent = null;
         if (!stack.empty()) {
@@ -256,6 +282,12 @@ public class XMLToUIComponentConverter extends DefaultHandler {
         }
     }
 
+    /**
+     * Create an UIComponent based on a model
+     * @param uri the uri where the model is located
+     * @param name the model name
+     * @param attributes the XML attributes
+     */
     protected void createUIComponentOnModele(String uri, String name, Attributes attributes) throws SAXException {
         UIComponent parent = null;
         if (!stack.empty()) {
@@ -272,6 +304,12 @@ public class XMLToUIComponentConverter extends DefaultHandler {
         }
     }
 
+    /**
+     * Create a fake UIComponent
+     * @param pack Java package name
+     * @param name Java class name
+     * @param attributes the XML attributes
+     */
     protected void createUIFakeComponent(String pack, String name, Attributes attributes) {
         UIFakeComponent parent = null;
         if (!stackFake.empty()) {
@@ -281,6 +319,12 @@ public class XMLToUIComponentConverter extends DefaultHandler {
         stackFake.push(new UIFakeComponent(pack, name, attributes));
     }
 
+    /**
+     * Create a fake UIComponent based on a model
+     * @param uri the uri where the model is located
+     * @param name the model name
+     * @param attributes the XML attributes
+     */
     protected void createUIFakeComponentOnModele(String uri, String name, Attributes attributes) {
         stackFake.push(UIModele.get(uri, name, attributes));
     }
@@ -298,6 +342,10 @@ public class XMLToUIComponentConverter extends DefaultHandler {
         }
     }
 
+    /**
+     * Handle a CSS style definition
+     * @param css a CSS string
+     */
     protected void handleStyle(String css) {
         if (css != null && !css.isEmpty()) {
             String[] files = css.split("[ ,;]");
@@ -315,6 +363,11 @@ public class XMLToUIComponentConverter extends DefaultHandler {
         }
     }
 
+    /**
+     * Merge two CSS style maps, style1 is modified and contains the result.
+     * @param style1 first map
+     * @param style2 second map
+     */
     private static void mergeStyles(Map<String, Map<String, String>> style1, Map<String, Map<String, String>> style2) {
         Set<String> keys2 = style2.keySet();
         for (String key2 : keys2) {

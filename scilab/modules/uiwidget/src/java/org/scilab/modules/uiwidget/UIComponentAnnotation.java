@@ -23,10 +23,10 @@ public @interface UIComponentAnnotation {
      * Map method arguments with attributes name
      * For example,
      * <code>
-     * @XConfAttribute(tag="mytag", attributes={"a", "b"})
+     * @UIComponentAnnotation(attributes={"a", "b"})
      * void foo(String one, int tow) { ... }
      * </code>
      * The value of attribute "a" is converted into a String and passed as "one" argument,...
-         */
+     */
 public String[] attributes() default {""};
 }

@@ -26,6 +26,9 @@ import javax.swing.border.TitledBorder;
 
 import org.scilab.modules.uiwidget.components.UITools;
 
+/**
+ * Border Factory
+ */
 public final class UIBorderFactory {
 
     private static final Border defaultTitledBorder = BorderFactory.createTitledBorder("").getBorder();
@@ -198,6 +201,11 @@ public final class UIBorderFactory {
         });
     }
 
+    /**
+     * Get a border from a CSS style string
+     * @param str the CSS string
+     * @return the corresponding Border
+     */
     public static final Border getBorder(String str) {
         if (str == null || str.isEmpty()) {
             return null;
@@ -217,6 +225,12 @@ public final class UIBorderFactory {
         return creator.create(map);
     }
 
+    /**
+     * Get a border
+     * @param name the border name
+     * @param map the border properties
+     * @return the corresponding Border
+     */
     public static final Border getBorder(String name, Map<String, String> map) {
         BorderCreator creator = creators.get(name.toLowerCase());
         if (creator == null) {
@@ -226,8 +240,16 @@ public final class UIBorderFactory {
         return creator.create(map);
     }
 
+    /**
+     * Inner interface to create a Border
+     */
     private static interface BorderCreator {
 
+        /**
+         * Create a Border with the given properties in the map
+         * @param map the properties
+         * @return the Border
+         */
         Border create(Map<String, String> map);
     }
 }

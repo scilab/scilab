@@ -14,20 +14,43 @@ package org.scilab.modules.uiwidget;
 
 import java.util.HashMap;
 
+/**
+ * A Map where the value is convert into a Java object
+ */
 public class StringMap extends HashMap<String, String> implements ConvertableMap<String> {
 
+    /**
+     * Default constructor
+     */
     public StringMap() {
         super();
     }
 
+    /**
+     * Constructor
+     * @param len the map initial capacity
+     */
     public StringMap(int len) {
         super(len);
     }
 
+    /**
+     * Get a value and convert it
+     * @param clazz the class of the result after conversion
+     * @param key the key
+     * @param defaultValue the default value if the key is not in the map
+     * @return the converted object
+     */
     public <T> T get(Class<T> clazz, String key, T defaultValue) {
         return StringConverters.getObjectFromValue(clazz, get(key), defaultValue);
     }
 
+    /**
+     * Get a value and convert it
+     * @param clazz the class of the result after conversion
+     * @param key the key
+     * @return the converted object
+     */
     public <T> T get(Class<T> clazz, String key) {
         return StringConverters.getObjectFromValue(clazz, get(key));
     }

@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -37,29 +38,41 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
 
-<modele namespace="foo">
+   <modele namespace="foo">
 
-<UIFrame modele-name="Machin">
-...
-</UIFrame>
+   <UIFrame modele-name="Machin">
+   ...
+   </UIFrame>
 
-<UIButton modele-name="Truc">
-...
-</UIButton>
-</modele>
+   <UIButton modele-name="Truc">
+   ...
+   </UIButton>
+   </modele>
 
 **/
 
+/**
+ * Class to handle modele
+ */
 public class UIModele {
 
     private static final Map<String, UIModele> modeles = new HashMap<String, UIModele>();
 
-    Map<String, UIFakeComponent> m;
+    private Map<String, UIFakeComponent> m;
 
+    /**
+     * Default constructor
+     */
     public UIModele() {
         m = new HashMap<String, UIFakeComponent>();
     }
 
+    /**
+     * Register an uri for a model name and the given fake UIComponent
+     * @param uri the URI
+     * @param modeleName the model name
+     * @param component the fake UIComponent
+     */
     public static void add(String uri, String modeleName, UIFakeComponent component) {
         UIModele modele = modeles.get(uri);
         if (modele == null) {
@@ -70,6 +83,13 @@ public class UIModele {
         modele.m.put(modeleName, component);
     }
 
+    /**
+     * Get a fake UIComponent
+     * @param uri the URI
+     * @param modeleName the modele name
+     * @param attrs the XML attributes
+     * @return the corresponding fake UIComponent
+     */
     public static UIFakeComponent get(String uri, String modeleName, Attributes attrs) {
         UIModele modele = modeles.get(uri);
         if (modele == null) {
@@ -87,10 +107,27 @@ public class UIModele {
         return ui;
     }
 
+    /**
+     * Get a real UIComponent (not fake)
+     * @param uri the URI
+     * @param modeleName the modele name
+     * @param parent the parent UIComponent
+     * @param style the CSS map style
+     * @return the corresponding UIComponent
+     */
     public static UIComponent get(String uri, String modeleName, final UIComponent parent, final Map<String, Map<String, String>> style) throws UIWidgetException {
         return get(uri, modeleName, parent, null, style);
     }
 
+    /**
+     * Get a real UIComponent (not fake)
+     * @param uri the URI
+     * @param modeleName the modele name
+     * @param parent the parent UIComponent
+     * @param attributes the XML attributes
+     * @param style the CSS map style
+     * @return the corresponding UIComponent
+     */
     public static UIComponent get(String uri, String modeleName, final UIComponent parent, final StringMap attributes, final Map<String, Map<String, String>> style) throws UIWidgetException {
         UIModele modele = modeles.get(uri);
         if (modele == null) {
@@ -104,7 +141,7 @@ public class UIModele {
 
         final UIComponent[] ptr = new UIComponent[1];
         try {
-            javax.swing.SwingUtilities.invokeAndWait(new Runnable() {
+            SwingUtilities.invokeAndWait(new Runnable() {
                 public void run() {
                     try {
                         ptr[0] = c.getUIComponent(parent, attributes, style);

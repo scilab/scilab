@@ -13,16 +13,26 @@
 package org.scilab.modules.uiwidget;
 
 import java.awt.Component;
-import java.util.Map;
 
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * Abstract class to handle EventListener
+ */
 public abstract class UIListener extends UIComponent {
 
+    /**
+     * Default constructor
+     * @param parent the UIComponent which will have a listener
+     */
     public UIListener(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * Add a listener to the given component
+     * @param c the component
+     */
     public abstract void addListenerToComponent(Component c);
 }

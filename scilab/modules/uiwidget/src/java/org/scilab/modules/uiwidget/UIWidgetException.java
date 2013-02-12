@@ -12,8 +12,15 @@
 
 package org.scilab.modules.uiwidget;
 
+/**
+ * UIWidget Exception class
+ */
 public class UIWidgetException extends Exception {
 
+    /**
+     * Default constructor
+     * @param msg the error message
+     */
     public UIWidgetException(String msg) {
         super(msg);
     }

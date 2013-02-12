@@ -19,23 +19,40 @@ import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.types.ScilabVariables;
 import org.scilab.modules.types.ScilabVariablesHandler;
 
+/**
+ * Handler to retrieved Scilab variables.
+ */
 public class UIWidgetHandler implements ScilabVariablesHandler {
 
     private List<ScilabType> list = new ArrayList<ScilabType>();
     private int id;
 
+    /**
+     * Default constructor
+     */
     public UIWidgetHandler() {
         id = ScilabVariables.addScilabVariablesHandler(this);
     }
 
+    /**
+     * @return the handler id
+     */
     public int getHandlerId() {
         return id;
     }
 
+    /**
+     * Handle the Scilab's variable
+     * @param var the Scilab's var
+     */
     public void handle(ScilabType var) {
         list.add(var);
     }
 
+    /**
+     * Get the list containing the retrieved arguments
+     * @return the list of arguments
+     */
     public List<ScilabType> getArgumentList() {
         List<ScilabType> ret = list;
         list = new ArrayList<ScilabType>();

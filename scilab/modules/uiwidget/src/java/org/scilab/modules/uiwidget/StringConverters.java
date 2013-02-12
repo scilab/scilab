@@ -62,23 +62,47 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
+/**
+ * Main class which handle conversion between String and basic Java objects
+ */
 public final class StringConverters {
 
     private static final Map<Class, StringConverter> converters = new HashMap<Class, StringConverter>();
     private static final DateFormat dateformat = DateFormat.getDateInstance(DateFormat.LONG);
 
+    /**
+     * Register a converter
+     * @param clazz the resulting class
+     * @param converter the converter to use
+     */
     public static final void registerConverter(final Class clazz, final StringConverter converter) {
         converters.put(clazz, converter);
     }
 
+    /**
+     * Get the converter to use for a given class
+     * @param clazz the class result
+     * @return the corresponding converter
+     */
     public static final StringConverter getConverter(final Class clazz) {
         return converters.get(clazz);
     }
 
+    /**
+     * Check if a converter is existing
+     * @param clazz the class result
+     * @return true if a converter is existing
+     */
     public static final boolean containConverter(final Class clazz) {
         return converters.containsKey(clazz);
     }
 
+    /**
+     * Get an object from a value
+     * @param clazz the class of the resulting object
+     * @param value the value to convert
+     * @return the converted object
+     */
     public static final <T> T getObjectFromValue(final Class<T> clazz, final String value) {
         final StringConverter converter = converters.get(clazz);
         if (converter == null) {
@@ -88,6 +112,13 @@ public final class StringConverters {
         return (T) converter.convert(value);
     }
 
+    /**
+     * Get an object from a value
+     * @param clazz the class of the resulting object
+     * @param value he value to convert
+     * @param defaultValue the default value
+     * @return the converted object
+     */
     public static final <T> T getObjectFromValue(final Class<T> clazz, final String value, final T defaultValue) {
         final StringConverter converter = converters.get(clazz);
         if (converter == null) {

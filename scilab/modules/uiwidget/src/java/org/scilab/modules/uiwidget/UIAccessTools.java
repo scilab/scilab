@@ -25,9 +25,17 @@ import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.uiwidget.components.TextData;
 import org.scilab.modules.uiwidget.components.UIKeymap;
 
+/**
+ * Tools to access to the UIComponents and their properties
+ */
 public final class UIAccessTools {
 
-    public static void add(final UIComponent parent, final UIComponent uicomp) throws UIWidgetException {
+    /**
+     * Add a child to a parent
+     * @param parent the parent UIComponent
+     * @param uicomp the child
+     */
+    public static final void add(final UIComponent parent, final UIComponent uicomp) throws UIWidgetException {
         final Object comp = uicomp.getComponent();
         if (uicomp instanceof UIListener) {
             parent.addListener((UIListener) uicomp);
@@ -71,7 +79,13 @@ public final class UIAccessTools {
         }
     }
 
-    private static void invokeAdder(final Method m, final Object base, final Object obj) throws UIWidgetException {
+    /**
+     * Invoke an adder
+     * @param m the adder method
+     * @param base the base object
+     * @param obj the adder argument
+     */
+    private static final void invokeAdder(final Method m, final Object base, final Object obj) throws UIWidgetException {
         try {
             m.invoke(base, obj);
         } catch (Exception e) {
@@ -79,7 +93,13 @@ public final class UIAccessTools {
         }
     }
 
-    public static void setPropertyViaReflection(final Object obj, final String name, final String value) throws UIWidgetException {
+    /**
+     * Set a property in using reflection
+     * @param obj the object
+     * @param name the property name
+     * @param value a String containing the value (e.g. value="1.23")
+     */
+    public static final void setPropertyViaReflection(final Object obj, final String name, final String value) throws UIWidgetException {
         Class clazz = obj.getClass();
         String methName = getSetterName(name);
         final Method method = UIMethodFinder.findSetter(methName, clazz);
@@ -99,7 +119,13 @@ public final class UIAccessTools {
         });
     }
 
-    public static void setPropertyViaReflection(final Object obj, final String name, final ScilabType value) throws UIWidgetException {
+    /**
+     * Set a property in using reflection
+     * @param obj the object
+     * @param name the property name
+     * @param value a ScilabType value
+     */
+    public static final void setPropertyViaReflection(final Object obj, final String name, final ScilabType value) throws UIWidgetException {
         Class clazz = obj.getClass();
         String methName = getSetterName(name);
         final Method method = UIMethodFinder.findSetter(methName, clazz);
@@ -119,7 +145,13 @@ public final class UIAccessTools {
         });
     }
 
-    public static void invokeSetter(final Method m, final Object obj, final String value) throws UIWidgetException {
+    /**
+     * Invoke a setter
+     * @param m the method
+     * @param obj the object where to set
+     * @param value a String value
+     */
+    public static final void invokeSetter(final Method m, final Object obj, final String value) throws UIWidgetException {
         try {
             m.invoke(obj, StringConverters.getObjectFromValue(m.getParameterTypes()[0], value));
         } catch (IllegalAccessException e) {
@@ -141,7 +173,13 @@ public final class UIAccessTools {
         }
     }
 
-    public static void invokeSetter(final Method m, final Object obj, final ScilabType value) throws UIWidgetException {
+    /**
+     * Invoke a setter
+     * @param m the method
+     * @param obj the object where to set
+     * @param value a ScilabType value
+     */
+    public static final void invokeSetter(final Method m, final Object obj, final ScilabType value) throws UIWidgetException {
         try {
             m.invoke(obj, ScilabTypeConverters.getObjectFromValue(m.getParameterTypes()[0], value));
         } catch (IllegalAccessException e) {
@@ -163,7 +201,13 @@ public final class UIAccessTools {
         }
     }
 
-    public static Object getPropertyViaReflection(final Object obj, final String name) throws UIWidgetException {
+    /**
+     * Get a property in using reflection
+     * @param obj the object
+     * @param name the property name
+     * @return the property value
+     */
+    public static final Object getPropertyViaReflection(final Object obj, final String name) throws UIWidgetException {
         Class clazz = obj.getClass();
         String methName = getGetterName(name);
         Method method = UIMethodFinder.findGetter(methName, clazz);
@@ -202,7 +246,13 @@ public final class UIAccessTools {
         }
     }
 
-    public static Object invokeGetter(final Method m, final Object obj) throws UIWidgetException {
+    /**
+     * Invoke a getter
+     * @param m the method
+     * @param obj the object where to set
+     * @return the property value
+     */
+    public static final Object invokeGetter(final Method m, final Object obj) throws UIWidgetException {
         try {
             return m.invoke(obj);
         } catch (IllegalAccessException e) {
@@ -226,7 +276,13 @@ public final class UIAccessTools {
         return null;
     }
 
-    public static Set<String> createNewInstance(final UIComponent uicomp,  final ConvertableMap attributes) throws UIWidgetException {
+    /**
+     * Create a new instance in calling the newInstance method of the UIComponent
+     * @param uicomp the component to instanciate
+     * @param attributes the UIComponent attributes
+     * @return a Set of the unused attributes.
+     */
+    public static final Set<String> createNewInstance(final UIComponent uicomp, final ConvertableMap attributes) throws UIWidgetException {
         final Set<String> uselessAttrs = new TreeSet<String>(attributes.keySet());
         Method method = UIMethodFinder.findNewer(uicomp.getClass());
         Annotation annotation = null;
@@ -294,7 +350,11 @@ public final class UIAccessTools {
         return uselessAttrs;
     }
 
-    public static void execOnEDT(final Runnable runnable) {
+    /**
+     * Execute a Runnable on the EDT
+     * @param runnable the runnable
+     */
+    public static final void execOnEDT(final Runnable runnable) {
         if (SwingUtilities.isEventDispatchThread()) {
             runnable.run();
         } else {
@@ -302,19 +362,40 @@ public final class UIAccessTools {
         }
     }
 
-    public static String getSetterName(final String key) throws UIWidgetException {
+    /**
+     * Get a setter name (e.g. "setFoo" for "foo")
+     * @param key the base of the setter name
+     * @return a setter name
+     */
+    public static final String getSetterName(final String key) throws UIWidgetException {
         return getMethodName("set", key);
     }
 
-    public static String getGetterName(final String key) throws UIWidgetException {
+    /**
+     * Get a getter name (e.g. "getFoo" for "foo")
+     * @param key the base of the getter name
+     * @return a getter name
+     */
+    public static final String getGetterName(final String key) throws UIWidgetException {
         return getMethodName("get", key);
     }
 
+    /**
+     * Get a "is"-getter name (e.g. "isFoo" for "foo")
+     * @param key the base of the getter name
+     * @return a getter name
+     */
     public static String getIsGetterName(final String key) throws UIWidgetException {
         return getMethodName("is", key);
     }
 
-    public static String getMethodName(final String prefix, final String key) throws UIWidgetException {
+    /**
+     * Get a method name
+     * @param prefix the prefix to use for the method name
+     * @param key the base of the name
+     * @return a name
+     */
+    public static final String getMethodName(final String prefix, final String key) throws UIWidgetException {
         if (key == null || key.isEmpty()) {
             throw new UIWidgetException("Invalid attribute name: cannot be empty");
         }
@@ -324,7 +405,9 @@ public final class UIAccessTools {
         buffer.append(prefix).append(Character.toUpperCase(chars[0]));
         for (int i = 1; i < chars.length; i++) {
             if (chars[i] == '-') {
-                buffer.append(Character.toUpperCase(chars[i + 1]));
+                if (i + 1 < chars.length) {
+                    buffer.append(Character.toUpperCase(chars[i + 1]));
+                }
                 i++;
             } else {
                 buffer.append(chars[i]);

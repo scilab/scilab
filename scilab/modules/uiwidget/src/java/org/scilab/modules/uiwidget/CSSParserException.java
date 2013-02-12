@@ -12,8 +12,15 @@
 
 package org.scilab.modules.uiwidget;
 
+/**
+ * CSS parser exception
+ */
 public class CSSParserException extends Exception {
 
+    /**
+     * Default constructor
+     * @param msg the error message
+     */
     public CSSParserException(String msg) {
         super(msg);
     }

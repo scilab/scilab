@@ -31,15 +31,26 @@ import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.types.ScilabTypeEnum;
 
+/**
+ * Main interface between Scilab gateway and Java objects
+ */
 public class UIWidget {
 
     private static UIWidgetHandler handler;
 
+    /**
+     * Load a uiwidget XML file
+     * @param filename the file name
+     */
     public static void uiwidgetLoad(String filename) throws Exception {
         final XMLToUIComponentConverter converter = new XMLToUIComponentConverter(filename);
         converter.convert();
     }
 
+    /**
+     * Get the handler id to use to send Scilab data
+     * @return the handler id
+     */
     public static int getUIWidgetHandler() {
         if (handler == null) {
             handler = new UIWidgetHandler();
@@ -48,6 +59,10 @@ public class UIWidget {
         return handler.getHandlerId();
     }
 
+    /**
+     * Get the pairs property name -- property value
+     * @param the UIComponent handle
+     */
     public static String[][] uigetPropertyPairs(int uid) {
         final UIComponent comp = UILocator.get(uid);
         if (comp == null) {
@@ -57,6 +72,11 @@ public class UIWidget {
         return null;
     }
 
+    /**
+     * Get the handle of an UIComponent accordint to its path
+     * @param path the UICompoent path
+     * @return the corresponding handle
+     */
     public static int getUidFromPath(final String path) {
         UIComponent comp = UILocator.get(path);
         if (comp == null) {
@@ -66,6 +86,12 @@ public class UIWidget {
         return comp.getUid();
     }
 
+    /**
+     * Get a property value of the UIComponent with the given handle and ut the result on the Scilab stack.
+     * @param uid the handle
+     * @param property the property name
+     * @param stackPos the stack position
+     */
     public static void uiget(int uid, String property, int stackPos) throws Exception {
         if (property == null || property.isEmpty()) {
             throw new Exception(String.format("Invalid argument: A property name expected"));
@@ -93,6 +119,10 @@ public class UIWidget {
         }
     }
 
+    /**
+     * Delete the UIComponent with the given handle
+     * @param uid the handle
+     */
     public static void uidelete(final int uid) {
         final UIComponent comp = UILocator.get(uid);
         if (comp != null) {
@@ -123,6 +153,9 @@ public class UIWidget {
         }
     }
 
+    /**
+     * Remove all the UIComponents
+     */
     public static void uideleteAll() {
         UIAccessTools.execOnEDT(new Runnable() {
             public void run() {
@@ -131,6 +164,10 @@ public class UIWidget {
         });
     }
 
+    /**
+     * Show the window containing the UIComponent with the given handle
+     * @param uid the handle
+     */
     public static void uishowWindow(final int uid) {
         final UIComponent comp = UILocator.get(uid);
         if (comp != null) {
@@ -150,10 +187,19 @@ public class UIWidget {
         }
     }
 
+    /**
+     * Check if a handle is valid
+     * @param uid the handle
+     */
     public static boolean uiisValid(final int uid) {
         return UILocator.isValid(uid);
     }
 
+    /**
+     * Set a property on the given UIComponent
+     * Arguments have been previously retrieved (in the gateway)
+     * @param uid the handle
+     */
     public static void uiset(final int uid) throws Exception {
         final List<ScilabType> args = handler.getArgumentList();
         final List<String> proprName = new ArrayList<String>();
@@ -188,6 +234,10 @@ public class UIWidget {
         });
     }
 
+    /**
+     * Get an UIComponent corresponding to arg
+     * @param arg the argument
+     */
     public static UIComponent getUIComponent(ScilabType arg) {
         if (arg.isEmpty()) {
             return null;
@@ -205,7 +255,10 @@ public class UIWidget {
         return null;
     }
 
-
+    /**
+     * Create a new UIComponent (arguments have been already retrieved in the gateway)
+     * @return an handle
+     */
     public static int uiwidget() throws Exception {
         final List<ScilabType> args = handler.getArgumentList();
         final List<String> proprName = new ArrayList<String>();

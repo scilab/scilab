@@ -18,10 +18,18 @@ import java.util.Set;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 
+/**
+ * Few tools
+ */
 public final class UIWidgetTools {
 
     private static final Set<File> bases = new HashSet<File>();
 
+    /**
+     * Add a base directory where to search resources
+     * @param f the base directory
+     * @return true if the directory was added and false if it was already added.
+     */
     public static boolean addBaseDir(File f) {
         if (bases.contains(f)) {
             return false;
@@ -31,10 +39,19 @@ public final class UIWidgetTools {
         return true;
     }
 
+    /**
+     * Remove a base directory
+     * @param f a base directory to remove
+     */
     public static void removeBaseDir(File f) {
         bases.remove(f);
     }
 
+    /**
+     * Get a file with the given path (search is made according to registered base directories)
+     * @param f a file path
+     * @return the corresponding file.
+     */
     public static File getFile(String f) {
         File ff = new File(f);
         if (ff.isAbsolute()) {
@@ -55,6 +72,13 @@ public final class UIWidgetTools {
         return new File(f);
     }
 
+    /**
+     * Get an action string corresponding to the Scilab callback to execute
+     * @param uicomp the UIComponent where the event occured
+     * @param command the callback name
+     * @param args the arguments
+     * @return the corresponding Scilab's code
+     */
     public static String getActionString(final UIComponent uicomp, final String command, final Object ... args) {
         StringBuilder buffer = new StringBuilder(128);
         buffer.append(command).append("(createUIWidgetHandle(int32(").append(Integer.toString(-uicomp.getUid() - 1)).append("))");
@@ -74,6 +98,12 @@ public final class UIWidgetTools {
         return buffer.toString();
     }
 
+    /**
+     * Execute a Scilab code in Scilab environment
+     * @param uicomp the UIComponent where the event occured
+     * @param command the callback name
+     * @param args the arguments
+     */
     public static void execAction(final UIComponent uicomp, final String command, final Object ... args) {
         if (command != null && !command.isEmpty()) {
             InterpreterManagement.requestScilabExec(getActionString(uicomp, command, args));

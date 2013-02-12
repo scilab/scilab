@@ -25,8 +25,14 @@ import java.util.Map;
 
 import javax.swing.BoxLayout;
 
+/**
+ * LayoutManager factory
+ */
 public final class UILayoutFactory {
 
+    /**
+     * Constants for gridbag layout
+     */
     public static final Map<String, Integer> GridBagConstants = new HashMap<String, Integer>();
 
     static {
@@ -74,6 +80,9 @@ public final class UILayoutFactory {
         GridBagConstants.put("b", GridBagConstraints.BOTH);
     }
 
+    /**
+     * Constants for border layout
+     */
     public static final Map<String, String> BorderConstants = new HashMap<String, String>();
 
     static {
@@ -207,6 +216,12 @@ public final class UILayoutFactory {
         });
     }
 
+    /**
+     * Get the LayoutManager corresponding to the CSS string (e.g. str="name:grid; rows:2; cols:3")
+     * @param c the container which will have the layout
+     * @param str a CSS string
+     * @return the LayoutManager
+     */
     public static final LayoutManager getLayout(Container c, String str) {
         if (str == null || str.isEmpty()) {
             return null;
@@ -226,8 +241,17 @@ public final class UILayoutFactory {
         return creator.create(c, map);
     }
 
+    /**
+     * Inner interface to create a LayoutManager
+     */
     private static interface LayoutCreator {
 
+        /**
+         * Create a LayoutManager for a container c with the given properties in the map
+         * @param c the container
+         * @param map the properties
+         * @return the LayoutManager
+         */
         LayoutManager create(Container c, Map<String, String> map);
     }
 }

@@ -12,48 +12,20 @@
 
 package org.scilab.modules.uiwidget;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.net.URL;
-import java.net.MalformedURLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.KeyStroke;
-import javax.swing.border.Border;
 
-import org.scilab.modules.uiwidget.components.UILabel;
-import org.scilab.modules.uiwidget.components.UIMenuItem;
-import org.scilab.modules.uiwidget.components.UITab;
-import org.scilab.modules.uiwidget.components.UISplit;
-import org.scilab.modules.uiwidget.components.UIButton;
-import org.scilab.modules.uiwidget.components.UIToolBar;
-import org.scilab.modules.uiwidget.components.UITools;
-import org.scilab.modules.uiwidget.components.UIPanel;
-import org.scilab.modules.uiwidget.components.UISlider;
-import org.scilab.modules.uiwidget.components.UIProgressBar;
-
-import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.types.ScilabInteger;
 import org.scilab.modules.types.ScilabHandle;
 import org.scilab.modules.types.ScilabStackPutter;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 

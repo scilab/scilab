@@ -14,9 +14,17 @@ package org.scilab.modules.uiwidget;
 
 import java.util.Map;
 
-public class StyleParser {
+/**
+ * Access to the CSS style parser
+ */
+public final class StyleParser {
 
-    public final static Map<String, String> parseLine(String str) {
+    /**
+     * Parse a CSS line
+     * @param str the line
+     * @return CSS properties as a Map
+     */
+    public static final Map<String, String> parseLine(String str) {
         try {
             return CSSParser.parseLine(str);
         } catch (CSSParserException e) {
@@ -25,7 +33,12 @@ public class StyleParser {
         }
     }
 
-    public final static Map<String, Map<String, String>> parseBlock(String str) {
+    /**
+     * Parse a CSS block
+     * @param str the block
+     * @return CSS properties as a Map
+     */
+    public static final Map<String, Map<String, String>> parseBlock(String str) {
         try {
             return CSSParser.parseBlock(str);
         } catch (CSSParserException e) {
@@ -34,7 +47,12 @@ public class StyleParser {
         }
     }
 
-    public final static Map<String, Map<String, String>> parseFile(String file) {
+    /**
+     * Parse a CSS file
+     * @param file the file name
+     * @return CSS properties as a Map
+     */
+    public static final Map<String, Map<String, String>> parseFile(String file) {
         try {
             return CSSParser.parseFile(file);
         } catch (CSSParserException e) {

@@ -19,6 +19,10 @@ import java.util.Map;
 
 import org.xml.sax.Attributes;
 
+/**
+ * Class to keep the properties and the children of an UIComponent but without creating it
+ * Useful with UIComponent models.
+ */
 public class UIFakeComponent implements Cloneable {
 
     private StringMap attributes;
@@ -27,6 +31,12 @@ public class UIFakeComponent implements Cloneable {
     private String pack;
     private String name;
 
+    /**
+     * Default constructor
+     * @param pack the Java package name
+     * @param name the Java class name
+     * @param attributes the XML attributes
+     */
     public UIFakeComponent(String pack, String name, StringMap attributes) {
         this.pack = pack;
         this.name = name;
@@ -34,10 +44,20 @@ public class UIFakeComponent implements Cloneable {
         this.children = new ArrayList<UIFakeComponent>();
     }
 
+    /**
+     * Default constructor
+     * @param pack the Java package name
+     * @param name the Java class name
+     * @param attributes the XML attributes
+     */
     public UIFakeComponent(String pack, String name, Attributes attributes) {
         this(pack, name, UIComponent.getMapFromAttributes(attributes));
     }
 
+    /**
+     * Add attributes to the existing ones
+     * @param attributes the XML attributes
+     */
     public void addAttributes(Attributes attributes) {
         if (this.attributes == null) {
             this.attributes = UIComponent.getMapFromAttributes(attributes);
@@ -46,10 +66,21 @@ public class UIFakeComponent implements Cloneable {
         }
     }
 
+    /**
+     * Add a child
+     * @param comp the child
+     */
     public void add(UIFakeComponent comp) {
         children.add(comp);
     }
 
+    /**
+     * Create a real UIComponent from this fake one
+     * @param parent the parent UIComponent
+     * @param attributes the XML attributes
+     * @param style the CSS style
+     * @return the corresponding UIComponent
+     */
     public UIComponent getUIComponent(final UIComponent parent, final StringMap attributes, final Map<String, Map<String, String>> style) throws UIWidgetException {
         final StringMap attrs;
         if (attributes != null) {
@@ -76,6 +107,9 @@ public class UIFakeComponent implements Cloneable {
         return ui;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object clone() {
         UIFakeComponent ui = new UIFakeComponent(pack, name, (StringMap) null);
         if (attributes != null) {

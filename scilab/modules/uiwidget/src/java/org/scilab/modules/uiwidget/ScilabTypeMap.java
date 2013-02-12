@@ -16,16 +16,35 @@ import java.util.HashMap;
 
 import org.scilab.modules.types.ScilabType;
 
+/**
+ * A Map where the value is convert into a Java object
+ */
 public class ScilabTypeMap extends HashMap<String, ScilabType> implements ConvertableMap<ScilabType> {
 
+    /**
+     * Default constructor
+     */
     public ScilabTypeMap() {
         super();
     }
 
+    /**
+     * Get a value and convert it
+     * @param clazz the class of the result after conversion
+     * @param key the key
+     * @param defaultValue the default value if the key is not in the map
+     * @return the converted object
+     */
     public <T> T get(Class<T> clazz, String key, T defaultValue) {
         return ScilabTypeConverters.getObjectFromValue(clazz, get(key), defaultValue);
     }
 
+    /**
+     * Get a value and convert it
+     * @param clazz the class of the result after conversion
+     * @param key the key
+     * @return the converted object
+     */
     public <T> T get(Class<T> clazz, String key) {
         return ScilabTypeConverters.getObjectFromValue(clazz, get(key));
     }

@@ -26,10 +26,19 @@ import java.util.Map;
  * de derivation pr passer de A a X) puis on cherche la methode qui minimise cette distance.
  **/
 
+/**
+ * Class to find the accessible methods to get/set properties on the UIComponents
+ */
 public final class UIMethodFinder {
 
     private static final Map<Class, MethodsInfo> info = new HashMap<Class, MethodsInfo>();
 
+    /**
+     * Find a adder
+     * @param baseClass the class where to search
+     * @param clazz the class of the argument of the adder method
+     * @return the corresponding method
+     */
     public static Method findAdder(final Class baseClass, final Class clazz) {
         MethodsInfo i = info.get(baseClass);
         if (i == null) {
@@ -46,6 +55,11 @@ public final class UIMethodFinder {
         return null;
     }
 
+    /**
+     * Get a setter
+     * @param baseClass the class where to search
+     * @param out a map containing method name -- method
+     */
     public static void getSetter(final Class baseClass, final Map<String, Method> out) {
         MethodsInfo i = info.get(baseClass);
         if (i == null) {
@@ -63,6 +77,12 @@ public final class UIMethodFinder {
         }
     }
 
+    /**
+     * Find a setter
+     * @param name the base setter name (e.g. foo for setFoo)
+     * @param baseClass the class where to search
+     * @return the corresponding method
+     */
     public static Method findSetter(final String name, final Class baseClass) {
         MethodsInfo i = info.get(baseClass);
         if (i == null) {
@@ -78,6 +98,12 @@ public final class UIMethodFinder {
         return methods.get(0);
     }
 
+    /**
+     * Find a getter
+     * @param name the base getter name (e.g. foo for getFoo)
+     * @param baseClass the class where to search
+     * @return the corresponding method
+     */
     public static Method findGetter(final String name, final Class baseClass) {
         MethodsInfo i = info.get(baseClass);
         if (i == null) {
@@ -93,6 +119,11 @@ public final class UIMethodFinder {
         return methods.get(0);
     }
 
+    /**
+     * Find a newer (newInstance method annotated with UIComponentAnnotation)
+     * @param baseClass the class where to search
+     * @return the corresponding method
+     */
     public static Method findNewer(final Class baseClass) {
         MethodsInfo i = info.get(baseClass);
         if (i == null) {
@@ -142,6 +173,10 @@ public final class UIMethodFinder {
         return info;
     }
 
+    /**
+     * If a method is inaccessible, modify its accessibility
+     * @param m the the method to check
+     */
     private static void checkMethod(Method m) {
         if (!m.isAccessible()) {
             try {
@@ -150,6 +185,9 @@ public final class UIMethodFinder {
         }
     }
 
+    /**
+     * Inner class to cache all interesting methods in a class
+     */
     private static class MethodsInfo {
 
         final Map<String, List<Method>> getters;
@@ -157,6 +195,9 @@ public final class UIMethodFinder {
         final List<Method> adders;
         final List<Method> newers;
 
+        /**
+         * Default constructor
+         */
         MethodsInfo() {
             getters = new HashMap<String, List<Method>>();
             setters = new HashMap<String, List<Method>>();
@@ -164,7 +205,13 @@ public final class UIMethodFinder {
             newers = new ArrayList<Method>();
         }
 
-        void add(String name, Method m, Map<String, List<Method>> map) {
+        /**
+         * Add a method in the map
+         * @param name method name
+         * @param m method object
+         * @param map the map where to put info
+         */
+        static void add(String name, Method m, Map<String, List<Method>> map) {
             List<Method> ms = map.get(name);
             if (ms == null) {
                 ms = new ArrayList<Method>();
