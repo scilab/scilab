@@ -53,8 +53,6 @@ int sci_xgetmouse(char *fname, unsigned long fname_len)
 
     int selPosition = 0;
 
-    char *pstWindowUID = NULL;
-
     CheckInputArgument(pvApiCtx, 0, 1);
     CheckOutputArgument(pvApiCtx, 1, 2);
 
@@ -122,7 +120,6 @@ int sci_xgetmouse(char *fname, unsigned long fname_len)
     mouseButtonNumber = getJxgetmouseMouseButtonNumber();
     pixelCoords[0] = (int) getJxgetmouseXCoordinate();
     pixelCoords[1] = (int) getJxgetmouseYCoordinate();
-    pstWindowUID = getJxgetmouseWindowsID();
 
     sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m1, n1, &l1);
     if (sciErr.iErr)

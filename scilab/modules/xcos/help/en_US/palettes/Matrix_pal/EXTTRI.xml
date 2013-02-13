@@ -160,7 +160,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">extraction type (1=lower 2=upper 3=diagonal)</emphasis>
+                    <emphasis role="bold">Extraction type (1=lower 2=upper 3=diagonal)</emphasis>
                 </para>
                 <para>
                     It indicates the form of the output matrix. It can be an upper triangle, a lower triangle or

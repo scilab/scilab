@@ -116,7 +116,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">number of output ports or vector of sizes</emphasis>
+                    <emphasis role="bold">Number of output ports or vector of sizes</emphasis>
                 </para>
                 <para>
                     positive integer less than or equal to

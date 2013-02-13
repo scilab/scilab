@@ -233,6 +233,8 @@ Bug fixes
 
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
+* Bug #11812 fixed - Upper/lower case issues in the Xcos documentation fixed.
+
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
 
 * Bug #11931 fixed - In graphics, white space was not used as default thousand
@@ -309,6 +311,8 @@ Bug fixes
 
 * Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
 
+* Bug #12139 fixed - eigs ran out of memory for sparse matrices.
+
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
 
 * Bug #12141 fixed - Remove calls to gettext in rubberbox help page examples.
@@ -349,6 +353,10 @@ Bug fixes
                      (which have declared wrong column/row count)
 
 * Bug #12247 fixed - Fix a typo in some error messages.
+
+* Bug #12272 fixed - Fix a presentation of Cyrillic letters on sample images of russian help page for grand function.
+
+* Bug #12284 fixed - Completion in console could to a crash (or deadlock).
 
 
                     Changes between version 5.3.3 and 5.4.0

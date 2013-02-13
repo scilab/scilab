@@ -868,14 +868,15 @@ int sci_fft_4args(void* _pvCtx, char *fname, int ndimsA, int *dimsA, double *Ar,
     * Return results in lhs argument *
     ***********************************/
 
-    ReturnArguments(_pvCtx);
-
     FREE(Dim1);
     FREE(Incr);
     FREE(Dim);
     FREE(Sel);
     FREE(gdim.dims);
     FREE(gdim.howmany_dims);
+
+    ReturnArguments(_pvCtx);
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

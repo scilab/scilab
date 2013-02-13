@@ -319,6 +319,7 @@ int sci_pathconvert(char *fname, unsigned long fname_len)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            FREE(results);
             return 0;
         }
 
@@ -331,6 +332,7 @@ int sci_pathconvert(char *fname, unsigned long fname_len)
                 lenStVarOne = NULL;
             }
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            FREE(results);
             return 0;
         }
 
@@ -346,6 +348,7 @@ int sci_pathconvert(char *fname, unsigned long fname_len)
                 }
                 freeArrayOfWideString(pStVarOne, m1 * n1);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                FREE(results);
                 return 0;
             }
         }
