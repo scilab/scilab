@@ -240,6 +240,7 @@ static int synchro_g_nev(ScicosImport *scs_imp, double *g, int kf, int *ierr);
 static void Multp(double *A, double *B, double *R, int ra, int rb, int ca, int cb);
 static int read_id(ezxml_t *elements, char *id, double *value);
 static int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *rdata);
+static void SundialsErrHandler(int error_code, const char *module, const char *function, char *msg, void *user_data);
 static int Jacobians(long int Neq, realtype tt, realtype cj, N_Vector yy,
                      N_Vector yp, N_Vector resvec, DlsMat Jacque, void *jdata,
                      N_Vector tempv1, N_Vector tempv2, N_Vector tempv3);
@@ -1414,6 +1415,19 @@ static void cossim(double *told)
 
         if (!C2F(cmsolver).solver)
         {
+            flag = LSodarSetErrHandlerFn(cvode_mem, SundialsErrHandler, NULL);
+        }
+        else
+        flag = CVodeSetErrHandlerFn(cvode_mem, SundialsErrHandler, NULL);
+        if (check_flag(&flag, "CVodeSetErrHandlerFn", 1))
+        {
+            *ierr = 300 + (-flag);
+            freeall
+            return;
+        }
+
+        if (!C2F(cmsolver).solver)
+        {
             flag = LSodarInit(cvode_mem, simblklsodar, T0, y);
         }
         else
@@ -2065,6 +2079,20 @@ static void cossimdaskr(double *told)
             return;
         }
         copy_IDA_mem = (IDAMem) ida_mem;
+
+        flag = IDASetErrHandlerFn(ida_mem, SundialsErrHandler, NULL);
+        if (check_flag(&flag, "IDASetErrHandlerFn", 1))
+        {
+            *ierr = 200 + (-flag);
+            if (*neq > 0)IDAFree(&ida_mem);
+            if (*neq > 0)N_VDestroy_Serial(IDx);
+            if (*neq > 0) N_VDestroy_Serial(yp);
+            if (*neq > 0)N_VDestroy_Serial(yy);
+            if (ng != 0) FREE(jroot);
+            if (ng != 0) FREE(zcros);
+            if (nmod != 0) FREE(Mode_save);
+            return;
+        }
 
         flag = IDAInit(ida_mem, simblkdaskr, T0, yy, yp);
         if (check_flag(&flag, "IDAInit", 1))
@@ -5383,6 +5411,21 @@ void Coserror(const char *fmt, ...)
 
     /* coserror use error number 10 */
     *block_error = -5;
+}
+/*--------------------------------------------------------------------------*/
+/* SundialsErrHandler: in case of a Sundials error,
+* append info into full_message and call Coserror() to write it in coserr.buf
+*/
+void SundialsErrHandler(int error_code, const char *module, const char *function, char *msg, void *user_data)
+{
+    char full_message[300]; // Set big buffer to be able to redesign the message later
+
+    full_message[0] = '\0';
+    strncat(full_message, function, 25); // Sundials' longest function name : ~20 chars
+    strncat(full_message, ": ", 2);
+    strncat(full_message, msg, 120);     // Actual error message
+
+    Coserror(full_message);
 }
 /*--------------------------------------------------------------------------*/
 /* get_block_error : get the block error

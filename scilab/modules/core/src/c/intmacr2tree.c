@@ -1338,7 +1338,7 @@ static int CreateInlineTList(int *data,int *index2, int *nblines, int *addinstr)
     }
   
     /* Read character strings lengths */
-    k = 0;
+
     for (k=0; k<nCols*nRows; k++)
     {
         lengths[k] =  data[*index2 + 1] - data[*index2];

@@ -1683,9 +1683,10 @@ bool mexIsGlobal(const mxArray *ptr)
   int ret_val;
   int *header;int *rheader;
   header=(int *) Header(ptr);
+/*
   rheader=(int *) RawHeader(ptr);
   pointed = arr2numcst(ptr);
-  /*  A FINIR si interface par reference OK
+   A FINIR si interface par reference OK
       printf("POINTED %i Infstk(pointed) %i\n", pointed, *Infstk(pointed));
       printf("header[2] %i Infstk(pointed) %i\n", header[2], *Infstk(header[2])); */
   pointed=header[2];

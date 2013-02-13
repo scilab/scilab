@@ -302,7 +302,6 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
         selectionPathName = getJuigetfileSelectionPathName();
         selectionFileNames = getJuigetfileSelectionFileNames();
         selectionSize = getJuigetfileSelectionSize();
-        multipleSelection = getJuigetfileMultipleSelection();
         filterIndex = getJuigetfileFilterIndex();
         menuCallback = getJuigetfileMenuCallback();
     }
