@@ -157,15 +157,15 @@ public class UIText extends UIComponent {
         }
     }
 
-    public void setText(String[] strs) {
-        editor.setText("");
-        if (strs != null) {
-            for (int i = 0; i < strs.length; i++) {
-                append(strs[i]);
-                if (i != strs.length - 1) {
-                    append("\n");
+    /*    public void setText(String[] strs) {
+            editor.setText("");
+            if (strs != null) {
+                for (int i = 0; i < strs.length; i++) {
+                    append(strs[i]);
+                    if (i != strs.length - 1) {
+                        append("\n");
+                    }
                 }
             }
-        }
-    }
+    	}*/
 }
