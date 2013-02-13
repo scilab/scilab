@@ -363,6 +363,9 @@ Bug fixes
 
 * Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
 
+* Bug #12296 fixed - Call to getenv with a big environment variable
+                     led to memory corruption.
+
 * Bug #12304 fixed - Undock, redock and undock led to an exception.
 
 
