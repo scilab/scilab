@@ -1,0 +1,5 @@
+LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+entier_
