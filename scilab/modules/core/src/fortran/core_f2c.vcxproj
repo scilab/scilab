@@ -321,7 +321,6 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_argn.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clear.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clearglobal.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_comp.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delbpt.c" />
@@ -430,7 +429,6 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_argn.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clear.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clearglobal.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_comp.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delbpt.f" />

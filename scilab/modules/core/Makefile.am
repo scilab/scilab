@@ -268,7 +268,6 @@ sci_gateway/fortran/sci_f_ieee.f \
 sci_gateway/fortran/sci_f_macrovar.f \
 sci_gateway/fortran/sci_f_exists.f \
 sci_gateway/fortran/sci_f_errcatch.f \
-sci_gateway/fortran/sci_f_clear.f \
 sci_gateway/fortran/sci_f_argn.f \
 sci_gateway/fortran/sci_f_setbpt.f \
 sci_gateway/fortran/sci_f_clearglobal.f \
@@ -297,6 +296,7 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/history_manager/includes/ \
 	-I$(top_srcdir)/modules/preferences/includes/ \
 	-I$(top_srcdir)/modules/external_objects/includes/ \
+	-I$(top_srcdir)/modules/functions/includes/ \
 	$(XML_FLAGS) \
     $(AM_CPPFLAGS)
 
