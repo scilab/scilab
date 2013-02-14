@@ -79,6 +79,7 @@ public class Mark {
 		mode = mark.mode;
 		style = mark.style;
 		markSizeUnit = mark.markSizeUnit;
+                size = mark.size;
 		foreground = mark.foreground;
 		background = mark.background;
 	}
