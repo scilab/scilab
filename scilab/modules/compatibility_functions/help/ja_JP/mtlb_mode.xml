@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>mmode=mtlb_mode()
+        <synopsis>mmode = mtlb_mode()
             mtlb_mode(mmode)
         </synopsis>
     </refsynopsisdiv>
@@ -16,7 +16,7 @@
             <varlistentry>
                 <term>mmode</term>
                 <listitem>
-                    <para>b論理値</para>
+                    <para>論理値</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,7 +33,7 @@
                 <term>Scilab</term>
                 <listitem>
                     <para/>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 a=1;
 a+[]
 // -->a
@@ -52,7 +52,7 @@ a-[]
             <varlistentry>
                 <term>Matlab</term>
                 <listitem>
-                    <programlisting role="no-scilab-exec"><![CDATA[ 
+                    <programlisting role="no-scilab-exec"><![CDATA[
 a+[] -->[]
 a-[] -->[]
 []+a -->[]
@@ -62,12 +62,12 @@ a-[] -->[]
             </varlistentry>
         </variablelist>
         <para>
-            <literal> mtlb_mode(%t)</literal>  は加算および除算をMatlab互換モードに
+            <code>mtlb_mode(%t)</code>  は加算および除算をMatlab互換モードに
             切り替えます.
-            <literal> mtlb_mode(%f)</literal>  はScilabモードに戻します.
+            <code>mtlb_mode(%f)</code>  はScilabモードに戻します.
         </para>
         <para>
-            <literal> mtlb_mode()</literal>はカレントの mmodeの値を返します.
+            <code>mtlb_mode()</code>はカレントの <varname>mmode</varname>の値を返します(<constant>%t</constant>=Matlab, <constant>%f</constant>=Scilab).
         </para>
     </refsection>
     <refsection role="see also">
