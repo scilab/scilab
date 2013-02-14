@@ -34,17 +34,25 @@
                 <listitem>
                     <para/>
                     <programlisting role=""><![CDATA[ 
-a+[] -->a
-a-[] -->a
-[]+a -->a
-[]-a -->-a
+a=1;
+a+[]
+// -->a
+
+a-[]
+// -->a
+
+[]+a
+// -->a
+
+[]-a
+// -->-a
  ]]></programlisting>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Matlab</term>
                 <listitem>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role="no-scilab-exec"><![CDATA[ 
 a+[] -->[]
 a-[] -->[]
 []+a -->[]
