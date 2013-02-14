@@ -148,6 +148,9 @@ Xcos
 * Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
                      due to CLR blocks.
 
+* Bug #12290 fixed - AFFICH_m block inside a superblock led to java null
+                     pointer exception.
+
 
 Documentation
 ==============
