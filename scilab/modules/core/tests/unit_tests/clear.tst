@@ -42,5 +42,10 @@ assert_checkequal(ierr, 201);
 msg_ref = msprintf(gettext("%s: Wrong type for argument %d: A single string expected.\n"), "clear", 1);
 assert_checkerror ("clear(1)", msg_ref);
 
+ierr = execstr("clear([""A"",""B""])", "errcatch");
+assert_checkequal(ierr, 999);
+msg_ref = msprintf(gettext("%s: Wrong size for argument %d: A single string expected.\n"), "clear", 1);
+assert_checkerror ("clear([""A"",""B""])", msg_ref);
+
 ierr = execstr("clear toto", "errcatch");
 assert_checkequal(ierr, 0);

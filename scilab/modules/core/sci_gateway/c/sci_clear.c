@@ -118,7 +118,7 @@ static int sci_clear_n_rhs(const char *fname)
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong size for argument %d: Valid variable name expected.\n"), fname, k + 1);
+                    Scierror(999, _("%s: Wrong size for argument %d: A single string expected.\n"), fname, k + 1);
                     return 0;
                 }
             }

@@ -230,6 +230,8 @@ Bug fixes
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
 
+* Bug #9934 fixed - clear([["A","B"]) returns a non standard error message.
+
 * Bug #10278 fixed - clear(1) returns a wrong error message.
 
 * Bug #10415 fixed - Remove a session line in history causes the removal
