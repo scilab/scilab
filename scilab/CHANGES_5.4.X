@@ -361,6 +361,8 @@ Bug fixes
 
 * Bug #12284 fixed - Completion in console could to a crash (or deadlock).
 
+* Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
+
 * Bug #12304 fixed - Undock, redock and undock led to an exception.
 
 
