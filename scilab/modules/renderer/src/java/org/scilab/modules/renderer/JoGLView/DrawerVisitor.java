@@ -375,7 +375,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             colorMap = figure.getColorMap();
             drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
             drawingTools.clearDepthBuffer();
-            if (figure.getVisible() && figure.getImmediateDrawing()) {
+            if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing()) {
                 askAcceptVisitor(figure.getChildren());
             }
         }
@@ -917,7 +917,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     private boolean isImmediateDrawing(String id) {
         String parentId = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
-        if (parentId == null) {
+        if (parentId == null || !parentId.equals(figure.getIdentifier())) {
             return false;
         } else {
             Boolean b =  (Boolean) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__);
@@ -934,7 +934,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (isImmediateDrawing(id)) {
             canvas.redraw();
         }
-        
+
         dataManager.dispose(id);
         markManager.dispose(id);
         textManager.dispose(id);
@@ -942,7 +942,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         axesDrawer.dispose(id);
         legendDrawer.dispose(id);
         fecDrawer.dispose(id);
-        textureManager.dispose(id); 
+        textureManager.dispose(id);
         /*
          * Check we are deleting Figure managed by DrawerVisitor(this)
          * Otherwise do nothing on deletion.
@@ -950,6 +950,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (!figure.getIdentifier().equals(id)) {
             return;
         }
+
         visitorMap.remove(id);
         GraphicController.getController().unregister(this);
         if (SwingUtilities.isEventDispatchThread()) {
@@ -957,10 +958,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         } else {
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
-                    public void run() {
-                        canvas.destroy();
-                    }
-                });
+                        public void run() {
+                            canvas.destroy();
+                        }
+                    });
             } catch (Exception e) { }
         }
     }
