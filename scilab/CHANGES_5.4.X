@@ -359,6 +359,8 @@ Bug fixes
 
 * Bug #12284 fixed - Completion in console could to a crash (or deadlock).
 
+* Bug #12304 fixed - Undock, redock and undock led to an exception.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
