@@ -307,6 +307,8 @@ Bug fixes
 
 * Bug #12004 fixed - Add "Configuring scaling factor" in the karmarkar help page.
 
+* Bug #12020 fixed - Default value of ncv in eigs  function was not documented.
+
 * Bug #12022 fixed - ftuneq had a bad example.
 
 * Bug #12028 fixed - The pair drawlater/drawnow did not work as expected.

@@ -263,8 +263,7 @@ function y = A ( x )
                             <para>
                                 <term>ncv</term>
                                 <para>
-                                    number of Lanzcos basis vectors to use. The <literal>ncv</literal> value must be greater or equal than <literal>2 * k + 1 </literal> for real non-symmetric
-                                    problems. For real symmetric or complex problems, <literal>ncv</literal> must be greater or equal <literal>2 * k </literal>.
+                                    number of Lanzcos basis vectors to use. For real non-symmetric problems, the <literal>ncv</literal> value must be greater or equal than <literal>2 * k + 1 </literal> and, by default, <literal>ncv = min(max(2 * k + 1, 20), nA) </literal>. For real symmetric or complex problems, <literal>ncv</literal> must be greater or equal <literal>2 * k </literal> and, by default, <literal> ncv = min(max(2 * k, 20), nA) </literal> with <literal> nA = size(A, 2) </literal>.
                                 </para>
                             </para>
                         </listitem>
