@@ -216,7 +216,7 @@ public class DocbookTagConverter extends DefaultHandler {
             //parser.setProperty("http://xml.org/sax/properties/lexical-handler", this);
             parser.parse(in, this);
         } catch (ParserConfigurationException e) {
-            exceptionOccured(e);
+            exceptionOccurred(e);
         } catch (SAXException e) {
             System.err.println(e);
         } catch (IOException e) {
@@ -282,7 +282,7 @@ public class DocbookTagConverter extends DefaultHandler {
         } else {
             ExternalXMLHandler h = externalHandlers.get(uri);
             if (h == null) {
-                exceptionOccured(new SAXException("uri " + uri + " not handled"));
+                exceptionOccurred(new SAXException("uri " + uri + " not handled"));
                 return;
             }
             StringBuilder buf = h.startExternalXML(localName, attributes);
@@ -307,7 +307,7 @@ public class DocbookTagConverter extends DefaultHandler {
         if (uri.equals(DOCBOOKURI)) {
             DocbookElement elem = stack.pop();
             if (!elem.getName().equals(localName)) {
-                exceptionOccured(new SAXException("tag " + elem.getName() + " is closed with tag " + localName));
+                exceptionOccurred(new SAXException("tag " + elem.getName() + " is closed with tag " + localName));
                 return;
             }
             try {
@@ -322,13 +322,13 @@ public class DocbookTagConverter extends DefaultHandler {
                     elemp.getStringBuilder().append(str);
                 }
             } catch (SAXException e) {
-                exceptionOccured(e);
+                exceptionOccurred(e);
                 return;
             }
         } else {
             ExternalXMLHandler h = externalHandlers.get(uri);
             if (h == null) {
-                exceptionOccured(new SAXException("uri " + uri + " not handled"));
+                exceptionOccurred(new SAXException("uri " + uri + " not handled"));
                 return;
             }
             String str = h.endExternalXML(localName);
@@ -430,7 +430,7 @@ public class DocbookTagConverter extends DefaultHandler {
      * @param e the exception to handle
      * @throws SAXException if problem
      */
-    protected void fatalExceptionOccured(Exception e) throws SAXException {
+    protected void fatalExceptionOccurred(Exception e) throws SAXException {
         throw new SAXException(errors + "\nFATAL error:\n" + e.getMessage());
     }
 
@@ -439,7 +439,7 @@ public class DocbookTagConverter extends DefaultHandler {
      * @param e the exception to handle
      * @throws SAXException if problem
      */
-    protected void exceptionOccured(Exception e) {
+    protected void exceptionOccurred(Exception e) {
         if (!hasError) {
             hasError = true;
         }

@@ -248,7 +248,7 @@ Bug fixes
 * Bug #11941 fixed - show_margins() failed in 'nyquist' mode if the system is
                      in state-space form.
 
-* Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
+* Bug #11952 fixed - In SciNotes, a Java exception occurred on selection of text
                     containing a \E.
 
 * Bug #11958 fixed - axesflag=0 was not taken into account in plot2d3.
