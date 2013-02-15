@@ -150,6 +150,8 @@ Bug fixes
 
 * Bug #11891 fixed - Fisher ratio could be inaccurate for one-way ANOVA.
 
+* Bug #12045 fixed - repmat returned wrong result if numbers of input matrix were not double.
+
 * Bug #12163 fixed - unzoom did not work with a single input argument.
 
 * Bug #12415 fixed - PATH environment variable grew when using call_scilab in a loop.
