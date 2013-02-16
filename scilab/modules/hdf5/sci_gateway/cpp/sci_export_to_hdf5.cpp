@@ -72,11 +72,12 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
 
     SciErr sciErr;
 
+    int iRhs = nbInputArgument(pvApiCtx);
     CheckInputArgumentAtLeast(pvApiCtx, 1);
-    CheckLhs(0, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    pstNameList = (char**)MALLOC(sizeof(char*) * Rhs);
-    iNbVar = extractVarNameList(1, Rhs, pstNameList);
+    pstNameList = (char**)MALLOC(sizeof(char*) * iRhs);
+    iNbVar = extractVarNameList(1, iRhs, pstNameList);
     if (iNbVar == 0)
     {
         FREE(pstNameList);
@@ -84,7 +85,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
     }
 
     piAddrList = (int**)MALLOC(sizeof(int*) * (iNbVar));
-    for (int i = 1 ; i < Rhs ; i++)
+    for (int i = 1 ; i < iRhs ; i++)
     {
         if (strcmp(pstNameList[i], "-append") == 0)
         {
@@ -159,28 +160,43 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
             //import all data
             for (int i = 0 ; i < iNbItem ; i++)
             {
-                for (int j = 1 ; j < Rhs ; j++)
+                for (int j = 1 ; j < iRhs ; j++)
                 {
-                    if (strcmp(pstNameList[i], "-append") == 0)
+                    if (strcmp(pstNameList[j], "-append") == 0)
                     {
                         continue;
                     }
 
                     if (strcmp(pstVarNameList[i], pstNameList[j]) == 0)
                     {
-                        closeHDF5File(iH5File);
-                        Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'."), fname, pstVarNameList[i], pstNameList[0]);
-                        return 1;
+                        if (bAppendMode == false)
+                        {
+                            closeHDF5File(iH5File);
+                            Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'\nUse -append option to replace existing variable\n."), fname, pstVarNameList[i], pstNameList[0]);
+                            return 1;
+                        }
+                        else
+                        {
+                            if (deleteHDF5Var(iH5File, pstVarNameList[i]))
+                            {
+                                //failed to clean
+                                Scierror(999, _("%s: Unable to delete existing variable \"%s\"."), fname, pstVarNameList[i]);
+                                return 1;
+                            }
+                            continue;
+                        }
                     }
                 }
+
                 FREE(pstVarNameList[i]);
             }
+
             FREE(pstVarNameList);
         }
     }
 
     // export data
-    for (int i = 1 ; i < Rhs ; i++)
+    for (int i = 1 ; i < iRhs ; i++)
     {
         if (strcmp(pstNameList[i], "-append") == 0)
         {
@@ -194,7 +210,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         }
     }
 
-    if (bExport && Rhs != 1)
+    if (bExport && iRhs != 1)
     {
         //add or update scilab version and file version in hdf5 file
         if (updateScilabVersion(iH5File) < 0)
@@ -214,7 +230,9 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
 
     //close hdf5 file
     closeHDF5File(iH5File);
-    if (bExport == false && Rhs != 1)
+
+    //delete file in case of error but nor in append mode
+    if (bExport == false && bAppendMode == false && iRhs != 1)
     {
         //remove file
         deleteafile(pstFileName);
@@ -223,14 +241,14 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
 
     //create boolean return value
     int *piReturn = NULL;
-    sciErr = allocMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, 1, &piReturn);
+    sciErr = allocMatrixOfBoolean(pvApiCtx, iRhs + 1, 1, 1, &piReturn);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 1;
     }
 
-    if (bExport == true || Rhs == 1)
+    if (bExport == true || iRhs == 1)
     {
         piReturn[0] = 1;
     }
@@ -241,7 +259,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
 
 
     //free memory
-    for (int i = 0 ; i < Rhs ; i++)
+    for (int i = 0 ; i < iRhs ; i++)
     {
         FREE(pstNameList[i]);
     }
@@ -249,7 +267,7 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
 
     FREE(piAddrList);
 
-    LhsVar(1) = Rhs + 1;
+    LhsVar(1) = iRhs + 1;
     PutLhsVar();
     return 0;
 }

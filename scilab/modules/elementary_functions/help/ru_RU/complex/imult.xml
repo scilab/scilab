@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>y=imult(x)</synopsis>
+        <synopsis>y = imult(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -28,7 +28,11 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>imult(x)</literal> является более эффективным способом умножения <literal>x</literal> на <literal>i</literal>, чем <literal>y = %i*x</literal>, без проблем, возникающих, когда <literal>x</literal> содержит "особые" числа с плавающей запятой, такими как <literal>%inf</literal> и <literal>%nan</literal>.
+            <code>imult(x)</code> является более эффективным способом умножения
+            <varname>x</varname> на <literal>i</literal>, чем <code>y = %i*x</code>,
+            без проблем, возникающих, когда <varname>x</varname> содержит "особые"
+            числа с плавающей запятой, такие как <constant>%inf</constant> и
+            <constant>%nan</constant>.
         </para>
     </refsection>
     <refsection>

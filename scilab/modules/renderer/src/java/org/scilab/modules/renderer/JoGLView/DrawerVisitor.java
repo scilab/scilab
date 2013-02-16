@@ -16,7 +16,6 @@ import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
-import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
@@ -932,6 +931,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void deleteObject(String id) {
+        if (isImmediateDrawing(id)) {
+            canvas.redraw();
+        }
+        
         dataManager.dispose(id);
         markManager.dispose(id);
         textManager.dispose(id);
@@ -939,27 +942,26 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         axesDrawer.dispose(id);
         legendDrawer.dispose(id);
         fecDrawer.dispose(id);
-        textureManager.dispose(id);
-
-        GraphicObject object = GraphicController.getController().getObjectFromId(id);
-        if (object instanceof Figure && visitorMap.containsKey(id)) {
-            visitorMap.remove(id);
-            GraphicController.getController().unregister(this);
-            if (SwingUtilities.isEventDispatchThread()) {
-                canvas.destroy();
-            } else {
-                try {
-                    SwingUtilities.invokeAndWait(new Runnable() {
-                            public void run() {
-                                canvas.destroy();
-                            }
-                        });
-                } catch (Exception e) { }
-            }
+        textureManager.dispose(id); 
+        /*
+         * Check we are deleting Figure managed by DrawerVisitor(this)
+         * Otherwise do nothing on deletion.
+         */
+        if (!figure.getIdentifier().equals(id)) {
+            return;
+        }
+        visitorMap.remove(id);
+        GraphicController.getController().unregister(this);
+        if (SwingUtilities.isEventDispatchThread()) {
+            canvas.destroy();
         } else {
-            if (isImmediateDrawing(id)) {
-                canvas.redraw();
-            }
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    public void run() {
+                        canvas.destroy();
+                    }
+                });
+            } catch (Exception e) { }
         }
     }
 

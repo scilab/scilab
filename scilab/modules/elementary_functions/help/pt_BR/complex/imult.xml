@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>y=imult(x)</synopsis>
+        <synopsis>y = imult(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -30,9 +30,12 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>imult(x)</literal> é um modo mais eficiente de se
-            multiplicar x por i que y = %i*x, sem os problemas que ocorrem quando x
-            inclui números "especiais" em ponto flutuante como %inf e %nan.
+            <code>imult(x)</code> é um modo mais eficiente de se
+            multiplicar <varname>x</varname> por <literal>i</literal>
+            que <code>y = %i*x</code>, sem os problemas que ocorrem
+            quando <varname>x</varname> inclui números "especiais"
+            em ponto flutuante como <constant>%inf</constant> e
+            <constant>%nan</constant>.
         </para>
     </refsection>
     <refsection>
