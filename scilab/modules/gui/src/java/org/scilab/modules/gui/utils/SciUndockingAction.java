@@ -61,7 +61,7 @@ public class SciUndockingAction extends AbstractAction {
         /** Save the tab dimensions to set them back after docking */
         Size oldtabSize = associatedTab.getDims();
         /** Save the old parent Window position to use it to set the new Window position */
-        Position oldWindowPosition = SwingScilabWindow.allScilabWindows.get(associatedTab.getParentWindowId()).getPosition();
+        Position oldWindowPosition = associatedTab.getParentWindow().getPosition();
         /* If we undock a tab contained in view with two elements, then
            the two elements will be alone, so we remove the actions. */
         DockingPort port = DockingManager.getMainDockingPort(associatedTab);

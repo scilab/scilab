@@ -148,6 +148,9 @@ Xcos
 * Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
                      due to CLR blocks.
 
+* Bug #12290 fixed - AFFICH_m block inside a superblock led to java null
+                     pointer exception.
+
 
 Documentation
 ==============
@@ -354,9 +357,15 @@ Bug fixes
 
 * Bug #12247 fixed - Fix a typo in some error messages.
 
+* Bug #12248 fixed - SciNotes toolbar had disappeared.
+
 * Bug #12272 fixed - Fix a presentation of Cyrillic letters on sample images of russian help page for grand function.
 
 * Bug #12284 fixed - Completion in console could to a crash (or deadlock).
+
+* Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
+
+* Bug #12304 fixed - Undock, redock and undock led to an exception.
 
 
                     Changes between version 5.3.3 and 5.4.0

@@ -39,20 +39,16 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>erfc</literal> は相補誤差関数を計算します:
+            <literal>erfc</literal> は相補誤差関数を計算します: <latex>1- \operatorname{erf}(x)</latex>
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/erfc_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 erf([0.5,0.2])+erfc([0.5,0.2])
+
+x = [1+2*%i,-1+2*%i,1e-6+2e-6*%i,0+2*%i];
+erfc(x)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

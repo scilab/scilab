@@ -14,13 +14,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>vecteur réel</para>
+                    <para>vecteur</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>vecteur réel (de même taille que x)</para>
+                    <para>vecteur (de même taille que x)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -29,15 +29,24 @@
         <title>Description</title>
         <para>
             <literal>erfcx</literal> calcule la fonction erreur complémentaire
-            normalisée.
+            normalisée définie par <latex>e^{x^2} \operatorname{erfc}(x)</latex>.  <latex>\operatorname{erfcx}(-ix)</latex> calcul aussi la fonction Faddeeva w(x).
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/erfcx_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+x = [1+2*%i,-1+2*%i,1e-6+2e-6*%i,0+2*%i];
+erfcx(x)
+// Equivalent à
+exp (x.^2) .* erfc(x)
+ ]]></programlisting>
+    </refsection>
+    
+    <refsection>
+        <title>Algorithmes</title>
+        <para>
+            Cette fonction est basée sur la bibliothèque <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeeva</ulink>.
+        </para>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
@@ -52,5 +61,15 @@
                 <link linkend="calerf">calerf</link>
             </member>
         </simplelist>
+    </refsection>
+    
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>La fonction erfc supporte les arguments complexes.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

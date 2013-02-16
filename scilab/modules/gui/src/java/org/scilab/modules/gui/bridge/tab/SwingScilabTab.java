@@ -441,7 +441,9 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     @Override
     public void dockingComplete(DockingEvent evt) {
         super.dockingComplete(evt);
+
         DockingPort port = evt.getNewDockingPort();
+        SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (Component) port);
         Iterator iter = port.getDockables().iterator();
 
         if (port.getDockables().size() > 1) {
@@ -454,6 +456,21 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
             }
         } else {
             removeActions(this);
+        }
+
+        if (win != null) {
+            setParentWindowId(win.getId());
+        } else {
+            // Should not occur
+            SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        if (getParentWindow() != null) {
+                            setParentWindowId(getParentWindow().getId());
+                        } else {
+                            System.err.println("No window for tab:" + SwingScilabTab.this.getClass().getName() + " after docking complete");
+                        }
+                    }
+                });
         }
     }
 
@@ -474,6 +491,13 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     public String getParentWindowUUID() {
         return ((SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this)).getUUID();
+    }
+
+    /**
+     * @return the UUID of the parent window
+     */
+    public SwingScilabWindow getParentWindow() {
+        return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
     }
 
     /**
@@ -1167,12 +1191,13 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     @Override
     public void setMenuBar(MenuBar newMenuBar) {
-        if (this.menuBar != null) {
-            ((SwingScilabMenuBar) this.menuBar.getAsSimpleMenuBar()).close();
+        if (this.menuBar != newMenuBar) {
+            if (this.menuBar != null) {
+                ((SwingScilabMenuBar) this.menuBar.getAsSimpleMenuBar()).close();
+            }
+            this.menuBar = newMenuBar;
         }
-        this.menuBar = newMenuBar;
     }
-
 
     /**
      * Getter for MenuBar
@@ -1191,10 +1216,12 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      */
     @Override
     public void setToolBar(ToolBar newToolBar) {
-        if (this.toolBar != null) {
-            ((SwingScilabToolBar) this.toolBar.getAsSimpleToolBar()).close();
+        if (this.toolBar != newToolBar) {
+            if (this.toolBar != null) {
+                ((SwingScilabToolBar) this.toolBar.getAsSimpleToolBar()).close();
+            }
+            this.toolBar = newToolBar;
         }
-        this.toolBar = newToolBar;
     }
 
     /**
@@ -1354,6 +1381,12 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * Close the tab and disable it.
      */
     public void close() {
+        if (getTitlePane() != null) {
+            ((Titlebar) getTitlePane()).removeAction(DockingConstants.CLOSE_ACTION);
+            ((Titlebar) getTitlePane()).removeAction(UNDOCK);
+            ((Titlebar) getTitlePane()).removeAction(HELP);
+        }
+
         setMenuBar(null);
         setToolBar(null);
         setInfoBar(null);

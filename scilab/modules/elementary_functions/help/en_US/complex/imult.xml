@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>y=imult(x)</synopsis>
+        <synopsis>y = imult(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,9 +28,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>imult(x)</literal> is a more efficient way to multiply x by
-            i than y = %i*x, without the problems occurring when x comprises "special"
-            floating point numbers as %inf and %nan.
+            <code>imult(x)</code> is a more efficient way to multiply <varname>x</varname> by
+            <literal>i</literal> than <code>y = %i*x</code>, without the problems occurring
+            when <varname>x</varname> comprises "special" floating point numbers as
+            <constant>%inf</constant> and <constant>%nan</constant>.
         </para>
     </refsection>
     <refsection>

@@ -96,9 +96,7 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(am__libsciscicos_la_include_HEADERS_DIST) \
 	$(srcdir)/.depend $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/Makefile.modelica.am $(top_srcdir)/Makefile.incl.am \
-	$(top_srcdir)/config/depcomp \
-	$(top_srcdir)/config/mkinstalldirs
+	$(srcdir)/Makefile.modelica.am $(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 @OCAML_TRUE@@XCOS_TRUE@bin_PROGRAMS = $(am__EXEEXT_1)
 
