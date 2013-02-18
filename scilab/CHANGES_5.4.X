@@ -249,6 +249,8 @@ Bug fixes
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
 
+* Bug #11954 fixed - export_to_hdf5 was not able to export the same variable twice.
+
 * Bug #11958 fixed - axesflag=0 was not taken into account in plot2d3.
 
 * Bug #11962 fixed - event_handler may be called on wrong figure_id.
