@@ -12,31 +12,51 @@
 
 package org.scilab.modules.uiwidget.components;
 
-import java.util.Map;
-
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * Text data
+ */
 public class TextData extends UIComponent {
 
     private String text = "";
 
+    /**
+     * {@inheritDoc}
+     */
     public TextData(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         return text;
     }
 
+    /**
+     * Add text
+     * @param text the text to add
+     */
     public void addText(String text) {
         this.text = trim(text);
     }
 
+    /**
+     * Get the text
+     * @return the text
+     */
     public String getText() {
         return text;
     }
 
+    /**
+     * Trim the string
+     * @param str the string
+     * @return the trimed string
+     */
     private static String trim(String str) {
         final char[] chars = str.toCharArray();
         int len = chars.length;

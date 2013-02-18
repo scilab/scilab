@@ -14,7 +14,6 @@ package org.scilab.modules.uiwidget.components;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Map;
 
 import javax.swing.Icon;
 import javax.swing.JCheckBoxMenuItem;
@@ -27,21 +26,42 @@ import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 
+/**
+ * JMenuItem wrapper
+ */
 public class UIMenuItem extends UIComponent {
 
     private MenuType type = MenuType.NORMAL;
     private JMenuItem menu;
     private ActionListener clicklistener;
     private String clickaction;
+    private boolean onclickEnable = true;
 
     public enum MenuType {
         NORMAL, RADIO, CHECK;
+
+        public String getAsString() {
+            switch (this) {
+                case RADIO:
+                    return "radio";
+                case CHECK:
+                    return "check";
+                default:
+                    return "normal";
+            }
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UIMenuItem(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         menu = new JMenuItem();
 
@@ -74,32 +94,99 @@ public class UIMenuItem extends UIComponent {
         return menu;
     }
 
-    public void removeClickListener() {
+    /**
+     * Set the menu type
+     * @param type the menu type
+     */
+    public void setType(MenuType type) {
+        if (this.type != type) {
+            this.type = type;
+            JMenuItem mi = null;
+            switch (type) {
+                case NORMAL:
+                    mi = new JMenuItem(menu.getText());
+                    break;
+                case RADIO:
+                    mi = new JRadioButtonMenuItem(menu.getText(), menu.isSelected());
+                    break;
+                case CHECK:
+                    mi = new JCheckBoxMenuItem(menu.getText(), menu.isSelected());
+                    break;
+            }
+
+            mi.setIcon(menu.getIcon());
+            mi.setAccelerator(menu.getAccelerator());
+
+            replaceBy(mi);
+        }
+    }
+
+    /**
+     * Get the menu type
+     * @return menu type
+     */
+    public String getType() {
+        return type.getAsString();
+    }
+
+    /**
+     * Remove the onclick listener
+     */
+    protected void removeClickListener() {
         if (clicklistener != null) {
             menu.removeActionListener(clicklistener);
             clicklistener = null;
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void remove() {
         removeClickListener();
         super.remove();
     }
 
+    /**
+     * Get the onclick action
+     * @return the action
+     */
     public String getOnclick() {
         return this.clickaction;
     }
 
+    /**
+     * Set the onclick action
+     * @param the action
+     */
     public void setOnclick(final String action) {
         if (this.clickaction == null) {
             removeClickListener();
             clicklistener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    UIWidgetTools.execAction(UIMenuItem.this, UIMenuItem.this.clickaction);
+                    if (onclickEnable) {
+                        UIWidgetTools.execAction(UIMenuItem.this, UIMenuItem.this.clickaction);
+                    }
                 }
             };
             menu.addActionListener(clicklistener);
         }
         this.clickaction = action;
+    }
+
+    /**
+     * Check if the onclick is enabled
+     * @return true if enabled
+     */
+    public boolean getOnclickEnable() {
+        return onclickEnable;
+    }
+
+    /**
+     * Set if the onclick is enabled
+     * @param b true if enabled
+     */
+    public void setOnclickEnable(boolean b) {
+        onclickEnable = b;
     }
 }

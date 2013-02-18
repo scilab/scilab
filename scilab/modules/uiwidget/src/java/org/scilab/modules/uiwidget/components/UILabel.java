@@ -24,6 +24,9 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * JLabel wrapper
+ */
 public class UILabel extends UIComponent {
 
     private final static int defaultAlignment = new JLabel().getHorizontalAlignment();
@@ -63,12 +66,35 @@ public class UILabel extends UIComponent {
                     return Alignment.LEADING;
             }
         }
+
+        public static String getAsString(int value) {
+            switch (value) {
+                case JLabel.LEADING:
+                    return "leading";
+                case JLabel.CENTER:
+                    return "center";
+                case JLabel.LEFT:
+                    return "left";
+                case JLabel.RIGHT:
+                    return "right";
+                case JLabel.TRAILING:
+                    return "trailing";
+                default:
+                    return "leading";
+            }
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UILabel(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         label = new JLabel();
 
@@ -86,6 +112,9 @@ public class UILabel extends UIComponent {
         return label;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setUiStyle(Map<String, String> style) throws UIWidgetException {
         if (style != null) {
             String al = style.get("alignment");
@@ -98,6 +127,9 @@ public class UILabel extends UIComponent {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setBackground(Color color) {
         if (color != null) {
             label.setOpaque(true);
@@ -105,7 +137,49 @@ public class UILabel extends UIComponent {
         }
     }
 
+    /**
+     * Alias for setText
+     */
+    public void setString(String str) {
+        label.setText(str);
+    }
+
+    /**
+     * Alias for getText
+     */
+    public String getString() {
+        return label.getText();
+    }
+
+    /**
+     * Set the alignment
+     * @param a the alignment
+     */
+    public void setAlignment(Alignment a) {
+        label.setHorizontalAlignment(a.value());
+    }
+
+    /**
+     * Get the alignment
+     * @return he alignment
+     */
+    public String getAlignment() {
+        return Alignment.getAsString(label.getHorizontalAlignment());
+    }
+
+    /**
+     * Set the alignment
+     * @param a the alignment
+     */
     public void setHorizontalAlignment(Alignment alignment) {
         label.setHorizontalAlignment(alignment.value());
+    }
+
+    /**
+     * Get the alignment
+     * @return he alignment
+     */
+    public String getHorizontalAlignment() {
+        return Alignment.getAsString(label.getHorizontalAlignment());
     }
 }

@@ -23,19 +23,31 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * Wrapper for a keymap object
+ */
 public class UIKeymap extends UIComponent {
 
     private Set<UIKeystroke> set;
 
+    /**
+     * {@inheritDoc}
+     */
     public UIKeymap(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         set = new HashSet<UIKeystroke>();
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void add(UIComponent c) throws UIWidgetException {
         if (c instanceof UIKeystroke) {
             set.add((UIKeystroke) c);
@@ -45,6 +57,10 @@ public class UIKeymap extends UIComponent {
         }
     }
 
+    /**
+     * Update the input keymap
+     * @param c the keystroke
+     */
     public void update(UIKeystroke c) {
         if (!isRoot()) {
             Object o = getParent().getModifiableComponent();
@@ -59,6 +75,9 @@ public class UIKeymap extends UIComponent {
         }
     }
 
+    /**
+     * Update the input keymap
+     */
     public void update() {
         if (!isRoot()) {
             Object o = getParent().getModifiableComponent();
@@ -74,6 +93,11 @@ public class UIKeymap extends UIComponent {
         }
     }
 
+    /**
+     * Replace a key
+     * @param oldKey the old key
+     * @param newKey the new key
+     */
     void replaceKey(KeyStroke oldKey, KeyStroke newKey) {
         Object o = getParent().getModifiableComponent();
         if (o instanceof JComponent) {

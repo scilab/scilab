@@ -20,39 +20,76 @@ import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * No Layout
+ */
 public class NoLayout implements LayoutManager2 {
 
-    Map<Component, Rectangle> map;
+    private Map<Component, Rectangle> map;
 
+    /**
+     * Default constructor
+     */
     public NoLayout() {
         map = new HashMap<Component, Rectangle>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void addLayoutComponent(Component comp, Object constraints) {
         if (constraints instanceof Rectangle) {
             map.put(comp, (Rectangle) constraints);
         }
     }
 
+    /**
+     * Get the component constraints
+     * @param comp the component
+     * @return the constraints
+     */
+    public Object getConstraints(Component comp) {
+        return map.get(comp);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public float getLayoutAlignmentX(Container target) {
         return 0.5f;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public float getLayoutAlignmentY(Container target) {
         return 0.5f;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void invalidateLayout(Container target) {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Dimension maximumLayoutSize(Container target) {
         return new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void addLayoutComponent(String name, Component comp) {
+
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void layoutContainer(Container parent) {
         synchronized (parent.getTreeLock()) {
             int ncomponents = parent.getComponentCount();
@@ -70,16 +107,25 @@ public class NoLayout implements LayoutManager2 {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Dimension minimumLayoutSize(Container parent) {
         return new Dimension(0, 0);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Dimension preferredLayoutSize(Container parent) {
         synchronized (parent.getTreeLock()) {
             return parent.getSize();
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void removeLayoutComponent(Component comp) {
         map.remove(comp);
     }

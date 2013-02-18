@@ -25,6 +25,9 @@ import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 
+/**
+ * JRadioButton wrapper
+ */
 public class UIRadio extends UIComponent {
 
     private JRadioButton radio;
@@ -33,10 +36,16 @@ public class UIRadio extends UIComponent {
     private String onclickAction;
     private boolean onclickEnable = true;
 
+    /**
+     * {@inheritDoc}
+     */
     public UIRadio(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         radio = new JRadioButton();
 
@@ -56,6 +65,10 @@ public class UIRadio extends UIComponent {
         return radio;
     }
 
+    /**
+     * Set the button group where this button belongs.
+     * @param group the group name
+     */
     public void setButtonGroup(String group) {
         if (group != null && !group.isEmpty()) {
             getRoot().addToButtonGroup(group, radio);
@@ -65,10 +78,17 @@ public class UIRadio extends UIComponent {
         this.buttonGroup = group;
     }
 
+    /**
+     * Get the button group where this button belongs.
+     * @return the group name
+     */
     public String getButtonGroup() {
         return buttonGroup;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setUiStyle(Map<String, String> style) throws UIWidgetException {
         String al = style.get("alignment");
         if (al != null && !al.isEmpty()) {
@@ -79,10 +99,41 @@ public class UIRadio extends UIComponent {
         super.setUiStyle(style);
     }
 
+    /**
+     * Set the alignment
+     * @param a the alignment
+     */
+    public void setAlignment(UIButton.Alignment a) {
+        radio.setHorizontalAlignment(a.value());
+    }
+
+    /**
+     * Get the alignment
+     * @return he alignment
+     */
+    public String getAlignment() {
+        return UIButton.Alignment.getAsString(radio.getHorizontalAlignment());
+    }
+
+    /**
+     * Set the alignment
+     * @param a the alignment
+     */
     public void setHorizontalAlignment(UIButton.Alignment alignment) {
         radio.setHorizontalAlignment(alignment.value());
     }
 
+    /**
+     * Get the alignment
+     * @return he alignment
+     */
+    public String getHorizontalAlignment() {
+        return UIButton.Alignment.getAsString(radio.getHorizontalAlignment());
+    }
+
+    /**
+     * Remove the action listener
+     */
     public void removeActionListener() {
         if (clicklistener != null) {
             radio.removeActionListener(clicklistener);
@@ -90,15 +141,26 @@ public class UIRadio extends UIComponent {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void remove() {
         removeActionListener();
         super.remove();
     }
 
+    /**
+     * Get the onclick action
+     * @return the action
+     */
     public String getOnclick() {
         return onclickAction;
     }
 
+    /**
+     * Set the onclick action
+     * @param the action
+     */
     public void setOnclick(final String onclickAction) {
         if (this.onclickAction == null) {
             removeActionListener();
@@ -114,11 +176,33 @@ public class UIRadio extends UIComponent {
         this.onclickAction = onclickAction;
     }
 
+    /**
+     * Check if the onclick is enabled
+     * @return true if enabled
+     */
     public boolean getOnclickEnable() {
         return onclickEnable;
     }
 
+    /**
+     * Set if the onclick is enabled
+     * @param b true if enabled
+     */
     public void setOnclickEnable(boolean b) {
         onclickEnable = b;
+    }
+
+    /**
+     * Alias for setText
+     */
+    public void setString(String label) {
+        radio.setText(label);
+    }
+
+    /**
+     * Alias for getText
+     */
+    public String getString() {
+        return radio.getText();
     }
 }

@@ -28,16 +28,25 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * JFrame wrapper
+ */
 public class UIFrame extends UIComponent {
 
     private JFrame win;
     private ImageIcon icon;
     private boolean visible;
 
+    /**
+     * {@inheritDoc}
+     */
     public UIFrame(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         win = new JFrame();
 
@@ -88,39 +97,114 @@ public class UIFrame extends UIComponent {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void finish() {
         win.validate();
         win.pack();
         win.setVisible(visible);
     }
 
+    public void setVisible(boolean b) {
+        if (!win.isVisible() && b) {
+            win.pack();
+        }
+
+        win.setVisible(b);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void remove() {
+        win.dispose();
+        super.remove();
+    }
+
+    /**
+     * Set the dialog icon
+     * @param icon the dialog icon
+     */
+    public void setIcon(ImageIcon icon) {
+        if (icon != null) {
+            win.setIconImage(icon.getImage());
+        } else {
+            win.setIconImage(null);
+        }
+    }
+
+    /**
+     * Get the dialog icon
+     * @return the dialog icon
+     */
     public ImageIcon getIcon() {
         return icon;
     }
 
+    /**
+     * Get the dialog title
+     * @return the dialog title
+     */
     public String getTitle() {
         return win.getName();
     }
 
+    /**
+     * Set the dialog title
+     * @param title the dialog title
+     */
     public void setTitle(String title) {
         win.setName(title);
     }
 
+    /**
+     * Set the dialog width
+     * @param width the dialog width
+     */
     public void setWidth(int width) {
         win.setSize(new Dimension(width, win.getHeight()));
         win.validate();
     }
 
+    /**
+     * Set the dialog height
+     * @param height the dialog height
+     */
     public void setHeight(int height) {
         win.setSize(new Dimension(win.getWidth(), height));
         win.validate();
     }
 
+    /**
+     * Set the dialog posX
+     * @param posX the dialog posX
+     */
     public void setPosX(int posX) {
         win.setLocation(posX, win.getY());
     }
 
+    /**
+     * Set the dialog posY
+     * @param posY the dialog posY
+     */
     public void setPosY(int posY) {
         win.setLocation(win.getX(), posY);
+    }
+
+    /**
+     * Get the dialog posX
+     * @return the dialog posX
+     */
+    public int getPosX() {
+        return win.getX();
+    }
+
+    /**
+     * Get the dialog posY
+     * @return the dialog posY
+     */
+    public int getPosY() {
+        return win.getY();
     }
 }

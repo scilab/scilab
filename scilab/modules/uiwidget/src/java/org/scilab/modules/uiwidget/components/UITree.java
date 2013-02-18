@@ -19,7 +19,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.util.EventObject;
-import java.util.Map;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -39,6 +38,9 @@ import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 
+/**
+ * JTree wrapper
+ */
 public class UITree extends UIComponent {
 
     private JTree tree;
@@ -53,10 +55,16 @@ public class UITree extends UIComponent {
     private Icon openIcon;
     private Icon closedIcon;
 
+    /**
+     * {@inheritDoc}
+     */
     public UITree(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         tree = new JTree();
         root = new DefaultMutableTreeNode();
@@ -242,10 +250,16 @@ public class UITree extends UIComponent {
         return tree;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void finish() {
         model.nodeStructureChanged(root);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void add(UIComponent comp) throws UIWidgetException {
         if (comp instanceof UINode) {
             UINode ui = (UINode) comp;
@@ -260,33 +274,61 @@ public class UITree extends UIComponent {
         }
     }
 
+    /**
+     * Set the leaf icon
+     * @param i the icon to set
+     */
     public void setLeafIcon(ImageIcon i) {
         this.leafIcon = i;
         renderer.setLeafIcon(i);
     }
 
+    /**
+     * Get the leaf icon
+     * @return the leaf icon
+     */
     public Icon getLeafIcon() {
         return renderer.getLeafIcon();
     }
 
+    /**
+     * Set the open icon
+     * @param i the icon to set
+     */
     public void setOpenIcon(ImageIcon i) {
         this.openIcon = i;
         renderer.setOpenIcon(i);
     }
 
+    /**
+     * Get the open icon
+     * @return the open icon
+     */
     public Icon getOpenIcon() {
         return renderer.getOpenIcon();
     }
 
+    /**
+     * Set the closed icon
+     * @param i the icon to set
+     */
     public void setClosedIcon(ImageIcon i) {
         this.closedIcon = i;
         renderer.setClosedIcon(i);
     }
 
+    /**
+     * Get the closed icon
+     * @return the closed icon
+     */
     public Icon getClosedIcon() {
         return renderer.getClosedIcon();
     }
 
+    /**
+     * Set the onedit action
+     * @param the action
+     */
     public void setOnedit(final String action) {
         if (this.oneditAction == null && tree.isEditable()) {
             tree.getCellEditor().addCellEditorListener(new CellEditorListener() {
@@ -310,10 +352,27 @@ public class UITree extends UIComponent {
         this.oneditAction = action;
     }
 
+    /**
+     * Check if the onedit is enabled
+     * @return true if enabled
+     */
+    public boolean getOneditEnable() {
+        return oneditEnable;
+    }
+
+    /**
+     * Set if the onedit is enabled
+     * @param b true if enabled
+     */
     public void setOneditEnable(boolean b) {
         oneditEnable = b;
     }
 
+    /**
+     * Init a checkbox with the same parameters as an other one
+     * @param cb1 the first checkbox
+     * @param cb2 the second checkbox
+     */
     private static final void initCheckbox(JCheckBox cb1, JCheckBox cb2) {
         cb1.setFont(cb2.getFont());
         cb1.setText(cb2.getText());

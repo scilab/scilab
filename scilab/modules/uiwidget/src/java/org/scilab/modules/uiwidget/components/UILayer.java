@@ -14,8 +14,6 @@ package org.scilab.modules.uiwidget.components;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -24,15 +22,24 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * Wrapper for a kind of component stack
+ */
 public class UILayer extends UIComponent {
 
-    JPanel layer;
-    UIComponent current;
+    protected JPanel layer;
+    protected UIComponent current;
 
+    /**
+     * {@inheritDoc}
+     */
     public UILayer(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         layer = new JPanel();
         layer.setLayout(new BorderLayout());
@@ -40,6 +47,10 @@ public class UILayer extends UIComponent {
         return layer;
     }
 
+    /**
+     * Set a component to the front
+     * @param id the component id
+     */
     public void setFront(String id) throws UIWidgetException {
         UIComponent c = children.get(id);
         if (c != null && current != c) {
@@ -51,6 +62,10 @@ public class UILayer extends UIComponent {
         }
     }
 
+    /**
+     * Get the component which is on the front
+     * @return the component id
+     */
     public String getFront() {
         if (current != null) {
             return current.getID();
@@ -59,6 +74,9 @@ public class UILayer extends UIComponent {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void add(final UIComponent c) throws UIWidgetException {
         Object o = c.getComponent();
         if (o instanceof Component && !(o instanceof JPopupMenu)) {
@@ -71,4 +89,3 @@ public class UILayer extends UIComponent {
         }
     }
 }
-

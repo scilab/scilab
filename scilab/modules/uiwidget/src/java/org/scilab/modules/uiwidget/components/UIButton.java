@@ -18,7 +18,6 @@ import java.util.Map;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -31,6 +30,9 @@ import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 
+/**
+ * JButton wrapper
+ */
 public class UIButton extends UIComponent {
 
     private JButton button;
@@ -39,6 +41,7 @@ public class UIButton extends UIComponent {
     private boolean hasRolloverIcon;
     private ActionListener clicklistener;
     private String clickaction;
+    private boolean onclickEnable = true;
 
     public enum Relief {
         NONE,
@@ -79,12 +82,35 @@ public class UIButton extends UIComponent {
                     return Alignment.LEADING;
             }
         }
+
+        public static String getAsString(int value) {
+            switch (value) {
+                case JButton.LEADING:
+                    return "leading";
+                case JButton.CENTER:
+                    return "center";
+                case JButton.LEFT:
+                    return "left";
+                case JButton.RIGHT:
+                    return "right";
+                case JButton.TRAILING:
+                    return "trailing";
+                default:
+                    return "leading";
+            }
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UIButton(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         button = new JButton();
 
@@ -102,12 +128,20 @@ public class UIButton extends UIComponent {
         return button;
     }
 
+    /**
+     * Set Rollover icon
+     * @param icon an icon
+     */
     public void setRolloverIcon(Icon icon) {
         button.setRolloverEnabled(icon != null);
         button.setRolloverIcon(icon);
         hasRolloverIcon = icon != null;
     }
 
+    /**
+     * Set Rollover
+     * @param b if true enable default rollover
+     */
     public void setRollover(boolean b) {
         Icon icon = button.getIcon();
         if (icon != null && !hasRolloverIcon && b) {
@@ -116,10 +150,41 @@ public class UIButton extends UIComponent {
         }
     }
 
+    /**
+     * Set the alignment
+     * @param a the alignment
+     */
     public void setAlignment(Alignment a) {
         button.setHorizontalAlignment(a.value());
     }
 
+    /**
+     * Get the alignment
+     * @return he alignment
+     */
+    public String getAlignment() {
+        return Alignment.getAsString(button.getHorizontalAlignment());
+    }
+
+    /**
+     * Set the alignment
+     * @param a the alignment
+     */
+    public void setHorizontalAlignment(Alignment alignment) {
+        button.setHorizontalAlignment(alignment.value());
+    }
+
+    /**
+     * Get the alignment
+     * @return he alignment
+     */
+    public String getHorizontalAlignment() {
+        return Alignment.getAsString(button.getHorizontalAlignment());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public void setUiStyle(Map<String, String> style) throws UIWidgetException {
         String al = style.get("alignment");
         if (al != null && !al.isEmpty()) {
@@ -130,6 +195,10 @@ public class UIButton extends UIComponent {
         super.setUiStyle(style);
     }
 
+    /**
+     * Add a JMenuitem
+     * @param menuitem the menu item
+     */
     public void add(JMenuItem menuitem) {
         if (menu == null) {
             menu = new JPopupMenu();
@@ -144,28 +213,44 @@ public class UIButton extends UIComponent {
         menu.add(menuitem);
     }
 
-    public void removeClickListener() {
+    /**
+     * Remove the onclick listener
+     */
+    protected void removeClickListener() {
         if (clicklistener != null) {
             button.removeActionListener(clicklistener);
             clicklistener = null;
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void remove() {
         removeClickListener();
         super.remove();
     }
 
+    /**
+     * Get the onclick action
+     * @return the action
+     */
     public String getOnclick() {
         return this.clickaction;
     }
 
+    /**
+     * Set the onclick action
+     * @param the action
+     */
     public void setOnclick(final String action) {
         if (this.clickaction == null) {
             removeClickListener();
             clicklistener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    UIWidgetTools.execAction(UIButton.this, UIButton.this.clickaction);
+                    if (onclickEnable) {
+                        UIWidgetTools.execAction(UIButton.this, UIButton.this.clickaction);
+                    }
                 }
             };
             button.addActionListener(clicklistener);
@@ -173,11 +258,47 @@ public class UIButton extends UIComponent {
         this.clickaction = action;
     }
 
+    /**
+     * Check if the onclick is enabled
+     * @return true if enabled
+     */
+    public boolean getOnclickEnable() {
+        return onclickEnable;
+    }
+
+    /**
+     * Set if the onclick is enabled
+     * @param b true if enabled
+     */
+    public void setOnclickEnable(boolean b) {
+        onclickEnable = b;
+    }
+
+    /**
+     * Alias for setText
+     */
     public void setLabel(String label) {
         button.setText(label);
     }
 
-    public void setHorizontalAlignment(Alignment alignment) {
-        button.setHorizontalAlignment(alignment.value());
+    /**
+     * Alias for getText
+     */
+    public String getLabel() {
+        return button.getText();
+    }
+
+    /**
+     * Alias for setText
+     */
+    public void setString(String label) {
+        button.setText(label);
+    }
+
+    /**
+     * Alias for getText
+     */
+    public String getString() {
+        return button.getText();
     }
 }

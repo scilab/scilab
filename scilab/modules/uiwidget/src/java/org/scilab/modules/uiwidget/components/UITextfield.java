@@ -30,6 +30,9 @@ import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 
+/**
+ * JTextField wrapper
+ */
 public class UITextfield extends UIComponent {
 
     private JTextField textfield;
@@ -56,12 +59,35 @@ public class UITextfield extends UIComponent {
         public int value() {
             return value;
         }
+
+        public static String getAsString(int value) {
+            switch (value) {
+                case JTextField.LEADING:
+                    return "leading";
+                case JTextField.CENTER:
+                    return "center";
+                case JTextField.LEFT:
+                    return "left";
+                case JTextField.RIGHT:
+                    return "right";
+                case JTextField.TRAILING:
+                    return "trailing";
+                default:
+                    return "leading";
+            }
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UITextfield(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         textfield = new JTextField();
 
@@ -97,16 +123,44 @@ public class UITextfield extends UIComponent {
         return textfield;
     }
 
+    /**
+     * Set the alignment
+     * @param a the alignment
+     */
+    public void setAlignment(Alignment a) {
+        textfield.setHorizontalAlignment(a.value());
+    }
+
+    /**
+     * Get the alignment
+     * @return he alignment
+     */
+    public String getAlignment() {
+        return Alignment.getAsString(textfield.getHorizontalAlignment());
+    }
+
+    /**
+     * Set the alignment
+     * @param a the alignment
+     */
+    public void setHorizontalAlignment(Alignment alignment) {
+        textfield.setHorizontalAlignment(alignment.value());
+    }
+
+    /**
+     * Get the alignment
+     * @return he alignment
+     */
+    public String getHorizontalAlignment() {
+        return Alignment.getAsString(textfield.getHorizontalAlignment());
+    }
+
     public void setSelectAll(boolean all) {
         if (all) {
             textfield.selectAll();
         } else {
             textfield.select(0, 0);
         }
-    }
-
-    public void setHorizontalAlignment(Alignment alignment) {
-        textfield.setHorizontalAlignment(alignment.value());
     }
 
     public String getPassword() {
@@ -138,6 +192,9 @@ public class UITextfield extends UIComponent {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void remove() {
         removeChangeListener();
         textfield.setAction(null);

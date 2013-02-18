@@ -117,9 +117,10 @@ public class UIScilabWindow extends UIComponent {
     }
 
     public void setVisible(boolean b) {
-        if (b) {
+        if (!win.isVisible() && b) {
             win.pack();
         }
+
         win.setVisible(b);
         visible = null;
     }
@@ -154,10 +155,10 @@ public class UIScilabWindow extends UIComponent {
 
     public void setSize(Dimension d) {
         win.setPreferredSize(d);
-        //if (win.isVisible()) {
-        win.pack();
-        win.repaint();
-        //}
+        if (win.isVisible()) {
+            win.pack();
+            win.repaint();
+        }
     }
 
     public void setPosX(int posX) {

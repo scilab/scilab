@@ -31,20 +31,29 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 
+/**
+ * JComboBox wrapper
+ */
 public class UIComboBox extends UIComponent {
 
-    private JComboBox combo;
-    private ActionListener listener;
-    private boolean onchangeEnable = true;
-    private String action;
-    private Vector<Object> vector;
-    private ListCellRenderer defaultRenderer;
-    private MyComboBoxModel model;
+    protected JComboBox combo;
+    protected ActionListener listener;
+    protected boolean onchangeEnable = true;
+    protected String action;
+    protected Vector<Object> vector;
+    protected ListCellRenderer defaultRenderer;
+    protected MyComboBoxModel model;
 
+    /**
+     * {@inheritDoc}
+     */
     public UIComboBox(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         combo = new JComboBox();
         vector = new Vector<Object>();
@@ -81,11 +90,18 @@ public class UIComboBox extends UIComponent {
         return combo;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void finish() {
         model.fireContentsChanged(model, 0, vector.size() - 1);
         resetIndex();
     }
 
+    /**
+     * Add an object
+     * @param obj the object to add
+     */
     public void add(Object obj) {
         vector.add(obj);
         if (obj instanceof UIListElement.ListElement) {
@@ -93,31 +109,45 @@ public class UIComboBox extends UIComponent {
         }
     }
 
-    public void removeListener() {
+    /**
+     * Remove a listener
+     */
+    protected void removeListener() {
         if (listener != null) {
             combo.removeActionListener(listener);
             listener = null;
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void remove() {
         defaultRenderer = null;
         removeListener();
         super.remove();
     }
 
+    /**
+     * Set the selected item
+     * @param item the item to select
+     */
     public void setString(String item) {
         setSelectedItem(item);
     }
 
+    /**
+     * Get the selected item
+     * @return the selected item
+     */
     public String getString() {
-        if (getSelectedIndex() == -1) {
-            return null;
-        }
-
         return getSelectedItem();
     }
 
+    /**
+     * Set the selected item
+     * @param item the item to select
+     */
     public void setSelectedItem(String item) {
         if (item != null) {
             ComboBoxModel model = combo.getModel();
@@ -131,6 +161,22 @@ public class UIComboBox extends UIComponent {
         }
     }
 
+    /**
+     * Get the selected item
+     * @return the selected item
+     */
+    public String getSelectedItem() {
+        if (combo.getSelectedIndex() == -1) {
+            return null;
+        }
+
+        return combo.getSelectedItem().toString();
+    }
+
+    /**
+     * Set the combobox items
+     * @param items the items to set
+     */
     public void setItems(String[] items) {
         if (items != null) {
             vector.clear();
@@ -143,7 +189,11 @@ public class UIComboBox extends UIComponent {
         }
     }
 
-    public String[] getItems() {
+    /**
+     * Get the combobox items
+     * @return the combobox items
+     */
+    public Object[] getItems() {
         if (!vector.isEmpty()) {
             String[] arr = new String[vector.size()];
             for (int i = 0; i < arr.length; i++) {
@@ -156,39 +206,60 @@ public class UIComboBox extends UIComponent {
         return null;
     }
 
-    private void resetIndex() {
+    /**
+     * Reset the combobox index
+     */
+    protected void resetIndex() {
         boolean old = onchangeEnable;
         onchangeEnable = false;
         setSelectedIndex(0);
         onchangeEnable = old;
     }
 
-    public String getSelectedItem() {
-        return combo.getSelectedItem().toString();
-    }
-
+    /**
+     * Set the selected index
+     * @param index to select
+     */
     public void setSelectedIndex(int index) {
         try {
             combo.setSelectedIndex(index);
         } catch (IllegalArgumentException e) { }
     }
 
+    /**
+     * Get the selected index
+     * @return selected index
+     */
     public int getSelectedIndex() {
         return combo.getSelectedIndex();
     }
 
+    /**
+     * Alias for getSelectedIndex
+     */
     public int getValue() {
         return getSelectedIndex();
     }
 
+    /**
+     * Alias for setSelectedIndex
+     */
     public void setValue(int index) {
         setSelectedIndex(index);
     }
 
+    /**
+     * Get the onchange action
+     * @return the action
+     */
     public String getOnchange() {
         return action;
     }
 
+    /**
+     * Set the onchange action
+     * @param the action
+     */
     public void setOnchange(String action) {
         if (this.action == null) {
             removeListener();
@@ -204,20 +275,37 @@ public class UIComboBox extends UIComponent {
         this.action = action;
     }
 
+    /**
+     * Check if the onchange is enabled
+     * @return true if enabled
+     */
     public boolean getOnchangeEnable() {
         return onchangeEnable;
     }
 
+    /**
+     * Set if the onchange is enabled
+     * @param b true if enabled
+     */
     public void setOnchangeEnable(boolean b) {
         onchangeEnable = b;
     }
 
-    private static class MyComboBoxModel extends DefaultComboBoxModel {
+    /**
+     * Inner class to have a public fire
+     */
+    protected static class MyComboBoxModel extends DefaultComboBoxModel {
 
+        /**
+         * {@inheritDoc}
+         */
         public MyComboBoxModel(Vector v) {
             super(v);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public void fireContentsChanged(Object o, int i, int f) {
             super.fireContentsChanged(o, i, f);
         }

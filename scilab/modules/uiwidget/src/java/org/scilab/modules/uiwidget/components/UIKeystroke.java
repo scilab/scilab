@@ -23,6 +23,9 @@ import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 
+/**
+ * KeyStroke wrapper
+ */
 public class UIKeystroke extends UIComponent {
 
     private KeyStroke key;
@@ -30,10 +33,16 @@ public class UIKeystroke extends UIComponent {
     private String actionCommand;
     private boolean enable = true;
 
+    /**
+     * {@inheritDoc}
+     */
     public UIKeystroke(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         return this;
     }
@@ -44,7 +53,7 @@ public class UIKeystroke extends UIComponent {
         this.actionCommand = action;
         this.action = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
-                if (enable && actionCommand != null  && !actionCommand.isEmpty()) {
+                if (enable && actionCommand != null && !actionCommand.isEmpty()) {
                     UIWidgetTools.execAction(UIKeystroke.this, actionCommand);
                 }
             }
@@ -53,10 +62,18 @@ public class UIKeystroke extends UIComponent {
         return this;
     }
 
+    /**
+     * Get the associated action
+     * @return the action
+     */
     Action getRealAction() {
         return action;
     }
 
+    /**
+     * Set the keystroke
+     * @param key the key
+     */
     public void setKey(KeyStroke key) {
         if (this.key != null && (key == null || !this.key.equals(key))) {
             UIComponent p = getParent();
@@ -68,22 +85,42 @@ public class UIKeystroke extends UIComponent {
         }
     }
 
+    /**
+     * Get the keystroke
+     * @return the key
+     */
     public KeyStroke getKey() {
         return key;
     }
 
+    /**
+     * Enable the action
+     * @param b true to enable
+     */
     public void setActionEnable(boolean b) {
         this.enable = b;
     }
 
+    /**
+     * Check if the action is enabled
+     * @return true if enabled
+     */
     public boolean getActionEnable() {
         return enable;
     }
 
+    /**
+     * Set the action
+     * @param action the action
+     */
     public void setAction(String action) {
         this.actionCommand = action;
     }
 
+    /**
+     * Get the action
+     * @return the action
+     */
     public String getAction() {
         return actionCommand;
     }

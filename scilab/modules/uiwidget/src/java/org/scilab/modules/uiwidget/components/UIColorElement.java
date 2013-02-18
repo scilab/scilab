@@ -24,16 +24,25 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * Wrapper for color element to put in a combo
+ */
 public class UIColorElement extends UIComponent {
 
     private static final Dimension SIXTEEN = new Dimension(16, 16);
 
     private ColorElement elem;
 
+    /**
+     * {@inheritDoc}
+     */
     public UIColorElement(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         elem = new ColorElement("", null, null);
 
@@ -47,6 +56,9 @@ public class UIColorElement extends UIComponent {
         return elem;
     }
 
+    /**
+     * Inner class for element properties
+     */
     public static class ColorElement {
 
         private String text;
@@ -56,66 +68,122 @@ public class UIColorElement extends UIComponent {
         private Font font;
         private JComponent parent;
 
+        /**
+         * Default constructor
+         * @param text element text
+         * @param color the color of the icon
+         * @param borderColor the color of the icon border
+         */
         public ColorElement(String text, Color color, Color borderColor) {
             this.text = text == null ? "" : text;
-            this.color = color == null ? Color.ORANGE : color;
+            this.color = color == null ? Color.WHITE : color;
             this.borderColor = borderColor;
             this.icon = UITools.getColoredIcon(SIXTEEN, color, borderColor);
         }
 
+        /**
+         * Set the parent
+         * @param c the parent
+         */
         public void setParent(JComponent c) {
             this.parent = c;
         }
 
+        /**
+         * Set the font
+         * @param f the font
+         */
         public void setFont(Font f) {
             this.font = f;
             update();
         }
 
+        /**
+         * Get the font
+         * @return the font
+         */
         public Font getFont() {
             return font;
         }
 
+        /**
+         * Set the text
+         * @param text the text
+         */
         public void setText(String text) {
             this.text = text == null ? "" : text;
         }
 
+        /**
+         * Get the text
+         * @return the text
+         */
         public String getText() {
             return text;
         }
 
+        /**
+         * Set the color
+         * @param color the color
+         */
         public void setColor(Color color) {
-            this.color = color == null ? Color.ORANGE : color;
+            this.color = color == null ? Color.WHITE : color;
             this.icon = UITools.getColoredIcon(SIXTEEN, color, borderColor);
             update();
         }
 
+        /**
+         * Get the color
+         * @return the color
+         */
         public Color getColor() {
             return color;
         }
 
+        /**
+         * Set the border color
+         * @param color the border color
+         */
         public void setBorderColor(Color borderColor) {
             this.borderColor = borderColor;
             this.icon = UITools.getColoredIcon(SIXTEEN, color, borderColor);
             update();
         }
 
+        /**
+         * Get the border color
+         * @return the border color
+         */
         public Color getBorderColor() {
             return borderColor;
         }
 
+        /**
+         * Get the icon
+         * @return the icon
+         */
         public Icon getIcon() {
             return icon;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public String toString() {
             return text;
         }
 
+        /**
+         * Get representation
+         * @return the representation
+         */
         public String[] getRep() {
             return new String[] {text, String.format("#%06X", (0xFFFFFF & color.getRGB()))};
         }
 
+        /**
+         * Update the parent
+         */
         private void update() {
             if (parent != null) {
                 parent.repaint();

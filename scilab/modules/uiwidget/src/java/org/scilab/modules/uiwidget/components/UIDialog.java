@@ -30,6 +30,9 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * JDialog wrapper
+ */
 public class UIDialog extends UIComponent {
 
     private JDialog win;
@@ -37,10 +40,16 @@ public class UIDialog extends UIComponent {
     private Boolean visible;
     private UIComponent parentWindow;
 
+    /**
+     * {@inheritDoc}
+     */
     public UIDialog(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         win = new JDialog();
 
@@ -100,6 +109,10 @@ public class UIDialog extends UIComponent {
         return win;
     }
 
+    /**
+     * Add a component
+     * @param c the component to add
+     */
     public void add(JComponent c) {
         if (c instanceof JMenuBar) {
             win.setJMenuBar((JMenuBar) c);
@@ -108,6 +121,9 @@ public class UIDialog extends UIComponent {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void finish() {
         win.pack();
         if (visible != null) {
@@ -116,6 +132,10 @@ public class UIDialog extends UIComponent {
         }
     }
 
+    /**
+     * Set the dialog visibility
+     * @param b if true the dialog is made visible
+     */
     public void setVisible(boolean b) {
         if (parentWindow != null && parentWindow.getComponent() instanceof Component) {
             ScreenInfo.center(win, (Component) parentWindow.getComponent());
@@ -123,41 +143,105 @@ public class UIDialog extends UIComponent {
             ScreenInfo.center(win, null);
         }
 
+        if (!win.isVisible() && b) {
+            win.pack();
+        }
+
         win.setVisible(b);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void remove() {
         win.dispose();
         super.remove();
     }
 
+    /**
+     * Set the dialog icon
+     * @param icon the dialog icon
+     */
+    public void setIcon(ImageIcon icon) {
+        if (icon != null) {
+            win.setIconImage(icon.getImage());
+        } else {
+            win.setIconImage(null);
+        }
+    }
+
+    /**
+     * Get the dialog icon
+     * @return the dialog icon
+     */
     public ImageIcon getIcon() {
         return icon;
     }
 
+    /**
+     * Get the dialog title
+     * @return the dialog title
+     */
     public String getTitle() {
         return win.getName();
     }
 
+    /**
+     * Set the dialog title
+     * @param title the dialog title
+     */
     public void setTitle(String title) {
         win.setName(title);
     }
 
+    /**
+     * Set the dialog width
+     * @param width the dialog width
+     */
     public void setWidth(int width) {
         win.setSize(new Dimension(width, win.getHeight()));
         win.validate();
     }
 
+    /**
+     * Set the dialog height
+     * @param height the dialog height
+     */
     public void setHeight(int height) {
         win.setSize(new Dimension(win.getWidth(), height));
         win.validate();
     }
 
+    /**
+     * Set the dialog posX
+     * @param posX the dialog posX
+     */
     public void setPosX(int posX) {
         win.setLocation(posX, win.getY());
     }
 
+    /**
+     * Set the dialog posY
+     * @param posY the dialog posY
+     */
     public void setPosY(int posY) {
         win.setLocation(win.getX(), posY);
     }
+
+    /**
+     * Get the dialog posX
+     * @return the dialog posX
+     */
+    public int getPosX() {
+        return win.getX();
+    }
+
+    /**
+     * Get the dialog posY
+     * @return the dialog posY
+     */
+    public int getPosY() {
+        return win.getY();
+    }
 }
+

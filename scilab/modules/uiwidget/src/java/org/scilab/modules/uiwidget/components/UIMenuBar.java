@@ -12,22 +12,28 @@
 
 package org.scilab.modules.uiwidget.components;
 
-import java.util.Map;
-
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * JMenuBar wrapper
+ */
 public class UIMenuBar extends UIComponent {
 
     private JMenuBar bar;
 
+    /**
+     * {@inheritDoc}
+     */
     public UIMenuBar(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         bar = new JMenuBar();
 

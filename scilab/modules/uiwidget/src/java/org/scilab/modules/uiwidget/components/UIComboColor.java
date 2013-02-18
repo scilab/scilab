@@ -32,26 +32,23 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 
-public class UIComboColor extends UIComponent {
+/**
+ * Wrapper for a JComboBox used to select a color
+ */
+public class UIComboColor extends UIComboBox {
 
-    private JComboBox combo;
-    private ActionListener listener;
-    private boolean onchangeEnable = true;
-    private String action;
-    private Vector<Object> vector;
-    private ListCellRenderer defaultRenderer;
-    private MyComboBoxModel model;
-
+    /**
+     * {@inheritDoc}
+     */
     public UIComboColor(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
-        combo = new JComboBox();
-        vector = new Vector<Object>();
-        defaultRenderer = combo.getRenderer();
-        model = new MyComboBoxModel(vector);
-        combo.setModel(model);
+        Object o = super.newInstance();
         combo.setRenderer(new DefaultListCellRenderer() {
 
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -70,14 +67,12 @@ public class UIComboColor extends UIComponent {
             }
         });
 
-        return combo;
+        return o;
     }
 
-    public void finish() {
-        model.fireContentsChanged(model, 0, vector.size() - 1);
-        resetIndex();
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     public void add(Object obj) {
         vector.add(obj);
         if (obj instanceof UIColorElement.ColorElement) {
@@ -85,44 +80,9 @@ public class UIComboColor extends UIComponent {
         }
     }
 
-    public void removeListener() {
-        if (listener != null) {
-            combo.removeActionListener(listener);
-            listener = null;
-        }
-    }
-
-    public void remove() {
-        defaultRenderer = null;
-        removeListener();
-        super.remove();
-    }
-
-    public void setString(String item) {
-        setSelectedItem(item);
-    }
-
-    public String getString() {
-        if (getSelectedIndex() == -1) {
-            return null;
-        }
-
-        return getSelectedItem();
-    }
-
-    public void setSelectedItem(String item) {
-        if (item != null) {
-            ComboBoxModel model = combo.getModel();
-            for (int i = 0; i < model.getSize(); i++) {
-                Object o = model.getElementAt(i);
-                if (o != null && o.toString().equals(item)) {
-                    combo.setSelectedItem(o);
-                    break;
-                }
-            }
-        }
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     public void setItems(String[][] items) {
         if (items != null) {
             vector.clear();
@@ -137,87 +97,21 @@ public class UIComboColor extends UIComponent {
         }
     }
 
-    public String[][] getItems() {
+    /**
+     * {@inheritDoc}
+     */
+    public Object[] getItems() {
         if (!vector.isEmpty()) {
-            String[][] arr = new String[vector.size()][];
-            for (int i = 0; i < arr.length; i++) {
-                arr[i] = ((UIColorElement.ColorElement) vector.get(i)).getRep();
+            String[][] arr = new String[2][vector.size()];
+            for (int i = 0; i < vector.size(); i++) {
+                String[] rep = ((UIColorElement.ColorElement) vector.get(i)).getRep();
+                arr[0][i] = rep[0];
+                arr[1][i] = rep[1];
             }
 
             return arr;
         }
 
         return null;
-    }
-
-    private void resetIndex() {
-        boolean old = onchangeEnable;
-        onchangeEnable = false;
-        setSelectedIndex(0);
-        onchangeEnable = old;
-    }
-
-    public String getSelectedItem() {
-        if (combo.getSelectedIndex() != -1) {
-            return combo.getSelectedItem().toString();
-        }
-
-        return null;
-    }
-
-    public void setSelectedIndex(int index) {
-        try {
-            combo.setSelectedIndex(index);
-        } catch (IllegalArgumentException e) { }
-    }
-
-    public int getSelectedIndex() {
-        return combo.getSelectedIndex();
-    }
-
-    public int getValue() {
-        return getSelectedIndex();
-    }
-
-    public void setValue(int index) {
-        setSelectedIndex(index);
-    }
-
-    public String getOnchange() {
-        return action;
-    }
-
-    public void setOnchange(String action) {
-        if (this.action == null) {
-            removeListener();
-            listener = new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    if (onchangeEnable && combo.getSelectedItem() != null) {
-                        UIWidgetTools.execAction(UIComboColor.this, UIComboColor.this.action, "\"" + combo.getSelectedItem().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
-                    }
-                }
-            };
-            combo.addActionListener(listener);
-        }
-        this.action = action;
-    }
-
-    public boolean getOnchangeEnable() {
-        return onchangeEnable;
-    }
-
-    public void setOnchangeEnable(boolean b) {
-        onchangeEnable = b;
-    }
-
-    private static class MyComboBoxModel extends DefaultComboBoxModel {
-
-        public MyComboBoxModel(Vector v) {
-            super(v);
-        }
-
-        public void fireContentsChanged(Object o, int i, int f) {
-            super.fireContentsChanged(o, i, f);
-        }
     }
 }

@@ -17,6 +17,8 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.io.File;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -246,6 +248,16 @@ public final class ObjectToScilabConverters {
                 }
                 ScilabHandle handle = new ScilabHandle(hdls);
                 ScilabStackPutter.put(stackPos, handle);
+            }
+        });
+        converters.put(File.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                ScilabStackPutter.put(stackPos, o.toString());
+            }
+        });
+        converters.put(URL.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                ScilabStackPutter.put(stackPos, o.toString());
             }
         });
     }

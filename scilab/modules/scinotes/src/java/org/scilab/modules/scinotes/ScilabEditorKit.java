@@ -154,7 +154,9 @@ public class ScilabEditorKit extends DefaultEditorKit {
         InputStreamReader inReader = new InputStreamReader(fis, decoder);
         BufferedReader bufReader = new BufferedReader(inReader);
         try {
-            while (bufReader.read(cbuf) != -1);
+            while (bufReader.read(cbuf) != -1) {
+                ;
+            }
             fis.close();
             inReader.close();
             bufReader.close();
@@ -182,7 +184,10 @@ public class ScilabEditorKit extends DefaultEditorKit {
             ScilabModalDialog.show(editor, SciNotesMessages.CANNOT_GUESS_ENCODING, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
         }
         ((ScilabDocument) doc).setEncoding(charset.toString());
-        EncodingAction.updateEncodingMenu((ScilabDocument) doc);
+        if (editor != null) {
+            EncodingAction.updateEncodingMenu((ScilabDocument) doc);
+        }
+
         FileInputStream fis = new FileInputStream(file);
         InputStreamReader isr = new InputStreamReader(fis, charset);
         BufferedReader br = new BufferedReader(isr);

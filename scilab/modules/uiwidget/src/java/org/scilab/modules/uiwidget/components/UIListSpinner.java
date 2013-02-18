@@ -14,7 +14,6 @@ package org.scilab.modules.uiwidget.components;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
@@ -25,6 +24,9 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 
+/**
+ * JSpinner wrapper
+ */
 public class UIListSpinner extends UIComponent {
 
     private JSpinner spinner;
@@ -32,11 +34,18 @@ public class UIListSpinner extends UIComponent {
     private List<Object> values;
     private SpinnerListModel model;
     private String action;
+    private boolean onchangeEnable = true;
 
+    /**
+     * {@inheritDoc}
+     */
     public UIListSpinner(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         values = new ArrayList<Object>();
         model = new SpinnerListModel();
@@ -45,35 +54,79 @@ public class UIListSpinner extends UIComponent {
         return spinner;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void finish() {
         model.setList(values);
     }
 
+    /**
+     * Add an object
+     * @param obj the object to add
+     */
     public void add(Object obj) {
         values.add(obj);
     }
 
-    public void removeListener() {
+    /**
+     * Remove a listener
+     */
+    protected void removeListener() {
         if (listener != null) {
             spinner.removeChangeListener(listener);
             listener = null;
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void remove() {
         removeListener();
         super.remove();
     }
 
+    /**
+     * Get the onchange action
+     * @return the action
+     */
+    public String getOnchange() {
+        return action;
+    }
+
+    /**
+     * Set the onchange action
+     * @param the action
+     */
     public void setOnchange(final String action) {
         if (this.action == null) {
+            removeListener();
             listener = new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
-                    UIWidgetTools.execAction(UIListSpinner.this, UIListSpinner.this.action, "\"" + spinner.getValue().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                    if (onchangeEnable && spinner.getValue() != null) {
+                        UIWidgetTools.execAction(UIListSpinner.this, UIListSpinner.this.action, "\"" + spinner.getValue().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                    }
                 }
             };
             spinner.addChangeListener(listener);
         }
         this.action = action;
+    }
+
+    /**
+     * Check if the onchange is enabled
+     * @return true if enabled
+     */
+    public boolean getOnchangeEnable() {
+        return onchangeEnable;
+    }
+
+    /**
+     * Set if the onchange is enabled
+     * @param b true if enabled
+     */
+    public void setOnchangeEnable(boolean b) {
+        onchangeEnable = b;
     }
 }

@@ -42,11 +42,14 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * Wrapper for a splash screen component
+ */
 public class UISplashScreen extends UIComponent {
 
     private final Color defaultBarColor = Color.decode("#E00000");
     private JDialog win;
-    private ImageIcon icon;
+    private ImageIcon image;
     private Point position;
     private Color color;
     private double percent;
@@ -55,19 +58,25 @@ public class UISplashScreen extends UIComponent {
     private Color fontColor;
     private boolean centerText;
 
+    /**
+     * {@inheritDoc}
+     */
     public UISplashScreen(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         win = new JDialog();
 
         return win;
     }
 
-    @UIComponentAnnotation(attributes = {"icon", "parent", "center-parent", "text-position", "color", "bar-height", "font", "center-text"})
-    public Object newInstance(ImageIcon icon, UIComponent parent, boolean centerParent, Point position, Color color, int barHeight, Font font, boolean centerText) {
-        this.icon = icon;
+    @UIComponentAnnotation(attributes = {"image", "parent", "center-parent", "text-position", "color", "bar-height", "font", "center-text"})
+    public Object newInstance(ImageIcon image, UIComponent parent, boolean centerParent, Point position, Color color, int barHeight, Font font, boolean centerText) {
+        this.image = image;
         this.position = position;
         this.color = color;
         this.centerText = centerText;
@@ -98,7 +107,7 @@ public class UISplashScreen extends UIComponent {
         win.setUndecorated(true);
         win.setResizable(false);
         win.setAlwaysOnTop(true);
-        win.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight() + bh));
+        win.setPreferredSize(new Dimension(image.getIconWidth(), image.getIconHeight() + bh));
 
         Point p = new Point(0, 0);
         Dimension dim;
@@ -125,14 +134,14 @@ public class UISplashScreen extends UIComponent {
             }
         }
 
-        p.x += (dim.width - icon.getIconWidth()) / 2;
-        p.y += (dim.height - icon.getIconHeight()) / 2;
+        p.x += (dim.width - image.getIconWidth()) / 2;
+        p.y += (dim.height - image.getIconHeight()) / 2;
 
         win.setLocation(p.x, p.y);
 
-        JPanel image = new JPanel() {
+        JPanel imagePanel = new JPanel() {
             public void paintComponent(Graphics g) {
-                ImageIcon im = UISplashScreen.this.icon;
+                ImageIcon im = UISplashScreen.this.image;
                 if (im != null) {
                     Graphics2D g2d = (Graphics2D) g;
                     int w = im.getIconWidth();
@@ -161,33 +170,62 @@ public class UISplashScreen extends UIComponent {
         };
 
         win.getContentPane().setLayout(new BorderLayout());
-        win.getContentPane().add(image, BorderLayout.CENTER);
+        win.getContentPane().add(imagePanel, BorderLayout.CENTER);
 
         return win;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void add(JComponent c) {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void finish() {
         win.pack();
         win.setVisible(true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void remove() {
         win.dispose();
         super.remove();
     }
 
-    public ImageIcon getIcon() {
-        return icon;
+    /**
+     * Set the image used in the splash
+     * @param image the image
+     */
+    public void setImage(ImageIcon image) {
+        this.image = image;
     }
 
+    /**
+     * get the image used in the splash
+     * @return the image
+     */
+    public ImageIcon getImage() {
+        return image;
+    }
+
+    /**
+     * Set the text used in the splash
+     * @param text the text
+     */
     public void setText(String text) {
         this.text = text;
         win.repaint();
     }
 
+    /**
+     * Set the percent used in the splash
+     * @param percent the percent
+     */
     public void setPercent(double percent) {
         if (percent > 1) {
             remove();

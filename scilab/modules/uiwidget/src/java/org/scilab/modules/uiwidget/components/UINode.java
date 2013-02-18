@@ -16,7 +16,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -28,6 +27,9 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * Wrapper for a JTree node
+ */
 public class UINode extends UIComponent {
 
     private DefaultMutableTreeNode node;
@@ -43,6 +45,9 @@ public class UINode extends UIComponent {
     private JComponent jparent;
     private int position;
 
+    /**
+     * {@inheritDoc}
+     */
     public UINode(UIComponent parent) throws UIWidgetException {
         super(parent);
         if (parent instanceof UITree) {
@@ -52,6 +57,9 @@ public class UINode extends UIComponent {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         node = new DefaultMutableTreeNode(this);
 
@@ -65,17 +73,23 @@ public class UINode extends UIComponent {
         this.openIcon = openIcon;
         this.closedIcon = closedIcon;
         this.fg = fg;
-        setPos(position);
+        justSetPosition(position);
 
         node = new DefaultMutableTreeNode(this);
 
         return node;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object getModifiableComponent() {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void add(UIComponent comp) throws UIWidgetException {
         if (comp instanceof UINode) {
             UINode ui = (UINode) comp;
@@ -93,7 +107,13 @@ public class UINode extends UIComponent {
         }
     }
 
-    private final int addNode(final DefaultMutableTreeNode parent, final UINode ui) throws UIWidgetException {
+    /**
+     * Add a node to a parent TreeNode
+     * @param parent the parent node
+     * @param ui the child
+     * @return the position where the node was inserted
+     */
+    private final int addNode(final DefaultMutableTreeNode parent, final UINode ui) {
         int pos = ui.position;
         if (ui.position == Integer.MAX_VALUE) {
             parent.add((DefaultMutableTreeNode) ui.getComponent());
@@ -107,6 +127,11 @@ public class UINode extends UIComponent {
         return pos;
     }
 
+    /**
+     * Add a nodes list to a parent TreeNode
+     * @param parent the parent node
+     * @param ui the children
+     */
     private void addNodeList(final DefaultMutableTreeNode parent, UINodeList ui) throws UIWidgetException {
         for (UINode n : ui.list) {
             addNode(parent, n);
@@ -115,6 +140,9 @@ public class UINode extends UIComponent {
         ui.remove();
     }
 
+    /**
+     * Set the JComponent (a JTree) which contains the node
+     */
     public void setParent(JComponent c) {
         if (c != this.jparent) {
             this.jparent = c;
@@ -128,11 +156,19 @@ public class UINode extends UIComponent {
         }
     }
 
+    /**
+     * Set the font
+     * @param f the font
+     */
     public void setFont(Font f) {
         this.font = f;
         update();
     }
 
+    /**
+     * Get the font
+     * @return the font
+     */
     public Font getFont() {
         if (font != null) {
             return font;
@@ -144,11 +180,25 @@ public class UINode extends UIComponent {
         return null;
     }
 
-    public void setPos(int pos) {
+    private void justSetPosition(int pos) {
         if (pos <= 0) {
             this.position = Integer.MAX_VALUE;
         } else {
             this.position = pos == Integer.MAX_VALUE ? Integer.MAX_VALUE : pos - 1;
+        }
+    }
+
+    public void setPos(int pos) {
+        if (pos != position) {
+            justSetPosition(pos);
+
+            if (parent instanceof UINode) {
+                UINode nparent = (UINode) parent;
+                if (nparent.node != null && node != null) {
+                    nparent.node.remove(node);
+                    addNode(nparent.node, this);
+                }
+            }
         }
     }
 

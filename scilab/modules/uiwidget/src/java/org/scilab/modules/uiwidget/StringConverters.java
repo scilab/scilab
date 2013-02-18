@@ -817,5 +817,14 @@ public final class StringConverters {
                 return UILocator.get(str);
             }
         });
+        converters.put(File.class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                return new File(str);
+            }
+        });
     }
 }

@@ -21,7 +21,6 @@ import java.awt.event.MouseListener;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.DefaultListCellRenderer;
@@ -35,6 +34,9 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 
+/**
+ * JList wrapper
+ */
 public class UIList extends UIComponent {
 
     private JList list;
@@ -45,10 +47,16 @@ public class UIList extends UIComponent {
     private boolean isFinished;
     private String action;
 
+    /**
+     * {@inheritDoc}
+     */
     public UIList(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         list = new JList();
         vector = new Vector<Object>();
@@ -84,11 +92,18 @@ public class UIList extends UIComponent {
         return list;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void finish() {
         model.fireContentsChanged(model, 0, vector.size() - 1);
         resetIndex();
     }
 
+    /**
+     * Add an object
+     * @param obj the object to add
+     */
     public void add(Object obj) {
         vector.addElement(obj);
         if (obj instanceof UIListElement.ListElement) {
@@ -96,6 +111,9 @@ public class UIList extends UIComponent {
         }
     }
 
+    /**
+     * Remove a listener
+     */
     public void removeListener() {
         if (listener != null) {
             list.removeMouseListener(listener);
@@ -103,23 +121,61 @@ public class UIList extends UIComponent {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void remove() {
         removeListener();
         super.remove();
     }
 
+    /**
+     * Set the selected item
+     * @param item the item to select
+     */
+    public void setSelectedItem(String item) {
+        if (item != null) {
+            ListModel model = list.getModel();
+            for (int i = 0; i < model.getSize(); i++) {
+                Object o = model.getElementAt(i);
+                if (o != null && o.toString().equals(item)) {
+                    list.setSelectedValue(o, true);
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Get the selected item
+     * @return the selected item
+     */
+    public String getSelectedItem() {
+        if (list.getSelectedIndex() != -1) {
+            return list.getSelectedValue().toString();
+        }
+
+        return null;
+    }
+
+    /**
+     * Alias for setSelectedItem
+     */
     public void setString(String item) {
         setSelectedItem(item);
     }
 
+    /**
+     * Alias for getSelectedItem
+     */
     public String getString() {
-        if (getSelectedIndex() == -1) {
-            return null;
-        }
-
         return getSelectedItem();
     }
 
+    /**
+     * Set the selected items
+     * @param items the items to select
+     */
     public void setStrings(String[] items) {
         if (items == null) {
             list.setSelectedIndices(new int[0]);
@@ -147,6 +203,10 @@ public class UIList extends UIComponent {
         }
     }
 
+    /**
+     * Get the selected items
+     * @return the selected items
+     */
     public String[] getStrings() {
         Object[] objs = list.getSelectedValues();
         if (objs != null && objs.length != 0) {
@@ -161,6 +221,10 @@ public class UIList extends UIComponent {
         return null;
     }
 
+    /**
+     * Set the selection type
+     * @param multiple if true the multiple selection is allowed
+     */
     public void setMultiple(boolean multiple) {
         if (multiple) {
             list.getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -169,24 +233,19 @@ public class UIList extends UIComponent {
         }
     }
 
+    /**
+     * Get the selection type
+     * @return true if the multiple selection is allowed
+     */
     public boolean getMultiple() {
         int m = list.getSelectionModel().getSelectionMode();
         return m == ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
     }
 
-    public void setSelectedItem(String item) {
-        if (item != null) {
-            ListModel model = list.getModel();
-            for (int i = 0; i < model.getSize(); i++) {
-                Object o = model.getElementAt(i);
-                if (o != null && o.toString().equals(item)) {
-                    list.setSelectedValue(o, true);
-                    break;
-                }
-            }
-        }
-    }
-
+    /**
+     * Set the list items
+     * @param items the items to set
+     */
     public void setItems(String[] items) {
         vector.clear();
         if (items != null) {
@@ -200,6 +259,10 @@ public class UIList extends UIComponent {
         list.setSelectedIndices(new int[0]);
     }
 
+    /**
+     * Get the list items
+     * @return the list items
+     */
     public String[] getItems() {
         if (!vector.isEmpty()) {
             String[] arr = new String[vector.size()];
@@ -213,28 +276,35 @@ public class UIList extends UIComponent {
         return null;
     }
 
-    private void resetIndex() {
+    /**
+     * Reset the combobox index
+     */
+    protected void resetIndex() {
         setSelectedIndex(0);
     }
 
-    public String getSelectedItem() {
-        if (list.getSelectedIndex() != -1) {
-            return list.getSelectedValue().toString();
-        }
-
-        return null;
-    }
-
+    /**
+     * Set the selected index
+     * @param index to select
+     */
     public void setSelectedIndex(int index) {
         try {
             list.setSelectedIndex(index);
         } catch (IllegalArgumentException e) { }
     }
 
+    /**
+     * Get the selected index
+     * @return selected index
+     */
     public int getSelectedIndex() {
         return list.getSelectedIndex();
     }
 
+    /**
+     * Set the selected indices
+     * @param indices to select
+     */
     public void setSelectedIndices(int[] indices) {
         if (indices == null) {
             list.setSelectedIndices(new int[0]);
@@ -243,6 +313,10 @@ public class UIList extends UIComponent {
         }
     }
 
+    /**
+     * Get the selected indices
+     * @return selected indices
+     */
     public int[] getSelectedIndices() {
         int[] indices = list.getSelectedIndices();
         if (indices.length == 0) {
@@ -252,14 +326,24 @@ public class UIList extends UIComponent {
         return indices;
     }
 
+    /**
+     * Alias for getSelectedIndex
+     */
     public int getValue() {
         return getSelectedIndex();
     }
 
+    /**
+     * Alias for setSelectedIndex
+     */
     public void setValue(int index) {
         setSelectedIndex(index);
     }
 
+    /**
+     * Change the index of the selected element
+     * @param index the new indew
+     */
     public void setPositionSelected(int index) {
         int selected = list.getSelectedIndex();
         if (index >= 0 && index < vector.size() && selected != -1 && index != selected) {
@@ -269,10 +353,18 @@ public class UIList extends UIComponent {
         }
     }
 
+    /**
+     * Get the onclick action
+     * @return the action
+     */
     public String getOnclick() {
         return action;
     }
 
+    /**
+     * Set the onclick action
+     * @param the action
+     */
     public void setOnclick(String action) {
         if (this.action == null) {
             removeListener();
@@ -286,14 +378,25 @@ public class UIList extends UIComponent {
         this.action = action;
     }
 
+    /**
+     * Check if the onclick is enabled
+     * @return true if enabled
+     */
     public boolean getOnclickEnable() {
         return onclickEnable;
     }
 
+    /**
+     * Set if the onclick is enabled
+     * @param b true if enabled
+     */
     public void setOnclickEnable(boolean b) {
         onclickEnable = b;
     }
 
+    /**
+     * Inner class to have a public fire
+     */
     private static class MyListModel extends DefaultListModel {
 
         public MyListModel(Vector v) {

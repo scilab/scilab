@@ -21,26 +21,35 @@ import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 import org.scilab.modules.uiwidget.UIListener;
 
+/**
+ * FocusListener wrapper
+ */
 public class UIFocusListener extends UIListener {
 
     public enum Type {
         GAIN, LOSS;
     }
 
-    Component component;
+    private Component component;
 
-    FocusAdapter adapter;
-    FocusAction gain;
-    FocusAction loss;
+    private FocusAdapter adapter;
+    private FocusAction gain;
+    private FocusAction loss;
 
-    boolean gainEnable = true;
-    boolean lossEnable = true;
-    boolean listenerAdded;
+    private boolean gainEnable = true;
+    private boolean lossEnable = true;
+    private boolean listenerAdded;
 
+    /**
+     * {@inheritDoc}
+     */
     public UIFocusListener(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         adapter = new FocusAdapter() {
             public void focusGained(FocusEvent e) {
@@ -59,6 +68,9 @@ public class UIFocusListener extends UIListener {
         return adapter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void addListenerToComponent(Component c) {
         if (this.component != c) {
             if (this.component != null) {
@@ -77,32 +89,19 @@ public class UIFocusListener extends UIListener {
         }
     }
 
+    /**
+     * Set the onfocusgain command
+     * @param command the command
+     */
     public void setOnfocusgain(String command) {
         gain = getFocusAction(Type.GAIN, getParent(), command);
         addListenerToComponent(component);
     }
 
-    public void setOnfocusloss(String command) {
-        loss = getFocusAction(Type.LOSS, getParent(), command);
-        addListenerToComponent(component);
-    }
-
-    public void setOnfocusgainEnable(boolean b) {
-        gainEnable = b;
-    }
-
-    public boolean getOnfocusgainEnable() {
-        return gainEnable;
-    }
-
-    public void setOnfocuslossEnable(boolean b) {
-        lossEnable = b;
-    }
-
-    public boolean getOnfocuslossEnable() {
-        return lossEnable;
-    }
-
+    /**
+     * Get the onfocusgain command
+     * @return the command
+     */
     public String getOnfocusgain() {
         if (gain != null) {
             return gain.command;
@@ -111,6 +110,19 @@ public class UIFocusListener extends UIListener {
         return null;
     }
 
+    /**
+     * Set the onfocusloss command
+     * @param command the command
+     */
+    public void setOnfocusloss(String command) {
+        loss = getFocusAction(Type.LOSS, getParent(), command);
+        addListenerToComponent(component);
+    }
+
+    /**
+     * Get the onfocusloss command
+     * @return the command
+     */
     public String getOnfocusloss() {
         if (loss != null) {
             return loss.command;
@@ -119,6 +131,45 @@ public class UIFocusListener extends UIListener {
         return null;
     }
 
+    /**
+     * Enable onfocusgain
+     * @param b true to enable
+     */
+    public void setOnfocusgainEnable(boolean b) {
+        gainEnable = b;
+    }
+
+    /**
+     * Check if onfocusgain is enabled
+     * @return true if enabled
+     */
+    public boolean getOnfocusgainEnable() {
+        return gainEnable;
+    }
+
+    /**
+     * Enable onfocusloss
+     * @param b true to enable
+     */
+    public void setOnfocuslossEnable(boolean b) {
+        lossEnable = b;
+    }
+
+    /**
+     * Check if onfocusloss is enabled
+     * @return true if enabled
+     */
+    public boolean getOnfocuslossEnable() {
+        return lossEnable;
+    }
+
+    /**
+     * Get a FocusAdapter corresponding to the event type
+     * @param type GAIN or LOSS
+     * @param uicomp the component where to put the listener
+     * @param command the command
+     * @return the listener
+     */
     public static FocusAdapter getFocusAdapter(Type type, UIComponent uicomp, String command) {
         final FocusAction action = getFocusAction(type, uicomp, command);
 
@@ -140,6 +191,13 @@ public class UIFocusListener extends UIListener {
         }
     }
 
+    /**
+     * Get a focus action according to the type
+     * @param type GAIN or LOSS
+     * @param uicomp the component where to put the listener
+     * @param command the command
+     * @return the action
+     */
     public static FocusAction getFocusAction(Type type, UIComponent uicomp, String command) {
         switch (type) {
             case GAIN:
@@ -159,16 +217,28 @@ public class UIFocusListener extends UIListener {
         }
     }
 
-    private static abstract class FocusAction {
+    /**
+     * Inner class to have a Focus action
+     */
+    protected static abstract class FocusAction {
 
         String command;
         UIComponent uicomp;
 
+        /**
+         * Default constructor
+         * @param uicomp the component which will have this action
+         * @param command the command
+         */
         FocusAction(UIComponent uicomp, String command) {
             this.uicomp = uicomp;
             this.command = command;
         }
 
+        /**
+         * The action
+         * @param e event
+         */
         public abstract void action(FocusEvent e);
     }
 }

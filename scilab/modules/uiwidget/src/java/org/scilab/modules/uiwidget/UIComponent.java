@@ -12,11 +12,14 @@
 
 package org.scilab.modules.uiwidget;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.font.TextAttribute;
@@ -324,7 +327,7 @@ public abstract class UIComponent {
      * @param dim the preferred dimension
      */
     public void setPreferredSize(Dimension dim) throws UIWidgetException {
-        getJComponent().setPreferredSize(dim);
+        getContainer().setPreferredSize(dim);
     }
 
     /**
@@ -332,7 +335,7 @@ public abstract class UIComponent {
      * @return the preferred dimension
      */
     public Dimension getPreferredSize() throws UIWidgetException {
-        return getJComponent().getPreferredSize();
+        return getContainer().getPreferredSize();
     }
 
     /**
@@ -355,7 +358,7 @@ public abstract class UIComponent {
      * @return the dimension
      */
     public Dimension getSize() throws UIWidgetException {
-        return getJComponent().getSize();
+        return getContainer().getSize();
     }
 
     /**
@@ -363,7 +366,7 @@ public abstract class UIComponent {
      * @param dim the minimum dimension
      */
     public void setMinimumSize(Dimension dim) throws UIWidgetException {
-        getJComponent().setMinimumSize(dim);
+        getContainer().setMinimumSize(dim);
     }
 
     /**
@@ -371,7 +374,7 @@ public abstract class UIComponent {
      * @return the minimum dimension
      */
     public Dimension getMinimumSize() throws UIWidgetException {
-        return getJComponent().getMinimumSize();
+        return getContainer().getMinimumSize();
     }
 
     /**
@@ -379,7 +382,7 @@ public abstract class UIComponent {
      * @param dim the maximum dimension
      */
     public void setMaximumSize(Dimension dim) throws UIWidgetException {
-        getJComponent().setMaximumSize(dim);
+        getContainer().setMaximumSize(dim);
     }
 
     /**
@@ -387,7 +390,7 @@ public abstract class UIComponent {
      * @return the maximum dimension
      */
     public Dimension getMaximumSize() throws UIWidgetException {
-        return getJComponent().getMaximumSize();
+        return getContainer().getMaximumSize();
     }
 
     /**
@@ -650,6 +653,41 @@ public abstract class UIComponent {
     }
 
     /**
+     * Replace the component by another one
+     * @param c the new component
+     */
+    public void replaceBy(Component c) {
+        if (component instanceof Component) {
+            Component comp = (Component) component;
+            Container parent = comp.getParent();
+            if (parent != null) {
+                LayoutManager layout = parent.getLayout();
+                Object constraint = null;
+                if (layout instanceof GridBagLayout) {
+                    constraint = ((GridBagLayout) layout).getConstraints(comp);
+                } else if (layout instanceof BorderLayout) {
+                    constraint = ((BorderLayout) layout).getConstraints(comp);
+                } else if (layout instanceof NoLayout) {
+                    constraint = ((NoLayout) layout).getConstraints(comp);
+                }
+
+                if (constraint != null) {
+                    parent.remove(comp);
+                    parent.add(c, constraint);
+                } else {
+                    int pos = parent.getComponentZOrder(comp);
+                    parent.remove(comp);
+                    parent.add(c, pos);
+                }
+
+                parent.doLayout();
+                parent.repaint();
+            }
+            component = c;
+        }
+    }
+
+    /**
      * Get the parent UIComponent
      * @return the parent
      */
@@ -669,7 +707,7 @@ public abstract class UIComponent {
      * Check if the root element is visible
      * @return true if the root element is visible
      */
-    public boolean isRootVisible() throws UIWidgetException {
+    public boolean isRootVisible() {
         if (isRoot()) {
             if (component instanceof Component) {
                 return ((Component) component).isVisible();
