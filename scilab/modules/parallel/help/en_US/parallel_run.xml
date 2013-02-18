@@ -281,7 +281,7 @@ for k=1:L // init diagonal blocks of sparse matrix with random numbers
   kk=(k-1)*N+1:k*N;
   data(kk,kk)=matrix(rand(1:N*N),N,N);
 end
-// function to compute quantiles in blocks from a the data sparse matrix
+// function to compute quantiles in blocks from the data sparse matrix
 function r= quantiles_sparse(indices_i, indices_j, ranks)
   tmp=gsort(full(data(indices_i, indices_j)),'g','i');
   r=tmp(ranks);

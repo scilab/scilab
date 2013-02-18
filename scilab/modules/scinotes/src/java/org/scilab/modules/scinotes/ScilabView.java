@@ -190,7 +190,7 @@ public class ScilabView extends WrappedPlainView {
     }
 
     /**
-     * A trick to easily determine the y-coordinate of a the line n (useful in SciNotesLineNumberPanel)
+     * A trick to easily determine the y-coordinate of the line n (useful in SciNotesLineNumberPanel)
      * @param n the line number
      * @return the y-coordinate of the line
      */
