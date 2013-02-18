@@ -184,7 +184,6 @@ int ScilabGateway::import(char * fname, const int envId, void * pvApiCtx)
             }
             throw;
         }
-        FREE(cwd);
 
         if (named)
         {
@@ -194,6 +193,7 @@ int ScilabGateway::import(char * fname, const int envId, void * pvApiCtx)
             }
             catch (ScilabAbstractEnvironmentException & e)
             {
+                FREE(cwd);
                 freeAllocatedMatrixOfString(rows, cols, className);
                 delete[] name;
                 throw;
@@ -207,6 +207,7 @@ int ScilabGateway::import(char * fname, const int envId, void * pvApiCtx)
             }
             catch (ScilabAbstractEnvironmentException & e)
             {
+                FREE(cwd);
                 freeAllocatedMatrixOfString(rows, cols, className);
                 env.removeobject(ret);
                 throw;
@@ -214,6 +215,8 @@ int ScilabGateway::import(char * fname, const int envId, void * pvApiCtx)
             LhsVar(i + 1) = Rhs + i + 1;
         }
     }
+
+    FREE(cwd);
 
     freeAllocatedMatrixOfString(rows, cols, className);
     if (named)
