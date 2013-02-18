@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -385,7 +385,6 @@ cd ..
     <ClCompile Include="intstr.c" />
     <ClCompile Include="isany.c" />
     <ClCompile Include="isbrk.c" />
-    <ClCompile Include="iseye.c" />
     <ClCompile Include="isinstring.c" />
     <ClCompile Include="isnum.c" />
     <ClCompile Include="istrue.c" />
@@ -496,7 +495,6 @@ cd ..
     <f2c_rule Include="intstr.f" />
     <f2c_rule Include="isany.f" />
     <f2c_rule Include="isbrk.f" />
-    <f2c_rule Include="iseye.f" />
     <f2c_rule Include="isinstring.f" />
     <f2c_rule Include="isnum.f" />
     <f2c_rule Include="istrue.f" />

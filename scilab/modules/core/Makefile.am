@@ -117,7 +117,6 @@ src/fortran/nextj.f \
 src/fortran/setgetmode.f \
 src/fortran/showstack.f \
 src/fortran/misops.f \
-src/fortran/iseye.f \
 src/fortran/setippty.f \
 src/fortran/compil.f \
 src/fortran/funnam.f \
