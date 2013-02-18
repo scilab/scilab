@@ -27,9 +27,6 @@
     <ClCompile Include="bdiag.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="calerf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cbal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
