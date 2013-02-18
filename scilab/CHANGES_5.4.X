@@ -368,6 +368,8 @@ Bug fixes
 
 * Bug #12304 fixed - Undock, redock and undock led to an exception.
 
+* Bug #12307 fixed - ftp addresses were not handled in help browser.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
