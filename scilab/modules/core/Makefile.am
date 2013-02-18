@@ -120,7 +120,6 @@ src/fortran/misops.f \
 src/fortran/setippty.f \
 src/fortran/compil.f \
 src/fortran/funnam.f \
-src/fortran/isnum.f \
 src/fortran/cmdstr.f \
 src/fortran/hndlops.f \
 src/fortran/cmplxt.f \

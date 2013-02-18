@@ -223,7 +223,6 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="isany.f"/>
 		<File RelativePath="isbrk.f"/>
 		<File RelativePath=".\isinstring.f"/>
-		<File RelativePath="isnum.f"/>
 		<File RelativePath="istrue.f"/>
 		<File RelativePath="itosci.f"/>
 		<File RelativePath="lst2vars.f"/>

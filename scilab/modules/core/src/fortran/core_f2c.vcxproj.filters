@@ -165,9 +165,6 @@
     <ClCompile Include="isinstring.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="isnum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="istrue.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -485,9 +482,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="isinstring.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="isnum.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="istrue.f">
