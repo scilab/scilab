@@ -256,6 +256,8 @@ Bug fixes
 
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
 
+* Bug #11851 fixed - Default EOL under Mac should be LF.
+
 * Bug #11931 fixed - In graphics, white space was not used as default thousand
                      separator.
 

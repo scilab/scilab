@@ -235,13 +235,6 @@
                                         <xsl:text>Windows (CR+LF)</xsl:text>
                                         
                                     </xsl:when>
-                                    
-                                    <xsl:when test="$OS='Mac'">
-                                        
-                                        <xsl:text>Mac OS (CR)</xsl:text>
-                                        
-                                    </xsl:when>
-                                    
                                     <xsl:otherwise>
                                         
                                         <xsl:text>Unix (LF)</xsl:text>
@@ -275,16 +268,6 @@
                     <option value="Windows (CR+LF)">
                         
                         <xsl:if test="$eol='Windows (CR+LF)'">
-                            
-                            <xsl:attribute name="selected">selected</xsl:attribute>
-                            
-                        </xsl:if>
-                        
-                    </option>
-                    
-                    <option value="Mac OS (CR)">
-                        
-                        <xsl:if test="$eol='Mac OS (CR)'">
                             
                             <xsl:attribute name="selected">selected</xsl:attribute>
                             
