@@ -25,8 +25,9 @@
             scinotes(file, line_number, macro_name)
             scinotes([file1, file2], [line_number1, line_number2])
             scinotes(file, 'readonly')
+            scinotes(file, ['indent','trailing','quote'])
             scinotes([file1, file2], 'readonly')
-            
+            scinotes([file1, file2], ['indent','trailing','quote'])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -91,6 +92,30 @@
         <para>With the option 'readonly', files are opened in read-only mode so
             they cannot be modified.
         </para>
+        
+        <para>With the options 'indent', 'quote' or 'trailing', the editor will not be opened and the file(s) will be treated consequently to the actions. The actions are the following:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        The action 'indent' will indent correctly the file.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The action 'trailing' will remove the trailing white spaces.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The action 'quote' will replace all simple quoted strings by double quoted ones.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            One or several actions can be used at the same time, e.g. 'trailing' or ['indent','quote'].
+        </para>
+        
         <para>Keyboard shortcuts are defined for most possible editing actions and
             reported by the menu entries.
         </para>
@@ -506,16 +531,16 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // editor without parameters
 scinotes();
-    
+
 // editor with a file name
 scinotes('SCI/modules/time/macros/datenum.sci');
-    
+
 // editor with a matrix of files name
 scinotes(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.sci']);
-    
+
 // editor with a file name and the line number to highlight
 scinotes('SCI/modules/time/macros/datenum.sci', 5);
 
@@ -526,5 +551,36 @@ scinotes('SCI/modules/time/macros/datenum.sci', 8, 'datenum');
 // the files name matrix and the lines to highlight matrix should have the same size
 scinotes(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.sci'], [5,10]);
  ]]></programlisting>
+        Indent some Scilab code
+        <programlisting role="example"><![CDATA[
+
+
+f=TMPDIR + "/file_to_correct.sci";
+mputl(["a=''abcdef''									";
+       "if a==1";
+       "   b=1+""abcdef''         ";
+       "   			c=2";
+       " d=3			";
+       "					        if		                 		";
+       "a=''abcdef""""""";
+       "           end";
+       "				end              "], f);
+
+scinotes(f, ["indent" "trailing" "quote"]);
+
+// Show the results
+mgetl(f)
+
+ ]]></programlisting>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>['indent','trailing','quote'] options added.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
 </refentry>

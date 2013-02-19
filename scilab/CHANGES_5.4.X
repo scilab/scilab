@@ -103,6 +103,8 @@ Xcos
 
 * Improve block parameters errors (types and sizes) reporting.
 
+* Avoid some scopes blink on simulation.
+
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
 
@@ -251,6 +253,8 @@ Bug fixes
 * Bug #11952 fixed - In SciNotes, a Java exception occurred on selection of text
                     containing a \E.
 
+* Bug #11954 fixed - export_to_hdf5 was not able to export the same variable twice.
+
 * Bug #11958 fixed - axesflag=0 was not taken into account in plot2d3.
 
 * Bug #11962 fixed - event_handler may be called on wrong figure_id.
@@ -359,13 +363,20 @@ Bug fixes
 
 * Bug #12248 fixed - SciNotes toolbar had disappeared.
 
+* Bug #12270 fixed - When the console lost the focus, the caret could be visible.
+
 * Bug #12272 fixed - Fix a presentation of Cyrillic letters on sample images of russian help page for grand function.
 
 * Bug #12284 fixed - Completion in console could to a crash (or deadlock).
 
 * Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
 
+* Bug #12296 fixed - Call to getenv with a big environment variable
+                     led to memory corruption.
+
 * Bug #12304 fixed - Undock, redock and undock led to an exception.
+
+* Bug #12307 fixed - ftp addresses were not handled in help browser.
 
 
                     Changes between version 5.3.3 and 5.4.0

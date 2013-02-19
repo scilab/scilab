@@ -1438,7 +1438,7 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
     //get varId from varName
     C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 
-    //create a null matrix a the Top of the stack
+    //create a null matrix at the Top of the stack
     Top = Top + 1;
     il = iadr(*Lstk(Top));
     *istk(il) = 0;

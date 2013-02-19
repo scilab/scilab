@@ -947,7 +947,7 @@ grand("setsd",n)
             генераторов.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>

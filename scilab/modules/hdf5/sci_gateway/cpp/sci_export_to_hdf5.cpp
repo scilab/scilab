@@ -39,6 +39,8 @@ extern "C"
 //#define PRINT_DEBUG
 int iLevel = 0;
 
+static bool isVarExist(int _iFile, char* _pstVarName);
+
 static bool export_data(int _iH5File, int *_piVar, char* _pstName);
 static bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType);
 static bool export_double(int _iH5File, int *_piVar, char* _pstName);
@@ -103,8 +105,6 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         }
     }
 
-    //check append option
-
     iLevel = 0;
     // open hdf5 file
     pstFileName = expandPathVariable(pstNameList[0]);
@@ -148,51 +148,6 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
             return 1;
         }
-
-        //check if variable already exists
-        int iNbItem = getVariableNames(iH5File, NULL);
-        if (iNbItem)
-        {
-            char **pstVarNameList = (char **)MALLOC(sizeof(char *) * iNbItem);
-
-            iNbItem = getVariableNames(iH5File, pstVarNameList);
-
-            //import all data
-            for (int i = 0 ; i < iNbItem ; i++)
-            {
-                for (int j = 1 ; j < iRhs ; j++)
-                {
-                    if (strcmp(pstNameList[j], "-append") == 0)
-                    {
-                        continue;
-                    }
-
-                    if (strcmp(pstVarNameList[i], pstNameList[j]) == 0)
-                    {
-                        if (bAppendMode == false)
-                        {
-                            closeHDF5File(iH5File);
-                            Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'\nUse -append option to replace existing variable\n."), fname, pstVarNameList[i], pstNameList[0]);
-                            return 1;
-                        }
-                        else
-                        {
-                            if (deleteHDF5Var(iH5File, pstVarNameList[i]))
-                            {
-                                //failed to clean
-                                Scierror(999, _("%s: Unable to delete existing variable \"%s\"."), fname, pstVarNameList[i]);
-                                return 1;
-                            }
-                            continue;
-                        }
-                    }
-                }
-
-                FREE(pstVarNameList[i]);
-            }
-
-            FREE(pstVarNameList);
-        }
     }
 
     // export data
@@ -201,6 +156,25 @@ int sci_export_to_hdf5(char *fname, unsigned long fname_len)
         if (strcmp(pstNameList[i], "-append") == 0)
         {
             continue;
+        }
+
+        if (isVarExist(iH5File, pstNameList[i]))
+        {
+            if (bAppendMode)
+            {
+                if (deleteHDF5Var(iH5File, pstNameList[i]))
+                {
+                    closeHDF5File(iH5File);
+                    Scierror(999, _("%s: Unable to delete existing variable \"%s\"."), fname, pstNameList[i]);
+                    return 1;
+                }
+            }
+            else
+            {
+                closeHDF5File(iH5File);
+                Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'\nUse -append option to replace existing variable\n."), fname, pstNameList[i], pstNameList[0]);
+                return 1;
+            }
         }
 
         bExport = export_data(iH5File, piAddrList[i], pstNameList[i]);
@@ -949,4 +923,30 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
     return iCount;
 }
 
+static bool isVarExist(int _iFile, char* _pstVarName)
+{
+    //check if variable already exists
+    int iNbItem = getVariableNames(_iFile, NULL);
+    if (iNbItem)
+    {
+        char **pstVarNameList = (char **)MALLOC(sizeof(char *) * iNbItem);
+
+        iNbItem = getVariableNames(_iFile, pstVarNameList);
+
+        //import all data
+        for (int i = 0 ; i < iNbItem ; i++)
+        {
+            if (strcmp(pstVarNameList[i], _pstVarName) == 0)
+            {
+                return true;
+            }
+
+            FREE(pstVarNameList[i]);
+        }
+
+        FREE(pstVarNameList);
+    }
+
+    return false;
+}
 /*--------------------------------------------------------------------------*/

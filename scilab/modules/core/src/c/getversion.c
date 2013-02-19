@@ -22,7 +22,6 @@
 #include "loadversion.h"
 #include "freeArrayOfString.h"
 #include "MALLOC.h"
-#include "../../../io/includes/getenvc.h"
 /*--------------------------------------------------------------------------*/
 #define TCLSCI_MODULE_NAME "tclsci"
 #define TCLTK_OPTION_STRING "tk"

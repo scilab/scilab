@@ -28,7 +28,6 @@
 #include "FileExist.h"
 #include "ilib_verbose.h"
 #ifdef _MSC_VER
-#include "getenvc.h"
 #include "dllinfo.h"
 #endif
 #include "getshortpathname.h"
