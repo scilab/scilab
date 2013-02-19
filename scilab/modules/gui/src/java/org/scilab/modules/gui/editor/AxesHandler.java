@@ -240,6 +240,25 @@ public class AxesHandler {
         Axes clone = (Axes)GraphicController.getController().getObjectFromId(cloneUID);
         Axes axesFrom = (Axes)GraphicController.getController().getObjectFromId(axesFromUID);
 
+        //Cloning the Axes does not clone the labels/title, so we need do it manualy
+
+        String xLabelUID = GraphicController.getController().cloneObject(axesFrom.getXAxisLabel());
+        String yLabelUID = GraphicController.getController().cloneObject(axesFrom.getYAxisLabel());
+        String zLabelUID = GraphicController.getController().cloneObject(axesFrom.getZAxisLabel());
+        String titleUID = GraphicController.getController().cloneObject(axesFrom.getTitle());
+
+        GraphicController.getController().setGraphicObjectRelationship(cloneUID, xLabelUID);
+        GraphicController.getController().setGraphicObjectRelationship(cloneUID, yLabelUID);
+        GraphicController.getController().setGraphicObjectRelationship(cloneUID, zLabelUID);
+        GraphicController.getController().setGraphicObjectRelationship(cloneUID, titleUID);
+		
+        //Set the correct position to the labels/title in the new Axes
+
+        GraphicController.getController().setProperty(xLabelUID, GraphicObjectProperties.__GO_AUTO_POSITION__, true);
+        GraphicController.getController().setProperty(yLabelUID, GraphicObjectProperties.__GO_AUTO_POSITION__, true);
+        GraphicController.getController().setProperty(zLabelUID, GraphicObjectProperties.__GO_AUTO_POSITION__, true);
+        GraphicController.getController().setProperty(titleUID, GraphicObjectProperties.__GO_AUTO_POSITION__, true);
+
         Double[] margins = axesFrom.getMargins();
         Integer boxType = axesFrom.getBoxType();
         boolean markMode = axesFrom.getMarkMode();
@@ -269,6 +288,11 @@ public class AxesHandler {
         Integer hiddenColor = axesFrom.getHiddenColor();
         boolean tightLimits = axesFrom.getTightLimits();
 
+        clone.setXAxisLabel(xLabelUID);
+        clone.setYAxisLabel(yLabelUID);
+        clone.setZAxisLabel(zLabelUID);
+        clone.setTitle(titleUID);
+
         clone.setMargins(margins);
         clone.setBoxType(boxType);
         clone.setClipState(clipState);
@@ -281,6 +305,7 @@ public class AxesHandler {
         clone.setLineStyle(lineStyle);
         clone.setLineThickness(lineThickness);
         clone.setLineColor(lineColor);
+
 
         clone.setRotationAngles(rotationAngles);
         clone.setXAxisVisible(XAxisVisible);
@@ -318,18 +343,22 @@ public class AxesHandler {
         Axes axesTo = (Axes)GraphicController.getController().getObjectFromId(axesToUID);
 
         Double[] dataBounds = axesTo.getDataBounds();
-
         Double[] realDataBounds = axesTo.getRealDataBounds();
-
         String[] children = axesTo.getChildren();
-
         String parentUID = axesTo.getParent();
+        String[] titleText = (String[])GraphicController.getController().getProperty(axesTo.getTitle(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
+        String[] xLabelText = (String[])GraphicController.getController().getProperty(axesTo.getXAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
+        String[] yLabelText = (String[])GraphicController.getController().getProperty(axesTo.getYAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
+        String[] zLabelText = (String[])GraphicController.getController().getProperty(axesTo.getZAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
 
-        String title = axesTo.getTitle();
+        GraphicController.getController().setProperty(newAxes.getTitle(), GraphicObjectProperties.__GO_TEXT_STRINGS__, titleText);
+        GraphicController.getController().setProperty(newAxes.getXAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__, xLabelText);
+        GraphicController.getController().setProperty(newAxes.getYAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__, yLabelText);
+        GraphicController.getController().setProperty(newAxes.getZAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__, zLabelText);
 
         newAxes.setDataBounds(dataBounds);
         newAxes.setRealDataBounds(realDataBounds);
-        newAxes.setTitle(title);
+
         for (Integer i = 0; i < children.length; i++) {
             GraphicController.getController().setGraphicObjectRelationship(newAxesUID, children[i]);
         }
