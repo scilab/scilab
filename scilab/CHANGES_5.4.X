@@ -101,6 +101,8 @@ Xcos
 
 * Improve block parameters errors (types and sizes) reporting.
 
+* Avoid some scopes blink on simulation.
+
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
 
