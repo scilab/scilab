@@ -317,7 +317,6 @@
                         </tr>
                         <tr>
                             <td>
-                                <literal>'none'</literal>
                             </td>
                             <td>No marker (default)</td>
                         </tr>
@@ -369,8 +368,7 @@ clf();
 t=0:%pi/20:2*%pi;
 plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
  ]]></programlisting>
-        <scilab:image>x=1:0.1:10;
-            plot(x,sin(x),'r.-&gt;')
+        <scilab:image>
             t=0:%pi/20:2*%pi;
             plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
         </scilab:image>
