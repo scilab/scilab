@@ -933,7 +933,7 @@ grand("setsd",n)
             that used by  method  one.  When both  have concluded,  advance the block for both generators.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
             <member>
