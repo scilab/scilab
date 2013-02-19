@@ -99,111 +99,111 @@ int sci_set(char *fname, void *pvApiCtx)
         }
         switch (iType1)
         {
-        case sci_handles:
-            /* first is a scalar argument so it's a gset(hdl,"command",[param]) */
-            /* F.Leray; INFO: case 9 is considered for a matrix of graphic handles */
-            CheckRhs(3, 3);
+            case sci_handles:
+                /* first is a scalar argument so it's a gset(hdl,"command",[param]) */
+                /* F.Leray; INFO: case 9 is considered for a matrix of graphic handles */
+                CheckRhs(3, 3);
 
-            if (isScalar(pvApiCtx, piAddr1) == FALSE)
-            {
-                OverLoad(1);
+                if (isScalar(pvApiCtx, piAddr1) == FALSE)
+                {
+                    OverLoad(1);
+                    return 0;
+                }
+
+                getScalarHandle(pvApiCtx, piAddr1, (long long*)&hdl);
+                pobjUID = (char*)getObjectFromHandle(hdl);
+
+                getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+                getAllocatedSingleString(pvApiCtx, piAddr2, &pstProperty);
+                valueType = getInputArgumentType(pvApiCtx, 3);
+
+                getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+                if ((strcmp(pstProperty, "user_data") == 0) || (stricmp(pstProperty, "userdata") == 0))
+                {
+                    /* in this case set_user_data_property
+                     * directly uses the  third position in the stack
+                     * to get the variable which is to be set in
+                     * the user_data property (any data type is allowed) S. Steer */
+                    _pvData = (void*)piAddr3;         /*position in the stack */
+                    iRows3 = -1;   /*unused */
+                    iCols3 = -1;   /*unused */
+                    valueType = -1;
+                }
+                else if (valueType == sci_matrix)
+                {
+                    getMatrixOfDouble(pvApiCtx, piAddr3, &iRows3, &iCols3, (double**)&_pvData);
+                }
+                else if (valueType == sci_boolean)
+                {
+                    getMatrixOfBoolean(pvApiCtx, piAddr3, &iRows3, &iCols3, (int**)&_pvData);
+                }
+                else if (valueType == sci_handles)
+                {
+                    getMatrixOfHandle(pvApiCtx, piAddr3, &iRows3, &iCols3, (long long**)&_pvData);
+                }
+                else if (valueType == sci_strings)
+                {
+                    if (   strcmp(pstProperty, "tics_labels") != 0 && strcmp(pstProperty, "auto_ticks") != 0 &&
+                            strcmp(pstProperty, "axes_visible") != 0 && strcmp(pstProperty, "axes_reverse") != 0 &&
+                            strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
+                            stricmp(pstProperty, "tooltipstring") != 0) /* Added for uicontrols */
+                    {
+                        getAllocatedSingleString(pvApiCtx, piAddr3, (char**)&_pvData);
+                        iRows3 = (int)strlen((char*)_pvData);
+                        iCols3 = 1;
+                    }
+                    else
+                    {
+                        isMatrixOfString = 1;
+                        getAllocatedMatrixOfString(pvApiCtx, piAddr3, &iRows3, &iCols3, (char***)&_pvData);
+                    }
+                }
+                else if (valueType == sci_list) /* Added for callbacks */
+                {
+                    iCols3 = 1;
+                    getListItemNumber(pvApiCtx, piAddr3, &iRows3);
+                    _pvData = (void*)piAddr3;         /* In this case l3 is the list position in stack */
+                }
+                break;
+
+            case sci_strings:      /* first is a string argument so it's a set("command",[param]) */
+                CheckRhs(2, 2);
+                getAllocatedSingleString(pvApiCtx, piAddr1, &pstProperty);
+                hdl = 0;
+                pobjUID = NULL;
+                valueType = getInputArgumentType(pvApiCtx, 2);
+                getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+
+                if (valueType == sci_matrix)
+                {
+                    getMatrixOfDouble(pvApiCtx, piAddr2, &iRows3, &iCols3, (double**)&_pvData);
+                }
+                else if (valueType == sci_handles)
+                {
+                    getMatrixOfHandle(pvApiCtx, piAddr2, &iRows3, &iCols3, (long long**)&_pvData);
+                }
+                else if (valueType == sci_strings)
+                {
+                    if (strcmp(pstProperty, "tics_labels") == 0 || strcmp(pstProperty, "auto_ticks") == 0 ||
+                            strcmp(pstProperty, "axes_visible") == 0 || strcmp(pstProperty, "axes_reverse") == 0 ||
+                            strcmp(pstProperty, "text") == 0)
+                    {
+                        isMatrixOfString = 1;
+                        getAllocatedMatrixOfString(pvApiCtx, piAddr2, &iRows3, &iCols3, (char***)&_pvData);
+                    }
+                    else
+                    {
+                        getAllocatedSingleString(pvApiCtx, piAddr2, (char**)&_pvData);
+                        iRows3 = (int)strlen((char*)_pvData);
+                        iCols3 = 1;
+                    }
+                }
+                break;
+
+            default:
+                Scierror(999, _("%s: Wrong type for input argument #%d: String or handle expected.\n"), fname, 1);
                 return 0;
-            }
-
-            getScalarHandle(pvApiCtx, piAddr1, (long long*)&hdl);
-            pobjUID = (char*)getObjectFromHandle(hdl);
-
-            getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
-            getAllocatedSingleString(pvApiCtx, piAddr2, &pstProperty);
-            valueType = getInputArgumentType(pvApiCtx, 3);
-
-            getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
-            if ((strcmp(pstProperty, "user_data") == 0) || (stricmp(pstProperty, "userdata") == 0))
-            {
-                /* in this case set_user_data_property
-                 * directly uses the  third position in the stack
-                 * to get the variable which is to be set in
-                 * the user_data property (any data type is allowed) S. Steer */
-                _pvData = (void*)piAddr3;         /*position in the stack */
-                iRows3 = -1;   /*unused */
-                iCols3 = -1;   /*unused */
-                valueType = -1;
-            }
-            else if (valueType == sci_matrix)
-            {
-                getMatrixOfDouble(pvApiCtx, piAddr3, &iRows3, &iCols3, (double**)&_pvData);
-            }
-            else if (valueType == sci_boolean)
-            {
-                getMatrixOfBoolean(pvApiCtx, piAddr3, &iRows3, &iCols3, (int**)&_pvData);
-            }
-            else if (valueType == sci_handles)
-            {
-                getMatrixOfHandle(pvApiCtx, piAddr3, &iRows3, &iCols3, (long long**)&_pvData);
-            }
-            else if (valueType == sci_strings)
-            {
-                if (   strcmp(pstProperty, "tics_labels") != 0 && strcmp(pstProperty, "auto_ticks") != 0 &&
-                       strcmp(pstProperty, "axes_visible") != 0 && strcmp(pstProperty, "axes_reverse") != 0 &&
-                       strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
-                       stricmp(pstProperty, "tooltipstring") != 0) /* Added for uicontrols */
-                {
-                    getAllocatedSingleString(pvApiCtx, piAddr3, (char**)&_pvData);
-                    iRows3 = (int)strlen((char*)_pvData);
-                    iCols3 = 1;
-                }
-                else
-                {
-                    isMatrixOfString = 1;
-                    getAllocatedMatrixOfString(pvApiCtx, piAddr3, &iRows3, &iCols3, (char***)&_pvData);
-                }
-            }
-            else if (valueType == sci_list) /* Added for callbacks */
-            {
-                iCols3 = 1;
-                getListItemNumber(pvApiCtx, piAddr3, &iRows3);
-                _pvData = (void*)piAddr3;         /* In this case l3 is the list position in stack */
-            }
-            break;
-
-        case sci_strings:      /* first is a string argument so it's a set("command",[param]) */
-            CheckRhs(2, 2);
-            getAllocatedSingleString(pvApiCtx, piAddr1, &pstProperty);
-            hdl = 0;
-            pobjUID = NULL;
-            valueType = getInputArgumentType(pvApiCtx, 2);
-            getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
-
-            if (valueType == sci_matrix)
-            {
-                getMatrixOfDouble(pvApiCtx, piAddr2, &iRows3, &iCols3, (double**)&_pvData);
-            }
-            else if (valueType == sci_handles)
-            {
-                getMatrixOfHandle(pvApiCtx, piAddr2, &iRows3, &iCols3, (long long**)&_pvData);
-            }
-            else if (valueType == sci_strings)
-            {
-                if (strcmp(pstProperty, "tics_labels") == 0 || strcmp(pstProperty, "auto_ticks") == 0 ||
-                    strcmp(pstProperty, "axes_visible") == 0 || strcmp(pstProperty, "axes_reverse") == 0 ||
-                    strcmp(pstProperty, "text") == 0)
-                {
-                    isMatrixOfString = 1;
-                    getAllocatedMatrixOfString(pvApiCtx, piAddr2, &iRows3, &iCols3, (char***)&_pvData);
-                }
-                else
-                {
-                    getAllocatedSingleString(pvApiCtx, piAddr2, (char**)&_pvData);
-                    iRows3 = (int)strlen((char*)_pvData);
-                    iCols3 = 1;
-                }
-            }
-            break;
-
-        default:
-            Scierror(999, _("%s: Wrong type for input argument #%d: String or handle expected.\n"), fname, 1);
-            return 0;
-            break;
+                break;
         }
 
         if (hdl != 0)
@@ -245,13 +245,13 @@ int sci_set(char *fname, void *pvApiCtx)
             /* 'figure_style' for compatibility but do nothing */
             /* others values must return a error */
             char *propertiesSupported[NB_PROPERTIES_SUPPORTED] = { "current_entity",
-                                                                   "hdl",
-                                                                   "current_figure",
-                                                                   "current_axes",
-                                                                   "figure_style",
-                                                                   "default_values",
-                                                                   "auto_clear"
-            };
+                    "hdl",
+                    "current_figure",
+                    "current_axes",
+                    "figure_style",
+                    "default_values",
+                    "auto_clear"
+                                                                 };
 
             int i = 0;
             int iPropertyFound = 0;

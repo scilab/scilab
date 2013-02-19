@@ -47,6 +47,8 @@ public final class SaveFile {
      */
     private SaveFile() { }
 
+
+
     /**
      * save text in JEditorPane
      * @param textPane JEditorPane
@@ -56,6 +58,57 @@ public final class SaveFile {
      */
     public static boolean doSave(ScilabEditorPane textPane, int index, File fOut, EditorKit editorKit) {
         return doSave(textPane, index, fOut, editorKit, true, false);
+    }
+
+    /**
+     * save a document
+     * @param doc the document to save
+     * @param fOut File
+     * @param editorKit EditorKit
+     * @return true if saved
+     */
+    public static boolean doSave(ScilabDocument doc, File fOut, EditorKit editorKit) throws IOException {
+        // get default eol
+        String defaultEol = System.getProperty(LINE_SEPARATOR);
+        boolean bReturn = false;
+        BufferedWriter bw = null;
+        OutputStreamWriter osw = null;
+        FileOutputStream fos = null;
+
+        // set eol used to save file
+        if (doc.getEOL().compareTo(defaultEol) != 0) {
+            System.setProperty(LINE_SEPARATOR, doc.getEOL());
+        }
+
+        try {
+            fos = new FileOutputStream(fOut);
+            osw = new OutputStreamWriter(fos, SciNotesOptions.getSciNotesPreferences().encoding);
+            bw = new BufferedWriter(osw);
+            editorKit.write(bw, doc, 0, doc.getLength());
+            bw.flush();
+            bReturn = true;
+        } catch (BadLocationException e) {
+            System.err.println(e);
+        } finally {
+            try {
+                if (fos != null) {
+                    fos.close();
+                }
+                if (osw != null) {
+                    osw.close();
+                }
+                if (bw != null) {
+                    bw.close();
+                }
+            } catch (IOException e) {
+                System.err.println(e);
+            }
+        }
+
+        // restore default eol
+        System.setProperty(LINE_SEPARATOR, defaultEol);
+
+        return bReturn;
     }
 
     /**

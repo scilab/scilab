@@ -39,21 +39,22 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>erf</literal> は誤差関数を計算します:
+            <literal>erf</literal> は誤差関数を計算します:  <latex>
+                \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt
+            </latex>
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/erf_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 deff('y=f(t)','y=exp(-t^2)');
 erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
+
+
+x = [1+2*%i, -1+2*%i, 1e-6+2e-6*%i,0+2*%i];
+a=erf(x)
+
+1-erfc(x)
 ]]></programlisting>
     </refsection>
     <refsection role="see also">

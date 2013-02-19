@@ -333,7 +333,7 @@ public class XConfiguration {
     }
 
     /**
-     * Get a the list of the etc dirs in modules dirs
+     * Get the list of the etc dirs in modules dirs
      * @return the lit of etc dirs
      */
     public static List<File> getEtcDir() {

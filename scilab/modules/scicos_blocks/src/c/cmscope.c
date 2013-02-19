@@ -38,8 +38,12 @@
 #include "AxesModel.h"
 
 // #include <stdio.h>
+
 // #define LOG(...) printf(__VA_ARGS__)
 #define LOG(...)
+// #define PUSH_LOG(...) printf(__VA_ARGS__)
+#define PUSH_LOG(...)
+
 
 #define HISTORY_POINTS_THRESHOLD 4096
 
@@ -691,6 +695,7 @@ static BOOL pushData(scicos_block * block, int input, int row)
     // select the right input and row
     data = sco->internal.bufferCoordinates[input][row];
 
+    PUSH_LOG("%s: %d\n", "pushData", block->ipar[2]);
     return setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_COORDINATES__, data, jni_double_vector, block->ipar[2]);
 }
 
@@ -961,11 +966,11 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int input, int row
     {
 
         /*
-         * Default setup (will crash if removed)
+         * Default setup of the nGons property
          */
         {
-            int polylineSize[2] = { 1, polylineDefaultNumElement };
-            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
+            int nGons = 1;
+            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_GONS__, &nGons, jni_int, 1);
         }
 
         // ipar=[win;size(in,'*');N;wpos(:);wdim(:);in(:);clrs(:);heritance]
@@ -1036,7 +1041,6 @@ static BOOL pushHistory(scicos_block * block, int input, int maxNumberOfPoints)
     sco_data *sco;
 
     BOOL result = TRUE;
-    int polylineSize[2] = { 1, maxNumberOfPoints };
 
     sco = getScoData(block);
     pFigureUID = getFigure(block);
@@ -1055,9 +1059,10 @@ static BOOL pushHistory(scicos_block * block, int input, int maxNumberOfPoints)
     for (i = 0; i < block->insz[input]; i++)
     {
         pPolylineUID = getPolyline(pAxeUID, block, input, i, TRUE);
-        result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
 
         data = sco->internal.historyCoordinates[input][i];
+
+        PUSH_LOG("%s: %d\n", "pushHistory", maxNumberOfPoints);
         result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_COORDINATES__, data, jni_double_vector, maxNumberOfPoints);
     }
 

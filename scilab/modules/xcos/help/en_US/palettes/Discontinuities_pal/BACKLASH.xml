@@ -125,21 +125,21 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">initial output</emphasis>
+                    <emphasis role="bold">Initial output</emphasis>
                 </para>
                 <para> The initial output value.</para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">gap</emphasis>
+                    <emphasis role="bold">Gap</emphasis>
                 </para>
                 <para> The width of the dead-band.</para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">use zero-crossing </emphasis>
+                    <emphasis role="bold">Use zero-crossing </emphasis>
                 </para>
                 <para> Select to enable use of zero crossing detection to detect engagement with lower and upper thresholds.</para>
                 <para> Properties : Type 'vec' of size 1 </para>

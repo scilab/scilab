@@ -147,14 +147,14 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">past inputs (Num degree values)</emphasis>
+                    <emphasis role="bold">Past inputs (Num degree values)</emphasis>
                 </para>
                 <para>The parameter description 5.</para>
                 <para>Properties : Type 'vec' of size "size(%2,2)".</para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">past outputs (Den degree values)</emphasis>
+                    <emphasis role="bold">Past outputs (Den degree values)</emphasis>
                 </para>
                 <para>The parameter description 6.</para>
                 <para>Properties : Type 'vec' of size "size(%3,2)".</para>

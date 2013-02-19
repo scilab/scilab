@@ -103,6 +103,8 @@ Xcos
 
 * Improve block parameters errors (types and sizes) reporting.
 
+* Avoid some scopes blink on simulation.
+
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
 
@@ -147,6 +149,9 @@ Xcos
 
 * Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
                      due to CLR blocks.
+
+* Bug #12290 fixed - AFFICH_m block inside a superblock led to java null
+                     pointer exception.
 
 
 Documentation
@@ -233,6 +238,8 @@ Bug fixes
 
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
+* Bug #11812 fixed - Upper/lower case issues in the Xcos documentation fixed.
+
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
 
 * Bug #11931 fixed - In graphics, white space was not used as default thousand
@@ -243,8 +250,10 @@ Bug fixes
 * Bug #11941 fixed - show_margins() failed in 'nyquist' mode if the system is
                      in state-space form.
 
-* Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
+* Bug #11952 fixed - In SciNotes, a Java exception occurred on selection of text
                     containing a \E.
+
+* Bug #11954 fixed - export_to_hdf5 was not able to export the same variable twice.
 
 * Bug #11958 fixed - axesflag=0 was not taken into account in plot2d3.
 
@@ -309,6 +318,8 @@ Bug fixes
 
 * Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
 
+* Bug #12139 fixed - eigs ran out of memory for sparse matrices.
+
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
 
 * Bug #12141 fixed - Remove calls to gettext in rubberbox help page examples.
@@ -349,6 +360,23 @@ Bug fixes
                      (which have declared wrong column/row count)
 
 * Bug #12247 fixed - Fix a typo in some error messages.
+
+* Bug #12248 fixed - SciNotes toolbar had disappeared.
+
+* Bug #12270 fixed - When the console lost the focus, the caret could be visible.
+
+* Bug #12272 fixed - Fix a presentation of Cyrillic letters on sample images of russian help page for grand function.
+
+* Bug #12284 fixed - Completion in console could to a crash (or deadlock).
+
+* Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
+
+* Bug #12296 fixed - Call to getenv with a big environment variable
+                     led to memory corruption.
+
+* Bug #12304 fixed - Undock, redock and undock led to an exception.
+
+* Bug #12307 fixed - ftp addresses were not handled in help browser.
 
 
                     Changes between version 5.3.3 and 5.4.0

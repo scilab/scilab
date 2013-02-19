@@ -131,7 +131,7 @@ public:
     virtual int wrapBool(int * x, int xSize, int xSizeCol, const bool isRef) const = 0;
 
     /**
-         * Unwrap a the external object with the given id into a double
+     * Unwrap the external object with the given id into a double
      * @param id the value to wrap
      * @param pos the position in the Scilab stack where to put the result
          */

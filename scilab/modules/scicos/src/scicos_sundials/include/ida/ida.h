@@ -61,9 +61,6 @@ extern "C" {
  * ----------------------------------------
  */
 
-/* SUNDIALS EXTENSION */
-#define IDA_ZERO_DETACH_RETURN   3
-
 #define IDA_SUCCESS          0
 #define IDA_TSTOP_RETURN     1
 #define IDA_ROOT_RETURN      2
@@ -97,27 +94,7 @@ extern "C" {
 #define IDA_BAD_DKY         -27
 
 /* SUNDIALS EXTENSION */
-#define IDA_TRET_NULL       -29
-#define IDA_BAD_ITASK       -30
-#define IDA_BAD_TSTOP       -33
-#define IDA_EWT_FAIL        -36
-#define IDA_LSOLVE_NULL     -38
-#define IDA_NULL_Y0         -39
-#define IDA_BAD_ITOL        -40
-#define IDA_BAD_NVECTOR     -42
-#define IDA_BAD_RELTOL      -44
-#define IDA_BAD_ABSTOL      -45
-#define IDA_NULL_G          -46
-#define IDA_BAD_TOUT        -47
-#define IDA_YP0_NULL        -48
-#define IDA_RES_NULL        -49
-#define IDA_YRET_NULL       -50
-#define IDA_YPRET_NULL      -51
-#define IDA_BAD_HINIT       -52
-#define IDA_MISSING_ID      -53
-#define IDA_Y0_FAIL_CONSTR  -54
-#define IDA_TOO_CLOSE       -55
-#define IDA_CLOSE_ROOTS     -56
+#define IDA_ZERO_DETACH_RETURN   3
 
 /*
  * ----------------------------------------------------------------
@@ -138,9 +115,9 @@ extern "C" {
  * to provide access in res to user data.                                    
  *                                                                
  * A IDAResFn res should return a value of 0 if successful, a positive
- * value if a recoverable error occured (e.g. yy has an illegal value),
- * or a negative value if a nonrecoverable error occured. In the latter
- * case, the program halts. If a recoverable error occured, the integrator
+ * value if a recoverable error occurred (e.g. yy has an illegal value),
+ * or a negative value if a nonrecoverable error occurred. In the latter
+ * case, the program halts. If a recoverable error occurred, the integrator
  * will attempt to correct and retry.
  * ----------------------------------------------------------------
  */
@@ -163,7 +140,7 @@ typedef int (*IDAResFn)(realtype tt, N_Vector yy, N_Vector yp,
  * passed to the user's g function every time it is called.
  *
  * An IDARootFn should return 0 if successful or a non-zero value
- * if an error occured (in which case the integration will be halted).
+ * if an error occurred (in which case the integration will be halted).
  * -----------------------------------------------------------------
  */
 
@@ -834,7 +811,7 @@ SUNDIALS_EXPORT int IDAGetDky(void *ida_mem, realtype t, int k, N_Vector dky);
  * IDAGetNumLinSolvSetups returns the number of calls made to     
  *       the linear solver's setup routine                        
  * IDAGetNumErrTestFails returns the number of local error test   
- *       failures that have occured                               
+ *       failures that have occurred                               
  * IDAGetNumBacktrackOps returns the number of backtrack          
  *       operations done in the linesearch algorithm in IDACalcIC 
  * IDAGetConsistentIC returns the consistent initial conditions

@@ -327,7 +327,7 @@
     <refsection>
         <title>Algorithms</title>
         <para>
-            This function uses the  <ulink url="http://www.fftw.org/">fftw3</ulink> library.
+            This function is based on the <ulink url="http://www.fftw.org/">fftw3</ulink> library.
         </para>
     </refsection>
     <refsection role="see also">

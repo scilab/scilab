@@ -23,6 +23,7 @@
 #include "../../../io/includes/getenvc.h"
 #include "os_wcsdup.h"
 #include "charEncoding.h"
+
 /*--------------------------------------------------------------------------*/
 /*wide char*/
 #define TCLSCI_MODULE_NAME L"tclsci"

@@ -483,32 +483,12 @@ int CVodeInit(void *cvode_mem, CVRhsFn f, realtype t0, N_Vector y0)
 
   if (y0==NULL) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeInit", MSGCV_NULL_Y0);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_NULL_Y0);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
 
   if (f == NULL) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeInit", MSGCV_NULL_F);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_NULL_F);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
 
   /* Test if all required vector operations are implemented */
@@ -516,17 +496,7 @@ int CVodeInit(void *cvode_mem, CVRhsFn f, realtype t0, N_Vector y0)
   nvectorOK = CVCheckNvector(y0);
   if(!nvectorOK) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeInit", MSGCV_BAD_NVECTOR);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_BAD_NVECTOR);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
 
   /* Set space requirements for one N_Vector */
@@ -660,17 +630,7 @@ int CVodeReInit(void *cvode_mem, realtype t0, N_Vector y0)
 
   if (y0 == NULL) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeReInit", MSGCV_NULL_Y0);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_NULL_Y0);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
   
   /* Copy the input parameters into CVODE state */
@@ -762,32 +722,12 @@ int CVodeSStolerances(void *cvode_mem, realtype reltol, realtype abstol)
 
   if (reltol < ZERO) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeSStolerances", MSGCV_BAD_RELTOL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_BAD_RELTOL);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
 
   if (abstol < ZERO) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeSStolerances", MSGCV_BAD_ABSTOL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_BAD_ABSTOL);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
 
   /* Copy tolerances into memory */
@@ -824,32 +764,12 @@ int CVodeSVtolerances(void *cvode_mem, realtype reltol, N_Vector abstol)
 
   if (reltol < ZERO) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeSVtolerances", MSGCV_BAD_RELTOL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_BAD_RELTOL);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
 
   if (N_VMin(abstol) < ZERO) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeSVtolerances", MSGCV_BAD_ABSTOL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_BAD_ABSTOL);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
 
   /* Copy tolerances into memory */
@@ -976,17 +896,7 @@ int CVodeRootInit(void *cvode_mem, int nrtfn, CVRootFn g)
         liw -= 3*nrt;
 
         CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeRootInit", MSGCV_NULL_G);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(CV_NULL_G);
-		}
-		else
-		{
-			return(CV_ILL_INPUT);
-		}
-
+        return(CV_ILL_INPUT);
       }
       else {
         gfun = g;
@@ -1000,17 +910,7 @@ int CVodeRootInit(void *cvode_mem, int nrtfn, CVRootFn g)
   cv_mem->cv_nrtfn = nrt;
   if (g == NULL) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeRootInit", MSGCV_NULL_G);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_NULL_G);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
   else gfun = g;
 
@@ -1232,49 +1132,19 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
   /* Check for yout != NULL */
   if ((y = yout) == NULL) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVode", MSGCV_YOUT_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_YOUT_NULL);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
 
   /* Check for tret != NULL */
   if (tret == NULL) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVode", MSGCV_TRET_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_TRET_NULL);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
 
   /* Check for valid itask */
   if ( (itask != CV_NORMAL) && (itask != CV_ONE_STEP) ) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVode", MSGCV_BAD_ITASK);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(CV_BAD_ITASK);
-	}
-	else
-	{
-		return(CV_ILL_INPUT);
-	}
-
+    return(CV_ILL_INPUT);
   }
 
   if (itask == CV_NORMAL) toutc = tout;
@@ -1319,17 +1189,7 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
     h = hin;
     if ( (h != ZERO) && ((tout-tn)*h < ZERO) ) {
       CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVode", MSGCV_BAD_H0);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		  return(CV_BAD_H0);
-	  }
-	  else
-	  {
-		  return(CV_ILL_INPUT);
-	  }
-
+      return(CV_ILL_INPUT);
     }
     if (h == ZERO) {
       tout_hin = tout;
@@ -1353,17 +1213,7 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
     if (tstopset) {
       if ( (tstop - tn)*h < ZERO ) {
         CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVode", MSGCV_BAD_TSTOP, tstop, tn);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(CV_BAD_TSTOP);
-		}
-		else
-		{
-			return(CV_ILL_INPUT);
-		}
-
+        return(CV_ILL_INPUT);
       }
       if ( (tn + h - tstop)*h > ZERO ) 
         h = (tstop - tn)*(ONE-FOUR*uround);
@@ -1422,17 +1272,7 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
 
       if (retval == CLOSERT) {
         CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVRcheck2", MSGCV_CLOSE_ROOTS, tlo);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(CV_CLOSE_ROOTS);
-		}
-		else
-		{
-			return(CV_ILL_INPUT);
-		}
-
+        return(CV_ILL_INPUT);
       } else if (retval == CV_RTFUNC_FAIL) {
         CVProcessError(cv_mem, CV_RTFUNC_FAIL, "CVODE", "CVRcheck2", MSGCV_RTFUNC_FAILED, tlo);
         return(CV_RTFUNC_FAIL);
@@ -1482,17 +1322,7 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
       ier =  CVodeGetDky(cv_mem, tout, 0, yout);
       if (ier != CV_SUCCESS) {
         CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVode", MSGCV_BAD_TOUT, tout);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(CV_BAD_TOUT);
-		}
-		else
-		{
-			return(CV_ILL_INPUT);
-		}
-
+        return(CV_ILL_INPUT);
       }
       return(CV_SUCCESS);
     }
@@ -1511,17 +1341,7 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
         ier =  CVodeGetDky(cv_mem, tstop, 0, yout);
         if (ier != CV_SUCCESS) {
           CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVode", MSGCV_BAD_TSTOP, tstop, tn);
-
-		  /* SUNDIALS EXTENSION */
-		  if (is_sundials_with_extension())
-		  {
-			return(CV_BAD_TSTOP);
-		  }
-		  else
-		  {
-			return(CV_ILL_INPUT);
-		  }
-
+          return(CV_ILL_INPUT);
         }
         tretlast = *tret = tstop;
         tstopset = FALSE;
@@ -1974,17 +1794,7 @@ static int CVInitialSetup(CVodeMem cv_mem)
   /* Did the user specify tolerances? */
   if (itol == CV_NN) {
     CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVInitialSetup", MSGCV_NO_TOLS);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		return(CV_BAD_ITOL);
-	  }
-	  else
-	  {
-		return(CV_ILL_INPUT);
-	  }
-
+    return(CV_ILL_INPUT);
   }
 
   /* Set data for efun */
@@ -1994,49 +1804,18 @@ static int CVInitialSetup(CVodeMem cv_mem)
   /* Load initial error weights */
   ier = efun(zn[0], ewt, e_data);
   if (ier != 0) {
-    if (itol == CV_WF) {
+    if (itol == CV_WF) 
       CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVInitialSetup", MSGCV_EWT_FAIL);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		return(CV_EWT_FAIL);
-	  }
-	  else
-	  {
-		return(CV_ILL_INPUT);
-	  }
-    }else{ 
+    else 
       CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVInitialSetup", MSGCV_BAD_EWT);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		  return(CV_BAD_EWT);
-	  }
-	  else
-	  {
-		  return(CV_ILL_INPUT);
-	  }
-
-    }
+    return(CV_ILL_INPUT);
   }
   
   /* Check if lsolve function exists (if needed) and call linit function (if it exists) */
   if (iter == CV_NEWTON) {
     if (lsolve == NULL) {
       CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVInitialSetup", MSGCV_LSOLVE_NULL);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		return(CV_LSOLVE_NULL);
-	  }
-	  else
-	  {
-		return(CV_ILL_INPUT);
-	  }
-
+      return(CV_ILL_INPUT);
     }
     if (linit != NULL) {
       ier = linit(cv_mem);

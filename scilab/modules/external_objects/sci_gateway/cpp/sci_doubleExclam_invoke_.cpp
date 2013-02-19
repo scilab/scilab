@@ -27,7 +27,7 @@ int sci_doubleExclam_invoke_(char * fname, void* pvApiCtx)
     }
     catch (std::exception & e)
     {
-        Scierror(999, "%s: An error occured: %s", "Method invocation", e.what());
+        Scierror(999, _("%s: An error occurred: %s"), "Method invocation", e.what());
         return 0;
     }
 }

@@ -119,7 +119,7 @@ public:
     virtual int * invoke(int id, const char * methodName, int * args, int argsSize) = 0;
 
     /**
-     * Set a the value of the given field
+     * Set the value of the given field
      * @param id the object id
      * @param fieldName the field name
      * @param idarg the id of the value

@@ -15,7 +15,6 @@ package org.scilab.modules.gui.bridge.canvas;
 
 import java.awt.Component;
 import java.awt.Frame;
-import java.awt.Graphics;
 import java.awt.HeadlessException;
 import java.util.Calendar;
 import java.util.StringTokenizer;

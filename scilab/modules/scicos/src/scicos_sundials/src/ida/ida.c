@@ -409,47 +409,17 @@ int IDAInit(void *ida_mem, IDAResFn res,
   
   if (yy0 == NULL) { 
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInit", MSG_Y0_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_NULL_Y0); 
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT); 
   }
   
   if (yp0 == NULL) { 
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInit", MSG_YP0_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_YP0_NULL); 
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT); 
   }
 
   if (res == NULL) { 
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInit", MSG_RES_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_RES_NULL); 
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT); 
   }
 
   /* Test if all required vector operations are implemented */
@@ -457,17 +427,7 @@ int IDAInit(void *ida_mem, IDAResFn res,
   nvectorOK = IDACheckNvector(yy0);
   if (!nvectorOK) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInit", MSG_BAD_NVECTOR);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_BAD_NVECTOR);
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT);
   }
 
   /* Set space requirements for one N_Vector */
@@ -595,32 +555,12 @@ int IDAReInit(void *ida_mem,
   
   if (yy0 == NULL) { 
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAReInit", MSG_Y0_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_NULL_Y0); 
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT); 
   }
   
   if (yp0 == NULL) { 
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAReInit", MSG_YP0_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_YP0_NULL); 
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT); 
   }
 
   /* Copy the input parameters into IDA memory block */
@@ -695,32 +635,12 @@ int IDASStolerances(void *ida_mem, realtype reltol, realtype abstol)
 
   if (reltol < ZERO) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASStolerances", MSG_BAD_RTOL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_BAD_RELTOL); 
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT);
   }
 
   if (abstol < ZERO) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASStolerances", MSG_BAD_ATOL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_BAD_ABSTOL);
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT);
   }
 
   /* Copy tolerances into memory */
@@ -757,32 +677,12 @@ int IDASVtolerances(void *ida_mem, realtype reltol, N_Vector abstol)
 
   if (reltol < ZERO) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASVtolerances", MSG_BAD_RTOL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_BAD_RELTOL);
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT);
   }
 
   if (N_VMin(abstol) < ZERO) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASVtolerances", MSG_BAD_ATOL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_BAD_ABSTOL);
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT);
   }
 
   /* Copy tolerances into memory */
@@ -911,17 +811,7 @@ int IDARootInit(void *ida_mem, int nrtfn, IDARootFn g)
         liw -= 3*nrt;
 
         IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDARootInit", MSG_ROOT_FUNC_NULL);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(IDA_NULL_G);
-		}
-		else
-		{
-			return(IDA_ILL_INPUT);
-		}
-
+        return(IDA_ILL_INPUT);
       }
       else {
         gfun = g;
@@ -935,17 +825,7 @@ int IDARootInit(void *ida_mem, int nrtfn, IDARootFn g)
   IDA_mem->ida_nrtfn = nrt;
   if (g == NULL) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDARootInit", MSG_ROOT_FUNC_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_NULL_G);
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT);
   }
   else gfun = g;
 
@@ -1190,64 +1070,24 @@ int IDASolve(void *ida_mem, realtype tout, realtype *tret,
 
   if (yret == NULL) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_YRET_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_YRET_NULL);
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT);
   }
   yy = yret;  
 
   if (ypret == NULL) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_YPRET_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_YPRET_NULL);
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT);
   }
   yp = ypret;
   
   if (tret == NULL) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_TRET_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_TRET_NULL);
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT);
   }
 
   if ((itask != IDA_NORMAL) && (itask != IDA_ONE_STEP)) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_BAD_ITASK);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_BAD_ITASK);
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT);
   }
   
   if (itask == IDA_NORMAL) toutc = tout;
@@ -1270,48 +1110,18 @@ int IDASolve(void *ida_mem, realtype tout, realtype *tret,
     tdist = ABS(tout - tn);
     if (tdist == ZERO) {
       IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_TOO_CLOSE);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		  return(IDA_TOO_CLOSE);
-	  }
-	  else
-	  {
-		  return(IDA_ILL_INPUT);
-	  }
-
+      return(IDA_ILL_INPUT);
     }
     troundoff = TWO*uround*(ABS(tn) + ABS(tout));    
     if (tdist < troundoff) {
       IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_TOO_CLOSE);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		  return(IDA_TOO_CLOSE);
-	  }
-	  else
-	  {
-		  return(IDA_ILL_INPUT);
-	  }
-
+      return(IDA_ILL_INPUT);
     }
 
     hh = hin;
     if ( (hh != ZERO) && ((tout-tn)*hh < ZERO) ) {
       IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_BAD_HINIT);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		  return(IDA_BAD_HINIT);
-	  }
-	  else
-	  {
-		  return(IDA_ILL_INPUT);
-	  }
-
+      return(IDA_ILL_INPUT);
     }
 
     if (hh == ZERO) {
@@ -1327,17 +1137,7 @@ int IDASolve(void *ida_mem, realtype tout, realtype *tret,
     if (tstopset) {
       if ( (tstop - tn)*hh < ZERO) {
         IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_BAD_TSTOP, tstop, tn);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(IDA_BAD_TSTOP);
-		}
-		else
-		{
-			return(IDA_ILL_INPUT);
-		}
-
+        return(IDA_ILL_INPUT);
       }
       if ( (tn + hh - tstop)*hh > ZERO) 
         hh = (tstop - tn)*(ONE-FOUR*uround);
@@ -1351,17 +1151,7 @@ int IDASolve(void *ida_mem, realtype tout, realtype *tret,
       ier = IDARcheck1(IDA_mem);
       if (ier == IDA_RTFUNC_FAIL) {
         IDAProcessError(IDA_mem, IDA_RTFUNC_FAIL, "IDA", "IDARcheck1", MSG_RTFUNC_FAILED, tn);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(IDA_RTFUNC_FAIL);
-		}
-		else
-		{
-			return(IDA_ILL_INPUT);
-		}
-
+        return(IDA_RTFUNC_FAIL);
       }
     }
 
@@ -1394,17 +1184,7 @@ int IDASolve(void *ida_mem, realtype tout, realtype *tret,
 
       if (ier == CLOSERT) {
         IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDARcheck2", MSG_CLOSE_ROOTS, tlo);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(IDA_CLOSE_ROOTS);
-		}
-		else
-		{
-			return(IDA_ILL_INPUT);
-		}
-
+        return(IDA_ILL_INPUT);
       } else if (ier == IDA_RTFUNC_FAIL) {
         IDAProcessError(IDA_mem, IDA_RTFUNC_FAIL, "IDA", "IDARcheck2", MSG_RTFUNC_FAILED, tlo);
         return(IDA_RTFUNC_FAIL);
@@ -1441,7 +1221,7 @@ int IDASolve(void *ida_mem, realtype tout, realtype *tret,
 	  tretlast = *tret = tlo;
           return(IDA_ZERO_DETACH_RETURN);
 	}
-		}
+        }
       }
 
     } /* end of root stop check */
@@ -1924,49 +1704,19 @@ int IDAInitialSetup(IDAMem IDA_mem)
   if (suppressalg)
     if (id->ops->nvwrmsnormmask == NULL) {
       IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInitialSetup", MSG_BAD_NVECTOR);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		  return(IDA_BAD_NVECTOR);
-	  }
-	  else
-	  {
-		  return(IDA_ILL_INPUT);
-	  }
-
+      return(IDA_ILL_INPUT);
   }
 
   /* Test id vector for legality */
   if (suppressalg && (id==NULL)){ 
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInitialSetup", MSG_MISSING_ID);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_MISSING_ID); 
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT); 
   }
 
   /* Did the user specify tolerances? */
   if (itol == IDA_NN) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInitialSetup", MSG_NO_TOLS);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		return(IDA_BAD_ITOL);
-	  }
-	  else
-	  {
-		return(IDA_ILL_INPUT);
-	  }
-
+    return(IDA_ILL_INPUT);
   }
 
   /* Set data for efun */
@@ -1976,33 +1726,11 @@ int IDAInitialSetup(IDAMem IDA_mem)
   /* Initial error weight vector */
   ier = efun(phi[0], ewt, edata);
   if (ier != 0) {
-    if (itol == IDA_WF) {
-        IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInitialSetup", MSG_FAIL_EWT);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(IDA_EWT_FAIL);
-		}
-		else
-		{
-			return(IDA_ILL_INPUT);
-		}
-
-    }else{
-        IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInitialSetup", MSG_BAD_EWT);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(IDA_BAD_EWT);
-		}
-		else
-		{
-			return(IDA_ILL_INPUT);
-		}
-
-    }
+    if (itol == IDA_WF) 
+      IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInitialSetup", MSG_FAIL_EWT);
+    else
+      IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInitialSetup", MSG_BAD_EWT);
+    return(IDA_ILL_INPUT);
   }
 
   /* Check to see if y0 satisfies constraints. */
@@ -2010,51 +1738,21 @@ int IDAInitialSetup(IDAMem IDA_mem)
     conOK = N_VConstrMask(constraints, phi[0], tempv2);
     if (!conOK) { 
       IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInitialSetup", MSG_Y0_FAIL_CONSTR);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		return(IDA_Y0_FAIL_CONSTR); 
-	  }
-	  else
-	  {
-		return(IDA_ILL_INPUT); 
-	  }
-
+      return(IDA_ILL_INPUT); 
     }
   }
 
   /* Check that lsolve exists and call linit function if it exists. */
   if (lsolve == NULL) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInitialSetup", MSG_LSOLVE_NULL);
-
-	/* SUNDIALS EXTENSION */
-	if (is_sundials_with_extension())
-	{
-		return(IDA_LSOLVE_NULL);
-	}
-	else
-	{
-		return(IDA_ILL_INPUT);
-	}
-
+    return(IDA_ILL_INPUT);
   }
 
   if (linit != NULL) {
     ier = linit(IDA_mem);
     if (ier != 0) {
       IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDAInitialSetup", MSG_LINIT_FAIL);
-
-	  /* SUNDIALS EXTENSION */
-	  if (is_sundials_with_extension())
-	  {
-		  return(IDA_LINIT_FAIL);
-	  }
-	  else
-	  {
-		  return(IDA_ILL_INPUT);
-	  }
-
+      return(IDA_LINIT_FAIL);
     }
   }
 
@@ -2174,17 +1872,7 @@ static int IDAStopTest1(IDAMem IDA_mem, realtype tout, realtype *tret,
       /* Test for tn past tstop, tn = tretlast, tn past tout, tn near tstop. */
       if ( (tn - tstop)*hh > ZERO) {
         IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_BAD_TSTOP, tstop, tn);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(IDA_BAD_TSTOP);
-		}
-		else
-		{
-			return(IDA_ILL_INPUT);
-		}
-
+        return(IDA_ILL_INPUT);
       }
     }
 
@@ -2197,17 +1885,7 @@ static int IDAStopTest1(IDAMem IDA_mem, realtype tout, realtype *tret,
       ier = IDAGetSolution(IDA_mem, tout, yret, ypret);
       if (ier != IDA_SUCCESS) {
         IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_BAD_TOUT, tout);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(IDA_BAD_TOUT);
-		}
-		else
-		{
-			return(IDA_ILL_INPUT);
-		}
-
+        return(IDA_ILL_INPUT);
       }
       *tret = tretlast = tout;
       return(IDA_SUCCESS);
@@ -2219,17 +1897,7 @@ static int IDAStopTest1(IDAMem IDA_mem, realtype tout, realtype *tret,
         ier = IDAGetSolution(IDA_mem, tstop, yret, ypret);
         if (ier != IDA_SUCCESS) {
           IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_BAD_TSTOP, tstop, tn);
-
-		  /* SUNDIALS EXTENSION */
-		  if (is_sundials_with_extension())
-		  {
-			  return(IDA_BAD_TSTOP);
-		  }
-		  else
-		  {
-			  return(IDA_ILL_INPUT);
-		  }
-
+          return(IDA_ILL_INPUT);
         }
         *tret = tretlast = tstop;
         tstopset = FALSE;
@@ -2247,17 +1915,7 @@ static int IDAStopTest1(IDAMem IDA_mem, realtype tout, realtype *tret,
       /* Test for tn past tstop, tn past tretlast, and tn near tstop. */
       if ((tn - tstop)*hh > ZERO) {
         IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_BAD_TSTOP, tstop, tn);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(IDA_BAD_TSTOP);
-		}
-		else
-		{
-			return(IDA_ILL_INPUT);
-		}
-
+        return(IDA_ILL_INPUT);
       }
     }
 
@@ -2274,17 +1932,7 @@ static int IDAStopTest1(IDAMem IDA_mem, realtype tout, realtype *tret,
         ier = IDAGetSolution(IDA_mem, tstop, yret, ypret);
         if (ier != IDA_SUCCESS) {
           IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASolve", MSG_BAD_TSTOP, tstop, tn);
-
-		/* SUNDIALS EXTENSION */
-		if (is_sundials_with_extension())
-		{
-			return(IDA_BAD_TSTOP);
-		}
-		else
-		{
-			return(IDA_ILL_INPUT);
-		}
-
+          return(IDA_ILL_INPUT);
         }
         *tret = tretlast = tstop;
         tstopset = FALSE;

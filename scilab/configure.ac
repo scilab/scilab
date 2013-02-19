@@ -1213,10 +1213,11 @@ LT_LIB_M()
 # Provided by math.h
 
 LDFLAGS="$LDFLAGS $LIBM"
-AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor] [exp10])
+AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor] [exp10] [erf] [erfc] [isnan])
 
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
+AC_DEFINE([HAVE_ISINF],[1],[Have isinf function or macro equivalent])
 AC_CHECK_FUNC([isinf],,[
         AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])

@@ -94,17 +94,19 @@ public final class AfficheBlock extends BasicBlock {
          */
         private void update(String uid, String[][] data) {
             final Object cell = Xcos.getInstance().lookupForCell(new String[] { uid });
-            final XcosDiagram diag = Xcos.findParent(cell);
-            final String value = getText(data);
+            if (cell != null) {
+                final XcosDiagram diag = Xcos.findParent(cell);
+                final String value = getText(data);
 
-            diag.getModel().setValue(cell, value);
+                diag.getModel().setValue(cell, value);
 
-            final mxCellState state = diag.getView().getState(cell);
-            if (state != null) {
-                state.setLabel(value);
+                final mxCellState state = diag.getView().getState(cell);
+                if (state != null) {
+                    state.setLabel(value);
+                }
+
+                diag.getAsComponent().redraw(state);
             }
-
-            diag.getAsComponent().redraw(state);
         }
 
         /**

@@ -973,7 +973,6 @@ int sci_dst_4args(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *A
     * Return results in lhs argument *
     ***********************************/
 
-    ReturnArguments(pvApiCtx);
 
     FREE(Dim1);
     FREE(Incr);
@@ -981,6 +980,9 @@ int sci_dst_4args(void* pvApiCtx, char *fname, int ndimsA, int *dimsA, double *A
     FREE(Sel);
     FREE(gdim.dims);
     FREE(gdim.howmany_dims);
+
+    ReturnArguments(pvApiCtx);
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

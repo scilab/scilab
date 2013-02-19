@@ -92,6 +92,12 @@
 /* Define to 1 if you have the `endpwent' function. */
 #undef HAVE_ENDPWENT
 
+/* Define to 1 if you have the `erf' function. */
+#undef HAVE_ERF
+
+/* Define to 1 if you have the `erfc' function. */
+#undef HAVE_ERFC
+
 /* Define to 1 if you have the `exp10' function. */
 #undef HAVE_EXP10
 
@@ -145,6 +151,12 @@
 
 /* Define to 1 if you have the `isascii' function. */
 #undef HAVE_ISASCII
+
+/* Have isinf function or macro equivalent */
+#undef HAVE_ISINF
+
+/* Define to 1 if you have the `isnan' function. */
+#undef HAVE_ISNAN
 
 /* Define to 1 if you have the `iswprint' function. */
 #undef HAVE_ISWPRINT

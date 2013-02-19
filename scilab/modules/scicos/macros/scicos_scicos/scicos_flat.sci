@@ -312,9 +312,9 @@ for k=1:n //loop on all objects
 end //end of loop on objects
 
 if ksup==0&nb==0 then
-  messagebox(mprintf(gettext("%s: Empty diagram"), "Xcos"),'modal')
+  messagebox(msprintf(gettext("%s: Empty diagram"), "Xcos"),'modal')
   ok=%f
-  disp(mprintf("%s: Empty diagram", "scicos_flat"));
+  disp(msprintf("%s: Empty diagram", "scicos_flat"));
   return
 end
 //-------------- Analyse  links -------------- 

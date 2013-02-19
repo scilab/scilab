@@ -875,13 +875,12 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row, BOOL hist
      */
     if (pPolyline != NULL)
     {
-
         /*
-         * Default setup (will crash if removed)
+         * Default setup of the nGons property
          */
         {
-            int polylineSize[2] = { 1, polylineDefaultNumElement };
-            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
+            int nGons = 1;
+            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_GONS__, &nGons, jni_int, 1);
         }
 
         color = block->ipar[3 + row];
@@ -945,7 +944,6 @@ static BOOL pushHistory(scicos_block * block, int input, int maxNumberOfPoints)
     sco_data *sco;
 
     BOOL result = TRUE;
-    int polylineSize[2] = { 1, maxNumberOfPoints };
 
     sco = getScoData(block);
     pFigureUID = getFigure(block);
@@ -964,7 +962,6 @@ static BOOL pushHistory(scicos_block * block, int input, int maxNumberOfPoints)
     for (i = 0; i < block->insz[input]; i++)
     {
         pPolylineUID = getPolyline(pAxeUID, block, i, TRUE);
-        result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
 
         data = sco->internal.historyCoordinates[input][i];
         result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_COORDINATES__, data, jni_double_vector, maxNumberOfPoints);

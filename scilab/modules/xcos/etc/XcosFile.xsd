@@ -637,6 +637,7 @@
       <xs:attribute name="column" use="required" type="xs:integer"/>
       <xs:attribute name="line" use="required" type="xs:integer"/>
       <xs:attribute name="realPart" type="xs:double"/>
+      <xs:attribute name="imaginaryPart" type="xs:double"/>
       <xs:attribute name="value"/>
     </xs:complexType>
   </xs:element>
