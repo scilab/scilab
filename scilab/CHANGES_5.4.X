@@ -349,6 +349,9 @@ Bug fixes
 
 * Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
 
+* Bug #12231 fixed - In SciNotes, a whole word was searched when the expression
+                     was not a word.
+
 * Bug #12232 fixed - There were several memleaks in various fillers.
 
 * Bug #12235 fixed - Matplot did not update on color_map change.
