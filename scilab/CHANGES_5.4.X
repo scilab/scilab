@@ -233,6 +233,8 @@ Bug fixes
 * Bug #11501 fixed - Use $$..$$ for LaTeX in SciNotes comments to avoid
                      confusion with Scilab code.
 
+* Bug #11549 fixed - Prefs window changed its dimension when hitting Default.
+
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
 * Bug #11778 fixed - Bad color_map dims did not return an error.
