@@ -84,39 +84,39 @@ public class MarkSpriteFactory {
 
         if (finalSize != 1) {
             switch (mark.getStyle()) {
-                case  0:
-                    return new DotSpriteDrawer(foregroundColor, finalSize);
-                case  1:
-                    return new PlusSpriteDrawer(appearance, finalSize);
-                case  2:
-                    return new CrossSpriteDrawer(appearance, finalSize);
-                case  3:
-                    return new StarSpriteDrawer(appearance, finalSize);
-                case  4:
-                    return new FilledDiamondSpriteDrawer(foregroundColor, finalSize);
-                case  5:
-                    return new DiamondSpriteDrawer(appearance, finalSize);
-                case  6:
-                    return new TriangleUpSpriteDrawer(appearance, finalSize);
-                case  7:
-                    return new TriangleDownSpriteDrawer(appearance, finalSize);
-                case  8:
-                    return new DiamondPlusSpriteDrawer(appearance, finalSize);
-                case  9:
-                    return new CircleSpriteDrawer(appearance, finalSize);
-                case 10:
-                    return new AsteriskSpriteDrawer(appearance, finalSize);
-                case 11:
-                    return new SquareSpriteDrawer(appearance, finalSize);
-                case 12:
-                    return new TriangleRightSpriteDrawer(appearance, finalSize);
-                case 13:
-                    return new TriangleLeftSpriteDrawer(appearance, finalSize);
-                case 14:
-                    return new PentagramSpriteDrawer(appearance, finalSize);
+            case  0:
+                return new DotSpriteDrawer(foregroundColor, finalSize);
+            case  1:
+                return new PlusSpriteDrawer(appearance, finalSize);
+            case  2:
+                return new CrossSpriteDrawer(appearance, finalSize);
+            case  3:
+                return new StarSpriteDrawer(appearance, finalSize);
+            case  4:
+                return new FilledDiamondSpriteDrawer(foregroundColor, finalSize);
+            case  5:
+                return new DiamondSpriteDrawer(appearance, finalSize);
+            case  6:
+                return new TriangleUpSpriteDrawer(appearance, finalSize);
+            case  7:
+                return new TriangleDownSpriteDrawer(appearance, finalSize);
+            case  8:
+                return new DiamondPlusSpriteDrawer(appearance, finalSize);
+            case  9:
+                return new CircleSpriteDrawer(appearance, finalSize);
+            case 10:
+                return new AsteriskSpriteDrawer(appearance, finalSize);
+            case 11:
+                return new SquareSpriteDrawer(appearance, finalSize);
+            case 12:
+                return new TriangleRightSpriteDrawer(appearance, finalSize);
+            case 13:
+                return new TriangleLeftSpriteDrawer(appearance, finalSize);
+            case 14:
+                return new PentagramSpriteDrawer(appearance, finalSize);
 
-                default:
-                    return new PlusSpriteDrawer(appearance, finalSize);
+            default:
+                return new PlusSpriteDrawer(appearance, finalSize);
             }
         } else {
             return new PlusSpriteDrawer(appearance, finalSize);
@@ -177,20 +177,14 @@ public class MarkSpriteFactory {
      * Scilab ID = 1
      */
     private static class PlusSpriteDrawer extends ScilabSpriteDrawer {
-        private final int[] coordinate1;
-        private final int[] coordinate2;
 
         public PlusSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
-            int r = size / 2;
-            coordinate1 = new int[] { -r, 0, r, 0};
-            coordinate2 = new int[] { 0, -r, 0, r};
         }
 
         @Override
         public void draw(TextureDrawingTools textureDrawingTools) {
-            textureDrawingTools.drawPolyline(coordinate1, appearance);
-            textureDrawingTools.drawPolyline(coordinate2, appearance);
+            textureDrawingTools.drawPlus(size, appearance);
         }
     }
 
