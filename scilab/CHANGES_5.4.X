@@ -300,6 +300,8 @@ Bug fixes
 
 * Bug #12019 fixed - In the help of eigs function, NEV was unclear.
 
+* Bug #12004 fixed - Add "Configuring scaling factor" in the karmarkar help page.
+
 * Bug #12022 fixed - ftuneq had a bad example.
 
 * Bug #12028 fixed - The pair drawlater/drawnow did not work as expected.
