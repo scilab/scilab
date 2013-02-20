@@ -241,6 +241,9 @@ Bug fixes
 
 * Bug #11549 fixed - Prefs window changed its dimension when hitting Default.
 
+* Bug #11569 fixed - F5 to navigate in the dock was incompatible with SciNotes.
+                     So replace F5 by shift+F6 to go to the previous tab. 
+
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
 * Bug #11778 fixed - Bad color_map dims did not return an error.
