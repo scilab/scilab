@@ -261,6 +261,9 @@
     <ClCompile Include="storeglobal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="termf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="tradsl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -581,6 +584,9 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="storeglobal.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="termf.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="tradsl.f">

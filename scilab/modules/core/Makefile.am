@@ -185,6 +185,7 @@ src/fortran/seteol.f \
 src/fortran/basin.f \
 src/fortran/clause.f \
 src/fortran/compcl.f \
+src/fortran/termf.f \
 src/fortran/expsum.f \
 src/fortran/copyvar.f \
 src/fortran/putid.f \
