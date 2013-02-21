@@ -211,6 +211,9 @@ Bug fixes
 
 * Bug #5291 fixed - strtod returned 0 when no real number was detected.
 
+* Bug #5478 fixed - Scilab could not be started with a non readable/writeable
+                    SCIHOME.
+
 * Bug #5576 fixed - interp() help page has been improved.
 
 * Bug #6583 fixed - jmat() was poorly documented.
