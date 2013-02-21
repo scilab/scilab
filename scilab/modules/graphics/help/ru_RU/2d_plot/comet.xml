@@ -50,7 +50,7 @@
                 <listitem>
                     <para>
                         вещественный скаляр на интервале <literal>[0 1[</literal>.
-                        Значение по умолчанию <literal>0,1</literal>.
+                        Значение по умолчанию <literal>0.1</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -186,7 +186,7 @@ clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
             <revision>
                 <revnumber>5.3.2</revnumber>
                 <revremark>
-                    Function <function>comet</function> introduced.
+                    Введена функция <function>comet</function>.
                 </revremark>
             </revision>
         </revhistory>
