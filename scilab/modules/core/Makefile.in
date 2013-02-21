@@ -188,19 +188,19 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/setgetmode.f src/fortran/showstack.f \
 	src/fortran/misops.f src/fortran/setippty.f \
-	src/fortran/compil.f src/fortran/funnam.f src/fortran/cmdstr.f \
-	src/fortran/hndlops.f src/fortran/cmplxt.f \
-	src/fortran/skpins.f src/fortran/folhp.f src/fortran/cvname.f \
-	src/fortran/funs.f src/fortran/fact.f src/fortran/typ2cod.f \
-	src/fortran/prompt.f src/fortran/intstr.f \
-	src/fortran/createref.f src/fortran/btof.f \
-	src/fortran/getnum.f src/fortran/btofm.f src/fortran/getsym.f \
-	src/fortran/findequal.f src/fortran/stackg.f \
-	src/fortran/find.f src/fortran/setlnb.f src/fortran/mrknmd.f \
-	src/fortran/stackgl.f src/fortran/allops.f src/fortran/mname.f \
-	src/fortran/command.f src/fortran/ref2val.f \
-	src/fortran/stack.f src/fortran/isbrk.f src/fortran/xerbla.f \
-	src/fortran/dtosci.f src/fortran/bexec.f \
+	src/fortran/compil.f src/fortran/funnam.f src/fortran/isnum.f \
+	src/fortran/cmdstr.f src/fortran/hndlops.f \
+	src/fortran/cmplxt.f src/fortran/skpins.f src/fortran/folhp.f \
+	src/fortran/cvname.f src/fortran/funs.f src/fortran/fact.f \
+	src/fortran/typ2cod.f src/fortran/prompt.f \
+	src/fortran/intstr.f src/fortran/createref.f \
+	src/fortran/btof.f src/fortran/getnum.f src/fortran/btofm.f \
+	src/fortran/getsym.f src/fortran/findequal.f \
+	src/fortran/stackg.f src/fortran/find.f src/fortran/setlnb.f \
+	src/fortran/mrknmd.f src/fortran/stackgl.f \
+	src/fortran/allops.f src/fortran/mname.f src/fortran/command.f \
+	src/fortran/ref2val.f src/fortran/stack.f src/fortran/isbrk.f \
+	src/fortran/xerbla.f src/fortran/dtosci.f src/fortran/bexec.f \
 	src/fortran/varfunptr.f src/fortran/getfun.f \
 	src/fortran/savlod.f src/fortran/error.f src/fortran/cvdm.f \
 	src/fortran/tradsl.f src/fortran/mkindx.f src/fortran/whatln.f \
@@ -297,19 +297,19 @@ am__objects_3 = libscicore_algo_la-hashtable_core.lo \
 @USE_DYNAMIC_STACK_TRUE@am__objects_4 = relocstack.lo
 am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	nextj.lo setgetmode.lo showstack.lo misops.lo setippty.lo \
-	compil.lo funnam.lo cmdstr.lo hndlops.lo cmplxt.lo skpins.lo \
-	folhp.lo cvname.lo funs.lo fact.lo typ2cod.lo prompt.lo \
-	intstr.lo createref.lo btof.lo getnum.lo btofm.lo getsym.lo \
-	findequal.lo stackg.lo find.lo setlnb.lo mrknmd.lo stackgl.lo \
-	allops.lo mname.lo command.lo ref2val.lo stack.lo isbrk.lo \
-	xerbla.lo dtosci.lo bexec.lo varfunptr.lo getfun.lo savlod.lo \
-	error.lo cvdm.lo tradsl.lo mkindx.lo whatln.lo errmgr.lo \
-	defmat.lo mklist.lo sigbas.lo indxg.lo istrue.lo inisci.lo \
-	ptover.lo getfunction.lo stackp.lo dbasin.lo macro.lo \
-	extlarg.lo getstr.lo cvwm.lo storeglobal.lo lst2vars.lo \
-	basnms.lo ptrback.lo getch.lo ftob.lo seteol.lo basin.lo \
-	clause.lo compcl.lo expsum.lo copyvar.lo putid.lo itosci.lo \
-	stackr2d.lo stacki2d.lo stackc2i.lo isinstring.lo \
+	compil.lo funnam.lo isnum.lo cmdstr.lo hndlops.lo cmplxt.lo \
+	skpins.lo folhp.lo cvname.lo funs.lo fact.lo typ2cod.lo \
+	prompt.lo intstr.lo createref.lo btof.lo getnum.lo btofm.lo \
+	getsym.lo findequal.lo stackg.lo find.lo setlnb.lo mrknmd.lo \
+	stackgl.lo allops.lo mname.lo command.lo ref2val.lo stack.lo \
+	isbrk.lo xerbla.lo dtosci.lo bexec.lo varfunptr.lo getfun.lo \
+	savlod.lo error.lo cvdm.lo tradsl.lo mkindx.lo whatln.lo \
+	errmgr.lo defmat.lo mklist.lo sigbas.lo indxg.lo istrue.lo \
+	inisci.lo ptover.lo getfunction.lo stackp.lo dbasin.lo \
+	macro.lo extlarg.lo getstr.lo cvwm.lo storeglobal.lo \
+	lst2vars.lo basnms.lo ptrback.lo getch.lo ftob.lo seteol.lo \
+	basin.lo clause.lo compcl.lo expsum.lo copyvar.lo putid.lo \
+	itosci.lo stackr2d.lo stacki2d.lo stackc2i.lo isinstring.lo \
 	$(am__objects_4)
 am_libscicore_algo_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_5)
@@ -702,19 +702,19 @@ CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/setgetmode.f src/fortran/showstack.f \
 	src/fortran/misops.f src/fortran/setippty.f \
-	src/fortran/compil.f src/fortran/funnam.f src/fortran/cmdstr.f \
-	src/fortran/hndlops.f src/fortran/cmplxt.f \
-	src/fortran/skpins.f src/fortran/folhp.f src/fortran/cvname.f \
-	src/fortran/funs.f src/fortran/fact.f src/fortran/typ2cod.f \
-	src/fortran/prompt.f src/fortran/intstr.f \
-	src/fortran/createref.f src/fortran/btof.f \
-	src/fortran/getnum.f src/fortran/btofm.f src/fortran/getsym.f \
-	src/fortran/findequal.f src/fortran/stackg.f \
-	src/fortran/find.f src/fortran/setlnb.f src/fortran/mrknmd.f \
-	src/fortran/stackgl.f src/fortran/allops.f src/fortran/mname.f \
-	src/fortran/command.f src/fortran/ref2val.f \
-	src/fortran/stack.f src/fortran/isbrk.f src/fortran/xerbla.f \
-	src/fortran/dtosci.f src/fortran/bexec.f \
+	src/fortran/compil.f src/fortran/funnam.f src/fortran/isnum.f \
+	src/fortran/cmdstr.f src/fortran/hndlops.f \
+	src/fortran/cmplxt.f src/fortran/skpins.f src/fortran/folhp.f \
+	src/fortran/cvname.f src/fortran/funs.f src/fortran/fact.f \
+	src/fortran/typ2cod.f src/fortran/prompt.f \
+	src/fortran/intstr.f src/fortran/createref.f \
+	src/fortran/btof.f src/fortran/getnum.f src/fortran/btofm.f \
+	src/fortran/getsym.f src/fortran/findequal.f \
+	src/fortran/stackg.f src/fortran/find.f src/fortran/setlnb.f \
+	src/fortran/mrknmd.f src/fortran/stackgl.f \
+	src/fortran/allops.f src/fortran/mname.f src/fortran/command.f \
+	src/fortran/ref2val.f src/fortran/stack.f src/fortran/isbrk.f \
+	src/fortran/xerbla.f src/fortran/dtosci.f src/fortran/bexec.f \
 	src/fortran/varfunptr.f src/fortran/getfun.f \
 	src/fortran/savlod.f src/fortran/error.f src/fortran/cvdm.f \
 	src/fortran/tradsl.f src/fortran/mkindx.f src/fortran/whatln.f \
@@ -2346,6 +2346,9 @@ compil.lo: src/fortran/compil.f
 
 funnam.lo: src/fortran/funnam.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o funnam.lo `test -f 'src/fortran/funnam.f' || echo '$(srcdir)/'`src/fortran/funnam.f
+
+isnum.lo: src/fortran/isnum.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o isnum.lo `test -f 'src/fortran/isnum.f' || echo '$(srcdir)/'`src/fortran/isnum.f
 
 cmdstr.lo: src/fortran/cmdstr.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cmdstr.lo `test -f 'src/fortran/cmdstr.f' || echo '$(srcdir)/'`src/fortran/cmdstr.f

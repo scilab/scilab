@@ -386,6 +386,7 @@ cd ..
     <ClCompile Include="isany.c" />
     <ClCompile Include="isbrk.c" />
     <ClCompile Include="isinstring.c" />
+    <ClCompile Include="isnum.c" />
     <ClCompile Include="istrue.c" />
     <ClCompile Include="itosci.c" />
     <ClCompile Include="lst2vars.c" />
@@ -494,6 +495,7 @@ cd ..
     <f2c_rule Include="isany.f" />
     <f2c_rule Include="isbrk.f" />
     <f2c_rule Include="isinstring.f" />
+    <f2c_rule Include="isnum.f" />
     <f2c_rule Include="istrue.f" />
     <f2c_rule Include="itosci.f" />
     <f2c_rule Include="lst2vars.f" />
