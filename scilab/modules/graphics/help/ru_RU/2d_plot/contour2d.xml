@@ -106,7 +106,7 @@ plot2d(x(im)',y(jm)',-9,"000")
                         <literal>style</literal>, <literal>leg</literal>,
                         <literal>rect</literal>, <literal>nax</literal>,
                         <literal>strf</literal> или <literal>axesflag</literal>
-                        и <literal>frameflag</literal> (see <link linkend="plot2d">plot2d</link>)
+                        и <literal>frameflag</literal> (см. <link linkend="plot2d">plot2d</link>)
                     </para>
                 </listitem>
             </varlistentry>
@@ -129,14 +129,14 @@ plot2d(x(im)',y(jm)',-9,"000")
         <para>
             <function>contour2d</function> рисует кривые уровней поверхности
             <literal>z=f(x,y)</literal> на двумерном графике. Значения
-            <literal>f(x,y)</literal> указывается в матрице
+            <literal>f(x,y)</literal> указываются в матрице
             <varname>z</varname> в точках сетки, определённой через
             <varname>x</varname> и <varname>y</varname>.
         </para>
         <para>
             Вы можете изменить формат чисел с плавающей запятой, печатаемых на
             уровнях, с помощью <code>xset("fpf",string)</code>, где
-            <varname>string</varname> указывает форма в формате C-синтаксиса
+            <varname>string</varname> указывает формат в формате C-синтаксиса
             (например, <code>string="%.3f"</code>). Используйте
             <code>string=""</code> для переключения обратно в формат по
             умолчанию и используйте <code>string=" "</code> для подавления
