@@ -5103,6 +5103,8 @@ ATOMS
 
 * Bug #10031 fixed - atomsDisp did not work with "\n" in messages text.
 
+* Bug #10223 fixed - Errors messages in atomsDownload must be clearer.
+
 
 Javasci
 ========
