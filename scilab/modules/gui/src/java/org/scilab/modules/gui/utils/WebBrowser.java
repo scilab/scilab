@@ -102,8 +102,14 @@ public final class WebBrowser implements XConfigurationListener {
                     Runtime.getRuntime().exec(webprefs.cmdBrowser + " " + new URI(url).toString());
                 }
             } else {
-                // We have <pierre.marechal@scilab.org>
-                String mail = "mailto:" + url.substring(1, url.length() - 1);
+                String mail;
+                if (url.charAt(0) == '<') {
+                    // We have <pierre.marechal@scilab.org>
+                    mail = "mailto:" + url.substring(1, url.length() - 1);
+                } else {
+                    mail = url;
+                }
+
                 if (webprefs.defaultMailer) {
                     Desktop.getDesktop().mail(new URI(mail));
                 } else {

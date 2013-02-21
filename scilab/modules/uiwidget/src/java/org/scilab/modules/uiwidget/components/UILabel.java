@@ -13,12 +13,17 @@
 package org.scilab.modules.uiwidget.components;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Map;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
+import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.uiwidget.StringConverters;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
@@ -29,9 +34,13 @@ import org.scilab.modules.uiwidget.UIWidgetException;
  */
 public class UILabel extends UIComponent {
 
-    private final static int defaultAlignment = new JLabel().getHorizontalAlignment();
+    private final static int defaultAlignment = JLabel.LEFT;
+    private final static Cursor HANDCURSOR = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+    private final static Cursor DEFAULTCURSOR = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 
     private JLabel label;
+    private String link;
+    private MouseListener clicklistener;
 
     public enum Alignment {
         LEADING (JLabel.LEADING),
@@ -110,6 +119,59 @@ public class UILabel extends UIComponent {
         }
 
         return label;
+    }
+
+    /**
+     * Set a link to open when the UILabel is clicked
+     * @param link the link
+     */
+    public void setLink(String link) {
+        if (link != this.link) {
+            this.link = link;
+            removeClickListener();
+            if (link != null && !link.isEmpty()) {
+                clicklistener = new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        WebBrowser.openUrl(UILabel.this.link);
+                    }
+
+                    public void mouseEntered(MouseEvent e) {
+                        label.setCursor(HANDCURSOR);
+                    }
+
+                    public void mouseExited(MouseEvent e) {
+                        label.setCursor(DEFAULTCURSOR);
+                    }
+                };
+                label.addMouseListener(clicklistener);
+            }
+        }
+    }
+
+    /**
+     * Get the link to open when the UILabel is clicked
+     * @return the link
+     */
+    public String getLink() {
+        return link;
+    }
+
+    /**
+     * Remove the onclick listener
+     */
+    protected void removeClickListener() {
+        if (clicklistener != null) {
+            label.removeMouseListener(clicklistener);
+            clicklistener = null;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void remove() {
+        removeClickListener();
+        super.remove();
     }
 
     /**

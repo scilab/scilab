@@ -16,12 +16,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.KeyboardFocusManager;
+import java.awt.KeyEventDispatcher;
 import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.font.TextAttribute;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -40,7 +45,9 @@ import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.RootPaneContainer;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
 
 import org.xml.sax.Attributes;
 
@@ -56,6 +63,13 @@ import org.scilab.modules.types.ScilabType;
  * Main class to handle Java components.
  */
 public abstract class UIComponent {
+
+    private static final MouseAdapter NOMOUSE = new MouseAdapter() { };
+    private static final KeyEventDispatcher NOKEY = new KeyEventDispatcher() {
+        public boolean dispatchKeyEvent(KeyEvent e) {
+            return true;
+        }
+    };
 
     private static int UID = 0;
 
@@ -76,6 +90,7 @@ public abstract class UIComponent {
     protected Map<String, String> constraint;
     protected Rectangle position = new Rectangle();
     protected String tabTitle;
+    protected boolean enableEvents = true;
 
     /**
      * Default empty constrructor
@@ -178,11 +193,31 @@ public abstract class UIComponent {
      * @param parent the parent UIComponent
      * @return the newly constructed UIComponent
      */
-    public static final UIComponent getUIComponent(String pack, String name, ConvertableMap attributes, UIComponent parent, Map<String, Map<String, String>> style) throws UIWidgetException {
+    public static final UIComponent getUIComponent(String pack, String name, ConvertableMap attributes, final UIComponent parent, Map<String, Map<String, String>> style) throws UIWidgetException {
         try {
             Class clazz = Class.forName(pack + "." + name);
-            Constructor constructor = clazz.getConstructor(UIComponent.class);
-            UIComponent ui = (UIComponent) constructor.newInstance(parent);
+            final Constructor constructor = clazz.getConstructor(UIComponent.class);
+            final UIComponent[] arr = new UIComponent[1];
+
+            if (SwingUtilities.isEventDispatchThread()) {
+                arr[0] = (UIComponent) constructor.newInstance(parent);
+            } else {
+                try {
+                    SwingUtilities.invokeAndWait(new Runnable() {
+                        public void run() {
+                            try {
+                                arr[0] = (UIComponent) constructor.newInstance(parent);
+                            } catch (Exception e) {
+                                System.err.println(e);
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    System.err.println(e);
+                    return null;
+                }
+            }
+            UIComponent ui = arr[0];
             String id = (String) attributes.get(String.class, "id", null);
             ui.setId(id);
             attributes.remove("id");
@@ -238,6 +273,54 @@ public abstract class UIComponent {
      */
     public void setComponent(Object o) {
         this.component = o;
+    }
+
+    /**
+     * Set the cursor
+     * @param cursor the cursor
+     */
+    public void setEnableEvents(boolean b) {
+        if (b != this.enableEvents) {
+            RootPaneContainer root = null;
+            if (component instanceof JComponent) {
+                root = (RootPaneContainer) ((JComponent) component).getTopLevelAncestor();
+            } else if (component instanceof RootPaneContainer) {
+                root = (RootPaneContainer) component;
+            }
+            if (root != null) {
+                root.getGlassPane().setVisible(!b);
+                if (b) {
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(NOKEY);
+                    root.getGlassPane().removeMouseListener(NOMOUSE);
+                } else {
+                    KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(NOKEY);
+                    root.getGlassPane().addMouseListener(NOMOUSE);
+                }
+            }
+            this.enableEvents = b;
+        }
+    }
+
+    /**
+     * Set the cursor
+     * @param cursor the cursor
+     */
+    public void setCursor(Cursor cursor) {
+        if (component instanceof Component) {
+            ((Component) component).setCursor(cursor);
+        }
+    }
+
+    /**
+     * Get the cursor
+     * @return the cursor
+     */
+    public Cursor getCursor() {
+        if (component instanceof Component) {
+            return ((Component) component).getCursor();
+        }
+
+        return null;
     }
 
     /**
@@ -1768,7 +1851,23 @@ public abstract class UIComponent {
             boolean scrollable = (Boolean) attributes.get(boolean.class, "scrollable", false);
             if (scrollable && component instanceof JComponent) {
                 modifiableComponent = component;
-                component = new JScrollPane((JComponent) modifiableComponent);
+                if (SwingUtilities.isEventDispatchThread()) {
+                    component = new JScrollPane((JComponent) modifiableComponent);
+                } else {
+                    try {
+                        SwingUtilities.invokeAndWait(new Runnable() {
+                            public void run() {
+                                try {
+                                    component = new JScrollPane((JComponent) modifiableComponent);
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                            }
+                        });
+                    } catch (Exception e) {
+                        System.err.println(e);
+                    }
+                }
                 uselessAttrs.remove("scrollable");
             }
         }

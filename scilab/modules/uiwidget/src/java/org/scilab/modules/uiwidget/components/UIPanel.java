@@ -44,24 +44,33 @@ import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UILayoutFactory;
 
+/**
+ * JPanel wrapper
+ */
 public class UIPanel extends UIComponent {
 
-    JPanel panel;
-    GridBagConstraints gbc;
-    ImageIcon backgroundImage;
-    ImageFill imageStyle;
-    List<JComponent> enabledComponents;
-    String enable;
+    protected JPanel panel;
+    protected GridBagConstraints gbc;
+    protected ImageIcon backgroundImage;
+    protected ImageFill imageStyle;
+    protected List<Component> enabledComponents;
+    protected String enable;
 
     public enum ImageFill {
         CENTER, FIT, REPEAT;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public UIPanel(UIComponent parent) throws UIWidgetException {
         super(parent);
-        enabledComponents = new LinkedList<JComponent>();
+        enabledComponents = new LinkedList<Component>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         panel = new JPanel();
 
@@ -111,10 +120,14 @@ public class UIPanel extends UIComponent {
         return panel;
     }
 
+    /**
+     * Enable the component or not
+     * @param enable a boolean
+     */
     public void setEnable(boolean enable) {
         if (panel.isEnabled() != enable) {
             if (enable) {
-                for (JComponent c : enabledComponents) {
+                for (Component c : enabledComponents) {
                     c.setEnabled(true);
                     changeBorderColor(c, (Color) UIManager.get("Label.enabledForeground"));
                 }
@@ -147,46 +160,75 @@ public class UIPanel extends UIComponent {
         }
     }
 
-    private void disableDescendants(JComponent jc) {
-        for (Component c : jc.getComponents()) {
-            if (c instanceof JComponent) {
-                JComponent comp = (JComponent) c;
-                if (comp.isEnabled()) {
-                    enabledComponents.add(comp);
-                    comp.setEnabled(false);
-                    changeBorderColor(comp, comp.getBackground().darker());
-                }
-                disableDescendants(comp);
+    /**
+     * Disable the descendants of the given container
+     * @param container the container
+     */
+    private void disableDescendants(Container container) {
+        for (Component c : container.getComponents()) {
+            if (c.isEnabled()) {
+                enabledComponents.add(c);
+                c.setEnabled(false);
+                changeBorderColor(c, c.getBackground().darker());
+            }
+            if (c instanceof Container) {
+                disableDescendants((Container) c);
             }
         }
     }
 
-    private static void changeBorderColor(JComponent comp, Color c) {
-        Border border = comp.getBorder();
-        if (border instanceof TitledBorder) {
-            TitledBorder titled = (TitledBorder) border;
-            titled.setTitleColor(c);
+    /**
+     * Change the border of a component
+     * @param comp the component
+     * @param c the new color
+     */
+    private static void changeBorderColor(Component comp, Color c) {
+        if (comp instanceof JComponent) {
+            Border border = ((JComponent) comp).getBorder();
+            if (border instanceof TitledBorder) {
+                TitledBorder titled = (TitledBorder) border;
+                titled.setTitleColor(c);
+            }
         }
     }
 
+    /**
+     * Get the background image of this panel
+     * @return the image
+     */
     public ImageIcon getImage() {
         return backgroundImage;
     }
 
+    /**
+     * Set the background image of this panel
+     * @param backgroundImage the image
+     */
     public void setImage(ImageIcon backgroundImage) {
         this.backgroundImage = backgroundImage;
         panel.repaint();
     }
 
+    /**
+     * Set the background image style of this panel
+     * @param imageStyle one of the constants CENTER, FIT or REPEAT
+     */
     public void setImageStyle(ImageFill imageStyle) {
         this.imageStyle = imageStyle;
         panel.repaint();
     }
 
+    /**
+     * Get the background image style of this panel
+     * @return the imageStyle
+     */
     public ImageFill getImageStyle() {
         return imageStyle;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void add(final UIComponent c) throws UIWidgetException {
         Object o = c.getComponent();
         if (o instanceof Component && !(o instanceof JPopupMenu)) {
@@ -222,6 +264,9 @@ public class UIPanel extends UIComponent {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void finish() {
         if (enable != null && !enable.isEmpty() && !StringConverters.getObjectFromValue(boolean.class, enable)) {
             setEnable(false);
@@ -229,11 +274,22 @@ public class UIPanel extends UIComponent {
         panel.revalidate();
     }
 
+    /**
+     * Add a component to this panel
+     * @param c the component to add
+     */
     public void add(Component c) {
         panel.add(c);
     }
 
-    private void add(JPanel base, GridBagConstraints gbc, Component c, Map<String, String> attrs) {
+    /**
+     * Add a component to the base panel which have a GridBagLayout
+     * @param base the target panel
+     * @param gbc the constraints
+     * @param c the component to add
+     * @param attrs the cnosstraints attributes
+     */
+    private static final void add(JPanel base, GridBagConstraints gbc, Component c, Map<String, String> attrs) {
         gbc.gridx = StringConverters.getObjectFromValue(int.class, attrs.get("gridx"), 1) - 1;
         gbc.gridy = StringConverters.getObjectFromValue(int.class, attrs.get("gridy"), 1) - 1;
         gbc.gridwidth = StringConverters.getObjectFromValue(int.class, attrs.get("gridwidth"), 1);

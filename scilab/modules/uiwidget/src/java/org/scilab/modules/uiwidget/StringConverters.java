@@ -15,6 +15,7 @@ package org.scilab.modules.uiwidget;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -824,6 +825,15 @@ public final class StringConverters {
                 }
 
                 return new File(str);
+            }
+        });
+        converters.put(Cursor.class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                return UICursorFactory.getCursor(str);
             }
         });
     }

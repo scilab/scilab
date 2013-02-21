@@ -13,6 +13,7 @@
 package org.scilab.modules.uiwidget;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Point;
@@ -58,11 +59,31 @@ public final class ObjectToScilabConverters {
             }
 
             if (converter == null) {
+                converter = getConverter(clazz);
+            }
+
+            if (converter == null) {
                 ScilabStackPutter.put(stackPos, new double[0], false);
             } else {
                 converter.convert(o, stackPos);
             }
         }
+    }
+
+    /**
+     * Get a converter for derived class
+     * @param clazz the class
+     * @return a converter
+     */
+    private static final ObjectConverter getConverter(Class clazz) {
+        for (Map.Entry<Class, ObjectConverter> entry : converters.entrySet()) {
+            Class key = entry.getKey();
+            if (key != Object.class && key.isAssignableFrom(clazz)) {
+                return entry.getValue();
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -258,6 +279,11 @@ public final class ObjectToScilabConverters {
         converters.put(URL.class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
                 ScilabStackPutter.put(stackPos, o.toString());
+            }
+        });
+        converters.put(Cursor.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                ScilabStackPutter.put(stackPos, UICursorFactory.getString((Cursor) o));
             }
         });
     }
