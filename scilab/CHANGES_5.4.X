@@ -157,6 +157,9 @@ Xcos
 * Bug #12290 fixed - AFFICH_m block inside a superblock led to java null
                      pointer exception.
 
+* Bug #12321 fixed - save environment failed to save lib variable. Now these variables
+                     are ignored like previous version of save function.
+
 
 Documentation
 ==============
