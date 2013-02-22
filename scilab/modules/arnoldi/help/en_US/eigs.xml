@@ -185,47 +185,52 @@ function y = A ( x )
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>'LM'</literal> compute the NEV largest in magnitude eigenvalues (by default).
+                                <literal>'LM'</literal> compute the <varname>k</varname> largest in magnitude eigenvalues (by default).
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'SM'</literal> compute the NEV smallest in magnitude eigenvalues (same as sigma = 0).
+                                <literal>'SM'</literal> compute the <varname>k</varname> smallest in magnitude eigenvalues (same as sigma = 0).
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'LA'</literal> compute the NEV Largest Algebraic eigenvalues, only for real symmetric problems.
+                                <literal>'LA'</literal> compute the <varname>k</varname> Largest Algebraic eigenvalues, only for real symmetric problems.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'SA'</literal> compute the NEV Smallest Algebraic eigenvalues, only for real symmetric problems.
+                                <literal>'SA'</literal> compute the <varname>k</varname> Smallest Algebraic eigenvalues, only for real symmetric problems.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'BE'</literal> compute NEV eigenvalues, half from each end of the spectrum, only for real symmetric problems.
+                                <literal>'BE'</literal> compute <varname>k</varname> eigenvalues, half from each end of the spectrum, only for real 
+                                symmetric problems.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'LR'</literal> compute the NEV eigenvalues of Largest Real part, only for real non-symmetric or complex problems.
+                                <literal>'LR'</literal> compute the <varname>k</varname> eigenvalues of Largest Real part, only for real non-symmetric or 
+                                complex problems.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'SR'</literal> compute the NEV eigenvalues of Smallest Real part, only for real non-symmetric or complex problems.
+                                <literal>'SR'</literal> compute the <varname>k</varname> eigenvalues of Smallest Real part, only for real non-symmetric or 
+                                complex problems.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'LI'</literal> compute the NEV eigenvalues of Largest Imaginary part, only for real non-symmetric or complex problems.
+                                <literal>'LI'</literal> compute the <varname>k</varname> eigenvalues of Largest Imaginary part, only for real non-symmetric 
+                                or complex problems.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'SI'</literal> compute the NEV eigenvalues of Smallest Imaginary part, only for real non-symmetric or complex problems.
+                                <literal>'SI'</literal> compute the <varname>k</varname> eigenvalues of Smallest Imaginary part, only for real non-symmetric 
+                                or complex problems.
                             </para>
                         </listitem>
                     </itemizedlist>

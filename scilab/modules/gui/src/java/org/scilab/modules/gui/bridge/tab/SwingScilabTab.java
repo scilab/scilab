@@ -195,7 +195,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         addFocusListener(this);
         setCallback(null);
 
-        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F5"), ACTION_TOGGLE_PREVIOUS);
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("shift F6"), ACTION_TOGGLE_PREVIOUS);
     }
 
     /**
@@ -227,7 +227,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         addFocusListener(this);
         setCallback(null);
 
-        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F5"), ACTION_TOGGLE_PREVIOUS);
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("shift F6"), ACTION_TOGGLE_PREVIOUS);
     }
 
     /**

@@ -22,6 +22,7 @@
 #include "loadversion.h"
 #include "freeArrayOfString.h"
 #include "MALLOC.h"
+#include "../../../io/includes/getenvc.h"
 /*--------------------------------------------------------------------------*/
 #define TCLSCI_MODULE_NAME "tclsci"
 #define TCLTK_OPTION_STRING "tk"
@@ -308,7 +309,7 @@ BOOL with_modelica_compiler(void)
     char *fullpathModelicac = searchEnv(ModelicacName, "PATH");
     if (fullpathModelicac)
     {
-        FREE(fullpathModelicac);
+        //FREE(fullpathModelicac);
         fullpathModelicac = NULL;
         return TRUE;
     }

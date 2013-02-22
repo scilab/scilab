@@ -31,6 +31,12 @@ Improvements
    schema
    If the file does not exist, propose to create it.
 
+* Search is now possible in the console. Shortcut F3 or CTRL+F enables it.
+  See Bug #11841.
+
+* editvar propose direct save to the CSV format of the whole variable or the
+  selection.
+
 
 Removed functions
 ==================
@@ -174,7 +180,11 @@ Bug fixes
 * Bug #3313 fixed - In the documentation, the title of a link was using the
                     id instead of the title of the page.
 
+* Bug #5291 fixed - strtod returned 0 when no real number was detected.
+
 * Bug #6583 fixed - jmat() was poorly documented.
+
+* Bug #7058 fixed - There was an error in mathml formula in beta function help.
 
 * Bug #7190 fixed - is_absolute_path was not documented.
 
@@ -230,6 +240,14 @@ Bug fixes
 * Bug #11497 fixed - A lot of EDT violation was detected by the
                      ThreadCheckingRepaintManager tool.
 
+* Bug #11501 fixed - Use $$..$$ for LaTeX in SciNotes comments to avoid
+                     confusion with Scilab code.
+
+* Bug #11549 fixed - Prefs window changed its dimension when hitting Default.
+
+* Bug #11569 fixed - F5 to navigate in the dock was incompatible with SciNotes.
+                     So replace F5 by shift+F6 to go to the previous tab. 
+
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
 * Bug #11778 fixed - Bad color_map dims did not return an error.
@@ -241,6 +259,8 @@ Bug fixes
 * Bug #11812 fixed - Upper/lower case issues in the Xcos documentation fixed.
 
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
+
+* Bug #11851 fixed - Default EOL under Mac should be LF.
 
 * Bug #11931 fixed - In graphics, white space was not used as default thousand
                      separator.
@@ -281,6 +301,10 @@ Bug fixes
 * Bug #11999 fixed - Blank lines ignored by default by csvRead / read_csv.
 
 * Bug #12003 fixed - Fix a typo in the spreadsheet module.
+
+* Bug #12019 fixed - In the help of eigs function, NEV was unclear.
+
+* Bug #12004 fixed - Add "Configuring scaling factor" in the karmarkar help page.
 
 * Bug #12022 fixed - ftuneq had a bad example.
 
@@ -345,6 +369,9 @@ Bug fixes
 * Bug #12204 fixed - Fix a typo in the French localization
 
 * Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
+
+* Bug #12231 fixed - In SciNotes, a whole word was searched when the expression
+                     was not a word.
 
 * Bug #12232 fixed - There were several memleaks in various fillers.
 
@@ -5077,6 +5104,8 @@ ATOMS
 * Bug #10025 fixed - Wrong url in some help files examples.
 
 * Bug #10031 fixed - atomsDisp did not work with "\n" in messages text.
+
+* Bug #10223 fixed - Errors messages in atomsDownload must be clearer.
 
 
 Javasci

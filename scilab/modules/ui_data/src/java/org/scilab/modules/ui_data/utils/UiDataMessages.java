@@ -94,6 +94,8 @@ public final class UiDataMessages {
     public static final String VARNAME = Messages.gettext("Variable name");
     public static final String CREATENEWVAR = Messages.gettext("Create new variable");
     public static final String DUPLICATE = Messages.gettext("Duplicate the variable");
+    public static final String EXPORTCSV = Messages.gettext("Export to CSV");
+    public static final String EXPORTSELECTIONCSV = Messages.gettext("Export the selection to CSV");
     public static final String NUMROWS = Messages.gettext("Rows number");
     public static final String NUMCOLS = Messages.gettext("Columns number");
     public static final String FILLWITH = Messages.gettext("Fill with");

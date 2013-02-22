@@ -71,6 +71,15 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
 
     /**
      * Close the edition of the variable
+     */
+    public static void closeEditVar() {
+        if (instance != null) {
+            instance.close();
+        }
+    }
+
+    /**
+     * Close the edition of the variable
      * @param name the variable
      */
     public static void close(String name) {

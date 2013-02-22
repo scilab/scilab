@@ -222,7 +222,9 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="intstr.f"/>
 		<File RelativePath="isany.f"/>
 		<File RelativePath="isbrk.f"/>
+		<File RelativePath="iseye.f"/>
 		<File RelativePath=".\isinstring.f"/>
+		<File RelativePath="isnum.f"/>
 		<File RelativePath="istrue.f"/>
 		<File RelativePath="itosci.f"/>
 		<File RelativePath="lst2vars.f"/>
@@ -271,6 +273,7 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="stackp.f"/>
 		<File RelativePath=".\stackr2d.f"/>
 		<File RelativePath="storeglobal.f"/>
+		<File RelativePath="termf.f"/>
 		<File RelativePath="tradsl.f"/>
 		<File RelativePath="typ2cod.f"/>
 		<File RelativePath="varfunptr.f"/>
