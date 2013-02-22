@@ -221,4 +221,12 @@ sp=sparse([1,2;4,5;3,10],[1,2,3])
 editvar("sp");
  ]]></programlisting>
     </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="closeEditvar">closeEditvar</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

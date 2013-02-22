@@ -240,6 +240,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_closeEditvar.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_filebrowser.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_updatebrowsevar.cpp" />
     <ClCompile Include="..\cpp\FileBrowserChDir.cpp" />

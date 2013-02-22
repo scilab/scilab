@@ -32,12 +32,16 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
     types::String* pOutString = NULL;
     types::String* pString = NULL;
 
-    if(in.size() != 1)
+    wchar_t pwstKey[] = L"1234567890";
+    unsigned long long ullNan = 0x7ff8000000000000;
+    double dblNan = *( double* )&ullNan;
+
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strtod", 1);
         return types::Function::Error;
     }
-    if(_iRetCount > 2)
+    if (_iRetCount > 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "strtod", 1, 2);
         return types::Function::Error;
@@ -45,39 +49,59 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
 
     pString = in[0]->getAs<types::String>();
 
-    if(_iRetCount == 2)
+    pOutDouble = new types::Double(pString->getDims(), pString->getDimsArray());
+    if (_iRetCount == 2)
     {
-        pOutDouble = new types::Double(pString->getDims(),pString->getDimsArray());
-        pOutString = new types::String(pString->getDims(),pString->getDimsArray());
+        pOutString = new types::String(pString->getDims(), pString->getDimsArray());
+    }
 
-        for (int i = 0 ; i < pString->getSize() ; i++)
+    for (int i = 0 ; i < pString->getSize() ; i++)
+    {
+        bool bStop = false;
+        wchar_t *pwstStop = NULL;
+        wchar_t* pstStr = pString->get(i);
+        int iPos = (int)wcscspn(pstStr, pwstKey);
+
+        if (iPos)
         {
-            wchar_t *stopstring = NULL;
-            pOutDouble->set(i,wcstod(pString->get(i),&stopstring));
-            if(stopstring)
+            for (int j = 0 ; j < iPos ; j++)
             {
-                pOutString->set(i,stopstring);
+                if (pstStr[j] != ' ')
+                {
+                    pOutDouble->set(i, dblNan);
+                    bStop = true;
+                    pwstStop = pstStr;
+                }
+            }
+
+            if (bStop == false)
+            {
+                pOutDouble->set(i, wcstod(pstStr, &pwstStop));
+            }
+        }
+        else
+        {
+            pOutDouble->set(i, wcstod(pstStr, &pwstStop));
+        }
+
+        if (_iRetCount == 2)
+        {
+            if (pwstStop)
+            {
+                pOutString->set(i, pwstStop);
             }
             else
             {
-                pOutString->set(i,L"");
+                pOutString->set(i, L"");
             }
         }
-
-        out.push_back(pOutDouble);
-        out.push_back(pOutString);
     }
-    else // _iRetCount == 1
+
+    out.push_back(pOutDouble);
+
+    if (_iRetCount == 2)
     {
-        pOutDouble = new types::Double(pString->getDims(),pString->getDimsArray());
-
-        for (int i = 0 ; i < pString->getSize() ; i++)
-        {
-            wchar_t *stopstring = NULL;
-            pOutDouble->set(i,wcstod(pString->get(i),&stopstring));
-        }
-
-        out.push_back(pOutDouble);
+        out.push_back(pOutString);
     }
 
     return types::Function::OK;

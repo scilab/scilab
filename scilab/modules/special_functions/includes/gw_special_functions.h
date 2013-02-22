@@ -28,7 +28,6 @@ SPECIAL_FUNCTIONS_IMPEXP int sci_legendre(char *fname, void* pvApiCtx);
 SPECIAL_FUNCTIONS_IMPEXP int sci_gamma(char *fname, void* pvApiCtx);
 SPECIAL_FUNCTIONS_IMPEXP int sci_lgamma(char *fname, void* pvApiCtx);
 SPECIAL_FUNCTIONS_IMPEXP int sci_dlgamma(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_calerf(char *fname, void* pvApiCtx);
 SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_erf(char *fname, void* pvApiCtx);
 SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_erfc(char *fname, void* pvApiCtx);
 SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_erfcx(char *fname, void* pvApiCtx);

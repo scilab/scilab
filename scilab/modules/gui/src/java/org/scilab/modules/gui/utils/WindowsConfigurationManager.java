@@ -235,10 +235,10 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
         Element root = doc.getDocumentElement();
         Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
-                                                               "x", (int) window.getLocation().getX(),
-                                                               "y", (int) window.getLocation().getY(),
-                                                               "width", (int) window.getSize().getWidth(),
-                                                               "height", (int) window.getSize().getHeight(),
+                                                               "x", (int) window.getLastPosition().getX(),
+                                                               "y", (int) window.getLastPosition().getY(),
+                                                               "width", (int) window.getLastDimension().getWidth(),
+                                                               "height", (int) window.getLastDimension().getHeight(),
                                                                "state", window.getExtendedState()
             });
         LayoutNode layoutNode = window.getDockingPort().exportLayout();

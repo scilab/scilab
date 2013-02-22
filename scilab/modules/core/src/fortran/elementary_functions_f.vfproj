@@ -167,7 +167,9 @@ lib /DEF:&quot;$(InputDir)slatec_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:
 		<File RelativePath="intstr.f"/>
 		<File RelativePath="isany.f"/>
 		<File RelativePath="isbrk.f"/>
+		<File RelativePath="iseye.f"/>
 		<File RelativePath=".\isinstring.f"/>
+		<File RelativePath="isnum.f"/>
 		<File RelativePath="istrue.f"/>
 		<File RelativePath="itosci.f"/>
 		<File RelativePath="logops.f"/>
@@ -221,6 +223,7 @@ lib /DEF:&quot;$(InputDir)slatec_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:
 		<File RelativePath="stackp.f"/>
 		<File RelativePath=".\stackr2d.f"/>
 		<File RelativePath="storeglobal.f"/>
+		<File RelativePath="termf.f"/>
 		<File RelativePath="tradsl.f"/>
 		<File RelativePath="typ2cod.f"/>
 		<File RelativePath="varfunptr.f"/>

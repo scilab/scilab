@@ -280,6 +280,9 @@ static bool import_void(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddr
         printError(&sciErr, 0);
         return false;
     }
+
+    //close void dataset
+    closeDataSet(_iDatasetId);
     return true;
 }
 
@@ -301,6 +304,9 @@ static bool import_undefined(int* pvCtx, int _iDatasetId, int _iItemPos, int *_p
         printError(&sciErr, 0);
         return false;
     }
+
+    //close undefined dataset
+    closeDataSet(_iDatasetId);
     return true;
 }
 

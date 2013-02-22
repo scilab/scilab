@@ -925,6 +925,12 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
         return -1;
     }
 
+    status = H5Dclose(_iDatasetId);
+    if (status < 0)
+    {
+        return -1;
+    }
+
     return 0;
 }
 
@@ -970,6 +976,12 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
         {
             return -1;
         }
+    }
+
+    status = H5Dclose(_iDatasetId);
+    if (status < 0)
+    {
+        return -1;
     }
     return 0;
 }
