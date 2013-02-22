@@ -15,6 +15,7 @@
 #include "version.h"
 #include "scilabmode.h"
 #include "scilabDefaults.h"
+#include "getenvc.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
