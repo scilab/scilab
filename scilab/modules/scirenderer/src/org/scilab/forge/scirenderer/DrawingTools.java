@@ -115,7 +115,53 @@ public interface DrawingTools {
      * @param rotationAngle the rotation angle.
      * @throws SciRendererException if the texture is not drawable.
      */
+    void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) throws SciRendererException;
+
+    /**
+     * Draw the given texture at all given position with selected colors.
+     * @param texture the texture to draw.
+     * @param anchor the texture anchor position.
+     * @param positions the positions where the texture will be drawn.
+     * @param colors the colors of the texture.
+     * @throws SciRendererException if the texture is not drawable.
+     */
+    void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, ElementsBuffer colors) throws SciRendererException;
+
+    /**
+     * Draw the given texture at all given position with the given rotation angle with selected colors.
+     * @param texture the texture to draw.
+     * @param anchor the texture anchor position.
+     * @param positions the positions where the texture will be drawn.
+     * @param rotationAngle the rotation angle.
+     * @param colors the colors of the texture.
+     * @throws SciRendererException if the texture is not drawable.
+     */
+    void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle, ElementsBuffer colors) throws SciRendererException;
+
+    /**
+     * Draw the given texture at all given position with given offset and stride with the given rotation angle.
+     * @param texture the texture to draw.
+     * @param anchor the texture anchor position.
+     * @param positions the positions where the texture will be drawn.
+     * @param offset the position of the first mark.
+     * @param stride the spacing between two marks.
+     * @param rotationAngle the rotation angle.
+     * @throws SciRendererException if the texture is not drawable.
+     */
     void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle) throws SciRendererException;
+
+    /**
+     * Draw the given texture at all given position with given offset and stride with the given rotation angle with the given color.
+     * @param texture the texture to draw.
+     * @param anchor the texture anchor position.
+     * @param positions the positions where the texture will be drawn.
+     * @param offset the position of the first mark.
+     * @param stride the spacing between two marks.
+     * @param rotationAngle the rotation angle.
+     * @param colors the colors of the texture.
+     * @throws SciRendererException if the texture is not drawable.
+     */
+    void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, ElementsBuffer colors) throws SciRendererException;
 
     /**
      * Draw the given texture at given position.

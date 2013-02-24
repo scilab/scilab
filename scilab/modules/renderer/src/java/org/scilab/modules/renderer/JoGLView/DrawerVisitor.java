@@ -557,7 +557,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(polyline.getIdentifier()));
                         appearance.setTexture(getColorMapTexture());
                     } else {
-                        geometry.setColors(null);
+                        if (polyline.getColorSet()) {
+                            ElementsBuffer colors = dataManager.getColorBuffer(polyline.getIdentifier());
+                            geometry.setColors(colors);
+                            appearance.setLineColor(null);
+                        } else {
+                            geometry.setColors(null);
+                            appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+                        }
                     }
 
                     Integer lineColor = polyline.getSelected() ? polyline.getSelectedColor() : polyline.getLineColor();
@@ -589,11 +596,17 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     }
 
                     if (polyline.getMarkMode()) {
-                        Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
                         ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
                         int offset = polyline.getMarkOffset();
                         int stride = polyline.getMarkStride();
-                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0);
+                        if (polyline.getColorSet() && polyline.getMark().getBackground() == -3) {
+                            Texture sprite = markManager.getMarkSprite(polyline, null, appearance);
+                            ElementsBuffer colors = dataManager.getColorBuffer(polyline.getIdentifier());
+                            drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0, colors);
+                        } else {
+                            Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
+                            drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0, null);
+                        }
                     }
                 } catch (ObjectRemovedException e) {
                     invalidate(polyline, e);
@@ -776,9 +789,15 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
 
-                    Texture texture = markManager.getMarkSprite(plot3d, colorMap, appearance);
                     ElementsBuffer positions = dataManager.getVertexBuffer(plot3d.getIdentifier());
-                    drawingTools.draw(texture, AnchorPosition.CENTER, positions);
+                    if (plot3d.getMark().getBackground() == -3 && plot3d.getColorFlag() == 1) {
+                        Texture sprite = markManager.getMarkSprite(plot3d, null, appearance);
+                        ElementsBuffer colors = dataManager.getColorBuffer(plot3d.getIdentifier());
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, colors);
+                    } else {
+                        Texture sprite = markManager.getMarkSprite(plot3d, colorMap, appearance);
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, null);
+                    }
                 }
             } catch (ObjectRemovedException e) {
                 invalidate(plot3d, e);
@@ -789,7 +808,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
             axesDrawer.disableClipping(plot3d.getClipProperty());
         }
-
     }
 
     @Override
@@ -906,11 +924,19 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                  * in order to obtain the latter's Mark (all arrows are supposed to have the same contour properties for now).
                  */
                 if (segs.getMarkMode()) {
-                    Texture texture = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap, null);
                     ElementsBuffer positions = dataManager.getVertexBuffer(segs.getIdentifier());
                     // Take only into account start-end of segs and not the arrow head.
                     positions.getData().limit(segs.getNumberArrows() * 2 * 4);
-                    drawingTools.draw(texture, AnchorPosition.CENTER, positions);
+
+                    if (segs.getArrows().get(0).getMark().getBackground() == -3) {
+                        Texture sprite = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), null, null);
+                        ElementsBuffer colors = dataManager.getColorBuffer(segs.getIdentifier());
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, colors);
+                    } else {
+                        Texture sprite = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap, null);
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, null);
+                    }
+
                     positions.getData().limit(positions.getData().capacity());
                 }
 

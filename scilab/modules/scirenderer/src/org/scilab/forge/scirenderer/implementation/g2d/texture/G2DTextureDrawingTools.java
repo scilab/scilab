@@ -41,6 +41,7 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
     private Graphics2D g2d;
     private int width;
     private int height;
+    private java.awt.Color fillColor;
 
     /**
      * Default constructor.
@@ -57,12 +58,16 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
     }
 
     public void accept(Texture texture) {
+        accept(texture, null);
+    }
+
+    public void accept(Texture texture, java.awt.Color fillColor) {
         G2DTextureManager.G2DTexture t = (G2DTextureManager.G2DTexture) texture;
         TextureDrawer drawer = t.getDrawer();
         Dimension d = drawer.getTextureSize();
         this.width = (int) d.getWidth();
         this.height = (int) d.getHeight();
-        accept(drawer, this.width, this.height);
+        accept(drawer, this.width, this.height, fillColor);
     }
 
     /**
@@ -70,7 +75,7 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
      * This image will contain the drawing of the given drawer.
      * @param spriteDrawer the given sprite drawer.
      */
-    public void accept(TextureDrawer textureDrawer, int width, int height) {
+    public void accept(TextureDrawer textureDrawer, int width, int height, java.awt.Color fillColor) {
         // Change center coordinate to (0, 0).
         if (textureDrawer.getOriginPosition() == TextureDrawer.OriginPosition.CENTER) {
             g2d.translate(width / 2.0, height / 2.0);
@@ -80,7 +85,9 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
         if (!aa) {
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         }
+        this.fillColor = fillColor;
         textureDrawer.draw(this);
+        this.fillColor = null;
 
         if (!aa) {
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
@@ -119,7 +126,7 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
             k++;
         }
 
-        g2d.setColor(appearance.getLineColor());
+        g2d.setColor(getColor(appearance.getLineColor()));
         g2d.setStroke(G2DStroke.getStroke(appearance, 0));
 
         g2d.drawPolyline(xCoordinates, yCoordinates, nbPoint);
@@ -140,7 +147,7 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
         }
 
         if (appearance.getFillColor().getAlphaAsFloat() != 0) {
-            g2d.setColor(appearance.getFillColor());
+            g2d.setColor(getColor(appearance.getFillColor()));
             g2d.fillPolygon(xCoordinates, yCoordinates, nbPoint);
         }
 
@@ -157,7 +164,7 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
 
     @Override
     public void drawCircle(int x, int y, int diameter, Appearance appearance) {
-        g2d.setColor(appearance.getLineColor());
+        g2d.setColor(getColor(appearance.getLineColor()));
         g2d.setStroke(G2DStroke.getStroke(appearance, 0));
         double r = ((double) diameter) / 2;
         g2d.draw(new Ellipse2D.Double(x - r, y - r, diameter, diameter));
@@ -166,7 +173,7 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
     @Override
     public void fillDisc(int x, int y, int diameter, Color color) {
         if (color.getAlphaAsFloat() != 0) {
-            g2d.setColor(color);
+            g2d.setColor(getColor(color));
             double r = ((double) diameter) / 2;
             g2d.fill(new Ellipse2D.Double(x - r, y - r, diameter, diameter));
         }
@@ -186,7 +193,7 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
             } else {
                 g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_OFF);
             }
-            g2d.setColor(textEntity.getTextColor());
+            g2d.setColor(getColor(textEntity.getTextColor()));
             TextLayout textLayout = new TextLayout(textEntity.getText(), textEntity.getFont(), g2d.getFontRenderContext());
             Rectangle2D bounds = textLayout.getBounds();
             g2d.setFont(textEntity.getFont());
@@ -201,7 +208,19 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
 
     @Override
     public void clear(Color color) {
-        g2d.setColor(color);
+        g2d.setColor(getColor(color));
         g2d.fillRect(0, 0, width, height);
+    }
+
+    public java.awt.Color getColor(Color color) {
+        if (fillColor == null) {
+            return color;
+        } else {
+            if (color.equals(Color.WHITE)) {
+                return fillColor;
+            } else {
+                return color;
+            }
+        }
     }
 }

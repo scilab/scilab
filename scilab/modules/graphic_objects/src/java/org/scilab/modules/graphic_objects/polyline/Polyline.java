@@ -26,6 +26,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_SHIFT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_SHIFT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_SHIFT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLOR_SET__;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +51,8 @@ public class Polyline extends ClippableContouredObject {
     /** Polyline properties names */
     private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE,
                                     INTERPCOLORVECTOR, INTERPCOLORVECTORSET, INTERPCOLORMODE,
-                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT, TIP_DISPLAY_FNC, TIP_MARK
+                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT,
+                                    TIP_DISPLAY_FNC, TIP_MARK, COLORSET
                                   };
 
     /** Specifies whether the polyline is closed */
@@ -91,6 +93,8 @@ public class Polyline extends ClippableContouredObject {
 
     private Integer tipMark;
 
+    private boolean colorSet;
+
     /** Constructor */
     public Polyline() {
         super();
@@ -107,6 +111,7 @@ public class Polyline extends ClippableContouredObject {
         datatips = new ArrayList<Integer>();
         displayFnc = "";
         tipMark = 11;
+        colorSet = false;
     }
 
     @Override
@@ -149,6 +154,8 @@ public class Polyline extends ClippableContouredObject {
                 return PolylineProperty.TIP_DISPLAY_FNC;
             case __GO_DATATIP_MARK__ :
                 return PolylineProperty.TIP_MARK;
+            case __GO_COLOR_SET__ :
+                return PolylineProperty.COLORSET;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -190,6 +197,8 @@ public class Polyline extends ClippableContouredObject {
                     return getDisplayFunction();
                 case TIP_MARK:
                     return getTipMark();
+                case COLORSET:
+                    return getColorSet();
             }
         }
         return super.getProperty(property);
@@ -240,6 +249,9 @@ public class Polyline extends ClippableContouredObject {
                         break;
                     case TIP_MARK:
                         setTipMark((Integer) value);
+                        break;
+                    case COLORSET:
+                        setColorSet((Boolean) value);
                         break;
                 }
             }
@@ -418,13 +430,6 @@ public class Polyline extends ClippableContouredObject {
     }
 
     /**
-     * @return Type as String
-     */
-    public Integer getType() {
-        return GraphicObjectProperties.__GO_POLYLINE__;
-    }
-
-    /**
      * @return datatips
      */
     public Integer[] getDatatips() {
@@ -474,5 +479,27 @@ public class Polyline extends ClippableContouredObject {
         }
 
         return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the colorSet
+     */
+    public Boolean getColorSet() {
+        return colorSet;
+    }
+
+    /**
+     * @param colorSet the colorSet to set
+     */
+    public UpdateStatus setColorSet(Boolean colorSet) {
+        this.colorSet = colorSet;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return Type as String
+     */
+    public Integer getType() {
+        return GraphicObjectProperties.__GO_POLYLINE__;
     }
 }

@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -208,11 +209,12 @@ public class Motor3D {
         }
     }
 
-    public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle) {
+    public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, ElementsBuffer colors) {
         FloatBuffer positionsBuffer = positions.getData();
         float[] buffer;
         offset = offset < 0 ? 0 : offset;
         stride = stride < 1 ? 1 : stride;
+        Color[] colorsArray = null;
 
         positionsBuffer.rewind();
         if (positionsBuffer.hasArray()) {
@@ -221,11 +223,29 @@ public class Motor3D {
             buffer = new float[positionsBuffer.limit()];
             positionsBuffer.get(buffer);
         }
-
         Vector3d[] verticesArray = getMultiVectors(buffer, transf, false);
+
+        if (colors != null) {
+            FloatBuffer colorsBuffer = colors.getData();
+            colorsBuffer.rewind();
+            if (colorsBuffer.hasArray()) {
+                buffer = colorsBuffer.array();
+            } else {
+                buffer = new float[colorsBuffer.limit()];
+                colorsBuffer.get(buffer);
+            }
+            colorsArray = getMultiColors(buffer);
+        }
+
         for (int i = offset; i < verticesArray.length; i += stride) {
             try {
-                SpritedRectangle o = new SpritedRectangle(verticesArray[i], texture, anchor, textureDrawingTools, rotationAngle);
+                Vector3d v = verticesArray[i];
+                SpritedRectangle o;
+                if (colorsArray == null) {
+                    o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle, null);
+                } else {
+                    o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle, colorsArray[i]);
+                }
                 add(o);
             } catch (InvalidPolygonException e) { }
         }
@@ -233,7 +253,7 @@ public class Motor3D {
 
     public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, Vector3d position, double rotationAngle) {
         try {
-            add(new SpritedRectangle(transf.project(position), texture, anchor, textureDrawingTools, rotationAngle));
+            add(new SpritedRectangle(transf.project(position), texture, anchor, textureDrawingTools, rotationAngle, null));
         } catch (InvalidPolygonException e) { }
     }
 

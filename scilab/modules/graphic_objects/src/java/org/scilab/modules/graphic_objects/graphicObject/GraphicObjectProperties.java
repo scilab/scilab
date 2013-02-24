@@ -415,5 +415,6 @@ public class GraphicObjectProperties {
     public static final int __GO_UI_TITLE_SCROLL__ = 391;
     public static final int __GO_UI_FRAME_BORDER_TYPE__ = 392;
     public static final int __GO_UI_SCROLLABLE__ = 393;
+    public static final int __GO_COLOR_SET__ = 394;
 
 }

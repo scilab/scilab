@@ -72,8 +72,16 @@ public class MarkSpriteFactory {
     private static TextureDrawer getSpriteDrawer(Mark mark, Integer selectedColor, int finalSize, ColorMap colorMap, Appearance usedAppearance) {
         final Appearance appearance = new Appearance();
         Integer markColor = selectedColor == null ? mark.getForeground() : selectedColor;
-        Color backgroundColor = ColorFactory.createColor(colorMap, mark.getBackground());
-        Color foregroundColor = ColorFactory.createColor(colorMap, markColor);
+        Color backgroundColor;
+        Color foregroundColor;
+
+        if (colorMap != null) {
+            backgroundColor = ColorFactory.createColor(colorMap, mark.getBackground());
+            foregroundColor = ColorFactory.createColor(colorMap, markColor);
+        } else {
+            backgroundColor = new Color(1f, 1f, 1f, 1f);
+            foregroundColor = new Color(0f, 0f, 0f, 1f);
+        }
 
         if (mark.getBackground() != 0) {
             appearance.setFillColor(backgroundColor);
@@ -94,7 +102,11 @@ public class MarkSpriteFactory {
         if (finalSize != 1) {
             switch (mark.getStyle()) {
                 case  0:
-                    return new DotSpriteDrawer(foregroundColor, finalSize);
+                    if (colorMap == null) {
+                        return new DotSpriteDrawer(backgroundColor, finalSize);
+                    } else {
+                        return new DotSpriteDrawer(foregroundColor, finalSize);
+                    }
                 case  1:
                     return new PlusSpriteDrawer(appearance, finalSize);
                 case  2:
@@ -102,7 +114,11 @@ public class MarkSpriteFactory {
                 case  3:
                     return new StarSpriteDrawer(appearance, finalSize);
                 case  4:
-                    return new FilledDiamondSpriteDrawer(foregroundColor, finalSize);
+                    if (colorMap == null) {
+                        return new FilledDiamondSpriteDrawer(backgroundColor, finalSize);
+                    } else {
+                        return new FilledDiamondSpriteDrawer(foregroundColor, finalSize);
+                    }
                 case  5:
                     return new DiamondSpriteDrawer(appearance, finalSize);
                 case  6:
