@@ -35,6 +35,9 @@ Improvements
 * editvar propose direct save to the CSV format of the whole variable or the
   selection.
 
+* Completion in Scilab is now case insensitive. See bug #6320.
+
+
 
 Removed functions
 ==================
@@ -252,7 +255,7 @@ Bug fixes
 * Bug #11549 fixed - Prefs window changed its dimension when hitting Default.
 
 * Bug #11569 fixed - F5 to navigate in the dock was incompatible with SciNotes.
-                     So replace F5 by shift+F6 to go to the previous tab. 
+                     So replace F5 by shift+F6 to go to the previous tab.
 
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 

@@ -20,6 +20,7 @@ src/c/pcre_error.c \
 src/c/isletter.c \
 src/c/isdigit.c \
 src/c/strsubst.c \
+src/c/stristr.c \
 src/c/stringsstrrchr.c \
 src/c/stringsstrrev.c \
 src/c/stringsCompare.c \

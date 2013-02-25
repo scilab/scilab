@@ -262,6 +262,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="stringsstrrev.c" />
     <ClCompile Include="stringToDouble.c" />
     <ClCompile Include="stripblanks.c" />
+    <ClCompile Include="stristr.c" />
     <ClCompile Include="strsplitfunction.c" />
     <ClCompile Include="strsubst.c" />
     <ClCompile Include="tokens.c" />
@@ -317,6 +318,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClInclude Include="..\..\includes\StringConvert.h" />
     <ClInclude Include="..\..\includes\stringToDouble.h" />
     <ClInclude Include="..\..\includes\stripblanks.h" />
+    <ClInclude Include="..\..\includes\stristr.h" />
     <ClInclude Include="..\..\includes\strsubst.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="convstr.h" />
