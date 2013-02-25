@@ -95,7 +95,7 @@ public final class WebBrowser implements XConfigurationListener {
 
         try {
             if (url.charAt(0) == 'h' || url.charAt(0) == 'f') {
-                // We have something like http://... or file://
+                // We have something like http://... or file://... or ftp://...
                 if (webprefs.defaultBrowser) {
                     Desktop.getDesktop().browse(new URI(url));
                 } else {

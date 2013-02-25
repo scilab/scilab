@@ -114,14 +114,14 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">max slope</emphasis>
+                    <emphasis role="bold">Max slope</emphasis>
                 </para>
                 <para> The limit of the derivative of an increasing input signal.</para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">min slope</emphasis>
+                    <emphasis role="bold">Min slope</emphasis>
                 </para>
                 <para> The limit of the derivative of a decreasing input signal.</para>
                 <para> Properties : Type 'vec' of size 1</para>

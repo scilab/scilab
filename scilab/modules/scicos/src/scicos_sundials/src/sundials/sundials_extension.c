@@ -5,7 +5,7 @@
 * -----------------------------------------------------------------
 */
 
-#include "sundials_extension.h"
+#include "sundials/sundials_extension.h"
 
 BOOL bsundialsExtended = FALSE;
 

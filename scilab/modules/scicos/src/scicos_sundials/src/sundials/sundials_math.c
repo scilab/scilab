@@ -105,4 +105,3 @@ realtype FLOOR(realtype x)
   return(floor(x));
 #endif
 }
-

@@ -1,7 +1,7 @@
 /*
  * -----------------------------------------------------------------
- * $Revision: 1.3 $
- * $Date: 2006/07/19 22:10:42 $
+ * $Revision: 1.15 $
+ * $Date: 2010/12/01 22:35:26 $
  * ----------------------------------------------------------------- 
  * Programmer(s): Alan Hindmarsh, Radu Serban and
  *                Aaron Collier @ LLNL
@@ -20,6 +20,8 @@
 #include <stdlib.h>
 
 #include "ida_impl.h"
+
+#include <sundials/sundials_math.h>
 
 #define ZERO    RCONST(0.0)
 #define HALF    RCONST(0.5)
@@ -77,18 +79,18 @@ int IDASetErrFile(void *ida_mem, FILE *errfp)
 
 /*-----------------------------------------------------------------*/
 
-int IDASetRdata(void *ida_mem, void *res_data)
+int IDASetUserData(void *ida_mem, void *user_data)
 {
   IDAMem IDA_mem;
 
   if (ida_mem==NULL) {
-    IDAProcessError(NULL, IDA_MEM_NULL, "IDA", "IDASetRdata", MSG_NO_MEM);
+    IDAProcessError(NULL, IDA_MEM_NULL, "IDA", "IDASetUserData", MSG_NO_MEM);
     return(IDA_MEM_NULL);
   }
 
   IDA_mem = (IDAMem) ida_mem;
 
-  IDA_mem->ida_rdata = res_data;
+  IDA_mem->ida_user_data = user_data;
 
   return(IDA_SUCCESS);
 }
@@ -121,7 +123,7 @@ int IDASetMaxOrd(void *ida_mem, int maxord)
     return(IDA_ILL_INPUT);
   }  
 
-  IDA_mem->ida_maxord = maxord;
+  IDA_mem->ida_maxord = MIN(maxord,MAXORD_DEFAULT);
 
   return(IDA_SUCCESS);
 }
@@ -139,12 +141,8 @@ int IDASetMaxNumSteps(void *ida_mem, long int mxsteps)
 
   IDA_mem = (IDAMem) ida_mem;
 
-  if (mxsteps < 0) {
-    IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetMaxNumSteps", MSG_NEG_MXSTEPS);
-    return(IDA_ILL_INPUT);
-  }
+  /* Passing mxsteps=0 sets the default. Passing mxsteps<0 disables the test. */
 
-  /* Passing 0 sets the default */
   if (mxsteps == 0)
     IDA_mem->ida_mxstep = MXSTEP_DEFAULT;
   else
@@ -213,6 +211,19 @@ int IDASetStopTime(void *ida_mem, realtype tstop)
 
   IDA_mem = (IDAMem) ida_mem;
 
+  /* If IDASolve was called at least once, test if tstop is legal
+   * (i.e. if it was not already passed).
+   * If IDASetStopTime is called before the first call to IDASolve,
+   * tstop will be checked in IDASolve. */
+  if (IDA_mem->ida_nst > 0) {
+
+    if ( (tstop - IDA_mem->ida_tn) * IDA_mem->ida_hh < ZERO ) {
+      IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetStopTime", MSG_BAD_TSTOP, IDA_mem->ida_tn);
+      return(IDA_ILL_INPUT);
+    }
+
+  }
+
   IDA_mem->ida_tstop = tstop;
   IDA_mem->ida_tstopset = TRUE;
 
@@ -232,7 +243,7 @@ int IDASetNonlinConvCoef(void *ida_mem, realtype epcon)
 
   IDA_mem = (IDAMem) ida_mem;
 
-  if (epcon < ZERO) {
+  if (epcon <= ZERO) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetNonlinConvCoef", MSG_NEG_EPCON);
     return(IDA_ILL_INPUT);
   }
@@ -338,7 +349,6 @@ int IDASetId(void *ida_mem, N_Vector id)
   }
 
   if ( !(IDA_mem->ida_idMallocDone) ) {
-    IDA_mem->ida_id = NULL;
     IDA_mem->ida_id = N_VClone(id);
     lrw += lrw1;
     liw += liw1;
@@ -397,7 +407,6 @@ int IDASetConstraints(void *ida_mem, N_Vector constraints)
   }
 
   if ( !(IDA_mem->ida_constraintsMallocDone) ) {
-    IDA_mem->ida_constraints = NULL;
     IDA_mem->ida_constraints = N_VClone(constraints);
     lrw += lrw1;
     liw += liw1;
@@ -413,115 +422,56 @@ int IDASetConstraints(void *ida_mem, N_Vector constraints)
   return(IDA_SUCCESS);
 }
 
-/*-----------------------------------------------------------------*/
+/* 
+ * IDASetRootDirection
+ *
+ * Specifies the direction of zero-crossings to be monitored.
+ * The default is to monitor both crossings.
+ */
 
-int IDASetTolerances(void *ida_mem, 
-                     int itol, realtype rtol, void *atol)
+int IDASetRootDirection(void *ida_mem, int *rootdir)
 {
   IDAMem IDA_mem;
-  booleantype neg_atol;
+  int i, nrt;
 
   if (ida_mem==NULL) {
-    IDAProcessError(NULL, IDA_MEM_NULL, "IDA", "IDASetTolerances", MSG_NO_MEM);
+    IDAProcessError(NULL, IDA_MEM_NULL, "IDA", "IDASetRootDirection", MSG_NO_MEM);
     return(IDA_MEM_NULL);
   }
 
   IDA_mem = (IDAMem) ida_mem;
 
-  /* Check if ida_mem was allocated */
-
-  if (IDA_mem->ida_MallocDone == FALSE) {
-    IDAProcessError(IDA_mem, IDA_NO_MALLOC, "IDA", "IDASetTolerances", MSG_NO_MALLOC);
-    return(IDA_NO_MALLOC);
+  nrt = IDA_mem->ida_nrtfn;
+  if (nrt==0) {
+    IDAProcessError(NULL, IDA_ILL_INPUT, "IDA", "IDASetRootDirection", MSG_NO_ROOT);
+    return(IDA_ILL_INPUT);    
   }
 
-  /* Check inputs */
-
-  if ((itol != IDA_SS) && (itol != IDA_SV)) {
-    IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetTolerances", MSG_BAD_ITOL);
-    return(IDA_ILL_INPUT);
-  }
-
-  if (atol == NULL) { 
-    IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetTolerances", MSG_ATOL_NULL);
-    return(IDA_ILL_INPUT); 
-  }
-
-  if (rtol < ZERO) { 
-    IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetTolerances", MSG_BAD_RTOL);
-    return(IDA_ILL_INPUT); 
-  }
-
-    
-  if (itol == IDA_SS) { 
-    neg_atol = (*((realtype *)atol) < ZERO); 
-  } else { 
-    neg_atol = (N_VMin((N_Vector)atol) < ZERO); 
-  }
-
-  if (neg_atol) { 
-    IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetTolerances", MSG_BAD_ATOL);
-    return(IDA_ILL_INPUT); 
-  }
-
-  /* Copy tolerances into memory */
-
-  if ( (itol != IDA_SV) && (IDA_mem->ida_VatolMallocDone) ) {
-    N_VDestroy(IDA_mem->ida_Vatol);
-    lrw -= lrw1;
-    liw -= liw1;
-    IDA_mem->ida_VatolMallocDone = FALSE;
-  }
-
-  if ( (itol == IDA_SV) && !(IDA_mem->ida_VatolMallocDone) ) {
-    IDA_mem->ida_Vatol = NULL;
-    IDA_mem->ida_Vatol = N_VClone(IDA_mem->ida_ewt);
-    lrw += lrw1;
-    liw += liw1;
-    IDA_mem->ida_VatolMallocDone = TRUE;
-  }
-
-  IDA_mem->ida_itol = itol;
-  IDA_mem->ida_rtol = rtol;      
-  if (itol == IDA_SS)
-    IDA_mem->ida_Satol = *((realtype *)atol);
-  else 
-    N_VScale(ONE, (N_Vector)atol, IDA_mem->ida_Vatol);
-
-  IDA_mem->ida_efun = IDAEwtSet;
-  IDA_mem->ida_edata = ida_mem;
+  for(i=0; i<nrt; i++) IDA_mem->ida_rootdir[i] = rootdir[i];
 
   return(IDA_SUCCESS);
 }
 
-/* 
- * IDASetEwtFn
+/*
+ * IDASetNoInactiveRootWarn
  *
- * Specifies the user-provide EwtSet function and data pointer for e
+ * Disables issuing a warning if some root function appears
+ * to be identically zero at the beginning of the integration
  */
 
-int IDASetEwtFn(void *ida_mem, IDAEwtFn efun, void *edata)
+int IDASetNoInactiveRootWarn(void *ida_mem)
 {
   IDAMem IDA_mem;
 
   if (ida_mem==NULL) {
-    IDAProcessError(NULL, IDA_MEM_NULL, "IDA", "IDASetEwtFn", MSG_NO_MEM);
+    IDAProcessError(NULL, IDA_MEM_NULL, "IDA", "IDASetNoInactiveRootWarn", MSG_NO_MEM);
     return(IDA_MEM_NULL);
   }
 
   IDA_mem = (IDAMem) ida_mem;
 
-  if ( IDA_mem->ida_VatolMallocDone ) {
-    N_VDestroy(IDA_mem->ida_Vatol);
-    lrw -= lrw1;
-    liw -= liw1;
-    IDA_mem->ida_VatolMallocDone = FALSE;
-  }
-
-  IDA_mem->ida_itol = IDA_WF;
-  IDA_mem->ida_efun = efun;
-  IDA_mem->ida_edata = edata;
-
+  IDA_mem->ida_mxgnull = 0;
+  
   return(IDA_SUCCESS);
 }
 
@@ -543,7 +493,7 @@ int IDASetNonlinConvCoefIC(void *ida_mem, realtype epiccon)
 
   IDA_mem = (IDAMem) ida_mem;
 
-  if (epiccon < ZERO) {
+  if (epiccon <= ZERO) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetNonlinConvCoefIC", MSG_BAD_EPICCON);
     return(IDA_ILL_INPUT);
   }
@@ -566,7 +516,7 @@ int IDASetMaxNumStepsIC(void *ida_mem, int maxnh)
 
   IDA_mem = (IDAMem) ida_mem;
 
-  if (maxnh < 0) {
+  if (maxnh <= 0) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetMaxNumStepsIC", MSG_BAD_MAXNH);
     return(IDA_ILL_INPUT);
   }
@@ -589,7 +539,7 @@ int IDASetMaxNumJacsIC(void *ida_mem, int maxnj)
 
   IDA_mem = (IDAMem) ida_mem;
 
-   if (maxnj < 0) {
+   if (maxnj <= 0) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetMaxNumJacsIC", MSG_BAD_MAXNJ);
     return(IDA_ILL_INPUT);
   } 
@@ -612,7 +562,7 @@ int IDASetMaxNumItersIC(void *ida_mem, int maxnit)
 
   IDA_mem = (IDAMem) ida_mem;
 
-  if (maxnit < 0) {
+  if (maxnit <= 0) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetMaxNumItersIC", MSG_BAD_MAXNIT);
     return(IDA_ILL_INPUT);
   }
@@ -653,7 +603,7 @@ int IDASetStepToleranceIC(void *ida_mem, realtype steptol)
 
   IDA_mem = (IDAMem) ida_mem;
 
-  if (steptol < ZERO) {
+  if (steptol <= ZERO) {
     IDAProcessError(IDA_mem, IDA_ILL_INPUT, "IDA", "IDASetStepToleranceIC", MSG_BAD_STEPTOL);
     return(IDA_ILL_INPUT);
   }
@@ -1116,7 +1066,7 @@ int IDAGetNonlinSolvStats(void *ida_mem, long int *nniters, long int *nncfails)
 
 /*-----------------------------------------------------------------*/
 
-char *IDAGetReturnFlagName(int flag)
+char *IDAGetReturnFlagName(long int flag)
 {
   char *name;
 

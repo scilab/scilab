@@ -239,11 +239,12 @@ public class AxesDrawer {
             /**
              * Draw hidden part of box.
              */
-            appearance.setLineColor(ColorFactory.createColor(colorMap, axes.getHiddenAxisColor()));
-            appearance.setLineWidth(axes.getLineThickness().floatValue());
-            appearance.setLinePattern(HIDDEN_BORDER_PATTERN.asPattern());
-            drawingTools.draw(geometries.getHiddenBoxBorderGeometry(), appearance);
-
+            if (!visitor.is2DView()) {
+                appearance.setLineColor(ColorFactory.createColor(colorMap, axes.getHiddenAxisColor()));
+                appearance.setLineWidth(axes.getLineThickness().floatValue());
+                appearance.setLinePattern(HIDDEN_BORDER_PATTERN.asPattern());
+                drawingTools.draw(geometries.getHiddenBoxBorderGeometry(), appearance);
+            }
 
             if (boxed != Box.BoxType.HIDDEN_AXES) {
 

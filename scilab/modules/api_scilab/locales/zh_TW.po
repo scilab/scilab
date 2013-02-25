@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-04-03 06:38+0000\n"
-"Last-Translator: MouetteYang <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:12+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: \n"
 
 #, c-format
@@ -176,10 +176,6 @@ msgid "double matrix"
 msgstr ""
 
 #, c-format
-msgid "%s: Bad call to get a non complex matrix"
-msgstr "%s: 錯誤的呼叫複數矩陣方式"
-
-#, c-format
 msgid "stack size exceeded!\n"
 msgstr ""
 
@@ -248,6 +244,10 @@ msgstr ""
 
 msgid "polynomial matrix"
 msgstr ""
+
+#, c-format
+msgid "%s: Bad call to get a non complex matrix"
+msgstr "%s: 錯誤的呼叫複數矩陣方式"
 
 #, c-format
 msgid "%s: Formal variable name of polynomial can't exceed 4 characters"

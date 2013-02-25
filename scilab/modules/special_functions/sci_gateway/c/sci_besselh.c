@@ -208,6 +208,12 @@ int sci_besselh(char *fname, unsigned long fname_len)
         if (m1 * n1 != m2 * n2)
         {
             Scierror(999, _("%s: arguments #%d and #%d have incompatible dimensions.\n"), fname, 1, 2);
+
+            if (isVarComplex(pvApiCtx, piAddrX) == 0)
+            {
+                FREE(pdblXI);
+            }
+
             return 1;
         }
 

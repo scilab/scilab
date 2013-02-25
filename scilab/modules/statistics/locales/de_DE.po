@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-01-24 17:03+0100\n"
 "PO-Revision-Date: 2012-01-31 16:42+0000\n"
 "Last-Translator: Niko Komin <nkomin@snafu.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: de\n"
 
 msgid "X,Y,A and B"
@@ -190,6 +190,35 @@ msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "Antwort scheint größer als die höchste Suchgrenze zu sein %f\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: muß zwischen %d und %d liegen.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
 
@@ -277,11 +306,6 @@ msgstr ""
 msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: numerische Zahl erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: muß zwischen %d und %d liegen.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"

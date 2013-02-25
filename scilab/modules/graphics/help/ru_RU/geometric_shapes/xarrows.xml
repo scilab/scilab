@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="xarrows">
+    <refnamediv>
+        <refname>xarrows</refname>
+        <refpurpose>рисование набора стрелок</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>xarrows(nx, ny, [arsize, color])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>nx, ny</term>
+                <listitem>
+                    <para>
+                        вещественные векторы или матрицы одинакового размера.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arsize</term>
+                <listitem>
+                    <para>
+                        вещественный вектор, размер головки стрелки.
+                        Значение по умолчанию можно получить
+                        установив <varname>arsize</varname>
+                        равным <literal>-1</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>color</term>
+                <listitem>
+                    <para>
+                        матрица или скаляр, цвет стрелки. Если
+                        <varname>color</varname> является
+                        положительным скаляром, то он даёт цвет
+                        для всех стрелок. Если он является
+                        отрицательным скаляром, то используется
+                        текущий цвет. Если же это вектор, то
+                        <literal>color(i)</literal> даёт цвет
+                        для <literal>i</literal>-той стрелки.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>xarrows</function> рисует набор
+            стрелок, указанных с помощью <varname>nx</varname> и
+            <varname>ny</varname>. Если <varname>nx</varname> и
+            <varname>ny</varname> являются векторами, то
+            <literal>i</literal>-тая стрелка определяется как
+            <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>.
+            Если <varname>nx</varname> и <varname>ny</varname>
+            являются матрицами:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+nx=[xi_1 x1_2 ...; xf_1 xf_2 ...]
+ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
+ ]]></programlisting>
+        <para>
+            то <literal>k</literal>-тая стрелка определяется как
+            <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.
+        </para>
+        <para>
+            Функция <function>xarrows</function> использует
+            текущий масштаб графика, который может быть
+            установлен через вызов функции рисования высокого
+            уровня, такой как <function>plot2d</function>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+x = 2*%pi*(0:7)/8
+x1 = [sin(x); 9*sin(x)];
+y1 = [cos(x); 9*cos(x)];
+plot2d([-10,10], [-10,10], [-1,-1], "022")
+xset("clipgrf")
+xarrows(x1, y1, -1, [1:7,9]) //8 - это белый цвет
+xset("clipoff")
+ ]]></programlisting>
+        <scilab:image>
+            x = 2*%pi*(0:7)/8
+            x1 = [sin(x); 9*sin(x)];
+            y1 = [cos(x); 9*cos(x)];
+            plot2d([-10,10], [-10,10], [-1,-1], "022")
+            xset("clipgrf")
+            xarrows(x1, y1, -1, [1:7,9])
+            xset("clipoff")
+        </scilab:image>
+    </refsection>
+</refentry>

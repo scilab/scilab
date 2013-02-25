@@ -55,7 +55,8 @@ src/c/getFullFilename.c \
 src/c/mputl.c \
 src/c/fscanfMat.c \
 src/c/fprintfMat.c \
-src/c/createtempfilename.c
+src/c/createtempfilename.c \
+src/c/dlManager.c
 
 
 GATEWAY_SOURCES = \
@@ -104,7 +105,10 @@ sci_gateway/c/sci_basename.c \
 sci_gateway/c/sci_pathconvert.c \
 sci_gateway/c/sci_isfile.c \
 sci_gateway/c/sci_mputl.c \
-sci_gateway/c/sci_tempname.c
+sci_gateway/c/sci_tempname.c \
+sci_gateway/c/sci_getURL.c \
+sci_gateway/c/sci_getURLcontent.c \
+sci_gateway/c/sci_splitURL.c
 
 
 libscifileio_la_CPPFLAGS = -I$(srcdir)/includes/ \
@@ -115,6 +119,7 @@ libscifileio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/string/includes/ \
 				-I$(top_srcdir)/modules/localization/includes/ \
+			    $(XML_FLAGS) \
 				$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
@@ -129,6 +134,7 @@ endif
 libscifileio_algo_la_SOURCES = $(FILEIO_SOURCES)
 libscifileio_la_SOURCES = $(GATEWAY_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscifileio_algo_la_CPPFLAGS = $(libscifileio_la_CPPFLAGS)
+libscifileio_algo_la_LDFLAGS = $(CURL_LIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)

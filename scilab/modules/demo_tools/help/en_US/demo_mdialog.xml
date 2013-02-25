@@ -24,7 +24,7 @@
         <para>
             The function demo_mdialog create a dialog box. It takes as argument a binary 
             file. This file is built by a .sce file written like below. It shall contain 
-            the variables 'titl', the title a the dialog box, 'namevar', the name of the 
+            the variables 'titl', the title the dialog box, 'namevar', the name of the 
             fields to fill, and 'value', the values written by default. After this, these 
             three variables shall be saved in the binary file.
             The use of demo_mdialog shall be preceded by the execution of the .sce 

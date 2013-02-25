@@ -589,16 +589,12 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
     if (pPolyline != NULL)
     {
         /*
-         * Default setup (will crash if removed)
+         * Default setup of the nGons property
          */
         {
-            int polylineSize[2] = { 1, block->ipar[2] };
-            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
+            int nGons = 1;
+            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_GONS__, &nGons, jni_int, 1);
         }
-
-        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_X__, &d__0, jni_double_vector, 1);
-        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_Y__, &d__0, jni_double_vector, 1);
-        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_Z__, &d__0, jni_double_vector, 1);
 
         color = block->ipar[3 + row];
         markSize = block->ipar[3 + block->ipar[1] + row];

@@ -24,7 +24,7 @@ extern "C" {
     void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn, int* nbibn,
         int* ilp, int* nn, int* should_return);
     void C2F(sivars)(int* id, int* should_return);
-    void C2F(namstr)(int* id, int* str, int* n, char const* job);
+    void C2F(namstr)(int* id, int* str, int* n, int const* job);
 }
 
 
@@ -41,7 +41,7 @@ namespace
     char const f_false = 0;
     int const percent = 56;
     int const nclas = 29;
-    char const from_id = 1;
+    int const from_id = 1;
 
     /* directly convert from id to upper char */
     int upper_char(int id)

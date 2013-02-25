@@ -97,7 +97,7 @@ int ScilabGateway::invoke_lu(char * fname, const int envId, void * pvApiCtx)
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(*eId);
     ScilabGatewayOptions & options = env.getGatewayOptions();
-    OptionsHelper::setCopyOccured(false);
+    OptionsHelper::setCopyOccurred(false);
     ScilabObjects::initialization(env, pvApiCtx);
     options.setIsNew(false);
 

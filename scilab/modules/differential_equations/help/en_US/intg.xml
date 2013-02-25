@@ -89,7 +89,7 @@
             function with calling sequence <literal>f(t,x1,x2,...)</literal>.
         </para>
         <para>
-            If <literal>f</literal> is a string it refers to a the name of a
+            If <literal>f</literal> is a string it refers to the name of a
             Fortran function or a C prodedure with a given calling sequence:
         </para>
         <para>

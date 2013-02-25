@@ -31,6 +31,12 @@ Improvements
    schema
    If the file does not exist, propose to create it.
 
+* Search is now possible in the console. Shortcut F3 or CTRL+F enables it.
+  See Bug #11841.
+
+* editvar propose direct save to the CSV format of the whole variable or the
+  selection.
+
 
 Removed functions
 ==================
@@ -60,6 +66,8 @@ Removed functions
 * ricc_old() removed. Use ricc() instead.
 
 * xbasr() removed. Automatically managed by Scilab now.
+
+* chartoeom() and eomtochar() removed.
 
 
 Obsolete functions
@@ -98,6 +106,10 @@ Xcos
 * Add two new Fixed-size step ODE solvers : Dormand-Prince 4(5) then Runge-Kutta 4(5). Included in the CVode package, so benefit from the rootfinding feature.
 
 * Add an implicit Fixed-size stop ODE solver : Implicit Runge-Kutta 4(5). Also benefits from the CVode rootfinding feature.
+
+* Improve block parameters errors (types and sizes) reporting.
+
+* Avoid some scopes blink on simulation.
 
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
@@ -139,6 +151,17 @@ Xcos
 * Bug #12213 fixed - lincos help page example produced undefined variable
                      warnings.
 
+* Bug #12259 fixed - Wrong translation for "Filled" fixed in Scinotes.
+
+* Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
+                     due to CLR blocks.
+
+* Bug #12290 fixed - AFFICH_m block inside a superblock led to java null
+                     pointer exception.
+
+* Bug #12321 fixed - save environment failed to save lib variable. Now these variables
+                     are ignored like previous version of save function.
+
 
 Documentation
 ==============
@@ -149,10 +172,11 @@ Documentation
 Compilation
 ============
 
-* Enforce a minimal version of Scirenderer (1.0.5).
+* Enforce a minimal version of Scirenderer (1.0.6).
 
-* Enforce a minimal version of Flexdock (1.2.2).
+* Enforce a minimal version of Flexdock (1.2.3).
 
+* Enforce a minimal version of JLaTeXMath (1.0.1).
 
 Bug fixes
 ==========
@@ -160,16 +184,29 @@ Bug fixes
 * Bug #3313 fixed - In the documentation, the title of a link was using the
                     id instead of the title of the page.
 
+* Bug #5291 fixed - strtod returned 0 when no real number was detected.
+
 * Bug #6583 fixed - jmat() was poorly documented.
+
+* Bug #7058 fixed - There was an error in mathml formula in beta function help.
+
+* Bug #7190 fixed - is_absolute_path was not documented.
 
 * Bug #7583 fixed - binomial function moved in the distribution function
                     chapter.
+
+* Bug #7698 fixed - The "Graphics\Animations\Riemann surface" demo
+                    background is black (instead of white).
+
+* Bug #7769 fixed - get_function_path didn't have an unit test.
 
 * Bug #8213 fixed - geom3d had no examples.
 
 * Bug #8395 fixed - dft has been deprecated to fft.
 
 * Bug #8414 fixed - Some genetic algorithms functions had no examples.
+
+* Bug #8484 fixed - Move the syslin help page to the cacsd chapter.
 
 * Bug #8638 fixed - Improved examples for gcd.
 
@@ -190,9 +227,13 @@ Bug fixes
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
 
+* Bug #10606 fixed - unix_g did not return stdout in somes cases.
+
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
 
 * Bug #10815 fixed - diff help page did not have a "See Also" section.
+
+* Bug #11134 fixed - xgetmouse() prevented callback menu execution.
 
 * Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
                      the last color in colormap.
@@ -202,6 +243,17 @@ Bug fixes
 
 * Bug #11477 fixed - There were memory leaks with textures.
 
+* Bug #11497 fixed - A lot of EDT violation was detected by the
+                     ThreadCheckingRepaintManager tool.
+
+* Bug #11501 fixed - Use $$..$$ for LaTeX in SciNotes comments to avoid
+                     confusion with Scilab code.
+
+* Bug #11549 fixed - Prefs window changed its dimension when hitting Default.
+
+* Bug #11569 fixed - F5 to navigate in the dock was incompatible with SciNotes.
+                     So replace F5 by shift+F6 to go to the previous tab. 
+
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
 * Bug #11778 fixed - Bad color_map dims did not return an error.
@@ -210,15 +262,24 @@ Bug fixes
 
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
+* Bug #11812 fixed - Upper/lower case issues in the Xcos documentation fixed.
+
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
+
+* Bug #11851 fixed - Default EOL under Mac should be LF.
 
 * Bug #11931 fixed - In graphics, white space was not used as default thousand
                      separator.
 
 * Bug #11939 fixed - ssprint formatting was slightly not right.
 
-* Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
+* Bug #11941 fixed - show_margins() failed in 'nyquist' mode if the system is
+                     in state-space form.
+
+* Bug #11952 fixed - In SciNotes, a Java exception occurred on selection of text
                     containing a \E.
+
+* Bug #11954 fixed - export_to_hdf5 was not able to export the same variable twice.
 
 * Bug #11958 fixed - axesflag=0 was not taken into account in plot2d3.
 
@@ -230,6 +291,9 @@ Bug fixes
                     toolbar opened SciNotes anyway.
 
 * Bug #11976 fixed - Check csvTextScan 3rd parameter validity.
+
+* Bug #11980 fixed - csim returned an error message in some cases: "Submatrix
+                     incorrectly defined".
 
 * Bug #11981 fixed - Smooth french help page had a wrong declaration
                      (colonnes => lignes).
@@ -243,6 +307,12 @@ Bug fixes
 * Bug #11999 fixed - Blank lines ignored by default by csvRead / read_csv.
 
 * Bug #12003 fixed - Fix a typo in the spreadsheet module.
+
+* Bug #12019 fixed - In the help of eigs function, NEV was unclear.
+
+* Bug #12004 fixed - Add "Configuring scaling factor" in the karmarkar help page.
+
+* Bug #12020 fixed - Default value of ncv in eigs  function was not documented.
 
 * Bug #12022 fixed - ftuneq had a bad example.
 
@@ -280,7 +350,12 @@ Bug fixes
 
 * Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
 
+* Bug #12139 fixed - eigs ran out of memory for sparse matrices.
+
 * Bug #12140 fixed - csvRead fails when comma is used as decimal mark.
+
+* Bug #12141 fixed - Remove calls to gettext in rubberbox help page examples.
+                     Translation of items will be made in each language help page.
 
 * Bug #12151 fixed - Axes did not pass through (0,0) when x_location and
                      y_location were set to 'origin'.
@@ -303,6 +378,9 @@ Bug fixes
 
 * Bug #12219 fixed - delete("all") does not recreate a basic axe within cleaned figure.
 
+* Bug #12231 fixed - In SciNotes, a whole word was searched when the expression
+                     was not a word.
+
 * Bug #12232 fixed - There were several memleaks in various fillers.
 
 * Bug #12235 fixed - Matplot did not update on color_map change.
@@ -313,7 +391,27 @@ Bug fixes
 
 * Bug #12240 fixed - Refactoring of the eigs function.
 
+* Bug #12246 fixed - Return an error message when reading invalid excel files
+                     (which have declared wrong column/row count)
+
 * Bug #12247 fixed - Fix a typo in some error messages.
+
+* Bug #12248 fixed - SciNotes toolbar had disappeared.
+
+* Bug #12270 fixed - When the console lost the focus, the caret could be visible.
+
+* Bug #12272 fixed - Fix a presentation of Cyrillic letters on sample images of russian help page for grand function.
+
+* Bug #12284 fixed - Completion in console could to a crash (or deadlock).
+
+* Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
+
+* Bug #12296 fixed - Call to getenv with a big environment variable
+                     led to memory corruption.
+
+* Bug #12304 fixed - Undock, redock and undock led to an exception.
+
+* Bug #12307 fixed - ftp addresses were not handled in help browser.
 
 
                     Changes between version 5.3.3 and 5.4.0
@@ -5014,6 +5112,8 @@ ATOMS
 * Bug #10025 fixed - Wrong url in some help files examples.
 
 * Bug #10031 fixed - atomsDisp did not work with "\n" in messages text.
+
+* Bug #10223 fixed - Errors messages in atomsDownload must be clearer.
 
 
 Javasci

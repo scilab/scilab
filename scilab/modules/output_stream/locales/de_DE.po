@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-11-08 15:38+0000\n"
-"Last-Translator: Dennis Baudys <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:11+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: de\n"
 
 #, c-format
@@ -305,8 +305,8 @@ msgid "Wrong first argument.\n"
 msgstr "Falsches erstes Argument.\n"
 
 #, c-format
-msgid "Wrong input argument %d.\n"
-msgstr "Falsches Eingangsargument %d.\n"
+msgid "Wrong input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "Incorrect function at line %d.\n"
@@ -334,8 +334,8 @@ msgid "Not implemented in scilab...\n"
 msgstr "Nicht in Scilab Implementiert...\n"
 
 #, c-format
-msgid "Wrong argument %d.\n"
-msgstr "Falsches Argument %d.\n"
+msgid "Wrong argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "null matrix (argument # %d).\n"
@@ -363,13 +363,12 @@ msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "Falscher Typ für Argument %d: reelle Matrix erwartet.\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
+msgid "Wrong type for input argument #%d: Real or complex matrix expected.\n"
 msgstr ""
-"Falscher Typ für Eingangsargument %d: reelle oder komplexe Matrix erwartet.\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Polynomial expected.\n"
-msgstr "Falscher Typ für Eingangsargument %d: Polynome erwartet.\n"
+msgid "Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for argument #%d: String expected.\n"
@@ -539,8 +538,8 @@ msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "Falscher Typ für Argument %d: SISO erwartet.\n"
 
 #, c-format
-msgid "time domain of argument %d is not defined.\n"
-msgstr "Zeit-Bereich des Arguments %d ist nicht definiert.\n"
+msgid "time domain of argument #%d is not defined.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -811,9 +810,8 @@ msgstr ""
 "Falscher Typ für Argument %d: Handhabung für leere lu Faktoren erwartet.\n"
 
 #, c-format
-msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
+msgid "Wrong type argument #%d: Sparse or full scalar matrix expected.\n"
 msgstr ""
-"Falscher Typ für Argument %d: leere oder volle skalare Matrix erwartet.\n"
 
 msgid "Null variable cannot be used here.\n"
 msgstr "Eine Null-Variable kann hier nicht verwendet werden.\n"

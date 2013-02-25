@@ -118,61 +118,60 @@ int sci_set(char *fname, unsigned long fname_len)
                     // UIWidget
                     return sci_uiset(fname, fname_len);
                 }
-                else
+
+                getScalarHandle(pvApiCtx, piAddr1, (long long*)&hdl);
+                pobjUID = (char*)getObjectFromHandle(hdl);
+
+                getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+                getAllocatedSingleString(pvApiCtx, piAddr2, &pstProperty);
+                valueType = getInputArgumentType(pvApiCtx, 3);
+
+                getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+                if ((strcmp(pstProperty, "user_data") == 0) || (stricmp(pstProperty, "userdata") == 0))
                 {
-                    pobjUID = (char*)getObjectFromHandle(hdl);
-
-                    getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
-                    getAllocatedSingleString(pvApiCtx, piAddr2, &pstProperty);
-                    valueType = getInputArgumentType(pvApiCtx, 3);
-
-                    getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
-                    if ((strcmp(pstProperty, "user_data") == 0) || (stricmp(pstProperty, "userdata") == 0))
+                    /* in this case set_user_data_property
+                     * directly uses the  third position in the stack
+                     * to get the variable which is to be set in
+                     * the user_data property (any data type is allowed) S. Steer */
+                    _pvData = (void*)piAddr3;         /*position in the stack */
+                    iRows3 = -1;   /*unused */
+                    iCols3 = -1;   /*unused */
+                    valueType = -1;
+                }
+                else if (valueType == sci_matrix)
+                {
+                    getMatrixOfDouble(pvApiCtx, piAddr3, &iRows3, &iCols3, (double**)&_pvData);
+                }
+                else if (valueType == sci_boolean)
+                {
+                    getMatrixOfBoolean(pvApiCtx, piAddr3, &iRows3, &iCols3, (int**)&_pvData);
+                }
+                else if (valueType == sci_handles)
+                {
+                    getMatrixOfHandle(pvApiCtx, piAddr3, &iRows3, &iCols3, (long long**)&_pvData);
+                }
+                else if (valueType == sci_strings)
+                {
+                    if (   strcmp(pstProperty, "tics_labels") != 0 && strcmp(pstProperty, "auto_ticks") != 0 &&
+                            strcmp(pstProperty, "axes_visible") != 0 && strcmp(pstProperty, "axes_reverse") != 0 &&
+                            strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
+                            stricmp(pstProperty, "tooltipstring") != 0) /* Added for uicontrols */
                     {
-                        /* in this case set_user_data_property
-                         * directly uses the  third position in the stack
-                         * to get the variable which is to be set in
-                         * the user_data property (any data type is allowed) S. Steer */
-                        _pvData = (void*)piAddr3;         /*position in the stack */
-                        iRows3 = -1;   /*unused */
-                        iCols3 = -1;   /*unused */
-                        valueType = -1;
-                    }
-                    else if (valueType == sci_matrix)
-                    {
-                        getMatrixOfDouble(pvApiCtx, piAddr3, &iRows3, &iCols3, (double**)&_pvData);
-                    }
-                    else if (valueType == sci_boolean)
-                    {
-                        getMatrixOfBoolean(pvApiCtx, piAddr3, &iRows3, &iCols3, (int**)&_pvData);
-                    }
-                    else if (valueType == sci_handles)
-                    {
-                        getMatrixOfHandle(pvApiCtx, piAddr3, &iRows3, &iCols3, (long long**)&_pvData);
-                    }
-                    else if (valueType == sci_strings)
-                    {
-                        if (   strcmp(pstProperty, "tics_labels") != 0 && strcmp(pstProperty, "auto_ticks") != 0 &&
-                                strcmp(pstProperty, "axes_visible") != 0 && strcmp(pstProperty, "axes_reverse") != 0 &&
-                                strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
-                                stricmp(pstProperty, "tooltipstring") != 0) /* Added for uicontrols */
-                        {
-                            getAllocatedSingleString(pvApiCtx, piAddr3, (char**)&_pvData);
-                            iRows3 = (int)strlen((char*)_pvData);
-                            iCols3 = 1;
-                        }
-                        else
-                        {
-                            isMatrixOfString = 1;
-                            getAllocatedMatrixOfString(pvApiCtx, piAddr3, &iRows3, &iCols3, (char***)&_pvData);
-                        }
-                    }
-                    else if (valueType == sci_list) /* Added for callbacks */
-                    {
+                        getAllocatedSingleString(pvApiCtx, piAddr3, (char**)&_pvData);
+                        iRows3 = (int)strlen((char*)_pvData);
                         iCols3 = 1;
-                        getListItemNumber(pvApiCtx, piAddr3, &iRows3);
-                        _pvData = (void*)piAddr3;         /* In this case l3 is the list position in stack */
                     }
+                    else
+                    {
+                        isMatrixOfString = 1;
+                        getAllocatedMatrixOfString(pvApiCtx, piAddr3, &iRows3, &iCols3, (char***)&_pvData);
+                    }
+                }
+                else if (valueType == sci_list) /* Added for callbacks */
+                {
+                    iCols3 = 1;
+                    getListItemNumber(pvApiCtx, piAddr3, &iRows3);
+                    _pvData = (void*)piAddr3;         /* In this case l3 is the list position in stack */
                 }
                 break;
 

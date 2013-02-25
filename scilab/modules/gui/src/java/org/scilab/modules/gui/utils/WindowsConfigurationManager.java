@@ -88,15 +88,15 @@ public class WindowsConfigurationManager implements XConfigurationListener {
     static {
         new WindowsConfigurationManager();
         Runnable runnable = new Runnable() {
-                public void run() {
-                    if (mustInvalidate) {
-                        File f = new File(USER_WINDOWS_CONFIG_FILE);
-                        if (f.exists() && f.isFile()) {
-                            f.delete();
-                        }
+            public void run() {
+                if (mustInvalidate) {
+                    File f = new File(USER_WINDOWS_CONFIG_FILE);
+                    if (f.exists() && f.isFile()) {
+                        f.delete();
                     }
                 }
-            };
+            }
+        };
 
         try {
             Class scilab = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.core.Scilab");
@@ -235,12 +235,12 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
         Element root = doc.getDocumentElement();
         Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
-                                                               "x", (int) window.getLocation().getX(),
-                                                               "y", (int) window.getLocation().getY(),
-                                                               "width", (int) window.getSize().getWidth(),
-                                                               "height", (int) window.getSize().getHeight(),
-                                                               "state", window.getExtendedState()
-            });
+                                 "x", (int) window.getLastPosition().getX(),
+                                 "y", (int) window.getLastPosition().getY(),
+                                 "width", (int) window.getLastDimension().getWidth(),
+                                 "height", (int) window.getLastDimension().getHeight(),
+                                 "state", window.getExtendedState()
+                                                              });
         LayoutNode layoutNode = window.getDockingPort().exportLayout();
         LayoutNodeSerializer serializer = new LayoutNodeSerializer();
         win.appendChild(serializer.serialize(doc, layoutNode));
@@ -386,34 +386,34 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            final Thread t = new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        synchronized (currentlyRestored) {
-                                            while (currentlyRestored.size() > 0) {
-                                                try {
-                                                    currentlyRestored.wait();
-                                                } catch (InterruptedException e) {
-                                                    e.printStackTrace();
-                                                }
-                                            }
+                    @Override
+                    public void run() {
+                        final Thread t = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                synchronized (currentlyRestored) {
+                                    while (currentlyRestored.size() > 0) {
+                                        try {
+                                            currentlyRestored.wait();
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
                                         }
-
-                                        window.toFront();
-                                        mainTab.requestFocusInWindow();
-                                        while (!mainTab.hasFocus()) {
-                                            Thread.yield();
-                                            mainTab.requestFocusInWindow();
-                                        }
-
-                                        ActiveDockableTracker.requestDockableActivation(mainTab);
                                     }
-                                });
-                            t.start();
-                        }
-                    });
+                                }
+
+                                window.toFront();
+                                mainTab.requestFocusInWindow();
+                                while (!mainTab.hasFocus()) {
+                                    Thread.yield();
+                                    mainTab.requestFocusInWindow();
+                                }
+
+                                ActiveDockableTracker.requestDockableActivation(mainTab);
+                            }
+                        });
+                        t.start();
+                    }
+                });
             }
         }
 
@@ -746,6 +746,10 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      */
     private static final Element validateDockingPortNode(final String winuuid, final Element e) {
         Element ee = (Element) e.getFirstChild();
+        if (ee == null) {
+            return null;
+        }
+
         if (ee.getTagName().equals("DockableNode")) {
             ee = validateDockableNode(winuuid, ee);
             if (ee == null) {
@@ -872,7 +876,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                                             "factory", factory.getClassName(uuid),
                                             "width", (int) dim.getWidth(),
                                             "height", (int) dim.getHeight()
-            });
+                                           });
         writeDocument();
     }
 
@@ -949,10 +953,10 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         } else {
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
-                        public void run() {
-                            startRestoration(uuid);
-                        }
-                    });
+                    public void run() {
+                        startRestoration(uuid);
+                    }
+                });
             } catch (InvocationTargetException e) {
                 System.err.println(e);
             } catch (InterruptedException e) {

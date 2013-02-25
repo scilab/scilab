@@ -75,6 +75,9 @@ function varargout = unix_g(cmd)
          if (size(rep,'*')==0) | (length(rep)==0) then
            rep = [];
 	       end;
+
+        case 1 then
+          rep = mgetl(tmp);
        
        case -1 then
          // host failed

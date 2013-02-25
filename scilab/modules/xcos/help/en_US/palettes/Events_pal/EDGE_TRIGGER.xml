@@ -113,7 +113,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">rising (1), falling (-1), both (0)</emphasis>
+                    <emphasis role="bold">Rising (1), falling (-1), both (0)</emphasis>
                 </para>
                 <para> Properties : Type 'vec' of size 1.</para>
             </listitem>

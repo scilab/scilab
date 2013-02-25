@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("Files : Input/Output functions",SCI+"/modules/fileio/help/ru_RU",%T);
+add_help_chapter("Файлы: функции ввода/вывода",SCI+"/modules/fileio/help/ru_RU",%T);
 

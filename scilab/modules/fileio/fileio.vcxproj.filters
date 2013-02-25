@@ -324,6 +324,18 @@
     <ClCompile Include="sci_gateway\c\sci_tempname.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_getURL.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_getURLcontent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_splitURL.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\dlManager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\addfile.h">

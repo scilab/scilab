@@ -11,7 +11,7 @@
         </method>
         <method name="scinotes" returnType="void" modifier="static">
             <parameter name="fileName" type="String"/>
-            <parameter name="option" type="String"/>
+            <parameter name="option" type="String[]"/>
         </method>
         <method name="closeSciNotesFromScilab" returnType="void" modifier="static"/>
     </object>
