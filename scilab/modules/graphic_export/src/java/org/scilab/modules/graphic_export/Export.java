@@ -465,7 +465,9 @@ public class Export {
 
         @Override
         public void dispose() {
-            g2d.dispose();
+            if (g2d != null) {
+                g2d.dispose();
+            }
         }
     }
 
@@ -597,7 +599,9 @@ public class Export {
 
         @Override
         public void dispose() {
-            g2d.dispose();
+            if (g2d != null) {
+                g2d.dispose();
+            }
         }
     }
 
@@ -726,7 +730,9 @@ public class Export {
 
         @Override
         public void dispose() {
-            g2d.dispose();
+            if (g2d != null) {
+                g2d.dispose();
+            }
         }
     }
 

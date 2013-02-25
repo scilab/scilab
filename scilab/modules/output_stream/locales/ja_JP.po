@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-03-08 23:21+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -297,8 +297,8 @@ msgid "Wrong first argument.\n"
 msgstr "最初の引数が間違っています.\n"
 
 #, c-format
-msgid "Wrong input argument %d.\n"
-msgstr "入力引数 %d が間違っています.\n"
+msgid "Wrong input argument #%d.\n"
+msgstr "入力引数 #%d が間違っています.\n"
 
 #, c-format
 msgid "Incorrect function at line %d.\n"
@@ -328,8 +328,8 @@ msgid "Not implemented in scilab...\n"
 msgstr "Scilabには実装されていません...\n"
 
 #, c-format
-msgid "Wrong argument %d.\n"
-msgstr "引数 %d が間違っています.\n"
+msgid "Wrong argument #%d.\n"
+msgstr "引数 #%d が間違っています.\n"
 
 #
 # File: src/c/errmsg.c, line: 358
@@ -361,12 +361,12 @@ msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "引数 %d の型が間違っています: 実行列を指定してください.\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
-msgstr "入力引数 %d の型が間違っています: 実数または複素数の行列を指定してください.\n"
+msgid "Wrong type for input argument #%d: Real or complex matrix expected.\n"
+msgstr "入力引数 #%d の型が間違っています:  実数または複素数の行列を指定してください.\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Polynomial expected.\n"
-msgstr "入力引数 %d の型が間違っています: 多項式を指定してください.\n"
+msgid "Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr "入力引数 #%d の型が間違っています:  多項式を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for argument #%d: String expected.\n"
@@ -537,8 +537,8 @@ msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "引数 %d の型が間違っています: SISO を指定してください.\n"
 
 #, c-format
-msgid "time domain of argument %d is not defined.\n"
-msgstr "引数 %d の時間領域が定義されていません.\n"
+msgid "time domain of argument #%d is not defined.\n"
+msgstr "引数 #%d の時間領域が定義されていません.\n"
 
 #, c-format
 msgid ""
@@ -802,8 +802,8 @@ msgid "Wrong type for argument #%d: Handle to sparse lu factors expected.\n"
 msgstr "引数 %d の型が間違っています: 疎行列 LU分解を指定してください.\n"
 
 #, c-format
-msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
-msgstr "引数 %d の型が間違っています:  疎行列またはスカラー行列を指定してください.\n"
+msgid "Wrong type argument #%d: Sparse or full scalar matrix expected.\n"
+msgstr "引数 #%d の型が間違っています:  疎行列または通常のスカラー行列を指定してください.\n"
 
 msgid "Null variable cannot be used here.\n"
 msgstr "NULL変数はここでは使用できません.\n"

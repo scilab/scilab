@@ -159,6 +159,9 @@ Xcos
 * Bug #12290 fixed - AFFICH_m block inside a superblock led to java null
                      pointer exception.
 
+* Bug #12321 fixed - save environment failed to save lib variable. Now these variables
+                     are ignored like previous version of save function.
+
 
 Documentation
 ==============
@@ -169,10 +172,11 @@ Documentation
 Compilation
 ============
 
-* Enforce a minimal version of Scirenderer (1.0.5).
+* Enforce a minimal version of Scirenderer (1.0.6).
 
-* Enforce a minimal version of Flexdock (1.2.2).
+* Enforce a minimal version of Flexdock (1.2.3).
 
+* Enforce a minimal version of JLaTeXMath (1.0.1).
 
 Bug fixes
 ==========
@@ -201,6 +205,8 @@ Bug fixes
 * Bug #8395 fixed - dft has been deprecated to fft.
 
 * Bug #8414 fixed - Some genetic algorithms functions had no examples.
+
+* Bug #8484 fixed - Move the syslin help page to the cacsd chapter.
 
 * Bug #8638 fixed - Improved examples for gcd.
 
@@ -305,6 +311,8 @@ Bug fixes
 * Bug #12019 fixed - In the help of eigs function, NEV was unclear.
 
 * Bug #12004 fixed - Add "Configuring scaling factor" in the karmarkar help page.
+
+* Bug #12020 fixed - Default value of ncv in eigs  function was not documented.
 
 * Bug #12022 fixed - ftuneq had a bad example.
 

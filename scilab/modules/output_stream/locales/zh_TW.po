@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-03-08 23:23+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:12+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -355,11 +355,9 @@ msgstr "'%s' 指令中語法錯誤.\n"
 msgid "Wrong first argument.\n"
 msgstr "第一參數錯誤.\n"
 
-#
-# File: src/c/errmsg.c, line: 289
 #, c-format
-msgid "Wrong input argument %d.\n"
-msgstr "參數 %d 錯誤.\n"
+msgid "Wrong input argument #%d.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 295
@@ -400,11 +398,9 @@ msgstr "不相匹配之輸入參數.\n"
 msgid "Not implemented in scilab...\n"
 msgstr "未在  scilab 中實作 (implemented)...\n"
 
-#
-# File: src/c/errmsg.c, line: 337
 #, c-format
-msgid "Wrong argument %d.\n"
-msgstr "錯誤參數 %d.\n"
+msgid "Wrong argument #%d.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 344
@@ -445,17 +441,13 @@ msgstr "副函式 (subroutine) 找不到: %s\n"
 msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "參數 %d 之型態錯誤: 應為實數矩陣.\n"
 
-#
-# File: src/c/errmsg.c, line: 392
 #, c-format
-msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
-msgstr "輸入參數 %d 之型態錯誤: 應為實數或複數矩陣.\n"
+msgid "Wrong type for input argument #%d: Real or complex matrix expected.\n"
+msgstr ""
 
-#
-# File: src/c/errmsg.c, line: 397
 #, c-format
-msgid "Wrong type for input argument %d: Polynomial expected.\n"
-msgstr "輸入參數 %d 之型態錯誤: 應為多項式.\n"
+msgid "Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 402
@@ -692,11 +684,9 @@ msgstr "參數 %d 型態錯誤: 應為離散時間型態.\n"
 msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "參數 %d 型態錯誤: 應為 SISO 型態.\n"
 
-#
-# File: src/c/errmsg.c, line: 673
 #, c-format
-msgid "time domain of argument %d is not defined.\n"
-msgstr "參數 %d 的時間域未定義.\n"
+msgid "time domain of argument #%d is not defined.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 678
@@ -1067,11 +1057,9 @@ msgstr "參數 %d 之型態錯誤: 應為純量之稀疏矩陣.\n"
 msgid "Wrong type for argument #%d: Handle to sparse lu factors expected.\n"
 msgstr "參數 %d 之型態錯誤: 應為稀疏矩陣之 lu 分解之 handle.\n"
 
-#
-# File: src/c/errmsg.c, line: 1188
 #, c-format
-msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
-msgstr "參數 %d 之型態錯誤: 應為稀疏矩陣滿矩陣.\n"
+msgid "Wrong type argument #%d: Sparse or full scalar matrix expected.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 1193
