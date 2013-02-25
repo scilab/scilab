@@ -29,6 +29,12 @@
 
 #define CV_SS  1
 
+#define LS_NORMAL          1
+#define LS_ONE_STEP        2
+#define LS_MESH_STEP       3
+#define LS_NORMAL_TSTOP    4
+#define LS_ONE_STEP_TSTOP  5
+
 /* =============================
  *
  *            lsodar
@@ -38,7 +44,7 @@
  * Actual solving function, from 'ODEPACK' in 'differential_equations' module
  */
 
-extern void C2F(lsodar) (LSRhsFn f, int *neq, realtype *y, realtype *t, realtype *tout, int *itol, realtype *reltol, realtype *abstol, enum iTask_t *itask, int *istate, int *iopt, struct rWork_t *rwork, int *lrw, int *iwork, int *liw,  int *jacobian, int *jacType, LSRootFn grblk, int *ng, int *jroot);
+extern void C2F(lsodar) (LSRhsFn f, int *neq, realtype *y, realtype *t, realtype *tout, int *itol, realtype *reltol, realtype *abstol, int *itask, int *istate, int *iopt, struct rWork_t *rwork, int *lrw, int *iwork, int *liw,  int *jacobian, int *jacType, LSRootFn grblk, int *ng, int *jroot);
 
 /* =============================
  *
@@ -386,7 +392,7 @@ int LSodarSetStopTime (void * lsodar_mem, realtype tCrit)
  * or a corresponding error flag.
  */
 
-int LSodar (void * lsodar_mem, realtype tOut, N_Vector yOut, realtype * tOld, enum iTask_t itask)
+int LSodar (void * lsodar_mem, realtype tOut, N_Vector yOut, realtype * tOld, int itask)
 {
     LSodarMem ls_mem;
 
