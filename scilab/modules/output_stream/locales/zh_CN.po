@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-04-22 11:27+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: \n"
 
 #, c-format
@@ -281,8 +281,8 @@ msgid "Wrong first argument.\n"
 msgstr "第一个参数错误。\n"
 
 #, c-format
-msgid "Wrong input argument %d.\n"
-msgstr "第%d个输入参数错误。\n"
+msgid "Wrong input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "Incorrect function at line %d.\n"
@@ -310,8 +310,8 @@ msgid "Not implemented in scilab...\n"
 msgstr "在Scilab中尚未实现...\n"
 
 #, c-format
-msgid "Wrong argument %d.\n"
-msgstr "第%d个参数错误。\n"
+msgid "Wrong argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "null matrix (argument # %d).\n"
@@ -339,12 +339,12 @@ msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "第%d个参数的类型错误：应该为实矩阵。\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
-msgstr "第%d个输入参数的类型错误：应该为实数或复数矩阵。\n"
+msgid "Wrong type for input argument #%d: Real or complex matrix expected.\n"
+msgstr ""
 
 #, c-format
-msgid "Wrong type for input argument %d: Polynomial expected.\n"
-msgstr "第%d个输入参数的类型错误：应该为多项式。\n"
+msgid "Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for argument #%d: String expected.\n"
@@ -507,8 +507,8 @@ msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "第%d个参数的类型错误：应该为SISO。\n"
 
 #, c-format
-msgid "time domain of argument %d is not defined.\n"
-msgstr "第%d个参数的时间域未定义。\n"
+msgid "time domain of argument #%d is not defined.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -758,8 +758,8 @@ msgid "Wrong type for argument #%d: Handle to sparse lu factors expected.\n"
 msgstr "参数%d的类型错误：应该为稀疏lu因子的句柄。\n"
 
 #, c-format
-msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
-msgstr "参数%d的类型错误：应该为稀疏或稠密矩阵。\n"
+msgid "Wrong type argument #%d: Sparse or full scalar matrix expected.\n"
+msgstr ""
 
 msgid "Null variable cannot be used here.\n"
 msgstr "此处不可使用空变量（null）。\n"
