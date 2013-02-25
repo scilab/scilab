@@ -75,3 +75,6 @@ Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\szip.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hdf5dll.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
+; batch files
+Source: bin\scinotes.bat; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\xcos.bat; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
