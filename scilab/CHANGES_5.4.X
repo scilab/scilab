@@ -203,6 +203,8 @@ Bug fixes
 
 * Bug #8414 fixed - Some genetic algorithms functions had no examples.
 
+* Bug #8484 fixed - Move the syslin help page to the cacsd chapter.
+
 * Bug #8638 fixed - Improved examples for gcd.
 
 * Bug #8883 fixed - In some cases, Scilab build from sources was looking for
