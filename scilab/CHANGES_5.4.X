@@ -174,6 +174,7 @@ Compilation
 
 * Enforce a minimal version of Flexdock (1.2.3).
 
+* Enforce a minimal version of JLaTeXMath (1.0.1).
 
 Bug fixes
 ==========
