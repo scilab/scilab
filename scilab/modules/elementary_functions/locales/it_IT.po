@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-09-30 16:57+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:08+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: it\n"
 
 #, c-format
@@ -257,41 +257,6 @@ msgstr ""
 "di stringhe.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un numero "
-"reale.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
-"numero reale.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
-"intero.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere tra %d e "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un intero "
-">=%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr ""
 "%s: Gli argomenti in ingresso sono di tipo sbagliato: erano attesi gli "
@@ -321,6 +286,12 @@ msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è sbagliato: era atteso un intero senza "
 "segno.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere tra %d e "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -417,6 +388,17 @@ msgstr ""
 "uno/un/una scalare/vettore/matrice di interi positivi.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"intero.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
 "positive integers expected.\n"
@@ -492,6 +474,12 @@ msgstr ""
 "sbagliato: era atteso lo stesso numero.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un numero "
+"reale.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
@@ -540,6 +528,12 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa "
 "almeno la dimensione dell'argomento in ingresso #%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"numero reale.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"

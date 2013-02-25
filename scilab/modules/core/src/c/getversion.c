@@ -15,6 +15,7 @@
 #include "version.h"
 #include "sci_mode.h"
 #include "scilabDefaults.h"
+#include "getenvc.h"
 #include "os_strdup.h"
 #include "with_module.h"
 #include "loadversion.h"

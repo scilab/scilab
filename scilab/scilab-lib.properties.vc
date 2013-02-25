@@ -2,11 +2,11 @@
 
 commons-logging.jar=${thirdparty.dir}/commons-logging-1.1.jar
 
-flexdock.jar=${thirdparty.dir}/flexdock-1.2.2.jar
+flexdock.jar=${thirdparty.dir}/flexdock-1.2.3.jar
 
 jgraphx.jar=${thirdparty.dir}/jgraphx.jar
 
-scirenderer.jar=${thirdparty.dir}/scirenderer-1.0.5.jar
+scirenderer.jar=${thirdparty.dir}/scirenderer-1.0.6.jar
 
 jogl2.jar=${thirdparty.dir}/jogl2.jar
 
@@ -18,9 +18,9 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-1.0.0.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-1.0.1.jar
 
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.0.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.1.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-5.3-all.jar
 

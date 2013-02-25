@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
 "PO-Revision-Date: 2012-08-02 19:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: uk\n"
 
 #, c-format
@@ -759,6 +759,9 @@ msgstr "Копіювати"
 msgid "Paste"
 msgstr "Вставити"
 
+msgid "Clear Console"
+msgstr "Спорожнити консоль"
+
 msgid "Print..."
 msgstr "Надрукувати…"
 
@@ -1170,9 +1173,6 @@ msgstr ""
 "disp(\"ПОПЕРЕДЖЕННЯ: нехтуючи нашим попередженням, ви наказали Scilab "
 "використовувати додаткові графічні властивості. Введіть команду «help "
 "usecanvas», щоб дізнатися більше.\")"
-
-msgid "Clear Console"
-msgstr "Спорожнити консоль"
 
 msgid "Are you sure you want to clear the console ?"
 msgstr "Ви справді бажаєте спорожнити консоль?"
@@ -1623,9 +1623,6 @@ msgid ""
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
 "керування графічним об’єктом або дійсне число.\n"
-
-msgid "createPopupItems: found an empty cascading menu."
-msgstr "createPopupItems: знайдено порожнє ієрархічне меню."
 
 #, c-format
 msgid ""

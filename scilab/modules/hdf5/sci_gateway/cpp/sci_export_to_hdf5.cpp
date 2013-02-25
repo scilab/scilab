@@ -66,7 +66,7 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
     int** piAddrList    = NULL;
     char** pstNameList  = NULL;
     char *pstFileName   = NULL;
-    bool bExport        = false;
+    bool bExport        = true;
     bool bAppendMode    = false;
 
     SciErr sciErr;
