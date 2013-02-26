@@ -47,6 +47,22 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
+    {
+        out.push_back(new types::Double(dblNan));
+        if (_iRetCount == 2)
+        {
+            out.push_back(new types::String(L""));
+        }
+
+        return types::Function::OK;
+    }
+
+    if (in[0]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), "strtod", 1);
+    }
+
     pString = in[0]->getAs<types::String>();
 
     pOutDouble = new types::Double(pString->getDims(), pString->getDimsArray());
@@ -57,29 +73,46 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
 
     for (int i = 0 ; i < pString->getSize() ; i++)
     {
+        //Double part
         bool bStop = false;
         wchar_t *pwstStop = NULL;
         wchar_t* pstStr = pString->get(i);
         int iPos = (int)wcscspn(pstStr, pwstKey);
 
+        //Check if there is a number in the string
         if (iPos)
         {
             for (int j = 0 ; j < iPos ; j++)
             {
-                if (pstStr[j] != ' ')
+                if (pstStr[j] != ' ') // spaces are accepted
                 {
                     pOutDouble->set(i, dblNan);
                     bStop = true;
                     pwstStop = pstStr;
+                    break;
                 }
             }
 
+            //it is still a number
             if (bStop == false)
             {
-                pOutDouble->set(i, wcstod(pstStr, &pwstStop));
+                //only spaces ?
+                if (wcslen(pstStr) == iPos) // strtod("  ")
+                {
+                    pOutDouble->set(i, dblNan);
+                    pwstStop = pstStr;
+                }
+                else // strtod("  000xxx")
+                {
+                    pOutDouble->set(i, wcstod(pstStr + iPos, &pwstStop));
+                }
             }
         }
-        else
+        else if (wcslen(pstStr) == 0) //strtod("")
+        {
+            pOutDouble->set(i, dblNan);
+        }
+        else //all characters are digits
         {
             pOutDouble->set(i, wcstod(pstStr, &pwstStop));
         }
