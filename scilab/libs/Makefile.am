@@ -8,7 +8,5 @@ SUBDIRS = \
 	MALLOC \
 	hashtable \
 	libst \
-	dynamiclibrary \
-	doublylinkedlist
-
+	dynamiclibrary
 

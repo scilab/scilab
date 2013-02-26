@@ -111,7 +111,6 @@ libsciscicos_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \

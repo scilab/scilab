@@ -398,7 +398,6 @@ libscigraphics_la_CPPFLAGS = \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(top_srcdir)/libs/hashtable/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/action_binding/includes/ \
@@ -479,7 +478,6 @@ libscigraphics_disable_la_CPPFLAGS = \
 	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(top_srcdir)/libs/hashtable/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \

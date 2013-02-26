@@ -119,7 +119,6 @@ libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS)
 
 EXTERNAL_LIBS = $(top_builddir)/libs/hashtable/libscihashtable.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la  \
-$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la  \
 $(top_builddir)/libs/libst/libscilibst.la
 
 

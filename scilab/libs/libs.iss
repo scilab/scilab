@@ -18,9 +18,6 @@ Source: libs\MALLOC\includes\*.h; DestDir: {app}\libs\MALLOC\includes; Component
 ; dynamiclibrary directory
 Source: libs\dynamiclibrary\includes\*.h; DestDir: {app}\libs\dynamiclibrary\includes; Components: {#COMPN_SCILAB}
 ;
-; doublylinkedlist directory
-Source: libs\doublylinkedlist\includes\*.h; DestDir: {app}\libs\doublylinkedlist\includes; Components: {#COMPN_SCILAB}
-
 ; hashtable directory
 Source: libs\hashtable\*.h; DestDir: {app}\libs\hashtable\includes; Components: {#COMPN_SCILAB}
 ;

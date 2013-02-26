@@ -352,8 +352,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "renderer", "modules\rendere
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console", "modules\console\src\c\console.vcxproj", "{445D3B85-C9B1-498B-9C88-0A3C2390B1CC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "doublylinkedlist", "libs\doublylinkedlist\doublylinkedlist.vcxproj", "{ED02137F-0A4F-4EF0-AC58-97ACE37FA89D}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "completion", "modules\completion\src\c\completion.vcxproj", "{CCCE1EAD-8E62-4DC0-AB17-972C06EF0C89}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nocompletion", "modules\completion\src\nocompletion\nocompletion.vcxproj", "{D1586C83-3F16-467B-85C6-6A12A08CCB8D}"

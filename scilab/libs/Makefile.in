@@ -387,8 +387,7 @@ SUBDIRS = \
 	MALLOC \
 	hashtable \
 	libst \
-	dynamiclibrary \
-	doublylinkedlist
+	dynamiclibrary
 
 all: all-recursive
 
