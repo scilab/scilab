@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Serge Steer
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="comet">
+    <refnamediv>
+        <refname>comet</refname>
+        <refpurpose>двумерный график с анимированной кометой</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>comet(y)</synopsis>
+        <synopsis>comet(x, y)</synopsis>
+        <synopsis>comet(x, fun)</synopsis>
+        <synopsis>comet(x, y, p)</synopsis>
+        <synopsis>comet(x, fun, p)</synopsis>
+        <synopsis>comet(...,"colors",c)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        вещественный вектор или матрица. Если не указать, то
+                        предполагается, что это вектор <literal>1:ny</literal>,
+                        где <literal>ny</literal> - это количество точек кривой
+                        (см. ниже).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        вещественный вектор или матрица.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        вещественный скаляр на интервале <literal>[0 1[</literal>.
+                        Значение по умолчанию <literal>0.1</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fun</term>
+                <listitem>
+                    <para>
+                        Scilab-функция с последовательностью вызова
+                        <literal>y=fun(x)</literal>.  <varname>fun</varname>
+                        также может быть полиномом или рациональной дробью.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>
+                        вектор из <literal>ny</literal> индексов цветов.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Если <literal>(x,y)</literal> являются двумя векторами с
+            одинаковым количеством элементов, то эта фукнция нарисует
+            двумерный график с анимированной кометой, показывающей
+            движение кривой <literal>(x(1:k),y(1:k))</literal> для
+            <literal>k</literal>, меняющейся от <literal>1</literal> до
+            <literal>size(x,'*')</literal>.
+        </para>
+        <para>
+            График строится из трёх частей:
+            <variablelist>
+                <varlistentry>
+                    <term>голова</term>
+                    <listitem>
+                        <para>
+                            метка, которая показыает текущее положение
+                            <literal>(x(i),y(i))</literal>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>тело</term>
+                    <listitem>
+                        <para>
+                            показывает бегущую кривую,
+                            следующую за головой:
+                            <literal>(x(i-k:i),y(i-k:i))</literal>
+                            часть кривой.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>хвост</term>
+                    <listitem>
+                        <para>
+                            показывает часть кривой <literal>(x(1:i-k),y(1:i-k))</literal>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para>
+                Инструкция <literal>comet(x, fun,...)</literal>
+                эквивалентна инструкции <literal>comet(x, feval(x,fun),...)</literal>.
+            </para>
+            <para>
+                <literal>comet(...,p)</literal> может быть использована для установки
+                относительной длины тела. <literal>k</literal> определяется как
+                <code>k = round(p*ny)</code>.
+            </para>
+            <para>
+                Если <varname>y</varname> является матрицей, то для каждой пары
+                <literal>(x,y(:,l))</literal> строятся анимированные кривые. В
+                этом случае <literal>ny</literal> - это количество строк матрицы
+                <varname>y</varname>.
+            </para>
+            <para>
+                Если <varname>x</varname> и <varname>y</varname> - матрицы
+                одинаковых размеров, то анимированные кривые строятся для каждой пары
+                <literal>(x(:,l),y(:,l))</literal>. В этом случае <literal>ny</literal>
+                - это количество строк матриц <varname>x</varname> и <varname>y</varname>.
+            </para>
+            <para>
+                <literal>comet(...,"colors",c)</literal> может быть использована для
+                установки цвета для каждой из кривых.
+            </para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+t = linspace(0,10*%pi,500);
+clf();set(gca(),"isoview","on"); // установка равновеликого масштаба осей
+comet(t.*sin(t),t.*cos(t))
+    ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+t = linspace(0,10*%pi,500)';
+clf();comet(t.*sin(t),[t.*sin(2*t) t.*sin(3*t)])
+    ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+t = linspace(0,10*%pi,500)';
+clf();comet(t.*sin(t),[t.*sin(2*t) t.*sin(3*t)],"colors",[3 5])
+    ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+function y=traj(x),y=1.5*sin(x^2),endfunction
+clf();comet(linspace(0,5,500),traj)
+    ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="color">color</link>
+            </member>
+            <member>
+                <link linkend="comet3d">comet3d</link>
+            </member>
+            <member>
+                <link linkend="paramfplot2d">paramfplot2d</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.3.2</revnumber>
+                <revremark>
+                    Введена функция <function>comet</function>.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

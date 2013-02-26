@@ -110,7 +110,7 @@ assert_checkerror ( "error(34)" , msgerror );
 msgerror = msprintf(gettext("Syntax error in a ''%s'' instruction.\n") , "select/case");
 assert_checkerror ( "error(35)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong input argument %d.\n") , 18);
+msgerror = msprintf(gettext("Wrong input argument #%d.\n") , 18);
 assert_checkerror ( "error(36,18)" , msgerror );
 
 msgerror = msprintf(gettext("Incorrect function at line %d.\n") , 18);
@@ -137,7 +137,7 @@ assert_checkerror ( "error(42)" , msgerror );
 msgerror = msprintf(gettext("Not implemented in scilab...\n"));
 assert_checkerror ( "error(43)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong argument %d.\n"), 8);
+msgerror = msprintf(gettext("Wrong argument #%d.\n"), 8);
 assert_checkerror ( "error(44,8)" , msgerror );
 
 msgerror = msprintf(gettext("null matrix (argument # %d).\n"), 81);
@@ -164,10 +164,10 @@ assert_checkerror ( "error(51)" , msgerror );
 msgerror = msprintf(gettext("Wrong type for argument #%d: Real matrix expected.\n"), 69);
 assert_checkerror ( "error(52, 69)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for input argument %d: Real or complex matrix expected.\n"), 69);
+msgerror = msprintf(gettext("Wrong type for input argument #%d: Real or complex matrix expected.\n"), 69);
 assert_checkerror ( "error(53, 69)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type for input argument %d: Polynomial expected.\n"), 69);
+msgerror = msprintf(gettext("Wrong type for input argument #%d: Polynomial expected.\n"), 69);
 assert_checkerror ( "error(54, 69)" , msgerror );
 
 msgerror = msprintf(gettext("Wrong type for argument #%d: String expected.\n"), 69);
@@ -290,7 +290,7 @@ assert_checkerror ( "error(94, 38)" , msgerror );
 msgerror = msprintf(gettext("Wrong type for argument #%d: SISO expected.\n"), 38);
 assert_checkerror ( "error(95, 38)" , msgerror );
 
-msgerror = msprintf(gettext("time domain of argument %d is not defined.\n"), 38);
+msgerror = msprintf(gettext("time domain of argument #%d is not defined.\n"), 38);
 assert_checkerror ( "error(96, 38)" , msgerror );
 
 msgerror = msprintf(gettext("Wrong type for argument #%d: A system in state space or transfer matrix form expected.\n"), 38);
@@ -488,7 +488,7 @@ assert_checkerror ( "error(217, 20)" , msgerror );
 msgerror = msprintf(gettext("Wrong type for argument #%d: Handle to sparse lu factors expected.\n"), 20);
 assert_checkerror ( "error(218, 20)" , msgerror );
 
-msgerror = msprintf(gettext("Wrong type argument %d: Sparse or full scalar matrix expected.\n"), 20);
+msgerror = msprintf(gettext("Wrong type argument #%d: Sparse or full scalar matrix expected.\n"), 20);
 assert_checkerror ( "error(219, 20)" , msgerror );
 
 msgerror = msprintf(gettext("Null variable cannot be used here.\n"));

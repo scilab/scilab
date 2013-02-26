@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-04-05 23:53+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:11+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: pl\n"
 
 #, c-format
@@ -360,7 +360,7 @@ msgstr "Błąd: nie można zdefiniować zmiennej środowiskowej %s.\n"
 msgid "Scilab Enterprises\n"
 msgstr ""
 
-msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgid "Copyright (c) 2011-2013 (Scilab Enterprises)\n"
 msgstr ""
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
@@ -610,7 +610,8 @@ msgstr "%s: Niewłaściwy rozmiar parametru %d: oczekiwano przynajmniej %d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Boolean matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Boolean matrix "
+"expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu %d (Element listy: %d): oczekiwano macierzy "
 "wartości logicznych.\n"
@@ -633,7 +634,8 @@ msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
 msgstr "%s: Nieprawidłowy typ argumentu %d: oczekiwano macierzy rzadkiej.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d (List element: %d): Vector expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d (List element: %d): Vector expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu %d (Element listy: %d): oczekiwano wektora.\n"
 
@@ -651,7 +653,8 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Nieprawidłowy rozmiar argumentu %d: oczekiwano %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d (List element: %d): Scalar expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d (List element: %d): Scalar expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu %d (Element listy: %d): oczekiwano skalara.\n"
 
@@ -1021,6 +1024,10 @@ msgid "Impossible to create : %s"
 msgstr "Niemożliwe do utworzenia : %s"
 
 #, c-format
+msgid "Warning: Could not resolve the realpath of %s.\n"
+msgstr ""
+
+#, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr "Błąd: Nie jest w stanie utworzyć %s: %s\n"
 
@@ -1063,8 +1070,9 @@ msgstr ""
 msgid "Empty tab"
 msgstr "Pusta karta"
 
-msgid "Scilab Console"
-msgstr "Konsola Scilab"
+#, c-format
+msgid "Scilab %s Console"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"

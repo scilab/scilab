@@ -179,5 +179,11 @@
     <None Include="Core_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="linpack_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-11-28 13:01+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2012-12-05 14:02+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: \n"
 
 #, c-format
@@ -289,6 +289,8 @@ msgid ""
 "%s: A Java exception arisen:\n"
 "%s"
 msgstr ""
+"%s：出现一个Java异常：\n"
+"%s"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -306,6 +308,8 @@ msgid ""
 "%s: An exception occurred: %s\n"
 "%s\n"
 msgstr ""
+"%s：发生异常：%s\n"
+"%s\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -396,13 +400,13 @@ msgid "&BMP"
 msgstr "&BMP"
 
 msgid "&Vectorial export to..."
-msgstr ""
+msgstr "矢量导出...(&V)"
 
 msgid "&PDF"
 msgstr "&PDF"
 
 msgid "&PS"
-msgstr ""
+msgstr "&PS"
 
 msgid "&SVG"
 msgstr "&SVG"
@@ -435,7 +439,7 @@ msgid "&Zoom"
 msgstr "缩放(&Z)"
 
 msgid "&Original View"
-msgstr ""
+msgstr "原始视图(&O)"
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D旋转(&R)"
@@ -468,7 +472,7 @@ msgid "Stop datatip manager"
 msgstr ""
 
 msgid "&MVC"
-msgstr ""
+msgstr "&MVC"
 
 msgid "&Log View (Trace all View notifications)"
 msgstr ""
@@ -650,6 +654,9 @@ msgstr "复制"
 msgid "Paste"
 msgstr "粘贴"
 
+msgid "Clear Console"
+msgstr "清空控制台"
+
 msgid "Print..."
 msgstr "打印..."
 
@@ -726,7 +733,7 @@ msgid "Use system font"
 msgstr "使用系统字体"
 
 msgid "Desktop text font: "
-msgstr ""
+msgstr "桌面文本字体： "
 
 msgid "Custom font"
 msgstr "自定义字体"
@@ -735,7 +742,7 @@ msgid "Fonts to use:"
 msgstr ""
 
 msgid "Desktop text font"
-msgstr ""
+msgstr "桌面文本字体"
 
 msgid "Custom:"
 msgstr "自定义："
@@ -753,7 +760,7 @@ msgid "Command for web browser: "
 msgstr ""
 
 msgid "(Don't forget to quote path containing white spaces)"
-msgstr ""
+msgstr "(不要忘记含空格的路径要加双引号)"
 
 msgid "Use default mailer"
 msgstr ""
@@ -962,7 +969,7 @@ msgid "Console Background..."
 msgstr "控制台背景..."
 
 msgid "No print service found."
-msgstr ""
+msgstr "未发现打印服务。"
 
 #, c-format
 msgid ""
@@ -979,7 +986,7 @@ msgid ""
 "Due to your video card drivers limitations, that are not able to manage "
 "OpenGL, Scilab will not be able to draw any graphics. Please update your "
 "driver."
-msgstr ""
+msgstr "由于显卡驱动限制，无法管理OpenGL，所以Scilab无法绘制任何图形。请升级您的驱动。"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -987,11 +994,8 @@ msgid ""
 "information.\")"
 msgstr ""
 
-msgid "Clear Console"
-msgstr "清空控制台"
-
 msgid "Are you sure you want to clear the console ?"
-msgstr ""
+msgstr "您确定要清空控制台吗？"
 
 msgid "Do not show this message again"
 msgstr "不再显示此消息"
@@ -1157,7 +1161,7 @@ msgstr ""
 
 #, c-format
 msgid "Are you sure you want to close %s and %s ?"
-msgstr ""
+msgstr "您确定要关闭%s和%s吗？"
 
 msgid "Exit"
 msgstr "退出"
@@ -1422,9 +1426,6 @@ msgstr "%s：在无窗口非交互模式（NWNI）下函数不可用。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个图形句柄或者一个实数。\n"
-
-msgid "createPopupItems: found an empty cascading menu."
-msgstr "createPopupItems：存在空的级联菜单。"
 
 #, c-format
 msgid ""

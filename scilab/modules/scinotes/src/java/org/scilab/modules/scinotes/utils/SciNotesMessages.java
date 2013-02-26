@@ -30,6 +30,9 @@ public class SciNotesMessages {
     public static final String SCILAB_EDITOR = Messages.gettext("SciNotes");
     public static final String ERROR_WITH_STRING = Messages.gettext("Error while reading the String");
 
+    public static final String INVALID_FILE = Messages.gettext("File not found: %s");
+    public static final String IO_EXCEPTION = Messages.gettext("I/O error: %s");
+
     /** FILE MENU */
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New") + DOTS;

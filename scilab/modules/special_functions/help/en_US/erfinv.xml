@@ -26,13 +26,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real vector or matrix</para>
+                    <para>vector or matrix</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>real vector or matrix (same size as x)</para>
+                    <para>vector or matrix (same size as x)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -50,7 +50,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x = linspace(-0.99, 0.99, 100);
 y = erfinv(x);
 plot2d(x, y)

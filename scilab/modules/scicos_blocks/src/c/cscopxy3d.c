@@ -126,14 +126,6 @@ static char *getAxe(char const* pFigureUID, scicos_block * block);
 static char *getPolyline(char *pAxeUID, scicos_block * block, int row);
 
 /**
- * Set the polylines buffer size
- *
- * \param block the block
- * \param maxNumberOfPoints the size of the buffer
- */
-static BOOL setPolylinesBuffers(scicos_block * block, int maxNumberOfPoints);
-
-/**
  * Set the polylines bounds
  *
  * \param block the block
@@ -368,14 +360,6 @@ static void appendData(scicos_block * block, double *x, double *y, double *z)
         // on a full scope, re-alloc
         maxNumberOfPoints = maxNumberOfPoints + block->ipar[2];
         sco = reallocScoData(block, maxNumberOfPoints);
-
-        // reconfigure related graphic objects
-        if (setPolylinesBuffers(block, maxNumberOfPoints) == FALSE)
-        {
-            set_block_error(-5);
-            freeScoData(block);
-            sco = NULL;
-        }
     }
 
     /*
@@ -640,16 +624,12 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
     if (pPolyline != NULL)
     {
         /*
-         * Default setup (will crash if removed)
+         * Default setup of the nGons property
          */
         {
-            int polylineSize[2] = { 1, block->ipar[2] };
-            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
+            int nGons = 1;
+            setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_NUM_GONS__, &nGons, jni_int, 1);
         }
-
-        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_X__, &d__0, jni_double_vector, 1);
-        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_Y__, &d__0, jni_double_vector, 1);
-        setGraphicObjectProperty(pPolyline, __GO_DATA_MODEL_Z__, &d__0, jni_double_vector, 1);
 
         color = block->ipar[3 + row];
         markSize = block->ipar[3 + block->ipar[1] + row];
@@ -685,29 +665,6 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
         releaseGraphicObjectProperty(__GO_PARENT__, pPolyline, jni_string, 1);
     }
     return sco->scope.cachedPolylinesUIDs[row];
-}
-
-static BOOL setPolylinesBuffers(scicos_block * block, int maxNumberOfPoints)
-{
-    int i;
-
-    char const* pFigureUID;
-    char *pAxeUID;
-    char *pPolylineUID;
-
-    BOOL result = TRUE;
-    int polylineSize[2] = { 1, maxNumberOfPoints };
-
-    pFigureUID = getFigure(block);
-    pAxeUID = getAxe(pFigureUID, block);
-
-    for (i = 0; i < block->insz[0]; i++)
-    {
-        pPolylineUID = getPolyline(pAxeUID, block, i);
-        result &= setGraphicObjectProperty(pPolylineUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, polylineSize, jni_int_vector, 2);
-    }
-
-    return result;
 }
 
 static BOOL setPolylinesBounds(scicos_block * block)

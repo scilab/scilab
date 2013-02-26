@@ -70,7 +70,7 @@ static char **removeEmptyLinesAtTheEnd(char **lines, int *sizelines);
 static BOOL isValidLineWithOnlyOneNumber(char *line);
 static char ** removeTextLinesAtTheEnd(char **lines, int *sizelines, char *format, char *separator);
 /*--------------------------------------------------------------------------*/
-fscanfMatResult *fscanfMat(char *filename, char *format, char *separator, BOOL asDouble)
+fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
 {
     int fd = 0;
     int f_swap = 0;
@@ -371,7 +371,10 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
                         {
                             freeArrayOfString(splittedStr, nbTokens);
                             /* bug 6889 */
-                            if (nbColums) nbColums--;
+                            if (nbColums)
+                            {
+                                nbColums--;
+                            }
                             FREE(str);
                             str = NULL;
                             return nbColums;
@@ -520,7 +523,10 @@ static double *getDoubleValuesFromLines(char **lines, int sizelines,
 {
     double *dValues = NULL;
 
-    if (m == 0 || n == 0) return NULL;
+    if (m == 0 || n == 0)
+    {
+        return NULL;
+    }
 
     dValues = (double*) MALLOC(sizeof(double) * (m * n));
     if (dValues)
@@ -627,7 +633,10 @@ static double returnINF(BOOL bPositive)
 {
     double v = 0;
     double p = 10;
-    if (!bPositive) p = -10;
+    if (!bPositive)
+    {
+        p = -10;
+    }
     return (double) p / (double)v;
 }
 /*--------------------------------------------------------------------------*/
@@ -766,7 +775,10 @@ static BOOL isOnlyBlankLine(const char *line)
         int i = 0;
         for (i = 0; i < (int) strlen(line); i++)
         {
-            if (line[i] != ' ') return FALSE;
+            if (line[i] != ' ')
+            {
+                return FALSE;
+            }
         }
     }
     return TRUE;

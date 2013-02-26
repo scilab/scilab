@@ -9,3 +9,17 @@ This module file is licensed as described in the file COPYING, which
 you should have received as part of this distribution.  The terms
 are also available at
 http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+======================
+
+The function 
+size_t writefunc(void *ptr, size_t size, size_t nmemb, struct string *s)
+written by Alexandre Jasmin has been copied and paste from stackoverflow:
+http://stackoverflow.com/questions/2329571/c-libcurl-get-output-into-a-string
+
+published under the Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) license:
+You are free:
+    to Share - to copy, distribute and transmit the work
+    to Remix - to adapt the work
+    to make commercial use of the work
+

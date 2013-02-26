@@ -117,11 +117,9 @@ src/fortran/nextj.f \
 src/fortran/setgetmode.f \
 src/fortran/showstack.f \
 src/fortran/misops.f \
-src/fortran/iseye.f \
 src/fortran/setippty.f \
 src/fortran/compil.f \
 src/fortran/funnam.f \
-src/fortran/isnum.f \
 src/fortran/cmdstr.f \
 src/fortran/hndlops.f \
 src/fortran/cmplxt.f \
@@ -186,7 +184,6 @@ src/fortran/seteol.f \
 src/fortran/basin.f \
 src/fortran/clause.f \
 src/fortran/compcl.f \
-src/fortran/termf.f \
 src/fortran/expsum.f \
 src/fortran/copyvar.f \
 src/fortran/putid.f \

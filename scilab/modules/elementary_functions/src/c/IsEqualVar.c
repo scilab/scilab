@@ -380,7 +380,6 @@ ELEMENT:
     d1 = p1+ip1[k]-1;
     d2 = p2+ip2[k]-1;
     id1=(int *)d1;
-    id2=(int *)d2;
 
     if (id1[0]!=15 && id1[0]!=16&& id1[0]!=17) { /* elements which are not lists */
         res = IsEqualVar(d1, ip1[k+1]-ip1[k], d2, ip2[k+1]-ip2[k]);

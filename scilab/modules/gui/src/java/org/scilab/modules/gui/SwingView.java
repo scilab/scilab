@@ -316,8 +316,29 @@ public final class SwingView implements GraphicView {
     }
 
     private TypedObject CreateObjectFromType(final int type, final String id) {
-        UielementType enumType = StyleToEnum(type);
-        return new TypedObject(enumType, CreateObjectFromType(enumType, id));
+        final UielementType enumType = StyleToEnum(type);
+        final SwingViewObject newSVObject[] = new SwingViewObject[1];
+        if (SwingUtilities.isEventDispatchThread()) {
+            newSVObject[0] = CreateObjectFromType(enumType, id);
+        } else {
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        newSVObject[0] = CreateObjectFromType(enumType, id);
+
+                    }
+                });
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return new TypedObject(enumType, newSVObject[0]);
     }
 
     private SwingViewObject CreateObjectFromType(UielementType type, String id) {

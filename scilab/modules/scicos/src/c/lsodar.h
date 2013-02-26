@@ -38,8 +38,8 @@ struct rWork_t
 // Derivative computation and Root functions
 typedef int (*LSRhsFn) (int * neq, realtype * t, realtype * y, realtype * rwork);
 typedef int (*LSRootFn) (int * neq, realtype * t, realtype * y, int * ng, realtype * rwork);
+typedef void (*LSErrHandlerFn) (int error_code, const char *module, const char *function, char *msg, void *user_data);
 
-// Potential tasks
 enum iTask_t
 {
     LS_NORMAL = 1,
@@ -71,19 +71,23 @@ typedef struct LSodarMemRec
     LSRootFn g_fun;
     int ng_fun;
     int * jroot;
+    LSErrHandlerFn ehfun;
 } *LSodarMem;
 
 // Creating the problem
 void * LSodarCreate (int * neq, int ng);
 
 // Allocating the problem
-int LSodarMalloc (void * lsodar_mem, LSRhsFn f, realtype t0, N_Vector y, int itol, realtype reltol, void * abstol);
+int LSodarInit (void * lsodar_mem, LSRhsFn f, realtype t0, N_Vector y);
 
 // Reinitializing the problem
-int LSodarReInit (void * lsodar_mem, LSRhsFn f, realtype tOld, N_Vector y, int itol, realtype reltol, void * abstol);
+int LSodarReInit (void * lsodar_mem, realtype tOld, N_Vector y);
+
+// Specifying the tolerances
+int LSodarSStolerances(void *cvode_mem, realtype reltol, realtype abstol);
 
 // Initializing the root-finding problem
-int LSodarRootInit (void * lsodar_mem, int ng, LSRootFn g, void *gdata);
+int LSodarRootInit (void * lsodar_mem, int ng, LSRootFn g);
 
 // Specifying the maximum step size
 int LSodarSetMaxStep (void * lsodar_mem, realtype hmax);
@@ -103,10 +107,10 @@ void LSodarFree (void ** lsodar_mem);
 // Freeing the lsodar vectors allocated in lsodarAllocVectors
 void LSFreeVectors (LSodarMem lsodar_mem);
 
-// Error handling function
-void LSProcessError (LSodarMem lsodar_mem, int error_code, const char *module, const char *fname, const char *msgfmt, ...);
+// Specifies the error handler function
+int LSodarSetErrHandlerFn (void * lsodar_mem, LSErrHandlerFn ehfun, void * eh_data);
 
-// Default error handling function
-void LSErrHandler (int error_code, const char *module, const char *function, char *msg, void *data);
+// Error handling function
+void LSProcessError (LSodarMem ls_mem, int error_code, const char *module, const char *fname, const char *msgfmt, ...);
 
 #endif

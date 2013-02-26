@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("Compatibility Functions",SCI+"/modules/compatibility_functions/help/ru_RU",%T);
+add_help_chapter("Функции для совместимости",SCI+"/modules/compatibility_functions/help/ru_RU",%T);
 

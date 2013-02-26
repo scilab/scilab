@@ -860,14 +860,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 SCIRENDERER=$PACKAGE_JAR_FILE
                 AC_SUBST(SCIRENDERER)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.0.5],[PackageInfo.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.0.6],[PackageInfo.VERSION])
 
                # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.2],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.3],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
@@ -897,9 +897,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    # Provide known paths where distribs/OS can store JNI libs
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
-                   LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jogl2 -L/usr/lib64/jogl2"               # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
-                   AC_CHECK_LIB([jogl_desktop], [glTexParameterf], [JOGL2_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl_desktop. Will try against -ljogl2 -lGL])])
+                   AC_CHECK_LIB([jogl_desktop], [glTexParameterf], [JOGL2_LIBS="-ljogl_desktop"],[AC_MSG_WARN([Could not link against -ljogl_desktop. Will try against -ljogl_desktop -lGL])])
                    if test -z "$JOGL2_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
                        # purpose to disable the cache
@@ -926,10 +926,10 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                    # Provide known paths where distribs/OS can store JNI libs
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
-                   LDFLAGS="$LDFLAGS -L/usr/lib/gluegen -L/usr/lib64/gluegen"           # RedHat
+                   LDFLAGS="$LDFLAGS -L/usr/lib/gluegen2 -L/usr/lib64/gluegen2"         # RedHat
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    symbol="Java_jogamp_common_jvm_JVMUtil_initialize"
-                   AC_CHECK_LIB([gluegen2-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
+                   AC_CHECK_LIB([gluegen2-rt], [$symbol], [GLUEGEN2_RT_LIBS="-lgluegen2-rt"],
                    [AC_MSG_ERROR([libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
                    [-ldl])
                    LDFLAGS=$LDFLAGS_save
@@ -1026,7 +1026,7 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 JLATEXMATH=$PACKAGE_JAR_FILE
                 AC_SUBST(JLATEXMATH)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[1.0.0],[TeXFormula.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[1.0.1],[TeXFormula.VERSION])
 
                 AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
@@ -1184,10 +1184,11 @@ LT_LIB_M()
 # Provided by math.h
 
 LDFLAGS="$LDFLAGS $LIBM"
-AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor] [exp10])
+AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor] [exp10] [erf] [erfc] [isnan])
 
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
+AC_DEFINE([HAVE_ISINF],[1],[Have isinf function or macro equivalent])
 AC_CHECK_FUNC([isinf],,[
         AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])
@@ -1475,6 +1476,12 @@ AM_CONDITIONAL(UMFPACK, test "$with_umfpack" != no)
 #######################
 
 AC_PCRE()
+
+#######################
+## Test for CURL
+#######################
+
+AC_CURL()
 
 #################
 ## Tcl/Tk library
@@ -2195,6 +2202,12 @@ echo "PCRE configuration:"
 echo "  PCRE_CFLAGS ........ = $PCRE_CFLAGS"
 echo "  PCRE_LIBS .......... = $PCRE_LIBS"
 echo "  PCRE_VERSION ....... = $PCRE_VERSION"
+
+echo ""
+echo "CURL configuration:"
+echo "  CURL_CFLAGS ........ = $CURL_CFLAGS"
+echo "  CURL_LIBS .......... = $CURL_LIBS"
+echo "  CURL_VERSION ....... = $CURL_VERSION"
 
 
 echo ""

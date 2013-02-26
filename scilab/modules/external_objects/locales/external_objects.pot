@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-02-14 13:37+0100\n"
 
 # File: includes/ScilabAbstractEnvironmentException.hxx, line: 96
 msgid "Exception thrown in file"
@@ -23,6 +23,42 @@ msgstr ""
 #
 # File: includes/ScilabAbstractEnvironmentException.hxx, line: 96
 msgid "at line"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_doubleExclam_invoke_.cpp, line: 30
+# File: sci_gateway/cpp/sci_invoke_lu.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EClass_e.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_0.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_1_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_2_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_3_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_4_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_5.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_a_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_d_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_disp.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_e.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_g_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_h_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_j_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_k_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_l_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_m_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_n_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_o_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_p.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_p_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_q_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_r_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_s_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_t.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_x_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_y_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_z_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_foo_i_EObj.cpp, line: 30
+#, c-format
+msgid "%s: An error occurred: %s"
 msgstr ""
 
 #

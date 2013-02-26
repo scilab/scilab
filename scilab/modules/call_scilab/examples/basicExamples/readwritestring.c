@@ -148,7 +148,7 @@ int main(void)
     }
 
 
-    /* Load an element of a the previously set variable B */
+    /* Load an element of the previously set variable B */
     {
 
         char variableToBeRetrieved[] = "B";

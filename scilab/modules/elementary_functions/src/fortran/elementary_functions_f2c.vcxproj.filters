@@ -27,9 +27,6 @@
     <ClCompile Include="bdiag.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="calerf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cbal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -522,9 +519,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="bdiag.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="calerf.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="cbal.f">

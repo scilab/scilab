@@ -281,6 +281,9 @@ static bool import_void(int _iDatasetId, int _iItemPos, int *_piAddress, char *_
         printError(&sciErr, 0);
         return false;
     }
+
+    //close void dataset
+    closeDataSet(_iDatasetId);
     return true;
 }
 
@@ -302,6 +305,9 @@ static bool import_undefined(int _iDatasetId, int _iItemPos, int *_piAddress, ch
         printError(&sciErr, 0);
         return false;
     }
+
+    //close undefined dataset
+    closeDataSet(_iDatasetId);
     return true;
 }
 

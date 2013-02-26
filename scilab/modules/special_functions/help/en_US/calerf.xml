@@ -61,6 +61,12 @@ calerf(1,0)
 2/sqrt(%pi)*intg(0,1,f)
  ]]></programlisting>
     </refsection>
+    <refsection>
+        <title>Algorithms</title>
+        <para>
+            This function is based on the <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeeva package</ulink> library.
+        </para>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
@@ -74,5 +80,14 @@ calerf(1,0)
                 <link linkend="erfcx">erfcx</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>The calerf function is based on the fadddeeva package</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

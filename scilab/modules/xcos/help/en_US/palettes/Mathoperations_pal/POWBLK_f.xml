@@ -116,7 +116,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">to the power of</emphasis>
+                    <emphasis role="bold">To the power of</emphasis>
                 </para>
                 <para>A real scalar, the exponent value.</para>
                 <para>Properties : Type 'vec' of size 1.</para>

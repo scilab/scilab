@@ -39,7 +39,7 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();
     OptionsHelper & helper = env.getOptionsHelper();
-    OptionsHelper::setCopyOccured(false);
+    OptionsHelper::setCopyOccurred(false);
     ScilabObjects::initialization(env, pvApiCtx);
     options.setIsNew(false);
 

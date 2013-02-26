@@ -1,81 +1,140 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
-// <-- CLI SHELL MODE -->
 
 //===============================
 // unit tests completion
 //===============================
 
-// parameters tests
-r = completion('%');
-s = size(r,'*');
-if s < 748 then pause,end
-//===============================
-functions1 = completion('%','functions');
-s = size(functions1,'*');
-if s < 17 then pause,end
-//===============================
-commands1 = completion('%','commands');
-s = size(commands1,'*');
-if s <> 0 then pause,end
-//===============================
-variables1 = completion('%','variables');
-s = size(variables1,'*');
-if s < 10 then pause,end
-//===============================
-macros1 = completion('%','macros');
-s = size(macros1,'*');
-if s < 705 then pause,end
-//===============================
-graphic_properties1 = completion('%','graphic_properties');
-s = size(graphic_properties1,'*');
-if s <> 0 then pause,end
-//===============================
-files1 = completion('%','files');
-s = size(files1,'*');
-if s <> 0 then pause,end
-//===============================
-[functions2,commands2,variables2,macros2,graphic_properties2,files2] = completion('%');
-if functions2 <> functions1 then pause,end
-if commands2 <> commands1 then pause,end
-if variables2 <> variables1 then pause,end
-if macros2 <> macros1 then pause,end
-if graphic_properties2 <> graphic_properties1 then pause,end
-if files2 <> files1 then pause,end
-//===============================
-[functions3,commands3,variables3,macros3,graphic_properties3] = completion('%');
-if functions3 <> functions1 then pause,end
-if commands3 <> commands1 then pause,end
-if variables3 <> variables1 then pause,end
-if macros3 <> macros1 then pause,end
-if graphic_properties3 <> graphic_properties1 then pause,end
-//===============================
-[functions4,commands4,variables4,macros4] = completion('%');
-if functions4 <> functions1 then pause,end
-if commands4 <> commands1 then pause,end
-if variables4 <> variables1 then pause,end
-if macros4 <> macros1 then pause,end
-//===============================
-[functions5,commands5,variables5] = completion('%');
-if functions5 <> functions1 then pause,end
-if commands5 <> commands1 then pause,end
-if variables5 <> variables1 then pause,end
-//===============================
-[functions6,commands6] = completion('%');
-if functions6 <> functions1 then pause,end
-if commands6 <> commands1 then pause,end
-//===============================
-// check memory leak
-//for i=1:1000000,a=completion('w');end;
-//for i=1:1000000,a=completion('w',"functions");end;
-//for i=1:1000000,a=completion('w',"commands");end;
-//for i=1:1000000,a=completion('w',"variables");end;
-//for i=1:1000000,a=completion('w',"macros");end;
-//for i=1:1000000,a=completion('w',"graphic_properties");end;
-//for i=1:1000000,a=completion('w',"files");end;
-//===============================
+// File paths
+
+if (getos() == "Windows") then;
+    r = completion('C:\Documents and');
+    assert_checkequal(r, 'Documents and Settings\');
+else
+    r = completion('/tm');
+    assert_checkequal(r, 'tmp/');
+end
+
+r = completion(SCI+'/to');
+if (getos() == "Windows") then;
+   assert_checkequal(r, ['tools\']);
+else;
+   assert_checkequal(r, ['tools/']);
+end
+
+// Predefined variables
+
+r = completion('ho', 'variables');
+assert_checkequal(r, 'home');
+
+r = completion('%na');
+assert_checkequal(r, '%nan');
+
+r = completion('TMP');
+assert_checkequal(r, 'TMPDIR');
+
+r = completion('%', 'variables');
+rexpected = ['%F'; '%T'; '%e'; '%eps'; '%f'; '%fftw'; '%gui'; '%i';'%inf'; '%io';
+  '%modalWarning'; '%nan'; '%pi'; '%s'; '%t'; '%tk'; '%toolboxes'; '%toolboxes_dir'; '%z'];
+assert_checkequal(r, rexpected);
+
+
+// User variables
+
+variable_completion1 = 1;
+variable_completion2 = 2;
+r = completion('variable_comp');
+assert_checkequal(r, ['variable_completion1'; 'variable_completion2']);
+
+
+// Predefined functions, macros and commands
+
+r = completion('floo');
+assert_checkequal(r, 'floor');
+
+r = completion('abort');
+assert_checkequal(r, 'abort');
+
+
+// User functions, macros, commands
+function [] = function_completion(x);
+endfunction;
+r = completion('function_comp');
+assert_checkequal(r, 'function_completion');
+
+
+// Filter argument
+
+r = completion('ho');
+assert_checkequal(r, ['home'; 'horizontalalignment'; 'horner'; 'host'; 'hotcolormap'; 'householder']);
+
+r = completion('ho', 'functions');
+assert_checkequal(r, 'host');
+
+r = completion('ho', 'commands');
+assert_checkequal(r, []);
+
+r = completion('ho', 'macros');
+assert_checkequal(r, ['horner'; 'hotcolormap'; 'householder']);
+
+r = completion('ho', 'variables');
+assert_checkequal(r, 'home');
+
+r = completion('ho', 'graphic_properties');
+assert_checkequal(r, 'horizontalalignment');
+
+r = completion('ho', 'files');
+assert_checkequal(r, []);
+
+r = completion('abo');
+assert_checkequal(r, ['abort'; 'about']);
+
+r = completion('abo', 'functions');
+assert_checkequal(r, 'about');
+
+r = completion('abo', 'commands');
+assert_checkequal(r, 'abort');
+
+r = completion('abo', 'variables');
+assert_checkequal(r, []);
+
+r = completion('abo', 'macros');
+assert_checkequal(r, []);
+
+r = completion('abo', 'graphic_properties');
+assert_checkequal(r, []);
+
+r = completion('abo', 'files');
+assert_checkequal(r, []);
+
+
+// Output arguments
+
+[functions,commands,variables,macros,graphic_properties,files] = completion('ho');
+assert_checkequal(functions, ['host']);
+assert_checkequal(commands, []);
+assert_checkequal(variables, ['home']);
+assert_checkequal(macros, ['horner'; 'hotcolormap'; 'householder']);
+assert_checkequal(graphic_properties, ['horizontalalignment']);
+assert_checkequal(files, []);
+
+[functions,commands,variables,macros,graphic_properties,files] = completion('abo');
+assert_checkequal(functions, ['about']);
+assert_checkequal(commands, ['abort']);
+assert_checkequal(variables, []);
+assert_checkequal(macros, []);
+assert_checkequal(graphic_properties, []);
+assert_checkequal(files, []);
+
+if (getos() == "Windows") then;
+    [functions,commands,variables,macros,graphic_properties,files] = completion('C:\Documents and');
+    assert_checkequal(files, ['Documents and Settings\']);
+else
+    [functions,commands,variables,macros,graphic_properties,files] = completion('/tm');
+    assert_checkequal(files, ['tmp/']);
+end

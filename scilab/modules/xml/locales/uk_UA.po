@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-11-14 18:56+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-08 17:02+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: uk\n"
 
 #, c-format
@@ -143,6 +143,10 @@ msgid "%s: XML Namespace does not exist.\n"
 msgstr "%s: простору назв XML не існує.\n"
 
 #, c-format
+msgid "%s: XML Document does not exist.\n"
+msgstr "%s: документа XML не існує.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «XMLSet» "
@@ -169,10 +173,6 @@ msgstr "%s: файла перевірки XML не існує.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A %s expected\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: слід використовувати %s\n"
-
-#, c-format
-msgid "%s: XML Document does not exist.\n"
-msgstr "%s: документа XML не існує.\n"
 
 #, c-format
 msgid "%s: Bad input argument #%d: A valid XML name expected.\n"
@@ -335,6 +335,16 @@ msgstr "Некоректна назва файла: "
 msgid "Cannot create a parser context"
 msgstr "Не вдалося створити контекст обробки"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%i: A double expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%i: мало бути використано значення "
+"типу double.\n"
+
+#, c-format
+msgid "%s: Error in getting rhs argument.\n"
+msgstr "%s: помилка під час отримання параметра.\n"
+
 msgid " at line "
 msgstr " у рядку "
 
@@ -373,6 +383,28 @@ msgstr "Не вдалося обробити схему"
 
 msgid "Cannot read the stream"
 msgstr "Не вдалося прочитати потік даних"
+
+#, c-format
+msgid "%s: No root element.\n"
+msgstr "%s: немає кореневого елемента.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%i: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type to set %s field.\n"
+msgstr "%s: помилковий тип для значення поля %s.\n"
+
+#, c-format
+msgid "%s: Not valid xml for root.\n"
+msgstr "%s: некоректний формат xml для кореневого елемента.\n"
+
+#, c-format
+msgid "%s: Field %s is not modifiable: %s\n"
+msgstr "%s: не можна змінювати значення у полі %s: %s\n"
 
 msgid "XML"
 msgstr "XML"

@@ -1203,8 +1203,6 @@ int PolylineDecomposer::fillTriangleIndices(char* id, int* buffer, int bufferLen
 int PolylineDecomposer::fillArrowTriangleIndices(char* id, int* buffer, int bufferLength,
                                                  int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift)
 {
-    double coordsi[3];
-
     int closed = 0;
     int* piClosed = &closed;
 
@@ -1552,9 +1550,6 @@ int PolylineDecomposer::fillSegmentsDecompositionSegmentIndices(char* id, int* b
 int PolylineDecomposer::fillStairDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
                                                              int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed)
 {
-    double coordsi[3];
-    double coordsip1[3];
-
     int currentValid = 0;
     int middleVertexValid = 0;
     int nextValid = 0;

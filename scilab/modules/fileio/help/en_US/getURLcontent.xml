@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) - S/E - Sylvestre Ledru
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xml:id="getURLcontent" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+    
+    <refnamediv>
+        <refname>getURLcontent</refname>
+        
+        <refpurpose>Return the content of an URL (HTTP, HTTPS, FTP...) </refpurpose>
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        
+        <synopsis>output = getURLcontent(URL [, username, [, password]]);
+        </synopsis>
+    </refsynopsisdiv>
+    
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>URL</term>
+                <listitem>
+                    <para>String: An URL. Supported and tested: HTTP, HTTPS, FTP (IPv4 and IPv6)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>username</term>
+                <listitem>
+                    <para>String optional parameter: Username for the websites which require authentication</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>password</term>
+                <listitem>
+                    <para>String optional parameter: Password for the websites which require authentication</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>output</term>
+                <listitem>
+                    <para>String: containing the content pointed by the URL</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    
+    <refsection>
+        <title>Description</title>
+        
+        <para>Retrieve the content of a page pointed by an URL</para>
+        
+        <para>getURLcontent will download the content of remote URL.</para>
+        
+        <para>
+            This function is based on the <ulink url="http://curl.haxx.se/libcurl/">curl library</ulink>.
+        </para>
+        
+        <para> Username and Password can be specified for the websites which required authentication. The authentication method used is the CURLAUTH_ANY provided by CURLOPT_HTTPAUTH parameter of the libcurl library.</para>
+        
+        <para>IPv6 (and obviously IPv4) are supported out-of-the box by getURLcontent.</para>
+        
+        <para>Proxy configuration is enabled in this version. It uses the ATOMS proxy parameters.</para>
+        
+        <para>
+            The <emphasis role="italic">CURLOPT_FOLLOWLOCATION</emphasis> curl option is activated to make sure the download follow the URL.
+        </para>
+        
+        <para>
+            Due to the fact that getURLcontent is based on libcurl, it is likely that <ulink url="http://curl.haxx.se/docs/features.html">other protocols</ulink> than HTTP, HTTPS and FTPS will work. However, they have not been tested enough.
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        
+        <programlisting role="example">
+            // Get the content of google homepage with HTTPS
+            getURLcontent("https://encrypted.google.com")
+            
+            
+            // Download a readme file from a ftp
+            getURLcontent("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README")
+            
+            // Use authentication
+            getURLcontent("http://httpbin.org/basic-auth/user/passwd","user","passwd")
+            
+            getURLcontent("http://fileexchange.scilab.org/toolboxes/161000/1.0/files/cshift.sci")
+        </programlisting>
+        <!-- 
+// This example fails for now (probably a bug on evstr)
+// Retrieve the content and execute it
+content=getURLcontent("http://fileexchange.scilab.org/toolboxes/161000/1.0/files/cshift.sci")
+evstr(content);
+M = grand(3,4,"uin",0,9);
+cshift(M,1);
+-->
+        
+    </refsection>
+    
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getURL">getURL</link>
+            </member>
+            <member>
+                <link linkend="splitURL">splitURL</link>
+            </member>
+        </simplelist>
+    </refsection>
+    
+</refentry>
