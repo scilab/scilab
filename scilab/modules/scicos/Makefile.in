@@ -946,7 +946,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@			-I$(srcdir)/src/c/ \
 @XCOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
-@XCOS_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/graphics/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/string/includes/ \
