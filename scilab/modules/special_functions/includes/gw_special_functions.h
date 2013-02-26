@@ -28,7 +28,6 @@ int sci_legendre(char *fname, unsigned long fname_len);
 int sci_gamma(char *fname, unsigned long fname_len);
 int sci_lgamma(char *fname, unsigned long fname_len);
 int sci_dlgamma(char *fname, unsigned long fname_len);
-int sci_calerf(char *fname, unsigned long fname_len);
 int sci_Faddeeva_erf(char *fname, unsigned long fname_len);
 int sci_Faddeeva_erfc(char *fname, unsigned long fname_len);
 int sci_Faddeeva_erfcx(char *fname, unsigned long fname_len);

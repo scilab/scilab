@@ -150,10 +150,10 @@ extern "C" {
  * every time it is called.
  *
  * A CVRhsFn should return 0 if successful, a negative value if
- * an unrecoverable error occured, and a positive value if a 
- * recoverable error (e.g. invalid y values) occured. 
- * If an unrecoverable occured, the integration is halted. 
- * If a recoverable error occured, then (in most cases) CVODE
+ * an unrecoverable error occurred, and a positive value if a 
+ * recoverable error (e.g. invalid y values) occurred. 
+ * If an unrecoverable occurred, the integration is halted. 
+ * If a recoverable error occurred, then (in most cases) CVODE
  * will try to correct and retry.
  * -----------------------------------------------------------------
  */
@@ -176,7 +176,7 @@ typedef int (*CVRhsFn)(realtype t, N_Vector y,
  * passed to the user's g function every time it is called.
  *
  * A CVRootFn should return 0 if successful or a non-zero value
- * if an error occured (in which case the integration will be halted).
+ * if an error occurred (in which case the integration will be halted).
  * -----------------------------------------------------------------
  */
 
@@ -671,7 +671,7 @@ SUNDIALS_EXPORT int CVodeGetDky(void *cvode_mem, realtype t, int k, N_Vector dky
  * CVodeGetNumLinSolvSetups returns the number of calls made to
  *                          the linear solver's setup routine
  * CVodeGetNumErrTestFails returns the number of local error test
- *                         failures that have occured
+ *                         failures that have occurred
  * CVodeGetLastOrder returns the order used during the last
  *                   internal step
  * CVodeGetCurrentOrder returns the order to be used on the next

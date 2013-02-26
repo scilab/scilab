@@ -62,7 +62,7 @@
                         <literal>key1</literal>, <literal>key2</literal>,...
                         могут быть одним из следующих:
                         <varname>arfact</varname>, <varname>rect</varname>,
-                        <varname>strf</varname> (see below).
+                        <varname>strf</varname> (см. ниже).
                     </para>
                 </listitem>
             </varlistentry>

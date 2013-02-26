@@ -97,7 +97,7 @@ sl=syslin(dom,A,B,C [,D [,x0] ])
         <informalequation>
             <mediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../mml/syslin_equation_1.mml"/>
+                    <imagedata align="center" fileref="../mml/syslin_equation_1.mml"/>
                 </imageobject>
             </mediaobject>
         </informalequation>

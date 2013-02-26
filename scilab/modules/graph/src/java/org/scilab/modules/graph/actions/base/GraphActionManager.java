@@ -13,10 +13,13 @@
 package org.scilab.modules.graph.actions.base;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 import javax.swing.Action;
 import javax.swing.KeyStroke;
@@ -27,8 +30,8 @@ import org.scilab.modules.graph.ScilabGraph;
  * Implement construction methods for Actions.
  */
 public final class GraphActionManager {
-    private static HashMap<ScilabGraph, Set<DefaultAction>> perGraphAction = new HashMap<ScilabGraph, Set<DefaultAction>>();
-    private static HashSet<DefaultAction> nullGraphAction = new HashSet<DefaultAction>();
+    private static Map<ScilabGraph, Set<DefaultAction>> perGraphAction = new WeakHashMap<ScilabGraph, Set<DefaultAction>>();
+    private static Set<DefaultAction> nullGraphAction = Collections.newSetFromMap(new WeakHashMap<DefaultAction, Boolean>());
 
     /**
      * Static class so private constructor
@@ -97,7 +100,7 @@ public final class GraphActionManager {
             if (perGraphAction.containsKey(graph)) {
                 actionSet = perGraphAction.get(graph);
             } else {
-                actionSet = new HashSet<DefaultAction>();
+                actionSet = Collections.newSetFromMap(new WeakHashMap<DefaultAction, Boolean>());
                 perGraphAction.put(graph, actionSet);
             }
         }

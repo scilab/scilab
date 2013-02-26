@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
 "PO-Revision-Date: 2012-09-24 12:20+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: ru\n"
 
 #, c-format
@@ -713,6 +713,9 @@ msgstr "Копировать"
 msgid "Paste"
 msgstr "Вставить"
 
+msgid "Clear Console"
+msgstr "Очистить командное окно"
+
 msgid "Print..."
 msgstr "Печать"
 
@@ -1095,9 +1098,6 @@ msgstr ""
 "disp(\"ПРЕДУПРЕЖДЕНИЕ: Несмотря на наши предыдущие предупреждения, вы "
 "выбрали использование Scilab с передовыми графическими возможностями. "
 "Пропишите \"\"help usecanvas\"\" для получения дополнительной информации.\")"
-
-msgid "Clear Console"
-msgstr "Очистить командное окно"
 
 msgid "Are you sure you want to clear the console ?"
 msgstr "Вы действительно хотите очистить командное окно?"
@@ -1539,9 +1539,6 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался графический дескриптор или "
 "вещественное число.\n"
-
-msgid "createPopupItems: found an empty cascading menu."
-msgstr "createPopupItems: найдено пустое выпадающее меню."
 
 #, c-format
 msgid ""

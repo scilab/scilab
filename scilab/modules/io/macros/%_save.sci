@@ -941,7 +941,7 @@ function [] = %_save(%__filename__, varargin)
     if size(varargin) == 0 then
     end
 
-    for %__i__ = 1:size(varargin)
+    for %__i__ = size(varargin):-1:1
 
         if varargin(%__i__) == "-append" then
             continue;
@@ -964,10 +964,13 @@ function [] = %_save(%__filename__, varargin)
             value = extractMacro(temp, varargin(%__i__));
             //update 
             execstr(varargin(%__i__) + " = value");
+        elseif type(temp) == 14 then //library, must not be save
+            varargin(%__i__) = null();
         end
     end
     warning(oldMode);
 
+    //if size(varargin) == 0, create an empty file
     result = export_to_hdf5(%__filename__, varargin(:));
 
 endfunction

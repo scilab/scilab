@@ -16,20 +16,27 @@ package org.scilab.modules.scinotes;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -78,15 +85,19 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
+
+import org.scilab.modules.scinotes.actions.DoubleQuoteStringAction;
 import org.scilab.modules.scinotes.actions.EncodingAction;
 import org.scilab.modules.scinotes.actions.EndOfLineAction;
 import org.scilab.modules.scinotes.actions.ExitAction;
 import org.scilab.modules.scinotes.actions.FindAction;
 import org.scilab.modules.scinotes.actions.IncrementalSearchAction;
+import org.scilab.modules.scinotes.actions.IndentAction;
 import org.scilab.modules.scinotes.actions.InsertOverwriteAction;
 import org.scilab.modules.scinotes.actions.LineBeautifierAction;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.actions.RecentFileAction;
+import org.scilab.modules.scinotes.actions.RemoveTrailingWhiteAction;
 import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
 import org.scilab.modules.scinotes.actions.SearchWordInFilesAction;
@@ -518,7 +529,22 @@ public class SciNotes extends SwingScilabTab {
      *
      *            This method *must not* be called on the EDT thread.
      */
-    public static void scinotes(final String filePath, final String option) {
+    public static void scinotes(final String filePath, final String[] options) throws Exception {
+        boolean hasAction = false;
+        if (options != null && options.length != 0) {
+            try {
+                hasAction = executeAction(filePath, options);
+            } catch (FileNotFoundException e) {
+                throw new Exception(String.format(SciNotesMessages.INVALID_FILE, filePath));
+            } catch (IOException e) {
+                throw new Exception(String.format(SciNotesMessages.IO_EXCEPTION, e.getLocalizedMessage()));
+            }
+        }
+
+        if (hasAction) {
+            return;
+        }
+
         ScilabLexer.update();
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
@@ -526,7 +552,11 @@ public class SciNotes extends SwingScilabTab {
                     @Override
                     public void run() {
                         launchSciNotes();
-                        editor.openFile(filePath, 0, option);
+                        if (options != null && options.length != 0) {
+                            editor.openFile(filePath, 0, options[0]);
+                        } else {
+                            editor.openFile(filePath, 0, "");
+                        }
                     }
                 });
         } catch (InterruptedException e) {
@@ -2470,5 +2500,90 @@ public class SciNotes extends SwingScilabTab {
                 }
             }
         }
+    }
+
+    /**
+     * Execute an action on file
+     * @param fileName the name of the file
+     * @param action the action
+     */
+    public static void executeAction(String fileName, ActionOnDocument action) throws IOException {
+        Charset charset = null;
+        try {
+            charset = ScilabEditorKit.tryToGuessEncoding(new File(fileName));
+        } catch (CharacterCodingException e) {
+            throw new IOException(SciNotesMessages.CANNOT_GUESS_ENCODING + ": " + fileName);
+        }
+        FileInputStream fis = new FileInputStream(fileName);
+        InputStreamReader isr = new InputStreamReader(fis, charset);
+        BufferedReader reader = new BufferedReader(isr);
+        ScilabDocument doc = new ScilabDocument();
+        ScilabEditorKit kit = new ScilabEditorKit();
+        try {
+            kit.read(reader, doc, 0);
+        } catch (BadLocationException e) {
+            System.err.println(e);
+        }
+
+        doc.addDocumentListener(doc);
+        if (!doc.getBinary()) {
+            action.actionOn(doc);
+        }
+
+        reader.close();
+        if (doc.isContentModified()) {
+            SaveFile.doSave(doc, new File(fileName), kit);
+        }
+    }
+
+    /**
+     * Execute an action on file
+     * @param fileName the name of the file
+     * @param actionsName the actions as an array
+     */
+    public static boolean executeAction(String fileName, final String[] actionsName) throws IOException {
+        final boolean[] hasAction = new boolean[] { false };
+        ActionOnDocument action = new ActionOnDocument() {
+                public void actionOn(ScilabDocument doc) throws IOException {
+                    for (String act : actionsName) {
+                        if (act.equalsIgnoreCase("indent")) {
+                            hasAction[0] = true;
+                            org.scilab.modules.scinotes.actions.IndentAction.getActionOnDocument().actionOn(doc);
+                        } else if (act.equalsIgnoreCase("trailing")) {
+                            hasAction[0] = true;
+                            org.scilab.modules.scinotes.actions.RemoveTrailingWhiteAction.getActionOnDocument().actionOn(doc);
+                        } else if (act.equalsIgnoreCase("quote")) {
+                            hasAction[0] = true;
+                            org.scilab.modules.scinotes.actions.DoubleQuoteStringAction.getActionOnDocument().actionOn(doc);
+                        }
+                    }
+                }
+            };
+
+        executeAction(fileName, action);
+
+        return hasAction[0];
+    }
+
+    /**
+     * Execute an action on file
+     * @param fileName the name of the file
+     * @param acts actions separated with , or ;
+     */
+    public static void executeAction(String fileName, String acts) throws IOException {
+        StringTokenizer toks = new StringTokenizer(acts, ",;");
+        String[] actions = new String[toks.countTokens()];
+        for (int i = 0; i < actions.length; i++) {
+            actions[i] = toks.nextToken();
+        }
+        executeAction(fileName, actions);
+    }
+
+    /**
+     * An interface to implement to execute an action on a document
+     */
+    public static interface ActionOnDocument {
+
+        public void actionOn(ScilabDocument doc) throws IOException;
     }
 }

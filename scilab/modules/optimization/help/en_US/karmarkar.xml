@@ -734,6 +734,68 @@ Iter# 69: done (x*), f=-1.250e+000, x=[5.005e-001 7.495e-001], gap=7.035e-006
 ]]></screen>
     </refsection>
     <refsection>
+        <title>Configuring the scaling factor</title>
+        <para>
+           In some cases, the default value of the scaling factor <literal>gam</literal>
+           does not make the algorithm convergent. To make it converge, we may reduce the
+           value of <literal>gam</literal>. The next script shows two results: First with
+           <literal>gam=0.5</literal> and second with <literal>gam=0.3</literal>.
+        </para>
+        <programlisting role="example"><![CDATA[
+    A = [-0.1548,-0.0909,-0.0014,-0.0001;0.0989,-0.0884,0.0004,0];
+    B = [0.1966354;0.2167484];
+    C = [0.2056;0.0908;0.0012;0];
+    lb = [0;0;0;0];
+    //Test with default value (gam=0.5)
+    [xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],C,[],[],[],[],[],A,B,lb)
+    //Test reducing gam (gam=0.3)
+    gam=0.3;
+    [xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],C,[],[],gam,[],[],A,B,lb)
+]]></programlisting>
+        <para>
+           The previous script produces the following output.
+        </para>
+        <screen><![CDATA[
+-->[xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],C,[],[],[],[],[],A,B,lb)
+    yopt  =
+
+    ineqlin: [2x1 constant]
+    eqlin: [0x0 constant]
+    lower: [4x1 constant]
+    upper: [4x1 constant]
+    iter  =
+    94.
+    exitflag  =
+    - 2.
+    fopt  =
+    - 0.0003129
+    xopt  =
+    - 0.0010041
+    - 0.0011719
+    0.0000007
+    0.7218612
+
+-->[xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],C,[],[],gam,[],[],A,B,lb)
+    yopt  =
+
+    ineqlin: [2x1 constant]
+    eqlin: [0x0 constant]
+    lower: [4x1 constant]
+    upper: [4x1 constant]
+    iter  =
+    172.
+    exitflag  =
+    1.
+    fopt  =
+    0.0000005
+    xopt  =
+    0.0000016
+    0.0000015
+    2.811D-08
+    0.7349402
+]]></screen>
+    </refsection>
+    <refsection>
         <title>Infeasible problem</title>
         <para>
             Consider the following linear optimization problem.

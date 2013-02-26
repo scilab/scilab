@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009-2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,6 +16,7 @@ package org.scilab.modules.graph.actions.base;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.lang.ref.WeakReference;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -41,11 +42,11 @@ import com.mxgraph.swing.mxGraphComponent;
  * Default action for a Scilab Graph
  */
 public abstract class DefaultAction extends CommonCallBack {
-    private final ScilabGraph scilabGraph;
+    private final WeakReference<ScilabGraph> scilabGraph;
 
     /**
      * Default constructor.
-     * 
+     *
      * The {@link AbstractAction} object is configured using the reflection API.
      * So you have to be sure that the following fields are declared as static
      * final fields of each subclasses.
@@ -57,13 +58,13 @@ public abstract class DefaultAction extends CommonCallBack {
      * {@link KeyEvent})</li>
      * <li>int ACCELERATOR_KEY : The key mask to apply to the mnemonic</li>
      * </ul>
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      */
     public DefaultAction(ScilabGraph scilabGraph) {
         super("");
-        this.scilabGraph = scilabGraph;
+        this.scilabGraph = new WeakReference<ScilabGraph>(scilabGraph);
 
         installProperties();
     }
@@ -111,7 +112,7 @@ public abstract class DefaultAction extends CommonCallBack {
          * Set up the accelerator instead of the mnemonic as the menu is the
          * preferred way on keyboard control. We are using Action.MNEMONIC_KEY
          * as keyboard key and Action.ACCELERATOR_KEY as a mask.
-         * 
+         *
          * Install it only when there is a real shortcut (with a mnemonic).
          */
         if (mnemonic != 0) {
@@ -122,14 +123,14 @@ public abstract class DefaultAction extends CommonCallBack {
 
     /**
      * Create a menu item associated with the graph
-     * 
+     *
      * @param graph
      *            the graph to work on
      * @param klass
      *            the associated klass
      * @return the menu item
      */
-    protected static MenuItem createMenu(ScilabGraph graph, final Class<? extends DefaultAction> klass) {
+    protected static MenuItem createMenu(ScilabGraph graph, final Class <? extends DefaultAction > klass) {
         DefaultAction action = GraphActionManager.getInstance(graph, klass);
         MenuItem item = ScilabMenuItem.createMenuItem();
 
@@ -141,14 +142,14 @@ public abstract class DefaultAction extends CommonCallBack {
 
     /**
      * Create a menu item associated with the graph
-     * 
+     *
      * @param graph
      *            the graph to work on
      * @param klass
      *            the associated klass
      * @return the push button
      */
-    protected static PushButton createButton(ScilabGraph graph, final Class<? extends DefaultAction> klass) {
+    protected static PushButton createButton(ScilabGraph graph, final Class <? extends DefaultAction > klass) {
         DefaultAction action = GraphActionManager.getInstance(graph, klass);
         PushButton item = ScilabPushButton.createPushButton();
 
@@ -163,14 +164,14 @@ public abstract class DefaultAction extends CommonCallBack {
 
     /**
      * Create a menu item associated with the graph
-     * 
+     *
      * @param graph
      *            the graph to work on
      * @param klass
      *            the associated klass
      * @return the checkbox item
      */
-    protected static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph graph, Class<? extends DefaultAction> klass) {
+    protected static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph graph, Class <? extends DefaultAction > klass) {
         DefaultAction action = GraphActionManager.getInstance(graph, klass);
         CheckBoxMenuItem item = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
 
@@ -182,7 +183,7 @@ public abstract class DefaultAction extends CommonCallBack {
 
     /**
      * Constructor
-     * 
+     *
      * @param label
      *            action descriptor
      * @param scilabGraph
@@ -191,19 +192,20 @@ public abstract class DefaultAction extends CommonCallBack {
     @Deprecated
     protected DefaultAction(String label, ScilabGraph scilabGraph) {
         super(label);
-        this.scilabGraph = scilabGraph;
+        this.scilabGraph = new WeakReference<ScilabGraph>(scilabGraph);
     }
 
     /**
      * Get associated graph
-     * 
+     *
      * @param e
      *            event
      * @return Returns the graph for the given action event.
      */
     protected final ScilabGraph getGraph(ActionEvent e) {
-        if (this.scilabGraph != null) {
-            return this.scilabGraph;
+        final ScilabGraph graph = scilabGraph.get();
+        if (graph != null) {
+            return graph;
         }
 
         if (e == null) {
@@ -225,7 +227,7 @@ public abstract class DefaultAction extends CommonCallBack {
 
     /**
      * Create a button for a graph toolbar
-     * 
+     *
      * @param title
      *            label of the menu
      * @param icon
@@ -251,7 +253,7 @@ public abstract class DefaultAction extends CommonCallBack {
 
     /**
      * Action
-     * 
+     *
      * @param e
      *            parameters
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
@@ -261,7 +263,7 @@ public abstract class DefaultAction extends CommonCallBack {
 
     /**
      * Not used
-     * 
+     *
      * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
      */
     @Override
