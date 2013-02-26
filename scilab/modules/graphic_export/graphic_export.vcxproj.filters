@@ -101,9 +101,6 @@
     <ClInclude Include="includes\gw_graphic_export.h">
       <Filter>Header Files\h</Filter>
     </ClInclude>
-    <ClInclude Include="includes\xs2file.h">
-      <Filter>Header Files\h</Filter>
-    </ClInclude>
     <ClInclude Include="src\cpp\exportToFile.hxx">
       <Filter>Header Files\hxx</Filter>
     </ClInclude>
