@@ -19,14 +19,13 @@
 #define NULL 0
 
 #include <crtdefs.h>
-#include "ExportImport.h" /* IMPORT_EXPORT_MALLOC_DLL */
 
 
-IMPORT_EXPORT_MALLOC_DLL void *MyHeapRealloc(void *lpAddress, size_t dwSize,char *file,int line);
-IMPORT_EXPORT_MALLOC_DLL void *MyHeapAlloc(size_t dwSize, char *file, int line);
-IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(void *lpAddress, char *file, int line);
-IMPORT_EXPORT_MALLOC_DLL void *MyVirtualAlloc(size_t dwSize, char *file, int line);
-IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(void *lpAddress, char *file, int line);
+void *MyHeapRealloc(void *lpAddress, size_t dwSize, char *file, int line);
+void *MyHeapAlloc(size_t dwSize, char *file, int line);
+void MyHeapFree(void *lpAddress, char *file, int line);
+void *MyVirtualAlloc(size_t dwSize, char *file, int line);
+void MyVirtualFree(void *lpAddress, char *file, int line);
 
 
 

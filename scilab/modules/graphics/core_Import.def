@@ -65,3 +65,6 @@ sciReturnUserData
 stack_
 vartype_
 vstk_
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

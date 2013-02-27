@@ -8,3 +8,5 @@ getScilabMode
 com_
 freeArrayOfString
 overload_
+MyHeapAlloc
+MyHeapFree

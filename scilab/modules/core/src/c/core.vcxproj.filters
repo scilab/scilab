@@ -473,6 +473,12 @@
     <ClCompile Include="sci_tools.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="getmaxMALLOC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="win_mem_alloc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="banier.h">
@@ -788,6 +794,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\stackTypeVariable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\MALLOC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getmaxMALLOC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\win_mem_alloc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -12,6 +12,12 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{a991e3b4-6864-4a2b-989d-04a85a7a1894}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{c0377fc0-dc73-4733-8c4d-c7523f6e38dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Imports">
+      <UniqueIdentifier>{e68242bd-b4cd-4f3e-86f8-327f2a3702d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dllmainhashtable.c">
@@ -45,5 +51,10 @@
     <ResourceCompile Include="hashtable.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="core_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -19,4 +19,5 @@ createlistvarfromptr_
 check_vector
 returnanan_
 isanan_
-;
+MyHeapAlloc
+MyHeapFree

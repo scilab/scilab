@@ -7,3 +7,5 @@ callFunctionFromGateway
 getScilabMode
 com_
 getSCIHOME
+MyHeapAlloc
+MyHeapFree

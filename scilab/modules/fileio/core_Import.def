@@ -28,4 +28,6 @@ getScilabMode
 overload_
 xscion_
 getwsmat_
-
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

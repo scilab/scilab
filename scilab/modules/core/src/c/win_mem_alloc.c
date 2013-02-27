@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2005 - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -14,7 +14,8 @@
 #include <string.h>
 #include <memory.h>
 #include <Windows.h>
-#include "../includes/win_mem_alloc.h"
+#include "MALLOC.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 /* an interesting article about HeapAlloc,malloc, and OctAlloc */
 /* bench show that HeapAlloc is faster than malloc on Windows */
@@ -24,7 +25,7 @@
 /*-----------------------------------------------------------------------------------*/
 #define FREE_FLAGS 0
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void *MyHeapRealloc(void *lpAddress, size_t dwSize, char *file, int line)
+void *MyHeapRealloc(void *lpAddress, size_t dwSize, char *file, int line)
 {
     LPVOID NewPointer = NULL;
     SIZE_T precSize = 0;
@@ -44,23 +45,21 @@ IMPORT_EXPORT_MALLOC_DLL void *MyHeapRealloc(void *lpAddress, size_t dwSize, cha
         NewPointer = malloc(dwSize);
         NewPointer = memset (NewPointer, 0, dwSize);
 
+#ifdef _DEBUG
         if (NewPointer == NULL)
         {
-#ifdef _DEBUG
-            char MsgError[1024];
-            wsprintf(MsgError,"REALLOC (1) Error File %s Line %d ", file, line);
-            MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-#endif
+            sciprint("REALLOC (1) Error File %s Line %d ", file, line);
         }
+#endif
     }
     return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void *MyHeapAlloc(size_t dwSize, char *file, int line)
+void *MyHeapAlloc(size_t dwSize, char *file, int line)
 {
     LPVOID NewPointer = NULL;
 
-    if (dwSize>0)
+    if (dwSize > 0)
     {
         _try
         {
@@ -71,21 +70,17 @@ IMPORT_EXPORT_MALLOC_DLL void *MyHeapAlloc(size_t dwSize, char *file, int line)
         {
         }
 
+#ifdef _DEBUG
         if (NewPointer == NULL)
         {
-#ifdef _DEBUG
-            char MsgError[1024];
-            wsprintf(MsgError,"MALLOC (1) Error File %s Line %d ",file, line);
-            MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-#endif
+            sciprint("MALLOC (1) Error File %s Line %d ", file, line);
         }
+#endif
     }
     else
     {
 #ifdef _DEBUG
-        char MsgError[1024];
-        wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ", file, line);
-        MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+        sciprint("MALLOC (2) Error File %s Line %d ", file, line);
 #endif
         _try
         {
@@ -99,7 +94,7 @@ IMPORT_EXPORT_MALLOC_DLL void *MyHeapAlloc(size_t dwSize, char *file, int line)
     return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(void *lpAddress, char *file, int line)
+void MyHeapFree(void *lpAddress, char *file, int line)
 {
     _try
     {
@@ -108,18 +103,16 @@ IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(void *lpAddress, char *file, int line)
     _except (EXCEPTION_EXECUTE_HANDLER)
     {
 #ifdef _DEBUG
-        char MsgError[1024];
-        wsprintf(MsgError,"FREE Error File %s Line %d ", file, line);
-        MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+        sciprint("FREE Error File %s Line %d ", file, line);
 #endif
     }
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void *MyVirtualAlloc(size_t dwSize, char *file, int line)
+void *MyVirtualAlloc(size_t dwSize, char *file, int line)
 {
     LPVOID NewPointer = NULL;
 
-    if (dwSize>0)
+    if (dwSize > 0)
     {
         _try
         {
@@ -130,21 +123,17 @@ IMPORT_EXPORT_MALLOC_DLL void *MyVirtualAlloc(size_t dwSize, char *file, int lin
         {
         }
 
+#ifdef _DEBUG
         if (NewPointer == NULL)
         {
-#ifdef _DEBUG
-            char MsgError[1024];
-            wsprintf(MsgError,"MALLOC ( 1) Error File %s Line %d ", file, line);
-            MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-#endif
+            sciprint("MALLOC ( 1) Error File %s Line %d ", file, line);
         }
+#endif
     }
     else
     {
 #ifdef _DEBUG
-        char MsgError[1024];
-        wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ", file, line);
-        MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+        sciprint("MALLOC (2) Error File %s Line %d ", file, line);
 #endif
 
         _try
@@ -161,9 +150,9 @@ IMPORT_EXPORT_MALLOC_DLL void *MyVirtualAlloc(size_t dwSize, char *file, int lin
     return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(void *lpAddress, char *file, int line)
+void MyVirtualFree(void *lpAddress, char *file, int line)
 {
-    if (lpAddress) 
+    if (lpAddress)
     {
         _try
         {

@@ -5,6 +5,5 @@
 
 # The order DOES matter !!!
 SUBDIRS = \
-	MALLOC \
 	hashtable
 

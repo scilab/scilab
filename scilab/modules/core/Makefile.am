@@ -96,7 +96,9 @@ src/c/setieee.c \
 src/c/setlines.c \
 src/c/setformat.c \
 src/c/InitializePreferences.c \
-src/c/sci_tools.c
+src/c/sci_tools.c \
+src/c/sci_mem_alloc.c \
+src/c/getmaxMALLOC.c
 
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
@@ -376,7 +378,11 @@ includes/version.h \
 includes/getversion.h \
 includes/warningmode.h \
 includes/Thread_Wrapper.h \
-includes/backtrace_print.h
+includes/backtrace_print.h \
+includes/MALLOC.h \
+includes/getmaxMALLOC.h \
+includes/sci_mem_alloc.h \
+includes/ExportImport.h
 
 if GUI
 USEANT=1

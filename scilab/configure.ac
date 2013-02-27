@@ -1785,7 +1785,6 @@ AC_SUBST(SCI_FFLAGS)
 AC_SUBST(SCI_LDFLAGS)
 
 AC_CONFIG_FILES([
-libs/MALLOC/Makefile
 libs/hashtable/Makefile
 contrib/Makefile
 desktop/images/icons/Makefile

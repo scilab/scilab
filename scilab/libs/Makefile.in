@@ -384,7 +384,6 @@ top_srcdir = @top_srcdir@
 
 # The order DOES matter !!!
 SUBDIRS = \
-	MALLOC \
 	hashtable
 
 all: all-recursive

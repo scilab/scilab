@@ -4,7 +4,7 @@
 #include "hashtable_private.h"
 #include "hashtable_itr.h"
 #include <stdlib.h> /* defines NULL */
-#include "../MALLOC/includes/MALLOC.h"
+#include "../../modules/core/includes/MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /* hashtable_iterator    - iterator constructor */
 

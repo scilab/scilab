@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/MALLOC/includes;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -110,7 +110,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/MALLOC/includes;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -142,7 +142,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/MALLOC/includes;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -182,7 +182,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/MALLOC/includes;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -285,10 +285,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
   <ItemGroup>
     <ProjectReference Include="..\..\libs\GetWindowsVersion\GetWindowsVersion.vcxproj">
       <Project>{982bf37f-42c4-4d37-8d14-60521b141503}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">

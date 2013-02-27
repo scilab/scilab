@@ -84,6 +84,8 @@ void * MyCalloc(size_t x, size_t y, const char *file, int line)
 void MyFree(void *x)
 {
     if (x != NULL)
+    {
         free(x);
+    }
 }
 /*-----------------------------------------------------------------------------------*/

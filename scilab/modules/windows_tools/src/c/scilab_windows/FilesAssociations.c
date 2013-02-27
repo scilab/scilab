@@ -22,7 +22,7 @@
 #include <shlwapi.h>
 #include "version.h"
 #include "FilesAssociations.h"
-#include "win_mem_alloc.h" /* MALLOC */
+#include "MALLOC.h"
 #include "FindScilab.h"
 #include "wmcopydata.h"
 #include "strdup_windows.h"
@@ -55,7 +55,7 @@ static BOOL IsASciNotesFileTST(char *chainefichier);
 BOOL IsABinOrSavFile(char *chainefichier)
 {
     if ( isGoodExtension(chainefichier, ".BIN") || isGoodExtension(chainefichier, ".SAV")
-        || isGoodExtension(chainefichier, ".SOD") )
+            || isGoodExtension(chainefichier, ".SOD") )
     {
         return TRUE;
     }
@@ -67,7 +67,10 @@ BOOL IsAScicosFile(char *chainefichier)
     if ( IsAScicosFileCOS(chainefichier) ||
             IsAScicosFileCOSF(chainefichier) ||
             IsAScicosFileXCOS(chainefichier) ||
-            IsAScicosFileZCOS(chainefichier) ) return TRUE;
+            IsAScicosFileZCOS(chainefichier) )
+    {
+        return TRUE;
+    }
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
@@ -95,7 +98,10 @@ BOOL IsASciNotesFile(char *chainefichier)
 {
     if ( IsASciNotesFileSCE(chainefichier) ||
             IsASciNotesFileSCI(chainefichier) ||
-            IsASciNotesFileTST(chainefichier) ) return TRUE;
+            IsASciNotesFileTST(chainefichier) )
+    {
+        return TRUE;
+    }
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
@@ -260,8 +266,14 @@ static void ReplaceSlash(char *pathout, char *pathin)
     int i = 0;
     for ( i = 0; i < (int)strlen(pathin); i++)
     {
-        if ( pathin[i] == '\\' ) pathout[i] = '/';
-        else pathout[i] = pathin[i];
+        if ( pathin[i] == '\\' )
+        {
+            pathout[i] = '/';
+        }
+        else
+        {
+            pathout[i] = pathin[i];
+        }
     }
     pathout[i] = '\0';
 }
@@ -271,7 +283,10 @@ static BOOL isGoodExtension(char *chainefichier, char *ext)
     char *ExtensionFilename = PathFindExtension(chainefichier);
     if (ExtensionFilename)
     {
-        if ( _stricmp(ExtensionFilename, ext) == 0 ) return TRUE;
+        if ( _stricmp(ExtensionFilename, ext) == 0 )
+        {
+            return TRUE;
+        }
     }
     return FALSE;
 }

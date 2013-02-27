@@ -2,9 +2,9 @@ LIBRARY    core.dll
 
 
 EXPORTS
-;
 ; core
 namstr_
 freeArrayOfString
-
-;
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc
