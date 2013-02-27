@@ -119,6 +119,9 @@ Xcos
 
 * Bug #10434 fixed - loadXcosLibs changed the predef value.
 
+* Bug #10435 fixed - Undo in superdiagram did not update superblock ports
+                     and links.
+
 * Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
 
 * Bug #11193 fixed - Lincos did not honor context values.

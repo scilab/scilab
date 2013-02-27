@@ -462,7 +462,21 @@ public class XcosDiagram extends ScilabGraph {
 
             BlockPositioning.updateBlockView(updatedBlock);
 
+            // force super block to refresh
             diagram.getView().clear(updatedBlock, true, true);
+
+            // force links connected to super block to refresh
+            final int childCount = diagram.getModel().getChildCount(updatedBlock);
+            for (int i = 0; i < childCount; i++) {
+                final Object port = diagram.getModel().getChildAt(updatedBlock, i);
+
+                final int edgeCount = diagram.getModel().getEdgeCount(port);
+                for (int j = 0; j < edgeCount; j++) {
+                    final Object edge = diagram.getModel().getEdgeAt(port, j);
+                    diagram.getView().clear(edge,  true,  true);
+                }
+            }
+
             diagram.getView().validate();
             diagram.repaint();
         }
@@ -518,6 +532,13 @@ public class XcosDiagram extends ScilabGraph {
                         // some BasiBlock fields
                         if (changes.get(0) instanceof mxStyleChange) {
                             current.updateFieldsFromStyle();
+                        }
+
+                        // update the superblock container ports if the block is inside a superblock diagram
+                        if (current.getParentDiagram() instanceof SuperBlockDiagram) {
+                            SuperBlockDiagram superdiagram = (SuperBlockDiagram) current.getParentDiagram();
+                            SuperBlock superblock = superdiagram.getContainer();
+                            superblock.updateExportedPort();
                         }
 
                         // Update the block position
