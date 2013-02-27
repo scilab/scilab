@@ -118,8 +118,7 @@ libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS)
 #libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
 
 EXTERNAL_LIBS = $(top_builddir)/libs/hashtable/libscihashtable.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la  \
-$(top_builddir)/libs/libst/libscilibst.la
+$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 
 GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \

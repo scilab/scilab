@@ -1788,7 +1788,6 @@ AC_CONFIG_FILES([
 libs/MALLOC/Makefile
 libs/dynamiclibrary/Makefile
 libs/hashtable/Makefile
-libs/libst/Makefile
 contrib/Makefile
 desktop/images/icons/Makefile
 desktop/Makefile

@@ -126,9 +126,6 @@
     <ClCompile Include="src\c\mget.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mgeti.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\mgetl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -324,6 +321,12 @@
     <ClCompile Include="sci_gateway\c\sci_tempname.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\convert_tools.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\mgeti.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\addfile.h">
@@ -492,6 +495,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\readline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\convert_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

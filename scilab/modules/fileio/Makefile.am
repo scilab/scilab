@@ -55,7 +55,8 @@ src/c/getFullFilename.c \
 src/c/mputl.c \
 src/c/fscanfMat.c \
 src/c/fprintfMat.c \
-src/c/createtempfilename.c
+src/c/createtempfilename.c \
+src/c/convert_tools.c
 
 
 GATEWAY_SOURCES = \

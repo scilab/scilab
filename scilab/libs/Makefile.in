@@ -386,7 +386,6 @@ top_srcdir = @top_srcdir@
 SUBDIRS = \
 	MALLOC \
 	hashtable \
-	libst \
 	dynamiclibrary
 
 all: all-recursive

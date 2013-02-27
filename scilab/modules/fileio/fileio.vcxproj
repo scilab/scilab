@@ -204,6 +204,7 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="src\c\addfile.c" />
     <ClCompile Include="src\c\basename.c" />
     <ClCompile Include="src\c\cluni0.c" />
+    <ClCompile Include="src\c\convert_tools.c" />
     <ClCompile Include="src\c\copyfile_windows.c" />
     <ClCompile Include="src\c\createdirectory.c" />
     <ClCompile Include="src\c\createtempfilename.c" />
@@ -358,6 +359,7 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="includes\splitpath.h" />
     <ClInclude Include="src\c\Status2Mode.h" />
     <ClInclude Include="includes\URIFileToFilename.h" />
+    <ClInclude Include="src\c\convert_tools.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\fileio.rc" />
@@ -373,10 +375,6 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <None Include="Makefile.am" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\libst\libst.vcxproj">
-      <Project>{fbf44619-6c9b-4400-940c-9147d81eb340}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
       <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
