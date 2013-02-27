@@ -38,6 +38,7 @@
 
 
 
+
 VPATH = @srcdir@
 am__make_dryrun = \
   { \
@@ -74,7 +75,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(libscidynamic_link_la_include_HEADERS) \
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/dynamic_link
@@ -133,14 +135,16 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_etcdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_rootdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscidynamic_link_la_scriptdir)"
+	"$(DESTDIR)$(libscidynamic_link_la_scriptdir)" \
+	"$(DESTDIR)$(libscidynamic_link_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscidynamic_link_algo_la_LIBADD =
 am__objects_1 = libscidynamic_link_algo_la-addinter.lo \
 	libscidynamic_link_algo_la-dynamic_link.lo \
 	libscidynamic_link_algo_la-dl_genErrorMessage.lo \
 	libscidynamic_link_algo_la-GetFunctionByName.lo \
-	libscidynamic_link_algo_la-ilib_verbose.lo
+	libscidynamic_link_algo_la-ilib_verbose.lo \
+	libscidynamic_link_algo_la-dynamiclibrary_others.lo
 am_libscidynamic_link_algo_la_OBJECTS = $(am__objects_1)
 libscidynamic_link_algo_la_OBJECTS =  \
 	$(am_libscidynamic_link_algo_la_OBJECTS)
@@ -195,6 +199,7 @@ DATA = $(libscidynamic_link_la_etc_DATA) \
 	$(libscidynamic_link_la_root_DATA) \
 	$(libscidynamic_link_la_sci_gateway_DATA) \
 	$(libscidynamic_link_la_script_DATA)
+HEADERS = $(libscidynamic_link_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -455,7 +460,8 @@ DYNAMIC_LINK_C_SOURCES = src/c/addinter.c \
 src/c/dynamic_link.c \
 src/c/dl_genErrorMessage.c \
 src/c/GetFunctionByName.c \
-src/c/ilib_verbose.c
+src/c/ilib_verbose.c \
+src/c/dynamiclibrary_others.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_dynamic_link.c \
 sci_gateway/c/sci_getdynlibext.c \
@@ -474,7 +480,6 @@ libscidynamic_link_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/string/includes/ \
 -I$(top_srcdir)/modules/io/includes/ \
--I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 -I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(srcdir)/includes/ \
@@ -483,6 +488,10 @@ $(AM_CPPFLAGS)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscidynamic_link.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscidynamic_link-algo.la libscidynamic_link.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscidynamic_link-algo.la
+libscidynamic_link_la_includedir = $(pkgincludedir)
+libscidynamic_link_la_include_HEADERS = includes/dynamiclibrary_others.h \
+includes/dynamiclibrary.h
+
 libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES)
 libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscidynamic_link_algo_la_CPPFLAGS = $(libscidynamic_link_la_CPPFLAGS)
@@ -728,6 +737,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_algo_la-addinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_algo_la-dl_genErrorMessage.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_algo_la-dynamic_link.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary_others.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_algo_la-ilib_verbose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-gw_dynamic_link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-sci_addinter.Plo@am__quote@
@@ -793,6 +803,13 @@ libscidynamic_link_algo_la-ilib_verbose.lo: src/c/ilib_verbose.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ilib_verbose.c' object='libscidynamic_link_algo_la-ilib_verbose.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_algo_la-ilib_verbose.lo `test -f 'src/c/ilib_verbose.c' || echo '$(srcdir)/'`src/c/ilib_verbose.c
+
+libscidynamic_link_algo_la-dynamiclibrary_others.lo: src/c/dynamiclibrary_others.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidynamic_link_algo_la-dynamiclibrary_others.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary_others.Tpo -c -o libscidynamic_link_algo_la-dynamiclibrary_others.lo `test -f 'src/c/dynamiclibrary_others.c' || echo '$(srcdir)/'`src/c/dynamiclibrary_others.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary_others.Tpo $(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary_others.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dynamiclibrary_others.c' object='libscidynamic_link_algo_la-dynamiclibrary_others.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_algo_la-dynamiclibrary_others.lo `test -f 'src/c/dynamiclibrary_others.c' || echo '$(srcdir)/'`src/c/dynamiclibrary_others.c
 
 libscidynamic_link_la-gw_dynamic_link.lo: sci_gateway/c/gw_dynamic_link.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-gw_dynamic_link.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-gw_dynamic_link.Tpo -c -o libscidynamic_link_la-gw_dynamic_link.lo `test -f 'sci_gateway/c/gw_dynamic_link.c' || echo '$(srcdir)/'`sci_gateway/c/gw_dynamic_link.c
@@ -951,6 +968,27 @@ uninstall-libscidynamic_link_la_scriptDATA:
 	@list='$(libscidynamic_link_la_script_DATA)'; test -n "$(libscidynamic_link_la_scriptdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscidynamic_link_la_scriptdir)'; $(am__uninstall_files_from_dir)
+install-libscidynamic_link_la_includeHEADERS: $(libscidynamic_link_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	@list='$(libscidynamic_link_la_include_HEADERS)'; test -n "$(libscidynamic_link_la_includedir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libscidynamic_link_la_includedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libscidynamic_link_la_includedir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscidynamic_link_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscidynamic_link_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscidynamic_link_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscidynamic_link_la_include_HEADERS)'; test -n "$(libscidynamic_link_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libscidynamic_link_la_includedir)'; $(am__uninstall_files_from_dir)
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1037,9 +1075,10 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(SCRIPTS) $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) $(SCRIPTS) $(DATA) $(HEADERS) \
+		all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)" "$(DESTDIR)$(libscidynamic_link_la_etcdir)" "$(DESTDIR)$(libscidynamic_link_la_rootdir)" "$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)" "$(DESTDIR)$(libscidynamic_link_la_etcdir)" "$(DESTDIR)$(libscidynamic_link_la_rootdir)" "$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)" "$(DESTDIR)$(libscidynamic_link_la_scriptdir)" "$(DESTDIR)$(libscidynamic_link_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1098,6 +1137,7 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscidynamic_link_la_etcDATA \
+	install-libscidynamic_link_la_includeHEADERS \
 	install-libscidynamic_link_la_rootDATA \
 	install-libscidynamic_link_la_sci_gatewayDATA \
 	install-libscidynamic_link_la_scriptDATA \
@@ -1148,6 +1188,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
+	uninstall-libscidynamic_link_la_includeHEADERS \
 	uninstall-libscidynamic_link_la_rootDATA \
 	uninstall-libscidynamic_link_la_sci_gatewayDATA \
 	uninstall-libscidynamic_link_la_scriptDATA \
@@ -1166,6 +1207,7 @@ uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscidynamic_link_la_etcDATA \
+	install-libscidynamic_link_la_includeHEADERS \
 	install-libscidynamic_link_la_rootDATA \
 	install-libscidynamic_link_la_sci_gatewayDATA \
 	install-libscidynamic_link_la_scriptDATA \
@@ -1177,6 +1219,7 @@ uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
 	uninstall-libscidynamic_link_la_etcDATA \
+	uninstall-libscidynamic_link_la_includeHEADERS \
 	uninstall-libscidynamic_link_la_rootDATA \
 	uninstall-libscidynamic_link_la_sci_gatewayDATA \
 	uninstall-libscidynamic_link_la_scriptDATA \

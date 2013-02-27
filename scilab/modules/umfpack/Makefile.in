@@ -523,7 +523,7 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_TRUE@libsciumfpack_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @UMFPACK_TRUE@			-I$(srcdir)/src/c/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
-@UMFPACK_TRUE@			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+@UMFPACK_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \

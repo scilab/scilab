@@ -385,8 +385,7 @@ top_srcdir = @top_srcdir@
 # The order DOES matter !!!
 SUBDIRS = \
 	MALLOC \
-	hashtable \
-	dynamiclibrary
+	hashtable
 
 all: all-recursive
 

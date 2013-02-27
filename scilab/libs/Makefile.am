@@ -6,6 +6,5 @@
 # The order DOES matter !!!
 SUBDIRS = \
 	MALLOC \
-	hashtable \
-	dynamiclibrary
+	hashtable
 
