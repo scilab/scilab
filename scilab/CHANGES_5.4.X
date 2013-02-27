@@ -130,6 +130,8 @@ Xcos
 
 * Bug #11821 fixed - Running XcosPalAdd example from help led to deadlock
 
+* Bug #11871 fixed - Connectors were misaligned after Undo command.
+
 * Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
                      Scilab crash.
 

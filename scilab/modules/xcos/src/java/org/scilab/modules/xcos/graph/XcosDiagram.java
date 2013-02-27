@@ -543,6 +543,23 @@ public class XcosDiagram extends ScilabGraph {
 
                         // Update the block position
                         BlockPositioning.updateBlockView(current);
+
+                        // force a refresh of the block ports and links connected to these ports
+                        final int childCount = current.getParentDiagram().getModel().getChildCount(current);
+                        for (int i = 0; i < childCount; i++) {
+                            final Object port = current.getParentDiagram().getModel().getChildAt(current, i);
+                            current.getParentDiagram().getView().clear(port,  true,  true);
+                            final int edgeCount = current.getParentDiagram().getModel().getEdgeCount(port);
+                            for (int j = 0; j < edgeCount; j++) {
+                                final Object edge = current.getParentDiagram().getModel().getEdgeAt(port, j);
+                                current.getParentDiagram().getView().clear(edge,  true,  true);
+                            }
+                        }
+                        // force a refresh of the block
+                        current.getParentDiagram().getView().clear(current, true, true);
+
+                        current.getParentDiagram().getView().validate();
+                        current.getParentDiagram().repaint();
                     }
                 }
             } finally {
