@@ -123,11 +123,13 @@ static void getCommandLine(void)
     {
 #ifndef _MSC_VER
         if (!isatty(fileno(stdin)))
+#else
+        if (!isatty(fileno(stdin)) && (fileno(stdin) != -2))
+#endif
         {
             __CommandLine = strdup("");
         }
         else
-#endif
         {
             /* Call Term Management for NW and NWNI to get a string */
             __CommandLine = getCmdLine();
