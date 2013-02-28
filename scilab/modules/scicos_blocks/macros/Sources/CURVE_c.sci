@@ -93,16 +93,13 @@ select job
 	ipar=[N;mtd;PO];
 	rpar=[];
 
-        if ~exists('curwin') then
-         gh = gcf();
-         curwin = gh.figure_id
-        end
-
-        save_curwin = curwin;
-	 curwin = max(winsid())+1; //** prepare a brand new win 
-         //** see below in this file; "poke_point" is very similar to "edit_curv"
-	 [orpar,oipar,ok] = poke_point(xy,ipar,rpar); //** HERE WE ARE +++++++++++++++++++++++++++++++++++  
-	curwin = save_curwin;
+	if (winsid() == []) then
+	  curwin = 0;
+	else
+	  curwin = max(winsid())+1; //** prepare a brand new win
+	end
+	//** see below in this file; "poke_point" is very similar to "edit_curv"
+	[orpar,oipar,ok] = poke_point(xy,ipar,rpar); //** HERE WE ARE +++++++++++++++++++++++++++++++++++
 	if ~ok then break;end;//  exit without save
 
 	// verifying the data change
