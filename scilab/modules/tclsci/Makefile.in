@@ -509,7 +509,6 @@ libscitclsci_la_LDFLAGS = $(TCLTK_LIBS) $(AM_LDFLAGS)
 libscitclsci_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c \
 			-I$(srcdir)/sci_gateway/c/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			$(TCL_INC_PATH) \
 			$(TK_INC_PATH) \
 			-I$(top_srcdir)/modules/action_binding/includes/ \

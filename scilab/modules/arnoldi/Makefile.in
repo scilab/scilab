@@ -440,7 +440,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_eigs.c
 
 libsciarnoldi_la_CPPFLAGS = \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
     -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \

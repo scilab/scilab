@@ -693,7 +693,6 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_percent_EObj_e.cpp \
 	sci_gateway/cpp/sci_percent_EObj_disp.cpp
 
 libsciexternal_objects_la_CFLAGS = -I$(srcdir)/includes/ \
-             -I$(top_srcdir)/libs/MALLOC/includes/ \
              -I$(top_srcdir)/modules/core/includes \
              -I$(top_srcdir)/modules/api_scilab/includes \
              -I$(top_srcdir)/modules/output_stream/includes \
@@ -703,7 +702,6 @@ libsciexternal_objects_la_CFLAGS = -I$(srcdir)/includes/ \
 libsciexternal_objects_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
     -I$(top_srcdir)/modules/localization/includes \
     -I$(top_srcdir)/modules/api_scilab/includes \
     -I$(top_srcdir)/modules/output_stream/includes \

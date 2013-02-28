@@ -53,7 +53,6 @@ libscigraphic_export_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/cpp/ \
 				-I$(srcdir)/src/jni/ \
 				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/localization/includes/ \
 				-I$(top_srcdir)/modules/jvm/includes/ \
@@ -92,7 +91,6 @@ endif
 libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.c
 
 libscigraphic_export_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \

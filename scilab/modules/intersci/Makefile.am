@@ -36,8 +36,7 @@ bin_PROGRAMS = intersci
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 
 libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
-
-libsciintersci_la_CPPFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
+libsciintersci_la_CPPFLAGS = \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(srcdir)/includes/ \
                 -I$(top_srcdir)/modules/string/includes/ \

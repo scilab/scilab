@@ -41,7 +41,6 @@ sci_gateway/fortran/sci_f_calerf.f
 # Includes need for the compilation
 libscispecial_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/core/src/c/ \
 -I$(top_srcdir)/modules/elementary_functions/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \

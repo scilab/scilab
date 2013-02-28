@@ -97,8 +97,8 @@ src/c/setlines.c \
 src/c/setformat.c \
 src/c/InitializePreferences.c \
 src/c/sci_tools.c \
-src/c/sci_mem_alloc.c \
 src/c/getmaxMALLOC.c \
+src/c/sci_mem_alloc.c \
 src/c/hashtable/hashtable.c \
 src/c/hashtable/hashtable_itr.c \
 src/c/hashtable/hashtable_utility.c
@@ -281,7 +281,6 @@ sci_gateway/fortran/sci_f_isglobal.f
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/intersci/includes/ \
 	-I$(top_srcdir)/modules/call_scilab/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
@@ -382,8 +381,6 @@ includes/getversion.h \
 includes/warningmode.h \
 includes/Thread_Wrapper.h \
 includes/backtrace_print.h \
-includes/MALLOC.h \
-includes/getmaxMALLOC.h \
 includes/sci_mem_alloc.h \
 includes/hashtable_itr.h \
 includes/hashtable.h \

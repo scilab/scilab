@@ -944,7 +944,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 @XCOS_TRUE@libsciscicos_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @XCOS_TRUE@			-I$(srcdir)/src/c/ \
-@XCOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/graphics/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \

@@ -46,7 +46,6 @@ libjavasci2_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			$(JAVA_JNI_INCLUDE) \
 			$(TCL_INC_PATH) \
 			$(TK_INC_PATH) \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/tclsci/includes/ \
 			-I$(top_srcdir)/modules/call_scilab/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
@@ -56,7 +55,6 @@ libjavasci2_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			$(AM_CPPFLAGS)
 
 libjavasci2_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/libscilab.la
 
