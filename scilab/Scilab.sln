@@ -210,8 +210,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sound", "modules\sound\soun
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "localization", "modules\localization\src\localization.vcxproj", "{ECFFEB0C-1EDA-45EE-9A10-B18143852E17}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hashtable", "libs\hashtable\hashtable.vcxproj", "{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm", "modules\jvm\libjvm.vcxproj", "{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GetWindowsVersion", "libs\GetWindowsVersion\GetWindowsVersion.vcxproj", "{982BF37F-42C4-4D37-8D14-60521B141503}"
@@ -819,14 +817,6 @@ Global
 		{ECFFEB0C-1EDA-45EE-9A10-B18143852E17}.Release|Win32.Build.0 = Release|Win32
 		{ECFFEB0C-1EDA-45EE-9A10-B18143852E17}.Release|x64.ActiveCfg = Release|x64
 		{ECFFEB0C-1EDA-45EE-9A10-B18143852E17}.Release|x64.Build.0 = Release|x64
-		{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}.Debug|Win32.ActiveCfg = Debug|Win32
-		{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}.Debug|Win32.Build.0 = Debug|Win32
-		{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}.Debug|x64.ActiveCfg = Debug|x64
-		{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}.Debug|x64.Build.0 = Debug|x64
-		{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}.Release|Win32.ActiveCfg = Release|Win32
-		{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}.Release|Win32.Build.0 = Release|Win32
-		{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}.Release|x64.ActiveCfg = Release|x64
-		{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}.Release|x64.Build.0 = Release|x64
 		{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}.Debug|Win32.ActiveCfg = Debug|Win32
 		{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}.Debug|Win32.Build.0 = Debug|Win32
 		{8BA2DDA8-BD04-4D4D-8EE6-6CAA955F7470}.Debug|x64.ActiveCfg = Debug|x64

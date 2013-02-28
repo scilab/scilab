@@ -98,7 +98,10 @@ src/c/setformat.c \
 src/c/InitializePreferences.c \
 src/c/sci_tools.c \
 src/c/sci_mem_alloc.c \
-src/c/getmaxMALLOC.c
+src/c/getmaxMALLOC.c \
+src/c/hashtable/hashtable.c \
+src/c/hashtable/hashtable_itr.c \
+src/c/hashtable/hashtable_utility.c
 
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
@@ -382,7 +385,10 @@ includes/backtrace_print.h \
 includes/MALLOC.h \
 includes/getmaxMALLOC.h \
 includes/sci_mem_alloc.h \
-includes/ExportImport.h
+includes/ExportImport.h \
+includes/hashtable_itr.h \
+includes/hashtable.h \
+includes/hashtable_utility.h
 
 if GUI
 USEANT=1

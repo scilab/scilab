@@ -45,7 +45,6 @@ Source: bin\GNU_gettext.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\zlib1.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\GetWindowsVersion.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\hashtable.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\scilab_windows.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -53,12 +52,10 @@ Source: bin\libxml2.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\pcre.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\pcreposix.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: bin\MALLOC.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\scilab_windows.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\hashtable.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\Scilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}

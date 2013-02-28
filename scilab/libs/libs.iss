@@ -12,10 +12,6 @@
 ; f2c directory
 Source: libs\f2c\f2c.h; DestDir: {app}\libs\f2c; Components: {#COMPN_SCILAB}
 ;
-;
-; hashtable directory
-Source: libs\hashtable\*.h; DestDir: {app}\libs\hashtable\includes; Components: {#COMPN_SCILAB}
-;
 ; intl used by localization
 Source: libs\intl\*.h; DestDir: {app}\libs\intl; Components: {#COMPN_SCILAB}
 ;

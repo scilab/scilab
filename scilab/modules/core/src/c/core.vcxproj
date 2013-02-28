@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -263,6 +263,9 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\c\gw_user.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_user2.c" />
     <ClCompile Include="..\cpp\hashtable_core.cpp" />
+    <ClCompile Include="hashtable\hashtable.c" />
+    <ClCompile Include="hashtable\hashtable_itr.c" />
+    <ClCompile Include="hashtable\hashtable_utility.c" />
     <ClCompile Include="ifexpr.c" />
     <ClCompile Include="inffic.c" />
     <ClCompile Include="inisci-c.c" />
@@ -379,6 +382,10 @@ cd ..
   <ItemGroup>
     <ClInclude Include="..\..\includes\backtrace_print.h" />
     <ClInclude Include="..\..\includes\getmaxMALLOC.h" />
+    <ClInclude Include="..\..\includes\hashtable.h" />
+    <ClInclude Include="..\..\includes\hashtable_itr.h" />
+    <ClInclude Include="..\..\includes\hashtable_private.h" />
+    <ClInclude Include="..\..\includes\hashtable_utility.h" />
     <ClInclude Include="..\..\includes\InitializePreferences.h" />
     <ClInclude Include="..\..\includes\MALLOC.h" />
     <ClInclude Include="..\..\includes\sci_types.h" />
