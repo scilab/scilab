@@ -40,8 +40,6 @@ Source: bin\svml_dispmd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\dynamiclibrary.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: bin\libst.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;
 ; used for localization
 Source: bin\libintl.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libintl.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
