@@ -26,8 +26,7 @@
  * Scicos only uses scalar tolerances, so we only need the scalar-scalar (SS) value for iTol.
  * --------------------------------
  */
-
-#define CV_SS  1
+#define LS_SS  1
 
 #define LS_NORMAL          1
 #define LS_ONE_STEP        2
@@ -260,7 +259,7 @@ int LSodarSStolerances(void * lsodar_mem, realtype reltol, realtype abstol)
 
     relTol = reltol;
     absTol = abstol;
-    iTol   = CV_SS;
+    iTol   = LS_SS;
 
     return (CV_SUCCESS);
 }
