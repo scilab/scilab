@@ -21,7 +21,7 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
 		f.immediate_drawing = "off";
 		colorbar(-2,2);
 		Sfgrayplot(-1:0.1:1,-1:0.1:1,Surf,strf="031",rect=[-1,-1,1,1]);
-		xtitle("Sfgrayplot demo: f(x,y)=x^3+y");
+		xtitle("$\Large f(x,y)=x^3+y$");
 		f.immediate_drawing = "on";
 		return
         elseif rhs < 3 then
