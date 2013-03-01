@@ -824,7 +824,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
                 break;
             default: // Unknown solver number
                 *ierr = 1000;
-                return;
+                return 0;
         }
         if (*ierr != 0)
         {
