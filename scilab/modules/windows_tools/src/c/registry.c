@@ -175,34 +175,37 @@ BOOL WindowsQueryRegistryList(char *ParamIn1, char *ParamIn2, int dimMax, char *
 /*--------------------------------------------------------------------------*/
 HKEY GetHkeyrootFromString(char *string)
 {
-    HKEY hkey = NULL;
-
-    if ( strcmp(string, "HKEY_CLASSES_ROOT") == 0 )
+    if ( strcmp(string, "HKEY_CLASSES_ROOT") == 0 || strcmp(string, "HKCR") == 0)
     {
-        hkey = HKEY_CLASSES_ROOT;
-    }
-    if ( strcmp(string, "HKEY_CURRENT_USER") == 0 )
-    {
-        hkey = HKEY_CURRENT_USER;
-    }
-    if ( strcmp(string, "HKEY_LOCAL_MACHINE") == 0 )
-    {
-        hkey = HKEY_LOCAL_MACHINE;
-    }
-    if ( strcmp(string, "HKEY_USERS") == 0 )
-    {
-        hkey = HKEY_USERS;
-    }
-    if ( strcmp(string, "HKEY_DYN_DATA") == 0 )
-    {
-        hkey = HKEY_DYN_DATA;
-    }
-    if ( strcmp(string, "HKEY_CURRENT_CONFIG") == 0 )
-    {
-        hkey = HKEY_CURRENT_CONFIG;
+        return HKEY_CLASSES_ROOT;
     }
 
-    return hkey;
+    if ( strcmp(string, "HKEY_CURRENT_USER") == 0 || strcmp(string, "HKCU") == 0 )
+    {
+        return HKEY_CURRENT_USER;
+    }
+
+    if ( strcmp(string, "HKEY_LOCAL_MACHINE") == 0 || strcmp(string, "HKLM") == 0 )
+    {
+        return HKEY_LOCAL_MACHINE;
+    }
+
+    if ( strcmp(string, "HKEY_USERS") == 0 || strcmp(string, "HKU") == 0 )
+    {
+        return HKEY_USERS;
+    }
+
+    if ( strcmp(string, "HKEY_DYN_DATA") == 0 || strcmp(string, "HKDD") == 0 )
+    {
+        return HKEY_DYN_DATA;
+    }
+
+    if ( strcmp(string, "HKEY_CURRENT_CONFIG") == 0 || strcmp(string, "HKCC") == 0 )
+    {
+        return HKEY_CURRENT_CONFIG;
+    }
+
+    return NULL;
 }
 /*--------------------------------------------------------------------------*/
 BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1, char *ParamIn2, int *Number)
