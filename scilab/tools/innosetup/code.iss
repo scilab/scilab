@@ -84,25 +84,18 @@ function DoTasksJustAfterInstall: Boolean;
   end;
 //------------------------------------------------------------------------------
 function GetJREVersion(): String;
-  begin
+begin
     Result := '';
-    if Is64BitInstallMode() then
-      begin
-        RegQueryStringValue( HKLM, 'SOFTWARE\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
-      end;
 
-// 2 cas :
-  if IsWin64() then
+    if Is64BitInstallMode() or not IsWin64() then
     begin
-      // Scilab 32 bits sur Windows 64 bits
-      RegQueryStringValue( HKLM, 'SOFTWARE\Wow6432Node\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
+        //64 bits installation or 32 bits OS -> same registry path
+        RegQueryStringValue( HKLM, 'SOFTWARE\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
+    end else begin
+        // Scilab 32 bits sur Windows 64 bits
+        RegQueryStringValue( HKLM, 'SOFTWARE\Wow6432Node\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
     end
-  else
-    begin
-      // Scilab 32 bits sur Windows 32 bits
-      RegQueryStringValue( HKLM, 'SOFTWARE\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
-    end;
-  end;
+end;
 //------------------------------------------------------------------------------
  function CheckJREVersion(): Boolean;
   var
@@ -270,6 +263,26 @@ function NextButtonClick(CurPageID: Integer): Boolean;
 
       end;
   end;
+//------------------------------------------------------------------------------
+procedure DeinitializeUninstall;
+var
+    Names: TArrayOfString;
+    iLen: Integer;
+begin
+    //read registry to find others scilab installation in the same arch
+    if RegGetSubkeyNames(HKLM, 'Software\Scilab', Names) then
+    begin
+        iLen := length(Names);
+        if iLen > 0 then
+        begin
+            RegWriteStringValue(HKLM, 'Software\Scilab', 'LASTINSTALL', Names[iLen - 1]);
+        end else begin
+            //no other install in the same arch
+            //remove LASTINSTALL key and Scilab registry folder ( auto )
+            RegDeleteValue(HKLM, 'Software\Scilab', 'LASTINSTALL');
+        end;
+    end;
+end;
 //------------------------------------------------------------------------------
 function InitializeSetup: Boolean;
   Var
