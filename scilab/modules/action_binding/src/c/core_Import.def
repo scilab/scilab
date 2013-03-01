@@ -8,3 +8,5 @@ com_
 StoreCommand
 StoreCommandWithFlag
 freeArrayOfString
+MyHeapAlloc
+MyHeapFree

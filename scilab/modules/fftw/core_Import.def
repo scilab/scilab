@@ -21,3 +21,6 @@ getrhsvar_
 gettype_
 vstk_
 overload_
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

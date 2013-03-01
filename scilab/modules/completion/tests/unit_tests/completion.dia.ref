@@ -8,46 +8,86 @@
 //===============================
 // unit tests completion
 //===============================
+function [] = check_completion(actual, expected)
+    for i = 1 : size(actual, 'r')
+      [start,end,match] = regexp(actual(i,1), '/(?i)^(' + expected + ')/');
+      assert_checktrue(match <> '');
+    end
+endfunction
 // File paths
-if (getos() == "Windows") then;
+if (getos() == "Windows") then
     r = completion('C:\Documents and');
+    assert_checkequal(r, 'Documents and Settings\');
+    r = completion('c:\documents And');
     assert_checkequal(r, 'Documents and Settings\');
 else
     r = completion('/tm');
     assert_checkequal(r, 'tmp/');
+    r = completion('/TM');
+    // We are still case sensitive
+    assert_checkequal(r, []);
 end
 r = completion(SCI+'/to');
-if (getos() == "Windows") then;
+r2 = completion(SCI+'/TO');
+if (getos() == "Windows") then
    assert_checkequal(r, ['tools\']);
-else;
+   assert_checkequal(r2, ['tools\']);
+else
    assert_checkequal(r, ['tools/']);
+   assert_checkequal(r2, []);
 end
 // Predefined variables
 r = completion('ho', 'variables');
-assert_checkequal(r, 'home');
+check_completion(r, 'home');
+r = completion('HO', 'variables');
+check_completion(r, 'home');
 r = completion('%na');
-assert_checkequal(r, '%nan');
-r = completion('TMP');
-assert_checkequal(r, 'TMPDIR');
+check_completion(r, '%nan');
+r = completion('%Na');
+check_completion(r, '%nan');
+r = completion('tmp');
+check_completion(r, 'TMPDIR');
+r = completion('Tmp');
+check_completion(r, 'TMPDIR');
 r = completion('%', 'variables');
 rexpected = ['%F'; '%T'; '%e'; '%eps'; '%f'; '%fftw'; '%gui'; '%i';'%inf'; '%io';
   '%modalWarning'; '%nan'; '%pi'; '%s'; '%t'; '%tk'; '%toolboxes'; '%toolboxes_dir'; '%z'];
 assert_checkequal(r, rexpected);
 // User variables
-variable_completion1 = 1;
-variable_completion2 = 2;
-r = completion('variable_comp');
-assert_checkequal(r, ['variable_completion1'; 'variable_completion2']);
+variable1_completion1 = 1;
+variable1_completion2 = 2;
+r = completion('variable1_comp');
+assert_checkequal(r, ['variable1_completion1'; 'variable1_completion2']);
+r = completion('VARIABLE1_COMP');
+assert_checkequal(r, ['variable1_completion1'; 'variable1_completion2']);
+variable2_completion = 1;
+VARIABLE2_COMPLETION = 2;
+r = completion('variable2_comp');
+assert_checkequal(r, ['VARIABLE2_COMPLETION'; 'variable2_completion']);
+r = completion('VARIABLE2_COMP');
+assert_checkequal(r, ['VARIABLE2_COMPLETION'; 'variable2_completion']);
 // Predefined functions, macros and commands
 r = completion('floo');
-assert_checkequal(r, 'floor');
+check_completion(r, 'floor');
+r = completion('FLOO');
+check_completion(r, 'floor');
 r = completion('abort');
-assert_checkequal(r, 'abort');
+check_completion(r, 'abort');
+r = completion('Abort');
+check_completion(r, 'abort');
 // User functions, macros, commands
 function [] = function_completion(x);
 endfunction;
 r = completion('function_comp');
 assert_checkequal(r, 'function_completion');
+r = completion('FUNCTION_COMP');
+assert_checkequal(r, 'function_completion');
+function [] = FUNCTION_COMPLETION(x);
+endfunction;
+r = completion('function_comp');
+assert_checkequal(r, ['FUNCTION_COMPLETION'; 'function_completion']);
+r = completion('FUNCTION_COMP');
+assert_checkequal(r, ['FUNCTION_COMPLETION'; 'function_completion']);
 // Filter argument
 r = completion('ho');
 assert_checkequal(r, ['home'; 'horizontalalignment'; 'horner'; 'host'; 'hotcolormap'; 'householder']);

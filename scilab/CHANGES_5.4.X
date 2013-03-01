@@ -37,6 +37,9 @@ Improvements
 * editvar propose direct save to the CSV format of the whole variable or the
   selection.
 
+* Completion in Scilab is now case insensitive. See bug #6320.
+
+
 
 Removed functions
 ==================
@@ -110,6 +113,8 @@ Xcos
 * Improve block parameters errors (types and sizes) reporting.
 
 * Avoid some scopes blink on simulation.
+
+* Bug #9074 fixed - Calling a function on the context gave a warning.
 
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
                      initial value behavioral.
@@ -227,6 +232,9 @@ Bug fixes
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
 
+* Bug #10415 fixed - Remove a session line in history causes the removal
+                     of the session node in history browser
+
 * Bug #10606 fixed - unix_g did not return stdout in somes cases.
 
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
@@ -252,7 +260,7 @@ Bug fixes
 * Bug #11549 fixed - Prefs window changed its dimension when hitting Default.
 
 * Bug #11569 fixed - F5 to navigate in the dock was incompatible with SciNotes.
-                     So replace F5 by shift+F6 to go to the previous tab. 
+                     So replace F5 by shift+F6 to go to the previous tab.
 
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
@@ -287,6 +295,9 @@ Bug fixes
 
 * Bug #11965 fixed - Export to SVG converted texts in shapes.
 
+* Bug #11969 fixed - Only the first line was executed when code was piped under
+                     Linux.
+
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
 
@@ -294,6 +305,9 @@ Bug fixes
 
 * Bug #11980 fixed - csim returned an error message in some cases: "Submatrix
                      incorrectly defined".
+
+* Bug #11971 fixed - Canceling "Open File" action launched from icon in the
+                    toolbar opened SciNotes anyway.
 
 * Bug #11981 fixed - Smooth french help page had a wrong declaration
                      (colonnes => lignes).

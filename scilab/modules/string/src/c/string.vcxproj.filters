@@ -185,6 +185,9 @@
     <ClCompile Include="stringToDouble.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="stristr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">
@@ -309,6 +312,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ucp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\stristr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

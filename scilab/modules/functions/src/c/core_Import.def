@@ -20,3 +20,6 @@ intersci_
 createvarfromptr_
 checklhs_
 checkrhs_
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

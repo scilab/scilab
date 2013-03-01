@@ -84,7 +84,6 @@ function libn = ilib_compile(lib_name, ..
       for x = defaultModulesCHeader(:)';
           cflags=" -I"+SCI+"/modules/"+x+"/includes/ "+cflags;
       end
-      cflags=" -I"+SCI+"/libs/MALLOC/includes/ " + cflags;
 
       for x = defaultModulesFHeader(:)';
           fflags=" -I"+SCI+"/modules/"+x+"/includes/ " + fflags;
