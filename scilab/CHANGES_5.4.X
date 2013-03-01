@@ -448,6 +448,8 @@ Bug fixes
 
 * Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
 
+* Bug #12291 fixed - Unable to display a list of handle as an handle userData. 
+
 * Bug #12296 fixed - Call to getenv with a big environment variable
                      led to memory corruption.
 
