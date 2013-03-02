@@ -49,6 +49,9 @@ Xcos
 Bug fixes
 ==========
 
+* paramfplot2d: When input argument theta was column vector, an error occurred.
+
+
 * Bug #6693 fixed - modulo did not accept polynomial inputs. Help page was not updated.
 
 * Bug #7684 fixed - Introduction demo splitted in subsections.
