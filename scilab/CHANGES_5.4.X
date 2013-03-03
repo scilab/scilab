@@ -527,6 +527,8 @@ Bug fixes
 
 * Bug #12335 fixed - strtod didn't work with negative numbers.
 
+* Bug #12343 fixed - Scinotes help was pointing to the editor() function.
+
 * Bug #12346 fixed - lsslist() help pages were mislocated. Moved now to CACSD.
 
 * Bug #12348 fixed - surf() disable lines(n) if there is no input variable.
@@ -552,6 +554,7 @@ Bug fixes
 * Bug #12386 fixed - sgrid example improved in the list of graphics.
 
 * Bug #12389 fixed - Axes sizes were not taken into account in offscreen export.
+
 
 
                     Changes between version 5.3.3 and 5.4.0
