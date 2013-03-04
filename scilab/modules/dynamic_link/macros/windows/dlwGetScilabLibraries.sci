@@ -9,8 +9,7 @@
 //=============================================================================
 function scilablibrarieslist = dlwGetScilabLibraries()
 
-  scilablibrarieslist = ["MALLOC.lib"; ..
-                        "blasplus.lib"; ..
+  scilablibrarieslist = ["blasplus.lib"; ..
                         "libf2c.lib"; ..
                         "core.lib"; ..
                         "core_f.lib"; ..
