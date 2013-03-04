@@ -27,6 +27,11 @@ void MyHeapFree(void *lpAddress, char *file, int line);
 void *MyVirtualAlloc(size_t dwSize, char *file, int line);
 void MyVirtualFree(void *lpAddress, char *file, int line);
 
+void *MyHeapRealloc2(void *lpAddress, size_t dwSize, char *file, int line);
+void *MyHeapAlloc2(size_t dwSize, char *file, int line);
+void MyHeapFree2(void *lpAddress, char *file, int line);
+void *MyVirtualAlloc2(size_t dwSize, char *file, int line);
+void MyVirtualFree2(void *lpAddress, char *file, int line);
 
 
 #ifdef MALLOC
