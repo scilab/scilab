@@ -13,36 +13,41 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lsslist">
     <refnamediv>
         <refname>lsslist</refname>
-        <refpurpose>Scilab 線形状態空間関数を定義</refpurpose>
+        <refpurpose> Scilab 線形状態空間関数を定義</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>lsslist()
-            lsslist(a1,....an)
+            lsslist(A, B, C, X0, dt)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>説明</title>
         <para>
-            <literal>lsslist(a1,....an)</literal> は
-            <literal>tlist(['lss','A';'B';'C';'X0','dt'], a1,....an)</literal>
+            <literal>lsslist(A, B, C, X0, dt)</literal> は
+            <literal>tlist(['lss','A';'B';'C';'X0','dt'], A, B, C, X0, dt)</literal>
             へのショートカットです.
         </para>
         <para>
             <literal>['lss','A';'B';'C';'X0','dt']</literal> を最初のエントリ,
-            <literal>ai</literal> は次のエントリなどとなる<literal>tlist</literal>
+            <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varnam>
+            は次のエントリなどとなる<literal>tlist</literal>
             を作成します.
-            <literal>ai</literal>に関して型や大きさの確認は行われません.
+            <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varnam>
+            に関して型や大きさの確認は行われません.
         </para>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="tlist">tlist</link>
+                <link linkend="abcd">abcd</link>
             </member>
             <member>
                 <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
             </member>
         </simplelist>
     </refsection>

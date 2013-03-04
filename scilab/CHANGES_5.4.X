@@ -443,6 +443,8 @@ Bug fixes
 
 * Bug #12317 fixed - eventhandler functions no more report keyboard events
 
+* Bug #12346 fixed - lsslist() help pages were mislocated. Moved now to CACSD.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================

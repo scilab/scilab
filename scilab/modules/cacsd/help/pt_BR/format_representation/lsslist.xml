@@ -20,30 +20,34 @@
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
         <synopsis>lsslist()
-            lsslist(a1,....an)
+            lsslist(A, B, C, X0, dt)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>lsslist(a1,....an)</literal> é um atalho para
-            <literal>tlist(['lss','A';'B';'C';'X0','dt'], a1,....an)</literal>
+            <literal>lsslist(A, B, C, X0, dt)</literal> é um atalho para
+            <literal>tlist(['lss','A';'B';'C';'X0','dt'], A, B, C, X0, dt)</literal>
         </para>
         <para>
             Cria um <literal>tlist</literal> com
             <literal>['lss','A';'B';'C';'X0','dt']</literal> como primeiras entradas e
-            os <literal>ai</literal>'s como próximas entradas, se tiver algum. Não é
-            feita verificação de tipo ou tamanho nos <literal>ai</literal>'s.
+            os A, B, C, X0, dt
+            como próximas entradas, se tiver algum. Não é
+            feita verificação de tipo ou tamanho nos <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varnam>.
         </para>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
-                <link linkend="tlist">tlist</link>
+                <link linkend="abcd">abcd</link>
             </member>
             <member>
                 <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
             </member>
         </simplelist>
     </refsection>
