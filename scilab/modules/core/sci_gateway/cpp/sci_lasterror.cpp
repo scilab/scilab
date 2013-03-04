@@ -29,21 +29,21 @@ using namespace types;
 types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bClearError = true;
-    if(in.size() > 1)
+    if (in.size() > 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), "lasterror", 0, 1);
         return Function::Error;
     }
 
-    if(_iRetCount > 4)
+    if (_iRetCount > 4)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "lasterror", 1, 4);
         return Function::Error;
     }
 
-    if(in.size() == 1)
+    if (in.size() == 1)
     {
-        if(in[0]->isBool() == false || in[0]->getAs<types::Bool>()->isScalar() == false)
+        if (in[0]->isBool() == false || in[0]->getAs<types::Bool>()->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Boolean vector expected.\n"), "lasterror", 1);
             return Function::Error;
@@ -51,31 +51,47 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
         bClearError = in[0]->getAs<types::Bool>()->get()[0] == 1; //convert int to bool
     }
 
-    //String* pErrorMessage = new String(
     std::wstring wstLastErrorMessage = ConfigVariable::getLastErrorMessage();
-    if(wstLastErrorMessage.size() == 0)
+    if (wstLastErrorMessage.size() == 0)
     {
         out.push_back(Double::Empty());
     }
     else
     {
-        out.push_back(new String(wstLastErrorMessage.c_str()));
+        std::vector<std::wstring> vectLines;
+        std::wistringstream iss(wstLastErrorMessage);
+        std::wstring line;
+        // get all lines
+        while (std::getline( iss, line, L'\n' ))
+        {
+            vectLines.push_back(line);
+        }
+
+        types::String* StrLastError = new types::String(vectLines.size(), 1);
+        // put lines in output
+        for (int i = 0; i < (int)vectLines.size(); i++)
+        {
+            StrLastError->set(i, vectLines[i].c_str());
+        }
+
+        vectLines.clear();
+        out.push_back(StrLastError);
     }
-    
-    if(_iRetCount > 1)
+
+    if (_iRetCount > 1)
     {
         Double* pErrorNumber = new Double(ConfigVariable::getLastErrorNumber());
         out.push_back(pErrorNumber);
 
-        if(_iRetCount > 2)
+        if (_iRetCount > 2)
         {
             Double* pErrorLine = new Double(ConfigVariable::getLastErrorLine());
             out.push_back(pErrorLine);
 
-            if(_iRetCount > 3)
+            if (_iRetCount > 3)
             {
                 std::wstring wstLastErrorFunction = ConfigVariable::getLastErrorFunction();
-                if(wstLastErrorFunction.size() == 0)
+                if (wstLastErrorFunction.size() == 0)
                 {
                     out.push_back(Double::Empty());
                 }
@@ -87,7 +103,7 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
         }
     }
 
-    if(bClearError)
+    if (bClearError)
     {
         ConfigVariable::clearLastError();
     }

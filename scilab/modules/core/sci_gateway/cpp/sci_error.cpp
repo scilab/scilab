@@ -53,18 +53,22 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
 
         if (in[0]->isString() == true)
         {
-            if (in[0]->getAs<types::String>()->getSize() == 1)
+            types::String* pStrError = in[0]->getAs<types::String>();
+            std::string strErr = "";
+            char* pstError = NULL;
+            for (int i = 0; i < pStrError->getSize() - 1; i++)
             {
-                char* pstError = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
-                Scierror(DEFAULT_ERROR_CODE, "%s", pstError);
+                pstError = wide_string_to_UTF8(pStrError->get(i));
+                strErr = strErr + std::string(pstError) + std::string("\n");
                 FREE(pstError);
-                return Function::Error;
             }
-            else
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "error", 1);
-                return Function::Error;
-            }
+
+            pstError = wide_string_to_UTF8(pStrError->get(pStrError->getSize() - 1));
+            strErr = strErr + std::string(pstError);
+            FREE(pstError);
+
+            Scierror(DEFAULT_ERROR_CODE, "%s", strErr.c_str());
+            return Function::Error;
         }
         else
         {
