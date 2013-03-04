@@ -445,6 +445,8 @@ Bug fixes
 
 * Bug #12346 fixed - lsslist() help pages were mislocated. Moved now to CACSD.
 
+* Bug #12348 fixed - surf() disable lines(n) if there is no input variable.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
