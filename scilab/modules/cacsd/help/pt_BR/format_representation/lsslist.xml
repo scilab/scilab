@@ -34,7 +34,7 @@
             <literal>['lss','A';'B';'C';'X0','dt']</literal> como primeiras entradas e
             os A, B, C, X0, dt
             como próximas entradas, se tiver algum. Não é
-            feita verificação de tipo ou tamanho nos <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varnam>.
+            feita verificação de tipo ou tamanho nos <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varname>.
         </para>
     </refsection>
     <refsection role="see also">

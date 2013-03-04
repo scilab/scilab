@@ -31,7 +31,7 @@
         </para>
         <para>
             Создаёт <literal>tlist</literal> с <literal>['lss','A';'B';'C';'X0','dt']</literal> на месте первого элемента и 
-            <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varnam> -тыми на месте последующих элементов, если они есть. Ни проверки типа, ни проверки размера <varname>ai</varname>-тых не делается.
+            <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varname> -тыми на месте последующих элементов, если они есть. Ни проверки типа, ни проверки размера <varname>ai</varname>-тых не делается.
         </para>
     </refsection>
     <refsection role="see also">
