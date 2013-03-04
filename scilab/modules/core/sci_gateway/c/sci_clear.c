@@ -57,7 +57,7 @@ static int sci_clear_no_rhs(const char *fname)
         }
         /* clear within a macro, an execstr, an exec or a pause */
         k = C2F(iop).lpt[0] - 19;
-        if (C2F(iop).lin[k + 6] != 0 && ((int *)&C2F(stack))[C2F(iop).lin[k + 5] - 1] == 10)
+        if (C2F(iop).lin[k + 6] != 0 && *istk(C2F(iop).lin[k + 5]) == 10)
         {
             PutLhsVar();
             return 0;
