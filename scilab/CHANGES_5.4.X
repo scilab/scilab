@@ -162,16 +162,11 @@ Xcos
 * Bug #12213 fixed - lincos help page example produced undefined variable
                      warnings.
 
-* Bug #12259 fixed - Wrong translation for "Filled" fixed in Scinotes.
-
 * Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
                      due to CLR blocks.
 
 * Bug #12290 fixed - AFFICH_m block inside a superblock led to java null
                      pointer exception.
-
-* Bug #12321 fixed - save environment failed to save lib variable. Now these variables
-                     are ignored like previous version of save function.
 
 * Bug #12351 fixed - "Save as" a diagram to a selected xcos file type, saved
                      it as zcos.
@@ -469,6 +464,8 @@ Bug fixes
 
 * Bug #12248 fixed - SciNotes toolbar had disappeared.
 
+* Bug #12259 fixed - Wrong translation for "Filled" fixed in Scinotes.
+
 * Bug #12270 fixed - When the console lost the focus, the caret could be visible.
 
 * Bug #12272 fixed - Fix a presentation of Cyrillic letters on sample images of russian help page for grand function.
@@ -487,6 +484,9 @@ Bug fixes
 * Bug #12307 fixed - ftp addresses were not handled in help browser.
 
 * Bug #12317 fixed - eventhandler functions no more report keyboard events
+
+* Bug #12321 fixed - save environment failed to save lib variable. Now these variables
+                     are ignored like previous version of save function.
 
 * Bug #12333 fixed - Cleaned command history is restored after reopening Scilab.
 
