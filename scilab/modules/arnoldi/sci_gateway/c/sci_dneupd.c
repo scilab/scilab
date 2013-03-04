@@ -557,7 +557,7 @@ int sci_dneupd(char *fname, void *pvApiCtx)
 
     if (pINFO[0] < 0)
     {
-        C2F(errorinfo)("dneupd", (int*)(pINFO), 6L);
+        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
         return 0;
     }
 

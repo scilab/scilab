@@ -375,7 +375,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
 
     if (pINFO[0] < 0)
     {
-        C2F(errorinfo)("dsaupd", (int*)(pINFO), 6L);
+        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
         return 0;
     }
 
