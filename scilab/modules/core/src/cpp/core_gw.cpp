@@ -52,5 +52,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"sciargs", &sci_sciargs, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"format", &sci_format, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"ieee", &sci_ieee, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"typename", &sci_typename, MODULE_NAME));
     return 1;
 }

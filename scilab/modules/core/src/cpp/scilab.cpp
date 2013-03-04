@@ -65,6 +65,7 @@ extern "C"
 #include "setgetlanguage.h"
 #include "scilabRead.h"
 #include "elem_common.h"
+#include "inittypenames.h"
 
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"
@@ -764,6 +765,8 @@ int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex)
     {
         execScilabStartTask();
     }
+
+    C2F(inittypenames)();
 
     int pause = 0;
 
