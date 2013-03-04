@@ -84,7 +84,7 @@
         </para>
         
         <para>
-            Due to the fact that getURLcontent is based on libcurl, it is likely that <ulink url="http://curl.haxx.se/docs/features.html">other protocols</ulink> than HTTP, HTTPS and FTPS will work. However, they have not been tested enough.
+            <literal>getURLcontent</literal> is based on libcurl. The version of this library in the official Scilab binary has been compiled with HTTP, HTTPS, FTP and FTPS support. If Scilab has been installed through a packaging system in a distribution, it is likely that <ulink url="http://curl.haxx.se/docs/features.html">other protocols</ulink> than HTTP, HTTPS and FTPS will work. However, they have not been tested enough.
         </para>
         
     </refsection>

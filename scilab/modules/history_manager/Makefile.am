@@ -50,7 +50,6 @@ libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
 -I$(srcdir)/src/jni/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/console/includes/ \
 -I$(top_srcdir)/modules/fileio/includes/ \

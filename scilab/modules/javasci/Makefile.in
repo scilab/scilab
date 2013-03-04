@@ -140,9 +140,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libjavasci2_la_etcdir)" \
 	"$(DESTDIR)$(libjavasci2_la_rootdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@JAVASCI_TRUE@libjavasci2_la_DEPENDENCIES =  \
-@JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
+@JAVASCI_TRUE@libjavasci2_la_DEPENDENCIES = $(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 @JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
 am__libjavasci2_la_SOURCES_DIST = src/jni/call_scilab_wrap.c \
 	src/jni/putLists.c src/c/javasci2_helper.c
@@ -464,8 +462,6 @@ libjavasci2_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@			$(JAVA_JNI_INCLUDE) \
 @JAVASCI_TRUE@			$(TCL_INC_PATH) \
 @JAVASCI_TRUE@			$(TK_INC_PATH) \
-@JAVASCI_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
-@JAVASCI_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes/ \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes/ \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
@@ -475,7 +471,6 @@ libjavasci2_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@			$(AM_CPPFLAGS)
 
 @JAVASCI_TRUE@libjavasci2_la_LIBADD = \
-@JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 @JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
 

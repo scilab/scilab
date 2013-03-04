@@ -14,8 +14,7 @@
 
 AUTOMAKE_OPTIONS = 1.11 dist-zip dist-bzip2
 
-SUBDIRS= libs \
-	modules \
+SUBDIRS= modules \
 	contrib \
 	desktop
 

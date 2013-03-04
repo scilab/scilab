@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include "registry.h"
 #include "PATH_MAX.h"
-#include "win_mem_alloc.h"
+#include "MALLOC.h"
 #include "GetWindowsVersion.h"
 #include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
@@ -36,7 +36,10 @@ BOOL WindowsQueryRegistry(char *ParamIn1, char *ParamIn2, char *ParamIn3, char *
     if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS)
     {
         OpensKeyOptions = KEY_QUERY_VALUE | KEY_WOW64_32KEY;
-        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS) return FALSE;
+        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS)
+        {
+            return FALSE;
+        }
     }
 #else
     if (IsWow64()) /* Scilab 32 bits on x64 windows */
@@ -45,13 +48,19 @@ BOOL WindowsQueryRegistry(char *ParamIn1, char *ParamIn2, char *ParamIn3, char *
         if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS)
         {
             OpensKeyOptions = KEY_QUERY_VALUE | KEY_WOW64_32KEY;
-            if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS) return FALSE;
+            if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS)
+            {
+                return FALSE;
+            }
         }
     }
     else /* Scilab 32 bits on windows 32 bits */
     {
         OpensKeyOptions = KEY_QUERY_VALUE;
-        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS) return FALSE;
+        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS)
+        {
+            return FALSE;
+        }
     }
 #endif
 
@@ -63,7 +72,7 @@ BOOL WindowsQueryRegistry(char *ParamIn1, char *ParamIn2, char *ParamIn3, char *
             char Line[PATH_MAX];
             if (RegQueryValueEx(key, ParamIn3, NULL, &type, (LPBYTE)&Line, &Length) == ERROR_SUCCESS )
             {
-                wsprintf(ParamOut1,"%s",Line);
+                wsprintf(ParamOut1, "%s", Line);
                 *OuputIsREG_SZ = TRUE;
             }
         }
@@ -103,7 +112,10 @@ BOOL WindowsQueryRegistryList(char *ParamIn1, char *ParamIn2, int dimMax, char *
     if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS )
     {
         OpensKeyOptions = KEY_READ  | KEY_WOW64_32KEY;
-        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS ) return FALSE;
+        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS )
+        {
+            return FALSE;
+        }
     }
 #else
     if (IsWow64())  /* Scilab 32 bits on x64 windows */
@@ -112,13 +124,19 @@ BOOL WindowsQueryRegistryList(char *ParamIn1, char *ParamIn2, int dimMax, char *
         if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS )
         {
             OpensKeyOptions = KEY_READ  | KEY_WOW64_32KEY;
-            if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS ) return FALSE;
+            if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS )
+            {
+                return FALSE;
+            }
         }
     }
     else /* Scilab 32 bits on windows 32 bits */
     {
         OpensKeyOptions = KEY_READ ;
-        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS ) return FALSE;
+        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &key) != ERROR_SUCCESS )
+        {
+            return FALSE;
+        }
     }
 
 #endif
@@ -131,12 +149,12 @@ BOOL WindowsQueryRegistryList(char *ParamIn1, char *ParamIn2, int dimMax, char *
         DWORD retCode = 0;
 
         retCode = RegEnumValue(key, i,
-            achKey,
-            &cbName,
-            NULL,
-            &Type,
-            NULL,
-            NULL);
+                               achKey,
+                               &cbName,
+                               NULL,
+                               &Type,
+                               NULL,
+                               NULL);
 
         if (retCode != ERROR_SUCCESS)
         {
@@ -159,17 +177,35 @@ HKEY GetHkeyrootFromString(char *string)
 {
     HKEY hkey = NULL;
 
-    if ( strcmp(string,"HKEY_CLASSES_ROOT") == 0 )  hkey = HKEY_CLASSES_ROOT;
-    if ( strcmp(string,"HKEY_CURRENT_USER") == 0 )  hkey = HKEY_CURRENT_USER;
-    if ( strcmp(string,"HKEY_LOCAL_MACHINE") == 0 ) hkey = HKEY_LOCAL_MACHINE;
-    if ( strcmp(string,"HKEY_USERS") == 0 )         hkey = HKEY_USERS;
-    if ( strcmp(string,"HKEY_DYN_DATA") == 0 )      hkey = HKEY_DYN_DATA;
-    if ( strcmp(string,"HKEY_CURRENT_CONFIG") == 0 )hkey = HKEY_CURRENT_CONFIG;
+    if ( strcmp(string, "HKEY_CLASSES_ROOT") == 0 )
+    {
+        hkey = HKEY_CLASSES_ROOT;
+    }
+    if ( strcmp(string, "HKEY_CURRENT_USER") == 0 )
+    {
+        hkey = HKEY_CURRENT_USER;
+    }
+    if ( strcmp(string, "HKEY_LOCAL_MACHINE") == 0 )
+    {
+        hkey = HKEY_LOCAL_MACHINE;
+    }
+    if ( strcmp(string, "HKEY_USERS") == 0 )
+    {
+        hkey = HKEY_USERS;
+    }
+    if ( strcmp(string, "HKEY_DYN_DATA") == 0 )
+    {
+        hkey = HKEY_DYN_DATA;
+    }
+    if ( strcmp(string, "HKEY_CURRENT_CONFIG") == 0 )
+    {
+        hkey = HKEY_CURRENT_CONFIG;
+    }
 
     return hkey;
 }
 /*--------------------------------------------------------------------------*/
-BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,int *Number)
+BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1, char *ParamIn2, int *Number)
 {
     BOOL bOK = TRUE;
 
@@ -197,7 +233,10 @@ BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,in
     if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS )
     {
         OpensKeyOptions = KEY_READ  | KEY_WOW64_32KEY;
-        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS ) return FALSE;
+        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS )
+        {
+            return FALSE;
+        }
     }
 #else
     if (IsWow64()) /* Scilab 32 bits on x64 windows */
@@ -206,28 +245,34 @@ BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,in
         if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS )
         {
             OpensKeyOptions = KEY_READ  | KEY_WOW64_32KEY;
-            if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS ) return FALSE;
+            if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS )
+            {
+                return FALSE;
+            }
         }
     }
     else /* Scilab 32 bits on windows 32 bits */
     {
         OpensKeyOptions = KEY_READ ;
-        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS ) return FALSE;
+        if ( RegOpenKeyEx(hKeyToOpen, ParamIn2, 0, OpensKeyOptions, &hTestKey) != ERROR_SUCCESS )
+        {
+            return FALSE;
+        }
     }
 #endif
     retCode = RegQueryInfoKey(
-        hTestKey,                // key handle
-        achClass,                // buffer for class name
-        &cchClassName,           // size of class string
-        NULL,                    // reserved
-        &cSubKeys,               // number of subkeys
-        &cbMaxSubKey,            // longest subkey size
-        &cchMaxClass,            // longest class string
-        &cValues,                // number of values for this key
-        &cchMaxValue,            // longest value name
-        &cbMaxValueData,         // longest value data
-        &cbSecurityDescriptor,   // security descriptor
-        &ftLastWriteTime);       // last write time
+                  hTestKey,                // key handle
+                  achClass,                // buffer for class name
+                  &cchClassName,           // size of class string
+                  NULL,                    // reserved
+                  &cSubKeys,               // number of subkeys
+                  &cbMaxSubKey,            // longest subkey size
+                  &cchMaxClass,            // longest class string
+                  &cValues,                // number of values for this key
+                  &cchMaxValue,            // longest value name
+                  &cbMaxValueData,         // longest value data
+                  &cbSecurityDescriptor,   // security descriptor
+                  &ftLastWriteTime);       // last write time
 
     if (retCode != ERROR_SUCCESS)
     {

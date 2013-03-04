@@ -48,12 +48,12 @@
     <None Include="..\..\locales\en_US\intersci.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="intersci_header.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\intersci.iss" />
+    <None Include="intersci_header.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

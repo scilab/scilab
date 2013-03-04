@@ -20,3 +20,5 @@ createlistcvarfrom_
 createlistvarfrom_
 createlistvarfromptr_
 creimati_
+MyHeapAlloc
+MyHeapFree

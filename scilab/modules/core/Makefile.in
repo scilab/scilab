@@ -182,7 +182,10 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/suspendProcess.c src/c/windowsChangeManagement.c \
 	src/c/setieee.c src/c/setlines.c src/c/setformat.c \
 	src/c/InitializePreferences.c src/c/sci_tools.c \
-	src/c/scimem64.c src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
+	src/c/getmaxMALLOC.c src/c/sci_mem_alloc.c \
+	src/c/hashtable/hashtable.c src/c/hashtable/hashtable_itr.c \
+	src/c/hashtable/hashtable_utility.c src/c/scimem64.c \
+	src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
 	src/cpp/search_functions.cpp src/cpp/demangle.cpp \
 	src/cpp/backtrace_print.cpp src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
@@ -289,7 +292,12 @@ am__objects_2 = libscicore_algo_la-inffic.lo \
 	libscicore_algo_la-setieee.lo libscicore_algo_la-setlines.lo \
 	libscicore_algo_la-setformat.lo \
 	libscicore_algo_la-InitializePreferences.lo \
-	libscicore_algo_la-sci_tools.lo $(am__objects_1)
+	libscicore_algo_la-sci_tools.lo \
+	libscicore_algo_la-getmaxMALLOC.lo \
+	libscicore_algo_la-sci_mem_alloc.lo \
+	libscicore_algo_la-hashtable.lo \
+	libscicore_algo_la-hashtable_itr.lo \
+	libscicore_algo_la-hashtable_utility.lo $(am__objects_1)
 am__objects_3 = libscicore_algo_la-hashtable_core.lo \
 	libscicore_algo_la-namstr.lo \
 	libscicore_algo_la-search_functions.lo \
@@ -351,9 +359,9 @@ am__objects_6 = libscicore_la-sci_stacksize.lo \
 am__objects_7 = sci_f_global.lo sci_f_mtlb_mode.lo sci_f_resume.lo \
 	sci_f_dispbpt.lo sci_f_intppty.lo sci_f_ieee.lo \
 	sci_f_macrovar.lo sci_f_exists.lo sci_f_errcatch.lo \
-	sci_f_clear.lo sci_f_argn.lo sci_f_setbpt.lo \
-	sci_f_clearglobal.lo sci_f_delbpt.lo where.lo sci_f_iserror.lo \
-	sci_f_comp.lo sci_f_isglobal.lo
+	sci_f_argn.lo sci_f_setbpt.lo sci_f_clearglobal.lo \
+	sci_f_delbpt.lo where.lo sci_f_iserror.lo sci_f_comp.lo \
+	sci_f_isglobal.lo
 am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
 libscicore_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
@@ -695,7 +703,9 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/suspendProcess.c src/c/windowsChangeManagement.c \
 	src/c/setieee.c src/c/setlines.c src/c/setformat.c \
 	src/c/InitializePreferences.c src/c/sci_tools.c \
-	$(am__append_1)
+	src/c/getmaxMALLOC.c src/c/sci_mem_alloc.c \
+	src/c/hashtable/hashtable.c src/c/hashtable/hashtable_itr.c \
+	src/c/hashtable/hashtable_utility.c $(am__append_1)
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
 src/cpp/search_functions.cpp \
@@ -803,7 +813,6 @@ sci_gateway/fortran/sci_f_ieee.f \
 sci_gateway/fortran/sci_f_macrovar.f \
 sci_gateway/fortran/sci_f_exists.f \
 sci_gateway/fortran/sci_f_errcatch.f \
-sci_gateway/fortran/sci_f_clear.f \
 sci_gateway/fortran/sci_f_argn.f \
 sci_gateway/fortran/sci_f_setbpt.f \
 sci_gateway/fortran/sci_f_clearglobal.f \
@@ -814,9 +823,7 @@ sci_gateway/fortran/sci_f_comp.f \
 sci_gateway/fortran/sci_f_isglobal.f
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
-	-I$(srcdir)/src/cpp/ -I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
+	-I$(srcdir)/src/cpp/ \
 	-I$(top_srcdir)/modules/intersci/includes/ \
 	-I$(top_srcdir)/modules/call_scilab/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
@@ -833,7 +840,8 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/history_manager/includes/ \
 	-I$(top_srcdir)/modules/preferences/includes/ \
 	-I$(top_srcdir)/modules/external_objects/includes/ \
-	$(XML_FLAGS) $(AM_CPPFLAGS) $(am__append_3)
+	-I$(top_srcdir)/modules/functions/includes/ $(XML_FLAGS) \
+	$(AM_CPPFLAGS) $(am__append_3)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicore.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicore-algo.la
@@ -881,6 +889,7 @@ includes/getmemory.h \
 includes/getos.h \
 includes/machine.h \
 includes/mode_exec.h \
+includes/MALLOC.h \
 includes/PATH_MAX.h \
 includes/SCIHOME.h \
 includes/scilabDefaults.h \
@@ -901,7 +910,11 @@ includes/version.h \
 includes/getversion.h \
 includes/warningmode.h \
 includes/Thread_Wrapper.h \
-includes/backtrace_print.h
+includes/backtrace_print.h \
+includes/sci_mem_alloc.h \
+includes/hashtable_itr.h \
+includes/hashtable.h \
+includes/hashtable_utility.h
 
 @GUI_TRUE@USEANT = 1
 
@@ -1097,6 +1110,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-funcprot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-getcommandlineargs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-getdynamicdebuginfo.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-getmaxMALLOC.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-getmemory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-getmodules.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-getos.Plo@am__quote@
@@ -1105,7 +1119,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-getvariablesname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-getversion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-gw_dynamic_generic.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-hashtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-hashtable_core.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-hashtable_itr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-hashtable_utility.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-ifexpr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-inffic.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-inisci-c.Plo@am__quote@
@@ -1126,6 +1143,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-returnPropertyList.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-returnanan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-run.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-sci_mem_alloc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-sci_tools.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-scilabmode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-scimem.Plo@am__quote@
@@ -1851,6 +1869,41 @@ libscicore_algo_la-sci_tools.lo: src/c/sci_tools.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sci_tools.c' object='libscicore_algo_la-sci_tools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-sci_tools.lo `test -f 'src/c/sci_tools.c' || echo '$(srcdir)/'`src/c/sci_tools.c
+
+libscicore_algo_la-getmaxMALLOC.lo: src/c/getmaxMALLOC.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-getmaxMALLOC.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-getmaxMALLOC.Tpo -c -o libscicore_algo_la-getmaxMALLOC.lo `test -f 'src/c/getmaxMALLOC.c' || echo '$(srcdir)/'`src/c/getmaxMALLOC.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-getmaxMALLOC.Tpo $(DEPDIR)/libscicore_algo_la-getmaxMALLOC.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getmaxMALLOC.c' object='libscicore_algo_la-getmaxMALLOC.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-getmaxMALLOC.lo `test -f 'src/c/getmaxMALLOC.c' || echo '$(srcdir)/'`src/c/getmaxMALLOC.c
+
+libscicore_algo_la-sci_mem_alloc.lo: src/c/sci_mem_alloc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-sci_mem_alloc.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-sci_mem_alloc.Tpo -c -o libscicore_algo_la-sci_mem_alloc.lo `test -f 'src/c/sci_mem_alloc.c' || echo '$(srcdir)/'`src/c/sci_mem_alloc.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-sci_mem_alloc.Tpo $(DEPDIR)/libscicore_algo_la-sci_mem_alloc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sci_mem_alloc.c' object='libscicore_algo_la-sci_mem_alloc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-sci_mem_alloc.lo `test -f 'src/c/sci_mem_alloc.c' || echo '$(srcdir)/'`src/c/sci_mem_alloc.c
+
+libscicore_algo_la-hashtable.lo: src/c/hashtable/hashtable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-hashtable.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-hashtable.Tpo -c -o libscicore_algo_la-hashtable.lo `test -f 'src/c/hashtable/hashtable.c' || echo '$(srcdir)/'`src/c/hashtable/hashtable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-hashtable.Tpo $(DEPDIR)/libscicore_algo_la-hashtable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/hashtable/hashtable.c' object='libscicore_algo_la-hashtable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-hashtable.lo `test -f 'src/c/hashtable/hashtable.c' || echo '$(srcdir)/'`src/c/hashtable/hashtable.c
+
+libscicore_algo_la-hashtable_itr.lo: src/c/hashtable/hashtable_itr.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-hashtable_itr.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-hashtable_itr.Tpo -c -o libscicore_algo_la-hashtable_itr.lo `test -f 'src/c/hashtable/hashtable_itr.c' || echo '$(srcdir)/'`src/c/hashtable/hashtable_itr.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-hashtable_itr.Tpo $(DEPDIR)/libscicore_algo_la-hashtable_itr.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/hashtable/hashtable_itr.c' object='libscicore_algo_la-hashtable_itr.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-hashtable_itr.lo `test -f 'src/c/hashtable/hashtable_itr.c' || echo '$(srcdir)/'`src/c/hashtable/hashtable_itr.c
+
+libscicore_algo_la-hashtable_utility.lo: src/c/hashtable/hashtable_utility.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-hashtable_utility.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-hashtable_utility.Tpo -c -o libscicore_algo_la-hashtable_utility.lo `test -f 'src/c/hashtable/hashtable_utility.c' || echo '$(srcdir)/'`src/c/hashtable/hashtable_utility.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-hashtable_utility.Tpo $(DEPDIR)/libscicore_algo_la-hashtable_utility.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/hashtable/hashtable_utility.c' object='libscicore_algo_la-hashtable_utility.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-hashtable_utility.lo `test -f 'src/c/hashtable/hashtable_utility.c' || echo '$(srcdir)/'`src/c/hashtable/hashtable_utility.c
 
 libscicore_algo_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-scimem64.Tpo -c -o libscicore_algo_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
@@ -2597,9 +2650,6 @@ sci_f_exists.lo: sci_gateway/fortran/sci_f_exists.f
 
 sci_f_errcatch.lo: sci_gateway/fortran/sci_f_errcatch.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_errcatch.lo `test -f 'sci_gateway/fortran/sci_f_errcatch.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_errcatch.f
-
-sci_f_clear.lo: sci_gateway/fortran/sci_f_clear.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_clear.lo `test -f 'sci_gateway/fortran/sci_f_clear.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_clear.f
 
 sci_f_argn.lo: sci_gateway/fortran/sci_f_argn.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_argn.lo `test -f 'sci_gateway/fortran/sci_f_argn.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_argn.f

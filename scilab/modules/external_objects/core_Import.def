@@ -15,3 +15,5 @@ iop_
 intersci_
 scistring_
 str2name_
+MyHeapAlloc
+MyHeapFree

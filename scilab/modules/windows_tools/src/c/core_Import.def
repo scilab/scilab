@@ -20,3 +20,5 @@ freeArrayOfString
 getTMPDIR
 createvar_
 getWarningMode
+MyHeapAlloc
+MyHeapFree

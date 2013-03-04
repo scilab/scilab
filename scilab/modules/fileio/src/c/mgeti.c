@@ -1,219 +1,171 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA -
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA -
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #ifndef _MSC_VER
-#include <stdint.h> 
+#include <stdint.h>
 #else
-#define int32_t long
-#define uint32_t unsigned long
+#define int32_t int
+#define uint32_t unsigned int
 #endif
 #include "mgeti.h"
 #include "sciprint.h"
-#include "../../../../libs/libst/misc.h"
-#include "islittleendian.h"
 #include "filesmanagement.h"
+#include "islittleendian.h"
 #include "localization.h"
-
-struct soundstream ftfi;
-
-
-#define MGETI(Type,Fswap) {\
-Type *RES;\
-Type val; \
-RES=(Type *)res;\
-for ( i=0; i< *n; i++)  { \
-  if ( fread(&val,sizeof(Type),1,fa) != 1) {items= i;break;};\
-  if ( swap) val = Fswap(val);\
-  *RES++ = val; }\
-}
+#include "convert_tools.h"
 
 /*****************************************************************
- * read n items of type type 
- * if read fails *ierr contains the number of properly read items 
- ****************************************************************/
-
-
-
-void C2F(mgeti) (int *fd,int *res,int *n,char type[],int *ierr)
-{  
-  char c1,c2;
-  int i,items=-1,nc,swap;
-  ft_t ft;
-  FILE *fa;
-  char *RES_c;
-  unsigned char *RES_uc;
-  uint32_t *RES_ul;
-  unsigned short *RES_us;
-
-  RES_c=(char *)res;
-  RES_uc=(unsigned char *)res;
-  RES_ul=(uint32_t *)res;
-  RES_us=(unsigned short *)res;
-
-  fa = GetFileOpenedInScilab(*fd);
-  swap = GetSwapStatus(*fd);
-  ft = &ftfi; 
-  ft->fp = fa;
-  nc=(int)strlen(type);
-  if ( nc == 0) 
-    {
-      sciprint(_("%s: format is of 0 length.\n"),"mgeti",type);
-      *ierr=1;
-      return;
-    }
-
-  if (fa)
-    { 
-      switch ( type[0] ) {
-	case 'l' : 
-	  swap=SWAP(type,fd);
-	  if(swap<0) {*ierr=1;return;}
-	  MGETI(int32_t,swapl);
-	  break;
-	case 's' : 
-	  swap=SWAP(type,fd); 
-	  if(swap<0) {*ierr=1;return;}
-	  MGETI(short,swapw);
-	  break;
-	case 'c' :
-	  for ( i=0; i< *n; i++) 
-	    {
-	      char val;
-	      if ( fread(&val,sizeof(char),1,fa) != 1) 
-		 {items= i;break;}
-	      *RES_c++ = val;
-	    }
-	  break;
-	case 'u' :
-	  if ( strlen(type) > 1) c1=type[1] ;
-	  else c1=' ';
-
-	  switch ( c1 )
-	    {
-	    case 'b' :
-	      if ( strlen(type) > 2) c2=type[2];
-	      else c2=' ';
-	      switch ( c2)
-		{
-		case 'l' :
-		  /* Read long, big-endian: big end first. 
-		     68000/SPARC style. */
-		  for ( i=0; i< *n; i++) 
-		    {
-		      uint32_t val;
-		      val = rblong(ft);
-		      if ( feof(fa) != 0)  {items= i;break;}
-		      *RES_ul ++ = val ;
-		    }
-		  break;
-		case 's' :
-		  /* Read short, big-endian: big end first. 
-		     68000/SPARC style. */
-		  for ( i=0; i< *n; i++) 
-		    {
-		      unsigned short val;
-		      val = rbshort(ft);
-		      if ( feof(fa) != 0)  {items= i;break;}
-		      *RES_us++ = val;
-		    }
-		  break;
-		}
-	      break;
-	    case 'l' : 
-	      if ( strlen(type) > 2) c2=type[2];
-	      else c2=' ';
-	      switch ( c2 )
-		{
-		case 'l' :
-		  /* Read long, little-endian: little end first. 
-		     VAX/386 style.*/
-		  for ( i=0; i< *n; i++) 
-		      {
-			uint32_t val;
-			val = rllong(ft);
-			if ( feof(fa) != 0)  {items= i;break;}
-			*RES_ul++ = val;
-		      }
-		  break;
-		case 's' :
-		  /* Read short, little-endian: little end first. 
-		     VAX/386 style.*/
-		  for ( i=0; i< *n; i++) 
-		    {
-		      unsigned short val;
-		      val = rlshort(ft);
-		      if ( feof(fa) != 0)  {items= i;break;}
-		      *RES_us++ = val;
-		    }
-		  break;
-		default: 
-		  MGETI(uint32_t,swapl);
-		  break;
-		}
-	      break;
-	    case 's' : 
-	      MGETI(unsigned short,swapw);
-	      break;
-	    case 'c' :
-	      for ( i=0; i< *n; i++) 
-		{
-		  unsigned char  val;
-		  if ( fread(&val,sizeof(unsigned char),1,fa)!= 1) 
-		    {items= i;break;};
-		  *RES_uc++ = val;
-		}
-	      break;
-	    default :
-	      sciprint(_("%s: %s format not recognized.\n"),"mgeti",type);
-	      *ierr=1;
-	      return;
-	    }
-	  break;
-	default :
-	  sciprint(_("%s: %s format not recognized.\n"),"mgeti",type);
-	  *ierr=1;
-	  return;
-	}
-      if ( items != -1 ) 
-	{
-	  *ierr = -(items) -1 ;
-	  /** sciprint("Read %d out of\n",items,*n); **/
-	}
-      return;
-    }
-  sciprint(_("No input file\n"));
-  *ierr=1;
-}
-
-int SWAP(char type[],int *fd)
+* read n items of type type
+* if read fails *ierr contains the number of properly read items
+****************************************************************/
+void C2F(mgeti)(int* _pF, int* _pVal, int* _iSize, char* _iOpt, int* _iErr)
 {
-int nc,swap;
-  nc=(int)strlen(type);
-  swap = GetSwapStatus(*fd);
-  if ( nc > 1) {
-    switch (type[1])  {
-    case 'b': 
-      if (islittleendian()==1) swap=1;else swap=0; 
-      break; 
-    case 'l': 
-      if (islittleendian()==1) swap=0;else swap=1; 
-      break; 
-    default:
-      sciprint(_("%s: unknown format %s.\n"),"mgeti",type);
-      swap=-1;
+    int iType = 0;
+    int iUnsigned = 0;
+    int iEndian = 0;
+
+    int iTypeLen = (int)strlen(_iOpt);
+    int i;
+    int iCount = -1;
+    FILE *fa = NULL;
+
+    unsigned char *RES_uc   = (unsigned char *)_pVal;
+    uint32_t *RES_ul        = (uint32_t *)_pVal;
+    unsigned short *RES_us  = (unsigned short *)_pVal;
+
+    fa = GetFileOpenedInScilab(*_pF);
+    if (fa == NULL)
+    {
+        sciprint(_("%s: No input file.\n"), "mputi");
+        *_iErr = 1;
+        return;
     }
-  }
-return swap;
+
+    if (iTypeLen == 1)
+    {
+        //type only
+        iUnsigned = SIGNED;
+        iType = checkType(_iOpt[0]);
+    }
+    else if (iTypeLen == 2)
+    {
+        if (_iOpt[0] == 'u')
+        {
+            //unsigned + type
+            iUnsigned = UNSIGNED;
+            iType = checkType(_iOpt[1]);
+        }
+        else
+        {
+            //type + endian
+            iUnsigned = SIGNED;
+            iType = checkType(_iOpt[0]);
+            iEndian = checkEndian(_iOpt[1]);
+        }
+    }
+    else if (iTypeLen == 3)
+    {
+        if (_iOpt[0] == 'u')
+        {
+            //unsigned + type
+            iUnsigned = UNSIGNED;
+            iType = checkType(_iOpt[1]);
+            iEndian = checkEndian(_iOpt[2]);
+        }
+    }
+
+    if (iEndian == 0)
+    {
+        //endian can be setting up by mopen call with flag swap
+        if (GetSwapStatus(*_pF))
+        {
+            iEndian = islittleendian() ? BIG_ENDIAN : LITTLE_ENDIAN;
+        }
+        else
+        {
+            iEndian = islittleendian() ? LITTLE_ENDIAN : BIG_ENDIAN;
+        }
+    }
+    else
+    {
+        if (iEndian == LITTLE_ENDIAN)
+        {
+            iEndian = islittleendian() ? LITTLE_ENDIAN : BIG_ENDIAN;
+        }
+        else
+        {
+            iEndian = islittleendian() ? BIG_ENDIAN : LITTLE_ENDIAN;
+        }
+    }
+
+    if (iType == 0 || iEndian == 0 || iUnsigned == 0)
+    {
+        sciprint(_("%s: %s format not recognized.\n"), "mputi", _iOpt);
+        *_iErr = 1;
+        return;
+    }
+
+
+    switch (iType)
+    {
+        case TYPE_LONG :
+            for (i = 0 ; i < *_iSize ; i++)
+            {
+                uint32_t val;
+                val = readInt(fa, iEndian);
+                if (feof(fa))
+                {
+                    iCount = i;
+                    break;
+                }
+
+                *RES_ul++ = val;
+            }
+            break;
+        case TYPE_SHORT :
+            for (i = 0 ; i < *_iSize ; i++)
+            {
+                unsigned short val;
+                val = readShort(fa, iEndian);
+                if (feof(fa))
+                {
+                    iCount = i;
+                    break;
+                }
+
+                *RES_us++ = val;
+            }
+            break;
+        case TYPE_CHAR:
+            for (i = 0 ; i < *_iSize ; i++)
+            {
+                unsigned char val;
+                val = readChar(fa, iEndian);
+                if (feof(fa))
+                {
+                    iCount = i;
+                    break;
+                }
+
+                *RES_uc++ = val;
+            }
+            break;
+    }
+
+    if (iCount != -1)
+    {
+        *_iErr = - iCount - 1;
+    }
 }

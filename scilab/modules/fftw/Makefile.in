@@ -530,8 +530,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
 @FFTW_TRUE@libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @FFTW_TRUE@			-I$(srcdir)/src/c/ \
-@FFTW_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
-@FFTW_TRUE@			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+@FFTW_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \
 @FFTW_TRUE@			-I$(top_srcdir)/modules/fileio/includes/ \
 @FFTW_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
 @FFTW_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \

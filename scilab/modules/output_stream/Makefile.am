@@ -61,7 +61,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_output_stream.c \
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intprint.f \
 			sci_gateway/fortran/intdisp.f
 
-libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
+libscioutput_stream_la_CPPFLAGS= \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes/ \
 -I$(srcdir)/src/cpp/ \

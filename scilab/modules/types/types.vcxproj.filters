@@ -29,6 +29,9 @@
     <None Include="locales\types.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="core_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\GetScilabVariable.h">

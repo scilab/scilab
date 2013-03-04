@@ -96,7 +96,12 @@ src/c/setieee.c \
 src/c/setlines.c \
 src/c/setformat.c \
 src/c/InitializePreferences.c \
-src/c/sci_tools.c
+src/c/sci_tools.c \
+src/c/getmaxMALLOC.c \
+src/c/sci_mem_alloc.c \
+src/c/hashtable/hashtable.c \
+src/c/hashtable/hashtable_itr.c \
+src/c/hashtable/hashtable_utility.c
 
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
@@ -263,7 +268,6 @@ sci_gateway/fortran/sci_f_ieee.f \
 sci_gateway/fortran/sci_f_macrovar.f \
 sci_gateway/fortran/sci_f_exists.f \
 sci_gateway/fortran/sci_f_errcatch.f \
-sci_gateway/fortran/sci_f_clear.f \
 sci_gateway/fortran/sci_f_argn.f \
 sci_gateway/fortran/sci_f_setbpt.f \
 sci_gateway/fortran/sci_f_clearglobal.f \
@@ -276,9 +280,6 @@ sci_gateway/fortran/sci_f_isglobal.f
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(top_srcdir)/modules/intersci/includes/ \
 	-I$(top_srcdir)/modules/call_scilab/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
@@ -295,6 +296,7 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/history_manager/includes/ \
 	-I$(top_srcdir)/modules/preferences/includes/ \
 	-I$(top_srcdir)/modules/external_objects/includes/ \
+	-I$(top_srcdir)/modules/functions/includes/ \
 	$(XML_FLAGS) \
     $(AM_CPPFLAGS)
 
@@ -358,6 +360,7 @@ includes/getmemory.h \
 includes/getos.h \
 includes/machine.h \
 includes/mode_exec.h \
+includes/MALLOC.h \
 includes/PATH_MAX.h \
 includes/SCIHOME.h \
 includes/scilabDefaults.h \
@@ -378,7 +381,11 @@ includes/version.h \
 includes/getversion.h \
 includes/warningmode.h \
 includes/Thread_Wrapper.h \
-includes/backtrace_print.h
+includes/backtrace_print.h \
+includes/sci_mem_alloc.h \
+includes/hashtable_itr.h \
+includes/hashtable.h \
+includes/hashtable_utility.h
 
 if GUI
 USEANT=1
