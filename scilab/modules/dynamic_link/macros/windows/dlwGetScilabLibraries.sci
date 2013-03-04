@@ -15,7 +15,6 @@ function scilablibrarieslist = dlwGetScilabLibraries()
                         "core_f.lib"; ..
                         "lapack.lib"; ..
                         "libintl.lib"; ..
-                        "hashtable.lib"; ..
                         "intersci.lib"; ..
                         "output_stream.lib"; ..
                         "dynamic_link.lib"; ..
