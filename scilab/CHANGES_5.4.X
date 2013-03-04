@@ -559,6 +559,8 @@ Bug fixes
 
 * Bug #12304 fixed - Undocking, redocking and undocking a graphic figure led to an exception.
 
+* Bug #12305 fixed - Legends could not be loaded from SOD files.
+
 * Bug #12307 fixed - ftp addresses were not handled in help browser.
 
 * Bug #12317 fixed - eventhandler functions no more reported keyboard events.
