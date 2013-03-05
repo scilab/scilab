@@ -57,7 +57,7 @@ static int sci_clear_no_rhs(const char *fname)
         }
         /* clear within a macro, an execstr, an exec or a pause */
         k = C2F(iop).lpt[0] - 19;
-        if (C2F(iop).lin[k + 6] != 0 && ((int *)&C2F(stack))[C2F(iop).lin[k + 5] - 1] == 10)
+        if (C2F(iop).lin[k + 6] != 0 && *istk(C2F(iop).lin[k + 5]) == 10)
         {
             PutLhsVar();
             return 0;
@@ -113,12 +113,12 @@ static int sci_clear_n_rhs(const char *fname)
 
                 if (isScalar(pvApiCtx, piAddressVar))
                 {
-                    Scierror(201, _("%s: Wrong type for argument %d: Valid variable name expected.\n"), fname, k + 1);
+                    Scierror(201, _("%s: Wrong type for argument %d: A single string expected.\n"), fname, k + 1);
                     return 0;
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong size for argument %d: Valid variable name expected.\n"), fname, k + 1);
+                    Scierror(999, _("%s: Wrong size for argument %d: A single string expected.\n"), fname, k + 1);
                     return 0;
                 }
             }

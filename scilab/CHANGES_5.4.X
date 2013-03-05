@@ -121,6 +121,9 @@ Xcos
 
 * Bug #10434 fixed - loadXcosLibs changed the predef value.
 
+* Bug #10435 fixed - Undo in superdiagram did not update superblock ports
+                     and links.
+
 * Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
 
 * Bug #11193 fixed - Lincos did not honor context values.
@@ -128,6 +131,8 @@ Xcos
 * Bug #11775 fixed - xcos.tst crashed on Linux and MacOS X.
 
 * Bug #11821 fixed - Running XcosPalAdd example from help led to deadlock
+
+* Bug #11871 fixed - Connectors were misaligned after Undo command.
 
 * Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
                      Scilab crash.
@@ -231,6 +236,12 @@ Bug fixes
 
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
+
+* Bug #9934 fixed - clear([["A","B"]) returns a non standard error message.
+
+* Bug #9935 fixed - clear() does not clear all variables.
+
+* Bug #10278 fixed - clear(1) returns a wrong error message.
 
 * Bug #10415 fixed - Remove a session line in history causes the removal
                      of the session node in history browser
@@ -338,6 +349,8 @@ Bug fixes
 
 * Bug #12050 fixed - Fix a typo: dimensionnal => dimensional.
 
+* Bug #12059 fixed - Index returned by gsort of sparse were wrong.
+
 * Bug #12062 fixed - getsystemmetrics() failed for some properties such as 'SM_CXMAXIMIZED'.
 
 * Bug #12071 fixed - Printed info of a XML object were inconsistent with
@@ -377,6 +390,9 @@ Bug fixes
 * Bug #12166 fixed - There was a bad label with drawaxis.
 
 * Bug #12168 fixed - matfile_listvar crashed when listing variables of a closed MAT-file.
+
+* Bug #12174 fixed - The function "routh_t" gave incorrect output for all denominators
+                     that include gain value "k".
 
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
 
@@ -426,6 +442,12 @@ Bug fixes
 * Bug #12304 fixed - Undock, redock and undock led to an exception.
 
 * Bug #12307 fixed - ftp addresses were not handled in help browser.
+
+* Bug #12317 fixed - eventhandler functions no more report keyboard events
+
+* Bug #12346 fixed - lsslist() help pages were mislocated. Moved now to CACSD.
+
+* Bug #12348 fixed - surf() disable lines(n) if there is no input variable.
 
 
                     Changes between version 5.3.3 and 5.4.0
