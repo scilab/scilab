@@ -550,6 +550,8 @@ public class TextManager {
     private Texture createSprite(final ColorMap colorMap, final Text textObject) {
         TextSpriteDrawer spriteDrawer = new TextSpriteDrawer(colorMap, textObject);
         Texture texture = textureManager.createTexture();
+        texture.setMagnificationFilter(Texture.Filter.LINEAR);
+        texture.setMinifyingFilter(Texture.Filter.LINEAR);
         texture.setDrawer(spriteDrawer);
         return texture;
     }
@@ -564,6 +566,8 @@ public class TextManager {
     private Texture createSprite(final ColorMap colorMap, final Text textObject, double scaleFactor) {
         TextSpriteDrawer spriteDrawer = new TextSpriteDrawer(colorMap, textObject, scaleFactor);
         Texture texture = textureManager.createTexture();
+        texture.setMagnificationFilter(Texture.Filter.LINEAR);
+        texture.setMinifyingFilter(Texture.Filter.LINEAR);
         texture.setDrawer(spriteDrawer);
         return texture;
     }
