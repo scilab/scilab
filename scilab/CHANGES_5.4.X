@@ -261,6 +261,9 @@ Bug fixes
 
 * Bug #11134 fixed - xgetmouse() prevented callback menu execution.
 
+* Bug #11362 fixed - Doc of axes_properties did not explain that 
+                     mark_style=mark_size=0 draw a single dot.
+
 * Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
                      the last color in colormap.
 
