@@ -92,13 +92,17 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
             }
         } else {
             FormattedText formattedText = getTextAtValue(value);
-            FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, formattedText);
-            Texture texture = textureManager.createTexture();
-            texture.setMagnificationFilter(Texture.Filter.LINEAR);
-            texture.setMinifyingFilter(Texture.Filter.LINEAR);
-            texture.setDrawer(textObjectSpriteDrawer);
+            if (formattedText != null && formattedText.getText() != null && !formattedText.getText().isEmpty()) {
+                FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, formattedText);
+                Texture texture = textureManager.createTexture();
+                texture.setMagnificationFilter(Texture.Filter.LINEAR);
+                texture.setMinifyingFilter(Texture.Filter.LINEAR);
+                texture.setDrawer(textObjectSpriteDrawer);
 
-            return texture;
+                return texture;
+            }
+
+            return null;
         }
     }
 

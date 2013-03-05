@@ -379,6 +379,8 @@ Bug fixes
 * Bug #11980 fixed - csim returned an error message in some cases: "Submatrix
                      incorrectly defined".
 
+* Bug #11982 fixed - Ticks computations were made when drawing.
+
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
 
