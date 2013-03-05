@@ -332,6 +332,22 @@ std::wstring ConfigVariable::getLastErrorMessage()
 ** \{
 */
 int ConfigVariable::m_iError = 0;
+bool ConfigVariable::m_bError = false;
+
+void ConfigVariable::setError()
+{
+    m_bError = true;
+}
+
+bool ConfigVariable::isError()
+{
+    return m_bError;
+}
+
+void ConfigVariable::resetError()
+{
+    m_bError = false;
+}
 
 void ConfigVariable::setLastErrorNumber(int _iError)
 {

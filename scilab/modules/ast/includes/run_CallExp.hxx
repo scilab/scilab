@@ -36,12 +36,12 @@ void visitprivate(const CallExp &e)
         for (itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp)
         {
             AssignExp* pAssign = dynamic_cast<AssignExp*>(*itExp);
-            if(pAssign)
+            if (pAssign)
             {
                 //optional parameter
                 Exp* pL = &pAssign->left_exp_get();
                 SimpleVar* pVar = dynamic_cast<SimpleVar*>(pL);
-                if(pVar == NULL)
+                if (pVar == NULL)
                 {
                     std::wostringstream os;
                     os << L"left side of optional parameter must be a variable" << std::endl;
@@ -104,7 +104,7 @@ void visitprivate(const CallExp &e)
 
             types::Function::ReturnValue Ret = pCall->call(in, opt, iRetCount, out, this);
             expected_size_set(iSaveExpectedSize);
-
+            ConfigVariable::resetError();
             result_clear();
             if (Ret == types::Callable::OK)
             {
@@ -529,10 +529,11 @@ void visitprivate(const CallExp &e)
                     }
                     break;
                 }
-            case types::InternalType::RealHandle :
+                case types::InternalType::RealHandle :
                 {
-                    if(pArgs->size() == 1 && (*pArgs)[0]->isString())
-                    {//s(["x"])
+                    if (pArgs->size() == 1 && (*pArgs)[0]->isString())
+                    {
+                        //s(["x"])
                         types::GraphicHandle* pH = pIT->getAs<types::GraphicHandle>();
                         types::String *pS = (*pArgs)[0]->getAs<types::String>();
                         typed_list in;
@@ -544,7 +545,7 @@ void visitprivate(const CallExp &e)
 
                         Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"%h_e"));
                         Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, this);
-                        if(ret == Callable::OK)
+                        if (ret == Callable::OK)
                         {
                             pOut = out[0];
                         }
