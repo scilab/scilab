@@ -28,6 +28,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
     int first_nb = 0;
     int x, y; //loop indexes
     char keys[] = "1234567890";
+    char symbol[] = "-+.";
     unsigned long long raw = 0x7ff8000000000000;
     double not_a_number = *( double* )&raw;
     int iRhs = nbInputArgument(pvApiCtx);
@@ -38,7 +39,6 @@ int sci_strtod(char *fname, unsigned long fname_len)
     //output values
     double *OutputDoubles = NULL;
     char **OutputStrings = NULL;
-
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 2);
@@ -113,7 +113,24 @@ int sci_strtod(char *fname, unsigned long fname_len)
     {
         //Double part
         char *stopstring = NULL;
+        int iLen = (int)strlen(Input_StringMatrix_1[x]);
+        int iSign = (int)strcspn(Input_StringMatrix_1[x], symbol);
         first_nb = (int)strcspn(Input_StringMatrix_1[x], keys);
+
+        //symbol can be use only if it is before key
+        if (iSign == first_nb - 1)
+        {
+            //let strtod do with symbol
+            first_nb -= 1;
+        }
+
+        //special case for "-.3"
+        if (iSign == first_nb - 2 && Input_StringMatrix_1[x][iSign + 1] == '.')
+        {
+
+            //let strtod do with symbol
+            first_nb -= 2;
+        }
 
         //Check if there is a number in the string
         if (first_nb != 0)
