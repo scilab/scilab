@@ -186,6 +186,13 @@ Compilation
 
 * Enforce a minimal version of JLaTeXMath (1.0.1).
 
+
+Other changes
+=============
+
+* Console command history is now stored on all platforms in SCIHOME/history file.
+
+
 Bug fixes
 ==========
 
@@ -442,6 +449,8 @@ Bug fixes
 * Bug #12307 fixed - ftp addresses were not handled in help browser.
 
 * Bug #12317 fixed - eventhandler functions no more report keyboard events
+
+* Bug #12333 fixed - Cleaned command history is restored after reopening Scilab.
 
 * Bug #12346 fixed - lsslist() help pages were mislocated. Moved now to CACSD.
 
