@@ -170,6 +170,9 @@ Xcos
 * Bug #12321 fixed - save environment failed to save lib variable. Now these variables
                      are ignored like previous version of save function.
 
+* Bug #12351 fixed - "Save as" a diagram to a selected xcos file type, saved
+                     it as zcos.
+
 
 Documentation
 ==============
