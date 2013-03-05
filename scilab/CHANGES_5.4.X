@@ -176,6 +176,8 @@ Documentation
 
 * Add the 'scilab:needs-examples="no"' tag to specify that the help page does not need any example.
 
+* xlabel(), ylabel, zlabel() macros are fully documented (See bug #6975).
+
 
 Compilation
 ============
