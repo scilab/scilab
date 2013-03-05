@@ -22,46 +22,55 @@
 using namespace std;
 namespace types
 {
-    class Macro : public Callable
+class Macro : public Callable
+{
+public :
+    Macro() : Callable(), m_ArgInSymb(symbol::Symbol(L"nargin")), m_ArgOutSymb(symbol::Symbol(L"nargout")) {}
+    Macro(const std::wstring& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule);
+    virtual                     ~Macro();
+
+    // FIXME : Should not return NULL;
+    InternalType*               clone();
+
+    RealType                    getType(void);
+    bool                        isMacro()
     {
-    public :
-                                    Macro() : Callable(), m_ArgInSymb(symbol::Symbol(L"nargin")), m_ArgOutSymb(symbol::Symbol(L"nargout")) {}
-                                    Macro(const std::wstring& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule);
-        virtual                     ~Macro();
+        return true;
+    }
 
-        // FIXME : Should not return NULL;
-        InternalType*               clone();
+    void                        whoAmI();
 
-        RealType                    getType(void);
-        bool                        isMacro() { return true; }
+    bool                        toString(std::wostringstream& ostr);
 
-        void                        whoAmI();
+    Callable::ReturnValue       call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
 
-        bool                        toString(std::wostringstream& ostr);
+    ast::SeqExp*                getBody();
 
-        Callable::ReturnValue       call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual wstring             getTypeStr()
+    {
+        return L"function";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual wstring             getShortTypeStr()
+    {
+        return L"function";
+    }
 
-        ast::SeqExp*                getBody();
+    list<symbol::Symbol>*       inputs_get();
+    list<symbol::Symbol>*       outputs_get();
 
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual wstring             getTypeStr() {return L"macro";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual wstring             getShortTypeStr() {return L"function";}
+private :
+    std::list<symbol::Symbol>*  m_inputArgs;
+    std::list<symbol::Symbol>*  m_outputArgs;
+    ast::SeqExp*                m_body;
+    bool                        bAutoAlloc;
+    symbol::Symbol              m_ArgInSymb;
+    symbol::Symbol              m_ArgOutSymb;
+    Double*                     m_pDblArgIn;
+    Double*                     m_pDblArgOut;
 
-        list<symbol::Symbol>*       inputs_get();
-        list<symbol::Symbol>*       outputs_get();
-
-    private :
-        std::list<symbol::Symbol>*  m_inputArgs;
-        std::list<symbol::Symbol>*  m_outputArgs;
-        ast::SeqExp*                m_body;
-        bool                        bAutoAlloc;
-        symbol::Symbol              m_ArgInSymb;
-        symbol::Symbol              m_ArgOutSymb;
-        Double*                     m_pDblArgIn;
-        Double*                     m_pDblArgOut;
-
-    };
+};
 }
 
 
