@@ -173,6 +173,9 @@ Xcos
 * Bug #12351 fixed - "Save as" a diagram to a selected xcos file type, saved
                      it as zcos.
 
+* Bug #12352 fixed - Critical error when closing a scope windows during 
+                     simulation fixed.
+
 
 Documentation
 ==============
