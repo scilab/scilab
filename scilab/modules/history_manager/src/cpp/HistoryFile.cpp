@@ -74,7 +74,7 @@ void HistoryFile::setFilename(std::string filename)
 BOOL HistoryFile::setDefaultFilename(void)
 {
     const ScilabPreferences* prefs = getScilabPreferences();
-    if (prefs != NULL)
+    if (prefs != NULL && prefs->historyFile != NULL)
     {
         const char* prefHistoryFile = prefs->historyFile;
         this->setFilename(expandPathVariable((char*)prefHistoryFile));
