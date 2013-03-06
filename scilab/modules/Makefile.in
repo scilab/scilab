@@ -73,8 +73,14 @@ host_triplet = @host@
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
 @JAVASCI_TRUE@am__append_2 = javasci
-@GUI_TRUE@am__append_3 = $(GUI_LIBS) 	$(top_builddir)/modules/types/libscitypes.la
+@GUI_TRUE@am__append_3 = $(GUI_LIBS)	$(top_builddir)/modules/types/libscitypes.la
 @GUI_FALSE@am__append_4 = $(NO_GUI_LIBS)
+
+# This should never be used in production. It forces the explicit link
+# between libscilab and some "on-the-fly" loaded libraries.
+# It has been added to make sure that the full link is correctly done
+# and all symbols resolved.
+@FORCE_LINK_TRUE@am__append_5 = $(ENGINE_LIBS_DYNAMIC_LOAD)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -136,7 +142,7 @@ libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
 libscilab_la_DEPENDENCIES = $(am__append_3) $(am__append_4) \
-	$(top_builddir)/modules/libscilab-cli.la
+	$(top_builddir)/modules/libscilab-cli.la $(am__append_5)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -490,9 +496,7 @@ libscilab_la_rootdir = $(mydatadir)
 # libscilab-cli is for scilab-cli (without GUI)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES = 
-#libscilab_cli_la_SOURCES =
 libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS)
-#libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
 GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
@@ -577,11 +581,11 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 
 
 # Core modules
-#libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
 # Core modules
 libscilab_la_LIBADD = $(am__append_3) $(am__append_4) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(top_builddir)/modules/libscilab-cli.la
+	$(EXTERNAL_LIBS) $(top_builddir)/modules/libscilab-cli.la \
+	$(am__append_5)
 
 ################## libscilab-cli  ##################
 libscilab_cli_la_SOURCES = 
