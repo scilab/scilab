@@ -254,6 +254,9 @@ Bug fixes
 
 * Bug #9005 fixed - The bitset function did not have any tests.
 
+* Bug #9196 fixed - The threshold level for conditioning in backslash was too
+                    small.
+
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
 
