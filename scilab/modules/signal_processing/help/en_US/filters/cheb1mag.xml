@@ -65,11 +65,17 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 //Chebyshev; ripple in the passband
-n=13;epsilon=0.2;omegac=3;sample=0:0.05:10;
-h=cheb1mag(n,omegac,epsilon,sample);
-plot2d(sample,h)
+n=13;epsilon=0.2;omegac=3;samples=0:0.05:10;
+h=cheb1mag(n,omegac,epsilon,samples);
+plot2d(samples,h)
 xtitle('','frequencies','magnitude')
  ]]></programlisting>
+        <scilab:image><![CDATA[
+n=13;epsilon=0.2;omegac=3;samples=0:0.05:10;
+h=cheb1mag(n,omegac,epsilon,samples);
+plot2d(samples,h)
+xtitle('','frequencies','magnitude')
+]]>     </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
