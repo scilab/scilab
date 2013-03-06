@@ -39,10 +39,11 @@ function [s]=variance(x,orien,w)
     w=0;
   end
   if rhs==1
+    s = sum(abs(x - mean(x)).^2) // equivalent to var(real(x)) + var(imag(x)) for x complexes
     if w==0 then
-      s=(sum((x-mean(x)).^2))/(m*n-1);
+      s = s / (m*n-1);
     elseif w==1 then
-      s=(sum((x-mean(x)).^2))/(m*n);
+      s = s / (m*n);
     else
       error(msprintf(gettext("%s: Wrong value of w : %d; 0 or 1 expected.\n"),"variance",w))
     end

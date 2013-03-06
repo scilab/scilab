@@ -45,7 +45,7 @@ a = [ 0.9, 0.7;
 0.5, 0.4 ];
 data = a + a * 2 * %i;
 computed = variance(data);
-expected = - 0.3089999999999999413802 + 0.4119999999999999218403 * %i;
+expected = 0.515;   // must be variance(real(data)) + variance(imag(data))
 if abs(computed-expected)>%eps then bugmes();quit;end
 // With x as a complex row vector and computation by column
 a = [ 0.9, 0.7;
@@ -61,13 +61,13 @@ a = [ 0.9, 0.7;
 0.5, 0.4 ];
 data = a + a * 2 * %i;
 computed = variance(data,2);
-expected = [0.1
-    0.
+expected = [0.1    
+    0.     
     0.025];
 if abs(computed-expected)>%eps then bugmes();quit;end
 // Normalization with N-1
-x = [0.9    0.7
-    0.1    0.1
+x = [0.9    0.7  
+    0.1    0.1  
     0.5    0.4];
 orien = 1;
 w = 0;
@@ -75,8 +75,8 @@ computed = variance(x,orien,w);
 expected = [0.16 0.09];
 if abs(computed-expected)>%eps then bugmes();quit;end
 // Normalization with N
-x = [0.9    0.7
-    0.1    0.1
+x = [0.9    0.7  
+    0.1    0.1  
     0.5    0.4];
 orien = 1;
 w = 1;
