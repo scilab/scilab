@@ -208,6 +208,8 @@ Bug fixes
 
 * Bug #5291 fixed - strtod returned 0 when no real number was detected.
 
+* Bug #5576 fixed - interp() help page has been improved.
+
 * Bug #6583 fixed - jmat() was poorly documented.
 
 * Bug #7058 fixed - There was an error in mathml formula in beta function help.
