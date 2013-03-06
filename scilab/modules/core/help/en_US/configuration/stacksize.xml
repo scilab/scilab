@@ -18,7 +18,7 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>an integer, the required stack size given in number of double precision words</para>
+                    <para>an integer, the required stack size given in number of double precision words (8 bytes each)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -54,12 +54,12 @@
             <code>sz = stacksize()</code> returns a 2-vector which contains  the current
             total and used stack size.
         </para>
-        <para>By default, the size of the stack is 100 000 000.</para>
+        <para>By default, the size of the stack is 10 000 000 (~76 Mb).</para>
         <para>On 64 bit platforms, maximum size of the stack is limited to 268 435 454.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 currentStackSize = stacksize();
 disp("Maximum stacksize: " + string(currentStackSize(1)))
 disp("Current usage: "+ string(currentStackSize(2)))

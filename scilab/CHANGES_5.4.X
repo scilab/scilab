@@ -187,6 +187,8 @@ Documentation
 
 * xlabel(), ylabel, zlabel() macros are fully documented (See bug #6975).
 
+* Default stacksize is incorrect (See bug #12134).
+
 
 Compilation
 ============
