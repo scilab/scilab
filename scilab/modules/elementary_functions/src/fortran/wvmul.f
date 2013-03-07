@@ -26,7 +26,7 @@ c     subroutine wvmul(n,dxr,dxi,incx,dyr,dyi,incy)
 c
 c     dy, dx: vecteurs double precision.
 c
-c     incx, incy: increments entre deux composantes succesives
+c     incx, incy: increments entre deux composantes successives
 c     des vecteurs.
 c
 c!auteur
