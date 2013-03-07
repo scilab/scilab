@@ -99,8 +99,8 @@ import javax.swing.text.Element;
 white = [ \t]+
 eol = \n
 
-comments = {white}*("//".*)?{eol}
-break = ".."(".")*{comments}
+comments = ("//".*)?{eol}
+break = ".."(".")*{white}*{comments}
 
 brokenline = ([^\.]* | ([^\.]*"."[^\.]+)+){break}
 
@@ -109,7 +109,7 @@ spec = [^a-zA-Z0-9_#!$?]?
 
 equal = {white}* "=" {white}*
 
-rpar = ")"{comments}
+rpar = ")"[,; \t]*{comments}
 
 fun = {white}* "function" {white}
 funb = {white}* "function["

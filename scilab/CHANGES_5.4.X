@@ -474,6 +474,9 @@ Bug fixes
 
 * Bug #12348 fixed - surf() disable lines(n) if there is no input variable.
 
+* Bug #12354 fixed - In SciNotes, invalid function with a semicolon after args
+                     declaration.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
