@@ -275,7 +275,7 @@ Bug fixes
 
 * Bug #11134 fixed - xgetmouse() prevented callback menu execution.
 
-* Bug #11362 fixed - Doc of axes_properties did not explain that 
+* Bug #11362 fixed - Doc of axes_properties did not explain that
                      mark_style=mark_size=0 draw a single dot.
 
 * Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
@@ -418,6 +418,9 @@ Bug fixes
 * Bug #12141 fixed - Remove calls to gettext in rubberbox help page examples.
                      Translation of items will be made in each language help page.
 
+* Bug #12144 fixed - csvRead triggered some error messages when ranges were
+                     wrong.
+
 * Bug #12151 fixed - Axes did not pass through (0,0) when x_location and
                      y_location were set to 'origin'.
 
@@ -474,7 +477,7 @@ Bug fixes
 
 * Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
 
-* Bug #12291 fixed - Unable to display a list of handle as an handle userData. 
+* Bug #12291 fixed - Unable to display a list of handle as an handle userData.
 
 * Bug #12296 fixed - Call to getenv with a big environment variable
                      led to memory corruption.
