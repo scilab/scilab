@@ -314,6 +314,8 @@ Bug fixes
 * Bug #11941 fixed - show_margins() failed in 'nyquist' mode if the system is
                      in state-space form.
 
+* Bug #11944 fixed - In SciNotes, untabify several lines did not work correctly.
+
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
 

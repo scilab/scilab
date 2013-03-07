@@ -80,6 +80,19 @@ public class TabManager {
         }
     }
 
+    public String getBasicTabulationString() {
+        if (tab.equals(" ")) {
+            char[] str = new char[lengthTab];
+            for (int i = 0; i < lengthTab; i++) {
+                str[i] = ' ';
+            }
+
+            return new String(str);
+        } else {
+            return tab;
+        }
+    }
+
     /**
      * Set the type and the size of a tabulation
      * @param tabulation a Tabulation
@@ -220,7 +233,7 @@ public class TabManager {
 
         try {
             String str = doc.getText(sstart, end - sstart + 1);
-            String untab = EOL + tab;
+            String untab = EOL + getBasicTabulationString();
             str = str.replaceAll(untab, EOL);
             IndentScanner iscan = indent.getIndentScanner();
             int n = iscan.getTabsAtBeginning(elem.getElementIndex(sstart));
