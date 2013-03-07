@@ -6,3 +6,7 @@ EXPORTS
 ; core
 callFunctionFromGateway
 com_
+getSCIpath
+MyHeapAlloc
+MyHeapFree
+

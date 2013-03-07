@@ -3,7 +3,7 @@
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2011 - 2011 - DIGITEO - Bruno JOFRET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -17,13 +17,12 @@
 
 #include <wchar.h>
 #include "BOOL.h"
-#include "dynlib_localization.h"
 
 /**
  * change language
  * @param lang
  */
-LOCALIZATION_IMPEXP BOOL setlanguage(wchar_t *lang);
+BOOL setlanguage(wchar_t *lang);
 
 
 /**
@@ -64,14 +63,14 @@ int getcodefromlanguage(wchar_t *language);
 * @param language
 * @return
 */
-LOCALIZATION_IMPEXP wchar_t *convertlanguagealias(wchar_t *strlanguage);
+wchar_t *convertlanguagealias(wchar_t *strlanguage);
 
 /**
 * test if lang is defined language
 * @param lang
 * @return TRUE or FALSE
 */
-LOCALIZATION_IMPEXP BOOL LanguageIsOK(wchar_t *lang);
+BOOL LanguageIsOK(wchar_t *lang);
 
 /**
  * Check if the current language is the same we are trying to switch to

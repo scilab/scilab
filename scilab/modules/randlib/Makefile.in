@@ -487,17 +487,17 @@ src/fortran/genunf.f \
 src/fortran/genexp.f \
 src/fortran/genmul.f \
 src/fortran/genprm.f \
-src/fortran/gennor.f
+src/fortran/gennor.f 
 
 #src/fortran/genbet.f
-#src/fortran/sexpo.f 
+#src/fortran/sexpo.f
 #src/fortran/ignbin.f
 #src/fortran/ignpoi.f
 #src/fortran/sgamma.f
 RANDLIB_CPP_SOURCES = src/cpp/grand.cpp
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_grand.cpp
-libscirandlib_la_CPPFLAGS = -I$(srcdir)/includes/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
+libscirandlib_la_CPPFLAGS = \
+                -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/localization/includes/ \
@@ -506,7 +506,7 @@ libscirandlib_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/ast/includes/ \
 				-I$(top_srcdir)/modules/threads/includes/ \
 				-I$(top_srcdir)/modules/system_env/includes/ \
-				-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+                -I$(top_srcdir)/modules/dynamic_link/includes \
 				-I$(top_srcdir)/modules/types/includes/ \
 				-I$(top_srcdir)/modules/operations/includes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes/ \

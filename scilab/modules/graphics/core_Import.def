@@ -21,3 +21,10 @@ vstk_
 GetDataSize
 GetData
 cha1_
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc
+create_hashtable
+hashtable_destroy
+hashtable_search
+hashtable_insert

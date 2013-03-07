@@ -1,0 +1,8 @@
+LIBRARY    dynamic_link.dll
+
+
+EXPORTS
+GetLastDynLibError
+GetDynLibFuncPtr
+LoadDynLibrary
+FreeDynLibrary

@@ -23,18 +23,18 @@
 #ifdef __APPLE__
 #include <locale.h>
 #else
- #ifdef HAVE_LIBINTL_H
-  #include <libintl.h>
-  #ifdef HAVE_LOCALE_H
-   #include <locale.h>
-  #else
-   #error "Cannot find locale.h despite that libintl.h is available"
-  #endif
- #endif
+#ifdef HAVE_LIBINTL_H
+#include <libintl.h>
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#else
+#error "Cannot find locale.h despite that libintl.h is available"
+#endif
+#endif
 #endif
 #else
-    #include <locale.h>
-    #include <libintl.h>
+#include <locale.h>
+#include <libintl.h>
 #endif
 
 #ifdef _MSC_VER
@@ -70,12 +70,12 @@ BOOL setlanguage(wchar_t *lang)
     {
         if (LanguageIsOK(lang))
         {
-            #ifndef _MSC_VER
+#ifndef _MSC_VER
             if (needtochangelanguage(lang))
             {
-            #endif
+#endif
                 /* Load the locale from the system */
-                #if !defined(_MSC_VER) && !defined(__APPLE__)
+#if !defined(_MSC_VER) && !defined(__APPLE__)
                 //for mbstowcs
                 char *pstLang = wide_string_to_UTF8(lang);
                 char *pstRet = setlocale(LC_CTYPE, pstLang);
@@ -91,9 +91,9 @@ BOOL setlanguage(wchar_t *lang)
                 //for gettext
                 pstRet =  setlocale(LC_MESSAGES, pstLang);
                 ret = (pstRet == NULL ? NULL : to_wide_string(pstRet));
-                #else
+#else
                 /* Load the user locale from the system */
-                char *ret = getLocaleUserInfo();
+                wchar_t *ret = getLocaleUserInfo();
 #endif
 
                 //                This stuff causes pb when locales have been compiled
@@ -111,7 +111,7 @@ BOOL setlanguage(wchar_t *lang)
                 if (wcscmp(lang, L"C") == 0 || ret == NULL || wcscmp(ret, L"C") == 0)
                 {
                     /* The lang is the default one... ie en_US */
-                    wcscpy(CURRENTLANGUAGESTRING,SCILABDEFAULTLANGUAGE);
+                    wcscpy(CURRENTLANGUAGESTRING, SCILABDEFAULTLANGUAGE);
                 }
                 else
                 {
@@ -121,22 +121,22 @@ BOOL setlanguage(wchar_t *lang)
                          * which we don't really know which one is it
                          * but if setlocale worked, we get it from the return
                          */
-                        wcsncpy(CURRENTLANGUAGESTRING,ret,5); /* 5 is the number of char in fr_FR for example */
+                        wcsncpy(CURRENTLANGUAGESTRING, ret, 5); /* 5 is the number of char in fr_FR for example */
                     }
                     else
                     {
-                        wcscpy(CURRENTLANGUAGESTRING,lang);
+                        wcscpy(CURRENTLANGUAGESTRING, lang);
                     }
                 }
-                #ifndef _MSC_VER
+#ifndef _MSC_VER
                 setlanguagecode(CURRENTLANGUAGESTRING);
-                #endif
+#endif
                 exportLocaleToSystem(CURRENTLANGUAGESTRING);
                 return TRUE;
             }
-        #ifndef _MSC_VER
+#ifndef _MSC_VER
         }
-        #endif
+#endif
     }
     return FALSE;
 }
@@ -172,9 +172,9 @@ int getcodefromlanguage(wchar_t *language)
 /*--------------------------------------------------------------------------*/
 BOOL LanguageIsOK(wchar_t *lang)
 {
-    int i=0;
+    int i = 0;
 
-    if (wcslen(lang)==0)
+    if (wcslen(lang) == 0)
     {
         /* Empty language declaration... it is the default
         * language from the system */
@@ -183,7 +183,7 @@ BOOL LanguageIsOK(wchar_t *lang)
 
     for (i = 0 ; i < NumberLanguages ; i++)
     {
-        if (wcscmp(lang,LANGUAGE_COUNTRY_TAB[i].alphacode) == 0)
+        if (wcscmp(lang, LANGUAGE_COUNTRY_TAB[i].alphacode) == 0)
         {
             return TRUE;
         }
@@ -193,11 +193,11 @@ BOOL LanguageIsOK(wchar_t *lang)
 /*--------------------------------------------------------------------------*/
 static int FindLanguageCode(wchar_t *lang)
 {
-    int i=0;
+    int i = 0;
 
     for (i = 0 ; i < NumberLanguages ; i++)
     {
-        if (wcscmp(lang,LANGUAGE_COUNTRY_TAB[i].alphacode) == 0)
+        if (wcscmp(lang, LANGUAGE_COUNTRY_TAB[i].alphacode) == 0)
         {
             return LANGUAGE_COUNTRY_TAB[i].code;
         }
@@ -209,7 +209,7 @@ static BOOL setlanguagecode(wchar_t *lang)
 {
     int tmpCode = FindLanguageCode(lang);
 
-    if (tmpCode>0)
+    if (tmpCode > 0)
     {
         CURRENTLANGUAGECODE = tmpCode;
         return TRUE;
@@ -220,11 +220,11 @@ static BOOL setlanguagecode(wchar_t *lang)
 static wchar_t *FindAlias(wchar_t *lang)
 {
     int i = 0;
-    for(i = 0 ; i < NumberLanguagesAlias ; i++)
+    for (i = 0 ; i < NumberLanguagesAlias ; i++)
     {
         if (wcscmp(LANGUAGE_LOCALE_ALIAS[i].alphacode, lang) == 0)
         {
-          return LANGUAGE_LOCALE_ALIAS[i].alias;
+            return LANGUAGE_LOCALE_ALIAS[i].alias;
         }
     }
     return NULL;
@@ -233,9 +233,9 @@ static wchar_t *FindAlias(wchar_t *lang)
 static wchar_t *GetLanguageFromAlias(wchar_t *langAlias)
 {
     int i = 0;
-    for(i = 0 ; i < NumberLanguagesAlias ; i++)
+    for (i = 0 ; i < NumberLanguagesAlias ; i++)
     {
-        if (wcscmp(LANGUAGE_LOCALE_ALIAS[i].alias,langAlias) == 0)
+        if (wcscmp(LANGUAGE_LOCALE_ALIAS[i].alias, langAlias) == 0)
         {
             return LANGUAGE_LOCALE_ALIAS[i].alphacode;
         }
@@ -250,33 +250,35 @@ wchar_t *getlanguagealias(void)
 /*--------------------------------------------------------------------------*/
 BOOL needtochangelanguage(wchar_t *language)
 {
-  wchar_t *currentlanguage = getlanguage();
+    wchar_t *currentlanguage = getlanguage();
 
-  if (wcscmp(language, currentlanguage)) {
-    return TRUE;
-  }
+    if (wcscmp(language, currentlanguage))
+    {
+        return TRUE;
+    }
 
-  return FALSE;
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 wchar_t *convertlanguagealias(wchar_t *strlanguage)
 {
-    wchar_t *correctlanguage=NULL;
+    wchar_t *correctlanguage = NULL;
 
     if ( (wcslen(strlanguage) == 2) || (wcscmp(strlanguage, L"en_US") == 0) ) /* If the user wants to change to en_US ... use the default locale */
     {
-        correctlanguage=GetLanguageFromAlias(strlanguage);
+        correctlanguage = GetLanguageFromAlias(strlanguage);
     }
     else
     {
         if (wcscmp(strlanguage, L"eng") == 0) /* compatibility previous scilab */
         {
-            correctlanguage=GetLanguageFromAlias(L"en");
+            correctlanguage = GetLanguageFromAlias(L"en");
         }
         else
         {
             if (wcslen(strlanguage) == 5 && strlanguage[2] == L'_')
-            { /* already xx_XX (fr_FR) */
+            {
+                /* already xx_XX (fr_FR) */
                 return strlanguage;
             }
         }
@@ -289,25 +291,26 @@ wchar_t *convertlanguagealias(wchar_t *strlanguage)
  *
  * @param locale the locale (ex : fr_FR or en_US)
  */
-BOOL exportLocaleToSystem(wchar_t *locale){
+BOOL exportLocaleToSystem(wchar_t *locale)
+{
 
-    if (locale==NULL)
+    if (locale == NULL)
     {
 #ifdef _MSC_VER
-        fprintf(stderr,"Localization: Haven't been able to find a suitable locale. Remains to default %s.\n", "LC_CTYPE");
+        fprintf(stderr, "Localization: Haven't been able to find a suitable locale. Remains to default %s.\n", "LC_CTYPE");
 #else
-        fprintf(stderr,"Localization: Haven't been able to find a suitable locale. Remains to default %d.\n", EXPORTENVLOCALE);
+        fprintf(stderr, "Localization: Haven't been able to find a suitable locale. Remains to default %d.\n", EXPORTENVLOCALE);
 #endif
         return FALSE;
     }
 
     /* It will put in the env something like LC_MESSAGES=fr_FR */
-    if ( !setenvcW(EXPORTENVLOCALESTR,locale))
+    if ( !setenvcW(EXPORTENVLOCALESTR, locale))
     {
 #ifdef _MSC_VER
-        fprintf(stderr,"Localization: Failed to declare the system variable %s.\n", "LC_CTYPE");
+        fprintf(stderr, "Localization: Failed to declare the system variable %s.\n", "LC_CTYPE");
 #else
-        fprintf(stderr,"Localization: Failed to declare the system variable %d.\n", EXPORTENVLOCALE);
+        fprintf(stderr, "Localization: Failed to declare the system variable %d.\n", EXPORTENVLOCALE);
 #endif
         return FALSE;
     }
@@ -326,7 +329,7 @@ BOOL exportLocaleToSystem(wchar_t *locale){
 #else
     /* Export LC_NUMERIC to the system to make sure that the rest of system
        is using the english notation (Java, Tcl ...) */
-    setenvc("LC_NUMERIC",LCNUMERICVALUE);
+    setenvc("LC_NUMERIC", LCNUMERICVALUE);
 #endif
 
     return TRUE;

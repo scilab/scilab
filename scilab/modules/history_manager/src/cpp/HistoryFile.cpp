@@ -54,7 +54,7 @@ HistoryFile::~HistoryFile()
 /*------------------------------------------------------------------------*/
 std::string HistoryFile::getFilename(void)
 {
-    if(m_stFilename.empty())
+    if (m_stFilename.empty())
     {
         setDefaultFilename();
     }
@@ -97,19 +97,19 @@ BOOL HistoryFile::writeToFile(std::string _stFilename)
     {
         std::ofstream fOut;
 
-        if(_stFilename.empty())
+        if (_stFilename.empty())
         {
             return FALSE;
         }
 
         fOut.open(_stFilename.c_str(), std::ios::trunc);
-        if(fOut.is_open() == false)
+        if (fOut.is_open() == false)
         {
             return FALSE;
         }
 
         std::list<std::string>::const_iterator it;
-        for(it = m_Commands.begin(); it != m_Commands.end(); it++)
+        for (it = m_Commands.begin(); it != m_Commands.end(); it++)
         {
             fOut << (*it).c_str() << std::endl;
         }
@@ -120,7 +120,7 @@ BOOL HistoryFile::writeToFile(std::string _stFilename)
 /*------------------------------------------------------------------------*/
 BOOL HistoryFile::writeToFile(void)
 {
-    if(m_stFilename.empty() == false)
+    if (m_stFilename.empty() == false)
     {
         return writeToFile(m_stFilename);
     }
@@ -134,24 +134,24 @@ errorLoadHistoryCode HistoryFile::loadFromFile(std::string _stFilename)
     std::ifstream fIn;
     std::vector<std::string> vstLines;
 
-    fIn.open(_stFilename.c_str());  
-    if(fIn.is_open() == false)
+    fIn.open(_stFilename.c_str());
+    if (fIn.is_open() == false)
     {
         return returnedError;
     }
 
     //read entire file and store it in vstLines.
-    while(fIn.eof() == false)
+    while (fIn.eof() == false)
     {
         std::string stLine;
         std::getline(fIn, stLine);
-        
-        if(stLine.empty())
+
+        if (stLine.empty())
         {
             continue;
         }
         vstLines.push_back(stLine);
-    }        
+    }
     fIn.close();
 
     //fill history list
@@ -159,65 +159,65 @@ errorLoadHistoryCode HistoryFile::loadFromFile(std::string _stFilename)
     int iEnd = (int)vstLines.size();
     returnedError = NO_ERROR_HISTORY_LOADED;
 
-    if(vstLines.size() > getDefaultMaxNbLines())
+    if (vstLines.size() > getDefaultMaxNbLines())
     {
         iStart = (int)vstLines.size() - getDefaultMaxNbLines();
         returnedError = HISTORY_TRUNCATED;
     }
 
-    for(int i = iStart ; i < iEnd ; i++)
+    for (int i = iStart ; i < iEnd ; i++)
     {
-       m_Commands.push_back(vstLines[i]);
+        m_Commands.push_back(vstLines[i]);
     }
- 
+
     return returnedError;
 
-/*
-    int fd = 0;
-    int f_swap = 0;
-    double res = 0.0;
-    int errMOPEN = MOPEN_INVALID_STATUS;
-    double dErrClose = 0.;
+    /*
+        int fd = 0;
+        int f_swap = 0;
+        double res = 0.0;
+        int errMOPEN = MOPEN_INVALID_STATUS;
+        double dErrClose = 0.;
 
-    C2F(mopen)(&fd, (char*)filename.c_str(), "rt", &f_swap, &res, &errMOPEN);
-    if (errMOPEN == MOPEN_NO_ERROR)
-    {
-
-        int errMGETL = MGETL_ERROR;
-        int nblines = 0;
-        char **lines = mgetl(fd, -1, &nblines, &errMGETL);
-
-        C2F(mclose)(&fd, &dErrClose);
-        if (errMGETL == MGETL_NO_ERROR)
+        C2F(mopen)(&fd, (char*)filename.c_str(), "rt", &f_swap, &res, &errMOPEN);
+        if (errMOPEN == MOPEN_NO_ERROR)
         {
-            if (lines)
-            {
-                int iStart = 0;
-                int iEnd = 0;
-                if (nblines > getDefaultMaxNbLines())
-                {
-                    iStart = nblines - getDefaultMaxNbLines();
-                    returnedError = HISTORY_TRUNCATED;
-                }
-                else
-                {
-                    iStart = 0;
-                    returnedError = NO_ERROR_HISTORY_LOADED;
-                }
-                iEnd = nblines;
 
-                for (int i = iStart; i < iEnd; i++)
+            int errMGETL = MGETL_ERROR;
+            int nblines = 0;
+            char **lines = mgetl(fd, -1, &nblines, &errMGETL);
+
+            C2F(mclose)(&fd, &dErrClose);
+            if (errMGETL == MGETL_NO_ERROR)
+            {
+                if (lines)
                 {
-                    CommandLine Line(lines[i]);
-                    Commands.push_back(Line);
+                    int iStart = 0;
+                    int iEnd = 0;
+                    if (nblines > getDefaultMaxNbLines())
+                    {
+                        iStart = nblines - getDefaultMaxNbLines();
+                        returnedError = HISTORY_TRUNCATED;
+                    }
+                    else
+                    {
+                        iStart = 0;
+                        returnedError = NO_ERROR_HISTORY_LOADED;
+                    }
+                    iEnd = nblines;
+
+                    for (int i = iStart; i < iEnd; i++)
+                    {
+                        CommandLine Line(lines[i]);
+                        Commands.push_back(Line);
+                    }
+                    freeArrayOfString(lines, nblines);
+                    lines = NULL;
                 }
-                freeArrayOfString(lines, nblines);
-                lines = NULL;
             }
         }
-    }
-    return returnedError;
-*/
+        return returnedError;
+    */
 }
 /*------------------------------------------------------------------------*/
 errorLoadHistoryCode HistoryFile::loadFromFile(void)
@@ -240,12 +240,12 @@ BOOL HistoryFile::setHistory(std::list<std::string> _lstCommands)
     BOOL bOK = FALSE;
     std::list<std::string>::const_iterator it;
 
-    if(m_Commands.empty() == false)
+    if (m_Commands.empty() == false)
     {
         m_Commands.clear();
     }
 
-    for(it = _lstCommands.begin(); it != _lstCommands.end(); it++)
+    for (it = _lstCommands.begin(); it != _lstCommands.end(); it++)
     {
         m_Commands.push_back(*it);
     }
@@ -267,7 +267,7 @@ int HistoryFile::getDefaultMaxNbLines(void)
 BOOL HistoryFile::setDefaultMaxNbLines(int _iMaxLines)
 {
     BOOL bOK = FALSE;
-    if(_iMaxLines > 0)
+    if (_iMaxLines > 0)
     {
         m_iMaxLines = _iMaxLines;
         bOK = TRUE;

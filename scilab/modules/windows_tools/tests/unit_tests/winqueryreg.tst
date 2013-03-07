@@ -4,16 +4,23 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
+// <-- WINDOWS ONLY -->
 
-ierr = execstr('winqueryreg()','errcatch');
-if ierr <> 77 then pause,end
 
-ierr = execstr('winqueryreg(''name'', ''HKEY_CURRENT_USER'')','errcatch');
-if ierr <> 999 then pause,end
+assert_checkerror('winqueryreg()', [], 77);
+assert_checkerror('winqueryreg(''name'', ''HKEY_CURRENT_USER'')', [], 999);
 
 mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
-if size(mousechar,'*') <> 18 then pause,end
+assert_checktrue(size(mousechar,'*') <> 0);
 
 cpu = winqueryreg('HKEY_LOCAL_MACHINE','HARDWARE\DESCRIPTION\System\CentralProcessor\0\','ProcessorNameString');
-if length(cpu) == 0 then pause,end
+assert_checktrue(length(cpu) <> 0);
 
+software1 = winqueryreg('key', 'HKEY_LOCAL_MACHINE','Software');
+assert_checktrue(size(software1, "*") <> 0);
+
+software2 = winqueryreg('key', 'HKLM','Software');
+assert_checktrue(size(software2, "*") <> 0);
+
+assert_checkequal(software1, software2);

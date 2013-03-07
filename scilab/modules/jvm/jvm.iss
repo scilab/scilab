@@ -44,7 +44,6 @@ Source: modules\{#JVM}\includes\getScilabJNIEnv.h; DestDir: {app}\modules\{#JVM}
 Source: modules\{#JVM}\includes\addToClasspath.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_JVM_MODULE}
 Source: modules\{#JVM}\includes\addToLibrarypath.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_JVM_MODULE}
 Source: modules\{#JVM}\includes\getScilabObject.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_JVM_MODULE}
-Source: modules\{#JVM}\includes\dynlib_jvm.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#JVM}\etc\{#JVM}.quit; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_JVM_MODULE}
 Source: modules\{#JVM}\etc\{#JVM}.start; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_JVM_MODULE}

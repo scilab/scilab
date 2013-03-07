@@ -39,7 +39,6 @@ GATEWAY_CPP_SOURCES = \
 libscilocalization_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/functions_manager/includes/ \
 				-I$(top_srcdir)/modules/types/includes/ \
 				-I$(top_srcdir)/modules/core/includes/ \
@@ -51,7 +50,7 @@ libscilocalization_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/operations/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+                -I$(top_srcdir)/modules/dynamic_link/includes \
 				$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscilocalization.la

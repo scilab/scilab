@@ -14,7 +14,6 @@
 #ifndef __LOADONUSECLASSPATH_H__
 #define __LOADONUSECLASSPATH_H__
 
-#include "dynlib_jvm.h"
 #include "BOOL.h" /* BOOL */
 
 /**
@@ -22,7 +21,7 @@
 * @param a new path to add
 * @return TRUE or FALSE
 */
-JVM_IMPEXP BOOL loadOnUseClassPath(char const* tag);
+BOOL loadOnUseClassPath(char const* tag);
 
 #endif /* __LOADONUSECLASSPATH_H__ */
 /*--------------------------------------------------------------------------*/

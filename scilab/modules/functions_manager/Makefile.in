@@ -113,8 +113,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscifunctions_manager_la_LIBADD =
 am__objects_1 = libscifunctions_manager_la-funcmanager.lo \
-	libscifunctions_manager_la-dynamic_modules.lo \
-	libscifunctions_manager_la-callDynamicGateway.lo
+	libscifunctions_manager_la-dynamic_modules.lo
 am_libscifunctions_manager_la_OBJECTS = $(am__objects_1)
 libscifunctions_manager_la_OBJECTS =  \
 	$(am_libscifunctions_manager_la_OBJECTS)
@@ -424,8 +423,7 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 FUNCTION_MANAGER_CPP_SOURCES = \
     src/cpp/funcmanager.cpp \
-    src/cpp/dynamic_modules.cpp \
-    src/cpp/callDynamicGateway.cpp
+    src/cpp/dynamic_modules.cpp
 
 pkglib_LTLIBRARIES = libscifunctions_manager.la
 libscifunctions_manager_la_SOURCES = \
@@ -433,8 +431,7 @@ libscifunctions_manager_la_SOURCES = \
 
 libscifunctions_manager_la_CPPFLAGS = \
     -Iincludes/ \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes \
-    -I$(top_srcdir)/libs/MALLOC/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_builddir)/modules/api_scilab/includes/ \
 	-I$(top_builddir)/modules/ast/includes/ \
 	-I$(top_builddir)/modules/console/includes/ \
@@ -560,7 +557,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-callDynamicGateway.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-dynamic_modules.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-funcmanager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-cosinus.Po@am__quote@
@@ -601,13 +597,6 @@ libscifunctions_manager_la-dynamic_modules.lo: src/cpp/dynamic_modules.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/dynamic_modules.cpp' object='libscifunctions_manager_la-dynamic_modules.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_manager_la-dynamic_modules.lo `test -f 'src/cpp/dynamic_modules.cpp' || echo '$(srcdir)/'`src/cpp/dynamic_modules.cpp
-
-libscifunctions_manager_la-callDynamicGateway.lo: src/cpp/callDynamicGateway.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_manager_la-callDynamicGateway.lo -MD -MP -MF $(DEPDIR)/libscifunctions_manager_la-callDynamicGateway.Tpo -c -o libscifunctions_manager_la-callDynamicGateway.lo `test -f 'src/cpp/callDynamicGateway.cpp' || echo '$(srcdir)/'`src/cpp/callDynamicGateway.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_manager_la-callDynamicGateway.Tpo $(DEPDIR)/libscifunctions_manager_la-callDynamicGateway.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/callDynamicGateway.cpp' object='libscifunctions_manager_la-callDynamicGateway.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_manager_la-callDynamicGateway.lo `test -f 'src/cpp/callDynamicGateway.cpp' || echo '$(srcdir)/'`src/cpp/callDynamicGateway.cpp
 
 testFunctionManager-test-function.o: src/cpp/test-function.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT testFunctionManager-test-function.o -MD -MP -MF $(DEPDIR)/testFunctionManager-test-function.Tpo -c -o testFunctionManager-test-function.o `test -f 'src/cpp/test-function.cpp' || echo '$(srcdir)/'`src/cpp/test-function.cpp

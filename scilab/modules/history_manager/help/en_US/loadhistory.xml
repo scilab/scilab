@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
- * Copyright (C) 2011 - DIGITEO - Allan CORNET 
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,7 +36,7 @@
     <refsection>
         <title>Description</title>
         <para>load a history file.</para>
-        <para>by default, history filename is SCIHOME+'/.history.scilab'</para>
+        <para>by default, history filename is SCIHOME/history</para>
         <para>by default, loadhistory read last 20000 lines of history file(to
             reduce time loading).
         </para>
@@ -65,5 +65,16 @@
                 <link linkend="gethistory">gethistory</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    Default history file is SCIHOME/history (instead of SCIHOME/.history.scilab).
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

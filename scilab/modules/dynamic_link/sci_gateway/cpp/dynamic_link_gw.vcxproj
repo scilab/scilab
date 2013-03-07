@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -77,7 +77,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../api_scilab/includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../operations/includes;../../../output_stream/includes;../../../../libs/intl;../../../string/includes;../../../../libs/MALLOC/includes;../../../functions_manager/includes;../../../system_env/includes;../../../threads/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../api_scilab/includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../operations/includes;../../../output_stream/includes;../../../../libs/intl;../../../string/includes;../../../functions_manager/includes;../../../system_env/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DYNAMIC_LINK_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -114,7 +114,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../api_scilab/includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../operations/includes;../../../output_stream/includes;../../../../libs/intl;../../../string/includes;../../../../libs/MALLOC/includes;../../../functions_manager/includes;../../../system_env/includes;../../../threads/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../api_scilab/includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../operations/includes;../../../output_stream/includes;../../../../libs/intl;../../../string/includes;../../../functions_manager/includes;../../../system_env/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DYNAMIC_LINK_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -152,7 +152,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../api_scilab/includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../operations/includes;../../../output_stream/includes;../../../../libs/intl;../../../string/includes;../../../../libs/MALLOC/includes;../../../functions_manager/includes;../../../system_env/includes;../../../threads/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../api_scilab/includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../operations/includes;../../../output_stream/includes;../../../../libs/intl;../../../string/includes;../../../functions_manager/includes;../../../system_env/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DYNAMIC_LINK_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -197,7 +197,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../api_scilab/includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../operations/includes;../../../output_stream/includes;../../../../libs/intl;../../../string/includes;../../../../libs/MALLOC/includes;../../../functions_manager/includes;../../../system_env/includes;../../../threads/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../api_scilab/includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../operations/includes;../../../output_stream/includes;../../../../libs/intl;../../../string/includes;../../../functions_manager/includes;../../../system_env/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DYNAMIC_LINK_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -247,9 +247,6 @@
     <ClInclude Include="..\..\includes\dynlib_dynamic_link_gw.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\ast\ast-tools\ast-tools.vcxproj">
       <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
     </ProjectReference>

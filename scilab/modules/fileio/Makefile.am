@@ -44,7 +44,8 @@ FILEIO_C_SOURCES = \
     src/c/fscanfMat.c \
     src/c/fprintfMat.c \
     src/c/createtempfilename.c \
-	src/c/dlManager.c
+	src/c/dlManager.c \
+	src/c/convert_tools.c
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_fileio.c \
@@ -118,7 +119,6 @@ libscifileio_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/operations/includes \
@@ -133,11 +133,12 @@ libscifileio_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/threads/includes \
 	-I$(top_srcdir)/modules/console/includes \
 	-I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+	-I$(top_srcdir)/modules/dynamic_link/includes \
 	$(HDF5_CFLAGS) \
 	$(XML_FLAGS) \
     $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
+
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscifileio.la

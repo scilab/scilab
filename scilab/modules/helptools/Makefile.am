@@ -39,10 +39,10 @@ endif
 
 pkglib_LTLIBRARIES = libscihelptools.la libscihelptools-disable.la
 
-libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
+libscihelptools_la_CPPFLAGS= \
+                $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/jni/ \
 				-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/localization/includes/ \
 				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
@@ -53,7 +53,7 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/types/includes/ \
 				-I$(top_srcdir)/modules/ast/includes/ \
 				-I$(top_srcdir)/modules/commons/src/jni \
-                -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+                -I$(top_srcdir)/modules/dynamic_link/includes \
 				$(AM_CPPFLAGS)
 
 

@@ -17,3 +17,7 @@ getrhscvar_
 checklhs_
 checkrhs_
 createvarfromptr_ 
+getWarningMode
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

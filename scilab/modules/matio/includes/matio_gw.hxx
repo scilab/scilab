@@ -20,10 +20,10 @@ extern "C"
 #include "dynlib_matio_gw.h"
 }
 
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_open, MATIO_GW_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_close, MATIO_GW_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_listvar, MATIO_GW_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_varreadnext, MATIO_GW_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_varwrite, MATIO_GW_IMPEXP);
+//CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_open, MATIO_GW_IMPEXP);
+//CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_close, MATIO_GW_IMPEXP);
+//CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_listvar, MATIO_GW_IMPEXP);
+//CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_varreadnext, MATIO_GW_IMPEXP);
+//CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matfile_varwrite, MATIO_GW_IMPEXP);
 
 #endif /* __MATIO_GW_HXX__ */

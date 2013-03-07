@@ -72,7 +72,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;../../libs/Eigen/includes;../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/Eigen/includes;../console/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -95,7 +95,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;../../libs/Eigen/includes;../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/Eigen/includes;../console/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -116,7 +116,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;../../libs/Eigen/includes;../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/Eigen/includes;../console/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -139,7 +139,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/dynamiclibrary/includes;../../libs/Eigen/includes;../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../types/includes;../core/includes;../system_env/includes;../../libs/libxml2;../symbol/includes;../operations/includes;../ast/includes;../fileio/includes;../parse/includes;../localization/includes;../../libs/intl;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../../libs/Eigen/includes;../console/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -156,7 +156,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\callDynamicGateway.cpp" />
     <ClCompile Include="src\cpp\dynamic_modules.cpp" />
     <ClCompile Include="src\cpp\funcmanager.cpp" />
   </ItemGroup>
@@ -164,7 +163,6 @@
     <ClInclude Include="includes\dynamic_modules.hxx" />
     <ClInclude Include="includes\funcmanager.hxx" />
     <ClInclude Include="includes\module_declaration.hxx" />
-    <ClInclude Include="src\cpp\callDynamicGateway.hxx" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />
@@ -176,13 +174,6 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\dynamiclibrary\dynamiclibrary.vcxproj">
-      <Project>{77154919-8a20-4f35-b7c7-6b3b957bdca1}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -221,6 +212,9 @@
     </ProjectReference>
     <ProjectReference Include="..\dynamic_link\sci_gateway\cpp\dynamic_link_gw.vcxproj">
       <Project>{f93ff3ee-217a-4554-ab17-2f8d56b4bf4b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\dynamic_link\src\c\dynamic_link.vcxproj">
+      <Project>{eab6c580-22b3-4359-ba1d-dd7499a96163}</Project>
     </ProjectReference>
     <ProjectReference Include="..\elementary_functions\sci_gateway\cpp\elem_func_gw\elem_func_gw.vcxproj">
       <Project>{9881f0ce-a1ac-4744-b709-7c1453a77b95}</Project>

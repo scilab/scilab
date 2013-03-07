@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -84,7 +84,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
@@ -108,7 +108,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
@@ -130,7 +130,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
@@ -157,7 +157,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>

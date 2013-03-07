@@ -236,5 +236,13 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{0499815e-56d2-4ff4-bb90-dd57cf2c6cd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{31bac480-5190-44fd-8c11-aa2cf27d3069}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="core_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

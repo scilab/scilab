@@ -432,8 +432,8 @@ libscisystem_env_la_SOURCES = $(SYSTEM_ENV_CPP_SOURCES)
 libscisystem_env_la_CPPFLAGS = \
 	-I includes/ \
 	-I src/cpp \
-	-I $(top_srcdir)/libs/dynamiclibrary/includes/ \
 	-I $(top_srcdir)/libs/MALLOC/includes/ \
+    -I $(top_srcdir)/modules/dynamic_link/includes \
 	-I $(top_srcdir)/modules/api_scilab/includes/ \
 	-I $(top_srcdir)/modules/ast/includes/ \
 	-I $(top_srcdir)/modules/symbol/includes/ \

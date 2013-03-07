@@ -11,3 +11,7 @@ setSCIpath
 InitializeLaunchScilabSignal
 sciquit
 StoreCommand
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc
+

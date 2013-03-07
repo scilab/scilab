@@ -29,7 +29,6 @@ libsciapi_scilab_la_CPPFLAGS= \
 -I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/core/includes \
 -I$(top_srcdir)/modules/call_scilab/includes \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/operations/includes \
@@ -39,7 +38,7 @@ libsciapi_scilab_la_CPPFLAGS= \
 -I$(top_srcdir)/modules/ast/includes \
 -I$(top_srcdir)/modules/elementary_functions/includes \
 -I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes \
 $(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 

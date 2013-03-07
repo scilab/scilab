@@ -1,9 +1,7 @@
-	LIBRARY    core.dll
+LIBRARY    core.dll
 
 
 EXPORTS
-;core
-;
 ExceptionMessage
 funtab_
 iop_
@@ -21,3 +19,6 @@ createvarfromptr_
 stack_
 gettype_
 vstk_
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

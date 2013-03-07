@@ -40,15 +40,6 @@ typedef int (*LSRhsFn) (int * neq, realtype * t, realtype * y, realtype * rwork)
 typedef int (*LSRootFn) (int * neq, realtype * t, realtype * y, int * ng, realtype * rwork);
 typedef void (*LSErrHandlerFn) (int error_code, const char *module, const char *function, char *msg, void *user_data);
 
-enum iTask_t
-{
-    LS_NORMAL = 1,
-    LS_ONE_STEP = 2,
-    LS_MESH_STEP = 3,
-    LS_NORMAL_TSTOP = 4,
-    LS_ONE_STEP_TSTOP = 5
-};
-
 // LSodar problem memory structure
 typedef struct LSodarMemRec
 {
@@ -96,7 +87,7 @@ int LSodarSetMaxStep (void * lsodar_mem, realtype hmax);
 int LSodarSetStopTime (void * lsodar_mem, realtype tcrit);
 
 // Solving the problem
-int LSodar (void * lsodar_mem, realtype tOut, N_Vector yVec, realtype * tOld, enum iTask_t itask);
+int LSodar (void * lsodar_mem, realtype tOut, N_Vector yVec, realtype * tOld, int itask);
 
 // Update rootsfound to the computed jroots
 int LSodarGetRootInfo (void * lsodar_mem, int * rootsfound);

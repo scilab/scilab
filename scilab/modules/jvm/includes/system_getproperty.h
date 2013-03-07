@@ -2,26 +2,25 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef __SYSTEM_GETPROPERTY_H__
 #define __SYSTEM_GETPROPERTY_H__
 
-#include "dynlib_jvm.h"
 /**
 * get system property
 * @param property name
 * @return property value
 */
-JVM_IMPEXP char * system_getproperty(char *property,char *defaultproperty);
+char * system_getproperty(char *property, char *defaultproperty);
 
 #endif /* __SYSTEM_GETPROPERTY_H__ */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

@@ -2,5 +2,7 @@ LIBRARY    core.dll
 
 
 EXPORTS
-;
-
+callFunctionFromGateway
+com_
+MyHeapAlloc
+MyHeapFree

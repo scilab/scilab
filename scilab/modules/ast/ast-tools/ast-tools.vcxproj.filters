@@ -15,6 +15,9 @@
     <None Include="Localization_Import.def">
       <Filter>Library Dependencies</Filter>
     </None>
+    <None Include="core_Import.def">
+      <Filter>Library Dependencies</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\bin\blasplus.lib" />

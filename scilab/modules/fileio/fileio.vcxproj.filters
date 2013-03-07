@@ -189,6 +189,9 @@
     <ClCompile Include="src\c\dlManager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\convert_tools.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\mgetl.h">
@@ -366,6 +369,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\dlManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\convert_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

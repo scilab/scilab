@@ -126,11 +126,6 @@ libscilab_la_SOURCES =
 libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS)
 #libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
 
-EXTERNAL_LIBS = $(top_builddir)/libs/hashtable/libscihashtable.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la  \
-$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la  \
-$(top_builddir)/libs/libst/libscilibst.la
-
 
 GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
@@ -201,7 +196,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
 	$(top_builddir)/modules/operations/libscioperations.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/types/libscitypes.la \

@@ -67,7 +67,7 @@ GATEWAY_C_SOURCES = \
 
 GATEWAY_FORTRAN_SOURCES =
 
-libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
+libscioutput_stream_la_CPPFLAGS= \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes/ \
 -I$(srcdir)/src/cpp/ \
@@ -82,7 +82,7 @@ libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/system_env/includes \
 -I$(top_srcdir)/modules/threads/includes \
 -I$(top_srcdir)/modules/console/includes \
--I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes \
 -I$(top_srcdir)/modules/localization/includes/ \
 $(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)

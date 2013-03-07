@@ -26,7 +26,7 @@ extern "C"
 #include "filesmanagement.h"
 #include "sciprint.h"
 #include "islittleendian.h"
-#include "../../../libs/libst/misc.h"
+#include "convert_tools.h"
 #include "localization.h"
 #include "charEncoding.h"
 #include "MALLOC.h"
@@ -50,7 +50,7 @@ extern "C"
       for ( i=0; i< n; i++)  {					\
 	unsigned long long tmp;					\
 	items+=(int)fread(&tmp,sizeof(Type),1,fa);		\
-	swapb((char *)&tmp,(char *)val, sizeof(Type));	\
+	swap_generic((char *)&tmp,(char *)val, sizeof(Type));	\
 	val++;							\
       }								\
     }								\
@@ -86,10 +86,10 @@ void C2F(mgetnc)(int* fd, void* res, int* n1, char* type, int* ierr)
 
     *ierr = 0;
 
-    if(pFile == NULL || (fa = pFile->getFiledesc()) == NULL)
+    if (pFile == NULL || (fa = pFile->getFiledesc()) == NULL)
     {
         sciprint(_("%s: No input file associated to logical unit %d.\n"), "mget", *fd);
-        *ierr=3;
+        *ierr = 3;
         return;
     }
 
@@ -98,29 +98,55 @@ void C2F(mgetnc)(int* fd, void* res, int* n1, char* type, int* ierr)
 
     int swap = pFile->getFileSwap(); // used in MGET_GEN_NC => MGET_NC
 
-    switch(type[0])
+    switch (type[0])
     {
-        case 'i' : MGET_GEN_NC(int,c1);    break;
-        case 'l' : MGET_GEN_NC(int32_t,c1);break;
-        case 's' : MGET_GEN_NC(short,c1);  break;
-        case 'c' : MGET_CHAR_NC(char);     break;
-        case 'd' : MGET_GEN_NC(double,c1); break;
-        case 'f' : MGET_GEN_NC(float,c1);  break;
+        case 'i' :
+            MGET_GEN_NC(int, c1);
+            break;
+        case 'l' :
+            MGET_GEN_NC(int32_t, c1);
+            break;
+        case 's' :
+            MGET_GEN_NC(short, c1);
+            break;
+        case 'c' :
+            MGET_CHAR_NC(char);
+            break;
+        case 'd' :
+            MGET_GEN_NC(double, c1);
+            break;
+        case 'f' :
+            MGET_GEN_NC(float, c1);
+            break;
         case 'u' :
-            switch(c1)
+            switch (c1)
             {
-                case 'i' :  MGET_GEN_NC(unsigned int,c2);   break;
-                case 'l' :  MGET_GEN_NC(uint32_t,c2);       break;
-                case 's' :  MGET_GEN_NC(unsigned short,c2); break;
-                case ' ' :  MGET_GEN_NC(unsigned int,' ');  break;
-                case 'c' :  MGET_CHAR_NC(unsigned char);    break;
-                default : *ierr = 1; return;
+                case 'i' :
+                    MGET_GEN_NC(unsigned int, c2);
+                    break;
+                case 'l' :
+                    MGET_GEN_NC(uint32_t, c2);
+                    break;
+                case 's' :
+                    MGET_GEN_NC(unsigned short, c2);
+                    break;
+                case ' ' :
+                    MGET_GEN_NC(unsigned int, ' ');
+                    break;
+                case 'c' :
+                    MGET_CHAR_NC(unsigned char);
+                    break;
+                default :
+                    *ierr = 1;
+                    return;
             }
             break;
-        default : *ierr = 1; return;
+        default :
+            *ierr = 1;
+            return;
     }
 
-    if(items != n)
+    if (items != n)
     {
         *ierr = -items - 1 ;
         // sciprint("Read %d out of\n",items,n);
@@ -147,57 +173,82 @@ void C2F(mgetnc)(int* fd, void* res, int* n1, char* type, int* ierr)
 /* reads data and store them in double  */
 void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr)
 {
-	char c1,c2;
-	int i,items=n;
-	*ierr=0;
-	c1 = ( strlen(type) > 1) ? type[1] : ' ';
-	c2 = ( strlen(type) > 2) ? type[2] : ' ';
-	switch ( type[0] )
-	{
-	case 'i' : MGET_GEN(int,c1);    break;
-	case 'l' : MGET_GEN(int32_t,c1);   break;
-	case 's' : MGET_GEN(short,c1);  break;
-	case 'c' : MGET_CHAR(char);     break;
-	case 'd' : MGET_GEN(double,c1); break;
-	case 'f' : MGET_GEN(float,c1);  break;
-	case 'u' :
-		switch ( c1 )
-		{
-		case 'i' :  MGET_GEN(unsigned int,c2);   break;
-		case 'l' :  MGET_GEN(uint32_t,c2);  break;
-		case 's' :  MGET_GEN(unsigned short,c2); break;
-		case ' ' :  MGET_GEN(unsigned int,' ');  break;
-		case 'c' :  MGET_CHAR(unsigned char);    break;
-		default : *ierr=1; return; break;
-		}
-		break;
-	default :
-		*ierr=1;
-		return ;
-	}
-	if ( items != n )
-	{
-		*ierr = -(items) -1 ;
-		/** sciprint("Read %d out of\n",items,n); **/
-	}
-	return;
+    char c1, c2;
+    int i, items = n;
+    *ierr = 0;
+    c1 = ( strlen(type) > 1) ? type[1] : ' ';
+    c2 = ( strlen(type) > 2) ? type[2] : ' ';
+    switch ( type[0] )
+    {
+        case 'i' :
+            MGET_GEN(int, c1);
+            break;
+        case 'l' :
+            MGET_GEN(int32_t, c1);
+            break;
+        case 's' :
+            MGET_GEN(short, c1);
+            break;
+        case 'c' :
+            MGET_CHAR(char);
+            break;
+        case 'd' :
+            MGET_GEN(double, c1);
+            break;
+        case 'f' :
+            MGET_GEN(float, c1);
+            break;
+        case 'u' :
+            switch ( c1 )
+            {
+                case 'i' :
+                    MGET_GEN(unsigned int, c2);
+                    break;
+                case 'l' :
+                    MGET_GEN(uint32_t, c2);
+                    break;
+                case 's' :
+                    MGET_GEN(unsigned short, c2);
+                    break;
+                case ' ' :
+                    MGET_GEN(unsigned int, ' ');
+                    break;
+                case 'c' :
+                    MGET_CHAR(unsigned char);
+                    break;
+                default :
+                    *ierr = 1;
+                    return;
+                    break;
+            }
+            break;
+        default :
+            *ierr = 1;
+            return ;
+    }
+    if ( items != n )
+    {
+        *ierr = -(items) - 1 ;
+        /** sciprint("Read %d out of\n",items,n); **/
+    }
+    return;
 }
 /*--------------------------------------------------------------------------*/
 void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr)
 {
-    *ierr=0;
-    if(strlen(type) == 0)
+    *ierr = 0;
+    if (strlen(type) == 0)
     {
         sciprint(_("%s: Wrong size for input argument #%d: Non-empty string expected.\n"), "mget", 4, type);
-        *ierr=2;
+        *ierr = 2;
         return;
     }
 
     File* pFile = FileManager::getFile(*fd);
-    if(pFile && pFile->getFiledesc())
+    if (pFile && pFile->getFiledesc())
     {
         mget2(pFile->getFiledesc(), pFile->getFileSwap(), res, *n, type, ierr);
-        if(*ierr > 0)
+        if (*ierr > 0)
         {
             sciprint(_("%s: Wrong value for input argument #%d: Format not recognized.\n"), "mget", 4);
         }
@@ -205,7 +256,7 @@ void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr)
     else
     {
         sciprint(_("%s: No input file associated to logical unit %d.\n"), "mget", *fd);
-        *ierr=3;
+        *ierr = 3;
     }
 }
 /*--------------------------------------------------------------------------*/

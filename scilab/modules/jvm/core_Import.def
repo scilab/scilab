@@ -17,4 +17,7 @@ getrhsvar_
 com_
 callFunctionFromGateway
 GetXmlFileEncoding
-;
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc
+

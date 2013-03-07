@@ -16,3 +16,6 @@ checkrhs_
 createvarfromptr_
 stack_
 createvar_
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

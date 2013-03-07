@@ -161,14 +161,14 @@ public class AxisDrawer {
      */
     private Vector3d computeTicksDirection(Axis.TicksDirection direction) {
         switch (direction) {
-        case TOP:
-            return new Vector3d(0, +1, 0);
-        case BOTTOM:
-            return new Vector3d(0, -1, 0);
-        case LEFT:
-            return new Vector3d(-1, 0, 0);
-        default:
-            return new Vector3d(+1, 0, 0);
+            case TOP:
+                return new Vector3d(0, +1, 0);
+            case BOTTOM:
+                return new Vector3d(0, -1, 0);
+            case LEFT:
+                return new Vector3d(-1, 0, 0);
+            default:
+                return new Vector3d(+1, 0, 0);
         }
     }
 
@@ -330,6 +330,8 @@ public class AxisDrawer {
 
                 FormattedTextSpriteDrawer textureDrawer = new FormattedTextSpriteDrawer(drawerVisitor.getColorMap(), formattedText);
                 Texture texture = spriteManager.createTexture();
+                texture.setMagnificationFilter(Texture.Filter.LINEAR);
+                texture.setMinifyingFilter(Texture.Filter.LINEAR);
                 texture.setDrawer(textureDrawer);
 
                 return texture;

@@ -93,9 +93,6 @@
     <ClInclude Include="..\includes\defaultlanguage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\includes\dynlib_localization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\includes\dynlib_localization_gw.h">
       <Filter>Header Files</Filter>
     </ClInclude>

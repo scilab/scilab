@@ -47,8 +47,6 @@ public final class SaveFile {
      */
     private SaveFile() { }
 
-
-
     /**
      * save text in JEditorPane
      * @param textPane JEditorPane

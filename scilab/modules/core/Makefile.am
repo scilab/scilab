@@ -76,7 +76,12 @@ src/c/suspendProcess.c \
 src/c/windowsChangeManagement.c \
 src/c/setlines.c \
 src/c/setformat.c \
-src/c/InitializePreferences.c
+src/c/InitializePreferences.c \
+src/c/getmaxMALLOC.c \
+src/c/sci_mem_alloc.c \
+src/c/hashtable/hashtable.c \
+src/c/hashtable/hashtable_itr.c \
+src/c/hashtable/hashtable_utility.c
 
 CORE_CPP_SOURCES = \
 src/cpp/core_gw.cpp \
@@ -244,39 +249,39 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_ieee.cpp
 
 
-libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
-	-I$(top_srcdir)/modules/intersci/includes/ \
-	-I$(top_srcdir)/modules/call_scilab/includes/ \
-	-I$(top_srcdir)/modules/api_scilab/includes/ \
-	-I$(top_srcdir)/modules/action_binding/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes/ \
-	-I$(top_srcdir)/modules/localization/includes/ \
-	-I$(top_srcdir)/modules/functions_manager/includes/ \
-	-I$(top_srcdir)/modules/elementary_functions/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/parse/includes/ \
-	-I$(top_srcdir)/modules/symbol/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/ \
-	-I$(top_srcdir)/modules/types/includes/ \
-	-I$(top_srcdir)/modules/io/includes/ \
-	-I$(top_srcdir)/modules/tclsci/includes/ \
-	-I$(top_srcdir)/modules/dynamic_link/includes/ \
-	-I$(top_srcdir)/modules/elementary_functions/includes/ \
-	-I$(top_srcdir)/modules/string/includes/ \
-	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
-	-I$(top_srcdir)/modules/console/includes/ \
-	-I$(top_srcdir)/modules/threads/includes/ \
-	-I$(top_srcdir)/modules/history_manager/includes/ \
-	-I$(top_srcdir)/modules/preferences/includes/ \
-	-I$(top_srcdir)/modules/external_objects/includes/ \
-	$(EIGEN_CPPFLAGS) \
-	$(XML_FLAGS) \
-	$(AM_CPPFLAGS)
+libscicore_la_CPPFLAGS = \
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/src/cpp/ \
+-I$(top_srcdir)/modules/intersci/includes/ \
+-I$(top_srcdir)/modules/call_scilab/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/action_binding/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/functions_manager/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/parse/includes/ \
+-I$(top_srcdir)/modules/symbol/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/io/includes/ \
+-I$(top_srcdir)/modules/tclsci/includes/ \
+-I$(top_srcdir)/modules/dynamic_link/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/console/includes/ \
+-I$(top_srcdir)/modules/threads/includes/ \
+-I$(top_srcdir)/modules/history_manager/includes/ \
+-I$(top_srcdir)/modules/preferences/includes/ \
+-I$(top_srcdir)/modules/external_objects/includes/ \
+-I$(top_srcdir)/modules/functions/includes/ \
+$(EIGEN_CPPFLAGS) \
+$(XML_FLAGS) \
+$(AM_CPPFLAGS)
 
 # Used by sci_getdebuginfo:
 if TCLTK
@@ -339,6 +344,7 @@ includes/getmemory.h \
 includes/getos.h \
 includes/machine.h \
 includes/mode_exec.h \
+includes/MALLOC.h \
 includes/PATH_MAX.h \
 includes/scilabDefaults.h \
 includes/scisparse.h \
@@ -354,7 +360,13 @@ includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/version.h \
 includes/getversion.h \
-includes/backtrace_print.h
+includes/backtrace_print.h \
+includes/backtrace_print.h \
+includes/sci_mem_alloc.h \
+includes/hashtable_itr.h \
+includes/hashtable.h \
+includes/hashtable_utility.h
+
 
 if GUI
 USEANT=1

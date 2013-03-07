@@ -461,8 +461,7 @@ libsciast_la_SOURCES = \
 libsciast_la_CPPFLAGS = \
 	-Iincludes \
 	-Isrc/cpp \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes \
-    -I$(top_srcdir)/libs/MALLOC/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/types/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \

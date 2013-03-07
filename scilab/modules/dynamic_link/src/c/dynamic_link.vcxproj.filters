@@ -47,6 +47,9 @@
     <ClCompile Include="..\cpp\dynamic_link.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dynamiclibrary_windows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\addinter.h">
@@ -73,6 +76,9 @@
     <ClInclude Include="dllinfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\dynamiclibrary_windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="dynamic_link_f_Import.def">
@@ -94,7 +100,7 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="scilab_windows_Import.def">
-      <Filter>Source Files</Filter>
+      <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

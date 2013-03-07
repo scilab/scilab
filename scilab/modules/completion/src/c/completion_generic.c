@@ -13,6 +13,7 @@
 #include "completion_generic.h"
 #include "MALLOC.h"
 #include "os_strdup.h"
+#include "stricmp.h"
 /*--------------------------------------------------------------------------*/
 char **completion_generic(char **dictionary,int sizedictionary,
                           char *somechars, int *sizeArrayReturned)
@@ -25,25 +26,18 @@ char **completion_generic(char **dictionary,int sizedictionary,
     {
         if (dictionary[i])
         {
-            if ( strncmp(dictionary[i],somechars,strlen(somechars)) == 0)
+            if ( strnicmp(dictionary[i],somechars,strlen(somechars)) == 0)
             {
                 nbElements++;
                 /* +1 in MALLOC because a NULL element is inserted at the end of the array */
                 /* This NULL element is used in Java wrapper to know the size of the array */
-                if (results) 
-                    results = (char**)REALLOC(results,sizeof(char*)*(nbElements+1)); 
-                else 
-                    results = (char**)MALLOC(sizeof(char*)*(nbElements+1));
+                if (results)
+                   results = (char**)REALLOC(results,sizeof(char*)*(nbElements+1));
+                else
+                   results = (char**)MALLOC(sizeof(char*)*(nbElements+1));
 
                 results[nbElements] = NULL; /* Last element set to NULL */
                 results[nbElements-1] = os_strdup(dictionary[i]);
-            }
-            else
-            {
-                if (nbElements > 0)
-                {
-                    break;
-                }
             }
         }
     }

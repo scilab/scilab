@@ -17,11 +17,11 @@ function i = modulo(n, m)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"modulo", 2));
     end
 
-    if ~isreal(n) then
+    if and(typeof(n) <> ["constant", "polynomial"]) | ~isreal(n) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"), "modulo", 1));
     end
 
-    if ~isreal(m) then
+    if typeof(m) <> "constant" | ~isreal(m) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"), "modulo", 2));
     end
 
@@ -53,4 +53,5 @@ endfunction
 
 
 
-
+
+

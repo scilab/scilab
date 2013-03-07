@@ -491,7 +491,6 @@ COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
 libscicommons_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/jni/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
 			$(AM_CPPFLAGS)

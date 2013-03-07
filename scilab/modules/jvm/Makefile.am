@@ -25,8 +25,8 @@ libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
 
 
-libscijvm_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
+libscijvm_la_CPPFLAGS = \
+            $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c \
 			-I$(top_srcdir)/modules/ast/includes/ \
@@ -41,7 +41,7 @@ libscijvm_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/functions_manager/includes/ \
 			-I$(top_srcdir)/modules/system_env/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
-            -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+            -I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/preferences/includes/ \
 			$(XML_FLAGS) \
 			$(AM_CPPFLAGS)

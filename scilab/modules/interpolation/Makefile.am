@@ -41,12 +41,11 @@ libsciinterpolation_la_CPPFLAGS= \
 -I$(top_srcdir)/modules/ast/includes \
 -I$(top_srcdir)/modules/threads/includes \
 -I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes \
 -I$(top_srcdir)/modules/types/includes \
 -I$(top_srcdir)/modules/operations/includes \
 -I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/elementary_functions/includes \
--I$(top_srcdir)/libs/MALLOC/includes
+-I$(top_srcdir)/modules/elementary_functions/includes
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 noinst_LTLIBRARIES = libsciinterpolation-algo.la

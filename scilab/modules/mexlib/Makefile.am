@@ -10,7 +10,6 @@ MEXLIB_CPP_SOURCES = \
 
 MEXLIB_FLAGS = \
     -I$(srcdir)/includes/ \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/call_scilab/includes/ \
@@ -25,7 +24,7 @@ MEXLIB_FLAGS = \
 	-I$(top_srcdir)/modules/threads/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/console/includes/ \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes
+    -I$(top_srcdir)/modules/dynamic_link/includes
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la

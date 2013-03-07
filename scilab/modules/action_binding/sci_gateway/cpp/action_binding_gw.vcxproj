@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../types/includes;../../../operations/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../symbol/includes;../../../commons/src/jni;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../types/includes;../../../operations/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../../libs/intl;../../../symbol/includes;../../../commons/src/jni;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -122,7 +122,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../types/includes;../../../operations/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../symbol/includes;../../../commons/src/jni;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../types/includes;../../../operations/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../../libs/intl;../../../symbol/includes;../../../commons/src/jni;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -164,7 +164,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../types/includes;../../../operations/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../symbol/includes;../../../commons/src/jni;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../types/includes;../../../operations/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../../libs/intl;../../../symbol/includes;../../../commons/src/jni;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -213,7 +213,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../types/includes;../../../operations/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../symbol/includes;../../../commons/src/jni;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../types/includes;../../../operations/includes;../../../core/includes;../../../ast/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../../libs/intl;../../../symbol/includes;../../../commons/src/jni;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -261,11 +261,11 @@
     <ClInclude Include="..\..\includes\dynlib_action_binding_gw.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>

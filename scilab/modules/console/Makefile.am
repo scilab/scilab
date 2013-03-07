@@ -102,61 +102,61 @@ CONSOLE_C_SOURCES += src/c/others/initMacOSXEnv.c
 endif
 
 
-libsciconsole_minimal_la_CPPFLAGS = -I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-                -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/history_manager/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/core/includes/ \
-				-I$(top_srcdir)/modules/completion/includes/ \
-				-I$(top_srcdir)/modules/localization/includes/ \
-				-I$(top_srcdir)/modules/action_binding/includes/ \
-				-I$(top_srcdir)/modules/fileio/src/c/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes/ \
-				-I$(top_srcdir)/modules/ui_data/includes/ \
-				-I$(top_srcdir)/modules/jvm/includes \
-				-I$(top_srcdir)/modules/system_env/includes \
-				-I$(top_srcdir)/modules/types/includes \
-				-I$(top_srcdir)/modules/ast/includes \
-				-I$(top_srcdir)/modules/threads/includes \
-				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/symbol/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-				$(AM_CPPFLAGS)
+libsciconsole_minimal_la_CPPFLAGS = \
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/history_manager/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/core/includes/ \
+-I$(top_srcdir)/modules/completion/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/action_binding/includes/ \
+-I$(top_srcdir)/modules/fileio/src/c/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/ui_data/includes/ \
+-I$(top_srcdir)/modules/jvm/includes \
+-I$(top_srcdir)/modules/system_env/includes \
+-I$(top_srcdir)/modules/types/includes \
+-I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/threads/includes \
+-I$(top_srcdir)/modules/string/includes \
+-I$(top_srcdir)/modules/symbol/includes \
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes \
+$(AM_CPPFLAGS)
 
 # Includes need for the compilation
 libsciconsole_la_CPPFLAGS = \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(srcdir)/includes/ \
-	-I$(srcdir)/src/cpp/ \
-	-I$(srcdir)/src/c/ \
-	-I$(srcdir)/src/jni/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/jvm/includes/ \
-	-I$(top_srcdir)/modules/action_binding/includes \
-	-I$(top_srcdir)/modules/history_manager/includes/ \
-	-I$(top_srcdir)/modules/operations/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
-	-I$(top_srcdir)/modules/ui_data/includes/ \
-	-I$(top_srcdir)/modules/threads/includes \
-	-I$(top_srcdir)/modules/completion/includes \
-	-I$(top_srcdir)/modules/types/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
-	-I$(top_srcdir)/modules/ast/includes \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
-	-I$(top_srcdir)/modules/fileio/includes \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/commons/src/jni \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes \
-	$(JAVA_JNI_INCLUDE) \
-	$(AM_CPPFLAGS)
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/cpp/ \
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/src/jni/ \
+-I$(top_srcdir)/modules/jvm/includes/ \
+-I$(top_srcdir)/modules/action_binding/includes \
+-I$(top_srcdir)/modules/history_manager/includes/ \
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/system_env/includes \
+-I$(top_srcdir)/modules/ui_data/includes/ \
+-I$(top_srcdir)/modules/threads/includes \
+-I$(top_srcdir)/modules/completion/includes \
+-I$(top_srcdir)/modules/types/includes \
+-I$(top_srcdir)/modules/system_env/includes \
+-I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/symbol/includes \
+-I$(top_srcdir)/modules/string/includes \
+-I$(top_srcdir)/modules/system_env/includes \
+-I$(top_srcdir)/modules/fileio/includes \
+-I$(top_srcdir)/modules/localization/includes \
+-I$(top_srcdir)/modules/commons/src/jni \
+-I$(top_srcdir)/modules/dynamic_link/includes \
+$(JAVA_JNI_INCLUDE) \
+$(AM_CPPFLAGS)
+
 
 # FIXME: Plateform specific optimisation flags should be set on configure.ac
 if IS_MACOSX

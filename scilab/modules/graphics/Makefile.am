@@ -398,38 +398,36 @@ sci_gateway/cpp/sci_winsid.cpp
 
 
 libscigraphics_la_CPPFLAGS = \
-	-I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ \
-	-I$(srcdir)/src/c/getHandleProperty/ \
-	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
-	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-	-I$(top_srcdir)/libs/hashtable/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/action_binding/includes/ \
-	-I$(top_srcdir)/modules/api_scilab/includes/ \
-	-I$(top_srcdir)/modules/elementary_functions/includes/ \
-	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/graphic_export/includes/ \
-	-I$(top_srcdir)/modules/graphic_objects/includes/ \
-	-I$(top_srcdir)/modules/gui/includes/ \
-	-I$(top_srcdir)/modules/jvm/includes/ \
-	-I$(top_srcdir)/modules/localization/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes/ \
-	-I$(top_srcdir)/modules/renderer/includes/ \
-	-I$(top_srcdir)/modules/string/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
-	-I$(top_srcdir)/modules/types/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/symbol/includes/ \
-	-I$(top_srcdir)/modules/localization/includes/ \
-	-I$(top_srcdir)/modules/threads/includes/ \
-	-I$(top_srcdir)/modules/console/includes/ \
-	$(EIGEN_CPPFLAGS) \
-	$(TCL_INC_PATH) \
-	$(TK_INC_PATH) \
-	$(AM_CPPFLAGS)
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/src/c/getHandleProperty/ \
+-I$(srcdir)/src/cpp/ \
+-I$(top_srcdir)/libs/hashtable/ \
+-I$(top_srcdir)/modules/action_binding/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/graphic_export/includes/ \
+-I$(top_srcdir)/modules/graphic_objects/includes/ \
+-I$(top_srcdir)/modules/gui/includes/ \
+-I$(top_srcdir)/modules/jvm/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/renderer/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/symbol/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/threads/includes/ \
+-I$(top_srcdir)/modules/console/includes/ \
+-I$(top_srcdir)/modules/dynamic_link/includes \
+$(EIGEN_CPPFLAGS) \
+$(TCL_INC_PATH) \
+$(TK_INC_PATH) \
+$(AM_CPPFLAGS)
 
 libscigraphics_algo_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GRAPHICS_CXX_SOURCES)
 libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
@@ -490,27 +488,25 @@ libscigraphics_disable_la_SOURCES = \
 	src/nographics/nographics_gw.cpp
 
 libscigraphics_disable_la_CPPFLAGS = \
-	-I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ \
-	-I$(srcdir)/src/c/getHandleProperty/ \
-	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
-	-I$(top_srcdir)/libs/hashtable/ \
-	-I$(top_srcdir)/modules/api_scilab/includes/ \
-	-I$(top_srcdir)/modules/localization/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes/ \
-	-I$(top_srcdir)/modules/string/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
-	-I$(top_srcdir)/modules/types/includes/ \
-	-I$(top_srcdir)/modules/core/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/symbol/includes/ \
-	-I$(top_srcdir)/modules/localization/includes/ \
-	$(EIGEN_CPPFLAGS) \
-	$(AM_CPPFLAGS)
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/src/c/getHandleProperty/ \
+-I$(srcdir)/src/cpp/ \
+-I$(top_srcdir)/libs/hashtable/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/core/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/symbol/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/dynamic_link/includes \
+$(EIGEN_CPPFLAGS) \
+$(AM_CPPFLAGS)
 
 # endif
 

@@ -2,23 +2,22 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef __JVM_FUNCTIONS_H__
 #define __JVM_FUNCTIONS_H__
 
 #include <jni.h> /* JVM functions */
 #include "BOOL.h" /* BOOL */
 
-#include "dynlib_jvm.h"
 /**
 * Load JVM dynamic library
 * @return TRUE or FALSE
@@ -33,25 +32,25 @@ BOOL FreeDynLibJVM(void);
 
 /**
 * wrapping JNI_CreateJavaVM
-* @param pvm   
-* @param penv  
-* @param args  
+* @param pvm
+* @param penv
+* @param args
 * @return <ReturnValue>
 */
 jint SciJNI_CreateJavaVM(JavaVM **pvm, JNIEnv **penv, JavaVMInitArgs *args);
 
 /**
 * wrapping JNI_GetCreatedJavaVMs
-* @param vmBuf 
-* @param BufLen    
-* @param nVMs  
+* @param vmBuf
+* @param BufLen
+* @param nVMs
 * @return <ReturnValue>
 */
 jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
 
 /**
 * wrapping JNI_GetDefaultJavaVMInitArgs
-* @param args  
+* @param args
 * @return <ReturnValue>
 */
 jint SciJNI_GetDefaultJavaVMInitArgs(JavaVMInitArgs *args);
@@ -60,7 +59,7 @@ jint SciJNI_GetDefaultJavaVMInitArgs(JavaVMInitArgs *args);
 * Check if Scilab uses embedded JRE
 * @return <ReturnValue> TRUE or FALSE
 */
-JVM_IMPEXP BOOL withEmbeddedJRE(void);
+BOOL withEmbeddedJRE(void);
 
 /**
 * search a Created JavaVM
@@ -90,5 +89,5 @@ char *getJniErrorFromStatusCode(long status);
 BOOL hasJvmSymbolsLoaded(void);
 
 #endif /* __JVM_FUNCTIONS_H__ */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 

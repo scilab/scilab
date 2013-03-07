@@ -563,15 +563,41 @@ public final class SwingView implements GraphicView {
         if (requestedObject != null) {
             switch (requestedObject.getType()) {
             case Figure:
-                final SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
-                tab.disablePaint();
-                DockingManager.close(tab);
-                DockingManager.unregisterDockable((Dockable) tab);
-                ClosingOperationsManager.unregisterClosingOperation(tab);
-                ClosingOperationsManager.removeDependency(tab);
-                ClosingOperationsManager.checkTabForClosing(tab);
-                tab.close();
-                break;
+                if (SwingUtilities.isEventDispatchThread()) {
+                    final SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
+                    tab.disablePaint();
+                    DockingManager.close(tab);
+                    DockingManager.unregisterDockable((Dockable) tab);
+                    ClosingOperationsManager.unregisterClosingOperation(tab);
+                    ClosingOperationsManager.removeDependency(tab);
+                    ClosingOperationsManager.checkTabForClosing(tab);
+                    tab.close();
+                } else {
+                    try {
+                        SwingUtilities.invokeAndWait(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                final SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
+                                tab.disablePaint();
+                                DockingManager.close(tab);
+                                DockingManager.unregisterDockable((Dockable) tab);
+                                ClosingOperationsManager.unregisterClosingOperation(tab);
+                                ClosingOperationsManager.removeDependency(tab);
+                                ClosingOperationsManager.checkTabForClosing(tab);
+                                tab.close();
+                            }
+
+                        });
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+                    break;
             case Progressbar:
             case Waitbar:
                 SwingScilabWaitBar bar = (SwingScilabWaitBar) requestedObject.getValue();

@@ -7,7 +7,8 @@
 DYNAMIC_LINK_C_SOURCES = \
     src/c/dl_genErrorMessage.c \
     src/c/GetFunctionByName.c \
-    src/c/ilib_verbose.c
+    src/c/ilib_verbose.c \
+    src/c/dynamiclibrary_others.c
 
 DYNAMIC_LINK_CPP_SOURCES = \
     src/cpp/dynamic_link.cpp \
@@ -26,14 +27,11 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_getdynlibext.cpp \
     sci_gateway/cpp/sci_addinter.cpp
 
-
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_fort.f
 
 libscidynamic_link_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
     -I$(top_srcdir)/modules/io/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/operations/includes/ \
@@ -56,7 +54,9 @@ else
 noinst_LTLIBRARIES = libscidynamic_link-algo.la libscidynamic_link.la
 endif
 
-
+libscidynamic_link_la_includedir=$(pkgincludedir)
+libscidynamic_link_la_include_HEADERS = includes/dynamiclibrary_others.h \
+includes/dynamiclibrary.h
 
 libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES) $(DYNAMIC_LINK_CPP_SOURCES)
 libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)

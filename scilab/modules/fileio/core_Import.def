@@ -27,3 +27,6 @@ xscion_
 getwsmat_
 getOSRelease
 getOSFullName
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

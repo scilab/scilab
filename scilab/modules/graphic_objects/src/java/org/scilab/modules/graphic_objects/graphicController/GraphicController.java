@@ -191,7 +191,7 @@ public class GraphicController {
      * @return the created object's id
      */
     public String askObject(Type type) {
-        
+
         try {
             UID id = createUID();
             GraphicModel.getModel().createObject(id.toString(), type);
@@ -365,7 +365,7 @@ public class GraphicController {
             objectUpdate(parentId, GraphicObjectProperties.__GO_CHILDREN__);
         }
 
-	// Useless (already done in setProperty(childId, GraphicObjectProperties.__GO_PARENT__, parentId);)
+        // Useless (already done in setProperty(childId, GraphicObjectProperties.__GO_PARENT__, parentId);)
         //objectUpdate(childId, GraphicObjectProperties.__GO_PARENT__);
     }
 
@@ -389,6 +389,7 @@ public class GraphicController {
             //objectUpdate(id, GraphicObjectProperties.__GO_PARENT__);
         }
 
+        killMe.setValid(false);
         recursiveDeleteChildren(killMe);
 
         deleteObject(id);
@@ -398,7 +399,9 @@ public class GraphicController {
         String children[] = killMe.getChildren();
 
         for (int i = 0 ; i < children.length ; ++i) {
-            recursiveDeleteChildren(getObjectFromId(children[i]));
+            GraphicObject killMeThisChild = getObjectFromId(children[i]);
+            killMeThisChild.setValid(false);
+            recursiveDeleteChildren(killMeThisChild);
             deleteObject(children[i]);
         }
     }

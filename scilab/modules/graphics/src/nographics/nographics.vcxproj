@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/hashtable;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes;../../../types/includes;%(AdditionalIncludeDirectories);../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/intl;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -98,7 +98,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/hashtable;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes;../../../types/includes;%(AdditionalIncludeDirectories);../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/intl;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -118,7 +118,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/hashtable;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes;../../../types/includes;%(AdditionalIncludeDirectories);../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/intl;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -145,7 +145,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/hashtable;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes;../../../types/includes;%(AdditionalIncludeDirectories);../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/intl;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

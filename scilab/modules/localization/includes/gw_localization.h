@@ -13,10 +13,9 @@
 
 #ifndef __GW_LOCALIZATION__
 #define __GW_LOCALIZATION__
-#include "dynlib_localization.h"
 #include "dynlib_localization_gw.h"
 /*--------------------------------------------------------------------------*/
-LOCALIZATION_IMPEXP int gw_localization(void);
+int gw_localization(void);
 /*--------------------------------------------------------------------------*/
 /* interface for the previous function Table */
 /*--------------------------------------------------------------------------*/

@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\includes;..\..\src\c;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion;../../../../libs/dynamiclibrary/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\includes;..\..\src\c;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion;../../../api_scilab/includes;../../../operations/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LOCALIZATION_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -100,7 +100,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\includes;..\..\src\c;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion;../../../../libs/dynamiclibrary/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\includes;..\..\src\c;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion;../../../api_scilab/includes;../../../operations/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LOCALIZATION_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -122,7 +122,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\includes;..\..\src\c;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion;../../../../libs/dynamiclibrary/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\includes;..\..\src\c;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion;../../../api_scilab/includes;../../../operations/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LOCALIZATION_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -149,7 +149,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\includes;..\..\src\c;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion;../../../../libs/dynamiclibrary/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\includes;..\..\src\c;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../../libs/GetWindowsVersion;../../../api_scilab/includes;../../../operations/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LOCALIZATION_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -190,9 +190,6 @@
     <ProjectReference Include="..\..\..\..\libs\GetWindowsVersion\GetWindowsVersion.vcxproj">
       <Project>{982bf37f-42c4-4d37-8d14-60521b141503}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>

@@ -43,9 +43,9 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_host.cpp \
 	sci_gateway/cpp/sci_unix.cpp
 
-libsciio_la_CPPFLAGS = -I$(srcdir)/includes/ \
+libsciio_la_CPPFLAGS = \
+            -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/core/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
@@ -62,7 +62,7 @@ libsciio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/threads/includes/ \
-            -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+            -I$(top_srcdir)/modules/dynamic_link/includes \
 			$(XML_FLAGS) \
 			$(AM_CPPFLAGS)
 
