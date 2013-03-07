@@ -34,9 +34,9 @@
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
 /*--------------------------------------------------------------------------*/
-int sci_xgetmouse( char *fname,unsigned long fname_len )
+int sci_xgetmouse( char *fname, unsigned long fname_len )
 {
-    int  m1 = 1, n1 = 3, l1 = 0,l2 = 0;
+    int  m1 = 1, n1 = 3, l1 = 0, l2 = 0;
     int mouseButtonNumber = 0;
     int windowsID = 0;
     int sel[2], m = 0, n = 0;
@@ -47,40 +47,38 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
 
     int selPosition = 0;
 
-    int iFigureId = 0;
+    CheckRhs(0, 1);
+    CheckLhs(1, 2);
 
-    CheckRhs(0,1);
-    CheckLhs(1,2);
-
-    switch(Rhs)
+    switch (Rhs)
     {
-    case 1:
-        if (GetType(1)==sci_boolean)
-        {
-            selPosition = 1;
-        }
-        else
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Boolean vector expected.\n"), fname, 1);
-            return FALSE;
-        }
-        break;
-    default:
-        // Call Java xgetmouse
-        // No need to set any option.
-        break;
+        case 1:
+            if (GetType(1) == sci_boolean)
+            {
+                selPosition = 1;
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: Boolean vector expected.\n"), fname, 1);
+                return FALSE;
+            }
+            break;
+        default:
+            // Call Java xgetmouse
+            // No need to set any option.
+            break;
     }
 
     // Select current figure or create it
     getOrCreateDefaultSubwin();
 
     // Call Java to get mouse information
-    if (selPosition!=0)
+    if (selPosition != 0)
     {
-        GetRhsVar(selPosition,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l1);
-        CheckDims(selPosition,m*n,1,2,1);
-        sel[0]=*istk(l1);
-        sel[1]=*istk(l1+1);
+        GetRhsVar(selPosition, MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l1);
+        CheckDims(selPosition, m * n, 1, 2, 1);
+        sel[0] = *istk(l1);
+        sel[1] = *istk(l1 + 1);
 
         // Call Java xgetmouse
         CallJxgetmouseWithOptions(sel[0], sel[1]);
@@ -95,13 +93,13 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
     pixelCoords[0] = (int) getJxgetmouseXCoordinate();
     pixelCoords[1] = (int) getJxgetmouseYCoordinate();
 
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+    CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
     // No need to calculate coordinates if callback or close is trapped
     if (mouseButtonNumber == -1000 || mouseButtonNumber == -2)
     {
         *stk(l1) = -1;
-        *stk(l1+1) = -1;
-        *stk(l1+2) = (double) mouseButtonNumber;
+        *stk(l1 + 1) = -1;
+        *stk(l1 + 2) = (double) mouseButtonNumber;
     }
     else
     {
@@ -111,24 +109,24 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
         sciGet2dViewCoordFromPixel(clickedSubwinUID, pixelCoords, userCoords2D);
 
         *stk(l1) = userCoords2D[0];
-        *stk(l1+1) = userCoords2D[1];
-        *stk(l1+2) = (double) mouseButtonNumber;
+        *stk(l1 + 1) = userCoords2D[1];
+        *stk(l1 + 2) = (double) mouseButtonNumber;
     }
-    LhsVar(1) = Rhs+1;
+    LhsVar(1) = Rhs + 1;
 
     switch (Lhs)
     {
-    case 1:
-		PutLhsVar();
-        return 0;
-    case 2:
-        CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&m1,&l2);
-        *stk(l2) = windowsID; /* this is the window number */
-        LhsVar(2) = Rhs+2;
-		PutLhsVar();
-        return 0;
+        case 1:
+            PutLhsVar();
+            return 0;
+        case 2:
+            CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &m1, &m1, &l2);
+            *stk(l2) = windowsID; /* this is the window number */
+            LhsVar(2) = Rhs + 2;
+            PutLhsVar();
+            return 0;
     }
-	PutLhsVar();
+    PutLhsVar();
     return -1 ;
 }
 

@@ -146,7 +146,6 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 
     /* [final_rect, btn] = rubberbox([initial_rect],[edition_mode]) */
 
-    int button = 0;
     double initialRect[4] = {0.0, 0.0, 0.0, 0.0};
     int initialRectSize = 0;
 

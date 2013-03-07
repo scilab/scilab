@@ -41,7 +41,6 @@ int sci_plot2d( char * fname, unsigned long fname_len )
 
     /* F.Leray 18.05.04 : log. case test*/
     int size_x = 0, size_y = 0;
-    double xd[2];
     char dataflag = 0;
 
     char   * logFlags = NULL  ;
@@ -291,8 +290,6 @@ int sci_plot2d( char * fname, unsigned long fname_len )
             switch ( dataflag )
             {
                 case 'e' :
-                    xd[0] = 1.0;
-                    xd[1] = (double)m1;
                     size_x = (m1 != 0) ? 2 : 0 ;
                     break;
                 case 'o' :
