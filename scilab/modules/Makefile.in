@@ -143,7 +143,7 @@ libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
 libscilab_la_DEPENDENCIES = $(am__append_3) $(am__append_4) \
-	$(top_builddir)/modules/libscilab-cli.la $(am__append_5)
+	$(am__append_5) $(top_builddir)/modules/libscilab-cli.la
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -589,8 +589,8 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 
 # Core modules
 libscilab_la_LIBADD = $(am__append_3) $(am__append_4) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(top_builddir)/modules/libscilab-cli.la \
-	$(am__append_5)
+	$(EXTERNAL_LIBS) $(am__append_5) \
+	$(top_builddir)/modules/libscilab-cli.la
 
 ################## libscilab-cli  ##################
 libscilab_cli_la_SOURCES = 

@@ -210,8 +210,7 @@ libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
 
 # Core modules
-libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS) \
-	$(top_builddir)/modules/libscilab-cli.la
+libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
 if FORCE_LINK
 # This should never be used in production. It forces the explicit link
@@ -220,6 +219,8 @@ if FORCE_LINK
 # and all symbols resolved.
 libscilab_la_LIBADD += $(ENGINE_LIBS_DYNAMIC_LOAD)
 endif
+
+libscilab_la_LIBADD += $(top_builddir)/modules/libscilab-cli.la
 
 ################## libscilab-cli  ##################
 
