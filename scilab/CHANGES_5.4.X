@@ -434,6 +434,8 @@ Bug fixes
 
 * Bug #12232 fixed - There were several memleaks in various fillers.
 
+* Bug #12234 fixed - Graphics could crash with an invalid property.
+
 * Bug #12235 fixed - Matplot did not update on color_map change.
 
 * Bug #12238 fixed - [d v] = eigs(A) was broken for sparse matrices.
