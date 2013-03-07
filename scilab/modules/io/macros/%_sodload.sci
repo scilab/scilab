@@ -797,6 +797,7 @@ function %_sodload(%__filename__, varargin)
     endfunction
 
     function macro = createMacro(macroStr, macroName)
+
         macroSt = macroStr(3);
         if macroStr(2) == %t then
             flag = "c";
@@ -845,6 +846,7 @@ function %_sodload(%__filename__, varargin)
                 %__loadFunction__(%__filename__, %__variableName__);
                 %__resumeList__($+1) = evstr(%__variableName__);
                 %__resumeVarlist__($+1) = %__variableName__;
+                clear(%__variableName__);
             else
                 error(999, msprintf(gettext("%s: variable ''%s'' does not exist in ''%s''.\n"), "load", %__variableName__, %__filename__));
             end
@@ -855,6 +857,7 @@ function %_sodload(%__filename__, varargin)
             %__loadFunction__(%__filename__, %__variableName__);
             %__resumeList__($+1) = evstr(%__variableName__);
             %__resumeVarlist__($+1) = %__variableName__;
+            clear(%__variableName__);
         end
     end
 

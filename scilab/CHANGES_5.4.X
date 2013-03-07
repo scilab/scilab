@@ -452,6 +452,9 @@ Bug fixes
 * Bug #12077 fixed - In Scilab documentation, the attribute "bgcolor" was not handled
                      in tables.
 
+* Bug #12083 fixed - Loading multiple variables from a SOD file could failed due to
+                     a missing "clear" of previous variables.
+
 * Bug #12087 fixed - profile help page did not mention add_profiling.
 
 * Bug #12097 fixed - Scilab wrongly detected DLL platform information.
