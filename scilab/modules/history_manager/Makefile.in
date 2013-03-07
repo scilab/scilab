@@ -512,6 +512,7 @@ libscihistory_manager_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/modules/fileio/includes/ \
 -I$(top_srcdir)/modules/history_browser/includes/ \
 -I$(top_srcdir)/modules/history_manager/includes/ \
+-I$(top_srcdir)/modules/preferences/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 $(AM_CPPFLAGS)

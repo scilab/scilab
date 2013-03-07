@@ -1651,7 +1651,7 @@ AC_SUBST(JAVASCI_ENABLE)
 
 
 ##############################################################
-## Enable test a compilation time
+## Enable test at compilation time
 ##############################################################
 
 COMPILATION_TESTS=no
@@ -1665,6 +1665,20 @@ if test COMPILATION_TESTS=yes -a "$JUNIT4" == ""; then
 fi
 
 AM_CONDITIONAL(COMPILATION_TESTS, test "$COMPILATION_TESTS" != "no")
+
+##############################################################
+## Enable the global force link
+##############################################################
+
+AC_ARG_ENABLE(force-full-link,
+    AC_HELP_STRING([--enable-force-full-link],[Forces the explicit link between libscilab and some "on-the-fly" loaded libraries. NOT USE IN PRODUCTION.]))
+
+FORCE_FULL_LINK="no"
+if test "$enable_force_full_link" == "yes"; then
+    FORCE_FULL_LINK="yes"
+fi
+
+AM_CONDITIONAL(FORCE_LINK, test "$FORCE_FULL_LINK" == "yes")
 
 ##############################################################
 ## demo_tools module
@@ -1896,18 +1910,6 @@ fi
 # This script is used by Xcos in order to regenerate the function/block list
 AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/scicompile.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/compilerDetection.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/configure])
 
-
-#MAN_FR MAN_ENG
-#modules/mpi/Makefile
-#for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do
-#  test -f $top_builddir/configure && break
-#done
-
-
-#if test "$with_mpi" = yes; then
-#AC_CONFIG_FILES([modules/mpi/Makefile])
-#fi
-
 # Generate stack.h
 if test "$IS_64_BITS_CPU" = true -o "$MACOSX" = "1"; then
    stack_h_cpp_flags=-DUSE_DYNAMIC_STACK
@@ -2020,7 +2022,7 @@ if test $OPENMP_ENABLE = yes; then
    echo "OpenMP CFLAGS ...... = $OPENMP_CFLAGS"
    echo "OpenMP CXXFLAGS .... = $OPENMP_CXXFLAGS"
    echo "OpenMP LIBS ........ = $OPENMP_LIBS"
-   echo "OpenMP FFLAGS ...... = $OPENMP_LDFLAGS"
+   echo "OpenMP LDFLAGS ..... = $OPENMP_LDFLAGS"
 else
    echo "Not using OpenMP"
 fi
@@ -2066,25 +2068,6 @@ echo "  LAPACK LIBS ........... = $LAPACK_LIBS"
 echo "  LAPACK TYPE ........... = $LAPACK_TYPE"
 echo "  ARPACK LIBS ........... = $ARPACK_LIBS"
 echo ""
-
-#if test "$with_mpi" = yes; then
-#   echo "MPI Configuration:"
-#   echo "  MPI LIBS ........... = $MPILIBS"
-#   echo "  MPI C Compiler ..... = $MPICC"
-#   echo "  MPI C++ Compiler ... = $MPICXX"
-#   echo "  MPI F77 Compiler ... = $MPIF77"
-#else
-#   echo "Not using MPI"
-#fi
-
-#if test "$with_openmpi" != "no"; then
-#   echo "OpenMPI Configuration:"
-#   echo "  OpenMPI LIBS ........... = $OPENMPI_LIBS"
-#   echo "  OpenMPI C Compiler ..... = $OPENMPI_CC"
-#   echo "  OpenMPI F77 Compiler ... = $MPIF77"
-#else
-#   echo "Not using MPI"
-#fi
 
 echo ""
 if test $BUILD_LOCALIZATION_ENABLE != no; then

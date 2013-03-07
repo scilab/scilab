@@ -13,6 +13,7 @@
 #define __GETMAXMALLOC_H__
 /*-----------------------------------------------------------------------------------*/
 unsigned long GetLargestFreeMemoryRegion(void);
+unsigned long GetLargestFreeMemoryRegion2(void);
 
 #endif /* __GETMAXMALLOC_H__ */
 /*-----------------------------------------------------------------------------------*/

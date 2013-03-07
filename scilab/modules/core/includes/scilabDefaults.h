@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * Copyright (C) ENPC
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,11 +17,7 @@
 #define __SCILABDEFAULT_H__
 
 /* Where is stored the history by default */
-#ifdef _MSC_VER
-#define DEFAULT_HISTORY_FILE "history.scilab"
-#else
-#define DEFAULT_HISTORY_FILE ".history.scilab"
-#endif
+#define DEFAULT_HISTORY_FILE "history"
 
 #ifdef _MSC_VER
 #define ModelicacName "modelicac.exe"
@@ -30,7 +26,7 @@
 #endif
 
 /* Where the module list file is */
-#define basenamemodulesfile "etc/modules.xml" 
+#define basenamemodulesfile "etc/modules.xml"
 
 /* Where the classpath list file is */
 #define XMLCLASSPATH "%s/etc/classpath.xml"
@@ -45,7 +41,7 @@
 #define FORMATGATEWAYFILENAME "%s/modules/%s/sci_gateway/%s_gateway.xml"
 
 /* Where is the version file of a module */
-#define FORMATVERSIONFILENAME  "%s/modules/%s/version.xml" 
+#define FORMATVERSIONFILENAME  "%s/modules/%s/version.xml"
 
 
 /* Where is the Scilab startup script */
@@ -57,9 +53,9 @@
 /* default Scilab global StackSize  */
 #if defined(_MSC_VER) && defined(_WIN64)
 /* On Windows x64 initial global stacksize must be bigger :( */
-	#define DEFAULTGSTACKSIZE DEFAULTSTACKSIZE
+#define DEFAULTGSTACKSIZE DEFAULTSTACKSIZE
 #else
-	#define DEFAULTGSTACKSIZE 1000
+#define DEFAULTGSTACKSIZE 1000
 #endif
 
 

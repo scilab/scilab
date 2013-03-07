@@ -3,7 +3,7 @@
 /* HistoryManagement.i */
 /* To run this file execute the command below from current directory */
 /**
- * Windows: swig -java -package org.scilab.modules.history_manager -outdir ../java/org/scilab/modules/history_manager/ HistoryManagement.i 
+ * Windows: swig -java -package org.scilab.modules.history_manager -outdir ../java/org/scilab/modules/history_manager/ HistoryManagement.i
  * Other: Use the option --enable-build-swig to the configure
 */
 
@@ -21,11 +21,11 @@
 %pragma(java) jniclassclassmodifiers=%{
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /** 
-   * All Scilab history management used in Java console 
+ /**
+   * All Scilab history management used in Java console
    * @author Vincent COUVERT
    * @author Allan CORNET
-   * @copyright INRIA 
+   * @copyright INRIA
    */
 class%}
 
@@ -37,7 +37,7 @@ class%}
  protected HistoryManagementJNI() {
         throw new UnsupportedOperationException();
  }";
- 
+
  /* static load of library */
 %pragma(java) jniclasscode=%{
   static {
@@ -57,11 +57,11 @@ class%}
 
 /* JavaDoc for HistoryManagement class */
 %pragma(java) moduleclassmodifiers="
- /** 
-   * All Scilab history management used in Java console 
+ /**
+   * All Scilab history management used in Java console
    * @author Vincent COUVERT
    * @author Allan CORNET
-   * @copyright INRIA 
+   * @copyright INRIA
    */
 public class";
 
@@ -106,7 +106,6 @@ public";
     /**
     * save history in a file
     * @param filename if NULL saves in default filename
-    * default filename --> SCIHOME/history.scilab
     * @return true or false
     */
 public";
@@ -116,7 +115,6 @@ public";
     /**
     * load history from a file
     * @param filename if NULL load from default filename
-    * default filename --> SCIHOME/history.scilab
     * @return true or false
     */
 public";
@@ -159,16 +157,16 @@ public";
     * Get all lines in history
     * @return an array of strings
     */
-public";    
+public";
     char **getAllLinesOfScilabHistory(void);
-    
+
 %javamethodmodifiers getSizeAllLinesOfScilabHistory(void) "
     /**
     * Get numbers of lines in history
     * size of array returned by getAllLinesOfScilabHistory
-    * @return int 
+    * @return int
     */
-public";    
+public";
     int getSizeAllLinesOfScilabHistory(void);
 
 
@@ -282,7 +280,7 @@ public";
     */
 public";
     int getSizeScilabHistory(void);
-    
+
 %javamethodmodifiers historyIsEnabled(void) "
     /**
     * get history manager state

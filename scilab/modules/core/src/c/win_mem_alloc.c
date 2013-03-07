@@ -164,3 +164,28 @@ void MyVirtualFree(void *lpAddress, char *file, int line)
     }
 }
 /*-----------------------------------------------------------------------------------*/
+void *MyHeapRealloc2(void *lpAddress, size_t dwSize, char *file, int line)
+{
+    return MyHeapRealloc(lpAddress, dwSize, file, line);
+}
+
+void *MyHeapAlloc2(size_t dwSize, char *file, int line)
+{
+    return MyHeapAlloc(dwSize, file, line);
+}
+
+void MyHeapFree2(void *lpAddress, char *file, int line)
+{
+    MyHeapFree(lpAddress, file, line);
+}
+
+void *MyVirtualAlloc2(size_t dwSize, char *file, int line)
+{
+    return MyVirtualAlloc(dwSize, file, line);
+}
+
+void MyVirtualFree2(void *lpAddress, char *file, int line)
+{
+    MyVirtualFree(lpAddress, file, line);
+}
+

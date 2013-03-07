@@ -31,7 +31,7 @@ $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libsciparallel.la
 
-
+libsciparallel_la_LIBADD = $(OPENMP_LIBS)
 
 if OPENMP
 libsciparallel_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)

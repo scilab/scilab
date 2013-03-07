@@ -22,7 +22,7 @@
 ;http://msdn2.microsoft.com/en-us/library/bb776820.aspx
 ;-------------------------------------------------------------------------------
 ;Scilab PATH
-Root: HKLM; Subkey: "SOFTWARE\Scilab"; ValueType: string; ValueData: {#ScilabName}; Flags: uninsdeletekey noerror; ValueName: LASTINSTALL
+Root: HKLM; Subkey: "SOFTWARE\Scilab"; ValueType: string; ValueData: {#ScilabName}; Flags: noerror; ValueName: LASTINSTALL
 ;-------------------------------------------------------------------------------
 Root: HKLM; Subkey: "SOFTWARE\Scilab\{#ScilabName}"; ValueType: string; ValueData: {app}; Flags: createvalueifdoesntexist uninsdeletekey noerror; ValueName: SCIPATH
 Root: HKLM; Subkey: "SOFTWARE\Scilab\{#ScilabName}"; ValueType: string; ValueData: {cm:LANGUAGE}; Flags: createvalueifdoesntexist uninsdeletekey noerror; ValueName: LANGUAGE

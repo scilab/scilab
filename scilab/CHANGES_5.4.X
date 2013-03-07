@@ -172,11 +172,16 @@ Xcos
 * Bug #12321 fixed - save environment failed to save lib variable. Now these variables
                      are ignored like previous version of save function.
 
+* Bug #12351 fixed - "Save as" a diagram to a selected xcos file type, saved
+                     it as zcos.
+
 
 Documentation
 ==============
 
 * Add the 'scilab:needs-examples="no"' tag to specify that the help page does not need any example.
+
+* xlabel(), ylabel, zlabel() macros are fully documented (See bug #6975).
 
 
 Compilation
@@ -188,11 +193,20 @@ Compilation
 
 * Enforce a minimal version of JLaTeXMath (1.0.1).
 
+
+Other changes
+=============
+
+* Console command history is now stored on all platforms in SCIHOME/history file.
+
+
 Bug fixes
 ==========
 
 * Bug #3313 fixed - In the documentation, the title of a link was using the
                     id instead of the title of the page.
+
+* Bug #4946 fixed - Bad rendering of a big rotated label.
 
 * Bug #5291 fixed - strtod returned 0 when no real number was detected.
 
@@ -254,6 +268,9 @@ Bug fixes
 
 * Bug #11134 fixed - xgetmouse() prevented callback menu execution.
 
+* Bug #11362 fixed - Doc of axes_properties did not explain that 
+                     mark_style=mark_size=0 draw a single dot.
+
 * Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
                      the last color in colormap.
 
@@ -272,6 +289,8 @@ Bug fixes
 
 * Bug #11569 fixed - F5 to navigate in the dock was incompatible with SciNotes.
                      So replace F5 by shift+F6 to go to the previous tab.
+
+* Bug #11639 fixed - Uninstall removed all scilab registry information.
 
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
@@ -373,6 +392,8 @@ Bug fixes
 
 * Bug #12021 fixed - Improve the help page of eigs.
 
+* Bug #12133 fixed - parallel_run was not available.
+
 * Bug #12135 fixed - stacksize('max') failed silently.
 
 * Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
@@ -436,6 +457,8 @@ Bug fixes
 
 * Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
 
+* Bug #12291 fixed - Unable to display a list of handle as an handle userData. 
+
 * Bug #12296 fixed - Call to getenv with a big environment variable
                      led to memory corruption.
 
@@ -444,6 +467,8 @@ Bug fixes
 * Bug #12307 fixed - ftp addresses were not handled in help browser.
 
 * Bug #12317 fixed - eventhandler functions no more report keyboard events
+
+* Bug #12333 fixed - Cleaned command history is restored after reopening Scilab.
 
 * Bug #12346 fixed - lsslist() help pages were mislocated. Moved now to CACSD.
 
