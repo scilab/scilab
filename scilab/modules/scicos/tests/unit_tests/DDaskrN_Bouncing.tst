@@ -37,17 +37,17 @@ end
 scs_m.objs(path_1).model.rpar.objs(path_2).graphics.exprs = [string(5*(10^-3));"0"];
 
 // Modify solver + run DDaskr + save results
-scs_m.props.tol(6) = 101;       // Solver
+scs_m.props.tol(6) = 101;      // Solver
 //scs_m.props.tol(1) = 1.0e-10; // abstol
 //scs_m.props.tol(2) = 1.0e-10; // reltol
-scicos_simulate(scs_m, 'nw');   // DDaskr
+scicos_simulate(scs_m, 'nw');  // DDaskr
 ddaskrval = res.values;         // Results
 time = res.time;                // Time
 
 // Modify solver + run IDA + save results
-scs_m.props.tol(6) = 100;       // Solver
-scicos_simulate(scs_m, 'nw');   // IDA
-idaval = res.values;            // Results
+scs_m.props.tol(6) = 100;     // Solver
+scicos_simulate(scs_m, 'nw'); // IDA
+idaval = res.values;          // Results
 
 // Compare results
 compa = abs(ddaskrval-idaval);
@@ -61,4 +61,3 @@ stdeviation = st_deviation(compa);
 assert_checktrue(maxi <= 10^-(12));
 assert_checktrue(mea <= 10^-(12));
 assert_checktrue(stdeviation <= 10^-(12));
-

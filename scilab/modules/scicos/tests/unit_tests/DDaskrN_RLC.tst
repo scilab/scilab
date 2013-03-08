@@ -41,15 +41,15 @@ for i=2:3
     scs_m.objs(path_1).model.rpar.objs(path_2).graphics.exprs = [string(5*(10^-i));"0"];
 
     // Modify solver + run DDaskr + save results
-    scs_m.props.tol(6) = 101;           // Solver
-    scicos_simulate(scs_m, 'nw');       // DDaskr
-    ddaskrval = res.values;             // Results
-    time = res.time;                    // Time
+    scs_m.props.tol(6) = 101;     // Solver
+    scicos_simulate(scs_m, 'nw'); // DDaskr
+    ddaskrval = res.values;        // Results
+    time = res.time;               // Time
 
     // Modify solver + run IDA + save results
-    scs_m.props.tol(6) = 100;           // Solver
-    scicos_simulate(scs_m, 'nw');       // DDaskr
-    idaval = res.values;                // Results
+    scs_m.props.tol(6) = 100;     // Solver
+    scicos_simulate(scs_m, 'nw'); // IDA
+    idaval = res.values;          // Results
 
     // Compare results
     compa = abs(ddaskrval-idaval);
@@ -64,4 +64,3 @@ for i=2:3
     assert_checktrue(mea <= 10^-(i+4));
     assert_checktrue(stdeviation <= 10^-(i+4));
 end
-

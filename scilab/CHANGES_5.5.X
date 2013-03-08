@@ -98,9 +98,9 @@ SciNotes
 Xcos
 ====
 
-* Update Sundials to lastest "2.5.0", keeping our modifications
+* Updated Sundials to lastest "2.5.0", keeping our modifications
 
-* Added a new DAE solver : DDaskr (BDF / Newton), which includes rootfinding.
+* Added a new DAE solver : DDaskr, using BDF methods with direct Newton and preconditioned Krylov linear solvers, which includes rootfinding.
 
 * Bug #7350 fixed - The superblock I/O ports numbering was not updated
                     when a new port was dropped.

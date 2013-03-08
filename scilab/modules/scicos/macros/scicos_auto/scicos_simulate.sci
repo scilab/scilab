@@ -272,7 +272,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         solver = 100
         tolerances(6) = solver
     elseif (%cpr.sim.xptr($) - 1) == size(%cpr.state.x,"*") & ...
-        (solver == 100 | solver == 101) & size(%cpr.state.x,"*") <> 0 then
+        (or (solver == [100 101 102])) & size(%cpr.state.x,"*") <> 0 then
         warning(msprintf(_("Diagram has been compiled for explicit solver\nswitching to explicit solver.\n")))
         solver = 0
         tolerances(6) = solver

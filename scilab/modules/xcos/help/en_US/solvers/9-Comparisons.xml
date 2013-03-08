@@ -644,7 +644,7 @@ Time for implicit Runge-Kutta:
             Example: a bouncing ball.
         </para>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../demos/ModelicaBlocks/BouncingBall_Modelica.zcos" valign="middle"/>
@@ -665,8 +665,8 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            In the following script, we compare the time difference between the solvers by running the example with the two solvers in turn:
-            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchDDaskr_Bouncing.sce">
+            In the following script, we compare the time difference between the solvers by running the example with the three solvers in turn:
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchBouncing.sce">
                 Open the script
             </link>
         </para>
@@ -676,18 +676,24 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 Time for IDA:
  7.5
 
-Time for DDaskr:
+Time for DDaskr - Newton:
  5.4
+
+Time for DDaskr - GMRes:
+ 10.2
             ]]></screen>
         </para>
         <para>
-            This result shows that on a stiff problem, with rootfinding and for same precision required, <emphasis>DDaskr</emphasis> is fastest.
+            This result shows that on a stiff problem, with rootfinding and for same precision required, <emphasis>DDaskr - Newton</emphasis> is fastest.
         </para>
         <para>
             The difference in time is attributed to the powerful implementation of DDaskr and its least error control.
         </para>
         <para>
-            From the result, we can extract the speed factor:
+            GMRes is slower due to the small size of the problem.
+        </para>
+        <para>
+            From the result, we can extract the speed factors:
         </para>
         <para>
             <informaltable border="1">
@@ -696,12 +702,16 @@ Time for DDaskr:
                     <td align="center">
                         <emphasis>IDA</emphasis> 
                     </td>
+                    <td align="center">
+                        <emphasis>DDaskr G</emphasis> 
+                    </td>
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>DDaskr</emphasis> 
+                        <emphasis>DDaskr N</emphasis> 
                     </td>
                     <td align="center"> 1.39x </td>
+                    <td align="center"> 1.9x </td>
                 </tr>
             </informaltable>
         </para>

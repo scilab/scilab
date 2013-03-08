@@ -11,9 +11,16 @@
 // Import diagram
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/DoPri_test.zcos"));
 
+prot = funcprot();
+funcprot(0);
+function message(msg)
+ disp(msg);
+endfunction
+funcprot(prot);
+
 // Modify solver + run DDaskr + save results
-scs_m.props.tol(6) = 101;       // Solver
+scs_m.props.tol(6) = 102;       // Solver
 scs_m.props.tol(1) = 1.0e-10;   // abstol
 scs_m.props.tol(2) = 1.0e-10;   // reltol
-ier = execstr('scicos_simulate(scs_m, ''nw'');', 'errcatch'); // Run simulation (LSodar will actually take over DDaskr)
+ier = execstr('xcos_simulate(scs_m, 4);', 'errcatch'); // Run simulation (LSodar will actually take over DDaskr)
 assert_checkequal(ier, 0);

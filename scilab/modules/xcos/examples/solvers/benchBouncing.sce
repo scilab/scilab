@@ -3,12 +3,10 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-// Run with exec("SCI/modules/xcos/examples/solvers/benchDDaskr_Bouncing.sce");
-
 // Import the diagram, modify parameters, augment the ending time and store its compilation in Info()
 loadScicos();
 loadXcosLibs();
-importXcosDiagram("SCI/modules/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.xcos");
+importXcosDiagram("SCI/modules/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos");
 scs_m.objs(3).graphics.exprs.paramv(1) = 0.15; // Gravity
 scs_m.objs(3).graphics.exprs.paramv(2) = 0.99; // Floor stickiness
 Info = scicos_simulate(scs_m, "nw");
@@ -24,10 +22,10 @@ function messagebox(msg, title)
     disp(msg);
 endfunction
 
-solverName = ["IDA", "DDaskr"];
+solverName = ["IDA" "DDaskr - Newton" "DDaskr - GMRes"];
 
 disp("--------------------------------");
-for solver = 0:1
+for solver = 0:2
 
     disp("Time for " + solverName(solver + 1) + ":");
     tolerances(6) = solver+100;
