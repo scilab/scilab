@@ -50,4 +50,15 @@ win2=waitbar('HELLO!');
 winclose([win1,win2]);
  ]]></programlisting>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>
+                    Function tagged obsolete. Will be removed in 5.5.0. Please use <link linkend="close">close</link> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

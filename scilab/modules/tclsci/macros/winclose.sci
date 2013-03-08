@@ -19,6 +19,8 @@ function sta=winclose(h)
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
 
+warnobsolete("close", "5.5.0");
+
 // Java waitbar or progressbar
 if type(h) == 9 then
   delete(h);

@@ -92,6 +92,9 @@ Obsolete functions
 * xsetm() tagged as obsolete. Will be removed for Scilab 5.5.0.
   Use set(), get() and ged() instead.
 
+* winclose() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use close() instead.
+
 
 Xcos
 =====
