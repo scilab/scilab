@@ -54,7 +54,13 @@
                         <varlistentry>
                             <term>-    </term>
                             <listitem>
-                                <para>a boolean matrix.</para>
+                                <para>a boolean matrix;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>-    </term>
+                            <listitem>
+                                <para>a handle (only figure and uicontrol).</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -79,8 +85,8 @@
                 <listitem>
                     <para>
                         an integer, contains the maximum line length. Default
-                        value is <literal>90</literal>,
-                        <literal>lmax=0</literal> indicates no line length
+                        value is <literal>0</literal>,
+                        which indicates no line length
                         control; a single string is returned.
                     </para>
                 </listitem>
@@ -95,13 +101,21 @@
         </para>
     </refsection>
     <refsection>
+        <title>Remarks</title>
+        <para>
+            If <varname>a</varname> is a handle, <function>sci2exp</function> gives a result which has no hierarchical links,
+            that is, with empty fields for parent and children.
+        </para>
+    </refsection>  
+    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 a=[1 2;3 4]
 sci2exp(a,'aa')
-sci2exp(a,'aa',0)
+sci2exp(a,'aa',10)
 sci2exp(ssrand(2,2,2))
 sci2exp(poly([1 0 3 4],'s'),'fi')
+sci2exp(figure("figure_name","figure1"))
     ]]></programlisting>
     </refsection>
     <refsection role="see also">

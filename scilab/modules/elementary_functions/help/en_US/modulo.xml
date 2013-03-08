@@ -30,7 +30,7 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>real vector or matrix </para>
+                    <para>real or polynomial vector or matrix </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

@@ -84,7 +84,6 @@ public:
     /**
     * save history in a file
     * @param a filename if NULL saves in default filename
-    * default filename --> SCIHOME/history.scilab
     * @return TRUE or FALSE
     */
     BOOL writeToFile(char *filename);
@@ -92,7 +91,6 @@ public:
     /**
     * load history from a file
     * @param a filename if NULL load from default filename
-    * default filename --> SCIHOME/<scilab version>history.scilab
     * @return TRUE or FALSE
     */
     BOOL loadFromFile(char *filename);

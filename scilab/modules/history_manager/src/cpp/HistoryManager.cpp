@@ -213,12 +213,11 @@ BOOL loadScilabHistoryFromFile(char *filename)
 /*------------------------------------------------------------------------*/
 BOOL isScilabHistoryTruncated(void)
 {
-    BOOL bOK = FALSE;
     if (ScilabHistory)
     {
-        bOK = ScilabHistory->isTruncated();
+        return ScilabHistory->isTruncated();
     }
-    return bOK;
+    return FALSE;
 }
 /*------------------------------------------------------------------------*/
 BOOL setFilenameScilabHistory(char *filename)
@@ -249,13 +248,11 @@ BOOL setFilenameScilabHistory(char *filename)
 /*------------------------------------------------------------------------*/
 char *getFilenameScilabHistory(void)
 {
-    char *filename = NULL;
-
     if (ScilabHistory)
     {
-        filename = ScilabHistory->getFilename();
+        return ScilabHistory->getFilename();
     }
-    return filename;
+    return NULL;
 }
 
 /*------------------------------------------------------------------------*/
@@ -315,49 +312,41 @@ int getSizeAllLinesOfScilabHistory(void)
 /*------------------------------------------------------------------------*/
 char *getLastLineInScilabHistory(void)
 {
-    char *line = NULL;
-
     if (ScilabHistory)
     {
-        line = ScilabHistory->getLastLine();
+        return ScilabHistory->getLastLine();
     }
-    return line;
+    return NULL;
 }
 
 /*------------------------------------------------------------------------*/
 char *getPreviousLineInScilabHistory(void)
 {
-    char *line = NULL;
-
     if (ScilabHistory)
     {
-        line = ScilabHistory->getPreviousLine();
+        return ScilabHistory->getPreviousLine();
     }
-    return line;
+    return NULL;
 }
 
 /*------------------------------------------------------------------------*/
 char *getNextLineInScilabHistory(void)
 {
-    char *line = NULL;
-
     if (ScilabHistory)
     {
-        line = ScilabHistory->getNextLine();
+        return ScilabHistory->getNextLine();
     }
-    return line;
+    return NULL;
 }
 
 /*------------------------------------------------------------------------*/
 int getNumberOfLinesInScilabHistory(void)
 {
-    int val = 0;
-
     if (ScilabHistory)
     {
-        val = ScilabHistory->getNumberOfLines();
+        return ScilabHistory->getNumberOfLines();
     }
-    return val;
+    return 0;
 }
 
 /*------------------------------------------------------------------------*/
@@ -391,13 +380,11 @@ void setAfterHowManyLinesScilabHistoryIsSaved(int num)
 /*------------------------------------------------------------------------*/
 int getAfterHowManyLinesScilabHistoryIsSaved(void)
 {
-    int val = 0;
-
     if (ScilabHistory)
     {
-        val = ScilabHistory->getAfterHowManyLinesHistoryIsSaved();
+        return ScilabHistory->getAfterHowManyLinesHistoryIsSaved();
     }
-    return val;
+    return 0;
 }
 
 /*------------------------------------------------------------------------*/
@@ -423,34 +410,30 @@ BOOL deleteNthLineScilabHistory(int N)
 /*------------------------------------------------------------------------*/
 int getSizeScilabHistory(void)
 {
-    int val = 0;
-
     if (ScilabHistory)
     {
-        val = ScilabHistory->getNumberOfLines() - 1;
+        return ScilabHistory->getNumberOfLines() - 1;
     }
-    return val;
+    return 0;
 }
 
 /*------------------------------------------------------------------------*/
 BOOL setSizeMaxScilabHistory(int nbLinesMax)
 {
-    BOOL bOK = FALSE;
     if (ScilabHistory)
     {
-        bOK = ScilabHistory->setNumberOfLinesMax(nbLinesMax);
+        return ScilabHistory->setNumberOfLinesMax(nbLinesMax);
     }
-    return bOK;
+    return FALSE;
 }
 /*------------------------------------------------------------------------*/
 int getSizeMaxScilabHistory(void)
 {
-    int val = 0;
     if (ScilabHistory)
     {
-        val = ScilabHistory->getNumberOfLinesMax();
+        return ScilabHistory->getNumberOfLinesMax();
     }
-    return val;
+    return 0;
 }
 /*------------------------------------------------------------------------*/
 HistoryManager::HistoryManager()
@@ -567,13 +550,11 @@ void HistoryManager::displayHistory(void)
 /*------------------------------------------------------------------------*/
 char *HistoryManager::getFilename(void)
 {
-    char *filename = NULL;
-
     if (!my_file.getFilename().empty())
     {
-        filename = strdup(my_file.getFilename().c_str());
+        return strdup(my_file.getFilename().c_str());
     }
-    return filename;
+    return NULL;
 }
 
 /*------------------------------------------------------------------------*/

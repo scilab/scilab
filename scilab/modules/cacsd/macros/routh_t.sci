@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Serge STEER
 // Copyright (C) 1999 - Lucien.Povy@eudil.fr (to get a good table)
+// Copyright (C) 2013 - Charlotte HECQUET (new option)
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,7 +9,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function r=routh_t(h,k)
+function r=routh_t(h,k,normalized)
 //r=routh_t(h,k) computes routh table of denominator of the
 //system described by transfer matrix SISO continue h with the
 //feedback by the gain k
@@ -31,6 +32,15 @@ function r=routh_t(h,k)
   //http://controls.engin.umich.edu/wiki/index.php/RouthStability
   [lhs,rhs]=argn(0);
   h1=h(1);
+  flag=1;
+  if rhs==3 then
+      if normalized==%t then
+          flag=1;
+      else
+          flag=0;
+      end
+      rhs=2;
+  end
   if rhs==2 then
     if typeof(h)<>'rational' then
       error(msprintf(gettext("%s: Wrong type for input argument #%d: rational fraction array expected.\n"),"routh_t",1));
@@ -64,7 +74,11 @@ function r=routh_t(h,k)
   if rhs==2 then
 
     for i=3:nd,
-      r(i,1:ncol-1)=[r(i-1,1),-r(i-2,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)]
+        if flag==0 then
+        r(i,1:ncol-1)=[r(i-1,1),-r(i-2,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)] 
+        else
+        r(i,1:ncol-1)=[1.,-r(i-2,1)/r(i-1,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)]    
+        end
     end;
   else
     for i=3:nd,

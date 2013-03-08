@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -21,16 +21,24 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>i=modulo(n,m)</synopsis>
-        <synopsis>i=pmodulo(n,m)</synopsis>
+        <synopsis>i = modulo(n,m)</synopsis>
+        <synopsis>i = pmodulo(n,m)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>n,m</term>
+                <term>n</term>
                 <listitem>
-                    <para>целые числа</para>
+                    <para>
+                        вещественный или полиномиальный вектор или матрица
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>вещественный вектор или матрица</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -62,10 +70,10 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n=[1,2,10,15];m=[2,2,3,5];
 modulo(n,m)
- 
+
 modulo(-3,9)
 pmodulo(-3,9)
  ]]></programlisting>

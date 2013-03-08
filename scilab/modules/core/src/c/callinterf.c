@@ -138,7 +138,7 @@ int C2F(callinterf) (int *k)
     {
         if ( (*k > INTERFACES_MAX) || (*k < 1) )
         {
-            Scierror(999, _("Error: Not a valid gateway ID %d.\n"), *k);
+            Scierror(999, _("Error: Not a valid gateway ID %d. Should be between %d and %d.\n"), *k, 1, INTERFACES_MAX);
             count = 0;
             return 0;
         }

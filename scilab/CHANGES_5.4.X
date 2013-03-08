@@ -121,6 +121,9 @@ Xcos
 
 * Bug #10434 fixed - loadXcosLibs changed the predef value.
 
+* Bug #10435 fixed - Undo in superdiagram did not update superblock ports
+                     and links.
+
 * Bug #10660 fixed - model2blk and callblk crashed Scilab on 64-bit platforms.
 
 * Bug #11193 fixed - Lincos did not honor context values.
@@ -128,6 +131,8 @@ Xcos
 * Bug #11775 fixed - xcos.tst crashed on Linux and MacOS X.
 
 * Bug #11821 fixed - Running XcosPalAdd example from help led to deadlock
+
+* Bug #11871 fixed - Connectors were misaligned after Undo command.
 
 * Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
                      Scilab crash.
@@ -167,11 +172,16 @@ Xcos
 * Bug #12321 fixed - save environment failed to save lib variable. Now these variables
                      are ignored like previous version of save function.
 
+* Bug #12351 fixed - "Save as" a diagram to a selected xcos file type, saved
+                     it as zcos.
+
 
 Documentation
 ==============
 
 * Add the 'scilab:needs-examples="no"' tag to specify that the help page does not need any example.
+
+* xlabel(), ylabel, zlabel() macros are fully documented (See bug #6975).
 
 
 Compilation
@@ -183,11 +193,20 @@ Compilation
 
 * Enforce a minimal version of JLaTeXMath (1.0.1).
 
+
+Other changes
+=============
+
+* Console command history is now stored on all platforms in SCIHOME/history file.
+
+
 Bug fixes
 ==========
 
 * Bug #3313 fixed - In the documentation, the title of a link was using the
                     id instead of the title of the page.
+
+* Bug #4946 fixed - Bad rendering of a big rotated label.
 
 * Bug #5291 fixed - strtod returned 0 when no real number was detected.
 
@@ -232,6 +251,12 @@ Bug fixes
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
 
+* Bug #9934 fixed - clear([["A","B"]) returns a non standard error message.
+
+* Bug #9935 fixed - clear() does not clear all variables.
+
+* Bug #10278 fixed - clear(1) returns a wrong error message.
+
 * Bug #10415 fixed - Remove a session line in history causes the removal
                      of the session node in history browser
 
@@ -242,6 +267,9 @@ Bug fixes
 * Bug #10815 fixed - diff help page did not have a "See Also" section.
 
 * Bug #11134 fixed - xgetmouse() prevented callback menu execution.
+
+* Bug #11362 fixed - Doc of axes_properties did not explain that 
+                     mark_style=mark_size=0 draw a single dot.
 
 * Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
                      the last color in colormap.
@@ -261,6 +289,8 @@ Bug fixes
 
 * Bug #11569 fixed - F5 to navigate in the dock was incompatible with SciNotes.
                      So replace F5 by shift+F6 to go to the previous tab.
+
+* Bug #11639 fixed - Uninstall removed all scilab registry information.
 
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
@@ -338,6 +368,8 @@ Bug fixes
 
 * Bug #12050 fixed - Fix a typo: dimensionnal => dimensional.
 
+* Bug #12059 fixed - Index returned by gsort of sparse were wrong.
+
 * Bug #12062 fixed - getsystemmetrics() failed for some properties such as 'SM_CXMAXIMIZED'.
 
 * Bug #12071 fixed - Printed info of a XML object were inconsistent with
@@ -360,6 +392,10 @@ Bug fixes
 
 * Bug #12021 fixed - Improve the help page of eigs.
 
+* Bug #12122 fixed - Help page of lufact did not specify that lufact doesn't handle complex matrix.
+
+* Bug #12133 fixed - parallel_run was not available.
+
 * Bug #12135 fixed - stacksize('max') failed silently.
 
 * Bug #12137 fixed - eigs(A,B) returned incorrect result for sparse matrices.
@@ -377,6 +413,9 @@ Bug fixes
 * Bug #12166 fixed - There was a bad label with drawaxis.
 
 * Bug #12168 fixed - matfile_listvar crashed when listing variables of a closed MAT-file.
+
+* Bug #12174 fixed - The function "routh_t" gave incorrect output for all denominators
+                     that include gain value "k".
 
 * Bug #12179 fixed - Fix an incompatibility with MPI version of HDF5.
 
@@ -396,6 +435,8 @@ Bug fixes
                      was not a word.
 
 * Bug #12232 fixed - There were several memleaks in various fillers.
+
+* Bug #12234 fixed - Graphics could crash with an invalid property.
 
 * Bug #12235 fixed - Matplot did not update on color_map change.
 
@@ -420,12 +461,25 @@ Bug fixes
 
 * Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
 
+* Bug #12291 fixed - Unable to display a list of handle as an handle userData. 
+
 * Bug #12296 fixed - Call to getenv with a big environment variable
                      led to memory corruption.
 
 * Bug #12304 fixed - Undock, redock and undock led to an exception.
 
 * Bug #12307 fixed - ftp addresses were not handled in help browser.
+
+* Bug #12317 fixed - eventhandler functions no more report keyboard events
+
+* Bug #12333 fixed - Cleaned command history is restored after reopening Scilab.
+
+* Bug #12346 fixed - lsslist() help pages were mislocated. Moved now to CACSD.
+
+* Bug #12348 fixed - surf() disable lines(n) if there is no input variable.
+
+* Bug #12354 fixed - In SciNotes, invalid function with a semicolon after args
+                     declaration.
 
 
                     Changes between version 5.3.3 and 5.4.0

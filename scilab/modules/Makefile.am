@@ -113,10 +113,8 @@ libscilab_la_rootdir = $(mydatadir)
 # libscilab-cli is for scilab-cli (without GUI)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES =
-#libscilab_cli_la_SOURCES =
 
 libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS)
-#libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
 
 
 GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
@@ -205,20 +203,27 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 
 
 # Core modules
-#libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
 libscilab_la_LIBADD =
 
 if GUI
-libscilab_la_LIBADD += $(GUI_LIBS) 	$(top_builddir)/modules/types/libscitypes.la
+libscilab_la_LIBADD += $(GUI_LIBS)	$(top_builddir)/modules/types/libscitypes.la
 else
 libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
 
 # Core modules
-libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS) \
-	$(top_builddir)/modules/libscilab-cli.la
+libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
+if FORCE_LINK
+# This should never be used in production. It forces the explicit link
+# between libscilab and some "on-the-fly" loaded libraries.
+# It has been added to make sure that the full link is correctly done
+# and all symbols resolved.
+libscilab_la_LIBADD += $(ENGINE_LIBS_DYNAMIC_LOAD)
+endif
+
+libscilab_la_LIBADD += $(top_builddir)/modules/libscilab-cli.la
 
 ################## libscilab-cli  ##################
 
