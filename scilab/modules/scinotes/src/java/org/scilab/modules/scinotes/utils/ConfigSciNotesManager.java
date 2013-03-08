@@ -44,13 +44,10 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
-import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.gui.utils.Position;
@@ -171,10 +168,6 @@ public final class ConfigSciNotesManager {
 
     private static final String SCI = "SCI";
     private static final String SCINOTES_CONFIG_FILE = System.getenv(SCI) + "/modules/scinotes/etc/scinotesConfiguration.xml";
-    private static final String SCINOTES_CONFIG_KEYS_FILE = System.getenv(SCI) + "/modules/scinotes/etc/keysConfiguration.xml";
-
-    private static final String USER_SCINOTES_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/scinotesConfiguration.xml";
-    private static final String USER_SCINOTES_CONFIG_KEYS_FILE = ScilabConstants.SCIHOME.toString() + "/keysConfiguration.xml";
 
     private static final int PLAIN = 0;
     private static final int BOLD =  1;
@@ -187,9 +180,20 @@ public final class ConfigSciNotesManager {
     private static final int MAXRECENT = 20;
 
     private static Document document;
-    private static Properties keysMap;
 
     private static boolean updated;
+    private static boolean mustSave = true;
+
+    private static String USER_SCINOTES_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/scinotesConfiguration.xml";
+
+    static {
+        if (ScilabConstants.SCIHOME != null && ScilabConstants.SCIHOME.canRead() && ScilabConstants.SCIHOME.canWrite()) {
+            USER_SCINOTES_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/scinotesConfiguration.xml";
+        } else {
+            USER_SCINOTES_CONFIG_FILE = SCINOTES_CONFIG_FILE;
+            mustSave = false;
+        }
+    }
 
     /**
      * Constructor
@@ -202,12 +206,10 @@ public final class ConfigSciNotesManager {
      * Create a copy of Scilab configuration file in the user directory
      */
     public static void createUserCopy() {
-        if (checkVersion()) {
+        if (checkVersion() && mustSave) {
             /* Create a local copy of the configuration file */
             ScilabCommonsUtils.copyFile(new File(SCINOTES_CONFIG_FILE), new File(USER_SCINOTES_CONFIG_FILE));
-            ScilabCommonsUtils.copyFile(new File(SCINOTES_CONFIG_KEYS_FILE), new File(USER_SCINOTES_CONFIG_KEYS_FILE));
             document = null;
-            keysMap = null;
             updated = true;
         }
     }
@@ -229,13 +231,10 @@ public final class ConfigSciNotesManager {
         }
 
         File fileConfig = new File(USER_SCINOTES_CONFIG_FILE);
-        File keyConfig = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
-        if (!keyConfig.exists()) {
-            return true;
-        }
+
         if (fileConfig.exists()) {
             document = null;
-            readDocument(SCINOTES_CONFIG_FILE, null);
+            readDocument(SCINOTES_CONFIG_FILE);
             Node setting = getNodeChild(null, SETTING);
             String str = ((Element) setting).getAttribute(VERSION);
             if (str != null && str.length() != 0) {
@@ -254,104 +253,6 @@ public final class ConfigSciNotesManager {
         }
 
         return true;
-    }
-
-    /**
-     * Get all Style name
-     * @return an array list of all style name
-     */
-    public static List<String> getAllStyleName() {
-        List<String> stylesName = new ArrayList<String>();
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-            stylesName.add(style.getAttribute(NAME));
-        }
-        return stylesName;
-    }
-
-    /**
-     * Get the font name
-     * @return the name of the font
-     */
-    public static String getFontName() {
-        /*load file*/
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList fontNameElement = scinotesProfile.getElementsByTagName(FONT_NAME);
-        Element fontName = (Element) fontNameElement.item(0);
-
-        return fontName.getAttribute(VALUE);
-    }
-
-    /**
-     * Get the font size
-     * @return the font size
-     */
-    public static int getFontSize() {
-        /*load file*/
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList fontSizeElement = scinotesProfile.getElementsByTagName(FONT_SIZE);
-        Element fontSize = (Element) fontSizeElement.item(0);
-        return Integer.parseInt(fontSize.getAttribute(VALUE));
-    }
-
-    /**
-     * @param type "Openers" or "Keywords"
-     * @return true if help on typing for openers is active
-     */
-    public static boolean getHelpOnTyping(String type) {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING + type);
-        Element helpontyping = (Element) allSizeElements.item(0);
-
-        return TRUE.equals(helpontyping.getAttribute(VALUE));
-    }
-
-    /**
-     * Save help on typing
-     * @param type "Openers" or "Keywords"
-     * @param activated active or not
-     */
-    public static void saveHelpOnTyping(String type, boolean activated) {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING + type);
-        Element helpOnTyping = (Element) allSizeElements.item(0);
-        if (helpOnTyping == null) {
-            helpOnTyping = document.createElement(HELPONTYPING + type);
-            helpOnTyping.setAttribute(VALUE, new Boolean(activated).toString());
-            scinotesProfile.appendChild((Node) helpOnTyping);
-        } else {
-            helpOnTyping.setAttribute(VALUE, new Boolean(activated).toString());
-        }
-        writeDocument();
     }
 
     /**
@@ -423,122 +324,6 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * @return the default state
-     */
-    public static int getLineNumberingState() {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(LINENUMBERING);
-        Element lineNumbering = (Element) allSizeElements.item(0);
-
-        return Integer.parseInt(lineNumbering.getAttribute(VALUE));
-    }
-
-    /**
-     * Save line numbering state
-     * @param state the state
-     */
-    public static void saveLineNumberingState(int state) {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(LINENUMBERING);
-        Element lineNumbering = (Element) allSizeElements.item(0);
-        if (lineNumbering == null) {
-            lineNumbering = document.createElement(LINENUMBERING);
-            lineNumbering.setAttribute(VALUE, Integer.toString(state));
-            scinotesProfile.appendChild((Node) lineNumbering);
-        } else {
-            lineNumbering.setAttribute(VALUE, Integer.toString(state));
-        }
-        writeDocument();
-    }
-
-    /**
-     * @return true if highlighted line is active
-     */
-    public static boolean getHighlightState() {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(LINEHIGHLIGHTER);
-        Element lineHighlight = (Element) allSizeElements.item(0);
-
-        return TRUE.equals(lineHighlight.getAttribute(VALUE));
-    }
-
-    /**
-     * Save highlight state
-     * @param state the state
-     */
-    public static void saveHighlightState(boolean state) {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(LINEHIGHLIGHTER);
-        Element lineHighlighter = (Element) allSizeElements.item(0);
-        if (lineHighlighter == null) {
-            lineHighlighter = document.createElement(LINEHIGHLIGHTER);
-            lineHighlighter.setAttribute(VALUE, Boolean.toString(state));
-            scinotesProfile.appendChild((Node) lineHighlighter);
-        } else {
-            lineHighlighter.setAttribute(VALUE, Boolean.toString(state));
-        }
-        writeDocument();
-    }
-
-    /**
-     * @return the color for the highlight and for the contour of the highlight
-     */
-    public static Color[] getHighlightColors() {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(LINEHIGHLIGHTER);
-        Element lineHighlight = (Element) allSizeElements.item(0);
-        Color[] arr = new Color[2];
-
-        Color c;
-        if (NULL.equals(lineHighlight.getAttribute(LINECOLOR))) {
-            c = null;
-        } else {
-            c = Color.decode(lineHighlight.getAttribute(LINECOLOR));
-        }
-
-        arr[0] = c;
-
-        if (NULL.equals(lineHighlight.getAttribute(CONTOURCOLOR))) {
-            c = null;
-        } else {
-            c = Color.decode(lineHighlight.getAttribute(CONTOURCOLOR));
-        }
-
-        arr[1] = c;
-        return arr;
-    }
-
-    /**
      * @return the color the altern colors for inner function
      */
     public static Color[] getAlternColors() {
@@ -573,317 +358,6 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * Get all font style
-     * @return true if the font style is bold , false otherwise
-     */
-    public static Map<String, Boolean> getAllisBold() {
-        /*load file*/
-        readDocument();
-        Map<String, Boolean > stylesIsBoldTable = new Hashtable<String, Boolean>();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-
-
-            NodeList fontStyleElement = style.getElementsByTagName(FONT_STYLE);
-            Element fontStyle = (Element) fontStyleElement.item(0);
-            int value = Integer.parseInt(fontStyle.getAttribute(VALUE));
-
-            if (value  == BOLD || value == BOLDITALIC) {
-                stylesIsBoldTable.put(style.getAttribute(NAME), true);
-            } else {
-                stylesIsBoldTable.put(style.getAttribute(NAME), false);
-            }
-        }
-        return stylesIsBoldTable;
-    }
-
-    /**
-     * Get all default font style
-     * @return true if the font style is bold , false otherwise
-     */
-    public static Map<String, Boolean> getDefaultAllisBold() {
-        /*load file*/
-        readDocument();
-        Map<String, Boolean > stylesIsBoldTable = new Hashtable<String, Boolean>();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-
-
-            NodeList fontStyleElement = style.getElementsByTagName(FONT_STYLE);
-            Element fontStyle = (Element) fontStyleElement.item(0);
-            int value = Integer.parseInt(fontStyle.getAttribute(DEFAULT));
-
-            if (value  == BOLD || value == BOLDITALIC) {
-                stylesIsBoldTable.put(style.getAttribute(NAME), true);
-            } else {
-                stylesIsBoldTable.put(style.getAttribute(NAME), false);
-            }
-        }
-        return stylesIsBoldTable;
-    }
-
-    /**
-     * Get all font style
-     * @return true if the font style is bold , false otherwise
-     */
-    public static Map<String, Boolean> getAllisItalic() {
-        /*load file*/
-        readDocument();
-        Map<String, Boolean> stylesIsItalicTable = new Hashtable<String, Boolean>();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-
-            NodeList fontStyleElement = style.getElementsByTagName(FONT_STYLE);
-            Element fontStyle = (Element) fontStyleElement.item(0);
-            int value = Integer.parseInt(fontStyle.getAttribute(VALUE));
-
-            if (value  == ITALIC || value == BOLDITALIC) {
-                stylesIsItalicTable.put(style.getAttribute(NAME), true);
-            } else {
-                stylesIsItalicTable.put(style.getAttribute(NAME), false);
-            }
-        }
-        return stylesIsItalicTable;
-    }
-
-    /**
-     * Get all default font style
-     * @return true if the font style is bold , false otherwise
-     */
-    public static Map<String, Boolean> getDefaultAllisItalic() {
-        /*load file*/
-        readDocument();
-        Map<String, Boolean> stylesIsItalicTable = new Hashtable<String, Boolean>();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-
-            NodeList fontStyleElement = style.getElementsByTagName(FONT_STYLE);
-            Element fontStyle = (Element) fontStyleElement.item(0);
-            int value = Integer.parseInt(fontStyle.getAttribute(DEFAULT));
-
-            if (value  == ITALIC || value == BOLDITALIC) {
-                stylesIsItalicTable.put(style.getAttribute(NAME), true);
-            } else {
-                stylesIsItalicTable.put(style.getAttribute(NAME), false);
-            }
-        }
-        return stylesIsItalicTable;
-    }
-
-    /**
-     * Get the font setting
-     * @return the font
-     */
-    public static Font getFont() {
-
-        /*load file*/
-        readDocument();
-        Font font;
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList fontSizeElement = scinotesProfile.getElementsByTagName(FONT_SIZE);
-        Element fontSize = (Element) fontSizeElement.item(0);
-        int size = Integer.parseInt(fontSize.getAttribute(VALUE));
-
-        NodeList fontNameElement = scinotesProfile.getElementsByTagName(FONT_NAME);
-        Element fontName = (Element) fontNameElement.item(0);
-        String name = fontName.getAttribute(VALUE);
-
-        font = new Font(name, Font.PLAIN, size);
-
-        return font;
-    }
-
-    /**
-     * Get Default Font Settings
-     * @return the default font
-     */
-
-    public static Font getDefaultFont() {
-        /*load file*/
-        readDocument();
-
-        Font font;
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList fontSizeElement = scinotesProfile.getElementsByTagName(FONT_SIZE);
-        Element fontSize = (Element) fontSizeElement.item(0);
-        int size = Integer.parseInt(fontSize.getAttribute(DEFAULT));
-
-        NodeList fontNameElement = scinotesProfile.getElementsByTagName(FONT_NAME);
-        Element fontName = (Element) fontNameElement.item(0);
-        String name = fontName.getAttribute(DEFAULT);
-
-        font = new Font(name, Font.PLAIN, size);
-
-        return font;
-    }
-
-    /**
-     * Save a new font setting
-     * @param font the new font
-     */
-    public static void saveFont(Font font) {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList fontSizeElement = scinotesProfile.getElementsByTagName(FONT_SIZE);
-        Element fontSize = (Element) fontSizeElement.item(0);
-        fontSize.setAttribute(VALUE, Integer.toString(font.getSize()));
-
-        NodeList fontNameElement = scinotesProfile.getElementsByTagName(FONT_NAME);
-        Element fontName = (Element) fontNameElement.item(0);
-        fontName.setAttribute(VALUE, font.getName());
-
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * Retrieve from scinotesConfiguration.xml the infos about a tabulation
-     * @return a Tabulation containing infos
-     */
-    public static TabManager.Tabulation getDefaultTabulation() {
-        /* <style name="Tabulation" rep="vertical" value="4" white="false"> */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-            if ("Tabulation".equals(style.getAttribute(NAME))) {
-                String rep = style.getAttribute("rep").toLowerCase();
-                int type = ScilabView.TABNOTHING;
-                char rrep = ' ';
-                if ("vertical".equals(rep)) {
-                    type = ScilabView.TABVERTICAL;
-                } else if ("horizontal".equals(rep)) {
-                    type = ScilabView.TABHORIZONTAL;
-                } else if ("doublechevrons".equals(rep)) {
-                    type = ScilabView.TABDOUBLECHEVRONS;
-                } else if ("none".equals(rep)) {
-                    type = ScilabView.TABNOTHING;
-                } else if (rep.length() >= 1) {
-                    type = ScilabView.TABCHARACTER;
-                    rrep = rep.charAt(0);
-                }
-
-                char one;
-                int value = Integer.parseInt(style.getAttribute(VALUE));
-                String white = style.getAttribute("white").toLowerCase();
-                if (FALSE.equals(white)) {
-                    one = '\t';
-                } else {
-                    one = ' ';
-                }
-
-                return new TabManager.Tabulation(one, value, type, rrep);
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Retrieve from scinotesConfiguration.xml the infos about a tabulation
-     * @return a Tabulation containing infos
-     */
-    public static void saveDefaultTabulation(TabManager.Tabulation cfg) {
-        /* <style name="Tabulation" rep="vertical" value="4" white="false"> */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-            if ("Tabulation".equals(style.getAttribute(NAME))) {
-                String type = "none";
-                switch (cfg.type) {
-                    case ScilabView.TABVERTICAL:
-                        type = "vertical";
-                        break;
-                    case ScilabView.TABHORIZONTAL:
-                        type = "horizontal";
-                        break;
-                    case ScilabView.TABDOUBLECHEVRONS:
-                        type = "doublechevrons";
-                        break;
-                    default:
-                        break;
-                }
-
-                style.setAttribute("rep", type);
-                style.setAttribute(VALUE, Integer.toString(cfg.number));
-                style.setAttribute("white", Boolean.toString(cfg.tab == ' '));
-                writeDocument();
-                return;
-            }
-        }
-    }
-
-    /**
-     * Retrieve form scinotesConfiguration.xml the infos the matchers
-     * @param kind should be "KeywordsHighlighter" or "OpenCloseHighlighter"
-     * @return an Object containing infos
-     */
-    public static MatchingBlockManager.Parameters getDefaultForMatcher(String kind) {
-        /* <KeywordsHighlighter color="#fff3d2" inside="true" strict="false" type="filled"/> */
-
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList matching = root.getElementsByTagName("Matching");
-        Element elem = (Element) matching.item(0);
-        boolean onmouseover = TRUE.equals(elem.getAttribute("onmouseover"));
-
-        NodeList mat = elem.getElementsByTagName(kind);
-        Element matcher = (Element) mat.item(0);
-
-        Color color = Color.decode(matcher.getAttribute("color"));
-        boolean inside = TRUE.equals(matcher.getAttribute("inside"));
-        boolean strict = TRUE.equals(matcher.getAttribute("strict"));
-        boolean included = TRUE.equals(matcher.getAttribute("included"));
-        String stype = matcher.getAttribute("type");
-        int type = 0;
-        if ("filled".equals(stype)) {
-            type = MatchingBlockManager.ScilabKeywordsPainter.FILLED;
-        } else if ("underlined".equals(stype)) {
-            type = MatchingBlockManager.ScilabKeywordsPainter.UNDERLINED;
-        } else if ("framed".equals(stype)) {
-            type = MatchingBlockManager.ScilabKeywordsPainter.FRAMED;
-        }
-
-        return new MatchingBlockManager.Parameters(color, inside, strict, included, type, onmouseover);
-    }
-
-    /**
      * Get the background Color
      * @return the background Color
      */
@@ -904,26 +378,6 @@ public final class ConfigSciNotesManager {
     }
 
     /**
-     * Get the default background Color
-     * @return the default background Color
-     */
-    public static Color getSciNotesDefaultBackgroundColor() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(EDITOR);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allElements = scinotesProfile.getElementsByTagName(BACKGROUNDCOLOR);
-        Element scinotesBackground = (Element) allElements.item(0);
-
-        /*direct create a Color with "#FF00FF" string from the xml */
-        return Color.decode(scinotesBackground.getAttribute(DEFAULT));
-    }
-
-    /**
      * Get the foreground Color
      * @return the foreground Color
      */
@@ -941,26 +395,6 @@ public final class ConfigSciNotesManager {
 
         /*direct create a Color with "#FF00FF" string from the xml */
         return Color.decode(scinotesForeground.getAttribute(VALUE));
-    }
-
-    /**
-     * Get the default foreground Color
-     * @return the foreground Color
-     */
-    public static Color getSciNotesDefaultForegroundColor() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(EDITOR);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allElements = scinotesProfile.getElementsByTagName(FOREGROUNDCOLOR);
-        Element scinotesForeground = (Element) allElements.item(0);
-
-        /*direct create a Color with "#FF00FF" string from the xml */
-        return Color.decode(scinotesForeground.getAttribute(DEFAULT));
     }
 
     /**
@@ -1013,52 +447,6 @@ public final class ConfigSciNotesManager {
      * Save SciNotes autoIndent or not
      * @param activated if autoIndent should be used or not
      */
-    public static void saveAutoIndent(boolean activated) {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(AUTOINDENT);
-        Element scinotesAutoIndent = (Element) allSizeElements.item(0);
-        if (scinotesAutoIndent == null) {
-            Element autoIndent = document.createElement(AUTOINDENT);
-            autoIndent.setAttribute(VALUE, new Boolean(activated).toString());
-            scinotesProfile.appendChild((Node) autoIndent);
-        } else {
-            scinotesAutoIndent.setAttribute(VALUE, new Boolean(activated).toString());
-        }
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * @return a boolean if autoIndent should be used or not
-     */
-    public static boolean getAutoIndent() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(AUTOINDENT);
-        Element autoIndent = (Element) allSizeElements.item(0);
-
-        if (autoIndent == null) {
-            return true;
-        } else {
-            return new Boolean(autoIndent.getAttribute(VALUE));
-        }
-    }
-
-    /**
-     * Save SciNotes autoIndent or not
-     * @param activated if autoIndent should be used or not
-     */
     public static void saveSuppressComments(boolean activated) {
         /* Load file */
         readDocument();
@@ -1098,458 +486,6 @@ public final class ConfigSciNotesManager {
             return true;
         } else {
             return new Boolean(suppressComments.getAttribute(VALUE));
-        }
-    }
-
-    /**
-     * Save SciNotes horizontal wrapping or not
-     * @param activated if autoIndent should be used or not
-     */
-    public static void saveHorizontalWrap(boolean activated) {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HORIZONTALWRAP);
-        Element horizontalWrap = (Element) allSizeElements.item(0);
-        if (horizontalWrap == null) {
-            Element hw = document.createElement(HORIZONTALWRAP);
-            hw.setAttribute(VALUE, new Boolean(activated).toString());
-            scinotesProfile.appendChild((Node) hw);
-        } else {
-            horizontalWrap.setAttribute(VALUE, new Boolean(activated).toString());
-        }
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * @return a boolean if horizontal wrapping should be used or not
-     */
-    public static boolean getHorizontalWrap() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HORIZONTALWRAP);
-        Element horizontalWrap = (Element) allSizeElements.item(0);
-
-        if (horizontalWrap == null) {
-            return true;
-        } else {
-            return new Boolean(horizontalWrap.getAttribute(VALUE));
-        }
-    }
-
-    /**
-     * @param encoding the default encoding for the files
-     */
-    public static void saveDefaultEncoding(String encoding) {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(DEFAULTENCONDING);
-        Element scinotesAutoIndent = (Element) allSizeElements.item(0);
-        if (scinotesAutoIndent == null) {
-            Element defaultEncoding = document.createElement(DEFAULTENCONDING);
-
-            defaultEncoding.setAttribute(VALUE, encoding);
-
-            scinotesProfile.appendChild((Node) defaultEncoding);
-        } else {
-            scinotesAutoIndent.setAttribute(VALUE, encoding);
-        }
-        /* Save changes */
-        writeDocument();
-    }
-
-
-    /**
-     * @return the default encoding
-     */
-    public static String getDefaultEncoding() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(DEFAULTENCONDING);
-        Element defaultEncoding = (Element) allSizeElements.item(0);
-
-        if (defaultEncoding == null || defaultEncoding.getAttribute(VALUE).equals("")) {
-            // If no default encoding read then used system default
-            saveDefaultEncoding(Charset.defaultCharset().name());
-            return Charset.defaultCharset().name();
-        } else {
-            return defaultEncoding.getAttribute(VALUE);
-        }
-    }
-
-    /**
-     * Get all the foreground Colors
-     * @return a Hashtable with the styles and the associated colors.
-     */
-    public static Map<String, Color> getAllForegroundColors() {
-        /* Load file */
-        readDocument();
-
-        Map<String, Color> stylesColorsTable = new Hashtable<String, Color>();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-
-            NodeList allForegroundElements = style.getElementsByTagName(FOREGROUNDCOLOR);
-            Element styleForeground = (Element) allForegroundElements.item(0);
-            Color styleColor = Color.decode(styleForeground.getAttribute(VALUE));
-            stylesColorsTable.put(style.getAttribute(NAME), styleColor);
-        }
-
-        return stylesColorsTable;
-    }
-
-    /**
-     * @return a map containing styles names and the associated default font correctly derivated
-     */
-    public static Map<String, Font> getAllFontStyle() {
-        return getAllFontStyle(getFont());
-    }
-
-    /**
-     * @param f the base font
-     * @return a map containing styles names and the associated font correctly derivated
-     */
-    public static Map<String, Font> getAllFontStyle(Font f) {
-        /* Load file */
-        readDocument();
-
-        Font font = f;
-        Map<String, Font> stylesFontsTable = new Hashtable<String, Font>();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element fstyles = (Element) styles.item(i);
-
-            NodeList allFontStyleElements = fstyles.getElementsByTagName(FONT_STYLE);
-            Element fontStyle = (Element) allFontStyleElements.item(0);
-            int style = Integer.parseInt(fontStyle.getAttribute(VALUE));
-            String name = font.getName();
-            int size = font.getSize();
-            if (style == PLAIN) {
-                font = new Font(name, Font.PLAIN, size);
-
-            } else if (style == BOLD) {
-                font = new Font(name, Font.BOLD, size);
-
-            } else if (style == ITALIC) {
-                font = new Font(name, Font.ITALIC, size);
-
-            } else if (style == BOLDITALIC) {
-                font = new Font(name, Font.BOLD | Font.ITALIC , size);
-
-            } else {
-                font = new Font(name, Font.PLAIN, size);
-            }
-
-            stylesFontsTable.put(fstyles.getAttribute(NAME), font);
-        }
-
-        return stylesFontsTable;
-    }
-
-
-    /**
-     * get all default foreground colors of scinotes
-     * @return a Hashtable with the styles and the associated default colors.
-     */
-    public static Map<String, Color> getAllDefaultForegroundColors() {
-        /* Load file */
-        readDocument();
-
-        Map<String, Color> stylesDefaultColorsTable = new Hashtable<String, Color>();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-
-            NodeList allForegroundElements = style.getElementsByTagName(FOREGROUNDCOLOR);
-            Element styleForeground = (Element) allForegroundElements.item(0);
-            Color styleColor = Color.decode(styleForeground.getAttribute(DEFAULT));
-
-            stylesDefaultColorsTable.put(style.getAttribute(NAME), styleColor);
-        }
-
-        return stylesDefaultColorsTable;
-    }
-
-    /**
-     * @return a map containing styles names and an integer : 0 for nothing, 1 for underline, 2 for stroke
-     * and 3 for stroke+underline
-     */
-    public static Map<String, Integer> getAllAttributes() {
-        /* Load file */
-        readDocument();
-
-        Map<String, Integer> attr = new Hashtable<String, Integer>();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-            int at = 0;
-            String underline = style.getAttribute(UNDERLINE);
-            if (TRUE.equals(underline)) {
-                at = 1;
-            }
-            String stroke = style.getAttribute(STROKE);
-            if (TRUE.equals(stroke)) {
-                at += 2;
-            }
-            attr.put(style.getAttribute(NAME), at);
-        }
-
-        return attr;
-    }
-
-    /**
-     * @return a map containing all defaults attributes
-     */
-    public static Map<String, Integer> getDefaultAllAttributes() {
-        /* Load file */
-        readDocument();
-
-        Map<String, Integer> attr = new Hashtable<String, Integer>();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-            int at = 0;
-            String underline = style.getAttribute(DEFAULTUNDERLINE);
-            if (TRUE.equals(underline)) {
-                at = 1;
-            }
-            String stroke = style.getAttribute(DEFAULTSTROKE);
-            if (TRUE.equals(stroke)) {
-                at += 2;
-            }
-            attr.put(style.getAttribute(NAME), at);
-        }
-
-        return attr;
-    }
-
-    /**
-     * save all foreground colors
-     *@param stylesColorsTable a hashtable containing styles and the associated colors
-     */
-    public static void saveAllForegroundColors(Map<String, Color> stylesColorsTable) {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-
-            String styleName = style.getAttribute(NAME);
-            NodeList allForegroundElements = style.getElementsByTagName(FOREGROUNDCOLOR);
-            Element styleForeground = (Element) allForegroundElements.item(0);
-
-            Color color = stylesColorsTable.get(styleName);
-
-            String rgb = Integer.toHexString(color.getRGB());
-            styleForeground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
-            clean(styleForeground);
-        }
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * save all style for the font
-     * @param boldTable a hashtable containing style names and a boolean for the bold style
-     * @param italicTable a hashtable containing style names and a boolean for the italic style
-     */
-    public static void saveAllFontStyle(Map<String, Boolean> boldTable, Map<String, Boolean> italicTable) {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-
-            String styleName = style.getAttribute(NAME);
-            NodeList fontStyleElements = style.getElementsByTagName(FONT_STYLE);
-            Element fontStyle = (Element) fontStyleElements.item(0);
-
-            int bold = 1;
-            if (!boldTable.get(styleName)) {
-                bold = 0;
-            }
-            int italic = 2;
-            if (!italicTable.get(styleName)) {
-                italic = 0;
-            }
-
-            fontStyle.setAttribute(VALUE, Integer.toString(bold + italic));
-            clean(fontStyle);
-        }
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * save all style for the font
-     * @param attTable a hashtable containing styles and the associated attribute
-     */
-    public static void saveAllAttributes(Map<String, Integer> attTable) {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList styles = root.getElementsByTagName(STYLE);
-
-        for (int i = 0; i < styles.getLength(); ++i) {
-            Element style = (Element) styles.item(i);
-
-            String styleName = style.getAttribute(NAME);
-
-            String underline = TRUE;
-            if ((attTable.get(styleName) & 1) != 1) {
-                underline = FALSE;
-            }
-            String stroke = TRUE;
-            if ((attTable.get(styleName) & 2) != 2) {
-                stroke = FALSE;
-            }
-
-            style.setAttribute(UNDERLINE, underline);
-            style.setAttribute(STROKE, stroke);
-            clean(style);
-        }
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * Get the position of SciNotes Main Window
-     * @return the position
-     */
-    public static Position getMainWindowPosition() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allPositionElements = scinotesProfile.getElementsByTagName(MAINWINPOSITION);
-        Element mainWindowPosition = (Element) allPositionElements.item(0);
-        if (mainWindowPosition != null) {
-            int x = Integer.parseInt(mainWindowPosition.getAttribute(XCOORD));
-            int y = Integer.parseInt(mainWindowPosition.getAttribute(YCOORD));
-            /* Avoid SciNotes Main Window to be out of the screen */
-            if (x <= (Toolkit.getDefaultToolkit().getScreenSize().width - MARGIN)
-                    && y <= (Toolkit.getDefaultToolkit().getScreenSize().height - MARGIN)) {
-                return new Position(x, y);
-            } else {
-                return new Position(0, 0);
-            }
-        } else {
-            return new Position(0, 0);
-        }
-    }
-
-
-    /**
-     * Save the position of SciNotes Main Window
-     * @param position the position of SciNotes main Window
-     */
-    public static void saveMainWindowPosition(Position position) {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allPositionElements = scinotesProfile.getElementsByTagName(MAINWINPOSITION);
-        Element mainWindowPosition = (Element) allPositionElements.item(0);
-
-
-        mainWindowPosition.setAttribute(XCOORD, Integer.toString(position.getX()));
-        mainWindowPosition.setAttribute(YCOORD, Integer.toString(position.getY()));
-
-        /* Save changes */
-        writeDocument();
-    }
-
-
-    /**
-     * Save the size of SciNotes Main Window
-     * @param size the size of SciNotes main Window
-     */
-    public static void saveMainWindowSize(Size size) {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allPositionElements = scinotesProfile.getElementsByTagName(MAINWINSIZE);
-        Element mainWindowSize = (Element) allPositionElements.item(0);
-
-
-        mainWindowSize.setAttribute(WIDTH, Integer.toString(size.getWidth()));
-        mainWindowSize.setAttribute(HEIGHT, Integer.toString(size.getHeight()));
-
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * Get the size of SciNotes Main Window
-     * @return the size
-     */
-    public static Size getMainWindowSize() {
-
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(MAINWINSIZE);
-        Element mainWindowSize = (Element) allSizeElements.item(0);
-        if (mainWindowSize != null) {
-            return new Size(Integer.parseInt(mainWindowSize.getAttribute(WIDTH)), Integer.parseInt(mainWindowSize.getAttribute(HEIGHT)));
-        } else {
-            return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         }
     }
 
@@ -2045,16 +981,15 @@ public final class ConfigSciNotesManager {
      * Read the file to modify
      */
     private static void readDocument() {
-        readDocument(USER_SCINOTES_CONFIG_FILE, USER_SCINOTES_CONFIG_KEYS_FILE);
+        readDocument(USER_SCINOTES_CONFIG_FILE);
     }
 
     /**
      * Read the file to modify
      */
-    private static void readDocument(String pathConfSci, String pathConfKeys) {
+    private static void readDocument(String pathConfSci) {
         File fileConfig = new File(USER_SCINOTES_CONFIG_FILE);
-        File keyConfig = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
-        if (!keyConfig.exists() || !fileConfig.exists()) {
+        if (!fileConfig.exists()) {
             createUserCopy();
         }
         File xml = null;
@@ -2078,66 +1013,36 @@ public final class ConfigSciNotesManager {
             System.err.println(ERROR_READ + pathConfSci);
         }
 
-        FileInputStream fis = null;
-
-        try {
-            if (keysMap == null && pathConfKeys != null) {
-                xml = new File(pathConfKeys);
-                keysMap = new Properties();
-                fis = new FileInputStream(xml);
-                keysMap.loadFromXML(fis);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (fis != null) {
-                    fis.close();
-                }
-            } catch (IOException e) { }
-        }
-
         ScilabDocumentBuilderFactory.restoreDocumentBuilderFactoryImpl(factoryName);
-    }
-
-    /**
-     * @param map the map to fill with the pairs (keystroke, action) found in file etc/keysConfiguration.xml
-     */
-    public static void addMapActionNameKeys(Map map) {
-        for (Enumeration action = keysMap.propertyNames(); action.hasMoreElements();) {
-            String name = (String) action.nextElement();
-            KeyStroke ks = ScilabKeyStroke.getKeyStroke(keysMap.getProperty(name));
-            map.put(name, ks);
-        }
     }
 
     /**
      * Save the modifications
      */
     private static void writeDocument() {
-        Transformer transformer = null;
-        try {
-            transformer = ScilabTransformerFactory.newInstance().newTransformer();
-        } catch (TransformerConfigurationException e1) {
-            System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
-            System.err.println(e1);
-        } catch (TransformerFactoryConfigurationError e1) {
-            System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
-            System.err.println(e1);
-        }
-
-        if (transformer != null) {
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-            StreamResult result = new StreamResult(new File(USER_SCINOTES_CONFIG_FILE));
-            DOMSource source = new DOMSource(document);
+        if (mustSave) {
+            Transformer transformer = null;
             try {
-                transformer.transform(source, result);
-            } catch (TransformerException e) {
+                transformer = ScilabTransformerFactory.newInstance().newTransformer();
+            } catch (TransformerConfigurationException e1) {
                 System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
-                System.err.println(e);
+                System.err.println(e1);
+            } catch (TransformerFactoryConfigurationError e1) {
+                System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+                System.err.println(e1);
+            }
+
+            if (transformer != null) {
+                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+                StreamResult result = new StreamResult(new File(USER_SCINOTES_CONFIG_FILE));
+                DOMSource source = new DOMSource(document);
+                try {
+                    transformer.transform(source, result);
+                } catch (TransformerException e) {
+                    System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+                    System.err.println(e);
+                }
             }
         }
     }

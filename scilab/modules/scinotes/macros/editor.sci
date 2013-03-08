@@ -11,6 +11,12 @@
 // the preferences file.
 // This function can take any type of arguments.
 function editor(varargin)
+    if ~isfile(SCIHOME + "/XConfiguration.xml") then
+        cmd = makeCommand("scinotes", varargin);
+        execstr(cmd);
+	return;
+    end
+
     doc = xmlRead(SCIHOME + "/XConfiguration.xml");
     prefsNode = xmlXPath(doc, "//scinotes/body/scinotes-preferences");
     prefsNode = prefsNode(1);
@@ -59,5 +65,3 @@ function cmd = makeCommand(name, args)
     end
     cmd = cmd + ")";
 endfunction
-
-

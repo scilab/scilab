@@ -18,9 +18,7 @@
 // =============================================================================
 #define SIZE_ARRAY_RANGE 4
 // =============================================================================
-static int getSizeRange(const int *iRange, int nbRows, int nbCols);
-static int getSizeRows(const int *iRange, int nbRows);
-static int getSizeCols(const int *iRange, int nbCols);
+static int getRangeSize(int *lowCoord, int *highCoord, int maxCoord);
 // =============================================================================
 void getSubIndices(const int *iRange, int * R1, int * R2, int * C1, int * C2 )
 {
@@ -84,46 +82,36 @@ char **getRangeAsString(const char **pStrsValues,
 {
     if (isValidRange(iRange, SIZE_ARRAY_RANGE))
     {
-        char **newStrArray = NULL;
-        int sizeRange = getSizeRange(iRange, nbRows, nbCols);
         int R1, C1, R2, C2;
+        int rangeSize;
 
-        getSubIndices(iRange, &R1, &R2, &C1, &C2 );
+        getSubIndices(iRange, &R1, &R2, &C1, &C2);
 
-        *returnedNbRows = getSizeRows(iRange, nbRows);
-        *returnedNbCols = getSizeCols(iRange, nbCols);
+        *returnedNbRows = getRangeSize(&R1, &R2, nbRows);
+        *returnedNbCols = getRangeSize(&C1, &C2, nbCols);
 
-        newStrArray = (char**)MALLOC(sizeof(char*) * sizeRange);
-        if (newStrArray == NULL)
+        rangeSize = (*returnedNbRows) * (*returnedNbCols);
+        if (rangeSize > 0)
         {
-            *returnedNbCols = 0;
-            *returnedNbRows = 0;
-        }
-        else
-        {
-            int i = 0;
-            int j = 0;
-            int k = 0;
+            char **newStrArray = (char**)MALLOC(sizeof(char*) * rangeSize);
+            if (newStrArray != NULL)
+            {
+                int i = 0;
+                int j = 0;
+                int k = 0;
 
-            if ( C2 > nbCols )
-            {
-                C2 = nbCols;
-            }
-            if ( R2 > nbRows )
-            {
-                R2 = nbRows;
-            }
-
-            for ( j = C1 - 1 ; j < C2 ; j++)
-            {
-                for (i = R1 - 1 ; i < R2 ; i++ )
+                for (j = C1 - 1 ; j < C2 ; j++)
                 {
-                    newStrArray[k] = strdup(pStrsValues[i + nbRows * j]);
-                    k++;
+                    for (i = R1 - 1 ; i < R2 ; i++ )
+                    {
+                        newStrArray[k] = strdup(pStrsValues[i + nbRows * j]);
+                        k++;
+                    }
                 }
             }
+            return newStrArray;
         }
-        return newStrArray;
+        // range is empty, calling function should raise an out of bound error
     }
     return NULL;
 }
@@ -135,107 +123,59 @@ csv_complexArray *getRangeAsCsvComplexArray(const csv_complexArray *pComplex,
 {
     if (isValidRange(iRange, SIZE_ARRAY_RANGE))
     {
-        csv_complexArray *newComplexArray = NULL;
-        int sizeRange = getSizeRange(iRange, nbRows, nbCols);
-        int R1 = 0, C1 = 0, R2 = 0, C2 = 0;
+        int R1, C1, R2, C2;
+        int rangeSize;
 
         getSubIndices(iRange, &R1, &R2, &C1, &C2 );
 
-        *returnedNbRows = getSizeRows(iRange, nbRows);
-        *returnedNbCols = getSizeCols(iRange, nbCols);
+        *returnedNbRows = getRangeSize(&R1, &R2, nbRows);
+        *returnedNbCols = getRangeSize(&C1, &C2, nbCols);
 
-        newComplexArray = createCsvComplexArrayEmpty(sizeRange);
-        if (newComplexArray == NULL)
+        rangeSize = (*returnedNbRows) * (*returnedNbCols);
+        if (rangeSize > 0)
         {
-            *returnedNbCols = 0;
-            *returnedNbRows = 0;
-        }
-        else
-        {
-            int i = 0;
-            int j = 0;
-            int k = 0;
-
-            if ( C2 > nbCols )
+            csv_complexArray *newComplexArray =
+                createCsvComplexArrayEmpty(rangeSize);
+            if (newComplexArray != NULL)
             {
-                C2 = nbCols;
-            }
-            if ( R2 > nbRows )
-            {
-                R2 = nbRows;
-            }
+                int i = 0;
+                int j = 0;
+                int k = 0;
 
-            newComplexArray->isComplex = pComplex->isComplex;
+                newComplexArray->isComplex = pComplex->isComplex;
 
-            for ( j = C1 - 1 ; j < C2 ; j++)
-            {
-                for (i = R1 - 1 ; i < R2 ; i++)
+                for (j = C1 - 1 ; j < C2 ; j++)
                 {
-                    newComplexArray->realPart[k] = pComplex->realPart[i + (nbRows * j)];
-                    if (pComplex->isComplex)
+                    for (i = R1 - 1 ; i < R2 ; i++)
                     {
-                        newComplexArray->imagPart[k] = pComplex->imagPart[i + (nbRows * j)];
+                        newComplexArray->realPart[k] = pComplex->realPart[i + (nbRows * j)];
+                        if (pComplex->isComplex)
+                        {
+                            newComplexArray->imagPart[k] = pComplex->imagPart[i + (nbRows * j)];
+                        }
+                        k++;
                     }
-                    k++;
                 }
             }
+            return newComplexArray;
         }
-
-        return newComplexArray;
+        // range is empty, calling function should raise an out of bound error
     }
     return NULL;
 }
 // =============================================================================
-static int getSizeRange(const int *iRange, int nbRows, int nbCols)
+static int getRangeSize(int *lowCoord, int *highCoord, int maxCoord)
 {
-    int sizeRange;
-    if (iRange)
+    // IsValidRange has done all checks of range, except on right bound
+    if (*lowCoord <= maxCoord)
     {
-        sizeRange = getSizeRows(iRange, nbRows) * getSizeCols(iRange, nbCols);
+        if (*highCoord > maxCoord)
+        {
+            *highCoord = maxCoord;
+        }
+        return *highCoord - *lowCoord + 1;
     }
-    else
-    {
-        sizeRange = 0;
-    }
-    return sizeRange;
-}
-// =============================================================================
-static int getSizeRows(const int *iRange, int nbRows)
-{
-    int sizeRows = 0;
-    int R1, R2, C1, C2;
-
-    getSubIndices(iRange, &R1, &R2, &C1, &C2 );
-
-    if (iRange == NULL)
-    {
-        return 0;
-    }
-    if ( R2 > nbRows )
-    {
-        R2 = nbRows;
-    }
-    sizeRows = R2 - R1 + 1;
-    return sizeRows;
-}
-// =============================================================================
-static int getSizeCols(const int *iRange, int nbCols)
-{
-    int sizeCols = 0;
-    int R1, R2, C1, C2;
-
-    getSubIndices(iRange, &R1, &R2, &C1, &C2 );
-
-    if (iRange == NULL)
-    {
-        return 0;
-    }
-    if ( C2 > nbCols )
-    {
-        C2 = nbCols;
-    }
-    sizeCols = C2 - C1 + 1;
-
-    return sizeCols;
+    // lower coord is out of bound
+    return 0;
 }
 // =============================================================================

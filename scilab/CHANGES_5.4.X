@@ -94,6 +94,9 @@ Obsolete functions
 * xsetm() tagged as obsolete. Will be removed for Scilab 5.5.0.
   Use set(), get() and ged() instead.
 
+* winclose() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use close() instead.
+
 
 Xcos
 =====
@@ -161,6 +164,9 @@ Xcos
 * Bug #12213 fixed - lincos help page example produced undefined variable
                      warnings.
 
+* Bug #12243 fixed - parellel_run did not run all calculations on 8 core
+                     processors.
+
 * Bug #12259 fixed - Wrong translation for "Filled" fixed in Scinotes.
 
 * Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
@@ -169,11 +175,11 @@ Xcos
 * Bug #12290 fixed - AFFICH_m block inside a superblock led to java null
                      pointer exception.
 
-* Bug #12321 fixed - save environment failed to save lib variable. Now these variables
-                     are ignored like previous version of save function.
-
 * Bug #12351 fixed - "Save as" a diagram to a selected xcos file type, saved
                      it as zcos.
+
+* Bug #12352 fixed - Critical error when closing a scope windows during 
+                     simulation fixed.
 
 
 Documentation
@@ -182,6 +188,8 @@ Documentation
 * Add the 'scilab:needs-examples="no"' tag to specify that the help page does not need any example.
 
 * xlabel(), ylabel, zlabel() macros are fully documented (See bug #6975).
+
+* Default stacksize is incorrect (See bug #12134).
 
 
 Compilation
@@ -209,6 +217,11 @@ Bug fixes
 * Bug #4946 fixed - Bad rendering of a big rotated label.
 
 * Bug #5291 fixed - strtod returned 0 when no real number was detected.
+
+* Bug #5478 fixed - Scilab could not be started with a non readable/writeable
+                    SCIHOME.
+
+* Bug #5576 fixed - interp() help page has been improved.
 
 * Bug #6583 fixed - jmat() was poorly documented.
 
@@ -248,6 +261,9 @@ Bug fixes
 
 * Bug #9005 fixed - The bitset function did not have any tests.
 
+* Bug #9196 fixed - The threshold level for conditioning in backslash and slash
+                    were too small.
+
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
 
@@ -266,9 +282,11 @@ Bug fixes
 
 * Bug #10815 fixed - diff help page did not have a "See Also" section.
 
+* Bug #11209 fixed - variance returned wrong results for complex arguments.
+
 * Bug #11134 fixed - xgetmouse() prevented callback menu execution.
 
-* Bug #11362 fixed - Doc of axes_properties did not explain that 
+* Bug #11362 fixed - Doc of axes_properties did not explain that
                      mark_style=mark_size=0 draw a single dot.
 
 * Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
@@ -306,6 +324,8 @@ Bug fixes
 
 * Bug #11851 fixed - Default EOL under Mac should be LF.
 
+* Bug #11924 fixed - winclose() was not tagged as obsolete.
+
 * Bug #11931 fixed - In graphics, white space was not used as default thousand
                      separator.
 
@@ -314,8 +334,10 @@ Bug fixes
 * Bug #11941 fixed - show_margins() failed in 'nyquist' mode if the system is
                      in state-space form.
 
-* Bug #11952 fixed - In SciNotes, a Java exception occurred on selection of text
-                    containing a \E.
+* Bug #11944 fixed - In SciNotes, untabify several lines did not work correctly.
+
+* Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
+                     containing a \E.
 
 * Bug #11954 fixed - export_to_hdf5 was not able to export the same variable twice.
 
@@ -407,6 +429,9 @@ Bug fixes
 * Bug #12141 fixed - Remove calls to gettext in rubberbox help page examples.
                      Translation of items will be made in each language help page.
 
+* Bug #12144 fixed - csvRead triggered some error messages when ranges were
+                     wrong.
+
 * Bug #12151 fixed - Axes did not pass through (0,0) when x_location and
                      y_location were set to 'origin'.
 
@@ -453,6 +478,8 @@ Bug fixes
 
 * Bug #12248 fixed - SciNotes toolbar had disappeared.
 
+* Bug #12259 fixed - Wrong translation for "Filled" fixed in Scinotes.
+
 * Bug #12270 fixed - When the console lost the focus, the caret could be visible.
 
 * Bug #12272 fixed - Fix a presentation of Cyrillic letters on sample images of russian help page for grand function.
@@ -461,7 +488,7 @@ Bug fixes
 
 * Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
 
-* Bug #12291 fixed - Unable to display a list of handle as an handle userData. 
+* Bug #12291 fixed - Unable to display a list of handle as an handle userData.
 
 * Bug #12296 fixed - Call to getenv with a big environment variable
                      led to memory corruption.
@@ -472,7 +499,12 @@ Bug fixes
 
 * Bug #12317 fixed - eventhandler functions no more report keyboard events
 
+* Bug #12321 fixed - save environment failed to save lib variable. Now these variables
+                     are ignored like previous version of save function.
+
 * Bug #12333 fixed - Cleaned command history is restored after reopening Scilab.
+
+* Bug #12335 fixed - strtod didn't work with negative numbers.
 
 * Bug #12346 fixed - lsslist() help pages were mislocated. Moved now to CACSD.
 

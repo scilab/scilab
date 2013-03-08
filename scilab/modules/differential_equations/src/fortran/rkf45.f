@@ -139,12 +139,13 @@ c
 c  subsequent calls to rkf45
 c
 c    subroutine rkf45 returns with all information needed to continue
-c    the integration. if the integration reached tout, the user need onl
-c    define a new tout and call rkf45 again. in the one-step integrator
-c    mode (iflag=-2) the user must keep in mind that each step taken is
-c    in the direction of the current tout. upon reaching tout (indicated
-c    by changing iflag to 2),the user must then define a new tout and
-c    reset iflag to -2 to continue in the one-step integrator mode.
+c    the integration. if the integration reached tout, the user only
+c    needs to define a new tout and call rkf45 again. in the one-step
+c    integrator mode (iflag=-2) the user must keep in mind that each
+c    step taken is in the direction of the current tout. upon reaching
+c    tout (indicated by changing iflag to 2),the user must then define
+c    a new tout and reset iflag to -2 to continue in the one-step
+c    integrator mode.
 c
 c    if the integration was not completed but the user still wants to
 c    continue (iflag=3,4 cases), he just calls rkf45 again. with iflag=3

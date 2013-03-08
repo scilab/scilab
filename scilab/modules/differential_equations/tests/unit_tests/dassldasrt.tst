@@ -23,7 +23,7 @@ deff('pd=djac1(t,y,ydot,cj)','pd=[cj+10,0;1,1]')
 yy0=dassl([y0,y0d],t0,t,dres1,info);
 //   scilab functions, with jacobian
 yy1=dassl([y0,y0d],t0,t,dres1,djac1,info);
-// fortran routine, without jocabian
+// fortran routine, without jacobian
 yy2=dassl([y0,y0d],t0,t,'dres1',info);   //=yy0
 if norm(yy2-yy0,1)>1E-5 then pause,end
 // fortran routines, with jacobian
