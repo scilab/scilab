@@ -88,15 +88,15 @@
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalIncludeDirectories>includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalDependencies>dynamic_link.lib;core.lib;scilocalization.lib;system_env.lib</AdditionalDependencies>
+      <AdditionalDependencies>dynamic_link.lib;core.lib;scilocalization.lib;system_env.lib;operations.lib</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)operations.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -118,14 +118,15 @@ lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(P
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>dynamic_link.lib;core.lib;scilocalization.lib;system_env.lib</AdditionalDependencies>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>dynamic_link.lib;core.lib;scilocalization.lib;system_env.lib;operations.lib</AdditionalDependencies>
+	  <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)operations.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -144,14 +145,15 @@ lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(P
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>dynamic_link.lib;core.lib;scilocalization.lib;system_env.lib</AdditionalDependencies>
+      <AdditionalDependencies>dynamic_link.lib;core.lib;scilocalization.lib;system_env.lib;operations.lib</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)operations.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -160,8 +162,7 @@ lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(P
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+	<AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>      <PreprocessorDefinitions>FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
@@ -173,14 +174,15 @@ lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(P
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>dynamic_link.lib;core.lib;scilocalization.lib;system_env.lib</AdditionalDependencies>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+	<AdditionalDependencies>dynamic_link.lib;core.lib;scilocalization.lib;system_env.lib;operations.lib</AdditionalDependencies>
+	<RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)operations.lib" 1&gt;NUL 2&gt;NUL</Command>
       <Message>Build dependencies</Message>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -278,6 +280,7 @@ lib /DEF:"$(ProjectDir)dynamic_link_Import.def" /SUBS1YSTEM:WINDOWS /MACHINE:$(P
     <None Include="dynamic_link_Import.def" />
     <None Include="locales\types.pot" />
     <None Include="Makefile.am" />
+    <None Include="operations_Import.def" />
     <None Include="types.iss" />
   </ItemGroup>
   <ItemGroup>

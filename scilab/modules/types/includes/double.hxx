@@ -27,75 +27,102 @@
 
 namespace types
 {
-    class TYPES_IMPEXP Double : public ArrayOf<double>
+class TYPES_IMPEXP Double : public ArrayOf<double>
+{
+public :
+    virtual						~Double();
+
+    Double(double _dblReal);
+    Double(double _dblReal, double _dblImg);
+    Double(int _iRows, int _iCols, bool _bComplex = false, bool _bZComplex = false);
+    Double(int _iRows, int _iCols, double **_pdblReal);
+    Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
+    Double(int _iDims, int* _piDims, bool _bComplex = false, bool _bZComplex = false);
+
+    static Double*              Empty();
+    static Double*              Identity(int _iRows, int _iCols);
+    static Double*              Identity(int _iDims, int* _piDims);
+
+
+    /*data management*/
+    double*                     getReal() const;
+    double                      getReal(int _iRows, int _iCols);
+    bool                        setInt(int* _piReal); //to translate int to double matrix
+
+    /*zero or one set filler*/
+    bool                        setZeros();
+    bool                        setOnes();
+
+    /*Config management*/
+    void                        whoAmI();
+    bool                        isEmpty();
+
+    InternalType*               clone();
+    bool                        fillFromCol(int _iCols, Double *_poSource);
+    bool                        fillFromRow(int _iRows, Double *_poSource);
+    bool                        append(int _iRows, int _iCols, InternalType* _poSource);
+
+    //bool                        append(int _iRows, int _iCols, Double *_poSource);
+
+    bool                        operator==(const InternalType& it);
+    bool                        operator!=(const InternalType& it);
+
+    bool                        isDouble()
     {
-    public :
-        virtual						~Double();
+        return true;
+    }
 
-                                    Double(double _dblReal);
-                                    Double(double _dblReal, double _dblImg);
-                                    Double(int _iRows, int _iCols, bool _bComplex = false);
-                                    Double(int _iRows, int _iCols, double **_pdblReal);
-                                    Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
-                        	        Double(int _iDims, int* _piDims, bool _bComplex = false);
+    void                        setViewAsInteger(bool _bViewAsInteger = true)
+    {
+        m_bViewAsInteger = _bViewAsInteger;
+    }
+    bool                        isViewAsInteger()
+    {
+        return m_bViewAsInteger;
+    }
 
-        static Double*              Empty();
-        static Double*              Identity(int _iRows, int _iCols);
-        static Double*              Identity(int _iDims, int* _piDims);
+    void                        convertToInteger();
+    void                        convertFromInteger();
 
+    void                        setViewAsZComplex(bool _bViewAsZComplex = true)
+    {
+        m_bViewAsZComplex = _bViewAsZComplex;
+    }
+    bool                        isViewAsZComplex()
+    {
+        return m_bViewAsZComplex;
+    }
 
-        /*data management*/
-        double*                     getReal() const;
-        double                      getReal(int _iRows, int _iCols);
-        bool                        setInt(int* _piReal); //to translate int to double matrix
+    void                        convertToZComplex();
+    void                        convertFromZComplex();
 
-        /*zero or one set filler*/
-        bool                        setZeros();
-        bool                        setOnes();
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring        getTypeStr()
+    {
+        return L"constant";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring        getShortTypeStr()
+    {
+        return L"s";
+    }
+protected :
+    RealType                    getType(void);
 
-        /*Config management*/
-        void                        whoAmI();
-        bool                        isEmpty();
+private :
+    virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
-        InternalType*               clone();
-        bool                        fillFromCol(int _iCols, Double *_poSource);
-        bool                        fillFromRow(int _iRows, Double *_poSource);
-        bool                        append(int _iRows, int _iCols, InternalType* _poSource);
+    virtual double              getNullValue();
+    virtual Double*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+    virtual double              copyValue(double _dblData);
+    virtual void                deleteAll();
+    virtual void                deleteImg();
+    virtual double*             allocData(int _iSize);
 
-	    //bool                        append(int _iRows, int _iCols, Double *_poSource);
+    bool                        m_bViewAsInteger;
+    bool                        m_bViewAsZComplex;
 
-        bool                        operator==(const InternalType& it);
-        bool                        operator!=(const InternalType& it);
-
-        bool                        isDouble() { return true; }
-
-        void                        setViewAsInteger(bool _bViewAsInteger = true) { m_bViewAsInteger = _bViewAsInteger; }
-        bool                        isViewAsInteger() { return m_bViewAsInteger; }
-
-        void                        convertToInteger();
-        void                        convertFromInteger();
-
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring        getTypeStr() {return L"constant";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring        getShortTypeStr() {return L"s";}
-    protected :
-        RealType                    getType(void);
-
-    private :
-        virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
-
-        virtual double              getNullValue();
-        virtual Double*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-        virtual double              copyValue(double _dblData);
-        virtual void                deleteAll();
-        virtual void                deleteImg();
-        virtual double*             allocData(int _iSize);
-
-        bool                        m_bViewAsInteger;
-
-    };
+};
 }
 
 #ifdef _MSC_VER
