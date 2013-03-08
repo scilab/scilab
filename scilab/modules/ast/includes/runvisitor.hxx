@@ -745,6 +745,9 @@ public :
 
             e.test_get().accept(*this);
         }
+
+        //clear result of condition or result of body
+        result_clear();
     }
 
 
