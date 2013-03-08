@@ -102,9 +102,11 @@ void visitprivate(const CallExp &e)
             expected_size_set(iSaveExpectedSize);
             iRetCount = Max(1, iRetCount);
 
+            //reset previous error before call function
+            ConfigVariable::resetError();
+
             types::Function::ReturnValue Ret = pCall->call(in, opt, iRetCount, out, this);
             expected_size_set(iSaveExpectedSize);
-            ConfigVariable::resetError();
             result_clear();
             if (Ret == types::Callable::OK)
             {
