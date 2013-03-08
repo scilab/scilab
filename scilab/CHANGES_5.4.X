@@ -37,6 +37,8 @@ Improvements
 
 * Completion in Scilab is now case insensitive. See bug #6320.
 
+* variance is now vectorized and allows the syntax variance(x,"*",w).
+  See bug #12362
 
 
 Removed functions
