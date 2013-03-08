@@ -32,9 +32,9 @@
 #include "graphicObjectProperties.h"
 #include "deleteGraphicObject.h"
 /*--------------------------------------------------------------------------*/
-int sci_unglue(char *fname,unsigned long fname_len)
+int sci_unglue(char *fname, unsigned long fname_len)
 {
-    int m1 = 0,n1 = 0,l1 = 0;
+    int m1 = 0, n1 = 0, l1 = 0;
     unsigned long hdl = 0;
     int outindex = 0, i = 0;
 
@@ -51,19 +51,19 @@ int sci_unglue(char *fname,unsigned long fname_len)
     CheckLhs(0, 1);
     /*  set or create a graphic window */
     GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1);
-    hdl = (unsigned long)*hstk(l1);
+    hdl = (unsigned long) * hstk(l1);
 
     pobjUID = (char*)getObjectFromHandle(hdl);
 
     if (pobjUID == NULL)
     {
-        Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
+        Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
         return 0;
     }
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piObjectType);
 
-    if (piObjectType != -1 && iObjectType == __GO_COMPOUND__)
+    if (iObjectType != -1 && iObjectType == __GO_COMPOUND__)
     {
         // Retrieve number of children.
         getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
@@ -74,7 +74,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
         // Retrieve Compound Parent.
         getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&pstParentUID);
 
-        CreateVar(Rhs+1, GRAPHICAL_HANDLE_DATATYPE, piChildrenCount, &iOne, &outindex);
+        CreateVar(Rhs + 1, GRAPHICAL_HANDLE_DATATYPE, piChildrenCount, &iOne, &outindex);
 
         for (i = 0 ; i < iChildrenCount ; ++i)
         {
@@ -84,7 +84,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
              * Children are added from the last to the first to obtain the same ordering
              * as the previous one (insertion is done at the head of the list).
              */
-            setGraphicObjectRelationship(pstParentUID, pstChildrenUID[iChildrenCount-i-1]);
+            setGraphicObjectRelationship(pstParentUID, pstChildrenUID[iChildrenCount - i - 1]);
         }
 
         deleteGraphicObject(pobjUID);
@@ -93,7 +93,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
     }
     else
     {
-        Scierror(999,_("%s: Object must be a Compound.\n"),fname);
+        Scierror(999, _("%s: Object must be a Compound.\n"), fname);
     }
     return 0;
 }

@@ -64,16 +64,16 @@ int sci_copy(char *fname, unsigned long fname_len)
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (piType != __GO_TEXT__ &&
-        piType != __GO_ARC__ &&
-        piType != __GO_POLYLINE__ &&
-        piType != __GO_RECTANGLE__)
+    if (iType != __GO_TEXT__ &&
+            iType != __GO_ARC__ &&
+            iType != __GO_POLYLINE__ &&
+            iType != __GO_RECTANGLE__)
     {
         C2F(overload)(&lw, "copy", 4);
         return 0;
     }
 
-    if (piType == __GO_POLYLINE__)
+    if (iType == __GO_POLYLINE__)
     {
         isPolyline = 1;
     }
