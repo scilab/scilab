@@ -1028,6 +1028,9 @@ function msg = checkthefile( filename )
 // Workaround for bug #4827
   msg(1) = "   Check the following file :"
   msg(2) = "   - "+filename
+  if params.show_error == %t then
+    msg=[msg; mgetl(filename)]
+  end
 endfunction
 
 // launchthecommand
