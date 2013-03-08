@@ -515,6 +515,8 @@ Bug fixes
 * Bug #12354 fixed - In SciNotes, invalid function with a semicolon after args
                      declaration.
 
+* Bug #12361 fixed - Error fixed in replot() help page examples.
+
 * Bug #12373 fixed - pmodulo(n,m<0) returned a negative result.
 
 * Bug #12377 fixed - chepol was located in the wrong help section

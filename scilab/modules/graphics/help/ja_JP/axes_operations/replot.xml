@@ -73,8 +73,6 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-backupstyle='?'
-
 // 最初の例
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x)) 
