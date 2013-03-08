@@ -56,9 +56,6 @@ Source: bin\pcreposix.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: bin\MALLOC.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\MALLOC.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;
 Source: bin\scilab_windows.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\Scilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
