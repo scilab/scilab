@@ -517,6 +517,9 @@ Bug fixes
 
 * Bug #12373 fixed - pmodulo(n,m<0) returned a negative result.
 
+* Bug #12377 fixed - chepol was located in the wrong help section
+                     (now in polynomial).
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
