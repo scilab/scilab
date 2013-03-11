@@ -17,7 +17,7 @@
 
 printf('%o',8);
 mprintf('%o',8);
-fprintf(6,'%o',8);
+mfprintf(6,'%o',8);
 r = msprintf('%o',8);
 if r <> dec2oct(8) then pause,end
 
