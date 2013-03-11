@@ -560,7 +560,7 @@ value ocpsci_get_funlist_c(value unit_v)
   CAMLlocal1(res_v);
   int nvals = 0;
   symbol::Context *ctx = symbol::Context::getInstance();
-  std::list<symbol::Symbol> funs = ctx->get_funlist(L"");
+  std::list<symbol::Symbol> funs = ctx->getFunctionList(L"");
   std::list<symbol::Symbol>::iterator i;
   for(i = funs.begin(); i != funs.end(); ++i){
     nvals++;
