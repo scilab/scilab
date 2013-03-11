@@ -520,6 +520,9 @@ Bug fixes
 * Bug #12377 fixed - chepol was located in the wrong help section
                      (now in polynomial).
 
+* Bug #12378 fixed - sdf() crashed Scilab.
+
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
