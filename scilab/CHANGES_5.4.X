@@ -327,6 +327,8 @@ Bug fixes
 
 * Bug #11851 fixed - Default EOL under Mac should be LF.
 
+* Bug #11860 fixed - wavwrite failed for 24 bits files (error in savewave function).
+
 * Bug #11924 fixed - winclose() was not tagged as obsolete.
 
 * Bug #11931 fixed - In graphics, white space was not used as default thousand
