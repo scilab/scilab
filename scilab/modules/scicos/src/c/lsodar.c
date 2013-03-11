@@ -222,7 +222,7 @@ int LSodarReInit (void * lsodar_mem, realtype tOld, N_Vector y)
  * It MUST be called before the first call to LSodar.
  */
 
-int LSodarSStolerances(void * lsodar_mem, realtype reltol, realtype abstol)
+int LSodarSStolerances (void * lsodar_mem, realtype reltol, realtype abstol)
 {
     LSodarMem ls_mem;
 
