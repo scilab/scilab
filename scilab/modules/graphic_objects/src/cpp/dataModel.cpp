@@ -96,12 +96,19 @@ char const* DataModel::createDataObject(char const* _pstID, int _iType)
 
 void DataModel::deleteDataObject(char const* _pstID)
 {
-    Data3D* newObject = (*m_dataMap)[std::string(_pstID)];
+    std::map<std::string, Data3D*>::iterator it = m_dataMap->find(std::string(_pstID)); 
+    if (it != m_dataMap->end() && it->second != NULL)
+    {
+        delete it->second;
+	m_dataMap->erase(it);
+    }
+  
+    /*Data3D* newObject = (*m_dataMap)[std::string(_pstID)];
     if (newObject != NULL)
     {
         delete newObject;
     }
 
-    m_dataMap->erase(std::string(_pstID));
+    m_dataMap->erase(std::string(_pstID));*/
 }
 

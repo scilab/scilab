@@ -15,6 +15,7 @@
 #include "version.h"
 #include "sci_mode.h"
 #include "scilabDefaults.h"
+#include "getenvc.h"
 #include "os_strdup.h"
 #include "with_module.h"
 #include "loadversion.h"
@@ -23,6 +24,7 @@
 #include "../../../io/includes/getenvc.h"
 #include "os_wcsdup.h"
 #include "charEncoding.h"
+
 /*--------------------------------------------------------------------------*/
 /*wide char*/
 #define TCLSCI_MODULE_NAME L"tclsci"
@@ -91,16 +93,16 @@ int* getModuleVersion(wchar_t* _pwstModule, int *sizeArrayReturned)
 {
     int *returnedArray = NULL;
 
-    if(_pwstModule)
+    if (_pwstModule)
     {
-        if(wcscmp(_pwstModule, SCILAB_STRING) == 0)
+        if (wcscmp(_pwstModule, SCILAB_STRING) == 0)
         {
             returnedArray = getScilabVersion(sizeArrayReturned);
             return returnedArray;
         }
     }
 
-    if(with_module(_pwstModule))
+    if (with_module(_pwstModule))
     {
 #define LineMax 1024
         wchar_t versionstring[LineMax];
@@ -180,7 +182,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
 
         if (with_tk())
         {
-            options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
+            options = (wchar_t**)REALLOC(options, sizeof(wchar_t*) * (nbOptions + 1));
             if (options)
             {
                 options[nbOptions] = os_wcsdup(TCLTK_OPTION_STRING);
@@ -188,14 +190,14 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
             }
             else
             {
-                freeArrayOfString(options, nbOptions);
+                freeArrayOfWideString(options, nbOptions);
                 return NULL;
             }
         }
 
         if (with_modelica_compiler())
         {
-            options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
+            options = (wchar_t**)REALLOC(options, sizeof(wchar_t*) * (nbOptions + 1));
             if (options)
             {
                 options[nbOptions] = os_wcsdup(MODELICAC_OPTION_STRING);
@@ -203,12 +205,12 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
             }
             else
             {
-                freeArrayOfString(options, nbOptions);
+                freeArrayOfWideString(options, nbOptions);
                 return NULL;
             }
         }
 
-        options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
+        options = (wchar_t**)REALLOC(options, sizeof(wchar_t*) * (nbOptions + 1));
         if (options)
         {
             options[nbOptions] = getReleaseMode();
@@ -216,11 +218,11 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            freeArrayOfString(options, nbOptions);
+            freeArrayOfWideString(options, nbOptions);
             return NULL;
         }
 
-        options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
+        options = (wchar_t**)REALLOC(options, sizeof(wchar_t*) * (nbOptions + 1));
         if (options)
         {
             options[nbOptions] = getReleaseDate();
@@ -228,11 +230,11 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            freeArrayOfString(options, nbOptions);
+            freeArrayOfWideString(options, nbOptions);
             return NULL;
         }
 
-        options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
+        options = (wchar_t**)REALLOC(options, sizeof(wchar_t*) * (nbOptions + 1));
         if (options)
         {
             options[nbOptions] = getReleaseTime();
@@ -240,7 +242,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            freeArrayOfString(options, nbOptions);
+            freeArrayOfWideString(options, nbOptions);
             return NULL;
         }
 
@@ -315,7 +317,7 @@ BOOL with_modelica_compiler(void)
     char *fullpathModelicac = searchEnv(ModelicacName, "PATH");
     if (fullpathModelicac)
     {
-        FREE(fullpathModelicac);
+        //FREE(fullpathModelicac);
         fullpathModelicac = NULL;
         return TRUE;
     }

@@ -21,7 +21,7 @@ function [N,M]=lcf(Sl)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"lcf",1))
   end
   if Sl.dt<>"c" then 
-    error(msprintf(gettext("%s: Wrong type for argument %d: In continuous time expected.\n"),"lcf",1))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: In continuous time expected.\n"),"lcf",1))
   end
   flag=0;
   if typeof(Sl)=='rational' then Sl=tf2ss(Sl),flag=1;end

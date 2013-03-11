@@ -22,6 +22,6 @@
  * @param dotdet    
  * @return <ReturnValue>
  */
-int C2F(getval)(double *s, int *dotdet);
+int C2F(getval)(double *s, int *dotdet, int *opt);
 
 #endif /* __GETVAL_H__ */

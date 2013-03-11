@@ -56,6 +56,7 @@ CLASSIC_CPPFLAGS= \
 	-I$(top_srcdir)/modules/parse/includes \
 	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_srcdir)/modules/threads/includes \
         -I$(top_srcdir)/modules/api_scilab/includes \

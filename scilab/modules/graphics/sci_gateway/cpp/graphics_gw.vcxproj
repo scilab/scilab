@@ -28,9 +28,6 @@
     <ClCompile Include="sci_winsid.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Visual-Studio-settings\rename-vc-files\rename-vc-files.vcxproj">
       <Project>{dd8a0506-8d31-4cf8-856a-c10ece9c13a4}</Project>
     </ProjectReference>
@@ -45,6 +42,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\console\src\c\console.vcxproj">
       <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\graphic_objects\src\c\graphic_objects.vcxproj">
       <Project>{30f9ee41-587b-4618-8de7-698d3fba4985}</Project>
@@ -135,7 +135,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../graphic_objects/includes;../../../../libs/hashtable;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../../libs/Eigen/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../graphic_objects/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../../libs/Eigen/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -164,7 +164,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../graphic_objects/includes;../../../../libs/hashtable;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../../libs/Eigen/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../graphic_objects/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../../libs/Eigen/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -191,7 +191,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../graphic_objects/includes;../../../../libs/hashtable;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../../libs/Eigen/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../graphic_objects/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../../libs/Eigen/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -223,7 +223,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../graphic_objects/includes;../../../../libs/hashtable;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../../libs/Eigen/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c/getHandleProperty;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../graphic_objects/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../../libs/Eigen/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

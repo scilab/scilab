@@ -65,10 +65,16 @@ extern "C"
 #include "setgetlanguage.h"
 #include "scilabRead.h"
 #include "elem_common.h"
+#include "inittypenames.h"
 
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"
 #endif
+
+#if defined(linux) && defined(__i386__)
+#include "setPrecisionFPU.h"
+#endif
+
     /*
     ** HACK HACK HACK
     */
@@ -88,11 +94,6 @@ extern "C"
 #include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "runner.hxx"
-
-
-#if defined(linux) && defined(__i386__)
-#include "setPrecisionFPU.h"
-#endif
 
 #define INTERACTIVE     -1
 
@@ -764,6 +765,8 @@ int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex)
     {
         execScilabStartTask();
     }
+
+    C2F(inittypenames)();
 
     int pause = 0;
 

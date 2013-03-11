@@ -71,7 +71,7 @@ double Plot3DDecomposer::getZCoordinate(double* z, int numX, int numY, int i, in
 }
 
 void Plot3DDecomposer::getFacetTriangles(double* x, double* y, double* z, int numX, int numY, int i, int j,
-    int* facetVertexIndices, int* triangleVertexIndices)
+                                         int* facetVertexIndices, int* triangleVertexIndices)
 {
     double vertices[4][3];
 
@@ -128,6 +128,8 @@ void Plot3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int
     getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
 
     decomposer->fillNormalizedZGridColors(buffer, bufferLength, elementsSize, colormap, colormapSize, z, numX, numY);
+
+    releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
 }
 
 int Plot3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)

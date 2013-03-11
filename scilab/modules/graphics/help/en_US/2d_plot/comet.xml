@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Add some comments about XML file
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en_US" xml:id="comet">
     <refnamediv>
@@ -49,7 +56,7 @@
                 <term>fun</term>
                 <listitem>
                     <para>
-                        a scilab function with calling sequence <literal>y=fun(x)</literal>.  <literal>fun</literal> can also be a polynomial or a rational fraction.
+                        a scilab function with calling sequence <literal>y=fun(x)</literal>.  <varname>fun</varname> can also be a polynomial or a rational fraction.
                     </para>
                 </listitem>
             </varlistentry>
@@ -77,46 +84,51 @@
             The plot is made of three parts:
             <variablelist>
                 <varlistentry>
-                    <term>ahead</term> 
-                    mark that shows the current <literal>(x(i),y(i))</literal> position.
-                    <listitem><para>
+                    <term>a head</term> 
+                        <listitem>
+                            <para>
+                                mark that shows the current <literal>(x(i),y(i))</literal> position.
+                            </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>a body</term>
+                    <listitem>
+                        <para>
+                            that shows the trailing curve that follows the head: the
+                            <literal>(x(i-k:i),y(i-k:i))</literal> part of the curve.
                         </para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>abody</term> that shows the trailing curve that
-                    follows the head: the
-                    <literal>(x(i-k:i),y(i-k:i)</literal>) part of the curve.
-                    <listitem><para>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>atail</term> 
-                    that shows the  <literal>(x(1:i-k),y(1:i-k))</literal>  part of the curve.
-                    <listitem><para>
+                    <term>a tail</term>                     
+                    <listitem>
+                        <para>
+                            that shows the  <literal>(x(1:i-k),y(1:i-k))</literal> part of the curve.
                         </para>
                     </listitem>
                 </varlistentry>
             </variablelist>
             <para>
-                <literal>comet(x,fun,...)</literal>  is equivalent to <literal>comet(x,feval(x,fun),...)</literal> 
+                <literal>comet(x,fun,...)</literal> is equivalent to <literal>comet(x,feval(x,fun),...)</literal>.
             </para>
             <para>
                 <literal>comet(...,p)</literal> can be used to set the
                 relative length of the body. <literal>k</literal> is defined
-                as <literal>k = round(p*ny)</literal>.
+                as <code>k = round(p*ny)</code>.
             </para>
             <para>
-                if <literal>y</literal> is a matrix then animated curves are drawn for each pair  <literal>(x,y(:,l))</literal>.
-                in this case <literal>ny</literal> is the number of rows of <literal>y</literal>.
+                If <varname>y</varname> is a matrix then animated curves
+                are drawn for each pair <literal>(x,y(:,l))</literal>.
+                In this case <literal>ny</literal> is the number of rows
+                of <varname>y</varname>.
             </para>
             <para>
-                if <literal>x</literal> and <literal>y</literal> are
+                If <varname>x</varname> and <varname>y</varname> are
                 matrices with identical sizes then animated curves are drawn
-                for each pair <literal>(x(:,l),y(:,l))</literal>.  in this
+                for each pair <literal>(x(:,l),y(:,l))</literal>.  In this
                 case <literal>ny</literal> is the number of rows of
-                <literal>x</literal>and  <literal>y</literal>.
+                <varname>x</varname> and <varname>y</varname>.
             </para>
             
             <para>
@@ -139,6 +151,10 @@ clf();
 comet(t.*sin(t), [t.*sin(2*t) t.*sin(3*t)])
     ]]></programlisting>
         <programlisting role="example"><![CDATA[
+t = linspace(0,10*%pi,500)';
+clf();comet(t.*sin(t),[t.*sin(2*t) t.*sin(3*t)],"colors",[3 5])
+    ]]></programlisting>
+        <programlisting role="example"><![CDATA[
 function y=traj(x)
   y=1.5*sin(x^2)
 endfunction
@@ -150,9 +166,12 @@ clf();
 comet(linspace(-2,4,500), (%s-3)/(%s^3+2*%s^2+1))
     ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="color">color</link>
+            </member>
             <member>
                 <link linkend="comet3d">comet3d</link>
             </member>
@@ -166,7 +185,7 @@ comet(linspace(-2,4,500), (%s-3)/(%s^3+2*%s^2+1))
         <revhistory>
             <revision>
                 <revnumber>5.3.2</revnumber>
-                <revremark>Function comet introduced.</revremark>
+                <revremark>Function <function>comet</function> introduced.</revremark>
             </revision>
         </revhistory>
     </refsection>

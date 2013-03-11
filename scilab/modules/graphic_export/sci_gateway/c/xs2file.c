@@ -97,7 +97,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                 return 1;
             }
 
-            if (m1*n1 != 1)
+            if (m1 * n1 != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
                 return 1;
@@ -109,7 +109,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                 Scierror(999, "%s: Input argument #%d must be a valid figure_id.\n", fname, 1);
                 return 1;
             }
-            figureUID = getFigureFromIndex(figurenum);
+            figureUID = (char*)getFigureFromIndex(figurenum);
         }
         /* check given handle */
         else if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
@@ -127,13 +127,13 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                 return 1;
             }
 
-            if (m1*n1 != 1)
+            if (m1 * n1 != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
                 return 1;
             }
 
-            figureUID = getObjectFromHandle((unsigned long) * l1);
+            figureUID = (char*)getObjectFromHandle((unsigned long) * l1);
             if (figureUID == NULL)
             {
                 Scierror(999, _("%s: Input argument #%d must be a valid handle.\n"), fname, 1);
@@ -169,7 +169,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
             return 1;
         }
 
-        if (m1*n1 == 1)
+        if (m1 * n1 == 1)
         {
             if (nbInputArgument(pvApiCtx) == 3)
             {
@@ -203,7 +203,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                         return 1;
                     }
 
-                    if (nbRow*nbCol == 1)
+                    if (nbRow * nbCol == 1)
                     {
                         /* Value should be 'landscape' or 'portrait' but check only the first character */
                         /* for compatibility with Scilab 4*/

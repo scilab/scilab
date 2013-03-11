@@ -22,17 +22,22 @@ extern "C"
 {
 #endif
 
-EXTERN_SYSTEM_ENV int       getLastErrorNumber(void);
-EXTERN_SYSTEM_ENV wchar_t*  getLastErrorMessage(void);
-EXTERN_SYSTEM_ENV int       getLastErrorLine(void);
-EXTERN_SYSTEM_ENV wchar_t*  getLastErrorFunction(void);
+    EXTERN_SYSTEM_ENV int       getLastErrorNumber(void);
+    EXTERN_SYSTEM_ENV wchar_t*  getLastErrorMessage(void);
+    EXTERN_SYSTEM_ENV int       getLastErrorLine(void);
+    EXTERN_SYSTEM_ENV wchar_t*  getLastErrorFunction(void);
 
-EXTERN_SYSTEM_ENV void      setLastErrorNumber(int _iError);
-EXTERN_SYSTEM_ENV void      setLastErrorMessage(const wchar_t* _pwstError);
-EXTERN_SYSTEM_ENV void      setLastErrorLine(int _iLine);
-EXTERN_SYSTEM_ENV void      setLastErrorFunction(const wchar_t* _pwstFunction);
+    EXTERN_SYSTEM_ENV void      setLastErrorNumber(int _iError);
+    EXTERN_SYSTEM_ENV void      setLastErrorMessage(const wchar_t* _pwstError);
+    EXTERN_SYSTEM_ENV void      setLastErrorLine(int _iLine);
+    EXTERN_SYSTEM_ENV void      setLastErrorFunction(const wchar_t* _pwstFunction);
 
-EXTERN_SYSTEM_ENV void      setLastError(int _iError, const wchar_t* _pwstError, int _iLine, const wchar_t* _pwstFunction);
+    EXTERN_SYSTEM_ENV void      setLastError(int _iError, const wchar_t* _pwstError, int _iLine, const wchar_t* _pwstFunction);
+
+    EXTERN_SYSTEM_ENV void      SetError();
+    EXTERN_SYSTEM_ENV int       isError();
+    EXTERN_SYSTEM_ENV void      resetError();
+
 #ifdef __cplusplus
 }
 #endif

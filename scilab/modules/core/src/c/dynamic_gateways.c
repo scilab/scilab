@@ -152,7 +152,7 @@ int gw_dynamic_xcos(void)
 /* scinotes module */
 #define SCINOTES_MODULE_NAME "scinotes"
 static DynLibHandle hSciNotesLib = NULL;
-static PROC_GATEWAY ptr_gw_scinotes = NULL;
+static void* ptr_gw_scinotes = NULL;
 static char* dynlibname_scinotes = NULL;
 static char* gatewayname_scinotes = NULL;
 /*--------------------------------------------------------------------------*/
@@ -188,7 +188,7 @@ int gw_dynamic_ui_data(void)
 /* preferences module */
 #define PREFERENCES_MODULE_NAME "preferences"
 static DynLibHandle hPreferencesLib = NULL;
-static PROC_GATEWAY ptr_gw_preferences = NULL;
+static void* ptr_gw_preferences = NULL;
 static char* dynlibname_preferences = NULL;
 static char* gatewayname_preferences = NULL;
 /*--------------------------------------------------------------------------*/
@@ -212,7 +212,7 @@ int gw_dynamic_xml(void)
 /* graphic_objects module */
 #define GRAPHIC_OBJECTS_MODULE_NAME "graphic_objects"
 static DynLibHandle hGraphic_objectsLib = NULL;
-static PROC_GATEWAY ptr_gw_graphic_objects = NULL;
+static void* ptr_gw_graphic_objects = NULL;
 static char* dynlibname_graphic_objects = NULL;
 static char* gatewayname_graphic_objects = NULL;
 /*--------------------------------------------------------------------------*/
@@ -224,7 +224,7 @@ int gw_dynamic_graphic_objects(void)
 /* history_browser module */
 #define HISTORY_BROWSER_MODULE_NAME "history_browser"
 static DynLibHandle hHistory_browserLib = NULL;
-static PROC_GATEWAY ptr_gw_history_browser = NULL;
+static void* ptr_gw_history_browser = NULL;
 static char* dynlibname_history_browser = NULL;
 static char* gatewayname_history_browser = NULL;
 /*--------------------------------------------------------------------------*/
@@ -236,7 +236,7 @@ int gw_dynamic_history_browser(void)
 /* external_objects module */
 #define EXTERNAL_OBJECTS_MODULE_NAME "external_objects"
 static DynLibHandle hExternal_ObjectsLib = NULL;
-static PROC_GATEWAY ptr_gw_external_objects = NULL;
+static void* ptr_gw_external_objects = NULL;
 static char* dynlibname_external_objects = NULL;
 static char* gatewayname_external_objects = NULL;
 /*--------------------------------------------------------------------------*/

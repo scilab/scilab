@@ -78,11 +78,11 @@ DIST_COMMON = $(libscisymbol_la_include_HEADERS) $(srcdir)/Makefile.am \
 subdir = modules/symbol
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+	$(top_srcdir)/m4/eigen.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -216,6 +216,10 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CURL_CFLAGS = @CURL_CFLAGS@
+CURL_CONFIG = @CURL_CONFIG@
+CURL_LIBS = @CURL_LIBS@
+CURL_VERSION = @CURL_VERSION@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -458,14 +462,13 @@ libscisymbol_la_SOURCES = $(SYMBOL_CXX_SOURCES)
 libscisymbol_la_CPPFLAGS = \
 	-I includes/ \
 	-I src/cpp \
-	-I$(top_srcdir)/libs/dynamiclibrary/includes \
-	-I$(top_srcdir)/libs/MALLOC/includes \
-	-I $(top_builddir)/modules/types/includes \
-	-I $(top_builddir)/modules/functions_manager/includes \
-	-I $(top_builddir)/modules/elementary_functions/includes \
-	-I $(top_builddir)/modules/operations/includes \
-	-I $(top_builddir)/modules/ast/includes \
-	-I $(top_builddir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+	-I$(top_builddir)/modules/types/includes \
+	-I$(top_builddir)/modules/functions_manager/includes \
+	-I$(top_builddir)/modules/elementary_functions/includes \
+	-I$(top_builddir)/modules/operations/includes \
+	-I$(top_builddir)/modules/ast/includes \
+	-I$(top_builddir)/modules/localization/includes \
 	$(AM_CPPFLAGS)
 
 libscisymbol_la_LIBADD = 

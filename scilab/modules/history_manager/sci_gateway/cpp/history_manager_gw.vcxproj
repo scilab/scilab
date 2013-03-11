@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../src/cpp;..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../fileio/includes;../../../../libs/dynamiclibrary/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/cpp;..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../fileio/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HISTORY_MANAGER_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -118,7 +118,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../src/cpp;..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../fileio/includes;../../../../libs/dynamiclibrary/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/cpp;..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../fileio/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HISTORY_MANAGER_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -156,7 +156,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../src/cpp;..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../fileio/includes;../../../../libs/dynamiclibrary/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/cpp;..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../fileio/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HISTORY_MANAGER_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -201,7 +201,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../src/cpp;..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;../../../fileio/includes;../../../../libs/dynamiclibrary/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/cpp;..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../output_stream/includes;../../../fileio/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HISTORY_MANAGER_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -258,9 +258,6 @@
     <ClInclude Include="..\..\includes\history_manager_gw.hxx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>

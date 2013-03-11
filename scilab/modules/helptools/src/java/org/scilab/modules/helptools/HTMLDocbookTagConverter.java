@@ -14,6 +14,7 @@ package org.scilab.modules.helptools;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.Character.UnicodeBlock;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Date;
@@ -132,27 +133,27 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         this.type = type;
         if (isToolbox) {// we generate a toolbox's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
-                public String getLink(String id) {
-                    if (id.length() > 0 && id.charAt(0) == '%') {
-                        id = id.replace("%", "percent");
+                    public String getLink(String id) {
+                        if (id.length() > 0 && id.charAt(0) == '%') {
+                            id = id.replace("%", "percent");
+                        }
+                        String link = mapId.get(id);
+                        if (link == null) {
+                            return HTMLDocbookTagConverter.this.urlBase + id;
+                        } else {
+                            return link;
+                        }
                     }
-                    String link = mapId.get(id);
-                    if (link == null) {
-                        return HTMLDocbookTagConverter.this.urlBase + id;
-                    } else {
-                        return link;
-                    }
-                }
-            });
+                });
         } else {// we generate Scilab's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
-                public String getLink(String id) {
-                    if (id.length() > 0 && id.charAt(0) == '%') {
-                        id = id.replace("%", "percent");
+                    public String getLink(String id) {
+                        if (id.length() > 0 && id.charAt(0) == '%') {
+                            id = id.replace("%", "percent");
+                        }
+                        return mapId.get(id);
                     }
-                    return mapId.get(id);
-                }
-            });
+                });
         }
 
         xmlLexer = new XMLLexer();
@@ -165,6 +166,43 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance(this));
         ImageConverter.registerExternalImageConverter(ScilabImageConverter.getInstance(this));
         ImageConverter.registerExternalImageConverter(XcosImageConverter.getInstance(this));
+    }
+
+    public static boolean containsCJK(CharSequence seq) {
+        if (seq == null) {
+            return false;
+        }
+
+        for (int i = 0; i < seq.length(); i++) {
+            Character.UnicodeBlock block = Character.UnicodeBlock.of(seq.charAt(i));
+            if (block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
+                || block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
+                || block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B
+                || block == Character.UnicodeBlock.CJK_COMPATIBILITY_FORMS
+                || block == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
+                || block == Character.UnicodeBlock.CJK_RADICALS_SUPPLEMENT
+                || block == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
+                || block == Character.UnicodeBlock.ENCLOSED_CJK_LETTERS_AND_MONTHS) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean containsCyrillic(CharSequence seq) {
+        if (seq == null) {
+            return false;
+        }
+
+        for (int i = 0; i < seq.length(); i++) {
+            Character.UnicodeBlock block = Character.UnicodeBlock.of(seq.charAt(i));
+            if (block == Character.UnicodeBlock.CYRILLIC || block == Character.UnicodeBlock.CYRILLIC_SUPPLEMENTARY) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -531,7 +569,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         createHTMLFile(currentId, fileName, refpurpose, contents);
         if (!hasExamples && (needsExampleAttr == null || !needsExampleAttr.equals("no"))) {
             warnings++;
-            System.err.println("Warning (should be fixed): no example in " + currentFileName);
+            //System.err.println("Warning (should be fixed): no example in " + currentFileName);
         } else {
             hasExamples = false;
         }
@@ -1108,7 +1146,19 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleLatex(final Map<String, String> attributes, final String contents) throws SAXException {
-        File f = new File(outImages + "/" + imageDir, LATEXBASENAME + (latexCompt++) + ".png");
+        boolean isLocalized = "true".equals(attributes.get("localized"));
+        File f;
+        if (isLocalized) {
+            f = new File(outImages + "/" + imageDir, LATEXBASENAME + language + "_" + (latexCompt++) + ".png");
+        } else {
+            if ("ru_RU".equals(language) && HTMLDocbookTagConverter.containsCyrillic(contents)) {
+                System.err.println("Warning: LaTeX code in " + getCurrentFileName() + " contains cyrillic character. The tag <latex> should contain the attribute scilab:localized=\"true\"");
+            } else if ("ja_JP".equals(language) && HTMLDocbookTagConverter.containsCJK(contents)) {
+                System.err.println("Warning: LaTeX code in " + getCurrentFileName() + " contains CJK character. The tag <latex> should contain the attribute scilab:localized=\"true\"");
+            }
+            f = new File(outImages + "/" + imageDir, LATEXBASENAME + (latexCompt++) + ".png");
+        }
+
         String parent = getParentTagName();
         if (parent.equals("para") && !attributes.containsKey("style")) {
             attributes.put("style", "text");

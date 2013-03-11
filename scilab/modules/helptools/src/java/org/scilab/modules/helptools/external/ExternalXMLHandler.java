@@ -34,6 +34,10 @@ public abstract class ExternalXMLHandler {
         this.converter = converter;
     }
 
+    public String getScilabURI() {
+        return "http://www.scilab.org";
+    }
+
     public void recreateTag(StringBuilder buf, String localName, Attributes attrs) {
         if (attrs != null) {
             buf.append("<");

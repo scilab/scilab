@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
 "PO-Revision-Date: 2012-06-20 12:17+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: fr\n"
 
 #, c-format
@@ -1243,6 +1243,10 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s : Erreur à l'évaluation des paramètres de bloc.\n"
+
+#, c-format
 msgid "%s: Unable to find diagram inputs\n"
 msgstr "%s : Impossible de trouver les entrées du diagramme\n"
 
@@ -1310,10 +1314,6 @@ msgid ""
 "ignored"
 msgstr ""
 "Attention : La variable %s ne correspond pas au nom de contexte de variables"
-
-#, c-format
-msgid "%s: Error during block parameters evaluation.\n"
-msgstr "%s : Erreur à l'évaluation des paramètres de bloc.\n"
 
 #, c-format
 msgid "%s: Error during block parameters update.\n"

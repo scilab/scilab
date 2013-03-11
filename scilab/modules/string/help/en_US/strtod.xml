@@ -58,7 +58,7 @@
         <para>
             <code>[d, endstr] = strtod(str)</code> parses strings
             <varname>str</varname> interpreting its content as a floating point
-            number and returns its value as a real.
+            number and returns its value as a real. If <varname>str</varname> does not contain any numerical value then <varname>d</varname> equals <literal>Nan</literal>.
         </para>
     </refsection>
     <refsection>
@@ -69,5 +69,14 @@ strtod('123.556This is a sample real')
 strtod(['123.556This is a sample real','888.666 here'])
 [d,endstr] =strtod(['123.556This is a sample real','888.666 here'])
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>If <varname>str</varname> does not contain any numerical value then <varname>d</varname> equals <literal>Nan</literal> instead of <literal>0</literal> in previous versions.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

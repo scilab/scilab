@@ -16,7 +16,6 @@ src/c/csvWrite.c \
 src/c/getRange.c \
 src/c/latintoutf.c \
 src/c/splitLine.c \
-src/c/stringsToDoubles.c \
 src/c/stringToComplex.c \
 src/c/utftolatin.c
 
@@ -52,7 +51,7 @@ libscispreadsheet_la_CPPFLAGS= \
 -I$(top_srcdir)/modules/string/includes/ \
 -I$(top_srcdir)/modules/string/src/c/ \
 -I$(top_srcdir)/modules/io/includes/ \
--I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes \
 $(AM_CPPFLAGS)
 
 GATEWAY_C_SOURCES = \

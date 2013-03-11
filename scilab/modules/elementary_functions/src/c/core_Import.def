@@ -26,3 +26,7 @@ check_length
 getrhsvar_
 vartype_
 getWarningMode
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc
+

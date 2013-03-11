@@ -171,8 +171,11 @@ int sci_xrects(char *fname, void *pvApiCtx)
     /** make Compound current object **/
     setCurrentObject(pstCompoundUID);
 
+    releaseGraphicObjectProperty(-1, pstCompoundUID, jni_string, 0);
+
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

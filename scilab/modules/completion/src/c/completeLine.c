@@ -2,6 +2,7 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
 * Copyright (C) 2010 - DIGITEO - Vincent LEJEUNE
+* Copyright (C) 2011 - DIGITEO - Allan CORNET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -20,6 +21,10 @@
 #include "getPartLine.h"
 #include "splitpath.h"
 #include "PATH_MAX.h"
+#include "stricmp.h"
+#include "convstr.h"
+#include "stristr.h"
+
 /*--------------------------------------------------------------------------*/
 /*!  Get the position of the longest suffix of string that match with a prefix of find
 *  @param[in] string  A string that has a suffix that match a prefix of find ; Assumed to be non null because of the first guard in completeLine
@@ -37,16 +42,19 @@ static int findMatchingPrefixSuffix(const char* string, const char* find)
 
     //get a working copy of find
     pointerOnFindCopy = os_strdup(find);
+    convstr(&pointerOnFindCopy, &pointerOnFindCopy, UPPER, 1);
     //last character of string
     lastchar = *(string + strlen(string) - 1);
     stringLength = strlen(string);
 
     //Tips : no infinite loop there, tmpfind string length is always reduced at each iteration
-    while ( movingPointerOnFindCopy = strrchr(pointerOnFindCopy, lastchar) )
+    movingPointerOnFindCopy = strrchr(pointerOnFindCopy, toupper(lastchar));
+
+    while( movingPointerOnFindCopy )
     {
         //find the last occurence of last char of string in tmpfind
-        movingPointerOnFindCopy = strrchr(pointerOnFindCopy, lastchar);
-        if (movingPointerOnFindCopy == NULL)
+        movingPointerOnFindCopy = strrchr(pointerOnFindCopy, toupper(lastchar));
+        if(movingPointerOnFindCopy == NULL)
         {
             break;
         }
@@ -54,7 +62,7 @@ static int findMatchingPrefixSuffix(const char* string, const char* find)
         movingPointerOnFindCopy[0] = '\0';
         //Check if the cutted tmpfind match with the suffix of string that has adequat length
         pointerOnString = (char*)(string + stringLength - 1 - strlen(pointerOnFindCopy));
-        if ( !strncmp(pointerOnFindCopy, pointerOnString, strlen(pointerOnFindCopy)) )
+        if( !strnicmp(pointerOnFindCopy, pointerOnString, strlen(pointerOnFindCopy)) )
         {
             FREE(pointerOnFindCopy);
             pointerOnFindCopy = NULL;
@@ -216,7 +224,7 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
     }
 
     iposInsert = findMatchingPrefixSuffix(currentline, stringToAdd);
-    res = strstr(stringToAdd, &currentline[iposInsert]);
+    res = stristr(stringToAdd, &currentline[iposInsert]);
 
     if (res == NULL)
     {

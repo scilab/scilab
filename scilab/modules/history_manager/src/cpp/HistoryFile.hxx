@@ -20,12 +20,13 @@ extern "C"
 #include "BOOL.h"
 }
 /*------------------------------------------------------------------------*/
-typedef enum 
+typedef enum
 {
     NO_ERROR_HISTORY_LOADED,
     ERROR_HISTORY_NOT_LOADED,
     HISTORY_TRUNCATED
-} errorLoadHistoryCode;
+}
+errorLoadHistoryCode;
 /*------------------------------------------------------------------------*/
 class HISTORY_MANAGER_IMPEXP HistoryFile
 {
@@ -54,17 +55,17 @@ public:
     */
     BOOL writeToFile(std::string _stFilename);
 
-	/**
-	* get filename used by history
-	* @return a string (filenam)
-	*/
-	std::string getFilename(void);
+    /**
+    * get filename used by history
+    * @return a string (filenam)
+    */
+    std::string getFilename(void);
 
-	/**
-	* set filename used by history
-	* @param a string (filename)
-	*/
-	void setFilename(std::string _stFilename);
+    /**
+    * set filename used by history
+    * @param a string (filename)
+    */
+    void setFilename(std::string _stFilename);
 
     /**
     * write history to a file
@@ -99,18 +100,18 @@ public:
     */
     int getDefaultMaxNbLines(void);
 
-	/**
-	* get loaded history
-	* @return a list of CommandLine
-	*/
-	std::list<std::string> getHistory(void);
+    /**
+    * get loaded history
+    * @return a list of CommandLine
+    */
+    std::list<std::string> getHistory(void);
 
-	/**
-	* set History to save
-	* @param a list of CommandLine
-	* @return TRUE or FALSE
-	*/
-	BOOL setHistory(std::list<std::string> _lstCommands);
+    /**
+    * set History to save
+    * @param a list of CommandLine
+    * @return TRUE or FALSE
+    */
+    BOOL setHistory(std::list<std::string> _lstCommands);
 
     /**
     *
@@ -121,7 +122,7 @@ protected:
 private:
 
     int m_iMaxLines;
-	std::string m_stFilename;
-	std::list<std::string> m_Commands;
+    std::string m_stFilename;
+    std::list<std::string> m_Commands;
 };
 /*------------------------------------------------------------------------*/

@@ -114,7 +114,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">number of inputs</emphasis>
+                    <emphasis role="bold">Number of inputs</emphasis>
                 </para>
                 <para> The number of block inputs. The value must be appropriate for the selected operator.</para>
                 <para> Properties : Type 'vec' of size 1 </para>

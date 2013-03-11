@@ -94,9 +94,8 @@ libscisignal_processing_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/operations/includes/ \
     -I$(top_srcdir)/modules/symbol/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
 	$(AM_CPPFLAGS)
+
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
 noinst_LTLIBRARIES = libscisignal_processing-algo.la

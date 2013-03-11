@@ -111,7 +111,9 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
     }
 
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED)
+    {
         return -1;
+    }
 
     SetFromCToON();
 
@@ -163,7 +165,7 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
     defineTMPDIR();
 
     /* Scilab Initialization */
-    C2F(inisci) (&iflag, &StacksizeUsed, &ierr);
+    //C2F(inisci) (&iflag, &StacksizeUsed, &ierr);
 
     if (ierr > 0)
     {
@@ -305,11 +307,11 @@ char *getLastErrorMessageSingle(void)
 }
 
 /*--------------------------------------------------------------------------*/
- int getLastErrorValue(void)
- {
-     /* defined in lasterror.h */
-     // FIXME : Call system_env function
-     //return getInternalLastErrorValue();
-     return 0;
- }
- /*--------------------------------------------------------------------------*/
+int getLastErrorValue(void)
+{
+    /* defined in lasterror.h */
+    // FIXME : Call system_env function
+    //return getInternalLastErrorValue();
+    return 0;
+}
+/*--------------------------------------------------------------------------*/

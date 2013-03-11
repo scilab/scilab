@@ -267,6 +267,9 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mulf.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rdivf.f" />
     <f2c_rule Include="atome.f" />
+    <f2c_rule Include="iseye.f" />
+    <f2c_rule Include="isnum.f" />
+    <f2c_rule Include="termf.f" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_addsubf.c" />
@@ -274,6 +277,9 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mulf.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rdivf.c" />
     <ClCompile Include="atome.c" />
+    <ClCompile Include="iseye.c" />
+    <ClCompile Include="isnum.c" />
+    <ClCompile Include="termf.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

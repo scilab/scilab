@@ -13,22 +13,24 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="Matplot_properties">
     <refnamediv>
         <refname>Matplot properties</refname>
-        <refpurpose>description of the Matplot
-            entities properties
+        <refpurpose>
+            description of the Matplot entities properties
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>The Matplot entity is a leaf of the graphics entities hierarchy. It
+        <para>
+            The <literal>Matplot</literal> entity is a leaf of the graphics entities hierarchy. It
             represents 2D plots of surface using colors and images (see
-            <literal>Matplot</literal> and <literal>Matplot1</literal>).
+            <function>Matplot</function> and <function>Matplot1</function>).
         </para>
         <variablelist>
             <varlistentry>
                 <term>parent: </term>
                 <listitem>
-                    <para>This property contains the handle of the parent. The parent of the
-                        Matplot entity should be of the type <literal>"Axes"</literal>.
+                    <para>
+                        this property contains the handle of the parent. The parent of the
+                        <literal>Matplot</literal> entity should be of the type <literal>"Axes"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -36,7 +38,7 @@
                 <term>children: </term>
                 <listitem>
                     <para>
-                        This property contains a vector with the <literal>children</literal> of
+                        this property contains a vector with the <literal>children</literal> of
                         the handle. However, <literal>Matplot</literal> handles currently do not
                         have any <literal>children</literal>.
                     </para>
@@ -46,9 +48,9 @@
                 <term>visible: </term>
                 <listitem>
                     <para>
-                        This field contains the <literal>visible</literal> property value for
-                        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal> .
-                        By default, the plot is visible, the value's property is
+                        this field contains the <literal>visible</literal> property value for
+                        the entity. It should be <literal>"on" </literal> or <literal>"off"</literal> .
+                        By default, the plot is visible, the property's value is
                         <literal>"on"</literal>. If <literal>"off"</literal> the plot is not drawn on the
                         screen.
                     </para>
@@ -58,7 +60,7 @@
                 <term>data: </term>
                 <listitem>
                     <para>
-                        This field defines a [<literal>m</literal>x<literal>n</literal>]
+                        this field defines a [<literal>m</literal>x<literal>n</literal>]
                         <literal>color</literal> data matrix using the current colormap. The color
                         associated to <literal>color(i,j)</literal> is used do draw a small square
                         of length 1 with center at location <literal>(x=j,y=(m-i+1))</literal>.
@@ -69,26 +71,26 @@
                 <term>clip_state: </term>
                 <listitem>
                     <para>
-                        This field contains the <literal>clip_state</literal> property value for
-                        the Matplot. It should be :
+                        this field contains the <literal>clip_state</literal> property value for
+                        the <literal>Matplot</literal>. It should be :
                     </para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>"off"</literal> this means that the Matplot is not
+                                <literal>"off"</literal> this means that the <literal>Matplot</literal> is not
                                 clipped.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>"clipgrf"</literal> this means that the Matplot is clipped
-                                outside the Axes box.
+                                <literal>"clipgrf"</literal> this means that the <literal>Matplot</literal> is clipped
+                                outside the <literal>Axes</literal> box.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>"on"</literal> this means that the Matplot is clipped
-                                outside the rectangle given by property clip_box.
+                                <literal>"on"</literal> this means that the <literal>Matplot</literal> is clipped
+                                outside the rectangle given by property <literal>clip_box</literal>.
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -98,19 +100,20 @@
                 <term>clip_box: </term>
                 <listitem>
                     <para>
-                        This field is to determinate the <literal>clip_box</literal> property.
-                        By Default its value should be an empty matrix if clip_state is "off".
-                        Other cases the vector <literal>[x,y,w,h]</literal> (upper-left point width
-                        height) defines the portions of the Matplot to display, however
-                        <literal>clip_state</literal> property value will be changed.
+                        this field is to determinate the <literal>clip_box</literal> property.
+                        By default its value should be an empty matrix if <literal>clip_state</literal> is
+                        <literal>"off"</literal>. Other cases the vector <literal>[x,y,w,h]</literal>
+                        (upper-left point width height) defines the portions of the <literal>Matplot</literal>
+                        to display, however <literal>clip_state</literal> property value will be changed.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>user_data: </term>
                 <listitem>
-                    <para>This field can be use to store any scilab variable in the Matplot
-                        data structure, and to retreive it.
+                    <para>
+                        this field can be use to store any scilab variable in the 
+                        <literal>Matplot</literal> data structure, and to retreive it.
                     </para>
                 </listitem>
             </varlistentry>

@@ -106,7 +106,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
     end
     if argn(2) == 4 then Ignb = "",end
   else
-    error(mprintf(_("%s: Wrong number of input arguments. Must be between %d and %d.\n"),...
+    error(msprintf(_("%s: Wrong number of input arguments. Must be between %d and %d.\n"),...
                   "scicos_simulate", 1, 5))
   end
 

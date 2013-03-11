@@ -128,7 +128,7 @@ public class LabelManager {
      * @throws SciRendererException if the label is not drawable.
      */
     public final void positionAndDraw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, LabelPositioner labelPositioner, Axes parentAxes, AxesDrawer axesDrawer, boolean drawnFlag) throws SciRendererException {
-        boolean[] logFlags = new boolean[]{parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
+        boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
         Texture labelSprite = getTexture(colorMap, label);
 
         labelPositioner.setLabelTexture(labelSprite);
@@ -136,7 +136,7 @@ public class LabelManager {
         labelPositioner.setParentAxes(parentAxes);
         labelPositioner.setAutoPosition(label.getAutoPosition());
         labelPositioner.setAutoRotation(label.getAutoRotation());
-        labelPositioner.setUserRotationAngle(180.0*label.getFontAngle()/Math.PI);
+        labelPositioner.setUserRotationAngle(180.0 * label.getFontAngle() / Math.PI);
 
         Vector3d labelUserPosition = new Vector3d(label.getPosition());
 
@@ -160,7 +160,7 @@ public class LabelManager {
             /* Apply inverse scaling to obtain user coordinates */
             objectCornerPos = ScaleUtils.applyInverseLogScale(objectCornerPos, logFlags);
 
-            label.setPosition(new Double[]{objectCornerPos.getX(), objectCornerPos.getY(), objectCornerPos.getZ()});
+            label.setPosition(new Double[] {objectCornerPos.getX(), objectCornerPos.getY(), objectCornerPos.getZ()});
 
             /*
              * Must be reset to true as setPosition modifies the label's auto position field.
@@ -186,7 +186,7 @@ public class LabelManager {
         if (label.getAutoRotation()) {
             rotationAngle = labelPositioner.getRotationAngle();
 
-            label.setFontAngle(Math.PI*rotationAngle/180.0);
+            label.setFontAngle(Math.PI * rotationAngle / 180.0);
 
             /*
              * Must be reset to true as setFontAngle modifies the label's auto rotation field.
@@ -228,7 +228,7 @@ public class LabelManager {
      */
     private Vector3d[] computeCorners(Transformation projection, Vector3d[] projCorners, Axes parentAxes) {
         Vector3d[] corners = new Vector3d[4];
-        boolean[] logFlags = new boolean[]{parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
+        boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
 
         corners[0] = projection.unproject(projCorners[0]);
         corners[1] = projection.unproject(projCorners[1]);
@@ -280,7 +280,7 @@ public class LabelManager {
      */
     public void update(String id, int property) {
         if (!(__GO_POSITION__ == property) && !(__GO_AUTO_POSITION__ == property)
-         && !(__GO_FONT_ANGLE__ == property) && !(__GO_AUTO_ROTATION__ == property)) {
+                && !(__GO_FONT_ANGLE__ == property) && !(__GO_AUTO_ROTATION__ == property)) {
             dispose(id);
         }
     }
@@ -309,6 +309,8 @@ public class LabelManager {
     private Texture createSprite(final ColorMap colorMap, final Label label) {
         LabelSpriteDrawer spriteDrawer = new LabelSpriteDrawer(colorMap, label);
         Texture sprite = textureManager.createTexture();
+        sprite.setMagnificationFilter(Texture.Filter.LINEAR);
+        sprite.setMinifyingFilter(Texture.Filter.LINEAR);
         sprite.setDrawer(spriteDrawer);
         return sprite;
     }

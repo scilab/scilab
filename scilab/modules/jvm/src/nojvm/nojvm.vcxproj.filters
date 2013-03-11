@@ -24,6 +24,9 @@
     <ClCompile Include="nojvm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="nojvm_gw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nojvm.rc">

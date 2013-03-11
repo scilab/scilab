@@ -22,3 +22,7 @@ getrhsvar_
 vartype_
 dynamic_setenvtcl
 overload_
+getWarningMode
+MyHeapAlloc
+MyHeapFree
+

@@ -54,11 +54,11 @@ assert_checkequal(typeof(y), "uint32");
 msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "iconvert", 2,"0, 1, 2, 4, 11, 12, 14");
 assert_checkerror ("y = iconvert(B, 20);", msgerr);
 
-msgerr = msprintf(gettext("%s: Wrong type for argument %d: Real matrix expected.\n"), "iconvert", 1);
+msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "iconvert", 1);
 assert_checkerror ("y = iconvert(%i, 0);", msgerr);
 
 msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"), "iconvert", 2);
 assert_checkerror ("y = iconvert(B, 0.1);", msgerr);
 
-msgerr = msprintf(gettext("%s: Wrong size for argument %d: Real scalar expected.\n"), "iconvert", 2);
+msgerr = msprintf(gettext("%s: Wrong size for argument #%d: Real scalar expected.\n"), "iconvert", 2);
 assert_checkerror ("y = iconvert(B, [0 1]);", msgerr);

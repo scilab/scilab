@@ -300,7 +300,6 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         selectionPathName = getJuigetfileSelectionPathName();
         selectionFileNames = getJuigetfileSelectionFileNames();
         selectionSize = getJuigetfileSelectionSize();
-        multipleSelection = getJuigetfileMultipleSelection();
         filterIndex = getJuigetfileFilterIndex();
         menuCallback = getJuigetfileMenuCallback();
     }

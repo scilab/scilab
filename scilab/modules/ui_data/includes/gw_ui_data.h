@@ -20,6 +20,7 @@ UI_DATA_IMPEXP int sci_editvar(char* fname, void* pvApiCtx);
 UI_DATA_IMPEXP int sci_browsevar(char* fname, void* pvApiCtx);
 UI_DATA_IMPEXP int sci_filebrowser(char* fname, void* pvApiCtx);
 UI_DATA_IMPEXP int sci_updatebrowsevar(char* fname, void* pvApiCtx);
+UI_DATA_IMPEXP int sci_closeEditvar(char* fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_UI_DATA__ */
 /*--------------------------------------------------------------------------*/

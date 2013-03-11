@@ -19,7 +19,7 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>entier</para>
+                    <para>vecteur ou matrice de rééls ou de polynômes</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

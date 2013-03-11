@@ -115,7 +115,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">use zero_crossing</emphasis>
+                    <emphasis role="bold">Use zero_crossing</emphasis>
                 </para>
                 <para> Select to enable zero crossing detection.</para>
                 <para> Properties : Type 'vec' of size 1.</para>

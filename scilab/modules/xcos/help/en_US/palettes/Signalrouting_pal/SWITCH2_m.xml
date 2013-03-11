@@ -134,7 +134,7 @@
             <listitem>
                 <para>
                     <emphasis role="bold">
-                        pass first input if: u2
+                        Pass first input if: u2
                         <inlinemediaobject>
                             <imageobject>
                                 <imagedata fileref="../../../../help/images/SWITCH2_m_img3_eng.gif" align="center" valign="middle"/>
@@ -148,14 +148,14 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">threshold a</emphasis>
+                    <emphasis role="bold">Threshold a</emphasis>
                 </para>
                 <para> Assign the switch threshold that determines which input is passed to the output.</para>
                 <para> Properties : Type 'vec' of size 1. </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">use zero crossing: yes </emphasis>
+                    <emphasis role="bold">Use zero crossing: yes </emphasis>
                 </para>
                 <para> Select to enable zero crossing detection.</para>
                 <para> Properties : Type 'vec' of size 1.</para>

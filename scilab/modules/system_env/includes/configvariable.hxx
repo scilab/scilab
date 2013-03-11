@@ -156,11 +156,14 @@ public :
     //Last Error ID
 private :
     static int m_iError;
+    static bool m_bError;
 
 public :
     static void setLastErrorNumber(int _iError);
     static int getLastErrorNumber();
-
+    static void setError();
+    static bool isError();
+    static void resetError();
     //Last Error Line
 private :
     static int m_iErrorLine;

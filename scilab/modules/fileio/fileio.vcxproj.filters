@@ -186,6 +186,12 @@
     <ClCompile Include="src\cpp\scilab_sscanf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\dlManager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\convert_tools.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\mgetl.h">
@@ -362,6 +368,12 @@
     <ClInclude Include="includes\readline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\dlManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\convert_tools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\fileio.rc">
@@ -382,8 +394,8 @@
     <None Include="locales\fileio.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="LibScilab_Import.def">
-      <Filter>Source Files</Filter>
+    <None Include="core_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -235,6 +235,12 @@ int sci_bessely(char *fname, void* pvApiCtx)
         if (m1 * n1 != m2 * n2)
         {
             Scierror(999, _("%s: arguments #%d and #%d have incompatible dimensions.\n"), fname, 1, 2);
+
+            if (itr == 1 && isVarComplex(pvApiCtx, piAddrX) == 0)
+            {
+                FREE(pdblXI);
+            }
+
             return 1;
         }
 

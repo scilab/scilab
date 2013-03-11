@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-29 14:30+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:11+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -324,7 +324,7 @@ msgid ""
 msgstr "%s: 入力引数 #%d の値が正しくありません: 連続時間システムを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:実数ベクトルを指定してください.\n"
 
 #, c-format
@@ -365,7 +365,7 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: In continuous time expected.\n"
+msgid "%s: Wrong type for argument #%d: In continuous time expected.\n"
 msgstr "%s: 引数 %dの型が間違っています: 連続系で指定してください.\n"
 
 #, c-format
@@ -377,7 +377,7 @@ msgid "%s: Wrong type for input argument #%d: Vector of floats expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: floatのベクトルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: 引数 %d の大きさが間違っています: 大きさを %d にしてください.\n"
 
 #, c-format
@@ -818,7 +818,7 @@ msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: 入力引数 %d の大きさが間違っています:  (%d,%d) で指定してください.\n"
 
 #, c-format
@@ -828,7 +828,7 @@ msgid ""
 msgstr "%s: 入力引数 #%d の値が間違っています: 2行目は1行目よりも大きい必要があります.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "引数 %d の型が間違っています: SISO を指定してください.\n"
 
 #, c-format

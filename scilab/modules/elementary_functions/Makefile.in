@@ -81,11 +81,11 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/elementary_functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+	$(top_srcdir)/m4/eigen.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -210,19 +210,19 @@ am__objects_5 = psi.lo wasum.lo dexpm1.lo wwdiv.lo wdotcr.lo iset.lo \
 	cbal.lo dsum.lo urand.lo intp.lo watan.lo wipowe.lo wacos.lo \
 	wdpow1.lo dlgama.lo exch.lo wsign.lo kronr.lo wrscal.lo \
 	dmmul1.lo dwpow.lo wmmul.lo ddif.lo wdiv.lo wtan.lo ddpow.lo \
-	magic.lo wcerr.lo ivimp.lo dadd.lo calerf.lo isort.lo \
-	hilber.lo wdpowe.lo wmprod.lo wscal.lo dlblks.lo kronc.lo \
-	ddrdiv.lo dipow.lo wshrsl.lo wwrdiv.lo coshin.lo iwamax.lo \
-	dipowe.lo getorient.lo cusum.lo d1mach.lo wbdiag.lo ddpow1.lo \
-	vpythag.lo isova0.lo wswap.lo wwpow1.lo getdimfromvar.lo \
-	gdcp2i.lo drdiv.lo wmsum.lo corth.lo mtran.lo wwpow.lo \
-	dvmul.lo wclmat.lo dsort.lo cerr.lo rcopy.lo wdpow.lo \
-	orthes.lo waxpy.lo coef.lo dwdiv.lo arcosh.lo wasin.lo \
-	wexpm1.lo ddpowe.lo nearfloat.lo dmprod.lo wwpowe.lo wdotci.lo \
-	dmcopy.lo wexchn.lo isoval.lo dwrdiv.lo wipow.lo wlog.lo \
-	infinity.lo dwpow1.lo wmul.lo dad.lo dset.lo dtild.lo \
-	i1mach.lo dclmat.lo ortran.lo bdiag.lo wvmul.lo dmmul.lo \
-	wsqrt.lo israt.lo rat.lo old_pythag.lo danints.lo
+	magic.lo wcerr.lo ivimp.lo dadd.lo isort.lo hilber.lo \
+	wdpowe.lo wmprod.lo wscal.lo dlblks.lo kronc.lo ddrdiv.lo \
+	dipow.lo wshrsl.lo wwrdiv.lo coshin.lo iwamax.lo dipowe.lo \
+	getorient.lo cusum.lo d1mach.lo wbdiag.lo ddpow1.lo vpythag.lo \
+	isova0.lo wswap.lo wwpow1.lo getdimfromvar.lo gdcp2i.lo \
+	drdiv.lo wmsum.lo corth.lo mtran.lo wwpow.lo dvmul.lo \
+	wclmat.lo dsort.lo cerr.lo rcopy.lo wdpow.lo orthes.lo \
+	waxpy.lo coef.lo dwdiv.lo arcosh.lo wasin.lo wexpm1.lo \
+	ddpowe.lo nearfloat.lo dmprod.lo wwpowe.lo wdotci.lo dmcopy.lo \
+	wexchn.lo isoval.lo dwrdiv.lo wipow.lo wlog.lo infinity.lo \
+	dwpow1.lo wmul.lo dad.lo dset.lo dtild.lo i1mach.lo dclmat.lo \
+	ortran.lo bdiag.lo wvmul.lo dmmul.lo wsqrt.lo israt.lo rat.lo \
+	old_pythag.lo danints.lo
 am__objects_6 = libscielementary_functions_algo_la-getmode.lo \
 	libscielementary_functions_algo_la-cumsum.lo \
 	libscielementary_functions_algo_la-cumprod.lo \
@@ -382,6 +382,10 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CURL_CFLAGS = @CURL_CFLAGS@
+CURL_CONFIG = @CURL_CONFIG@
+CURL_LIBS = @CURL_LIBS@
+CURL_VERSION = @CURL_VERSION@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -824,7 +828,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wcerr.f \
     src/fortran/ivimp.f \
     src/fortran/dadd.f \
-    src/fortran/calerf.f \
     src/fortran/isort.f \
     src/fortran/hilber.f \
     src/fortran/wdpowe.f \
@@ -1002,8 +1005,7 @@ libscielementary_functions_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
@@ -2559,9 +2561,6 @@ ivimp.lo: src/fortran/ivimp.f
 
 dadd.lo: src/fortran/dadd.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dadd.lo `test -f 'src/fortran/dadd.f' || echo '$(srcdir)/'`src/fortran/dadd.f
-
-calerf.lo: src/fortran/calerf.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o calerf.lo `test -f 'src/fortran/calerf.f' || echo '$(srcdir)/'`src/fortran/calerf.f
 
 isort.lo: src/fortran/isort.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o isort.lo `test -f 'src/fortran/isort.f' || echo '$(srcdir)/'`src/fortran/isort.f

@@ -122,11 +122,11 @@ check_PROGRAMS = call_scilab_c_simple$(EXEEXT) call_scilab_c$(EXEEXT) \
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+	$(top_srcdir)/m4/eigen.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -424,6 +424,10 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CURL_CFLAGS = @CURL_CFLAGS@
+CURL_CONFIG = @CURL_CONFIG@
+CURL_LIBS = @CURL_LIBS@
+CURL_VERSION = @CURL_VERSION@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -658,8 +662,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 AUTOMAKE_OPTIONS = 1.11 dist-zip dist-bzip2
-SUBDIRS = libs \
-	modules \
+SUBDIRS = modules \
 	contrib \
 	desktop
 
@@ -677,27 +680,28 @@ bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
 scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_2)
 scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS)
 scilab_bin_CPPFLAGS = \
-    -I$(top_srcdir)/modules/console/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes/ \
-    -I$(top_srcdir)/modules/parse/includes/ \
-    -I$(top_srcdir)/modules/ast/includes/ \
-    -I$(top_srcdir)/modules/symbol/includes/ \
-    -I$(top_srcdir)/modules/functions_manager/includes/ \
-    -I$(top_srcdir)/modules/types/includes/ \
-    -I$(top_srcdir)/modules/system_env/includes/ \
-    -I$(top_srcdir)/modules/operations/includes/ \
-    -I$(top_srcdir)/modules/elementary_functions/includes/ \
-    -I$(top_srcdir)/modules/fileio/includes/ \
-    -I$(top_srcdir)/modules/string/includes/ \
-    -I$(top_srcdir)/modules/history_manager/includes/ \
-    -I$(top_srcdir)/modules/threads/includes/ \
-    -I$(top_srcdir)/modules/api_scilab/includes/ \
-    -I$(top_srcdir)/modules/localization/includes/ \
-    -I$(top_srcdir)/modules/jit_ocaml/includes/ \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
-    $(EIGEN_CPPFLAGS) \
-	$(AM_CPPFLAGS)
+-I$(top_srcdir)/modules/console/includes/ \
+-I$(top_srcdir)/modules/jit_ocaml/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/parse/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/symbol/includes/ \
+-I$(top_srcdir)/modules/functions_manager/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/history_manager/includes/ \
+-I$(top_srcdir)/modules/threads/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/core/src/c/ \
+-I$(top_srcdir)/modules/dynamic_link/includes/ \
+$(EIGEN_CPPFLAGS) \
+$(AM_CPPFLAGS)
+
 
 # --no-undefined --relax
 

@@ -3273,6 +3273,7 @@ AC_SUBST([am__untar])
 
 m4_include([m4/backtrace.m4])
 m4_include([m4/compiler.m4])
+m4_include([m4/curl.m4])
 m4_include([m4/docbook.m4])
 m4_include([m4/doxygen.m4])
 m4_include([m4/eigen.m4])

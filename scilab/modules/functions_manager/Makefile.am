@@ -12,8 +12,7 @@
 
 FUNCTION_MANAGER_CPP_SOURCES = \
     src/cpp/funcmanager.cpp \
-    src/cpp/dynamic_modules.cpp \
-    src/cpp/callDynamicGateway.cpp
+    src/cpp/dynamic_modules.cpp
 
 pkglib_LTLIBRARIES 	= libscifunctions_manager.la
 
@@ -22,8 +21,7 @@ libscifunctions_manager_la_SOURCES 	= \
 
 libscifunctions_manager_la_CPPFLAGS	= \
     -Iincludes/ \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes \
-    -I$(top_srcdir)/libs/MALLOC/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_builddir)/modules/api_scilab/includes/ \
 	-I$(top_builddir)/modules/ast/includes/ \
 	-I$(top_builddir)/modules/console/includes/ \

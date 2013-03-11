@@ -298,11 +298,6 @@ int sci_set(char *fname, void *pvApiCtx)
             }
         }
 
-        if (isMatrixOfString)
-        {
-            freeArrayOfString((char **)_pvData, iRows3 * iCols3);
-        }
-
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
     }

@@ -39,15 +39,16 @@ GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
 sci_gateway/c/gw_completion.c
 
 # Includes need for the compilation
-libscicompletion_la_CPPFLAGS = -I$(srcdir)/includes/ \
+libscicompletion_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
     -I$(srcdir)/src/c/ \
     -I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/functions/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/graphics/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/xml/includes/ \
     -I$(top_srcdir)/modules/xml/src/cpp/ \
     -I$(top_srcdir)/modules/symbol/includes/ \
@@ -56,7 +57,7 @@ libscicompletion_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/operations/includes/ \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
     $(JAVA_JNI_INCLUDE) \
     $(XML_FLAGS) \
     $(COMPLETION_FLAGS) \

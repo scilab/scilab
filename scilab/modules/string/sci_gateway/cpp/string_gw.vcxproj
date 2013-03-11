@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../api_scilab/includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../../libs/hashtable;../../src/c;../../../windows_tools/includes;../../src/cpp;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../api_scilab/includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/pcre;../../src/c;../../../windows_tools/includes;../../src/cpp;../../../system_env/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;STRING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -100,7 +100,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../api_scilab/includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../../libs/hashtable;../../src/c;../../../windows_tools/includes;../../src/cpp;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../api_scilab/includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/pcre;../../src/c;../../../windows_tools/includes;../../src/cpp;../../../system_env/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;STRING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -122,7 +122,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../api_scilab/includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../../libs/hashtable;../../src/c;../../../windows_tools/includes;../../src/cpp;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../api_scilab/includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/pcre;../../src/c;../../../windows_tools/includes;../../src/cpp;../../../system_env/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;STRING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -149,7 +149,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../api_scilab/includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../../libs/hashtable;../../src/c;../../../windows_tools/includes;../../src/cpp;../../../../libs/dynamiclibrary/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../api_scilab/includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/pcre;../../src/c;../../../windows_tools/includes;../../src/cpp;../../../system_env/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;STRING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -210,10 +210,6 @@
     <Library Include="..\..\..\..\bin\pcre.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
@@ -234,6 +230,9 @@
     <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
       <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
+      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\types\types.vcxproj">
       <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>

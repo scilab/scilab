@@ -53,26 +53,29 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-    clf();param3d()
+    clf();
+    param3d()
     p=gce();//get the handle on the polyline
     datatipCreate(p,30);
     datatipCreate(p,100);
     datatipCreate(p,50);
-    ax=gca();ax.rotation_angles=[35 45];// first plot below
+    ax=gca();
+    ax.rotation_angles=[35 45];// first plot below
+    sleep(2)
     datatipRedraw() //second plot below
     ]]></programlisting>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../images/datatips_rot1.svg"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../images/datatips_rot2.svg"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <scilab:image>
+            param3d()
+            p=gce();//get the handle on the polyline
+            datatipCreate(p,30);
+            datatipCreate(p,100);
+            datatipCreate(p,50);
+        </scilab:image>
+        <scilab:image>
+            ax=gca();
+            ax.rotation_angles=[35 45];// first plot below
+            datatipRedraw() //second plot below
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

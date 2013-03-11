@@ -11,17 +11,17 @@
 function l=lstsize(varargin)
     [lhs, rhs] = argn(0);
     if lhs <> 1 then
-        error(999, mprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "lstsize", 1));
+        error(999, msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "lstsize", 1));
     end
 
     if rhs <> 1 then
-        error(999, mprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "lstsize", 1));
+        error(999, msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "lstsize", 1));
     end
 
 
     var = varargin(1);
     if type(var) <> 15 & type(var) <> 17 then
-        error(999, mprintf(_("%s: Wrong type for argument %d: List expected.\n"), "lstsize", 1));
+        error(999, msprintf(_("%s: Wrong type for argument %d: List expected.\n"), "lstsize", 1));
     end
 
     l = size(var);

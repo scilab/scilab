@@ -16,7 +16,6 @@ import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
-import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
@@ -86,35 +85,35 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     /** Set of properties changed during a draw if auto-ticks is on for X axis. */
     private static final Set<Integer> X_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                                                                                         GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
-                                                                                         GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
-                                                                                         GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
-                                                                                         ));
+                GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
+                GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
+                GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
+            ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Y axis. */
     private static final Set<Integer> Y_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                                                                                         GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
-                                                                                         GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
-                                                                                         GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
-                                                                                         ));
+                GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
+                GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
+                GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
+            ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Z axis. */
     private static final Set<Integer> Z_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                                                                                         GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
-                                                                                         GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
-                                                                                         GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
-                                                                                         ));
+                GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
+                GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
+                GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
+            ));
 
     /** Set of figure properties for witch a change doesn't lead to a redraw */
     private static final Set<Integer> SILENT_FIGURE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                                                                                          GraphicObjectProperties.__GO_ROTATION_TYPE__,
-                                                                                          GraphicObjectProperties.__GO_INFO_MESSAGE__,
-                                                                                          GraphicObjectProperties.__GO_FIGURE_NAME__,
-                                                                                          GraphicObjectProperties.__GO_AUTORESIZE__,
-                                                                                          GraphicObjectProperties.__GO_POSITION__,
-                                                                                          GraphicObjectProperties.__GO_SIZE__,
-                                                                                          GraphicObjectProperties.__GO_ID__
-                                                                                          ));
+                GraphicObjectProperties.__GO_ROTATION_TYPE__,
+                GraphicObjectProperties.__GO_INFO_MESSAGE__,
+                GraphicObjectProperties.__GO_FIGURE_NAME__,
+                GraphicObjectProperties.__GO_AUTORESIZE__,
+                GraphicObjectProperties.__GO_POSITION__,
+                GraphicObjectProperties.__GO_SIZE__,
+                GraphicObjectProperties.__GO_ID__
+            ));
 
     private static final boolean DEBUG_MODE = false;
 
@@ -376,7 +375,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             colorMap = figure.getColorMap();
             drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
             drawingTools.clearDepthBuffer();
-            if (figure.getVisible() && figure.getImmediateDrawing()) {
+            if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing()) {
                 askAcceptVisitor(figure.getChildren());
             }
         }
@@ -445,7 +444,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Label label) {
-        if (label.isValid() && label.getVisible()) {
+        if (label.isValid() && label.getVisible() && !label.isEmpty()) {
             try {
                 labelManager.draw(drawingTools, colorMap, label, axesDrawer);
             } catch (SciRendererException e) {
@@ -827,7 +826,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void updateObject(String id, int property) {
         try {
             if (needUpdate(id, property)) {
-                GraphicController.getController().setProperty(id, GraphicObjectProperties.__GO_VALID__, true);
                 if (GraphicObjectProperties.__GO_COLORMAP__ == property && figure.getIdentifier().equals(id)) {
                     labelManager.disposeAll();
                     dataManager.disposeAllColorBuffers();
@@ -837,6 +835,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     axesDrawer.disposeAll();
                     fecDrawer.updateAll();
                     colorMapTextureDataProvider.update();
+                    textureManager.disposeAll();
                 } else {
                     labelManager.update(id, property);
                     dataManager.update(id, property);
@@ -881,8 +880,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         int objectType = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
         if ((object != null) && isFigureChild(id)
-            && objectType != GraphicObjectProperties.__GO_UICONTROL__
-            && objectType !=GraphicObjectProperties.__GO_UIMENU__) {
+                && objectType != GraphicObjectProperties.__GO_UICONTROL__
+                && objectType != GraphicObjectProperties.__GO_UIMENU__) {
 
             if (GraphicObjectProperties.__GO_VALID__ == property) {
                 return false;
@@ -909,6 +908,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
             }
 
+            if (!object.isValid()) {
+                GraphicController.getController().setProperty(id, GraphicObjectProperties.__GO_VALID__, true);
+            }
+
             return true;
         } else {
             return false;
@@ -917,7 +920,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     private boolean isImmediateDrawing(String id) {
         String parentId = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
-        if (parentId == null) {
+        if (parentId == null || !parentId.equals(figure.getIdentifier())) {
             return false;
         } else {
             Boolean b =  (Boolean) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__);
@@ -931,6 +934,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void deleteObject(String id) {
+        if (isImmediateDrawing(id)) {
+            canvas.redraw();
+        }
+
         dataManager.dispose(id);
         markManager.dispose(id);
         textManager.dispose(id);
@@ -939,26 +946,26 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         legendDrawer.dispose(id);
         fecDrawer.dispose(id);
         textureManager.dispose(id);
+        /*
+         * Check we are deleting Figure managed by DrawerVisitor(this)
+         * Otherwise do nothing on deletion.
+         */
+        if (!figure.getIdentifier().equals(id)) {
+            return;
+        }
 
-        GraphicObject object = GraphicController.getController().getObjectFromId(id);
-        if (object instanceof Figure && visitorMap.containsKey(id)) {
-            visitorMap.remove(id);
-            GraphicController.getController().unregister(this);
-            if (SwingUtilities.isEventDispatchThread()) {
-                canvas.destroy();
-            } else {
-                try {
-                    SwingUtilities.invokeAndWait(new Runnable() {
-                            public void run() {
-                                canvas.destroy();
-                            }
-                        });
-                } catch (Exception e) { }
-            }
+        visitorMap.remove(id);
+        GraphicController.getController().unregister(this);
+        if (SwingUtilities.isEventDispatchThread()) {
+            canvas.destroy();
         } else {
-            if (isImmediateDrawing(id)) {
-                canvas.redraw();
-            }
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    public void run() {
+                        canvas.destroy();
+                    }
+                });
+            } catch (Exception e) { }
         }
     }
 

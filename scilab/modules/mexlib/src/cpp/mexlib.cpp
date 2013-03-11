@@ -102,38 +102,38 @@ mxClassID mxGetClassID(const mxArray *ptr)
 
     switch (type)
     {
-    case types::InternalType::RealInt8:
-        return mxINT8_CLASS;
-    case types::InternalType::RealUInt8:
-        return mxUINT8_CLASS;
-    case types::InternalType::RealInt16:
-        return mxINT16_CLASS;
-    case types::InternalType::RealUInt16:
-        return mxUINT16_CLASS;
-    case types::InternalType::RealInt32:
-        return mxINT32_CLASS;
-    case types::InternalType::RealUInt32:
-        return mxUINT32_CLASS;
-    case types::InternalType::RealInt64:
-        return mxINT64_CLASS;
-    case types::InternalType::RealUInt64:
-        return mxUINT64_CLASS;
-    case types::InternalType::RealString:
-        return mxCHAR_CLASS;
-    case types::InternalType::RealDouble:
-        return mxDOUBLE_CLASS;
-    case types::InternalType::RealBool:
-        return mxLOGICAL_CLASS;
-    case types::InternalType::RealFloat:
-        return mxSINGLE_CLASS;
-    case types::InternalType::RealStruct:
-        return mxSTRUCT_CLASS;
-    case types::InternalType::RealCell:
-        return mxCELL_CLASS;
-    case types::InternalType::RealFunction:
-        return mxFUNCTION_CLASS;
-    default:
-        return mxUNKNOWN_CLASS;
+        case types::InternalType::RealInt8:
+            return mxINT8_CLASS;
+        case types::InternalType::RealUInt8:
+            return mxUINT8_CLASS;
+        case types::InternalType::RealInt16:
+            return mxINT16_CLASS;
+        case types::InternalType::RealUInt16:
+            return mxUINT16_CLASS;
+        case types::InternalType::RealInt32:
+            return mxINT32_CLASS;
+        case types::InternalType::RealUInt32:
+            return mxUINT32_CLASS;
+        case types::InternalType::RealInt64:
+            return mxINT64_CLASS;
+        case types::InternalType::RealUInt64:
+            return mxUINT64_CLASS;
+        case types::InternalType::RealString:
+            return mxCHAR_CLASS;
+        case types::InternalType::RealDouble:
+            return mxDOUBLE_CLASS;
+        case types::InternalType::RealBool:
+            return mxLOGICAL_CLASS;
+        case types::InternalType::RealFloat:
+            return mxSINGLE_CLASS;
+        case types::InternalType::RealStruct:
+            return mxSTRUCT_CLASS;
+        case types::InternalType::RealCell:
+            return mxCELL_CLASS;
+        case types::InternalType::RealFunction:
+            return mxFUNCTION_CLASS;
+        default:
+            return mxUNKNOWN_CLASS;
     }
 }
 
@@ -300,7 +300,8 @@ int mxGetNumberOfDimensions(const mxArray *ptr)
 
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
     if (pGT == NULL)
-    {                           //InternalType but not GenericType, so mono dimension type.
+    {
+        //InternalType but not GenericType, so mono dimension type.
         return 1;
     }
 
@@ -317,16 +318,16 @@ int *mxGetDimensions(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-    case types::InternalType::RealList:
-    case types::InternalType::RealMList:
-    case types::InternalType::RealTList:
+        case types::InternalType::RealList:
+        case types::InternalType::RealMList:
+        case types::InternalType::RealTList:
         {
             int *piDims = (int *) MALLOC(sizeof(int));
 
             piDims[0] = pIT->getAs<types::Container>()->getSize();
             return piDims;
         }
-    default:
+        default:
         {
             types::GenericType *pGT = pIT->getAs<types::GenericType>();
             if (pGT == NULL)
@@ -446,8 +447,8 @@ bool mxIsChar(const mxArray *ptr)
 bool mxIsNumeric(const mxArray *ptr)
 {
     return mxIsDouble(ptr) || mxIsSingle(ptr) ||
-        mxIsInt8(ptr) || mxIsUint8(ptr) ||
-        mxIsInt16(ptr) || mxIsUint16(ptr) || mxIsInt32(ptr) || mxIsUint32(ptr) || mxIsInt64(ptr) || mxIsUint64(ptr);
+           mxIsInt8(ptr) || mxIsUint8(ptr) ||
+           mxIsInt16(ptr) || mxIsUint16(ptr) || mxIsInt32(ptr) || mxIsUint32(ptr) || mxIsInt64(ptr) || mxIsUint64(ptr);
 }
 
 bool mxIsDouble(const mxArray *ptr)
@@ -464,7 +465,8 @@ bool mxIsEmpty(const mxArray *ptr)
 {
     types::InternalType * pIT = (types::InternalType *) ptr;
     if (pIT == NULL)
-    {                           //true or false, whatever ;)
+    {
+        //true or false, whatever ;)
         return true;
     }
 
@@ -473,12 +475,12 @@ bool mxIsEmpty(const mxArray *ptr)
         case types::InternalType::RealDouble:
         {
             types::Double *pD = pIT->getAs<types::Double>();
-           return pD->getSize() == 0;
+            return pD->getSize() == 0;
         }
         case types::InternalType::RealCell:
         {
             types::Cell *pC = pIT->getAs<types::Cell>();
-         return pC->getSize() == 0;
+            return pC->getSize() == 0;
         }
         case types::InternalType::RealContainer:
         case types::InternalType::RealList:
@@ -489,7 +491,8 @@ bool mxIsEmpty(const mxArray *ptr)
             return pC->getSize() == 0;
         }
         default:
-        {                       //other type can not be empty
+        {
+            //other type can not be empty
             return false;
         }
     }
@@ -509,7 +512,7 @@ bool mxIsSparse(const mxArray *ptr)
 
 bool mxIsLogical(const mxArray *ptr)
 {
-    return mxGetClassID(ptr)==mxLOGICAL_CLASS;
+    return mxGetClassID(ptr) == mxLOGICAL_CLASS;
 }
 
 void mxSetLogical(mxArray *ptr)
@@ -916,35 +919,35 @@ mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID CLASS, mxComp
 
     switch (CLASS)
     {
-    case mxDOUBLE_CLASS:
-        ptr = new types::Double(ndim, (int *) dims, complexFlag == mxCOMPLEX);
-        break;
-    case mxINT8_CLASS:
-        ptr = new types::Int8(ndim, (int *) dims);
-        break;
-    case mxUINT8_CLASS:
-        ptr = new types::UInt8(ndim, (int *) dims);
-        break;
-    case mxINT16_CLASS:
-        ptr = new types::Int16(ndim, (int *) dims);
-        break;
-    case mxUINT16_CLASS:
-        ptr = new types::UInt16(ndim, (int *) dims);
-        break;
-    case mxINT32_CLASS:
-        ptr = new types::Int32(ndim, (int *) dims);
-        break;
-    case mxUINT32_CLASS:
-        ptr = new types::UInt32(ndim, (int *) dims);
-        break;
-    case mxINT64_CLASS:
-        ptr = new types::Int64(ndim, (int *) dims);
-        break;
-    case mxUINT64_CLASS:
-        ptr = new types::UInt64(ndim, (int *) dims);
-        break;
-    default:
-        ptr = NULL;
+        case mxDOUBLE_CLASS:
+            ptr = new types::Double(ndim, (int *) dims, complexFlag == mxCOMPLEX);
+            break;
+        case mxINT8_CLASS:
+            ptr = new types::Int8(ndim, (int *) dims);
+            break;
+        case mxUINT8_CLASS:
+            ptr = new types::UInt8(ndim, (int *) dims);
+            break;
+        case mxINT16_CLASS:
+            ptr = new types::Int16(ndim, (int *) dims);
+            break;
+        case mxUINT16_CLASS:
+            ptr = new types::UInt16(ndim, (int *) dims);
+            break;
+        case mxINT32_CLASS:
+            ptr = new types::Int32(ndim, (int *) dims);
+            break;
+        case mxUINT32_CLASS:
+            ptr = new types::UInt32(ndim, (int *) dims);
+            break;
+        case mxINT64_CLASS:
+            ptr = new types::Int64(ndim, (int *) dims);
+            break;
+        case mxUINT64_CLASS:
+            ptr = new types::UInt64(ndim, (int *) dims);
+            break;
+        default:
+            ptr = NULL;
     }
     return (mxArray *) ptr;
 }
@@ -1130,7 +1133,7 @@ int mxGetString(const mxArray *ptr, char *str, int strl)
         wchar_t *to_copy = pa->get(k);
         char *dest = wide_string_to_UTF8(to_copy);
         int length = (int)strlen(dest);
-        memcpy(str+index, dest, free_space);
+        memcpy(str + index, dest, free_space);
         index += Min(length, free_space);
         free_space -= length;
         FREE(dest);
@@ -1163,7 +1166,7 @@ char *mxArrayToString(const mxArray *ptr)
     {
         char *dest = wide_string_to_UTF8(wstrings[k]);
         int dest_length = strlen(dest);
-        memcpy(str+index, dest, dest_length);
+        memcpy(str + index, dest, dest_length);
         index += dest_length;
     }
     str[index] = '\0';
@@ -1357,7 +1360,7 @@ int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char
 
     types::InternalType *value = context->get(*symbol);
     types::Function *func = value->getAs<types::Function>();
-    if(func == NULL)
+    if (func == NULL)
     {
         return 1;
     }
@@ -1365,14 +1368,14 @@ int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    for(int i = 0; i < nrhs; i++)
+    for (int i = 0; i < nrhs; i++)
     {
         in.push_back((types::InternalType*)prhs[i]);
     }
 
     func->call(in, opt, nlhs, out, NULL);
 
-    for(int i = 0; i < nlhs; i++)
+    for (int i = 0; i < nlhs; i++)
     {
         plhs[i] = (mxArray *) (out[i]);
     }
@@ -1390,7 +1393,7 @@ int mxCalcSingleSubscript(const mxArray *ptr, int nsubs, const int *subs)
     int index = 0;
     int iMult = 1;
     int *dims = mxGetDimensions(ptr);
-    for(int i = 0; i < nsubs; i++)
+    for (int i = 0; i < nsubs; i++)
     {
         index += subs[i] * iMult;
         iMult *= dims[i];
@@ -1492,7 +1495,7 @@ int mexEvalString(const char *name)
     bool bMute = true;
     Parser parser;
     parser.parse(to_wide_string(name));
-    if(parser.getExitStatus() !=  Parser::Succeded)
+    if (parser.getExitStatus() !=  Parser::Succeded)
     {
         //mexPrintf(wide_string_to_UTF8(parser.getErrorMessage()));
         return 1;
@@ -1500,7 +1503,7 @@ int mexEvalString(const char *name)
 
     Exp *pExp = parser.getTree();
 
-    if(pExp == NULL)
+    if (pExp == NULL)
     {
         //mexPrintf("pExp is NULL");
         return 1;
@@ -1508,14 +1511,14 @@ int mexEvalString(const char *name)
 
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
-    if(bMute)
+    if (bMute)
     {
         ConfigVariable::setPromptMode(-1);
     }
     std::list<Exp *>::iterator j;
     std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
 
-    for(j = LExp.begin() ; j != LExp.end() ; j++)
+    for (j = LExp.begin() ; j != LExp.end() ; j++)
     {
         try
         {
@@ -1524,7 +1527,7 @@ int mexEvalString(const char *name)
             (*j)->accept(execMe);
 
             //to manage call without ()
-            if(execMe.result_get() != NULL && execMe.result_get()->getAs<Callable>())
+            if (execMe.result_get() != NULL && execMe.result_get()->getAs<Callable>())
             {
                 Callable *pCall = execMe.result_get()->getAs<Callable>();
                 types::typed_list out;
@@ -1534,34 +1537,34 @@ int mexEvalString(const char *name)
                 {
                     ExecVisitor execCall;
                     Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
-                    if(Ret == Callable::OK)
+                    if (Ret == Callable::OK)
                     {
-                        if(out.size() == 0)
+                        if (out.size() == 0)
                         {
                             execMe.result_set(NULL);
                         }
-                        else if(out.size() == 1)
+                        else if (out.size() == 1)
                         {
                             out[0]->DecreaseRef();
                             execMe.result_set(out[0]);
                         }
                         else
                         {
-                            for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
                             {
                                 out[i]->DecreaseRef();
                                 execMe.result_set(i, out[i]);
                             }
                         }
                     }
-                    else if(Ret == Callable::Error)
+                    else if (Ret == Callable::Error)
                     {
-                        if(ConfigVariable::getLastErrorFunction() == L"")
+                        if (ConfigVariable::getLastErrorFunction() == L"")
                         {
                             ConfigVariable::setLastErrorFunction(pCall->getName());
                         }
 
-                        if(pCall->isMacro() || pCall->isMacroFile())
+                        if (pCall->isMacro() || pCall->isMacroFile())
                         {
                             wchar_t szError[bsiz];
                             os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
@@ -1573,18 +1576,18 @@ int mexEvalString(const char *name)
                         }
                     }
                 }
-                catch(ScilabMessage sm)
+                catch (ScilabMessage sm)
                 {
                     wostringstream os;
                     PrintVisitor printMe(os);
                     (*j)->accept(printMe);
                     os << std::endl << std::endl;
-                    if(ConfigVariable::getLastErrorFunction() == L"")
+                    if (ConfigVariable::getLastErrorFunction() == L"")
                     {
                         ConfigVariable::setLastErrorFunction(pCall->getName());
                     }
 
-                    if(pCall->isMacro() || pCall->isMacroFile())
+                    if (pCall->isMacro() || pCall->isMacroFile())
                     {
                         wstring szAllError;
                         wchar_t szError[bsiz];
@@ -1603,10 +1606,10 @@ int mexEvalString(const char *name)
             }
 
             //update ans variable.
-            if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
+            if (execMe.result_get() != NULL && execMe.result_get()->isDeletable())
             {
                 symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
-                if((*j)->is_verbose() && bErrCatch == false)
+                if ((*j)->is_verbose() && bErrCatch == false)
                 {
                     std::wostringstream ostr;
                     ostr << L"ans = " << std::endl;
@@ -1617,20 +1620,21 @@ int mexEvalString(const char *name)
                 }
             }
         }
-        catch(ScilabMessage sm)
+        catch (ScilabMessage sm)
         {
-            if(bErrCatch  == false && bMute == false)
+            if (bErrCatch  == false && bMute == false)
             {
                 scilabErrorW(sm.GetErrorMessage().c_str());
 
                 CallExp* pCall = dynamic_cast<CallExp*>(*j);
-                if(pCall != NULL)
-                {//to print call expression only of it is a macro
+                if (pCall != NULL)
+                {
+                    //to print call expression only of it is a macro
                     ExecVisitor execFunc;
                     pCall->name_get().accept(execFunc);
 
-                    if(execFunc.result_get() != NULL &&
-                        (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
+                    if (execFunc.result_get() != NULL &&
+                            (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
                     {
                         wostringstream os;
 
@@ -1644,7 +1648,7 @@ int mexEvalString(const char *name)
                         os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
                         os << szError;
 
-                        if(ConfigVariable::getLastErrorFunction() == L"")
+                        if (ConfigVariable::getLastErrorFunction() == L"")
                         {
                             ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAs<Callable>()->getName());
                         }
@@ -1662,9 +1666,9 @@ int mexEvalString(const char *name)
                 break;
             }
         }
-        catch(ScilabError se)
+        catch (ScilabError se)
         {
-            if(ConfigVariable::getLastErrorMessage() == L"")
+            if (ConfigVariable::getLastErrorMessage() == L"")
             {
                 ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
                 ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
@@ -1674,7 +1678,7 @@ int mexEvalString(const char *name)
 
             //store message
             iErr = ConfigVariable::getLastErrorNumber();
-            if(bErrCatch == false)
+            if (bErrCatch == false)
             {
                 //in case of error, change mode to 2 ( prompt )
                 ConfigVariable::setPromptMode(2);
@@ -1738,7 +1742,7 @@ int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm
     wchar_t *dest = to_wide_string(varname);
     if (strcmp(workspace, "base") == 0)
     {
-        context->put_in_previous_scope(*(new symbol::Symbol(dest)), *(types::InternalType *) pm);
+        context->putInPreviousScope(*(new symbol::Symbol(dest)), *(types::InternalType *) pm);
     }
     else if (strcmp(workspace, "caller") == 0)
     {
@@ -1906,8 +1910,9 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
     {
         ((types::Double *) array_ptr)->resize((int *) dims, ndim);
     }
-     else if (mxIsFunction(array_ptr)) {
-         //((types::Function *) array_ptr)->resize((int *) dims, ndim);
+    else if (mxIsFunction(array_ptr))
+    {
+        //((types::Function *) array_ptr)->resize((int *) dims, ndim);
     }
     // else if (mxIsSparse(array_ptr)) {
     //     TODO: we don't have Sparse classes yet

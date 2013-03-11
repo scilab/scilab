@@ -85,6 +85,14 @@ hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
 [hzm,fr]=frmag(hz,256);
 plot(fr,hzm,'r')
  ]]></programlisting>
+        <scilab:image><![CDATA[
+hz=iir(3,'bp','cheb1',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot(fr,hzm)
+hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot(fr,hzm,'r')
+]]>     </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

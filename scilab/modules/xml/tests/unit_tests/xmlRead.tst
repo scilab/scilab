@@ -8,6 +8,10 @@
 
 
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
+assert_checktrue(xmlIsValidObject(xmlFile));
+a=xmlGetOpenDocs();
+assert_checkequal(a(1).url, SCI+"/etc/modules.xml");
+
 content=xmlDump(xmlFile);
 assert_checktrue(length(content)>0);
 assert_checktrue(size(content)>=[20,1]);
@@ -18,7 +22,10 @@ assert_checkerror("xmlDelete(xmlFile)", msgerr);
 
 
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
+assert_checktrue(xmlIsValidObject(xmlFile));
 xmlFile2=xmlRead(SCI+"/etc/classpath.xml");
+assert_checktrue(xmlIsValidObject(xmlFile2));
+
 content=xmlDump(xmlFile);
 content2=xmlDump(xmlFile2);
 //assert_checkequal(content, content2);
@@ -37,6 +44,7 @@ xmlFile=xmlRead(SCI+"/etc/modules.xml");
 assert_checkequal(xmlFile.root.name,"modules");       
 assert_checkequal(xmlFile.root.type,"XML_ELEMENT_NODE");
 elements=xmlFile.root.children;
+assert_checktrue(xmlIsValidObject(elements));
 assert_checktrue(size(elements)>0);
 for (i=1:length(elements))
   if (xmlFile.root.children(i).type<>"XML_COMMENT_NODE")

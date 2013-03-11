@@ -37,7 +37,6 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
     fscanfMatResult *results = NULL;
 
-    //Nbvars = 0;
     CheckRhs(1, 3);
     CheckLhs(1, 2);
 
@@ -48,7 +47,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
         int iType3 = 0;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
@@ -56,7 +55,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
         }
 
         sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
@@ -65,12 +64,12 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
         if (iType3 != sci_strings)
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
             return 0;
         }
 
         sciErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
@@ -79,13 +78,13 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
         if ( (m3 != n3) && (n3 != 1) )
         {
-            Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, piAddressVarThree, &separator))
         {
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
         bIsDefaultSeparator = FALSE;
@@ -102,18 +101,26 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
         int iType2 = 0;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
-            if (separator) {FREE(separator); separator = NULL;}
+            if (separator)
+            {
+                FREE(separator);
+                separator = NULL;
+            }
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
         }
 
         sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
-            if (separator) {FREE(separator); separator = NULL;}
+            if (separator)
+            {
+                FREE(separator);
+                separator = NULL;
+            }
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
@@ -121,15 +128,23 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
         if (iType2 != sci_strings)
         {
-            if (separator) {FREE(separator); separator = NULL;}
-            Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            if (separator)
+            {
+                FREE(separator);
+                separator = NULL;
+            }
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
         sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
-            if (separator) {FREE(separator); separator = NULL;}
+            if (separator)
+            {
+                FREE(separator);
+                separator = NULL;
+            }
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 0;
@@ -137,15 +152,23 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
         if ( (m2 != n2) && (n2 != 1) )
         {
-            if (separator) {FREE(separator); separator = NULL;}
-            Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+            if (separator)
+            {
+                FREE(separator);
+                separator = NULL;
+            }
+            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &Format))
         {
-            if (separator) {FREE(separator); separator = NULL;}
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            if (separator)
+            {
+                FREE(separator);
+                separator = NULL;
+            }
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
     }
@@ -155,20 +178,36 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
-        if (separator) {FREE(separator); separator = NULL;}
-        if (Format) {FREE(Format); Format = NULL;}
+        if (separator)
+        {
+            FREE(separator);
+            separator = NULL;
+        }
+        if (Format)
+        {
+            FREE(Format);
+            Format = NULL;
+        }
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
-        if (separator) {FREE(separator); separator = NULL;}
-        if (Format) {FREE(Format); Format = NULL;}
+        if (separator)
+        {
+            FREE(separator);
+            separator = NULL;
+        }
+        if (Format)
+        {
+            FREE(Format);
+            Format = NULL;
+        }
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
@@ -176,17 +215,33 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
     if (iType1 != sci_strings)
     {
-        if (separator) {FREE(separator); separator = NULL;}
-        if (Format) {FREE(Format); Format = NULL;}
-        Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        if (separator)
+        {
+            FREE(separator);
+            separator = NULL;
+        }
+        if (Format)
+        {
+            FREE(Format);
+            Format = NULL;
+        }
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
     sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
-        if (separator) {FREE(separator); separator = NULL;}
-        if (Format) {FREE(Format); Format = NULL;}
+        if (separator)
+        {
+            FREE(separator);
+            separator = NULL;
+        }
+        if (Format)
+        {
+            FREE(Format);
+            Format = NULL;
+        }
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
@@ -194,24 +249,40 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
     if ( (m1 != n1) && (n1 != 1) )
     {
-        if (separator) {FREE(separator); separator = NULL;}
-        if (Format) {FREE(Format); Format = NULL;}
-        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        if (separator)
+        {
+            FREE(separator);
+            separator = NULL;
+        }
+        if (Format)
+        {
+            FREE(Format);
+            Format = NULL;
+        }
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
     if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &filename))
     {
-        if (separator) {FREE(separator); separator = NULL;}
-        if (Format) {FREE(Format); Format = NULL;}
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        if (separator)
+        {
+            FREE(separator);
+            separator = NULL;
+        }
+        if (Format)
+        {
+            FREE(Format);
+            Format = NULL;
+        }
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
     expandedFilename = expandPathVariable(filename);
     if (bIsDefaultSeparator)
     {
-        #define NB_DEFAULT_SUPPORTED_SEPARATORS 2
+#define NB_DEFAULT_SUPPORTED_SEPARATORS 2
 
         /* bug 8148 */
         /* default separator can be a space or a tabulation */
@@ -220,7 +291,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
         for (i = 0; i < NB_DEFAULT_SUPPORTED_SEPARATORS; i++)
         {
-            results = fscanfMat(expandedFilename, Format, supportedSeparators[i], TRUE);
+            results = fscanfMat(expandedFilename, Format, supportedSeparators[i]);
             if (results && results->err == FSCANFMAT_NO_ERROR)
             {
                 break;
@@ -229,23 +300,35 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
     }
     else
     {
-        results = fscanfMat(expandedFilename, Format, separator, TRUE);
+        results = fscanfMat(expandedFilename, Format, separator);
     }
 
-    if (expandedFilename) {FREE(expandedFilename); expandedFilename = NULL;}
-    if (Format) {FREE(Format); Format = NULL;}
-    if (separator) {FREE(separator); separator = NULL;}
+    if (expandedFilename)
+    {
+        FREE(expandedFilename);
+        expandedFilename = NULL;
+    }
+    if (Format)
+    {
+        FREE(Format);
+        Format = NULL;
+    }
+    if (separator)
+    {
+        FREE(separator);
+        separator = NULL;
+    }
 
     if (results)
     {
-        switch(results->err)
+        switch (results->err)
         {
-        case FSCANFMAT_NO_ERROR:
+            case FSCANFMAT_NO_ERROR:
             {
                 if ( (results->values) && (results->m > 0) && (results->n > 0))
                 {
                     sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, results->m, results->n, results->values);
-                    if(sciErr.iErr)
+                    if (sciErr.iErr)
                     {
                         freeFscanfMatResult(results);
                         results = NULL;
@@ -274,7 +357,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
                         freeFscanfMatResult(results);
                         results = NULL;
 
-                        if(sciErr.iErr)
+                        if (sciErr.iErr)
                         {
                             printError(&sciErr, 0);
                             return 0;
@@ -300,45 +383,53 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
                 freeFscanfMatResult(results);
                 results = NULL;
 
-                if (filename) {FREE(filename); filename = NULL;}
+                if (filename)
+                {
+                    FREE(filename);
+                    filename = NULL;
+                }
 
                 PutLhsVar();
             }
             break;
-        case FSCANFMAT_MOPEN_ERROR:
+            case FSCANFMAT_MOPEN_ERROR:
             {
-                Scierror(999,_("%s: can not open file %s.\n"), fname, filename);
+                Scierror(999, _("%s: can not open file %s.\n"), fname, filename);
             }
             break;
-        case FSCANFMAT_READLINES_ERROR:
+            case FSCANFMAT_READLINES_ERROR:
             {
-                Scierror(999,_("%s: can not read file %s.\n"), fname, filename);
+                Scierror(999, _("%s: can not read file %s.\n"), fname, filename);
             }
             break;
-        case FSCANFMAT_FORMAT_ERROR:
+            case FSCANFMAT_FORMAT_ERROR:
             {
-                Scierror(999,_("%s: Invalid format.\n"), fname);
+                Scierror(999, _("%s: Invalid format.\n"), fname);
             }
             break;
-        case FSCANFMAT_MEMORY_ALLOCATION:
+            case FSCANFMAT_MEMORY_ALLOCATION:
             {
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
             }
             break;
-        default:
-        case FSCANFMAT_ERROR:
+            default:
+            case FSCANFMAT_ERROR:
             {
-                Scierror(999,_("%s: error.\n"), fname);
+                Scierror(999, _("%s: error.\n"), fname);
             }
             break;
         }
     }
     else
     {
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
     }
 
-    if (filename) {FREE(filename); filename = NULL;}
+    if (filename)
+    {
+        FREE(filename);
+        filename = NULL;
+    }
 
     return 0;
 }

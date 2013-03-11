@@ -27,3 +27,5 @@ GetRhsVarMatrixDouble
 iAllocMatrixOfDouble
 GetRhsVarMatrixComplex
 getrhscvar_
+MyHeapAlloc
+MyHeapFree

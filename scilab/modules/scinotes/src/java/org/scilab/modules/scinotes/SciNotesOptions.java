@@ -73,17 +73,12 @@ public class SciNotesOptions {
                 case WINDOWS:
                     this.eol = ScilabDocument.EOLWIN;
                     break;
-                case MAC:
-                    this.eol = ScilabDocument.EOLMAC;
-                    break;
                 default:
                     this.eol = ScilabDocument.EOLUNIX;
                     break;
                 }
             } else if (eol.startsWith("Windows")) {
                 this.eol = ScilabDocument.EOLWIN;
-            } else if (eol.startsWith("Mac")) {
-                this.eol = ScilabDocument.EOLMAC;
             } else {
                 this.eol = ScilabDocument.EOLUNIX;
             }

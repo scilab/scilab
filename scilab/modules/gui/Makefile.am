@@ -195,45 +195,42 @@ sci_gateway/cpp/gui_gw.cpp \
 sci_gateway/cpp/sci_fire_closing_finished.cpp
 
 libscigui_la_CPPFLAGS = \
-			-I$(srcdir)/includes/ \
-			-I$(srcdir)/src/cpp/ \
-			-I$(srcdir)/src/c/ \
-			-I$(srcdir)/src/jni/ \
-			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
-            -I$(top_srcdir)/libs/MALLOC/includes/ \
-            -I$(top_srcdir)/libs/hashtable/ \
-            -I$(top_srcdir)/libs/dynamiclibrary/includes\
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/graphics/includes/ \
-			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
-			-I$(top_srcdir)/modules/graphic_objects/includes/ \
-			-I$(top_srcdir)/modules/graphic_export/includes/ \
-	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/types/includes/ \
-			-I$(top_srcdir)/modules/ast/includes/ \
-			-I$(top_srcdir)/modules/system_env/includes/ \
-			-I$(top_srcdir)/modules/symbol/includes/ \
-			-I$(top_srcdir)/modules/types/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/types/includes/ \
-			-I$(top_srcdir)/modules/commons/src/jni/ \
-			$(JAVA_JNI_INCLUDE) \
-			$(AM_CPPFLAGS)
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/cpp/ \
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/src/jni/ \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/graphics/includes/ \
+-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
+-I$(top_srcdir)/modules/graphic_objects/includes/ \
+-I$(top_srcdir)/modules/graphic_export/includes/ \
+-I$(top_srcdir)/modules/jvm/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/ \
+-I$(top_srcdir)/modules/symbol/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/commons/src/jni/ \
+-I$(top_srcdir)/modules/dynamic_link/includes \
+$(JAVA_JNI_INCLUDE) \
+$(AM_CPPFLAGS)
 
 # Without the GUI module
-libscigui_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/types/includes/ \
-			-I$(top_srcdir)/modules/ast/includes/ \
-			$(AM_CPPFLAGS)
+libscigui_disable_la_CPPFLAGS = \
+-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+$(AM_CPPFLAGS)
 
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c

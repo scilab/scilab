@@ -16,7 +16,6 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "gatewaystruct.hxx"
-
 extern "C"
 {
 #include "core_math.h"
@@ -26,6 +25,7 @@ extern "C"
 #include "sci_path.h"
 #include "MALLOC.h"
 #include "os_swprintf.h"
+#include "lasterror.h"
 }
 
 namespace types
@@ -205,7 +205,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     //call gateway (thoses cast should looks  suspicious)
     iRet = m_pOldFunc(pFunctionName, reinterpret_cast<int*>(&gStr));
     FREE(pFunctionName);
-    if (iRet != 0)
+    if (isError())
     {
         retVal = Callable::Error;
     }

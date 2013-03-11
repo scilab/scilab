@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-03-08 23:21+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -239,7 +239,7 @@ msgid "Wrong type for first argument: Square matrix expected.\n"
 msgstr "最初の引数 の型が間違っています: 正方行列を指定してください.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgid "Wrong type for argument #%d: Square matrix expected.\n"
 msgstr "引数 %d の型が間違っています: 正方行列を指定してください.\n"
 
 msgid "Invalid index.\n"
@@ -297,8 +297,8 @@ msgid "Wrong first argument.\n"
 msgstr "最初の引数が間違っています.\n"
 
 #, c-format
-msgid "Wrong input argument %d.\n"
-msgstr "入力引数 %d が間違っています.\n"
+msgid "Wrong input argument #%d.\n"
+msgstr "入力引数 #%d が間違っています.\n"
 
 #, c-format
 msgid "Incorrect function at line %d.\n"
@@ -328,8 +328,8 @@ msgid "Not implemented in scilab...\n"
 msgstr "Scilabには実装されていません...\n"
 
 #, c-format
-msgid "Wrong argument %d.\n"
-msgstr "引数 %d が間違っています.\n"
+msgid "Wrong argument #%d.\n"
+msgstr "引数 #%d が間違っています.\n"
 
 #
 # File: src/c/errmsg.c, line: 358
@@ -357,23 +357,23 @@ msgid "subroutine not found: %s\n"
 msgstr "サブルーチンが見つかりません: %s\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "引数 %d の型が間違っています: 実行列を指定してください.\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
-msgstr "入力引数 %d の型が間違っています: 実数または複素数の行列を指定してください.\n"
+msgid "Wrong type for input argument #%d: Real or complex matrix expected.\n"
+msgstr "入力引数 #%d の型が間違っています:  実数または複素数の行列を指定してください.\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Polynomial expected.\n"
-msgstr "入力引数 %d の型が間違っています: 多項式を指定してください.\n"
+msgid "Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr "入力引数 #%d の型が間違っています:  多項式を指定してください.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: String expected.\n"
+msgid "Wrong type for argument #%d: String expected.\n"
 msgstr "引数 %d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: List expected.\n"
+msgid "Wrong type for argument #%d: List expected.\n"
 msgstr "引数 %d の型が間違っています: リストを指定してください.\n"
 
 msgid "Problem with comparison symbol...\n"
@@ -478,19 +478,19 @@ msgid "Incorrect function (argument n: %d).\n"
 msgstr "関数に誤りがあります (引数n : %d).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　実数ベクトルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
 msgstr "%s: 引数 %d の型が間違っています: スカラーを指定してください.\n"
 
 msgid "Host does not answer...\n"
@@ -509,40 +509,40 @@ msgid "%s: singular or asymmetric problem.\n"
 msgstr "%s: 問題が特異または非対称です.\n"
 
 #, c-format
-msgid "Wrong size for argument %d.\n"
+msgid "Wrong size for argument #%d.\n"
 msgstr "引数 %d の大きさが間違っています.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgid "Wrong type for argument #%d: Transfer matrix expected.\n"
 msgstr "引数 %d の型が間違っています: 伝達関数行列を指定してください.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In state space form expected.\n"
+msgid "Wrong type for argument #%d: In state space form expected.\n"
 msgstr "引数 %d の大きさが間違っています: 状態空間表現で指定してください.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational matrix expected.\n"
 msgstr "引数 %d の型が間違っています: 有理行列を指定してください.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgid "Wrong type for argument #%d: In continuous time expected.\n"
 msgstr "引数 %d の型が間違っています:  連続時間で指定してください.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgid "Wrong type for argument #%d: In discrete time expected.\n"
 msgstr "引数 %d の大きさが間違っています: 離散時間で指定してください.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "引数 %d の型が間違っています: SISO を指定してください.\n"
 
 #, c-format
-msgid "time domain of argument %d is not defined.\n"
-msgstr "引数 %d の時間領域が定義されていません.\n"
+msgid "time domain of argument #%d is not defined.\n"
+msgstr "引数 #%d の時間領域が定義されていません.\n"
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: A system in state space or transfer matrix form "
+"Wrong type for argument #%d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr "引数 %d の型が間違っています:  状態空間表現または伝達関数行列形式でシステムを指定してください.\n"
 
@@ -636,7 +636,7 @@ msgstr ""
 "このバグを報告してください:\n"
 
 #, c-format
-msgid "Wrong value for argument %d.\n"
+msgid "Wrong value for argument #%d.\n"
 msgstr "引数 %d の値が間違っています.\n"
 
 #, c-format
@@ -645,7 +645,7 @@ msgstr "リスト要素番号 %d が未定義です.\n"
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: Named variable not an expression expected.\n"
+"Wrong type for argument #%d: Named variable not an expression expected.\n"
 msgstr "引数 %d の型が間違っています:  式ではない名前付きの変数を指定してください.\n"
 
 msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
@@ -741,45 +741,45 @@ msgid "check or define function %s for overloading.\n"
 msgstr "関数 %s を確認またはオーバーロード定義してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: 引数 %d の大きさが間違っています: 大きさを (%d,%d)  としてください.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: 引数 %d の大きさが間違っています: 大きさを %d としてください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　文字列の行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています: 論理値行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　リスト(list)を指定してください.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　関数または文字列(外部関数)を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 多項式を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　整数行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　ベクトルを指定してください.\n"
 
 #, c-format
@@ -790,20 +790,20 @@ msgid "Argument type must be boolean.\n"
 msgstr "引数の型を論理値としてください.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgid "Wrong type for argument #%d: Boolean or scalar expected.\n"
 msgstr "引数 %d の型が間違っています: 論理値またはスカラーを指定してください.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgid "Wrong type for argument #%d: Sparse matrix of scalars expected.\n"
 msgstr "引数 %d の型が間違っています:  スカラーの疎行列を指定してください.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgid "Wrong type for argument #%d: Handle to sparse lu factors expected.\n"
 msgstr "引数 %d の型が間違っています: 疎行列 LU分解を指定してください.\n"
 
 #, c-format
-msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
-msgstr "引数 %d の型が間違っています:  疎行列またはスカラー行列を指定してください.\n"
+msgid "Wrong type argument #%d: Sparse or full scalar matrix expected.\n"
+msgstr "引数 #%d の型が間違っています:  疎行列または通常のスカラー行列を指定してください.\n"
 
 msgid "Null variable cannot be used here.\n"
 msgstr "NULL変数はここでは使用できません.\n"
@@ -903,15 +903,15 @@ msgid "Function not defined for given argument type(s),\n"
 msgstr "関数は指定した引数型に関して定義されていません.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr "引数 %d の値が間違っています. luハンドルはもはや有効ではありません.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgid "Wrong value for argument #%d: Valid variable name expected.\n"
 msgstr "引数 %d の値が間違っています: 有効な変数名を指定してください.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Empty string expected.\n"
+msgid "Wrong value for argument #%d: Empty string expected.\n"
 msgstr "引数 %d の値が間違っています: 空の文字列を指定してください.\n"
 
 msgid "Recursive extraction is not valid in this context.\n"
@@ -964,7 +964,7 @@ msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr "ファイル書き込み時にエラー発生: ディスクが一杯かファイルが削除されました.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgid "Wrong value for argument #%d: Must not contain NaN or Inf.\n"
 msgstr "引数 %d の値が間違っています: NaN または Inf を含むことはできません.\n"
 
 #, c-format
@@ -985,12 +985,12 @@ msgstr "引数 %d に渡された関数の戻り値が不正です.\n"
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+"Wrong value for argument #%d: eigenvalues must have negative real parts.\n"
 msgstr "引数 %d の値が間違っています: 固有値の実部は負である必要があります.\n"
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+"Wrong value for argument #%d: eigenvalues modulus must be less than one.\n"
 msgstr "引数 %d の値が間違っています: 固有値率を 1未満とする必要があります.\n"
 
 #, c-format

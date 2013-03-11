@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-11-27 14:03+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -42,11 +42,11 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s：参数%d的类型错误：应该为实数标量。\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
 msgstr "%s：参数%d的大小错误：应该为实数标量。\n"
 
 #, c-format
@@ -320,8 +320,8 @@ msgstr "错误：无法定义环境变量%s。\n"
 msgid "Scilab Enterprises\n"
 msgstr "Scilab Enterprises\n"
 
-msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
-msgstr "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgid "Copyright (c) 2011-2013 (Scilab Enterprises)\n"
+msgstr ""
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr "版权所有 (c) 1989-2012 (INRIA)\n"
@@ -519,21 +519,21 @@ msgid "%s: argument %d should be a list of size at least %d.\n"
 msgstr "%s：参数 %d 应该为大小至少 %d 的列表。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该是实矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s：参数 %d 的大小出错：应该为 （%d，%d）。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
+"%s: Wrong type for argument #%d (List element: %d): Real or complex matrix "
 "expected.\n"
 msgstr "%s：参数 %d（列表元素：%d） 的类型出错：应该为实的或者复的矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为实的或者复的矩阵。\n"
 
 #, c-format
@@ -541,102 +541,105 @@ msgid "%s: Too many names.\n"
 msgstr "%s：名字太多。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
+msgid "%s: Wrong type for argument #%d: List of size at least %d expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为大小至少为 %d 的列表。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Int matrix expected.\n"
 msgstr "%s：参数 %d（列表元素：%d） 的类型出错：应该为整数型矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgid "%s: Wrong size for argument #%d: At least %d expected.\n"
 msgstr "%s：参数 %d 的大小出错：应该至少为 %d。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Boolean matrix "
+"expected.\n"
 msgstr "%s：参数 %d（列表元素：%d）的类型出错：应该为布尔型矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为布尔型矩阵。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Sparse matrix expected.\n"
 msgstr "%s：参数 %d（列表元素：%d） 的类型出错：应该为稀疏矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为稀疏矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d (List element: %d): Vector expected.\n"
 msgstr "%s：参数 %d（列表元素：%d） 的类型出错：应该为向量。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为向量。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为实向量。\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s：参数 %d 的大小出错：应该为 %d。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d (List element: %d): Scalar expected.\n"
 msgstr "%s：参数 %d（列表元素：%d） 的类型出错：应该为标量。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为标量，“%s”或者“%s”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of strings "
+"%s: Wrong type for argument #%d (List element: %d): Matrix of strings "
 "expected.\n"
 msgstr "%s：参数 %d（列表元素：%d） 的类型出错：应该为字符串矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为字符串矩阵。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): String matrix expected.\n"
 msgstr "%s：参数 %d（列表元素：%d） 的类型出错：应该是字符串矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为字符串矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为列表。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为多项式矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr "%s：参数%d的类型错误：应该为多项式。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为 Working 整型矩阵。\\n\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Row vector expected.\n"
 msgstr "%s：参数 %d（列表元素：%d） 的类型出错：应该为行向量。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Row vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为行向量。\n"
 
 #, c-format
@@ -644,20 +647,20 @@ msgid "%s: argument %d >(%d) should be a column vector.\n"
 msgstr "%s：参数 %d > （%d）应该为列向量。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Column vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Column vector expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为列向量。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Boxed pointer expected.\n"
 msgstr "%s：参数 %d（列表元素：%d）的类型出错：应该为盒装的指针。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
+msgid "%s: Wrong type for argument #%d: Boxed pointer expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为盒装指针。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为矩阵。\n"
 
 #, c-format
@@ -666,7 +669,7 @@ msgstr "%s：在预定义表或者链表中没有找到入口点 %s。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为函数或者字符串（外部函数）。\n"
 
@@ -684,12 +687,12 @@ msgstr "%f：没有更多空间来存储字符串参数。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of handle "
+"%s: Wrong type for argument #%d (List element: %d): Matrix of handle "
 "expected.\n"
 msgstr "%s：参数 %d（列表元素：%d） 的类型出错：应该为句柄矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为句柄矩阵。\n"
 
 #, c-format
@@ -929,6 +932,10 @@ msgid "Impossible to create : %s"
 msgstr "无法创建：%s"
 
 #, c-format
+msgid "Warning: Could not resolve the realpath of %s.\n"
+msgstr ""
+
+#, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr "错误：不能创建%s：%s\n"
 
@@ -971,8 +978,9 @@ msgstr ""
 msgid "Empty tab"
 msgstr "空标签"
 
-msgid "Scilab Console"
-msgstr "Scilab控制台"
+#, c-format
+msgid "Scilab %s Console"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"

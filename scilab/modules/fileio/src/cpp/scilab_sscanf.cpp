@@ -35,7 +35,7 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
     int j                       = 0;
     int nbrOfDigit              = 0;
     int dims                    = 2;
-    int dimsArray[2]            = {_iNiter,1};
+    int dimsArray[2]            = {_iNiter, 1};
     BOOL bStar                  = FALSE;
     BOOL bUnsigned              = FALSE;
     BOOL bNegatif               = FALSE;
@@ -43,55 +43,55 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
     int base                    = 0;
     wchar_t wcsLLH              = L' ';
     wchar_t* wcsData            = NULL;
-    int sizeOfData              = wcslen(_wcsData);
+    int sizeOfData              = (int)wcslen(_wcsData);
     int iCountDataRead          = 0;
 
     wcsData = (wchar_t*)MALLOC((sizeOfData + 1) * sizeof(wchar_t));
     memcpy(wcsData, _wcsData, sizeOfData * sizeof(wchar_t));
     wcsData[sizeOfData] = '\0';
 
-    while(i < (int)wcslen(_wcsFormat))
+    while (i < (int)wcslen(_wcsFormat))
     {
-        while(bIgnoredChars && i < (int)wcslen(_wcsFormat)) // %da%s => 'a' is an ignored char.
+        while (bIgnoredChars && i < (int)wcslen(_wcsFormat)) // %da%s => 'a' is an ignored char.
         {
-            if(wcsData != NULL && wcsData[0] != L'\0' && _wcsFormat[i] == wcsData[0])
+            if (wcsData != NULL && wcsData[0] != L'\0' && _wcsFormat[i] == wcsData[0])
             {
-                if(_wcsFormat[i] != L' ')
+                if (_wcsFormat[i] != L' ')
                 {
                     i++;
                     wcsData++;
                 }
                 else
                 {
-                    while(wcsData[0] == L' ')
+                    while (wcsData[0] == L' ')
                     {
                         wcsData++;
                     }
-                    while(_wcsFormat[i] == L' ')
+                    while (_wcsFormat[i] == L' ')
                     {
                         i++;
                     }
                 }
             }
-            else if((wcsData == NULL || wcsData[0] == L'\0') && i < (int)wcslen(_wcsFormat) && iCountDataRead == 0 && _pITOut->size() == 0)
+            else if ((wcsData == NULL || wcsData[0] == L'\0') && i < (int)wcslen(_wcsFormat) && iCountDataRead == 0 && _pITOut->size() == 0)
             {
                 iCountDataRead = -1;
             }
             else
             {
-                if(_wcsFormat[i] == L' ')
+                if (_wcsFormat[i] == L' ')
                 {
                     do
                     {
                         i++;
                     }
-                    while(i < (int)wcslen(_wcsFormat) && _wcsFormat[i] == L' ');
+                    while (i < (int)wcslen(_wcsFormat) && _wcsFormat[i] == L' ');
                 }
 
-                if(_wcsFormat[i] != L'%')
+                if (_wcsFormat[i] != L'%')
                 {
                     wcsData = NULL;
-                    while(i < (int)wcslen(_wcsFormat) && _wcsFormat[i] != L'%')
+                    while (i < (int)wcslen(_wcsFormat) && _wcsFormat[i] != L'%')
                     {
                         i++;
                     }
@@ -99,192 +99,67 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                 break;
             }
         }
-        if(i == (int)wcslen(_wcsFormat))
+        if (i == (int)wcslen(_wcsFormat))
         {
             break;
         }
 
-        if(iswdigit(_wcsFormat[i]))
+        if (iswdigit(_wcsFormat[i]))
         {
             nbrOfDigit = wcstol(&_wcsFormat[i], NULL, 10);
-            while(iswdigit(_wcsFormat[i]))
+            while (iswdigit(_wcsFormat[i]))
             {
                 i++;
             }
         }
-        else switch(_wcsFormat[i])
-        {
-            case L' ' :
-            case L'\n':
-            case L'\t': i++;
-            break;
-            case L'%' : i++; bIgnoredChars = FALSE;
-            break;
-            case L'*' : bStar = TRUE; i++;
-            break;
-            case L'h' :
-            case L'l' :
-            case L'L' : wcsLLH = _wcsFormat[i]; i++;
-            break;
-            case L'c' :
+        else switch (_wcsFormat[i])
             {
-                if(wcsData != NULL && wcsData[0] != L'\0') // If the end of data has not been reached we can get datas.
-                {
-                    wchar_t wcSingleData[2];
-                    wcSingleData[0] = wcsData[0];
-                    wcSingleData[1] = 0;
-
-                    if(!bStar) // If this format is not ignored put the datas found.
-                    {
-                        if(_iIterrator == 0) // Create and initialize the container only the first time.
-                        {
-                            types::String* pS = new types::String(dims,dimsArray);
-                            for(int k = 0 ; k < pS->getSize(); k++)
-                            {
-                                pS->set(k, L"");
-                            }
-                            _pITOut->push_back(pS);
-                        }
-                        (*_pITOut)[j]->getAs<types::String>()->set(_iIterrator, wcSingleData);
-                        iCountDataRead++;
-                    }
-                    wcsData++;
-                }
-                else
-                {
-                    if(_iIterrator == 0 && !bStar && _iNiter == 1)
-                    {
-                        _pITOut->push_back(types::Double::Empty());
-                    }
-                    else
-                    {
-                        return -10;
-                    }
-                }
-                if(!bStar)
-                {
-                    j++;
-                }
-                i++;
-                bIgnoredChars = TRUE;
-                bStar = FALSE;
-            }
-            break;
-            case L's' :
-            {
-                if(wcsData != NULL && wcsData[0] != L'\0')
-                {
-                    wchar_t* wcsSingleData  = NULL;
-                    wchar_t* wcsRes         = NULL;
-                    wchar_t seps[]          = L" \t\n";
-                    int sizeOfCurrentData   = wcslen(wcsData);
-                    wchar_t* wcsTemp        = (wchar_t*)MALLOC((sizeOfCurrentData + 1) * sizeof(wchar_t));
-                    
-                    memcpy(wcsTemp, wcsData, sizeOfCurrentData * sizeof(wchar_t));
-                    wcsTemp[sizeOfCurrentData] = L'\0';
-                    wcsRes = os_wcstok(wcsTemp, seps, &wcsTemp); // the seps[] found is replaced by the '\0' char.
-                    
-                    if(wcsTemp == NULL || wcsTemp[0] == L'\0')
-                    {
-                        wcsData = NULL;
-                    }
-                    else
-                    {
-                        wcsData += (wcslen(wcsData) - wcslen(wcsTemp) -1); // set the pointer on the seps[] and not on the next char.
-                    }
-                    
-                    if(nbrOfDigit) // Get only the numbers of digit indicated in the format. (ex: %2d)
-                    {
-                        wcsSingleData = (wchar_t*)MALLOC(sizeof(wchar_t) * (nbrOfDigit + 1));
-                        memcpy(wcsSingleData, wcsRes, sizeof(wchar_t) * nbrOfDigit);
-                        wcsSingleData[nbrOfDigit] = L'\0';
-                        nbrOfDigit = 0;
-                    }
-                    else // Get all data find.
-                    {
-                        wcsSingleData = wcsRes;
-                    }
-                    
-                    if(!bStar)
-                    {
-                        if(_iIterrator == 0)
-                        {
-                            types::String* pS = new types::String(dims,dimsArray);
-                            for(int k = 0 ; k < pS->getSize(); k++)
-                            {
-                                pS->set(k, L"");
-                            }
-                            _pITOut->push_back(pS);
-                        }
-                        (*_pITOut)[j]->getAs<types::String>()->set(_iIterrator, wcsSingleData);
-                        iCountDataRead++;
-                    }
-
-                    if(nbrOfDigit)
-                    {
-                        FREE(wcsSingleData);
-                    }
-                }
-                else
-                {
-                    if(_iIterrator == 0 && !bStar && _iNiter == 1)
-                    {
-                        _pITOut->push_back(types::Double::Empty());
-                    }
-                    else
-                    {
-                        return -10;
-                    }
-                }
-                if(!bStar)
-                {
-                    j++;
-                }
-                i++;
-                bIgnoredChars = TRUE;
-                bStar = FALSE;
-            }
-            break;
-            case L'[' :
-            {
-                if(wcsData != NULL && wcsData[0] != L'\0')
-                {
-                    wchar_t* wcsInside          = NULL;
-                    wchar_t* wcsCpyFormat       = NULL;
-                    unsigned int iPos           = 0;
-                    wchar_t* wcsSingleData      = NULL;
-                    wchar_t* wcsRes             = NULL;
-                    wchar_t* wscToFind          = NULL;
-                    BOOL bInv                   = FALSE;
-                    
+                case L' ' :
+                case L'\n':
+                case L'\t':
                     i++;
-                    wcsCpyFormat = (wchar_t*)MALLOC((wcslen(_wcsFormat) - i + 1) * sizeof(wchar_t));
-                    memcpy(wcsCpyFormat, &_wcsFormat[i], (wcslen(_wcsFormat) - i) * sizeof(wchar_t));
-                    wcsCpyFormat[wcslen(_wcsFormat) - i] = L'\0';
-
-                    wcsInside = os_wcstok(wcsCpyFormat,L"]",&wcsCpyFormat);
-                    i += wcslen(wcsInside) + 1; // +1 => ]
-                    
-                    wscToFind = findChars(wcsInside, &bInv);
-                    if(wscToFind == NULL)
+                    break;
+                case L'%' :
+                    i++;
+                    bIgnoredChars = FALSE;
+                    break;
+                case L'*' :
+                    bStar = TRUE;
+                    i++;
+                    break;
+                case L'h' :
+                case L'l' :
+                case L'L' :
+                    wcsLLH = _wcsFormat[i];
+                    i++;
+                    break;
+                case L'c' :
+                {
+                    if (wcsData != NULL && wcsData[0] != L'\0') // If the end of data has not been reached we can get datas.
                     {
-                        // MALLOC error
-                        return -10;
-                    }
+                        wchar_t wcSingleData[2];
+                        wcSingleData[0] = wcsData[0];
+                        wcSingleData[1] = 0;
 
-                    if(bInv)
-                    {
-                        iPos = wcscspn(wcsData, wscToFind);
+                        if (!bStar) // If this format is not ignored put the datas found.
+                        {
+                            if (_iIterrator == 0) // Create and initialize the container only the first time.
+                            {
+                                types::String* pS = new types::String(dims, dimsArray);
+                                for (int k = 0 ; k < pS->getSize(); k++)
+                                {
+                                    pS->set(k, L"");
+                                }
+                                _pITOut->push_back(pS);
+                            }
+                            (*_pITOut)[j]->getAs<types::String>()->set(_iIterrator, wcSingleData);
+                            iCountDataRead++;
+                        }
+                        wcsData++;
                     }
                     else
                     {
-                        iPos = wcsspn(wcsData, wscToFind);
-                    }
-
-                    if(iPos == 0)
-                    {
-                        // The string begins with a character which is not in wscToFind
-                        if(_iIterrator == 0 && !bStar && _iNiter == 1)
+                        if (_iIterrator == 0 && !bStar && _iNiter == 1)
                         {
                             _pITOut->push_back(types::Double::Empty());
                         }
@@ -293,421 +168,560 @@ int scilab_sscanf(wchar_t* _wcsFormat, wchar_t* _wcsData, int _iIterrator, int _
                             return -10;
                         }
                     }
-                    else
+                    if (!bStar)
                     {
-                        wcsRes = (wchar_t*)MALLOC((iPos + 1) * sizeof(wchar_t));
-                        memcpy(wcsRes, wcsData, iPos * sizeof(wchar_t));
-                        wcsRes[iPos] = '\0';
+                        j++;
+                    }
+                    i++;
+                    bIgnoredChars = TRUE;
+                    bStar = FALSE;
+                }
+                break;
+                case L's' :
+                {
+                    if (wcsData != NULL && wcsData[0] != L'\0')
+                    {
+                        wchar_t* wcsSingleData  = NULL;
+                        wchar_t* wcsRes         = NULL;
+                        wchar_t seps[]          = L" \t\n";
+                        int sizeOfCurrentData   = (int)wcslen(wcsData);
+                        wchar_t* wcsTemp        = (wchar_t*)MALLOC((sizeOfCurrentData + 1) * sizeof(wchar_t));
 
-                        FREE(wcsInside);
+                        memcpy(wcsTemp, wcsData, sizeOfCurrentData * sizeof(wchar_t));
+                        wcsTemp[sizeOfCurrentData] = L'\0';
+                        wcsRes = os_wcstok(wcsTemp, seps, &wcsTemp); // the seps[] found is replaced by the '\0' char.
 
-                        if(nbrOfDigit)
+                        if (wcsTemp == NULL || wcsTemp[0] == L'\0')
+                        {
+                            wcsData = NULL;
+                        }
+                        else
+                        {
+                            wcsData += (wcslen(wcsData) - wcslen(wcsTemp) - 1); // set the pointer on the seps[] and not on the next char.
+                        }
+
+                        if (nbrOfDigit) // Get only the numbers of digit indicated in the format. (ex: %2d)
                         {
                             wcsSingleData = (wchar_t*)MALLOC(sizeof(wchar_t) * (nbrOfDigit + 1));
                             memcpy(wcsSingleData, wcsRes, sizeof(wchar_t) * nbrOfDigit);
                             wcsSingleData[nbrOfDigit] = L'\0';
-                            wcsData += nbrOfDigit;
+                            nbrOfDigit = 0;
                         }
-                        else
+                        else // Get all data find.
                         {
                             wcsSingleData = wcsRes;
-                            wcsData += iPos;
                         }
-                    }
 
-                    if(!bStar)
-                    {
-                        if(_iIterrator == 0)
+                        if (!bStar)
                         {
-                            types::String* pS = new types::String(dims,dimsArray);
-                            for(int k = 0 ; k < pS->getSize(); k++)
+                            if (_iIterrator == 0)
                             {
-                                pS->set(k, L"");
+                                types::String* pS = new types::String(dims, dimsArray);
+                                for (int k = 0 ; k < pS->getSize(); k++)
+                                {
+                                    pS->set(k, L"");
+                                }
+                                _pITOut->push_back(pS);
                             }
-                            _pITOut->push_back(pS);
-                        }
-                        if(wcsSingleData != NULL)
-                        {
                             (*_pITOut)[j]->getAs<types::String>()->set(_iIterrator, wcsSingleData);
                             iCountDataRead++;
                         }
-                    }
 
-                    if(nbrOfDigit)
-                    {
-                        FREE(wcsSingleData);
-                    }
-                }
-                else
-                {
-                    if(_iIterrator == 0 && !bStar && _iNiter == 1)
-                    {
-                        _pITOut->push_back(types::Double::Empty());
+                        if (nbrOfDigit)
+                        {
+                            FREE(wcsSingleData);
+                        }
                     }
                     else
                     {
-                        return -10;
-                    }
-                }
-                if(!bStar)
-                {
-                    j++;
-                }
-                bIgnoredChars   = TRUE;
-                nbrOfDigit      = 0;
-                bStar           = FALSE;
-            }
-            break;
-            case L'x' :
-            case L'X' : base += 6; // 6 + 2 + 8 = 16 // Compute the base of data to get.
-            case L'u' : if(base == 0) bUnsigned = TRUE;// unsigned int
-            case L'i' :
-            case L'd' : base += 2; // 2 + 8 = 10
-            case L'o' : base += 8; // 8 = 8 :D
-            {
-                if(wcsData != NULL && wcsData[0] != L'\0')
-                {
-                    long int iSingleData = 0;
-                    while(wcsData[0] == L' ')
-                    {
-                        wcsData++;
-                    }
-                    if(nbrOfDigit)
-                    {
-                        wchar_t* number = NULL;
-                        if(wcslen(wcsData) < nbrOfDigit)
+                        if (_iIterrator == 0 && !bStar && _iNiter == 1)
                         {
-                            nbrOfDigit = wcslen(wcsData);
-                        }
-
-                        number = (wchar_t*)MALLOC((nbrOfDigit + 1) * sizeof(wchar_t));
-                        memcpy(number, wcsData, nbrOfDigit * sizeof(wchar_t));
-                        number[nbrOfDigit] = L'\0';
-                        iSingleData = wcstoul(number, &number, base);
-                        if((iSingleData == 0) && (number[0] == wcsData[0]))
-                        {
-                            if(_iIterrator == 0 && !bStar && _iNiter == 1)
-                            {
-                                wcsData = NULL;
-                                _pITOut->push_back(types::Double::Empty());
-                                bStar = TRUE;
-                            }
-                            else
-                            {
-                                return -10;
-                            }
-                        }
-                        if(number == NULL)
-                        {
-                            wcsData += nbrOfDigit;
+                            _pITOut->push_back(types::Double::Empty());
                         }
                         else
                         {
-                            wcsData += (nbrOfDigit - wcslen(number));
+                            return -10;
                         }
-                        nbrOfDigit = 0;
                     }
-                    else
+                    if (!bStar)
                     {
-                        wchar_t temp = wcsData[0];
-                        iSingleData = wcstoul(wcsData,&wcsData,base);
-                        if((iSingleData == 0) && (temp == wcsData[0]))
-                        {
-                            if(_iIterrator == 0 && !bStar && _iNiter == 1)
-                            {
-                                wcsData = NULL;
-                                _pITOut->push_back(types::Double::Empty());
-                                bStar = TRUE;
-                            }
-                            else
-                            {
-                                return -10;
-                            }
-                        }
+                        j++;
                     }
+                    i++;
+                    bIgnoredChars = TRUE;
+                    bStar = FALSE;
+                }
+                break;
+                case L'[' :
+                {
+                    if (wcsData != NULL && wcsData[0] != L'\0')
+                    {
+                        wchar_t* wcsInside          = NULL;
+                        wchar_t* wcsCpyFormat       = NULL;
+                        unsigned int iPos           = 0;
+                        wchar_t* wcsSingleData      = NULL;
+                        wchar_t* wcsRes             = NULL;
+                        wchar_t* wscToFind          = NULL;
+                        BOOL bInv                   = FALSE;
 
-                    if(!bStar)
-                    {
-                        if(_iIterrator == 0)
+                        i++;
+                        wcsCpyFormat = (wchar_t*)MALLOC((wcslen(_wcsFormat) - i + 1) * sizeof(wchar_t));
+                        memcpy(wcsCpyFormat, &_wcsFormat[i], (wcslen(_wcsFormat) - i) * sizeof(wchar_t));
+                        wcsCpyFormat[wcslen(_wcsFormat) - i] = L'\0';
+
+                        wcsInside = os_wcstok(wcsCpyFormat, L"]", &wcsCpyFormat);
+                        i += (int)wcslen(wcsInside) + 1; // +1 => ]
+
+                        wscToFind = findChars(wcsInside, &bInv);
+                        if (wscToFind == NULL)
                         {
-                            switch(wcsLLH)
-                            {
-                                case L'h' :
-                                {
-                                    if(bUnsigned)
-                                    {
-                                        types::UInt16* pUInt16 = new types::UInt16(dims,dimsArray);
-                                        for(int k = 0; k < pUInt16->getSize(); k++)
-                                        {
-                                            pUInt16->set(k, 0);
-                                        }
-                                        _pITOut->push_back(pUInt16);                                
-                                    }
-                                    else
-                                    {
-                                        types::Int16* pInt16 = new types::Int16(dims,dimsArray);
-                                        for(int k = 0; k < pInt16->getSize(); k++)
-                                        {
-                                            pInt16->set(k, 0);
-                                        }
-                                        _pITOut->push_back(pInt16);
-                                    }
-                                }
-                                break;
-                                case L'l' :
-                                case L'L' :
-                                {                            
-                                    if(bUnsigned)
-                                    {
-                                        types::UInt64* pUInt64 = new types::UInt64(dims,dimsArray);
-                                        for(int k = 0; k < pUInt64->getSize(); k++)
-                                        {
-                                            pUInt64->set(k, 0);
-                                        }
-                                        _pITOut->push_back(pUInt64);
-                                    }
-                                    else
-                                    {
-                                        types::Int64* pInt64 = new types::Int64(dims,dimsArray);
-                                        for(int k = 0; k < pInt64->getSize(); k++)
-                                        {
-                                            pInt64->set(k, 0);
-                                        }
-                                        _pITOut->push_back(pInt64);
-                                    }
-                                }
-                                break;
-                                default :
-                                {
-                                    if(bUnsigned)
-                                    {
-                                        types::UInt32* pUInt32 = new types::UInt32(dims,dimsArray);
-                                        for(int k = 0; k < pUInt32->getSize(); k++)
-                                        {
-                                            pUInt32->set(k, 0);
-                                        }
-                                        _pITOut->push_back(pUInt32);
-                                    }
-                                    else
-                                    {
-                                        types::Int32* pInt32 = new types::Int32(dims,dimsArray);
-                                        for(int k = 0; k < pInt32->getSize(); k++)
-                                        {
-                                            pInt32->set(k, 0);
-                                        }
-                                        _pITOut->push_back(pInt32);
-                                    }
-                                }
-                            }
+                            // MALLOC error
+                            return -10;
                         }
-                        switch(wcsLLH)
+
+                        if (bInv)
                         {
-                            case L'h' : 
-                                if(bUnsigned)
-                                {
-                                    (*_pITOut)[j]->getAs<types::UInt16>()->set(_iIterrator, static_cast<unsigned short int>(iSingleData));
-                                    iCountDataRead++;
-                                }
-                                else
-                                {
-                                    (*_pITOut)[j]->getAs<types::Int16>()->set(_iIterrator, static_cast<short int>(iSingleData));
-                                    iCountDataRead++;
-                                }
-                            break;
-                            case L'l' :
-                            case L'L' : 
-                                if(bUnsigned)
-                                {
-                                    (*_pITOut)[j]->getAs<types::UInt64>()->set(_iIterrator, iSingleData);
-                                    iCountDataRead++;
-                                }
-                                else
-                                {
-                                    (*_pITOut)[j]->getAs<types::Int64>()->set(_iIterrator, static_cast<long int>(iSingleData));
-                                    iCountDataRead++;
-                                }
-                            break;
-                            default :
-                                if(bUnsigned)
-                                {
-                                    (*_pITOut)[j]->getAs<types::UInt32>()->set(_iIterrator, static_cast<unsigned int>(iSingleData));
-                                    iCountDataRead++;
-                                }
-                                else
-                                {
-                                    (*_pITOut)[j]->getAs<types::Int32>()->set(_iIterrator, static_cast<int>(iSingleData));
-                                    iCountDataRead++;
-                                }
-                        }
-                    }
-                }
-                else
-                {
-                    if(_iIterrator == 0 && !bStar && _iNiter == 1)
-                    {
-                        _pITOut->push_back(types::Double::Empty());
-                    }
-                    else
-                    {
-                        return -10;
-                    }
-                }
-                if(!bStar)
-                {
-                    j++;
-                }
-                wcsLLH          = L' ';
-                bIgnoredChars   = TRUE;
-                bUnsigned       = FALSE;
-                bNegatif        = FALSE;
-                bStar           = FALSE;
-                base            = 0;
-                i++;
-            }
-            break;
-            case L'e' :
-            case L'E' :
-            case L'g' :
-            case L'G' :
-            case L'f' :
-            {
-                if(wcsData != NULL && wcsData[0] != L'\0')
-                {
-                    double dSingleData  = 0;
-                    BOOL bSigne         = FALSE;
-                    while(wcsData[0] == L' ')
-                    {
-                        wcsData++;
-                    }
-                    if(nbrOfDigit)
-                    {
-                        int iSizeRead   = 0;
-                        wchar_t* number = NULL;
-                        wchar_t* next   = NULL;
-                        if(wcslen(wcsData) < nbrOfDigit)
-                        {
-                            nbrOfDigit = wcslen(wcsData);
-                        }
-                        number = (wchar_t*)MALLOC((nbrOfDigit + 1) * sizeof(wchar_t));
-                        memcpy(number, wcsData, nbrOfDigit * sizeof(wchar_t));
-                        number[nbrOfDigit] = L'\0';
-                        dSingleData = wcstod(number, &next);
-                        if(next)
-                        {
-                            iSizeRead = nbrOfDigit - wcslen(next);
+                            iPos = (int)wcscspn(wcsData, wscToFind);
                         }
                         else
                         {
-                            iSizeRead = nbrOfDigit;
+                            iPos = (int)wcsspn(wcsData, wscToFind);
                         }
-                        if((dSingleData == 0) && (number[0] == next[0]))
+
+                        if (iPos == 0)
                         {
-                            if(_iIterrator == 0 && !bStar && _iNiter == 1)
+                            // The string begins with a character which is not in wscToFind
+                            if (_iIterrator == 0 && !bStar && _iNiter == 1)
                             {
-                                wcsData = NULL;
                                 _pITOut->push_back(types::Double::Empty());
-                                bStar = TRUE;
                             }
                             else
                             {
                                 return -10;
                             }
                         }
-                        wcsData += iSizeRead;
-                        FREE(number);
-                        nbrOfDigit = 0;
+                        else
+                        {
+                            wcsRes = (wchar_t*)MALLOC((iPos + 1) * sizeof(wchar_t));
+                            memcpy(wcsRes, wcsData, iPos * sizeof(wchar_t));
+                            wcsRes[iPos] = '\0';
+
+                            FREE(wcsInside);
+
+                            if (nbrOfDigit)
+                            {
+                                wcsSingleData = (wchar_t*)MALLOC(sizeof(wchar_t) * (nbrOfDigit + 1));
+                                memcpy(wcsSingleData, wcsRes, sizeof(wchar_t) * nbrOfDigit);
+                                wcsSingleData[nbrOfDigit] = L'\0';
+                                wcsData += nbrOfDigit;
+                            }
+                            else
+                            {
+                                wcsSingleData = wcsRes;
+                                wcsData += iPos;
+                            }
+                        }
+
+                        if (!bStar)
+                        {
+                            if (_iIterrator == 0)
+                            {
+                                types::String* pS = new types::String(dims, dimsArray);
+                                for (int k = 0 ; k < pS->getSize(); k++)
+                                {
+                                    pS->set(k, L"");
+                                }
+                                _pITOut->push_back(pS);
+                            }
+                            if (wcsSingleData != NULL)
+                            {
+                                (*_pITOut)[j]->getAs<types::String>()->set(_iIterrator, wcsSingleData);
+                                iCountDataRead++;
+                            }
+                        }
+
+                        if (nbrOfDigit)
+                        {
+                            FREE(wcsSingleData);
+                        }
                     }
                     else
                     {
-                        int iLenData = wcslen(wcsData);
-                        dSingleData = wcstod(wcsData,&wcsData);
-                        if((dSingleData == 0) && (iLenData == wcslen(wcsData)))
+                        if (_iIterrator == 0 && !bStar && _iNiter == 1)
                         {
-                            if(_iIterrator == 0 && !bStar && _iNiter == 1)
+                            _pITOut->push_back(types::Double::Empty());
+                        }
+                        else
+                        {
+                            return -10;
+                        }
+                    }
+                    if (!bStar)
+                    {
+                        j++;
+                    }
+                    bIgnoredChars   = TRUE;
+                    nbrOfDigit      = 0;
+                    bStar           = FALSE;
+                }
+                break;
+                case L'x' :
+                case L'X' :
+                    base += 6; // 6 + 2 + 8 = 16 // Compute the base of data to get.
+                case L'u' :
+                    if (base == 0)
+                    {
+                        bUnsigned = TRUE;    // unsigned int
+                    }
+                case L'i' :
+                case L'd' :
+                    base += 2; // 2 + 8 = 10
+                case L'o' :
+                    base += 8; // 8 = 8 :D
+                    {
+                        if (wcsData != NULL && wcsData[0] != L'\0')
+                        {
+                            long int iSingleData = 0;
+                            while (wcsData[0] == L' ')
                             {
-                                wcsData = NULL;
+                                wcsData++;
+                            }
+                            if (nbrOfDigit)
+                            {
+                                wchar_t* number = NULL;
+                                if (wcslen(wcsData) < nbrOfDigit)
+                                {
+                                    nbrOfDigit = (int)wcslen(wcsData);
+                                }
+
+                                number = (wchar_t*)MALLOC((nbrOfDigit + 1) * sizeof(wchar_t));
+                                memcpy(number, wcsData, nbrOfDigit * sizeof(wchar_t));
+                                number[nbrOfDigit] = L'\0';
+                                iSingleData = wcstoul(number, &number, base);
+                                if ((iSingleData == 0) && (number[0] == wcsData[0]))
+                                {
+                                    if (_iIterrator == 0 && !bStar && _iNiter == 1)
+                                    {
+                                        wcsData = NULL;
+                                        _pITOut->push_back(types::Double::Empty());
+                                        bStar = TRUE;
+                                    }
+                                    else
+                                    {
+                                        return -10;
+                                    }
+                                }
+                                if (number == NULL)
+                                {
+                                    wcsData += nbrOfDigit;
+                                }
+                                else
+                                {
+                                    wcsData += (nbrOfDigit - wcslen(number));
+                                }
+                                nbrOfDigit = 0;
+                            }
+                            else
+                            {
+                                wchar_t temp = wcsData[0];
+                                iSingleData = wcstoul(wcsData, &wcsData, base);
+                                if ((iSingleData == 0) && (temp == wcsData[0]))
+                                {
+                                    if (_iIterrator == 0 && !bStar && _iNiter == 1)
+                                    {
+                                        wcsData = NULL;
+                                        _pITOut->push_back(types::Double::Empty());
+                                        bStar = TRUE;
+                                    }
+                                    else
+                                    {
+                                        return -10;
+                                    }
+                                }
+                            }
+
+                            if (!bStar)
+                            {
+                                if (_iIterrator == 0)
+                                {
+                                    switch (wcsLLH)
+                                    {
+                                        case L'h' :
+                                        {
+                                            if (bUnsigned)
+                                            {
+                                                types::UInt16* pUInt16 = new types::UInt16(dims, dimsArray);
+                                                for (int k = 0; k < pUInt16->getSize(); k++)
+                                                {
+                                                    pUInt16->set(k, 0);
+                                                }
+                                                _pITOut->push_back(pUInt16);
+                                            }
+                                            else
+                                            {
+                                                types::Int16* pInt16 = new types::Int16(dims, dimsArray);
+                                                for (int k = 0; k < pInt16->getSize(); k++)
+                                                {
+                                                    pInt16->set(k, 0);
+                                                }
+                                                _pITOut->push_back(pInt16);
+                                            }
+                                        }
+                                        break;
+                                        case L'l' :
+                                        case L'L' :
+                                        {
+                                            if (bUnsigned)
+                                            {
+                                                types::UInt64* pUInt64 = new types::UInt64(dims, dimsArray);
+                                                for (int k = 0; k < pUInt64->getSize(); k++)
+                                                {
+                                                    pUInt64->set(k, 0);
+                                                }
+                                                _pITOut->push_back(pUInt64);
+                                            }
+                                            else
+                                            {
+                                                types::Int64* pInt64 = new types::Int64(dims, dimsArray);
+                                                for (int k = 0; k < pInt64->getSize(); k++)
+                                                {
+                                                    pInt64->set(k, 0);
+                                                }
+                                                _pITOut->push_back(pInt64);
+                                            }
+                                        }
+                                        break;
+                                        default :
+                                        {
+                                            if (bUnsigned)
+                                            {
+                                                types::UInt32* pUInt32 = new types::UInt32(dims, dimsArray);
+                                                for (int k = 0; k < pUInt32->getSize(); k++)
+                                                {
+                                                    pUInt32->set(k, 0);
+                                                }
+                                                _pITOut->push_back(pUInt32);
+                                            }
+                                            else
+                                            {
+                                                types::Int32* pInt32 = new types::Int32(dims, dimsArray);
+                                                for (int k = 0; k < pInt32->getSize(); k++)
+                                                {
+                                                    pInt32->set(k, 0);
+                                                }
+                                                _pITOut->push_back(pInt32);
+                                            }
+                                        }
+                                    }
+                                }
+                                switch (wcsLLH)
+                                {
+                                    case L'h' :
+                                        if (bUnsigned)
+                                        {
+                                            (*_pITOut)[j]->getAs<types::UInt16>()->set(_iIterrator, static_cast<unsigned short int>(iSingleData));
+                                            iCountDataRead++;
+                                        }
+                                        else
+                                        {
+                                            (*_pITOut)[j]->getAs<types::Int16>()->set(_iIterrator, static_cast<short int>(iSingleData));
+                                            iCountDataRead++;
+                                        }
+                                        break;
+                                    case L'l' :
+                                    case L'L' :
+                                        if (bUnsigned)
+                                        {
+                                            (*_pITOut)[j]->getAs<types::UInt64>()->set(_iIterrator, iSingleData);
+                                            iCountDataRead++;
+                                        }
+                                        else
+                                        {
+                                            (*_pITOut)[j]->getAs<types::Int64>()->set(_iIterrator, static_cast<long int>(iSingleData));
+                                            iCountDataRead++;
+                                        }
+                                        break;
+                                    default :
+                                        if (bUnsigned)
+                                        {
+                                            (*_pITOut)[j]->getAs<types::UInt32>()->set(_iIterrator, static_cast<unsigned int>(iSingleData));
+                                            iCountDataRead++;
+                                        }
+                                        else
+                                        {
+                                            (*_pITOut)[j]->getAs<types::Int32>()->set(_iIterrator, static_cast<int>(iSingleData));
+                                            iCountDataRead++;
+                                        }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (_iIterrator == 0 && !bStar && _iNiter == 1)
+                            {
                                 _pITOut->push_back(types::Double::Empty());
-                                bStar = TRUE;
                             }
                             else
                             {
                                 return -10;
                             }
                         }
+                        if (!bStar)
+                        {
+                            j++;
+                        }
+                        wcsLLH          = L' ';
+                        bIgnoredChars   = TRUE;
+                        bUnsigned       = FALSE;
+                        bNegatif        = FALSE;
+                        bStar           = FALSE;
+                        base            = 0;
+                        i++;
+                    }
+                    break;
+                case L'e' :
+                case L'E' :
+                case L'g' :
+                case L'G' :
+                case L'f' :
+                {
+                    if (wcsData != NULL && wcsData[0] != L'\0')
+                    {
+                        double dSingleData  = 0;
+                        BOOL bSigne         = FALSE;
+                        while (wcsData[0] == L' ')
+                        {
+                            wcsData++;
+                        }
+                        if (nbrOfDigit)
+                        {
+                            int iSizeRead   = 0;
+                            wchar_t* number = NULL;
+                            wchar_t* next   = NULL;
+                            if (wcslen(wcsData) < nbrOfDigit)
+                            {
+                                nbrOfDigit = (int)wcslen(wcsData);
+                            }
+                            number = (wchar_t*)MALLOC((nbrOfDigit + 1) * sizeof(wchar_t));
+                            memcpy(number, wcsData, nbrOfDigit * sizeof(wchar_t));
+                            number[nbrOfDigit] = L'\0';
+                            dSingleData = wcstod(number, &next);
+                            if (next)
+                            {
+                                iSizeRead = nbrOfDigit - (int)wcslen(next);
+                            }
+                            else
+                            {
+                                iSizeRead = nbrOfDigit;
+                            }
+                            if ((dSingleData == 0) && (number[0] == next[0]))
+                            {
+                                if (_iIterrator == 0 && !bStar && _iNiter == 1)
+                                {
+                                    wcsData = NULL;
+                                    _pITOut->push_back(types::Double::Empty());
+                                    bStar = TRUE;
+                                }
+                                else
+                                {
+                                    return -10;
+                                }
+                            }
+                            wcsData += iSizeRead;
+                            FREE(number);
+                            nbrOfDigit = 0;
+                        }
+                        else
+                        {
+                            int iLenData = (int)wcslen(wcsData);
+                            dSingleData = wcstod(wcsData, &wcsData);
+                            if ((dSingleData == 0) && (iLenData == wcslen(wcsData)))
+                            {
+                                if (_iIterrator == 0 && !bStar && _iNiter == 1)
+                                {
+                                    wcsData = NULL;
+                                    _pITOut->push_back(types::Double::Empty());
+                                    bStar = TRUE;
+                                }
+                                else
+                                {
+                                    return -10;
+                                }
+                            }
+                        }
+
+                        if (!bStar)
+                        {
+                            if (_iIterrator == 0)
+                            {
+                                types::Double* pD = new types::Double(dims, dimsArray);
+                                for (int k = 0 ; k < pD->getSize(); k++)
+                                {
+                                    pD->set(k, 0);
+                                }
+                                _pITOut->push_back(pD);
+                            }
+                            (*_pITOut)[j]->getAs<types::Double>()->set(_iIterrator, dSingleData);
+                            iCountDataRead++;
+                        }
+                    }
+                    else
+                    {
+                        if (_iIterrator == 0 && !bStar && _iNiter == 1)
+                        {
+                            _pITOut->push_back(types::Double::Empty());
+                        }
+                        else
+                        {
+                            return -10;
+                        }
+                    }
+                    if (!bStar)
+                    {
+                        j++;
+                    }
+                    i++;
+                    bIgnoredChars = TRUE;
+                    bStar = FALSE;
+                }
+                break;
+                case L'n' :
+                {
+                    double dSingleData = -1;
+                    if (_iIterrator == 0 && !bStar)
+                    {
+                        types::Double* pD = new types::Double(dims, dimsArray);
+                        for (int k = 0 ; k < pD->getSize(); k++)
+                        {
+                            pD->set(k, 0);
+                        }
+                        _pITOut->push_back(pD);
                     }
 
-                    if(!bStar)
+                    if (wcsData == NULL || wcsData[0] == L'\0')
                     {
-                        if(_iIterrator == 0)
-                        {
-                            types::Double* pD = new types::Double(dims,dimsArray);
-                            for(int k = 0 ; k < pD->getSize(); k++)
-                            {
-                                pD->set(k, 0);
-                            }
-                            _pITOut->push_back(pD);
-                        }
+                        dSingleData = (double)sizeOfData;
+                    }
+                    else
+                    {
+                        dSingleData = (double)sizeOfData - (double)wcslen(wcsData);
+                    }
+
+                    if (!bStar)
+                    {
                         (*_pITOut)[j]->getAs<types::Double>()->set(_iIterrator, dSingleData);
-                        iCountDataRead++;
+                        j++;
                     }
+
+                    i++;
+                    bIgnoredChars = TRUE;
+                    bStar = FALSE;
                 }
-                else
-                {
-                    if(_iIterrator == 0 && !bStar && _iNiter == 1)
-                    {
-                        _pITOut->push_back(types::Double::Empty());
-                    }
-                    else
-                    {
-                        return -10;
-                    }
-                }
-                if(!bStar)
-                {
-                    j++;
-                }
-                i++;
-                bIgnoredChars = TRUE;
-                bStar = FALSE;
+                break;
+                default :
+                    printf("format read : %c\n", _wcsFormat[i]);
+                    return -10;
             }
-            break;
-            case L'n' :
-            {
-                double dSingleData = -1;
-                if(_iIterrator == 0 && !bStar)
-                {
-                    types::Double* pD = new types::Double(dims,dimsArray);
-                    for(int k = 0 ; k < pD->getSize(); k++)
-                    {
-                        pD->set(k, 0);
-                    }
-                    _pITOut->push_back(pD);
-                }
-
-                if(wcsData == NULL || wcsData[0] == L'\0')
-                {
-                    dSingleData = (double)sizeOfData;
-                }
-                else
-                {
-                    dSingleData = (double)sizeOfData - (double)wcslen(wcsData);
-                }
-
-                if(!bStar)
-                {
-                    (*_pITOut)[j]->getAs<types::Double>()->set(_iIterrator, dSingleData);
-                    j++;
-                }
-
-                i++;
-                bIgnoredChars = TRUE;
-                bStar = FALSE;
-            }
-            break;
-            default :
-                printf("format read : %c\n",_wcsFormat[i]);
-                return -10;
-        }
     }
 
     return iCountDataRead;
@@ -724,7 +738,7 @@ wchar_t* findChars(wchar_t* chars, BOOL* _bInv) // ex: "123456789abc" = findChar
 
     piPos = (int*)MALLOC(wcslen(chars) * sizeof(int));
 
-    if(chars[0] == L'^')
+    if (chars[0] == L'^')
     {
         *_bInv = TRUE;
     }
@@ -733,12 +747,12 @@ wchar_t* findChars(wchar_t* chars, BOOL* _bInv) // ex: "123456789abc" = findChar
         *_bInv = FALSE;
     }
 
-    for(iIterChars = 0; iIterChars < wcslen(chars); iIterChars++)
+    for (iIterChars = 0; iIterChars < wcslen(chars); iIterChars++)
     {
-        if(chars[iIterChars] == L'-' && iIterChars != 0 && iIterChars != wcslen(chars) - 1)
+        if (chars[iIterChars] == L'-' && iIterChars != 0 && iIterChars != wcslen(chars) - 1)
         {
             int iSize = chars[iIterChars + 1] - chars[iIterChars - 1] - 1;
-            if(iSize >= 0)
+            if (iSize >= 0)
             {
                 iLen += iSize;
                 iNbr++;
@@ -757,13 +771,13 @@ wchar_t* findChars(wchar_t* chars, BOOL* _bInv) // ex: "123456789abc" = findChar
         }
     }
 
-    wcsRes = (wchar_t*)MALLOC((iLen + 1)*sizeof(wchar_t));
+    wcsRes = (wchar_t*)MALLOC((iLen + 1) * sizeof(wchar_t));
 
-    for(iIterChars = 0; iIterChars < wcslen(chars); iIterChars++)
+    for (iIterChars = 0; iIterChars < wcslen(chars); iIterChars++)
     {
-        if(piPos[iIterChars])
+        if (piPos[iIterChars])
         {
-            for(int i = 1; i < (chars[iIterChars + 1] - chars[iIterChars - 1]); i++, iIterRes++)
+            for (int i = 1; i < (chars[iIterChars + 1] - chars[iIterChars - 1]); i++, iIterRes++)
             {
                 wcsRes[iIterRes] = chars[iIterChars - 1] + i;
             }

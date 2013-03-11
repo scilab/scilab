@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/GetWindowsVersion;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;../../../console/includes;../../../preferences/includes;../../../history_manager/includes;../../../types/includes;../../../operations/includes;../../../system_env/includes;../../../threads/includes;../../../symbol/includes;../../../ast/includes;../../../parse/includes;../../../../libs/Eigen/includes;../../../external_objects/includes;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/GetWindowsVersion;;../../../../libs/intl;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;../../../console/includes;../../../preferences/includes;../../../history_manager/includes;../../../types/includes;../../../operations/includes;../../../system_env/includes;../../../threads/includes;../../../symbol/includes;../../../ast/includes;../../../parse/includes;../../../../libs/Eigen/includes;../../../external_objects/includes;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;_DEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -112,7 +112,7 @@ cd ..
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/GetWindowsVersion;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;../../../console/includes;../../../preferences/includes;../../../history_manager/includes;../../../types/includes;../../../operations/includes;../../../system_env/includes;../../../threads/includes;../../../symbol/includes;../../../ast/includes;../../../parse/includes;../../../../libs/Eigen/includes;../../../external_objects/includes;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/GetWindowsVersion;;../../../../libs/intl;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;../../../console/includes;../../../preferences/includes;../../../history_manager/includes;../../../types/includes;../../../operations/includes;../../../system_env/includes;../../../threads/includes;../../../symbol/includes;../../../ast/includes;../../../parse/includes;../../../../libs/Eigen/includes;../../../external_objects/includes;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;_DEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -146,7 +146,7 @@ cd ..
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/GetWindowsVersion;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;../../../console/includes;../../../preferences/includes;../../../history_manager/includes;../../../types/includes;../../../operations/includes;../../../system_env/includes;../../../threads/includes;../../../symbol/includes;../../../ast/includes;../../../parse/includes;../../../../libs/Eigen/includes;../../../external_objects/includes;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/GetWindowsVersion;;../../../../libs/intl;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;../../../console/includes;../../../preferences/includes;../../../history_manager/includes;../../../types/includes;../../../operations/includes;../../../system_env/includes;../../../threads/includes;../../../symbol/includes;../../../ast/includes;../../../parse/includes;../../../../libs/Eigen/includes;../../../external_objects/includes;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;NDEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -187,7 +187,7 @@ cd ..
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/GetWindowsVersion;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;../../../console/includes;../../../preferences/includes;../../../history_manager/includes;../../../types/includes;../../../operations/includes;../../../system_env/includes;../../../threads/includes;../../../symbol/includes;../../../ast/includes;../../../parse/includes;../../../../libs/Eigen/includes;../../../external_objects/includes;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/GetWindowsVersion;;../../../../libs/intl;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../io/includes;../../../console/includes;../../../preferences/includes;../../../history_manager/includes;../../../types/includes;../../../operations/includes;../../../system_env/includes;../../../threads/includes;../../../symbol/includes;../../../ast/includes;../../../parse/includes;../../../../libs/Eigen/includes;../../../external_objects/includes;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;NDEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -246,8 +246,10 @@ cd ..
     <ClCompile Include="funcprot.c" />
     <ClCompile Include="Funtab.c" />
     <ClCompile Include="getcommandlineargs.c" />
+    <ClCompile Include="getdynamicdebuginfo.c" />
     <ClCompile Include="getdynamicDebugInfo_Windows.c" />
     <ClCompile Include="GetExceptionCode.c" />
+    <ClCompile Include="getmaxMALLOC.c" />
     <ClCompile Include="getmemory.c" />
     <ClCompile Include="getmodules.c" />
     <ClCompile Include="getos.c" />
@@ -262,11 +264,15 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\c\gw_user.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_user2.c" />
     <ClCompile Include="..\cpp\hashtable_core.cpp" />
+    <ClCompile Include="hashtable\hashtable.c" />
+    <ClCompile Include="hashtable\hashtable_itr.c" />
+    <ClCompile Include="hashtable\hashtable_utility.c" />
     <ClCompile Include="ifexpr.c" />
     <ClCompile Include="inffic.c" />
     <ClCompile Include="inisci-c.c" />
     <ClCompile Include="InitializeCore.c" />
     <ClCompile Include="InitializePreferences.c" />
+    <ClCompile Include="initMacOSXEnv.c" />
     <ClCompile Include="InitScilab.c" />
     <ClCompile Include="inittypenames.c" />
     <ClCompile Include="intmacr2tree.c" />
@@ -324,9 +330,11 @@ cd ..
     <ClCompile Include="sciquit.c" />
     <ClCompile Include="scirun.c" />
     <ClCompile Include="..\cpp\search_functions.cpp" />
+    <ClCompile Include="sci_mem_alloc.c" />
     <ClCompile Include="setformat.c" />
     <ClCompile Include="setieee.c" />
     <ClCompile Include="setlines.c" />
+    <ClCompile Include="setPrecisionFPU.c" />
     <ClCompile Include="stack1.c" />
     <ClCompile Include="stack2.c" />
     <ClCompile Include="stack3.c" />
@@ -339,6 +347,8 @@ cd ..
     <ClCompile Include="transposeMatrix.c" />
     <ClCompile Include="typename.c" />
     <ClCompile Include="version.c" />
+    <ClCompile Include="win_mem_alloc.c" />
+    <ClCompile Include="withf2c.c" />
     <ClCompile Include="xscion.c" />
   </ItemGroup>
   <ItemGroup>
@@ -355,14 +365,8 @@ cd ..
     <None Include="..\..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\dynamiclibrary\dynamiclibrary.vcxproj">
-      <Project>{77154919-8a20-4f35-b7c7-6b3b957bdca1}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\libs\GetWindowsVersion\GetWindowsVersion.vcxproj">
       <Project>{982bf37f-42c4-4d37-8d14-60521b141503}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
@@ -496,7 +500,6 @@ cd ..
     <ClInclude Include="..\..\includes\commandwords.h" />
     <ClInclude Include="..\..\includes\core_gw.hxx" />
     <ClInclude Include="..\..\includes\core_math.h" />
-    <ClInclude Include="..\..\includes\dynlib_core_gw.h" />
     <ClInclude Include="..\..\includes\ExceptionMessage.h" />
     <ClInclude Include="..\..\includes\existfunction.h" />
     <ClInclude Include="..\..\includes\exit_status.hxx" />
@@ -505,6 +508,7 @@ cd ..
     <ClInclude Include="..\..\includes\getcommandlineargs.h" />
     <ClInclude Include="..\..\includes\GetExceptionCode.h" />
     <ClInclude Include="..\..\includes\getfunctionslist.h" />
+    <ClInclude Include="..\..\includes\getmaxMALLOC.h" />
     <ClInclude Include="..\..\includes\getmemory.h" />
     <ClInclude Include="..\..\includes\getmodules.h" />
     <ClInclude Include="..\..\includes\getos.h" />
@@ -514,6 +518,10 @@ cd ..
     <ClInclude Include="..\..\includes\gw_core.h" />
     <ClInclude Include="..\..\includes\gw_user.h" />
     <ClInclude Include="..\..\includes\gw_user2.h" />
+    <ClInclude Include="..\..\includes\hashtable.h" />
+    <ClInclude Include="..\..\includes\hashtable_itr.h" />
+    <ClInclude Include="..\..\includes\hashtable_private.h" />
+    <ClInclude Include="..\..\includes\hashtable_utility.h" />
     <ClInclude Include="..\..\includes\inffic.h" />
     <ClInclude Include="..\..\includes\inisci-c.h" />
     <ClInclude Include="..\..\includes\InitializeCore.h" />
@@ -526,6 +534,7 @@ cd ..
     <ClInclude Include="..\..\includes\LaunchScilabSignal.h" />
     <ClInclude Include="..\..\includes\loadversion.h" />
     <ClInclude Include="..\..\includes\machine.h" />
+    <ClInclude Include="..\..\includes\MALLOC.h" />
     <ClInclude Include="..\..\includes\mode_exec.h" />
     <ClInclude Include="..\..\includes\PARAMS.h" />
     <ClInclude Include="..\..\includes\PATH_MAX.h" />
@@ -563,6 +572,7 @@ cd ..
     <ClInclude Include="..\..\includes\transposeMatrix.h" />
     <ClInclude Include="..\..\includes\version.h" />
     <ClInclude Include="..\..\includes\windowsChangeManagement.h" />
+    <ClInclude Include="..\..\includes\win_mem_alloc.h" />
     <ClInclude Include="..\..\includes\with_module.h" />
     <ClInclude Include="..\..\includes\xscion.h" />
     <ClInclude Include="..\cpp\partition.hxx" />

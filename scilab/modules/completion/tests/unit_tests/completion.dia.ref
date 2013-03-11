@@ -1,78 +1,141 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- CLI SHELL MODE -->
 //===============================
 // unit tests completion
 //===============================
-// parameters tests
-r = completion('%');
-s = size(r,'*');
-if s < 748 then bugmes();quit;end
-//===============================
-functions1 = completion('%','functions');
-s = size(functions1,'*');
-if s < 17 then bugmes();quit;end
-//===============================
-commands1 = completion('%','commands');
-s = size(commands1,'*');
-if s <> 0 then bugmes();quit;end
-//===============================
-variables1 = completion('%','variables');
-s = size(variables1,'*');
-if s < 10 then bugmes();quit;end
-//===============================
-macros1 = completion('%','macros');
-s = size(macros1,'*');
-if s < 705 then bugmes();quit;end
-//===============================
-graphic_properties1 = completion('%','graphic_properties');
-s = size(graphic_properties1,'*');
-if s <> 0 then bugmes();quit;end
-//===============================
-files1 = completion('%','files');
-s = size(files1,'*');
-if s <> 0 then bugmes();quit;end
-//===============================
-[functions2,commands2,variables2,macros2,graphic_properties2,files2] = completion('%');
-if functions2 <> functions1 then bugmes();quit;end
-if commands2 <> commands1 then bugmes();quit;end
-if variables2 <> variables1 then bugmes();quit;end
-if macros2 <> macros1 then bugmes();quit;end
-if graphic_properties2 <> graphic_properties1 then bugmes();quit;end
-if files2 <> files1 then bugmes();quit;end
-//===============================
-[functions3,commands3,variables3,macros3,graphic_properties3] = completion('%');
-if functions3 <> functions1 then bugmes();quit;end
-if commands3 <> commands1 then bugmes();quit;end
-if variables3 <> variables1 then bugmes();quit;end
-if macros3 <> macros1 then bugmes();quit;end
-if graphic_properties3 <> graphic_properties1 then bugmes();quit;end
-//===============================
-[functions4,commands4,variables4,macros4] = completion('%');
-if functions4 <> functions1 then bugmes();quit;end
-if commands4 <> commands1 then bugmes();quit;end
-if variables4 <> variables1 then bugmes();quit;end
-if macros4 <> macros1 then bugmes();quit;end
-//===============================
-[functions5,commands5,variables5] = completion('%');
-if functions5 <> functions1 then bugmes();quit;end
-if commands5 <> commands1 then bugmes();quit;end
-if variables5 <> variables1 then bugmes();quit;end
-//===============================
-[functions6,commands6] = completion('%');
-if functions6 <> functions1 then bugmes();quit;end
-if commands6 <> commands1 then bugmes();quit;end
-//===============================
-// check memory leak
-//for i=1:1000000,a=completion('w');end;
-//for i=1:1000000,a=completion('w',"functions");end;
-//for i=1:1000000,a=completion('w',"commands");end;
-//for i=1:1000000,a=completion('w',"variables");end;
-//for i=1:1000000,a=completion('w',"macros");end;
-//for i=1:1000000,a=completion('w',"graphic_properties");end;
-//for i=1:1000000,a=completion('w',"files");end;
-//===============================
+function [] = check_completion(actual, expected)
+    for i = 1 : size(actual, 'r')
+      [start,end,match] = regexp(actual(i,1), '/(?i)^(' + expected + ')/');
+      assert_checktrue(match <> '');
+    end
+endfunction
+// File paths
+if (getos() == "Windows") then
+    r = completion('C:\Documents and');
+    assert_checkequal(r, 'Documents and Settings\');
+    r = completion('c:\documents And');
+    assert_checkequal(r, 'Documents and Settings\');
+else
+    r = completion('/tm');
+    assert_checkequal(r, 'tmp/');
+    r = completion('/TM');
+    // We are still case sensitive
+    assert_checkequal(r, []);
+end
+r = completion(SCI+'/to');
+r2 = completion(SCI+'/TO');
+if (getos() == "Windows") then
+   assert_checkequal(r, ['tools\']);
+   assert_checkequal(r2, ['tools\']);
+else
+   assert_checkequal(r, ['tools/']);
+   assert_checkequal(r2, []);
+end
+// Predefined variables
+r = completion('ho', 'variables');
+check_completion(r, 'home');
+r = completion('HO', 'variables');
+check_completion(r, 'home');
+r = completion('%na');
+check_completion(r, '%nan');
+r = completion('%Na');
+check_completion(r, '%nan');
+r = completion('tmp');
+check_completion(r, 'TMPDIR');
+r = completion('Tmp');
+check_completion(r, 'TMPDIR');
+r = completion('%', 'variables');
+rexpected = ['%F'; '%T'; '%e'; '%eps'; '%f'; '%fftw'; '%gui'; '%i';'%inf'; '%io';
+  '%modalWarning'; '%nan'; '%pi'; '%s'; '%t'; '%tk'; '%toolboxes'; '%toolboxes_dir'; '%z'];
+assert_checkequal(r, rexpected);
+// User variables
+variable1_completion1 = 1;
+variable1_completion2 = 2;
+r = completion('variable1_comp');
+assert_checkequal(r, ['variable1_completion1'; 'variable1_completion2']);
+r = completion('VARIABLE1_COMP');
+assert_checkequal(r, ['variable1_completion1'; 'variable1_completion2']);
+variable2_completion = 1;
+VARIABLE2_COMPLETION = 2;
+r = completion('variable2_comp');
+assert_checkequal(r, ['VARIABLE2_COMPLETION'; 'variable2_completion']);
+r = completion('VARIABLE2_COMP');
+assert_checkequal(r, ['VARIABLE2_COMPLETION'; 'variable2_completion']);
+// Predefined functions, macros and commands
+r = completion('floo');
+check_completion(r, 'floor');
+r = completion('FLOO');
+check_completion(r, 'floor');
+r = completion('abort');
+check_completion(r, 'abort');
+r = completion('Abort');
+check_completion(r, 'abort');
+// User functions, macros, commands
+function [] = function_completion(x);
+endfunction;
+r = completion('function_comp');
+assert_checkequal(r, 'function_completion');
+r = completion('FUNCTION_COMP');
+assert_checkequal(r, 'function_completion');
+function [] = FUNCTION_COMPLETION(x);
+endfunction;
+r = completion('function_comp');
+assert_checkequal(r, ['FUNCTION_COMPLETION'; 'function_completion']);
+r = completion('FUNCTION_COMP');
+assert_checkequal(r, ['FUNCTION_COMPLETION'; 'function_completion']);
+// Filter argument
+r = completion('ho');
+assert_checkequal(r, ['home'; 'horizontalalignment'; 'horner'; 'host'; 'hotcolormap'; 'householder']);
+r = completion('ho', 'functions');
+assert_checkequal(r, 'host');
+r = completion('ho', 'commands');
+assert_checkequal(r, []);
+r = completion('ho', 'macros');
+assert_checkequal(r, ['horner'; 'hotcolormap'; 'householder']);
+r = completion('ho', 'variables');
+assert_checkequal(r, 'home');
+r = completion('ho', 'graphic_properties');
+assert_checkequal(r, 'horizontalalignment');
+r = completion('ho', 'files');
+assert_checkequal(r, []);
+r = completion('abo');
+assert_checkequal(r, ['abort'; 'about']);
+r = completion('abo', 'functions');
+assert_checkequal(r, 'about');
+r = completion('abo', 'commands');
+assert_checkequal(r, 'abort');
+r = completion('abo', 'variables');
+assert_checkequal(r, []);
+r = completion('abo', 'macros');
+assert_checkequal(r, []);
+r = completion('abo', 'graphic_properties');
+assert_checkequal(r, []);
+r = completion('abo', 'files');
+assert_checkequal(r, []);
+// Output arguments
+[functions,commands,variables,macros,graphic_properties,files] = completion('ho');
+assert_checkequal(functions, ['host']);
+assert_checkequal(commands, []);
+assert_checkequal(variables, ['home']);
+assert_checkequal(macros, ['horner'; 'hotcolormap'; 'householder']);
+assert_checkequal(graphic_properties, ['horizontalalignment']);
+assert_checkequal(files, []);
+[functions,commands,variables,macros,graphic_properties,files] = completion('abo');
+assert_checkequal(functions, ['about']);
+assert_checkequal(commands, ['abort']);
+assert_checkequal(variables, []);
+assert_checkequal(macros, []);
+assert_checkequal(graphic_properties, []);
+assert_checkequal(files, []);
+if (getos() == "Windows") then;
+    [functions,commands,variables,macros,graphic_properties,files] = completion('C:\Documents and');
+    assert_checkequal(files, ['Documents and Settings\']);
+else
+    [functions,commands,variables,macros,graphic_properties,files] = completion('/tm');
+    assert_checkequal(files, ['tmp/']);
+end

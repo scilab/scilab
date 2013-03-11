@@ -118,13 +118,16 @@ for %kk=1:%nx
     else
       model=o.model
         if ~isdef(o.gui) | ~or(type(evstr(o.gui) == [13 11])) then
-            uid = o.doc(1)
-            uid = [full_uids uid];
-            
-            html = "<html><body>";
-            html = html + "<em>" + gettext("Evaluation problem: Unknown block") + "</em><br/>";
-            html = html + "</body></html>";
-            warnBlockByUID(uid, html);
+            if length(o.doc) >= 1 then
+                uid = [full_uids o.doc(1)];
+                
+                html = "<html><body>";
+                html = html + "<em>" + gettext("Evaluation problem: Unknown block") + "</em><br/>";
+                html = html + "</body></html>";
+                warnBlockByUID(uid, html);
+            else
+                error("do_eval: " + gettext("Evaluation problem: Unknown block") + " " + o.gui);
+            end
         end
 
       %scicos_prob=%f

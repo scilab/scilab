@@ -141,6 +141,8 @@ function %_sodload(%__filename__, varargin)
 
         h = gcf();
         isVisible = h.visible;
+        resizefcn = "";
+        event_handler = "";
         h.visible = "off";
 
         fields(fields=="figure_id") = [];
@@ -165,6 +167,10 @@ function %_sodload(%__filename__, varargin)
                     xsetech(wrect=[0 0 .1 .1])
                     createSingleHandle(c.values(i));
                 end
+            elseif fields(i) == "event_handler" then
+                event_handler = figureProperties(fields(i));
+            elseif fields(i) == "resizefcn" then
+                resizefcn = figureProperties(fields(i));
             elseif fields(i) == "visible" then
                 isVisible = figureProperties(fields(i));// do not set visible = "true" before the end of load.
             else
@@ -173,6 +179,8 @@ function %_sodload(%__filename__, varargin)
         end
 
         h.visible = isVisible;
+        h.resizefcn = resizefcn;
+        h.event_handler = event_handler;
     endfunction
 
     //

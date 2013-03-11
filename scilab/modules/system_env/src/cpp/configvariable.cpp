@@ -316,9 +316,7 @@ std::wstring ConfigVariable::m_wstError;
 void ConfigVariable::setLastErrorMessage(std::wstring _wstError)
 {
     wchar_t* pwstTemp1 = os_wcsdup(_wstError.c_str());
-    wchar_t* pwstTemp2 = wcssub(pwstTemp1, L"\n", L"");
-    wchar_t* pwstTemp3 = wcssub(pwstTemp2, L"\n", L"");
-    m_wstError = pwstTemp3;
+    m_wstError = pwstTemp1;
 }
 
 std::wstring ConfigVariable::getLastErrorMessage()
@@ -334,6 +332,22 @@ std::wstring ConfigVariable::getLastErrorMessage()
 ** \{
 */
 int ConfigVariable::m_iError = 0;
+bool ConfigVariable::m_bError = false;
+
+void ConfigVariable::setError()
+{
+    m_bError = true;
+}
+
+bool ConfigVariable::isError()
+{
+    return m_bError;
+}
+
+void ConfigVariable::resetError()
+{
+    m_bError = false;
+}
 
 void ConfigVariable::setLastErrorNumber(int _iError)
 {

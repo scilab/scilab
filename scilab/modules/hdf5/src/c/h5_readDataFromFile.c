@@ -269,7 +269,7 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
         return -1;
     }
 
-    if (_piDims != 0)
+    if (_piDims != 0 && *_iDims != 0)
     {
         int i = 0;
         hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) * *_iDims);
@@ -287,6 +287,10 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
             iSize *= _piDims[i];
         }
 
+    }
+    else
+    {
+        iSize = 0;
     }
 
     H5Sclose(space);
@@ -925,6 +929,12 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
         return -1;
     }
 
+    status = H5Dclose(_iDatasetId);
+    if (status < 0)
+    {
+        return -1;
+    }
+
     return 0;
 }
 
@@ -970,6 +980,12 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
         {
             return -1;
         }
+    }
+
+    status = H5Dclose(_iDatasetId);
+    if (status < 0)
+    {
+        return -1;
     }
     return 0;
 }

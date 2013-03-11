@@ -661,7 +661,7 @@ function f=fsub(x,zu,parameters)
                         <mediaobject>
                             <imageobject>
                                 <imagedata align="center">
-                                    <mml:math>
+                                    <mml:math scilab:localized="true">
                                         <mml:semantics>
                                             <mml:mrow>
                                                 <mml:mi mml:fontstyle="italic">df</mml:mi>
@@ -874,7 +874,7 @@ function g=gsub(i,zu,parameters)
                         <mediaobject>
                             <imageobject>
                                 <imagedata align="center">
-                                    <mml:math>
+                                    <mml:math scilab:localized="true">
                                         <mml:semantics>
                                             <mml:mrow>
                                                 <mml:mi mml:fontstyle="italic">dg</mml:mi>

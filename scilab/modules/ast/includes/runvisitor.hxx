@@ -745,6 +745,9 @@ public :
 
             e.test_get().accept(*this);
         }
+
+        //clear result of condition or result of body
+        result_clear();
     }
 
 
@@ -1107,6 +1110,7 @@ public :
                                 {
                                     ConfigVariable::setLastErrorFunction(pCall->getName());
                                     ConfigVariable::setLastErrorLine(e.location_get().first_line);
+                                    throw ScilabError();
                                 }
 
                                 if (pCall->isMacro() || pCall->isMacroFile())

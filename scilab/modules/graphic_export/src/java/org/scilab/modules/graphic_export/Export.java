@@ -217,6 +217,8 @@ public class Export {
                 GraphicController.getController().unregister(visitor);
                 DrawerVisitor.changeVisitor(figure, oldVisitor);
                 exporter.dispose();
+                exporter = null;
+                visitorsToExp.remove(visitor);
             }
         } else {
             DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
@@ -237,9 +239,11 @@ public class Export {
             } finally {
                 if (exporter != null) {
                     exporter.dispose();
+                    exporter = null;
                     visitorsToExp.remove(visitor);
                 }
                 DrawerVisitor.changeVisitor(figure, null);
+                GraphicController.getController().unregister(visitor);
             }
         }
 
@@ -320,6 +324,7 @@ public class Export {
                 PNGExporter exporter = (PNGExporter) getExporter(type);
                 exporter.setImage(file, image, params);
                 exporter.write();
+                exporter.dispose();
             }
         }
     }
@@ -460,7 +465,9 @@ public class Export {
 
         @Override
         public void dispose() {
-            g2d.dispose();
+            if (g2d != null) {
+                g2d.dispose();
+            }
         }
     }
 
@@ -592,7 +599,9 @@ public class Export {
 
         @Override
         public void dispose() {
-            g2d.dispose();
+            if (g2d != null) {
+                g2d.dispose();
+            }
         }
     }
 
@@ -721,7 +730,9 @@ public class Export {
 
         @Override
         public void dispose() {
-            g2d.dispose();
+            if (g2d != null) {
+                g2d.dispose();
+            }
         }
     }
 

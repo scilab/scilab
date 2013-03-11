@@ -15,16 +15,15 @@
 #ifndef __GW_JVM_H__
 #define __GW_JVM_H__
 /*--------------------------------------------------------------------------*/
-#include "dynlib_jvm.h"
 #include "dynlib_jvm_gw.h"
 /*--------------------------------------------------------------------------*/
-JVM_IMPEXP int gw_jvm(void);
+int gw_jvm(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
-JVM_IMPEXP int sci_with_embedded_jre(char *fname,unsigned long fname_len);
-JVM_IMPEXP int sci_system_setproperty(char *fname,unsigned long fname_len);
-JVM_IMPEXP int sci_javalibrarypath(char *fname,unsigned long fname_len);
+JVM_GW_IMPEXP int sci_with_embedded_jre(char *fname, unsigned long fname_len);
+JVM_GW_IMPEXP int sci_system_setproperty(char *fname, unsigned long fname_len);
+JVM_GW_IMPEXP int sci_javalibrarypath(char *fname, unsigned long fname_len);
 //YaSp
 JVM_GW_IMPEXP int sci_javaclasspath(char *fname, void* pvApiCtx);
 

@@ -93,8 +93,6 @@ sci_gateway/fortran/sci_i_triu.f \
 sci_gateway/fortran/sci_inttype.f
 
 libsciinteger_la_CPPFLAGS = -I$(srcdir)/includes/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/operations/includes/ \
@@ -102,6 +100,7 @@ libsciinteger_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/types/includes/ \
 				-I$(top_srcdir)/modules/ast/includes/ \
 				-I$(top_srcdir)/modules/symbol/includes/ \
+				-I$(top_srcdir)/modules/dynamic_link/includes/ \
 				$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE

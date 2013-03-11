@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
 "PO-Revision-Date: 2012-08-03 10:16+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -713,6 +713,9 @@ msgstr "Kopirovat"
 msgid "Paste"
 msgstr "Vložit"
 
+msgid "Clear Console"
+msgstr "Vyčistit Konzoli"
+
 msgid "Print..."
 msgstr "Tisk…"
 
@@ -1091,9 +1094,6 @@ msgstr ""
 "disp(\"VAROVÁNÍ: I přes naše předchozí varování jste zvolili Scilab používat "
 "s pokročilými grafickými možnostmi. Zadejte \"\"help usecanvas\"\" pro více "
 "informací.\")"
-
-msgid "Clear Console"
-msgstr "Vyčistit Konzoli"
 
 msgid "Are you sure you want to clear the console ?"
 msgstr "Jste si jisti, že chcete vyčistit konzoli ?"
@@ -1534,9 +1534,6 @@ msgid ""
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána grafická obslužná rutina "
 "nebo reálné číslo.\n"
-
-msgid "createPopupItems: found an empty cascading menu."
-msgstr "createPopupItems: nalezeno prázdné kaskádové menu"
 
 #, c-format
 msgid ""

@@ -701,7 +701,7 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
 
         if (iRows2 != 1 || iCols2 != 1)
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
+            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
                             1);
             return sciErr;
         }
@@ -722,7 +722,7 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
 
         if (iRows2 != 1 || iCols2 != 1)
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
+            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
                             1);
             return sciErr;
         }
@@ -807,7 +807,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
     {
         if (isVarComplex(_pvCtx, _piAddress))
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for argument %d: Real matrix expected.\n"), "getDimFromVar",
+            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "getDimFromVar",
                             getRhsFromAddress(_pvCtx, _piAddress));
             return sciErr;
         }
@@ -834,7 +834,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
 
         if (iRows != 1 || iCols != 1)
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode",
+            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), "getProcessMode",
                             getRhsFromAddress(_pvCtx, _piAddress), 1, 1);
             return sciErr;
         }

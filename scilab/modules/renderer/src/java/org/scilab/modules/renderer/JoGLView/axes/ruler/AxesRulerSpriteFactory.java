@@ -94,7 +94,10 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
             FormattedText formattedText = getTextAtValue(value);
             FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, formattedText);
             Texture texture = textureManager.createTexture();
+            texture.setMagnificationFilter(Texture.Filter.LINEAR);
+            texture.setMinifyingFilter(Texture.Filter.LINEAR);
             texture.setDrawer(textObjectSpriteDrawer);
+
             return texture;
         }
     }
@@ -107,6 +110,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         DecimalFormatSymbols decimalFormatSymbols = format.getDecimalFormatSymbols();
         decimalFormatSymbols.setDecimalSeparator('.');
         decimalFormatSymbols.setExponentSeparator("e");
+        decimalFormatSymbols.setGroupingSeparator('\u00A0');
         format.setDecimalFormatSymbols(decimalFormatSymbols);
     }
 

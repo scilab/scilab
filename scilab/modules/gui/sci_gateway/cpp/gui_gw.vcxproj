@@ -27,9 +27,6 @@
     <ClCompile Include="sci_helpbrowser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
@@ -38,6 +35,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
@@ -119,7 +119,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/jni;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../commons/src/jni;../../../api_scilab/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/jni;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../commons/src/jni;../../../api_scilab/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GUI_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -148,7 +148,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/jni;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../commons/src/jni;../../../api_scilab/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/jni;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../commons/src/jni;../../../api_scilab/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GUI_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -175,7 +175,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/jni;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../commons/src/jni;../../../api_scilab/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/jni;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../commons/src/jni;../../../api_scilab/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GUI_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -207,7 +207,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/jni;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../../libs/dynamiclibrary/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../commons/src/jni;../../../api_scilab/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/jni;../../../operations/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../localization/includes;../../../../libs/intl;../../../jvm/includes;../../../output_stream/includes;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../commons/src/jni;../../../api_scilab/includes;../../../dynamic_link/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GUI_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

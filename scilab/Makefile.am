@@ -14,8 +14,7 @@
 
 AUTOMAKE_OPTIONS = 1.11 dist-zip dist-bzip2
 
-SUBDIRS= libs \
-	modules \
+SUBDIRS= modules \
 	contrib \
 	desktop
 
@@ -46,27 +45,29 @@ scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
 scilab_bin_CPPFLAGS = \
-    -I$(top_srcdir)/modules/console/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes/ \
-    -I$(top_srcdir)/modules/parse/includes/ \
-    -I$(top_srcdir)/modules/ast/includes/ \
-    -I$(top_srcdir)/modules/symbol/includes/ \
-    -I$(top_srcdir)/modules/functions_manager/includes/ \
-    -I$(top_srcdir)/modules/types/includes/ \
-    -I$(top_srcdir)/modules/system_env/includes/ \
-    -I$(top_srcdir)/modules/operations/includes/ \
-    -I$(top_srcdir)/modules/elementary_functions/includes/ \
-    -I$(top_srcdir)/modules/fileio/includes/ \
-    -I$(top_srcdir)/modules/string/includes/ \
-    -I$(top_srcdir)/modules/history_manager/includes/ \
-    -I$(top_srcdir)/modules/threads/includes/ \
-    -I$(top_srcdir)/modules/api_scilab/includes/ \
-    -I$(top_srcdir)/modules/localization/includes/ \
-    -I$(top_srcdir)/modules/jit_ocaml/includes/ \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-    -I$(top_srcdir)/libs/MALLOC/includes/ \
-    $(EIGEN_CPPFLAGS) \
-	$(AM_CPPFLAGS)
+-I$(top_srcdir)/modules/console/includes/ \
+-I$(top_srcdir)/modules/jit_ocaml/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/parse/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/symbol/includes/ \
+-I$(top_srcdir)/modules/functions_manager/includes/ \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/history_manager/includes/ \
+-I$(top_srcdir)/modules/threads/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/core/src/c/ \
+-I$(top_srcdir)/modules/dynamic_link/includes/ \
+$(EIGEN_CPPFLAGS) \
+$(AM_CPPFLAGS)
+
+
 # --no-undefined --relax
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol

@@ -42,7 +42,7 @@ end
 if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & sciargs()<>"-nb")
    [v, opts] = getversion()
    printf(strsubst(v, "scilab-", "Scilab ") + " (" + opts($-1) + ", " + opts($) + ")");
-   clear v, opts;
+   clear v opts;
 end
 
 // Create some configuration variables ================================

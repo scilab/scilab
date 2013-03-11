@@ -36,6 +36,7 @@ extern "C"
 
 //#define PRINT_DEBUG
 int iLevel = 0;
+static bool isVarExist(int* pvCtx, int _iFile, char* _pstVarName);
 
 static bool export_data(int* pvCtx, int _iH5File, int *_piVar, char* _pstName);
 static bool export_list(int* pvCtx, int _iH5File, int *_piVar, char* _pstName, int _iVarType);
@@ -65,7 +66,7 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
     int** piAddrList    = NULL;
     char** pstNameList  = NULL;
     char *pstFileName   = NULL;
-    bool bExport        = false;
+    bool bExport        = true;
     bool bAppendMode    = false;
 
     SciErr sciErr;
@@ -145,36 +146,6 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
             Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
             return 1;
         }
-
-        //check if variable already exists
-        int iNbItem = getVariableNames(iH5File, NULL);
-        if (iNbItem)
-        {
-            char **pstVarNameList = (char **)MALLOC(sizeof(char *) * iNbItem);
-
-            iNbItem = getVariableNames(iH5File, pstVarNameList);
-
-            //import all data
-            for (int i = 0 ; i < iNbItem ; i++)
-            {
-                for (int j = 1 ; j < nbInputArgument(pvApiCtx) ; j++)
-                {
-                    if (strcmp(pstNameList[i], "-append") == 0)
-                    {
-                        continue;
-                    }
-
-                    if (strcmp(pstVarNameList[i], pstNameList[j]) == 0)
-                    {
-                        closeHDF5File(iH5File);
-                        Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'."), fname, pstVarNameList[i], pstNameList[0]);
-                        return 1;
-                    }
-                }
-                FREE(pstVarNameList[i]);
-            }
-            FREE(pstVarNameList);
-        }
     }
 
     // export data
@@ -183,6 +154,25 @@ int sci_export_to_hdf5(char *fname, int* pvApiCtx)
         if (strcmp(pstNameList[i], "-append") == 0)
         {
             continue;
+        }
+
+        if (isVarExist(pvApiCtx, iH5File, pstNameList[i]))
+        {
+            if (bAppendMode)
+            {
+                if (deleteHDF5Var(iH5File, pstNameList[i]))
+                {
+                    closeHDF5File(iH5File);
+                    Scierror(999, _("%s: Unable to delete existing variable \"%s\"."), fname, pstNameList[i]);
+                    return 1;
+                }
+            }
+            else
+            {
+                closeHDF5File(iH5File);
+                Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'\nUse -append option to replace existing variable\n."), fname, pstNameList[i], pstNameList[0]);
+                return 1;
+            }
         }
 
         bExport = export_data(pvApiCtx, iH5File, piAddrList[i], pstNameList[i]);
@@ -267,82 +257,82 @@ static bool export_data(int* pvCtx, int _iH5File, int* _piVar, char* _pstName)
     switch (iType)
     {
         case sci_matrix :
-            {
-                bReturn = export_double(pvCtx, _iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_double(pvCtx, _iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_poly :
-            {
-                bReturn = export_poly(pvCtx, _iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_poly(pvCtx, _iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_boolean :
-            {
-                bReturn = export_boolean(pvCtx, _iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_boolean(pvCtx, _iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_sparse :
-            {
-                bReturn = export_sparse(pvCtx, _iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_sparse(pvCtx, _iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_boolean_sparse :
-            {
-                bReturn = export_boolean_sparse(pvCtx, _iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_boolean_sparse(pvCtx, _iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_matlab_sparse :
-            {
-                bReturn = export_matlab_sparse(pvCtx, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_matlab_sparse(pvCtx, _piVar, _pstName);
+            break;
+        }
         case sci_ints :
-            {
-                bReturn = export_ints(pvCtx, _iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_ints(pvCtx, _iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_handles :
-            {
-                bReturn = export_handles(pvCtx, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_handles(pvCtx, _piVar, _pstName);
+            break;
+        }
         case sci_strings :
-            {
-                bReturn = export_strings(pvCtx, _iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_strings(pvCtx, _iH5File, _piVar, _pstName);
+            break;
+        }
         case sci_u_function :
-            {
-                bReturn = export_u_function(pvCtx, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_u_function(pvCtx, _piVar, _pstName);
+            break;
+        }
         case sci_c_function :
-            {
-                bReturn = export_c_function(pvCtx, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_c_function(pvCtx, _piVar, _pstName);
+            break;
+        }
         case sci_lib :
-            {
-                bReturn = export_lib(pvCtx, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_lib(pvCtx, _piVar, _pstName);
+            break;
+        }
         case sci_list :
         case sci_tlist :
         case sci_mlist :
-            {
-                bReturn = export_list(pvCtx, _iH5File, _piVar, _pstName, iType);
-                break;
-            }
+        {
+            bReturn = export_list(pvCtx, _iH5File, _piVar, _pstName, iType);
+            break;
+        }
         case sci_lufact_pointer :
-            {
-                bReturn = export_lufact_pointer(pvCtx, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_lufact_pointer(pvCtx, _piVar, _pstName);
+            break;
+        }
         case 0 : //void case to "null" items in list
-            {
-                bReturn = export_void(pvCtx, _iH5File, _piVar, _pstName);
-                break;
-            }
+        {
+            bReturn = export_void(pvCtx, _iH5File, _piVar, _pstName);
+            break;
+        }
         default :
         {
             bReturn = false;
@@ -928,4 +918,31 @@ int extractVarNameList(int* pvCtx, int _iStart, int _iEnd, char** _pstNameList)
     return iCount;
 }
 
+/*--------------------------------------------------------------------------*/
+static bool isVarExist(int* pvCtx, int _iFile, char* _pstVarName)
+{
+    //check if variable already exists
+    int iNbItem = getVariableNames(_iFile, NULL);
+    if (iNbItem)
+    {
+        char **pstVarNameList = (char **)MALLOC(sizeof(char *) * iNbItem);
+
+        iNbItem = getVariableNames(_iFile, pstVarNameList);
+
+        //import all data
+        for (int i = 0 ; i < iNbItem ; i++)
+        {
+            if (strcmp(pstVarNameList[i], _pstVarName) == 0)
+            {
+                return true;
+            }
+
+            FREE(pstVarNameList[i]);
+        }
+
+        FREE(pstVarNameList);
+    }
+
+    return false;
+}
 /*--------------------------------------------------------------------------*/

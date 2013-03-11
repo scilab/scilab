@@ -15,142 +15,51 @@
 
 
 #define COMPN_SCILAB 'scilab'
-;
-#define COMPN_GRAPHICS 'scilab\graphics'
-#define COMPN_LINALG 'scilab\linear_algebra'
-#define COMPN_CACSD 'scilab\cacsd'
-#define COMPN_POLY 'scilab\polynomials'
-#define COMPN_SYMB 'scilab\symbolic'
-#define COMPN_SPARSE 'scilab\sparse'
-#define COMPN_EQUDIF 'scilab\differential_equations'
-#define COMPN_STATS 'scilab\statistics'
-;
-; by default
-#define COMPN_JVM_MODULE 'scilab\JVM_MODULE'
-#define COMPN_JRE 'JRE_1_6'
+Name: {#COMPN_SCILAB}; Description: Scilab {#ScilabVersion}; Types: full custom cli; Flags: fixed;
 
-;
+#define COMPN_JVM_MODULE 'JVM_MODULE'
+#define COMPN_SCINOTES 'JVM_MODULE\scinotes'
+#define COMPN_GRAPHICS 'JVM_MODULE\graphics'
+#define COMPN_XCOS 'JVM_MODULE\graphics\xcos'
+#define COMPN_JRE 'JVM_MODULE\JRE_1_6'
+Name: {#COMPN_JVM_MODULE}; Description: {cm:DescriptionModuleJVM}; Types: full;
+Name: {#COMPN_SCINOTES}; Description:{cm:DescriptionSciNotes}; Types: full;
+Name: {#COMPN_GRAPHICS}; Description: {cm:DescriptionGraphics}; Types: full;
+Name: {#COMPN_XCOS}; Description: {cm:DescriptionXcos}; Types: full;
+#ifndef SCILAB_WITHOUT_JRE
+Name: {#COMPN_JRE}; Description: {cm:DescriptionJVM} ({#javaUsed}); Types: full;
+#endif
+
 #define COMPN_CPU_OPTIMIZATION 'CPU_OPTIMIZATION'
 #define COMPN_REF_CPU_LIBRARY 'CPU_OPTIMIZATION\CPU_REF'
 #define COMPN_ATLAS_CPU_LIBRARY 'CPU_OPTIMIZATION\ATLAS'
 #define COMPN_MKL_CPU_LIBRARY 'CPU_OPTIMIZATION\MKL'
-;
-#define COMPN_INTERP 'interpolation'
-#define COMPN_SIGPROC 'signal_processing'
-
-#define COMPN_OPTIM 'optimization'
-#define COMPN_XCOS 'xcos'
-
-#define COMPN_ARNOLDI 'arnoldi'
-#define COMPN_TCLSCI 'tclsci'
-
-#define COMPN_SCINOTES 'scinotes'
-
-#define COMPN_EXTERNAL_OBJECTS 'external_objects'
-#define COMPN_SOUND 'sound'
-#define COMPN_RANDLIB 'randlib'
-#define COMPN_MEXLIB 'mexlib'
-#define COMPN_M2SCI 'm2sci'
-
-#define COMPN_INTERSCI 'intersci'
+Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: full custom cli; Flags: fixed;
+Name: {#COMPN_MKL_CPU_LIBRARY}; Description:{cm:DescriptionMKLLibrary}; Flags: exclusive
+#ifndef SCILAB_X64
+Name: {#COMPN_ATLAS_CPU_LIBRARY}; Description:{cm:DescriptionATLASLibrary}; Flags: exclusive
+#endif
+Name: {#COMPN_REF_CPU_LIBRARY}; Description:{cm:DescriptionRefBlasLibrary}; Flags: exclusive
 
 #define COMPN_FFTW 'FFTW'
 #define COMPN_FFTW_REF_LIBRARY 'FFTW\REF_LIBRARY'
 #define COMPN_FFTW_MKL_LIBRARY 'FFTW\MKL_LIBRARY'
-
-#define COMPN_UMFPACK 'UMFPACK'
-#define COMPN_COMPATFUNCTIONS 'compatibility_functions'
-#define COMPN_SPREADSHEET 'spreadsheet'
-#define COMPN_DEVTOOLS 'development_tools'
-#define COMPN_TESTS 'tests'
-#define COMPN_TOOLBOX_SKELETON 'toolbox_skeleton'
-#define COMPN_PARAMETERS 'parameters'
-#define COMPN_GENETICALGORITHMS 'genetic_algorithms'
-#define COMPN_SIMANNEALING 'simulated_annealing'
-#define COMPN_MATIO 'matio'
-#define COMPN_ATOMS 'ATOMS'
-#define COMPN_MODULES_MANAGER 'modules_manager'
-#define COMPN_PARALLEL 'parallel'
-#define COMPN_CHM 'chm_scilab'
-
-;
-Name: {#COMPN_SCILAB}; Description: Scilab {#ScilabVersion}; Types:  full  ; Flags: fixed;
-;
-Name: {#COMPN_EQUDIF}; Description: {cm:DescriptionEquDif}; Types:  full  ; Flags: fixed;
-Name: {#COMPN_POLY}; Description: {cm:DescriptionPolynomials}; Types:  full  ; Flags: fixed;
-Name: {#COMPN_SYMB}; Description: {cm:DescriptionSymbolic}; Types:  full  ; Flags: fixed;
-Name: {#COMPN_SPARSE}; Description: {cm:DescriptionSparse}; Types:  full  ; Flags: fixed;
-Name: {#COMPN_LINALG}; Description: {cm:DescriptionLinAlg}; Types:  full  ; Flags: fixed;
-Name: {#COMPN_CACSD}; Description: {cm:DescriptionCacsd}; Types:  full  ; Flags: fixed;
-Name: {#COMPN_STATS}; Description: {cm:DescriptionStats}; Types: full; Flags: fixed;
-Name: {#COMPN_GRAPHICS}; Description: {cm:DescriptionGraphics}; Types: full; Flags: fixed;
-;
-Name: {#COMPN_JVM_MODULE}; Description: {cm:DescriptionModuleJVM}; Types: full; Flags: fixed;
-;
-Name: {#COMPN_SCINOTES}; Description:{cm:DescriptionSciNotes}; Types: full; Flags: fixed;
-;
-Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: full; Flags: fixed;
-;
-Name: {#COMPN_EXTERNAL_OBJECTS}; Description: {cm:DescriptionExternalObjects}; Types: full; Flags: fixed;
-;
-Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: full; Flags: fixed;
-;
-Name: {#COMPN_CPU_OPTIMIZATION}; Description:{cm:DescriptionCPUOptimization}; Types: full;
-;
-Name: {#COMPN_MKL_CPU_LIBRARY}; Description:{cm:DescriptionMKLLibrary}; Flags: exclusive
-;
-#ifndef SCILAB_X64
-Name: {#COMPN_ATLAS_CPU_LIBRARY}; Description:{cm:DescriptionATLASLibrary}; Flags: exclusive
-#endif
-;
-Name: {#COMPN_REF_CPU_LIBRARY}; Description:{cm:DescriptionRefBlasLibrary}; Flags: exclusive
-;
-Name: {#COMPN_FFTW}; Description: {cm:DescriptionFftwModule}; Types: full ;
+Name: {#COMPN_FFTW}; Description: {cm:DescriptionFftwModule}; Types: full custom cli; Flags: fixed;
 Name: {#COMPN_FFTW_MKL_LIBRARY};Description: {cm:DescriptionFftwMKLDownload}; Flags: exclusive
 Name: {#COMPN_FFTW_REF_LIBRARY};Description: {cm:DescriptionRefFftwLibrary}; Flags: exclusive
-;
-Name: {#COMPN_SIGPROC}; Description: {cm:DescriptionSigProc}; Types: full;
-Name: {#COMPN_INTERP}; Description: {cm:DescriptionInterpolation}; Types:  full;
-Name: {#COMPN_OPTIM}; Description: {cm:DescriptionOptim}; Types:  full ;
-;
-Name: {#COMPN_XCOS}; Description: {cm:DescriptionXcos}; Types:  full ;
-;
-Name: {#COMPN_ARNOLDI}; Description: {cm:DescriptionArnoldi}; Types:full;
-Name: {#COMPN_UMFPACK}; Description: {cm:DescriptionUmfpack}; Types:full;
-;
-Name: {#COMPN_COMPATFUNCTIONS}; Description: {cm:DescriptionCompatFunctions}; Types: full;
-Name: {#COMPN_M2SCI}; Description: {cm:DescriptionM2sci}; Types: full;
-Name: {#COMPN_MATIO}; Description: {cm:DescriptionMatio}; Types: full;
-;
-Name: {#COMPN_SOUND}; Description: {cm:DescriptionSound}; Types:  full ;
-Name: {#COMPN_RANDLIB}; Description: {cm:DescriptionRandlib}; Types:  full ;
-;
-Name: {#COMPN_MEXLIB}; Description: {cm:DescriptionMexlib}; Types:  full ;
-Name: {#COMPN_INTERSCI}; Description: {cm:DescriptionIntersci}; Types:  full ;
-;
-Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: full;
-;
-Name: {#COMPN_SPREADSHEET}; Description: {cm:DescriptionSpreadsheet}; Types: full;
-;
+
+#define COMPN_DEVTOOLS 'Development_tools'
+#define COMPN_MODULES_MANAGER 'Development_tools\modules_manager'
+#define COMPN_TOOLBOX_SKELETON 'Development_tools\toolbox_skeleton'
+#define COMPN_TESTS 'Development_tools\tests'
+Name: {#COMPN_DEVTOOLS}; Description: {cm:DescriptionDevTools}; Types: full;
 Name: {#COMPN_MODULES_MANAGER}; Description: {cm:DescriptionModulesManager}; Types: full;
-;
-#ifndef SCILAB_F2C
-Name: {#COMPN_PARALLEL}; Description: {cm:DescriptionParallel}; Types: full;
-#endif
-;
-Name: {#COMPN_PARAMETERS}; Description: {cm:DescriptionParametersTlbx}; Types: full;
-Name: {#COMPN_GENETICALGORITHMS}; Description: {cm:DescriptionGeneticTlbx}; Types: full;
-Name: {#COMPN_SIMANNEALING}; Description: {cm:DescriptionSimulAnnealingTlbx}; Types: full;
-;
-;
-Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full ; ExtraDiskSpaceRequired: {#TESTS_SIZE}
 Name: {#COMPN_TOOLBOX_SKELETON}; Description: {cm:DescriptionTlbxSkeleton}; Types: full;
-;
-#ifndef SCILAB_WITHOUT_JRE
-Name: {#COMPN_JRE}; Description: {cm:DescriptionJVM} ({#javaUsed}); Types: full; Flags: fixed;
-#endif
-;
+Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full; ExtraDiskSpaceRequired: {#TESTS_SIZE}
+
+#define COMPN_TCLSCI 'tclsci'
+Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: full;
+
+#define COMPN_CHM 'chm_scilab'
 Name: {#COMPN_CHM}; Description: {cm:DescriptionCHM}; Types: full; ExtraDiskSpaceRequired: {#CHM_SIZE}
-;
 ;-------------------------------------------------------------------------------
-;

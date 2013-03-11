@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real vector or matrix</para>
+                    <para>vector or matrix</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>real vector or matrix (of same size than x)</para>
+                    <para>vector or matrix (of same size than x)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -40,21 +40,29 @@
         <title>Description</title>
         <para>
             <literal>erf</literal> computes the error function:
+            <latex>
+                \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt
+            </latex>
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/erf_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('y=f(t)','y=exp(-t^2)');
 erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
+
+x = [1+2*%i, -1+2*%i, 1e-6+2e-6*%i,0+2*%i];
+a=erf(x)
+
+// Equivalent to
+1-erfc(x)
 ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Algorithms</title>
+        <para>
+            This function is based on the <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeeva package</ulink> library.
+        </para>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -75,5 +83,14 @@ erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
                 <link linkend="erfinv">erfinv</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Function erf supports complex arguments</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

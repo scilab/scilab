@@ -7,3 +7,6 @@ getFormatSize
 getFormatMode
 getConsoleLines
 context_get
+SetError
+isError
+resetError

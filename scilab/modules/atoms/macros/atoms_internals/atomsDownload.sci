@@ -121,11 +121,11 @@ function atomsDownload(url_in,file_out,md5sum)
       timeout_arg = " --timeout=";
     end
 
-    timeout = string(strtod(atomsGetConfig("downloadTimeout")));
+    timeout = strtod(atomsGetConfig("downloadTimeout"));
 
-    if timeout <> "0" then
-      timeout_arg = timeout_arg + timeout;
-    else
+    if ~isnan(timeout) then // Value found in config file
+      timeout_arg = timeout_arg + string(timeout);
+    else // Default timeout
       timeout_arg = timeout_arg + "5";
     end
 
@@ -192,15 +192,15 @@ function atomsDownload(url_in,file_out,md5sum)
         atomsSetConfig("downloadTool","httpdownload");
       else
         select stat,
-          case -1 then mprintf(gettext("%s: Error: Invalid URL.\n"), 'atomsDownload'),
-          case -2 then mprintf(gettext("%s: Error: Internet Open.\n"), 'atomsDownload'),
-          case -3 then mprintf(gettext("%s: Error: URL Open.\n"), 'atomsDownload'),
-          case -4 then mprintf(gettext("%s: Error: Createfile.\n"), 'atomsDownload'),
-          case -5 then mprintf(gettext("%s: Error: Invalid File size.\n"), 'atomsDownload'),
-          case -6 then mprintf(gettext("%s: Error: Internet Read file.\n"), 'atomsDownload'),
-          case -7 then mprintf(gettext("%s: Error: Write file.\n"), 'atomsDownload'),
-          case -8 then mprintf(gettext("%s: Error: Failure.\n"), 'atomsDownload'),
-          case -9 then mprintf(gettext("%s: Error: Out Of Memory.\n"), 'atomsDownload'),
+          case -1 then mprintf(gettext("%s: Error: the response status from the URL %s is invalid.\n"), 'atomsDownload', url_in),
+          case -2 then mprintf(gettext("%s: Error while opening an Internet connection.\n"), 'atomsDownload'),
+          case -3 then mprintf(gettext("%s: Error while opening the URL %s.\n"), 'atomsDownload', url_in),
+          case -4 then mprintf(gettext("%s: Error while creating the file %s on disk.\n"), 'atomsDownload', file_out),
+          case -5 then mprintf(gettext("%s: Error while retrieving the size of file at URL %s.\n"), 'atomsDownload', url_in),
+          case -6 then mprintf(gettext("%s: Error while reading the file from the URL %s.\n"), 'atomsDownload', url_in),
+          case -7 then mprintf(gettext("%s: Error while writing the file %s on disk.\n"), 'atomsDownload', file_out),
+          case -8 then mprintf(gettext("%s: Error while downloading the file from the URL %s.\n"), 'atomsDownload', url_in),
+          case -9 then mprintf(gettext("%s: Error: out of memory.\n"), 'atomsDownload'),
         end
       end
     end

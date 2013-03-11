@@ -54,7 +54,7 @@ libsciparse_la_SOURCES 	= $(PARSE_CXX_SOURCES)
 libsciparse_la_CPPFLAGS = \
 	-Iincludes \
 	-Isrc/cpp \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/libs/MALLOC/includes \
 	-I$(top_builddir)/modules/core/includes \
 	-I$(top_builddir)/modules/ast/includes \

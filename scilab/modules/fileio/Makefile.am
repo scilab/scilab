@@ -43,8 +43,9 @@ FILEIO_C_SOURCES = \
     src/c/os_wfopen.c \
     src/c/fscanfMat.c \
     src/c/fprintfMat.c \
-    src/c/createtempfilename.c
-
+    src/c/createtempfilename.c \
+	src/c/dlManager.c \
+	src/c/convert_tools.c
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_fileio.c \
@@ -54,7 +55,10 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_pwd.c \
     sci_gateway/c/sci_copyfile.c \
     sci_gateway/c/sci_tempname.c \
-    sci_gateway/c/sci_movefile.c
+    sci_gateway/c/sci_movefile.c \
+	sci_gateway/c/sci_getURL.c \
+	sci_gateway/c/sci_getURLcontent.c \
+	sci_gateway/c/sci_splitURL.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/fileio_gw.cpp \
@@ -115,7 +119,6 @@ libscifileio_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/operations/includes \
@@ -130,10 +133,12 @@ libscifileio_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/threads/includes \
 	-I$(top_srcdir)/modules/console/includes \
 	-I$(top_srcdir)/modules/localization/includes \
-    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+	-I$(top_srcdir)/modules/dynamic_link/includes \
 	$(HDF5_CFLAGS) \
+	$(XML_FLAGS) \
     $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
+
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscifileio.la
@@ -147,6 +152,7 @@ endif
 libscifileio_algo_la_SOURCES = $(FILEIO_C_SOURCES) $(FILEIO_CPP_SOURCES)
 libscifileio_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscifileio_algo_la_CPPFLAGS = $(libscifileio_la_CPPFLAGS)
+libscifileio_algo_la_LDFLAGS = $(CURL_LIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(FILEIO_C_SOURCES) $(FILEIO_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)

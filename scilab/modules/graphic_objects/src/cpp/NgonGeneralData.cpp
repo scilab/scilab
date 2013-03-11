@@ -51,22 +51,22 @@ int NgonGeneralData::getPropertyFromName(int propertyName)
 {
     switch (propertyName)
     {
-    case __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__ :
-        return NUM_ELEMENTS_ARRAY;
-    case __GO_DATA_MODEL_COORDINATES__ :
-        return COORDINATES;
-    case __GO_DATA_MODEL_X__ :
-        return X_COORDINATES;
-    case __GO_DATA_MODEL_Y__ :
-        return Y_COORDINATES;
-    case __GO_DATA_MODEL_Z__ :
-        return Z_COORDINATES;
-    case __GO_DATA_MODEL_COLORS__ :
-        return COLORS;
-    case __GO_DATA_MODEL_NUM_COLORS__ :
-        return NUM_COLORS;
-    default :
-        return NgonData::getPropertyFromName(propertyName);
+        case __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__ :
+            return NUM_ELEMENTS_ARRAY;
+        case __GO_DATA_MODEL_COORDINATES__ :
+            return COORDINATES;
+        case __GO_DATA_MODEL_X__ :
+            return X_COORDINATES;
+        case __GO_DATA_MODEL_Y__ :
+            return Y_COORDINATES;
+        case __GO_DATA_MODEL_Z__ :
+            return Z_COORDINATES;
+        case __GO_DATA_MODEL_COLORS__ :
+            return COLORS;
+        case __GO_DATA_MODEL_NUM_COLORS__ :
+            return NUM_COLORS;
+        default :
+            return NgonData::getPropertyFromName(propertyName);
     }
 }
 
@@ -173,6 +173,7 @@ void NgonGeneralData::setData(double const* data, int numElements)
     {
         delete [] coordinates;
 
+        numVerticesPerGon = numElements / numGons;
         coordinates = new double[3 * numElements];
     }
 
@@ -222,7 +223,7 @@ int NgonGeneralData::setNumElementsArray(int const* numElementsArray)
         return 0;
     }
 
-    if (numGons*numVerticesPerGon != numElementsArray[0]*numElementsArray[1])
+    if (numGons * numVerticesPerGon != numElementsArray[0]*numElementsArray[1])
     {
         try
         {

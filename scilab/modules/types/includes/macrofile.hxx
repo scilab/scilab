@@ -19,37 +19,49 @@
 
 namespace types
 {
-    class MacroFile : public Callable
+class MacroFile : public Callable
+{
+public :
+    MacroFile(): Callable() {};
+    MacroFile(wstring _stName, wstring _stPath, wstring _stModule);
+    virtual                 ~MacroFile();
+
+    //FIXME : Should not return NULL
+    InternalType*           clone();
+
+    RealType                getType(void);
+    bool                    isMacroFile()
     {
-    public :
-                                MacroFile(): Callable(){};
-                                MacroFile(wstring _stName, wstring _stPath, wstring _stModule);
-        virtual                 ~MacroFile();
+        return true;
+    }
 
-        //FIXME : Should not return NULL
-        InternalType*           clone();
+    void                    whoAmI();
 
-        RealType                getType(void);
-        bool                    isMacroFile() { return true; }
+    bool                    toString(std::wostringstream& ostr);
 
-        void                    whoAmI();
+    Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+    bool                    parse(void);
 
-        bool                    toString(std::wostringstream& ostr);
+    Macro*                  getMacro(void)
+    {
+        return m_pMacro;
+    }
 
-        Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
-        bool                    parse(void);
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual wstring         getTypeStr()
+    {
+        return L"function";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual wstring         getShortTypeStr()
+    {
+        return L"function";
+    }
 
-        Macro*                  getMacro(void){return m_pMacro;}
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual wstring         getTypeStr() {return L"macrofile";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual wstring         getShortTypeStr() {return L"function";}
-
-    private :
-        Macro*                  m_pMacro;
-        wstring                 m_stPath;
-    };
+private :
+    Macro*                  m_pMacro;
+    wstring                 m_stPath;
+};
 }
 
 

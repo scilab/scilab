@@ -1,7 +1,7 @@
 /*
  * -----------------------------------------------------------------
- * $Revision: 1.2 $
- * $Date: 2006/10/17 21:00:03 $
+ * $Revision: 1.12 $
+ * $Date: 2010/12/01 22:21:04 $
  * -----------------------------------------------------------------
  * Programmer(s): Alan C. Hindmarsh and Radu Serban @ LLNL
  * -----------------------------------------------------------------
@@ -108,23 +108,23 @@ int CVodeSetIterType(void *cvode_mem, int iter)
 }
 
 /* 
- * CVodeSetFdata
+ * CVodeSetUserData
  *
  * Specifies the user data pointer for f
  */
 
-int CVodeSetFdata(void *cvode_mem, void *f_data)
+int CVodeSetUserData(void *cvode_mem, void *user_data)
 {
   CVodeMem cv_mem;
 
   if (cvode_mem==NULL) {
-    CVProcessError(NULL, CV_MEM_NULL, "CVODE", "CVodeSetFdata", MSGCV_NO_MEM);
+    CVProcessError(NULL, CV_MEM_NULL, "CVODE", "CVodeSetUserData", MSGCV_NO_MEM);
     return(CV_MEM_NULL);
   }
 
   cv_mem = (CVodeMem) cvode_mem;
 
-  cv_mem->cv_f_data = f_data;
+  cv_mem->cv_user_data = user_data;
 
   return(CV_SUCCESS);
 }
@@ -183,12 +183,8 @@ int CVodeSetMaxNumSteps(void *cvode_mem, long int mxsteps)
 
   cv_mem = (CVodeMem) cvode_mem;
 
-  if (mxsteps < 0) {
-    CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeSetMaxNumSteps", MSGCV_NEG_MXSTEPS);
-    return(CV_ILL_INPUT);
-  }
+  /* Passing mxsteps=0 sets the default. Passing mxsteps<0 disables the test. */
 
-  /* Passing 0 sets the default */
   if (mxsteps == 0)
     cv_mem->cv_mxstep = MXSTEP_DEFAULT;
   else
@@ -349,8 +345,7 @@ int CVodeSetMaxStep(void *cvode_mem, realtype hmax)
 /* 
  * CVodeSetStopTime
  *
- * Specifies the time beyond which the integration is not to
- * proceed
+ * Specifies the time beyond which the integration is not to proceed.
  */
 
 int CVodeSetStopTime(void *cvode_mem, realtype tstop)
@@ -361,8 +356,20 @@ int CVodeSetStopTime(void *cvode_mem, realtype tstop)
     CVProcessError(NULL, CV_MEM_NULL, "CVODE", "CVodeSetStopTime", MSGCV_NO_MEM);
     return (CV_MEM_NULL);
   }
-
   cv_mem = (CVodeMem) cvode_mem;
+
+  /* If CVode was called at least once, test if tstop is legal
+   * (i.e. if it was not already passed).
+   * If CVodeSetStopTime is called before the first call to CVode,
+   * tstop will be checked in CVode. */
+  if (cv_mem->cv_nst > 0) {
+
+    if ( (tstop - cv_mem->cv_tn) * cv_mem->cv_h < ZERO ) {
+      CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeSetStopTime", MSGCV_BAD_TSTOP, cv_mem->cv_tn);
+      return(CV_ILL_INPUT);
+    }
+
+  }
 
   cv_mem->cv_tstop = tstop;
   cv_mem->cv_tstopset = TRUE;
@@ -462,120 +469,59 @@ int CVodeSetNonlinConvCoef(void *cvode_mem, realtype nlscoef)
   return(CV_SUCCESS);
 }
 
-/*
- * CVodeSetTolerances
- *
- * Changes the integration tolerances between calls to CVode()
- */
-
-int CVodeSetTolerances(void *cvode_mem, 
-                       int itol, realtype reltol, void *abstol)
-{
-  CVodeMem cv_mem;
-  booleantype neg_abstol;
-
-  if (cvode_mem==NULL) {
-    CVProcessError(NULL, CV_MEM_NULL, "CVODE", "CVodeSetTolerances", MSGCV_NO_MEM);
-    return(CV_MEM_NULL);
-  }
-
-  cv_mem = (CVodeMem) cvode_mem;
-
-  /* Check if cvode_mem was allocated */
-
-  if (cv_mem->cv_MallocDone == FALSE) {
-    CVProcessError(cv_mem, CV_NO_MALLOC, "CVODE", "CVodeSetTolerances", MSGCV_NO_MALLOC);
-    return(CV_NO_MALLOC);
-  }
-
-  /* Check inputs */
-
-  if ( (itol != CV_SS) && (itol != CV_SV) ) {
-    CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeSetTolerances", MSGCV_BAD_ITOL);
-    return(CV_ILL_INPUT);
-  }
-
-  if (abstol == NULL) {
-    CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeSetTolerances", MSGCV_NULL_ABSTOL);
-    return(CV_ILL_INPUT);
-  }
-
-  if (reltol < ZERO) {
-    CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeSetTolerances", MSGCV_BAD_RELTOL);
-    return(CV_ILL_INPUT);
-  }
-
-  if (itol == CV_SS)
-    neg_abstol = (*((realtype *)abstol) < ZERO);
-  else
-    neg_abstol = (N_VMin((N_Vector)abstol) < ZERO);
-    
-  if (neg_abstol) {
-    CVProcessError(cv_mem, CV_ILL_INPUT, "CVODE", "CVodeSetTolerances", MSGCV_BAD_ABSTOL);
-    return(CV_ILL_INPUT);
-  }
-
-  /* Copy tolerances into memory */
-
-  if ( (itol != CV_SV) && (cv_mem->cv_VabstolMallocDone) ) {
-    N_VDestroy(cv_mem->cv_Vabstol);
-    lrw -= lrw1;
-    liw -= liw1;
-    cv_mem->cv_VabstolMallocDone = FALSE;
-  }
-
-  if ( (itol == CV_SV) && !(cv_mem->cv_VabstolMallocDone) ) {
-    cv_mem->cv_Vabstol = NULL;
-    cv_mem->cv_Vabstol = N_VClone(cv_mem->cv_ewt);
-    lrw += lrw1;
-    liw += liw1;
-    cv_mem->cv_VabstolMallocDone = TRUE;
-  }
-
-  cv_mem->cv_itol   = itol;
-  cv_mem->cv_reltol = reltol;
-  if (itol == CV_SS)
-    cv_mem->cv_Sabstol = *((realtype *)abstol);
-  else
-    N_VScale(ONE, (N_Vector)abstol, cv_mem->cv_Vabstol);
-
-  cv_mem->cv_efun = CVEwtSet;
-  cv_mem->cv_e_data = cvode_mem;
-
-
-  return(CV_SUCCESS);
-}
-
 /* 
- * CVodeSetEwtFn
+ * CVodeSetRootDirection
  *
- * Specifies the user-provide EwtSet function and data pointer for e
+ * Specifies the direction of zero-crossings to be monitored.
+ * The default is to monitor both crossings.
  */
 
-int CVodeSetEwtFn(void *cvode_mem, CVEwtFn efun, void *e_data)
+int CVodeSetRootDirection(void *cvode_mem, int *rootdir)
 {
   CVodeMem cv_mem;
+  int i, nrt;
 
   if (cvode_mem==NULL) {
-    CVProcessError(NULL, CV_MEM_NULL, "CVODE", "CVodeSetEwtFn", MSGCV_NO_MEM);
+    CVProcessError(NULL, CV_MEM_NULL, "CVODE", "CVodeSetRootDirection", MSGCV_NO_MEM);
     return(CV_MEM_NULL);
   }
 
   cv_mem = (CVodeMem) cvode_mem;
 
-  if ( cv_mem->cv_VabstolMallocDone ) {
-    N_VDestroy(cv_mem->cv_Vabstol);
-    lrw -= lrw1;
-    liw -= liw1;
-    cv_mem->cv_VabstolMallocDone = FALSE;
+  nrt = cv_mem->cv_nrtfn;
+  if (nrt==0) {
+    CVProcessError(NULL, CV_ILL_INPUT, "CVODE", "CVodeSetRootDirection", MSGCV_NO_ROOT);
+    return(CV_ILL_INPUT);    
   }
 
-  cv_mem->cv_itol = CV_WF;
-  cv_mem->cv_efun = efun;
-  cv_mem->cv_e_data = e_data;
+  for(i=0; i<nrt; i++) cv_mem->cv_rootdir[i] = rootdir[i];
 
   return(CV_SUCCESS);
 }
+
+/*
+ * CVodeSetNoInactiveRootWarn
+ *
+ * Disables issuing a warning if some root function appears
+ * to be identically zero at the beginning of the integration
+ */
+
+int CVodeSetNoInactiveRootWarn(void *cvode_mem)
+{
+  CVodeMem cv_mem;
+
+  if (cvode_mem==NULL) {
+    CVProcessError(NULL, CV_MEM_NULL, "CVODE", "CVodeSetNoInactiveRootWarn", MSGCV_NO_MEM);
+    return(CV_MEM_NULL);
+  }
+
+  cv_mem = (CVodeMem) cvode_mem;
+
+  cv_mem->cv_mxgnull = 0;
+  
+  return(CV_SUCCESS);
+}
+
 
 /* 
  * =================================================================
@@ -609,7 +555,6 @@ int CVodeSetEwtFn(void *cvode_mem, CVEwtFn efun, void *e_data)
 #define sldeton        (cv_mem->cv_sldeton)
 #define tn             (cv_mem->cv_tn)
 #define efun           (cv_mem->cv_efun)
-#define e_data         (cv_mem->cv_e_data) 
 
 /*
  * CVodeGetNumSteps
@@ -1099,7 +1044,7 @@ int CVodeGetNonlinSolvStats(void *cvode_mem, long int *nniters,
 
 /*-----------------------------------------------------------------*/
 
-char *CVodeGetReturnFlagName(int flag)
+char *CVodeGetReturnFlagName(long int flag)
 {
   char *name;
 

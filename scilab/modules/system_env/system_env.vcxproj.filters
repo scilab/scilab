@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -13,7 +13,7 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
-    <Filter Include="Imports">
+    <Filter Include="Libraries Dependencies">
       <UniqueIdentifier>{5366a44d-7002-479f-bb0f-0f03824e6c64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -109,11 +109,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
-    <None Include="differential_equations_f_Import.def">
-      <Filter>Imports</Filter>
-    </None>
-    <None Include="differential_equations_Import.def">
-      <Filter>Imports</Filter>
+    <None Include="core_Import.def">
+      <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>
 </Project>

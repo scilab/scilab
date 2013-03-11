@@ -79,11 +79,11 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+	$(top_srcdir)/m4/eigen.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -229,6 +229,10 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CURL_CFLAGS = @CURL_CFLAGS@
+CURL_CONFIG = @CURL_CONFIG@
+CURL_LIBS = @CURL_LIBS@
+CURL_VERSION = @CURL_VERSION@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -469,7 +473,8 @@ FUNCTIONS_C_SOURCES = src/c/getmacroslist.c \
 	src/c/searchmacroinlibraries.c
 
 FUNCTIONS_FORTRAN_SOURCES = src/fortran/whereis.f
-GATEWAY_C_SOURCES = sci_gateway/c/gw_functions.c \
+GATEWAY_C_SOURCES = \
+sci_gateway/c/gw_functions.c \
 sci_gateway/c/sci_lib.c \
 sci_gateway/c/sci_deff.c \
 sci_gateway/c/sci_librarieslist.c \
@@ -484,32 +489,32 @@ sci_gateway/cpp/sci_getCurrentThreadId.cpp \
 sci_gateway/cpp/sci_mode.cpp \
 sci_gateway/cpp/sci_getThreads.cpp
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intlib.f \
+GATEWAY_FORTRAN_SOURCES = \
+sci_gateway/fortran/intlib.f \
 sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intexec.f
 
 libscifunctions_la_CPPFLAGS = \
-				-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-                -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-                -I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/functions_manager/includes/ \
-				-I$(top_srcdir)/modules/symbol/includes/ \
-				-I$(top_srcdir)/modules/ast/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/operations/includes/ \
-				-I$(top_srcdir)/modules/localization/includes/ \
-				-I$(top_srcdir)/modules/parse/includes/ \
-				-I$(top_srcdir)/modules/string/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/system_env/includes \
-				-I$(top_srcdir)/modules/console/includes \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/types/includes/ \
-				-I$(top_srcdir)/modules/threads/includes/ \
-				-I$(top_srcdir)/modules/elementary_functions/includes/ \
-                $(EIGEN_CPPFLAGS) \
-				$(AM_CPPFLAGS)
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/functions_manager/includes/ \
+-I$(top_srcdir)/modules/symbol/includes/ \
+-I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/parse/includes/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/fileio/includes \
+-I$(top_srcdir)/modules/system_env/includes \
+-I$(top_srcdir)/modules/console/includes \
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/types/includes/ \
+-I$(top_srcdir)/modules/threads/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/dynamic_link/includes/ \
+$(EIGEN_CPPFLAGS) \
+$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscifunctions.la
 noinst_LTLIBRARIES = libscifunctions-algo.la
@@ -521,7 +526,7 @@ libscifunctions_algo_la_CPPFLAGS = $(libscifunctions_la_CPPFLAGS)
 CHECK_SRC = $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifunctions_la_CPPFLAGS)
 libscifunctions_la_LIBADD = \
-	libscifunctions-algo.la
+libscifunctions-algo.la
 
 
 #### Target ######

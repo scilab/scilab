@@ -39,11 +39,12 @@ wchar_t *getLastErrorFunction(void)
 void setLastErrorNumber(int _iError)
 {
     ConfigVariable::setLastErrorNumber(_iError);
+    ConfigVariable::setError();
 }
 /*--------------------------------------------------------------------------*/
 void setLastErrorMessage(const wchar_t* _pwstError)
 {
-    if(_pwstError == NULL)
+    if (_pwstError == NULL)
     {
         std::wstring wstError(L"");
         ConfigVariable::setLastErrorFunction(wstError);
@@ -62,7 +63,7 @@ void setLastErrorLine(int _iLine)
 /*--------------------------------------------------------------------------*/
 void setLastErrorFunction(const wchar_t* _pwstFunction)
 {
-    if(_pwstFunction == NULL)
+    if (_pwstFunction == NULL)
     {
         std::wstring wstError(L"");
         ConfigVariable::setLastErrorFunction(wstError);
@@ -82,3 +83,17 @@ void setLastError(int _iError, const wchar_t* _pwstError, int _iLine, const wcha
     setLastErrorFunction(_pwstFunction);
 }
 /*--------------------------------------------------------------------------*/
+void SetError()
+{
+    ConfigVariable::setError();
+}
+/*--------------------------------------------------------------------------*/
+int isError()
+{
+    return ConfigVariable::isError() ? 1 : 0;
+}
+/*--------------------------------------------------------------------------*/
+void resetError()
+{
+    ConfigVariable::resetError();
+}

@@ -18,12 +18,12 @@
 
 void addGatewayInContext(wchar_t* _pwstName, OLDGW_FUNC _pFunc, wchar_t* _pwstModule)
 {
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(_pwstName, _pFunc, _pwstModule));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_pwstName, _pFunc, _pwstModule));
 }
 
 void addMexGatewayInContext(wchar_t* _pwstName, MEXGW_FUNC _pFunc, wchar_t* _pwstModule)
 {
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(_pwstName, _pFunc, _pwstModule));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_pwstName, _pFunc, _pwstModule));
 }
 
 namespace symbol
@@ -82,14 +82,14 @@ types::InternalType* Context::getAllButCurrentLevel(const symbol::Symbol& key) c
     return EnvVarTable.getAllButCurrentLevel(key);
 }
 
-types::InternalType* Context::get_fun(const symbol::Symbol& key) const
+types::InternalType* Context::getFunction(const symbol::Symbol& key) const
 {
     return EnvVarTable.get(key);
 }
 
-std::list<symbol::Symbol>& Context::get_funlist(const std::wstring& _stModuleName)
+std::list<symbol::Symbol>& Context::getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd)
 {
-    return EnvVarTable.get_funlist(_stModuleName);
+    return EnvVarTable.getFunctionList(_stModuleName, _bFromEnd);
 }
 
 bool Context::put(const symbol::Symbol& key, types::InternalType &type)
@@ -125,13 +125,13 @@ bool Context::remove(const symbol::Symbol& key)
     return true;
 }
 
-bool Context::put_in_previous_scope(const symbol::Symbol& key, types::InternalType &type)
+bool Context::putInPreviousScope(const symbol::Symbol& key, types::InternalType &type)
 {
-    EnvVarTable.put_in_previous_scope(key, type);
+    EnvVarTable.putInPreviousScope(key, type);
     return true;
 }
 
-bool Context::AddFunction(types::Function *_info)
+bool Context::addFunction(types::Function *_info)
 {
     EnvVarTable.put(symbol::Symbol(_info->getName()), *_info);
     return true;

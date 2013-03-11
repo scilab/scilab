@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
 "PO-Revision-Date: 2012-06-13 19:27+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 
 #, c-format
 msgid "%s : lnksz argument must be double or integer.\n"
@@ -1182,6 +1182,10 @@ msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván graf.\n"
 
 #, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s: Chyba při vyhodnocování parametrů bloku.\n"
+
+#, c-format
 msgid "%s: Unable to find diagram inputs\n"
 msgstr "%s: Nelze nalézt vstupy grafu\n"
 
@@ -1242,10 +1246,6 @@ msgid ""
 msgstr ""
 "Varování, proměnná %s se neshoduje s žádným jménem proměnné kontextu\n"
 "ignorováno"
-
-#, c-format
-msgid "%s: Error during block parameters evaluation.\n"
-msgstr "%s: Chyba při vyhodnocování parametrů bloku.\n"
 
 #, c-format
 msgid "%s: Error during block parameters update.\n"

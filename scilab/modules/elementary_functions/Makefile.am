@@ -211,7 +211,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wcerr.f \
     src/fortran/ivimp.f \
     src/fortran/dadd.f \
-    src/fortran/calerf.f \
     src/fortran/isort.f \
     src/fortran/hilber.f \
     src/fortran/wdpowe.f \
@@ -367,7 +366,6 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_triu.cpp \
     sci_gateway/cpp/sci_tril.cpp
 
-
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
 # FIXME: why disabling optimisation ? Any bug reference ?
@@ -384,14 +382,12 @@ libdummy_elementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/core/includes/ \
     $(AM_CPPFLAGS)
 
-
 # Includes need for the compilation
 libscielementary_functions_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \

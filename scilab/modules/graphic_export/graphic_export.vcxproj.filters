@@ -78,20 +78,20 @@
     <ClCompile Include="sci_gateway\c\sci_xs2svg.c">
       <Filter>Source Files\c</Filter>
     </ClCompile>
+    <ClCompile Include="src\jni\Driver.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_driver.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\cpp</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_xend.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\cpp</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_xinit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\jni\Driver.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\cpp</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\xs2file.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\c</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,9 +99,6 @@
       <Filter>Header Files\h</Filter>
     </ClInclude>
     <ClInclude Include="includes\gw_graphic_export.h">
-      <Filter>Header Files\h</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\xs2file.h">
       <Filter>Header Files\h</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\exportToFile.hxx">

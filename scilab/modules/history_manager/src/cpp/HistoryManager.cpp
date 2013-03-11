@@ -40,7 +40,7 @@ HistoryManager* HistoryManager::m_pHM = NULL;
 /*------------------------------------------------------------------------*/
 HistoryManager* HistoryManager::getInstance()
 {
-    if(m_pHM == NULL)
+    if (m_pHM == NULL)
     {
         m_pHM = new HistoryManager();
 
@@ -50,7 +50,7 @@ HistoryManager* HistoryManager::getInstance()
         {
             appendLineToScilabHistory(commentbeginsession);
             FREE(commentbeginsession);
-            commentbeginsession=NULL;
+            commentbeginsession = NULL;
         }
 
         m_pHM->setToken("");
@@ -61,7 +61,7 @@ HistoryManager* HistoryManager::getInstance()
 /*------------------------------------------------------------------------*/
 void HistoryManager::killInstance(void)
 {
-    if(m_pHM)
+    if (m_pHM)
     {
         delete m_pHM;
         m_pHM = NULL;
@@ -75,7 +75,7 @@ BOOL historyIsEnabled(void)
 /*------------------------------------------------------------------------*/
 BOOL InitializeHistoryManager(void)
 {
-    if(HistoryManager::getInstance())
+    if (HistoryManager::getInstance())
     {
         return TRUE;
     }
@@ -110,9 +110,9 @@ BOOL appendLineToScilabHistory(char* _pstLine)
 /*------------------------------------------------------------------------*/
 BOOL appendLinesToScilabHistory(char** _pstLines, int _iLines)
 {
-    for(int i = 0 ; i < _iLines ; i++)
+    for (int i = 0 ; i < _iLines ; i++)
     {
-        if(HistoryManager::getInstance()->appendLine(_pstLines[i]) == FALSE)
+        if (HistoryManager::getInstance()->appendLine(_pstLines[i]) == FALSE)
         {
             return FALSE;
         }
@@ -254,7 +254,7 @@ HistoryManager::~HistoryManager()
 /*------------------------------------------------------------------------*/
 BOOL HistoryManager::historyIsEnabled(void)
 {
-    if(m_pHM)
+    if (m_pHM)
     {
         return TRUE;
     }
@@ -275,7 +275,7 @@ BOOL HistoryManager::appendLine(char* _pstLine)
         /* remove carriage return at the end of line */
         for (i = (int) strlen(pstCleanedLine) - 1 ; i >= 0 ; i--)
         {
-            if (pstCleanedLine[i]=='\n')
+            if (pstCleanedLine[i] == '\n')
             {
                 pstCleanedLine[i] = '\0';
                 break;
@@ -297,7 +297,7 @@ BOOL HistoryManager::appendLine(char* _pstLine)
             i--;
         }
 
-        if(strlen(pstCleanedLine) == 0)
+        if (strlen(pstCleanedLine) == 0)
         {
             return TRUE;
         }
@@ -358,9 +358,9 @@ BOOL HistoryManager::appendLine(char* _pstLine)
 /*------------------------------------------------------------------------*/
 BOOL HistoryManager::appendLines(char** _pstLines, int _iLines)
 {
-    for(int i = 0 ; i < _iLines ; i++)
+    for (int i = 0 ; i < _iLines ; i++)
     {
-        if(appendLine(_pstLines[i]) == FALSE)
+        if (appendLine(_pstLines[i]) == FALSE)
         {
             return FALSE;
         }
@@ -372,7 +372,7 @@ void HistoryManager::displayHistory(void)
 {
     int nbline = 0;
     std::list<std::string>::const_iterator it;
-    for(it = m_Commands.begin() ; it != m_Commands.end() ; it++)
+    for (it = m_Commands.begin() ; it != m_Commands.end() ; it++)
     {
         sciprint(_("%d : %s\n"), nbline++, (*it).c_str());
     }
@@ -496,7 +496,7 @@ char** HistoryManager::getAllLines(int* _piLines)
         std::list<std::string>::const_iterator it;
 
         pstLines = (char**)MALLOC((int)(m_Commands.size() + 1) * (sizeof(char*)));
-        for(it = m_Commands.begin() ; it != m_Commands.end(); ++it)
+        for (it = m_Commands.begin() ; it != m_Commands.end(); ++it)
         {
             pstLines[(*_piLines)++] = os_strdup((*it).c_str());
         }
@@ -533,7 +533,8 @@ int HistoryManager::getNumberOfLines(void)
 char* HistoryManager::getNthLine(int _iLine)
 {
     if (_iLine < 0)
-    {//reverse search Oo
+    {
+        //reverse search Oo
         _iLine = getNumberOfLines() + _iLine;
     }
 
@@ -541,7 +542,7 @@ char* HistoryManager::getNthLine(int _iLine)
     {
         int i = 0;
         std::list<std::string>::const_iterator it;
-        for(it = m_Commands.begin() ; it != m_Commands.end() ; it++)
+        for (it = m_Commands.begin() ; it != m_Commands.end() ; it++)
         {
             if (i == _iLine)
             {
@@ -560,7 +561,7 @@ BOOL HistoryManager::deleteNthLine(int _iLine)
     {
         int i = 0;
         std::list<std::string>::iterator it;
-        for(it = m_Commands.begin() ; it != m_Commands.end(); it++)
+        for (it = m_Commands.begin() ; it != m_Commands.end(); it++)
         {
             if (i == _iLine)
             {
@@ -607,7 +608,7 @@ char* HistoryManager::getPreviousLine(void)
     if (m_HS.getSize() > 0)
     {
         std::string stLine = m_HS.getPreviousLine();
-        if(stLine.empty() == false)
+        if (stLine.empty() == false)
         {
             return os_strdup(stLine.c_str());
         }
@@ -629,7 +630,7 @@ BOOL HistoryManager::setToken(char* _pstToken)
 {
     m_HS.setHistory(m_Commands);
 
-    if(_pstToken)
+    if (_pstToken)
     {
         return m_HS.setToken(_pstToken);
     }
@@ -663,9 +664,9 @@ BOOL HistoryManager::isBeginningSessionLine(char* _pstLine)
             if ((strncmp(   _pstLine,
                             SESSION_PRAGMA_BEGIN,
                             strlen(SESSION_PRAGMA_BEGIN)) == 0) &&
-                (strncmp(    _pstLine + strlen(_pstLine) - strlen(SESSION_PRAGMA_END),
-                            SESSION_PRAGMA_END,
-                            strlen(SESSION_PRAGMA_END)) == 0))
+                    (strncmp(    _pstLine + strlen(_pstLine) - strlen(SESSION_PRAGMA_END),
+                                 SESSION_PRAGMA_END,
+                                 strlen(SESSION_PRAGMA_END)) == 0))
             {
                 return TRUE;
             }

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-03 07:54+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:09+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: fr\n"
 
 #, c-format
@@ -147,7 +147,7 @@ msgid "%s: Unable to get argument data"
 msgstr "%s : Impossible d'obtenir la donnée de l'argument"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s : Dimension erronée de l'argument %d : (%d,%d) attendu.\n"
 
 #, c-format
@@ -163,7 +163,7 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Une matrice réelle attendue.\n"
 
 #, c-format
@@ -184,10 +184,6 @@ msgstr "%s : Impossible d'obtenir la dimension de la variable \"%s\""
 
 msgid "double matrix"
 msgstr "Matrice de double"
-
-#, c-format
-msgid "%s: Bad call to get a non complex matrix"
-msgstr "%s : Appel erroné pour récupérer une matrice non complexe"
 
 #, c-format
 msgid "stack size exceeded!\n"
@@ -263,6 +259,10 @@ msgstr "Pointeur"
 
 msgid "polynomial matrix"
 msgstr "Polynôme de matrice"
+
+#, c-format
+msgid "%s: Bad call to get a non complex matrix"
+msgstr "%s : Appel erroné pour récupérer une matrice non complexe"
 
 #, c-format
 msgid "%s: Formal variable name of polynomial can't exceed 4 characters"

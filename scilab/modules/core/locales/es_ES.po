@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-06-25 23:36+0000\n"
-"Last-Translator: gustavoreyes <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:09+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16506)\n"
 "Language: es\n"
 
 #, c-format
@@ -47,12 +47,12 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para argumento %d: Se esperaba un escalar real.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: Real scalar expected.\n"
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto para argumento %d: Se esperaba un escalar real.\n"
 
@@ -369,8 +369,8 @@ msgstr "Error: Imposible definir la variable de entorno %s.\n"
 msgid "Scilab Enterprises\n"
 msgstr "Scilab Enterprises\n"
 
-msgid "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
-msgstr "Copyright (c) 2011-2012 (Scilab Enterprises)\n"
+msgid "Copyright (c) 2011-2013 (Scilab Enterprises)\n"
+msgstr ""
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr "Copyright (c) 1989-2012 (INRIA)\n"
@@ -578,23 +578,23 @@ msgid "%s: argument %d should be a list of size at least %d.\n"
 msgstr "%s: el argumento %d debería ser una lista de tamaño al menos %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s: Tipo incorrecto de argumento %d: Se esperaba una matriz real.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Tamaño incorrecto para el argumento %d: Se esperaba (%d, %d).\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
+"%s: Wrong type for argument #%d (List element: %d): Real or complex matrix "
 "expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d (Elemento de lista: %d): Se "
 "esperaba una matriz real o compleja.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz real o "
 "compleja.\n"
@@ -604,135 +604,138 @@ msgid "%s: Too many names.\n"
 msgstr "%s: Demasiados nombres.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
+msgid "%s: Wrong type for argument #%d: List of size at least %d expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento %d: Se esperaba una lista de tamaño al "
 "menos %d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Int matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento %d (Elemento de lista: %d): Se esperaba "
 "una matriz de enteros.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgid "%s: Wrong size for argument #%d: At least %d expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto para el argumento %d: Se esperaba al menos %d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Boolean matrix "
+"expected.\n"
 msgstr ""
 "%s: Tipo incorrecto de argumento %d (Elemento de la lista: %d): Se esperaba "
 "una matriz booleana.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz booleana.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Sparse matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d (Elemento de lista: %d): Se "
 "esperaba una matriz dispersa.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz dispersa.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d (List element: %d): Vector expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d (Elemento de la lista: %d): Se "
 "esperaba un vector.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s: Tipo incorrecto para el argumento %d: Se esperaba un vector.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba un vector real.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Tamaño incorrecto para el argumento %d: Se esperaba %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d (List element: %d): Scalar expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d (Elemento de la lista: %d): Se "
 "esperaba un escalar.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba escalar, \"%s' o "
 "\"%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of strings "
+"%s: Wrong type for argument #%d (List element: %d): Matrix of strings "
 "expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d (Elemento de lista: %d): Se "
 "esperaba una matriz de strings.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz de "
 "strings.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): String matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d (Elemento de lista: %d): Se "
 "esperaba una matriz de strings.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz de "
 "strings.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s: Tipo incorrecto para el argumento %d: Se esperaba una lista.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz de "
 "polinomios.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba un polinomio.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz funcional "
 "de enteros.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Row vector expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d (Elemento de lista: %d): Se "
 "esperaba un vector fila.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Row vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba un vector fila.\n"
 
@@ -741,25 +744,25 @@ msgid "%s: argument %d >(%d) should be a column vector.\n"
 msgstr "%s: El argumento %d > (%d) debería ser un vector columna.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Column vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Column vector expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba un vector columna.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
+"%s: Wrong type for argument #%d (List element: %d): Boxed pointer expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d (Elemento de lista: %d): Se "
 "esperaba un puntero encapsulado.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
+msgid "%s: Wrong type for argument #%d: Boxed pointer expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba un puntero "
 "encapsulado.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz.\n"
 
 #, c-format
@@ -770,7 +773,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba una función o un "
@@ -792,14 +795,14 @@ msgstr "%f: No hay mas espacio para almacenar argumentos string.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of handle "
+"%s: Wrong type for argument #%d (List element: %d): Matrix of handle "
 "expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d (Elemento de lista: %d): Se "
 "esperaba una matriz de manejadores.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz de "
 "manejadores.\n"
@@ -1048,6 +1051,10 @@ msgid "Impossible to create : %s"
 msgstr "Imposible de crear: %s"
 
 #, c-format
+msgid "Warning: Could not resolve the realpath of %s.\n"
+msgstr ""
+
+#, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr "Error: No se pudo crear %s: %s\n"
 
@@ -1090,8 +1097,9 @@ msgstr ""
 msgid "Empty tab"
 msgstr "Pestaña vacía"
 
-msgid "Scilab Console"
-msgstr "Consola de Scilab"
+#, c-format
+msgid "Scilab %s Console"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"

@@ -31,7 +31,14 @@ tmp=xmlGetNsByPrefix(doc.root.children(2), "balics");
 assert_checktrue(tmp.prefix=="balics");
 assert_checktrue(tmp.href=="http://gro.balics.www");
 
-assert_checktrue(grep(xmlDump(doc),"http://www.scilab.")<>[])
-assert_checktrue(grep(xmlDump(doc),"http://gro.ba")<>[])
+assert_checktrue(grep(xmlDump(doc),"http://www.scilab.")<>[]);
+assert_checktrue(grep(xmlDump(doc),"http://gro.ba")<>[]);
 
+xmlDelete(doc);
+
+doc = xmlReadStr("<root><a xmlns:scilab=""http://www.scilab.org""><b>Hello </b><scilab:c>World</scilab:c></a></root>");
+c = doc.root.children(1).children(2);
+a=xmlGetNsByHref(c, "http://www.scilab.org");
+assert_checkequal(a.prefix,"scilab");
+assert_checkequal(a.href,"http://www.scilab.org");
 xmlDelete(doc);

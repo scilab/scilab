@@ -125,5 +125,6 @@
     <None Include="locales\fftw.pot" />
     <None Include="locales\fftw.pot" />
     <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
   </ItemGroup>
 </Project>

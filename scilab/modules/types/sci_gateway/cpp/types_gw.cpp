@@ -16,38 +16,38 @@
 #define MODULE_NAME L"types"
 int TypesModule::Load()
 {
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"list", &sci_list, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"struct", &sci_struct, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"null", &sci_null, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"insert", &sci_insert, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"cell", &sci_cell, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"makecell", &sci_makecell, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"usertype", &sci_usertype, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"typeof", &sci_typeof, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"tlist", &sci_tlist, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"mlist", &sci_mlist, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"isfield", &sci_isfield, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"getfield", &sci_getfield, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"fieldnames", &sci_fieldnames, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"list", &sci_list, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"struct", &sci_struct, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"null", &sci_null, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"insert", &sci_insert, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"cell", &sci_cell, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"makecell", &sci_makecell, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"usertype", &sci_usertype, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"typeof", &sci_typeof, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tlist", &sci_tlist, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mlist", &sci_mlist, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isfield", &sci_isfield, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getfield", &sci_getfield, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fieldnames", &sci_fieldnames, MODULE_NAME));
 
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"adj2sp", &sci_adj2sp, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"nnz", &sci_nnz, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"sp2adj", &sci_sp2adj, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"sparse", &sci_sparse, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"spcompack", &sci_spcompack, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"spget", &sci_spget, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"spzeros", &sci_spzeros, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"spones", &sci_spones, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"full", &sci_full, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"adj2sp", &sci_adj2sp, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"nnz", &sci_nnz, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sp2adj", &sci_sp2adj, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sparse", &sci_sparse, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spcompack", &sci_spcompack, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spget", &sci_spget, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spzeros", &sci_spzeros, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spones", &sci_spones, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"full", &sci_full, MODULE_NAME));
 
 #ifndef NDEBUG
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"inspectorGetItemCount", &sci_inspectorGetItemCount, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"inspectorShowItem", &sci_inspectorShowItem, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"inspectorShowUnreferencedItem", &sci_inspectorShowUnreferencedItem, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"inspectorGetItem", &sci_inspectorGetItem, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"inspectorGetUnreferencedItem", &sci_inspectorGetUnreferencedItem, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"inspectorDeleteUnreferencedItems", &sci_inspectorDeleteUnreferencedItems, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"inspectorGetFunctionList", &sci_inspectorGetFunctionList, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetItemCount", &sci_inspectorGetItemCount, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorShowItem", &sci_inspectorShowItem, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorShowUnreferencedItem", &sci_inspectorShowUnreferencedItem, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetItem", &sci_inspectorGetItem, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetUnreferencedItem", &sci_inspectorGetUnreferencedItem, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorDeleteUnreferencedItems", &sci_inspectorDeleteUnreferencedItems, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetFunctionList", &sci_inspectorGetFunctionList, MODULE_NAME));
 #endif
     return 1;
 }

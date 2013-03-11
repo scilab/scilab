@@ -19,70 +19,88 @@
 
 namespace types
 {
-    class TYPES_IMPEXP Struct : public ArrayOf<SingleStruct*>
+class TYPES_IMPEXP Struct : public ArrayOf<SingleStruct*>
+{
+public :
+    ~Struct();
+    Struct();
+    Struct(int _iRows, int _iCols);
+    Struct(int _iDims, int* _piDims);
+
+private :
+    Struct(Struct* _oCellCopyMe);
+
+public :
+
+    void                        whoAmI(void)
     {
-    public :
-                                    ~Struct();
-                                    Struct();
-                                    Struct(int _iRows, int _iCols);
-                        	        Struct(int _iDims, int* _piDims);
-
-    private :
-                                    Struct(Struct* _oCellCopyMe);
-
-    public :
-
-        void                        whoAmI(void) { std::cout << "types::Cell"; };
-
-        RealType                    getType(void) { return RealStruct; }
-        bool                        isStruct() { return true; }
-        bool                        isEmpty();
-
-
-        /**
-        ** Clone
-        ** Create a new List and Copy all values.
-        */
-        InternalType*               clone();
-
-        bool                        set(int _iRows, int _iCols, SingleStruct* _pIT);
-        bool                        set(int _iRows, int _iCols, const SingleStruct* _pIT);
-        bool                        set(int _iIndex, SingleStruct* _pIT);
-        bool                        set(int _iIndex, const SingleStruct* _pIT);
-        bool                        set(SingleStruct** _pIT);
-
-        bool                        operator==(const InternalType& it);
-        bool                        operator!=(const InternalType& it);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring        getTypeStr() {return L"struct";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring        getShortTypeStr() {return L"st";};
-        virtual bool                isContainer(void) { return true; }
-        bool                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
-        String*                     getFieldNames();
-        bool                        exists(const std::wstring& _sKey);
-        bool                        addField(const std::wstring& _sKey);
-        bool                        toString(std::wostringstream& ostr);
-        std::vector<InternalType*>  extractFields(std::list<std::wstring> _wstFields);
-
-
-        /*specials functions to disable clone operation during copydata*/
-        InternalType*               insertWithoutClone(typed_list* _pArgs, InternalType* _pSource);
-        InternalType*               extractWithoutClone(typed_list* _pArgs);
-        void                        setCloneInCopyValue(bool _val);
-
-    private :
-        virtual SingleStruct*       getNullValue();
-        virtual Struct*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-        virtual SingleStruct*       copyValue(SingleStruct* _pData);
-        virtual void                deleteAll();
-        virtual void                deleteImg();
-        virtual SingleStruct**      allocData(int _iSize);
-
-        bool                        m_bDisableCloneInCopyValue;
-        
+        std::cout << "types::Struct";
     };
+
+    RealType                    getType(void)
+    {
+        return RealStruct;
+    }
+    bool                        isStruct()
+    {
+        return true;
+    }
+    bool                        isEmpty();
+
+
+    /**
+    ** Clone
+    ** Create a new List and Copy all values.
+    */
+    InternalType*               clone();
+
+    bool                        set(int _iRows, int _iCols, SingleStruct* _pIT);
+    bool                        set(int _iRows, int _iCols, const SingleStruct* _pIT);
+    bool                        set(int _iIndex, SingleStruct* _pIT);
+    bool                        set(int _iIndex, const SingleStruct* _pIT);
+    bool                        set(SingleStruct** _pIT);
+
+    bool                        operator==(const InternalType& it);
+    bool                        operator!=(const InternalType& it);
+
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring        getTypeStr()
+    {
+        return L"st";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring        getShortTypeStr()
+    {
+        return L"st";
+    };
+    virtual bool                isContainer(void)
+    {
+        return true;
+    }
+    bool                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    String*                     getFieldNames();
+    bool                        exists(const std::wstring& _sKey);
+    bool                        addField(const std::wstring& _sKey);
+    bool                        toString(std::wostringstream& ostr);
+    std::vector<InternalType*>  extractFields(std::list<std::wstring> _wstFields);
+
+
+    /*specials functions to disable clone operation during copydata*/
+    InternalType*               insertWithoutClone(typed_list* _pArgs, InternalType* _pSource);
+    InternalType*               extractWithoutClone(typed_list* _pArgs);
+    void                        setCloneInCopyValue(bool _val);
+
+private :
+    virtual SingleStruct*       getNullValue();
+    virtual Struct*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+    virtual SingleStruct*       copyValue(SingleStruct* _pData);
+    virtual void                deleteAll();
+    virtual void                deleteImg();
+    virtual SingleStruct**      allocData(int _iSize);
+
+    bool                        m_bDisableCloneInCopyValue;
+
+};
 }
 
 #ifdef _MSC_VER

@@ -52,11 +52,11 @@ libsciaction_binding_disable_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
 											$(AM_CPPFLAGS)
 
 # Includes need for the compilation
-libsciaction_binding_la_CPPFLAGS= 	$(JAVA_JNI_INCLUDE) \
+libsciaction_binding_la_CPPFLAGS = \
+$(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
 -I$(srcdir)/src/jni/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/jvm/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/commons/src/jni/ \
@@ -67,7 +67,7 @@ libsciaction_binding_la_CPPFLAGS= 	$(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/modules/ast/includes \
 -I$(top_srcdir)/modules/system_env/includes \
 -I$(top_srcdir)/modules/types/includes \
--I$(top_srcdir)/libs/dynamiclibrary/includes \
+-I$(top_srcdir)/modules/dynamic_link/includes \
 $(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
