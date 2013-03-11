@@ -519,6 +519,8 @@ Bug fixes
 
 * Bug #12373 fixed - pmodulo(n,m<0) returned a negative result.
 
+* Bug #12374 fixed - Unexpected mark was drawn with xsegs.
+
 * Bug #12377 fixed - chepol was located in the wrong help section
                      (now in polynomial).
 
