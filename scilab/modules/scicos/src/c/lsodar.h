@@ -36,8 +36,8 @@ struct rWork_t
 };
 
 // Derivative computation and Root functions
-typedef int (*LSRhsFn) (int * neq, realtype * t, realtype * y, realtype * rwork);
-typedef int (*LSRootFn) (int * neq, realtype * t, realtype * y, int * ng, realtype * rwork);
+typedef void (*LSRhsFn) (int * neq, realtype * t, realtype * y, realtype * rwork);
+typedef void (*LSRootFn) (int * neq, realtype * t, realtype * y, int * ng, realtype * rwork);
 typedef void (*LSErrHandlerFn) (int error_code, const char *module, const char *function, char *msg, void *user_data);
 
 // LSodar problem memory structure
