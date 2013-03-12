@@ -38,7 +38,7 @@ int set_axes_visible_property(void* _pvCtx, char* pobjUID, size_t stackPointer, 
 {
     BOOL status[3];
     BOOL visible = FALSE;
-    char* axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
+    int axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
 
     char ** values = getStringMatrixFromStack( stackPointer );
 
