@@ -178,7 +178,7 @@ Xcos
 * Bug #12351 fixed - "Save as" a diagram to a selected xcos file type, saved
                      it as zcos.
 
-* Bug #12352 fixed - Critical error when closing a scope windows during 
+* Bug #12352 fixed - Critical error when closing a scope windows during
                      simulation fixed.
 
 
@@ -514,6 +514,8 @@ Bug fixes
 
 * Bug #12354 fixed - In SciNotes, invalid function with a semicolon after args
                      declaration.
+
+* Bug #12360 fixed - Incorrect format for purely real complexs in csvWrite.
 
 * Bug #12361 fixed - Error fixed in replot() help page examples.
 
