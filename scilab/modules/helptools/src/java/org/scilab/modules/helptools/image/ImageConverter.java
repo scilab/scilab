@@ -30,6 +30,7 @@ import java.net.URISyntaxException;
 import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.imageio.ImageIO;
@@ -159,7 +160,8 @@ public final class ImageConverter {
             BufferedWriter writer = null;
             try {
                 writer = new BufferedWriter(new FileWriter(f));
-                for (Map.Entry<String, String> entry : map.entrySet()) {
+                Map<String, String> tree = new TreeMap<String, String>(map);
+                for (Map.Entry<String, String> entry : tree.entrySet()) {
                     String s = entry.getKey() + "=" + entry.getValue();
                     writer.write(s, 0, s.length());
                     writer.newLine();
