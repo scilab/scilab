@@ -54,7 +54,7 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
             if (!dir.exists()) {
                 dir.mkdir();
             }
-            ImageConverter.loadMD5s(this.outImages);
+            ImageConverter.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
         }
         prependToProgramListing = "<table border=\"0\" width=\"100%\"><tr><td width=\"98%\">";
         appendToProgramListing = "</td><td valign=\"top\"><a href=\"scilab://scilab.execexample/\"><img src=\"" + getBaseImagePath() + "ScilabExecute.png\" border=\"0\"/></a></td><td valign=\"top\"><a href=\"scilab://scilab.editexample/\"><img src=\"" + getBaseImagePath() + "ScilabEdit.png\" border=\"0\"/></a></td><td></td></tr></table>";
@@ -106,7 +106,7 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
             outIndex.close();
 
             if (!isToolbox) {
-                ImageConverter.saveMD5s(this.outImages);
+                ImageConverter.saveMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
             }
         } catch (IOException e) {
             fatalExceptionOccured(e);
