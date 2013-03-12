@@ -79,9 +79,10 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @UMFPACK_TRUE@am__append_1 = $(UMFPACK_LIB)
+@IS_MACOSX_TRUE@@UMFPACK_TRUE@am__append_2 = -lcholmod -lcolamd
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/umfpack
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -467,14 +468,13 @@ top_srcdir = @top_srcdir@
 modulename = umfpack
 pkglib_LTLIBRARIES = libsciumfpack.la
 @UMFPACK_TRUE@noinst_LTLIBRARIES = libsciumfpack-algo.la
-libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS) $(am__append_1)
+libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS) $(am__append_1) \
+	$(am__append_2)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
 libsciumfpack_la_root_DATA = \
 license.txt \
- \
- \
 TAUCS_license.txt \
 UMFPACK_license.txt
 
@@ -551,7 +551,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro
