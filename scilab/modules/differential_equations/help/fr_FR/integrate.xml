@@ -84,7 +84,7 @@
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata>
-                            <mml:math display="block">
+                            <mml:math display="block" scilab:localized="true">
                                 <mml:mi mathvariant="normal">x</mml:mi>
                                 <mml:mrow>
                                     <mml:mrow>
@@ -129,7 +129,7 @@
                 <imageobject>
                     <imagedata>
                         <mml:math display="block">
-                            <mml:mi>f</mml:mi><mml:mo>(</mml:mo><mml:mi>v</mml:mi><mml:mo>)</mml:mo>
+                            <mml:mi mathvariant="normal">f</mml:mi><mml:mo>(</mml:mo><mml:mi mathvariant="normal">v</mml:mi><mml:mo>)</mml:mo>
                         </mml:math>
                     </imagedata>
                 </imageobject>

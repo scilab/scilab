@@ -191,8 +191,7 @@
             plot2d(xs(1,:)',xs(2,:)',[2],"000")
             plot2d(xs(1,:)',xs(2,:)',[-2],"000")
             plot2d(xf(1,:)',xf(2,:)',[-3],"000")
-            plot2d(x(1,:)',x(2,:)',[-4],"000")
-            
+            plot2d(x(1,:)',x(2,:)',[-4],"000")           
         </scilab:image>
     </refsection>
     <refsection>

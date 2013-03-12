@@ -1143,6 +1143,22 @@
             </varlistentry>
             <varlistentry>
                 <term>
+                    <link linkend="hallchart">hallchart</link>
+                </term>
+                <listitem>
+                    <para>
+                        Hall chart
+                    </para>
+                    <para>
+                        <emphasis role="bold">Example:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>hallchart();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
                     <link linkend="chart">chart</link>
                 </term>
                 <listitem>

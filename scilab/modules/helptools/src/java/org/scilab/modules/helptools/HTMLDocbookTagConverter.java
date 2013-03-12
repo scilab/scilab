@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import org.scilab.modules.commons.ScilabConstants;
@@ -50,12 +51,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     public static enum GenerationType { WEB, JAVAHELP, CHM, HTML };
 
     private static final String SCILAB_URI = "http://www.scilab.org";
-    private static final String LATEXBASENAME = "Equation_LaTeX_";
+    private static final String LATEXBASENAME = "_LaTeX_";
     private static final String VERSION = Messages.gettext("Version");
     private static final String DESCRIPTION = Messages.gettext("Description");
 
     private StringBuilder buffer = new StringBuilder(8192);
-    private int latexCompt;
+    private int latexCompt = 1;
     private String imageDir;
     private String urlBase;
     private boolean linkToTheWeb;
@@ -133,27 +134,27 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         this.type = type;
         if (isToolbox) {// we generate a toolbox's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
-                    public String getLink(String id) {
-                        if (id.length() > 0 && id.charAt(0) == '%') {
-                            id = id.replace("%", "percent");
-                        }
-                        String link = mapId.get(id);
-                        if (link == null) {
-                            return HTMLDocbookTagConverter.this.urlBase + id;
-                        } else {
-                            return link;
-                        }
+                public String getLink(String id) {
+                    if (id.length() > 0 && id.charAt(0) == '%') {
+                        id = id.replace("%", "percent");
                     }
-                });
+                    String link = mapId.get(id);
+                    if (link == null) {
+                        return HTMLDocbookTagConverter.this.urlBase + id;
+                    } else {
+                        return link;
+                    }
+                }
+            });
         } else {// we generate Scilab's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
-                    public String getLink(String id) {
-                        if (id.length() > 0 && id.charAt(0) == '%') {
-                            id = id.replace("%", "percent");
-                        }
-                        return mapId.get(id);
+                public String getLink(String id) {
+                    if (id.length() > 0 && id.charAt(0) == '%') {
+                        id = id.replace("%", "percent");
                     }
-                });
+                    return mapId.get(id);
+                }
+            });
         }
 
         xmlLexer = new XMLLexer();
@@ -176,13 +177,13 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         for (int i = 0; i < seq.length(); i++) {
             Character.UnicodeBlock block = Character.UnicodeBlock.of(seq.charAt(i));
             if (block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
-                || block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
-                || block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B
-                || block == Character.UnicodeBlock.CJK_COMPATIBILITY_FORMS
-                || block == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
-                || block == Character.UnicodeBlock.CJK_RADICALS_SUPPLEMENT
-                || block == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
-                || block == Character.UnicodeBlock.ENCLOSED_CJK_LETTERS_AND_MONTHS) {
+                    || block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
+                    || block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B
+                    || block == Character.UnicodeBlock.CJK_COMPATIBILITY_FORMS
+                    || block == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
+                    || block == Character.UnicodeBlock.CJK_RADICALS_SUPPLEMENT
+                    || block == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
+                    || block == Character.UnicodeBlock.ENCLOSED_CJK_LETTERS_AND_MONTHS) {
                 return true;
             }
         }
@@ -550,6 +551,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         buffer.append("</span>\n");
 
         return buffer.toString();
+    }
+
+    public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
+        latexCompt = 1;
+        return super.resolveEntity(publicId, systemId);
     }
 
     /**
@@ -1149,14 +1155,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         boolean isLocalized = "true".equals(attributes.get("localized"));
         File f;
         if (isLocalized) {
-            f = new File(outImages + "/" + imageDir, LATEXBASENAME + language + "_" + (latexCompt++) + ".png");
+            f = new File(outImages + "/" + imageDir, LATEXBASENAME + currentBaseName + "_" + language + "_" + (latexCompt++) + ".png");
         } else {
             if ("ru_RU".equals(language) && HTMLDocbookTagConverter.containsCyrillic(contents)) {
                 System.err.println("Warning: LaTeX code in " + getCurrentFileName() + " contains cyrillic character. The tag <latex> should contain the attribute scilab:localized=\"true\"");
             } else if ("ja_JP".equals(language) && HTMLDocbookTagConverter.containsCJK(contents)) {
                 System.err.println("Warning: LaTeX code in " + getCurrentFileName() + " contains CJK character. The tag <latex> should contain the attribute scilab:localized=\"true\"");
             }
-            f = new File(outImages + "/" + imageDir, LATEXBASENAME + (latexCompt++) + ".png");
+            f = new File(outImages + "/" + imageDir, LATEXBASENAME + currentBaseName + "_" + (latexCompt++) + ".png");
         }
 
         String parent = getParentTagName();

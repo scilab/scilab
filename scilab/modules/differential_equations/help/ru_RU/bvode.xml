@@ -2011,7 +2011,7 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
                 <mediaobject>
                     <imageobject>
                         <imagedata align="left">
-                            <mml:math>
+                            <mml:math scilab:localized="true">
                                 <mml:semantics>
                                     <mml:mrow>
                                         <mml:mo mml:stretchy="true">{</mml:mo>
