@@ -84,6 +84,9 @@
     <ClCompile Include="src\cpp\types_bitwiseOp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\types_ldivide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\doublecomplex.h">
@@ -162,6 +165,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\types_bitwiseOp.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types_ldivide.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

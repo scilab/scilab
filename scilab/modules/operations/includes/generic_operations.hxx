@@ -37,6 +37,9 @@ EXTERN_OP types::InternalType* GenericMinus(types::InternalType *_pLeftOperand, 
 // /
 EXTERN_OP types::InternalType *GenericRDivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
+// "\"
+EXTERN_OP types::InternalType *GenericLDivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
+
 // ./
 EXTERN_OP types::InternalType *GenericDotRDivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 

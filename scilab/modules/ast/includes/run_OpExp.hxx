@@ -87,6 +87,7 @@ void visitprivate(const OpExp &e)
             }
             case OpExp::ldivide:
             {
+                pResult = GenericLDivide(pITL, pITR);
                 break;
             }
             case OpExp::rdivide:

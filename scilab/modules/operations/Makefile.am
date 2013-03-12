@@ -18,6 +18,7 @@ OPERATIONS_CPP_SOURCES =  src/cpp/operations.cpp \
 			src/cpp/types_substraction.cpp \
 			src/cpp/types_multiplication.cpp \
 			src/cpp/types_divide.cpp \
+			src/cpp/types_ldivide.cpp \
 			src/cpp/types_addition.cpp \
 			src/cpp/types_power.cpp \
 			src/cpp/types_finite.cpp \
