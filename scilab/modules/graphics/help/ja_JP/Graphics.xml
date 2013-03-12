@@ -218,7 +218,7 @@
                         <emphasis role="bold">例:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>xgrid();</scilab:image>
+                        <scilab:image>x=[0:0.1:2*%pi]'; plot2d(sin(x));xgrid(5)</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
