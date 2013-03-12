@@ -92,7 +92,7 @@
     ]]></programlisting>
         <para>
             <scilab:image>
-                clf();sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])
+                sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])
             </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[
