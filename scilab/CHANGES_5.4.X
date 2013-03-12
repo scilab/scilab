@@ -191,6 +191,9 @@ Documentation
 
 * Default stacksize is incorrect (See bug #12134).
 
+* Document flag and flagexpand arguments in basename and
+  dirname functions (See bug #8649).
+
 
 Compilation
 ============
