@@ -108,54 +108,56 @@ doublecomplex stringToComplex(const char *pSTR, const char *decimal, BOOL bConve
     {
         double real = 0.;
         double imag = 0.;
-        char * pStrWithOutBlanks = csv_strsubst(pSTR, " ", "");
+        char *pStrTemp = csv_strsubst(pSTR, " ", "");
 
-        pStrWithOutBlanks = csv_strsubst(pStrWithOutBlanks, decimal, ".");
-
-        if (pStrWithOutBlanks)
+        if (pStrTemp)
         {
-            int lenStrWithOutBlanks = (int) strlen(pStrWithOutBlanks);
+            char *pStrFormatted = csv_strsubst(pStrTemp, decimal, ".");
+            FREE(pStrTemp);
 
-            /* case .4 replaced by 0.4 */
-            if (pStrWithOutBlanks[0] == '.')
+            if (pStrFormatted)
             {
+                int lenStrFormatted = (int) strlen(pStrFormatted);
+
                 /* case .4 replaced by 0.4 */
-                char *pstStrTemp = (char*)MALLOC(sizeof(char) * (lenStrWithOutBlanks + strlen("0") + 1));
-                strcpy(pstStrTemp, "0");
-                strcat(pstStrTemp, pStrWithOutBlanks);
-                FREE(pStrWithOutBlanks);
-                pStrWithOutBlanks = pstStrTemp;
-            }
-
-            if (lenStrWithOutBlanks > 1)
-            {
-                if (((pStrWithOutBlanks[0] == '+') || (pStrWithOutBlanks[0] == '-')) &&
-                        (pStrWithOutBlanks[1] == '.'))
+                if (pStrFormatted[0] == '.')
                 {
-                    /* case +.4 replaced by +0.4 */
-                    char *pstStrTemp = csv_strsubst(pStrWithOutBlanks, "+.", "+0.");
-                    FREE(pStrWithOutBlanks);
-
-                    /* case -.4 replaced by -0.4 */
-                    pStrWithOutBlanks = csv_strsubst(pstStrTemp, "-.", "-0.");
-                    FREE(pstStrTemp);
-                    pstStrTemp = NULL;
+                    /* case .4 replaced by 0.4 */
+                    char *pstStrTemp = (char*)MALLOC(sizeof(char) * (lenStrFormatted + strlen("0") + 1));
+                    strcpy(pstStrTemp, "0");
+                    strcat(pstStrTemp, pStrFormatted);
+                    FREE(pStrFormatted);
+                    pStrFormatted = pstStrTemp;
                 }
-            }
 
-            /* Case: "i", "+i", "-i", and with "j"  */
-            if (is_unit_imaginary (pStrWithOutBlanks, &imag))
-            {
-                *ierr = STRINGTOCOMPLEX_NO_ERROR;
-                dComplexValue.r = 0.;
-                dComplexValue.i = imag;
+                if (lenStrFormatted > 1)
+                {
+                    if (((pStrFormatted[0] == '+') || (pStrFormatted[0] == '-')) &&
+                            (pStrFormatted[1] == '.'))
+                    {
+                        /* case +.4 replaced by +0.4 */
+                        char *pstStrTemp = csv_strsubst(pStrFormatted, "+.", "+0.");
+                        FREE(pStrFormatted);
+
+                        /* case -.4 replaced by -0.4 */
+                        pStrFormatted = csv_strsubst(pstStrTemp, "-.", "-0.");
+                        FREE(pstStrTemp);
+                    }
+                }
+
+                /* Case: "i", "+i", "-i", and with "j"  */
+                if (is_unit_imaginary (pStrFormatted, &imag))
+                {
+                    *ierr = STRINGTOCOMPLEX_NO_ERROR;
+                    dComplexValue.r = 0.;
+                    dComplexValue.i = imag;
+                }
+                else
+                {
+                    *ierr = ParseComplexValue(pStrFormatted, bConvertByNAN, &real, &imag);
+                }
+                FREE(pStrFormatted);
             }
-            else
-            {
-                *ierr = ParseComplexValue(pStrWithOutBlanks, bConvertByNAN, &real, &imag);
-            }
-            FREE(pStrWithOutBlanks);
-            pStrWithOutBlanks = NULL;
         }
         dComplexValue.r = real;
         dComplexValue.i = imag;

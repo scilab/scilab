@@ -533,6 +533,8 @@ Bug fixes
 
 * Bug #12378 fixed - sdf() crashed Scilab.
 
+* Bug #12383 fixed - csvRead memory leak.
+
 * Bug #12386 fixed - sgrid example improved in the list of graphics.
 
 
