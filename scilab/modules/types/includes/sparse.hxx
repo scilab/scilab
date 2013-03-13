@@ -89,6 +89,14 @@ struct TYPES_IMPEXP Sparse : GenericType
     /* return true if matrix contains complex numbers, false otherwise.
     **/
     bool isComplex() const;
+    // overload of GenericType methode.
+    bool isComplex()
+    {
+        // force const to call isComplex const method.
+        const Sparse* sp = this;
+        return sp->isComplex();
+    }
+
     bool isScalar()
     {
         return (getRows() == 1 && getCols() == 1);
