@@ -299,7 +299,7 @@ public class DocbookTagConverter extends DefaultHandler {
                 exceptionOccured(new SAXException("uri " + uri + " not handled"));
                 return;
             }
-            StringBuilder buf = h.startExternalXML(localName, attributes);
+            StringBuilder buf = h.startExternalXML(localName, attributes, locator);
             if (buf != null) {
                 DocbookElement elem = baseElement.getNewInstance(localName, uri, null);
                 elem.setStringBuilder(buf);
