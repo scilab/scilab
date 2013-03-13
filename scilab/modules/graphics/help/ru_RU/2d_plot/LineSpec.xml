@@ -333,9 +333,10 @@ clf();
 x=1:0.1:10; // Инициализация.
 plot(x,sin(x),'r-.>') // строит штрихпунктирную линию с треугольниками, указывающими вправо, центрованными на каждой точке
  ]]></programlisting>
-        <scilab:image>
-            x=1:0.1:10;
-            plot(x,sin(x),'r.->')
+        <scilab:image>x=1:0.1:10; // Init.
+            plot(x,sin(x),'r.-&gt;')
+            t=0:%pi/20:2*%pi;
+            plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
         </scilab:image>
         <programlisting role="example"><![CDATA[
 clf();

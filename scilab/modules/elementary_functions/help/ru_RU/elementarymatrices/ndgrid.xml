@@ -78,14 +78,13 @@ clf()
 plot3d(x,y,Z, flag=[2 6 4]); show_window()
  ]]></programlisting>
     <scilab:image>
-nx = 40; ny = 40;
-x = linspace(-1,1,nx);
-y = linspace(-1,1,ny);
-[X,Y] = ndgrid(x,y);
-
-deff("z=f(x,y)","z=x.^2 + y.^3")
-Z = f(X,Y);
-plot3d(x,y,Z, flag=[2 6 4]); show_window()
+            nx = 40; ny = 40;
+            x = linspace(-1,1,nx);
+            y = linspace(-1,1,ny);
+            [X,Y] = ndgrid(x,y);
+            deff("z=f(x,y)","z=x.^2 + y.^3")
+            Z = f(X,Y);
+            plot3d(x,y,Z, flag=[2 6 4]);
     </scilab:image>
         <programlisting role="example"><![CDATA[  
 // создание простой трёхмерной координатной сетки
