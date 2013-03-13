@@ -142,6 +142,9 @@ Xcos
 
 * Bug #11919 fixed - DLSS block with empty matrix as parameters made Scilab crash.
 
+* Bug #11945 fixed - When running simulation on large diagram, the grey filter
+                     did not apply to the entire diagram.
+
 * Bug #11963 fixed - input port in superblock was corrupted.
 
 * Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
