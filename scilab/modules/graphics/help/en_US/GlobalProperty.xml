@@ -74,7 +74,9 @@
                         is linked to the object's
                         <literal>data.color</literal> property (see
                         <link linkend="surface_properties">surface properties</link>).
-                        Note that this property is available for surfaces only.
+                        <note>
+                            Note that this property is available for surfaces only.
+                        </note>
                     </para>
                 </listitem>
             </varlistentry>
