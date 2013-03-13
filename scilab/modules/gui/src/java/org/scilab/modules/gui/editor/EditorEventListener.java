@@ -18,6 +18,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.Component;
 
 import org.scilab.modules.gui.datatip.DatatipCreate;
 import org.scilab.modules.gui.datatip.DatatipDelete;
@@ -77,7 +78,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void keyPressed(KeyEvent arg0) {
-
+	
         editor.onKeyPressed(arg0);
 
         if (datatipManagerMode.isEnabled()) {
@@ -104,6 +105,8 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void mouseEntered(MouseEvent arg0) {
+        Component canvas = (Component)arg0.getComponent();
+		canvas.requestFocusInWindow();
     }
 
     public void mouseExited(MouseEvent arg0) {
