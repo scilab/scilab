@@ -1212,7 +1212,7 @@
                         <emphasis role="bold">Exemple:</emphasis>
                     </para>
                     <para>
-                        <scilab:image localized="true">sgrid();</scilab:image>
+                        <scilab:image localized="true">sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>

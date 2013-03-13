@@ -531,6 +531,7 @@ Bug fixes
 
 * Bug #12378 fixed - sdf() crashed Scilab.
 
+* Bug #12386 fixed - sgrid example improved in the list of graphics.
 
 
                     Changes between version 5.3.3 and 5.4.0
