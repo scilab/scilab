@@ -171,9 +171,6 @@
     <ClCompile Include="src\c\getRange.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\latintoutf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\splitLine.c">
       <Filter>Source Files</Filter>
     </ClCompile>
