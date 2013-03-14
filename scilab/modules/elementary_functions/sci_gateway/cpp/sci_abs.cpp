@@ -127,41 +127,6 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
 
         out.push_back(pPolyOut);
     }
-    else if (in[0]->isSparse())
-    {
-        types::Sparse* pSparseIn = in[0]->getAs<types::Sparse>();
-        types::Sparse* pSparseOut = new types::Sparse(pSparseIn->getRows(), pSparseIn->getCols());
-
-        int const nonZeros = static_cast<int>(pSparseIn->nonZeros());
-        double* pRows = new double[nonZeros * 2];
-        pSparseIn->outputRowCol(pRows);
-        double* pCols = pRows + nonZeros;
-
-        double* pNonZeroR = new double[nonZeros];
-        double* pNonZeroI = new double[nonZeros];
-        pSparseIn->outputValues(pNonZeroR, pNonZeroI);
-
-        if (pSparseIn->isComplex())
-        {
-            for (int i = 0 ; i < nonZeros ; i++)
-            {
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, dabsz(pNonZeroR[i], pNonZeroI[i]));
-            }
-        }
-        else
-        {
-            for (int i = 0 ; i < nonZeros ; i++)
-            {
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, dabss(pNonZeroR[i]));
-            }
-        }
-
-        delete[] pRows;
-        delete[] pNonZeroR;
-        delete[] pNonZeroI;
-
-        out.push_back(pSparseOut);
-    }
     else if (in[0]->isInt8())
     {
         types::Int8* pIntIn = in[0]->getAs<types::Int8>();
