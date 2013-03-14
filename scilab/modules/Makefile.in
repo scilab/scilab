@@ -77,7 +77,12 @@ host_triplet = @host@
 # Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
 @GUI_TRUE@am__append_3 = $(top_builddir)/modules/jvm/libscijvm.la $(GUI_LIBS)
 @GUI_FALSE@am__append_4 = $(NO_GUI_LIBS)
-@GUI_TRUE@am__append_5 = $(top_builddir)/modules/types/libscitypes-java.la
+
+# This should never be used in production. It forces the explicit link
+# between libscilab and some "on-the-fly" loaded libraries.
+# It has been added to make sure that the full link is correctly done
+# and all symbols resolved.
+@FORCE_LINK_TRUE@am__append_5 = $(ENGINE_LIBS_DYNAMIC_LOAD)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
