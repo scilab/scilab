@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="backslash">
+    <refnamediv>
+        <refname>backslash</refname>
+        <refpurpose>(\) left matrix division.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>x=A\B</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Backslash is the left matrix division:
+            <literal>x=A\B</literal> is a solution to <literal>A*x=B</literal>.
+        </para>
+        <para>
+            If <literal>A</literal> is square and non-singular <literal>x=A\B</literal> is
+            equivalent to <literal>x=inv(A)*B</literal> in exact arithmetic,
+            but the computations are more accurate and cheaper in floating point arithmetic.
+            Hence, to compute the solution of the linear system of equations <literal>A*x=B</literal>,
+            the backslash operator should be used, and the <literal>inv</literal> function
+            should be avoided.
+        </para>
+        <para>
+            In the case where A is square, the solution <literal>x</literal> can be computed
+            either from LU factorization or from a linear least squares solver.
+            If the condition number of A is smaller than 1/(10*%eps) (i.e. if A is well conditionned),
+            the LU factorization with row pivoting is used.
+            If not (i.e. if A is poorly conditionned), then X is the minimum-norm solution which
+            minimizes <literal>||A*X-B||</literal> using a complete
+            orthogonal factorization of A (i.e. X is the solution of a linear least squares problem).
+        </para>
+        <para>
+            If <literal>A</literal> is not square, <literal>x</literal> is a least square solution,
+            i.e. <literal>norm(A*x-B)</literal> is minimal (Euclidean norm). If <literal>A</literal> is full
+            column rank, the least square solution, <literal>x=A\B</literal>, is uniquely
+            defined (there is a unique <literal>x</literal> which minimizes <literal>norm(A*x-B)</literal>).
+            If <literal>A</literal> is not full column rank, then the least square
+            solution is not unique, and <literal>x=A\B</literal>, in general, is not the solution
+            with minimum norm (the minimum norm solution is <literal>x=pinv(A)*B</literal>).
+        </para>
+        <para>
+            <literal>A.\B</literal>  is the matrix with <literal>(i,j)</literal> entry <literal>A(i,j)\B(i,j)</literal>.
+            If <literal>A</literal> (or <literal>B</literal>) is a scalar <literal>A.\B</literal> is equivalent to
+            <literal>A*ones(B).\B</literal> (or <literal>A.\(B*ones(A))</literal>.
+        </para>
+        <para>
+            <literal>A\.B</literal>  is an operator with no predefined meaning. It may be used
+            to define a new operator (see <link linkend="overloading">overloading</link>) with
+            the same precedence as <literal>*</literal> or <literal>/</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+A=[
+   9.   -36.    30.
+  -36.   192.  -180.
+   30.  -180.   180.
+];
+b=[
+   3.
+  -24.
+   30.
+];
+x=A\b
+A*x-b // close to zero
+
+A=rand(3,2);
+b=[1;1;1];
+x=A\b;
+y=pinv(A)*b;
+x-y
+A=rand(2,3);b=[1;1];
+x=A\b;
+y=pinv(A)*b;
+x-y, A*x-b, A*y-b
+
+// if rank is deficient
+A=rand(3,1)*rand(1,2);
+b=[1;1;1];
+x=A\b;
+y=pinv(A)*b;
+A*x-b, A*y-b
+A=rand(2,1)*rand(1,3);
+b=[1;1];
+x=A\b;
+y=pinv(A)*b;
+A*x-b, A*y-b
+
+// A benchmark of several linear solvers
+
+[A,descr,ref,mtype] = ReadHBSparse(SCI+..
+   "/modules/umfpack/examples/bcsstk24.rsa");
+
+b = zeros(size(A,1),1);
+
+tic();
+res = umfpack(A,'\',b);
+mprintf('\nTime with umfpack: %.3f\n',toc());
+
+tic();
+res = linsolve(A,b);
+mprintf('\ntime with linsolve: %.3f\n',toc());
+
+tic();
+res = A\b;
+mprintf('\ntime with backslash: %.3f\n',toc());
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="slash">slash</link>
+            </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
+                <link linkend="pinv">pinv</link>
+            </member>
+            <member>
+                <link linkend="percent">percent</link>
+            </member>
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+            <member>
+                <link linkend="linsolve">linsolve</link>
+            </member>
+            <member>
+                <link linkend="umfpack">umfpack</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>The threshold level for conditioning in blackslash increased.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

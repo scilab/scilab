@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * Copyright (C) 2013 - Samuel GOUGEON
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="variance">
+    <refnamediv>
+        <refname>variance</refname>
+        <refpurpose>variance des éléments d'un vecteur, matrice (voire hypermatrice) réel ou complexe</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>s = variance(x [,orien [,w]])
+            s = variance(x,'r') or s = variance(x,1)
+            s = variance(x,'c') or s = variance(x,2)
+            s = variance(x,'*',1)
+            s = variance(x,'r',1)
+            s = variance(x,'c',1)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        vecteur ou matrice de nombres réels ou complexes. Une hypermatrice est acceptable uniquement sans les options "r" ou "c": <literal>variance(x)</literal> or <literal>variance(x,"*",1)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orien</term>
+                <listitem>
+                    <para>
+                        variance selon les lignes ou les colonnes de <literal>x</literal>. Les valeurs possibles sont
+                        <itemizedlist>
+                            <listitem>
+                                1 or "r" : calcul par colonne. Le résultat est un vecteur <literal>r</literal>angée (ligne)
+                            </listitem>
+                            <listitem>
+                                2 or "c" : calcul par ligne. Le résultat est une <literal>c</literal>olonne
+                            </listitem>
+                            <listitem>
+                                "*" : calcul tous éléments de <literal>x</literal> confondus (mode utilisé a priori); utile si le 3ème paramètre <literal>w</literal> doit par ailleurs être indiqué.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w</term>
+                <listitem>
+                    <para>w : indique le type de normalisation de la variance : 
+                        <itemizedlist>
+                            <listitem>
+                                0 : la somme des écarts quadratiques est divisée par (nE-1), où nE est le nombre d'écarts sommés (mode de calcul utilisé a priori). La variance ainsi estimée est non biaisée (l'espérance de la variable aléatoire n'est pas connue a priori ; elle est estimée par la moyenne des valeurs de x). nE est le nombre nR de lignes de <literal>x</literal> si "r" est utilisée ; ou le nombre nC de colonnes si "c" est utilisée ; ou le nombre total nR*nC d'éléments, sinon.
+                            </listitem>
+                            <listitem>1 : la somme des écarts quadratiques est divisée par nE. La variance résultante est non biaisée uniquement si l'espérance de la variable aléatoire est connue (Scilab ne permet actuellement pas de l'indiquer en paramètre).
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Cette fonction calcule la variance d'un ensemble de nombres réels ou complexes d'un vecteur, d'une matrice (voire d'une hypermatrice) <literal>x</literal>. Pour <literal>x</literal> à valeurs complexes, <literal>variance(x,..) = variance(real(x),..) + variance(imag(x),..)</literal> est retournée.
+        </para>
+        <para>
+            Pour un vecteur, une matrice ou une hypermatrice <literal>x</literal>, <literal>s = variance(x)</literal> ou <literal>s = variance(x, "*", 1)</literal>
+            retourne  dans le scalaire <literal>s</literal> la variance de tous les éléments de <literal>x</literal>.
+        </para>
+        <para>
+            <literal>s = variance(x,'c')</literal> (ou indifféremment <literal>s = variance(x, 2)</literal>) calcule la variance de chaque ligne. 
+            Le vecteur colonne <literal>s</literal> est retourné, avec <literal>s(j) = variance(x(j,:),..)</literal>.
+        </para>
+        <para>
+            <literal>s = variance(x,'r')</literal> (ou indifféremment <literal>s = variance(x,1)</literal>) calcule la variance de chaque colonne. 
+            Le vecteur ligne <literal>s</literal> est retourné, avec <literal>s(i) = variance(x(:,i),..)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+x = [ 0.2113249 0.0002211 0.6653811;0.7560439 0.4453586 0.6283918 ]
+s = variance(x)
+s = variance(x, "r")
+s = variance(x, "c")
+
+// with complex numbers
+x = rand(4,3) + rand(4,3)*%i
+s = variance(x)
+s = variance(x, "*", 1)	// doit être inférieure à la précédente valeur
+s = variance(x, "r")
+s = variance(x, "r", 1)
+s = variance(x, "c")
+
+// with an hypermatrix
+x = rand(3,2,2)
+s = variance(x)
+s = variance(x, "*", 1)	// doit être inférieure à la précédente valeur
+// s = variance(x, "r")  // utilisation non admise pour une hypermatrice
+// s = variance(x, "c")  // utilisation non admise pour une hypermatrice
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mtlb_var">mtlb_var</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliographie</title>
+        <para>
+            Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>variance(complexes) corrigée. variance(x,"*",1) introduite. Vectorisation du calcul pour variance(x,"r"|"c"). Révision complète de la page d'aide</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+    
+</refentry>

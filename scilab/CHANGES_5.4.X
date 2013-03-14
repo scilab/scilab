@@ -39,6 +39,8 @@ Improvements
 
 * Completion in Scilab is now case insensitive. See bug #6320.
 
+* variance is now vectorized and allows the syntax variance(x,"*",w).
+  See bug #12362
 
 
 Removed functions
@@ -94,6 +96,9 @@ Obsolete functions
 * xsetm() tagged as obsolete. Will be removed for Scilab 5.5.0.
   Use set(), get() and ged() instead.
 
+* winclose() tagged as obsolete. Will be removed for Scilab 5.5.0.
+  Use close() instead.
+
 
 Xcos
 =====
@@ -139,6 +144,9 @@ Xcos
 
 * Bug #11919 fixed - DLSS block with empty matrix as parameters made Scilab crash.
 
+* Bug #11945 fixed - When running simulation on large diagram, the grey filter
+                     did not apply to the entire diagram.
+
 * Bug #11963 fixed - input port in superblock was corrupted.
 
 * Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
@@ -161,6 +169,9 @@ Xcos
 * Bug #12213 fixed - lincos help page example produced undefined variable
                      warnings.
 
+* Bug #12243 fixed - parellel_run did not run all calculations on 8 core
+                     processors.
+
 * Bug #12259 fixed - Wrong translation for "Filled" fixed in Scinotes.
 
 * Bug #12265 fixed - xcos_simulate help example diagrams were badly rendered
@@ -169,11 +180,11 @@ Xcos
 * Bug #12290 fixed - AFFICH_m block inside a superblock led to java null
                      pointer exception.
 
-* Bug #12321 fixed - save environment failed to save lib variable. Now these variables
-                     are ignored like previous version of save function.
-
 * Bug #12351 fixed - "Save as" a diagram to a selected xcos file type, saved
                      it as zcos.
+
+* Bug #12352 fixed - Critical error when closing a scope windows during
+                     simulation fixed.
 
 
 Documentation
@@ -182,6 +193,11 @@ Documentation
 * Add the 'scilab:needs-examples="no"' tag to specify that the help page does not need any example.
 
 * xlabel(), ylabel, zlabel() macros are fully documented (See bug #6975).
+
+* Default stacksize is incorrect (See bug #12134).
+
+* Document flag and flagexpand arguments in basename and
+  dirname functions (See bug #8649).
 
 
 Compilation
@@ -209,6 +225,11 @@ Bug fixes
 * Bug #4946 fixed - Bad rendering of a big rotated label.
 
 * Bug #5291 fixed - strtod returned 0 when no real number was detected.
+
+* Bug #5478 fixed - Scilab could not be started with a non readable/writeable
+                    SCIHOME.
+
+* Bug #5576 fixed - interp() help page has been improved.
 
 * Bug #6583 fixed - jmat() was poorly documented.
 
@@ -248,6 +269,9 @@ Bug fixes
 
 * Bug #9005 fixed - The bitset function did not have any tests.
 
+* Bug #9196 fixed - The threshold level for conditioning in backslash and slash
+                    were too small.
+
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
 
@@ -266,9 +290,11 @@ Bug fixes
 
 * Bug #10815 fixed - diff help page did not have a "See Also" section.
 
+* Bug #11209 fixed - variance returned wrong results for complex arguments.
+
 * Bug #11134 fixed - xgetmouse() prevented callback menu execution.
 
-* Bug #11362 fixed - Doc of axes_properties did not explain that 
+* Bug #11362 fixed - Doc of axes_properties did not explain that
                      mark_style=mark_size=0 draw a single dot.
 
 * Bug #11436 fixed - With Matplot, color outside the colormap was replaced with
@@ -298,6 +324,8 @@ Bug fixes
 
 * Bug #11801 fixed - Bug with isoview="on" on subplots.
 
+* Bug #11804 fixed - Untranslated prompt messages.
+
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
 * Bug #11812 fixed - Upper/lower case issues in the Xcos documentation fixed.
@@ -305,6 +333,10 @@ Bug fixes
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
 
 * Bug #11851 fixed - Default EOL under Mac should be LF.
+
+* Bug #11860 fixed - wavwrite failed for 24 bits files (error in savewave function).
+
+* Bug #11924 fixed - winclose() was not tagged as obsolete.
 
 * Bug #11931 fixed - In graphics, white space was not used as default thousand
                      separator.
@@ -314,8 +346,10 @@ Bug fixes
 * Bug #11941 fixed - show_margins() failed in 'nyquist' mode if the system is
                      in state-space form.
 
-* Bug #11952 fixed - In SciNotes, a Java exception occurred on selection of text
-                    containing a \E.
+* Bug #11944 fixed - In SciNotes, untabify several lines did not work correctly.
+
+* Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
+                     containing a \E.
 
 * Bug #11954 fixed - export_to_hdf5 was not able to export the same variable twice.
 
@@ -384,6 +418,8 @@ Bug fixes
 
 * Bug #12097 fixed - Scilab wrongly detected DLL platform information.
 
+* Bug #12111 fixed - karmarkar function did not generate appropriate warnings.
+
 * Bug #12115 fixed - phaseplot(frq,db,phi) did not work.
 
 * Bug #12119 fixed - bar and barh had wrong x/y bounds.
@@ -391,6 +427,8 @@ Bug fixes
 * Bug #12120 fixed - eigs was broken for complex sparse matrices.
 
 * Bug #12021 fixed - Improve the help page of eigs.
+
+* Bug #12122 fixed - Help page of lufact did not specify that lufact doesn't handle complex matrix.
 
 * Bug #12133 fixed - parallel_run was not available.
 
@@ -404,6 +442,9 @@ Bug fixes
 
 * Bug #12141 fixed - Remove calls to gettext in rubberbox help page examples.
                      Translation of items will be made in each language help page.
+
+* Bug #12144 fixed - csvRead triggered some error messages when ranges were
+                     wrong.
 
 * Bug #12151 fixed - Axes did not pass through (0,0) when x_location and
                      y_location were set to 'origin'.
@@ -434,6 +475,8 @@ Bug fixes
 
 * Bug #12232 fixed - There were several memleaks in various fillers.
 
+* Bug #12234 fixed - Graphics could crash with an invalid property.
+
 * Bug #12235 fixed - Matplot did not update on color_map change.
 
 * Bug #12238 fixed - [d v] = eigs(A) was broken for sparse matrices.
@@ -449,6 +492,8 @@ Bug fixes
 
 * Bug #12248 fixed - SciNotes toolbar had disappeared.
 
+* Bug #12259 fixed - Wrong translation for "Filled" fixed in Scinotes.
+
 * Bug #12270 fixed - When the console lost the focus, the caret could be visible.
 
 * Bug #12272 fixed - Fix a presentation of Cyrillic letters on sample images of russian help page for grand function.
@@ -457,7 +502,7 @@ Bug fixes
 
 * Bug #12285 fixed - export_to_hdf5 function could not handle any matrix in append mode.
 
-* Bug #12291 fixed - Unable to display a list of handle as an handle userData. 
+* Bug #12291 fixed - Unable to display a list of handle as an handle userData.
 
 * Bug #12296 fixed - Call to getenv with a big environment variable
                      led to memory corruption.
@@ -468,11 +513,36 @@ Bug fixes
 
 * Bug #12317 fixed - eventhandler functions no more report keyboard events
 
+* Bug #12321 fixed - save environment failed to save lib variable. Now these variables
+                     are ignored like previous version of save function.
+
 * Bug #12333 fixed - Cleaned command history is restored after reopening Scilab.
+
+* Bug #12335 fixed - strtod didn't work with negative numbers.
 
 * Bug #12346 fixed - lsslist() help pages were mislocated. Moved now to CACSD.
 
 * Bug #12348 fixed - surf() disable lines(n) if there is no input variable.
+
+* Bug #12354 fixed - In SciNotes, invalid function with a semicolon after args
+                     declaration.
+
+* Bug #12360 fixed - Incorrect format for purely real complexs in csvWrite.
+
+* Bug #12361 fixed - Error fixed in replot() help page examples.
+
+* Bug #12373 fixed - pmodulo(n,m<0) returned a negative result.
+
+* Bug #12374 fixed - Unexpected mark was drawn with xsegs.
+
+* Bug #12377 fixed - chepol was located in the wrong help section
+                     (now in polynomial).
+
+* Bug #12378 fixed - sdf() crashed Scilab.
+
+* Bug #12383 fixed - csvRead memory leak.
+
+* Bug #12386 fixed - sgrid example improved in the list of graphics.
 
 
                     Changes between version 5.3.3 and 5.4.0

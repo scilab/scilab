@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="close">
     <refnamediv>
         <refname>close</refname>
-        <refpurpose>close a figure</refpurpose>
+        <refpurpose>close a figure or a window</refpurpose>
     </refnamediv>
     <refsection>
         <title>Arguments</title>
@@ -10,7 +10,7 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>integer Handle of the window to close.</para>
+                    <para>integer Handle or window identification of the window to close.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -18,8 +18,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            This routine close a tksci figure (toplevel window). If a handle is
-            given, the figure corresponding to this handle is closed.
+            This routine close a tksci figure (toplevel window). If a handle 
+            (resp. window identification) is given, the figure (resp. window)
+            corresponding to this handle (resp. window identification) is closed.
             Otherwise, the current (active) figure is closed.
         </para>
     </refsection>
@@ -42,6 +43,10 @@ close();
 // close the current graphic window (ie fig. 2)
 close(h);
 // close figure 1
+wid1=progressionbar("Message");
+// create a progression bar
+close(wid1);
+// close this window
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

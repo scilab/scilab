@@ -210,10 +210,10 @@
                     <latex><![CDATA[1]]></latex>
                 </td>
                 <td align="left">
-                    <latex><![CDATA[I]]></latex>
+                    <latex scilab:localized="true"><![CDATA[I]]></latex>
                 </td>
                 <td align="left">
-                    <latex><![CDATA[I]]></latex>
+                    <latex scilab:localized="true"><![CDATA[I]]></latex>
                 </td>
                 <td align="left">Etat interdit</td>
             </tr>
@@ -377,7 +377,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+            <scilab:image localized="true"><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/SRFLIPFLOP_fr_FR.xcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>

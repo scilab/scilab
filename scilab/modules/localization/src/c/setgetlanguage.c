@@ -299,7 +299,7 @@ BOOL exportLocaleToSystem(wchar_t *locale)
 #ifdef _MSC_VER
         fprintf(stderr, "Localization: Haven't been able to find a suitable locale. Remains to default %s.\n", "LC_CTYPE");
 #else
-        fprintf(stderr, "Localization: Haven't been able to find a suitable locale. Remains to default %d.\n", EXPORTENVLOCALE);
+        fprintf(stderr, "Localization: Have not been able to find a suitable locale. Remains to default %s.\n", EXPORTENVLOCALESTR);
 #endif
         return FALSE;
     }

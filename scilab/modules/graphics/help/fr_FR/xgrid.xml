@@ -31,12 +31,12 @@
         <programlisting role="example"><![CDATA[ 
 x=[0:0.1:2*%pi]';
 plot2d(sin(x))
-xgrid(2)
+xgrid(5)
  ]]></programlisting>
         <scilab:image>
             x=[0:0.1:2*%pi]';
             plot2d(sin(x))
-            xgrid(2)
+            xgrid(5)
         </scilab:image>
     </refsection>
     <refsection role="see also">

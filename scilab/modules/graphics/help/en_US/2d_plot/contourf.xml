@@ -60,10 +60,10 @@ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
                                     <note>
-                                    Note: that the <literal>zmin</literal> and
-                                    <literal>zmax</literal> levels are not drawn
-                                    (generically they are reduced to points) but
-                                    they can be added with
+                                        Note: that the <literal>zmin</literal> and
+                                        <literal>zmax</literal> levels are not drawn
+                                        (generically they are reduced to points) but
+                                        they can be added with
                                     </note>
                                 </para>
                                 <programlisting role="no-scilab-exec"><![CDATA[ 
@@ -183,7 +183,6 @@ contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
             xset('fpf',' ');
             clf();
             contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8],0*ones(1,m))
-            
         </scilab:image>
     </refsection>
     <refsection role="see also">

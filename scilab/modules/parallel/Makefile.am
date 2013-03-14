@@ -17,8 +17,7 @@
 GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c
 #					sci_gateway/c/sci_parallel_concurrency.c
 
-libsciparallel_la_CFLAGS= $(OPENMP_CFLAGS) \
--I$(top_srcdir)/libs/MALLOC/includes/ \
+libsciparallel_la_CPPFLAGS= $(OPENMP_CXXFLAGS) \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
 -I$(srcdir)/src/cpp/ \

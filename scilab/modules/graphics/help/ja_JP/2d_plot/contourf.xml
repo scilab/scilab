@@ -109,7 +109,9 @@ plot2d(x(im)',y(jm)',-9,"000")
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>contourf();</scilab:image>
+        <scilab:image>
+            contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

@@ -49,16 +49,14 @@
         <title>Descrição</title>
         <para>A primeira forma computa o arco-tangente 2-quadrantes, que é o
             inverso de <literal>tan(phi)</literal>. Para um real <literal>x</literal>,
-            <literal>phi</literal> está no intervalo (-pi/2, pi/2).. Para um complexo
+            <literal>phi</literal> está no intervalo <latex>\left(\dfrac{-\pi}{2}, \dfrac{\pi}{2}\right)</latex>.. Para um complexo
             <literal>x</literal>, <literal>atan</literal> tem dois pontos de
             ramificação singulares <literal>+%i</literal>,<literal>-%i</literal> e os
-            ramos escolhidos são as duas semi-retas imaginárias [i, i*oo) e (-i*oo,
-            -i].
+            ramos escolhidos são as duas semi-retas imaginárias <latex>[i, i*\infty)</latex> e <latex>(-i*\infty, -i]</latex>.
         </para>
         <para>A segunda forma computa o arco-tangente 4-quadrantes (atan2 em
             FORTRAN), isto é, retorna o argumento (ângulo) do número complexo
-            <literal>x+i*y</literal>. A imagem de <literal>atan(y,x)</literal> é (-pi,
-            pi].
+            <literal>x+i*y</literal>. A imagem de <literal>atan(y,x)</literal> é <latex>(-\pi, \pi]</latex>.
         </para>
         <para>Para argumentos reais, ambas as formas produzem valores idênticos se
             <literal>x&gt;0</literal>.

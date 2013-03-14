@@ -484,6 +484,7 @@ static char **getStringsFromLines(const char **lines, int sizelines,
                     lineStrings[j] = NULL;
                 }
             }
+            FREE(lineStrings);
         }
     }
     return results;
@@ -598,6 +599,7 @@ static char *stripCharacters(const char *line)
                 if (tmpLineWithoutCR)
                 {
                     returnedLine = csv_strsubst(tmpLineWithoutCR, " ", "");
+                    FREE(tmpLineWithoutCR);
                 }
                 else
                 {

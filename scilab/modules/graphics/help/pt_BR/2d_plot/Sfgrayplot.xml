@@ -111,7 +111,7 @@ clf()
 set(gcf(),"color_map",[jetcolormap(64);hotcolormap(64)])
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
-drawlater() ;
+drawlater();
 subplot(2,2,1)
    colorbar(-1,1,[1,64])
    Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
@@ -128,7 +128,7 @@ subplot(2,2,4)
    colorbar(0,2,[1,64])
    Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
    xtitle("f(x,y) = x^2+y^2")
-drawnow() ;
+drawnow();
 show_window()
  ]]></programlisting>
         <scilab:image>
@@ -140,7 +140,7 @@ show_window()
             set(gcf(),"color_map",[jetcolormap(64);hotcolormap(64)])
             x = linspace(-1,1,60);
             y = linspace(-1,1,60);
-            drawlater() ;
+            drawlater();
             subplot(2,2,1)
             colorbar(-1,1,[1,64])
             Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
@@ -157,8 +157,7 @@ show_window()
             colorbar(0,2,[1,64])
             Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
             xtitle("f(x,y) = x^2+y^2")
-            drawnow() ;
-            show_window()
+            drawnow();
         </scilab:image>
         <programlisting role="example"><![CDATA[
 // exemplo #2: esboço de surf3 e adição de algumas linhas de contorno
@@ -167,12 +166,12 @@ clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
 set(gcf(),"color_map",hotcolormap(128))
-drawlater() ;
+drawlater();
 colorbar(-1,2)
 Sfgrayplot(x,y,surf3,strf="041")
 fcontour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
 xtitle("f(x,y) = x^3+y^2")
-drawnow() ;
+drawnow();
 show_window()
  ]]></programlisting>
         <scilab:image>
@@ -181,7 +180,7 @@ show_window()
             x = linspace(-1,1,60);
             y = linspace(-1,1,60);
             set(gcf(),"color_map",hotcolormap(128))
-            drawlater() ;
+            drawlater();
             colorbar(-1,2)
             Sfgrayplot(x,y,surf3,strf="041")
             contour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
@@ -197,7 +196,7 @@ clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
 set(gcf(),"color_map",jetcolormap(128))
-drawlater() ;
+drawlater();
 zminmax = [-0.5 1]; colors=[32 96];
 colorbar(zminmax(1),zminmax(2),colors)
 Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
@@ -206,7 +205,7 @@ xtitle("f(x,y) = x^3+y^2, com partes abaixo de z = -0.5 e acima de z = 1 removid
 drawnow() ;
 show_window()
  ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             function z=surf3(x,y), z=x^3+y^2, endfunction
             clf()
             x = linspace(-1,1,60);

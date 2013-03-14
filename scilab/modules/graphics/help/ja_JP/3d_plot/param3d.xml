@@ -226,7 +226,17 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>param3d();</scilab:image>
+        <scilab:image>
+            t=0:0.1:5*%pi;
+            param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
+            
+            e=gce() //the handle on the 3D polyline
+            
+            e.foreground=color('red');
+            
+            a=gca(); //the handle on the axes
+            a.rotation_angles=[10 70];
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

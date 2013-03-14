@@ -174,7 +174,7 @@ xset("fpf","%.2f")
 contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
   ]]></programlisting>
         <scilab:image>
-            xset("fpf","%.2f");
+            xset("fpf","%.2f")
             contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
         </scilab:image>
         <programlisting role="example"><![CDATA[

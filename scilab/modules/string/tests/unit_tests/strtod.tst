@@ -62,3 +62,27 @@ assert_checkequal(d, %nan);
 assert_checkequal(s, "");
 assert_checkequal(d, %nan);
 //===============================
+[d,s] = strtod("-3 sdf");
+assert_checkequal(s, " sdf");
+assert_checkequal(d, -3);
+//===============================
+[d,s] = strtod("abc -3 sdf");
+assert_checkequal(s, "abc -3 sdf");
+assert_checkequal(d, %nan);
+//===============================
+[d,s] = strtod("- 3 sdf");
+assert_checkequal(s, "- 3 sdf");
+assert_checkequal(d, %nan);
+//===============================
+[d,s] = strtod("  -.3 sdf");
+assert_checkequal(s, " sdf");
+assert_checkequal(d, -0.3);
+//===============================
+[d,s] = strtod("abs .01sdf");
+assert_checkequal(s, "abs .01sdf");
+assert_checkequal(d, %nan);
+//===============================
+[d,s] = strtod("-.4e-3 sdf");
+assert_checkequal(s, " sdf");
+assert_checkequal(d, -.4e-3);
+
