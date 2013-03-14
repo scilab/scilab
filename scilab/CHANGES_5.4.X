@@ -322,6 +322,8 @@ Bug fixes
 
 * Bug #11801 fixed - Bug with isoview="on" on subplots.
 
+* Bug #11804 fixed - Untranslated prompt messages.
+
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
 * Bug #11812 fixed - Upper/lower case issues in the Xcos documentation fixed.
