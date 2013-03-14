@@ -455,6 +455,7 @@ libsciparallel_la_CPPFLAGS = $(OPENMP_CXXFLAGS) \
 -I$(top_srcdir)/modules/core/includes \
 -I$(srcdir)/src/cpp/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/parameters/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
