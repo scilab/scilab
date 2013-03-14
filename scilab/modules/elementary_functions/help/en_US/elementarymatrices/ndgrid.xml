@@ -137,29 +137,27 @@ plot3d(XF,YF,ZF, flag=[0 6 3], leg="X@Y@Z")
 xtitle("A 3d grid !"); show_window()
  ]]></programlisting>
         <scilab:image>
-nx = 10; ny = 6; nz = 4;
-x = linspace(0,2,nx);
-y = linspace(0,1,ny);
-z = linspace(0,0.5,nz);
-[X,Y,Z] = ndgrid(x,y,z);
-
-XF=[]; YF=[]; ZF=[];
-
-for k=1:nz
-   [xf,yf,zf] = nf3d(X(:,:,k),Y(:,:,k),Z(:,:,k));
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
-end
-
-for j=1:ny
-   [xf,yf,zf] = nf3d(matrix(X(:,j,:),[nx,nz]),...
-                     matrix(Y(:,j,:),[nx,nz]),...
-                     matrix(Z(:,j,:),[nx,nz]));
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
-end
-
-clf()
-plot3d(XF,YF,ZF, flag=[0 6 3], leg="X@Y@Z")
-xtitle("A 3d grid !"); 
+            nx = 10; ny = 6; nz = 4;
+            x = linspace(0,2,nx);
+            y = linspace(0,1,ny);
+            z = linspace(0,0.5,nz);
+            [X,Y,Z] = ndgrid(x,y,z);
+            
+            XF=[]; YF=[]; ZF=[];
+            
+            for k=1:nz
+            [xf,yf,zf] = nf3d(X(:,:,k),Y(:,:,k),Z(:,:,k));
+            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+            end
+            
+            for j=1:ny
+            [xf,yf,zf] = nf3d(matrix(X(:,j,:),[nx,nz]),...
+            matrix(Y(:,j,:),[nx,nz]),...
+            matrix(Z(:,j,:),[nx,nz]));
+            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+            end
+            plot3d(XF,YF,ZF, flag=[0 6 3], leg="X@Y@Z")
+            xtitle("A 3d grid !"); 
         </scilab:image>
     </refsection>
     <refsection role="see also">

@@ -7,6 +7,8 @@
 //
 // <-- ENGLISH IMPOSED -->
 //
+// <-- NO CHECK ERROR OUTPUT -->
+//
 // <-- Non-regression test for bug 9339 -->
 //
 // <-- Bugzilla URL -->

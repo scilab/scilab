@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2013 - Samuel GOUGEON
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -48,8 +49,8 @@
             <literal>n</literal> ou <literal>m</literal> são negativos.
         </para>
         <para>
-            <literal>pmodulo</literal> computa <literal>i = n - m .* floor (n ./
-                m)
+            <literal>pmodulo</literal> computa <literal>i = n - |m| .* floor (n ./
+                |m|)
             </literal>
             ,a resposta é positiva ou zero.
         </para>
@@ -57,11 +58,16 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
-n=[1,2,10,15];m=[2,2,3,5];
+n = [1,2,10,15];
+m = [2,2,3,5];
 modulo(n,m)
 
-modulo(-3,9)
-pmodulo(-3,9)
+modulo(-3, 9)
+modulo(10, -4)
+
+pmodulo(-3, 9)
+pmodulo(10, -6)
+pmodulo(-10, -6)
  ]]></programlisting>
     </refsection>
 </refentry>

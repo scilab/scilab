@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 #
-# Hook used to indent all xcos files before commiting
+# Hook used to indent files before commiting
 #
 
 
@@ -111,6 +111,9 @@ indent() {
         .java)
             __indent_java;
         ;;
+        .sce|.sci)
+            __indent_scilab;
+        ;;
         esac
     done
 
@@ -190,6 +193,24 @@ __indent_C() {
 __indent_java() {
     __pre_indent || return 1
     $ASTYLE $COMMON_ASTYLE_ARGS --style=java "$file" || return 2
+    __post_indent || return 3
+    return 0
+}
+
+# Indent the file with `scinotes' if this is a Scilab file
+__indent_scilab() {
+    __pre_indent || return 1
+    if test -f scilab/scilab-bin; then
+        scilab/bin/scinotes -indent "$file" || return 2
+    else
+        if test -f scilab/bin/WScilex.exe; then
+            scilab/bin/scilex.exe -e "scinotes('$file', ['indent','trailing','quote'])" || return 2
+        else
+            echo "Scilab has not been built."
+            return 4
+        fi
+    fi
+
     __post_indent || return 3
     return 0
 }

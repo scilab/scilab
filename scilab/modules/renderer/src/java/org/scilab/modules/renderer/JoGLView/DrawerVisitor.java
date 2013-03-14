@@ -803,7 +803,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (segs.getMarkMode()) {
                     Texture texture = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap);
                     ElementsBuffer positions = dataManager.getVertexBuffer(segs.getIdentifier());
+                    // Take only into account start-end of segs and not the arrow head.
+                    positions.getData().limit(segs.getNumberArrows() * 2 * 4);
                     drawingTools.draw(texture, AnchorPosition.CENTER, positions);
+                    positions.getData().limit(positions.getData().capacity());
                 }
 
                 /* Draw the arrows */

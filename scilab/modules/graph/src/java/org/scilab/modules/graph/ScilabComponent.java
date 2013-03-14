@@ -205,9 +205,9 @@ public class ScilabComponent extends mxGraphComponent {
                     if (getGraph().isCellsLocked()) {
                         g.setColor(MASK_COLOR);
 
-                        Rectangle b = getBounds();
+                        Dimension b = getGraphControl().getSize();
 
-                        g.fillRect(b.x, b.y, b.width, b.height);
+                        g.fillRect(0, 0, b.width, b.height);
                     }
                 }
             });

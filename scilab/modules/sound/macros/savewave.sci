@@ -120,7 +120,7 @@ function [status] = write_wavedat(fid,fmt,data)
     // Determine # bytes/sample - format requires rounding
     //  to next integer number of bytes:
     BytesPerSample = ceil(fmt('nBitsPerSample')/8);
-    
+
     select BytesPerSample
     case 1 then
     	dtype = 'uc'; // unsigned 8-bit
@@ -156,12 +156,12 @@ function [status] = write_wavedat(fid,fmt,data)
       oct2 = (floor((data-(oct3*2^16))/(2^8)));
       oct1 = (floor(data-(oct3*2^16)-(oct2*2^8)));//lsb
       data_line = zeros(3*total_samples,1);
-      data_line(1:6:$) = (oct1(:,1));
-      data_line(2:6:$) = (oct2(:,1));
-      data_line(3:6:$) = (oct3(:,1));
-      data_line(4:6:$) = (oct1(:,2));
-      data_line(5:6:$) = (oct2(:,2));
-      data_line(6:6:$) = (oct3(:,2));
+      data_line(1:6:$) = oct1(1,:)';
+      data_line(2:6:$) = oct2(1,:)';
+      data_line(3:6:$) = oct3(1,:)';
+      data_line(4:6:$) = oct1(2,:)';
+      data_line(5:6:$) = oct2(2,:)';
+      data_line(6:6:$) = oct3(2,:)';
       data_line = data_line';
     else
       data_line = data;

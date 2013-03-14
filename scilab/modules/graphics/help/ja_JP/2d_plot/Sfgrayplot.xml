@@ -102,10 +102,6 @@ _____________
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>Sfgrayplot();</scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 // 例 #1: 4 個の面をプロット
 function z=surf1(x,y), z=x*y, endfunction
@@ -145,7 +141,7 @@ show_window()
             set(gcf(),"color_map",[jetcolormap(64);hotcolormap(64)])
             x = linspace(-1,1,60);
             y = linspace(-1,1,60);
-            drawlater() ;
+            drawlater();
             subplot(2,2,1)
             colorbar(-1,1,[1,64])
             Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
@@ -162,8 +158,7 @@ show_window()
             colorbar(0,2,[1,64])
             Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
             xtitle("f(x,y) = x^2+y^2")
-            drawnow() ;
-            show_window()
+            drawnow();
         </scilab:image>
         <programlisting role="example"><![CDATA[
 // 例 #2: surf3 をプロットしいくつかの等高線を追加
@@ -186,7 +181,7 @@ show_window()
             x = linspace(-1,1,60);
             y = linspace(-1,1,60);
             set(gcf(),"color_map",hotcolormap(128))
-            drawlater() ;
+            drawlater();
             colorbar(-1,2)
             Sfgrayplot(x,y,surf3,strf="041")
             contour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")

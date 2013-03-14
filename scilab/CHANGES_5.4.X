@@ -39,6 +39,8 @@ Improvements
 
 * Completion in Scilab is now case insensitive. See bug #6320.
 
+* variance is now vectorized and allows the syntax variance(x,"*",w).
+  See bug #12362
 
 
 Removed functions
@@ -142,6 +144,9 @@ Xcos
 
 * Bug #11919 fixed - DLSS block with empty matrix as parameters made Scilab crash.
 
+* Bug #11945 fixed - When running simulation on large diagram, the grey filter
+                     did not apply to the entire diagram.
+
 * Bug #11963 fixed - input port in superblock was corrupted.
 
 * Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
@@ -178,7 +183,7 @@ Xcos
 * Bug #12351 fixed - "Save as" a diagram to a selected xcos file type, saved
                      it as zcos.
 
-* Bug #12352 fixed - Critical error when closing a scope windows during 
+* Bug #12352 fixed - Critical error when closing a scope windows during
                      simulation fixed.
 
 
@@ -190,6 +195,9 @@ Documentation
 * xlabel(), ylabel, zlabel() macros are fully documented (See bug #6975).
 
 * Default stacksize is incorrect (See bug #12134).
+
+* Document flag and flagexpand arguments in basename and
+  dirname functions (See bug #8649).
 
 
 Compilation
@@ -316,6 +324,8 @@ Bug fixes
 
 * Bug #11801 fixed - Bug with isoview="on" on subplots.
 
+* Bug #11804 fixed - Untranslated prompt messages.
+
 * Bug #11811 fixed - Fix a typo in the help page of Scinotes.
 
 * Bug #11812 fixed - Upper/lower case issues in the Xcos documentation fixed.
@@ -323,6 +333,8 @@ Bug fixes
 * Bug #11814 fixed - Fix a typo in one of the titles of CACSD.
 
 * Bug #11851 fixed - Default EOL under Mac should be LF.
+
+* Bug #11860 fixed - wavwrite failed for 24 bits files (error in savewave function).
 
 * Bug #11924 fixed - winclose() was not tagged as obsolete.
 
@@ -405,6 +417,8 @@ Bug fixes
 * Bug #12087 fixed - profile help page did not mention add_profiling.
 
 * Bug #12097 fixed - Scilab wrongly detected DLL platform information.
+
+* Bug #12111 fixed - karmarkar function did not generate appropriate warnings.
 
 * Bug #12115 fixed - phaseplot(frq,db,phi) did not work.
 
@@ -512,6 +526,23 @@ Bug fixes
 
 * Bug #12354 fixed - In SciNotes, invalid function with a semicolon after args
                      declaration.
+
+* Bug #12360 fixed - Incorrect format for purely real complexs in csvWrite.
+
+* Bug #12361 fixed - Error fixed in replot() help page examples.
+
+* Bug #12373 fixed - pmodulo(n,m<0) returned a negative result.
+
+* Bug #12374 fixed - Unexpected mark was drawn with xsegs.
+
+* Bug #12377 fixed - chepol was located in the wrong help section
+                     (now in polynomial).
+
+* Bug #12378 fixed - sdf() crashed Scilab.
+
+* Bug #12383 fixed - csvRead memory leak.
+
+* Bug #12386 fixed - sgrid example improved in the list of graphics.
 
 
                     Changes between version 5.3.3 and 5.4.0

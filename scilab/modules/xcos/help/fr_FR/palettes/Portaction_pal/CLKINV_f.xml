@@ -209,7 +209,7 @@
         <para>
             La figure suivante montre la sortie du Super bloc :
         </para>
-        <scilab:image><![CDATA[
+        <scilab:image localized="true"><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.xcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>

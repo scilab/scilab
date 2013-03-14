@@ -311,7 +311,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+            <scilab:image localized="true"><![CDATA[
 // overload messagebox to avoid the "no continuous states" messages
 function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
 	btn=1;
