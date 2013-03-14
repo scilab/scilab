@@ -544,6 +544,8 @@ Bug fixes
 
 * Bug #12386 fixed - sgrid example improved in the list of graphics.
 
+* Bug #12389 fixed - Axes sizes were not taken into account in offscreen export.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
