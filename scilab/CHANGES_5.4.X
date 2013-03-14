@@ -316,6 +316,8 @@ Bug fixes
 
 * Bug #11639 fixed - Uninstall removed all scilab registry information.
 
+* Bug #11669 fixed - Help page of kalm and srkf functions had no example.
+
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
 * Bug #11778 fixed - Bad color_map dims did not return an error.
