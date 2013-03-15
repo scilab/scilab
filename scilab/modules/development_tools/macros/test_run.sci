@@ -579,6 +579,12 @@ function status = test_single(_module, _testPath, _testName)
     return;
   end
 
+  if ~isempty(grep(sciFile, "<-- UNIX ONLY -->")) & getos() == "Windows" then
+    status.id = 10;
+    status.message = "skipped: Unix only";
+    return;
+  end
+
   if ~isempty(grep(sciFile, "<-- MACOSX ONLY -->")) & getos() <> "Darwin" then
     status.id = 10;
     status.message = "skipped: MacOSX only";

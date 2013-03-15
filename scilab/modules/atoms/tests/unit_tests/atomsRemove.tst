@@ -8,6 +8,13 @@
 // <-- CLI SHELL MODE -->
 
 
+//detect scilab arch
+[version, opts] = getversion();
+if opts(2) == "x64" & getos() == "Windows" then
+    arch = "x64/";
+else
+    arch = "";
+end
 
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 
@@ -46,10 +53,10 @@ end
 // installed by
 // -----------------------------------------------------------------------------
 atomsInstall(["toolbox_5" "1.0"],"user");
-ref = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_1/1.0-1"  "A" ;
-        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_2/1.0-1"  "A" ;
-        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_4/1.0-1"  "A" ;
-        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_5/1.0-1"  "I" ];
+ref = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_1/1.0-1"  "A" ;
+        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_2/1.0-1"  "A" ;
+        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_4/1.0-1"  "A" ;
+        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_5/1.0-1"  "I" ];
         
 if getos()=="Windows" then
    ref=strsubst(ref,"/","\");
@@ -62,12 +69,12 @@ assert_checkequal(removed(b,:),ref);
 // -----------------------------------------------------------------------------
 atomsInstall(["toolbox_5" "1.0"],"user");
 atomsInstall(["toolbox_3" "1.0"],"user");
-ref = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_1/1.0-1"  "A" ;
-        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_2/1.0-1"  "A" ;
-        "toolbox_2"  "2.0-1"  "user"  "SCIHOME/atoms/toolbox_2/2.0-1"  "A" ;
-        "toolbox_3"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_3/1.0-1"  "I" ;
-        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_4/1.0-1"  "A" ;
-        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_5/1.0-1"  "I" ];
+ref = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_1/1.0-1"  "A" ;
+        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_2/1.0-1"  "A" ;
+        "toolbox_2"  "2.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_2/2.0-1"  "A" ;
+        "toolbox_3"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_3/1.0-1"  "I" ;
+        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_4/1.0-1"  "A" ;
+        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_5/1.0-1"  "I" ];
 if getos()=="Windows" then
    ref=strsubst(ref,"/","\");
 end
@@ -81,8 +88,8 @@ assert_checkequal(removed(b,:),ref);
 // -----------------------------------------------------------------------------
 atomsInstall(["toolbox_5" "1.0"],"user");
 atomsInstall(["toolbox_3" "1.0"],"user");
-ref = [ "toolbox_2"  "2.0-1"  "user"  "SCIHOME/atoms/toolbox_2/2.0-1"  "A" ;
-        "toolbox_3"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_3/1.0-1"  "I" ];
+ref = [ "toolbox_2"  "2.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_2/2.0-1"  "A" ;
+        "toolbox_3"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_3/1.0-1"  "I" ];
         
 if getos()=="Windows" then
    ref=strsubst(ref,"/","\");
@@ -95,10 +102,10 @@ assert_checkequal(removed(b,:),ref);
 // -----------------------------------------------------------------------------
 atomsInstall(["toolbox_5" "1.0"],"user");
 atomsInstall(["toolbox_5" "1.0"],"allusers");
-ref = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_1/1.0-1"  "A" ;
-        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_2/1.0-1"  "A" ;
-        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_4/1.0-1"  "A" ;
-        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_5/1.0-1"  "I" ];
+ref = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_1/1.0-1"  "A" ;
+        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_2/1.0-1"  "A" ;
+        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_4/1.0-1"  "A" ;
+        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_5/1.0-1"  "I" ];
 if getos()=="Windows" then
    ref=strsubst(ref,"/","\");
 end
@@ -122,13 +129,13 @@ assert_checkequal(removed(b,:),ref_all);
 atomsInstall(["toolbox_5" "1.0"],"user");
 atomsInstall(["toolbox_5" "1.0"],"allusers");
 ref = [ "toolbox_1"  "1.0-1"  "allusers"  "SCI/contrib/toolbox_1/1.0-1"  "A" ;
-        "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_1/1.0-1"  "A" ;
+        "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_1/1.0-1"  "A" ;
         "toolbox_2"  "1.0-1"  "allusers"  "SCI/contrib/toolbox_2/1.0-1"  "A" ;
-        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_2/1.0-1"  "A" ;
+        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_2/1.0-1"  "A" ;
         "toolbox_4"  "1.0-1"  "allusers"  "SCI/contrib/toolbox_4/1.0-1"  "A" ;
-        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_4/1.0-1"  "A" ;
+        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_4/1.0-1"  "A" ;
         "toolbox_5"  "1.0-1"  "allusers"  "SCI/contrib/toolbox_5/1.0-1"  "I" ;
-        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_5/1.0-1"  "I" ];
+        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_5/1.0-1"  "I" ];
 if getos()=="Windows" then
    ref=strsubst(ref,"/","\");
 end
@@ -143,10 +150,10 @@ assert_checkequal(removed(b,:),ref);
 // -----------------------------------------------------------------------------
 atomsInstall(["toolbox_5" "1.0"],"user");
 ref_empty = [];
-ref = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_1/1.0-1"  "A" ;
-        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_2/1.0-1"  "A" ;
-        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_4/1.0-1"  "A" ;
-        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_5/1.0-1"  "I" ];
+ref = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_1/1.0-1"  "A" ;
+        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_2/1.0-1"  "A" ;
+        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_4/1.0-1"  "A" ;
+        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_5/1.0-1"  "I" ];
 if getos()=="Windows" then
    ref=strsubst(ref,"/","\");
 end
@@ -157,20 +164,20 @@ assert_checkequal(removed(b,:),ref);
 
 // ============================================================================
 // DELETING PART
-rmdir(SCIHOME+"/atoms/archives/",'s');
-mkdir(SCIHOME+"/atoms/archives");
-rmdir(SCI+"/contrib/archives/",'s');
-mkdir(SCI+"/contrib/archives");
+rmdir(atomsPath("install","user")+'archives/','s');
+mkdir(atomsPath("install","user")+'archives/');
+rmdir(atomsPath("install","allusers")+'archives/','s');
+mkdir(atomsPath("install","allusers")+'archives/');
 // ============================================================================
 
 // REMOVING AND DELETING a toolbox will delete its archives and archives of the
 // toolboxes it depends on
 // -----------------------------------------------------------------------------
 atomsInstall(["toolbox_5" "1.0"],"user");
-ref = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_1/1.0-1"  "A" ;
-        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_2/1.0-1"  "A" ;
-        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_4/1.0-1"  "A" ;
-        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_5/1.0-1"  "I" ];
+ref = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_1/1.0-1"  "A" ;
+        "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_2/1.0-1"  "A" ;
+        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_4/1.0-1"  "A" ;
+        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_5/1.0-1"  "I" ];
 if getos()=="Windows" then
    ref=strsubst(ref,"/","\");
 end
@@ -183,24 +190,24 @@ if getos()=="Windows" then
 else
     assert_checkequal(ls(atomsPath("install","user")+'archives/'),ref_empty);
 end
-rmdir(SCIHOME+"/atoms/archives/",'s');
-mkdir(SCIHOME+"/atoms/archives");
-rmdir(SCI+"/contrib/archives/",'s');
-mkdir(SCI+"/contrib/archives");
+rmdir(atomsPath("install","user")+'archives/','s');
+mkdir(atomsPath("install","user")+'archives/');
+rmdir(atomsPath("install","allusers")+'archives/','s');
+mkdir(atomsPath("install","allusers")+'archives/');
 
 // REMOVING AND DELETING a toolbox will not delete other archives than the ones
 // it depends on
 // -----------------------------------------------------------------------------
 atomsInstall(["toolbox_5" "1.0"],"user");
 atomsInstall(["toolbox_6" "1.0"],"user");
-ref = [ "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_2/1.0-1"  "A" ;
-        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_4/1.0-1"  "A" ;
-        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_5/1.0-1"  "I" ];
+ref = [ "toolbox_2"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_2/1.0-1"  "A" ;
+        "toolbox_4"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_4/1.0-1"  "A" ;
+        "toolbox_5"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_5/1.0-1"  "I" ];
 [version, opts] = getversion();
-arch = opts(2);
+
 if getos()=="Windows" then
     ref=strsubst(ref,"/","\");
-	if arch == "x86" then
+	if opts(2) == "x86" then
 ref_ls = [ "toolbox_1_1.0-1.bin.windows.zip";
            "toolbox_2_2.0-1.bin.windows.zip";
            "toolbox_6_1.0-1.bin.windows.zip"];
@@ -210,7 +217,7 @@ ref_ls = [ "toolbox_1_1.0-1.bin.x64.windows.zip";
            "toolbox_6_1.0-1.bin.x64.windows.zip"];
 	end
 elseif getos()=="Linux" then
-	if arch == "x86" then
+	if opts(2) == "x86" then
 ref_ls = [ "toolbox_1_1.0-1.bin.i686.linux.tar.gz";
            "toolbox_2_2.0-1.bin.i686.linux.tar.gz";
            "toolbox_6_1.0-1.bin.i686.linux.tar.gz"];	
@@ -224,9 +231,9 @@ ref_ls = [ "toolbox_1_1.0-1.bin.x86_64.darwin.tar.gz";
            "toolbox_2_2.0-1.bin.x86_64.darwin.tar.gz";
            "toolbox_6_1.0-1.bin.x86_64.darwin.tar.gz"];	
 end
-ref_rem_6 = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_1/1.0-1"  "A" ;
-              "toolbox_2"  "2.0-1"  "user"  "SCIHOME/atoms/toolbox_2/2.0-1"  "A" ;
-              "toolbox_6"  "1.0-1"  "user"  "SCIHOME/atoms/toolbox_6/1.0-1"  "I" ];
+ref_rem_6 = [ "toolbox_1"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_1/1.0-1"  "A" ;
+              "toolbox_2"  "2.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_2/2.0-1"  "A" ;
+              "toolbox_6"  "1.0-1"  "user"  "SCIHOME/atoms/" + arch + "toolbox_6/1.0-1"  "I" ];
 if getos()=="Windows" then
    ref_rem_6=strsubst(ref_rem_6,"/","\");
 end

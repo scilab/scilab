@@ -220,7 +220,7 @@ public final class ImageConverter {
      * @param imageFile the filename
      * @return the HTML code to insert the image
      */
-    public static String getImageByCode(String currentFile, String code, Map<String, String> attrs, String mime, File imageFile, String imageName, String baseImagePath) {
+    public static String getImageByCode(String currentFile, String code, Map<String, String> attrs, String mime, File imageFile, String imageName, String baseImagePath, int lineNumber, String language, boolean isLocalized) {
         File current = null;
         try {
             current = new File(new URI(currentFile));
@@ -228,13 +228,21 @@ public final class ImageConverter {
 
         ExternalImageConverter conv = externalConverters.get(mime);
         if (conv == null) {
-            System.err.println("In file " + currentFile + "invalid code:\n" + code);
+            System.err.println("In file " + currentFile + " at line " + lineNumber + ": invalid code:\n" + code);
             return null;
         }
 
-        // if (conv.mustRegenerate() || current == null || current.lastModified() > imageFile.lastModified()) {
+        if (!imageFile.exists() && md5s != null) {
+            md5s.remove(imageFile.getName());
+        }
+
         if (!compareMD5(code, imageFile.getName())) {
-            System.err.println("Info: Create image " + imageFile.getName());
+            if (isLocalized || language.equals("en_US")) {
+                System.err.println("Info: Create image " + imageFile.getName() + " from line " + lineNumber + " in " + current.getName());
+            } else if (!language.equals("en_US")) {
+                System.err.println("Warning: Overwrite image " + imageFile.getName() + " from line " + lineNumber + " in " + current.getName() + ". Check the code or use scilab:localized=\"true\" attribute.");
+            }
+
             return conv.convertToImage(currentFile, code, attrs, imageFile, imageName);
         }
 

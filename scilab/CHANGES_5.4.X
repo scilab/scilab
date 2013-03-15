@@ -205,6 +205,8 @@ Compilation
 
 * Enforce a minimal version of Scirenderer (1.0.6).
 
+* Enforce a minimal version of XMLGraphics (1.4).
+
 * Enforce a minimal version of Flexdock (1.2.3).
 
 * Enforce a minimal version of JLaTeXMath (1.0.1).
@@ -317,6 +319,8 @@ Bug fixes
                      So replace F5 by shift+F6 to go to the previous tab.
 
 * Bug #11639 fixed - Uninstall removed all scilab registry information.
+
+* Bug #11669 fixed - Help page of kalm and srkf functions had no example.
 
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
@@ -543,6 +547,8 @@ Bug fixes
 * Bug #12383 fixed - csvRead memory leak.
 
 * Bug #12386 fixed - sgrid example improved in the list of graphics.
+
+* Bug #12389 fixed - Axes sizes were not taken into account in offscreen export.
 
 
                     Changes between version 5.3.3 and 5.4.0
@@ -3484,6 +3490,8 @@ Bug Fixes
 
 * Bug #8351 fixed - integrate function did not manage properly the optional
                     input arguments.
+
+* Bug #8399 fixed - setlanguage didn't work when only fr_FR.UTF-8 was available.
 
 * Bug #8640 fixed - histplot function failed when the data vector contained
                     the same values.
