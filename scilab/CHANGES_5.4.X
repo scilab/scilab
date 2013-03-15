@@ -201,7 +201,7 @@ Documentation
 Compilation
 ============
 
-* Enforce a minimal version of Scirenderer (1.0.6).
+* Enforce a minimal version of Scirenderer (1.0.7).
 
 * Enforce a minimal version of XMLGraphics (1.4).
 
