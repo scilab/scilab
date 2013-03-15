@@ -702,7 +702,24 @@ endfunction
   xopt=karmarkar([],[],c,[],[],[],[],myoutputfunction,A,b);
   // Plot the starting and ending points
   plot(xopt(1),xopt(2),"k*")
-]]></programlisting>
+  ]]></programlisting>
+        <scilab:image>
+            function stop = myoutputfunction ( xopt , optimValues , state )
+            plot(xopt(1),xopt(2),"bo")
+            stop = %f
+            endfunction
+            
+            n=11;
+            A = [2*linspace(0,1,n)',ones(n,1)];
+            b = 1 + linspace(0,1,n)'.^2;
+            c=[-1;-1];
+            for i = 1 : n
+            plot(linspace(0,1,100),b(i)-A(i,1)*linspace(0,1,100),"b-")
+            end
+            xopt=karmarkar([],[],c,[],[],[],[],myoutputfunction,A,b);
+            plot(xopt(1),xopt(2),"k*")
+        </scilab:image>
+        
         <para>
             The previous script produces the following output and creates a graphics.
         </para>
@@ -736,10 +753,10 @@ Iter# 69: done (x*), f=-1.250e+000, x=[5.005e-001 7.495e-001], gap=7.035e-006
     <refsection>
         <title>Configuring the scaling factor</title>
         <para>
-           In some cases, the default value of the scaling factor <literal>gam</literal>
-           does not make the algorithm convergent. To make it converge, we may reduce the
-           value of <literal>gam</literal>. The next script shows two results: First with
-           <literal>gam=0.5</literal> and second with <literal>gam=0.3</literal>.
+            In some cases, the default value of the scaling factor <literal>gam</literal>
+            does not make the algorithm convergent. To make it converge, we may reduce the
+            value of <literal>gam</literal>. The next script shows two results: First with
+            <literal>gam=0.5</literal> and second with <literal>gam=0.3</literal>.
         </para>
         <programlisting role="example"><![CDATA[
     A = [-0.1548,-0.0909,-0.0014,-0.0001;0.0989,-0.0884,0.0004,0];
@@ -753,7 +770,7 @@ Iter# 69: done (x*), f=-1.250e+000, x=[5.005e-001 7.495e-001], gap=7.035e-006
     [xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],C,[],[],gam,[],[],A,B,lb)
 ]]></programlisting>
         <para>
-           The previous script produces the following output.
+            The previous script produces the following output.
         </para>
         <screen><![CDATA[
 -->[xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],C,[],[],[],[],[],A,B,lb)
