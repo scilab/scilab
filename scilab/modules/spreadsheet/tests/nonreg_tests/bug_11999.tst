@@ -4,8 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// 
-// <-- JAVA NOT MANDATORY -->
+//
+// <-- CLI SHELL MODE -->
 //
 // <-- Non-regression test for bug 11999 -->
 //
@@ -15,11 +15,12 @@
 // <-- Short Description -->
 // csvRead does not ignore blank lines
 //
-filename=SCI+"/modules/spreadsheet/" + "tests/nonreg_tests/bug_11999.csv";
-csvDefault("blank","off"); // Default behavior in 5.4.0, changed 5.4.1 to "on"
+filename = SCI + "/modules/spreadsheet/tests/nonreg_tests/bug_11999.csv";
 
-assert_checkerror ("a=csvRead(filename,"";"",[],""string"");", [] , 999 );
+csvDefault("blank", "off"); // Default behavior in 5.4.0, changed 5.4.1 to "on"
+errMsg = msprintf(gettext("%s: can not read file %s: Error in the column structure\n"), "csvRead", filename);
+assert_checkerror("a=csvRead(filename, "";"", [], ""string"");", errMsg, 999);
 
-csvDefault("blank","on");
-a=csvRead(filename,";",[],"string");
-assert_checkequal(a,["foo","bar","foo";"foo2","bar2","bar3"]);
+csvDefault("blank", "on");
+a=csvRead(filename, ";", [], "string");
+assert_checkequal(a,["foo", "bar", "foo"; "foo2", "bar2", "bar3"]);

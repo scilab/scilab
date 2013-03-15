@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.xml.sax.Attributes;
+import org.xml.sax.Locator;
 
 import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 import org.scilab.modules.helptools.image.ImageConverter;
@@ -37,6 +38,7 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
     private String baseDir;
     private String outputDir;
     private boolean isLocalized;
+    private int line;
 
     /**
      * Constructor
@@ -76,10 +78,11 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
     /**
      * {@inheritDoc}
      */
-    public StringBuilder startExternalXML(String localName, Attributes attributes) {
+    public StringBuilder startExternalXML(String localName, Attributes attributes, Locator locator) {
         if (SVG.equals(localName)) {
             String v = attributes.getValue(getScilabURI(), "localized");
             isLocalized = "true".equalsIgnoreCase(v);
+            line = locator.getLineNumber();
         }
 
         recreateTag(buffer, localName, attributes);
@@ -102,9 +105,9 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
                 f = new File(outputDir, BASENAME + getConverter().getCurrentBaseName() + "_" + language + "_" + (compt++) + ".png");
             } else {
                 if ("ru_RU".equals(language) && HTMLDocbookTagConverter.containsCyrillic(buffer)) {
-                    System.err.println("Warning: SVG code in " + getConverter().getCurrentFileName() + " contains cyrillic character. The tag <svg> should contain the attribute scilab:localized=\"true\"");
+                    System.err.println("Warning: SVG code in " + getConverter().getCurrentFileName() + " at line " + line + " contains cyrillic character. The tag <svg> should contain the attribute scilab:localized=\"true\"");
                 } else if ("ja_JP".equals(language) && HTMLDocbookTagConverter.containsCJK(buffer)) {
-                    System.err.println("Warning: SVG code in " + getConverter().getCurrentFileName() + " contains CJK character. The tag <svg> should contain the attribute scilab:localized=\"true\"");
+                    System.err.println("Warning: SVG code in " + getConverter().getCurrentFileName() + " at line " + line + " contains CJK character. The tag <svg> should contain the attribute scilab:localized=\"true\"");
                 }
                 f = new File(outputDir, BASENAME + getConverter().getCurrentBaseName() + "_" + (compt++) + ".png");
             }
@@ -115,7 +118,7 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
                 baseImagePath = ((HTMLDocbookTagConverter) getConverter()).getBaseImagePath();
             }
 
-            String ret = ImageConverter.getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/svg", f, baseDir + f.getName(), baseImagePath);
+            String ret = ImageConverter.getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/svg", f, baseDir + f.getName(), baseImagePath, line, language, isLocalized);
             buffer.setLength(0);
 
             return ret;

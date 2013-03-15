@@ -118,7 +118,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private static final boolean DEBUG_MODE = false;
 
     private final Component component;
-    private final Canvas canvas;
     private final Figure figure;
     private final InteractionManager interactionManager;
 
@@ -142,6 +141,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private ColorMap colorMap;
 
     private Axes currentAxes;
+    private Canvas canvas;
 
     /**
      * The map between the existing Figures' identifiers and their corresponding Visitor.
@@ -200,6 +200,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     public Canvas getCanvas() {
         return canvas;
+    }
+
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
     }
 
     /**

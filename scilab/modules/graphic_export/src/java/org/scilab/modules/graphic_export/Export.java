@@ -48,6 +48,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.graphic_export.convertToPPM.PPMEncoder;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
@@ -336,8 +337,8 @@ public class Export {
      * @param file the file where to export
      * @param params the export paramaters
      */
-    public static void setVisitor(String uid, int type, ExportParams params) {
-        Exporter exporter = getExporter(types[type]);
+    public static void setVisitor(String uid, int type, final ExportParams params) {
+        final Exporter exporter = getExporter(types[type]);
         Figure figure = (Figure) GraphicController.getController().getObjectFromId(uid);
         Integer[] dims = figure.getAxesSize();
         int width = dims[0];
@@ -352,6 +353,22 @@ public class Export {
             @Override
             public void deleteObject(String id) {
                 // Don't delete during the export
+            }
+
+            @Override
+            public void updateObject(String id, int property) {
+                if (property == GraphicObjectProperties.__GO_AXES_SIZE__) {
+                    Integer[] size = getFigure().getAxesSize();
+                    Graphics2D g2d = exporter.getGraphics2D(size[0], size[1], null, params);
+                    params.setParamsOnGraphics(g2d);
+
+                    G2DCanvas canvas = G2DCanvasFactory.createCanvas(g2d, size[0], size[1]);
+                    canvas.disableDraw();
+                    setCanvas(canvas);
+
+                    setDrawingTools(canvas.getDrawingTools());
+                    canvas.setMainDrawer(this);
+                }
             }
         };
         visitor.setDrawingTools(canvas.getDrawingTools());
