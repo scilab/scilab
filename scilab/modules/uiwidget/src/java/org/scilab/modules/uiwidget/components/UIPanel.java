@@ -77,8 +77,8 @@ public class UIPanel extends UIComponent {
         return panel;
     }
 
-    @UIComponentAnnotation(attributes = {"width", "height", "background", "scrollable", "image", "image-style", "enable"})
-    public Object newInstance(int width, int height, Color background, boolean scrollable, ImageIcon backgroundImage, ImageFill imageStyle, String enable) {
+    @UIComponentAnnotation(attributes = {"width", "height", "background", "image", "image-style", "enable"})
+    public Object newInstance(int width, int height, Color background, ImageIcon backgroundImage, ImageFill imageStyle, String enable) {
         this.backgroundImage = backgroundImage;
         this.imageStyle = imageStyle;
         panel = new JPanel(new NoLayout()) {
