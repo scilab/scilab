@@ -55,6 +55,9 @@ Xcos
 
 * Update Sundials to lastest "2.5.0", keeping our modifications
 
+* Bug #7350 fixed - The superblock I/O ports numbering was not updated
+                    when a new port was dropped.
+
 * Bug #12359 fixed - Xcos files has been converted to zcos to gain some space.
 
 * Bug #12384 fixed - Using a modelica part linked with explicit link to

@@ -15,9 +15,6 @@ package org.scilab.modules.xcos.graph;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.logging.Logger;
@@ -47,11 +44,6 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 
     private static final String PARENT_DIAGRAM_WAS_NULL = "Parent diagram was null";
     private static final long serialVersionUID = -402918614723713301L;
-
-    private static final String IN = "in";
-    private static final String OUT = "out";
-    private static final String EIN = "ein";
-    private static final String EOUT = "eout";
 
     private SuperBlock container;
 
@@ -215,98 +207,6 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
         }
 
         return err;
-    }
-
-    /**
-     * Fill the context with I/O port
-     *
-     * @param context
-     *            the context to fill
-     */
-    @SuppressWarnings("unchecked")
-    private void fillContext(final Hashtable<Object, Object> context) {
-        if (!context.containsKey(IN)) {
-            context.put(IN, iparSort(getAllTypedBlock(new Class[] { ExplicitInBlock.class, ImplicitInBlock.class })));
-        }
-        if (!context.containsKey(OUT)) {
-            context.put(OUT, iparSort(getAllTypedBlock(new Class[] { ExplicitOutBlock.class, ImplicitOutBlock.class })));
-        }
-        if (!context.containsKey(EIN)) {
-            context.put(EIN, iparSort(getAllTypedBlock(EventInBlock.class)));
-        }
-        if (!context.containsKey(EOUT)) {
-            context.put(EOUT, iparSort(getAllTypedBlock(EventOutBlock.class)));
-        }
-    }
-
-    /**
-     * Sort the blocks per first integer parameter value
-     *
-     * @param blocks
-     *            the block list
-     * @return the sorted block list (same instance)
-     */
-    private List <? extends BasicBlock > iparSort(final List <? extends BasicBlock > blocks) {
-        Collections.sort(blocks, new Comparator<BasicBlock>() {
-
-            @Override
-            public int compare(BasicBlock o1, BasicBlock o2) {
-                final ScilabDouble data1 = (ScilabDouble) o1.getIntegerParameters();
-                final ScilabDouble data2 = (ScilabDouble) o2.getIntegerParameters();
-
-                int value1 = 0;
-                int value2 = 0;
-
-                if (data1.getWidth() >= 1 && data1.getHeight() >= 1) {
-                    value1 = (int) data1.getRealPart()[0][0];
-                }
-                if (data2.getWidth() >= 1 && data2.getHeight() >= 1) {
-                    value2 = (int) data2.getRealPart()[0][0];
-                }
-
-                return value1 - value2;
-            }
-        });
-        return blocks;
-    }
-
-    /**
-     * @param <T>
-     *            The type to work on
-     * @param klass
-     *            the class instance to work on
-     * @return list of typed block
-     */
-    @SuppressWarnings("unchecked")
-    private <T extends BasicBlock> List<T> getAllTypedBlock(Class<T> klass) {
-        final List<T> list = new ArrayList<T>();
-
-        int blockCount = getModel().getChildCount(getDefaultParent());
-
-        for (int i = 0; i < blockCount; i++) {
-            Object cell = getModel().getChildAt(getDefaultParent(), i);
-            if (klass.isInstance(cell)) {
-                // According to the test we are sure that the cell is an
-                // instance of T. Thus we can safely cast it.
-                list.add((T) cell);
-            }
-        }
-        return list;
-    }
-
-    /**
-     * @param <T>
-     *            The type to work on
-     * @param klasses
-     *            the class instance list to work on
-     * @return list of typed block
-     */
-    private <T extends BasicBlock> List<T> getAllTypedBlock(Class<T>[] klasses) {
-        final List<T> list = new ArrayList<T>();
-        for (Class<T> klass : klasses) {
-            list.addAll(getAllTypedBlock(klass));
-        }
-        return list;
     }
 
     /**
