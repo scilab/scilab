@@ -43,6 +43,10 @@ EXTERN_OP types::InternalType *GenericLDivide(types::InternalType *_pLeftOperand
 // ./
 EXTERN_OP types::InternalType *GenericDotRDivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
+// ".\"
+EXTERN_OP types::InternalType *GenericDotLDivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
+
+
 // .*
 EXTERN_OP types::InternalType *GenericDotTimes(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
