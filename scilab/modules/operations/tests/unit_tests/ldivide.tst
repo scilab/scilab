@@ -7,12 +7,20 @@
 
 r = 2;
 R = [1,2;3,4];
-R3(:,:,1) = R;
-R3(:,:,2) = R';
+T = 2 * R;
 c = 1 + 2*%i;
 C = [1+2*%i,2+4*%i;3+6*%i,4+8*%i];
-C3(:,:,1) = C;
-C3(:,:,2) = C';
+RR = [1, 2, 3;4, 5, 6];
+TT = 2 * RR;
+
+// check that input are not modified.
+R \ T;
+assert_checkequal(R, [1,2;3,4]);
+assert_checkequal(T, 2*[1,2;3,4]);
+
+RR \ TT;
+assert_checkequal(RR, [1, 2, 3;4, 5, 6]);
+assert_checkequal(TT, 2*[1, 2, 3;4, 5, 6]);
 
 //double \ double
 
@@ -58,6 +66,6 @@ assert_checkalmostequal(R \ R, R / R)
 //R \ C
 assert_checkalmostequal(R \ C, C / R)
 //C \ R
-assert_checkalmostequal(C \ R, R / C)
+assert_checkalmostequal(C \ R, R / C, [], %eps)
 //C \ C
 assert_checkalmostequal(C \ C, C / C)
