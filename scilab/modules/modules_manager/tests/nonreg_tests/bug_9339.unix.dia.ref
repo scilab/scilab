@@ -38,11 +38,21 @@ Building the master document:
 	TMPDIR/toolbox_skeleton/help/en_US
 
 Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/en_US.
+ 
+ Generate image ./c_sub_1.png from Scilab code from file c_sub.xml   
+ 
+ Generate image ./c_sub_en_US_2.png from Scilab code from file c_sub.xm 
+      l                                                                 
 
 Building the master document:
 	TMPDIR/toolbox_skeleton/help/fr_FR
 
 Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/fr_FR.
+ 
+ Generate image ./c_sub_1.png from Scilab code from file c_sub.xml   
+ 
+ Generate image ./c_sub_fr_FR_2.png from Scilab code from file c_sub.xm 
+      l                                                                 
 Generating loader.sce...
 Generating unloader.sce...
 Generating cleaner.sce...
