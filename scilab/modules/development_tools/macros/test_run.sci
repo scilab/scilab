@@ -676,7 +676,7 @@ function status = test_single(_module, _testPath, _testName)
     "function %onprompt" ;
     "   quit;" ;
     "endfunction" ;
-    "deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');";
+    "function []=bugmes(), printf(''error on test'');endfunction"
     "predef(''all'');";
     "tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"
     ];
@@ -697,7 +697,7 @@ function status = test_single(_module, _testPath, _testName)
     head = [
     head;
     "diary(''" + tmp_dia + "'');";
-    "write(%io(2),tmpdirToPrint);";
+    "printf(''%s\n'',tmpdirToPrint);";
     "// <-- HEADER END -->"
     ];
 
