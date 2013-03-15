@@ -72,4 +72,9 @@ assert_checkequal(r, 't.field1');
 currentline = 't.field1 = t.fie';
 r = completeline(currentline,'field2',getfilepartlevel(currentline),getpartlevel(currentline),%t);
 assert_checkequal(r, 't.field1 = t.field2');
-
+currentline = 'totoa';
+r = completeline(currentline,'toto',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+assert_checkequal(r, 'toto');
+currentline = 'totototoa';
+r = completeline(currentline,'toto',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+assert_checkequal(r, 'toto');
