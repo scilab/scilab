@@ -71,7 +71,7 @@ InternalType *GenericLDivide(InternalType *_pLeftOperand, InternalType *_pRightO
                 break;
                 //            default : throw ast::ScilabError(_W("Operator / : Error %d not yet managed.\n"), iResult);
             default :
-                sciprint(_("Operator \ : Error %d not yet managed.\n"), iResult);
+                sciprint(_("Operator \\ : Error %d not yet managed.\n"), iResult);
         }
     }
 
