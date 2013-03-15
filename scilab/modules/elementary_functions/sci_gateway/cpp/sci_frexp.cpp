@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, ty
 
     if (pDblIn->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "frexp", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "frexp", 1);
         return types::Function::Error;
     }
 
