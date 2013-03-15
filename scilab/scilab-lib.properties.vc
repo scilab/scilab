@@ -24,6 +24,8 @@ jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.1.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-5.3-all.jar
 
+xmlgraphics-commons.jar=${thirdparty.dir}/xmlgraphics-commons-1.4.jar
+
 junit4.jar=${thirdparty.dir}/junit4.jar
 
 cobertura.jar=${thirdparty.dir}/cobertura.jar
