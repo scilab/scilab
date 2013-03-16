@@ -42,6 +42,7 @@ import org.scilab.modules.gui.ged.Inspector;
 import org.scilab.modules.gui.ged.SelectionEnum;
 import org.scilab.modules.gui.ged.SwapObject;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 
 
 /**
@@ -247,6 +248,13 @@ public class Editor {
                 case KeyEvent.VK_Z:
                     if (editorHistory.isUndoEnabled()) {
                         onClickUndo();
+                    }
+                    break;
+                case KeyEvent.VK_N:
+                    try {
+                        ScilabInterpreterManagement.asynchronousScilabExec(null, "scf();");
+                    } catch (Exception e) {
+                        System.err.println(e);
                     }
                     break;
                 default:
