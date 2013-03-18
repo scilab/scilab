@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-03-18 15:28+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 73
 #, c-format
@@ -91,8 +91,8 @@ msgstr ""
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 264
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 279
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 302
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 293
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 333
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 292
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 332
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 213
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 249
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 68
@@ -572,7 +572,7 @@ msgstr ""
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 41
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 84
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 138
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 261
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 260
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 182
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 60
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 78
@@ -1799,8 +1799,8 @@ msgid "No print service found."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 73
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 153
+# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 72
+# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 152
 #, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
@@ -1809,15 +1809,15 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 74
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 154
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 164
+# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 73
+# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 153
+# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 163
 #, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 163
+# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 162
 msgid ""
 "Due to your video card drivers limitations, that are not able to manage "
 "OpenGL, Scilab will not be able to draw any graphics. Please update your "
@@ -1825,7 +1825,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 186
+# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 185
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "

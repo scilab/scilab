@@ -14,51 +14,60 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-03-18 15:28+0100\n"
 
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 98
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 101
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 130
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 131
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 134
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 135
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 147
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 148
 #, c-format
 msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 172
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 168
 #, c-format
-msgid "%s: Variable '%s' already exists in file '%s'."
+msgid "%s: Unable to delete existing variable \"%s\"."
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 203
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 175
+#, c-format
+msgid ""
+"%s: Variable '%s' already exists in file '%s'\n"
+"Use -append option to replace existing variable\n"
+"."
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 193
 #, c-format
 msgid "%s: Unable to update Scilab version in \"%s\"."
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 210
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 200
 #, c-format
 msgid "%s: Unable to update HDF5 format version in \"%s\"."
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 925
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 917
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -93,7 +102,7 @@ msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 260
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 305
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 304
 # File: src/cpp/import_from_hdf5_v1.cpp, line: 247
 # File: src/cpp/listvar_in_hdf5_v1.cpp, line: 281
 #, c-format
