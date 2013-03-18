@@ -36,7 +36,7 @@
  */
 
 /*------------------------------------------------------------+
-  |   10) Interface code for getting some informations          |
+  |   10) Interface code for getting some information           |
   |       about the Cholesky factor                             |
   |                                                             |
   |   Scilab call                                               |

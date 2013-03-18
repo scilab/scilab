@@ -36,7 +36,7 @@
  */
 
 /*------------------------------------------------------------+
-  |   5) Interface code for getting some informations           |
+  |   5) Interface code for getting some information           |
   |      about the LU factors                                   |
   |                                                             |
   |   Scilab call                                               |

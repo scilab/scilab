@@ -285,7 +285,7 @@ endfunction
 
 
 function [head,version,swap]=matfile_header(fd)
-//get the mat file header informations
+//get the mat file header information
 //Copyright INRIA
 //Author Serge Steer  
   

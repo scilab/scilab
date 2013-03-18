@@ -66,7 +66,7 @@ final class BlockModelElement extends BlockPartsElement {
      * Decode Scicos element into the block.
      *
      * This decode method doesn't coverage Port management because we need
-     * graphics informations to handle it.
+     * graphics information to handle it.
      *
      * @param element
      *            the scicos element

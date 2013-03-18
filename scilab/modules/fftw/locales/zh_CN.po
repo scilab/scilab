@@ -156,5 +156,5 @@ msgid ""
 "Scilab will use standard fft by default until you install this library."
 msgstr "Scilab将使用FFT直到你安装FFTW库。"
 
-msgid "See help fftw for more informations."
+msgid "See help fftw for more information."
 msgstr "查看help fftw了解更多信息"

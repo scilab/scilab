@@ -340,5 +340,5 @@ msgstr ""
 
 #
 # File: etc/fftw.start, line: 37
-msgid "See help fftw for more informations."
+msgid "See help fftw for more information."
 msgstr ""

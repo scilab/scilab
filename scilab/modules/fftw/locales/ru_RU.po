@@ -182,6 +182,6 @@ msgstr ""
 "Scilab будет использовать по умолчанию стандартное быстрое преобразование "
 "Фурье до тех пор, пока вы не установите эту библиотеку."
 
-msgid "See help fftw for more informations."
+msgid "See help fftw for more information."
 msgstr ""
 "Дополнительную информацию можно получить с помощью команды  \"help fftw\"."

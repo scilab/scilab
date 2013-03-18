@@ -189,7 +189,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
                             //set the filter index of the JFileChooser at 0 if "cancel" button was selected
                             filterIndex = 0;
 
-                            //return the filechooser's informations
+                            //return the filechooser's information
                             //they are stocked into FileChooserInfos
                             FileChooserInfos.getInstance().setSelection(selection);
                             FileChooserInfos.getInstance().setSelectionPathName(selectionPath);
@@ -213,7 +213,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
                 selectionSize = 1;
             }
 
-            //return the filechooser's informations
+            //return the filechooser's information
             //they are stocked into FileChooserInfos
             FileChooserInfos.getInstance().setSelection(selection);
             FileChooserInfos.getInstance().setSelectionPathName(selectionPath);
@@ -239,7 +239,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
             //set the filter index of the JFileChooser at 0 if "cancel" button was selected
             filterIndex = 0;
 
-            //return the filechooser's informations
+            //return the filechooser's information
             //they are stocked into FileChooserInfos
             FileChooserInfos.getInstance().setSelection(selection);
             FileChooserInfos.getInstance().setSelectionPathName(selectionPath);
