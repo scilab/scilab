@@ -42,7 +42,7 @@
         </para>
         <para>
             On Mac OS X:
-            /Users/lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+            /Users/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
         </para>
         <para>
             &lt;User&gt; is your current login name
