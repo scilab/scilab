@@ -554,6 +554,8 @@ Bug fixes
 
 * Bug #12361 fixed - Error fixed in replot() help page examples.
 
+* Bug #12370 fixed - Example with marks added in help page of xpoly.
+
 * Bug #12373 fixed - pmodulo(n,m<0) returned a negative result.
 
 * Bug #12374 fixed - Unexpected mark was drawn with xsegs.
