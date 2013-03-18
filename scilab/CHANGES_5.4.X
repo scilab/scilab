@@ -563,8 +563,9 @@ Bug fixes
 
 * Bug #12389 fixed - Axes sizes were not taken into account in offscreen export.
 
-* Bug #12396 fixed - Example ("problem 2") in the help page of bvode was missing a variable.
+* Bug #12391 fixed - findobj() could change current figure returned by gcf().
 
+* Bug #12396 fixed - Example ("problem 2") in the help page of bvode was missing a variable.
 
 
                     Changes between version 5.3.3 and 5.4.0
