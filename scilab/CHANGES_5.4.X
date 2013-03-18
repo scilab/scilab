@@ -280,6 +280,8 @@ Bug fixes
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
 
+* Bug #9584 fixed - grand returned non-empty matrix for negative size argument.
+
 * Bug #9934 fixed - clear([["A","B"]) returns a non standard error message.
 
 * Bug #9935 fixed - clear() does not clear all variables.
