@@ -7,6 +7,8 @@
 //
 // <-- CLI SHELL MODE -->
 //
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 11999 -->
 //
 // <-- Bugzilla URL -->
@@ -19,7 +21,7 @@ filename = SCI + "/modules/spreadsheet/tests/nonreg_tests/bug_11999.csv";
 csvDefault("blank", "off"); // Default behavior in 5.4.0, changed 5.4.1 to "on"
 errMsg = msprintf(gettext("%s: can not read file %s: Error in the column structure\n"), "csvRead", filename);
 assert_checkerror("a=csvRead(filename, "";"", [], ""string"");", errMsg, 999);
-csvRead : Une incohérence a été trouvée dans les colonnes. À la ligne 2, 0 colonnes ont été trouvées, alors que la précédente en avait 3.
+Warning: Inconsistency found in the columns. At line 2, found 0 columns while the previous had 3.
 csvDefault("blank", "on");
 a=csvRead(filename, ";", [], "string");
 assert_checkequal(a,["foo", "bar", "foo"; "foo2", "bar2", "bar3"]);

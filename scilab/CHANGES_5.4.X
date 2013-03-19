@@ -203,7 +203,7 @@ Documentation
 Compilation
 ============
 
-* Enforce a minimal version of Scirenderer (1.0.6).
+* Enforce a minimal version of Scirenderer (1.0.7).
 
 * Enforce a minimal version of XMLGraphics (1.4).
 
@@ -221,6 +221,8 @@ Other changes
 Bug fixes
 ==========
 
+* Bug #2547 fixed - Too small marks were not correctly exported.
+
 * Bug #3313 fixed - In the documentation, the title of a link was using the
                     id instead of the title of the page.
 
@@ -234,6 +236,9 @@ Bug fixes
 * Bug #5576 fixed - interp() help page has been improved.
 
 * Bug #6583 fixed - jmat() was poorly documented.
+
+* Bug #6890 fixed - Strings were exported as shapes rather than Postscript
+                    strings in EPS/PS export.
 
 * Bug #7058 fixed - There was an error in mathml formula in beta function help.
 
@@ -276,6 +281,8 @@ Bug fixes
 
 * Bug #9305 fixed - In the optimisation help page, new chapter "Least Squares functions"
                     created.
+
+* Bug #9584 fixed - grand returned non-empty matrix for negative size argument.
 
 * Bug #9934 fixed - clear([["A","B"]) returns a non standard error message.
 
@@ -373,6 +380,8 @@ Bug fixes
 
 * Bug #11980 fixed - csim returned an error message in some cases: "Submatrix
                      incorrectly defined".
+
+* Bug #11982 fixed - Ticks computations were made when drawing.
 
 * Bug #11971 fixed - Canceling "Open File" action launched from icon in the
                     toolbar opened SciNotes anyway.
@@ -524,6 +533,8 @@ Bug fixes
 
 * Bug #12335 fixed - strtod didn't work with negative numbers.
 
+* Bug #12343 fixed - Scinotes help was pointing to the editor() function.
+
 * Bug #12346 fixed - lsslist() help pages were mislocated. Moved now to CACSD.
 
 * Bug #12348 fixed - surf() disable lines(n) if there is no input variable.
@@ -549,6 +560,7 @@ Bug fixes
 * Bug #12386 fixed - sgrid example improved in the list of graphics.
 
 * Bug #12389 fixed - Axes sizes were not taken into account in offscreen export.
+
 
 
                     Changes between version 5.3.3 and 5.4.0

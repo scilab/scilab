@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function []=repl_poss(expr,varargin)
-// Display informations for replacement for a statement in converted file
+// Display information for replacement for a statement in converted file
 
 txt=[]
 nposs=size(varargin)

@@ -251,7 +251,7 @@ public final class ImageConverter {
 
     /**
      * @param code the code to translate
-     * @param img image informations
+     * @param img image information
      * @param fileName the filename
      * @param attrs the attribute of the image
      * @return the HTML code to insert the image

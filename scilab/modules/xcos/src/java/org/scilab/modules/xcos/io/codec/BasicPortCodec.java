@@ -103,7 +103,7 @@ public class BasicPortCodec extends XcosObjectCodec {
         ((Element) node).setAttribute(DATA_TYPE, String.valueOf(((BasicPort) obj).getDataType()));
 
         /*
-         * Log some informations
+         * Log some information
          */
         final BasicPort b = (BasicPort) obj;
 

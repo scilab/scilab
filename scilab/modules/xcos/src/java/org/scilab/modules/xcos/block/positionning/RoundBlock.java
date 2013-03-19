@@ -30,7 +30,7 @@ public class RoundBlock extends BasicBlock {
      */
     public RoundBlock() {
         /*
-         * Default value of the round block, for more informations refers to
+         * Default value of the round block, for more information refers to
          * BlockFactory instantiation order.
          */
         this("CLKSOMV_f");

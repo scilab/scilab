@@ -357,7 +357,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="pcre_error.h" />
     <ClInclude Include="pcre_internal.h" />
     <ClInclude Include="setScilabCharactersCodes.h" />
-    <ClInclude Include="strcatfunction.h" />
     <ClInclude Include="stringsCompare.h" />
     <ClInclude Include="stringsstrrev.h" />
     <ClInclude Include="strsplitfunction.h" />

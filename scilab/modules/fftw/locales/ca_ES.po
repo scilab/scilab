@@ -162,5 +162,5 @@ msgstr ""
 "Scilab farà servir per defecte el fft estàndard fins que instal·leu aquesta "
 "llibreria."
 
-msgid "See help fftw for more informations."
+msgid "See help fftw for more information."
 msgstr "Veieu l'ajuda del fftw per a més informació."

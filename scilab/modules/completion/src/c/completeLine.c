@@ -32,7 +32,7 @@
 *  @return Position in string where suffix of string and prefix of find does match
 *
 */
-static int findMatchingPrefixSuffix(const char* string, const char* find)
+static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL stringToAddIsPath)
 {
     char* pointerOnString = NULL;
     char* pointerOnFindCopy = NULL;
@@ -50,11 +50,11 @@ static int findMatchingPrefixSuffix(const char* string, const char* find)
     //Tips : no infinite loop there, tmpfind string length is always reduced at each iteration
     movingPointerOnFindCopy = strrchr(pointerOnFindCopy, toupper(lastchar));
 
-    while( movingPointerOnFindCopy )
+    while ( movingPointerOnFindCopy )
     {
         //find the last occurence of last char of string in tmpfind
         movingPointerOnFindCopy = strrchr(pointerOnFindCopy, toupper(lastchar));
-        if(movingPointerOnFindCopy == NULL)
+        if (movingPointerOnFindCopy == NULL)
         {
             break;
         }
@@ -62,7 +62,7 @@ static int findMatchingPrefixSuffix(const char* string, const char* find)
         movingPointerOnFindCopy[0] = '\0';
         //Check if the cutted tmpfind match with the suffix of string that has adequat length
         pointerOnString = (char*)(string + stringLength - 1 - strlen(pointerOnFindCopy));
-        if( !strnicmp(pointerOnFindCopy, pointerOnString, strlen(pointerOnFindCopy)) )
+        if ( !strnicmp(pointerOnFindCopy, pointerOnString, strlen(pointerOnFindCopy)) )
         {
             FREE(pointerOnFindCopy);
             pointerOnFindCopy = NULL;
@@ -223,29 +223,32 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
         }
     }
 
-    iposInsert = findMatchingPrefixSuffix(currentline, stringToAdd);
+    // Does the end of line (currentLine) matches the beginning of completed word (stringToAdd) ?
+    iposInsert = findMatchingPrefixSuffix(currentline, stringToAdd, stringToAddIsPath);
     res = stristr(stringToAdd, &currentline[iposInsert]);
 
     if (res == NULL)
     {
-        // We found "pattern"
-        // if it is a path, we add at the end
-        if ((currentline[lencurrentline - 1] == '/') || (currentline[lencurrentline - 1] == '\\'))
+        // No, find the last occurence of completed word word in line
+        char* foundCompletedWordPtr = NULL;
+        char* nextFoundCompletedWordPtr = stristr(currentline, stringToAdd);
+        while (nextFoundCompletedWordPtr)
         {
-            iposInsert = lencurrentline;
+            foundCompletedWordPtr = nextFoundCompletedWordPtr;
+            nextFoundCompletedWordPtr =
+                stristr(foundCompletedWordPtr + strlen(foundCompletedWordPtr), stringToAdd);
         }
-        else
+
+        if (foundCompletedWordPtr)
         {
-            iposInsert = lencurrentline - 1;
+            iposInsert = (int) (foundCompletedWordPtr - currentline);
         }
     }
-    else
+
+    // if it is a path, we add at the end
+    if ((currentline[lencurrentline - 1] == '/') || (currentline[lencurrentline - 1] == '\\'))
     {
-        // if it is a path, we add at the end
-        if ((currentline[lencurrentline - 1] == '/') || (currentline[lencurrentline - 1] == '\\'))
-        {
-            iposInsert = lencurrentline;
-        }
+        iposInsert = lencurrentline;
     }
 
     lengthNewLine = (int)(strlen(currentline) + strlen(stringToAdd) + lenstringToAddAtTheEnd);

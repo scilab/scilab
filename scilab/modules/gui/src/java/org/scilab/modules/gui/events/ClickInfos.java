@@ -13,7 +13,7 @@ package org.scilab.modules.gui.events;
  */
  
 /**
- * This class is to manage some Clicks informations
+ * This class is to manage some Clicks information
  * such as the button/key pressed, the mouse position...
  * @author Bruno Jofret
  */

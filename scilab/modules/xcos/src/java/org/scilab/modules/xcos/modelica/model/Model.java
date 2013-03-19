@@ -688,7 +688,7 @@ public final class Model {
     /**
      * Wrapper around the when clauses.
      * 
-     * This class is only partially defined as we need more informations on the
+     * This class is only partially defined as we need more information on the
      * internals.
      */
     @XmlAccessorType(XmlAccessType.FIELD)

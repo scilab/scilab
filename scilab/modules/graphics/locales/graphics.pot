@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-03-18 15:28+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 135
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -81,14 +81,14 @@ msgstr ""
 # File: src/c/getHandleProperty/set_y_ticks_property.c, line: 72
 # File: src/c/getHandleProperty/set_z_shift_property.c, line: 79
 # File: src/c/getHandleProperty/set_z_ticks_property.c, line: 72
-# File: src/c/sciCall.c, line: 166
-# File: src/c/sciCall.c, line: 234
-# File: src/c/sciCall.c, line: 271
-# File: src/c/sciCall.c, line: 327
-# File: src/c/sciCall.c, line: 492
-# File: src/c/sciCall.c, line: 818
-# File: src/c/sciCall.c, line: 885
-# File: src/c/sciCall.c, line: 960
+# File: src/c/sciCall.c, line: 168
+# File: src/c/sciCall.c, line: 238
+# File: src/c/sciCall.c, line: 275
+# File: src/c/sciCall.c, line: 332
+# File: src/c/sciCall.c, line: 497
+# File: src/c/sciCall.c, line: 823
+# File: src/c/sciCall.c, line: 890
+# File: src/c/sciCall.c, line: 965
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -226,7 +226,7 @@ msgstr ""
 # File: sci_gateway/c/sci_glue.c, line: 83
 # File: sci_gateway/c/sci_move.c, line: 62
 # File: sci_gateway/c/sci_rotate_axes.c, line: 78
-# File: sci_gateway/c/sci_set.c, line: 213
+# File: sci_gateway/c/sci_set.c, line: 212
 # File: sci_gateway/c/sci_unglue.c, line: 60
 #, c-format
 msgid "%s: The handle is not or no more valid.\n"
@@ -325,40 +325,40 @@ msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 187
+# File: sci_gateway/c/sci_plot2d.c, line: 186
 #, c-format
 msgid "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 193
+# File: sci_gateway/c/sci_plot2d.c, line: 192
 # File: sci_gateway/c/sci_xfarcs.c, line: 59
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 259
+# File: sci_gateway/c/sci_plot2d.c, line: 258
 #, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 265
+# File: sci_gateway/c/sci_plot2d.c, line: 264
 #, c-format
 msgid ""
 "%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 271
+# File: sci_gateway/c/sci_plot2d.c, line: 270
 #, c-format
 msgid ""
 "%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 311
+# File: sci_gateway/c/sci_plot2d.c, line: 308
 #, c-format
 msgid ""
 "%s: At least one x data must be strictly positive to compute the bounds and "
@@ -366,7 +366,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 322
+# File: sci_gateway/c/sci_plot2d.c, line: 319
 #, c-format
 msgid ""
 "%s: At least one y data must be strictly positive to compute the bounds and "
@@ -416,8 +416,8 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_rubberbox.c, line: 180
-# File: sci_gateway/c/sci_rubberbox.c, line: 238
+# File: sci_gateway/c/sci_rubberbox.c, line: 179
+# File: sci_gateway/c/sci_rubberbox.c, line: 237
 #, c-format
 msgid ""
 "%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
@@ -425,16 +425,16 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_rubberbox.c, line: 194
-# File: sci_gateway/c/sci_rubberbox.c, line: 257
+# File: sci_gateway/c/sci_rubberbox.c, line: 193
+# File: sci_gateway/c/sci_rubberbox.c, line: 256
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_rubberbox.c, line: 215
-# File: sci_gateway/c/sci_rubberbox.c, line: 280
+# File: sci_gateway/c/sci_rubberbox.c, line: 214
+# File: sci_gateway/c/sci_rubberbox.c, line: 279
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A boolean expected\n"
@@ -442,7 +442,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_rubberbox.c, line: 222
+# File: sci_gateway/c/sci_rubberbox.c, line: 221
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real row vector or a boolean "
@@ -450,13 +450,13 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_rubberbox.c, line: 244
+# File: sci_gateway/c/sci_rubberbox.c, line: 243
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_rubberbox.c, line: 250
+# File: sci_gateway/c/sci_rubberbox.c, line: 249
 # File: sci_gateway/c/sci_xlfont.c, line: 147
 # File: sci_gateway/c/sci_xlfont.c, line: 161
 #, c-format
@@ -464,13 +464,13 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_set.c, line: 202
+# File: sci_gateway/c/sci_set.c, line: 201
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_set.c, line: 266
+# File: sci_gateway/c/sci_set.c, line: 265
 #, c-format
 msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
 msgstr ""
@@ -556,7 +556,7 @@ msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xgetmouse.c, line: 66
+# File: sci_gateway/c/sci_xgetmouse.c, line: 62
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
@@ -768,22 +768,22 @@ msgstr ""
 #
 # File: src/c/BuildObjects.c, line: 363
 # File: src/c/BuildObjects.c, line: 426
-# File: src/c/BuildObjects.c, line: 773
-# File: src/c/BuildObjects.c, line: 1025
-# File: src/c/BuildObjects.c, line: 1171
-# File: src/c/BuildObjects.c, line: 1308
-# File: src/c/BuildObjects.c, line: 1494
-# File: src/c/BuildObjects.c, line: 1884
+# File: src/c/BuildObjects.c, line: 776
+# File: src/c/BuildObjects.c, line: 1028
+# File: src/c/BuildObjects.c, line: 1174
+# File: src/c/BuildObjects.c, line: 1311
+# File: src/c/BuildObjects.c, line: 1498
+# File: src/c/BuildObjects.c, line: 1889
 msgid "The parent has to be a SUBWIN\n"
 msgstr ""
 
 #
-# File: src/c/BuildObjects.c, line: 872
+# File: src/c/BuildObjects.c, line: 875
 msgid "Width and height must be positive.\n"
 msgstr ""
 
 #
-# File: src/c/BuildObjects.c, line: 1422
+# File: src/c/BuildObjects.c, line: 1426
 msgid "Impossible case when building axis\n"
 msgstr ""
 
@@ -897,12 +897,12 @@ msgid "Graphic window number %d"
 msgstr ""
 
 #
-# File: src/c/InitObjects.c, line: 221
+# File: src/c/InitObjects.c, line: 222
 msgid "Default axes cannot be created.\n"
 msgstr ""
 
 #
-# File: src/c/InitObjects.c, line: 687
+# File: src/c/InitObjects.c, line: 694
 msgid "This object has not any graphic mode\n"
 msgstr ""
 
@@ -1149,7 +1149,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_clip_state_property.c, line: 72
 # File: src/c/getHandleProperty/set_closed_property.c, line: 54
 # File: src/c/getHandleProperty/set_color_flag_property.c, line: 86
-# File: src/c/getHandleProperty/set_color_map_property.c, line: 52
+# File: src/c/getHandleProperty/set_color_map_property.c, line: 58
 # File: src/c/getHandleProperty/set_color_mode_property.c, line: 54
 # File: src/c/getHandleProperty/set_color_range_property.c, line: 72
 # File: src/c/getHandleProperty/set_colored_property.c, line: 54
@@ -1198,9 +1198,9 @@ msgstr ""
 # File: src/c/getHandleProperty/set_line_mode_property.c, line: 50
 # File: src/c/getHandleProperty/set_links_property.c, line: 60
 # File: src/c/getHandleProperty/set_links_property.c, line: 124
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 167
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 195
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 290
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 165
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 193
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 288
 # File: src/c/getHandleProperty/set_margins_property.c, line: 60
 # File: src/c/getHandleProperty/set_mark_background_property.c, line: 54
 # File: src/c/getHandleProperty/set_mark_foreground_property.c, line: 54
@@ -1320,7 +1320,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_grid_position_property.c, line: 38
 # File: src/c/getHandleProperty/set_info_message_property.c, line: 39
 # File: src/c/getHandleProperty/set_legend_location_property.c, line: 50
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 143
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 141
 # File: src/c/getHandleProperty/set_mark_size_unit_property.c, line: 40
 # File: src/c/getHandleProperty/set_pixel_drawing_mode_property.c, line: 42
 # File: src/c/getHandleProperty/set_rotation_style_property.c, line: 42
@@ -1557,6 +1557,12 @@ msgid "Wrong size for '%s' property: Scalar expected.\n"
 msgstr ""
 
 #
+# File: src/c/getHandleProperty/set_color_map_property.c, line: 46
+#, c-format
+msgid "Wrong dimension for '%s' property: The number of columns must be 3.\n"
+msgstr ""
+
+#
 # File: src/c/getHandleProperty/set_color_range_property.c, line: 61
 # File: src/c/getHandleProperty/set_outside_colors_property.c, line: 60
 #, c-format
@@ -1762,21 +1768,21 @@ msgid "%s: Input argument and the legend must have the same parent axes.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 149
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 147
 #, c-format
 msgid "Wrong size for '%s' property: Must be %s or %s.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 159
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 157
 #, c-format
 msgid "%s: Wrong value for argument: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 202
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 222
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 250
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 200
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 220
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 248
 #, c-format
 msgid ""
 "Error: data_bounds on %s axis must be strictly positive to switch to "
@@ -1863,13 +1869,13 @@ msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 774
+# File: src/c/sciCall.c, line: 779
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 805
+# File: src/c/sciCall.c, line: 810
 #, c-format
 msgid "%s: y vector is not monotonous.\n"
 msgstr ""
@@ -2153,7 +2159,7 @@ msgstr ""
 #, c-format
 msgid ""
 "Matplot(M)  with  size(M)=>(%d,%d)\n"
-"The color's number of pixel(i,j)\n"
+"The color''s number of pixel(i,j)\n"
 "  = rounded value of M(i,j)"
 msgstr ""
 
@@ -2164,7 +2170,7 @@ msgstr ""
 
 #
 # File: macros/%_Matplot.sci, line: 27
-msgid "Axes are scaled with M's indices"
+msgid "Axes are scaled with M''s indices"
 msgstr ""
 
 #
@@ -2335,14 +2341,15 @@ msgstr ""
 #
 # File: macros/checkXYPair.sci, line: 18
 #, c-format
-msgid "%s: Wrong size for input argument '%s': A vector expected.\n"
+msgid "%s: Wrong size for input argument ''%s'': A vector expected.\n"
 msgstr ""
 
 #
 # File: macros/checkXYPair.sci, line: 66
 # File: macros/checkXYPair.sci, line: 73
 #, c-format
-msgid "%s: Wrong size for input argument '%s': A non empty matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
 msgstr ""
 
 #
@@ -2351,7 +2358,8 @@ msgstr ""
 # File: macros/checkXYPair.sci, line: 134
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments '%s' and '%s': Incompatible dimensions.\n"
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible "
+"dimensions.\n"
 msgstr ""
 
 #
@@ -2368,14 +2376,16 @@ msgstr ""
 #
 # File: macros/clf.sci, line: 44
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
+msgid ""
+"%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
 msgstr ""
 
 #
 # File: macros/clf.sci, line: 53
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A vector of 'Figure' handle expected."
+"%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
+"expected."
 msgstr ""
 
 #
@@ -2392,7 +2402,7 @@ msgstr ""
 #
 # File: macros/color.sci, line: 20
 #, c-format
-msgid "%s: Wrong values for input argument #%d: '%s' expected.\n"
+msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
 msgstr ""
 
 #
@@ -2695,7 +2705,7 @@ msgstr ""
 # File: macros/datatips/datatipSetStyle.sci, line: 24
 # File: macros/datatips/datatipToggle.sci, line: 17
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
 msgstr ""
 
 #
@@ -2991,8 +3001,8 @@ msgstr ""
 # File: macros/fplot2d.sci, line: 42
 #, c-format
 msgid ""
-"%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s', '%s', '%s' "
-"or '%s' expected.\n"
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
 
 #
@@ -3065,6 +3075,71 @@ msgid "Name"
 msgstr ""
 
 #
+# File: macros/hist3d.sci, line: 25
+msgid "April"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 25
+msgid "Febuary"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 25
+msgid "January"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 25
+msgid "June"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 25
+msgid "March"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 25
+msgid "May"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 26
+msgid "August"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 26
+msgid "July"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 26
+msgid "November"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 26
+msgid "October"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 26
+msgid "September"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 27
+msgid "Average"
+msgstr ""
+
+#
+# File: macros/hist3d.sci, line: 27
+msgid "December"
+msgstr ""
+
+#
 # File: macros/hist3d.sci, line: 46
 msgid "Average monthly temperatures in french cities"
 msgstr ""
@@ -3114,7 +3189,7 @@ msgstr ""
 #
 # File: macros/legend.sci, line: 81
 #, c-format
-msgid "%s: No '%s' handle found.\n"
+msgid "%s: No ''%s'' handle found.\n"
 msgstr ""
 
 #
@@ -3155,20 +3230,20 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #
-# File: macros/plot.sci, line: 225
-#, c-format
-msgid "%s: Error : unable to evaluate input function '%s'."
-msgstr ""
-
-#
-# File: macros/plot.sci, line: 225
 # File: macros/plot.sci, line: 227
 #, c-format
-msgid "Error %d at line %d of the function: '%s"
+msgid "%s: Error : unable to evaluate input function ''%s''."
 msgstr ""
 
 #
 # File: macros/plot.sci, line: 227
+# File: macros/plot.sci, line: 229
+#, c-format
+msgid "Error %d at line %d of the function: ''%s''"
+msgstr ""
+
+#
+# File: macros/plot.sci, line: 229
 #, c-format
 msgid "%s: Error : unable to evaluate input function."
 msgstr ""
@@ -3178,14 +3253,14 @@ msgstr ""
 # File: macros/polarplot.sci, line: 53
 #, c-format
 msgid ""
-"%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
 "expected.\n"
 msgstr ""
 
 #
 # File: macros/polarplot.sci, line: 152
 #, c-format
-msgid "%s: '%s' cannot be used with '%s'.\n"
+msgid "%s: ''%s'' cannot be used with ''%s''.\n"
 msgstr ""
 
 #
@@ -3196,29 +3271,29 @@ msgstr ""
 
 #
 # File: macros/rotate.sci, line: 25
-# File: macros/surf.sci, line: 390
-# File: macros/surf.sci, line: 396
-# File: macros/surf.sci, line: 428
-# File: macros/surf.sci, line: 464
-# File: macros/surf.sci, line: 505
-# File: macros/surf.sci, line: 511
-# File: macros/surf.sci, line: 557
-# File: macros/surf.sci, line: 602
+# File: macros/surf.sci, line: 389
+# File: macros/surf.sci, line: 395
+# File: macros/surf.sci, line: 427
+# File: macros/surf.sci, line: 463
+# File: macros/surf.sci, line: 504
+# File: macros/surf.sci, line: 510
+# File: macros/surf.sci, line: 556
+# File: macros/surf.sci, line: 601
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments '%s': A vector of size %d expected.\n"
+"%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
 msgstr ""
 
 #
 # File: macros/sca.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
+msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
 msgstr ""
 
 #
 # File: macros/sca.sci, line: 25
 #, c-format
-msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
+msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
 msgstr ""
 
 #
@@ -3236,14 +3311,14 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 49
+# File: macros/surf.sci, line: 48
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An 'Axes' handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 94
-# File: macros/surf.sci, line: 110
+# File: macros/surf.sci, line: 93
+# File: macros/surf.sci, line: 109
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
@@ -3251,8 +3326,8 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 116
-# File: macros/surf.sci, line: 156
+# File: macros/surf.sci, line: 115
+# File: macros/surf.sci, line: 155
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
@@ -3260,41 +3335,42 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 190
-# File: macros/surf.sci, line: 202
-# File: macros/surf.sci, line: 214
+# File: macros/surf.sci, line: 189
+# File: macros/surf.sci, line: 201
+# File: macros/surf.sci, line: 213
 #, c-format
-msgid "%s: Wrong type for input argument '%s': A Real matrix expected.\n"
+msgid "%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 219
+# File: macros/surf.sci, line: 218
 #, c-format
 msgid ""
-"%s: Wrong size for input argument '%s': A matrix of size greater than %d-by-"
-"%d expected.\n"
+"%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-"
+"by-%d expected.\n"
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 409
-# File: macros/surf.sci, line: 415
-# File: macros/surf.sci, line: 434
-# File: macros/surf.sci, line: 458
-# File: macros/surf.sci, line: 531
-# File: macros/surf.sci, line: 537
-# File: macros/surf.sci, line: 563
-# File: macros/surf.sci, line: 596
-# File: macros/surf.sci, line: 632
+# File: macros/surf.sci, line: 408
+# File: macros/surf.sci, line: 414
+# File: macros/surf.sci, line: 433
+# File: macros/surf.sci, line: 457
+# File: macros/surf.sci, line: 530
+# File: macros/surf.sci, line: 536
+# File: macros/surf.sci, line: 562
+# File: macros/surf.sci, line: 595
+# File: macros/surf.sci, line: 631
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments '%s' and '%s': Matrices of same size "
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size "
 "expected.\n"
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 486
+# File: macros/surf.sci, line: 485
 #, c-format
-msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
 msgstr ""
 
 #

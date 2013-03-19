@@ -1,4 +1,3 @@
-
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) ENPC
@@ -190,17 +189,29 @@ int sci_Rand(char *fname,unsigned long fname_len)
                 return 0;
             }
             GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-            if ( m1*n1 != 1) { Scierror(999,_("%s: Wrong type for second input argument: Scalar expected.\n"),fname);
-            return 0;}
+            if ( m1*n1 != 1)
+            {
+                Scierror(999,_("%s: Wrong type input argument #%d: Scalar expected.\n"),fname, 2);
+                return 0;
+            }
             GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l2);
-            if ( m1*n1 != 1) { Scierror(999,_("%s: Wrong type for third input argument: Scalar expected.\n"),fname);
-            return 0;}
+            if ( m1*n1 != 1)
+            {
+                Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 3);
+                return 0;
+            }
             GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l3);
-            if ( m1*n1 != 1) { Scierror(999,_("%s: Wrong type for fourth input argument: Scalar expected.\n"),fname);
-            return 0;}
+            if ( m1*n1 != 1)
+            {
+                Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 4);
+                return 0;
+            }
             GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l4);
-            if ( m1*n1 != 1) { Scierror(999,_("%s: Wrong type for fifth input argument: Scalar expected.\n"),fname);
-            return 0;}
+            if ( m1*n1 != 1)
+            {
+                Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 5);
+                return 0;
+            }
 
             if (! set_initial_seed_clcg4(*stk(l1),*stk(l2), *stk(l3), *stk(l4)) )
             {   /* => seeds were not good  (info is displayed by the function) */
@@ -238,19 +249,26 @@ int sci_Rand(char *fname,unsigned long fname_len)
                     GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
                     if ( m1 != 40  ||  n1 != 1)
                     {
-                        Scierror(999,_("%s: Wrong size for second input argument: %dx%d expected.\n"),fname,40,1);
+                        Scierror(999,_("%s: Wrong size for input argument #%d: %dx%d expected.\n"),fname,2,40,1);
                         return 0;
                     };
-                    if (! set_state_fsultra(stk(l1)) ) {SciError(999); return(0);};
+                    if (! set_state_fsultra(stk(l1)) )
+                    {
+                        SciError(999);
+                        return(0);}
+                    ;
                 }
                 else if ( Rhs == 3 ) /* init with 2 integers (like before) */
                 {
                     GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
                     if ( m1*n1 != 1)
-                    { Scierror(999,_("%s: Wrong type for second input argument: Scalar expected.\n"),fname); return 0;};
+                    {
+                        Scierror(999,_("%s: Wrong type for #%d input argument: Scalar expected.\n"),fname,2);
+                        return 0;
+                    };
                     GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l2);
                     if ( m1*n1 != 1)
-                    { Scierror(999,_("%s: Wrong type for third input argument: Scalar expected.\n"),fname); return 0;};
+                    { Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 3); return 0;};
                     if (! set_state_fsultra_simple(*stk(l1),*stk(l2)) ) {SciError(999); return(0);};
                 }
                 else
@@ -269,16 +287,16 @@ int sci_Rand(char *fname,unsigned long fname_len)
                 }
                 GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
                 if ( m1*n1 != 1)
-                { Scierror(999,_("%s: Wrong type for second input argument: Scalar expected.\n"),fname); return 0;}
+                { Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname,2); return 0;}
                 GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l2);
                 if ( m1*n1 != 1)
-                { Scierror(999,_("%s: Wrong type for third input argument: Scalar expected.\n"),fname); return 0;}
+                { Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname,3); return 0;}
                 GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l3);
                 if ( m1*n1 != 1)
-                { Scierror(999,_("%s: Wrong type for fourth input argument: Scalar expected.\n"),fname); return 0;}
+                { Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname,4); return 0;}
                 GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l4);
                 if ( m1*n1 != 1)
-                { Scierror(999,_("%s: Wrong type for fifth input argument: Scalar expected.\n"),fname); return 0;}
+                { Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname,5); return 0;}
                 if (current_gen == KISS)
                 {if (! set_state_kiss(*stk(l1),*stk(l2),*stk(l3),*stk(l4))) {SciError(999); return 0;};}
                 else
@@ -294,10 +312,10 @@ int sci_Rand(char *fname,unsigned long fname_len)
                 }
                 GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
                 if ( m1*n1 != 1)
-                { Scierror(999,_("%s: Wrong type for second input argument: Scalar expected.\n"),fname); return 0;};
+                { Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 2); return 0;};
                 GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l2);
                 if ( m1*n1 != 1)
-                { Scierror(999,_("%s: Wrong type for third input argument: Scalar expected.\n"),fname); return 0;};
+                { Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 3); return 0;};
                 if (! set_state_clcg2(*stk(l1),*stk(l2)))
                 { SciError(999); return 0;};
                 break;
@@ -310,7 +328,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
                 }
                 GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
                 if ( m1*n1 != 1)
-                { Scierror(999,_("%s: Wrong type for second input argument: Scalar expected.\n"),fname); return 0;};
+                { Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 2); return 0;};
                 if (! set_state_urand(*stk(l1)))
                 {SciError(999); return 0;};
                 break;
@@ -354,7 +372,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
             GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
             if ( *istk(l1) != 0 && *istk(l1)!= -1 && *istk(l1) != 1)
             {
-                Scierror(999,_("%s: Wrong value for second input argument: %d, %d or %d expected.\n"),fname, -1, 0, 1);
+                Scierror(999,_("%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"),fname, 2, -1, 0, 1);
                 return 0;
             }
             Where = (SeedType) (*istk(l1) + 1);
@@ -375,7 +393,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
             GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
             if ( *istk(l1) < 0 || *istk(l1) > Maxgen )
             {
-                Scierror(999,_("%s: Wrong value for second input argument: Must be between %d and %d.\n"),fname,0, Maxgen);
+                Scierror(999,_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),fname,2, 0, Maxgen);
                 return 0;
             }
             current_clcg4 = *istk(l1);
@@ -397,7 +415,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
             k = *istk(l1);
             if ( k < 1 )
             {
-                Scierror(999,_("%s: Wrong value for second input argument: Must be > %d.\n"),fname,0);
+                Scierror(999,_("%s: Wrong value for input argument #%d: Must be > %d.\n"),fname,2,0);
                 return 0;
             }
             advance_state_clcg4(current_clcg4, k);
@@ -443,7 +461,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
                 current_gen = FSULTRA;
             else
             {
-                Scierror(999,_("%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"),fname,"mt","kiss","clcg4","clcg2","urand","fsultra");
+                Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"),fname,2, "mt","kiss","clcg4","clcg2","urand","fsultra");
                 return 0;
             }
             LhsVar(1) = 2;
@@ -465,7 +483,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
         }
         else
         {
-            Scierror(999,_("%s Wrong value for first input argument %s.\n"),fname,cstk(ls));
+            Scierror(999,_("%s Wrong value for input argument#%d: %s.\n"),fname,1, cstk(ls));
 
             return 0;
         }
@@ -476,14 +494,25 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
         GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
         if ( m1*n1 != 1)
-        { Scierror(999,_("%s: Wrong type for first input argument: Scalar expected.\n"),fname);return 0;}
+        { Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 1);return 0;}
         ResL= *istk(l1);
         GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &l2);
         if ( m2*n2 != 1)
-        { Scierror(999,_("%s: Wrong type for second input argument: Scalar expected.\n"),fname);return 0;}
+        { Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 2);return 0;}
         ResC= *istk(l2);
         GetRhsVar(3,STRING_DATATYPE, &ms, &ns, &ls);
         suite=4;
+        if (ResL < 0 && (ResL != -1 || ResC != -1)) //ResL=-1 & ResC=-1 => eye
+        {
+            Scierror(999,_("%s: Wrong value for input argument #%d: Positive scalar expected.\n"),fname, 1);
+            return 0;
+        }
+
+        if (ResC < 0 && (ResL != -1 || ResC != -1)) //ResL=-1 & ResC=-1 => eye
+        {
+            Scierror(999,_("%s: Wrong value for input argument #%d: Positive scalar expected.\n"),fname, 2);
+            return 0;
+        }
     }
     else
     {
@@ -541,7 +570,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
         int l_i,nn,ncat;
         double ptot;
         if ( suite != 3 || ResL*ResC != 1)
-        { Scierror(999,_("%s: Wrong value for first input argument: Must be the number of random deviate.\n"),fname);
+        { Scierror(999,_("%s: Wrong value for input argument #%d: Must be the number of random deviate.\n"),fname, 1);
         return 0;
         }
         nn= *istk(l1);
@@ -830,7 +859,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
         int nn,un=1,work,mp,parm,ierr;
         if ( suite != 3 || ResL*ResC != 1)
-        { Scierror(999,_("%s: Wrong value for first input argument: Must be the number of random simulation.\n"),fname);return 0;
+        { Scierror(999,_("%s: Wrong value for input argument #%d: Must be the number of random simulation.\n"),fname, 1);return 0;
         }
         nn= *istk(l1);
         if ( Rhs != suite + 1)
@@ -867,7 +896,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
     {
         int nn,n1p1,lr1,j,icur,mm,jj;
         if ( suite != 3 || ResL*ResC != 1)
-        { Scierror(999,_("%s: Wrong value for first input argument: Must be the number of random simulation.\n"),fname);return 0;
+        { Scierror(999,_("%s: Wrong value for input argument #%d: Must be the number of random simulation.\n"),fname, 1);return 0;
         }
         nn= *istk(l1);
         if ( Rhs != suite +1 )
@@ -876,7 +905,7 @@ int sci_Rand(char *fname,unsigned long fname_len)
         GetRhsVar(suite+1,MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &lb);
         if ( m1 != n1 && m1 != 1 )
         {
-            Scierror(999,_("%s: Wrong second input argument: Square matrix or row vector expected.\n"), fname);return 0;
+            Scierror(999,_("%s: Wrong type for input argument #%d: Square matrix or row vector expected.\n"), fname, 2);return 0;
         }
 
         if ( m2*n2 == 0 ) { Scierror(999,_("X0 is empty\n"));return 0;}

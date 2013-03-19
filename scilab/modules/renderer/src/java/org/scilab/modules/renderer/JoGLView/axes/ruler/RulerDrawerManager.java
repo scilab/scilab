@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,17 +35,17 @@ class RulerDrawerManager {
      * Set of properties that affect ruler sprites.
      */
     private static final Set<Integer> SPRITE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-            GraphicObjectProperties.__GO_FONT_SIZE__,
-            GraphicObjectProperties.__GO_FONT_COLOR__,
-            GraphicObjectProperties.__GO_FONT_STYLE__,
-            GraphicObjectProperties.__GO_FONT_FRACTIONAL__,
-            GraphicObjectProperties.__GO_X_AXIS_AUTO_TICKS__,
-            GraphicObjectProperties.__GO_Y_AXIS_AUTO_TICKS__,
-            GraphicObjectProperties.__GO_Z_AXIS_AUTO_TICKS__,
-            GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__,
-            GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__,
-            GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__
-    ));
+                GraphicObjectProperties.__GO_FONT_SIZE__,
+                GraphicObjectProperties.__GO_FONT_COLOR__,
+                GraphicObjectProperties.__GO_FONT_STYLE__,
+                GraphicObjectProperties.__GO_FONT_FRACTIONAL__,
+                GraphicObjectProperties.__GO_X_AXIS_AUTO_TICKS__,
+                GraphicObjectProperties.__GO_Y_AXIS_AUTO_TICKS__,
+                GraphicObjectProperties.__GO_Z_AXIS_AUTO_TICKS__,
+                GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__,
+                GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__,
+                GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__
+            ));
 
     /**
      * Map of up to date {@see RulerSpriteManager}
@@ -71,7 +72,7 @@ class RulerDrawerManager {
     public RulerDrawer[] get(Axes axes) {
         RulerDrawer[] rulerSpriteManager = rulerSpriteManagerMap.get(axes.getIdentifier());
         if (rulerSpriteManager == null) {
-            rulerSpriteManager = new RulerDrawer[]{new RulerDrawer(textureManager), new RulerDrawer(textureManager), new RulerDrawer(textureManager)};
+            rulerSpriteManager = new RulerDrawer[] {new RulerDrawer(textureManager), new RulerDrawer(textureManager), new RulerDrawer(textureManager)};
             rulerSpriteManager[0].setSpriteFactory(new AxesRulerSpriteFactory(axes, 0));
             rulerSpriteManager[1].setSpriteFactory(new AxesRulerSpriteFactory(axes, 1));
             rulerSpriteManager[2].setSpriteFactory(new AxesRulerSpriteFactory(axes, 2));
@@ -85,8 +86,9 @@ class RulerDrawerManager {
      * Update the data if needed.
      * @param id the modified object.
      * @param property the changed property.
+     * @return true if it is really updated
      */
-    public void update(String id, int property) {
+    public boolean update(String id, int property) {
 
         /**
          * If update affect {@see Axes} ruler sprites, we clear the corresponding {@see RulerSpriteManager}.
@@ -94,7 +96,27 @@ class RulerDrawerManager {
          */
         if (SPRITE_PROPERTIES.contains(property)) {
             dispose(id);
+            return true;
         }
+
+        if (property == GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__) {
+            RulerDrawer[] rulerSpriteManager = rulerSpriteManagerMap.get(id);
+            if (rulerSpriteManager != null) {
+                rulerSpriteManager[0].disposeResources();
+            }
+        } else if (property == GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__) {
+            RulerDrawer[] rulerSpriteManager = rulerSpriteManagerMap.get(id);
+            if (rulerSpriteManager != null) {
+                rulerSpriteManager[1].disposeResources();
+            }
+        } else if (property == GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__) {
+            RulerDrawer[] rulerSpriteManager = rulerSpriteManagerMap.get(id);
+            if (rulerSpriteManager != null) {
+                rulerSpriteManager[2].disposeResources();
+            }
+        }
+
+        return false;
     }
 
     /**

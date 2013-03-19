@@ -4,7 +4,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -22,9 +22,9 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
     if rhs<=0 then  //demo
         towns = ["Agen" "Bastia" "Chamonix" "Cognac" "Hyères" "Le Mans" "Le Puy" ..
         "Lille" "Lorient" "Mende" ]
-        months = [_('January') _('Febuary') _('March') _('April') _('May') _('June')..
-        _('July') _('August') _('September') _('October') _('November') ..
-        _('December') _('Average') ]
+        months = [_("January") _("Febuary") _("March") _("April") _("May") _("June")..
+        _("July") _("August") _("September") _("October") _("November") ..
+        _("December") _("Average") ]
         months = "$\magnification{1300}\rotatebox{90}{\mbox{" + months + "}}$"
 
         T = [5.7 5.9 9.8 12.1 16.0 19.4 21.8 21.5 18.4 14.7 9.3 5.2 13.5
@@ -92,4 +92,4 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
     plot3d(xx,yy,zz,def(1),def(2),def(3),def(4),ebox)
 
 endfunction
-
+

@@ -1762,17 +1762,22 @@ N=1;// just one differential equation
 m=4;//a fourth order  differential equation
 M=sum(m);
 
-x_low=1;x_up=2; // the x limits
+x_low=1;
+x_up=2; // the x limits
 zeta=[x_low,x_low,x_up,x_up]; //two constraints (on the value of u and its second derivative) on each bound.
 
 //The external functions
 //These functions are called by the solver with zu=[u(x);u'(x);u''(x);u'''(x)]
 
 // - The function which computes the right hand side of the differential equation
-function f=fsub(x,zu),f=(1-6*x^2*zu(4)-6*x*zu(3))/x^3,endfunction
+function f=fsub(x,zu)
+    f=(1-6*x^2*zu(4)-6*x*zu(3))/x^3
+endfunction
 
 // - The function which computes the derivative of fsub with respect to zu
-function df=dfsub(x,zu),df=[0,0,-6/x^2,-6/x],endfunction
+function df=dfsub(x,zu)
+    df=[0,0,-6/x^2,-6/x]
+endfunction
 
 // - The function which computes the ith constraint for a given i
 function g=gsub(i,zu),
@@ -1803,7 +1808,10 @@ function dg=dgsub(i,z)
 endfunction
 
 // - The function which computes the initial guess, unused here
-function [zu,mpar]=guess(x),zu=0;mpar=0,endfunction 
+function [zu,mpar]=guess(x)
+    zu=0;
+    mpar=0;
+endfunction
 
  //define the function which computes the exact value of u for a given x ( for testing purposes)
 function zu=trusol(x)
@@ -1828,15 +1836,18 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
 //check the constraints
 zu([1,3],[1 $]) //should be zero
 plot(xpoints,zu(1,:)) // the evolution of the solution u
-zu1=[];for x=xpoints,zu1=[zu1,trusol(x)]; end;  
+zu1=[];
+for x=xpoints
+    zu1=[zu1,trusol(x)];
+end;
 norm(zu-zu1)
  ]]></programlisting>
             </listitem>
             <listitem>
                 <para>
-                    Same problem using <literal>bvodeS</literal> and an initial guess. 
+                    Same problem using <literal>bvodeS</literal> and an initial guess.
                 </para>
-                <programlisting role="example"><![CDATA[ 
+                <programlisting role="no-scilab-exec"><![CDATA[
 function [z,lhS]=zstart(x)
   z=zeros(5,1);z(5)=1;
   lhS=[0;1];
@@ -2213,12 +2224,48 @@ x=linspace(a,b,N)';
 la0=input('n-th eigenvalue: n= ?');la0=(%pi/2+la0*%pi)^2;
 
 z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0));
+// The same call without any display
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=1));
+// The same with a lot of display
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=-1));
 
 clf()
 plot(x,[z(1,:)' z(2,:)']) 
 xtitle(['Startvalue =  '+string(la0);'Eigenvalue = '+string(z(3,1))],'x',' ')
 legend(['y(x)';'y''(x)'])
  ]]></programlisting>
+                <scilab:image localized="true">
+                    function rhs=fsub(x,z)
+                    rhs=[-z(3)*z(1);0]
+                    endfunction
+                    
+                    function g=gsub(i,z)
+                    g=[z(1)-z(2) z(1)-1 z(1)]
+                    g=g(i)
+                    endfunction
+                    
+                    function [z,lhs]=ystart(x,z,la0)
+                    z=[1;0;la0]
+                    lhs=[0;0]
+                    endfunction
+                    
+                    a=0;b=1;
+                    m=[2;1];
+                    n=2;
+                    zeta=[a a b];
+                    N=101;
+                    x=linspace(a,b,N)';
+                    
+                    la0=10;
+                    la0=(%pi/2+la0*%pi)^2;
+                    
+                    z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=1);
+                    
+                    plot(x,[z(1,:)' z(2,:)']);
+                    xtitle(['Startvalue =  '+string(la0);'Eigenvalue = '+string(z(3,1))],'x',' ');
+                    legend(['y(x)';'y''(x)']);
+                </scilab:image>
+                
             </listitem>
             <listitem>
                 <para>
@@ -2232,13 +2279,18 @@ legend(['y(x)';'y''(x)'])
 // some preinformation of the solutions y(x) to build the function ystart.
 // z=[y(x);y'(x)]
 
-a=0;b=1;m=2;n=1;
+a=0;
+b=1;
+m=2;
+n=1;
 zeta=[a b];
 N=101;
 tol=1e-8*[1 1];
 x=linspace(a,b,N);
 
-function rhs=fsub(x,z),rhs=-exp(z(1));endfunction
+function rhs=fsub(x,z)
+  rhs=-exp(z(1));
+endfunction
 
 function g=gsub(i,z)
   g=[z(1) z(1)]
@@ -2260,21 +2312,23 @@ for M=[1 4]
    end
 end
 
-// Integrating the ode yield e.g. the two solutions yex and yex1. 
+// Integrating the ode yield e.g. the two solutions yex and yex1.
 
-function y=f(c),y=c.*(1-tanh(sqrt(c)/4).^2)-2;endfunction 
+function y=f(c)
+  y=c.*(1-tanh(sqrt(c)/4).^2)-2;
+endfunction
 c=fsolve(2,f);
 
 function y=yex(x,c)
   y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
-endfunction 
+endfunction
 
 function y=f1(c1), y=2*c1^2+tanh(1/4/c1)^2-1;endfunction
 c1=fsolve(0.1,f1);
 
 function y=yex1(x,c1)
   y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
-endfunction 
+endfunction
 
 disp(norm(z(1,:)-yex(x)),'norm(yex(x)-z(1,:))= ')
 disp(norm(z1(1,:)-yex1(x)),'norm(yex1(x)-z1(1,:))= ')
@@ -2286,6 +2340,68 @@ subplot(2,1,2)
 plot2d(x,z1(1,:),style=[5])
 xtitle(' ','x',' ')
  ]]></programlisting>
+                <scilab:image>
+                    a=0;
+                    b=1;
+                    m=2;
+                    n=1;
+                    zeta=[a b];
+                    N=101;
+                    tol=1e-8*[1 1];
+                    x=linspace(a,b,N);
+                    
+                    function rhs=fsub(x,z)
+                    rhs=-exp(z(1));
+                    endfunction
+                    
+                    function g=gsub(i,z)
+                    g=[z(1) z(1)]
+                    g=g(i)
+                    endfunction
+                    
+                    function [z,lhs]=ystart(x,z,M) 
+                    //z=[4*x*(1-x)*M ; 4*(1-2*x)*M]
+                    z=[M;0]
+                    //lhs=[-exp(4*x*(1-x)*M)]
+                    lhs=0
+                    endfunction
+                    
+                    for M=[1 4]
+                    if M==1
+                    z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+                    else
+                    z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+                    end
+                    end
+                    
+                    // Integrating the ode yield e.g. the two solutions yex and yex1.
+                    
+                    function y=f(c)
+                    y=c.*(1-tanh(sqrt(c)/4).^2)-2;
+                    endfunction
+                    c=fsolve(2,f);
+                    
+                    function y=yex(x,c)
+                    y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
+                    endfunction
+                    
+                    function y=f1(c1), y=2*c1^2+tanh(1/4/c1)^2-1;endfunction
+                    c1=fsolve(0.1,f1);
+                    
+                    function y=yex1(x,c1)
+                    y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
+                    endfunction
+                    
+                    disp(norm(z(1,:)-yex(x)),'norm(yex(x)-z(1,:))= ')
+                    disp(norm(z1(1,:)-yex1(x)),'norm(yex1(x)-z1(1,:))= ')
+                    clf();
+                    subplot(2,1,1)
+                    plot2d(x,z(1,:),style=[5])
+                    xtitle('Two different solutions','x',' ')
+                    subplot(2,1,2)
+                    plot2d(x,z1(1,:),style=[5])
+                    xtitle(' ','x',' ')
+                </scilab:image>
             </listitem>
             <listitem>
                 <para>
@@ -2295,7 +2411,7 @@ xtitle(' ','x',' ')
 // DE y'''(x)=1
 // z=[y(x);y'(x);y''(x)]
 // BV: y(-1)=2 y(1)=2
-// Side condition: y(0)=1 
+// Side condition: y(0)=1
 
 a=-1;b=1;c=0;
 // The side condition point c must be included in the array fixpnt.
@@ -2316,7 +2432,7 @@ zeta=[a c b];
 x=linspace(a,b,N);
 
 z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,fixpnt=c);
-          
+
 function y=yex(x)
 y=x.^3/6+x.^2-x./6+1
 endfunction
