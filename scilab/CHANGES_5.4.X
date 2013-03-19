@@ -603,11 +603,13 @@ Bug fixes
 
 * Bug #12396 fixed - Example "Problem 2" was missing a variable in bvode help page.
 
+* Bug #12399 fixed - Bad data bounds computation with %inf and log scale.
+
 * Bug #12405 fixed - Floating point errors could lead to an infinite loop in
                      ticks computation.
 
 * Bug #12406 fixed - In SciNotes, whereami numbering failed when a variable name
-                     started with endfunction. 
+                     started with endfunction.
 
 * Bug #12418 fixed - Continuation was incorrectly supported in bvode.
 

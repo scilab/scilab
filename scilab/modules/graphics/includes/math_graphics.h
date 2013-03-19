@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1998 - 2000 - ENPC - Jean-Philipe Chancelier
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -23,23 +23,23 @@
 #include "BOOL.h"
 #include "core_math.h"
 
-#ifdef _MSC_VER 
-		#include <float.h>
-		#define finite(x) _finite(x) 
-#else  /* _MSC_VER */ 
-	/** This should only be provided when finite prototype is missing **/
-	/** XXX : to be tested **/
-	#ifndef __cplusplus
-	int finite (double);
-	#endif
+#ifdef _MSC_VER
+#include <float.h>
+#define finite(x) _finite(x)
+#else  /* _MSC_VER */
+/** This should only be provided when finite prototype is missing **/
+/** XXX : to be tested **/
+#ifndef __cplusplus
+int finite (double);
+#endif
 #endif /* _MSC_VER */
 
-#ifdef _MSC_VER 
-	#include <float.h>
-	#define ISNAN(x) _isnan(x)
-#else 
-	#define ISNAN(x) isnan(x)
-#endif 
+#ifdef _MSC_VER
+#include <float.h>
+#define ISNAN(x) _isnan(x)
+#else
+#define ISNAN(x) isnan(x)
+#endif
 
 
 #define PI0 (int *) 0
@@ -55,34 +55,34 @@
 #define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
 #define EPSILON 1.0e-13
 
-#define linint(x) ((int)  floor(x + 0.5 )) 
-#define inint(x) ((int) floor(x + 0.5 ))  
+#define linint(x) ((int)  floor(x + 0.5 ))
+#define inint(x) ((int) floor(x + 0.5 ))
 
-#if (defined(sun) || defined(SYSV)) 
+#if (defined(sun) || defined(SYSV))
 #include <ieeefp.h>
 #endif
 
 #if defined(_MSC_VER)
-  #define M_PI 3.14159265358979323846
+#define M_PI 3.14159265358979323846
 #else
-  #if defined(HAVE_VALUES_H)
-    #include <values.h>
-  #else
-    #if defined(HAVE_LIMITS_H)
-     #include <limits.h>
-    #endif
-  #endif
+#if defined(HAVE_VALUES_H)
+#include <values.h>
+#else
+#if defined(HAVE_LIMITS_H)
+#include <limits.h>
+#endif
+#endif
 #endif
 
 #ifndef M_PI
-#define M_PI 3.14159265358979323846 
+#define M_PI 3.14159265358979323846
 #endif
 
 GRAPHICS_IMPEXP double Mini(const double vect[], int n) ;
 
 GRAPHICS_IMPEXP double Maxi(const double vect[], int n) ;
 
-
+GRAPHICS_IMPEXP void MiniMaxi(const double vect[], int n, double * const min, double * const max);
 
 /* prototypes */
 
@@ -96,10 +96,10 @@ GRAPHICS_IMPEXP void rotate2D( double from[2], double center[2], double angle, d
 /* perform the rotation of point from to point to. */
 /* the angle is directly given with its sine and cosine for speed */
 GRAPHICS_IMPEXP void rotate2Dim( double from[2]   ,
-                 double center[2] ,
-                 double cosAngle  ,
-                 double sinAngle  ,
-                 double dest[2]    ) ;
+                                 double center[2] ,
+                                 double cosAngle  ,
+                                 double sinAngle  ,
+                                 double dest[2]    ) ;
 
 /* perform the translation of point from to point dest with vector trans */
 GRAPHICS_IMPEXP void translate2D( double from[2], double trans[2], double dest[2] ) ;
@@ -153,13 +153,13 @@ GRAPHICS_IMPEXP void scalarMult2D(const double v[2], const double scalar, double
  * Compute wether the point lies within the triangle defined by A, B and C
  */
 GRAPHICS_IMPEXP BOOL isPointInTriangle(const double point[2], const double a[2],
-                       const double b[2], const double c[2]);
+                                       const double b[2], const double c[2]);
 
 /**
  * Compute wether p1 and p2 are on the same side of line (A,B).
  */
 GRAPHICS_IMPEXP BOOL areOnSameSideOfLine(const double p1[2], const double p2[2],
-                         const double a[2], const double b[2]);
+        const double a[2], const double b[2]);
 
 /************************************************************************/
 /* 3D algorithms                                                        */
