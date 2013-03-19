@@ -644,6 +644,7 @@ Xcos
                      simulation fixed.
 
 
+* bug #12415 fixed - PATH environment variable grows when using call_scilab in a loop
 
 
                     Changes between version 5.3.3 and 5.4.0
