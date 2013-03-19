@@ -49,7 +49,7 @@ typedef struct __DOUBLE_FORMAT__
     bool bPrintOne;
     bool bPaddSign;
     int iSignLen;
-}DoubleFormat;
+} DoubleFormat;
 
 /*double*/
 //TYPES_IMPEXP void getDoubleFormat(double _dblVal, int *_piWidth, int *_piPrec, bool* _pExp);
@@ -73,7 +73,7 @@ TYPES_IMPEXP void addSpaces(std::wostringstream *_postr, int _iSpace);
 template <typename T>
 void getUnsignedIntFormat(T _TVal, int *_piWidth)
 {
-    if(_TVal == 0)
+    if (_TVal == 0)
     {
         *_piWidth = 0;
     }
@@ -87,7 +87,7 @@ void getUnsignedIntFormat(T _TVal, int *_piWidth)
 template <typename T>
 void getSignedIntFormat(T _TVal, int *_piWidth)
 {
-    if(_TVal == 0)
+    if (_TVal == 0)
     {
         *_piWidth = 0;
     }
@@ -104,21 +104,21 @@ void addUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool
     wchar_t* pwstSign = NULL;
     wchar_t pwstFormat[32];
     wchar_t pwstOutput[32];
-	if(bPrintPlusSign == true)
-	{
-		pwstSign = PLUS_STRING;
-	}
-	else
-	{
-		pwstSign = NO_SIGN;
-	}
+    if (bPrintPlusSign == true)
+    {
+        pwstSign = PLUS_STRING;
+    }
+    else
+    {
+        pwstSign = NO_SIGN;
+    }
 
-	if(bPrintOne == true || _TVal != 1)
-	{
-        os_swprintf(pwstFormat, 32, L" %ls%ld", pwstSign, _abs64(_TVal));
+    if (bPrintOne == true || _TVal != 1)
+    {
+        os_swprintf(pwstFormat, 32, L" %ls%llu", pwstSign, (unsigned long long)(_TVal));
         os_swprintf(pwstOutput, 32, L"%*ls", _iWidth + 1, pwstFormat);//+1 for blank
         *_postr << pwstOutput;
-	}
+    }
 }
 
 template <typename T>
@@ -127,21 +127,21 @@ void addSignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool b
     const wchar_t* pwstSign = NULL;
     wchar_t pwstFormat[32];
     wchar_t pwstOutput[32];
-	if(bPrintPlusSign == true)
-	{
-		pwstSign = (_TVal < 0 ? L"-" : L"+");
-	}
-	else
-	{
-		pwstSign = (_TVal < 0 ? L"-" : L" ");
-	}
+    if (bPrintPlusSign == true)
+    {
+        pwstSign = (_TVal < 0 ? L"-" : L"+");
+    }
+    else
+    {
+        pwstSign = (_TVal < 0 ? L"-" : L" ");
+    }
 
-	if(bPrintOne == true || _TVal != 1)
-	{
-        os_swprintf(pwstFormat, 32, L" %ls%ld", pwstSign, _abs64(_TVal));
+    if (bPrintOne == true || _TVal != 1)
+    {
+        os_swprintf(pwstFormat, 32, L" %ls%lld", pwstSign, (long long)_abs64(_TVal));
         os_swprintf(pwstOutput, 32, L"%*ls", _iWidth + 1, pwstFormat);//+1 for blank
         *_postr << pwstOutput;
-	}
+    }
 }
 
 
