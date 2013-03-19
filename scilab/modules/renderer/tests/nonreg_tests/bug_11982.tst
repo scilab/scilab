@@ -14,10 +14,8 @@
 //
 // <-- Short Description -->
 // Ticks computations was made asynchronously
-
 drawlater();
-plot3d();
+plot2d();
 a=gca();
 computed=a.x_ticks.locations;
-expected=(-4:1:4)'; 
-assert_checkequal(computed, expected);
+assert_checkfalse(computed == (0:0.1:1));
