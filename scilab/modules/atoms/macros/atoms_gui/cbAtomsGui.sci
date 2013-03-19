@@ -22,7 +22,7 @@ function cbAtomsGui()
     // Get the description frame object
     DescFrame = findobj("tag","DescFrame");
 
-    // Display selected module informations
+    // Display selected module information
     // =========================================================================
 
     if or(UItag == ["LeftListbox";"HomeListbox"]) then

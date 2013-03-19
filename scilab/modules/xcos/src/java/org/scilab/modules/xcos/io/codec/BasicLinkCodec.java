@@ -48,7 +48,7 @@ public class BasicLinkCodec extends XcosObjectCodec {
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
 
         /*
-         * Log some informations
+         * Log some information
          */
         final BasicLink l = (BasicLink) obj;
 

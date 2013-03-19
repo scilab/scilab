@@ -180,7 +180,7 @@ public class Juigetfile {
                         ssfc.setUiDialogType(Juigetfile.dialogType);
                         ssfc.displayAndWait();
 
-                        //return the filechooser's informations
+                        //return the filechooser's information
                         //they are stocked into FileChooserInfos
                         FileChooserInfos.getInstance().setMultipleSelection(Juigetfile.multipleSelection);
                         ssfc.invalidate();

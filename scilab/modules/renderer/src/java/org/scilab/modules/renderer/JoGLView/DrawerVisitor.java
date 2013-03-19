@@ -246,7 +246,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         return colorMap;
     }
 
-
     /**
      * Returns the visitor corresponding to the Figure identifier.
      * @param figureId the figure identifier.
@@ -896,6 +895,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
             if (object instanceof Axes) {
                 Axes axes = (Axes) object;
+
                 if (axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) {
                     return false;
                 }
@@ -907,9 +907,23 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property)) {
                     return false;
                 }
+
+                if (property != GraphicObjectProperties.__GO_CHILDREN__) {
+                    axesDrawer.computeRulers(axes);
+                }
             }
 
             if (object instanceof Figure) {
+                if (property == GraphicObjectProperties.__GO_SIZE__ || property == GraphicObjectProperties.__GO_AXES_SIZE__ || property == GraphicObjectProperties.__GO_CHILDREN__) {
+                    Figure fig = (Figure) object;
+                    for (String gid : fig.getChildren()) {
+                        GraphicObject go = GraphicController.getController().getObjectFromId(gid);
+                        if (go instanceof Axes) {
+                            axesDrawer.computeRulers((Axes) go);
+                        }
+                    }
+                }
+
                 if (SILENT_FIGURE_PROPERTIES.contains(property)) {
                     return false;
                 }

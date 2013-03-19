@@ -13,8 +13,12 @@
 package org.scilab.modules.graphic_export;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.PathIterator;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -24,6 +28,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
 import java.text.AttributedCharacterIterator;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +45,7 @@ import org.apache.xmlgraphics.java2d.ps.AbstractPSDocumentGraphics2D;
 import org.apache.xmlgraphics.java2d.ps.EPSDocumentGraphics2D;
 import org.apache.xmlgraphics.java2d.ps.PSDocumentGraphics2D;
 import org.apache.xmlgraphics.ps.DSCConstants;
+import org.apache.xmlgraphics.ps.PSGenerator;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvas;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvasFactory;
@@ -340,14 +347,14 @@ public class Export {
     public static void setVisitor(String uid, int type, final ExportParams params) {
         final Exporter exporter = getExporter(types[type]);
         Figure figure = (Figure) GraphicController.getController().getObjectFromId(uid);
-        Integer[] dims = figure.getAxesSize();
+        final Integer[] dims = figure.getAxesSize();
         int width = dims[0];
         int height = dims[1];
 
-        Graphics2D g2d = exporter.getGraphics2D(width, height, null, params);
+        final Graphics2D g2d = exporter.getGraphics2D(width, height, null, params);
         params.setParamsOnGraphics(g2d);
 
-        G2DCanvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
+        final G2DCanvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
         canvas.disableDraw();
         DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
             @Override
@@ -359,15 +366,17 @@ public class Export {
             public void updateObject(String id, int property) {
                 if (property == GraphicObjectProperties.__GO_AXES_SIZE__) {
                     Integer[] size = getFigure().getAxesSize();
-                    Graphics2D g2d = exporter.getGraphics2D(size[0], size[1], null, params);
-                    params.setParamsOnGraphics(g2d);
+                    if (size[0] != dims[0] || size[1] != dims[1]) {
+                        Graphics2D newg2d = exporter.getGraphics2D(size[0], size[1], null, params);
+                        params.setParamsOnGraphics(newg2d);
+                        canvas.setGraphics(newg2d, size[0], size[1]);
+                        dims[0] = size[0];
+                        dims[1] = size[1];
 
-                    G2DCanvas canvas = G2DCanvasFactory.createCanvas(g2d, size[0], size[1]);
-                    canvas.disableDraw();
-                    setCanvas(canvas);
-
-                    setDrawingTools(canvas.getDrawingTools());
-                    canvas.setMainDrawer(this);
+                        g2d.dispose();
+                    }
+                } else if (property == GraphicObjectProperties.__GO_ANTIALIASING__) {
+                    canvas.setAntiAliasingLevel(getFigure().getAntialiasing());
                 }
             }
         };
@@ -583,11 +592,13 @@ public class Export {
             ctx.setEmbeddedFontsOn(true);
             g2d = new SVGGraphics2D(ctx, false) {
 
+                @Override
                 public void drawString(String s, float x, float y) {
                     textAsShapes = getFont().getFontName().startsWith("jlm");
                     super.drawString(s, x, y);
                 }
 
+                @Override
                 public void drawString(AttributedCharacterIterator ati, float x, float y) {
                     textAsShapes = getFont().getFontName().startsWith("jlm");
                     super.drawString(ati, x, y);
@@ -720,6 +731,78 @@ public class Export {
                         } else {
                             gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
                         }
+                        gen.writeln("/ReEncode { /MyEncoding exch def exch findfont dup length dict begin {def} forall /Encoding MyEncoding def currentdict end definefont } def");
+                        gen.writeln("/Helvetica /HelveticaLatin1 ISOLatin1Encoding ReEncode");
+                        gen.writeln("/Times /TimesLatin1 ISOLatin1Encoding ReEncode");
+                    }
+
+                    @Override
+                    public void drawString(String s, float x, float y) {
+                        if (s != null && !s.isEmpty()) {
+                            CharsetEncoder encoder = Charset.forName("ISO-8859-1").newEncoder();
+                            if (encoder.canEncode(s)) {
+                                Font font = getFont();
+                                boolean sserif = font.getName().equals("SansSerif");
+                                boolean serif = font.getName().equals("Serif");
+                                if (sserif || serif) {
+                                    try {
+                                        preparePainting();
+                                        establishColor(getColor());
+                                        gen.writeln((sserif ? "/HelveticaLatin1" : "/TimesLatin1") + " " + gen.formatDouble(getFont().getSize()) + " F");
+
+                                        gen.saveGraphicsState();
+                                        Shape imclip = getClip();
+                                        writeClip(imclip);
+
+                                        AffineTransform trans = getTransform();
+                                        boolean newTransform = gen.getCurrentState().checkTransform(trans) && !trans.isIdentity();
+
+                                        if (newTransform) {
+                                            gen.concatMatrix(trans);
+                                        }
+
+                                        gen.writeln(gen.formatDouble(x)
+                                                    + " " + gen.formatDouble(y)
+                                                    + " M 1 -1 scale");
+
+                                        StringBuffer buf = new StringBuffer("(");
+                                        for (int i = 0; i < s.length(); i++) {
+                                            PSGenerator.escapeChar(s.charAt(i), buf);
+                                        }
+                                        buf.append(") t");
+
+                                        gen.writeln(buf.toString());
+
+                                        gen.restoreGraphicsState();
+                                    } catch (IOException e) {
+                                        System.err.println(e);
+                                    }
+
+                                    return;
+                                }
+                            }
+
+                            super.drawString(s, x, y);
+                        }
+                    }
+
+                    @Override
+                    public int processShape(Shape s) throws IOException {
+                        if (s instanceof Ellipse2D.Double) {
+                            Ellipse2D.Double ell = (Ellipse2D.Double) s;
+                            if (ell.height == ell.width) {
+                                gen.writeln(gen.formatDouble(ell.x + ell.width / 2)
+                                            + " " + gen.formatDouble(ell.y + ell.height / 2)
+                                            + " " + gen.formatDouble(ell.width / 2)
+                                            + " " + gen.formatDouble(0d)
+                                            + " " + gen.formatDouble(360d)
+                                            + " arc cp");
+
+                                return PathIterator.WIND_NON_ZERO;
+                            }
+                        }
+
+                        return super.processShape(s);
                     }
                 };
                 g2d.setGraphicContext(new GraphicContext());
@@ -780,7 +863,80 @@ public class Export {
                         } else {
                             gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
                         }
+                        gen.writeln("/ReEncode { /MyEncoding exch def exch findfont dup length dict begin {def} forall /Encoding MyEncoding def currentdict end definefont } def");
+                        gen.writeln("/Helvetica /HelveticaLatin1 ISOLatin1Encoding ReEncode");
+                        gen.writeln("/Times /TimesLatin1 ISOLatin1Encoding ReEncode");
                     }
+
+                    @Override
+                    public void drawString(String s, float x, float y) {
+                        if (s != null && !s.isEmpty()) {
+                            CharsetEncoder encoder = Charset.forName("ISO-8859-1").newEncoder();
+                            if (encoder.canEncode(s)) {
+                                Font font = getFont();
+                                boolean sserif = font.getName().equals("SansSerif");
+                                boolean serif = font.getName().equals("Serif");
+                                if (sserif || serif) {
+                                    try {
+                                        preparePainting();
+                                        establishColor(getColor());
+                                        gen.writeln((sserif ? "/HelveticaLatin1" : "/TimesLatin1") + " " + gen.formatDouble(getFont().getSize()) + " F");
+
+                                        gen.saveGraphicsState();
+                                        Shape imclip = getClip();
+                                        writeClip(imclip);
+
+                                        AffineTransform trans = getTransform();
+                                        boolean newTransform = gen.getCurrentState().checkTransform(trans) && !trans.isIdentity();
+
+                                        if (newTransform) {
+                                            gen.concatMatrix(trans);
+                                        }
+
+                                        gen.writeln(gen.formatDouble(x)
+                                                    + " " + gen.formatDouble(y)
+                                                    + " M 1 -1 scale");
+
+                                        StringBuffer buf = new StringBuffer("(");
+                                        for (int i = 0; i < s.length(); i++) {
+                                            PSGenerator.escapeChar(s.charAt(i), buf);
+                                        }
+                                        buf.append(") t");
+
+                                        gen.writeln(buf.toString());
+
+                                        gen.restoreGraphicsState();
+                                    } catch (IOException e) {
+                                        System.err.println(e);
+                                    }
+
+                                    return;
+                                }
+                            }
+
+                            super.drawString(s, x, y);
+                        }
+                    }
+
+                    @Override
+                    public int processShape(Shape s) throws IOException {
+                        if (s instanceof Ellipse2D.Double) {
+                            Ellipse2D.Double ell = (Ellipse2D.Double) s;
+                            if (ell.height == ell.width) {
+                                gen.writeln(gen.formatDouble(ell.x + ell.width / 2)
+                                            + " " + gen.formatDouble(ell.y + ell.height / 2)
+                                            + " " + gen.formatDouble(ell.width / 2)
+                                            + " " + gen.formatDouble(0d)
+                                            + " " + gen.formatDouble(360d)
+                                            + " arc cp");
+
+                                return PathIterator.WIND_NON_ZERO;
+                            }
+                        }
+
+                        return super.processShape(s);
+                    }
+
                 };
                 g2d.setupDocument(out, width, height);
                 g2d.setGraphicContext(new GraphicContext());

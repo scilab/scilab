@@ -65,7 +65,7 @@ function txt = help_skeleton(funname, path, language)
   // date management
   // --------------------------------------------------------------------------------
   w = getdate();
-  xml_date = msprintf(_("%02d-%02d-%04d"),w(6),w(2),w(1));
+  xml_date = msprintf("%02d-%02d-%04d",w(6),w(2),w(1));
   
   //header
   // --------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ function txt = help_skeleton(funname, path, language)
 
   txt=['<?xml version=""1.0"" encoding='"UTF-8""?>'
    '<!--'
- _(' * Add some comments about XML file');
+ _(" * Add some comments about XML file");
    '-->'
    '<refentry ' + refs + ' xml:lang=""'+ language + '"" xml:id=""' + funname + '"">'
    '  <info>'
@@ -87,10 +87,10 @@ function txt = help_skeleton(funname, path, language)
    '  </info>'
    '  <refnamediv>'
    '    <refname>'+ funname + '</refname>'
-   '    <refpurpose>' + _('Add short description here.') + ' </refpurpose>'
+   '    <refpurpose>' + _("Add short description here.") + ' </refpurpose>'
    '  </refnamediv>'
    '  <refsynopsisdiv>'
-   '    <title>' + _('Calling Sequence') + '</title>'
+   '    <title>' + _("Calling Sequence") + '</title>'
    '    <synopsis>' + Call + '</synopsis>'
    '  </refsynopsisdiv>'];
 
@@ -98,7 +98,7 @@ function txt = help_skeleton(funname, path, language)
     if size(args,'*') >0 then
       txt=[txt;
      '  <refsection>'
-     '    <title>' + _('Arguments') + '</title>'
+     '    <title>' + _("Arguments") + '</title>'
      '    <variablelist>']
       for a=args'
        txt=[txt;
@@ -106,7 +106,7 @@ function txt = help_skeleton(funname, path, language)
        '        <term>' + a + '</term>'
        '        <listitem>'
        '          <para>'
-     _('            Add here the input/output argument description.')
+     _("            Add here the input/output argument description.")
        '          </para>'
        '        </listitem>'
        '      </varlistentry>']
@@ -119,10 +119,10 @@ function txt = help_skeleton(funname, path, language)
     //Description
     txt=[txt;
    '  <refsection>'
-   '    <title>' + _('Description') + '</title>'
+   '    <title>' + _("Description") + '</title>'
    '    <para>'
- _('          Add here a paragraph of the function description. ')
- _('          Other paragraph can be added ')
+ _("          Add here a paragraph of the function description.")
+ _("          Other paragraph can be added")
    '    </para>'
    '    <para>With a latex expression'
    '          <latex>'
@@ -136,7 +136,7 @@ function txt = help_skeleton(funname, path, language)
     // More information
     txt=[txt;
    '  <refsection>'
-   '    <title>' + _('More information') + '</title>'
+   '    <title>' + _("More information") + '</title>'
    '    <note><para>A note about foo</para></note>'
    '    <caution><para>A caution about foo</para></caution>'
    '    <warning><para>A warning about foo</para></warning>'
@@ -147,22 +147,22 @@ function txt = help_skeleton(funname, path, language)
     //Example
    txt=[txt;
    '  <refsection>'
-   '    <title>' + _('Examples') + '</title>'
+   '    <title>' + _("Examples") + '</title>'
    '    <programlisting role=""example""><![CDATA['
- _('        Add here scilab instructions and comments')
+ _("        Add here scilab instructions and comments")
    '    ]]></programlisting>'
    '  </refsection>'];
 
     //See Also
     txt=[txt;
    '  <refsection>'
-   '    <title>' + _('See Also') + '</title>'
+   '    <title>' + _("See Also") + '</title>'
    '    <simplelist type=""inline"">'
    '      <member>'
-   '        <link linkend=""' + _('add a reference name') + '"" >' + _('add a reference') + '</link>'
+   '        <link linkend=""' + _("add a reference name") + '"" >' + _("add a reference") + '</link>'
    '      </member>'
    '      <member>'
-   '        <link linkend=""' + _('add a reference name') + '"">' + _('add a reference') + '</link>'
+   '        <link linkend=""' + _("add a reference name") + '"">' + _("add a reference") + '</link>'
    '      </member>'
    '    </simplelist>'
    '  </refsection>'];
@@ -170,26 +170,26 @@ function txt = help_skeleton(funname, path, language)
     //Authors
     txt=[txt;
    '  <refsection>'
-   '    <title>' + _('Authors') + '</title>'
+   '    <title>' + _("Authors") + '</title>'
    '    <simplelist type=""vert"">'
-   '      <member>' + _('add the author name and author reference') + '</member>'
-   '      <member>' + _('add another author name and it''s reference') + '</member>'
+   '      <member>' + _("add the author name and author reference") + '</member>'
+   '      <member>' + _("add another author name and it''s reference") + '</member>'
    '    </simplelist>'
    '  </refsection>'];
 
     //Bibliography
    txt = [txt;
    '  <refsection>'
-   '     <title>' + _('Bibliography') + '</title>'
+   '     <title>' + _("Bibliography") + '</title>'
    '       <para>'
- _('         Add here the function bibliography')
+ _("         Add here the function bibliography")
    '       </para>'
    '     </refsection>'];
 
     // History
    txt = [txt;
    '    <refsection>'
-   '       <title>' + _('History') + '</title>'
+   '       <title>' + _("History") + '</title>'
    '      <revhistory>'
    '        <revision>'
    '          <revnumber>X.Y</revnumber>'
@@ -201,9 +201,9 @@ function txt = help_skeleton(funname, path, language)
     //Used functions
     txt=[txt;
    '  <refsection>'
-   '     <title>' + _('Used Functions') + '</title>'
+   '     <title>' + _("Used Functions") + '</title>'
    '       <para>'
- _('         Add here the Scilab, C,... used code references')
+ _("         Add here the Scilab, C,... used code references")
    '       </para>'
    '     </refsection>'];
 

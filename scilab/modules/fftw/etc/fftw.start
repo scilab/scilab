@@ -34,7 +34,7 @@ function startModule()
         MSG_FTTW = [_("You choose to install scilab with fftw module.");
                   _("This module requires : "+librarynamefftw+" (GPL licence).");
                   _("Scilab will use standard fft by default until you install this library.");
-                  _("See help fftw for more informations.")];
+                  _("See help fftw for more information.")];
 
         if getscilabmode() == "STD" then
           messagebox(MSG_FTTW,"","info");

@@ -31,7 +31,7 @@ function [y, Fs, bits] = wavread(wavfile, ext)
   // siz=wavread(wavfile,"size") returns the size of the audio data contained
   //     in the file in place of the actual audio data, returning the
   //      vector siz=[samples channels].
-  // infos=wavread(wavfile,"size") returns a vector with the informations about actual
+  // infos=wavread(wavfile,"size") returns a vector with the information about actual
   // audio data.
   // vector infos = [wFormatTag, nChannels, nSamplesPerSec,
   //                 nAvgBytesPerSec, nBlockAlign,
