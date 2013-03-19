@@ -242,6 +242,8 @@ Bug fixes
 
 * Bug #7190 fixed - is_absolute_path was not documented.
 
+* Bug #7410 fixed - %h_p() and sci2exp() failed to display polyline entity associated to datatips.
+
 * Bug #7583 fixed - binomial function moved in the distribution function
                     chapter.
 
