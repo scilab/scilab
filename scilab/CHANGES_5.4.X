@@ -333,6 +333,8 @@ Bug fixes
 
 * Bug #11639 fixed - Uninstall removed all scilab registry information.
 
+* Bug #11664 fixed - Help page of lev had no example.
+
 * Bug #11665 fixed - Help page of lindquist had no example.
 
 * Bug #11669 fixed - Help page of kalm and srkf functions had no example.
