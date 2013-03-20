@@ -925,8 +925,6 @@ SciErr createMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* 
     SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
-    // FIXME
-
     return sciErr;
 }
 
