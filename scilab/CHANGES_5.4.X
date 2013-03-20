@@ -359,6 +359,8 @@ Bug fixes
 
 * Bug #11944 fixed - In SciNotes, untabify several lines did not work correctly.
 
+* Bug #11949 fixed - The help page of save() did not explain how to append data to a SOD file.
+
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                     containing a \E.
 
