@@ -53,6 +53,26 @@
             filter model, by the Lindquist's algorithm.
         </para>
     </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
+//Generate signal
+x=%pi/10:%pi/10:102.4*%pi;
+y=[1;1]*sin(x)+[sin(2*x);sin(1.9*x)]+rand(2,1024,"normal");
+
+//Compute correlations
+c=[];for j=1:2,for k=1:2,c=[c;corr(y(k,:),y(j,:),64)];end;end
+c=matrix(c,2,128);
+
+//Find H,F,G with 6 states
+hk=hank(20,20,c);
+[H,F,G]=phc(hk,2,6);
+
+//Solve Riccati equation
+R0=c(1:2,1:2);
+[P,R,T]=lindquist(100,H,F,G,R0);
+]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
