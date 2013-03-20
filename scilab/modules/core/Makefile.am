@@ -90,7 +90,6 @@ src/c/storeCommand.c \
 src/c/backtrace.c \
 src/c/signal_mgmt.c \
 src/c/suspendProcess.c \
-src/c/windowsChangeManagement.c \
 src/c/setieee.c \
 src/c/setlines.c \
 src/c/setformat.c \
