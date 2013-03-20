@@ -13,6 +13,13 @@ macros/lib
 macros/names
 images/h5/*.h5
 images/h5/*.sod
+images/gif/*.png
+images/gif/*.jpg
+images/gif/*.gif
+images/svg/*.svg
+images/svg/*.png
+images/svg/*.jpg
+images/svg/*.gif
 help/*/master_help.xml
 help/*/scilab_*_help
 
