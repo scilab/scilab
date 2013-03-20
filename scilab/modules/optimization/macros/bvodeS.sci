@@ -22,7 +22,7 @@ function z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,...
   ms=sum(m);ipar=zeros(1,11);
 
   if n>20 then
-    error(msprintf(_('%s: More than 20 equations are not allowed'),'bvodeS')); 
+    error(msprintf(_("%s: More than 20 equations are not allowed"),'bvodeS')); 
   end
   
   [lhs,rhs]=argn()

@@ -93,7 +93,7 @@
 
 typedef int IVAR; /* variable number */
 
-/* VAR struct: informations for FORTRAN and/or SCILAB variable */
+/* VAR struct: information for FORTRAN and/or SCILAB variable */
 
 typedef struct var {
   char *name; /* variable name */
@@ -119,7 +119,7 @@ typedef struct var {
 		  used for list elements which might be not really present */
 } VAR, *VARPTR;
 
-/* BASFUN struct: informations for SCILAB function */
+/* BASFUN struct: information for SCILAB function */
 typedef struct basfun {
   char *name; /* function name */
   int nin; /* number of arguments */
@@ -127,7 +127,7 @@ typedef struct basfun {
   IVAR out; /* output IVAR */
 } BASFUN, *BASFUNPTR;
 
-/* FORSUB struct: informations for FORTRAN subroutine */
+/* FORSUB struct: information for FORTRAN subroutine */
 typedef struct forsub {
   char *name; /* subroutine name */
   int narg; /* number of arguments */

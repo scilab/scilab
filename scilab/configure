@@ -12741,8 +12741,8 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar scirendere
 
 
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.0.6) of scirenderer" >&5
-$as_echo_n "checking minimal version (1.0.6) of scirenderer... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.0.7) of scirenderer" >&5
+$as_echo_n "checking minimal version (1.0.7) of scirenderer... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$SCIRENDERER:$ac_java_classpath"
    if test "x" == "x"; then
@@ -12755,7 +12755,7 @@ import org.scilab.forge.scirenderer.PackageInfo;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.0.6";
+        String minVersion="1.0.7";
 
                             System.out.println(PackageInfo.VERSION);
                                   if (compare(minVersion, PackageInfo.VERSION) > 0) {
@@ -12804,7 +12804,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of scirenderer. Expected at least 1.0.6. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of scirenderer. Expected at least 1.0.7. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -12814,7 +12814,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of scirenderer. Expected at least 1.0.6. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of scirenderer. Expected at least 1.0.7. Found $STDOUT" "$LINENO" 5
             fi
 
    else
@@ -12827,7 +12827,7 @@ import org.scilab.forge.scirenderer.PackageInfo;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.0.6";
+        String minVersion="1.0.7";
 
                             System.out.println(PackageInfo.VERSION);
                                   if (compare(minVersion, PackageInfo.VERSION) != 0) {
@@ -12876,7 +12876,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of scirenderer. Expected exact version 1.0.6. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of scirenderer. Expected exact version 1.0.7. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -12886,7 +12886,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of scirenderer. Expected exact version 1.0.6. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of scirenderer. Expected exact version 1.0.7. Found $STDOUT" "$LINENO" 5
             fi
 
     fi
@@ -42741,7 +42741,7 @@ echo "  VPATH build ......... = Activated"
 fi
 
 echo ""
-echo "Platform informations:"
+echo "Platform information:"
 echo "  host ........... = $host"
 echo "  host_cpu ....... = $host_cpu"
 echo "  host_vendor .... = $host_vendor"

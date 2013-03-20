@@ -42,9 +42,9 @@
         <title>Description</title>
         <para>
             returns a row vector of <literal>n</literal> logarithmically equally
-            spaced points between <literal>10^d1</literal> and
-            <literal>10^d2</literal>. If <literal>d2=%pi</literal> then the points are
-            between <literal>10^d1</literal> and <literal>pi</literal>.
+            spaced points between <latex>10^{d1}</latex> and
+            <latex>10^{d2}</latex>. If <literal>d2=%pi</literal> then the points are
+            between <latex>10^{d1}</latex> and <latex>\pi</latex>.
         </para>
     </refsection>
     <refsection>

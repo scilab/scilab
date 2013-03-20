@@ -194,6 +194,6 @@ msgstr ""
 "Scilab типово використовуватиме стандартну функцію швидкого перетворення "
 "Фур’є, доки не буде встановлено цю бібліотеку."
 
-msgid "See help fftw for more informations."
+msgid "See help fftw for more information."
 msgstr ""
 "Докладнішу інформацію можна отримати за допомогою команди «help fftw»."

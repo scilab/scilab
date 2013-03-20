@@ -100,7 +100,7 @@
             Pour une entrée numérique entière, ce bloc sort une sélection contiguë de bits. L'opération peut être résumée par cette expression :
         </para>
         <para>
-            <latex><![CDATA[ Sortie=Entrée \wedge Masque]]></latex>
+            <latex scilab:localized="true"><![CDATA[ Sortie=Entrée \wedge Masque]]></latex>
         </para>
         <para>
             i.e. un <literal>ET</literal> bit à bit entre <literal>Entrée</literal> et <literal>Masque</literal> un entier

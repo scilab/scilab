@@ -47,7 +47,7 @@ a = [ 0.9, 0.7;
 0.5, 0.4 ];
 data = a + a * 2 * %i;
 computed = variance(data);
-expected = - 0.3089999999999999413802 + 0.4119999999999999218403 * %i;
+expected = 0.515;   // must be variance(real(data)) + variance(imag(data))
 if abs(computed-expected)>%eps then pause,end
 
 // With x as a complex row vector and computation by column

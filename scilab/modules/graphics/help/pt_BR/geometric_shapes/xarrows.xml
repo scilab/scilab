@@ -90,7 +90,7 @@ xset("clipoff")
             y1 = [cos(x); 9*cos(x)];
             plot2d([-10,10], [-10,10], [-1,-1], "022")
             xset("clipgrf")
-            xarrows(x1, y1, -1, [1:7,9]) //8-th color is white
+            xarrows(x1, y1, -1, [1:7,9])
             xset("clipoff")
         </scilab:image>
     </refsection>

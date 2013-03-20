@@ -7,6 +7,8 @@
 //
 // <-- ENGLISH IMPOSED -->
 //
+// <-- NO CHECK ERROR OUTPUT -->
+//
 // <-- Non-regression test for bug 9339 -->
 //
 // <-- Bugzilla URL -->
@@ -24,8 +26,6 @@ ilib_verbose(0);
 exec('builder.sce');
 Building macros...
 -- Creation of [toolbox_skeletonlib] (Macros) --
-genlib: Processing file: scilab_sum.sci
-genlib: Regenerate names and lib
 Building sources...
 Building gateway...
 Generating loader_gateway.sce...
@@ -36,11 +36,21 @@ Building the master document:
 	TMPDIR\toolbox_skeleton\help\en_US
 
 Building the manual file [javaHelp] in TMPDIR\toolbox_skeleton\help\en_US.
+ 
+ Generate image ./c_sub_1.png from Scilab code from file c_sub.xml   
+ 
+ Generate image ./c_sub_en_US_2.png from Scilab code from file c_sub.xm 
+      l                                                                 
 
 Building the master document:
 	TMPDIR\toolbox_skeleton\help\fr_FR
 
 Building the manual file [javaHelp] in TMPDIR\toolbox_skeleton\help\fr_FR.
+ 
+ Generate image ./c_sub_1.png from Scilab code from file c_sub.xml   
+ 
+ Generate image ./c_sub_fr_FR_2.png from Scilab code from file c_sub.xm 
+      l                                                                 
 Generating loader.sce...
 Generating unloader.sce...
 Generating cleaner.sce...

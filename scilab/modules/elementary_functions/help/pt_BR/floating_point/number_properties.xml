@@ -40,15 +40,17 @@
             <literal>e</literal> é o expoente e <literal>m</literal> a
             mantissa:
         </para>
-        <programlisting><![CDATA[ 
-     m = d_1 b^(-1) + d_2 b^(-2) + .... + d_p b^(-p)
- ]]></programlisting>
+        <latex>
+            $$
+            m = d_1 \cdot b^{-1} + d_2 \cdot b^{-2} + \ldots + d_p \cdot b^{-p}
+            $$
+        </latex>
         <para>
-            <literal>d_i</literal> os dígitos estão em <literal>[0,
+            <latex>$d_i$</latex> os dígitos estão em <literal>[0,
                 b-1]
             </literal>
             e<literal>e</literal> em <literal>[emin, emax]</literal>,
-            o número é dito "normalizado" se <literal>d_1 ~= 0</literal>. Os seguintes
+            o número é dito "normalizado" se <latex>$d_1 \neq 0$</latex>. Os seguintes
             podem ser recebidos: 
         </para>
         <variablelist>
@@ -112,7 +114,7 @@
                 <listitem>
                     <para>
                         então <literal>pr</literal> é a máquina epsilon ( geralmente
-                        (<literal>b^(1-p))/2</literal> ) que é o erro máximo relativo entre
+                        (<latex>$\dfrac{b^{1-p}}{2}$</latex>) que é o erro máximo relativo entre
                         um real <literal>x</literal> (tal que <literal>|x|</literal> está em
                         <literal>[tiny, huge]</literal>) e <literal>fl(x)</literal>, sua
                         aproximação em ponto flutuante em <literal>F</literal>
@@ -143,10 +145,10 @@
             parâmetros máquinas (os nomes (radix, digits, huge, etc...) são aqueles
             recomendados pelo padrão LIA 1 e são diferentes daqueles correspondentes
             em LAPACK) ; CUIDADO: às vezes você poderá encontrar a seguinte para a
-            máquina epsilon: <literal>eps = b^(1-p)</literal> , mas nesta função nós
+            máquina epsilon: <latex>$eps = b^{1-p}$</latex>, mas nesta função nós
             usamos a definição tradicional (ver prop = "eps" acima) e então
-            <literal>eps = (b^(1-p))/2</literal> se o arredondamento normal acontecer
-            e <literal>eps = b^(1-p)</literal> se não acontecer.
+            <latex>$eps = \dfrac{b^{1-p}}{2}$</latex> se o arredondamento normal acontecer
+            e <latex>$eps = b^{1-p}$</latex> se não acontecer.
         </para>
     </refsection>
     <refsection>

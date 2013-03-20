@@ -131,7 +131,7 @@
                 パラメータ値<literal>option</literal>で指定したシフト量を用いて
                 順方向または逆方向の1次元またはN次元離散コサイン変換を
                 行います.
-                長さ<latex>$n$</latex>の1次元配列<latex>$A$</latex>の場合:
+                長さ<latex scilab:localized="true">$n$</latex>の1次元配列<latex scilab:localized="true">$A$</latex>の場合:
             </para>
             <itemizedlist>
                 <listitem>

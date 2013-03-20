@@ -13,6 +13,7 @@
 package org.scilab.modules.helptools.external;
 
 import org.xml.sax.Attributes;
+import org.xml.sax.Locator;
 
 import org.scilab.modules.helptools.DocbookTagConverter;
 
@@ -20,7 +21,7 @@ public abstract class ExternalXMLHandler {
 
     private DocbookTagConverter converter;
 
-    public abstract StringBuilder startExternalXML(String localName, Attributes attributes);
+    public abstract StringBuilder startExternalXML(String localName, Attributes attributes, Locator locator);
 
     public abstract String endExternalXML(String localName);
 

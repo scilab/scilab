@@ -74,7 +74,37 @@ BOOL setlanguage(char *lang)
                 /* Load the locale from the system */
 #if !defined(_MSC_VER) && !defined(__APPLE__)
                 //for mbstowcs
+                char *newlang = NULL;
                 char *ret = setlocale(LC_CTYPE, lang);
+                if (ret == NULL)
+                {
+                    if (lang == NULL || *lang == 0)
+                    {
+                        lang = getenv("LANG");
+                    }
+
+                    ret = setlocale(LC_CTYPE, lang);
+                    if (ret == NULL)
+                    {
+                        // On some OSes we need to precise the charset (e.g. on Debian, fr_FR is not accepted but fr_FR.UTF-8 is)
+                        int i = 0;
+                        for (; i < NumberOfCharsets; i++)
+                        {
+                            newlang = (char*)MALLOC(strlen(lang) + strlen(CHARSETS[i]) + 1 + 1);
+                            sprintf(newlang, "%s.%s", lang, CHARSETS[i]);
+                            ret = setlocale(LC_CTYPE, newlang);
+                            if (ret == NULL)
+                            {
+                                FREE(newlang);
+                                newlang = NULL;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
 
                 if (ret == NULL)
                 {
@@ -84,7 +114,14 @@ BOOL setlanguage(char *lang)
                 }
 
                 //for gettext
-                ret = setlocale(LC_MESSAGES, lang);
+                if (newlang)
+                {
+                    ret = setlocale(LC_MESSAGES, newlang);
+                }
+                else
+                {
+                    ret = setlocale(LC_MESSAGES, lang);
+                }
 #else
                 /* Load the user locale from the system */
                 char *ret = getLocaleUserInfo();
@@ -106,27 +143,47 @@ BOOL setlanguage(char *lang)
                 {
                     /* The lang is the default one... ie en_US */
                     strcpy(CURRENTLANGUAGESTRING, SCILABDEFAULTLANGUAGE);
+                    exportLocaleToSystem(CURRENTLANGUAGESTRING);
                 }
                 else
                 {
-                    if (strcmp(lang, "") == 0 && ret != NULL)
+                    if (strcmp(lang, "") == 0)
                     {
                         /* The requested language is the one of the system ...
                          * which we don't really know which one is it
                          * but if setlocale worked, we get it from the return
                          */
                         strncpy(CURRENTLANGUAGESTRING, ret, 5); /* 5 is the number of char in fr_FR for example */
+                        exportLocaleToSystem(ret);
                     }
                     else
                     {
-                        strcpy(CURRENTLANGUAGESTRING, lang);
+#if !defined(_MSC_VER) && !defined(__APPLE__)
+                        if (newlang)
+                        {
+                            setenvc("LANG", newlang);
+                            strncpy(CURRENTLANGUAGESTRING, newlang, 5);
+                            exportLocaleToSystem(newlang);
+                        }
+                        else
+#endif
+                        {
+
+                            strcpy(CURRENTLANGUAGESTRING, lang);
+                            exportLocaleToSystem(lang);
+                        }
                     }
                 }
 #ifndef _MSC_VER
                 setlanguagecode(CURRENTLANGUAGESTRING);
+#ifndef __APPLE__
+                if (newlang)
+                {
+                    FREE(newlang);
+                }
+#endif
 #endif
 
-                exportLocaleToSystem(CURRENTLANGUAGESTRING);
                 return TRUE;
             }
 #ifndef _MSC_VER
@@ -309,7 +366,7 @@ BOOL exportLocaleToSystem(char *locale)
 #ifdef _MSC_VER
         fprintf(stderr, "Localization: Have not been able to find a suitable locale. Remains to default %s.\n", "LC_CTYPE");
 #else
-        fprintf(stderr, "Localization: Have not been able to find a suitable locale. Remains to default %s.\n", EXPORTENVLOCALE);
+        fprintf(stderr, "Localization: Have not been able to find a suitable locale. Remains to default %s.\n", EXPORTENVLOCALESTR);
 #endif
         return FALSE;
     }

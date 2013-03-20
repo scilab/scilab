@@ -40,20 +40,17 @@ public class GraphicController {
     private static boolean debugEnable = true;
     private static boolean infoEnable = false;
 
-    private static void INFO(String message)
-        {
-            if (infoEnable == true)
-            {
-                System.err.println("[CONTROLLER - INFO] : "+message);
-            }
+    private static void INFO(String message) {
+        if (infoEnable == true) {
+            System.err.println("[CONTROLLER - INFO] : " + message);
         }
+    }
 
-    private static void DEBUG(String message)
-        {
-            if (debugEnable == true) {
-                System.err.println("[CONTROLLER - DEBUG] : "+message);
-            }
+    private static void DEBUG(String message) {
+        if (debugEnable == true) {
+            System.err.println("[CONTROLLER - DEBUG] : " + message);
         }
+    }
 
     /**
      * Set of all views attached to this controller.
@@ -137,17 +134,16 @@ public class GraphicController {
     public boolean setProperty(String id, int prop, Object value) {
         try {
             switch (GraphicModel.getModel().setProperty(id, prop, value)) {
-            case Success : // BroadCast Message + return true
-                objectUpdate(id, prop);
-                return true;
-            case NoChange : // Do not broadcast message
-                return true;
-            case Fail :
-                return false;
+                case Success : // BroadCast Message + return true
+                    objectUpdate(id, prop);
+                    return true;
+                case NoChange : // Do not broadcast message
+                    return true;
+                case Fail :
+                    return false;
             }
             return false;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             DEBUG("====== Exception caught ======");
             DEBUG("setProperty : " + id + " " + prop);
             e.printStackTrace();
@@ -165,8 +161,7 @@ public class GraphicController {
     public Object getProperty(String id, int prop) {
         try {
             return GraphicModel.getModel().getProperty(id, prop);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             DEBUG("====== Exception caught ======");
             DEBUG("getProperty : [" + id + "] " + prop);
             e.printStackTrace();
@@ -198,8 +193,7 @@ public class GraphicController {
             objectCreated(id.toString());
 
             return id.toString();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             DEBUG("====== Exception caught ======");
             DEBUG(" askObject type = " + type.name());
             e.printStackTrace();
@@ -221,8 +215,7 @@ public class GraphicController {
             objectCreated(newId.toString());
 
             return newId.toString();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             DEBUG("====== Exception caught ======");
             DEBUG("cloneObject id = " + id);
             e.printStackTrace();
@@ -239,8 +232,7 @@ public class GraphicController {
         try {
             objectDeleted(id);
             GraphicModel.getModel().deleteObject(id);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             DEBUG("====== Exception caught ======");
             DEBUG("deleteObject id = " + id);
             e.printStackTrace();
@@ -255,15 +247,15 @@ public class GraphicController {
     public void objectCreated(final String id) {
         //INFO("### Create object : "+id);
         //INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
-        Vector<Runnable> broadCastVector= new Vector<Runnable>();
+        Vector<Runnable> broadCastVector = new Vector<Runnable>();
 
         try {
             for (final GraphicView view : allViews) {
                 broadCastVector.add(new Runnable() {
-                        public void run() {
-                            view.createObject(id);
-                        }
-                    });
+                    public void run() {
+                        view.createObject(id);
+                    }
+                });
             }
             for (final Runnable runMe : broadCastVector) {
                 runMe.run();
@@ -283,14 +275,14 @@ public class GraphicController {
         //INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
         //INFO("### prop is : " + prop);
 
-        Vector<Runnable> broadCastVector= new Vector<Runnable>();
+        Vector<Runnable> broadCastVector = new Vector<Runnable>();
         try {
             for (final GraphicView view : allViews) {
                 broadCastVector.add(new Runnable() {
-                        public void run() {
-                            view.updateObject(id, prop);
-                        }
-                    });
+                    public void run() {
+                        view.updateObject(id, prop);
+                    }
+                });
             }
             for (final Runnable runMe : broadCastVector) {
                 runMe.run();
@@ -307,15 +299,15 @@ public class GraphicController {
     public void objectDeleted(final String id) {
         //INFO("### Delete object : "+id);
         //INFO("### type is : " + getProperty(id, GraphicObjectProperties.__GO_TYPE__));
-        Vector<Runnable> broadCastVector= new Vector<Runnable>();
+        Vector<Runnable> broadCastVector = new Vector<Runnable>();
 
         try {
             for (final GraphicView view : allViews) {
                 broadCastVector.add(new Runnable() {
-                        public void run() {
-                            view.deleteObject(id);
-                        }
-                    });
+                    public void run() {
+                        view.deleteObject(id);
+                    }
+                });
             }
             for (final Runnable runMe : broadCastVector) {
                 runMe.run();
@@ -376,7 +368,12 @@ public class GraphicController {
      * @param id deleted object identifier.
      */
     public void removeRelationShipAndDelete(String id) {
-        GraphicObject killMe = getObjectFromId(id);
+        final GraphicObject killMe = getObjectFromId(id);
+        // assert that the object has not been deleted yet
+        if (killMe == null) {
+            return;
+        }
+
         String parentUID = killMe.getParent();
 
 

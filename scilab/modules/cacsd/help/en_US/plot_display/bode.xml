@@ -143,7 +143,7 @@ h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 clf();bode(h,0.01,100);
  ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=poly(0,'s')
                 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
                 clf();bode(h,0.01,100);
@@ -159,7 +159,7 @@ h2=syslin('c',num/den);
 clf();bode([h1;h2],0.01,100,['h1';'h2'])
  ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=poly(0,'s')
                 h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
                 num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;

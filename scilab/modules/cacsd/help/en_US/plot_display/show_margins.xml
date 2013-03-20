@@ -53,7 +53,7 @@ h=syslin('c',0.02909+0.11827*%s+0.12823*%s^2+0.35659*%s^3+0.256*%s^4+0.1*%s^5,..
 show_margins(h)
 show_margins(h,'nyquist')
  ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             h=syslin('c',0.02909+0.11827*%s+0.12823*%s^2+0.35659*%s^3+0.256*%s^4+0.1*%s^5,..
             0.0409+0.1827*%s+1.28225*%s^2+3.1909*%s^3+2.56*%s^4+%s^5);
             show_margins(h)
@@ -65,7 +65,7 @@ h = syslin(0.1,0.01547+0.01599*%z ,%z^2-1.81*%z+0.9048)
 show_margins(h)
 show_margins(h,'nyquist')
  ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             h = syslin(0.1,0.01547+0.01599*%z ,%z^2-1.81*%z+0.9048)
             show_margins(h)
             show_margins(h,'nyquist')

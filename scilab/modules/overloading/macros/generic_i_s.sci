@@ -28,7 +28,7 @@ function M=generic_i_s(varargin)
     end
     return
   else
-    error(_('Incorrect assignment.'))
+    error(_("Incorrect assignment."))
   end
 endfunction
 

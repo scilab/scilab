@@ -51,7 +51,6 @@ int C2F(sci_getscilabmode)(char *fname, unsigned long fname_len)
     free(output); // Data have been copied into Scilab memory
     if (iRet)
     {
-        freeAllocatedSingleString(output);
         return 1;
     }
 

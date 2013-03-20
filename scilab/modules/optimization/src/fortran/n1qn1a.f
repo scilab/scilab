@@ -12,9 +12,9 @@ c
 c
 
 *     A (very) few modifs by Bruno (14 March 2005): I have translated some output
-*     informations in english (but they don't use format instruction 
+*     information in english (but they don't use format instruction 
 *     which is put in the second arg of write). Also for the linear
-*     search output informations I divide by the direction vector norm
+*     search output information I divide by the direction vector norm
 *     to get the "normalized" directionnal derivative. Note that this is
 *     just for output (the computing code is normally not modified).
 

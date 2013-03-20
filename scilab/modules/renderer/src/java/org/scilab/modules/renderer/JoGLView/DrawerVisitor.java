@@ -118,7 +118,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private static final boolean DEBUG_MODE = false;
 
     private final Component component;
-    private final Canvas canvas;
     private final Figure figure;
     private final InteractionManager interactionManager;
 
@@ -142,6 +141,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private ColorMap colorMap;
 
     private Axes currentAxes;
+    private Canvas canvas;
 
     /**
      * The map between the existing Figures' identifiers and their corresponding Visitor.
@@ -202,6 +202,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         return canvas;
     }
 
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
+    }
+
     /**
      * @return the DataManager
      */
@@ -241,7 +245,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public ColorMap getColorMap() {
         return colorMap;
     }
-
 
     /**
      * Returns the visitor corresponding to the Figure identifier.
@@ -803,7 +806,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (segs.getMarkMode()) {
                     Texture texture = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap);
                     ElementsBuffer positions = dataManager.getVertexBuffer(segs.getIdentifier());
+                    // Take only into account start-end of segs and not the arrow head.
+                    positions.getData().limit(segs.getNumberArrows() * 2 * 4);
                     drawingTools.draw(texture, AnchorPosition.CENTER, positions);
+                    positions.getData().limit(positions.getData().capacity());
                 }
 
                 /* Draw the arrows */
@@ -889,6 +895,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
             if (object instanceof Axes) {
                 Axes axes = (Axes) object;
+
                 if (axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) {
                     return false;
                 }
@@ -900,9 +907,23 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property)) {
                     return false;
                 }
+
+                if (property != GraphicObjectProperties.__GO_CHILDREN__) {
+                    axesDrawer.computeRulers(axes);
+                }
             }
 
             if (object instanceof Figure) {
+                if (property == GraphicObjectProperties.__GO_SIZE__ || property == GraphicObjectProperties.__GO_AXES_SIZE__ || property == GraphicObjectProperties.__GO_CHILDREN__) {
+                    Figure fig = (Figure) object;
+                    for (String gid : fig.getChildren()) {
+                        GraphicObject go = GraphicController.getController().getObjectFromId(gid);
+                        if (go instanceof Axes) {
+                            axesDrawer.computeRulers((Axes) go);
+                        }
+                    }
+                }
+
                 if (SILENT_FIGURE_PROPERTIES.contains(property)) {
                     return false;
                 }

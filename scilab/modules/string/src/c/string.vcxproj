@@ -326,7 +326,6 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClInclude Include="pcre_error.h" />
     <ClInclude Include="pcre_internal.h" />
     <ClInclude Include="setScilabCharactersCodes.h" />
-    <ClInclude Include="strcatfunction.h" />
     <ClInclude Include="stringsCompare.h" />
     <ClInclude Include="stringsstrrchr.h" />
     <ClInclude Include="stringsstrrev.h" />

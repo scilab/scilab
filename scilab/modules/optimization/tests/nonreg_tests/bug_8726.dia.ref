@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
-//
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 8726 -->
 //
 // <-- Bugzilla URL -->
@@ -22,5 +22,6 @@ beq = [0;2];
 c = [-1;-1;0];
 x0 = [1;1;0];
 xopt=karmarkar(Aeq,beq,c,x0);
+WARNING: karmarkar: The algorithm did not converge (exitflag= -3).
 xexpected = [1;1;0];
 assert_checkequal ( xopt , xexpected );

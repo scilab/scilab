@@ -356,7 +356,7 @@ static int getNumbersOfColumnsInLines(const char **lines, int sizelines,
                 {
                     if (getWarningMode())
                     {
-                        sciprint(_("%s: Inconsistency found in the columns. At line %d, found %d columns while the previous had %d.\n"), "csvRead", i + 1, NbColumns, previousNbColumns);
+                        sciprint(_("%s: Inconsistency found in the columns. At line %d, found %d columns while the previous had %d.\n"), _("Warning"), i + 1, NbColumns, previousNbColumns);
                     }
 
                     return 0;
@@ -456,6 +456,7 @@ static char **getStringsFromLines(const char **lines, int sizelines,
                     lineStrings[j] = NULL;
                 }
             }
+            FREE(lineStrings);
         }
     }
     return results;
@@ -570,6 +571,7 @@ static char *stripCharacters(const char *line)
                 if (tmpLineWithoutCR)
                 {
                     returnedLine = csv_strsubst(tmpLineWithoutCR, " ", "");
+                    FREE(tmpLineWithoutCR);
                 }
                 else
                 {

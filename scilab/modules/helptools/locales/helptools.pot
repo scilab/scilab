@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-03-18 15:28+0100\n"
 
 # File: sci_gateway/c/gw_helptools.c, line: 38
 #, c-format
@@ -72,12 +72,12 @@ msgid "Scilab '%s' module not installed.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/helptools/HTMLDocbookTagConverter.java, line: 54
+# File: src/java/org/scilab/modules/helptools/HTMLDocbookTagConverter.java, line: 55
 msgid "Version"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/helptools/HTMLDocbookTagConverter.java, line: 55
+# File: src/java/org/scilab/modules/helptools/HTMLDocbookTagConverter.java, line: 56
 msgid "Description"
 msgstr ""
 
@@ -232,9 +232,110 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: macros/help_skeleton.sci, line: 68
-#, c-format
-msgid "%02d-%02d-%04d"
+# File: macros/help_skeleton.sci, line: 82
+msgid " * Add some comments about XML file"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 90
+msgid "Add short description here."
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 93
+msgid "Calling Sequence"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 101
+msgid "Arguments"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 109
+msgid "            Add here the input/output argument description."
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 124
+msgid "          Add here a paragraph of the function description."
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 125
+msgid "          Other paragraph can be added"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 139
+msgid "More information"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 150
+msgid "Examples"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 152
+msgid "        Add here scilab instructions and comments"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 159
+msgid "See Also"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 162
+# File: macros/help_skeleton.sci, line: 165
+msgid "add a reference"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 162
+# File: macros/help_skeleton.sci, line: 165
+msgid "add a reference name"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 173
+msgid "Authors"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 175
+msgid "add the author name and author reference"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 176
+msgid "add another author name and it's reference"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 183
+msgid "Bibliography"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 185
+msgid "         Add here the function bibliography"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 192
+msgid "History"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 204
+msgid "Used Functions"
+msgstr ""
+
+#
+# File: macros/help_skeleton.sci, line: 206
+msgid "         Add here the Scilab, C,... used code references"
 msgstr ""
 
 #

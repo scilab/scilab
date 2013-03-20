@@ -168,5 +168,5 @@ msgid ""
 msgstr ""
 "Scilab bude používat standardní fft, dokud nenainstalujete tuto knihovnu."
 
-msgid "See help fftw for more informations."
+msgid "See help fftw for more information."
 msgstr "Viz nápověda fftw pro více informací."

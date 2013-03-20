@@ -1434,7 +1434,7 @@ SciErr createMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* 
         return sciErr;
     }
 
-    piEnd = piItemAddr + (iTotalLen + 5 + _iRows * _iCols + !((_iRows * _iCols) % 2));
+    piEnd = piItemAddr + iTotalLen + 5 + _iRows * _iCols + !((iTotalLen + _iRows * _iCols) % 2);
     closeList(Top, piEnd);
 
     if (_iItemPos == piParent[1])

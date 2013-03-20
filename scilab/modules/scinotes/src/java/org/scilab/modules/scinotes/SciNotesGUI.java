@@ -254,7 +254,7 @@ public final class SciNotesGUI {
 
     /**
      * @param editor the editor
-     * @param node the node containing the informations
+     * @param node the node containing the information
      * @return the Menu
      */
     private static Menu getMenu(SciNotes editor, Element node) {

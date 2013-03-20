@@ -90,11 +90,10 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
         this.textPane = textPane;
         this.doc = (ScilabDocument) textPane.getDocument();
         setOpaque(true);
-        setFont(textPane.getFont());
+        updateFont(textPane.getFont());
         setBorderGap(PANELGAPSIZE);
         setCurrentLineForeground(Color.RED);
         setAlternColors(ConfigSciNotesManager.getAlternColors());
-        updateFont(ConfigSciNotesManager.getFont());
         textPane.addCaretListener(this);
         addMouseMotionListener(this);
     }

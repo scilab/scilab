@@ -133,7 +133,7 @@ public class MathMLImageConverter implements ExternalImageConverter {
     /**
      * @param mathml the document to convert
      * @param fontSize the font size
-     * @return an image informations
+     * @return an image information
      */
     private static Image convertMathML(Document mathml, int fontSize) {
         LayoutContextImpl parameters = new LayoutContextImpl(LayoutContextImpl.getDefaultLayoutContext());

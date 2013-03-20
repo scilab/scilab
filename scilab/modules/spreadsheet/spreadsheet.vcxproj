@@ -236,7 +236,6 @@
     <ClInclude Include="src\c\csv_complex.h" />
     <ClInclude Include="src\c\csv_strsubst.h" />
     <ClInclude Include="src\c\getRange.h" />
-    <ClInclude Include="src\c\latintoutf.h" />
     <ClInclude Include="src\c\ripole\bt-int.h" />
     <ClInclude Include="src\c\ripole\bytedecoders.h" />
     <ClInclude Include="src\c\ripole\logger.h" />
@@ -269,7 +268,6 @@
     <ClCompile Include="src\c\csv_strsubst.c" />
     <ClCompile Include="src\c\DllmainSpreadsheet.c" />
     <ClCompile Include="src\c\getRange.c" />
-    <ClCompile Include="src\c\latintoutf.c" />
     <ClCompile Include="src\c\ripole\bt-int.c" />
     <ClCompile Include="src\c\ripole\bytedecoders.c" />
     <ClCompile Include="src\c\ripole\logger.c" />

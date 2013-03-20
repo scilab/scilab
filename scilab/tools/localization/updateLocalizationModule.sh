@@ -170,7 +170,7 @@ function process_module {
     if test ! -f $MODULE_NAME.pot.tmp -a $IS_MACROS -eq 1; then
         # Empty file => no string found
         # We are modifing on the fly Scilab localization files
-        # 
+        #
         # We need C strings format to be used as gettext key
         # "" -> \"
         # '' -> '
@@ -234,6 +234,6 @@ for MODULE in $MODULES; do
     cd $PATHTOPROCESS
     process_module "src"
     process_module "macros"
-    
+
     cd $SCI/
 done # Browse modules

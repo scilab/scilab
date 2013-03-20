@@ -2,29 +2,38 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="slash">
     <refnamediv>
         <refname>slash</refname>
-        <refpurpose>(/) right division and feed back (comments)</refpurpose>
+        <refpurpose>(/) right division and feed back</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Right division.  <code>x = A / b</code> is the solution of <code>x * b = A</code>.
+            Right division: <code>x=A/B</code> is the solution of <code>x*B=A</code>.
         </para>
         <para>
-            <code>b/a = (a' \ b')'</code>.
+            The slash (right division) and backslash (left division) operators are linked by the following equation:
+            <code>B/A=(A'\B')'</code>.
         </para>
         <para>
-            <code>a ./ b</code> is the matrix with entries <literal>a(i,j)/ b(i,j)</literal>.
-            If <literal>b</literal> is scalar (1x1 matrix) this operation is the same
-            as <code> a ./ b * ones(a)</code>. (Same convention if <literal>a</literal> is a scalar).
+            In the case where A is square, the solution <literal>x</literal> can be computed
+            either from LU factorization or from a linear least squares solver.
+            If the condition number of A is smaller than 1/(10*%eps) (i.e. if A is well conditionned),
+            the LU factorization with row pivoting is used.
+            If not (i.e. if A is poorly conditionned), then X is the minimum-norm solution which
+            minimizes <literal>||A*X-B||</literal> using a complete
+            orthogonal factorization of A (i.e. X is the solution of a linear least squares problem).
+        </para>
+        <para>
+            <code>A./B</code> is the elementwise right division, i.e. the matrix with
+            entries <literal>A(i,j)/B(i,j)</literal>.
+            If <literal>B</literal> is scalar (1x1 matrix) this operation is the same
+            as <code>A./B*ones(A)</code>.
+            Same convention if <literal>A</literal> is a scalar.
         </para>
         <para>
             <note>
-                Remark that <code>123./b</code> is interpreted as <code>(123.)/b</code>. In this
+                Remark that <code>123./B</code> is interpreted as <code>(123.)/B</code>. In this
                 cases dot is part of the  number not of the operator.
             </note>
-        </para>
-        <para>
-            Backslash stands for left division.
         </para>
         <para>
             System feed back.  <code>S = G/.K</code> evaluates
@@ -44,6 +53,15 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
+a=[3.,-24.,30.];
+B=[
+   9.   -36.    30.
+  -36.   192.  -180.
+   30.  -180.   180.
+];
+x=a/B
+x*B-a // close to zero
+
 a=4 / 2; // Should be 2
 a=2 ./ [2,4]; //     1.    0.5
 // Comments are good. They help to understand code
@@ -63,4 +81,14 @@ a=2 ./ [2,4]; //     1.    0.5
             </member>
         </simplelist>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>The threshold level for conditioning in slash increased.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
 </refentry>

@@ -2220,7 +2220,7 @@ public class XcosDiagram extends ScilabGraph {
      * Display the message in info bar.
      *
      * @param message
-     *            Informations
+     *            Information
      */
     public void info(final String message) {
         final XcosTab tab = XcosTab.get(this);

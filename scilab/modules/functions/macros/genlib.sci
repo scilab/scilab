@@ -103,7 +103,7 @@ function [success, funcs, success_files, failed_files] = genlib(nam, path, force
 
   if exists('names', 'local')==0 then
     // list the sci files
-    files          = listfiles(path+"*.sci",%f);
+    files          = gsort(listfiles(path+"*.sci",%f), "r", "i");
     files_filtered = [];
 
     for i=1:size(files,"*")

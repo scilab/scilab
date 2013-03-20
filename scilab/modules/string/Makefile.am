@@ -8,7 +8,6 @@ src/c/stripblanks.c \
 src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \
-src/c/strcatfunction.c \
 src/c/strsplitfunction.c \
 src/c/partfunction.c \
 src/c/InitializeString.c \

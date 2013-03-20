@@ -310,7 +310,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     if (curNumber > numberOfColumns) {
                         numberOfColumns = curNumber;
                     }
-                    // Store informations of current line
+                    // Store information of current line
                     buttonsPerLines.add(curNumber);
                     curNumber = 0;
                     numberOfLines++;

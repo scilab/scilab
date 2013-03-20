@@ -390,7 +390,7 @@ String manipulation:
 System relative Functions:
 =========================
  - New functions:
-	+ getdebuginfo          - returns informations about scilab and your system
+	+ getdebuginfo          - returns information about scilab and your system
 	+ getscilabmode         - returns scilab mode
 	+ getvariablesonstack   - get variable names on stack of scilab
 	+ getmd5                - get the MD5 checksum of strings or files.

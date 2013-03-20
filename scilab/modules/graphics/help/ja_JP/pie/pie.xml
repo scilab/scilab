@@ -70,12 +70,6 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>
-            pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 // 最初の例 : 入力引数は1つ  x=[1 2 5]
 scf(0);
@@ -102,6 +96,10 @@ pie([5 9 4 6 3],[0 1 0 1 0]);
 scf(2);
 pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
  ]]></programlisting>
+        <scilab:image>
+            pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>参照</title>

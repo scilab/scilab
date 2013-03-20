@@ -13,7 +13,7 @@
 #define __GETSTATICDEBUGINFO_WINDOWS_H__
 
 /**
-* Get informations about Scilab (Static Infos)
+* Get information about Scilab (Static Infos)
 * @param[out] size of returned array
 * @return array of string
 */

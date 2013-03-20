@@ -50,7 +50,7 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 </path>
 
-<path value="$SCILAB/thirdparty/scirenderer-1.0.6.jar" load="onUse">
+<path value="$SCILAB/thirdparty/scirenderer-1.0.7.jar" load="onUse">
     <load on="graphics"/>
     <load on="graphic_ojects"/>
     <load on="Xcos"/>
@@ -112,7 +112,7 @@ The option is "disableUnderMode" and can be:
 </path>
 
 <!-- PDF doc generation (dep of jeuclid) -->
-<path value="$SCILAB/thirdparty/xmlgraphics-commons-1.3.1.jar" load="onUse">
+<path value="$SCILAB/thirdparty/xmlgraphics-commons-1.4.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>

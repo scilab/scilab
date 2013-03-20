@@ -287,10 +287,8 @@ public class SciNotes extends SwingScilabTab {
     public void setParentWindow() {
         this.parentWindow = new SwingScilabWindow();
         setWindowIcon("accessories-text-editor");
-        Position pos = ConfigSciNotesManager.getMainWindowPosition();
-        parentWindow.setLocation(pos.getX(), pos.getY());
-        Size size = ConfigSciNotesManager.getMainWindowSize();
-        parentWindow.setSize(size.getWidth(), size.getHeight());
+        parentWindow.setLocation(150, 50);
+        parentWindow.setSize(650, 550);
     }
 
     /**

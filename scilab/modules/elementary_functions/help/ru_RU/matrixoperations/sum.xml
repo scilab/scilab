@@ -87,11 +87,11 @@
                     если <literal>orientation</literal> равна 1 или "r", то
                 </para>
                 <para>
-                    <latex><![CDATA[ y(1,j) = \sum\limits_i x(i,j)]]></latex>
+                    <latex><![CDATA[{ y(\mathbf{1},j) = \sum_{\mathbf{i}} x(\mathbf{i},j)}]]></latex>
                 </para>
                 <para>или </para>
                 <para>
-                    <latex><![CDATA[ y(1,j,k,\ldots) = \sum\limits_i x(i,j,k,\ldots)]]></latex>
+                    <latex><![CDATA[ y(\mathbf{1},j,k,\ldots) = \sum_{\mathbf{i}} x(\mathbf{i},j,k,\ldots)]]></latex>
                 </para>
             </listitem>
             <listitem>
@@ -99,11 +99,11 @@
                     если <literal>orientation</literal> равна 2 или "c", то:
                 </para>
                 <para>
-                    <latex><![CDATA[ y(i,\mathbf{1}) = \sum\limits_{\mathbf{j}} x(i,\mathbf{j})]]></latex>
+                    <latex><![CDATA[ y(i,\mathbf{1}) = \sum_{\mathbf{j}} x(i,\mathbf{j})]]></latex>
                 </para>
                 <para>или </para>
                 <para>
-                    <latex><![CDATA[ y(i,\mathbf{1},k,\ldots) = \sum\limits_{j} x(i,\mathbf{j},k,\ldots)]]></latex>
+                    <latex><![CDATA[ y(i,\mathbf{1},k,\ldots) = \sum_{j} x(i,\mathbf{j},k,\ldots)]]></latex>
                 </para>
             </listitem>
             <listitem>
@@ -111,7 +111,7 @@
                     если <literal>orientation</literal> равна n, то
                 </para>
                 <para>
-                    <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{1},i_{n+1},\ldots) = \sum\limits_{\mathbf{i_n}} x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]></latex>
+                    <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{1},i_{n+1},\ldots) = \sum_{\mathbf{i_n}} x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]></latex>
                 </para>
             </listitem>
             <listitem>

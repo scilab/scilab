@@ -79,7 +79,12 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>grayplot();</scilab:image>
+        <scilab:image>
+            x=-10:10;
+            y=-10:10;
+            m=rand(21,21);
+            grayplot(x,y,m,rect=[-20,-20,20,20])
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

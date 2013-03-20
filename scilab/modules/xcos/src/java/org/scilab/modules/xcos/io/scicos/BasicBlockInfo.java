@@ -27,7 +27,7 @@ import com.mxgraph.model.mxICell;
 
 /**
  * Convert BasicBlock pure objects to a mixed BasicBlock objects (update the
- * scicos informations)
+ * scicos information)
  */
 public final class BasicBlockInfo {
     /**
