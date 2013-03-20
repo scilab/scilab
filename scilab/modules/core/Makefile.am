@@ -35,7 +35,6 @@ src/c/scimem.c \
 src/c/banier.c \
 src/c/isanan.c \
 src/c/parse.c \
-src/c/timer.c \
 src/c/stack2.c \
 src/c/xscion.c \
 src/c/SetScilabEnvironment.c \

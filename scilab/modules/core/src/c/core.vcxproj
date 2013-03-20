@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -369,7 +369,6 @@ cd ..
     <ClCompile Include="terme.c" />
     <ClCompile Include="TerminateCore.c" />
     <ClCompile Include="texmacs.c" />
-    <ClCompile Include="timer.c" />
     <ClCompile Include="tmpdir.c" />
     <ClCompile Include="transposeMatrix.c" />
     <ClCompile Include="typename.c" />
