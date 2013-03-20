@@ -332,6 +332,9 @@ Bug fixes
 
 * Bug #11669 fixed - Help page of kalm and srkf functions had no example.
 
+* Bug #11682 fixed - "resizefcn" and "closerequestfcn" properties description
+                    was not precise enough in the figure properties help page.
+
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
 * Bug #11778 fixed - Bad color_map dims did not return an error.
