@@ -21,68 +21,68 @@ p2 = c2.children;
 //assert_checkequal(f.axes_size, [610, 460])
 assert_checkequal(f.auto_resize, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.viewport, [0,0])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.figure_name, gettext("Graphic window number %d"))
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.figure_id, 0)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.pixmap, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.pixel_drawing_mode, "copy")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.anti_aliasing, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.immediate_drawing, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.background, -2)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.visible, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.rotation_style, "unary")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.event_handler, "")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.event_handler_enable, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.user_data, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.tag, "")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.info_message, "")
  ans  =
-
-  T
+ 
+  T  
 handMadeColorMap = [0,0,0;
                     0,0,1;
                     0,1,0;
@@ -122,636 +122,636 @@ handMadeColorMap = [0,0,0;
                     0.25,0.25,0.25];
 assert_checkequal(f.color_map, handMadeColorMap)
  ans  =
-
-  T
+ 
+  T  
 // Check Axes 1
 assert_checkequal(a1.visible, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.axes_visible, ["on" "on" "on"])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.axes_reverse, ["off" "off" "off"])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.grid, [-1 -1])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.grid_position, "background")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.x_location, "bottom")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.y_location, "left")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.auto_ticks, ["on" "on" "on"])
  ans  =
-
-  T
+ 
+  T  
 //assert_checkequal(a1.x_ticks.locations, [0:0.1:1]')
 //assert_checkequal(a1.y_ticks.locations, [0:0.1:1]')
 //assert_checkequal(a1.z_ticks.locations, [])
 assert_checkequal(a1.box, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.filled, "on")
  ans  =
-
-  T
-assert_checkequal(a1.sub_ticks, [1, 1])
+ 
+  T  
+assert_checkequal(a1.sub_ticks, [1, 4])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.font_style, 6)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.font_size, 1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.font_color, -1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.fractional_font, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.isoview, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.cube_scaling, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.view, "2d")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.rotation_angles, [0, 270])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.log_flags, "nnn")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.tight_limits, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.data_bounds, [1, -1 ; 2, 1])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.zoom_box, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.margins, [0.125, 0.125, 0.125, 0.125])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.axes_bounds, [0, 0.5, 1, 0.5])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.auto_clear, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.auto_scale, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.hidden_axis_color, 4)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.hiddencolor, 4)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.line_mode, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.line_style, 1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.thickness, 1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.mark_mode, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.mark_style, 0)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.mark_size_unit, "tabulated")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.mark_size, 0)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.mark_foreground, -1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.mark_background, -2)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.foreground, -1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.background, -2)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.arc_drawing_method, "lines")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.clip_state, "clipgrf")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.clip_box, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a1.user_data, [])
  ans  =
-
-  T
+ 
+  T  
 // Check Axes 2
 assert_checkequal(a2.visible, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.axes_visible, ["on" "on" "on"])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.axes_reverse, ["off" "off" "off"])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.grid, [-1 -1])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.grid_position, "background")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.x_location, "bottom")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.y_location, "left")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.auto_ticks, ["on" "on" "on"])
  ans  =
-
-  T
+ 
+  T  
 //assert_checkequal(a2.x_ticks.locations, [0:0.1:1]')
 //assert_checkequal(a2.y_ticks.locations, [0:0.1:1]')
 //assert_checkequal(a2.z_ticks.locations, [])
 assert_checkequal(a2.box, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.filled, "on")
  ans  =
-
-  T
-assert_checkequal(a2.sub_ticks, [1, 1])
+ 
+  T  
+assert_checkequal(a2.sub_ticks, [4, 4])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.font_style, 6)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.font_size, 1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.font_color, -1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.fractional_font, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.isoview, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.cube_scaling, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.view, "2d")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.rotation_angles, [0, 270])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.log_flags, "nnn")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.tight_limits, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.data_bounds, [0, -1 ; 2 * %pi, 1])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.zoom_box, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.margins, [0.125, 0.125, 0.125, 0.125])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.axes_bounds, [0, 0, 1, 0.5])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.auto_clear, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.auto_scale, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.hidden_axis_color, 4)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.hiddencolor, 4)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.line_mode, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.line_style, 1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.thickness, 1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.mark_mode, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.mark_style, 0)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.mark_size_unit, "tabulated")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.mark_size, 0)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.mark_foreground, -1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.mark_background, -2)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.foreground, -1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.background, -2)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.arc_drawing_method, "lines")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.clip_state, "clipgrf")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.clip_box, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a2.user_data, [])
  ans  =
-
-  T
+ 
+  T  
 // Compound 1
 assert_checkequal(c1.parent.type, "Axes")
  ans  =
-
-  T
-assert_checkequal(c1.children(:).type, emptystr(41,1) + "Polyline")
+ 
+  T  
+assert_checkequal(c1.children(:).type, emptystr(1,41) + "Polyline")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(c1.visible, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(c1.user_data, [])
  ans  =
-
-  T
+ 
+  T  
 // Compount 2
 assert_checkequal(c2.parent.type, "Axes")
  ans  =
-
-  T
-assert_checkequal(c2.children(:).type, emptystr(3,1) + "Polyline")
+ 
+  T  
+assert_checkequal(c2.children(:).type, emptystr(1,3) + "Polyline")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(c2.visible, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(c2.user_data, [])
  ans  =
-
-  T
+ 
+  T  
 // Check Polylines in Compound 1
-assert_checkequal(p1(:).parent.type, emptystr(41,1) + "Compound")
+assert_checkequal(p1(:).parent.type, emptystr(1,41) + "Compound")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p1(:).children, [])
  ans  =
-
-  T
-assert_checkequal(p1(:).visible, emptystr(41,1) + "on")
+ 
+  T  
+assert_checkequal(p1(:).visible, emptystr(1,41) + "on")
  ans  =
-
-  T
+ 
+  T  
 // Don't know how to check those data's
 //assert_checkequal(p1.data, [demoData, sin(3 * demoData)])
-assert_checkequal(p1(:).closed, emptystr(41,1) + "off")
+assert_checkequal(p1(:).closed, emptystr(1,41) + "off")
  ans  =
-
-  T
-assert_checkequal(p1(:).line_mode, emptystr(41,1) + "on")
+ 
+  T  
+assert_checkequal(p1(:).line_mode, emptystr(1,41) + "on")
  ans  =
-
-  T
-assert_checkequal(p1(:).fill_mode, emptystr(41,1) + "off")
+ 
+  T  
+assert_checkequal(p1(:).fill_mode, emptystr(1,41) + "off")
  ans  =
-
-  T
-assert_checkequal(p1(:).line_style, ones(41,1))
+ 
+  T  
+assert_checkequal(p1(:).line_style, ones(1,41))
  ans  =
-
-  T
-assert_checkequal(p1(:).thickness, ones(41,1))
+ 
+  T  
+assert_checkequal(p1(:).thickness, ones(1,41))
  ans  =
-
-  T
-assert_checkequal(p1(:).arrow_size_factor, ones(41,1))
+ 
+  T  
+assert_checkequal(p1(:).arrow_size_factor, ones(1,41))
  ans  =
-
-  T
-assert_checkequal(p1(:).polyline_style, ones(41,1))
+ 
+  T  
+assert_checkequal(p1(:).polyline_style, ones(1,41))
  ans  =
-
-  T
-fg_colors = [36 ; 35 ; 34 ; 5 ; 33 ; 2 ; 37 ; 36 ; 35 ; 34 ; 5 ; 33 ;...
-             2 ; 37 ; 36 ; 35 ; 34 ; 5 ; 33 ; 2 ; 37 ; 36 ; 35 ; 34 ;...
-             5 ; 33 ; 2 ; 37 ; 36 ; 35 ; 34 ; 5 ; 33 ; 2 ; 37 ; 36 ;...
-             35 ; 34 ; 5 ; 33 ; 2];
+ 
+  T  
+fg_colors = [36 , 35 , 34 , 5 , 33 , 2 , 37 , 36 , 35 , 34 , 5 , 33 ,...
+             2 , 37 , 36 , 35 , 34 , 5 , 33 , 2 , 37 , 36 , 35 , 34 ,...
+             5 , 33 , 2 , 37 , 36 , 35 , 34 , 5 , 33 , 2 , 37 , 36 ,...
+             35 , 34 , 5 , 33 , 2];
 assert_checkequal(p1(:).foreground, fg_colors)
  ans  =
-
-  T
-assert_checkequal(p1(:).background, -2 * ones(41,1))
+ 
+  T  
+assert_checkequal(p1(:).background, -2 * ones(1,41))
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p1(:).interp_color_vector, [])
  ans  =
-
-  T
-assert_checkequal(p1(:).interp_color_mode, emptystr(41,1) + "off")
+ 
+  T  
+assert_checkequal(p1(:).interp_color_mode, emptystr(1,41) + "off")
  ans  =
-
-  T
-assert_checkequal(p1(:).mark_mode, emptystr(41,1) + "off")
+ 
+  T  
+assert_checkequal(p1(:).mark_mode, emptystr(1,41) + "off")
  ans  =
-
-  T
-assert_checkequal(p1(:).mark_style, zeros(41,1))
+ 
+  T  
+assert_checkequal(p1(:).mark_style, zeros(1,41))
  ans  =
-
-  T
-assert_checkequal(p1(:).mark_size_unit, emptystr(41,1) + "point")
+ 
+  T  
+assert_checkequal(p1(:).mark_size_unit, emptystr(1,41) + "point")
  ans  =
-
-  T
-assert_checkequal(p1(:).mark_size, zeros(41,1))
+ 
+  T  
+assert_checkequal(p1(:).mark_size, zeros(1,41))
  ans  =
-
-  T
-assert_checkequal(p1(:).mark_foreground, -1 * ones(41,1))
+ 
+  T  
+assert_checkequal(p1(:).mark_foreground, -1 * ones(1,41))
  ans  =
-
-  T
-assert_checkequal(p1(:).mark_background, -2 * ones(41,1))
+ 
+  T  
+assert_checkequal(p1(:).mark_background, -2 * ones(1,41))
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p1(:).x_shift, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p1(:).y_shift, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p1(:).z_shift, [])
  ans  =
-
-  T
-assert_checkequal(p1(:).bar_width, zeros(41,1))
+ 
+  T  
+assert_checkequal(p1(:).bar_width, zeros(1,41))
  ans  =
-
-  T
-assert_checkequal(p1(:).clip_state, emptystr(41,1) + "clipgrf")
+ 
+  T  
+assert_checkequal(p1(:).clip_state, emptystr(1,41) + "clipgrf")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p1(:).clip_box, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p1(:).user_data, [])
  ans  =
-
-  T
+ 
+  T  
 // Check Polylines in Compound 2
 demoData = [0:%pi/20:2*%pi]';
-assert_checkequal(p2(:).parent.type, emptystr(3,1) + "Compound")
+assert_checkequal(p2(:).parent.type, emptystr(1,3) + "Compound")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p2(:).children, [])
  ans  =
-
-  T
-assert_checkequal(p2(:).visible, emptystr(3,1) + "on")
+ 
+  T  
+assert_checkequal(p2(:).visible, emptystr(1,3) + "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p2(1).data, [demoData, abs(sin(demoData))])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p2(2).data, [demoData, cos(demoData)])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p2(3).data, [demoData, sin(demoData)])
  ans  =
-
-  T
-assert_checkequal(p2(:).closed, emptystr(3,1) + "off")
+ 
+  T  
+assert_checkequal(p2(:).closed, emptystr(1,3) + "off")
  ans  =
-
-  T
-assert_checkequal(p2(:).line_mode, ["on" ; "off" ; "on"])
+ 
+  T  
+assert_checkequal(p2(:).line_mode, ["on" , "off" , "on"])
  ans  =
-
-  T
-assert_checkequal(p2(:).fill_mode, emptystr(3,1) + "off")
+ 
+  T  
+assert_checkequal(p2(:).fill_mode, emptystr(1,3) + "off")
  ans  =
-
-  T
-assert_checkequal(p2(:).line_style, [2 ; 1 ; 4])
+ 
+  T  
+assert_checkequal(p2(:).line_style, [2 , 1 , 4])
  ans  =
-
-  T
-assert_checkequal(p2(:).thickness, ones(3,1))
+ 
+  T  
+assert_checkequal(p2(:).thickness, ones(1,3))
  ans  =
-
-  T
-assert_checkequal(p2(:).arrow_size_factor, ones(3,1))
+ 
+  T  
+assert_checkequal(p2(:).arrow_size_factor, ones(1,3))
  ans  =
-
-  T
-assert_checkequal(p2(:).polyline_style, ones(3,1))
+ 
+  T  
+assert_checkequal(p2(:).polyline_style, ones(1,3))
  ans  =
-
-  T
-assert_checkequal(p2(:).foreground, [6 ; 1 ; 5])
+ 
+  T  
+assert_checkequal(p2(:).foreground, [6 , 1 , 5])
  ans  =
-
-  T
-assert_checkequal(p2(:).background, -2 * ones(3,1))
+ 
+  T  
+assert_checkequal(p2(:).background, -2 * ones(1,3))
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p2(:).interp_color_vector, [])
  ans  =
-
-  T
-assert_checkequal(p2(:).interp_color_mode, emptystr(3,1) + "off")
+ 
+  T  
+assert_checkequal(p2(:).interp_color_mode, emptystr(1,3) + "off")
  ans  =
-
-  T
-assert_checkequal(p2(:).mark_mode, emptystr(3,1) + "on")
+ 
+  T  
+assert_checkequal(p2(:).mark_mode, emptystr(1,3) + "on")
  ans  =
-
-  T
-assert_checkequal(p2(:).mark_style, [9 ; 1 ; 9])
+ 
+  T  
+assert_checkequal(p2(:).mark_style, [9 , 1 , 9])
  ans  =
-
-  T
-assert_checkequal(p2(:).mark_size_unit, emptystr(3,1) + "point")
+ 
+  T  
+assert_checkequal(p2(:).mark_size_unit, emptystr(1,3) + "point")
  ans  =
-
-  T
-assert_checkequal(p2(:).mark_size, 6 * ones(3,1))
+ 
+  T  
+assert_checkequal(p2(:).mark_size, 6 * ones(1,3))
  ans  =
-
-  T
-assert_checkequal(p2(:).mark_foreground, [6 ; 4 ; 5])
+ 
+  T  
+assert_checkequal(p2(:).mark_foreground, [6 , 4 , 5])
  ans  =
-
-  T
-assert_checkequal(p2(:).mark_background, -2 * ones(3,1))
+ 
+  T  
+assert_checkequal(p2(:).mark_background, -2 * ones(1,3))
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p2(:).x_shift, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p2(:).y_shift, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p2(:).z_shift, [])
  ans  =
-
-  T
-assert_checkequal(p2(:).bar_width, zeros(3,1))
+ 
+  T  
+assert_checkequal(p2(:).bar_width, zeros(1,3))
  ans  =
-
-  T
-assert_checkequal(p2(:).clip_state, emptystr(3,1) + "clipgrf")
+ 
+  T  
+assert_checkequal(p2(:).clip_state, emptystr(1,3) + "clipgrf")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p2(:).clip_box, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(p2(:).user_data, [])
  ans  =
-
-  T
+ 
+  T  

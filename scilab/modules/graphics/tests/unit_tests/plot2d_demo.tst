@@ -52,7 +52,7 @@ assert_checkequal(a.auto_ticks, ["on" "on" "on"])
 //assert_checkequal(a.z_ticks.locations, [])
 assert_checkequal(a.box, "on")
 assert_checkequal(a.filled, "on")
-assert_checkequal(a.sub_ticks, [1, 0])
+assert_checkequal(a.sub_ticks, [4, 4])
 assert_checkequal(a.font_style, 6)
 assert_checkequal(a.font_size, 1)
 assert_checkequal(a.font_color, -1)
@@ -89,7 +89,7 @@ assert_checkequal(a.user_data, [])
 
 // Check Compound Object
 assert_checkequal(c.parent.type, "Axes")
-assert_checkequal(c.children(:).type, ["Polyline"; "Polyline"; "Polyline"])
+assert_checkequal(c.children(:).type, ["Polyline", "Polyline", "Polyline"])
 assert_checkequal(c.visible, "on")
 assert_checkequal(c.user_data, [])
 
