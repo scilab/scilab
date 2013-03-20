@@ -882,7 +882,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @param property the changed property.
      * @return true id the given changed property make the figure out of date.
      */
-    private boolean needUpdate(String id, int property) {
+    protected boolean needUpdate(String id, int property) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         int objectType = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
         if ((object != null) && isFigureChild(id)

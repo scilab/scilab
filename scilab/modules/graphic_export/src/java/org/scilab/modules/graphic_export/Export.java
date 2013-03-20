@@ -364,6 +364,7 @@ public class Export {
 
             @Override
             public void updateObject(String id, int property) {
+                needUpdate(id, property);
                 if (property == GraphicObjectProperties.__GO_AXES_SIZE__) {
                     Integer[] size = getFigure().getAxesSize();
                     if (size[0] != dims[0] || size[1] != dims[1]) {
