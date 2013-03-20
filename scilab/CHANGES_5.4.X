@@ -181,6 +181,9 @@ Xcos
 * Bug #12351 fixed - "Save as" a diagram to a selected xcos file type, saved
                      it as zcos.
 
+* Bug #12350 fixed - Under Windows Explorer, opening a xcos/zcos file
+                     did not try to find an existing instance of Scilab.
+
 * Bug #12352 fixed - Critical error when closing a scope windows during
                      simulation fixed.
 
