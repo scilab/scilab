@@ -248,7 +248,7 @@ bool ImplicitList::compute()
             // othe way to compute
 
             // nan value
-            if (isnan(dblStart) || isnan(dblStep) || isnan(dblEnd))
+            if (ISNAN(dblStart) || ISNAN(dblStep) || ISNAN(dblEnd))
             {
                 m_iSize = -1;
                 m_bComputed = true;
@@ -256,9 +256,7 @@ bool ImplicitList::compute()
             }
 
             // no finite values
-            if ( isfinite(dblStart)  == false ||
-                    isfinite(dblStep)   == false ||
-                    isfinite(dblEnd)    == false)
+            if ( finite(dblStart) == 0 || finite(dblStep) == 0 || finite(dblEnd) == 0)
             {
                 if (dblStep > 0 && dblStart < dblEnd ||
                         dblStep < 0 && dblStart > dblEnd)
