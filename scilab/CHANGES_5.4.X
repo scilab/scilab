@@ -120,6 +120,8 @@ Xcos
 
 * Avoid some scopes blink on simulation.
 
+* Bug #5040 fixed - fit diagram to view did not work with a single block.
+
 * Bug #9074 fixed - Calling a function on the context gave a warning.
 
 * Bug #10040 fixed - VARIABLE_DELAY documentation does not fully describe the
