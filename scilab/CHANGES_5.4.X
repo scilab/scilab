@@ -333,6 +333,8 @@ Bug fixes
 
 * Bug #11639 fixed - Uninstall removed all scilab registry information.
 
+* Bug #11663 fixed - Help pages of lattp and lattn were incomplete.
+
 * Bug #11664 fixed - Help page of lev had no example.
 
 * Bug #11665 fixed - Help page of lindquist had no example.
