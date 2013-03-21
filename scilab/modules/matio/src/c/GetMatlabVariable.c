@@ -16,23 +16,23 @@
 #include "sci_types.h"
 #include "api_scilab.h"
 
-matvar_t *GetMatlabVariable(int iVar, const char *name, int matfile_version, int * parent, int item_position)
+matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
     int * var_addr = NULL;
     int var_type;
     SciErr sciErr;
     matvar_t * tmp_res = NULL;
 
-    if (parent==NULL)
+    if (parent == NULL)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return NULL;
         }
         sciErr = getVarType(pvApiCtx, var_addr, &var_type);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return NULL;
@@ -41,54 +41,54 @@ matvar_t *GetMatlabVariable(int iVar, const char *name, int matfile_version, int
     else
     {
         sciErr = getListItemAddress(pvApiCtx, parent, item_position, &var_addr);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return NULL;
         }
         sciErr = getVarType(pvApiCtx, var_addr, &var_type);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return NULL;
         }
     }
 
-    switch(var_type)
+    switch (var_type)
     {
-    case sci_matrix:
-        tmp_res = GetDoubleVariable(iVar, name, matfile_version, parent, item_position);
-        break;
-    case sci_strings:
-        tmp_res = GetCharVariable(iVar, name, parent, item_position);
-        break;
-    case sci_ints:
-        tmp_res = GetIntegerVariable(iVar, name, parent, item_position);
-        break;
-    case sci_mlist:
-        /* Only cells structs and hypermatrices are managed */
-        if (item_position > 0)
-        {
-            tmp_res = GetMlistVariable(iVar, name, matfile_version, parent, item_position);
-        }
-        else
-        {
-            tmp_res = GetMlistVariable(iVar, name, matfile_version, parent, -1);
-        }
-        break;
-    case sci_sparse:
-        if (item_position > 0)
-        {
-            tmp_res = GetSparseVariable(iVar, name, parent, item_position);
-        }
-        else
-        {
-            tmp_res = GetSparseVariable(iVar, name, parent, -1);
-        }
-        break;
-    default:
-        sciprint("Do not known how to get variable of type %d\n", var_type);
-        tmp_res = NULL;
+        case sci_matrix:
+            tmp_res = GetDoubleVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
+            break;
+        case sci_strings:
+            tmp_res = GetCharVariable(pvApiCtx, iVar, name, parent, item_position);
+            break;
+        case sci_ints:
+            tmp_res = GetIntegerVariable(pvApiCtx, iVar, name, parent, item_position);
+            break;
+        case sci_mlist:
+            /* Only cells structs and hypermatrices are managed */
+            if (item_position > 0)
+            {
+                tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
+            }
+            else
+            {
+                tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, -1);
+            }
+            break;
+        case sci_sparse:
+            if (item_position > 0)
+            {
+                tmp_res = GetSparseVariable(pvApiCtx, iVar, name, parent, item_position);
+            }
+            else
+            {
+                tmp_res = GetSparseVariable(pvApiCtx, iVar, name, parent, -1);
+            }
+            break;
+        default:
+            sciprint("Do not known how to get variable of type %d\n", var_type);
+            tmp_res = NULL;
     }
 
     return tmp_res;
