@@ -32,60 +32,13 @@
                         matrix containing the <literal>Rk</literal>'s (<literal>d*d</literal> matrices for a d-dimensional process).It must be given the following way
                     </para>
                     <para>
-                        <inlinemediaobject>
-                            <imageobject>
-                                <imagedata>
-                                    <mml:math>
-                                        <mml:semantics>
-                                            <mml:mfenced mml:close=")" mml:open="(">
-                                                <mml:mtable>
-                                                    <mml:mtr>
-                                                        <mml:mtd>
-                                                            <mml:msub>
-                                                                <mml:mi>R</mml:mi>
-                                                                <mml:mn>0</mml:mn>
-                                                            </mml:msub>
-                                                        </mml:mtd>
-                                                    </mml:mtr>
-                                                    <mml:mtr>
-                                                        <mml:mtd>
-                                                            <mml:msub>
-                                                                <mml:mi>R</mml:mi>
-                                                                <mml:mn>1</mml:mn>
-                                                            </mml:msub>
-                                                        </mml:mtd>
-                                                    </mml:mtr>
-                                                    <mml:mtr>
-                                                        <mml:mtd>
-                                                            <mml:msub>
-                                                                <mml:mi>R</mml:mi>
-                                                                <mml:mn>2</mml:mn>
-                                                            </mml:msub>
-                                                        </mml:mtd>
-                                                    </mml:mtr>
-                                                    <mml:mtr>
-                                                        <mml:mtd>
-                                                            <mml:mo mml:stretchy="false">⋮</mml:mo>
-                                                        </mml:mtd>
-                                                    </mml:mtr>
-                                                    <mml:mtr>
-                                                        <mml:mtd>
-                                                            <mml:msub>
-                                                                <mml:mi>R</mml:mi>
-                                                                <mml:mi mml:fontstyle="italic">nlags</mml:mi>
-                                                            </mml:msub>
-                                                        </mml:mtd>
-                                                    </mml:mtr>
-                                                </mml:mtable>
-                                            </mml:mfenced>
-                                            <mml:annotation mml:encoding="StarMath 5.0"> left ( matrix{R_0 ## R_1 
-                                            R_2 ## dotsvert ## R_nlags } right )
-                                            </mml:annotation>
-                                        </mml:semantics>
-                                    </mml:math>
-                                </imagedata>
-                            </imageobject>
-                        </inlinemediaobject>
+                        <latex>
+                            \begin{eqnarray}
+                            \begin{pmatrix}
+                            R_0\\R_1\\R_2\\ \vdots \\R_{nlags}
+                            \end{pmatrix}
+                            \end{eqnarray}
+                        </latex>
                     </para>
                 </listitem>
             </varlistentry>

@@ -32,60 +32,13 @@
                         matrix containing the <literal>Rk</literal>'s (<literal>d*d</literal> matrices for a d-dimensional process).It must be given the following way
                     </para>
                     <para>
-                        <inlinemediaobject>
-                            <imageobject>
-                                <imagedata>
-                                    <mml:math>
-                                        <mml:semantics>
-                                            <mml:mfenced mml:close=")" mml:open="(">
-                                                <mml:mtable>
-                                                    <mml:mtr>
-                                                        <mml:mtd>
-                                                            <mml:msub>
-                                                                <mml:mi>R</mml:mi>
-                                                                <mml:mn>0</mml:mn>
-                                                            </mml:msub>
-                                                        </mml:mtd>
-                                                    </mml:mtr>
-                                                    <mml:mtr>
-                                                        <mml:mtd>
-                                                            <mml:msub>
-                                                                <mml:mi>R</mml:mi>
-                                                                <mml:mn>1</mml:mn>
-                                                            </mml:msub>
-                                                        </mml:mtd>
-                                                    </mml:mtr>
-                                                    <mml:mtr>
-                                                        <mml:mtd>
-                                                            <mml:msub>
-                                                                <mml:mi>R</mml:mi>
-                                                                <mml:mn>2</mml:mn>
-                                                            </mml:msub>
-                                                        </mml:mtd>
-                                                    </mml:mtr>
-                                                    <mml:mtr>
-                                                        <mml:mtd>
-                                                            <mml:mo mml:stretchy="false">⋮</mml:mo>
-                                                        </mml:mtd>
-                                                    </mml:mtr>
-                                                    <mml:mtr>
-                                                        <mml:mtd>
-                                                            <mml:msub>
-                                                                <mml:mi>R</mml:mi>
-                                                                <mml:mi mml:fontstyle="italic">nlags</mml:mi>
-                                                            </mml:msub>
-                                                        </mml:mtd>
-                                                    </mml:mtr>
-                                                </mml:mtable>
-                                            </mml:mfenced>
-                                            <mml:annotation mml:encoding="StarMath 5.0"> left ( matrix{R_0 ## R_1 
-                                            R_2 ## dotsvert ## R_nlags } right )
-                                            </mml:annotation>
-                                        </mml:semantics>
-                                    </mml:math>
-                                </imagedata>
-                            </imageobject>
-                        </inlinemediaobject>
+                        <latex>
+                            \begin{eqnarray}
+                            \begin{pmatrix}
+                            R_0\\R_1\\R_2\\ \vdots \\R_{nlags}
+                            \end{pmatrix}
+                            \end{eqnarray}
+                        </latex>
                     </para>
                 </listitem>
             </varlistentry>
@@ -104,257 +57,24 @@
             the following system (normal equations), i.e. identifies
             the AR part (poles) of a vector ARMA(n,p) process,
         </para>
-
+            <latex>
+                \begin{eqnarray}
+                \begin{pmatrix}
+                I&amp;-A_1&amp;\cdots&amp;-A_n
+                \end{pmatrix}
+                \ast
+                \begin{pmatrix}
+                R_{p+1}&amp;R_{p+2}&amp;\cdots&amp;R_{p+n} \\
+                R_p&amp;R_{p+1}&amp;\cdots&amp;R_{p+n-1} \\
+                R_{p+n-1}&amp;R_p&amp;\cdots&amp;R_{p+n-2} \\
+                \vdots&amp;\vdots&amp;\cdots&amp;\vdots \\
+                R_{p+1-n}&amp;R_{p+2-n}&amp;\cdots&amp;R_p
+                \end{pmatrix}
+                = 0
+                \end{eqnarray}
+            </latex>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata>
-                        <mml:math>
-                            <mml:semantics>
-                                <mml:mrow>
-                                    <mml:mrow>
-                                        <mml:mfenced mml:close="" mml:open="">
-                                            <mml:mtable>
-                                                <mml:mtr>
-                                                    <mml:mtd>
-                                                        <mml:mi>I</mml:mi>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:mrow>
-                                                            <mml:mo mml:stretchy="false">−</mml:mo>
-                                                            <mml:msub>
-                                                                <mml:mi>A</mml:mi>
-                                                                <mml:mn>1</mml:mn>
-                                                            </mml:msub>
-                                                        </mml:mrow>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:mo mml:stretchy="false">⋯</mml:mo>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:mrow>
-                                                            <mml:mo mml:stretchy="false">−</mml:mo>
-                                                            <mml:msub>
-                                                                <mml:mi>A</mml:mi>
-                                                                <mml:mi>n</mml:mi>
-                                                            </mml:msub>
-                                                        </mml:mrow>
-                                                    </mml:mtd>
-                                                </mml:mtr>
-                                            </mml:mtable>
-                                        </mml:mfenced>
-                                        <mml:mo mml:stretchy="false">∗</mml:mo>
-                                        <mml:mfenced mml:close="" mml:open="">
-                                            <mml:mtable>
-                                                <mml:mtr>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mn>1</mml:mn>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mn>2</mml:mn>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:mo mml:stretchy="false">⋯</mml:mo>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mi>n</mml:mi>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                </mml:mtr>
-                                                <mml:mtr>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mn>p</mml:mn>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mn>1</mml:mn>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:mo mml:stretchy="false">⋯</mml:mo>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mi>n</mml:mi>
-                                                                <mml:mo mml:stretchy="false">−</mml:mo>
-                                                                <mml:mn>1</mml:mn>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                </mml:mtr>
-                                                <mml:mtr>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mi>n</mml:mi>
-                                                                <mml:mo mml:stretchy="false">−</mml:mo>
-                                                                <mml:mn>1</mml:mn>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mn>p</mml:mn>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:mo mml:stretchy="false">⋯</mml:mo>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mi>n</mml:mi>
-                                                                <mml:mo mml:stretchy="false">−</mml:mo>
-                                                                <mml:mn>2</mml:mn>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                </mml:mtr>
-                                                <mml:mtr>
-                                                    <mml:mtd>
-                                                        <mml:mo mml:stretchy="false">⋮</mml:mo>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:mo mml:stretchy="false">⋮</mml:mo>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:mo mml:stretchy="false">⋯</mml:mo>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:mo mml:stretchy="false">⋮</mml:mo>
-                                                    </mml:mtd>
-                                                </mml:mtr>
-                                                <mml:mtr>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mn>2</mml:mn>
-                                                                <mml:mo mml:stretchy="false">−</mml:mo>
-                                                                <mml:mi>n</mml:mi>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mn>3</mml:mn>
-                                                                <mml:mo mml:stretchy="false">−</mml:mo>
-                                                                <mml:mi>n</mml:mi>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:mo mml:stretchy="false">⋯</mml:mo>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mn>1</mml:mn>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                </mml:mtr>
-                                                <mml:mtr>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mn>1</mml:mn>
-                                                                <mml:mo mml:stretchy="false">−</mml:mo>
-                                                                <mml:mi>n</mml:mi>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mrow>
-                                                                <mml:mi>p</mml:mi>
-                                                                <mml:mo mml:stretchy="false">+</mml:mo>
-                                                                <mml:mn>2</mml:mn>
-                                                                <mml:mo mml:stretchy="false">−</mml:mo>
-                                                                <mml:mi>n</mml:mi>
-                                                            </mml:mrow>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:mo mml:stretchy="false">⋯</mml:mo>
-                                                    </mml:mtd>
-                                                    <mml:mtd>
-                                                        <mml:msub>
-                                                            <mml:mi>R</mml:mi>
-                                                            <mml:mn>p</mml:mn>
-                                                        </mml:msub>
-                                                    </mml:mtd>
-                                                </mml:mtr>
-                                            </mml:mtable>
-                                        </mml:mfenced>
-                                    </mml:mrow>
-                                    <mml:mo mml:stretchy="false">=</mml:mo>
-                                    <mml:mn>0</mml:mn>
-                                </mml:mrow>
-                                <mml:annotation mml:encoding="StarMath 5.0">left ( matrix{I # -A_1
-                                    # dotsaxis #-A_n} right )* left ( matrix{R_{p+1} # R_{p+2} # dotsaxis #R_{p+n}
-                                    ## R_p # R_{p+1} # dotsaxis #R_{p+n-1}## R_{-1} # R_p # dotsaxis
-                                    #R_{p+n-2}## dotsvert # dotsvert# dotsaxis # dotsvert## R_{p+2-n} #
-                                    R_{p+3-n} # dotsaxis #R_{p+1}## R_{p+1-n} # R_{p+2-n} # dotsaxis #R_{p}
-                                    }right ) = 0
-                                </mml:annotation>
-                            </mml:semantics>
-                        </mml:math>
-                    </imagedata>
-                </imageobject>
-            </inlinemediaobject>
+
         </para>
 
         <para>
