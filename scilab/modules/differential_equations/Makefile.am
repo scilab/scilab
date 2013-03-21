@@ -89,6 +89,7 @@ sci_gateway/c/gw_differential_equations2.c \
 sci_gateway/c/gw_differential_equations3.c \
 sci_gateway/c/gw_differential_equations4.c \
 sci_gateway/c/sci_bvode.c \
+sci_gateway/c/Ex-daskr.c \
 sci_gateway/c/gw_differential_equations6.c
 
 GATEWAY_FORTRAN_SOURCES = \
@@ -123,7 +124,6 @@ sci_gateway/fortran/Ex-impl.f \
 sci_gateway/fortran/Ex-int2d.f \
 sci_gateway/fortran/Ex-int3d.f \
 sci_gateway/fortran/Ex-intg.f \
-sci_gateway/fortran/Ex-daskr.f \
 sci_gateway/fortran/Ex-dasrt.f \
 sci_gateway/fortran/Ex-dassl.f \
 sci_gateway/fortran/Ex-bvode.f \

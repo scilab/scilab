@@ -176,6 +176,7 @@ am__objects_3 = libscidifferential_equations_la-sci_int2d.lo \
 	libscidifferential_equations_la-gw_differential_equations3.lo \
 	libscidifferential_equations_la-gw_differential_equations4.lo \
 	libscidifferential_equations_la-sci_bvode.lo \
+	libscidifferential_equations_la-Ex-daskr.lo \
 	libscidifferential_equations_la-gw_differential_equations6.lo
 am__objects_4 = sci_f_daskr.lo sci_f_dasrt.lo sci_f_feval.lo \
 	sci_f_odedc.lo sci_f_bvode.lo sci_f_impl.lo sci_f_dassl.lo \
@@ -183,8 +184,8 @@ am__objects_4 = sci_f_daskr.lo sci_f_dasrt.lo sci_f_feval.lo \
 	bresid.lo bjac.lo bjacd.lo badd.lo bj2.lo bfeval.lo int2d.lo \
 	bint2d.lo bint3d.lo bintg.lo int3d.lo intg.lo Ex-odedc.lo \
 	Ex-ode.lo Ex-impl.lo Ex-int2d.lo Ex-int3d.lo Ex-intg.lo \
-	Ex-daskr.lo Ex-dasrt.lo Ex-dassl.lo Ex-bvode.lo bbvode.lo \
-	bpsold.lo bpjacd.lo
+	Ex-dasrt.lo Ex-dassl.lo Ex-bvode.lo bbvode.lo bpsold.lo \
+	bpjacd.lo
 am_libscidifferential_equations_la_OBJECTS = $(am__objects_3) \
 	$(am__objects_4)
 libscidifferential_equations_la_OBJECTS =  \
@@ -569,6 +570,7 @@ sci_gateway/c/gw_differential_equations2.c \
 sci_gateway/c/gw_differential_equations3.c \
 sci_gateway/c/gw_differential_equations4.c \
 sci_gateway/c/sci_bvode.c \
+sci_gateway/c/Ex-daskr.c \
 sci_gateway/c/gw_differential_equations6.c
 
 GATEWAY_FORTRAN_SOURCES = \
@@ -603,7 +605,6 @@ sci_gateway/fortran/Ex-impl.f \
 sci_gateway/fortran/Ex-int2d.f \
 sci_gateway/fortran/Ex-int3d.f \
 sci_gateway/fortran/Ex-intg.f \
-sci_gateway/fortran/Ex-daskr.f \
 sci_gateway/fortran/Ex-dasrt.f \
 sci_gateway/fortran/Ex-dassl.f \
 sci_gateway/fortran/Ex-bvode.f \
@@ -818,6 +819,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-int3dtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-intgtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-rk4.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-Ex-daskr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations3.Plo@am__quote@
@@ -1019,6 +1021,13 @@ libscidifferential_equations_la-sci_bvode.lo: sci_gateway/c/sci_bvode.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_bvode.c' object='libscidifferential_equations_la-sci_bvode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-sci_bvode.lo `test -f 'sci_gateway/c/sci_bvode.c' || echo '$(srcdir)/'`sci_gateway/c/sci_bvode.c
+
+libscidifferential_equations_la-Ex-daskr.lo: sci_gateway/c/Ex-daskr.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-Ex-daskr.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-Ex-daskr.Tpo -c -o libscidifferential_equations_la-Ex-daskr.lo `test -f 'sci_gateway/c/Ex-daskr.c' || echo '$(srcdir)/'`sci_gateway/c/Ex-daskr.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-Ex-daskr.Tpo $(DEPDIR)/libscidifferential_equations_la-Ex-daskr.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/Ex-daskr.c' object='libscidifferential_equations_la-Ex-daskr.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-Ex-daskr.lo `test -f 'sci_gateway/c/Ex-daskr.c' || echo '$(srcdir)/'`sci_gateway/c/Ex-daskr.c
 
 libscidifferential_equations_la-gw_differential_equations6.lo: sci_gateway/c/gw_differential_equations6.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-gw_differential_equations6.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-gw_differential_equations6.Tpo -c -o libscidifferential_equations_la-gw_differential_equations6.lo `test -f 'sci_gateway/c/gw_differential_equations6.c' || echo '$(srcdir)/'`sci_gateway/c/gw_differential_equations6.c
@@ -1302,9 +1311,6 @@ Ex-int3d.lo: sci_gateway/fortran/Ex-int3d.f
 
 Ex-intg.lo: sci_gateway/fortran/Ex-intg.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-intg.lo `test -f 'sci_gateway/fortran/Ex-intg.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-intg.f
-
-Ex-daskr.lo: sci_gateway/fortran/Ex-daskr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-daskr.lo `test -f 'sci_gateway/fortran/Ex-daskr.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-daskr.f
 
 Ex-dasrt.lo: sci_gateway/fortran/Ex-dasrt.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-dasrt.lo `test -f 'sci_gateway/fortran/Ex-dasrt.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-dasrt.f

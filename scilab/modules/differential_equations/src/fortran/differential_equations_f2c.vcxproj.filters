@@ -120,9 +120,6 @@
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-bvode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\Ex-daskr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-dasrt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -309,6 +306,9 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_odedc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="daux.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="ainvg.f">
@@ -380,12 +380,6 @@
     <f2c_rule Include="dcutet.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="ddaskr.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="daux.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="ddasrt.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -408,9 +402,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-bvode.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-daskr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-dasrt.f">
@@ -578,9 +569,6 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_bvode.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_daskr.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dasrt.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -597,6 +585,15 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_odedc.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="ddaskr.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_daskr.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="daux.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>
