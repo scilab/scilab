@@ -603,7 +603,7 @@ const std::wstring* getStructNameFromExp(const Exp* _pExp)
     else
     {
         std::wostringstream os;
-        os << L"Unknow expression";
+        os << _W("Unknow expression");
         //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
         throw ScilabError(os.str(), 999, _pExp->location_get());
     }
@@ -799,7 +799,7 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                         if (ret != Callable::OK)
                         {
                             std::wostringstream os;
-                            os << L"unable to update handle";
+                            os << _W("unable to update handle");
                             throw ScilabError(os.str(), 999, pField->location_get());
                         }
 
@@ -869,14 +869,14 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                     if (ret != Callable::OK)
                     {
                         std::wostringstream os;
-                        os << L"unable to update handle";
+                        os << _W("unable to update handle");
                         throw ScilabError(os.str(), 999, pField->location_get());
                     }
                 }
                 else
                 {
                     std::wostringstream os;
-                    os << L"impossible !";
+                    os << _W("impossible !");
                     throw ScilabError(os.str(), 999, pField->location_get());
                 }
 
@@ -1088,7 +1088,7 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
     else
     {
         std::wostringstream os;
-        os << L"Unknown expression";
+        os << _W("Unknown expression");
         //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
         throw ScilabError(os.str(), 999, _pExp->location_get());
     }

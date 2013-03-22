@@ -59,7 +59,7 @@ void visitprivate(const MatrixExp &e)
                 if (pIT->isGenericType() == false)
                 {
                     std::wostringstream os;
-                    os << L"unable to concatenate\n";
+                    os << _W("unable to concatenate\n");
                     throw ScilabError(os.str(), 999, (*col)->location_get());
                 }
 
@@ -93,7 +93,7 @@ void visitprivate(const MatrixExp &e)
                 if (pGT->getDims() != 2 || pGT->getRows() != pGTResult->getRows())
                 {
                     std::wostringstream os;
-                    os << L"inconsistent row/column dimensions\n";
+                    os << _W("inconsistent row/column dimensions\n");
                     throw ScilabError(os.str(), 999, (*row)->location_get());
                 }
 
@@ -140,7 +140,7 @@ void visitprivate(const MatrixExp &e)
             if (pGT->getCols() != pGTResult->getCols())
             {
                 std::wostringstream os;
-                os << L"inconsistent row/column dimensions\n";
+                os << _W("inconsistent row/column dimensions\n");
                 throw ScilabError(os.str(), 999, (*e.lines_get().begin())->location_get());
             }
 

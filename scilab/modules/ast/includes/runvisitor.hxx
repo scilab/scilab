@@ -275,7 +275,7 @@ public :
             if (iColMax != static_cast<int>((*row)->columns_get().size()))
             {
                 std::wostringstream os;
-                os << L"inconsistent row/column dimensions\n";
+                os << _W("inconsistent row/column dimensions\n");
                 //os << ((Location)(*row)->location_get()).location_getString() << std::endl;
                 throw ScilabError(os.str(), 999, (*row)->location_get());
             }
