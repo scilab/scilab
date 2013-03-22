@@ -13,11 +13,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2ps" xml:lang="en">
     <refnamediv>
         <refname>xs2ps</refname>
-        <refpurpose>Export graphics to PS.</refpurpose>
+        <refpurpose>export graphics to PS</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>xs2ps(win_num, file_name [,orientation])
+        <synopsis>
+            xs2ps(win_num, file_name [,orientation])
             xs2ps(fig, file_name [,orientation])
         </synopsis>
     </refsynopsisdiv>
@@ -27,7 +28,7 @@
             <varlistentry>
                 <term>win_num</term>
                 <listitem>
-                    <para>integer, id of the figure to export.</para>
+                    <para>an integer, ID of the figure to export.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -39,14 +40,17 @@
             <varlistentry>
                 <term>file_name</term>
                 <listitem>
-                    <para>string, name of the exported file.</para>
+                    <para>a string, name of the exported file.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orientation</term>
                 <listitem>
-                    <para>optional character, with possible values 'portrait' or
-                        'landscape'. The default value is 'portrait'.
+                    <para>
+                        an optional string, with possible values 
+                        <literal>'portrait'</literal> or
+                        <literal>'landscape'</literal>. The default 
+                        value is <literal>'portrait'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -55,14 +59,15 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xs2ps</literal> exports the display of a graphic window
-            into a PostScript file.
+            <function>xs2ps</function> exports the display of a graphic 
+            window into a PostScript file.
         </para>
-        <para>Note that the generated Postscript file cannot be direcly printed
-            since it requires a header file. The function <literal>xs2eps</literal>
-            can be used to directly produce an encapsulated Postscript file with a
-            header.
-        </para>
+        <note>
+            Note that the generated Postscript file cannot be directly 
+            printed since it requires a header file. The function 
+            <function>xs2eps</function> can be used to directly produce 
+            an encapsulated Postscript file with a header.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -77,7 +82,9 @@ xs2ps(0,filename);
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
-            <member>figure_size property</member>
+            <member>
+                <literal>figure_size</literal> property
+            </member>
             <member>
                 <link linkend="toprint">toprint</link>
             </member>

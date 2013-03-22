@@ -6,18 +6,19 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2eps" xml:lang="en">
     <refnamediv>
         <refname>xs2eps</refname>
-        <refpurpose>Export graphics to EPS.</refpurpose>
+        <refpurpose>export graphics to EPS</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>xs2eps(win_num, file_name [,orientation])
+        <synopsis>
+            xs2eps(win_num, file_name [,orientation])
             xs2eps(fig, file_name [,orientation])
         </synopsis>
     </refsynopsisdiv>
@@ -27,7 +28,7 @@
             <varlistentry>
                 <term>win_num</term>
                 <listitem>
-                    <para>integer, id of the figure to export.</para>
+                    <para>an integer, ID of the figure to export.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -39,14 +40,15 @@
             <varlistentry>
                 <term>file_name</term>
                 <listitem>
-                    <para>string, name of the exported file.</para>
+                    <para>a string, name of the exported file.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orientation</term>
                 <listitem>
-                    <para>optional character, with possible values 'portrait' or
-                        'landscape'. The default value is 'portrait'.
+                    <para>
+                        an optional string, with possible values <literal>'portrait'</literal> or
+                        <literal>'landscape'</literal>. The default value is <literal>'portrait'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -55,8 +57,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xs2eps</literal> exports the display of a graphic window
-            into a complete Encapsulated PostScript file.
+            <function>xs2eps</function> exports the display of a 
+            graphic window into a complete Encapsulated PostScript file.
         </para>
     </refsection>
     <refsection>
@@ -72,7 +74,7 @@ xs2eps(gcf(),'foo.eps')
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
-            <member>figure_size property</member>
+            <member><literal>figure_size</literal> property</member>
             <member>
                 <link linkend="toprint">toprint</link>
             </member>

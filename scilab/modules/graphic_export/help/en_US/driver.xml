@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * Copyright (C) - Scilab Enterprises - Clement David
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -14,12 +14,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="driver">
     <refnamediv>
         <refname>driver</refname>
-        <refpurpose>Select a graphics driver</refpurpose>
+        <refpurpose>select a graphics driver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            current_driver=driver()
+            current_driver = driver()
             driver(driver_name)
             previous_driver = driver(driver_name)
         </synopsis>
@@ -30,15 +30,17 @@
             <varlistentry>
                 <term>driver_name</term>
                 <listitem>
-                    <para>string, driver to be selected (case insensitive).</para>
+                    <para>
+                        a string, driver to be selected (case insensitive).
+                    </para>
                 </listitem>
                 <term>current_driver</term>
                 <listitem>
-                    <para>string, selected driver.</para>
+                    <para>a string, selected driver.</para>
                 </listitem>
                 <term>previous_driver</term>
                 <listitem>
-                    <para>string, driver previously selected.</para>
+                    <para>a string, driver previously selected.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -46,9 +48,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            <para>This function provides a switch between the different drivers for export or display.</para>
-            <para>Direct rendering on the screen or off-screen export without any graphical user interface. This is available in the mode scilab-adv-cli (or also called -nw)</para>
-            <para>Used without any input argument, the driver function returns the current graphics driver name.</para>
+            This function provides a switch between the different
+            drivers for export or display.
+        </para>
+        <para>
+            Direct rendering on the screen or off-screen export
+            without any graphical user interface. This is available
+            in the mode <literal>scilab-adv-cli</literal> (or also
+            called <literal>-nw</literal>)
+        </para>
+        <para>
+            Used without any input argument, the <function>driver</function>
+            function returns the current graphics driver name.
         </para>
     </refsection>
     <refsection>
@@ -94,7 +105,8 @@
     <refsection>
         <title>Supported bitmap formats</title>
         <para>
-            The selected driver can be one of the following vectorial bitmap:
+            The selected driver can be one of the following vectorial
+            bitmap:
         </para>
         <variablelist>
             <varlistentry>
@@ -132,9 +144,11 @@
     <refsection>
         <title>Remark</title>
         <para>
-            To redirect the graphic output to a GIF file (which will be written in the current directory), you can use the following example:
+            To redirect the graphic output to a GIF file (which will be
+            written in the current directory), you can use the
+            following example:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 previous_driver = driver('GIF');
 xinit(TMPDIR+'/mygiffile.gif');
 plot3d();
@@ -142,10 +156,12 @@ xend();
 driver(previous_driver); // Bring back the previous behavior of Scilab
  ]]></programlisting>
         <para>
-            For example if one has generated a sequence of GIF files named <literal>img*.gif</literal> it is possible to build an animated GIF file (named anim.gif) by
+            For example if one has generated a sequence of GIF files
+            named <literal>img*.gif</literal> it is possible to build
+            an animated GIF file (named <literal>anim.gif</literal>) by
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
-convert -delay 10  img*.gif anim.gif  
+        <programlisting role="no-scilab-exec"><![CDATA[
+convert -delay 10  img*.gif anim.gif
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -166,12 +182,24 @@ convert -delay 10  img*.gif anim.gif
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                     <itemizedlist>
-                        <listitem>Return the previous driver value.</listitem>
-                        <listitem>Enable off-screen. Scilab exports graphics without opening a new window.</listitem>
-                        <listitem>Support of new bitmap formats: PNG, JPEG and BMP.</listitem>
-                        <listitem>Support of new vectorial formats: PDF and SVG.</listitem>
-                        <listitem>The function accepts lower and upper case argument.</listitem>
-                        <listitem>Fig driver is no longer supported.</listitem>
+                        <listitem>
+                            Return the previous driver value.
+                        </listitem>
+                        <listitem>
+                            Enable off-screen. Scilab exports graphics without opening a new window.
+                        </listitem>
+                        <listitem>
+                            Support of new bitmap formats: PNG, JPEG and BMP.
+                        </listitem>
+                        <listitem>
+                            Support of new vectorial formats: PDF and SVG.
+                        </listitem>
+                        <listitem>
+                            The function accepts lower and upper case argument.
+                        </listitem>
+                        <listitem>
+                            Fig driver is no longer supported.
+                        </listitem>
                     </itemizedlist>
                 </revremark>
             </revision>

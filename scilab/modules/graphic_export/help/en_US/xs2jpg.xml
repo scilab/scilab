@@ -6,18 +6,19 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2jpg" xml:lang="en">
     <refnamediv>
         <refname>xs2jpg</refname>
-        <refpurpose>Export graphics to JPG.</refpurpose>
+        <refpurpose>export graphics to JPG</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>xs2jpg(win_num, file_name [, compression_quality])
+        <synopsis>
+            xs2jpg(win_num, file_name [, compression_quality])
             xs2jpg(fig, file_name [, compression_quality])
         </synopsis>
     </refsynopsisdiv>
@@ -27,7 +28,9 @@
             <varlistentry>
                 <term>win_num</term>
                 <listitem>
-                    <para>integer, id of the figure to export.</para>
+                    <para>
+                        an integer, ID of the figure to export.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -39,14 +42,18 @@
             <varlistentry>
                 <term>file_name</term>
                 <listitem>
-                    <para>string, name of the exported file.</para>
+                    <para>a string, name of the exported file.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>compression_quality</term>
                 <listitem>
-                    <para>real, a number between 0 and 1 (best quality). The default compression quality is set to 0.95.</para>
-                    <para>Argument available since Scilab 5.3.2</para>
+                    <para>
+                        a real scalar, a number between 0 and 1 (best quality). The default compression quality is set to 0.95.
+                    </para>
+                    <note>
+                        Argument is available since Scilab 5.3.2.
+                    </note>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -54,7 +61,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xs2jpg</literal> exports the display of a graphic window into a JPG file.
+            <function>xs2jpg</function> exports the display of a graphic window into a JPG file.
         </para>
     </refsection>
     <refsection>
@@ -72,6 +79,12 @@ xs2jpg(gcf(),'foo_1.jpg', 1); // best quality
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="toprint">toprint</link>
+            </member>
+            <member>
+                <link linkend="printfigure">printfigure</link>
+            </member>
             <member>
                 <link linkend="xs2bmp">xs2bmp</link>
             </member>

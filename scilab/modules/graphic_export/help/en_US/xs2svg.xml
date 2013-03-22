@@ -13,11 +13,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2svg" xml:lang="en">
     <refnamediv>
         <refname>xs2svg</refname>
-        <refpurpose>Export graphics to SVG.</refpurpose>
+        <refpurpose>export graphics to SVG</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>xs2svg(win_num, file_name [,orientation])
+        <synopsis>
+            xs2svg(win_num, file_name [,orientation])
             xs2svg(fig, file_name [,orientation])
         </synopsis>
     </refsynopsisdiv>
@@ -27,7 +28,9 @@
             <varlistentry>
                 <term>win_num</term>
                 <listitem>
-                    <para>integer, id of the figure to export.</para>
+                    <para>
+                        an integer, ID of the figure to export.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -39,14 +42,17 @@
             <varlistentry>
                 <term>file_name</term>
                 <listitem>
-                    <para>string, name of the exported file.</para>
+                    <para>a string, name of the exported file.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orientation</term>
                 <listitem>
-                    <para>optional character, with possible values 'portrait' or
-                        'landscape'. The default value is 'portrait'.
+                    <para>
+                        an optional string, with possible values 
+                        <literal>'portrait'</literal> or
+                        <literal>'landscape'</literal>. The default 
+                        value is <literal>'portrait'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -55,7 +61,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xs2svg</literal> exports the display of a graphic window into a SVG file.
+            <function>xs2svg</function> exports the display of a graphic window into a SVG file.
         </para>
     </refsection>
     <refsection>

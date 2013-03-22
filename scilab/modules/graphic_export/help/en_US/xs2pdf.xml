@@ -17,7 +17,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>xs2pdf(win_num, file_name [,orientation])
+        <synopsis>
+            xs2pdf(win_num, file_name [,orientation])
             xs2pdf(fig, file_name [,orientation])
         </synopsis>
     </refsynopsisdiv>
@@ -27,7 +28,7 @@
             <varlistentry>
                 <term>win_num</term>
                 <listitem>
-                    <para>integer, id of the figure to export.</para>
+                    <para>an integer, ID of the figure to export.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -39,14 +40,14 @@
             <varlistentry>
                 <term>file_name</term>
                 <listitem>
-                    <para>string, name of the exported file.</para>
+                    <para>a string, name of the exported file.</para>
                     <para>If the extension is not provided, it is going to be automatically added.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orientation</term>
                 <listitem>
-                    <para>optional character, with possible values 'portrait' or 'landscape'. The default value is 'portrait'.</para>
+                    <para>an optional string, with possible values <literal>'portrait'</literal> or <literal>'landscape'</literal>. The default value is <literal>'portrait'</literal>.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -54,7 +55,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xs2pdf</literal> exports the display of a graphic window into an PDF file.
+            <function>xs2pdf</function> exports the display of a graphic window into an PDF file.
         </para>
     </refsection>
     <refsection>
@@ -72,7 +73,7 @@ xs2pdf(gcf(),filename);
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="figure_properties">figure_size property</link>
+                <link linkend="figure_properties"><literal>figure_size</literal> property</link>
             </member>
             <member>
                 <link linkend="toprint">toprint</link>

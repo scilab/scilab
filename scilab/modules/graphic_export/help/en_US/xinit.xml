@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="xinit">
     <refnamediv>
         <refname>xinit</refname>
-        <refpurpose>Initialization of a graphics driver</refpurpose>
+        <refpurpose>initialization of a graphics driver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -29,7 +29,7 @@
             <varlistentry>
                 <term>FileName</term>
                 <listitem>
-                    <para>string: name of the export file.</para>
+                    <para>a string: name of the export file.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -37,27 +37,33 @@
     <refsection>
         <title>Description</title>
         <para>
-            To export to a file, <literal>FileName</literal> must be specified. It is the name of the file where all the graphics operations are recorded.
+            To export to a file, <varname>FileName</varname> must be 
+            specified. It is the name of the file where all the graphics 
+            operations are recorded.
         </para>
         <para>
-            For screen drivers (X11 or Rec), <literal>xinit</literal> should be called without any argument and it will open an empty graphic window.
+            For screen drivers (X11 or Rec), <function>xinit</function> 
+            should be called without any argument and it will open an 
+            empty graphic window.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
+current_driver = driver()
 driver("Pos")
 xinit(TMPDIR+"/foo.ps")
 plot2d()
 xend()
-driver("X11")
+driver(current_driver)
  ]]></programlisting>
         <programlisting role="example"><![CDATA[ 
+current_driver = driver()
 driver("PNG")
 xinit(TMPDIR+"/foo.png")
 plot3d()
 xend()
-driver("X11")
+driver(current_driver)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
