@@ -335,6 +335,8 @@ Bug fixes
 
 * Bug #11639 fixed - Uninstall removed all scilab registry information.
 
+* Bug #11662 fixed - Help page of lattn had no example (resolved with bug #11663).
+
 * Bug #11663 fixed - Help pages of lattp and lattn were incomplete.
 
 * Bug #11664 fixed - Help page of lev had no example.
