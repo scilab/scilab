@@ -517,6 +517,12 @@ public :
                 }
             }
 
+            // reset imaginary part
+            if (isComplex() && bComplex == false)
+            {
+                setImg(iPos, 0);
+            }
+
             //update index
             piIndex[0]++;
         }
