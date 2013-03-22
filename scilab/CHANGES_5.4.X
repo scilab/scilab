@@ -601,6 +601,9 @@ Bug fixes
 * Bug #12405 fixed - Floating point errors could lead to an infinite loop in
                      ticks computation.
 
+* Bug #12406 fixed - In SciNotes, whereami numbering failed when with variable name
+                     starting with endfunction. 
+
 * Bug #12418 fixed - Continuation was incorrectly supported in bvode.
 
 * Bug #12442 fixed - pathconvert() help page was not clear about input arguments.
