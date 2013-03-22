@@ -310,7 +310,7 @@ msgstr ""
 
 #
 # File: macros/help_skeleton.sci, line: 176
-msgid "add another author name and it's reference"
+msgid "add another author name and his/her reference"
 msgstr ""
 
 #
