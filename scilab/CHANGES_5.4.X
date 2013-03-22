@@ -341,6 +341,8 @@ Bug fixes
 
 * Bug #11665 fixed - Help page of lindquist had no example.
 
+* Bug #11668 fixed - Help page of rpem had no example.
+
 * Bug #11669 fixed - Help page of kalm and srkf functions had no example.
 
 * Bug #11682 fixed - "resizefcn" and "closerequestfcn" properties description
