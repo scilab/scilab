@@ -142,14 +142,15 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
 
     //prepare fractionnal part to precision asked
     double dblScale = pow(10., iPrecNeeded - iTotalLen);
-
     while (iTotalLen <= iPrecNeeded)
     {
         dblDec = dblDec * dblScale;
         dblDec = floor(dblDec + 0.5);
         dblDec = dblDec / dblScale;
 
-        if (dblDec == 0.)
+        // when dblAbs = 1.9999999..., modf function
+        // return a decimal part equal to 1.0
+        if (dblDec == 0. || dblDec == 1.)
         {
             break;
         }
@@ -161,13 +162,6 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
         iTotalLen++;
         iNbDec++;
         dblScale /= 10;
-    }
-
-    // display 2. instead of 2.0
-    if (iNbDec == 1 && dblDec == 0.)
-    {
-        iNbDec = 0;
-        iTotalLen--;
     }
 
     _pDF->iWidth = iTotalLen;
