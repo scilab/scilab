@@ -1450,7 +1450,7 @@ public :
         return true;
     }
 
-    virtual bool subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/) {};
+    virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) = 0;
 
     virtual std::wstring toStringInLine()
     {
