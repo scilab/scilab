@@ -168,6 +168,9 @@ C     Modele des arguments des external x scalaire z vecteur
       kz=top
       if (.not.cremat(fname,top,0,mstar,1,lr,lc)) return
       iero=0
+C     For continuation implement ipar(3)=ispace(1), see colnew.f line 367
+      if (istk(ilipar+8).eq.2) istk(ilipar+2) = istk(iadr(lispace))
+      if (istk(ilipar+8).eq.3) istk(ilipar+2) = istk(iadr(lispace))
       call colnew (ncomp,istk(iadr(lrm)),aleft,aright,stk(lzeta),
      $     istk(iadr(lipar)),istk(iadr(lltol)), stk(ltol),stk(lfixpnt),
      $     istk(iadr(lispace)), stk(lspace), iflag, fsub, 

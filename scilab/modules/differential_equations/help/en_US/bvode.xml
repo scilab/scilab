@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -2408,7 +2408,7 @@ xtitle(' ','x',' ')
                 <para>
                     <emphasis role="bold">A multi-point boundary value problem.</emphasis>
                 </para>
-                <programlisting role="example"><![CDATA[ 
+                <programlisting role="example"><![CDATA[
 // DE y'''(x)=1
 // z=[y(x);y'(x);y''(x)]
 // BV: y(-1)=2 y(1)=2
@@ -2439,6 +2439,158 @@ y=x.^3/6+x.^2-x./6+1
 endfunction
 
 disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">
+                        Quantum Neumann equation, with 2 "eigenvalues" (c_1 and c2). Continuation being used.
+                    </emphasis>
+                </para>
+                <programlisting role="example"><![CDATA[
+
+// Quantum Neumann equation, with 2 "eigenvalues" c_1 and c_2
+// (c_1=v-c_2-c_3, v is a parameter, used in continuation)
+//
+// diff(f,x,2) + (1/2)*(1/x + 1/(x-1) + 1/(x-y))*diff(f,x)
+//      - (c_1/x + c_2/(x-1) + c_3/(x-y))* f(x) = 0
+// diff(c_2,x)=0,  diff(c_3,x) = 0
+//
+// and 4 "boundary" conditions: diff(f,x)(a_k)=2*c_k*f(a_k) for
+// k=1,2,3, a_k=(0, 1 , y)  and normalization f(1) = 1
+//
+// The z-vector is z_1=f, z_2=diff(f,x), z_3=c_2 and z_4=c_3
+// The guess is chosen to have one node in [0,1],  f(x)=2*x-1
+// such that f(1)=1, c_2 and c_3 are chosen to cancel poles in
+// the differential equation at 1.0 and y, z_3=1, z_4=1/(2*y-1)
+// Ref: http://arxiv.org/pdf/hep-th/0407005
+
+
+
+
+y= 1.9d0;
+eigens=zeros(3,40); // To store the results
+
+
+
+// General setup for bvode
+
+// Number of differential equations
+ncomp = 3;
+
+// Orders of equations
+m = [2, 1, 1];
+
+// Non-linear prob
+ipar(1) = 1;
+
+// Number of collocation points
+ipar(2) = 3;
+
+// Initial uniform mesh of 4 subintervals
+ipar(3) = 4;
+ipar(8) = 0;
+
+// Size of fspace, ispace, see colnew.f to choose size
+ipar(5) =  30000;
+ipar(6) =  2000;
+
+// Medium output
+ipar(7) = 0;
+
+// Initial approx is provided
+ipar(9) = 1;
+
+// fixpnt is an array containing all fixed points in the mesh, in
+// particular "boundary" points, except aleft and aright, ipar[11] its
+// size, here only one interior "boundary point"
+ipar(11) = 1;
+fixpnt = [1.0d0];
+
+// Tolerances on all components z_1, z_2, z_3, z_4
+ipar(4) = 4;
+
+// Tolerance check on f and diff(f,x) and on c_2 and c_3
+ltol = [1, 2, 3, 4];
+tol = [1d-5, 1d-5, 1d-5, 1d-5];
+
+// Define the differential equations
+
+function [f]=fsub(x,z)
+	f = [ -.5*(1/x+1/(x-1)+1/(x-y))*z(2) +...
+     z(1) * ((v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y)),...
+	0,0];
+endfunction
+function [df] = dfsub(x,z)
+	df = [(v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y),...
+	-.5*(1/x+1/(x-1)+1/(x-y)),z(1)/(x*(x-1)),z(1)*y/(x*(x-y));...
+	0,0,0,0;0,0,0,0];
+endfunction
+
+// Boundary conditions
+
+function [g]=gsub(i,z)
+	select i
+	case 1, g = z(2) - 2*z(1)*(v-z(3)-z(4))
+	case 2, g = z(2) - 2*z(1)*z(3)
+	case 3, g = z(1)-1.
+	case 4, g = z(2) - 2*z(1)*z(4)
+	end
+endfunction
+function [dg]=dgsub(i,z)
+    	select i
+    	case 1, dg = [-2*(v-z(3)-z(4)),1.,2*z(1),2*z(1)]
+    	case 2, dg = [-2*z(3),1.,-2*z(1),0]
+    	case 3, dg = [1,0,0,0]
+    	case 4, dg = [-2*z(4),1.,0,-2*z(1)]
+    	end
+endfunction
+
+// Start computation
+
+// Locations of side conditions, sorted
+zeta = [0.0d0, 1.0d0, 1.0d0, y];
+// Interval ends
+aleft = 0.0d0;
+aright = y;
+
+// Array of 40 values of v explored by continuation, and array of 202
+// points where to evaluate function f.
+valv = [linspace(0,.9,10) logspace(0,2,30)];
+res = [linspace(0,.99,100) linspace(1,y,101)];
+
+// eigenstates are characterized by number of nodes in [0,1] and in
+// [1,y], here guess selects one node (zero) in [0,1] with linear
+// f(x)=2*x-1 and constant c_2, c_3, so dmval=0. Notice that the z-vector
+// has mstar = 4 components, while dmval has ncomp = 3 components.
+
+function [z,dmval]=guess(x)
+	 z=[2*x-1, 2., 1., 1/(2*y-1)]
+	 dmval=[0,0,0]
+endfunction
+
+// First execution has ipar(9)=1 and uses the guess
+// Subsequent executions have ipar(9)=3 and use continuation. This is
+// run in tight closed loop to not disturb the stack
+
+for i=1:40
+v=valv(i);
+sol=bvode(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
+ fsub,dfsub,gsub,dgsub,guess);
+eigens(:,i)=[v;sol(3,101);sol(4,101)];  // c_2 and c_3 are constant!
+ipar(9)=3;
+end
+
+
+// To see the evolution of the eigenvalues with v, disp(eigens)
+// Note they evolve smoothly.
+// To see the solution f for v=40, disp(sol(1,:)). Note that it vanishes
+// exactly once in [0,1] at x close to .98, and becomes very small
+// when x->0 and very large when x -> y.
+// This is markedly different from the case  at small v.
+// The continuation procedure allows to explore these exponential behaviours
+// without skipping to other eigenstates.
+
  ]]></programlisting>
             </listitem>
         </itemizedlist>

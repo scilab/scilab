@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) - Scilab Enterprises - Clement David
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="driver">
+    <refnamediv>
+        <refname>driver</refname>
+        <refpurpose>выбирает графический драйвер</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            current_driver = driver()
+            driver(driver_name)
+            previous_driver = driver(driver_name)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>driver_name</term>
+                <listitem>
+                    <para>
+                        строка, драйвер, который следует выбрать 
+                        (регистр символов не учитывается).
+                    </para>
+                </listitem>
+                <term>current_driver</term>
+                <listitem>
+                    <para>строка, выбранный драйвер.</para>
+                </listitem>
+                <term>previous_driver</term>
+                <listitem>
+                    <para>
+                        строка, драйвер, который был выбран до этого.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+            <para>
+                Эта функция позволяет переключаться между различными 
+                драйверами для экспорта или отображения.
+            </para>
+            <para>
+                Прямой обсчёт изображения на экране или экспорт 
+                изображения без отображения на экране без какого-либо 
+                графического пользовательского интерфейса. Это 
+                доступно в режиме <literal>scilab-adv-cli</literal>
+                (или также вызываемом <literal>-nw</literal>)
+            </para>
+            <para>
+                При использовании без входного аргумента функция 
+                <function>driver</function> возвращает имя 
+                текущего графического драйвера.
+            </para>
+    </refsection>
+    <refsection>
+        <title>Вывод на экран</title>
+        <para>
+            Для отображения графика в новом окне вместо формата
+            без вывода на экран. Это поведение по умолчанию.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>X11 или Rec</term>
+                <listitem>
+                    <para>вывод на экран компьютера.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Поддерживаемые векторные форматы</title>
+        <para>
+            Выбранный драйвер может быть одним из следующих 
+            векторных форматов:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>Pos или ps</term>
+                <listitem>
+                    <para>вывод в формате Postscript.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PDF</term>
+                <listitem>
+                    <para>вывод в формате PDF.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SVG</term>
+                <listitem>
+                    <para>вывод в формате SVG.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Поддерживаемые растровые форматы</title>
+        <para>
+            Выбранный драйвер может быть одним из следующих растровых 
+            форматов:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>GIF</term>
+                <listitem>
+                    <para>вывод в формате GIF.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PNG</term>
+                <listitem>
+                    <para>вывод в формате PNG.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>JPEG или JPG</term>
+                <listitem>
+                    <para>вывод в формате JPEG.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>BMP</term>
+                <listitem>
+                    <para>вывод в формате BMP.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PPM</term>
+                <listitem>
+                    <para>вывод в формате portable pixmap (PPM).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примечание</title>
+        <para>
+            Чтобы перенаправить графический вывод в GIF-файл (который 
+            будет записан во временную директорию), вы можете 
+            использовать следующий пример:
+        </para>
+        <programlisting role=""><![CDATA[
+previous_driver = driver('GIF');
+xinit(TMPDIR+'/mygiffile.gif');
+plot3d();
+xend();
+driver(previous_driver); // Возврат к предыдущему драйверу
+ ]]></programlisting>
+        <para>
+            Если же, например, было сформирована последовательность 
+            GIF-файлов, названных <literal>img*.gif</literal>, то можно 
+            сделать анимированный GIF-файл (с именем 
+            <literal>anim.gif</literal>) с помощью
+        </para>
+        <synopsis>
+            convert -delay 10  img*.gif anim.gif
+        </synopsis>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xinit">xinit</link>
+            </member>
+            <member>
+                <link linkend="xend">xend</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            Возврат предыдущего имени драйвера.
+                        </listitem>
+                        <listitem>
+                            Возможность экспорта изображения без 
+                            отображения на экране. Scilab экспортирует 
+                            графики без открытия нового окна.
+                        </listitem>
+                        <listitem>
+                            Поддержка новых растровых форматов: PNG, JPEG и BMP.
+                        </listitem>
+                        <listitem>
+                            Поддержка новых векторных форматов: PDF и SVG.
+                        </listitem>
+                        <listitem>
+                            Функция принимает аргумент в верхнем и нижнем регистре.
+                        </listitem>
+                        <listitem>
+                            Драйвер Fig больше не поддерживается.
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -369,7 +369,6 @@ cd ..
     <ClCompile Include="terme.c" />
     <ClCompile Include="TerminateCore.c" />
     <ClCompile Include="texmacs.c" />
-    <ClCompile Include="timer.c" />
     <ClCompile Include="tmpdir.c" />
     <ClCompile Include="transposeMatrix.c" />
     <ClCompile Include="typename.c" />
@@ -483,7 +482,6 @@ cd ..
     <ClInclude Include="TerminateCore.h" />
     <ClInclude Include="..\..\includes\texmacs.h" />
     <ClInclude Include="..\..\includes\Thread_Wrapper.h" />
-    <ClInclude Include="..\..\includes\timerEvents.h" />
     <ClInclude Include="..\..\includes\tmpdir.h" />
     <ClInclude Include="..\..\includes\transposeMatrix.h" />
     <ClInclude Include="typename.h" />

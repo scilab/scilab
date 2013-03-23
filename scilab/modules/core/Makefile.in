@@ -156,16 +156,16 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/getmodules.c src/c/setgetSCIpath.c src/c/getmemory.c \
 	src/c/Funtab.c src/c/csignal.c src/c/callinterf.c \
 	src/c/scimem.c src/c/banier.c src/c/isanan.c src/c/parse.c \
-	src/c/timer.c src/c/stack2.c src/c/xscion.c \
-	src/c/SetScilabEnvironment.c src/c/returnanan.c \
-	src/c/LoadFunctionsTab.c src/c/with_module.c \
-	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
-	src/c/scirun.c src/c/SCIHOME.c src/c/warningmode.c \
-	src/c/InitializeCore.c src/c/TerminateCore.c src/c/coretable.c \
-	src/c/returnProperty.c src/c/returnPropertyList.c \
-	src/c/scilabmode.c src/c/GetXmlFileEncoding.c \
-	src/c/islittleendian.c src/c/terme.c src/c/ifexpr.c \
-	src/c/expr.c src/c/getcommandlineargs.c src/c/syncexec.c \
+	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
+	src/c/returnanan.c src/c/LoadFunctionsTab.c \
+	src/c/with_module.c src/c/loadversion.c src/c/version.c \
+	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
+	src/c/warningmode.c src/c/InitializeCore.c \
+	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
+	src/c/returnPropertyList.c src/c/scilabmode.c \
+	src/c/GetXmlFileEncoding.c src/c/islittleendian.c \
+	src/c/terme.c src/c/ifexpr.c src/c/expr.c \
+	src/c/getcommandlineargs.c src/c/syncexec.c \
 	src/c/callFunctionFromGateway.c src/c/getvariablesname.c \
 	src/c/commandwords.c src/c/freeArrayOfString.c \
 	src/c/getstaticdebuginfo.c src/c/getdynamicdebuginfo.c \
@@ -179,10 +179,9 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/exitCodeValue.c src/c/getversion.c \
 	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
 	src/c/storeCommand.c src/c/backtrace.c src/c/signal_mgmt.c \
-	src/c/suspendProcess.c src/c/windowsChangeManagement.c \
-	src/c/setieee.c src/c/setlines.c src/c/setformat.c \
-	src/c/InitializePreferences.c src/c/sci_tools.c \
-	src/c/getmaxMALLOC.c src/c/sci_mem_alloc.c \
+	src/c/suspendProcess.c src/c/setieee.c src/c/setlines.c \
+	src/c/setformat.c src/c/InitializePreferences.c \
+	src/c/sci_tools.c src/c/getmaxMALLOC.c src/c/sci_mem_alloc.c \
 	src/c/hashtable/hashtable.c src/c/hashtable/hashtable_itr.c \
 	src/c/hashtable/hashtable_utility.c src/c/scimem64.c \
 	src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
@@ -238,8 +237,7 @@ am__objects_2 = libscicore_algo_la-inffic.lo \
 	libscicore_algo_la-csignal.lo libscicore_algo_la-callinterf.lo \
 	libscicore_algo_la-scimem.lo libscicore_algo_la-banier.lo \
 	libscicore_algo_la-isanan.lo libscicore_algo_la-parse.lo \
-	libscicore_algo_la-timer.lo libscicore_algo_la-stack2.lo \
-	libscicore_algo_la-xscion.lo \
+	libscicore_algo_la-stack2.lo libscicore_algo_la-xscion.lo \
 	libscicore_algo_la-SetScilabEnvironment.lo \
 	libscicore_algo_la-returnanan.lo \
 	libscicore_algo_la-LoadFunctionsTab.lo \
@@ -288,7 +286,6 @@ am__objects_2 = libscicore_algo_la-inffic.lo \
 	libscicore_algo_la-backtrace.lo \
 	libscicore_algo_la-signal_mgmt.lo \
 	libscicore_algo_la-suspendProcess.lo \
-	libscicore_algo_la-windowsChangeManagement.lo \
 	libscicore_algo_la-setieee.lo libscicore_algo_la-setlines.lo \
 	libscicore_algo_la-setformat.lo \
 	libscicore_algo_la-InitializePreferences.lo \
@@ -677,16 +674,16 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/getmodules.c src/c/setgetSCIpath.c src/c/getmemory.c \
 	src/c/Funtab.c src/c/csignal.c src/c/callinterf.c \
 	src/c/scimem.c src/c/banier.c src/c/isanan.c src/c/parse.c \
-	src/c/timer.c src/c/stack2.c src/c/xscion.c \
-	src/c/SetScilabEnvironment.c src/c/returnanan.c \
-	src/c/LoadFunctionsTab.c src/c/with_module.c \
-	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
-	src/c/scirun.c src/c/SCIHOME.c src/c/warningmode.c \
-	src/c/InitializeCore.c src/c/TerminateCore.c src/c/coretable.c \
-	src/c/returnProperty.c src/c/returnPropertyList.c \
-	src/c/scilabmode.c src/c/GetXmlFileEncoding.c \
-	src/c/islittleendian.c src/c/terme.c src/c/ifexpr.c \
-	src/c/expr.c src/c/getcommandlineargs.c src/c/syncexec.c \
+	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
+	src/c/returnanan.c src/c/LoadFunctionsTab.c \
+	src/c/with_module.c src/c/loadversion.c src/c/version.c \
+	src/c/stackinfo.c src/c/scirun.c src/c/SCIHOME.c \
+	src/c/warningmode.c src/c/InitializeCore.c \
+	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
+	src/c/returnPropertyList.c src/c/scilabmode.c \
+	src/c/GetXmlFileEncoding.c src/c/islittleendian.c \
+	src/c/terme.c src/c/ifexpr.c src/c/expr.c \
+	src/c/getcommandlineargs.c src/c/syncexec.c \
 	src/c/callFunctionFromGateway.c src/c/getvariablesname.c \
 	src/c/commandwords.c src/c/freeArrayOfString.c \
 	src/c/getstaticdebuginfo.c src/c/getdynamicdebuginfo.c \
@@ -700,10 +697,9 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/exitCodeValue.c src/c/getversion.c \
 	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
 	src/c/storeCommand.c src/c/backtrace.c src/c/signal_mgmt.c \
-	src/c/suspendProcess.c src/c/windowsChangeManagement.c \
-	src/c/setieee.c src/c/setlines.c src/c/setformat.c \
-	src/c/InitializePreferences.c src/c/sci_tools.c \
-	src/c/getmaxMALLOC.c src/c/sci_mem_alloc.c \
+	src/c/suspendProcess.c src/c/setieee.c src/c/setlines.c \
+	src/c/setformat.c src/c/InitializePreferences.c \
+	src/c/sci_tools.c src/c/getmaxMALLOC.c src/c/sci_mem_alloc.c \
 	src/c/hashtable/hashtable.c src/c/hashtable/hashtable_itr.c \
 	src/c/hashtable/hashtable_utility.c $(am__append_1)
 CORE_CXX_SOURCES = src/cpp/hashtable_core.cpp \
@@ -1167,13 +1163,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-syncexec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-terme.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-texmacs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-timer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-tmpdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-transposeMatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-typename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-version.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-warningmode.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-windowsChangeManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-with_module.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-xscion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-gw_core.Plo@am__quote@
@@ -1435,13 +1429,6 @@ libscicore_algo_la-parse.lo: src/c/parse.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/parse.c' object='libscicore_algo_la-parse.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-parse.lo `test -f 'src/c/parse.c' || echo '$(srcdir)/'`src/c/parse.c
-
-libscicore_algo_la-timer.lo: src/c/timer.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-timer.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-timer.Tpo -c -o libscicore_algo_la-timer.lo `test -f 'src/c/timer.c' || echo '$(srcdir)/'`src/c/timer.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-timer.Tpo $(DEPDIR)/libscicore_algo_la-timer.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/timer.c' object='libscicore_algo_la-timer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-timer.lo `test -f 'src/c/timer.c' || echo '$(srcdir)/'`src/c/timer.c
 
 libscicore_algo_la-stack2.lo: src/c/stack2.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-stack2.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-stack2.Tpo -c -o libscicore_algo_la-stack2.lo `test -f 'src/c/stack2.c' || echo '$(srcdir)/'`src/c/stack2.c
@@ -1827,13 +1814,6 @@ libscicore_algo_la-suspendProcess.lo: src/c/suspendProcess.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/suspendProcess.c' object='libscicore_algo_la-suspendProcess.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-suspendProcess.lo `test -f 'src/c/suspendProcess.c' || echo '$(srcdir)/'`src/c/suspendProcess.c
-
-libscicore_algo_la-windowsChangeManagement.lo: src/c/windowsChangeManagement.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-windowsChangeManagement.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-windowsChangeManagement.Tpo -c -o libscicore_algo_la-windowsChangeManagement.lo `test -f 'src/c/windowsChangeManagement.c' || echo '$(srcdir)/'`src/c/windowsChangeManagement.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-windowsChangeManagement.Tpo $(DEPDIR)/libscicore_algo_la-windowsChangeManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/windowsChangeManagement.c' object='libscicore_algo_la-windowsChangeManagement.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-windowsChangeManagement.lo `test -f 'src/c/windowsChangeManagement.c' || echo '$(srcdir)/'`src/c/windowsChangeManagement.c
 
 libscicore_algo_la-setieee.lo: src/c/setieee.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-setieee.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-setieee.Tpo -c -o libscicore_algo_la-setieee.lo `test -f 'src/c/setieee.c' || echo '$(srcdir)/'`src/c/setieee.c

@@ -298,8 +298,9 @@ public class AxesRulerDrawer {
 
         RulerDrawer[] rulerDrawers = rulerDrawerManager.get(axes);
         ElementsBuffer vertexBuffer = drawingTools.getCanvas().getBuffersManager().createElementsBuffer();
+        final boolean is3D = axes.getViewAsEnum() == Camera.ViewType.VIEW_3D && axes.getRotationAngles()[1] != 90.0;
 
-        if (rulerDrawers[0].getModel() == null) {
+        if (rulerDrawers[0].getModel() == null || rulerDrawers[1].getModel() == null || (is3D && rulerDrawers[2].getModel() == null)) {
             computeRulers(axes, axesDrawer, colorMap, drawingTools, drawingTools.getTransformationManager().getModelViewStack().peek(), drawingTools.getTransformationManager().getCanvasProjection());
         }
 
@@ -383,7 +384,7 @@ public class AxesRulerDrawer {
         }
 
         // Draw Z ruler
-        if (axes.getViewAsEnum() == Camera.ViewType.VIEW_3D && axes.getRotationAngles()[1] != 90.0) {
+        if (is3D) {
             if (axes.getZAxisVisible()) {
                 rulerDrawers[2].draw(drawingTools);
 

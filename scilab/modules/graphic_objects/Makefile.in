@@ -497,7 +497,7 @@ modulename = graphic_objects
 
 #### graphic_objects : Conf files ####
 libscigraphic_objects_la_rootdir = $(mydatadir)
-libscigraphic_objects_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscigraphic_objects_la_root_DATA = changelog.txt license.txt readme.txt
 
 #### graphic_objects : init scripts ####
 libscigraphic_objects_la_etcdir = $(mydatadir)/etc

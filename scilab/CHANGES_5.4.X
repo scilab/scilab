@@ -109,15 +109,20 @@ Xcos
 
 * xcosPalGenerateAllIcons added as an Xcos palette utility function.
 
-* Add a new ODE solver : LSodar. Automatically switches methods to efficiently solve both stiff and nonstiff problems. Includes a rootfinding feature.
+* Add a new ODE solver : LSodar. Automatically switches methods to efficiently
+  solve both stiff and nonstiff problems. Includes a rootfinding feature.
 
-* Add two new Fixed-size step ODE solvers : Dormand-Prince 4(5) then Runge-Kutta 4(5). Included in the CVode package, so benefit from the rootfinding feature.
+* Add two new Fixed-size step ODE solvers : Dormand-Prince 4(5) then Runge-Kutta 4(5).
+  Included in the CVode package, so benefit from the rootfinding feature.
 
-* Add an implicit Fixed-size stop ODE solver : Implicit Runge-Kutta 4(5). Also benefits from the CVode rootfinding feature.
+* Add an implicit Fixed-size stop ODE solver : Implicit Runge-Kutta 4(5).
+  Also benefits from the CVode rootfinding feature.
 
 * Improve block parameters errors (types and sizes) reporting.
 
 * Avoid some scopes blink on simulation.
+
+* Bug #5040 fixed - fit diagram to view did not work with a single block.
 
 * Bug #9074 fixed - Calling a function on the context gave a warning.
 
@@ -183,6 +188,9 @@ Xcos
 * Bug #12351 fixed - "Save as" a diagram to a selected xcos file type, saved
                      it as zcos.
 
+* Bug #12350 fixed - Under Windows Explorer, opening a xcos/zcos file
+                     did not try to find an existing instance of Scilab.
+
 * Bug #12352 fixed - Critical error when closing a scope windows during
                      simulation fixed.
 
@@ -243,6 +251,8 @@ Bug fixes
 * Bug #7058 fixed - There was an error in mathml formula in beta function help.
 
 * Bug #7190 fixed - is_absolute_path was not documented.
+
+* Bug #7410 fixed - %h_p() and sci2exp() failed to display polyline entity associated to datatips.
 
 * Bug #7583 fixed - binomial function moved in the distribution function
                     chapter.
@@ -327,7 +337,16 @@ Bug fixes
 
 * Bug #11639 fixed - Uninstall removed all scilab registry information.
 
+* Bug #11663 fixed - Help pages of lattp and lattn were incomplete.
+
+* Bug #11664 fixed - Help page of lev had no example.
+
+* Bug #11665 fixed - Help page of lindquist had no example.
+
 * Bug #11669 fixed - Help page of kalm and srkf functions had no example.
+
+* Bug #11682 fixed - "resizefcn" and "closerequestfcn" properties description
+                    was not precise enough in the figure properties help page.
 
 * Bug #11711 fixed - xclick and xgetmouse did not work under Mac OS X.
 
@@ -358,6 +377,8 @@ Bug fixes
                      in state-space form.
 
 * Bug #11944 fixed - In SciNotes, untabify several lines did not work correctly.
+
+* Bug #11949 fixed - The help page of save() did not explain how to append data to a SOD file.
 
 * Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
                      containing a \E.
@@ -546,6 +567,8 @@ Bug fixes
 
 * Bug #12361 fixed - Error fixed in replot() help page examples.
 
+* Bug #12370 fixed - Example with marks added in help page of xpoly.
+
 * Bug #12373 fixed - pmodulo(n,m<0) returned a negative result.
 
 * Bug #12374 fixed - Unexpected mark was drawn with xsegs.
@@ -561,8 +584,11 @@ Bug fixes
 
 * Bug #12389 fixed - Axes sizes were not taken into account in offscreen export.
 
+* Bug #12391 fixed - findobj() could change current figure returned by gcf().
+
 * Bug #12396 fixed - Example ("problem 2") in the help page of bvode was missing a variable.
 
+* Bug #12418 fixed - Continuation was incorrectly supported in bvode.
 
 
                     Changes between version 5.3.3 and 5.4.0
