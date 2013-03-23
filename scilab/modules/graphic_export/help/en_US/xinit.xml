@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="xinit">
     <refnamediv>
         <refname>xinit</refname>
-        <refpurpose>initialization of a graphics driver</refpurpose>
+        <refpurpose>open a graphics export session</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -37,14 +37,15 @@
     <refsection>
         <title>Description</title>
         <para>
+            <function>xinit</function> opens a graphics export session.
             To export to a file, <varname>FileName</varname> must be 
             specified. It is the name of the file where all the graphics 
             operations are recorded.
         </para>
         <para>
-            For screen drivers (X11 or Rec), <function>xinit</function> 
-            should be called without any argument and it will open an 
-            empty graphic window.
+            For screen drivers (<literal>X11</literal> or <literal>Rec</literal>),
+            <function>xinit</function> should be called without any argument
+            and it will open an empty graphic window.
         </para>
     </refsection>
     <refsection>
