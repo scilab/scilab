@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2pdf" xml:lang="en">
     <refnamediv>
         <refname>xs2pdf</refname>
-        <refpurpose>Export graphics to PDF.</refpurpose>
+        <refpurpose>export graphics to PDF.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -47,7 +47,12 @@
             <varlistentry>
                 <term>orientation</term>
                 <listitem>
-                    <para>an optional string, with possible values <literal>'portrait'</literal> or <literal>'landscape'</literal>. The default value is <literal>'portrait'</literal>.</para>
+                    <para>
+                        an optional string, with possible values 
+                        <literal>'portrait'</literal> or 
+                        <literal>'landscape'</literal>. The 
+                        default value is <literal>'portrait'</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -73,7 +78,7 @@ xs2pdf(gcf(),filename);
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="figure_properties"><literal>figure_size</literal> property</link>
+                <literal>figure_size</literal> property in <link linkend="figure_properties">figure_properties</link>
             </member>
             <member>
                 <link linkend="toprint">toprint</link>

@@ -77,7 +77,9 @@ xs2svg(gcf(),'foo.svg');
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
-            <member>figure_size property</member>
+            <member>
+                <literal>figure_size</literal> property in <link linkend="figure_properties">figure_properties</link>
+            </member>
             <member>
                 <link linkend="toprint">toprint</link>
             </member>

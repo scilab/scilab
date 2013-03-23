@@ -74,7 +74,9 @@ xs2eps(gcf(),'foo.eps')
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
-            <member><literal>figure_size</literal> property</member>
+            <member>
+                <literal>figure_size</literal> property in <link linkend="figure_properties">figure_properties</link>
+            </member>
             <member>
                 <link linkend="toprint">toprint</link>
             </member>

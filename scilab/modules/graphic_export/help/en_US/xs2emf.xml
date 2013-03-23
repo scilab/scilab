@@ -62,8 +62,8 @@
             <function>xs2emf</function> exports the display of a graphic window into an EMF file.
         </para>
         <para>
-            The export file is obtained by creating an EPS file and 
-            converting it into EMF format using <function>pstoedit</function>.
+            The export file is obtained by creating an EPS file 
+            and converting it into EMF format using "pstoedit".
         </para>
     </refsection>
     <refsection>

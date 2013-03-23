@@ -22,7 +22,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>xend</function> is used to close a graphics session. When working on the export of a graphic, <function>xend</function> closes the
+            <function>xend</function> is used to close a graphics  
+            export session. When working on the export of a 
+            graphic, <function>xend</function> closes the
             file which was opened by <function>xinit</function>.
         </para>
     </refsection>

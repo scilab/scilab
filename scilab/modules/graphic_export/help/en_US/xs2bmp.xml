@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>win_num</term>
                 <listitem>
-                    <para>an integer, id of the figure to export.</para>
+                    <para>an integer, ID of the figure to export.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

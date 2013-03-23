@@ -48,7 +48,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xs2gif</literal> exports the display of a graphic window into a GIF file.
+            <function>xs2gif</function> exports the display of a graphic window into a GIF file.
         </para>
         <para>
             To convert a sequence of "GIF" files to an animated GIF
@@ -56,9 +56,9 @@
             (<ulink url="http://www.imagemagick.org/">http://www.imagemagick.org/</ulink>)
         </para>
         <para>
-            For example if one has generated a sequence of Gif files
-            named <literal>img*.gif</literal> it is possible to build
-            an animated Gif file (named anim.gif) by
+            For example if one has generated a sequence of GIF
+            files named <literal>img*.gif</literal> it is possible
+            to build an animated GIF file (named <literal>img.gif</literal>) by
         </para>
         <synopsis>
             convert -delay 10  img*.gif anim.gif
