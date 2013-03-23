@@ -105,8 +105,8 @@
     <refsection>
         <title>Supported bitmap formats</title>
         <para>
-            The selected driver can be one of the following vectorial
-            bitmap:
+            The selected driver can be one of the following bitmap 
+            format:
         </para>
         <variablelist>
             <varlistentry>
@@ -136,7 +136,7 @@
             <varlistentry>
                 <term>PPM</term>
                 <listitem>
-                    <para>output into portable pixmap format (PPM) format.</para>
+                    <para>output into portable pixmap (PPM) format.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -145,7 +145,7 @@
         <title>Remark</title>
         <para>
             To redirect the graphic output to a GIF file (which will be
-            written in the current directory), you can use the
+            written in the temporary directory), you can use the
             following example:
         </para>
         <programlisting role="example"><![CDATA[
@@ -160,9 +160,9 @@ driver(previous_driver); // Bring back the previous behavior of Scilab
             named <literal>img*.gif</literal> it is possible to build
             an animated GIF file (named <literal>anim.gif</literal>) by
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-convert -delay 10  img*.gif anim.gif
- ]]></programlisting>
+        <synopsis>
+            convert -delay 10  img*.gif anim.gif
+        </synopsis>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -186,7 +186,7 @@ convert -delay 10  img*.gif anim.gif
                             Return the previous driver value.
                         </listitem>
                         <listitem>
-                            Enable off-screen. Scilab exports graphics without opening a new window.
+                            Enable off-screen export. Scilab exports graphics without opening a new window.
                         </listitem>
                         <listitem>
                             Support of new bitmap formats: PNG, JPEG and BMP.
