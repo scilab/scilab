@@ -568,6 +568,7 @@ bvode_2.png=da98ff003070f72b45a30aa94efd4ffd
 bvode_en_US_1.png=f5839719400ab9f8ae4004c3c7bad4ff
 bvode_fr_FR_1.png=f5839719400ab9f8ae4004c3c7bad4ff
 bvode_pt_BR_1.png=f5839719400ab9f8ae4004c3c7bad4ff
+bvode_ru_RU_1.png=9736fb5298b9998b1ea5bef6935cb1ea
 calfrq_1.png=f4cfd31e6a05d4149c567c01272f96a
 captions_1.png=19ddf03ac04cd2b8ebbed9f218dbaa3e
 cdfbet_1.png=311cb1e4fb872d6f82b2dcafaa5911d1

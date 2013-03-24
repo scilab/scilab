@@ -7,7 +7,7 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -1750,17 +1750,22 @@ N=1;// только одно дифференциальное уравнение
 m=4;//дифференциальное уравнение четвёртого порядка
 M=sum(m);
  
-x_low=1;x_up=2; // пределы x
+x_low=1;
+x_up=2; // пределы x
 zeta=[x_low,x_low,x_up,x_up]; // два ограничения (на значение u и его вторую производную) на каждой границе.
  
 //Внешние функции
 //Эти функции вызываются программой решения с zu=[u(x);u'(x);u''(x);u'''(x)]
  
 // - Функция, которая вычисляет правую сторону дифференциального уравнения
-function f=fsub(x,zu),f=(1-6*x^2*zu(4)-6*x*zu(3))/x^3,endfunction
+function f=fsub(x,zu)
+    f=(1-6*x^2*zu(4)-6*x*zu(3))/x^3
+endfunction
  
 // - Функция, которая вычисляет производную fsub по zu
-function df=dfsub(x,zu),df=[0,0,-6/x^2,-6/x],endfunction
+function df=dfsub(x,zu)
+    df=[0,0,-6/x^2,-6/x]
+endfunction
  
 // - Функция, которая вычисляет i-тое ограничение для заданной i
 function g=gsub(i,zu),
@@ -1791,7 +1796,10 @@ function dg=dgsub(i,z)
 endfunction
  
 // - Функция, которая вычисляет начальное предположение, здесь не используется
-function [zu,mpar]=guess(x),zu=0;mpar=0,endfunction 
+function [zu,mpar]=guess(x)
+    zu=0;
+    mpar=0;
+endfunction
  
  //определим функцию, которая вычисляет точное значение u для заданного x (в целях проверки)
 function zu=trusol(x)
@@ -1816,7 +1824,10 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
 //проверка ограничений
 zu([1,3],[1 $]) // должно быть нулевым
 plot(xpoints,zu(1,:)) // процесс решения u
-zu1=[];for x=xpoints,zu1=[zu1,trusol(x)]; end;  
+zu1=[];
+for x=xpoints
+    zu1=[zu1,trusol(x)]; 
+end
 norm(zu-zu1)
  ]]></programlisting>
             </listitem>
@@ -1824,7 +1835,7 @@ norm(zu-zu1)
                 <para>
                     Та же задача с использованием <literal>bvodeS</literal> и начальным предположением.
                 </para>
-                <programlisting role="example"><![CDATA[ 
+                <programlisting role="no-scilab-exec"><![CDATA[ 
 function [z,lhS]=zstart(x)
   z=zeros(5,1);z(5)=1;
   lhS=[0;1];
@@ -2193,15 +2204,50 @@ N=101;
 x=linspace(a,b,N)';
  
 //Имеем s(n)-(n+1/2)*pi -> 0 для n, стремящимся к бесконечности.
-la0=input('n-th eigenvalue: n= ?');la0=(%pi/2+la0*%pi)^2;
+la0=input('n-ное собственное значение: n= ?');la0=(%pi/2+la0*%pi)^2;
  
 z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0));
+// Тот же вызов без вывода на экран
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=1));
+// Тот же вызов с подробным выводом на экран
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=-1));
  
 clf()
 plot(x,[z(1,:)' z(2,:)']) 
 xtitle(['Начальное значение =  '+string(la0);'Собственное значение = '+string(z(3,1))],'x',' ')
 legend(['y(x)';'y''(x)'])
  ]]></programlisting>
+                 <scilab:image localized="true">
+                     function rhs=fsub(x,z)
+                     rhs=[-z(3)*z(1);0]
+                     endfunction
+                     
+                     function g=gsub(i,z)
+                     g=[z(1)-z(2) z(1)-1 z(1)]
+                     g=g(i)
+                     endfunction
+                     
+                     function [z,lhs]=ystart(x,z,la0)
+                     z=[1;0;la0]
+                     lhs=[0;0]
+                     endfunction
+                     
+                     a=0;b=1;
+                     m=[2;1];
+                     n=2;
+                     zeta=[a a b];
+                     N=101;
+                     x=linspace(a,b,N)';
+                     
+                     la0=10;
+                     la0=(%pi/2+la0*%pi)^2;
+                     
+                     z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=1);
+                     
+                     plot(x,[z(1,:)' z(2,:)']);
+                     xtitle(['Начальное значение =  '+string(la0);'Собственное значение = '+string(z(3,1))],'x',' ');
+                     legend(['y(x)';'y''(x)']);
+                 </scilab:image>
             </listitem>
             <listitem>
                 <para>
@@ -2211,11 +2257,14 @@ legend(['y(x)';'y''(x)'])
 // DE: y''(x)=-exp(y(x))
 // BV: y(0)=0; y(1)=0
 // Эта краевая задача имеет более одного решения.
-//Показано как найти два из них с помощью некоторой
+// Показано как найти два из них с помощью некоторой
 // предварительной информации о решениях y(x) для построения функции ystart.
 // z=[y(x);y'(x)]
  
-a=0;b=1;m=2;n=1;
+a=0;
+b=1;
+m=2;
+n=1;
 zeta=[a b];
 N=101;
 tol=1e-8*[1 1];
@@ -2245,14 +2294,18 @@ end
  
 // Интегрирование ОДУ даёт, например, два решения yex и yex1. 
  
-function y=f(c),y=c.*(1-tanh(sqrt(c)/4).^2)-2;endfunction 
+function y=f(c)
+    y=c.*(1-tanh(sqrt(c)/4).^2)-2;
+endfunction
 c=fsolve(2,f);
  
 function y=yex(x,c)
   y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
 endfunction 
  
-function y=f1(c1), y=2*c1^2+tanh(1/4/c1)^2-1;endfunction
+function y=f1(c1)
+    y=2*c1^2+tanh(1/4/c1)^2-1;
+endfunction
 c1=fsolve(0.1,f1);
  
 function y=yex1(x,c1)
@@ -2278,7 +2331,7 @@ xtitle(' ','x',' ')
 // DE y'''(x)=1
 // z=[y(x);y'(x);y''(x)]
 // BV: y(-1)=2 y(1)=2
-//Дополнительное условие: y(0)=1 
+// Дополнительное условие: y(0)=1
  
 a=-1;b=1;c=0;
 // Точка дополнительного условия c должна быть включена в массив fixpnt.
@@ -2299,9 +2352,9 @@ zeta=[a c b];
 x=linspace(a,b,N);
  
 z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,fixpnt=c);
-          
+
 function y=yex(x)
-y=x.^3/6+x.^2-x./6+1
+    y=x.^3/6+x.^2-x./6+1
 endfunction
  
 disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
