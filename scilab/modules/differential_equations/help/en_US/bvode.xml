@@ -2341,7 +2341,7 @@ subplot(2,1,2)
 plot2d(x,z1(1,:),style=[5])
 xtitle(' ','x',' ')
  ]]></programlisting>
-                <scilab:image>
+                <scilab:image localized="true">
                     a=0;
                     b=1;
                     m=2;
