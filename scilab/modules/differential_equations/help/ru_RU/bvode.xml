@@ -1812,8 +1812,8 @@ endfunction
  
 fixpnt=[ ];//Все граничные условия находятся в x_low и x_up
  
-//    nonlin  collpnt n ntol ndimf  ndimi iprint iread iguess rstart nfxpnt
-ipar=[0       0       1 2    2000   200   1      0     0      0      0     ]
+//    nonlin  collpnt n  ntol  ndimf        ndimi       iprint iread iguess rstart nfxpnt
++ipar=[1       collpnt 10  4   nmax*nsizef  nmax*nsizei   -1      0     0      0      0     ]
  
 ltol=[1,3];//установка контроля допуска на zu(1) и zu(3)
 tol=[1.e-11,1.e-11];//установка значений допуска для контроля допуска
@@ -2138,11 +2138,6 @@ ltol=1:4;//установка контроля допусков на zu(1), zu(2
 tol=[1.e-5,1.e-5,1.e-5,1.e-5];//установка значений для контроля допусков
 xpoints=x_low:0.01:x_up;
  
-zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
-        fsub2,dfsub2,gsub2,dgsub2,guess2);
-scf(1);clf();plot(xpoints,zu([1 3],:)) // процесс решения phi и psi
- 
-//использование начального предположения
 // - Функция, которая вычисляет начальное предположение, здесь не используется
 function [zu,dmval]=guess2(x,gam),
    cons=gam*x*(1-x^2/2)
@@ -2156,7 +2151,13 @@ function [zu,dmval]=guess2(x,gam),
      zu=[2*x;2;-2*x+cons;-2*dcons]
      dmval(2)=d2cons
    end
-endfunction 
+endfunction
+
+zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
+        fsub2,dfsub2,gsub2,dgsub2,guess2);
+scf(1);clf();plot(xpoints,zu([1 3],:)) // процесс решения phi и psi
+ 
+//использование начального предположения
 ipar(9)=1;//iguess
  
 zu2=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
@@ -2208,9 +2209,9 @@ la0=input('n-ное собственное значение: n= ?');la0=(%pi/2+l
  
 z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0));
 // Тот же вызов без вывода на экран
-z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=1));
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=1);
 // Тот же вызов с подробным выводом на экран
-z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=-1));
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=-1);
  
 clf()
 plot(x,[z(1,:)' z(2,:)']) 
