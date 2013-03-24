@@ -1828,7 +1828,7 @@ fixpnt=[ ];//All boundary conditions are located at x_low and x_up
 ipar=[0       0       1 2    2000   200   1      0     0      0      0     ]
 
 ltol=[1,3];//set tolerance control on zu(1) and zu(3)
-tol=[1.e-11,1.e-11];//set tolreance values for these two controls
+tol=[1.e-11,1.e-11];//set tolerance values for these two controls
 xpoints=x_low:0.01:x_up;
 
 zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
@@ -2481,7 +2481,7 @@ ncomp = 3;
 // Orders of equations
 m = [2, 1, 1];
 
-// Non-linear prob
+// Non-linear problem
 ipar(1) = 1;
 
 // Number of collocation points
@@ -2585,8 +2585,8 @@ end
 // To see the evolution of the eigenvalues with v, disp(eigens)
 // Note they evolve smoothly.
 // To see the solution f for v=40, disp(sol(1,:)). Note that it vanishes
-// exactly once in [0,1] at x close to .98, and becomes very small
-// when x->0 and very large when x -> y.
+// exactly once in [0,1] at x close to 0.98, and becomes very small
+// when x -> 0 and very large when x -> y.
 // This is markedly different from the case  at small v.
 // The continuation procedure allows to explore these exponential behaviours
 // without skipping to other eigenstates.

@@ -164,7 +164,7 @@
                                     <literal>nsizef=4 + 3*M + (5+collpnt*N)*(collpnt*N+M) + (2*M- 
                                         nrec)*2*M
                                     </literal>
-                                    (<literal>nrec</literal> -- количество граничных условий 
+                                    (<literal>nrec</literal> - количество граничных условий 
                                     с правой стороны).
                                 </para>
                             </listitem>
@@ -505,7 +505,7 @@
                                 </imagedata>
                             </imageobject>
                         </inlinemediaobject>
-                        -- вектор приближённого решения, а
+                        - вектор приближённого решения, а
                         <inlinemediaobject>
                             <imageobject>
                                 <imagedata>
@@ -517,7 +517,7 @@
                                 </imagedata>
                             </imageobject>
                         </inlinemediaobject>
-                        -- точное решение (неизвестное).
+                        - точное решение (неизвестное).
                     </para>
                 </listitem>
             </varlistentry>
@@ -1408,7 +1408,7 @@ function [dmval,zu]=fsub(x,parameters)
             Метод, используемый для аппроксимации решения, <literal>u</literal> является 
             коллокацией в гауссовских точках, требующих <literal>m(i)-1</literal> непрерывных 
             производных в <literal>i</literal>-том элементе, <literal>i = 1:N</literal>. Здесь, 
-            <literal>k</literal> -- количество точек коллокации (этапов) на подынтервале, и оно 
+            <literal>k</literal> - количество точек коллокации (этапов) на подынтервале, и оно 
             выбирается так, чтобы <literal>k .ge. max m(i)</literal>. Используется представление 
             решения одночленного решения Рунге-Кутты.
         </para>
@@ -2323,12 +2323,76 @@ subplot(2,1,2)
 plot2d(x,z1(1,:),style=[5])
 xtitle(' ','x',' ')
  ]]></programlisting>
+                <scilab:image localized="true">
+                    a=0;
+                    b=1;
+                    m=2;
+                    n=1;
+                    zeta=[a b];
+                    N=101;
+                    tol=1e-8*[1 1];
+                    x=linspace(a,b,N);
+                    
+                    function rhs=fsub(x,z)
+                    rhs=-exp(z(1));
+                    endfunction
+                    
+                    function g=gsub(i,z)
+                    g=[z(1) z(1)]
+                    g=g(i)
+                    endfunction
+                    
+                    function [z,lhs]=ystart(x,z,M) 
+                    //z=[4*x*(1-x)*M ; 4*(1-2*x)*M]
+                    z=[M;0]
+                    //lhs=[-exp(4*x*(1-x)*M)]
+                    lhs=0
+                    endfunction
+                    
+                    for M=[1 4]
+                    if M==1
+                    z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+                    else
+                    z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+                    end
+                    end
+                    
+                    //  Интегрирование ОДУ даёт, например, два решения yex и yex1.
+                    
+                    function y=f(c)
+                    y=c.*(1-tanh(sqrt(c)/4).^2)-2;
+                    endfunction
+                    c=fsolve(2,f);
+                    
+                    function y=yex(x,c)
+                    y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
+                    endfunction
+                    
+                    function y=f1(c1)
+                        y=2*c1^2+tanh(1/4/c1)^2-1
+                    endfunction
+                    c1=fsolve(0.1,f1);
+                    
+                    function y=yex1(x,c1)
+                    y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
+                    endfunction
+                    
+                    disp(norm(z(1,:)-yex(x)),'norm(yex(x)-z(1,:))= ')
+                    disp(norm(z1(1,:)-yex1(x)),'norm(yex1(x)-z1(1,:))= ')
+                    clf();
+                    subplot(2,1,1)
+                    plot2d(x,z(1,:),style=[5])
+                    xtitle('Два различных решения','x',' ')
+                    subplot(2,1,2)
+                    plot2d(x,z1(1,:),style=[5])
+                    xtitle(' ','x',' ')
+                </scilab:image>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Многоточечная краевая задача</emphasis>
                 </para>
-                <programlisting role="example"><![CDATA[ 
+                <programlisting role="example"><![CDATA[
 // DE y'''(x)=1
 // z=[y(x);y'(x);y''(x)]
 // BV: y(-1)=2 y(1)=2
@@ -2359,6 +2423,160 @@ function y=yex(x)
 endfunction
  
 disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
+ ]]></programlisting>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">
+                        Квантовое уравнение Неймана с 2 "собственными значениями"
+                        (c_1 и c2). Используется продолжение.
+                    </emphasis>
+                </para>
+                <programlisting role="example"><![CDATA[
+
+// Квантовое уравнение Неймана с 2 "собственными значениями" c_1 и c_2
+// (c_1=v-c_2-c_3, где v - параметр, используемый в продолжении)
+//
+// diff(f,x,2) + (1/2)*(1/x + 1/(x-1) + 1/(x-y))*diff(f,x)
+//      - (c_1/x + c_2/(x-1) + c_3/(x-y))* f(x) = 0
+// diff(c_2,x)=0,  diff(c_3,x) = 0
+//
+// и 4 "граничных" условия: diff(f,x)(a_k)=2*c_k*f(a_k) для
+// k=1,2,3, a_k=(0, 1 , y)  и нормировка f(1) = 1
+//
+// Вектор z - это z_1=f, z_2=diff(f,x), z_3=c_2 и z_4=c_3
+// Предположение выбирается так, чтобы иметь один узел в интервале
+// [0,1],  f(x)=2*x-1 такая, что f(1)=1, c_2 и c_3 выбираются так,
+// чтобы исключить полюсы в дифференциальном уравнении в 1.0 и
+// y, z_3=1, z_4=1/(2*y-1)
+// См.: http://arxiv.org/pdf/hep-th/0407005
+
+
+
+
+y= 1.9d0;
+eigens=zeros(3,40); // Для хранения результатов
+
+// Общая настройка bvode
+
+// Количество дифференциальных уравнений
+ncomp = 3;
+
+// Порядки уравнений
+m = [2, 1, 1];
+
+// Нелинейная задача
+ipar(1) = 1;
+
+// Количество точек коллокации
+ipar(2) = 3;
+
+// Исходная сетка из 4 подынтервалов
+ipar(3) = 4;
+ipar(8) = 0;
+
+// Размер fspace, ispace, см. colnew.f для изменения размера
+ipar(5) =  30000;
+ipar(6) =  2000;
+
+// Средний вывод данных
+ipar(7) = 0;
+
+// Есть исходное приближение
+ipar(9) = 1;
+
+// fixpnt - это массив, содержащий все фиксированные точки в сетке, в
+// частности, "граничные" точки, за исключением aleft и aright, ipar[11]
+// её размер, здесь только одна внутренняя "граничная точка"
+ipar(11) = 1;
+fixpnt = [1.0d0];
+
+// Допустимые отклонения для всех элементов z_1, z_2, z_3, z_4
+ipar(4) = 4;
+
+// Проверка допустимого отклонения для f и diff(f,x) и для c_2 и c_3
+ltol = [1, 2, 3, 4];
+tol = [1d-5, 1d-5, 1d-5, 1d-5];
+
+// Определение дифференциальных уравнений
+
+function [f]=fsub(x,z)
+    f = [ -.5*(1/x+1/(x-1)+1/(x-y))*z(2) +...
+     z(1) * ((v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y)),...
+    0,0];
+endfunction
+function [df] = dfsub(x,z)
+    df = [(v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y),...
+    -.5*(1/x+1/(x-1)+1/(x-y)),z(1)/(x*(x-1)),z(1)*y/(x*(x-y));...
+    0,0,0,0;0,0,0,0];
+endfunction
+
+// Граничные условия
+
+function [g]=gsub(i,z)
+    select i
+    case 1, g = z(2) - 2*z(1)*(v-z(3)-z(4))
+    case 2, g = z(2) - 2*z(1)*z(3)
+    case 3, g = z(1)-1.
+    case 4, g = z(2) - 2*z(1)*z(4)
+    end
+endfunction
+function [dg]=dgsub(i,z)
+        select i
+        case 1, dg = [-2*(v-z(3)-z(4)),1.,2*z(1),2*z(1)]
+        case 2, dg = [-2*z(3),1.,-2*z(1),0]
+        case 3, dg = [1,0,0,0]
+        case 4, dg = [-2*z(4),1.,0,-2*z(1)]
+        end
+endfunction
+
+// Начало вычисления
+
+// Положения краевых условий, отсортированные
+zeta = [0.0d0, 1.0d0, 1.0d0, y];
+// Края интервала
+aleft = 0.0d0;
+aright = y;
+
+// Массив из 40 значений v, исследуемых продолжением, и массив из 202
+// точек, в которых следует вычислить функцию f.
+valv = [linspace(0,.9,10) logspace(0,2,30)];
+res = [linspace(0,.99,100) linspace(1,y,101)];
+
+// Собственные состояния характеризуются количеством узлов на интервале 
+// [0,1] и на [1,y], здесь предполжение выбирает один узел (ноль) на
+// интервале [0,1] с линейной функцией f(x)=2*x-1 и константами c_2, c_3,
+// так что dmval=0. Заметьте, что вектор z имеет mstar = 4 элементов,
+// в то время как dmval имеет ncomp = 3 элемента.
+
+function [z,dmval]=guess(x)
+     z=[2*x-1, 2., 1., 1/(2*y-1)]
+     dmval=[0,0,0]
+endfunction
+
+// Первое выполнение имеет ipar(9)=1 и использует предположение
+// Последующие выполнения имеют ipar(9)=3 и используют продолжение. 
+// Это выполняется в плотно закрытом цикле, чтобы не нарушить стек
+
+for i=1:40
+v=valv(i);
+sol=bvode(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
+ fsub,dfsub,gsub,dgsub,guess);
+eigens(:,i)=[v;sol(3,101);sol(4,101)];  // c_2 и c_3 являются константами!
+ipar(9)=3;
+end
+
+
+// Чтобы увидеть изменение собственных значений с v, disp(eigens)
+// Обратите внимание на то, что они изменяются гладко.
+// Чтобы увидеть решение f для v=40, disp(sol(1,:)).
+// Обратите внимание на то, что оно исчезает точно один раз в
+// [0,1] в x близком  0.98, и становится очень малым, когда
+// x -> 0 и очень большим, когда x -> y.
+// Это явно отличается от случая при малом v.
+// Процедура продолжения позволяет исследовать эти экспоненциальные
+// поведения без перехода в другие собственные состояния.
+
  ]]></programlisting>
             </listitem>
         </itemizedlist>
