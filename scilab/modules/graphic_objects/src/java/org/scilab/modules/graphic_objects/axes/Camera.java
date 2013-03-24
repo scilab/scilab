@@ -133,7 +133,7 @@ public class Camera {
      * @param isoview the isoview to set
      */
     public UpdateStatus setIsoview(Boolean isoview) {
-        if (this.isoview = isoview) {
+        if (this.isoview != isoview) {
             this.isoview = isoview;
             return UpdateStatus.Success;
         }
