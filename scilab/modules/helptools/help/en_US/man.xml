@@ -95,7 +95,7 @@ end
     &lt;synopsis&gt;y = foo(a,b,c)&lt;/synopsis&gt;
   &lt;/refsynopsisdiv&gt;
   &lt;refsection&gt;
-    &lt;title&gt;Parameters&lt;/title&gt;
+    &lt;title&gt;Arguments&lt;/title&gt;
     &lt;variablelist&gt;
       &lt;varlistentry&gt;
         &lt;term&gt;a&lt;/term&gt;
