@@ -306,7 +306,7 @@ t0   = 0;
 [yout1,rd1,w,iw] = ode("root", y, t0, tout, 'fex1', 2, 'gex');
 assert_checkalmostequal(rd1(1), 2.64d-01, 1d-4);
 [yout2,rd2,w,iw] = ode("root", y, t0, tout, 'fex1', 2, 'gex', w, iw);
-assert_checkalmostequal(rd2(1), 2.0795776d+07, 1d-7);
+assert_checkalmostequal(rd2(1), 2.0795776d+07, 4d-7);
 err = execstr("[yout3,rd,w,iw] = ode(""root"", y, t0, tout, ""fex1"", 2, ""gex"", w, iw);","errcatch");
 intdy--  t (=r1) illegal      
       where r1 is :   0.4000000000000D+00                                       
