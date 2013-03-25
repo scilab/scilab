@@ -71,9 +71,9 @@ types::Double* prod(types::Double* pIn, int iOrientation)
 
         // init output
         double* pdblOut = pOut->get();
-        double* pdblOutImg = pOut->get();
+        double* pdblOutImg = pOut->getImg();
 
-        if (pIn->isComplex())
+        if (pOut->isComplex())
         {
             for (int i = 0 ; i < pOut->getSize() ; i++)
             {
