@@ -220,6 +220,8 @@ Bug fixes
 
 * Bug #4504 fixed - Function sskf did not work with two outputs (+ help page updated).
 
+* Bug #4405 fixed - qr() was underspecified in documentation.
+
 * Bug #4946 fixed - Bad rendering of a big rotated label.
 
 * Bug #5291 fixed - strtod returned 0 when no real number was detected.
