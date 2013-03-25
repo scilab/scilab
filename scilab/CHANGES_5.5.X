@@ -53,6 +53,8 @@ Bug fixes
 
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
+* Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
+
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
 
 * Bug #10862 fixed - Add a without internet connection installation
