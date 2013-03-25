@@ -186,7 +186,7 @@ public class ContentLayout extends JPanel {
                     Class partypes[] = new Class[1];
                     partypes[0] = Integer.TYPE;
 
-                    Class cls = Class.forName("org.scilab.modules.gui.ged." + packClass);
+                    Class cls = Class.forName("org.scilab.modules.gui.ged.graphic_objects." + packClass);
                     Method meth = cls.getMethod(method, partypes);
 
                     Object arglist[] = new Object[1];

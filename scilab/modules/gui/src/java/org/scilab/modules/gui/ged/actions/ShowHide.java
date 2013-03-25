@@ -16,12 +16,12 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.ged.MessagesGED;
 import org.scilab.modules.gui.ged.SwingInspector;
-import org.scilab.modules.gui.ged.axes.HideAxis;
-import org.scilab.modules.gui.ged.figure.HideFigure;
-import org.scilab.modules.gui.ged.legend.HideLegend;
-import org.scilab.modules.gui.ged.polyline.HidePolyline;
-import org.scilab.modules.gui.ged.surface.HideSurface;
-import org.scilab.modules.gui.ged.surface.grayplot.HideGrayplot;
+import org.scilab.modules.gui.ged.graphic_objects.axes.HideAxis;
+import org.scilab.modules.gui.ged.graphic_objects.figure.HideFigure;
+import org.scilab.modules.gui.ged.graphic_objects.legend.HideLegend;
+import org.scilab.modules.gui.ged.graphic_objects.polyline.HidePolyline;
+import org.scilab.modules.gui.ged.graphic_objects.surface.HideSurface;
+import org.scilab.modules.gui.ged.graphic_objects.surface.grayplot.HideGrayplot;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 

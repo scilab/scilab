@@ -17,12 +17,12 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.gui.ged.actions.ShowHide;
-import org.scilab.modules.gui.ged.axes.Axes;
-import org.scilab.modules.gui.ged.figure.Figure;
-import org.scilab.modules.gui.ged.legend.Legend;
-import org.scilab.modules.gui.ged.polyline.Polyline;
-import org.scilab.modules.gui.ged.surface.grayplot.Grayplot;
-import org.scilab.modules.gui.ged.surface.Surface;
+import org.scilab.modules.gui.ged.graphic_objects.axes.Axes;
+import org.scilab.modules.gui.ged.graphic_objects.figure.Figure;
+import org.scilab.modules.gui.ged.graphic_objects.legend.Legend;
+import org.scilab.modules.gui.ged.graphic_objects.polyline.Polyline;
+import org.scilab.modules.gui.ged.graphic_objects.surface.grayplot.Grayplot;
+import org.scilab.modules.gui.ged.graphic_objects.surface.Surface;
 
 /**
 * Manager object exchange.
