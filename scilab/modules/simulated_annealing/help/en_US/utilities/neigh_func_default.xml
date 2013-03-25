@@ -85,7 +85,7 @@ It_intern   = 1000;
 x_test = neigh_func_default(x0,%nan);
 
 saparams = init_param();
-saparams = add_param(comp_t_params,'neigh_func', neigh_func_default);
+saparams = add_param(saparams,'neigh_func', neigh_func_default);
 
 T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre, saparams);
 Log = %T;
