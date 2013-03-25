@@ -216,7 +216,9 @@ Bug fixes
 * Bug #3313 fixed - In the documentation, the title of a link used the
                     XML id instead of the title of the page.
 
-* Bug #4946 fixed - Rotated labels were badly rendered.
+* Bug #4504 fixed - Function sskf did not work with two outputs (+ help page updated).
+
+* Bug #4946 fixed - Bad rendering of a big rotated label.
 
 * Bug #5291 fixed - strtod returned 0 when no real number was detected.
 
