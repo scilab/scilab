@@ -534,6 +534,10 @@ Bug fixes
 
 * Bug #12285 fixed - export_to_hdf5 function did not manage any matrix in append mode.
 
+* Bug #12289 fixed - sub_ticks property was ignored.
+
+* Bug #12291 fixed - Unable to display a list of handle as an handle userData.
+
 * Bug #12291 fixed - A list of handles could not be displayed as a handle userdata.
 
 * Bug #12296 fixed - Calling getenv with a big environment variable
