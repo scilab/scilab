@@ -43,6 +43,7 @@ import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.RootPaneContainer;
@@ -1144,6 +1145,186 @@ public abstract class UIComponent {
      */
     public boolean getScrollable() {
         return component instanceof JScrollPane && ((JScrollPane) component).getHorizontalScrollBarPolicy() == ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
+    }
+
+    /**
+     * Set the horizontal block increment (pgup, pgdown in scroll)
+     * @param blockIncrement the block increment
+     */
+    public void setHorizontalBlockIncrement(int blockIncrement) {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getHorizontalScrollBar();
+            if (bar != null) {
+                bar.setBlockIncrement(blockIncrement);
+            }
+        }
+    }
+
+    /**
+     * Get the horizontal block increment
+     * @return block increment
+     */
+    public int getHorizontalBlockIncrement() {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getHorizontalScrollBar();
+            if (bar != null) {
+                return bar.getBlockIncrement();
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Set the vertical block increment (pgup, pgdown in scroll)
+     * @param blockIncrement the block increment
+     */
+    public void setVerticalBlockIncrement(int blockIncrement) {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getVerticalScrollBar();
+            if (bar != null) {
+                bar.setBlockIncrement(blockIncrement);
+            }
+        }
+    }
+
+    /**
+     * Get the vertical block increment
+     * @return block increment
+     */
+    public int getVerticalBlockIncrement() {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getVerticalScrollBar();
+            if (bar != null) {
+                return bar.getBlockIncrement();
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Set the horizontal unit increment (wheel in scroll)
+     * @param unitIncrement the unit increment
+     */
+    public void setHorizontalUnitIncrement(int unitIncrement) {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getHorizontalScrollBar();
+            if (bar != null) {
+                bar.setUnitIncrement(unitIncrement);
+            }
+        }
+    }
+
+    /**
+     * Get the horizontal unit increment
+     * @return unit increment
+     */
+    public int getHorizontalUnitIncrement() {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getHorizontalScrollBar();
+            if (bar != null) {
+                return bar.getUnitIncrement();
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Set the vertical unit increment (wheel in scroll)
+     * @param unitIncrement the unit increment
+     */
+    public void setVerticalUnitIncrement(int unitIncrement) {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getVerticalScrollBar();
+            if (bar != null) {
+                bar.setUnitIncrement(unitIncrement);
+            }
+        }
+    }
+
+    /**
+     * Get the vertical unit increment
+     * @return unit increment
+     */
+    public int getVerticalUnitIncrement() {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getVerticalScrollBar();
+            if (bar != null) {
+                return bar.getUnitIncrement();
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Set the horizontal scroll value
+     * @param value the value
+     */
+    public void setHorizontalScrollValue(int value) {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getHorizontalScrollBar();
+            if (bar != null) {
+                bar.setValue(value);
+            }
+        }
+    }
+
+    /**
+     * Get the horizontal scroll value
+     * @return the scroll value
+     */
+    public int getHorizontalScrollValue() {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getHorizontalScrollBar();
+            if (bar != null) {
+                return bar.getValue();
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Set the vertical scroll value
+     * @param value the value
+     */
+    public void setVerticalScrollValue(int value) {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getVerticalScrollBar();
+            if (bar != null) {
+                bar.setValue(value);
+            }
+        }
+    }
+
+    /**
+     * Get the vertical scroll value
+     * @return the scroll value
+     */
+    public int getVerticalScrollValue() {
+        if (component instanceof JScrollPane) {
+            JScrollPane scroll = (JScrollPane) component;
+            JScrollBar bar = scroll.getVerticalScrollBar();
+            if (bar != null) {
+                return bar.getValue();
+            }
+        }
+
+        return -1;
     }
 
     /**
