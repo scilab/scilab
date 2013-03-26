@@ -293,6 +293,8 @@ Bug fixes
 * Bug #10415 fixed - Removing a session line in history caused the removal
                      of the session node in the history browser.
 
+* Bug #10546 fixed - Help of fileinfo had to be updated.
+
 * Bug #10606 fixed - unix_g did not return stdout in somes cases.
 
 * Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
