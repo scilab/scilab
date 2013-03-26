@@ -238,9 +238,10 @@ public class Style extends Position {
         layout.addJLabel(pStyle, lLine, MessagesGED.line_style, 1, 4, 16);
 
         layout.addJComboBox(pStyle, cLine,
-                new String[] { MessagesGED.solid, MessagesGED.dash, MessagesGED.dash_dot,
+                new String[] { MessagesGED.dash, MessagesGED.dash_dot,
                     MessagesGED.longdash_dot, MessagesGED.bigdash_dot,
-                    MessagesGED.bigdash_longdash, MessagesGED.dot, MessagesGED.double_dot }
+                    MessagesGED.bigdash_longdash, MessagesGED.dot,
+                    MessagesGED.double_dot }
                 , 2, 4);
         cLine.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -386,7 +387,7 @@ public class Style extends Position {
             // Get the current status of the property: Line Style
             int currentLineStyle = (Integer) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_STYLE__);
-            cLine.setSelectedIndex(currentLineStyle);
+            cLine.setSelectedIndex(currentLineStyle-1);
 
             // Get the current status of the property: Polyline Style
             int currentPolylineStyle = (Integer) GraphicController.getController()
@@ -557,7 +558,7 @@ public class Style extends Position {
     private void cLineActionPerformed(ActionEvent evt) {
         GraphicController.getController().setProperty(
                 currentpolyline, GraphicObjectProperties.__GO_LINE_STYLE__,
-                cLine.getSelectedIndex());
+                cLine.getSelectedIndex()+1);
     }
 
     /**
