@@ -119,10 +119,10 @@ Xcos
 
 * Bug #12167 fixed - Text of ports in superblocks was not updated.
 
-* Bug #12213 fixed - The example given in lincos help page produced an undefined 
+* Bug #12213 fixed - The example given in lincos help page produced an undefined
                      variable warning.
 
-* Bug #12265 fixed - The example diagrams given in xcos_simulate help page had 
+* Bug #12265 fixed - The example diagrams given in xcos_simulate help page had
                      a badly rendering due to CLR blocks.
 
 * Bug #12290 fixed - AFFICH_m block inside a superblock led to a Java
@@ -582,6 +582,8 @@ Bug fixes
 * Bug #12396 fixed - Example "Problem 2" was missing a variable in bvode help page.
 
 * Bug #12418 fixed - Continuation was incorrectly supported in bvode.
+
+* Bug #12442 fixed - pathconvert() help page is not clear enough.
 
 
                     Changes between version 5.3.3 and 5.4.0

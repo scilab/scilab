@@ -3,18 +3,18 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="pathconvert">
     <refnamediv>
         <refname>pathconvert</refname>
-        <refpurpose>pathnames convertion between POSIX and Windows.  </refpurpose>
+        <refpurpose>converts a path to an OS path format.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -26,22 +26,22 @@
             <varlistentry>
                 <term>paths</term>
                 <listitem>
-                    <para>a string matrix giving a set of pathnames</para>
+                    <para>a string matrix giving a set of file paths</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flagtrail</term>
                 <listitem>
-                    <para>
-                        a boolean optional parameter. Its default value is <constant>%t</constant>.
+                    <para>optional boolean, used to add a trailing file separator to the paths ('\' or '/', depending on the target path format).
+                        Default value is true (<constant>%t</constant>).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flagexpand</term>
                 <listitem>
-                    <para>
-                        a boolean optional parameter. Its default value depends on the result of <code>getos() == 'Windows'</code>.
+                    <para>optional boolean, used to expand leading variables in paths.
+                        Default value is true (<constant>%t</constant>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -49,7 +49,7 @@
                 <term>type</term>
                 <listitem>
                     <para>
-                        a string <literal>'u'</literal> or <literal>'w'</literal>.
+                        optional string, used to specify the target path format: <literal>'u'</literal> for POSIX path format (Linux,...), and <literal>'w'</literal> for Windows path format.
                     </para>
                 </listitem>
             </varlistentry>
@@ -58,41 +58,51 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>pathconvert</function> can be used to convert a set of pathnames
-            (given by a string matrix <varname>paths</varname>) from Windows native 
-            filename to POSIX-style pathnames and back. The target style 
-            is given by the optional string <varname>type</varname> which can be 
-            <literal>'u'</literal> for Unix or <literal>'w'</literal> for Windows. The default 
-            style is set according to the value of <code>getos() == 'Windows'</code>. 
-            If <code>getos() == 'Windows'</code> is <constant>%t</constant> (resp. <constant>%f</constant> ) then default type is <literal>'w'</literal>
-            (resp.  <literal>'u'</literal>).
+            <function>pathconvert</function> is used to convert a set of paths,
+            to be compatible with an OS (Operating System) path format. For example Windows path style uses '/' for file separator, while it is '\' on other OS.
         </para>
         <para>
-            Windows pathnames starting with <literal>name:</literal> are converted to 
-            pathnames starting with <literal>/cygdrive/name/</literal> using the cygwin 
-            convention.
+            By default, the paths are converted to the current OS path format (but another path format can be specified with argument <varname>type</varname>).
         </para>
         <para>
-            <varname>flagtrail</varname> is an optional boolean parameter. When its value 
-            is <constant>%t</constant> (default value) a trailing separator (<literal>'\'</literal> or <literal>'/'</literal>) is added 
-            at the end of the path if it was missing.  If <varname>flagtrail</varname> is
-            set to <constant>%f</constant>, the trailing separator is removed.
+            Note: Windows paths starting with a drive letter prefix are converted to the POSIX paths using the cygwin convention (with <literal>/cygdrive</literal>).
+            For ex: <literal>C:\tmp</literal> will be converted to <literal>/cygdrive/C/tmp</literal>.
         </para>
         <para>
-            <varname>flagexpand</varname> is an optional boolean parameter. When its value 
-            is <constant>%t</constant> leading strings like  <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are 
-            expanded using environment variables.
+            <varname>flagtrail</varname> is used to add or remove a file separator (depending on the target path format) to the end of paths.
+            When the parameter is set to true, a trailing file separator is added if missing. Otherwise, the trailing file separators are removed.
+        </para>
+        <para>
+            <varname>flagexpand</varname> is used to expand the leading Scilab environment variables in paths.
+            The following variables are accepted:
+            <itemizedlist>
+                <listitem>
+                    <literal>SCI</literal>
+                </listitem>
+                <listitem>
+                    <literal>WSCI</literal>
+                </listitem>
+                <listitem>
+                    <literal>SCIHOME</literal>
+                </listitem>
+                <listitem>
+                    <literal>TMPDIR</literal>
+                </listitem>
+                <listitem>
+                    <literal>HOME</literal> (or <literal>home</literal>, or <literal>~</literal>)
+                </listitem>
+            </itemizedlist>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"u")
-pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"w")
-pathconvert("SCI/modules/fileio/macros/foo.sci",%f,%t,"w")
-pathconvert("HOME/modules/fileio/macros/foo.sci",%t,%t,"w")
-pathconvert("c:/tmp",%f,%t,"u")
-pathconvert("/cygdrive/c/tmp",%f,%f,"w")
+        <programlisting role="example"><![CDATA[
+pathconvert("SCI/modules/foo", %f, %t, "w")
+pathconvert("SCI\modules\foo", %f, %t, "u")
+pathconvert("SCI\modules\foo", %t, %t, "u")
+pathconvert("HOME/modules/foo", %f, %f, "w")
+pathconvert("C:/tmp", %f, %f, "u")
+pathconvert("/cygdrive/c/tmp", %f, %f, "w")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
