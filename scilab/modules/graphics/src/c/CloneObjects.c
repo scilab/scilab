@@ -232,7 +232,6 @@ char* clonePolyline(char* sourcePolyline)
     /* These properties must be aditionally set as this is not done by allocatePolyline */
     setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
     setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
-    releaseGraphicObjectProperty(__GO_POLYLINE__, clonedPolylineUID, jni_string, 1);
 
     /*
      * Some these properties are passed by value thus do not care to release them
