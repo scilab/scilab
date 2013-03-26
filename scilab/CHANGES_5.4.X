@@ -72,6 +72,8 @@ Xcos
 
 * Bug #5040 fixed - Fit diagram to view did not work with a single block.
 
+* Bug #5162 fixed - Add an "export all menu" to export all diagram layers.
+
 * Bug #9074 fixed - Calling a function on the context gave a warning.
 
 * Bug #10040 fixed - VARIABLE_DELAY help page did not fully describe the
