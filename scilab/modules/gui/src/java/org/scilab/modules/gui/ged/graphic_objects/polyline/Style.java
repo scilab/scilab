@@ -28,13 +28,12 @@ import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import org.scilab.modules.gui.editor.EditorManager;
@@ -42,6 +41,8 @@ import org.scilab.modules.gui.editor.EditorManager;
 import org.scilab.modules.gui.ged.ColorMapHandler;
 import org.scilab.modules.gui.ged.ContentLayout;
 import org.scilab.modules.gui.ged.MessagesGED;
+import org.scilab.modules.gui.ged.componentRenderer.JComboBox.MarkStyleRenderer;
+import org.scilab.modules.gui.ged.graphic_objects.contouredObject.MarkStyle;
 
 /**
 * Construction and startup of all components of the section: Style/Appeareance.
@@ -100,6 +101,7 @@ public class Style extends Position {
     protected static JDialog markForegroundDialog;
     private static JColorChooser chooserMarkForeground;
     private static JButton okMarkForeground;
+    private final MarkStyleRenderer markStyleRenderer = new MarkStyleRenderer();
 
     private JLabel lMarkSize;
     private JTextField cMarkSize;
@@ -165,7 +167,7 @@ public class Style extends Position {
         lMarkSize = new JLabel();
         cMarkSize = new JTextField();
         lMarkStyle = new JLabel();
-        cMarkStyle = new JComboBox();
+        cMarkStyle = new JComboBox(MarkStyle.values());
         fillerVERTICAL = new Box.Filler(new Dimension(1, 1), new java.awt.Dimension(1, 1), new java.awt.Dimension(1, 32767));
 
         //Components of the header: Style/Appeareance.
@@ -312,9 +314,17 @@ public class Style extends Position {
         //Components of the property: Mark Style.
         layout.addJLabel(pStyle, lMarkStyle, MessagesGED.mark_style, 1, 10, 16);
 
-        layout.addJComboBox(pStyle, cMarkStyle,
-                new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" },
-                2, 10);
+        cMarkStyle.setRenderer(markStyleRenderer);
+        cMarkStyle.setPreferredSize(new Dimension(5, 20));
+        gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 2;
+        gbc.gridy = 10;
+        gbc.ipadx = 70;
+        gbc.weightx = 0.1;
+        gbc.insets = new Insets(0, 4, 5, 0);
+        pStyle.add(cMarkStyle, gbc);
         cMarkStyle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cMarkStyleActionPerformed(evt);
@@ -391,7 +401,9 @@ public class Style extends Position {
             Integer scilabMarkBackground = (Integer) GraphicController.getController()
                   .getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
             Double[] rgbMarkBackground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkBackground);
-            cMarkBackground.setBackground(new Color(rgbMarkBackground[0].intValue(), rgbMarkBackground[1].intValue(), rgbMarkBackground[2].intValue()));
+            Color markBackgroundCOLOR = new Color(rgbMarkBackground[0].intValue(), rgbMarkBackground[1].intValue(), rgbMarkBackground[2].intValue());
+            cMarkBackground.setBackground(markBackgroundCOLOR);
+            markStyleRenderer.setMarkBackground(markBackgroundCOLOR);
 
             // Get the current status of the property: Mark Foreground Color
             Integer scilabMarkForeground;
@@ -401,7 +413,9 @@ public class Style extends Position {
             	scilabMarkForeground = (Integer) GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
             }
             Double[] rgbMarkForeground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkForeground);
-            cMarkForeground.setBackground(new Color(rgbMarkForeground[0].intValue(), rgbMarkForeground[1].intValue(), rgbMarkForeground[2].intValue()));
+            Color markForegroundCOLOR = new Color(rgbMarkForeground[0].intValue(), rgbMarkForeground[1].intValue(), rgbMarkForeground[2].intValue());
+            cMarkForeground.setBackground(markForegroundCOLOR);
+            markStyleRenderer.setMarkForeground(markForegroundCOLOR);
 
             // Get the current status of the property: Mark Size
             cMarkSize.setText( Integer.toString((Integer) GraphicController.getController()
@@ -652,6 +666,8 @@ public class Style extends Position {
     public void setMarkBackground(int scilabColor) {
         GraphicController.getController().setProperty(
                 currentpolyline, GraphicObjectProperties.__GO_MARK_BACKGROUND__, scilabColor);
+        //update color of graphics in MarkStyle ComboBox
+        markStyleRenderer.setMarkBackground(chooserMarkBackground.getColor());
     }
 
     /**
@@ -665,5 +681,7 @@ public class Style extends Position {
     	} else {
     		GraphicController.getController().setProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
     	}
+        //update color of graphics in MarkStyle ComboBox
+        markStyleRenderer.setMarkForeground(chooserMarkForeground.getColor());
     }
 }
