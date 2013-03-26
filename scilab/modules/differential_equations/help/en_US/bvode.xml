@@ -56,7 +56,7 @@
                 <term>N</term>
                 <listitem>
                     <para>a scalar with integer value, number of differential equations
-                        (N &lt;= 20).
+                        (<literal>N</literal> &lt;= 20).
                     </para>
                 </listitem>
             </varlistentry>
@@ -213,7 +213,7 @@
                                     <varlistentry>
                                         <term>= 0</term>
                                         <listitem>
-                                            <para>causes bvode to generate a uniform initial
+                                            <para>causes <literal>bvode</literal> to generate a uniform initial
                                                 mesh.
                                             </para>
                                         </listitem>
@@ -228,12 +228,9 @@
                                                 <varlistentry>
                                                     <term>= 1</term>
                                                     <listitem>
-                                                        <para>if the initial mesh is provided by the user.
-                                                            it is defined in <literal>fspace</literal> as follows: the mesh 
+                                                        <para>if the initial mesh is provided by the user it is defined in <literal>fspace</literal> as follows: the mesh 
                                                             will occupy <literal>fspace(1), ..., fspace(n+1)</literal>. The user needs to supply only
-                                                            the interior mesh points <literal>fspace(j) = x(j),
-                                                                j = 2, ..., n.
-                                                            </literal>
+                                                            the interior mesh points <literal>fspace(j) = x(j),j = 2, ..., n</literal>.
                                                         </para>
                                                     </listitem>
                                                 </varlistentry>
@@ -286,8 +283,8 @@
                                         <term>= 3</term>
                                         <listitem>
                                             <para>if a former mesh and approximate solution
-                                                coefficients are provided by the user in <literal>fspace</literal> , and the
-                                                new mesh is to be taken twice as coarse; i.e.,every
+                                                coefficients are provided by the user in <literal>fspace</literal>, and the
+                                                new mesh is to be taken twice as coarse; i.e. every
                                                 second point from the former mesh.
                                             </para>
                                         </listitem>
@@ -360,7 +357,7 @@
                     <para>
                         an array of dimension <literal>ntol=ipar(4)</literal>.
                         <literal>ltol(j) = l</literal> specifies that the <literal>j</literal>-th tolerance in
-                        the <literal> tol</literal> array controls the error in the <literal>l</literal>-th
+                        the <literal>tol</literal> array controls the error in the <literal>l</literal>-th
                         component of 
                         <inlinemediaobject>
                             <imageobject>
@@ -375,8 +372,8 @@
                                     </mml:math>
                                 </imagedata>
                             </imageobject>
-                        </inlinemediaobject>
-                        . It is also required that:
+                        </inlinemediaobject>.
+                        It is also required that:
                     </para>
                     <para>
                         <literal>1 &lt;= ltol(1) &lt; ltol(2) &lt; ... &lt; ltol(ntol)
@@ -532,7 +529,7 @@
                         <literal>x_up</literal>, which are to be included in every mesh. The
                         code requires that all side condition points other than
                         <literal>x_low</literal> and <literal>x_up</literal> (see
-                        description of <literal>zeta</literal> ) be included as fixed points in
+                        description of <literal>zeta</literal>) be included as fixed points in
                         <literal>fixpnt</literal>.
                     </para>
                 </listitem>
@@ -1431,7 +1428,7 @@ function [dmval,zu]=fsub(x,parameters)
             <listitem>
                 <para>
                     <emphasis role="bold">The problem 1</emphasis> describes a
-                    uniformy loaded beam of variable stifness, simply supported at both
+                    uniformly loaded beam of variable stiffness, simply supported at both
                     end.
                 </para>
                 <para>It may be defined as follow :</para>
@@ -2146,7 +2143,7 @@ xt=sqrt(2*(gam-1)/gam)
 fixpnt=[ ];//All boundary conditions are located at x_low and x_up
 collpnt=4;
 nsizef=4+3*M+(5+collpnt*N)*(collpnt*N+M)+(2*M-2)*2*M ;
-nsizei=3 + collpnt*N+M;;
+nsizei=3 + collpnt*N+M;
 nmax=200;
 //    nonlin  collpnt n  ntol  ndimf        ndimi       iprint iread iguess rstart nfxpnt
 ipar=[1       collpnt 10  4   nmax*nsizef  nmax*nsizei   -1      0     0      0      0     ]
@@ -2222,7 +2219,8 @@ N=101;
 x=linspace(a,b,N)';
 
 // We have s(n)-(n+1/2)*pi -> 0 for n to infinity.
-la0=input('n-th eigenvalue: n= ?');la0=(%pi/2+la0*%pi)^2;
+la0=evstr(x_dialog('n-th eigenvalue: n= ?','10'));
+la0=(%pi/2+la0*%pi)^2;
 
 z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0));
 // The same call without any display
@@ -2233,7 +2231,7 @@ z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=-1);
 clf()
 plot(x,[z(1,:)' z(2,:)']) 
 xtitle(['Startvalue =  '+string(la0);'Eigenvalue = '+string(z(3,1))],'x',' ')
-legend(['y(x)';'y''(x)'])
+legend(['y(x)';'y''(x)']);
  ]]></programlisting>
                 <scilab:image localized="true">
                     function rhs=fsub(x,z)
