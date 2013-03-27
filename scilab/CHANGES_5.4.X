@@ -611,6 +611,8 @@ Bug fixes
 
 * Bug #12450 fixed - xlfont() did not return font names as specified in the documentation.
 
+* Bug #12455 fixed - format_n property had no effect on "axis" handles.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================

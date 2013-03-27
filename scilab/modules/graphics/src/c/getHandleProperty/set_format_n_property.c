@@ -5,6 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,6 +30,8 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "string.h"
+#include "StringMatrix.h"
+#include "Format.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -38,18 +41,34 @@ int set_format_n_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
 {
     BOOL status = FALSE;
     char* format = NULL;
-    if ( !( valueType == sci_strings ) )
+    char * oldFormat = NULL;
+    StringMatrix * labels = NULL;
+
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "format_n");
         return SET_PROPERTY_ERROR;
     }
 
     format = getStringFromStack(stackPointer);
+    getGraphicObjectProperty(pobjUID, __GO_FORMATN__, jni_string, (void **)&oldFormat);
+
+    if (strcmp(format, oldFormat) == 0)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
 
     status = setGraphicObjectProperty(pobjUID, __GO_FORMATN__, format, jni_string, 1);
-
     if (status == TRUE)
     {
+        labels = computeDefaultTicsLabels(pobjUID);
+        if (labels != NULL)
+        {
+            char ** data = getStrMatData(labels);
+            setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, data, jni_string_vector, labels->nbCol * labels->nbRow);
+            deleteMatrix(labels);
+        }
+
         return SET_PROPERTY_SUCCEED;
     }
     else
