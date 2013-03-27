@@ -1035,7 +1035,7 @@ function [dmval,zu]=fsub(x,parameters)
                         Все эти аргументы за исключением <literal>ifail</literal> описаны выше.
                         <literal>ifail</literal> может использоваться для отображения вызова
                         bvode в соответствии с выбранными необязательными аргументами. Если
-                        <literal>guess</literal>задано, то <literal>iguess</literal> равно 1.
+                        <literal>guess</literal> задано, то <literal>iguess</literal> равно 1.
                     </para>
                 </listitem>
             </varlistentry>
@@ -1409,8 +1409,8 @@ function [dmval,zu]=fsub(x,parameters)
             коллокацией в гауссовских точках, требующих <literal>m(i)-1</literal> непрерывных 
             производных в <literal>i</literal>-том элементе, <literal>i = 1:N</literal>. Здесь, 
             <literal>k</literal> - количество точек коллокации (этапов) на подынтервале, и оно 
-            выбирается так, чтобы <literal>k .ge. max m(i)</literal>. Используется представление 
-            решения одночленного решения Рунге-Кутты.
+            выбирается так, чтобы <latex>k \geslant \max\left(m(i)\right)</latex>. 
+            Используется представление решения одночленного решения Рунге-Кутты.
         </para>
     </refsection>
     <refsection>
