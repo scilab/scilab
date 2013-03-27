@@ -530,7 +530,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     }
 
                     if (polyline.getMarkMode()) {
-                        Texture sprite = markManager.getMarkSprite(polyline, colorMap);
+                        Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
                         ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
                         drawingTools.draw(sprite, AnchorPosition.CENTER, positions);
                     }
@@ -622,7 +622,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
 
                 if (fac3d.getMarkMode()) {
-                    Texture texture = markManager.getMarkSprite(fac3d, colorMap);
+                    Appearance appearance = null;
+                    if (fac3d.getLineThickness() > 0.0) {
+                        appearance = new Appearance();
+                        appearance.setLineWidth(fac3d.getLineThickness().floatValue());
+                    }
+
+                    Texture texture = markManager.getMarkSprite(fac3d, colorMap, appearance);
                     ElementsBuffer positions = dataManager.getVertexBuffer(fac3d.getIdentifier());
                     drawingTools.draw(texture, AnchorPosition.CENTER, positions);
                 }
@@ -635,7 +641,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
             axesDrawer.disableClipping(fac3d.getClipProperty());
         }
-
     }
 
     @Override
@@ -666,7 +671,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
 
-
                     if (plot3d.getColorFlag() == 1) {
                         geometry.setColors(dataManager.getColorBuffer(plot3d.getIdentifier()));
                     } else {
@@ -696,7 +700,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
 
                 if (plot3d.getMarkMode()) {
-                    Texture texture = markManager.getMarkSprite(plot3d, colorMap);
+                    Appearance appearance = null;
+                    if (plot3d.getLineThickness() > 0.0) {
+                        appearance = new Appearance();
+                        appearance.setLineWidth(plot3d.getLineThickness().floatValue());
+                    }
+
+                    Texture texture = markManager.getMarkSprite(plot3d, colorMap, appearance);
                     ElementsBuffer positions = dataManager.getVertexBuffer(plot3d.getIdentifier());
                     drawingTools.draw(texture, AnchorPosition.CENTER, positions);
                 }
@@ -805,7 +815,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                  * in order to obtain the latter's Mark (all arrows are supposed to have the same contour properties for now).
                  */
                 if (segs.getMarkMode()) {
-                    Texture texture = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap);
+                    Texture texture = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap, null);
                     ElementsBuffer positions = dataManager.getVertexBuffer(segs.getIdentifier());
                     // Take only into account start-end of segs and not the arrow head.
                     positions.getData().limit(segs.getNumberArrows() * 2 * 4);

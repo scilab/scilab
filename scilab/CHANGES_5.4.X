@@ -254,6 +254,8 @@ Bug fixes
 
 * Bug #7769 fixed - get_function_path did not have a unit test.
 
+* Bug #7790 fixed - Line thickness was taken into account when drawing marks.
+
 * Bug #8213 fixed - geom3d help page had no examples.
 
 * Bug #8395 fixed - dft has been deprecated to fft.
