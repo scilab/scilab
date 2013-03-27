@@ -21,7 +21,7 @@ legPos = [0.1,0.2];
 clf();
 plot2d("oll",0.1:10,0.1:10,-4,rect=[0.02 0.02 20 20]) ;
 xtitle("verification of eq.(48) possible for","tau1","tau2");
-leg = legend(["with C","without"],legPos,1);
+leg = legend(["with C","without"],legPos,%t);
 
 // check that legend upper left corner is at position [0.1,0.1]
 // position of legend is relative to axes axes_bounds
