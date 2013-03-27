@@ -602,6 +602,8 @@ Bug fixes
 
 * Bug #12442 fixed - pathconvert() help page was not clear about input arguments.
 
+* Bug #12448 fixed - Double click on .sod file tried to open it with Scinotes instead of load it.
+
 * Bug #12450 fixed - xlfont() did not return font names as specified in the documentation.
 
 
