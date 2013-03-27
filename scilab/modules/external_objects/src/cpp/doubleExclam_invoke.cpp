@@ -25,8 +25,6 @@ int ScilabGateway::doubleExclam_invoke(char * fname, const int envId, void * pvA
     int * addr = 0;
     int * tmpvar = 0;
     int * args = 0;
-    int typ = 0;
-    int * child = 0;
     int eId = OptionsHelper::getEnvId();
     int ret = 0;
     int * sret = 0;

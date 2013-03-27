@@ -22,7 +22,6 @@ int ScilabGateway::array(char * fname, const int envId, void * pvApiCtx)
     int * addr = 0;
     char * className = 0;
     int * args = 0;
-    char * errmsg = 0;
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
 

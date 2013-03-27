@@ -17,8 +17,6 @@ namespace org_modules_external_objects
 
 int ScilabGateway::getNamedVariable(char * fname, const int envId, void * pvApiCtx)
 {
-    SciErr err;
-    int * addr = 0;
     char * varName = 0;
     int idObj;
 

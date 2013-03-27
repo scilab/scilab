@@ -25,7 +25,6 @@ int ScilabGateway::getsetOptions(char * fname, const int envId, ScilabAbstractOp
     CheckOutputArgument(pvApiCtx, 1, 1);
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
-    OptionsHelper & helper = env.getOptionsHelper();
     ScilabGatewayOptions & options = env.getGatewayOptions();
     OptionsHelper::setCopyOccured(false);
     ScilabObjects::initialization(env, pvApiCtx);
