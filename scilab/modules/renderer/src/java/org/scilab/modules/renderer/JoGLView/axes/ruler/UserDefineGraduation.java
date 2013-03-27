@@ -118,12 +118,13 @@ class UserDefineGraduation implements Graduations {
                     final double first = ticksValue.get(i);
                     final double second = ticksValue.get(i + 1);
                     final double step = (second - first) / (N + 1);
-                    double v = first + step;
-                    for (int j = 0; j < N; j++) {
+                    double v = first;
+                    for (int j = 0; j <= N; j++) {
                         subValues.add(v);
                         v += step;
                     }
                 }
+                subValues.add(ticksValue.get(ticksValue.size() - 1));
             }
         }
 

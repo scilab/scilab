@@ -536,6 +536,8 @@ Bug fixes
 
 * Bug #12259 fixed - Wrong translation for "Filled" fixed in SciNotes.
 
+* Bug #12260 fixed - Grid not drawn with log scale and user defined ticks.
+
 * Bug #12270 fixed - When the console lost the focus between SciNotes and the console,
                      the caret could become visible in the console instead SciNotes.
 
