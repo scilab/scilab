@@ -1,16 +1,16 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Vincent COUVERT
-// Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2013 - Scilab Enterprises - Sylvestre Ledru
+// Copyright (C) 2013 - Scilab Enterprises - Calixte Denizet
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- CLI SHELL MODE -->
-// <-- Non-regression test for bug 167 -->
+// <-- TEST WITH GRAPHIC -->
+// <-- Non-regression test for bug 12405 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=167
+// http://bugzilla.scilab.org/show_bug.cgi?id=12405
 //
 // <-- Short Description -->
-//    sprintf error
-assert_checkequal(sprintf("%e", 1e-10), "1.000000e-10");
+// Floating point errors could lead to an infinite loop in ticks computation.
+plot2d([1-1e-16 1])

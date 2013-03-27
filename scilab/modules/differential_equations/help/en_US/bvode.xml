@@ -56,7 +56,7 @@
                 <term>N</term>
                 <listitem>
                     <para>a scalar with integer value, number of differential equations
-                        (N &lt;= 20).
+                        (<literal>N</literal> &lt;= 20).
                     </para>
                 </listitem>
             </varlistentry>
@@ -213,7 +213,8 @@
                                     <varlistentry>
                                         <term>= 0</term>
                                         <listitem>
-                                            <para>causes bvode to generate a uniform initial
+                                            <para>
+                                                causes <literal>bvode</literal> to generate a uniform initial
                                                 mesh.
                                             </para>
                                         </listitem>
@@ -228,12 +229,10 @@
                                                 <varlistentry>
                                                     <term>= 1</term>
                                                     <listitem>
-                                                        <para>if the initial mesh is provided by the user.
-                                                            it is defined in <literal>fspace</literal> as follows: the mesh 
+                                                        <para>
+                                                            if the initial mesh is provided by the user it is defined in <literal>fspace</literal> as follows: the mesh 
                                                             will occupy <literal>fspace(1), ..., fspace(n+1)</literal>. The user needs to supply only
-                                                            the interior mesh points <literal>fspace(j) = x(j),
-                                                                j = 2, ..., n.
-                                                            </literal>
+                                                            the interior mesh points <literal>fspace(j) = x(j),j = 2, ..., n</literal>.
                                                         </para>
                                                     </listitem>
                                                 </varlistentry>
@@ -286,8 +285,8 @@
                                         <term>= 3</term>
                                         <listitem>
                                             <para>if a former mesh and approximate solution
-                                                coefficients are provided by the user in <literal>fspace</literal> , and the
-                                                new mesh is to be taken twice as coarse; i.e.,every
+                                                coefficients are provided by the user in <literal>fspace</literal>, and the
+                                                new mesh is to be taken twice as coarse; i.e. every
                                                 second point from the former mesh.
                                             </para>
                                         </listitem>
@@ -360,7 +359,7 @@
                     <para>
                         an array of dimension <literal>ntol=ipar(4)</literal>.
                         <literal>ltol(j) = l</literal> specifies that the <literal>j</literal>-th tolerance in
-                        the <literal> tol</literal> array controls the error in the <literal>l</literal>-th
+                        the <literal>tol</literal> array controls the error in the <literal>l</literal>-th
                         component of 
                         <inlinemediaobject>
                             <imageobject>
@@ -376,7 +375,8 @@
                                 </imagedata>
                             </imageobject>
                         </inlinemediaobject>
-                        . It is also required that:
+                        .
+                        It is also required that:
                     </para>
                     <para>
                         <literal>1 &lt;= ltol(1) &lt; ltol(2) &lt; ... &lt; ltol(ntol)
@@ -532,7 +532,7 @@
                         <literal>x_up</literal>, which are to be included in every mesh. The
                         code requires that all side condition points other than
                         <literal>x_low</literal> and <literal>x_up</literal> (see
-                        description of <literal>zeta</literal> ) be included as fixed points in
+                        description of <literal>zeta</literal>) be included as fixed points in
                         <literal>fixpnt</literal>.
                     </para>
                 </listitem>
@@ -1431,7 +1431,7 @@ function [dmval,zu]=fsub(x,parameters)
             <listitem>
                 <para>
                     <emphasis role="bold">The problem 1</emphasis> describes a
-                    uniformy loaded beam of variable stifness, simply supported at both
+                    uniformly loaded beam of variable stiffness, simply supported at both
                     end.
                 </para>
                 <para>It may be defined as follow :</para>
@@ -1828,7 +1828,7 @@ fixpnt=[ ];//All boundary conditions are located at x_low and x_up
 ipar=[0       0       1 2    2000   200   1      0     0      0      0     ]
 
 ltol=[1,3];//set tolerance control on zu(1) and zu(3)
-tol=[1.e-11,1.e-11];//set tolreance values for these two controls
+tol=[1.e-11,1.e-11];//set tolerance values for these two controls
 xpoints=x_low:0.01:x_up;
 
 zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
@@ -2146,7 +2146,7 @@ xt=sqrt(2*(gam-1)/gam)
 fixpnt=[ ];//All boundary conditions are located at x_low and x_up
 collpnt=4;
 nsizef=4+3*M+(5+collpnt*N)*(collpnt*N+M)+(2*M-2)*2*M ;
-nsizei=3 + collpnt*N+M;;
+nsizei=3 + collpnt*N+M;
 nmax=200;
 //    nonlin  collpnt n  ntol  ndimf        ndimi       iprint iread iguess rstart nfxpnt
 ipar=[1       collpnt 10  4   nmax*nsizef  nmax*nsizei   -1      0     0      0      0     ]
@@ -2222,7 +2222,8 @@ N=101;
 x=linspace(a,b,N)';
 
 // We have s(n)-(n+1/2)*pi -> 0 for n to infinity.
-la0=input('n-th eigenvalue: n= ?');la0=(%pi/2+la0*%pi)^2;
+la0=evstr(x_dialog('n-th eigenvalue: n= ?','10'));
+la0=(%pi/2+la0*%pi)^2;
 
 z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0));
 // The same call without any display
@@ -2233,7 +2234,7 @@ z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0),iprint=-1);
 clf()
 plot(x,[z(1,:)' z(2,:)']) 
 xtitle(['Startvalue =  '+string(la0);'Eigenvalue = '+string(z(3,1))],'x',' ')
-legend(['y(x)';'y''(x)'])
+legend(['y(x)';'y''(x)']);
  ]]></programlisting>
                 <scilab:image localized="true">
                     function rhs=fsub(x,z)
@@ -2341,7 +2342,7 @@ subplot(2,1,2)
 plot2d(x,z1(1,:),style=[5])
 xtitle(' ','x',' ')
  ]]></programlisting>
-                <scilab:image>
+                <scilab:image localized="true">
                     a=0;
                     b=1;
                     m=2;
@@ -2369,9 +2370,9 @@ xtitle(' ','x',' ')
                     
                     for M=[1 4]
                     if M==1
-                    z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+                    z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol,iprint=1);
                     else
-                    z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+                    z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol,iprint=1);
                     end
                     end
                     
@@ -2393,9 +2394,6 @@ xtitle(' ','x',' ')
                     y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
                     endfunction
                     
-                    disp(norm(z(1,:)-yex(x)),'norm(yex(x)-z(1,:))= ')
-                    disp(norm(z1(1,:)-yex1(x)),'norm(yex1(x)-z1(1,:))= ')
-                    clf();
                     subplot(2,1,1)
                     plot2d(x,z(1,:),style=[5])
                     xtitle('Two different solutions','x',' ')
@@ -2481,7 +2479,7 @@ ncomp = 3;
 // Orders of equations
 m = [2, 1, 1];
 
-// Non-linear prob
+// Non-linear problem
 ipar(1) = 1;
 
 // Number of collocation points
@@ -2585,8 +2583,8 @@ end
 // To see the evolution of the eigenvalues with v, disp(eigens)
 // Note they evolve smoothly.
 // To see the solution f for v=40, disp(sol(1,:)). Note that it vanishes
-// exactly once in [0,1] at x close to .98, and becomes very small
-// when x->0 and very large when x -> y.
+// exactly once in [0,1] at x close to 0.98, and becomes very small
+// when x -> 0 and very large when x -> y.
 // This is markedly different from the case  at small v.
 // The continuation procedure allows to explore these exponential behaviours
 // without skipping to other eigenstates.

@@ -45,8 +45,17 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 	{   /* obsolete : [Q,R,rk,E]=qr(A) or = qr(A,tol)   */
 		if (Rhs==2) 
 		{
-			snd = (double *) GetData(2);
-			tol = snd[2];
+                        if (GetType(2)==sci_matrix)
+                        {
+			        snd = (double *) GetData(2);
+			        tol = snd[2];
+                        }
+                        else
+                        {
+                                Scierror(999,_("%s: Wrong type for input argument #%d: Real scalar expected.\n"),
+				fname,2);
+                                return 0;
+                        }
 		}
 		else 
 		{

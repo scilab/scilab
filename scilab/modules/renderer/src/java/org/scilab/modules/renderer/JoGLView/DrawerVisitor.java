@@ -86,22 +86,19 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     /** Set of properties changed during a draw if auto-ticks is on for X axis. */
     private static final Set<Integer> X_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                 GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
-                GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
-                GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
+                GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__
             ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Y axis. */
     private static final Set<Integer> Y_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                 GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
-                GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
-                GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
+                GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__
             ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Z axis. */
     private static final Set<Integer> Z_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                 GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
-                GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
-                GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
+                GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__
             ));
 
     /** Set of figure properties for witch a change doesn't lead to a redraw */
@@ -397,12 +394,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
                 Appearance trianglesAppearance = new Appearance();
                 drawingTools.draw(triangles, trianglesAppearance);
-            } catch (ObjectRemovedException e) {
-                invalidate(grayplot, e);
-            } catch (SciRendererException e) {
-                invalidate(grayplot, e);
-            } catch (OutOfMemoryException e) {
-                invalidate(grayplot, e);
+                /*} catch (ObjectRemovedException e) {
+                        invalidate(grayplot, e);
+                    } catch (SciRendererException e) {
+                        invalidate(grayplot, e);
+                    } catch (OutOfMemoryException e) {
+                        invalidate(grayplot, e);
+                }*/
+            } catch (Exception e) {
+                System.err.println(e);
+                e.printStackTrace();
             }
             axesDrawer.disableClipping(grayplot.getClipProperty());
         }

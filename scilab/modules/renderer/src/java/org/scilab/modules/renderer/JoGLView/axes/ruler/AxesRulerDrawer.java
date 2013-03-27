@@ -134,6 +134,9 @@ public class AxesRulerDrawer {
         rulerModel.setTicksDirection(xTicksDirection);
         rulerModel.setFirstPoint(xAxisPosition.setX(-1));
         rulerModel.setSecondPoint(xAxisPosition.setX(1));
+        if (!axes.getAutoSubticks()) {
+            rulerModel.setSubticksNumber(axes.getXAxisSubticks());
+        }
 
         setRulerBounds(axes.getXAxis(), rulerModel, bounds[0], bounds[1]);
 
@@ -159,7 +162,9 @@ public class AxesRulerDrawer {
                 Arrays.sort(values);
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
-                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                if (axes.getAutoSubticks()) {
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                }
             }
 
             distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
@@ -179,6 +184,9 @@ public class AxesRulerDrawer {
         rulerModel.setTicksDirection(yTicksDirection);
         rulerModel.setFirstPoint(yAxisPosition.setY(-1));
         rulerModel.setSecondPoint(yAxisPosition.setY(1));
+        if (!axes.getAutoSubticks()) {
+            rulerModel.setSubticksNumber(axes.getYAxisSubticks());
+        }
 
         setRulerBounds(axes.getYAxis(), rulerModel, bounds[2], bounds[3]);
         rulerModel.setLogarithmic(axes.getYAxis().getLogFlag());
@@ -201,7 +209,9 @@ public class AxesRulerDrawer {
                 Arrays.sort(values);
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
-                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                if (axes.getAutoSubticks()) {
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                }
             }
 
             distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
@@ -238,6 +248,9 @@ public class AxesRulerDrawer {
             rulerModel.setFirstPoint(new Vector3d(xs, ys, -1));
             rulerModel.setSecondPoint(new Vector3d(xs, ys, 1));
             rulerModel.setTicksDirection(new Vector3d(txs, tys, 0));
+            if (!axes.getAutoSubticks()) {
+                rulerModel.setSubticksNumber(axes.getZAxisSubticks());
+            }
 
             setRulerBounds(axes.getZAxis(), rulerModel, bounds[4], bounds[5]);
             rulerModel.setLogarithmic(axes.getZAxis().getLogFlag());
@@ -260,7 +273,9 @@ public class AxesRulerDrawer {
                     Arrays.sort(values);
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                    if (axes.getAutoSubticks()) {
+                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                    }
                 }
 
                 distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();

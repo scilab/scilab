@@ -48,12 +48,6 @@ msgid "%s: Wrong number of input arguments: %d expected with option '%s'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 194
-#, c-format
-msgid "%s: Wrong type input argument #%d: Scalar expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_grand.c, line: 200
 # File: sci_gateway/c/sci_grand.c, line: 206
 # File: sci_gateway/c/sci_grand.c, line: 212
@@ -91,12 +85,6 @@ msgstr ""
 # File: sci_gateway/c/sci_grand.c, line: 252
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 266
-#, c-format
-msgid "%s: Wrong type for #%d input argument: Scalar expected.\n"
 msgstr ""
 
 #
@@ -177,7 +165,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_grand.c, line: 486
 #, c-format
-msgid "%s Wrong value for input argument#%d: %s.\n"
+msgid "%s Wrong value for input argument #%d: %s.\n"
 msgstr ""
 
 #
