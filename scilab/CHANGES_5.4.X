@@ -591,7 +591,9 @@ Bug fixes
 
 * Bug #12418 fixed - Continuation was incorrectly supported in bvode.
 
-* Bug #12442 fixed - pathconvert() help page is not clear enough.
+* Bug #12442 fixed - pathconvert() help page was not clear about input arguments.
+
+* Bug #12450 fixed - xlfont() did not return font names as specified in the documentation.
 
 
                     Changes between version 5.3.3 and 5.4.0
