@@ -1,0 +1,19 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Charlotte Hecquet
+// Copyright (C) 2013 - Scilab Enterprises - Sylvestre Ledru
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+f=[0 0 1; 0 1 0; 2 3 4]; //State matrix
+g=[1;-1;1]; //Input matrix
+h=[1 1 0; 0 1 0; 0 0 0]; //Output matrix
+Q=[3 2 1; 2 2 1; 1 1 1]; //Covariance matrix of dynamic noise
+R=[2 1 1; 1 1 1; 1 1 2]; //Covariance matrix of observation noise
+// Initialisation
+p0=[6 3 2; 3 5 2; 2 2 4];
+x0=[1;1;1];
+y=[2 8 7]'; // Current observation output matrix
+[x1,p1]=srkf(y,x0,p0,f,h,Q,R);
+assert_checkalmostequal(p1, [-3.3826684796422888,0,0;-0.65452136096190749,1.43147468495118102,0;-10.588783837170105,-2.49768257747417177,-5.87595341369592727]);
+assert_checkalmostequal(x1, [1.07553956834532438;4.10971223021582333;6.06654676258992787]);
