@@ -213,7 +213,8 @@
                                     <varlistentry>
                                         <term>= 0</term>
                                         <listitem>
-                                            <para>causes <literal>bvode</literal> to generate a uniform initial
+                                            <para>
+                                                causes <literal>bvode</literal> to generate a uniform initial
                                                 mesh.
                                             </para>
                                         </listitem>
@@ -228,7 +229,8 @@
                                                 <varlistentry>
                                                     <term>= 1</term>
                                                     <listitem>
-                                                        <para>if the initial mesh is provided by the user it is defined in <literal>fspace</literal> as follows: the mesh 
+                                                        <para>
+                                                            if the initial mesh is provided by the user it is defined in <literal>fspace</literal> as follows: the mesh 
                                                             will occupy <literal>fspace(1), ..., fspace(n+1)</literal>. The user needs to supply only
                                                             the interior mesh points <literal>fspace(j) = x(j),j = 2, ..., n</literal>.
                                                         </para>
@@ -372,7 +374,8 @@
                                     </mml:math>
                                 </imagedata>
                             </imageobject>
-                        </inlinemediaobject>.
+                        </inlinemediaobject>
+                        .
                         It is also required that:
                     </para>
                     <para>
@@ -2367,9 +2370,9 @@ xtitle(' ','x',' ')
                     
                     for M=[1 4]
                     if M==1
-                    z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+                    z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol,iprint=1);
                     else
-                    z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+                    z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol,iprint=1);
                     end
                     end
                     
@@ -2391,9 +2394,6 @@ xtitle(' ','x',' ')
                     y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
                     endfunction
                     
-                    disp(norm(z(1,:)-yex(x)),'norm(yex(x)-z(1,:))= ')
-                    disp(norm(z1(1,:)-yex1(x)),'norm(yex1(x)-z1(1,:))= ')
-                    clf();
                     subplot(2,1,1)
                     plot2d(x,z(1,:),style=[5])
                     xtitle('Two different solutions','x',' ')
