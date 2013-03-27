@@ -40,7 +40,7 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     int result = 0;
     int type = -1;
     int *piType = &type;
-    char* axisSubticksPropertiesNames[3] = {__GO_X_AXIS_SUBTICKS__, __GO_Y_AXIS_SUBTICKS__, __GO_Z_AXIS_SUBTICKS__};
+    int axisSubticksPropertiesNames[3] = {__GO_X_AXIS_SUBTICKS__, __GO_Y_AXIS_SUBTICKS__, __GO_Z_AXIS_SUBTICKS__};
 
     if ( !( valueType == sci_matrix ) )
     {
@@ -75,6 +75,7 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
         int autoSubticks;
         int i;
         double * values = stk( stackPointer );
+        int nbTicks = (int) values[0];
 
         result = SET_PROPERTY_SUCCEED;
 
@@ -88,7 +89,6 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
          * The AUTO_SUBTICKS property is shared by the 3 axes for now.
          * To be modified.
          */
-        int nbTicks = (int) values[0];
         autoSubticks = nbTicks < 0 ? 1 : 0;
         status = setGraphicObjectProperty(pobjUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
 
