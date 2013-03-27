@@ -33,17 +33,17 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>clc()</literal> efface toutes les entrées et sorties de la fenêtre de commande.
+            <code>clc()</code> efface toutes les entrées et sorties de la fenêtre de commande.
         </para>
         <para>
-            Après avoir utilisé <literal>clc()</literal>, vous ne pouvez pas utiliser la barre de défilement pour voir l'historique des fonctions, mais vous pouvez encore utiliser le clavier pour rappeler les instructions de l'historique des commandes.
+            Après avoir utilisé <code>clc()</code>, vous ne pouvez pas utiliser la barre de défilement pour voir l'historique des fonctions, mais vous pouvez encore utiliser le clavier pour rappeler les instructions de l'historique des commandes.
         </para>
         <para>
-            <literal>clc(nblines)</literal> efface <literal>nblines</literal> au dessus de la ligne courante du curseur et déplace le curseur jusqu'à cette ligne.
+            <code>clc(nblines)</code> efface <varname>nblines</varname> au dessus de la ligne courante du curseur et déplace le curseur jusqu'à cette ligne.
         </para>
         <para>
             <note>
-                Notez que <literal>clc([nblines])</literal> ne peut être utilisé sous Unix/Linux quand Scilab est utilisé en mode sans fenêtre.
+                Notez que <synopsis>clc([nblines])</synopsis> ne peut être utilisé sous Unix/Linux quand Scilab est utilisé en mode sans fenêtre.
             </note>
         </para>
     </refsection>
