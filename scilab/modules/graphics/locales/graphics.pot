@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-03-18 15:28+0100\n"
+"Revision-Date: 2013-03-27 13:20+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 135
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -1220,9 +1220,9 @@ msgstr ""
 # File: src/c/getHandleProperty/set_segs_color_property.c, line: 53
 # File: src/c/getHandleProperty/set_segs_color_property.c, line: 92
 # File: src/c/getHandleProperty/set_sub_tics_property.c, line: 69
-# File: src/c/getHandleProperty/set_sub_tics_property.c, line: 96
-# File: src/c/getHandleProperty/set_sub_tics_property.c, line: 121
-# File: src/c/getHandleProperty/set_sub_tics_property.c, line: 128
+# File: src/c/getHandleProperty/set_sub_tics_property.c, line: 97
+# File: src/c/getHandleProperty/set_sub_tics_property.c, line: 120
+# File: src/c/getHandleProperty/set_sub_tics_property.c, line: 127
 # File: src/c/getHandleProperty/set_surface_mode_property.c, line: 54
 # File: src/c/getHandleProperty/set_tag_property.c, line: 56
 # File: src/c/getHandleProperty/set_text_box_mode_property.c, line: 78
@@ -1817,7 +1817,7 @@ msgstr ""
 
 #
 # File: src/c/getHandleProperty/set_segs_color_property.c, line: 59
-# File: src/c/getHandleProperty/set_sub_tics_property.c, line: 83
+# File: src/c/getHandleProperty/set_sub_tics_property.c, line: 84
 # File: src/c/getHandleProperty/set_x_shift_property.c, line: 66
 # File: src/c/getHandleProperty/set_y_shift_property.c, line: 66
 # File: src/c/getHandleProperty/set_z_shift_property.c, line: 66
@@ -2159,7 +2159,7 @@ msgstr ""
 #, c-format
 msgid ""
 "Matplot(M)  with  size(M)=>(%d,%d)\n"
-"The color''s number of pixel(i,j)\n"
+"The color's number of pixel(i,j)\n"
 "  = rounded value of M(i,j)"
 msgstr ""
 
@@ -2170,7 +2170,7 @@ msgstr ""
 
 #
 # File: macros/%_Matplot.sci, line: 27
-msgid "Axes are scaled with M''s indices"
+msgid "Axes are scaled with M's indices"
 msgstr ""
 
 #
@@ -2341,15 +2341,14 @@ msgstr ""
 #
 # File: macros/checkXYPair.sci, line: 18
 #, c-format
-msgid "%s: Wrong size for input argument ''%s'': A vector expected.\n"
+msgid "%s: Wrong size for input argument '%s': A vector expected.\n"
 msgstr ""
 
 #
 # File: macros/checkXYPair.sci, line: 66
 # File: macros/checkXYPair.sci, line: 73
 #, c-format
-msgid ""
-"%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
+msgid "%s: Wrong size for input argument '%s': A non empty matrix expected.\n"
 msgstr ""
 
 #
@@ -2358,8 +2357,7 @@ msgstr ""
 # File: macros/checkXYPair.sci, line: 134
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible "
-"dimensions.\n"
+"%s: Wrong size for input arguments '%s' and '%s': Incompatible dimensions.\n"
 msgstr ""
 
 #
@@ -2376,16 +2374,14 @@ msgstr ""
 #
 # File: macros/clf.sci, line: 44
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
+msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
 msgstr ""
 
 #
 # File: macros/clf.sci, line: 53
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
-"expected."
+"%s: Wrong type for input argument #%d: A vector of 'Figure' handle expected."
 msgstr ""
 
 #
@@ -2402,7 +2398,7 @@ msgstr ""
 #
 # File: macros/color.sci, line: 20
 #, c-format
-msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
+msgid "%s: Wrong values for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
@@ -2705,7 +2701,7 @@ msgstr ""
 # File: macros/datatips/datatipSetStyle.sci, line: 24
 # File: macros/datatips/datatipToggle.sci, line: 17
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 
 #
@@ -3001,8 +2997,8 @@ msgstr ""
 # File: macros/fplot2d.sci, line: 42
 #, c-format
 msgid ""
-"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'', ''%s'' or ''%s'' expected.\n"
+"%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s', '%s', '%s' "
+"or '%s' expected.\n"
 msgstr ""
 
 #
@@ -3189,7 +3185,7 @@ msgstr ""
 #
 # File: macros/legend.sci, line: 81
 #, c-format
-msgid "%s: No ''%s'' handle found.\n"
+msgid "%s: No '%s' handle found.\n"
 msgstr ""
 
 #
@@ -3232,14 +3228,14 @@ msgstr ""
 #
 # File: macros/plot.sci, line: 227
 #, c-format
-msgid "%s: Error : unable to evaluate input function ''%s''."
+msgid "%s: Error : unable to evaluate input function '%s'."
 msgstr ""
 
 #
 # File: macros/plot.sci, line: 227
 # File: macros/plot.sci, line: 229
 #, c-format
-msgid "Error %d at line %d of the function: ''%s''"
+msgid "Error %d at line %d of the function: '%s"
 msgstr ""
 
 #
@@ -3253,14 +3249,14 @@ msgstr ""
 # File: macros/polarplot.sci, line: 53
 #, c-format
 msgid ""
-"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
+"%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
 
 #
 # File: macros/polarplot.sci, line: 152
 #, c-format
-msgid "%s: ''%s'' cannot be used with ''%s''.\n"
+msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr ""
 
 #
@@ -3281,19 +3277,55 @@ msgstr ""
 # File: macros/surf.sci, line: 601
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
+"%s: Wrong size for input arguments '%s': A vector of size %d expected.\n"
 msgstr ""
 
 #
 # File: macros/sca.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
+msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
 
 #
 # File: macros/sca.sci, line: 25
 #, c-format
-msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
+msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
+msgstr ""
+
+#
+# File: macros/setTitleLabelProperty.sci, line: 36
+# File: macros/setTitleLabelProperty.sci, line: 49
+msgid "Color data must be a scalar."
+msgstr ""
+
+#
+# File: macros/setTitleLabelProperty.sci, line: 74
+# File: macros/setTitleLabelProperty.sci, line: 89
+msgid "Color value must be a 3 element vector or an index in the colormap."
+msgstr ""
+
+#
+# File: macros/setTitleLabelProperty.sci, line: 83
+# File: macros/setTitleLabelProperty.sci, line: 157
+msgid "Incorrect input: Color vector should be a 3x1 or 1x3 vector"
+msgstr ""
+
+#
+# File: macros/setTitleLabelProperty.sci, line: 110
+# File: macros/setTitleLabelProperty.sci, line: 125
+# File: macros/setTitleLabelProperty.sci, line: 147
+# File: macros/setTitleLabelProperty.sci, line: 162
+msgid "Color value must be a 3 elements vector or an index in the colormap."
+msgstr ""
+
+#
+# File: macros/setTitleLabelProperty.sci, line: 175
+# File: macros/setTitleLabelProperty.sci, line: 190
+# File: macros/setTitleLabelProperty.sci, line: 208
+# File: macros/setTitleLabelProperty.sci, line: 213
+# File: macros/setTitleLabelProperty.sci, line: 230
+# File: macros/setTitleLabelProperty.sci, line: 237
+msgid "Incorrect input: ..."
 msgstr ""
 
 #
@@ -3313,7 +3345,7 @@ msgstr ""
 #
 # File: macros/surf.sci, line: 48
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: An 'Axes' handle expected.\n"
 msgstr ""
 
 #
@@ -3339,15 +3371,15 @@ msgstr ""
 # File: macros/surf.sci, line: 201
 # File: macros/surf.sci, line: 213
 #, c-format
-msgid "%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"
+msgid "%s: Wrong type for input argument '%s': A Real matrix expected.\n"
 msgstr ""
 
 #
 # File: macros/surf.sci, line: 218
 #, c-format
 msgid ""
-"%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-"
-"by-%d expected.\n"
+"%s: Wrong size for input argument '%s': A matrix of size greater than %d-by-"
+"%d expected.\n"
 msgstr ""
 
 #
@@ -3362,15 +3394,14 @@ msgstr ""
 # File: macros/surf.sci, line: 631
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size "
+"%s: Wrong size for input arguments '%s' and '%s': Matrices of same size "
 "expected.\n"
 msgstr ""
 
 #
 # File: macros/surf.sci, line: 485
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
+msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
 
 #
