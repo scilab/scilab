@@ -107,7 +107,6 @@ sci_gateway/c/sci_isfile.c \
 sci_gateway/c/sci_mputl.c \
 sci_gateway/c/sci_tempname.c \
 sci_gateway/c/sci_getURL.c \
-sci_gateway/c/sci_getURLcontent.c \
 sci_gateway/c/sci_splitURL.c
 
 

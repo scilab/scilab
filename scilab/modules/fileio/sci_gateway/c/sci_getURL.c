@@ -17,29 +17,7 @@
 #include "dlManager.h"
 #include "localization.h"
 /* ==================================================================== */
-static void freeAllocatedStrings(char *url, char *dest, char *username, char *password)
-{
-    if (url != NULL)
-    {
-        freeAllocatedSingleString(url);
-    }
-
-    if (dest != NULL)
-    {
-        freeAllocatedSingleString(dest);
-    }
-
-    if (username != NULL)
-    {
-        freeAllocatedSingleString(username);
-    }
-
-    if (password != NULL)
-    {
-        freeAllocatedSingleString(password);
-    }
-}
-
+static void freeAllocatedStrings(char *url, char *dest, char *username, char *password, char* content);
 /* ==================================================================== */
 int sci_getURL(char *fname, int fname_len)
 {
@@ -51,6 +29,7 @@ int sci_getURL(char *fname, int fname_len)
     char *dest = NULL;
     char *username = NULL;
     char *password = NULL;
+    char *content = NULL;
 
     int iRows = 0, iCols = 0;
     int iType = 0;
@@ -61,7 +40,7 @@ int sci_getURL(char *fname, int fname_len)
     int iRhs = nbInputArgument(pvApiCtx);
 
     CheckInputArgument(pvApiCtx, 1, 4);
-    CheckOutputArgument(pvApiCtx, 0, 1);
+    CheckOutputArgument(pvApiCtx, 0, 2);
 
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
@@ -75,7 +54,7 @@ int sci_getURL(char *fname, int fname_len)
     if (ret)
     {
         Scierror(999, _("%s: Wrong type for argument %d: A string expected.\n"), fname, 1);
-        freeAllocatedStrings(url, dest, username, password);
+        freeAllocatedStrings(url, dest, username, password, content);
         return 0;
     }
 
@@ -88,7 +67,7 @@ int sci_getURL(char *fname, int fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            freeAllocatedStrings(url, dest, username, password);
+            freeAllocatedStrings(url, dest, username, password, content);
             return 0;
         }
 
@@ -96,7 +75,7 @@ int sci_getURL(char *fname, int fname_len)
         if (ret)
         {
             Scierror(999, _("%s: Wrong type for argument %d: A string expected.\n"), fname, 2);
-            freeAllocatedStrings(url, dest, username, password);
+            freeAllocatedStrings(url, dest, username, password, content);
             return 0;
         }
 
@@ -110,7 +89,7 @@ int sci_getURL(char *fname, int fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            freeAllocatedStrings(url, dest, username, password);
+            freeAllocatedStrings(url, dest, username, password, content);
             return 0;
         }
 
@@ -118,7 +97,7 @@ int sci_getURL(char *fname, int fname_len)
         if (ret)
         {
             Scierror(999, _("%s: Wrong type for argument %d: A string expected.\n"), fname, 3);
-            freeAllocatedStrings(url, dest, username, password);
+            freeAllocatedStrings(url, dest, username, password, content);
             return 0;
         }
 
@@ -133,7 +112,7 @@ int sci_getURL(char *fname, int fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            freeAllocatedStrings(url, dest, username, password);
+            freeAllocatedStrings(url, dest, username, password, content);
             return 0;
         }
 
@@ -141,7 +120,7 @@ int sci_getURL(char *fname, int fname_len)
         if (ret)
         {
             Scierror(999, _("%s: Wrong type for argument %d: A string expected.\n"), fname, 4);
-            freeAllocatedStrings(url, dest, username, password);
+            freeAllocatedStrings(url, dest, username, password, content);
             return 0;
         }
 
@@ -169,7 +148,7 @@ int sci_getURL(char *fname, int fname_len)
     }
 
     // call function
-    filePath = downloadFile(url, dest, username, password);
+    filePath = downloadFile(url, dest, username, password, &content);
     if (filePath != NULL)
     {
         //create new variable
@@ -179,13 +158,57 @@ int sci_getURL(char *fname, int fname_len)
         if (ret)
         {
             Scierror(999, _("%s: Could not create the output argument.\n"));
-            freeAllocatedStrings(url, dest, username, password);
+            freeAllocatedStrings(url, dest, username, password, content);
+            return 0;
+        }
+    }
+    // call function
+    /* Return the second argument which is the content */
+    if (content != NULL && nbOutputArgument(pvApiCtx) == 2)
+    {
+        //create new variable with the content
+        int res = createSingleString(pvApiCtx, iRhs + 2, content);
+        FREE(content);
+        content = NULL;
+        if (res)
+        {
+            Scierror(999, _("%s: Could not create the output argument.\n"));
+            freeAllocatedStrings(url, dest, username, password, content);
             return 0;
         }
     }
 
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
+    AssignOutputVariable(pvApiCtx, 2) = iRhs + 2;
     ReturnArguments(pvApiCtx);
     return 0;
+}
+/* ==================================================================== */
+static void freeAllocatedStrings(char *url, char *dest, char *username, char *password, char* content)
+{
+    if (url != NULL)
+    {
+        freeAllocatedSingleString(url);
+    }
+
+    if (dest != NULL)
+    {
+        freeAllocatedSingleString(dest);
+    }
+
+    if (username != NULL)
+    {
+        freeAllocatedSingleString(username);
+    }
+
+    if (password != NULL)
+    {
+        freeAllocatedSingleString(password);
+    }
+
+    if (content != NULL)
+    {
+        freeAllocatedSingleString(content);
+    }
 }
 

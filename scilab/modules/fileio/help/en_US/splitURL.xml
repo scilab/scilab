@@ -127,7 +127,7 @@
         <!-- 
 // This example fails for now (probably a bug on evstr)
 // Retrieve the content and execute it
-content=getURLcontent("http://fileexchange.scilab.org/toolboxes/161000/1.0/files/cshift.sci")
+[f,content]=getURL("http://fileexchange.scilab.org/toolboxes/161000/1.0/files/cshift.sci")
 evstr(content);
 M = grand(3,4,"uin",0,9);
 cshift(M,1);
@@ -140,9 +140,6 @@ cshift(M,1);
         <simplelist type="inline">
             <member>
                 <link linkend="getURL">getURL</link>
-            </member>
-            <member>
-                <link linkend="getURLcontent">getURLcontent</link>
             </member>
         </simplelist>
     </refsection>

@@ -15,7 +15,6 @@ New features
 BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 
 * New functions introduced:
- - getURLcontent - Return the content of an URL (HTTP, HTTPS, FTP...)
  - getURL - Download an URL (HTTP, HTTPS, FTP...)
  - splitURL - Split a URL (HTTP, HTTPS, FTP...)
 

@@ -201,7 +201,6 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="sci_gateway\c\sci_getURL.c" />
-    <ClCompile Include="sci_gateway\c\sci_getURLcontent.c" />
     <ClCompile Include="sci_gateway\c\sci_splitURL.c" />
     <ClCompile Include="sci_gateway\c\sci_tempname.c" />
     <ClCompile Include="src\c\addfile.c" />
