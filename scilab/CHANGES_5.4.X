@@ -593,6 +593,9 @@ Bug fixes
 
 * Bug #12396 fixed - Example "Problem 2" was missing a variable in bvode help page.
 
+* Bug #12405 fixed - Floating point errors could lead to an infinite loop in
+                     ticks computation.
+
 * Bug #12418 fixed - Continuation was incorrectly supported in bvode.
 
 * Bug #12442 fixed - pathconvert() help page was not clear about input arguments.
