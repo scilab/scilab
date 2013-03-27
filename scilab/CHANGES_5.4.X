@@ -328,6 +328,9 @@ Bug fixes
 
 * Bug #11549 fixed - Preferences window changed its dimension when hitting Default button.
 
+* Bug #11567 fixed - Scilab failed to start an accentuated character was
+                     present in the pathname.
+
 * Bug #11569 fixed - F5 to navigate in the dock was incompatible with SciNotes.
                      So F5 replaced by shift+F6 to go to the previous tab.
 
