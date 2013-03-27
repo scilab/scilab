@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -197,6 +197,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="arnol.c" />
     <ClCompile Include="dassl.c" />
     <ClCompile Include="DllmainDifferential_equations.c" />
+    <ClCompile Include="Ex-odedc.c" />
     <ClCompile Include="feval.c" />
     <ClCompile Include="rk4.c" />
   </ItemGroup>
@@ -207,6 +208,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\..\includes\scifunctions.h" />
     <ClInclude Include="arnol.h" />
     <ClInclude Include="..\..\includes\dynlib_differential_equations.h" />
+    <ClInclude Include="Ex-odedc.h" />
     <ClInclude Include="feval.h" />
     <ClInclude Include="rk4.h" />
   </ItemGroup>

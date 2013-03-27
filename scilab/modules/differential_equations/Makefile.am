@@ -12,7 +12,8 @@ src/cpp/differentialequationfunctions.cpp
 DIFFERENTIAL_EQUATIONS_C_SOURCES = src/c/dassl.c \
 src/c/feval.c \
 src/c/arnol.c \
-src/c/rk4.c
+src/c/rk4.c \
+src/c/Ex-odedc.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
 src/fortran/bcomp.f \
@@ -72,7 +73,6 @@ src/fortran/rkqc.f \
 src/fortran/writbufode.f
 
 GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/Ex-odedc.f \
 sci_gateway/fortran/Ex-ode.f \
 sci_gateway/fortran/Ex-impl.f \
 sci_gateway/fortran/Ex-int2d.f \
@@ -125,7 +125,7 @@ endif
 
 
 libscidifferential_equations_algo_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(DIFFERENTIAL_EQUATIONS_CPP_SOURCES)
-libscidifferential_equations_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscidifferential_equations_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 libscidifferential_equations_algo_la_CPPFLAGS = $(libscidifferential_equations_la_CPPFLAGS)
 
 # For the code check (splint)
