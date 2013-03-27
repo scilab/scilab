@@ -161,14 +161,12 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
         setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
     }
 
-
     setCurrentObject(pstCompoundUID);
 
-    setGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, &piImmediateDrawing, jni_bool, 1);
+    setGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, piImmediateDrawing, jni_bool, 1);
     getGraphicObjectProperty(pstFigureUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
     setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
-
 
     LhsVar(1) = 0;
     PutLhsVar();

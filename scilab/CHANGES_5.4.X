@@ -616,6 +616,8 @@ Bug fixes
 
 * Bug #12455 fixed - format_n property had no effect on "axis" handles.
 
+* Bug #12457 fixed - drawlater() was not taken into account with xfpolys.
+
 
                     Changes between version 5.3.3 and 5.4.0
                     =======================================
