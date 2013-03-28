@@ -1016,6 +1016,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         std::list<double> pDblTOutList = std::list<double>();
         int iLastT = pDblT->getSize() - 1;
         double t = pDblT->get(iLastT);
+        int iDir = t - t0 < 0 ? -1 : 1;
 
         do
         {
@@ -1128,7 +1129,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 break;
             }
         }
-        while (t0 < t);
+        while ((t0 - t) * iDir < 0);
 
         int iSizeList = (int)pDblYOutList.size();
         /*
