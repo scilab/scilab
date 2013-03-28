@@ -18,9 +18,9 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-1.0.1.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-1.0.2.jar
 
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.1.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.2.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-5.3-all.jar
 
