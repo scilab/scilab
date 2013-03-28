@@ -43,7 +43,7 @@
         </para>
         <para>
             <note>
-                Notez que <synopsis>clc([nblines])</synopsis> ne peut être utilisé sous Unix/Linux quand Scilab est utilisé en mode sans fenêtre.
+                Notez que <literal>clc([nblines])</literal> ne peut être utilisé sous Unix/Linux quand Scilab est utilisé en mode sans fenêtre.
             </note>
         </para>
     </refsection>

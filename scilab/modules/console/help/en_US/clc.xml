@@ -43,7 +43,7 @@
         </para>
         <para>
             <note>
-                Note that <synopsis>clc([nblines])</synopsis> cannot be used under Unix/Linux platforms when Scilab used in <literal>cli</literal> or <literal>adv-cli</literal> (no window) modes.
+                Note that <literal>clc([nblines])</literal> cannot be used under Unix/Linux platforms when Scilab used in <literal>cli</literal> or <literal>adv-cli</literal> (no window) modes.
             </note>
         </para>
     </refsection>

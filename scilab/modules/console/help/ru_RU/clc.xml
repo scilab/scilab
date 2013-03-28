@@ -48,7 +48,7 @@
         </para>
         <para>
             <note>
-                Заметьте, что <synopsis>clc([nblines])</synopsis> не 
+                Заметьте, что <literal>clc([nblines])</literal> не 
                 может быть использована на платформах Unix/Linux, когда 
                 Scilab используется в неграфических режимах 
                 <literal>cli</literal> или <literal>adv-cli</literal>.

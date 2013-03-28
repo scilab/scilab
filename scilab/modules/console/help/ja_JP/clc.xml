@@ -47,7 +47,7 @@
         </para>
         <para>
             <note>
-                <synopsis>clc([nblines])</synopsis> は,ウインドウモードではない
+                <literal>clc([nblines])</literal> は,ウインドウモードではない
                 Scilabの時, Unix/Linuxプラットフォームでは使用できないことに注意してください.
             </note>
         </para>
