@@ -17,6 +17,7 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 * New functions introduced:
  - getURL - Download an URL (HTTP, HTTPS, FTP...)
  - splitURL - Split a URL (HTTP, HTTPS, FTP...)
+ - cov - Covariance matrix. Deprecates 'mvvacov'. See bug #11896 fixed.
 
 * Add a complete set of functions to read and write any HDF5 file from Scilab.
 
@@ -62,12 +63,12 @@ Bug fixes
 
 * Bug #12163 fixed - unzoom did not work with a single input argument.
 
+* Bug #12443 fixed - Document behavior of mopen() in text file mode
+                     on Windows.
+
 * Bug #12463 fixed - Bad specification for rect=[x,y,w,h] argument in french help
                      page of xstringb.
 
 * Bug #12473 fixed - Problems with "é" in french help page of mkdir.
-
-* Bug #12443 fixed - Document behavior of mopen() in text file mode
-                     on Windows.
 
 * Bug #12475 fixed - csvRead() does not support double quoted fields.
