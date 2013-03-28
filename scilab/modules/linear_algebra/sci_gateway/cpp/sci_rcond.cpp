@@ -32,53 +32,56 @@ types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, ty
     types::Double* result   = NULL;
     int iRet                = 0;
 
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "rcond", 1);
         return types::Function::Error;
     }
 
-    if((in[0]->isDouble() == false))
+    if ((in[0]->isDouble() == false))
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_rcond";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
     }
 
-    pDbl = in[0]->getAs<types::Double>();
+    pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
 
-    if(pDbl->getRows() != pDbl->getCols())
+    if (pDbl->getRows() != pDbl->getCols())
     {
-		Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "rcond", 1);
-        return types::Function::Error;            
+        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "rcond", 1);
+        return types::Function::Error;
     }
 
-    if(pDbl->getRows() == 0)
+    if (pDbl->getRows() == 0)
     {
         out.push_back(types::Double::Empty());
         return types::Function::OK;
     }
-    else if(pDbl->getRows() == -1) // manage eye case
+    else if (pDbl->getRows() == -1) // manage eye case
     {
         out.push_back(new types::Double(1));
         return types::Function::OK;
     }
 
-    result = new types::Double(1,1);
+    result = new types::Double(1, 1);
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         double* pData = (double*)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
         iRet = iRcondM(pData, pDbl->getCols(), true /*isComplex*/, result->get());
-		vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+        vFreeDoubleComplexFromPointer((doublecomplex*)pData);
     }
     else
     {
         iRet = iRcondM(pDbl->get(), pDbl->getCols(), false /*isComplex*/, result->get());
     }
 
-    if(iRet == -1)
+    delete pDbl;
+    pDbl = NULL;
+
+    if (iRet == -1)
     {
-		Scierror(999, _("%s: Allocation failed.\n"), "rcond");
+        Scierror(999, _("%s: Allocation failed.\n"), "rcond");
         return types::Function::Error;
     }
 
