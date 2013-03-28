@@ -61,10 +61,10 @@ Xcos
   solve both stiff and nonstiff problems. It includes a rootfinding feature.
 
 * Two new fixed-size step ODE solvers added: Dormand-Prince 4(5) and Runge-Kutta 4(5).
-  Included in the CVode package, they also benefit from the rootfinding feature.
+  Added to the CVode package, they also benefit from the rootfinding feature.
 
 * Implicit fixed-size stop ODE solver added: Implicit Runge-Kutta 4(5).
-  It also benefits from the CVode rootfinding feature.
+  Added to the CVode package, it also benefits from the CVode rootfinding feature.
 
 * Block parameter errors (types and sizes) reporting improved.
 
@@ -552,8 +552,6 @@ Bug fixes
 * Bug #12285 fixed - export_to_hdf5 function did not manage any matrix in append mode.
 
 * Bug #12289 fixed - sub_ticks property was ignored.
-
-* Bug #12291 fixed - Unable to display a list of handle as an handle userData.
 
 * Bug #12291 fixed - A list of handles could not be displayed as a handle userdata.
 
