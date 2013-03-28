@@ -1409,7 +1409,7 @@ function [dmval,zu]=fsub(x,parameters)
             коллокацией в гауссовских точках, требующих <literal>m(i)-1</literal> непрерывных 
             производных в <literal>i</literal>-том элементе, <literal>i = 1:N</literal>. Здесь, 
             <literal>k</literal> - количество точек коллокации (этапов) на подынтервале, и оно 
-            выбирается так, чтобы <latex>k \geslant \max\left(m(i)\right)</latex>. 
+            выбирается так, чтобы <latex>k \ge \max\left(m(i)\right)</latex>. 
             Используется представление решения одночленного решения Рунге-Кутты.
         </para>
     </refsection>
