@@ -17,5 +17,16 @@
 
 A = 1:100000;
 B = strcat(string(A),'');
-r = setenv('TEST_FOO',B);
-if r <> %f then pause,end                    
+
+ierr = execstr('r = setenv(''TEST_FOO'',B);','errcatch');
+if ierr <> 0 then pause,end
+
+//SetEnvironmentVaraible ( setenv on windows ) is able to set variable > 32767 ( _MAX_ENV )
+if getos() <> "Windows" then
+    if r <> %F then pause,end
+    if getenv('TEST_FOO','') <> '' then pause,end
+else
+    if r <> %T then pause,end
+    if getenv('TEST_FOO','') <> B then pause,end
+end
+
