@@ -31,7 +31,7 @@ Source: bin\sci{#RENDERER}.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS
 Source: thirdparty\gluegen2-rt.jar; DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
 Source: thirdparty\jogl2.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
 ;
-Source: thirdparty\scirenderer-1.0.9.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\scirenderer-1.1.0.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
 ;
 Source: thirdparty\fonts\scilabsymbols.ttf;DestDir: {app}\thirdparty\fonts; Components: {#COMPN_GRAPHICS}
 ;

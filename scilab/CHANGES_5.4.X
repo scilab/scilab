@@ -80,7 +80,7 @@ Compilation
 
 * Enforce a minimal version of JLaTeXMath (1.0.2).
 
-* Enforce a minimal version of Scirenderer (1.0.9).
+* Enforce a minimal version of Scirenderer (1.1.0).
 
 * Enforce a minimal version of XMLGraphics (1.4).
 
