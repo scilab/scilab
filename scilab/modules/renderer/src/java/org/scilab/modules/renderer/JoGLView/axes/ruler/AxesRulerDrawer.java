@@ -163,7 +163,7 @@ public class AxesRulerDrawer {
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 if (axes.getAutoSubticks()) {
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
                 }
             }
 
@@ -210,7 +210,7 @@ public class AxesRulerDrawer {
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 if (axes.getAutoSubticks()) {
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
                 }
             }
 
@@ -274,7 +274,7 @@ public class AxesRulerDrawer {
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                     if (axes.getAutoSubticks()) {
-                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
                     }
                 }
 
