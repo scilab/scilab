@@ -19,11 +19,10 @@
 
 plot3d();
 f=gcf();
-f.children.sub_ticks = [1 1 4];
 path = fullpath(TMPDIR + "/../");
 xs2bmp(f, path + "original.bmp");
 original_md5 = getmd5(path + "original.bmp");
-//deletefile(path + "original.bmp");
+deletefile(path + "original.bmp");
 
 //save f, gcf, %_plot3d, original_md5 ...
 save(path + "bug_12083.sod");
@@ -35,7 +34,6 @@ deletefile(path + "bug_12083.sod");
 f=gcf();
 xs2bmp(f, path + "restored.bmp");
 restored_md5 = getmd5(path + "restored.bmp");
-//deletefile(path + "restored.bmp");
-f.children
+deletefile(path + "restored.bmp");
 
 assert_checkequal(original_md5, restored_md5);
