@@ -15,6 +15,7 @@ package org.scilab.modules.graph.shape;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.util.Map;
 
@@ -114,12 +115,14 @@ public class LatexTextShape implements mxITextShape {
                 final double dx = (sw - iw) / 2;
                 final double dy = (sh - ih) / 2;
 
+                Shape oldClip = g.getClip();
+                g.setClip(rect);
                 icon.paintIcon(rendererPane, g, (int) (sx + dx), (int) (sy + dy));
+                g.setClip(oldClip);
 
                 // Restores the previous transformation
                 g.setTransform(at);
             }
         }
     }
-
 }
