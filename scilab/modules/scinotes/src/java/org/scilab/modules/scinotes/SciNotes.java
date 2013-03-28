@@ -1443,9 +1443,8 @@ public class SciNotes extends SwingScilabTab {
         pane.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         pane.setFont(kit.getStylePreferences().tokenFonts[0]);
 
-        // TODO rajouter ca ds les prefs
-        pane.setBackground(ConfigSciNotesManager.getSciNotesBackgroundColor());
-        pane.setCaretColor(ConfigSciNotesManager.getSciNotesForegroundColor());
+        pane.setBackground(SciNotesOptions.getSciNotesDisplay().backgroundColor);
+        pane.setCaretColor(SciNotesOptions.getSciNotesDisplay().caretColor);
 
         pane.setFocusable(true);
         pane.setRequestFocusEnabled(true);
