@@ -173,7 +173,7 @@
     <ClCompile Include="stripblanks.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="strsplitfunction.c">
+    <ClCompile Include="strsplit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="strsubst.c">
@@ -302,7 +302,7 @@
     <ClInclude Include="stringsstrrev.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="strsplitfunction.h">
+    <ClInclude Include="strsplit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tokens.h">

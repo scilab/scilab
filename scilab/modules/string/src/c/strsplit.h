@@ -15,11 +15,12 @@
 
 #include <wchar.h>
 
-typedef enum { 
-	STRSPLIT_NO_ERROR = 0,
-	STRSPLIT_INCORRECT_VALUE_ERROR = 1,
-	STRSPLIT_INCORRECT_ORDER_ERROR = 2,
-	STRSPLIT_MEMORY_ALLOCATION_ERROR = 3
+typedef enum
+{
+    STRSPLIT_NO_ERROR = 0,
+    STRSPLIT_INCORRECT_VALUE_ERROR = 1,
+    STRSPLIT_INCORRECT_ORDER_ERROR = 2,
+    STRSPLIT_MEMORY_ALLOCATION_ERROR = 3
 } strsplit_error;
 
 /**
@@ -30,7 +31,7 @@ typedef enum {
 * @param[out] error code
 * @return substrings
 */
-wchar_t **strsplitfunction(wchar_t * wcstringToSplit, double *indices, int sizeIndices, strsplit_error *ierr);
+wchar_t **strsplit(wchar_t * wcstringToSplit, double *indices, int sizeIndices, strsplit_error *ierr);
 
 #endif /* __STRSPLITFUNCTION_H__ */
 /*----------------------------------------------------------------------------*/

@@ -1418,7 +1418,7 @@ function [dmval,zu]=fsub(x,parameters)
             The method used to approximate the solution <literal>u</literal> is collocation at
             gaussian points, requiring <literal>m(i)-1</literal> continuous derivatives in the <literal>i</literal>-th
             component, <literal>i = 1:N</literal>. here, <literal>k</literal> is the number of collocation points (stages)
-            per subinterval and is chosen such that <literal>k .ge. max m(i)</literal>. a
+            per subinterval and is chosen such that <latex>k \ge \max\left(m(i)\right)</latex>. A
             runge-kutta-monomial solution representation is utilized.
         </para>
     </refsection>

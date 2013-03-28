@@ -865,6 +865,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         public static final int BROKEN = 4;
 
         private boolean visible = true;
+        private int previousType;
         private int type;
         private FunctionScanner.FunctionInfo info;
         private boolean broken;
@@ -903,6 +904,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 oldName = info.functionName;
             }
 
+            previousType = type;
             type = funScanner.getLineType(getStartOffset(), getEndOffset());
 
             if ((type & BROKEN) == BROKEN) {
@@ -927,6 +929,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             resetTypeWhenBroken();
 
             return type;
+        }
+
+        /**
+         * @return true if the Line number panel need to be refreshed (useful in whereami mode)
+         */
+        public boolean needLineNumberRepaint() {
+            return type == FUN || type == ENDFUN || type != previousType;
         }
 
         /**

@@ -440,7 +440,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             if (chg == null) {
                 // change occurred only in one line
                 ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(e.getOffset()));
-                if (line.isFunction()) {
+                if (line.needLineNumberRepaint()) {
                     updateLineNumber();
                     repaint();
                 }

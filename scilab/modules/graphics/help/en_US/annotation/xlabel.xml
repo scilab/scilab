@@ -64,6 +64,15 @@
                             </listitem>
                             <listitem>
                                 <para>
+                                    <literal>"fontname"</literal>: ten font names are available 
+                                    (case unsensitive string or related id number):
+                                    "courrier" | 0, "symbol" | 1, "times" | 2, "times italic" | 3, 
+                                    "times bold" | 4, "times bold italic" | 5, "helvetica" | 6, 
+                                    "helvetica italic" | 7, "helvetica bold" | 8, "helvetica bold italic" | 9.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
                                     <literal>"rotation"</literal>: angle in degrees (constant)
                                 </para>
                             </listitem>

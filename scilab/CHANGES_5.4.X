@@ -330,6 +330,9 @@ Bug fixes
 
 * Bug #11549 fixed - Preferences window changed its dimension when hitting Default button.
 
+* Bug #11567 fixed - Scilab failed to start an accentuated character was
+                     present in the pathname.
+
 * Bug #11569 fixed - F5 to navigate in the dock was incompatible with SciNotes.
                      So F5 replaced by shift+F6 to go to the previous tab.
 
@@ -599,13 +602,22 @@ Bug fixes
 * Bug #12405 fixed - Floating point errors could lead to an infinite loop in
                      ticks computation.
 
+* Bug #12406 fixed - In SciNotes, whereami numbering failed when with variable name
+                     starting with endfunction. 
+
 * Bug #12418 fixed - Continuation was incorrectly supported in bvode.
 
 * Bug #12442 fixed - pathconvert() help page was not clear about input arguments.
 
+* Bug #12444 fixed - The fontname argument was buggy in the title function.
+
 * Bug #12448 fixed - Double click on .sod file tried to open it with Scinotes instead of load it.
 
 * Bug #12450 fixed - xlfont() did not return font names as specified in the documentation.
+
+* Bug #12455 fixed - format_n property had no effect on "axis" handles.
+
+* Bug #12457 fixed - drawlater() was not taken into account with xfpolys.
 
 
                     Changes between version 5.3.3 and 5.4.0

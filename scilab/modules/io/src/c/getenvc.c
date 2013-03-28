@@ -34,55 +34,46 @@ static void searchenv_others(const char *filename, const char *varname,
 void C2F(getenvc)(int *ierr, char *var, char *buf, int *buflen, int *iflag)
 {
 #ifdef _MSC_VER
-
-
-    BOOL bMalloc = FALSE;
+    wchar_t* wbuf = NULL;
     wchar_t *wvar = to_wide_string(var);
-    wchar_t *wbuf = _wgetenv(wvar);
+    char* temp = NULL;
+    DWORD iLen = GetEnvironmentVariableW(wvar, NULL, 0);
 
     *ierr = 0;
-    if (wbuf == NULL)
+
+    if (iLen == 0)
     {
-        DWORD iLen = GetEnvironmentVariableW(wvar, NULL, 0);
-        bMalloc = TRUE;
-        if (iLen == 0)
+        if (*iflag == 1)
         {
-            if ( *iflag == 1 )
+            sciprint(_("Undefined environment variable %s.\n"), var);
+        }
+
+        *ierr = 1;
+        return;
+    }
+    else
+    {
+        wbuf = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
+        if (GetEnvironmentVariableW(wvar, wbuf, iLen) == 0)
+        {
+            if (*iflag == 1)
             {
                 sciprint(_("Undefined environment variable %s.\n"), var);
             }
+
             *ierr = 1;
-        }
-        else
-        {
-            *buflen = iLen;
-            wbuf = (wchar_t*)MALLOC(sizeof(wchar_t) * *buflen);
-            if (GetEnvironmentVariableW(wvar, wbuf, (DWORD)*buflen) == 0)
-            {
-                if ( *iflag == 1 )
-                {
-                    sciprint(_("Undefined environment variable %s.\n"), var);
-                }
-                *ierr = 1;
-            }
+            return;
         }
     }
 
-    if (*ierr != 1)
+    temp = wide_string_to_UTF8(wbuf);
+    *buflen = (int)strlen(temp);
+    if (buf)
     {
-        *buflen = (int)wcslen(wbuf);
-        if (buf)
-        {
-            char* temp = wide_string_to_UTF8(wbuf);
-            strcpy(buf, temp);
-            *ierr = 0;
-        }
+        strcpy(buf, temp);
     }
 
-    if (bMalloc)
-    {
-        FREE(wbuf);
-    }
+    FREE(temp);
 #else
     char *locale = NULL;
     locale = getenv(var);
