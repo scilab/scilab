@@ -128,7 +128,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     private final ContouredObjectDrawer contouredObjectDrawer;
     private final LegendDrawer legendDrawer;
-    private final AxesDrawer axesDrawer;
+    protected final AxesDrawer axesDrawer;
     private final AxisDrawer axisDrawer;
     private final ArrowDrawer arrowDrawer;
     private final FecDrawer fecDrawer;

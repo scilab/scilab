@@ -107,10 +107,10 @@ class UserDefineGraduation implements Graduations {
     @Override
     public List<Double> getSubGraduations(final int N) {
         if (subValues == null) {
-            if (N == 0) {
+            List<Double> ticksValue = getAllValues();
+            if (N == 0 || ticksValue.size() == 0) {
                 subValues = new LinkedList<Double>();
             } else {
-                List<Double> ticksValue = getAllValues();
                 Collections.sort(ticksValue);
                 subValues = new LinkedList<Double>();
 
