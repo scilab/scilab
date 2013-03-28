@@ -750,11 +750,11 @@ int sci_Rand(char *fname, unsigned long fname_len)
     {
         if ( Rhs != suite + 1)
 
-            /*  ETRE PLUS CONSISTANT ICI : choisir entre shape , scale ou
+            /*  ETRE PLUS CONSISTANT ICI : choisir entre shape , rate ou
             bien A et R (idem pour le man)
             */
         {
-            Scierror(999, _("Missing shape and scale for Gamma law\n"));
+            Scierror(999, _("Missing shape and rate for Gamma law\n"));
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
@@ -766,7 +766,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
         if ( m1*n1 != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "scale");
+            Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "rate");
             return 0;
         }
         CreateVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
