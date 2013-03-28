@@ -143,7 +143,7 @@ Xcos
 Compilation
 ============
 
-* Enforce a minimal version of Scirenderer (1.0.8).
+* Enforce a minimal version of Scirenderer (1.0.9).
 
 * Enforce a minimal version of XMLGraphics (1.4).
 
