@@ -155,7 +155,7 @@ Compilation
 Obsolete functions
 ===================
 
-* fit_dat() is obsolete and will be removed in Scilab 5.4.2.
+* fit_dat() is obsolete and will be removed in Scilab 5.5.0.
   Please use datafit() instead. See bug #9306.
 
 * getlinestyle() is obsolete and will be removed in Scilab 5.5.0.
