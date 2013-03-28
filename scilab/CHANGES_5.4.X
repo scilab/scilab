@@ -72,7 +72,7 @@ Xcos
 
 * Bug #5040 fixed - Fit diagram to view did not work with a single block.
 
-* Bug #5162 fixed - Add an "export all menu" to export all diagram layers.
+* Bug #5162 fixed - Add an "Export all" menu to export all diagram layers.
 
 * Bug #9074 fixed - Calling a function on the context gave a warning.
 
@@ -218,9 +218,10 @@ Bug fixes
 * Bug #3313 fixed - In the documentation, the title of a link used the
                     XML id instead of the title of the page.
 
-* Bug #4504 fixed - Function sskf did not work with two outputs (+ help page updated).
+* Bug #4504 fixed - sskf function did not work with two outputs (corresponding
+                    help page updated).
 
-* Bug #4405 fixed - qr() was underspecified in documentation.
+* Bug #4405 fixed - qr() was poorly documented.
 
 * Bug #4946 fixed - Bad rendering of a big rotated label.
 
@@ -229,7 +230,7 @@ Bug fixes
 * Bug #5478 fixed - Scilab could not be started with a non readable/writeable
                     SCIHOME.
 
-* Bug #5548 fixed - Error messages in some examples of help pages of simulated Annealing.
+* Bug #5548 fixed - Error messages in some examples of simulated Annealing help pages fixed.
 
 * Bug #5576 fixed - interp() help page has been improved.
 
@@ -297,7 +298,7 @@ Bug fixes
 * Bug #10415 fixed - Removing a session line in history caused the removal
                      of the session node in the history browser.
 
-* Bug #10546 fixed - Help of fileinfo had to be updated.
+* Bug #10546 fixed - fileinfo help page updated.
 
 * Bug #10606 fixed - unix_g did not return stdout in somes cases.
 
@@ -328,8 +329,8 @@ Bug fixes
 
 * Bug #11549 fixed - Preferences window changed its dimension when hitting Default button.
 
-* Bug #11567 fixed - Scilab failed to start an accentuated character was
-                     present in the pathname.
+* Bug #11567 fixed - Scilab failed to start when there was an accentuated character
+                     in the pathname.
 
 * Bug #11569 fixed - F5 to navigate in the dock was incompatible with SciNotes.
                      So F5 replaced by shift+F6 to go to the previous tab.
@@ -601,8 +602,8 @@ Bug fixes
 * Bug #12405 fixed - Floating point errors could lead to an infinite loop in
                      ticks computation.
 
-* Bug #12406 fixed - In SciNotes, whereami numbering failed when with variable name
-                     starting with endfunction. 
+* Bug #12406 fixed - In SciNotes, whereami numbering failed when a variable name
+                     started with endfunction. 
 
 * Bug #12418 fixed - Continuation was incorrectly supported in bvode.
 
@@ -610,7 +611,8 @@ Bug fixes
 
 * Bug #12444 fixed - The fontname argument was buggy in the title function.
 
-* Bug #12448 fixed - Double click on .sod file tried to open it with Scinotes instead of load it.
+* Bug #12448 fixed - Double click on .sod file tried to open it in Scinotes
+                     instead of loading it.
 
 * Bug #12450 fixed - xlfont() did not return font names as specified in the documentation.
 
