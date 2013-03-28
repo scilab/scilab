@@ -47,6 +47,7 @@ Improvements
   that the help page does not need example.
 
 
+
 Xcos
 =====
 
@@ -69,78 +70,6 @@ Xcos
 * Block parameter errors (types and sizes) reporting improved.
 
 * Some scopes blink on simulation avoided.
-
-* Bug #5040 fixed - Fit diagram to view did not work with a single block.
-
-* Bug #5162 fixed - "Export all" menu to export all diagram layers added.
-
-* Bug #9074 fixed - Calling a function on the context gave a warning.
-
-* Bug #10040 fixed - VARIABLE_DELAY help page did not fully describe the
-                     initial value behavioral.
-
-* Bug #10434 fixed - loadXcosLibs changed the value of predef.
-
-* Bug #10435 fixed - Undo in a superdiagram did not update superblock ports
-                     and links.
-
-* Bug #10660 fixed - model2blk and callblk crashed Scilab under 64-bit platforms.
-
-* Bug #11193 fixed - Lincos did not respect context values.
-
-* Bug #11775 fixed - xcos.tst crashed under Linux and MacOS X.
-
-* Bug #11812 fixed - Upper/lower case issues in Xcos documentation fixed.
-
-* Bug #11821 fixed - Running xcosPalAdd example from help led to deadlock.
-
-* Bug #11871 fixed - Connectors were misaligned after an Undo command.
-
-* Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
-                     Scilab crash.
-
-* Bug #11919 fixed - DLSS block with empty matrix parameters made Scilab crash.
-
-* Bug #11945 fixed - When running simulation on large diagram, the grey filter
-                     did not apply to the entire diagram.
-
-* Bug #11963 fixed - Input ports in a superblock were corrupted.
-
-* Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
-                     NullPointerException.
-
-* Bug #12014 fixed - dep_ut help page was wrongly detailed.
-
-* Bug #12031 fixed - Changes in the context of a superblock did not always have
-                     effect.
-
-* Bug #12057 fixed - Scopes with big scope buffer size simulation were much
-                     more slower than in Scilab 5.3.3.
-
-* Bug #12101 fixed - Port ordering was not maintained on when changing parameters.
-
-* Bug #12162 fixed - tbx_build_blocks did not report errors.
-
-* Bug #12167 fixed - Text of ports in superblocks was not updated.
-
-* Bug #12213 fixed - The example given in lincos help page produced an undefined
-                     variable warning.
-
-* Bug #12265 fixed - The example diagrams given in xcos_simulate help page had
-                     a badly rendering due to CLR blocks.
-
-* Bug #12290 fixed - AFFICH_m block inside a superblock led to a Java
-                     NullPointerException.
-
-* Bug #12350 fixed - Under Windows Explorer, opening a xcos/zcos file
-                     did not try to find an existing instance of Scilab.
-
-* Bug #12351 fixed - The user could not save a diagram as a xcos file when using
-                     the "Save as" menu, zcos format was forced.
-
-* Bug #12352 fixed - Critical error when closing a scope windows during
-                     simulation fixed.
-
 
 
 
@@ -183,7 +112,6 @@ Obsolete functions
 
 
 
-
 Removed functions
 ==================
 
@@ -218,9 +146,11 @@ Removed functions
 
 
 
-
 Bug fixes
 ==========
+
+Scilab
+-------
 
 * Bug #2547 fixed - Small size marks were not correctly exported.
 
@@ -311,7 +241,7 @@ Bug fixes
 
 * Bug #10546 fixed - fileinfo help page updated.
 
-* Bug #10606 fixed - unix_g did not return stdout in somes cases.
+* Bug #10606 fixed - unix_g did not return standard output in somes cases.
 
 * Bug #10661 fixed - xmltopdf and xmltopdf were failing in the binary version.
 
@@ -440,13 +370,13 @@ Bug fixes
 
 * Bug #12021 fixed - eigs help page improved.
 
-* Bug #12022 fixed - ftuneq help page had an uncorrect example.
+* Bug #12022 fixed - ftuneq help page had an incorrect example.
 
 * Bug #12028 fixed - The drawlater/drawnow functions did not work as expected.
 
 * Bug #12033 fixed - assert_checkalmostequal was failing with two %inf values.
 
-* Bug #12043 fixed - Typo in the ATOMS module help pages fixed.
+* Bug #12043 fixed - Typo in the atomsShow help page fixed.
 
 * Bug #12050 fixed - Typo dimensionnal => dimensional fixed.
 
@@ -481,7 +411,7 @@ Bug fixes
 
 * Bug #12133 fixed - parallel_run was not available.
 
-* Bug #12134 fixed - Default stacksize value was wrong in stacksize help page.
+* Bug #12134 fixed - Default stack size value was wrong in stacksize help page.
 
 * Bug #12135 fixed - stacksize('max') failed without displaying error message.
 
@@ -519,7 +449,8 @@ Bug fixes
 
 * Bug #12204 fixed - Typo in French localization fixed.
 
-* Bug #12219 fixed - delete("all") did not recreate a basic axe within a cleaned 				   figure.
+* Bug #12219 fixed - delete("all") did not recreate a basic axe within a cleaned
+                     figure.
 
 * Bug #12231 fixed - In SciNotes, a whole word search did not work properly.
 
@@ -529,7 +460,7 @@ Bug fixes
 
 * Bug #12235 fixed - Matplot did not update on color_map change.
 
-* Bug #12238 fixed - [d v] = eigs(A) was broken for sparse matrices.
+* Bug #12238 fixed - [d, v] = eigs(A) was broken for sparse matrices.
 
 * Bug #12239 fixed - Recent changes in eigs applied to feigs.
 
@@ -614,7 +545,7 @@ Bug fixes
 
 * Bug #12396 fixed - Example "Problem 2" was missing a variable in bvode help page.
 
-* Bug #12399 fixed - Data bounds were badly computed with %inf and log scale.
+* Bug #12399 fixed - Data bounds were badly computed with %inf and logarithmic scale.
 
 * Bug #12405 fixed - Floating point errors could lead to an infinite loop in
                      ticks computation.
@@ -636,6 +567,83 @@ Bug fixes
 * Bug #12455 fixed - format_n property had no effect on "axis" handles.
 
 * Bug #12457 fixed - drawlater() was not taken into account with xfpolys.
+
+
+Xcos
+-----
+
+* Bug #5040 fixed - Fit diagram to view did not work with a single block.
+
+* Bug #5162 fixed - "Export all" menu to export all diagram layers added.
+
+* Bug #9074 fixed - Calling a function on the context gave a warning.
+
+* Bug #10040 fixed - VARIABLE_DELAY help page did not fully describe the
+                     initial value behavioral.
+
+* Bug #10434 fixed - loadXcosLibs changed the value of predef.
+
+* Bug #10435 fixed - Undo in a superdiagram did not update superblock ports
+                     and links.
+
+* Bug #10660 fixed - model2blk and callblk crashed Scilab under 64-bit platforms.
+
+* Bug #11193 fixed - Lincos did not respect context values.
+
+* Bug #11775 fixed - xcos.tst crashed under Linux and MacOS X.
+
+* Bug #11812 fixed - Upper/lower case issues in Xcos documentation fixed.
+
+* Bug #11821 fixed - Running xcosPalAdd example from help led to deadlock.
+
+* Bug #11871 fixed - Connectors were misaligned after an Undo command.
+
+* Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
+                     Scilab crash.
+
+* Bug #11919 fixed - DLSS block with empty matrix parameters made Scilab crash.
+
+* Bug #11945 fixed - When running simulation on large diagram, the grey filter
+                     did not apply to the entire diagram.
+
+* Bug #11963 fixed - Input ports in a superblock were corrupted.
+
+* Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
+                     NullPointerException.
+
+* Bug #12014 fixed - dep_ut help page was wrongly detailed.
+
+* Bug #12031 fixed - Changes in the context of a superblock did not always have
+                     effect.
+
+* Bug #12057 fixed - Scopes with big scope buffer size simulation were much
+                     more slower than in Scilab 5.3.3.
+
+* Bug #12101 fixed - Port ordering was not maintained when changing parameters.
+
+* Bug #12162 fixed - tbx_build_blocks did not report errors.
+
+* Bug #12167 fixed - Text of ports in superblocks was not updated.
+
+* Bug #12213 fixed - The example given in lincos help page produced an undefined
+                     variable warning.
+
+* Bug #12265 fixed - The example diagrams given in xcos_simulate help page had
+                     a badly rendering due to CLR blocks.
+
+* Bug #12290 fixed - AFFICH_m block inside a superblock led to a Java
+                     NullPointerException.
+
+* Bug #12350 fixed - Under Windows Explorer, opening a xcos/zcos file
+                     did not try to find an existing instance of Scilab.
+
+* Bug #12351 fixed - The user could not save a diagram as a xcos file when using
+                     the "Save as" menu, zcos format was forced.
+
+* Bug #12352 fixed - Critical error when closing a scope windows during
+                     simulation fixed.
+
+
 
 
                     Changes between version 5.3.3 and 5.4.0
