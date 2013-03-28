@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-08-30 21:04+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2013-03-21 13:31+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -147,9 +147,68 @@ msgstr "%s: Soubor %s přeskočen."
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
-#, c-format
-msgid "%02d-%02d-%04d"
-msgstr "%02d-%02d-%04d"
+msgid " * Add some comments about XML file"
+msgstr " * Přidat nějaké komentáře o souboru XML"
+
+msgid "Add short description here."
+msgstr "Zadejte sem krátký popis."
+
+msgid "Calling Sequence"
+msgstr "Sekvence volání"
+
+msgid "Arguments"
+msgstr "Argumenty"
+
+msgid "            Add here the input/output argument description."
+msgstr "            Zde zadejte popis argumentu vstupu/výstupu."
+
+msgid "          Add here a paragraph of the function description."
+msgstr "          Zde zadejte odstavec popisu funkce."
+
+msgid "          Other paragraph can be added"
+msgstr "          Můžete přidat další paragrafy"
+
+msgid "More information"
+msgstr "Další informace"
+
+msgid "Examples"
+msgstr "Příklady"
+
+msgid "        Add here scilab instructions and comments"
+msgstr "        Zde zadejte pokyny scilab a komentáře"
+
+msgid "See Also"
+msgstr "Viz také"
+
+msgid "add a reference"
+msgstr "přidat odkaz"
+
+msgid "add a reference name"
+msgstr "přidat název odkazu"
+
+msgid "Authors"
+msgstr "Autoři"
+
+msgid "add the author name and author reference"
+msgstr "přidat jméno autora a odkaz autora"
+
+msgid "add another author name and his/her reference"
+msgstr ""
+
+msgid "Bibliography"
+msgstr "Bibliografie"
+
+msgid "         Add here the function bibliography"
+msgstr "         Zde zadejte bibliografii funkce"
+
+msgid "History"
+msgstr "Historie"
+
+msgid "Used Functions"
+msgstr "Použité funkce"
+
+msgid "         Add here the Scilab, C,... used code references"
+msgstr "         Zde zadejte odkaz na kód v Scilab, C,..."
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"

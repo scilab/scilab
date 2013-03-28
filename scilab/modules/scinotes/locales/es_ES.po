@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: es\n"
 
 #, c-format
@@ -503,6 +503,18 @@ msgstr "SciNotes"
 msgid "Error while reading the String"
 msgstr "Error leyendo el String"
 
+#, c-format
+msgid "File not found: %s"
+msgstr ""
+
+#, c-format
+msgid "I/O error: %s"
+msgstr ""
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr ""
+
 msgid "Source of '"
 msgstr "Fuente de '"
 
@@ -715,12 +727,8 @@ msgid "String %s not found"
 msgstr "No se encontró la cadena %s"
 
 #, c-format
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
+msgid "The file %s does not exist. Do you want to create it?"
 msgstr ""
-"El archivo %s no existe\n"
-"¿desea crearlo?"
 
 msgid "close this tab"
 msgstr "cerrar esta pestaña"
@@ -728,20 +736,13 @@ msgstr "cerrar esta pestaña"
 msgid "This file"
 msgstr "Este archivo"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
 msgstr ""
-" ha sido modificado desde la la última vez\n"
-"¿desea guardarlo?"
 
 #, c-format
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
+msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr ""
-"¡El archivo %s ha sido modificado por otro programa!\n"
-" ¿Desea sobreescribirlo?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Advertencia: ¡El archivo fue modificado por otro programa!"
