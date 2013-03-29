@@ -348,7 +348,7 @@ assert_checkequal(a2.filled, "on")
  ans  =
  
   T  
-assert_checkequal(a2.sub_ticks, [4, 4])
+assert_checkequal(a2.sub_ticks, [0, 4])
  ans  =
  
   T  
