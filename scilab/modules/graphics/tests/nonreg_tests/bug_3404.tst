@@ -22,7 +22,7 @@ a.data_bounds = [1e-9,-20;10,10];
 a.axes_visible = "on";
 a.log_flags = "lnn";
 
-expectedLocations = 10^(-10:6:2)';
+expectedLocations = 10^(-10:3:2)';
 
 // compare the expected locations and the real ones
 assert_checkalmostequal(expectedLocations, a.x_ticks.locations);
