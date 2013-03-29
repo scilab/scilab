@@ -1191,14 +1191,14 @@ msgstr "Blanc"
 #, c-format
 msgid ""
 "Matplot(M)  with  size(M)=>(%d,%d)\n"
-"The color''s number of pixel(i,j)\n"
+"The color's number of pixel(i,j)\n"
 "  = rounded value of M(i,j)"
 msgstr ""
 
 msgid "For data-scaled axes, please use Matplot1(..)"
 msgstr ""
 
-msgid "Axes are scaled with M''s indices"
+msgid "Axes are scaled with M's indices"
 msgstr ""
 
 #, c-format
@@ -1261,18 +1261,17 @@ msgstr ""
 "%s: Nombre incorrecte d'arguments d'entrada: Han de ser entre %d i %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument ''%s'': A vector expected.\n"
+msgid "%s: Wrong size for input argument '%s': A vector expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
+"%s: Wrong size for input argument '%s': A non empty matrix expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible "
-"dimensions.\n"
+"%s: Wrong size for input arguments '%s' and '%s': Incompatible dimensions.\n"
 msgstr ""
 
 #, c-format
@@ -1280,14 +1279,12 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected."
 msgstr "%s: El nombre d'arguments d'entrada: Han de ser entre %d i %d."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
+msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
-"expected."
+"%s: Wrong type for input argument #%d: A vector of 'Figure' handle expected."
 msgstr ""
 
 #, c-format
@@ -1297,7 +1294,7 @@ msgstr ""
 "de cadenes de text.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
+msgid "%s: Wrong values for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -1434,7 +1431,7 @@ msgid "Unique datatip mode"
 msgstr "Mode de datatip únic"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 
 msgid "createPopupItems: found an empty cascading menu."
@@ -1614,8 +1611,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'', ''%s'' or ''%s'' expected.\n"
+"%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s', '%s', '%s' "
+"or '%s' expected.\n"
 msgstr ""
 
 msgid "Tcl/Tk interface not installed."
@@ -1736,7 +1733,7 @@ msgid "%s: Wrong size for input argument #%d."
 msgstr ""
 
 #, c-format
-msgid "%s: No ''%s'' handle found.\n"
+msgid "%s: No '%s' handle found.\n"
 msgstr ""
 
 #, c-format
@@ -1767,11 +1764,11 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Error : unable to evaluate input function ''%s''."
+msgid "%s: Error : unable to evaluate input function '%s'."
 msgstr ""
 
 #, c-format
-msgid "Error %d at line %d of the function: ''%s''"
+msgid "Error %d at line %d of the function: '%s"
 msgstr ""
 
 #, c-format
@@ -1780,12 +1777,12 @@ msgstr "%s: Error : No s'ha pogut avaluar la funció d'entrada."
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
+"%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: ''%s'' cannot be used with ''%s''.\n"
+msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr ""
 
 #, c-format
@@ -1794,15 +1791,30 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
+"%s: Wrong size for input arguments '%s': A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
+msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
+msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
+msgstr ""
+
+msgid "Color data must be a scalar."
+msgstr ""
+
+msgid "Color value must be a 3 element vector or an index in the colormap."
+msgstr ""
+
+msgid "Incorrect input: Color vector should be a 3x1 or 1x3 vector"
+msgstr ""
+
+msgid "Color value must be a 3 elements vector or an index in the colormap."
+msgstr ""
+
+msgid "Incorrect input: ..."
 msgstr ""
 
 #, c-format
@@ -1819,7 +1831,7 @@ msgstr ""
 "%d dígits amb dígits majors que %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: An 'Axes' handle expected.\n"
 msgstr ""
 
 #, c-format
@@ -1839,24 +1851,24 @@ msgstr ""
 "mida %dx%d o %dx%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"
+msgid "%s: Wrong type for input argument '%s': A Real matrix expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-"
-"by-%d expected.\n"
+"%s: Wrong size for input argument '%s': A matrix of size greater than %d-by-"
+"%d expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size "
+"%s: Wrong size for input arguments '%s' and '%s': Matrices of same size "
 "expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
+"%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
 
 #, c-format
