@@ -1,6 +1,7 @@
 // ===========================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Sylvestre LEDRU
+// Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
 //
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
@@ -10,7 +11,12 @@
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
 assert_checktrue(xmlIsValidObject(xmlFile));
 a=xmlGetOpenDocs();
-assert_checkequal(a(1).url, SCI+"/etc/modules.xml");
+if getos() == "Windows" then
+    assert_checkequal(a(1).url, "file:///" + SCI+"/etc/modules.xml");
+else
+    assert_checkequal(a(1).url, SCI+"/etc/modules.xml");
+end
+
 
 content=xmlDump(xmlFile);
 assert_checktrue(length(content)>0);

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-08-24 14:20+0000\n"
+"PO-Revision-Date: 2013-03-22 14:41+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: ja\n"
 
 #, c-format
@@ -34,8 +34,15 @@ msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
 msgstr "%s:  SODファイル形式のバージョンが間違っています. 仕様値: %d 指定値: %d\n"
 
 #, c-format
-msgid "%s: Variable '%s' already exists in file '%s'."
-msgstr "%s: 変数 '%s' はファイル '%s' に既に存在します."
+msgid "%s: Unable to delete existing variable \"%s\"."
+msgstr "%s: 既存の変数 \"%s\" を削除できませんでした."
+
+#, c-format
+msgid ""
+"%s: Variable '%s' already exists in file '%s'\n"
+"Use -append option to replace existing variable\n"
+"."
+msgstr "%s: 変数 '%s' がファイル '%s' にすでに存在します"
 
 #, c-format
 msgid "%s: Unable to update Scilab version in \"%s\"."

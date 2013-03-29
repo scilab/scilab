@@ -193,6 +193,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\cpp\checkodeerror.cpp" />
     <ClCompile Include="..\cpp\differentialequationfunctions.cpp" />
     <ClCompile Include="..\cpp\scifunctions.cpp" />
+    <ClCompile Include="..\..\sci_gateway\c\Ex-daskr.c" />
     <ClCompile Include="arnol.c" />
     <ClCompile Include="dassl.c" />
     <ClCompile Include="DllmainDifferential_equations.c" />
@@ -266,6 +267,10 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ProjectReference Include="..\..\..\types\typesmacro\typesmacro.vcxproj">
       <Project>{9252a034-7f22-4cb1-a634-4577da69f2d0}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

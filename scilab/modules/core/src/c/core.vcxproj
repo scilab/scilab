@@ -343,7 +343,6 @@ cd ..
     <ClCompile Include="terme.c" />
     <ClCompile Include="TerminateCore.c" />
     <ClCompile Include="texmacs.c" />
-    <ClCompile Include="timer.c" />
     <ClCompile Include="transposeMatrix.c" />
     <ClCompile Include="typename.c" />
     <ClCompile Include="version.c" />
@@ -568,10 +567,8 @@ cd ..
     <ClInclude Include="..\..\includes\tasks.hxx" />
     <ClInclude Include="..\..\includes\texmacs.h" />
     <ClInclude Include="..\..\includes\timer.hxx" />
-    <ClInclude Include="..\..\includes\timerEvents.h" />
     <ClInclude Include="..\..\includes\transposeMatrix.h" />
     <ClInclude Include="..\..\includes\version.h" />
-    <ClInclude Include="..\..\includes\windowsChangeManagement.h" />
     <ClInclude Include="..\..\includes\win_mem_alloc.h" />
     <ClInclude Include="..\..\includes\with_module.h" />
     <ClInclude Include="..\..\includes\xscion.h" />

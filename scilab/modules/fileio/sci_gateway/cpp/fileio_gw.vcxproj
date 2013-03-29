@@ -175,7 +175,6 @@
     <ClCompile Include="..\c\sci_fprintfMat.c" />
     <ClCompile Include="..\c\sci_fscanfMat.c" />
     <ClCompile Include="..\c\sci_getURL.c" />
-    <ClCompile Include="..\c\sci_getURLcontent.c" />
     <ClCompile Include="..\c\sci_maxfiles.c" />
     <ClCompile Include="..\c\sci_movefile.c" />
     <ClCompile Include="..\c\sci_pwd.c" />

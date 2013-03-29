@@ -307,17 +307,15 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      * @param value the new value
      */
     public void setUserValue(double value) {
-        if (!SwingUtilities.isEventDispatchThread()) { /* Avoid double-update when Model is updated from the callback */
-            /* Remove the listener to avoid the callback to be executed */
-            removeAdjustmentListener(adjustmentListener);
+        /* Remove the listener to avoid the callback to be executed */
+        removeAdjustmentListener(adjustmentListener);
 
-            double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
-            double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
-            super.setValue(MINIMUM_VALUE + (int) ((value - userMin) * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
+        double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+        double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+        super.setValue(MINIMUM_VALUE + (int) ((value - userMin) * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
 
-            /* Put back the listener */
-            addAdjustmentListener(adjustmentListener);
-        }
+        /* Put back the listener */
+        addAdjustmentListener(adjustmentListener);
     }
 
     /**

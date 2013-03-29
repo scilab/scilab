@@ -156,6 +156,8 @@ function demo_mckinnon2()
     xdata=linspace(xmin,xmax,nx);
     ydata=linspace(ymin,ymax,ny);
     scf();
+    f = gcf();
+    f.axes_size = [710, 560];
     subplot(2,2,1)
     xset("fpf"," ")
     drawlater();
@@ -189,4 +191,5 @@ clear demo_mckinnon2;
 
 
 
-
+
+

@@ -128,6 +128,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
     private Texture createScientificStyleSprite(double value, TextureManager textureManager) {
         Integer exponent = (int) Math.floor(Math.log10(value));
         Double mantissa = value / Math.pow(10, exponent);
+        mantissa = Math.round(mantissa * 1e6) * 1e-6;
 
         /**
          * Create mantissa.

@@ -40,7 +40,7 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[ 
-gettext('Startup execution:')
+gettext("Startup execution:")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

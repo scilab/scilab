@@ -31,7 +31,8 @@ changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X CHA
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
-bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
+bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli \
+bin/scinotes bin/xcos
 
 if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript

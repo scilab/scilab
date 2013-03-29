@@ -75,6 +75,7 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
         int autoSubticks;
         int i;
         double* values = (double*)_pvData;
+        int nbTicks = (int) values[0];
 
         result = SET_PROPERTY_SUCCEED;
 
@@ -88,7 +89,7 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
          * The AUTO_SUBTICKS property is shared by the 3 axes for now.
          * To be modified.
          */
-        autoSubticks = 0;
+        autoSubticks = nbTicks < 0 ? 1 : 0;
         status = setGraphicObjectProperty(pobjUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
 
         if (status == FALSE)
@@ -99,8 +100,6 @@ int set_sub_tics_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
 
         for (i = 0; i < nbCol ; i++)
         {
-            int nbTicks;
-
             nbTicks = (int) values[i];
 
             if (nbTicks < 0)

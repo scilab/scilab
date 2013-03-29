@@ -2,6 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
 // Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
+// Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -353,7 +354,7 @@ t0   = 0;
 [yout1,rd1,w,iw] = ode("root", y, t0, tout, 'fex1', 2, 'gex');
 assert_checkalmostequal(rd1(1), 2.64d-01, 1d-4);
 [yout2,rd2,w,iw] = ode("root", y, t0, tout, 'fex1', 2, 'gex', w, iw);
-assert_checkalmostequal(rd2(1), 2.0795776d+07, 1d-7);
+assert_checkalmostequal(rd2(1), 2.0795776d+07, 4d-7);
 err = execstr("[yout3,rd,w,iw] = ode(""root"", y, t0, tout, ""fex1"", 2, ""gex"", w, iw);","errcatch");
 assert_checkequal( err == 0 , %f);
 

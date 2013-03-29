@@ -44,9 +44,9 @@ Name: {#COMPN_REF_CPU_LIBRARY}; Description:{cm:DescriptionRefBlasLibrary}; Flag
 #define COMPN_FFTW 'FFTW'
 #define COMPN_FFTW_REF_LIBRARY 'FFTW\REF_LIBRARY'
 #define COMPN_FFTW_MKL_LIBRARY 'FFTW\MKL_LIBRARY'
-Name: {#COMPN_FFTW}; Description: {cm:DescriptionFftwModule}; Types: full custom cli; Flags: fixed;
-Name: {#COMPN_FFTW_MKL_LIBRARY};Description: {cm:DescriptionFftwMKLDownload}; Flags: exclusive
-Name: {#COMPN_FFTW_REF_LIBRARY};Description: {cm:DescriptionRefFftwLibrary}; Flags: exclusive
+Name: {#COMPN_FFTW}; Description: {cm:DescriptionFftwModule}; Types: default full custom cli; Flags: fixed;
+Name: {#COMPN_FFTW_MKL_LIBRARY};Description: {cm:DescriptionFftwMKLDownload}; Types: custom cli; Flags: exclusive
+Name: {#COMPN_FFTW_REF_LIBRARY};Description: {cm:DescriptionRefFftwLibrary}; Types: default full custom cli; Flags: exclusive
 
 #define COMPN_DEVTOOLS 'Development_tools'
 #define COMPN_MODULES_MANAGER 'Development_tools\modules_manager'

@@ -6,6 +6,7 @@
 // =============================================================================
 // <-- ENGLISH IMPOSED -->
 // <-- CLI SHELL MODE -->
+// <-- UNIX ONLY -->
 ilib_verbose(0);
 curDir=pwd();
 cd TMPDIR;

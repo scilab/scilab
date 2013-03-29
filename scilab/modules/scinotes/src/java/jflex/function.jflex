@@ -105,7 +105,7 @@ break = ".."(".")*{white}*{comments}
 brokenline = ([^\.]* | ([^\.]*"."[^\.]+)+){break}
 
 id = [a-zA-Z%_#!$?][a-zA-Z0-9_#!$?]*
-spec = [^a-zA-Z0-9_#!$?]?
+spec = [^a-zA-Z0-9_#!$?]
 
 equal = {white}* "=" {white}*
 

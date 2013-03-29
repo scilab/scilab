@@ -1,55 +1,47 @@
+// =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2011 - DIGITEO
+// Copyright (C) 2013 - Scilab Enterprises - Charlotte Hecquet
+// Copyright (C) 2013 - Scilab Enterprises - Sylvestre Ledru
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 
-test_path = SCI + '/modules/signal_processing/tests/unit_tests/';
+nbPoints = 5; // Number of points computed
 
-n = 2;
-theta = zeros(1,3*n);
-p = eye(3*n,3*n);
-phi = theta;
-psi = theta;
-l = theta;
-w0 = list(theta, p, l, phi, psi);
-u0 = [1 2 3 4];
-y0 = [5 2 7 3];
-lambda = [1 1 1];
-kappa = [1 1 1];
-c = 500;
+// Real parameters a,b,c: here, y=u
+a=cat(2,1,zeros(1,nbPoints - 1));
+b=cat(2,1,zeros(1,nbPoints - 1));
+c=zeros(1,nbPoints);
 
-import_from_hdf5(test_path + "rpem_ref1.h5");
-w1 = rpem(w0, u0, y0);
-if w1 <> w1_ref then pause, end
-[w1,v] = rpem(w0, u0, y0);
-if w1 <> w1_ref1 then pause, end
-if v <> v_ref1 then pause, end
+// Generate input signal
+t=linspace(0,50,1000);
+w=%pi/4;
+u=cos(w*t);
 
-import_from_hdf5(test_path + "rpem_ref2.h5");
-w1 = rpem(w0, u0, y0, lambda);
-if w1 <> w1_ref2 then pause, end
+// Generate output signal
+Arma=armac(a,b,c,1,1,0);
+y=arsimul(Arma,u);
 
-[w1,v] = rpem(w0, u0, y0, lambda);
-if w1 <> w1_ref2 then pause, end
-if v <> v_ref2 then pause, end
+// Arguments of rpem
+phi=zeros(1,nbPoints*3);
+psi=zeros(1,nbPoints*3);
+l=zeros(1,nbPoints*3);
+p=1*eye(nbPoints*3,nbPoints*3);
+theta=[0*a 0*b 0*c];
+w0=list(theta,p,l,phi,psi);
+[w0, v]=rpem(w0,u,y);
 
-import_from_hdf5(test_path + "rpem_ref3.h5");
+assert_checkequal(size(w0), 5);
+assert_checkequal(size(v,"*"), 1);
+assert_checkalmostequal(v, 0.57451013690216091);
 
-w1 = rpem(w0, u0, y0, lambda, kappa);
-if w1 <> w1_ref3 then pause, end
-
-[w1,v] = rpem(w0, u0, y0, lambda, kappa);
-if w1 <> w1_ref3 then pause, end
-if v <> v_ref3 then pause, end
-
-import_from_hdf5(test_path + "rpem_ref4.h5");
-w1 = rpem(w0, u0, y0, lambda, kappa, c);
-if w1 <> w1_ref4 then pause, end
-
-[w1,v] = rpem(w0, u0, y0, lambda, kappa, c);
-if w1 <> w1_ref4 then pause, end
-if v <> v_ref4 then pause, end
+assert_checkequal(size(w0(1)), [1, 15]);
+assert_checkequal(size(w0(2)), [15, 15]);
+assert_checkequal(size(w0(3)), [1, 15]);
+assert_checkequal(size(w0(4)), [1, 15]);
+assert_checkequal(size(w0(5)), [1, 15]);
+assert_checkalmostequal(sum(w0(1)),  - 1.6187817562697728);
+assert_checkalmostequal(sum(w0(2)), 925.971144340439537);
+assert_checkalmostequal(sum(w0(3)), 0.06147492702030416);
+assert_checkalmostequal(sum(w0(4)), 0.19515684603135780);
+assert_checkalmostequal(sum(w0(5)), 0.22685582794021467);

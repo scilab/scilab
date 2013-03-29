@@ -31,5 +31,7 @@ Building the master document:
 	TMPDIR/bug_1768/help/en_US
 
 Building the manual file [html] in TMPDIR/bug_1768/help/en_US.
+ 
+ Generate image ./foo1_1.png from Scilab code from file foo1.xml   
 if ~isdir(TMPDIR+"/bug_1768/help/en_US/scilab_en_US_help") then bugmes();quit;end
 if fileinfo(index_file) == [] then bugmes();quit;end

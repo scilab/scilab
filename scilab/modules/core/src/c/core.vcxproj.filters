@@ -311,9 +311,6 @@
     <ClCompile Include="texmacs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="timer.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="transposeMatrix.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -627,16 +624,10 @@
     <ClInclude Include="..\..\includes\timer.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\timerEvents.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\transposeMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\windowsChangeManagement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\with_module.h">

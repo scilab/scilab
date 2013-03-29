@@ -37,7 +37,7 @@ public class MarkSpriteFactory {
      * @param colorMap the scilab color map.
      * @return a mark sprite corresponding to the given scilab mark.
      */
-    public static Texture getMarkSprite(TextureManager spriteManager, Mark mark, ColorMap colorMap) {
+    public static Texture getMarkSprite(TextureManager spriteManager, Mark mark, ColorMap colorMap, Appearance appearance) {
         int finalSize;
 
         /**
@@ -57,7 +57,7 @@ public class MarkSpriteFactory {
         }
 
         Texture sprite = spriteManager.createTexture();
-        sprite.setDrawer(getSpriteDrawer(mark, finalSize, colorMap));
+        sprite.setDrawer(getSpriteDrawer(mark, finalSize, colorMap, appearance));
 
         return sprite;
     }
@@ -69,8 +69,7 @@ public class MarkSpriteFactory {
      * @param colorMap the scilab colormap to use.
      * @return the sprite drawer corresponding to the given mark.
      */
-    private static TextureDrawer getSpriteDrawer(Mark mark, int finalSize, ColorMap colorMap) {
-
+    private static TextureDrawer getSpriteDrawer(Mark mark, int finalSize, ColorMap colorMap, Appearance usedAppearance) {
         final Appearance appearance = new Appearance();
         Color backgroundColor = ColorFactory.createColor(colorMap, mark.getBackground());
         Color foregroundColor = ColorFactory.createColor(colorMap, mark.getForeground());
@@ -81,42 +80,45 @@ public class MarkSpriteFactory {
             appearance.setFillColor(new Color(0.0f, 0.0f, 0.0f, 0.0f));
         }
         appearance.setLineColor(foregroundColor);
+        if (usedAppearance != null) {
+            appearance.setLineWidth(usedAppearance.getLineWidth());
+        }
 
         if (finalSize != 1) {
             switch (mark.getStyle()) {
-            case  0:
-                return new DotSpriteDrawer(foregroundColor, finalSize);
-            case  1:
-                return new PlusSpriteDrawer(appearance, finalSize);
-            case  2:
-                return new CrossSpriteDrawer(appearance, finalSize);
-            case  3:
-                return new StarSpriteDrawer(appearance, finalSize);
-            case  4:
-                return new FilledDiamondSpriteDrawer(foregroundColor, finalSize);
-            case  5:
-                return new DiamondSpriteDrawer(appearance, finalSize);
-            case  6:
-                return new TriangleUpSpriteDrawer(appearance, finalSize);
-            case  7:
-                return new TriangleDownSpriteDrawer(appearance, finalSize);
-            case  8:
-                return new DiamondPlusSpriteDrawer(appearance, finalSize);
-            case  9:
-                return new CircleSpriteDrawer(appearance, finalSize);
-            case 10:
-                return new AsteriskSpriteDrawer(appearance, finalSize);
-            case 11:
-                return new SquareSpriteDrawer(appearance, finalSize);
-            case 12:
-                return new TriangleRightSpriteDrawer(appearance, finalSize);
-            case 13:
-                return new TriangleLeftSpriteDrawer(appearance, finalSize);
-            case 14:
-                return new PentagramSpriteDrawer(appearance, finalSize);
+                case  0:
+                    return new DotSpriteDrawer(foregroundColor, finalSize);
+                case  1:
+                    return new PlusSpriteDrawer(appearance, finalSize);
+                case  2:
+                    return new CrossSpriteDrawer(appearance, finalSize);
+                case  3:
+                    return new StarSpriteDrawer(appearance, finalSize);
+                case  4:
+                    return new FilledDiamondSpriteDrawer(foregroundColor, finalSize);
+                case  5:
+                    return new DiamondSpriteDrawer(appearance, finalSize);
+                case  6:
+                    return new TriangleUpSpriteDrawer(appearance, finalSize);
+                case  7:
+                    return new TriangleDownSpriteDrawer(appearance, finalSize);
+                case  8:
+                    return new DiamondPlusSpriteDrawer(appearance, finalSize);
+                case  9:
+                    return new CircleSpriteDrawer(appearance, finalSize);
+                case 10:
+                    return new AsteriskSpriteDrawer(appearance, finalSize);
+                case 11:
+                    return new SquareSpriteDrawer(appearance, finalSize);
+                case 12:
+                    return new TriangleRightSpriteDrawer(appearance, finalSize);
+                case 13:
+                    return new TriangleLeftSpriteDrawer(appearance, finalSize);
+                case 14:
+                    return new PentagramSpriteDrawer(appearance, finalSize);
 
-            default:
-                return new PlusSpriteDrawer(appearance, finalSize);
+                default:
+                    return new PlusSpriteDrawer(appearance, finalSize);
             }
         } else {
             return new PlusSpriteDrawer(appearance, finalSize);

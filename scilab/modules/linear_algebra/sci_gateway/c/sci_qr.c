@@ -139,7 +139,7 @@ int sci_qr(char *fname, int* _piKey)
 				{
 					getVarAddressFromPosition(_piKey, 2, &arg[1]);
 					getVarType(_piKey, arg[1], &type);
-					switch( type)
+					switch(type)
 					{
 						case sci_strings :
 						{ /* /!\ original code did not check that string is "e" so any [matrix of] string is accepted as "e" ! */

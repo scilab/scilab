@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
+// Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -15,8 +16,4 @@
 // <-- Short Description -->
 //    sprintf error
 
-if getos() == 'Windows' then
-	if sprintf("%e", 1e-10) <> "1.000000e-010" then pause; end
-else
-	if sprintf("%e", 1e-10) <> "1.000000e-10" then pause; end
-end
+assert_checkequal(sprintf("%e", 1e-10), "1.000000e-10");

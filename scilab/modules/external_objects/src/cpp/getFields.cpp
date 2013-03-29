@@ -20,7 +20,6 @@ int ScilabGateway::getFields(char * fname, const int envId, void * pvApiCtx)
     SciErr err;
     int * addr = 0;
     int tmpvar[2] = {0, 0};
-    int row = 0, col = 0;
     int idObj = 0;
     ScilabStringStackAllocator * allocator = 0;
 

@@ -41,6 +41,7 @@ public class ValidateAction extends CommonCallBack {
         super(null);
         this.table = table;
         ActionMap actions = table.getActionMap();
+        ext.put("", actions.get("open"));
         ext.put("sce", actions.get("scinotes"));
         ext.put("sci", actions.get("scinotes"));
         ext.put("tst", actions.get("scinotes"));
@@ -52,14 +53,8 @@ public class ValidateAction extends CommonCallBack {
         ext.put("bin", actions.get("load"));
         ext.put("scg", actions.get("load"));
         ext.put("sav", actions.get("load"));
+        ext.put("sod", actions.get("load"));
         ext.put("graph", actions.get("graph"));
-        ext.put("pdf", actions.get("open"));
-        ext.put("png", actions.get("open"));
-        ext.put("gif", actions.get("open"));
-        ext.put("jpg", actions.get("open"));
-        ext.put("jpeg", actions.get("open"));
-        ext.put("html", actions.get("open"));
-        ext.put("htm", actions.get("open"));
     }
 
     /**
@@ -77,7 +72,7 @@ public class ValidateAction extends CommonCallBack {
         if (c != null) {
             c.callBack();
         } else {
-            ((CommonCallBack) ext.get("sce")).callBack();
+            ((CommonCallBack) ext.get("")).callBack();
         }
     }
 }

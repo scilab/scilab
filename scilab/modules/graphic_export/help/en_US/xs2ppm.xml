@@ -13,11 +13,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2ppm" xml:lang="en">
     <refnamediv>
         <refname>xs2ppm</refname>
-        <refpurpose>Export graphics to PPM.</refpurpose>
+        <refpurpose>export graphics to PPM</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>xs2ppm(win_num, file_name)
+        <synopsis>
+            xs2ppm(win_num, file_name)
             xs2ppm(fig, file_name)
         </synopsis>
     </refsynopsisdiv>
@@ -27,7 +28,7 @@
             <varlistentry>
                 <term>win_num</term>
                 <listitem>
-                    <para>integer, id of the figure to export.</para>
+                    <para>an integer, ID of the figure to export.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -39,7 +40,7 @@
             <varlistentry>
                 <term>file_name</term>
                 <listitem>
-                    <para>string, name of the exported file.</para>
+                    <para>a string, name of the exported file.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -47,7 +48,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xs2ppm</literal> exports the display of a graphic window into a PPM file.
+            <function>xs2ppm</function> exports the display of a graphic window into a PPM file.
         </para>
     </refsection>
     <refsection>
@@ -63,6 +64,12 @@ xs2ppm(0,filename);
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="toprint">toprint</link>
+            </member>
+            <member>
+                <link linkend="printfigure">printfigure</link>
+            </member>
             <member>
                 <link linkend="xs2bmp">xs2bmp</link>
             </member>

@@ -17,5 +17,5 @@
 
 ierr = execstr("clear(1)", "errcatch");
 assert_checkequal(ierr, 201);
-msg_ref = msprintf(gettext("%s: Wrong type for argument %d: A single string expected.\n"), "clear", 1);
+msg_ref = msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"), "clear", 1);
 assert_checkerror ("clear(1)", msg_ref);

@@ -57,7 +57,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_tempname.c \
     sci_gateway/c/sci_movefile.c \
 	sci_gateway/c/sci_getURL.c \
-	sci_gateway/c/sci_getURLcontent.c \
 	sci_gateway/c/sci_splitURL.c
 
 GATEWAY_CPP_SOURCES = \

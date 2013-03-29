@@ -29,11 +29,14 @@ assert_checkerror("example_run(""core"", ""extraction"", [""en_US"", ""fr_FR""])
 refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab module name expected.\n"), "example_run", 1);
 assert_checkerror("example_run(""toto"");", refMsg);
 
-refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A ''%s'' module function name expected.\n"), "example_run", 2, "core");
-assert_checkerror("example_run(""core"", ""doesnotexistsname"");", refMsg);
+// On Windows, the binary version doesn't contain help directory
+if isdir(fullfile(SCI,"modules","core","help")) then
+    refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A ''%s'' module function name expected.\n"), "example_run", 2, "core");
+    assert_checkerror("example_run(""core"", ""doesnotexistsname"");", refMsg);
 
-refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A valid language expected.\n"), "example_run", 3);
-assert_checkerror("example_run(""core"", ""extraction"", ""aa_BB"");", refMsg);
+    refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A valid language expected.\n"), "example_run", 3);
+    assert_checkerror("example_run(""core"", ""extraction"", ""aa_BB"");", refMsg);
+end
 
 if ~isempty(ls("SCI/modules/xml/help/en_US/*.xml")) then // Help XML sources must be available for the following lines
     example_run("xml", [], "", "short_summary");
