@@ -96,7 +96,7 @@ assert_checktrue(grep(HTMLContent,"Linux") <> []);
 [f, HTMLContent]=getURL("https://encrypted.google.com");
 assert_checktrue(length(HTMLContent) > 100);
 
-[f, HTMLContent]=getURL("http://httpbin.org/basic-auth/user/passwd","user","passwd");
+[f, HTMLContent]=getURL("http://httpbin.org/basic-auth/user/passwd",TMPDIR,"user","passwd");
 assert_checktrue(length(HTMLContent) > 10);
 assert_checktrue(grep(HTMLContent,"authenticated") <> []);
 
