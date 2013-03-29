@@ -74,20 +74,18 @@ function txt = help_skeleton(funname, path, language)
     svg = "xmlns:svg=""http://www.w3.org/2000/svg"""
     mml = " xmlns:mml=""http://www.w3.org/1998/Math/MathML"""
     db = "xmlns:db=""http://docbook.org/ns/docbook"""
-    vers = "version=""5.0-subset Scilab"""
-    refs = strcat([xmlns xlink svg mml db vers]," ")
+    scins = "xmlns:scilab=""http://www.scilab.org"""
+
+    refs = strcat([xmlns xlink svg mml db scins]," ")
 
     txt=["<?xml version=""1.0"" encoding='"UTF-8""?>"
     "<!--"
     _(" * Add some comments about XML file");
     "-->"
     "<refentry " + refs + " xml:lang="""+ language + """ xml:id=""" + funname + """>"
-    "  <info>"
-    "    <pubdate>$LastChangedDate: " + xml_date + " $</pubdate>"
-    "  </info>"
     "  <refnamediv>"
     "    <refname>"+ funname + "</refname>"
-    "    <refpurpose>" + _("Add short description here.") + " </refpurpose>"
+    "    <refpurpose>" + _("Add short description here.") + "</refpurpose>"
     "  </refnamediv>"
     "  <refsynopsisdiv>"
     "    <title>" + _("Calling Sequence") + "</title>"
@@ -151,6 +149,9 @@ function txt = help_skeleton(funname, path, language)
     "    <programlisting role=""example""><![CDATA["
     _("        Add here scilab instructions and comments")
     "    ]]></programlisting>"
+    "    <scilab:image><![CDATA["
+    "// "+_("        Add here scilab instructions to generate a graphic")
+    "    ]]></scilab:image>"
     "  </refsection>"];
 
     //See Also

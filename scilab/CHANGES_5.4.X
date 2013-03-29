@@ -46,7 +46,8 @@ Improvements
 * Console command history is now stored in SCIHOME/history file under all platforms.
 
 * In Scilab documentation, 'scilab:needs-examples="no"' tag has been added to specify
-  that the help page does not need any example.
+  that the help page does not need example.
+
 
 
 Xcos
@@ -63,102 +64,38 @@ Xcos
   solve both stiff and nonstiff problems. It includes a rootfinding feature.
 
 * Two new fixed-size step ODE solvers added: Dormand-Prince 4(5) and Runge-Kutta 4(5).
-  Included in the CVode package, they also benefit from the rootfinding feature.
+  Added to the CVode package, they also benefit from the rootfinding feature.
 
 * Implicit fixed-size stop ODE solver added: Implicit Runge-Kutta 4(5).
-  It also benefits from the CVode rootfinding feature.
+  Added to the CVode package, it also benefits from the CVode rootfinding feature.
 
 * Block parameter errors (types and sizes) reporting improved.
 
 * Some scopes blink on simulation avoided.
 
-* Bug #5040 fixed - Fit diagram to view did not work with a single block.
-
-* Bug #5162 fixed - Add an "export all menu" to export all diagram layers.
-
-* Bug #9074 fixed - Calling a function on the context gave a warning.
-
-* Bug #10040 fixed - VARIABLE_DELAY help page did not fully describe the
-                     initial value behavioral.
-
-* Bug #10434 fixed - loadXcosLibs changed the value of predef.
-
-* Bug #10435 fixed - Undo in a superdiagram did not update superblock ports
-                     and links.
-
-* Bug #10660 fixed - model2blk and callblk crashed Scilab under 64-bit platforms.
-
-* Bug #11193 fixed - Lincos did not respect context values.
-
-* Bug #11775 fixed - xcos.tst crashed under Linux and MacOS X.
-
-* Bug #11821 fixed - Running xcosPalAdd example from help led to deadlock.
-
-* Bug #11871 fixed - Connectors were misaligned after an Undo command.
-
-* Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
-                     Scilab crash.
-
-* Bug #11919 fixed - DLSS block with empty matrix parameters made Scilab crash.
-
-* Bug #11945 fixed - When running simulation on large diagram, the grey filter
-                     did not apply to the entire diagram.
-
-* Bug #11963 fixed - Input ports in a superblock were corrupted.
-
-* Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
-                     NullPointerException.
-
-* Bug #12101 fixed - Port ordering was not maintained on when changing parameters.
-
-* Bug #12014 fixed - dep_ut help page was wrongly detailed.
-
-* Bug #12031 fixed - Changes in the context of a superblock did not always have
-                     effect.
-
-* Bug #12057 fixed - Scopes with big scope buffer size simulation were much
-                     more slower than in Scilab 5.3.3.
-
-* Bug #12162 fixed - tbx_build_blocks did not report errors.
-
-* Bug #12167 fixed - Text of ports in superblocks was not updated.
-
-* Bug #12213 fixed - The example given in lincos help page produced an undefined
-                     variable warning.
-
-* Bug #12265 fixed - The example diagrams given in xcos_simulate help page had
-                     a badly rendering due to CLR blocks.
-
-* Bug #12290 fixed - AFFICH_m block inside a superblock led to a Java
-                     NullPointerException.
-
-* Bug #12351 fixed - The user could not save a diagram as a xcos file when using
-                     the "Save as" menu, zcos format was forced.
-
-* Bug #12350 fixed - Under Windows Explorer, opening a xcos/zcos file
-                     did not try to find an existing instance of Scilab.
-
-* Bug #12352 fixed - Critical error when closing a scope windows during
-                     simulation fixed.
 
 
 Compilation
 ============
 
-* Enforce a minimal version of Scirenderer (1.0.8).
+* Enforce a minimal version of Flexdock (1.2.3).
+
+* Enforce a minimal version of JLaTeXMath (1.0.2).
+
+* Enforce a minimal version of Scirenderer (1.1.0).
 
 * Enforce a minimal version of XMLGraphics (1.4).
 
-* Enforce a minimal version of Flexdock (1.2.3).
-
-* Enforce a minimal version of JLaTeXMath (1.0.1).
 
 
 Obsolete functions
 ===================
 
-* fit_dat() is obsolete and will be removed in Scilab 5.4.2.
+* fit_dat() is obsolete and will be removed in Scilab 5.5.0.
   Please use datafit() instead. See bug #9306.
+
+* getfont() is obsolete and will be removed in Scilab 5.5.0.
+  Please use ged() instead.
 
 * getlinestyle() is obsolete and will be removed in Scilab 5.5.0.
   Please use ged() instead.
@@ -169,60 +106,63 @@ Obsolete functions
 * getsymbol() is obsolete and will be removed in Scilab 5.5.0.
   Please use ged() instead.
 
-* getfont() is obsolete and will be removed in Scilab 5.5.0.
-  Please use ged() instead.
+* winclose() is obsolete and will be removed in Scilab 5.5.0.
+  Please use close() instead.
 
 * xsetm() is obsolete and will be removed in Scilab 5.5.0.
   Please use set(), get() and ged() instead.
 
-* winclose() is obsolete and will be removed in Scilab 5.5.0.
-  Please use close() instead.
 
 
 Removed functions
 ==================
 
+* chartoeom() and eomtochar() removed.
+
+* config() removed. Please use preferences() instead.
+
+* createpopup() removed. Please use uicontextmenu() instead.
+
+* mtlb_conv removed. Please use conv() instead.
+
 * mtlb_repmat() removed. Please use repmat() instead.
+
+* neldermead_display, nmplot_display, optimbase_display and
+  optimsimplex_print removed. Please use disp() instead.
+
+* optimsimplex_tostring removed. Please use string() instead.
+
+* ricc_old() removed. Please use ricc() instead.
+
+* showalluimenushandles() removed.
+  Please use set(get(0), "ShowHiddenHandles", "on") instead.
 
 * with_pvm() removed. Please use getversion() instead.
 
 * with_texmacs() removed. TeXmacs is now an ATOMS module.
   More details on: http://atoms.scilab.org/toolboxes/texmacs
 
-* createpopup() removed. Please use uicontextmenu() instead.
-
-* config() removed. Please use preferences() instead.
-
-* mtlb_conv removed. Please use conv() instead.
+* xbasr() removed. Automatically managed by Scilab now.
 
 * xselect() removed. Please use show_window() instead.
 
-* showalluimenushandles() removed.
-  Please use set(get(0), "ShowHiddenHandles", "on") instead.
-
-* Functions neldermead_display, nmplot_display, optimbase_display and
-  optimsimplex_print removed. Please use disp() instead.
-
-* Function optimsimplex_tostring removed. Please use string() instead.
-
-* ricc_old() removed. Please use ricc() instead.
-
-* xbasr() removed. Automatically managed by Scilab now.
-
-* chartoeom() and eomtochar() removed.
 
 
 Bug fixes
 ==========
+
+Scilab
+-------
 
 * Bug #2547 fixed - Small size marks were not correctly exported.
 
 * Bug #3313 fixed - In the documentation, the title of a link used the
                     XML id instead of the title of the page.
 
-* Bug #4504 fixed - Function sskf did not work with two outputs (+ help page updated).
+* Bug #4405 fixed - qr() was poorly documented.
 
-* Bug #4405 fixed - qr() was underspecified in documentation.
+* Bug #4504 fixed - sskf function did not work with two outputs (corresponding
+                    help page updated).
 
 * Bug #4946 fixed - Bad rendering of a big rotated label.
 
@@ -231,7 +171,7 @@ Bug fixes
 * Bug #5478 fixed - Scilab could not be started with a non readable/writeable
                     SCIHOME.
 
-* Bug #5548 fixed - Error messages in some examples of help pages of simulated Annealing.
+* Bug #5548 fixed - Error messages in some examples of Simulated Annealing help pages fixed.
 
 * Bug #5576 fixed - interp() help page has been improved.
 
@@ -242,7 +182,7 @@ Bug fixes
 
 * Bug #6975 fixed - xlabel(), ylabel() and zlabel() functions were not documented.
 
-* Bug #7058 fixed - There was an error in mathml formula in beta function help page.
+* Bug #7058 fixed - There was an error in a MathML formula in beta help page.
 
 * Bug #7190 fixed - is_absolute_path was not documented.
 
@@ -250,10 +190,12 @@ Bug fixes
 
 * Bug #7583 fixed - binomial function moved in the distribution function chapter.
 
-* Bug #7698 fixed - The "Graphics\Animations\Riemann surface" demo background
+* Bug #7698 fixed - The "Graphics\Animations\Riemann surface" demonstration background
                     was black (instead of white).
 
 * Bug #7769 fixed - get_function_path did not have a unit test.
+
+* Bug #7790 fixed - Line thickness was not taken into account when drawing marks.
 
 * Bug #8213 fixed - geom3d help page had no examples.
 
@@ -261,7 +203,7 @@ Bug fixes
 
 * Bug #8414 fixed - Some genetic algorithms functions had no examples.
 
-* Bug #8484 fixed - syslin help page has been moved to cacsd chapter.
+* Bug #8484 fixed - syslin help page has been moved to CACSD chapter.
 
 * Bug #8638 fixed - Examples given in gcd help page have been improved.
 
@@ -271,14 +213,14 @@ Bug fixes
 * Bug #8883 fixed - In some cases, Scilab built from sources was looking for
                     libraries at the wrong place.
 
-* Bug #8964 fixed - The optim_{ga, moga, nsga, nsga2} functions did not always
-                    create initail population.
-
 * Bug #8899 fixed - splin2d help page was unclear about the size of
                     the arguments.
 
 * Bug #8901 fixed - interp2d help page was unclear about the size of
                     the arguments.
+
+* Bug #8964 fixed - The optim_{ga, moga, nsga, nsga2} functions did not always
+                    create initial population.
 
 * Bug #9005 fixed - bitset function did not have any tests.
 
@@ -296,20 +238,20 @@ Bug fixes
 
 * Bug #10278 fixed - clear(1) returned a wrong error message.
 
-* Bug #10415 fixed - Removing a session line in history caused the removal
+* Bug #10415 fixed - Removing a session line in the history caused the removal
                      of the session node in the history browser.
 
-* Bug #10546 fixed - Help of fileinfo had to be updated.
+* Bug #10546 fixed - fileinfo help page updated.
 
-* Bug #10606 fixed - unix_g did not return stdout in somes cases.
+* Bug #10606 fixed - unix_g did not return standard output in somes cases.
 
-* Bug #10661 fixed - xmltopdf & xmltopdf were failing in the binary version.
+* Bug #10661 fixed - xmltopdf and xmltopdf were failing in the binary version.
 
 * Bug #10815 fixed - diff help page did not have a "See Also" section.
 
-* Bug #11209 fixed - variance returned wrong results for complex arguments.
-
 * Bug #11134 fixed - xgetmouse() prevented callback menu execution.
+
+* Bug #11209 fixed - variance returned wrong results for complex arguments.
 
 * Bug #11362 fixed - axes_properties help page did not explain that
                      mark_style=mark_size=0 drew a single dot.
@@ -330,15 +272,15 @@ Bug fixes
 
 * Bug #11549 fixed - Preferences window changed its dimension when hitting Default button.
 
-* Bug #11567 fixed - Scilab failed to start an accentuated character was
-                     present in the pathname.
+* Bug #11567 fixed - Scilab failed to start when there was an accentuated character
+                     in the pathname.
 
 * Bug #11569 fixed - F5 to navigate in the dock was incompatible with SciNotes.
-                     So F5 replaced by shift+F6 to go to the previous tab.
+                     So F5 has been replaced by shift+F6 to go to the previous tab.
 
 * Bug #11639 fixed - Uninstalling Scilab removed all Scilab registry information.
 
-* Bug #11662 fixed - Help page of lattn had no example (resolved with bug #11663).
+* Bug #11662 fixed - lattn help page had no example (resolved with bug #11663).
 
 * Bug #11663 fixed - lattp and lattn help pages were incomplete.
 
@@ -361,15 +303,15 @@ Bug fixes
 
 * Bug #11804 fixed - Zoom messages were not translated.
 
-* Bug #11811 fixed - Typo SciNotes help page fixed.
+* Bug #11811 fixed - Typo in SciNotes help page fixed.
 
-* Bug #11812 fixed - Upper/lower case issues in the Xcos documentation fixed.
 
 * Bug #11814 fixed - Typo in one of the titles of CACSD fixed.
 
 * Bug #11851 fixed - Default EOL under Mac is now LF.
 
-* Bug #11860 fixed - wavwrite failed for 24-bit files (error in savewave function).
+* Bug #11860 fixed - wavwrite failed for 24-bit files due to an error in 
+                     savewave function.
 
 * Bug #11924 fixed - winclose() was not tagged as obsolete.
 
@@ -385,7 +327,8 @@ Bug fixes
 
 * Bug #11949 fixed - save() help page did not explain how to append data to a SOD file.
 
-* Bug #11952 fixed - In SciNotes, a Java exception occured on selection of text
+* Bug #11952 fixed - In SciNotes, a Java exception occurred when a text
+                     containing a \E was selected.
 
 * Bug #11954 fixed - export_to_hdf5 was not able to export the same variable twice.
 
@@ -395,7 +338,7 @@ Bug fixes
 
 * Bug #11965 fixed - Export to SVG converted texts in shapes.
 
-* Bug #11969 fixed - Only the first line was executed when code was piped under
+* Bug #11969 fixed - Only the first line was executed when a code was piped under
                      Linux.
 
 * Bug #11971 fixed - Canceling "Open File" action when launched from icon in the
@@ -406,7 +349,7 @@ Bug fixes
 * Bug #11980 fixed - csim returned an error message in some cases: "Submatrix
                      incorrectly defined".
 
-* Bug #11981 fixed - Smooth French help page had a wrong declaration
+* Bug #11981 fixed - smooth French help page had a wrong declaration
                      (colonnes => lignes).
 
 * Bug #11982 fixed - Ticks computations were made when drawing.
@@ -421,19 +364,21 @@ Bug fixes
 
 * Bug #12003 fixed - Typo in spreadsheet module fixed.
 
-* Bug #12019 fixed - In eigs help page, NEV was unclear.
-
 * Bug #12004 fixed - "Configuring scaling factor" part added in karmarkar help page.
+
+* Bug #12019 fixed - In eigs help page, NEV was unclear.
 
 * Bug #12020 fixed - Default value of NCV parameter (eigs function) was not documented.
 
-* Bug #12022 fixed - ftuneq help page had an uncorrect example.
+* Bug #12021 fixed - eigs help page improved.
+
+* Bug #12022 fixed - ftuneq help page had an incorrect example.
 
 * Bug #12028 fixed - The drawlater/drawnow functions did not work as expected.
 
 * Bug #12033 fixed - assert_checkalmostequal was failing with two %inf values.
 
-* Bug #12043 fixed - Typo in the ATOMS module help pages fixed.
+* Bug #12043 fixed - Typo in the atomsShow help page fixed.
 
 * Bug #12050 fixed - Typo dimensionnal => dimensional fixed.
 
@@ -450,6 +395,8 @@ Bug fixes
 * Bug #12077 fixed - In Scilab documentation, the attribute "bgcolor" was not handled
                      in tables.
 
+* Bug #12083 fixed - Loading multiple variables from a SOD file could failed.
+
 * Bug #12087 fixed - profile help page did not mention add_profiling.
 
 * Bug #12097 fixed - Scilab wrongly detected DLL platform information.
@@ -460,15 +407,13 @@ Bug fixes
 
 * Bug #12119 fixed - bar and barh had wrong x/y bounds.
 
-* Bug #12120 fixed - eigs functionwas broken for complex sparse matrices.
-
-* Bug #12021 fixed - eigs help page improved.
+* Bug #12120 fixed - eigs function was broken for complex sparse matrices.
 
 * Bug #12122 fixed - lufact help page did not specify that lufact did not handle complex matrix.
 
 * Bug #12133 fixed - parallel_run was not available.
 
-* Bug #12134 fixed - Default stacksize value was wrong in stacksize help page.
+* Bug #12134 fixed - Default stack size value was wrong in stacksize help page.
 
 * Bug #12135 fixed - stacksize('max') failed without displaying error message.
 
@@ -492,7 +437,7 @@ Bug fixes
 * Bug #12168 fixed - matfile_listvar crashed when listing variables of a closed MAT-file.
 
 * Bug #12174 fixed - routh_t function gave incorrect output for all denominators
-                     that include gain value "k".
+                     that included gain value "k".
 
 * Bug #12179 fixed - Incompatibility with MPI version of HDF5 fixed.
 
@@ -502,11 +447,12 @@ Bug fixes
 
 * Bug #12190 fixed - sprspn help page description updated.
 
-* Bug #12196 fixed - There were no log-scales with Fec & Fac3d.
+* Bug #12196 fixed - There were no log-scales with Fec and Fac3d.
 
-* Bug #12204 fixed - Typo in the French localization fixed.
+* Bug #12204 fixed - Typo in French localization fixed.
 
-* Bug #12219 fixed - delete("all") did not recreate a basic axe within cleaned figure.
+* Bug #12219 fixed - delete("all") did not recreate a basic axe within a cleaned
+                     figure.
 
 * Bug #12231 fixed - In SciNotes, a whole word search did not work properly.
 
@@ -516,7 +462,7 @@ Bug fixes
 
 * Bug #12235 fixed - Matplot did not update on color_map change.
 
-* Bug #12238 fixed - [d v] = eigs(A) was broken for sparse matrices.
+* Bug #12238 fixed - [d, v] = eigs(A) was broken for sparse matrices.
 
 * Bug #12239 fixed - Recent changes in eigs applied to feigs.
 
@@ -534,6 +480,8 @@ Bug fixes
 
 * Bug #12259 fixed - Wrong translation for "Filled" fixed in SciNotes.
 
+* Bug #12260 fixed - Grid was not drawn with log scale and user-defined ticks.
+
 * Bug #12270 fixed - When the console lost the focus between SciNotes and the console,
                      the caret could become visible in the console instead SciNotes.
 
@@ -546,8 +494,6 @@ Bug fixes
 
 * Bug #12289 fixed - sub_ticks property was ignored.
 
-* Bug #12291 fixed - Unable to display a list of handle as an handle userData.
-
 * Bug #12291 fixed - A list of handles could not be displayed as a handle userdata.
 
 * Bug #12296 fixed - Calling getenv with a big environment variable
@@ -555,11 +501,13 @@ Bug fixes
 
 * Bug #12304 fixed - Undocking, redocking and undocking a graphic figure led to an exception.
 
-* Bug #12307 fixed - ftp addresses were not handled in help browser.
+* Bug #12305 fixed - Legends could not be loaded from SOD files.
+
+* Bug #12307 fixed - ftp addresses were not handled in the help browser.
 
 * Bug #12317 fixed - eventhandler functions no more reported keyboard events.
 
-* Bug #12321 fixed - save environment failed to save library variables. Now these variables
+* Bug #12321 fixed - Saving environment failed to save library variables. Now these variables
                      are ignored like in previous versions of save function.
 
 * Bug #12333 fixed - Command history was restored after reopening Scilab even when cleaned.
@@ -599,11 +547,13 @@ Bug fixes
 
 * Bug #12396 fixed - Example "Problem 2" was missing a variable in bvode help page.
 
+* Bug #12399 fixed - Data bounds were badly computed with %inf and logarithmic scale.
+
 * Bug #12405 fixed - Floating point errors could lead to an infinite loop in
                      ticks computation.
 
-* Bug #12406 fixed - In SciNotes, whereami numbering failed when with variable name
-                     starting with endfunction. 
+* Bug #12406 fixed - In SciNotes, whereami numbering failed when a variable name
+                     started with endfunction.
 
 * Bug #12418 fixed - Continuation was incorrectly supported in bvode.
 
@@ -611,13 +561,91 @@ Bug fixes
 
 * Bug #12444 fixed - The fontname argument was buggy in the title function.
 
-* Bug #12448 fixed - Double click on .sod file tried to open it with Scinotes instead of load it.
+* Bug #12448 fixed - Double click on .sod file tried to open it in Scinotes
+                     instead of loading it.
 
 * Bug #12450 fixed - xlfont() did not return font names as specified in the documentation.
 
 * Bug #12455 fixed - format_n property had no effect on "axis" handles.
 
 * Bug #12457 fixed - drawlater() was not taken into account with xfpolys.
+
+
+Xcos
+-----
+
+* Bug #5040 fixed - Fit diagram to view did not work with a single block.
+
+* Bug #5162 fixed - "Export all" menu to export all diagram layers added.
+
+* Bug #9074 fixed - Calling a function on the context gave a warning.
+
+* Bug #10040 fixed - VARIABLE_DELAY help page did not fully describe the
+                     initial value behavioral.
+
+* Bug #10434 fixed - loadXcosLibs changed the value of predef.
+
+* Bug #10435 fixed - Undo in a superdiagram did not update superblock ports
+                     and links.
+
+* Bug #10660 fixed - model2blk and callblk crashed Scilab under 64-bit platforms.
+
+* Bug #11193 fixed - Lincos did not respect context values.
+
+* Bug #11775 fixed - xcos.tst crashed under Linux and MacOS X.
+
+* Bug #11812 fixed - Upper/lower case issues in Xcos documentation fixed.
+
+* Bug #11821 fixed - Running xcosPalAdd example from help led to deadlock.
+
+* Bug #11871 fixed - Connectors were misaligned after an Undo command.
+
+* Bug #11913 fixed - Unconnected CLSS block with empty matrix parameters made
+                     Scilab crash.
+
+* Bug #11919 fixed - DLSS block with empty matrix parameters made Scilab crash.
+
+* Bug #11945 fixed - When running simulation on large diagram, the grey filter
+                     did not apply to the entire diagram.
+
+* Bug #11963 fixed - Input ports in a superblock were corrupted.
+
+* Bug #11988 fixed - Copying or dragging AFFICH_m block threw Java
+                     NullPointerException.
+
+* Bug #12014 fixed - dep_ut help page was wrongly detailed.
+
+* Bug #12031 fixed - Changes in the context of a superblock did not always have
+                     effect.
+
+* Bug #12057 fixed - Scopes with big scope buffer size simulation were much
+                     more slower than in Scilab 5.3.3.
+
+* Bug #12101 fixed - Port ordering was not maintained when changing parameters.
+
+* Bug #12162 fixed - tbx_build_blocks did not report errors.
+
+* Bug #12167 fixed - Text of ports in superblocks was not updated.
+
+* Bug #12213 fixed - The example given in lincos help page produced an undefined
+                     variable warning.
+
+* Bug #12265 fixed - The example diagrams given in xcos_simulate help page had
+                     a badly rendering due to CLR blocks.
+
+* Bug #12290 fixed - AFFICH_m block inside a superblock led to a Java
+                     NullPointerException.
+
+* Bug #12350 fixed - Under Windows Explorer, opening a xcos/zcos file
+                     did not try to find an existing instance of Scilab.
+
+* Bug #12351 fixed - The user could not save a diagram as a xcos file when using
+                     the "Save as" menu, zcos format was forced.
+
+* Bug #12352 fixed - Critical error when closing a scope windows during
+                     simulation fixed.
+
+
 
 
                     Changes between version 5.3.3 and 5.4.0

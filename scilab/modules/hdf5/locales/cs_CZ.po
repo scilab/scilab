@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-08-24 20:24+0000\n"
+"PO-Revision-Date: 2013-03-19 21:36+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -34,8 +34,17 @@ msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
 msgstr "%s: Špatná verze formátu souboru SOD. Očekáváno: %d Nalezeno: %d\n"
 
 #, c-format
-msgid "%s: Variable '%s' already exists in file '%s'."
-msgstr "%s: Proměnná '%s' již existuje v souboru '%s'."
+msgid "%s: Unable to delete existing variable \"%s\"."
+msgstr "%s: Nelze smazat existující proměnnou \"%s\"."
+
+#, c-format
+msgid ""
+"%s: Variable '%s' already exists in file '%s'\n"
+"Use -append option to replace existing variable\n"
+"."
+msgstr ""
+"%s: Proměnná '%s' již existuje v souboru '%s'\n"
+"Použijte volbu -append pro nahrazení existující proměnné"
 
 #, c-format
 msgid "%s: Unable to update Scilab version in \"%s\"."

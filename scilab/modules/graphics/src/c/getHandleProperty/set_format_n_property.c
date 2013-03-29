@@ -33,6 +33,7 @@
 #include "StringMatrix.h"
 #include "Format.h"
 
+#include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 

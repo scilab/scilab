@@ -184,7 +184,7 @@ b(1)*u(t-1)+...+b(n)*u(t-n)+e(t)+c(1)*e(t-1)+...+c(n)*e(t-n)
     <refsection>
         <title>Example</title>
         <programlisting role="Example"><![CDATA[
-nbPoints = 500; // Number of points computed
+nbPoints = 50; // Number of points computed
 
 // Real parameters a,b,c: here, y=u
 a=cat(2,1,zeros(1,nbPoints - 1));
@@ -192,8 +192,8 @@ b=cat(2,1,zeros(1,nbPoints - 1));
 c=zeros(1,nbPoints);
 
 // Generate input signal
-t=linspace(0,50,1000);
-w=%pi/4;
+t=linspace(0,50,600);
+w=%pi/3;
 u=cos(w*t);
 
 // Generate output signal
@@ -241,7 +241,7 @@ plot(c_est(1,:),"color","blue");
 ]]>
         </programlisting>
         <scilab:image>
-nbPoints = 500; // Number of points computed
+nbPoints = 50; // Number of points computed
 
 // Real parameters a,b,c: here, y=u
 a=cat(2,1,zeros(1,nbPoints - 1));
@@ -249,8 +249,8 @@ b=cat(2,1,zeros(1,nbPoints - 1));
 c=zeros(1,nbPoints);
 
 // Generate input signal
-t=linspace(0,50,1000);
-w=%pi/4;
+t=linspace(0,50,600);
+w=%pi/3;
 u=cos(w*t);
 
 // Generate output signal

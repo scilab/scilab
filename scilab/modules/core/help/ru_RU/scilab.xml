@@ -158,7 +158,7 @@
                 <term>-nb</term>
                 <listitem>
                     <para>
-                        Если есть эта опция, то приветственный баннер Scilab'а не будет отображаться.
+                        Если есть эта опция, то сообщение о загрузке Scilab'а не будет отображаться.
                     </para>
                 </listitem>
             </varlistentry>
@@ -420,6 +420,13 @@ echo $? ]]></programlisting>
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>добавлено -noatomsautoload.</revremark>
+            </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    введены отдельные сценарии scinotes и xcos. 
+                    См.SEP #87.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

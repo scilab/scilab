@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-01-24 17:03+0100\n"
-"PO-Revision-Date: 2013-01-09 11:59+0000\n"
+"PO-Revision-Date: 2013-03-22 15:04+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -488,12 +488,12 @@ msgid "Unexpected value of orien : %s\n"
 msgstr "orien に想定外の値が指定されました: %s\n"
 
 #, c-format
-msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
-msgstr "%s: w の値 %d が間違っています: 0 または 1 を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
 msgstr "%s: 入力引数の値が間違っています: '%s', '%s', %d または %d を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value of w : %s; %d or %d expected.\n"
+msgstr "%s: w の値が間違っています:  %s; %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"

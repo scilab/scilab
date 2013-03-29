@@ -50,6 +50,9 @@ int finite (double);
 #define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
 #define EPSILON 1.0e-13
 
+#define linint(x) ((int)  floor(x + 0.5 ))
+#define inint(x) ((int) floor(x + 0.5 ))
+
 #if (defined(sun) || defined(SYSV))
 #include <ieeefp.h>
 #endif
@@ -74,7 +77,7 @@ GRAPHICS_IMPEXP double Mini(const double vect[], int n);
 
 GRAPHICS_IMPEXP double Maxi(const double vect[], int n);
 
-
+GRAPHICS_IMPEXP void MiniMaxi(const double vect[], int n, double * const min, double * const max);
 
 /* prototypes */
 

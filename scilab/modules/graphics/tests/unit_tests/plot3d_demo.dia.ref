@@ -119,7 +119,7 @@ assert_checkequal(a.filled, "on")
  ans  =
  
   T  
-assert_checkequal(a.sub_ticks, [1, 1, 4])
+assert_checkequal(a.sub_ticks, [1, 1, 0])
  ans  =
  
   T  

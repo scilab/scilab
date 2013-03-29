@@ -31,5 +31,6 @@ Building the master document:
 	TMPDIR\directory with space\
 
 Building the manual file [javaHelp] in TMPDIR\directory with space\.
-if ~isfile(r) then bugmes();quit;end
-
+ 
+ Generate image ./bug_8505_1.png from Scilab code from file bug_8505.xm 
+      l                                                                 

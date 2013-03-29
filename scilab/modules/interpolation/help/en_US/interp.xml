@@ -30,7 +30,7 @@
                 <term>out_mode</term>
                 <listitem>
                     <para>
-                        (optional) string defining <literal>s(X)</literal> for <literal>X</literal>  outside <latex>\magnification{1200}[x_1,\ x_n]</latex>. 
+                        (optional) string defining <literal>s(X)</literal> for <literal>X</literal>  outside <latex>[x_1,\ x_n]</latex>. 
                         Possible values: "by_zero" | "by_nan" | "C0" | "natural" | "linear" | "periodic"
                     </para>
                 </listitem>

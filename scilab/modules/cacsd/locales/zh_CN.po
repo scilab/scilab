@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: \n"
 
 #, c-format
@@ -346,6 +346,10 @@ msgstr "%s:直接馈通设置的零度系数。\n"
 #, c-format
 msgid "%s: Direct feedthrough set to zero.\n"
 msgstr "%s:直接馈通设置为零。\n"
+
+#, c-format
+msgid "%s: Simulation failed before final time is reached.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
