@@ -45,7 +45,7 @@
                     <para>In the LD_LIBRARY_PATH:</para>
                     <itemizedlist mark="opencircle">
                         <listitem>
-                            <para>In the binary version of Scilab, LD_LIBRARY_PATH will point to /path/to/scilab/lib/scilab/</para>
+                            <para>In the binary version of Scilab, LD_LIBRARY_PATH will point to /path/to/scilab/lib/scilab/ and /path/to/scilab/lib/thirdparty/</para>
                         </listitem>
                         <listitem>
                             <para>In the source tree of Scilab, LD_LIBRARY_PATH will point to the root of the source tree /path/to/scilab/modules/javasci/.libs/, /path/to/scilab/modules/types/.libs/ and /path/to/scilab/.libs/</para>
@@ -58,7 +58,7 @@
                 <listitem>
                     <para>Or as argurment of java, in the command line:</para>
                     <para>
-                        <literal>java -Djava.library.path=/path/to/libjavasci/ -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal>
+                        <literal>java -Djava.library.path=/path/to/libjavasci/:/path/to/scilab/lib/thirdparty/ -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal>
                     </para>
                 </listitem>
             </itemizedlist>
