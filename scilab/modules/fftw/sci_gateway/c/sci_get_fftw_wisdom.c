@@ -2,15 +2,16 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Alan LAYEC
 * Copyright (C) 2007 - INRIA - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <stdlib.h>
 #include "callfftw.h"
 #include "stack-c.h"
 #include "MALLOC.h"
@@ -29,24 +30,26 @@
 * Output : a scilab string matrix
 *
 */
-int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
+int sci_get_fftw_wisdom(char *fname, unsigned long fname_len)
 {
-    int n1 = 0,i = 0,j = 0;
+    int n1 = 0, i = 0, j = 0;
     char *Str = NULL;
     char **Str1 = NULL;
 
-    CheckRhs(0,0);
-    CheckLhs(0,1);
+    CheckRhs(0, 0);
+    CheckLhs(0, 1);
 
-    if ((Str = call_fftw_export_wisdom_to_string())==NULL) {
-        Scierror(999,_("%s: MKL fftw library does not implement wisdom functions yet.\n"), fname);
+    if ((Str = call_fftw_export_wisdom_to_string()) == NULL)
+    {
+        Scierror(999, _("%s: MKL fftw library does not implement wisdom functions yet.\n"), fname);
         return 0;
-    };
+    }
 
-    n1 = 0; j = 0;
+    n1 = 0;
+    j = 0;
     if (Str)
     {
-        for(i = 0; i < (int)strlen(Str); i++)
+        for (i = 0; i < (int)strlen(Str); i++)
         {
             if (Str[i] == '\n')
             {
@@ -57,7 +60,7 @@ int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
 
                 if (Str1)
                 {
-                    Str1 = (char **)REALLOC(Str1,sizeof(char *)*n1);
+                    Str1 = (char **)REALLOC(Str1, sizeof(char *)*n1);
                 }
                 else
                 {
@@ -66,30 +69,32 @@ int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
 
                 if (Str1 == NULL)
                 {
-                    Scierror(999,_("%s: No more memory.\n"), fname);
+                    Scierror(999, _("%s: No more memory.\n"), fname);
                     if (Str)
                     {
-                        FREE(Str);
-                        Str = NULL;
+                        // According to the FFTW documentation we should free Str
+                        // string but doing makes Scilab crash!?
+                        //free(Str);
                     }
                     return(0);
                 }
 
                 len = i - j;
 
-                if ((Str1[n1 - 1] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL)
+                if ((Str1[n1 - 1] = (char *)MALLOC(sizeof(char) * (len + 1))) == NULL)
                 {
                     freeArrayOfString(Str1, n1 - 1);
                     if (Str)
                     {
-                        FREE(Str);
-                        Str = NULL;
+                        // According to the FFTW documentation we should free Str
+                        // string but doing makes Scilab crash!?
+                        //free(Str);
                     }
-                    Scierror(999,_("%s: No more memory.\n"),fname);
+                    Scierror(999, _("%s: No more memory.\n"), fname);
                     return(0);
                 }
 
-                for(k = 0; k < len;k++)
+                for (k = 0; k < len; k++)
                 {
                     Str1[n1 - 1][k] = Str[k + j];
                 }
@@ -103,7 +108,7 @@ int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
 
     if (Str1)
     {
-        Str1 = (char **)REALLOC(Str1,sizeof(char *)*n1);
+        Str1 = (char **)REALLOC(Str1, sizeof(char *)*n1);
     }
     else
     {
@@ -112,35 +117,38 @@ int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
 
     if (Str1 == NULL)
     {
-        Scierror(999,_("%s: No more memory.\n"),fname);
+        Scierror(999, _("%s: No more memory.\n"), fname);
         if (Str)
         {
-            FREE(Str);
-            Str = NULL;
+            // According to the FFTW documentation we should free Str
+            // string but doing makes Scilab crash!?
+            //free(Str);
         }
         return(0);
     }
 
-    if ((Str1[n1-1] = (char *)MALLOC(sizeof(char))) == NULL)
+    if ((Str1[n1 - 1] = (char *)MALLOC(sizeof(char))) == NULL)
     {
         freeArrayOfString(Str1, n1 - 1);
         if (Str)
         {
-            FREE(Str);
-            Str = NULL;
+            // According to the FFTW documentation we should free Str
+            // string but doing makes Scilab crash!?
+            //free(Str);
         }
         Scierror(999, _("%s: No more memory.\n"), fname);
         return(0);
     }
     Str1[n1 - 1][0] = '\0';
 
-    CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &n1, (j=1,&j), Str1);
+    CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &n1, (j = 1, &j), Str1);
 
-    freeArrayOfString(Str1,n1);
+    freeArrayOfString(Str1, n1);
     if (Str)
     {
-        FREE(Str);
-        Str = NULL;
+        // According to the FFTW documentation we should free Str
+        // string but doing makes Scilab crash!?
+        //free(Str);
     }
 
     LhsVar(1) = Rhs + 1;
