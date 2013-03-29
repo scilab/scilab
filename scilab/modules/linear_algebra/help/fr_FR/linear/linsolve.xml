@@ -92,7 +92,7 @@ mprintf('\ntemps nécessaire à la résolution du système avec linsolve: %.3f\n
 
 tic();
 res = A\b;
-mprintf('\ntemps nécessaire à la résolution du système avec l'opérateur backslash: %.3f\n',toc());
+mprintf('\ntemps nécessaire à la résolution du système avec l''opérateur backslash: %.3f\n',toc());
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
