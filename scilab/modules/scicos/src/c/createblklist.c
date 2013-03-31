@@ -324,7 +324,11 @@ int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp)
 
 	/* 36 - label */
 	if ((str1=MALLOC(sizeof(char*))) ==NULL )  return 0;
-	if ((str1[0]=MALLOC(sizeof(char)*(strlen(Blocks[0].label)+1))) ==NULL )  return 0;
+	if ((str1[0]=MALLOC(sizeof(char)*(strlen(Blocks[0].label)+1))) ==NULL )
+	{
+		FREE(str1);
+		return 0;
+	}
 	(str1[0])[strlen(Blocks[0].label)]='\0';
 	strncpy(str1[0],Blocks[0].label,strlen(Blocks[0].label));
 	str2sci(str1,1,1);
