@@ -98,14 +98,14 @@ int sci_matfile_listvar(char *fname, unsigned long fname_len)
         }
         varnames[nbvar - 1] = strdup(matvar->name);
         varclasses = (double*) REALLOC(varclasses, nbvar * sizeof(double));
-        if (varnames == NULL)
+        if (varclasses  == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
             return FALSE;
         }
         varclasses[nbvar - 1] = (double) matvar->class_type;
         vartypes = (double*) REALLOC(vartypes, nbvar * sizeof(double));
-        if (varnames == NULL)
+        if (vartypes == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
             return FALSE;
