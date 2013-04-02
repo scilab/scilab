@@ -51,7 +51,7 @@
             <listitem>
                 <para>
                     <emphasis role="bold">filename : </emphasis> a character string containing the path of the diagram file
-                    (.cos, .cosf or .xcos extension). If no input argument is used, an empty diagram is opened (default name Untitled).
+                    (.cos, .cosf or .zcos extension). If no input argument is used, an empty diagram is opened (default name Untitled).
                 </para>
             </listitem>
             <listitem>
@@ -130,9 +130,9 @@
             To open an existing diagram, you must provide a valid filename, like in this example:
         </para>
         <para/>
-        <programlisting role="example"><![CDATA[xcos("SCI/modules/xcos/demos/bounce.xcos")]]></programlisting>
+        <programlisting role="example"><![CDATA[xcos("SCI/modules/xcos/demos/bounce.zcos")]]></programlisting>
         <para>
-            In this use case, the <emphasis>Xcos</emphasis> window is opened and displays the diagram of<emphasis>bounce.xcos</emphasis> demonstration.
+            In this use case, the <emphasis>Xcos</emphasis> window is opened and displays the diagram of<emphasis>bounce.zcos</emphasis> demonstration.
         </para>
         <para/>
         <para>
@@ -150,7 +150,7 @@ scs_m.objs(1).graphics.sz = [30 50];
 
 xcos(scs_m);]]></programlisting>
         <para>
-            where <emphasis>scs_m</emphasis> is the diagram structure of <emphasis>bounce.xcos</emphasis>.
+            where <emphasis>scs_m</emphasis> is the diagram structure of <emphasis>bounce.zcos</emphasis>.
         </para>
         <para>
             You build your models by linking the blocks provided in the palette browser simultaneously opened with
@@ -181,7 +181,7 @@ xcos(scs_m);]]></programlisting>
         <title>Example</title>
         <programlisting role="example"><![CDATA[ 
 xcos();
-xcos(SCI+"/modules/xcos/demos/Discrete-KalmanFilter.xcos");
+xcos(SCI+"/modules/xcos/demos/Discrete-KalmanFilter.zcos");
 scs_m = scicos_diagram();
 scs_m.objs($+1) = BIGSOM_f("define");
 xcos(scs_m);

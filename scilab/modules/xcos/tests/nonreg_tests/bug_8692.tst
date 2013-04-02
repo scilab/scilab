@@ -16,6 +16,6 @@
 // Blocks null values produce an exception on export.
 
 // open then export a diagram with null values
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8692.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8692.zcos");
 if ~status then pause, end
 

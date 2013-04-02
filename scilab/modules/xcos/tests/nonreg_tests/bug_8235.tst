@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // Masked superblock has their parameters overriden by the context.
 
-importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8235.xcos");
+importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8235.zcos");
 xcos_simulate(scs_m, 4);
 
 if or(B.values <> 2*A.values) then pause, end

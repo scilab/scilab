@@ -23,7 +23,7 @@ endfunction
 // Check that the simulation librairies are not loaded at startup
 if isScicosLibLoaded() <> %f then pause,end
 
-result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_6797.xcos");
+result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_6797.zcos");
 if result <> %t then pause,end
 
 // Check that the simulation librairies are not loaded after the call

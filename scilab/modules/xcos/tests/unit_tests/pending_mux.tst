@@ -7,5 +7,5 @@
 
 // <-- INTERACTIVE TEST -->
 
-xcos("pending_mux.xcos");
+xcos("pending_mux.zcos");
 disp("Hitting Simulate -> Run must raise a Warning on Mux Block");

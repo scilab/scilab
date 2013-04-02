@@ -16,6 +16,6 @@
 // <-- Short Description -->
 // This test validate that the freq_div block can be simulated
 
-// xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5638.xcos");
+// xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5638.zcos");
 // Simulate
 

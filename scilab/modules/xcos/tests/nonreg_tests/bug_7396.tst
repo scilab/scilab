@@ -16,5 +16,5 @@
 // On I/O blocks used in SuperBlocks, empty index throws a decoding exception.
 
 // perform a blocking decode operation
-importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_7396.xcos");
+importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_7396.zcos");
 

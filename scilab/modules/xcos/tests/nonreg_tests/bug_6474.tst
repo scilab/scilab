@@ -14,13 +14,13 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6474
 //
 // <-- Short Description -->
-// demo_watertank.xcos xcos and scilab crashed when any block parameter dialog was closed the second time.
+// demo_watertank.zcos xcos and scilab crashed when any block parameter dialog was closed the second time.
 
 // it was easier to reproduce on Windows XP
 
 // start scilab
 // start xcos
-// open demo_watertank.xcos
+// open demo_watertank.zcos
 // run simulation
 // double-click PID block
 // close parameter dialog with ok (nothing needs to be changed)

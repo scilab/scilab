@@ -13,7 +13,7 @@
 //
 // <-- Short Description -->
 // try to compile and link a superblock
-assert_checktrue(importXcosDiagram(SCI+'/modules/xcos/demos/Controller.xcos'));
+assert_checktrue(importXcosDiagram(SCI+'/modules/xcos/demos/Controller.zcos'));
 // getting the SUPER_f (System) block
 XX=scs_m.objs(11);
 subSystem=XX.model.rpar;

@@ -30,7 +30,7 @@ function post_xcos_simulate(%cpr, scs_m, needcompile)
         status = [status 'post_called'];
 endfunction
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Simple_Demo.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Simple_Demo.zcos"));
 xcos_simulate(scs_m, 4);
 
 assert_checkequal(status, ["pre_called"]);

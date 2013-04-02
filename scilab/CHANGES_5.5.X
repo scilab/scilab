@@ -41,6 +41,8 @@ Xcos
 
 * Update Sundials to lastest "2.5.0", keeping our modifications
 
+* Bug #12359 fixed - Xcos files has been converted to zcos to gain some space.
+
 
 Bug fixes
 ==========

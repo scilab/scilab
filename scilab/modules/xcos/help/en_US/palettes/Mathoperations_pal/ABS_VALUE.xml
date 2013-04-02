@@ -197,15 +197,15 @@
     <refsection id="Example_ABS_VALUE">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/ABS_VALUE_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/mathoperations_pal/ABS_VALUE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/mathoperations_pal/ABS_VALUE_Example.xcos"/>
+                        <imagedata fileref="../../../../examples/mathoperations_pal/ABS_VALUE_Example.zcos"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/mathoperations_pal/ABS_VALUE_Example.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/mathoperations_pal/ABS_VALUE_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>
