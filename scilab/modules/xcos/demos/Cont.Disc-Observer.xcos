@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <XcosDiagram background="-1" finalIntegrationTime="50.0" title="Cont.Disc-Observer">
-    <!--Xcos - 1.0 - Scilab-Branch-5.4-GIT - 20121023 1421-->
+    <!--Xcos - 1.0 - Scilab-Branch-master-GIT - 20130402 1026-->
     <Array as="context" scilabClass="String[]">
         <add value="A=[-.17,.03,.1;0,0,.2;0,0,.05];B=[1;2;3];C=[1,1,2;0,2,3];"/><add value="dt=3; Ad=expm(dt*A)"/>
         <add value="x0=[-2;1;2]"/>
@@ -125,7 +125,7 @@
                                     <data column="18" line="0" value="style"/>
                                 </ScilabString>
                                 <ScilabDouble height="1" width="2">
-                                    <data column="0" line="0" realPart="99.0"/><data column="1" line="0" realPart="-144.0"/>
+                                    <data column="0" line="0" realPart="159.0"/><data column="1" line="0" realPart="-190.0"/>
                                 </ScilabDouble>
                                 <ScilabDouble height="1" width="2">
                                     <data column="0" line="0" realPart="20.0"/><data column="1" line="0" realPart="20.0"/>
@@ -268,7 +268,7 @@
                                     <data column="18" line="0" value="style"/>
                                 </ScilabString>
                                 <ScilabDouble height="1" width="2">
-                                    <data column="0" line="0" realPart="0.0"/><data column="1" line="0" realPart="-54.0"/>
+                                    <data column="0" line="0" realPart="0.0"/><data column="1" line="0" realPart="-40.0"/>
                                 </ScilabDouble>
                                 <ScilabDouble height="1" width="2">
                                     <data column="0" line="0" realPart="40.0"/><data column="1" line="0" realPart="40.0"/>
@@ -422,7 +422,7 @@
                                     <data column="18" line="0" value="style"/>
                                 </ScilabString>
                                 <ScilabDouble height="1" width="2">
-                                    <data column="0" line="0" realPart="92.71066000000002"/><data column="1" line="0" realPart="-146.0"/>
+                                    <data column="0" line="0" realPart="188.71066000000002"/><data column="1" line="0" realPart="-228.0"/>
                                 </ScilabDouble>
                                 <ScilabDouble height="1" width="2">
                                     <data column="0" line="0" realPart="8.0"/><data column="1" line="0" realPart="8.0"/>
@@ -549,12 +549,12 @@
                                 <data column="7" line="0" value="to"/>
                             </ScilabString>
                             <ScilabDouble height="3" width="1">
-                                <data column="0" line="0" realPart="60.0"/><data column="0" line="1" realPart="72.0"/>
-                                <data column="0" line="2" realPart="104.71066000000002"/>
+                                <data column="0" line="0" realPart="60.0"/><data column="0" line="1" realPart="192.0"/>
+                                <data column="0" line="2" realPart="200.71066000000002"/>
                             </ScilabDouble>
                             <ScilabDouble height="3" width="1">
-                                <data column="0" line="0" realPart="-58.0"/><data column="0" line="1" realPart="-186.0"/>
-                                <data column="0" line="2" realPart="-134.0"/>
+                                <data column="0" line="0" realPart="-44.0"/><data column="0" line="1" realPart="-292.0"/>
+                                <data column="0" line="2" realPart="-216.0"/>
                             </ScilabDouble>
                             <ScilabString height="1" width="1">
                                 <data column="0" line="0" value="drawlink"/>
@@ -585,10 +585,10 @@
                                 <data column="7" line="0" value="to"/>
                             </ScilabString>
                             <ScilabDouble height="2" width="1">
-                                <data column="0" line="0" realPart="103.37732666666669"/><data column="0" line="1" realPart="129.0"/>
+                                <data column="0" line="0" realPart="199.37732666666668"/><data column="0" line="1" realPart="189.0"/>
                             </ScilabDouble>
                             <ScilabDouble height="2" width="1">
-                                <data column="0" line="0" realPart="-150.0"/><data column="0" line="1" realPart="-120.0"/>
+                                <data column="0" line="0" realPart="-232.0"/><data column="0" line="1" realPart="-166.0"/>
                             </ScilabDouble>
                             <ScilabString height="1" width="1">
                                 <data column="0" line="0" value="drawlink"/>
@@ -619,14 +619,14 @@
                                 <data column="7" line="0" value="to"/>
                             </ScilabString>
                             <ScilabDouble height="4" width="1">
-                                <data column="0" line="0" realPart="106.04399333333335"/><data column="0" line="1" realPart="122.70999999999998"/>
-                                <data column="0" line="2" realPart="82.0"/>
+                                <data column="0" line="0" realPart="202.04399333333336"/><data column="0" line="1" realPart="242.70999999999998"/>
+                                <data column="0" line="2" realPart="202.0"/>
                                 <data column="0" line="3" realPart="60.0"/>
                             </ScilabDouble>
                             <ScilabDouble height="4" width="1">
-                                <data column="0" line="0" realPart="-150.0"/><data column="0" line="1" realPart="-40.0"/>
-                                <data column="0" line="2" realPart="-40.0"/>
-                                <data column="0" line="3" realPart="-10.0"/>
+                                <data column="0" line="0" realPart="-232.0"/><data column="0" line="1" realPart="-146.0"/>
+                                <data column="0" line="2" realPart="-146.0"/>
+                                <data column="0" line="3" realPart="4.0"/>
                             </ScilabDouble>
                             <ScilabString height="1" width="1">
                                 <data column="0" line="0" value="drawlink"/>
@@ -1000,7 +1000,7 @@
                                     <data column="18" line="0" value="style"/>
                                 </ScilabString>
                                 <ScilabDouble height="1" width="2">
-                                    <data column="0" line="0" realPart="99.0"/><data column="1" line="0" realPart="-144.0"/>
+                                    <data column="0" line="0" realPart="159.0"/><data column="1" line="0" realPart="-190.0"/>
                                 </ScilabDouble>
                                 <ScilabDouble height="1" width="2">
                                     <data column="0" line="0" realPart="20.0"/><data column="1" line="0" realPart="20.0"/>
@@ -1143,7 +1143,7 @@
                                     <data column="18" line="0" value="style"/>
                                 </ScilabString>
                                 <ScilabDouble height="1" width="2">
-                                    <data column="0" line="0" realPart="0.0"/><data column="1" line="0" realPart="-54.0"/>
+                                    <data column="0" line="0" realPart="0.0"/><data column="1" line="0" realPart="-40.0"/>
                                 </ScilabDouble>
                                 <ScilabDouble height="1" width="2">
                                     <data column="0" line="0" realPart="40.0"/><data column="1" line="0" realPart="40.0"/>
@@ -1297,7 +1297,7 @@
                                     <data column="18" line="0" value="style"/>
                                 </ScilabString>
                                 <ScilabDouble height="1" width="2">
-                                    <data column="0" line="0" realPart="92.71066000000002"/><data column="1" line="0" realPart="-146.0"/>
+                                    <data column="0" line="0" realPart="188.71066000000002"/><data column="1" line="0" realPart="-228.0"/>
                                 </ScilabDouble>
                                 <ScilabDouble height="1" width="2">
                                     <data column="0" line="0" realPart="8.0"/><data column="1" line="0" realPart="8.0"/>
@@ -1424,12 +1424,12 @@
                                 <data column="7" line="0" value="to"/>
                             </ScilabString>
                             <ScilabDouble height="3" width="1">
-                                <data column="0" line="0" realPart="60.0"/><data column="0" line="1" realPart="72.0"/>
-                                <data column="0" line="2" realPart="104.71066000000002"/>
+                                <data column="0" line="0" realPart="60.0"/><data column="0" line="1" realPart="192.0"/>
+                                <data column="0" line="2" realPart="200.71066000000002"/>
                             </ScilabDouble>
                             <ScilabDouble height="3" width="1">
-                                <data column="0" line="0" realPart="-58.0"/><data column="0" line="1" realPart="-186.0"/>
-                                <data column="0" line="2" realPart="-134.0"/>
+                                <data column="0" line="0" realPart="-44.0"/><data column="0" line="1" realPart="-292.0"/>
+                                <data column="0" line="2" realPart="-216.0"/>
                             </ScilabDouble>
                             <ScilabString height="1" width="1">
                                 <data column="0" line="0" value="drawlink"/>
@@ -1460,10 +1460,10 @@
                                 <data column="7" line="0" value="to"/>
                             </ScilabString>
                             <ScilabDouble height="2" width="1">
-                                <data column="0" line="0" realPart="103.37732666666669"/><data column="0" line="1" realPart="129.0"/>
+                                <data column="0" line="0" realPart="199.37732666666668"/><data column="0" line="1" realPart="189.0"/>
                             </ScilabDouble>
                             <ScilabDouble height="2" width="1">
-                                <data column="0" line="0" realPart="-150.0"/><data column="0" line="1" realPart="-120.0"/>
+                                <data column="0" line="0" realPart="-232.0"/><data column="0" line="1" realPart="-166.0"/>
                             </ScilabDouble>
                             <ScilabString height="1" width="1">
                                 <data column="0" line="0" value="drawlink"/>
@@ -1494,14 +1494,14 @@
                                 <data column="7" line="0" value="to"/>
                             </ScilabString>
                             <ScilabDouble height="4" width="1">
-                                <data column="0" line="0" realPart="106.04399333333335"/><data column="0" line="1" realPart="122.70999999999998"/>
-                                <data column="0" line="2" realPart="82.0"/>
+                                <data column="0" line="0" realPart="202.04399333333336"/><data column="0" line="1" realPart="242.70999999999998"/>
+                                <data column="0" line="2" realPart="202.0"/>
                                 <data column="0" line="3" realPart="60.0"/>
                             </ScilabDouble>
                             <ScilabDouble height="4" width="1">
-                                <data column="0" line="0" realPart="-150.0"/><data column="0" line="1" realPart="-40.0"/>
-                                <data column="0" line="2" realPart="-40.0"/>
-                                <data column="0" line="3" realPart="-10.0"/>
+                                <data column="0" line="0" realPart="-232.0"/><data column="0" line="1" realPart="-146.0"/>
+                                <data column="0" line="2" realPart="-146.0"/>
+                                <data column="0" line="3" realPart="4.0"/>
                             </ScilabDouble>
                             <ScilabString height="1" width="1">
                                 <data column="0" line="0" value="drawlink"/>
@@ -1544,7 +1544,7 @@
             </CommandPort>
             <SuperBlock id="4bda8121:12e722bfef5:-75f6" ordering="9" parent="4bda8121:12e722bfef5:-7772" simulationFunctionType="DEFAULT" style="SUPER_f;flip=false;mirror=false;fillColor=#FFFF00" value="Hybrid Observer">
                 <SuperBlockDiagram as="child" background="-1" title="Hybrid_Observer">
-                    <!--Xcos - 1.0 - Scilab-Branch-5.4-GIT - 20121023 1421-->
+                    <!--Xcos - 1.0 - Scilab-Branch-master-GIT - 20130402 1026-->
                     <mxGraphModel as="model">
                         <root>
                             <mxCell id="4bda8121:12e722bfef5:-75f0"/><mxCell id="4bda8121:12e722bfef5:-75f1" parent="4bda8121:12e722bfef5:-75f0"/>
@@ -3503,7 +3503,7 @@
             </ExplicitLink>
             <SuperBlock id="4bda8121:12e722bfef5:-7552" ordering="11" parent="4bda8121:12e722bfef5:-7772" simulationFunctionType="DEFAULT" style="SUPER_f;flip=false;mirror=false;fillColor=#FF0000" value="System">
                 <SuperBlockDiagram as="child" background="-1" title="System">
-                    <!--Xcos - 1.0 - Scilab-Branch-5.4-GIT - 20121023 1421-->
+                    <!--Xcos - 1.0 - Scilab-Branch-master-GIT - 20130402 1026-->
                     <mxGraphModel as="model">
                         <root>
                             <mxCell id="4bda8121:12e722bfef5:-754c"/><mxCell id="4bda8121:12e722bfef5:-754d" parent="4bda8121:12e722bfef5:-754c"/>
@@ -5060,7 +5060,7 @@
                                     <data column="18" line="0" value="style"/>
                                 </ScilabString>
                                 <ScilabDouble height="1" width="2">
-                                    <data column="0" line="0" realPart="99.0"/><data column="1" line="0" realPart="-144.0"/>
+                                    <data column="0" line="0" realPart="159.0"/><data column="1" line="0" realPart="-190.0"/>
                                 </ScilabDouble>
                                 <ScilabDouble height="1" width="2">
                                     <data column="0" line="0" realPart="20.0"/><data column="1" line="0" realPart="20.0"/>
@@ -5203,7 +5203,7 @@
                                     <data column="18" line="0" value="style"/>
                                 </ScilabString>
                                 <ScilabDouble height="1" width="2">
-                                    <data column="0" line="0" realPart="0.0"/><data column="1" line="0" realPart="-54.0"/>
+                                    <data column="0" line="0" realPart="0.0"/><data column="1" line="0" realPart="-40.0"/>
                                 </ScilabDouble>
                                 <ScilabDouble height="1" width="2">
                                     <data column="0" line="0" realPart="40.0"/><data column="1" line="0" realPart="40.0"/>
@@ -5357,7 +5357,7 @@
                                     <data column="18" line="0" value="style"/>
                                 </ScilabString>
                                 <ScilabDouble height="1" width="2">
-                                    <data column="0" line="0" realPart="92.71066000000002"/><data column="1" line="0" realPart="-146.0"/>
+                                    <data column="0" line="0" realPart="188.71066000000002"/><data column="1" line="0" realPart="-228.0"/>
                                 </ScilabDouble>
                                 <ScilabDouble height="1" width="2">
                                     <data column="0" line="0" realPart="8.0"/><data column="1" line="0" realPart="8.0"/>
@@ -5484,12 +5484,12 @@
                                 <data column="7" line="0" value="to"/>
                             </ScilabString>
                             <ScilabDouble height="3" width="1">
-                                <data column="0" line="0" realPart="60.0"/><data column="0" line="1" realPart="72.0"/>
-                                <data column="0" line="2" realPart="104.71066000000002"/>
+                                <data column="0" line="0" realPart="60.0"/><data column="0" line="1" realPart="192.0"/>
+                                <data column="0" line="2" realPart="200.71066000000002"/>
                             </ScilabDouble>
                             <ScilabDouble height="3" width="1">
-                                <data column="0" line="0" realPart="-58.0"/><data column="0" line="1" realPart="-186.0"/>
-                                <data column="0" line="2" realPart="-134.0"/>
+                                <data column="0" line="0" realPart="-44.0"/><data column="0" line="1" realPart="-292.0"/>
+                                <data column="0" line="2" realPart="-216.0"/>
                             </ScilabDouble>
                             <ScilabString height="1" width="1">
                                 <data column="0" line="0" value="drawlink"/>
@@ -5520,10 +5520,10 @@
                                 <data column="7" line="0" value="to"/>
                             </ScilabString>
                             <ScilabDouble height="2" width="1">
-                                <data column="0" line="0" realPart="103.37732666666669"/><data column="0" line="1" realPart="129.0"/>
+                                <data column="0" line="0" realPart="199.37732666666668"/><data column="0" line="1" realPart="189.0"/>
                             </ScilabDouble>
                             <ScilabDouble height="2" width="1">
-                                <data column="0" line="0" realPart="-150.0"/><data column="0" line="1" realPart="-120.0"/>
+                                <data column="0" line="0" realPart="-232.0"/><data column="0" line="1" realPart="-166.0"/>
                             </ScilabDouble>
                             <ScilabString height="1" width="1">
                                 <data column="0" line="0" value="drawlink"/>
@@ -5554,14 +5554,14 @@
                                 <data column="7" line="0" value="to"/>
                             </ScilabString>
                             <ScilabDouble height="4" width="1">
-                                <data column="0" line="0" realPart="106.04399333333335"/><data column="0" line="1" realPart="122.70999999999998"/>
-                                <data column="0" line="2" realPart="82.0"/>
+                                <data column="0" line="0" realPart="202.04399333333336"/><data column="0" line="1" realPart="242.70999999999998"/>
+                                <data column="0" line="2" realPart="202.0"/>
                                 <data column="0" line="3" realPart="60.0"/>
                             </ScilabDouble>
                             <ScilabDouble height="4" width="1">
-                                <data column="0" line="0" realPart="-150.0"/><data column="0" line="1" realPart="-40.0"/>
-                                <data column="0" line="2" realPart="-40.0"/>
-                                <data column="0" line="3" realPart="-10.0"/>
+                                <data column="0" line="0" realPart="-232.0"/><data column="0" line="1" realPart="-146.0"/>
+                                <data column="0" line="2" realPart="-146.0"/>
+                                <data column="0" line="3" realPart="4.0"/>
                             </ScilabDouble>
                             <ScilabString height="1" width="1">
                                 <data column="0" line="0" value="drawlink"/>
@@ -5614,13 +5614,13 @@
                     <mxGeometry as="geometry" height="8.0" width="8.0" x="36.0" y="-8.0"/>
                 </ControlPort>
             </CommandControlLink>
-            <TextBlock id="4bda8121:12e722bfef5:-74bc" parent="4bda8121:12e722bfef5:-7772" simulationFunctionType="DEFAULT" style="TEXT_f;strokeColor=#FFFF00;fontStyle=0;flip=false;mirror=false" value="This demos check that a random noise can be&#10;eliminated by using a TCLSS block within a loop.&#10;It is assumed that the user know the state space&#10;representation of the system and just want to &#10;remove the noise.">
+            <TextBlock id="4bda8121:12e722bfef5:-74bc" parent="4bda8121:12e722bfef5:-7772" simulationFunctionType="DEFAULT" style="TEXT_f;strokeColor=#FFFF00;fontStyle=0;flip=false;mirror=false" value="This demo checks that a random noise can be&lt;br&gt;eliminated by using a TCLSS block within a loop.&lt;br&gt;It is assumed that the user knows the state space&lt;br&gt;representation of the system and just wants to&lt;br&gt;remove the noise.">
                 <ScilabString as="exprs" height="1" width="3">
-                    <data column="0" line="0" value="This demos check that a random noise can be&#10;eliminated by using a TCLSS block within a loop.&#10;It is assumed that the user know the state space&#10;representation of the system and just want to &#10;remove the noise."/><data column="1" line="0" value="2"/>
+                    <data column="0" line="0" value="This demo checks that a random noise can be&lt;br&gt;eliminated by using a TCLSS block within a loop.&lt;br&gt;It is assumed that the user knows the state space&lt;br&gt;representation of the system and just wants to&lt;br&gt;remove the noise."/><data column="1" line="0" value="2"/>
                     <data column="2" line="0" value="1"/>
                 </ScilabString>
                 <ScilabString as="realParameters" height="1" width="1">
-                    <data column="0" line="0" value="This demos check that a random noise can be&#10;eliminated by using a TCLSS block within a loop.&#10;It is assumed that the user know the state space&#10;representation of the system and just want to &#10;remove the noise."/>
+                    <data column="0" line="0" value="This demo checks that a random noise can be&lt;br&gt;eliminated by using a TCLSS block within a loop.&lt;br&gt;It is assumed that the user knows the state space&lt;br&gt;representation of the system and just wants to&lt;br&gt;remove the noise."/>
                 </ScilabString>
                 <mxGeometry as="geometry" height="70.0" width="340.0" x="180.0" y="350.0"/>
             </TextBlock>
