@@ -1,5 +1,6 @@
 
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Michael Baudin
 // Copyright (C) 2000 - INRIA - Carlos Klimann
 //
 // This file must be used under the terms of the CeCILL.
@@ -51,5 +52,5 @@ function [f,p]=ftuneq(varargin)
     deglib=sum(len-1)
     mse=sse/deglib
     f=msa/mse
-    p=1-cdff("PQ",f,(rhs-1),deglib)
+    [ignored,p]=cdff("PQ",f,(rhs-1),deglib)
 endfunction
