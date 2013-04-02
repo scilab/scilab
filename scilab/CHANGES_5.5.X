@@ -66,3 +66,4 @@ Bug fixes
 * Bug #12443 fixed - Document behavior of mopen() in text file mode
                      on Windows.
 
+* Bug #12475 fixed - csvRead() does not support double quoted fields.
