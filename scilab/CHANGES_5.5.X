@@ -48,3 +48,4 @@ Bug fixes
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
 
+* Bug #12473 fixed - Problems with "é" in french help page of mkdir.
