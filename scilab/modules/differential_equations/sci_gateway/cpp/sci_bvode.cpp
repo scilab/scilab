@@ -124,7 +124,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
 
     if (sumM > 40)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d : Sum of m must be less than 40.\n"), "bvode", iPos + 1, sumM);
+        Scierror(999, _("%s: Wrong value for input argument #%d : Sum of m (%d) must be less than 40.\n"), "bvode", iPos + 1, sumM);
         free(M);
         return types::Function::Error;
     }
@@ -215,15 +215,106 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
         ipar[i] = (int)pDblIpar->get(i);
     }
 
-    if (ipar[1] < maxM || ipar[1] > 7)
+    // check ipar arguments
+
+    // ipar(1) : 0 => linear  1 => nonlinear
+    if(ipar[0] != 0 && ipar[0] != 1)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %s: %d or %d expected.\n"), "bvode", iPos + 1, 1, 0, 1);
+        free(M);
+        return types::Function::Error;
+    }
+
+    // ipar(2)=0 then collpnt is set to max(max(m(j))+1, 5-max(m(j))).
+    if(ipar[1] == 0)
     {
         ipar[1] = Max(maxM + 1, 5 - maxM);
     }
 
+    if (ipar[1] < 0 || ipar[1] > 7)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %s: %d to %d expected.\n"), "bvode", iPos + 1, 2, 0, 7);
+        free(M);
+        return types::Function::Error;
+    }
+
+    // ipar(3)
     if (ipar[2] == 0)
     {
         ipar[2] = 5;
     }
+
+    // 0 < ipar(4) <= M
+    if(ipar[3] < 0 || ipar[3] > sumM)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %s: %d to sum of m (=%d) expected.\n"), "bvode", iPos + 1, 4, 0, sumM);
+        free(M);
+        return types::Function::Error;
+    }
+
+    // bvode: ipar(5)>=nmax*nsizef where
+    // nsizef=4 + 3*M + (5+collpnt*N)*(collpnt*N+M) + (2*M-nrec)*2*M
+    int nmax = ipar[2];
+    int kdm  = ipar[1] * ncomp;
+    int nrec = 0;
+    for (int i = 0; i < sumM; i++)
+    {
+        int ib = sumM + 1 - i;
+        if(pDblZeta->get(ib-1) >= aright)
+        {
+            nrec = i;
+        }
+    }
+
+    int nsizef = 4 + 3*sumM + (5+kdm) * (kdm+sumM) + (2*sumM-nrec) * 2*sumM;
+    if(ipar[4] < nmax * nsizef)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d.\n"), "bvode", iPos + 1, 5);
+        free(M);
+        return types::Function::Error;
+    }
+
+    // ipar(6)>=nmax*nsizei where nsizei= 3 + collpnt*N + M.
+    int nsizei = 3 + kdm + sumM;
+    if(ipar[5] < nmax * nsizei)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d.\n"), "bvode", iPos + 1, 6);
+        free(M);
+        return types::Function::Error;
+    }
+
+    // ipar(7) output control
+    if(ipar[6] < -1 || ipar[6] > 1)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d: %d to %d expected.\n"), "bvode", iPos + 1, 7, -1, 1);
+        free(M);
+        return types::Function::Error;
+    }
+
+    // ipar(8)
+    if(ipar[7] < 0 || ipar[7] > 2)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d: %d to %d expected.\n"), "bvode", iPos + 1, 8, 0, 2);
+        free(M);
+        return types::Function::Error;
+    }
+
+    // ipar(9)
+    if(ipar[8] < 0 || ipar[8] > 4)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d: %d to %d expected.\n"), "bvode", iPos + 1, 9, 0, 4);
+        free(M);
+        return types::Function::Error;
+    }
+
+    // ipar(10)
+    if(ipar[9] < 0 || ipar[9] > 2)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d: %d to %d expected.\n"), "bvode", iPos + 1, 9, 0, 2);
+        free(M);
+        return types::Function::Error;
+    }
+
 
     iPos++;
 
@@ -242,6 +333,30 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
         Scierror(999, _("%s: Wrong size for input argument #%d : An array of size %d (ipar(4)) expected.\n"), "bvode", iPos + 1, ipar[3]);
         free(M);
         return types::Function::Error;
+    }
+
+    // verify following cases :
+    // 1 <= ltol(1) < ltol(2) < ... < ltol(NTOL) <= M where M=sum(m)
+    // M is mstar and NTOL is the size of ltol
+    //
+    // 1 <= ltol(1) <= M
+    double* pdblLtol = pDblLtol->get();
+    if(pdblLtol[0] < 1 || pdblLtol[0] > sumM)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d : %d to sum of m (=%d) expected.\n"), "bvode", iPos + 1, 1, sumM);
+        free(M);
+        return types::Function::Error;
+    }
+
+    // ltol(1) < ltol(2) < ... < ltol(NTOL) <= M
+    for (int i = 1; i < pDblLtol->getSize(); i++)
+    {
+        if(pdblLtol[i-1] >= pdblLtol[i-1] || pdblLtol[i-1] > sumM)
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d : Bad value for ltol(%d) : ltol(1) < ltol(2) < ... < ltol(NTOL) <= M (sum of m) expected.\n"), "bvode", iPos + 1, i);
+            free(M);
+            return types::Function::Error;
+        }
     }
 
     iPos++;
@@ -437,7 +552,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     ret = bvode_fsub(&x, z, d);
     if (ret == 0)
     {
-        Scierror(50, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 11, "fsub");
+        Scierror(98, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 11, "fsub");
         free(d);
         free(z);
         DifferentialEquation::removeDifferentialEquationFunctions();
@@ -448,7 +563,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     ret = bvode_dfsub(&x, z, d);
     if (ret == 0)
     {
-        Scierror(50, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 12, "dfsub");
+        Scierror(98, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 12, "dfsub");
         free(d);
         free(z);
         DifferentialEquation::removeDifferentialEquationFunctions();
@@ -459,7 +574,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     ret = bvode_gsub(&i, z, d);
     if (ret == 0)
     {
-        Scierror(50, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 13, "gsub");
+        Scierror(98, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 13, "gsub");
         free(d);
         free(z);
         DifferentialEquation::removeDifferentialEquationFunctions();
@@ -470,7 +585,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     ret = bvode_dgsub(&i, z, d);
     if (ret == 0)
     {
-        Scierror(50, _("%s: Argument #%d : Execution of ls function failed.\n"), "bvode", 14, "dgsub");
+        Scierror(98, _("%s: Argument #%d : Execution of ls function failed.\n"), "bvode", 14, "dgsub");
         free(d);
         free(z);
         DifferentialEquation::removeDifferentialEquationFunctions();
@@ -481,7 +596,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     ret = bvode_guess(&x, z, d);
     if (ret == 0)
     {
-        Scierror(50, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 15, "guess");
+        Scierror(98, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 15, "guess");
         free(d);
         free(z);
         DifferentialEquation::removeDifferentialEquationFunctions();
