@@ -51,6 +51,7 @@ Bug fixes
 
 * paramfplot2d: When input argument theta was column vector, an error occurred.
 
+* Bug #5539 fixed - sylv() help page was wrong in the discrete-time case.
 
 * Bug #6693 fixed - modulo did not accept polynomial inputs. Help page was not updated.
 
@@ -58,7 +59,7 @@ Bug fixes
 
 * Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
 
-* Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
+* Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni)
 
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
