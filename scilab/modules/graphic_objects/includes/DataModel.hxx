@@ -65,15 +65,6 @@ public :
     /** Returns a graphic object vector property */
     void getGraphicObjectProperty(char const* _pstID, int _iName, void **_pvData);
 
-    /**
-     * Returns a graphic object integer property
-     * Implemented in order to avoid returning the address of a
-     * static local variable across too many function calls (see the getProperty
-     * methods of the different Data classes when integer values are returned)
-     * Probably redundant with getGraphicObjectProperty
-     */
-    void getGraphicObjectIntProperty(char const* _pstID, int _iName, void **_pvData);
-
     /** Creates a data object */
     char const* createDataObject(char const* _pstID, int _iType);
 

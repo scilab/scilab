@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-09-19 20:26+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-19 21:09+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -190,9 +190,6 @@ msgstr "Konec řádku"
 msgid "Previous char"
 msgstr "Předchozí znak"
 
-msgid "Next char"
-msgstr "Další znak"
-
 msgid "Delete next char"
 msgstr "Smazat další znak"
 
@@ -234,6 +231,9 @@ msgstr "Další řádek historie"
 
 msgid "Help Browser"
 msgstr "Průzkumník nápovědy"
+
+msgid "Console Search Field"
+msgstr "Pole konzole pro vyhledávání"
 
 msgid "Paste"
 msgstr "Vložit"

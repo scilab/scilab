@@ -84,10 +84,11 @@ DIST_COMMON = $(libscihistory_manager_la_include_HEADERS) \
 subdir = modules/history_manager
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -238,6 +239,10 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CURL_CFLAGS = @CURL_CFLAGS@
+CURL_CONFIG = @CURL_CONFIG@
+CURL_LIBS = @CURL_LIBS@
+CURL_VERSION = @CURL_VERSION@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -502,12 +507,12 @@ libscihistory_manager_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
 -I$(srcdir)/src/jni/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/console/includes/ \
 -I$(top_srcdir)/modules/fileio/includes/ \
 -I$(top_srcdir)/modules/history_browser/includes/ \
 -I$(top_srcdir)/modules/history_manager/includes/ \
+-I$(top_srcdir)/modules/preferences/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 $(AM_CPPFLAGS)

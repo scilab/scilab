@@ -116,14 +116,14 @@
         <programlisting role="exemple"><![CDATA[
     //Black diagram
     s=poly(0,'s');
-    sl=syslin('c',5*(1+s)/(.1*s^4+s^3+15*s^2+3*s+1))
+    sl=syslin('c',5*(1+s)/(.1*s.^4+s.^3+15*s.^2+3*s+1))
     clf();black(sl,0.01,10);
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=poly(0,'s');
-                sl=syslin('c',5*(1+s)/(.1*s^4+s^3+15*s^2+3*s+1))
-                clf();black(sl,0.01,10);
+                sl=syslin('c',5*(1+s)/(.1*s.^4+s.^3+15*s.^2+3*s+1))
+                black(sl,0.01,10);
             </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[
@@ -132,7 +132,7 @@
     Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
     //two degree of freedom PID
     tau=0.2;xsi=1.2;
-    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau.^2*s.^2));
     clf();
     black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
     //move the caption in the lower rigth corner
@@ -142,12 +142,11 @@
 
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=poly(0,'s');
                 Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
                 tau=0.2;xsi=1.2;
-                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
-                clf();
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau.^2*s.^2));
                 black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
                 ax=gca();Leg=ax.children(1);
                 Leg.legend_location="in_lower_right";

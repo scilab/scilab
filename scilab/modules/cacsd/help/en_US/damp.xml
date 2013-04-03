@@ -147,7 +147,7 @@
    plot(wn/(2*%pi)*[1 1],[0 70],'r') //natural pulsation
    ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=%s;
                 wn=1;
                 clf();
@@ -161,7 +161,7 @@
                 end
                 title("$\frac{1+5 s+10 s^2}{\omega_n^2+2\omega_n\xi s+s^2}, \quad \omega_n=1$")
                 legend('$\xi='+string(Z)+'$')
-                plot(wn/(2*%pi)*[1 1],[0 70],'r') //natural pulsation
+                plot(wn/(2*%pi)*[1 1],[0 70],'r')
             </scilab:image>
         </para>
         <para>

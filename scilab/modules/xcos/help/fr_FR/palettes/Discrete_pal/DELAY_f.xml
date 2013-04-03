@@ -218,7 +218,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+            <scilab:image localized="true"><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/fr_FR/DELAY_f_1_fr_FR.xcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>

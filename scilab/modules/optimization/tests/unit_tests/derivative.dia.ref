@@ -102,7 +102,7 @@ assert_checkalmostequal ( Jcomputed , Jexpected , 1.e-10 );
 assert_checkalmostequal ( Hcomputed , Hexpected , %eps );
 // 4. Test verbose
 [Jcomputed , Hcomputed] = derivative(myfunction2 , x , verbose = 1);
-h = 6.055454e-006
+h = 6.055454e-06
 order = 2
 H_form = default
 Q = 

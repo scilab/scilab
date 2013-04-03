@@ -71,7 +71,6 @@ hist3d()
             param3d()
             subplot(2,2,4)
             hist3d()
-            
         </scilab:image>
     </refsection>
     <refsection role="see also">

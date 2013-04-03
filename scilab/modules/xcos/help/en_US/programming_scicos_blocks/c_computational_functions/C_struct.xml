@@ -28,7 +28,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Description</title>
-        <synopsis/>
+        
     </refsynopsisdiv>
     <refsection id="Contents_C_struct">
         <title>Contents</title>
@@ -1444,7 +1444,7 @@ oztyp_1 = GetOzType(block,1);
                     <emphasis role="bold">block-&gt;ozptr :</emphasis> An array of pointers of size noz,1 that allow to directly acces to the data contained in the discrete object state.
                 </para>
                 <para>
-                    Suppose that you have defined in the editor a block with the following<emphasis role="bold">odstate</emphasis> field in<link linkend="scicos_model">scicos_model</link> :
+                    Suppose that you have defined in the editor a block with the following<emphasis role="bold">odstate</emphasis> field in <link linkend="scicos_model">scicos_model</link> :
                 </para>
                 <programlisting role="code"><![CDATA[model.odstate=list(int32([1,2;3,4]),[1+%i %i 0.5]);]]></programlisting>
                 <para>

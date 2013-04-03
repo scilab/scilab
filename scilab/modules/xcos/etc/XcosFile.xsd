@@ -446,7 +446,7 @@
       <xs:attribute name="simulationFunctionName" use="required" type="xs:NCName"/>
       <xs:attribute name="simulationFunctionType" use="required" type="xs:NCName"/>
       <xs:attribute name="style" use="required"/>
-      <xs:attribute name="value" use="required"/>
+      <xs:attribute name="value"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="RoundBlock">
@@ -637,6 +637,7 @@
       <xs:attribute name="column" use="required" type="xs:integer"/>
       <xs:attribute name="line" use="required" type="xs:integer"/>
       <xs:attribute name="realPart" type="xs:double"/>
+      <xs:attribute name="imaginaryPart" type="xs:double"/>
       <xs:attribute name="value"/>
     </xs:complexType>
   </xs:element>

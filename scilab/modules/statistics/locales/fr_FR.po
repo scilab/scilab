@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-30 09:40+0000\n"
+"POT-Creation-Date: 2013-01-24 17:03+0100\n"
+"PO-Revision-Date: 2013-03-22 14:36+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: fr\n"
 
 msgid "X,Y,A and B"
@@ -191,6 +191,39 @@ msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "La solution est supérieure à la borne supérieure de recherche %f\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être entre %d et %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un entier >= %d attendu.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
@@ -280,11 +313,6 @@ msgstr ""
 msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
 msgstr ""
 "%s : Type erroné des arguments d'entrée n°%d : Un numérique attendu.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être entre %d et %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
@@ -427,13 +455,13 @@ msgid "Unexpected value of orien : %s\n"
 msgstr "Valeur de orien inattendue : %s\n"
 
 #, c-format
-msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
-msgstr "%s : Valeur erronée de w : %d; 0 ou 1 attendu.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée : '%s', '%s', %d ou %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value of w : %s; %d or %d expected.\n"
+msgstr "%s : Valeur erronée de w : %s, %d ou %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"

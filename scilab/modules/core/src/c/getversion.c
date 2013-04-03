@@ -15,6 +15,7 @@
 #include "version.h"
 #include "scilabmode.h"
 #include "scilabDefaults.h"
+#include "getenvc.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -309,7 +310,7 @@ BOOL with_modelica_compiler(void)
     char *fullpathModelicac = searchEnv(ModelicacName, "PATH");
     if (fullpathModelicac)
     {
-        FREE(fullpathModelicac);
+        //FREE(fullpathModelicac);
         fullpathModelicac = NULL;
         return TRUE;
     }

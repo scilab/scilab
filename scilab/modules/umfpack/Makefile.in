@@ -79,16 +79,21 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @UMFPACK_TRUE@am__append_1 = $(UMFPACK_LIB)
+
+# Crappy workaround to avoid an undefined symbol while using umfpack features
+# For some unknown reasons, -lumfpack will not load cholmod & colamd
+@IS_MACOSX_TRUE@@UMFPACK_TRUE@am__append_2 = -lcholmod -lcolamd
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/umfpack
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -238,6 +243,10 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CURL_CFLAGS = @CURL_CFLAGS@
+CURL_CONFIG = @CURL_CONFIG@
+CURL_LIBS = @CURL_LIBS@
+CURL_VERSION = @CURL_VERSION@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -467,14 +476,13 @@ top_srcdir = @top_srcdir@
 modulename = umfpack
 pkglib_LTLIBRARIES = libsciumfpack.la
 @UMFPACK_TRUE@noinst_LTLIBRARIES = libsciumfpack-algo.la
-libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS) $(am__append_1)
+libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS) $(am__append_1) \
+	$(am__append_2)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
 libsciumfpack_la_root_DATA = \
 license.txt \
- \
- \
 TAUCS_license.txt \
 UMFPACK_license.txt
 
@@ -522,8 +530,7 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 
 @UMFPACK_TRUE@libsciumfpack_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @UMFPACK_TRUE@			-I$(srcdir)/src/c/ \
-@UMFPACK_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
-@UMFPACK_TRUE@			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+@UMFPACK_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
@@ -552,7 +559,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro

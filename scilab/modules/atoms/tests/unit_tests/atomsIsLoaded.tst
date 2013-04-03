@@ -18,36 +18,35 @@ atomsSaveConfig();
 atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
-// Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
-// =============================================================================
-atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
+//force official ATOMS repository
+atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));
 
 // Install toolbox N°2
-atomsInstall(["toolbox_2","2.0"],"user");
+atomsInstall(["toolbox_2","2.1"],"user");
 
 // Check installation
-if ~ atomsIsInstalled(["toolbox_1","1.0","user"]) then pause, end
-if ~ atomsIsInstalled(["toolbox_2","2.0","user"]) then pause, end
+if ~ atomsIsInstalled(["toolbox_1","2.0","user"]) then pause, end
+if ~ atomsIsInstalled(["toolbox_2","2.1","user"]) then pause, end
 
-atomsLoad(["toolbox_2","2.0","user"]);
+atomsLoad(["toolbox_2","2.1","user"]);
 
 if ~ atomsIsLoaded("toolbox_2")                  then pause, end
-if ~ atomsIsLoaded(["toolbox_2","2.0"])          then pause, end
-if ~ atomsIsLoaded(["toolbox_2","2.0","user"])   then pause, end
+if ~ atomsIsLoaded(["toolbox_2","2.1"])          then pause, end
+if ~ atomsIsLoaded(["toolbox_2","2.1","user"])   then pause, end
 
 if ~ atomsIsLoaded("toolbox_1")                  then pause, end
-if ~ atomsIsLoaded(["toolbox_1","1.0"])          then pause, end
-if ~ atomsIsLoaded(["toolbox_1","1.0","user"])   then pause, end
+if ~ atomsIsLoaded(["toolbox_1","2.0"])          then pause, end
+if ~ atomsIsLoaded(["toolbox_1","2.0","user"])   then pause, end
 
-if atomsIsLoaded(["toolbox_1","1.0","allusers"]) then pause, end
-if atomsIsLoaded(["toolbox_2","2.0","allusers"]) then pause, end
+if atomsIsLoaded(["toolbox_1","2.0","allusers"]) then pause, end
+if atomsIsLoaded(["toolbox_2","2.1","allusers"]) then pause, end
 
-A = [ "toolbox_1" "1.0" "user"     ; ..
-      "toolbox_2" "2.0" "user"     ; ..
+A = [ "toolbox_1" "2.0" "user"     ; ..
+      "toolbox_2" "2.1" "user"     ; ..
       "toolbox_2" ""    "user"     ; ..
-      "toolbox_2" "2.0" ""         ; ..
+      "toolbox_2" "2.1" ""         ; ..
       "toolbox_2" ""    ""         ; ..
-      "toolbox_2" "2.0" "allusers" ];
+      "toolbox_2" "2.1" "allusers" ];
 
 if or(atomsIsLoaded(A) <> [%T ; %T ; %T ; %T ; %T ; %F]) then pause, end
 
@@ -58,5 +57,3 @@ atomsRemove("toolbox_2","user");
 // Restore original values
 // =============================================================================
 atomsRestoreConfig(%T);
-
-atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));

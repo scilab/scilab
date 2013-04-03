@@ -14,9 +14,7 @@ src/c/csvRead.c \
 src/c/csv_strsubst.c \
 src/c/csvWrite.c \
 src/c/getRange.c \
-src/c/latintoutf.c \
 src/c/splitLine.c \
-src/c/stringsToDoubles.c \
 src/c/stringToComplex.c \
 src/c/utftolatin.c
 
@@ -45,7 +43,6 @@ libscispreadsheet_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
 -I$(srcdir)/src/c/ripole \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/io/includes/ \

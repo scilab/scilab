@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
 "PO-Revision-Date: 2012-08-24 20:23+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -397,23 +397,12 @@ msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Formát nerozpoznán.\n"
 
 #, c-format
-msgid "%s: format is of 0 length.\n"
-msgstr "%s: formát je nulové délky.\n"
+msgid "%s: No input file.\n"
+msgstr "%s: Žádný vstupní soubor\n"
 
 #, c-format
 msgid "%s: %s format not recognized.\n"
 msgstr "%s: %s formát nerozpoznán.\n"
-
-msgid "No input file\n"
-msgstr "Žádný vstupní soubor\n"
-
-#, c-format
-msgid "%s: unknown format %s.\n"
-msgstr "%s: neplatný formát %s.\n"
-
-#, c-format
-msgid "%s: No input file.\n"
-msgstr "%s: Žádný vstupní soubor\n"
 
 #, c-format
 msgid "Warning: file '%s' already opened in Scilab.\n"

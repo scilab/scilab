@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-06-20 12:17+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-22 14:45+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: fr\n"
 
 #, c-format
@@ -1243,6 +1243,10 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s : Erreur à l'évaluation des paramètres de bloc.\n"
+
+#, c-format
 msgid "%s: Unable to find diagram inputs\n"
 msgstr "%s : Impossible de trouver les entrées du diagramme\n"
 
@@ -1306,14 +1310,12 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Warning the variable %s do not match any context variable name\n"
+"Warning the variable %s does not match any context variable name\n"
 "ignored"
 msgstr ""
-"Attention : La variable %s ne correspond pas au nom de contexte de variables"
-
-#, c-format
-msgid "%s: Error during block parameters evaluation.\n"
-msgstr "%s : Erreur à l'évaluation des paramètres de bloc.\n"
+"Attention, la variable %s ne correspond à aucun nom de variable  du "
+"contexte\n"
+"ignorée"
 
 #, c-format
 msgid "%s: Error during block parameters update.\n"
@@ -1474,12 +1476,14 @@ msgid "%s: Type %s is not implemented.\n"
 msgstr "%s : Le type %s n'est pas implémenté.\n"
 
 #, c-format
-msgid "%s: invalid dimension for '%s', waiting for %s"
-msgstr "%s : Dimension erronée pour '%s', %s attendu"
+msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
+msgstr ""
+"%s : Dimension erronée du paramètre '%s' du bloc : %s attendu, %s obtenu"
 
 #, c-format
-msgid "%s: incorrect type for '%s', getting %s"
-msgstr "%s : Type erroné pour '%s', %s obtenu"
+msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
+msgstr ""
+"%s : Type erroné du paramètre '%s' du bloc : %s(%s) attendu, %s obtenu"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

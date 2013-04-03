@@ -8,51 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-10 17:04+0100\n"
+"Revision-Date: 2013-03-27 13:20+0100\n"
 
-# File: sci_gateway/c/sci_chartooem.c, line: 31
-# File: sci_gateway/c/sci_oemtochar.c, line: 31
-#, c-format
-msgid "%s: Feature %s is obsolete.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_chartooem.c, line: 31
-# File: sci_gateway/c/sci_chartooem.c, line: 32
-# File: sci_gateway/c/sci_oemtochar.c, line: 31
-# File: sci_gateway/c/sci_oemtochar.c, line: 32
-msgid "Warning"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_chartooem.c, line: 32
-# File: sci_gateway/c/sci_oemtochar.c, line: 32
-#, c-format
-msgid ""
-"%s: This feature will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_chartooem.c, line: 57
-# File: sci_gateway/c/sci_findfileassociation.c, line: 39
-# File: sci_gateway/c/sci_getsystemmetrics.c, line: 32
-# File: sci_gateway/c/sci_mcisendstring.c, line: 119
-# File: sci_gateway/c/sci_oemtochar.c, line: 57
-# File: sci_gateway/c/sci_winqueryreg.c, line: 53
-# File: sci_gateway/c/sci_winqueryreg.c, line: 80
-# File: sci_gateway/c/sci_winqueryreg.c, line: 100
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_consolebox.c, line: 45
 # File: sci_gateway/c/sci_consolebox.c, line: 82
 msgid "Only on Windows Mode, not in Console Mode.\n"
@@ -67,8 +30,8 @@ msgstr ""
 # File: sci_gateway/c/sci_winqueryreg.c, line: 65
 # File: sci_gateway/c/sci_winqueryreg.c, line: 117
 # File: sci_gateway/c/sci_winqueryreg.c, line: 135
-# File: sci_gateway/c/sci_winqueryreg.c, line: 165
-# File: sci_gateway/c/sci_winqueryreg.c, line: 236
+# File: sci_gateway/c/sci_winqueryreg.c, line: 189
+# File: sci_gateway/c/sci_winqueryreg.c, line: 260
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -130,6 +93,17 @@ msgid "%s: No more memory.\n"
 msgstr ""
 
 #
+# File: sci_gateway/c/sci_findfileassociation.c, line: 39
+# File: sci_gateway/c/sci_getsystemmetrics.c, line: 32
+# File: sci_gateway/c/sci_mcisendstring.c, line: 119
+# File: sci_gateway/c/sci_winqueryreg.c, line: 53
+# File: sci_gateway/c/sci_winqueryreg.c, line: 80
+# File: sci_gateway/c/sci_winqueryreg.c, line: 100
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
 # File: sci_gateway/c/sci_findfileassociation.c, line: 57
 # File: sci_gateway/c/sci_winhttpdownload.c, line: 67
 #, c-format
@@ -162,13 +136,13 @@ msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_winqueryreg.c, line: 175
+# File: sci_gateway/c/sci_winqueryreg.c, line: 199
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_winqueryreg.c, line: 228
+# File: sci_gateway/c/sci_winqueryreg.c, line: 252
 #, c-format
 msgid "%s: Cannot query value of this type.\n"
 msgstr ""

@@ -78,7 +78,7 @@
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata>
-                            <mml:math display="block">
+                            <mml:math display="block" scilab:localized="true">
                                 <mml:mi mathvariant="normal">x</mml:mi>
                                 <mml:mrow>
                                     <mml:mrow>

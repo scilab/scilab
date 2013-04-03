@@ -17,13 +17,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вещественный или комплексный скаляр, вектор или матрица.</para>
+                    <para>вещественный скаляр, вектор или матрица.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>phi</term>
                 <listitem>
-                    <para>вещественный или комплексный скаляр, вектор или матрица.</para>
+                    <para>вещественный скаляр, вектор или матрица.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -35,7 +35,7 @@
             <varlistentry>
                 <term>phi</term>
                 <listitem>
-                    <para>вещественный или комплексный скаляр, вектор или матрица.</para>
+                    <para>вещественный скаляр, вектор или матрица.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -43,11 +43,11 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Первая форма вычисляет 2-х квадрантный арктангенс, который является обратным от <code>tand(phi)</code>. Элементы <varname>phi</varname> лежат на интервале
+            Первая форма вычисляет 2-квадрантный арктангенс, который является обратным от <code>tand(phi)</code>. Элементы <varname>phi</varname> лежат на интервале
             <literal>[-90, 90]</literal>.
         </para>
         <para>
-            Вторая форма вычисляет 4-х квадрантный арктангенс (в Фортране <function>atan2</function>), то есть возвращает аргумент (угол) комплексного числа <literal>x+i*y</literal>.
+            Вторая форма вычисляет 4-квадрантный арктангенс (в Фортране <function>atan2</function>), то есть возвращает аргумент (угол) комплексного числа <literal>x+i*y</literal>.
             Диапазон <code>atand(y,x)</code> равен
             <literal>[-180,180i]</literal>.
         </para>
@@ -73,6 +73,9 @@ atand(x)
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="atan">atan</link>
+            </member>
             <member>
                 <link linkend="tan">tan</link>
             </member>

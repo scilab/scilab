@@ -10,6 +10,7 @@
  */
 package org.scilab.modules.renderer.JoGLView.mark;
 
+import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
@@ -55,11 +56,11 @@ public class MarkSpriteManager {
      * @param colorMap the current color map.
      * @return the mark sprite for the given contoured object.
      */
-    public Texture getMarkSprite(ContouredObject contouredObject, ColorMap colorMap) {
+    public Texture getMarkSprite(ContouredObject contouredObject, ColorMap colorMap, Appearance appearance) {
         String id = contouredObject.getIdentifier();
         Texture sprite = spriteMap.get(id);
         if (sprite == null) {
-            sprite = MarkSpriteFactory.getMarkSprite(textureManager, contouredObject.getMark(), colorMap);
+            sprite = MarkSpriteFactory.getMarkSprite(textureManager, contouredObject.getMark(), colorMap, appearance);
             spriteMap.put(id, sprite);
         }
         return sprite;
@@ -72,10 +73,10 @@ public class MarkSpriteManager {
      * @param colorMap the current color map.
      * @return the mark sprite for the given contoured object.
      */
-    public Texture getMarkSprite(String id, Mark mark, ColorMap colorMap) {
+    public Texture getMarkSprite(String id, Mark mark, ColorMap colorMap, Appearance appearance) {
         Texture sprite = spriteMap.get(id);
         if (sprite == null) {
-            sprite = MarkSpriteFactory.getMarkSprite(textureManager, mark, colorMap);
+            sprite = MarkSpriteFactory.getMarkSprite(textureManager, mark, colorMap, appearance);
             spriteMap.put(id, sprite);
         }
         return sprite;
@@ -97,7 +98,8 @@ public class MarkSpriteManager {
                 || property == GraphicObjectProperties.__GO_MARK_SIZE_UNIT__
                 || property == GraphicObjectProperties.__GO_MARK_SIZE__
                 || property == GraphicObjectProperties.__GO_MARK_FOREGROUND__
-                || property == GraphicObjectProperties.__GO_MARK_BACKGROUND__) {
+                || property == GraphicObjectProperties.__GO_MARK_BACKGROUND__
+                || property == GraphicObjectProperties.__GO_LINE_THICKNESS__) {
             dispose(id);
         }
     }

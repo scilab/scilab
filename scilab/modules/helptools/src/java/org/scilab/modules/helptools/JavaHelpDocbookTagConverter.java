@@ -12,6 +12,7 @@
 
 package org.scilab.modules.helptools;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -21,6 +22,7 @@ import java.util.Iterator;
 import org.xml.sax.SAXException;
 
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.helptools.image.ImageConverter;
 
 /**
  * Class to convert DocBook to JavaHelp
@@ -46,9 +48,14 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
      */
     public JavaHelpDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase, String language) throws IOException, SAXException {
         super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase, language, HTMLDocbookTagConverter.GenerationType.JAVAHELP);
-	if (!isToolbox) {
-	    this.outImages = ScilabConstants.SCI.getPath() + "/modules/helptools/images";
-	}
+        if (!isToolbox) {
+            this.outImages = ScilabConstants.SCI.getPath() + "/modules/helptools/images";
+            File dir = new File(this.outImages);
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
+            ImageConverter.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+        }
         prependToProgramListing = "<table border=\"0\" width=\"100%\"><tr><td width=\"98%\">";
         appendToProgramListing = "</td><td valign=\"top\"><a href=\"scilab://scilab.execexample/\"><img src=\"" + getBaseImagePath() + "ScilabExecute.png\" border=\"0\"/></a></td><td valign=\"top\"><a href=\"scilab://scilab.editexample/\"><img src=\"" + getBaseImagePath() + "ScilabEdit.png\" border=\"0\"/></a></td><td></td></tr></table>";
         appendForExecToProgramListing = "</td><td valign=\"top\"><a href=\"scilab://scilab.execexample/\"><img src=\"" + getBaseImagePath() + "ScilabExecute.png\" border=\"0\"/></a></td><td></td></tr></table>";
@@ -97,8 +104,12 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
             writerIndex.close();
             outIndex.flush();
             outIndex.close();
+
+            if (!isToolbox) {
+                ImageConverter.saveMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+            }
         } catch (IOException e) {
-            fatalExceptionOccured(e);
+            fatalExceptionOccurred(e);
         }
     }
 
@@ -143,7 +154,7 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
                 buffer.append("<tocitem target=\"");
                 buffer.append(c.id);
                 buffer.append("\" text=\"");
-                buffer.append(replaceEntity(tocitem.get(c.id)));
+                buffer.append(tocitem.get(c.id));
                 if (c.children == null) {
                     buffer.append("\"/>\n");
                 } else {

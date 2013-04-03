@@ -6,31 +6,40 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[yp [,yp1 [,yp2 [,yp3]]]]=interp(xp, x, y, d [, out_mode])</synopsis>
+        <synopsis>[ yp [,yp1 [,yp2 [,yp3]]]] = interp(xp, x, y, d [, out_mode])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>xp</term>
+                <term>x,y</term>
                 <listitem>
-                    <para>real vector or matrix</para>
+                    <para>
+                        real vectors of same size <literal>n</literal>: Coordinates of data points on which the interpolation and the related cubic spline (called <literal>s(X)</literal> in the following) or sub-spline function is based and built.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x,y,d</term>
+                <term>d</term>
                 <listitem>
-                    <para>real vectors of the same size defining a cubic spline or
-                        sub-spline function (called <literal>s</literal> in the
-                        following)
+                    <para>real vector of size(x): The derivative s'(x). Most often, s'(x) will be priorly estimated through the function splin(x, y,..)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>out_mode</term>
                 <listitem>
-                    <para>(optional) string defining the evaluation of
-                        <literal>s</literal> outside the [x1,xn] interval
+                    <para>
+                        (optional) string defining <literal>s(X)</literal> for <literal>X</literal>  outside <latex>[x_1,\ x_n]</latex>. 
+                        Possible values: "by_zero" | "by_nan" | "C0" | "natural" | "linear" | "periodic"
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xp</term>
+                <listitem>
+                    <para>
+                        real vector or matrix: abscissae at which <literal>Y</literal> is unknown and must be estimated with <literal>s(xp)</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -38,9 +47,7 @@
                 <term>yp</term>
                 <listitem>
                     <para>
-                        vector or matrix of same size than <literal>xp</literal>,
-                        elementwise evaluation of <literal>s</literal> on
-                        <literal>xp</literal> (yp(i)=s(xp(i) or yp(i,j)=s(xp(i,j))
+                        vector or matrix of size(xp): <literal>yp(i) = s(xp(i))</literal> or <literal>yp(i,j) = s(xp(i,j))</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,9 +55,7 @@
                 <term>yp1, yp2, yp3</term>
                 <listitem>
                     <para>
-                        vectors (or matrices) of same size than <literal>xp</literal>,
-                        elementwise evaluation of the successive derivatives of
-                        <literal>s</literal> on <literal>xp</literal>
+                        vectors (or matrices) of size(x): elementwise evaluation of the derivatives <literal>s'(xp)</literal>, <literal>s''(xp)</literal> and <literal>s'''(xp)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,23 +64,16 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given three vectors <literal>(x,y,d)</literal> defining a spline or
-            sub-spline function (see <link linkend="splin">splin</link>) with
-            <literal>yi=s(xi), di = s'(xi)</literal> this function evaluates
-            <literal>s</literal> (and <literal>s', s'', s'''</literal> if needed) at
-            <literal>xp(i)</literal> :
+            The cubic spline function <literal>s(X)</literal> interpolating the <literal>(x,y)</literal> set of given points is a continuous and derivable piece-wise function defined over <latex>[x_1,\ x_n]</latex>. It consists of a set of cubic polynomials, each one <latex>p_k(X)</latex> being defined on <latex>[x_k,\ x_{k+1}]</latex> and connected in values and slopes to both its neighbours. Thus, we can state that for each <latex>X\ \in\ [x_k,\ x_{k+1}],\ s(X) = p_k(X)</latex>, such that
+            <latex>s(x_i) = y_i,\quad \mbox{and}\quad s'(x_i) = d_i</latex>.  Then, interp() evaluates <literal>s(X)</literal> (and <literal>s'(X), s''(X), s'''(X)</literal> if needed) at <literal>xp(i)</literal>, such that
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/interp_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <latex style="display" align="center"><![CDATA[ yp_i = s(xp_i) \quad or \quad yp_{i,j} = s(xp_{i,j})  ]]></latex>
+        <latex style="display" align="center"><![CDATA[ yp1_i = s'(xp_i) \quad or \quad yp1_{i,j} = s'(xp_{i,j})  ]]></latex>
+        <latex style="display" align="center"><![CDATA[ yp2_i = s''(xp_i) \quad or \quad yp2_{i,j} = s''(xp_{i,j})  ]]></latex>
+        <latex style="display" align="center"><![CDATA[ yp3_i = s'''(xp_i) \quad or \quad yp3_{i,j} = s'''(xp_{i,j})  ]]></latex>
         <para>
             The <literal>out_mode</literal> parameter set the evaluation rule
-            for extrapolation, i.e. for <literal>xp(i)</literal> not in [x1,xn]
-            :
+            for extrapolation, i.e. for <literal>xp(i)</literal> outside <latex>[x_1,\ x_n]</latex> :
         </para>
         <variablelist>
             <varlistentry>
@@ -87,57 +85,43 @@
             <varlistentry>
                 <term>"by_nan"</term>
                 <listitem>
-                    <para>extrapolation by Nan</para>
+                    <para>extrapolation by Nan (%nan)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"C0"</term>
                 <listitem>
-                    <para>the extrapolation is defined as follows:</para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/interp_equation2.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <para>the extrapolation is defined as follows :</para>
+                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = y_1 ]]></latex>
+                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = y_n ]]></latex>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"natural"</term>
                 <listitem>
-                    <para>the extrapolation is defined as follows
-                        (<emphasis>p_i</emphasis> being the polynomial defining
-                        <literal>s</literal> on [x_i,x_{i+1}]) :
+                    <para>
+                        the extrapolation is defined as follows (<latex>p_i(x)</latex> being the polynomial defining 
+                        <literal>s(X)</literal> on <latex>[x_i,\ x_{i+1}]</latex>)
                     </para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/interp_equation3.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = p_1(xp_i) ]]></latex>
+                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = p_{n-1}(xp_i) ]]></latex>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"linear"</term>
                 <listitem>
                     <para>the extrapolation is defined as follows :</para>
-                    <informalequation>
-                        <mediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../mml/interp_equation4.mml"/>
-                            </imageobject>
-                        </mediaobject>
-                    </informalequation>
+                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = y_1 + d_1.(xp_i - x_1) ]]></latex>
+                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = y_n + d_n.(xp_i - x_n) ]]></latex>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"periodic"</term>
                 <listitem>
                     <para>
-                        <literal>s</literal> is extended by periodicity.
+                        <literal>s(X)</literal> is extended by periodicity: 
                     </para>
+                    <latex style="display" align="center"><![CDATA[ yp_i = s( x_1 + ( (xp_i-x_1)\ \mbox{modulo}\ [x_n-x_1] ) ) ]]></latex>
                 </listitem>
             </varlistentry>
         </variablelist>

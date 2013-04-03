@@ -8,8 +8,7 @@ src/c/stripblanks.c \
 src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \
-src/c/strcatfunction.c \
-src/c/strsplitfunction.c \
+src/c/strsplit.c \
 src/c/partfunction.c \
 src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \
@@ -20,6 +19,7 @@ src/c/pcre_error.c \
 src/c/isletter.c \
 src/c/isdigit.c \
 src/c/strsubst.c \
+src/c/stristr.c \
 src/c/stringsstrrchr.c \
 src/c/stringsstrrev.c \
 src/c/stringsCompare.c \
@@ -68,7 +68,6 @@ sci_gateway/fortran/strops.f
 
 libscistring_la_CPPFLAGS = -I$(srcdir)/src/c \
 	-I$(srcdir)/includes/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/functions/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \

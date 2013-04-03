@@ -398,9 +398,7 @@ libscigraphics_la_CPPFLAGS = \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(top_srcdir)/libs/hashtable/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/action_binding/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/elementary_functions/includes/ \
@@ -413,8 +411,6 @@ libscigraphics_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/renderer/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
-	$(TCL_INC_PATH) \
-	$(TK_INC_PATH) \
 	$(AM_CPPFLAGS)
 
 libscigraphics_algo_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GRAPHICS_CXX_SOURCES)
@@ -478,8 +474,6 @@ libscigraphics_disable_la_CPPFLAGS = \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(top_srcdir)/libs/hashtable/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \

@@ -1,9 +1,0 @@
-
-DoublyLinkedList:
-=================
-Files: includes/DoublyLinkedList.h src/DoublyLinkedList.c
-
-Copyright: Daniel Lacroix 
-
-License:
-Release in the public domain

@@ -9,11 +9,11 @@
 package org.scilab.modules.history_manager;
 
 
- /** 
-   * All Scilab history management used in Java console 
+ /**
+   * All Scilab history management used in Java console
    * @author Vincent COUVERT
    * @author Allan CORNET
-   * @copyright INRIA 
+   * @copyright INRIA
    */
 public class HistoryManagement {
 
@@ -23,7 +23,7 @@ public class HistoryManagement {
   protected HistoryManagement() {
     throw new UnsupportedOperationException();
   }
-  
+
     /**
     * add a line to History manager
     * @param line a line to add
@@ -34,7 +34,7 @@ public static boolean appendLineToScilabHistory(String line) {
     return HistoryManagementJNI.appendLineToScilabHistory(line);
   }
 
-  
+
     /**
     * append lines to History manager
     * @param lines array of string
@@ -45,7 +45,7 @@ public static boolean appendLinesToScilabHistory(String[] lines, int numberoflin
     return HistoryManagementJNI.appendLinesToScilabHistory(lines, numberoflines);
   }
 
-  
+
     /**
     * Display history
     */
@@ -53,29 +53,27 @@ public static void displayScilabHistory() {
     HistoryManagementJNI.displayScilabHistory();
   }
 
-  
+
     /**
     * save history in a file
     * @param filename if NULL saves in default filename
-    * default filename --> SCIHOME/history.scilab
     * @return true or false
     */
 public static boolean writeScilabHistoryToFile(String filename) {
     return HistoryManagementJNI.writeScilabHistoryToFile(filename);
   }
 
-  
+
     /**
     * load history from a file
     * @param filename if NULL load from default filename
-    * default filename --> SCIHOME/history.scilab
     * @return true or false
     */
 public static boolean loadScilabHistoryFromFile(String filename) {
     return HistoryManagementJNI.loadScilabHistoryFromFile(filename);
   }
 
-  
+
     /**
     * set filename of history
     * @param filename of history
@@ -85,7 +83,7 @@ public static boolean setFilenameScilabHistory(String filename) {
     return HistoryManagementJNI.setFilenameScilabHistory(filename);
   }
 
-  
+
     /**
     * get filename of history
     * @return a filename
@@ -94,7 +92,7 @@ public static String getFilenameScilabHistory() {
     return HistoryManagementJNI.getFilenameScilabHistory();
   }
 
-  
+
     /**
     * set default filename of history
     * @return true or false
@@ -103,7 +101,7 @@ public static boolean setDefaultFilenameScilabHistory() {
     return HistoryManagementJNI.setDefaultFilenameScilabHistory();
   }
 
-  
+
     /**
     * reset history manager
     */
@@ -111,7 +109,7 @@ public static void resetScilabHistory() {
     HistoryManagementJNI.resetScilabHistory();
   }
 
-  
+
     /**
     * Get all lines in history
     * @return an array of strings
@@ -120,17 +118,17 @@ public static String[] getAllLinesOfScilabHistory() {
     return HistoryManagementJNI.getAllLinesOfScilabHistory();
   }
 
-  
+
     /**
     * Get numbers of lines in history
     * size of array returned by getAllLinesOfScilabHistory
-    * @return int 
+    * @return int
     */
 public static int getSizeAllLinesOfScilabHistory() {
     return HistoryManagementJNI.getSizeAllLinesOfScilabHistory();
   }
 
-  
+
     /**
     * set new token to search in history
     * @param token (a string)
@@ -140,7 +138,7 @@ public static boolean setSearchedTokenInScilabHistory(String token) {
     return HistoryManagementJNI.setSearchedTokenInScilabHistory(token);
   }
 
-  
+
     /**
     * reset search in history
     * @return true or false
@@ -149,7 +147,7 @@ public static boolean resetSearchedTokenInScilabHistory() {
     return HistoryManagementJNI.resetSearchedTokenInScilabHistory();
   }
 
-  
+
     /**
     * get token searched in history
     * @return token (a string)
@@ -158,7 +156,7 @@ public static String getSearchedTokenInScilabHistory() {
     return HistoryManagementJNI.getSearchedTokenInScilabHistory();
   }
 
-  
+
     /**
     * Get the previous line in Scilab history
     * @return a line or NULL
@@ -168,7 +166,7 @@ public static String getPreviousLineInScilabHistory() {
     return HistoryManagementJNI.getPreviousLineInScilabHistory();
   }
 
-  
+
     /**
     * Get the next line in Scilab history
     * @return a line or NULL
@@ -178,7 +176,7 @@ public static String getNextLineInScilabHistory() {
     return HistoryManagementJNI.getNextLineInScilabHistory();
   }
 
-  
+
     /**
     * Get numbers of lines in history
     * @return number of lines
@@ -187,7 +185,7 @@ public static int getNumberOfLinesInScilabHistory() {
     return HistoryManagementJNI.getNumberOfLinesInScilabHistory();
   }
 
-  
+
     /**
     * set consecutive duplicate lines are added
     * @param doit (true or false)
@@ -196,7 +194,7 @@ public static void setSaveConsecutiveDuplicateLinesInScilabHistory(boolean doit)
     HistoryManagementJNI.setSaveConsecutiveDuplicateLinesInScilabHistory(doit);
   }
 
-  
+
     /**
     * indicate if consecutive duplicate lines are added
     * @return true or false
@@ -205,7 +203,7 @@ public static boolean getSaveConsecutiveDuplicateLinesInScilabHistory() {
     return HistoryManagementJNI.getSaveConsecutiveDuplicateLinesInScilabHistory();
   }
 
-  
+
     /**
     * Set after how many lines history is saved
     * @param num number between 0 and Max
@@ -215,7 +213,7 @@ public static void setAfterHowManyLinesScilabHistoryIsSaved(int num) {
     HistoryManagementJNI.setAfterHowManyLinesScilabHistoryIsSaved(num);
   }
 
-  
+
     /**
     * Get after how many lines history is saved
     * @return number between 0 and Max
@@ -225,7 +223,7 @@ public static int getAfterHowManyLinesScilabHistoryIsSaved() {
     return HistoryManagementJNI.getAfterHowManyLinesScilabHistoryIsSaved();
   }
 
-  
+
     /**
     * Get the Nth Line in history
     * @param N the number of the line to get
@@ -235,7 +233,7 @@ public static String getNthLineInScilabHistory(int N) {
     return HistoryManagementJNI.getNthLineInScilabHistory(N);
   }
 
-  
+
     /**
     * delete the Nth Line in history
     * @param N the number of the line to delete
@@ -245,7 +243,7 @@ public static boolean deleteNthLineScilabHistory(int N) {
     return HistoryManagementJNI.deleteNthLineScilabHistory(N);
   }
 
-  
+
     /**
     * get number of lines of history
     * @return a number >= 0
@@ -254,7 +252,7 @@ public static int getSizeScilabHistory() {
     return HistoryManagementJNI.getSizeScilabHistory();
   }
 
-  
+
     /**
     * get history manager state
     * @return true or false
@@ -263,7 +261,7 @@ public static boolean historyIsEnabled() {
     return HistoryManagementJNI.historyIsEnabled();
   }
 
-  
+
     /**
     * set the number of max lines
     * @return true or false
@@ -272,7 +270,7 @@ public static boolean setSizeMaxScilabHistory(int nbLinesMax) {
     return HistoryManagementJNI.setSizeMaxScilabHistory(nbLinesMax);
   }
 
-  
+
     /**
     * terminate the history manager
     * @return true or false
@@ -281,7 +279,7 @@ public static boolean InitializeHistoryManager() {
     return HistoryManagementJNI.InitializeHistoryManager();
   }
 
-  
+
     /**
     * terminate the history manager
     * @return true or false

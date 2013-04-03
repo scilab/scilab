@@ -26,10 +26,10 @@ function [gm]=fspec(g)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"fspec",1))
   end
   if g.dt<>"c" then
-    error(msprintf(gettext("%s: Wrong type for argument %d: In continuous time expected.\n"),"fspec",1))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: In continuous time expected.\n"),"fspec",1))
   end
   flag=0;
-  if typeof(Sl)=='rational' then Sl=tf2ss(Sl),flag=1;end
+  if typeof(g)=='rational' then g=tf2ss(g),flag=1;end
   [r1,r,d]=dtsi(g),[a,b,c]=r(2:4),
   ari=a-b*inv(d)*c,
   rri=b*inv(d)*b',qri=-c'*inv(d)*c,

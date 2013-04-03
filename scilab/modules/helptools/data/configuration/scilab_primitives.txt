@@ -126,7 +126,6 @@ buildDocv2
 buildouttb
 bvode
 c_link
-calerf
 call
 callblk
 captions
@@ -178,6 +177,7 @@ curblockc
 dasrt
 dassl
 data2sig
+dawson
 debug
 deff
 definedfields
@@ -221,6 +221,10 @@ eval_cshep2d
 exec
 execstr
 exists
+erf
+erfc
+erfcx
+erfi
 exp
 expm
 exportUI

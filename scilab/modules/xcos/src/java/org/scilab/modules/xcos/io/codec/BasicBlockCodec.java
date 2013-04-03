@@ -112,7 +112,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
         ((Element) node).setAttribute(SIMULATION_FUNCTION_TYPE, String.valueOf(((BasicBlock) obj).getSimulationFunctionType()));
 
         /*
-         * Log some informations
+         * Log some information
          */
         final BasicBlock b = (BasicBlock) obj;
 

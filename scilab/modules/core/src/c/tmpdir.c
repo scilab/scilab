@@ -20,6 +20,9 @@
 #endif
 
 #if defined(__STDC__) || defined(_MSC_VER)
+#if defined(__linux__)
+#define __USE_FORTIFY_LEVEL 0 /* Avoid dependency on GLIBC_2.4 (__realpath_chk) */
+#endif
 #include <stdlib.h>
 #ifndef _MSC_VER
 #include <sys/types.h>
@@ -130,9 +133,14 @@ void createScilabTMPDIR(void)
         }
 
         /* XXXXXX will be randomized by mkdtemp */
-        char *tmp_dir_strdup = realpath(tmp_dir, NULL); /* Copy to avoid to have the same buffer as input and output for sprintf */
+
+        char *tmp_dir_strdup[PATH_MAX];
+        char *res = realpath(tmp_dir, tmp_dir_strdup);
+        if (!res)
+        {
+            fprintf(stderr, _("Warning: Could not resolve the realpath of %s.\n"), tmp_dir);
+        }
         sprintf(tmp_dir, "%s/SCI_TMP_%d_XXXXXX", tmp_dir_strdup, (int) getpid());
-        free(tmp_dir_strdup);
 
         if (mkdtemp(tmp_dir) == NULL)
         {

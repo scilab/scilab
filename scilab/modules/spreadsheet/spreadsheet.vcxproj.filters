@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -79,13 +79,7 @@
     <ClInclude Include="src\c\getRange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\latintoutf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\c\splitLine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\stringsToDoubles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\stringToComplex.h">
@@ -177,13 +171,7 @@
     <ClCompile Include="src\c\getRange.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\latintoutf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\splitLine.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\stringsToDoubles.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\stringToComplex.c">

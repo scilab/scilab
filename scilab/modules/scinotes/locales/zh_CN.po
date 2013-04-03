@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-11-28 12:19+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-03 09:06+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: \n"
 
 #, c-format
@@ -118,7 +118,7 @@ msgid "Close All But This"
 msgstr "关闭其他文档"
 
 msgid "Exit Scinotes"
-msgstr ""
+msgstr "退出Scinotes"
 
 msgid "Edit"
 msgstr "编辑"
@@ -244,25 +244,25 @@ msgid "Line Endings"
 msgstr "行结束符"
 
 msgid "Preferences"
-msgstr ""
+msgstr "首选项"
 
 msgid "Set font"
-msgstr ""
+msgstr "设置字体"
 
 msgid "Set colors"
-msgstr ""
+msgstr "设置颜色"
 
 msgid "Scinotes General settings"
-msgstr ""
+msgstr "Scinotes一般设置"
 
 msgid "Auto-completion on"
-msgstr ""
+msgstr "自动补全开"
 
 msgid "(, [, ..."
-msgstr ""
+msgstr "(, [, ..."
 
 msgid "if, function, ..."
-msgstr ""
+msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "行号；关；普通；Whereami兼容"
@@ -313,7 +313,7 @@ msgid "?"
 msgstr "？"
 
 msgid "Scinotes help"
-msgstr ""
+msgstr "Scinotes帮助"
 
 msgid "Help on ;Help on selection"
 msgstr "帮助关于；所选内容帮助"
@@ -328,103 +328,103 @@ msgid "Complete"
 msgstr "补全"
 
 msgid "Display"
-msgstr ""
+msgstr "显示"
 
 msgid "Header"
-msgstr ""
+msgstr "头部"
 
 msgid "Autosave"
-msgstr ""
+msgstr "自动保存"
 
 msgid "Editor"
-msgstr ""
+msgstr "编辑器"
 
 msgid "Use Scinotes"
-msgstr ""
+msgstr "使用Scinotes"
 
 msgid "External editor: "
-msgstr ""
+msgstr "外部编辑器: "
 
 msgid "(Don't forget to quote path containing white spaces)"
-msgstr ""
+msgstr "(不要忘记含空格的路径要加双引号)"
 
 msgid "Scilab command: "
-msgstr ""
+msgstr "Scilab命令: "
 
 msgid "Restore previous session on start-up"
-msgstr ""
+msgstr "启动时恢复前一次会话"
 
 msgid "Add carriage return at the end of the file."
-msgstr ""
+msgstr "文件末尾添加回车."
 
 msgid "Number of recently opened files to display: "
-msgstr ""
+msgstr "显示最近打开文件数目: "
 
 msgid "Default file encoding: "
-msgstr ""
+msgstr "默认文件编码: "
 
 msgid "Default End-Of-Line: "
-msgstr ""
+msgstr "默认行结束符 "
 
 msgid "General display options"
-msgstr ""
+msgstr "一般显示选项"
 
 msgid "Highlight current line: "
-msgstr ""
+msgstr "高亮当前行: "
 
 msgid "Show line numbers: "
-msgstr ""
+msgstr "显示行号: "
 
 msgid "Whereami compatible"
-msgstr ""
+msgstr "兼容Whereami"
 
 msgid "Normal"
-msgstr ""
+msgstr "普通"
 
 msgid "Wrap lines"
-msgstr ""
+msgstr "自动换行"
 
 msgid "Keywords"
-msgstr ""
+msgstr "关键词"
 
 msgid "Enable keywords colorization"
-msgstr ""
+msgstr "关键词彩色显示"
 
 msgid "Set syntax Colors"
 msgstr ""
 
 msgid "Highlight corresponding brackets"
-msgstr ""
+msgstr "高亮匹配括号"
 
 msgid "Color: "
-msgstr ""
+msgstr "颜色: "
 
 msgid "Highlight on mouse over"
-msgstr ""
+msgstr "鼠标悬停时高亮"
 
 msgid "Style: "
-msgstr ""
+msgstr "样式: "
 
 msgid "Filled"
-msgstr ""
+msgstr "填充"
 
 msgid "Framed"
-msgstr ""
+msgstr "边框"
 
 msgid "Underlined"
-msgstr ""
+msgstr "下划线"
 
 msgid "Highlight corresponding keywords (e.g. if ... end)"
-msgstr ""
+msgstr "高亮匹配关键词 (e.g. if ... end)"
 
 msgid "Tabulation and Indentation"
-msgstr ""
+msgstr "制表与缩进"
 
 msgid "Tabulation size: "
-msgstr ""
+msgstr "制表符大小: "
 
 msgid "Use space"
-msgstr ""
+msgstr "使用空格Use space"
 
 msgid "Representation: "
 msgstr ""
@@ -439,52 +439,52 @@ msgid "Vertical rule"
 msgstr "垂直线"
 
 msgid "Enable auto indentation"
-msgstr ""
+msgstr "启用自动缩进"
 
 msgid "Indent size: "
-msgstr ""
+msgstr "缩进大小: "
 
 msgid "Enable autosave in Scinotes"
-msgstr ""
+msgstr "Scinotes启用自动保存"
 
 msgid "Save options"
-msgstr ""
+msgstr "保存选项"
 
 msgid "Save every "
-msgstr ""
+msgstr "保存每个 "
 
 msgid " minutes "
-msgstr ""
+msgstr " 分钟 "
 
 msgid "Close options"
-msgstr ""
+msgstr "关闭选项"
 
 msgid "Delete automatically saved files"
-msgstr ""
+msgstr "删除自动保存的文件"
 
 msgid "Filename"
-msgstr ""
+msgstr "文件名"
 
 msgid "Append filename with: "
-msgstr ""
+msgstr "文件名附加上: "
 
 msgid "Replace extension with: "
-msgstr ""
+msgstr "扩展名替换为: "
 
 msgid "Location"
-msgstr ""
+msgstr "位置"
 
 msgid "Source file directory"
-msgstr ""
+msgstr "源文件目录"
 
 msgid "Single directory"
 msgstr ""
 
 msgid "Choose an autosave directory"
-msgstr ""
+msgstr "选择自动保存目录"
 
 msgid "Default header"
-msgstr ""
+msgstr "默认头部内容"
 
 msgid "Add a default header to new file"
 msgstr ""
@@ -500,6 +500,18 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "读取字符串时出错"
+
+#, c-format
+msgid "File not found: %s"
+msgstr ""
+
+#, c-format
+msgid "I/O error: %s"
+msgstr ""
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr ""
 
 msgid "Source of '"
 msgstr "来源之‘"
@@ -711,12 +723,8 @@ msgid "String %s not found"
 msgstr "没有发现字符串 %s"
 
 #, c-format
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
+msgid "The file %s does not exist. Do you want to create it?"
 msgstr ""
-"文件%s不存在\n"
-"您想创建它吗？"
 
 msgid "close this tab"
 msgstr "关闭这个标签页"
@@ -724,18 +732,13 @@ msgstr "关闭这个标签页"
 msgid "This file"
 msgstr "文件"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
-msgstr " 自上次保存已经被修改，保存改动么？"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
+msgstr ""
 
 #, c-format
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
+msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr ""
-"文件 %s 已经被另一个程序修改！\n"
-" 覆盖？"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "警告：此文件已被其他程序修改"
@@ -875,10 +878,10 @@ msgstr "不能猜出文件编码"
 
 #, c-format
 msgid "Cannot save the file %s... stop the backup process"
-msgstr ""
+msgstr "不能保存文件%s... 停止备份"
 
 msgid "Backup finished..."
-msgstr ""
+msgstr "备份结束..."
 
 #, c-format
 msgid "%s occurences found."

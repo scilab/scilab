@@ -1408,7 +1408,7 @@ int C2F(creatework) (int *number, int *m, int *lr)
 * This can be used with creatework to
 * set the size of object which was intialy sized to the whole
 * remaining space with creatework
-* Moreover informations the objet is recorded
+* Moreover information the objet is recorded
 *---------------------------------------------------------------------*/
 
 int C2F(setworksize) (int *number, int *size)
@@ -1461,7 +1461,7 @@ int C2F(getmatdims) (int *number, int *m, int *n)
     typ = *istk(il);
     if (typ > sci_strings)
     {
-        Scierror(199, _("%s: Wrong type for argument %d: Matrix expected.\n"), fname, *number);
+        Scierror(199, _("%s: Wrong type for argument #%d: Matrix expected.\n"), fname, *number);
         return FALSE;
     }
     *m = *istk(il + 1);
@@ -1833,7 +1833,7 @@ int C2F(elementtype) (int *lnumber, int *number)
     if (itype < sci_list || itype > sci_mlist)
     {
         /* check if it is really a list */
-        Scierror(210, _("%s: Wrong type for argument %d: List expected.\n"), fname, *lnumber);
+        Scierror(210, _("%s: Wrong type for argument #%d: List expected.\n"), fname, *lnumber);
         return FALSE;
     }
     n = *istk(il + 1);          /* number of elements in the list */
@@ -2557,7 +2557,7 @@ L9999:
 int C2F(scistring) (int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned long thestring_len)
 {
     int ret = FALSE;
-    int ifin = 0, ifun = 0, tops = 0, moutputs = 0;
+    int ifin = 0, ifun = 0, tops = 0;
     int id[nsiz];
     int lf = 0, op = 0, ils = 0, nnn = thestring_len;
 
@@ -2585,7 +2585,6 @@ int C2F(scistring) (int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned
         {
             lf = *Lstk(Fin);
             ils = iadr(lf) + 1;
-            moutputs = *istk(ils);
             ret = C2F(scifunction) (ifirst, &lf, mlhs, mrhs);
         }
         else

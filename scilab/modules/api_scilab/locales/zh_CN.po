@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-11-27 13:48+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 
 #, c-format
 msgid "%s: Invalid argument address"
@@ -141,7 +141,7 @@ msgid "%s: Unable to get argument data"
 msgstr "%s：无法获取参数数据"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s：参数%d的大小错误：应该为(%d,%d)。\n"
 
 #, c-format
@@ -154,7 +154,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该是实数矩阵。\n"
 
 #, c-format
@@ -173,10 +173,6 @@ msgstr "%s：无法获从变量\"%s\"获取维数"
 
 msgid "double matrix"
 msgstr "双精度矩阵"
-
-#, c-format
-msgid "%s: Bad call to get a non complex matrix"
-msgstr "%s：调用非复矩阵错误"
 
 #, c-format
 msgid "stack size exceeded!\n"
@@ -247,6 +243,10 @@ msgstr "指针"
 
 msgid "polynomial matrix"
 msgstr "多项式矩阵"
+
+#, c-format
+msgid "%s: Bad call to get a non complex matrix"
+msgstr "%s：调用非复矩阵错误"
 
 #, c-format
 msgid "%s: Formal variable name of polynomial can't exceed 4 characters"

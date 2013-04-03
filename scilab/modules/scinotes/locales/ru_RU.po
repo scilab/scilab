@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-09-18 23:24+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-19 15:40+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: ru\n"
 
 #, c-format
@@ -377,7 +377,7 @@ msgid "General display options"
 msgstr "Общие настройки отображения"
 
 msgid "Highlight current line: "
-msgstr "Подстветка текущей строки: "
+msgstr "Подсветка текущей строки: "
 
 msgid "Show line numbers: "
 msgstr "Показать номера строк: "
@@ -507,6 +507,18 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "Ошибка при чтении строки"
+
+#, c-format
+msgid "File not found: %s"
+msgstr "Файл не найден: %s"
+
+#, c-format
+msgid "I/O error: %s"
+msgstr "ошибка ввода/вывода: %s"
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr "Файл %s был изменён другой программой. Перезагрузить его?"
 
 msgid "Source of '"
 msgstr "Исходный текст для '"
@@ -719,12 +731,8 @@ msgid "String %s not found"
 msgstr "Фраза %s не найдена"
 
 #, c-format
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Файл %s не существует.\n"
-"Создать файл?"
+msgid "The file %s does not exist. Do you want to create it?"
+msgstr "Файл %s не существует. Вы хотите его создать?"
 
 msgid "close this tab"
 msgstr "Закрыть эту вкладку"
@@ -732,18 +740,13 @@ msgstr "Закрыть эту вкладку"
 msgid "This file"
 msgstr "Этот файл"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
-msgstr " был изменён. Cохранить изменения?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
+msgstr "%s был изменён с момента последнего сохранения. Сохранить его?"
 
 #, c-format
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
-msgstr ""
-"Файл %s был изменён другой программой!\n"
-"Перезаписать файл?"
+msgid "The file %s has been modified by another program ! Overwrite it ?"
+msgstr "Файл %s был изменён другой программой! Переписать его?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Внимание: файл был изменён другой программой!"

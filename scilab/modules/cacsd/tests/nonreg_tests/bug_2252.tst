@@ -23,4 +23,4 @@ sl=syslin('c',[-1 -2;0 -1],[1;1],[-1 0]);
 function ydot=sim(t,y),ydot=sl.a*y+sl.b,endfunction
 yode=sl.c*ode(zeros(2,1),0,t,1.414D-09,0.0000001,sim);
 
-if norm(ycsim-yode)>0.001 then pause,end
+assert_checkalmostequal(ycsim, yode, [], 7e-3, "matrix");

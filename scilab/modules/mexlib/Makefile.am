@@ -7,7 +7,6 @@ MEXLIB_C_SOURCES = src/c/mexlib.c \
 src/c/sci_gateway.c
 
 MEXLIB_FLAGS = -I$(srcdir)/includes/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/call_scilab/includes/ \
 -I$(top_srcdir)/modules/elementary_functions/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \

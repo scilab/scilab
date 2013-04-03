@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-02 18:57+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:12+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -155,7 +155,7 @@ msgid "%s: Unable to get argument data"
 msgstr "%s: не вдалося отримати дані параметра"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: помилкова розмірність параметра №%d: мало бути (%d,%d).\n"
 
 #, c-format
@@ -172,7 +172,7 @@ msgstr ""
 "«%s».\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
 "значень.\n"
@@ -195,10 +195,6 @@ msgstr "%s: не вдалося отримати розмірність зі з�
 
 msgid "double matrix"
 msgstr "матриця зі значень double"
-
-#, c-format
-msgid "%s: Bad call to get a non complex matrix"
-msgstr "%s: помилковий виклик для отримання некомплексної матриці"
 
 #, c-format
 msgid "stack size exceeded!\n"
@@ -269,6 +265,10 @@ msgstr "вказівник"
 
 msgid "polynomial matrix"
 msgstr "поліноміальна матриця"
+
+#, c-format
+msgid "%s: Bad call to get a non complex matrix"
+msgstr "%s: помилковий виклик для отримання некомплексної матриці"
 
 #, c-format
 msgid "%s: Formal variable name of polynomial can't exceed 4 characters"

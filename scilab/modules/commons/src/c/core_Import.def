@@ -17,3 +17,5 @@ getScilabVersionMinor
 getScilabVersionMaintenance
 getScilabVersionTimestamp
 getScilabVersionAsString
+MyHeapAlloc
+MyHeapFree

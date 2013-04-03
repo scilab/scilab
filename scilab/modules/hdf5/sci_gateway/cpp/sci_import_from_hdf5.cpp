@@ -281,6 +281,9 @@ static bool import_void(int _iDatasetId, int _iItemPos, int *_piAddress, char *_
         printError(&sciErr, 0);
         return false;
     }
+
+    //close void dataset
+    closeDataSet(_iDatasetId);
     return true;
 }
 
@@ -302,6 +305,9 @@ static bool import_undefined(int _iDatasetId, int _iItemPos, int *_piAddress, ch
         printError(&sciErr, 0);
         return false;
     }
+
+    //close undefined dataset
+    closeDataSet(_iDatasetId);
     return true;
 }
 
@@ -322,32 +328,35 @@ static bool import_double(int _iDatasetId, int _iItemPos, int *_piAddress, char 
         return false;
     }
 
-    piDims = (int*)MALLOC(sizeof(int) * iDims);
-    iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
-
-    if (iDims == 2 && piDims[0] * piDims[1] != 0)
+    if (iDims != 0)
     {
-        if (iComplex)
-        {
-            pdblReal = (double *)MALLOC(iSize * sizeof(double));
-            pdblImg = (double *)MALLOC(iSize * sizeof(double));
-            iRet = readDoubleComplexMatrix(_iDatasetId, pdblReal, pdblImg);
-        }
-        else
-        {
-            pdblReal = (double *)MALLOC(iSize * sizeof(double));
-            iRet = readDoubleMatrix(_iDatasetId, pdblReal);
-        }
+        piDims = (int*)MALLOC(sizeof(int) * iDims);
+        iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
 
-        if (iRet)
+        if (iDims == 2 && piDims[0] * piDims[1] != 0)
         {
+            if (iComplex)
+            {
+                pdblReal = (double *)MALLOC(iSize * sizeof(double));
+                pdblImg = (double *)MALLOC(iSize * sizeof(double));
+                iRet = readDoubleComplexMatrix(_iDatasetId, pdblReal, pdblImg);
+            }
+            else
+            {
+                pdblReal = (double *)MALLOC(iSize * sizeof(double));
+                iRet = readDoubleMatrix(_iDatasetId, pdblReal);
+            }
+
+            if (iRet)
+            {
+                return false;
+            }
+        }
+        else if (iDims > 2)
+        {
+            //hypermatrix
             return false;
         }
-    }
-    else if (iDims > 2)
-    {
-        //hypermatrix
-        return false;
     }
     else
     {

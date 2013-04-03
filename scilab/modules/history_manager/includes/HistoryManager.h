@@ -52,7 +52,6 @@ extern "C" {
     /**
     * save history in a file
     * @param a filename if NULL saves in default filename
-    * default filename --> SCIHOME/history.scilab
     * @return TRUE or FALSE
     */
     HISTORY_MANAGER_IMPEXP BOOL writeScilabHistoryToFile(char *filename);
@@ -60,7 +59,6 @@ extern "C" {
     /**
     * load history from a file
     * @param a filename if NULL load from default filename
-    * default filename --> SCIHOME/history.scilab
     * @return TRUE or FALSE
     */
     HISTORY_MANAGER_IMPEXP BOOL loadScilabHistoryFromFile(char *filename);

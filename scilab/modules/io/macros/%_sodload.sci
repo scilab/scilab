@@ -74,7 +74,13 @@ function %_sodload(%__filename__, varargin)
         end
 
         for i = prod(matrixHandle.dims):-1:1
-            h($+1) = createSingleHandle(matrixHandle.values(i));
+
+            newItem = createSingleHandle(matrixHandle.values(i));
+            if newItem == [] then
+                continue;
+            end
+
+            h($+1) = newItem;
             if or(fieldnames(matrixHandle.values(i))=="user_data") then // TODO Remove after graphic branch merge
                 if isList(matrixHandle.values(i).user_data) then
                     set(h($), "user_data", parseList(matrixHandle.values(i).user_data));
@@ -83,7 +89,6 @@ function %_sodload(%__filename__, varargin)
                 end
             end
         end
-        h = matrix(h, matrixHandle.dims);
     endfunction
 
     function h = createSingleHandle(item)
@@ -141,6 +146,8 @@ function %_sodload(%__filename__, varargin)
 
         h = gcf();
         isVisible = h.visible;
+        resizefcn = "";
+        event_handler = "";
         h.visible = "off";
 
         fields(fields=="figure_id") = [];
@@ -165,6 +172,10 @@ function %_sodload(%__filename__, varargin)
                     xsetech(wrect=[0 0 .1 .1])
                     createSingleHandle(c.values(i));
                 end
+            elseif fields(i) == "event_handler" then
+                event_handler = figureProperties(fields(i));
+            elseif fields(i) == "resizefcn" then
+                resizefcn = figureProperties(fields(i));
             elseif fields(i) == "visible" then
                 isVisible = figureProperties(fields(i));// do not set visible = "true" before the end of load.
             else
@@ -173,6 +184,8 @@ function %_sodload(%__filename__, varargin)
         end
 
         h.visible = isVisible;
+        h.resizefcn = resizefcn;
+        h.event_handler = event_handler;
     endfunction
 
     //
@@ -203,6 +216,7 @@ function %_sodload(%__filename__, varargin)
     function h = createAxes(axesProperties)
         // Hack to determine whether %h_load has been called by the %h_copy macro
         // in which case a new Axes object is created
+
         [lnums, fnames] = where();
         ind = grep(fnames, '%h_copy');
         if ~isempty(ind) then
@@ -229,7 +243,7 @@ function %_sodload(%__filename__, varargin)
             if or(fields(i) == ["title","x_label","y_label","z_label"]) then
                 createLabel(axesProperties(fields(i)), h(fields(i)));
             elseif or(fields(i) == ["x_ticks", "y_ticks", "z_ticks"]) then
-                h(fields(i)) = createTicks(axesProperties(fields(i)));
+                set(h, fields(i), createTicks(axesProperties(fields(i))));
             elseif fields(i) == "children" then
                 createMatrixHandle(axesProperties(fields(i)));
             elseif fields(i) == "clip_state" then
@@ -282,6 +296,7 @@ function %_sodload(%__filename__, varargin)
             end
         end
         clearglobal %LEG
+
     endfunction
 
     //
@@ -619,12 +634,13 @@ function %_sodload(%__filename__, varargin)
     function h = createLegend(legendProperties)
         global %LEG
         %LEG = legendProperties;
-        endfunction
+        h = [];
+    endfunction
 
-        //
-        // TEXT
-        //
-        function h = createText(textProperties)
+    //
+    // TEXT
+    //
+    function h = createText(textProperties)
         fields = fieldnames(textProperties);
         fields(1) = [];
 
@@ -781,6 +797,7 @@ function %_sodload(%__filename__, varargin)
     endfunction
 
     function macro = createMacro(macroStr, macroName)
+
         macroSt = macroStr(3);
         if macroStr(2) == %t then
             flag = "c";
@@ -829,6 +846,7 @@ function %_sodload(%__filename__, varargin)
                 %__loadFunction__(%__filename__, %__variableName__);
                 %__resumeList__($+1) = evstr(%__variableName__);
                 %__resumeVarlist__($+1) = %__variableName__;
+                clear(%__variableName__);
             else
                 error(999, msprintf(gettext("%s: variable ''%s'' does not exist in ''%s''.\n"), "load", %__variableName__, %__filename__));
             end
@@ -839,6 +857,7 @@ function %_sodload(%__filename__, varargin)
             %__loadFunction__(%__filename__, %__variableName__);
             %__resumeList__($+1) = evstr(%__variableName__);
             %__resumeVarlist__($+1) = %__variableName__;
+            clear(%__variableName__);
         end
     end
 

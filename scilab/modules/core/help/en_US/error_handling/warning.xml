@@ -53,6 +53,9 @@ warning(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"
             <member>
                 <link linkend="msprintf">msprintf</link>
             </member>
+            <member>
+                <link linkend="messagebox">messagebox</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

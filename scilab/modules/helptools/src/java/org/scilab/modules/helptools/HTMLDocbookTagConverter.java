@@ -14,6 +14,7 @@ package org.scilab.modules.helptools;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.Character.UnicodeBlock;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Date;
@@ -21,6 +22,7 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import org.scilab.modules.commons.ScilabConstants;
@@ -49,12 +51,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     public static enum GenerationType { WEB, JAVAHELP, CHM, HTML };
 
     private static final String SCILAB_URI = "http://www.scilab.org";
-    private static final String LATEXBASENAME = "Equation_LaTeX_";
+    private static final String LATEXBASENAME = "_LaTeX_";
     private static final String VERSION = Messages.gettext("Version");
     private static final String DESCRIPTION = Messages.gettext("Description");
 
     private StringBuilder buffer = new StringBuilder(8192);
-    private int latexCompt;
+    private int latexCompt = 1;
     private String imageDir;
     private String urlBase;
     private boolean linkToTheWeb;
@@ -165,6 +167,43 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance(this));
         ImageConverter.registerExternalImageConverter(ScilabImageConverter.getInstance(this));
         ImageConverter.registerExternalImageConverter(XcosImageConverter.getInstance(this));
+    }
+
+    public static boolean containsCJK(CharSequence seq) {
+        if (seq == null) {
+            return false;
+        }
+
+        for (int i = 0; i < seq.length(); i++) {
+            Character.UnicodeBlock block = Character.UnicodeBlock.of(seq.charAt(i));
+            if (block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
+                    || block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
+                    || block == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B
+                    || block == Character.UnicodeBlock.CJK_COMPATIBILITY_FORMS
+                    || block == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
+                    || block == Character.UnicodeBlock.CJK_RADICALS_SUPPLEMENT
+                    || block == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
+                    || block == Character.UnicodeBlock.ENCLOSED_CJK_LETTERS_AND_MONTHS) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean containsCyrillic(CharSequence seq) {
+        if (seq == null) {
+            return false;
+        }
+
+        for (int i = 0; i < seq.length(); i++) {
+            Character.UnicodeBlock block = Character.UnicodeBlock.of(seq.charAt(i));
+            if (block == Character.UnicodeBlock.CYRILLIC || block == Character.UnicodeBlock.CYRILLIC_SUPPLEMENTARY) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -514,6 +553,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         return buffer.toString();
     }
 
+    public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
+        latexCompt = 1;
+        return super.resolveEntity(publicId, systemId);
+    }
+
     /**
      * Handle a refentry
      * @param attributes the tag attributes
@@ -531,7 +575,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         createHTMLFile(currentId, fileName, refpurpose, contents);
         if (!hasExamples && (needsExampleAttr == null || !needsExampleAttr.equals("no"))) {
             warnings++;
-            System.err.println("Warning (should be fixed): no example in " + currentFileName);
+            //System.err.println("Warning (should be fixed): no example in " + currentFileName);
         } else {
             hasExamples = false;
         }
@@ -1108,7 +1152,19 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleLatex(final Map<String, String> attributes, final String contents) throws SAXException {
-        File f = new File(outImages + "/" + imageDir, LATEXBASENAME + (latexCompt++) + ".png");
+        boolean isLocalized = "true".equals(attributes.get("localized"));
+        File f;
+        if (isLocalized) {
+            f = new File(outImages + "/" + imageDir, LATEXBASENAME + currentBaseName + "_" + language + "_" + (latexCompt++) + ".png");
+        } else {
+            if ("ru_RU".equals(language) && HTMLDocbookTagConverter.containsCyrillic(contents)) {
+                System.err.println("Warning: LaTeX code in " + getCurrentFileName() + " contains cyrillic character. The tag <latex> should contain the attribute scilab:localized=\"true\"");
+            } else if ("ja_JP".equals(language) && HTMLDocbookTagConverter.containsCJK(contents)) {
+                System.err.println("Warning: LaTeX code in " + getCurrentFileName() + " contains CJK character. The tag <latex> should contain the attribute scilab:localized=\"true\"");
+            }
+            f = new File(outImages + "/" + imageDir, LATEXBASENAME + currentBaseName + "_" + (latexCompt++) + ".png");
+        }
+
         String parent = getParentTagName();
         if (parent.equals("para") && !attributes.containsKey("style")) {
             attributes.put("style", "text");
@@ -1117,7 +1173,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         if (fs == null) {
             attributes.put("fontsize", "16");
         }
-        return ImageConverter.getImageByCode(currentFileName, contents, attributes, "image/latex", f, imageDir + "/" + f.getName(), getBaseImagePath());
+        return ImageConverter.getImageByCode(currentFileName, contents, attributes, "image/latex", f, imageDir + "/" + f.getName(), getBaseImagePath(), locator.getLineNumber(), language, isLocalized);
     }
 
     /**

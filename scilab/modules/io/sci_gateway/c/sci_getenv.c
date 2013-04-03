@@ -42,6 +42,9 @@ int sci_getenv(char *fname,unsigned long fname_len)
 	char *pStVarTwo = NULL;
 	int lenStVarTwo = 0;
 
+    int iflag = 0;
+    int m_out = 1, n_out = 1;
+
 	Rhs = Max(Rhs,0);
 
 	CheckRhs(1,2);
@@ -159,35 +162,24 @@ int sci_getenv(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	#ifdef _MSC_VER
-	length_env = _MAX_ENV;
-	#else
-	length_env = bsiz;
-	#endif
+    default_env_value =  pStVarTwo;
+    env_name = pStVarOne;
 
-	default_env_value =  pStVarTwo;
-	env_name = pStVarOne;
+    C2F(getenvc)(&ierr, env_name, NULL, &length_env, &iflag);
 
-	env_value = (char*)MALLOC( (length_env + 1) *sizeof(char) );
+    if(ierr == 0)
+    {
+	    env_value = (char*)MALLOC( (length_env + 1) * sizeof(char) );
+	    if (env_value == NULL)
+	    {
+		    Scierror(999,_("%s: No more memory.\n"), fname);
+	    }
+	    else
+        {
+		    C2F(getenvc)(&ierr, env_name, env_value, &length_env, &iflag);
 
-	if (env_value == NULL)
-	{
-		if (default_env_value) {FREE(default_env_value); default_env_value = NULL;}
-		if (env_name) {FREE(env_name); env_name = NULL;}
-
-		Scierror(999,_("%s: No more memory.\n"), fname);
-		return 0;
-	}
-	else
-	{
-		int m_out = 1, n_out = 1;
-		int iflag = 0;
-
-		C2F(getenvc)(&ierr, env_name, env_value, &length_env, &iflag);
-
-		if (ierr == 0)
-		{
-			sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &env_value);
+            //create variable on stack and return it.
+			sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, (const char**)&env_value);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -197,33 +189,50 @@ int sci_getenv(char *fname,unsigned long fname_len)
 
 			LhsVar(1) = Rhs + 1;
 			PutLhsVar();	
-		}
+        }
+    }
+    else //ierr == 1 -> env var does not exist.
+    {
+		if (default_env_value)
+		{
+			sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &default_env_value);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+			}
+            else
+            {
+			    LhsVar(1) = Rhs + 1;
+			    PutLhsVar();
+		    }
+        }
 		else
 		{
-			if (default_env_value)
-			{
-				sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &default_env_value);
-				if(sciErr.iErr)
-				{
-					printError(&sciErr, 0);
-                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
-					return 0;
-				}
-
-				LhsVar(1) = Rhs + 1;
-				PutLhsVar();
-			}
-			else
-			{
-				Scierror(999,_("%s: Undefined environment variable %s.\n"), fname, env_name);
-			}
+			Scierror(999,_("%s: Undefined environment variable %s.\n"), fname, env_name);
 		}
+    }
 
-		if (default_env_value) {FREE(default_env_value); default_env_value = NULL;}
-		if (env_name) {FREE(env_name); env_name = NULL;}
-		if (env_value) {FREE(env_value); env_value = NULL;}
 
-	}
+
+	if (default_env_value) 
+    {
+        FREE(default_env_value);
+        default_env_value = NULL;
+    }
+
+	if (env_name)
+    {
+        FREE(env_name);
+        env_name = NULL;
+    }
+	
+    if (env_value)
+    {
+        FREE(env_value);
+        env_value = NULL;
+    }
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

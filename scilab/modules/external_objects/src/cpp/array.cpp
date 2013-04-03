@@ -22,7 +22,6 @@ int ScilabGateway::array(char * fname, const int envId, void * pvApiCtx)
     int * addr = 0;
     char * className = 0;
     int * args = 0;
-    char * errmsg = 0;
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
 
@@ -31,7 +30,7 @@ int ScilabGateway::array(char * fname, const int envId, void * pvApiCtx)
         throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Wrong number of arguments : more than %d expected."), 2);
     }
 
-    OptionsHelper::setCopyOccured(false);
+    OptionsHelper::setCopyOccurred(false);
     ScilabObjects::initialization(env, pvApiCtx);
     env.getGatewayOptions().setIsNew(false);
 

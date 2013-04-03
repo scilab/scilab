@@ -1653,7 +1653,7 @@ void *openList(int _iFile, char *pstDatasetName, int _iNbItem)
 
     if (_iNbItem)
     {
-        pobjArray = MALLOC(sizeof(hobj_ref_t) * _iNbItem);
+        pobjArray = (hobj_ref_t*)MALLOC(sizeof(hobj_ref_t) * _iNbItem);
     }
 
     return pobjArray;
@@ -1785,5 +1785,100 @@ int closeList(int _iFile, void *_pvList, char *_pstListName, int _iNbItem, int _
     }
 
     FREE(_pvList);
+    return 0;
+}
+
+static int deleteHDF5group(int _iFile, char* _pstName)
+{
+    hid_t status = 0;
+    //open group
+    char* pstGroupName = createGroupName(_pstName);
+    hid_t groupID = H5Gopen(_iFile, pstGroupName);
+    if (groupID >= 0)
+    {
+        int i = 0;
+        H5G_info_t groupInfo;
+        //get children count
+        status = H5Gget_info(groupID, &groupInfo);
+        if (status < 0)
+        {
+            return -1;
+        }
+
+        //for each child,
+        for (i = 0 ; i < groupInfo.nlinks ; i++)
+        {
+            ssize_t size = 0;
+            char* pstPathName = NULL;
+            char* pstChildName = NULL;
+            //build child path
+            pstPathName = createPathName(pstGroupName, i);
+
+            //try to delete child and his children
+            deleteHDF5group(_iFile, pstPathName);
+
+            //get child name
+            size = H5Lget_name_by_idx(groupID, ".", H5_INDEX_NAME, H5_ITER_INC, 0, 0, 0, H5P_DEFAULT) + 1;
+            pstChildName = (char*)MALLOC(sizeof(char) * size);
+            H5Lget_name_by_idx(groupID, ".", H5_INDEX_NAME, H5_ITER_INC, 0, pstChildName, size, H5P_DEFAULT);
+
+            //unlink child
+            status = H5Ldelete(groupID, pstChildName, H5P_DEFAULT);
+
+            FREE(pstChildName);
+            FREE(pstPathName);
+
+            if (status < 0)
+            {
+                return 1;
+            }
+        }
+
+        //close group
+        status = H5Gclose(groupID);
+        if (status < 0)
+        {
+            return -1;
+        }
+
+        //delete group
+        status = H5Ldelete(_iFile, pstGroupName, H5P_DEFAULT);
+        if (status < -1)
+        {
+            return -1;
+        }
+
+    }
+
+    FREE(pstGroupName);
+    return 0;
+}
+
+//According to 5.5.2. Deleting a Dataset from a File and Reclaiming Space of http://www.hdfgroup.org/HDF5/doc/UG/10_Datasets.html
+//it is actually impossible to really remove data from HDF5 file so unlink dataset to main group
+int deleteHDF5Var(int _iFile, char* _pstName)
+{
+    herr_t status = 0;
+    void *oldclientdata = NULL;
+    H5E_auto2_t oldfunc;
+
+    /* Save old error handler */
+    H5Eget_auto2(H5E_DEFAULT, &oldfunc, &oldclientdata);
+
+    /* Turn off error handling */
+    H5Eset_auto2(H5E_DEFAULT, NULL, NULL);
+
+    //try to unlink potential subgroups
+    deleteHDF5group(_iFile, _pstName);
+
+    //delete current dataset link
+    status = H5Ldelete(_iFile, _pstName, H5P_DEFAULT);
+    if (status < 0)
+    {
+        H5Eset_auto2(H5E_DEFAULT, oldfunc, oldclientdata);
+        return status;
+    }
+
+    H5Eset_auto2(H5E_DEFAULT, oldfunc, oldclientdata);
     return 0;
 }

@@ -232,8 +232,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
                 // Show the input command view and its hidden components
                 inputCmdView.setEditable(true);
-                ((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
-                ((JTextPane) inputCmdView).getCaret().setVisible(true);
+                JTextPane tp = (JTextPane) inputCmdView;
+                if (tp.isFocusOwner()) {
+                    tp.getCaret().setVisible(true);
+                }
                 setToHome();
             }
         });

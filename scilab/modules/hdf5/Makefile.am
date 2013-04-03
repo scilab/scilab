@@ -89,7 +89,6 @@ libscihdf5_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(srcdir)/src/cpp/ \
 				-I$(srcdir)/src/jni/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
                 -I$(top_srcdir)/modules/jvm/includes/ \

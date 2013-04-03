@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-11-18 21:58+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-09 21:25+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -132,6 +132,10 @@ msgid "%s: XML Namespace does not exist.\n"
 msgstr "%s: Jmenný prostor XML neexistuje.\n"
 
 #, c-format
+msgid "%s: XML Document does not exist.\n"
+msgstr "%s: Dokument XML neexistuje.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%i: Očekáván XMLSet nebo XMLList.\n"
@@ -155,10 +159,6 @@ msgstr "%s: Ověřovací soubor XML neexistuje.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A %s expected\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno %s\n"
-
-#, c-format
-msgid "%s: XML Document does not exist.\n"
-msgstr "%s: Dokument XML neexistuje.\n"
 
 #, c-format
 msgid "%s: Bad input argument #%d: A valid XML name expected.\n"
@@ -308,6 +308,16 @@ msgstr "Neplatný název souboru: "
 msgid "Cannot create a parser context"
 msgstr "Nelze vytvořit kontext zpracovatele"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%i: A double expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%i: Očekáváno číslo s dvojitou "
+"přesností.\n"
+
+#, c-format
+msgid "%s: Error in getting rhs argument.\n"
+msgstr "%s: Chyba při získávání argumentu rhs.\n"
+
 msgid " at line "
 msgstr " na řádku "
 
@@ -345,6 +355,26 @@ msgstr "Nelze zpracovat schéma"
 
 msgid "Cannot read the stream"
 msgstr "Nelze přečíst proud"
+
+#, c-format
+msgid "%s: No root element.\n"
+msgstr "%s: Žádný kořenový prvek.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%i: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type to set %s field.\n"
+msgstr "%s: Špatný typ k nastavení pole %s.\n"
+
+#, c-format
+msgid "%s: Not valid xml for root.\n"
+msgstr "%s: Není platné xml pro kořen.\n"
+
+#, c-format
+msgid "%s: Field %s is not modifiable: %s\n"
+msgstr "%s: Pole %s nelze změnit: %s\n"
 
 msgid "XML"
 msgstr "XML"

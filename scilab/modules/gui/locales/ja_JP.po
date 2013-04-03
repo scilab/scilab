@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
 "PO-Revision-Date: 2012-10-06 03:51+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -797,6 +797,9 @@ msgstr "コピー"
 msgid "Paste"
 msgstr "貼り付け"
 
+msgid "Clear Console"
+msgstr "コンソールを消去"
+
 #
 # File: scilab_fake_localization_file.c, line: 93
 msgid "Print..."
@@ -1170,9 +1173,6 @@ msgid ""
 msgstr ""
 "disp(\"警告: 事前の警告にも関わらず, 新しいグラフィック機能を有効にしてScilabを使用することを選択しました.  "
 "詳細な情報を得るには,\"\"help usecanvas\"\" と入力してください.\")"
-
-msgid "Clear Console"
-msgstr "コンソールを消去"
 
 msgid "Are you sure you want to clear the console ?"
 msgstr "コンソールを消去してもよろしいですか?"
@@ -1665,11 +1665,6 @@ msgstr "%s: NWNIモードでは利用できない関数です。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルまたは実数を指定してください.\n"
-
-#
-# File: macros/createpopup.sci, line: 50
-msgid "createPopupItems: found an empty cascading menu."
-msgstr "createPopupItems: 何も無いカスケード・メニューを見つけました。"
 
 #
 # File: macros/figure.sci, line: 26

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-23 17:39+0000\n"
-"Last-Translator: mrx5682 <Unknown>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:09+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: de\n"
 
 #, c-format
@@ -312,7 +312,7 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -355,7 +355,7 @@ msgstr ""
 "%s: falsche Anzahl von Eingangsargumenten: mindestens %d werden erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: In continuous time expected.\n"
+msgid "%s: Wrong type for argument #%d: In continuous time expected.\n"
 msgstr ""
 
 #, c-format
@@ -367,7 +367,7 @@ msgid "%s: Wrong type for input argument #%d: Vector of floats expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: falsche Größe für Argument %d: %d erwartet.\n"
 
 #, c-format
@@ -389,6 +389,10 @@ msgstr "%s: direkte Durchführung wird zum Nullgrad Koeffizient gesetzt.\n"
 #, c-format
 msgid "%s: Direct feedthrough set to zero.\n"
 msgstr "%s: direkte Durchgabe wird zu Null gesetzt.\n"
+
+#, c-format
+msgid "%s: Simulation failed before final time is reached.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
@@ -817,7 +821,7 @@ msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: falsche Größe für Argument %d: (%d,%d) erwartet.\n"
 
 #, c-format
@@ -829,7 +833,7 @@ msgstr ""
 "Erste sein.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "Falscher Typ für Argument %d: SISO erwartet.\n"
 
 #, c-format

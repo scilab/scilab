@@ -1,0 +1,92 @@
+# Spanish translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2012-12-08 22:30+0000\n"
+"Last-Translator: Christopher <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16546)\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgstr ""
+
+msgid "An error occurred while opening Preferences window:"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: A Java exception arised:\n"
+"%s"
+msgstr ""
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Preferences backup"
+msgstr "Preferencias de copia de seguridad"
+
+msgid "Select a backup file"
+msgstr "Seleccione una copia de seguridad"
+
+msgid "Scilab Configuration files"
+msgstr "Archivos de configuración de Scilab"
+
+msgid "Restore"
+msgstr ""
+
+msgid "Create a backup file"
+msgstr "Crear una copia de seguridad"
+
+msgid "Save"
+msgstr ""
+
+msgid "Select a file to open with SciNotes"
+msgstr ""
+
+msgid "Select a directory"
+msgstr ""
+
+msgid "Please install atoms module."
+msgstr ""
+
+msgid "Please install xcos module."
+msgstr "Por favor, instale el módulo xcos"
+
+msgid "Default"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Invalid path:"
+msgstr "Dirección no valida"
+
+msgid "Invalid preferences file:"
+msgstr "Archivo de preferencias inválido:"
+
+msgid "Scilab Preferences"
+msgstr "Preferencias de Scilab"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr ""

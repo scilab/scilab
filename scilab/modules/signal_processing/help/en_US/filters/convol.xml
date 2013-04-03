@@ -58,44 +58,44 @@
             <inlinemediaobject>
                 <imageobject>
                     <imagedata>
-                        <math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
-                            <math:semantics>
-                                <math:mrow>
-                                    <math:msub>
-                                        <math:mi>y</math:mi>
-                                        <math:mi>k</math:mi>
-                                    </math:msub>
-                                    <math:mo math:stretchy="false">=</math:mo>
-                                    <math:mrow>
-                                        <math:mrow>
-                                            <math:msub>
-                                                <math:mo math:stretchy="false">∑</math:mo>
-                                                <math:mi>j</math:mi>
-                                            </math:msub>
-                                            <math:msub>
-                                                <math:mi>h</math:mi>
-                                                <math:mi>j</math:mi>
-                                            </math:msub>
-                                        </math:mrow>
-                                        <math:mo math:stretchy="false">∗</math:mo>
-                                        <math:msub>
-                                            <math:mi>x</math:mi>
-                                            <math:mrow>
-                                                <math:mrow>
-                                                    <math:mi>k</math:mi>
-                                                    <math:mo math:stretchy="false">+</math:mo>
-                                                    <math:mn>1</math:mn>
-                                                </math:mrow>
-                                                <math:mo math:stretchy="false">−</math:mo>
-                                                <math:mi>j</math:mi>
-                                            </math:mrow>
-                                        </math:msub>
-                                    </math:mrow>
-                                </math:mrow>
-                                <math:annotation math:encoding="StarMath 5.0">y_k=sum_j h_j*x_{k+1-j}
-                                </math:annotation>
-                            </math:semantics>
-                        </math:math>
+                        <mml:math>
+                            <mml:semantics>
+                                <mml:mrow>
+                                    <mml:msub>
+                                        <mml:mi>y</mml:mi>
+                                        <mml:mi>k</mml:mi>
+                                    </mml:msub>
+                                    <mml:mo mml:stretchy="false">=</mml:mo>
+                                    <mml:mrow>
+                                        <mml:mrow>
+                                            <mml:msub>
+                                                <mml:mo mml:stretchy="false">∑</mml:mo>
+                                                <mml:mi>j</mml:mi>
+                                            </mml:msub>
+                                            <mml:msub>
+                                                <mml:mi>h</mml:mi>
+                                                <mml:mi>j</mml:mi>
+                                            </mml:msub>
+                                        </mml:mrow>
+                                        <mml:mo mml:stretchy="false">∗</mml:mo>
+                                        <mml:msub>
+                                            <mml:mi>x</mml:mi>
+                                            <mml:mrow>
+                                                <mml:mrow>
+                                                    <mml:mi>k</mml:mi>
+                                                    <mml:mo mml:stretchy="false">+</mml:mo>
+                                                    <mml:mn>1</mml:mn>
+                                                </mml:mrow>
+                                                <mml:mo mml:stretchy="false">−</mml:mo>
+                                                <mml:mi>j</mml:mi>
+                                            </mml:mrow>
+                                        </mml:msub>
+                                    </mml:mrow>
+                                </mml:mrow>
+                                <mml:annotation mml:encoding="StarMath 5.0">y_k=sum_j h_j*x_{k+1-j}
+                                </mml:annotation>
+                            </mml:semantics>
+                        </mml:math>
                     </imagedata>
                 </imageobject>
             </inlinemediaobject>

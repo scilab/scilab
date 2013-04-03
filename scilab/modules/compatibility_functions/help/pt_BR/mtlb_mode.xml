@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>mmode=mtlb_mode()
+        <synopsis>mmode = mtlb_mode()
             mtlb_mode(mmode)
         </synopsis>
     </refsynopsisdiv>
@@ -24,25 +24,33 @@
     <refsection>
         <title>Descrição</title>
         <para>Adições e subtrações do Scilab e do Matlab funcionam de modo
-            diferente quando usadas com matrizes vazias: 
+            diferente quando usadas com matrizes vazias:
         </para>
         <variablelist>
             <varlistentry>
                 <term>Scilab</term>
                 <listitem>
                     <para/>
-                    <programlisting role=""><![CDATA[ 
-a+[] -->a
-a-[] -->a
-[]+a -->a
-[]-a -->-a
+                    <programlisting role=""><![CDATA[
+a=1;
+a+[]
+// -->a
+
+a-[]
+// -->a
+
+[]+a
+// -->a
+
+[]-a
+// -->-a
  ]]></programlisting>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Matlab</term>
                 <listitem>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role="no-scilab-exec"><![CDATA[
 a+[] -->[]
 a-[] -->[]
 []+a -->[]
@@ -52,13 +60,13 @@ a-[] -->[]
             </varlistentry>
         </variablelist>
         <para>
-            <literal> mtlb_mode(%t)</literal> alterna para o modo de operações
-            para adição e subtração do Matlab. <literal> mtlb_mode(%f)</literal> volta
+            <code>mtlb_mode(%t)</code> alterna para o modo de operações
+            para adição e subtração do Matlab. <code>mtlb_mode(%f)</code> volta
             para o modo de operações do Scilab.
         </para>
         <para>
-            <literal> mtlb_mode()</literal> retorna o valor 'mmode'
-            corrente.
+            <code>mtlb_mode()</code> retorna o valor <varname>mmode</varname>
+            corrente (<constant>%t</constant>=Matlab, <constant>%f</constant>=Scilab).
         </para>
     </refsection>
     <refsection>

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-09-12 14:54+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:09+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: ru\n"
 
 #, c-format
@@ -1048,7 +1048,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s: Найдено «%s» вместо блока.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr "%s: Неверный тип параметра %d: ожидалась структура диаграммы"
 
 #, c-format
@@ -1069,7 +1069,7 @@ msgstr ""
 "в данный каталог.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr ""
 "%s: Неверный тип параметра %d: ожидалась строка или структура диаграммы"
 
@@ -1190,7 +1190,7 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: Не удалось экспортировать палитру в hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr "%s: Неверный тип аргумента %d: ожидалась строка."
 
 msgid "Interface function does not exist or can not be called."

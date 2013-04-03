@@ -21,27 +21,27 @@
 Source: bin\{#INTERSCI}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#INTERSCI}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTERSCI}\license.txt; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\license.txt; DestDir: {app}\modules\{#INTERSCI}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTERSCI}\etc\{#INTERSCI}.quit; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}
-Source: modules\{#INTERSCI}\etc\{#INTERSCI}.start; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\etc\{#INTERSCI}.quit; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#INTERSCI}\etc\{#INTERSCI}.start; DestDir: {app}\modules\{#INTERSCI}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTERSCI}\includes\*.h; DestDir: {app}\modules\{#INTERSCI}\includes; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\includes\*.h; DestDir: {app}\modules\{#INTERSCI}\includes; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#INTERSCI}\macros\lib; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
-;Source: modules\{#INTERSCI}\macros\names; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
-;Source: modules\{#INTERSCI}\macros\*.bin; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
-;Source: modules\{#INTERSCI}\macros\*.sci; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
-Source: modules\{#INTERSCI}\macros\buildmacros.sce; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
-Source: modules\{#INTERSCI}\macros\buildmacros.bat; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
-Source: modules\{#INTERSCI}\macros\cleanmacros.bat; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_INTERSCI}
+;Source: modules\{#INTERSCI}\macros\lib; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#INTERSCI}\macros\names; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#INTERSCI}\macros\*.bin; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#INTERSCI}\macros\*.sci; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#INTERSCI}\macros\buildmacros.sce; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#INTERSCI}\macros\buildmacros.bat; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#INTERSCI}\macros\cleanmacros.bat; DestDir: {app}\modules\{#INTERSCI}\macros; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#INTERSCI}\demos\*.*; DestDir: {app}\modules\{#INTERSCI}\demos; Flags: recursesubdirs; Components: {#COMPN_INTERSCI}
+;Source: modules\{#INTERSCI}\demos\*.*; DestDir: {app}\modules\{#INTERSCI}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTERSCI}\bin\*.exe; DestDir: {app}\modules\{#INTERSCI}\bin; Components: {#COMPN_INTERSCI}
+Source: modules\{#INTERSCI}\bin\*.exe; DestDir: {app}\modules\{#INTERSCI}\bin; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#INTERSCI}\examples\*.*; DestDir: {app}\modules\{#INTERSCI}\examples; Flags: recursesubdirs; Components: {#COMPN_INTERSCI}
+;Source: modules\{#INTERSCI}\examples\*.*; DestDir: {app}\modules\{#INTERSCI}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTERSCI}\tests\*.*; DestDir: {app}\modules\{#INTERSCI}\tests; Flags: recursesubdirs; Components: {#COMPN_INTERSCI} and {#COMPN_TESTS}
+Source: modules\{#INTERSCI}\tests\*.*; DestDir: {app}\modules\{#INTERSCI}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

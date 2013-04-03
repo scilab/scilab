@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-01-05 22:17+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-26 04:09+0000\n"
 "Last-Translator: konrad509 <konrad509@op.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: pl\n"
 
 #, c-format
@@ -321,7 +321,7 @@ msgstr ""
 "czasie.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru %d: Oczekiwano wektora liczb rzeczywistych.\n"
 
@@ -370,7 +370,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: In continuous time expected.\n"
+msgid "%s: Wrong type for argument #%d: In continuous time expected.\n"
 msgstr ""
 
 #, c-format
@@ -382,7 +382,7 @@ msgid "%s: Wrong type for input argument #%d: Vector of floats expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Nieprawidłowy rozmiar argumentu %d: oczekiwano %d.\n"
 
 #, c-format
@@ -404,6 +404,10 @@ msgstr "%s: Bezpośredni przepust ustawiony na swój zerowy współczynnik\n"
 #, c-format
 msgid "%s: Direct feedthrough set to zero.\n"
 msgstr "%s: Bezpośredni przepust ustawiony na zero.\n"
+
+#, c-format
+msgid "%s: Simulation failed before final time is reached.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
@@ -832,7 +836,7 @@ msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
 
 #, c-format
@@ -842,7 +846,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "Nieprawidłowy typ argumentu %d: oczekiwany jest SISO.\n"
 
 #, c-format

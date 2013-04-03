@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("Graphics : exporting and printing",SCI+"/modules/graphic_export/help/ru_RU",%T);
+add_help_chapter("Графики: экспорт и печать",SCI+"/modules/graphic_export/help/ru_RU",%T);
 

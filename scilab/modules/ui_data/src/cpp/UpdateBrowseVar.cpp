@@ -65,13 +65,13 @@ void UpdateBrowseVar(BOOL update)
     int *piAllVariableBytes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     char **pstAllVariableSizes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
-    bool *piAllVariableFromUser = (bool *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(BOOL));
+    bool *piAllVariableFromUser = (bool *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(bool));
     int nbRows, nbCols;
     char *sizeStr = NULL;
 
     std::set < string > scilabDefaultVariablesSet = createScilabDefaultVariablesSet();
 
-    // for each local variable get informations
+    // for each local variable get information
     for (; i < iLocalVariablesUsed; ++i)
     {
         // name
@@ -113,7 +113,7 @@ void UpdateBrowseVar(BOOL update)
         }
     }
 
-    // for each global variable get informations
+    // for each global variable get information
     for (int j = 0; j < iGlobalVariablesUsed; ++j, ++i)
     {
         // name

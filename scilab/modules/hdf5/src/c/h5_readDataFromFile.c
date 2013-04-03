@@ -162,6 +162,7 @@ static char* readAttribute(int _iDatasetId, const char *_pstName)
         status = H5Tset_size(memtype, iDim);
         if (status < 0)
         {
+            FREE(pstValue);
             return NULL;
         }
 
@@ -271,12 +272,13 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
         return -1;
     }
 
-    if (_piDims != 0)
+    if (_piDims != 0 && *_iDims != 0)
     {
         int i = 0;
         hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) * *_iDims);
         if (H5Sget_simple_extent_dims(space, dims, NULL) < 0)
         {
+            FREE(dims);
             return -1;
         }
 
@@ -288,6 +290,10 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
             iSize *= _piDims[i];
         }
 
+    }
+    else
+    {
+        iSize = 0;
     }
 
     H5Sclose(space);
@@ -519,6 +525,7 @@ int readDoubleComplexMatrix(int _iDatasetId, double *_pdblReal, double *_pdblImg
     status = H5Dread(_iDatasetId, compoundId, H5S_ALL, H5S_ALL, H5P_DEFAULT, pData);
     if (status < 0)
     {
+        FREE(pData);
         return -1;
     }
 
@@ -933,6 +940,12 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
         return -1;
     }
 
+    status = H5Dclose(_iDatasetId);
+    if (status < 0)
+    {
+        return -1;
+    }
+
     return 0;
 }
 
@@ -978,6 +991,12 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
         {
             return -1;
         }
+    }
+
+    status = H5Dclose(_iDatasetId);
+    if (status < 0)
+    {
+        return -1;
     }
     return 0;
 }

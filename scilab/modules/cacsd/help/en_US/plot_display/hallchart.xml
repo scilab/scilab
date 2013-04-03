@@ -18,7 +18,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>hallchart([ modules [,args [,colors]]])</synopsis>
-        <synopsis/>
+        
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -89,7 +89,7 @@
     cj=c(10+j); //the handle on the -45° curve
     cj.children(1).thickness=3;//draw it thicker
      ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             clf();hallchart()
             ax=gca();
             c=ax.children($).children;
@@ -109,7 +109,7 @@
     clf();hallchart()
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 hallchart()
             </scilab:image>
         </para>
@@ -128,7 +128,7 @@
     Leg.legend_location="in_lower_right";
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=poly(0,'s');
                 Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
                 tau=0.2;xsi=1.2;

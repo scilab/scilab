@@ -20,7 +20,6 @@ int ScilabGateway::getFields(char * fname, const int envId, void * pvApiCtx)
     SciErr err;
     int * addr = 0;
     int tmpvar[2] = {0, 0};
-    int row = 0, col = 0;
     int idObj = 0;
     ScilabStringStackAllocator * allocator = 0;
 
@@ -28,7 +27,7 @@ int ScilabGateway::getFields(char * fname, const int envId, void * pvApiCtx)
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();
-    OptionsHelper::setCopyOccured(false);
+    OptionsHelper::setCopyOccurred(false);
     ScilabObjects::initialization(env, pvApiCtx);
     options.setIsNew(false);
 

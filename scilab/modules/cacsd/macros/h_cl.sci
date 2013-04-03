@@ -26,7 +26,7 @@ function Aclosed=h_cl(P,r,K)
     iK=2
   elseif RHS==3 then //h_cl(P,r,K)
     if typeof(r)<>"constant"|~isreal(r) then
-      error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"h_cl",2))
+      error(msprintf(gettext("%s: Wrong type for argument #%d: Real vector expected.\n"),"h_cl",2))
     end
     if size(r,'*')<>2 then
       error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"h_cl",2,2))

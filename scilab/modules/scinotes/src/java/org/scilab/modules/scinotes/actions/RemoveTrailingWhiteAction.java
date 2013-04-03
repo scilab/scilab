@@ -11,6 +11,8 @@
  */
 package org.scilab.modules.scinotes.actions;
 
+import java.io.IOException;
+
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -64,6 +66,18 @@ public final class RemoveTrailingWhiteAction extends DefaultAction {
             }
         }
         doc.mergeEditsEnd();
+    }
+
+    /**
+     * @return an action to reindent a document
+     */
+    public static SciNotes.ActionOnDocument getActionOnDocument() {
+        return new SciNotes.ActionOnDocument() {
+            public void actionOn(ScilabDocument doc) throws IOException {
+                TrailingWhiteManager trailingWhite = new TrailingWhiteManager(doc);
+                trailingWhite.removeTrailingWhite(0, doc.getLength());
+            }
+        };
     }
 
     /**

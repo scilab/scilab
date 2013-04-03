@@ -10,3 +10,5 @@ com_
 freeArrayOfString
 oGetDoubleComplexFromPointer
 vGetPointerFromDoubleComplex
+MyHeapAlloc
+MyHeapFree

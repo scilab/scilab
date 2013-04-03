@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-09-21 09:30+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-22 14:38+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: fr\n"
 
 #, c-format
@@ -418,7 +418,7 @@ msgid "Style: "
 msgstr "Style : "
 
 msgid "Filled"
-msgstr "Justifié"
+msgstr "Surligné"
 
 msgid "Framed"
 msgstr "Encadré"
@@ -461,7 +461,7 @@ msgid "Enable autosave in Scinotes"
 msgstr "Activer l'enregistrement automatique dans SciNotes"
 
 msgid "Save options"
-msgstr "Enregistrer les options"
+msgstr "Options de sauvegarde"
 
 msgid "Save every "
 msgstr "Enregistrer toutes les "
@@ -470,7 +470,7 @@ msgid " minutes "
 msgstr " minutes "
 
 msgid "Close options"
-msgstr "Fermer les options"
+msgstr "Options de fermeture"
 
 msgid "Delete automatically saved files"
 msgstr "Supprimer les fichiers enregistrés automatiquement"
@@ -513,6 +513,18 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "Erreur pendant la lecture de la chaîne de caractères"
+
+#, c-format
+msgid "File not found: %s"
+msgstr "Fichier introuvable : %s"
+
+#, c-format
+msgid "I/O error: %s"
+msgstr "Erreur E/S : %s"
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr "Le fichier %s a été modifié par un autre programme. Le recharger ?"
 
 msgid "Source of '"
 msgstr "Source de '"
@@ -726,12 +738,8 @@ msgid "String %s not found"
 msgstr "Chaîne %s non trouvée"
 
 #, c-format
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Le fichier %s n'existe pas\n"
-"Le créer ?"
+msgid "The file %s does not exist. Do you want to create it?"
+msgstr "Le fichier %s n'existe pas. Souhaitez-vous le créer ?"
 
 msgid "close this tab"
 msgstr "Fermer cet onglet"
@@ -739,20 +747,13 @@ msgstr "Fermer cet onglet"
 msgid "This file"
 msgstr "Ce fichier"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
-msgstr ""
-" a été modifié depuis le dernier enregistrement\n"
-"L'enregistrer ?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
+msgstr "%s a été modifié depuis le dernier enregistrement. L'enregistrer ?"
 
 #, c-format
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
-msgstr ""
-"Le fichier %s a été modifié par un autre programme !\n"
-" L'écraser ?"
+msgid "The file %s has been modified by another program ! Overwrite it ?"
+msgstr "Le fichier %s a été modifié par un autre programme. L'écraser ?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Attention : Le fichier a été modifié par un autre programme !"

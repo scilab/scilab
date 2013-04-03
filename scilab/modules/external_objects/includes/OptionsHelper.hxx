@@ -23,7 +23,7 @@ namespace org_modules_external_objects
 
 class EXTERNAL_OBJECTS_SCILAB_IMPEXP OptionsHelper
 {
-    static bool copyOccured;
+    static bool copyOccurred;
     static int envId;
 
     bool useLastName;
@@ -40,14 +40,14 @@ public:
 
     ~OptionsHelper() { }
 
-    static void setCopyOccured(const bool _copyOccured)
+    static void setCopyOccurred(const bool _copyOccurred)
     {
-        copyOccured = _copyOccured;
+        copyOccurred = _copyOccurred;
     }
 
-    static bool getCopyOccured()
+    static bool getCopyOccurred()
     {
-        return copyOccured;
+        return copyOccurred;
     }
 
     static void setEnvId(const int _envId)

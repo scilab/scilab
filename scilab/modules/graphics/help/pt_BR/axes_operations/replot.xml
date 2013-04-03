@@ -63,8 +63,6 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
-backupstyle='?'
-
 // primeiro exemplo
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x)) 

@@ -582,7 +582,7 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
 
         if (iRows2 != 1 || iCols2 != 1)
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
+            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
                             1);
             return sciErr;
         }
@@ -603,7 +603,7 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
 
         if (iRows2 != 1 || iCols2 != 1)
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
+            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
                             1);
             return sciErr;
         }
@@ -688,7 +688,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
     {
         if (isVarComplex(_pvCtx, _piAddress))
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for argument %d: Real matrix expected.\n"), "getDimFromVar",
+            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "getDimFromVar",
                             getRhsFromAddress(_pvCtx, _piAddress));
             return sciErr;
         }
@@ -715,7 +715,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
 
         if (iRows != 1 || iCols != 1)
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode",
+            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), "getProcessMode",
                             getRhsFromAddress(_pvCtx, _piAddress), 1, 1);
             return sciErr;
         }
@@ -1438,7 +1438,7 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
     //get varId from varName
     C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 
-    //create a null matrix a the Top of the stack
+    //create a null matrix at the Top of the stack
     Top = Top + 1;
     il = iadr(*Lstk(Top));
     *istk(il) = 0;

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -106,7 +106,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -134,7 +134,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -169,7 +169,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -205,7 +205,6 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="httpdownloadfile.c" />
     <ClCompile Include="InitializeWindows_tools.c" />
     <ClCompile Include="registry.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_chartooem.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_consolebox.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_createGUID.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_dos.c" />
@@ -213,7 +212,6 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="..\..\sci_gateway\c\sci_getsystemmetrics.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_istssession.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_mcisendstring.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_oemtochar.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_win64.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_winopen.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_winqueryreg.c" />
@@ -254,10 +252,6 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\libs\GetWindowsVersion\GetWindowsVersion.vcxproj">
       <Project>{982bf37f-42c4-4d37-8d14-60521b141503}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

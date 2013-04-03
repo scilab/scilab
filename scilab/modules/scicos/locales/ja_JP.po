@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-03 14:47+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-22 14:59+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -1104,6 +1104,10 @@ msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: ダイアグラムを指定してください.\n"
 
 #, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s: ブロックパラメータを評価する際にエラーが発生しました.\n"
+
+#, c-format
 msgid "%s: Unable to find diagram inputs\n"
 msgstr "%s: ダイアグラムの入力がありません\n"
 
@@ -1158,15 +1162,9 @@ msgstr "古いダイアグラムを変換できません (バージョンに問�
 
 #, c-format
 msgid ""
-"Warning the variable %s do not match any context variable name\n"
+"Warning the variable %s does not match any context variable name\n"
 "ignored"
-msgstr ""
-"警告: 変数 %s はコンテキストの変数名に一致しません.\n"
-"無視されます."
-
-#, c-format
-msgid "%s: Error during block parameters evaluation.\n"
-msgstr "%s: ブロックパラメータを評価する際にエラーが発生しました.\n"
+msgstr "警告: 変数 %s に一致するコンテキストの変数名がありません"
 
 #, c-format
 msgid "%s: Error during block parameters update.\n"
@@ -1314,12 +1312,12 @@ msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: %s 型は実装されていません.\n"
 
 #, c-format
-msgid "%s: invalid dimension for '%s', waiting for %s"
-msgstr "%s: '%s' の次元が間違っています,  %s を指定してください"
+msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
+msgstr "%s: ブロックパラメータ '%s' の大きさが間違っています: %s を予測しましたが, %s が取得されました"
 
 #, c-format
-msgid "%s: incorrect type for '%s', getting %s"
-msgstr "%s: '%s' の型が間違っています,  %s が指定されました"
+msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
+msgstr "%s: ブロックパラメータ '%s' の型が間違っています:  %s(%s) を予測しましたが, %s が取得されました"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

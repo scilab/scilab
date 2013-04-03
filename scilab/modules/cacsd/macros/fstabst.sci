@@ -25,7 +25,7 @@ function [J]=fstabst(Stplant,r)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"fstabst",1))
   end
   if Stplant.dt<>"c" then
-    error(msprintf(gettext("%s: Wrong type for argument %d: In continuous time expected.\n"),"fstabst",1))
+    error(msprintf(gettext("%s: Wrong type for argument #%d: In continuous time expected.\n"),"fstabst",1))
   end
   flag=0;
   if typeof(Stplant)=='rational' then Stplant=tf2ss(Stplant),flag=1;end

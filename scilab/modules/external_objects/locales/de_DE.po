@@ -1,0 +1,178 @@
+# German translation for scilab
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-01-03 02:26+0000\n"
+"Last-Translator: Scott <Unknown>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16546)\n"
+
+msgid "Exception thrown in file"
+msgstr ""
+
+msgid "at line"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occurred: %s"
+msgstr ""
+
+#, c-format
+msgid "Invalid environment: identifier %d is invalid"
+msgstr ""
+
+msgid "Invalid environment"
+msgstr ""
+
+#, c-format
+msgid "Invalid variable name: %s"
+msgstr ""
+
+msgid "Cannot allocate memory"
+msgstr ""
+
+msgid "Invalid variable: cannot retrieve the data"
+msgstr ""
+
+msgid "Invalid variable: cannot create data"
+msgstr ""
+
+msgid "External Class expected"
+msgstr ""
+
+msgid "Incompatible External Objects"
+msgstr ""
+
+msgid "External object expected"
+msgstr ""
+
+msgid "Unable to wrap. Unmanaged datatype ?"
+msgstr ""
+
+msgid "Invalid String"
+msgstr ""
+
+msgid "A single string expected"
+msgstr ""
+
+msgid "A single String expected"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for argument #%d: A string expected."
+msgstr ""
+
+#, c-format
+msgid "Cannot open the given file %s."
+msgstr ""
+
+#, c-format
+msgid "Wrong number of arguments : more than %d expected."
+msgstr ""
+
+#, c-format
+msgid "A strictly positive integer is expected at position %d."
+msgstr ""
+
+msgid "Invalid name"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: A String expected."
+msgstr ""
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr ""
+
+msgid "The argument must be 'rc' or 'cr'."
+msgstr ""
+
+#, c-format
+msgid "Invalid dimensions for input argument #%d: A single string expected."
+msgstr ""
+
+msgid "Invalid dimensions: arguments #2 and #3 must have the same."
+msgstr ""
+"Fehlerhafte Dimension: Argumente #2 und #3 müssen der gleichen Dimension "
+"sein."
+
+msgid "Invalid variable: cannot create the data"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr ""
+
+msgid "Incompatible External Object"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: A string expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: A boolean expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: A single boolean expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: An External Object expected."
+msgstr ""
+
+msgid "Cannot create the identifier"
+msgstr ""
+
+msgid "The class name cannot end with a dot."
+msgstr ""
+
+msgid "The class name cannot start with a dot."
+msgstr ""
+
+msgid "A variable with this name is already existing"
+msgstr ""
+
+msgid "Bad number of output arguments"
+msgstr ""
+
+msgid "Wrong number of arguments : more than 2 arguments expected"
+msgstr ""
+
+msgid "Cannot invoke on null object"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: A List expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: An Integer32 expected."
+msgstr ""
+
+msgid "Cannot invoke on null object."
+msgstr ""
+
+msgid "Wrong number of arguments : more than 1 argument expected"
+msgstr ""
+
+msgid "Wrong number of arguments : more than 1 argument expected."
+msgstr ""
+
+#, c-format
+msgid "Cannot wrap argument %d."
+msgstr ""
+
+msgid "Can only wrap as a reference to a named variable"
+msgstr ""

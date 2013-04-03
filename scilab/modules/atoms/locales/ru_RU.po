@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-11 11:19+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-19 15:03+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: ru\n"
 
 #, c-format
@@ -802,40 +802,40 @@ msgid "Download in progress... Please be patient."
 msgstr "Идёт загрузка... Пожалуйста, подождите."
 
 #, c-format
-msgid "%s: Error: Invalid URL.\n"
-msgstr "%s: Ошибка: Неправильный URL.\n"
+msgid "%s: Error: the response status from the URL %s is invalid.\n"
+msgstr "%s: Ошибка: статус ответа от URL %s не корректен.\n"
 
 #, c-format
-msgid "%s: Error: Internet Open.\n"
-msgstr "%s: Ошибка при соединении к сети Internet.\n"
+msgid "%s: Error while opening an Internet connection.\n"
+msgstr "%s: Ошибка во время открытия интернет-соединения.\n"
 
 #, c-format
-msgid "%s: Error: URL Open.\n"
-msgstr "%s: Ошибка при открытии URL.\n"
+msgid "%s: Error while opening the URL %s.\n"
+msgstr "%s: Ошибка во время открытия URL %s.\n"
 
 #, c-format
-msgid "%s: Error: Createfile.\n"
-msgstr "%s: Ошибка при создании файла.\n"
+msgid "%s: Error while creating the file %s on disk.\n"
+msgstr "%s: Ошибка во время создания файла %s на диске.\n"
 
 #, c-format
-msgid "%s: Error: Invalid File size.\n"
-msgstr "%s: Ошибка: Некорректный размер файла.\n"
+msgid "%s: Error while retrieving the size of file at URL %s.\n"
+msgstr "%s: Ошибка во время получения размера файла по URL %s.\n"
 
 #, c-format
-msgid "%s: Error: Internet Read file.\n"
-msgstr "%s: Ошибка чтения файла по сети  Internet.\n"
+msgid "%s: Error while reading the file from the URL %s.\n"
+msgstr "%s: Ошибка чтения файла по URL %s.\n"
 
 #, c-format
-msgid "%s: Error: Write file.\n"
-msgstr "%s: Ошибка записи файла.\n"
+msgid "%s: Error while writing the file %s on disk.\n"
+msgstr "%s: Ошибка во время записи файла %s на диск.\n"
 
 #, c-format
-msgid "%s: Error: Failure.\n"
-msgstr "%s: Критичная ошибка.\n"
+msgid "%s: Error while downloading the file from the URL %s.\n"
+msgstr "%s: Ошибка во время загрузки файла по URL %s.\n"
 
 #, c-format
-msgid "%s: Error: Out Of Memory.\n"
-msgstr "%s: Ошибка: Память исчерпана.\n"
+msgid "%s: Error: out of memory.\n"
+msgstr "%s: Ошибка: нехватка памяти.\n"
 
 #, c-format
 msgid "%s: The following file hasn't been downloaded:\n"

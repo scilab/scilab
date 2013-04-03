@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-11-12 18:11+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-19 18:08+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: uk\n"
 
 #, c-format
@@ -470,6 +470,10 @@ msgid "Simulated Annealing"
 msgstr "Моделювання відпалювання"
 
 #, c-format
+msgid "%s: More than 20 equations are not allowed"
+msgstr "%s: не можна задавати понад 20 рівнянь"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: помилкова кількість вхідних параметрів.\n"
 
@@ -614,6 +618,12 @@ msgid ""
 "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d. x0 перевищує верхню межу (ub)."
+
+#, c-format
+msgid "%s: The algorithm did not converge (exitflag= %d).\n"
+msgstr ""
+"%s: збіжності з використанням визначеного алгоритму не досягнуто (прапорець "
+"виходу = %d).\n"
 
 #, c-format
 msgid ""
@@ -1183,7 +1193,7 @@ msgstr ""
 "4."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr "%s: помилковий тип параметра %d: мало бути використано %s.\n"
 
 #, c-format
@@ -1249,7 +1259,7 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: у векторі індексів виключення %d рядків замість 1."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
 "значень.\n"

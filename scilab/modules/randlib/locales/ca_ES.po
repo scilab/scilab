@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
 "PO-Revision-Date: 2012-04-19 18:15+0000\n"
 "Last-Translator: Marc Coll Carrillo <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: ca\n"
 
 #, c-format
@@ -40,24 +40,8 @@ msgstr ""
 "l'opció '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
-"%s: El segon argument és d'un tipus incorrecte: Ha de ser un escalar.\n"
-
-#, c-format
-msgid "%s: Wrong type for third input argument: Scalar expected.\n"
-msgstr ""
-"%s: El tercer argument és d'un tipus incorrecte: Ha de ser un escalar.\n"
-
-#, c-format
-msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
-msgstr ""
-"%s: El quart argument és d'un tipus incorrecte: Ha de ser un escalar.\n"
-
-#, c-format
-msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
-msgstr ""
-"%s: El cinquè argument és d'un tipus incorrecte: Ha de ser un escalar.\n"
 
 #, c-format
 msgid ""
@@ -76,10 +60,8 @@ msgstr ""
 "%d valors per a %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
 msgstr ""
-"%s: El segon argument d'entrada té una mida incorrecta: Ha de ser de (%d x "
-"%d).\n"
 
 #, c-format
 msgid ""
@@ -116,47 +98,37 @@ msgid "%s: The %s option affects only the %s generator\n"
 msgstr "%s: L'opció %s només afecta al generador %s\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: %d, %d or %d expected.\n"
+msgid "%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"
 msgstr ""
-"%s: El segon argument d'entrada té un valor incorrecte: Ha de ser %d, %d o "
-"%d.\n"
 
 #, c-format
 msgid "The %s option affects only the %s generator\n"
 msgstr "L'opció %s només afecta al generador %s\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
-"%s: El segon argument d'entrada té un valor incorrecte: Ha de ser entre %d i "
-"%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be > %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
-"%s: El segon argument d'entrada té un valor incorrecte: Ha de ser > %d.\n"
 
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Aquesta informació només té a veure amb el generador clcg4\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
-"'%s' expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
 msgstr ""
-"%s: El segon argument d'entrada té un valor incorrecte: Ha de ser '%s', "
-"'%s', '%s', '%s', '%s' o '%s'.\n"
 
 #, c-format
-msgid "%s Wrong value for first input argument %s.\n"
-msgstr "%s El primer argument d'entrada té un valor incorrecte %s.\n"
+msgid "%s Wrong value for input argument #%d: %s.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Scalar expected.\n"
+msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
 msgstr ""
-"%s: El primer argument d'entrada és d'un tipus incorrecte: Ha de ser un "
-"escalar.\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "Falten la A i la B per a la llei beta\n"
@@ -179,11 +151,9 @@ msgstr "Els graus de llibertat no són positius\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "deviate.\n"
 msgstr ""
-"%s: El primer argument té un valor incorrecte: Ha de ser el número de "
-"desviació aleatòria.\n"
 
 msgid "Missing N and P for MULtinomial law\n"
 msgstr "Falten la N i la P per a la llei Multinomial\n"
@@ -268,11 +238,9 @@ msgstr "Falten la N i la P per a la llei Binomial\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "simulation.\n"
 msgstr ""
-"%s: El primer argument d'entrada té un valor incorrecte: Ha de ser el número "
-"de simulació aleatòria.\n"
 
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr "Falten el Mean i el Cov per a la llei Normal multivariant\n"
@@ -301,10 +269,9 @@ msgstr "%s: Falta la matriu P i la X0 per a la cadena de Markov\n"
 
 #, c-format
 msgid ""
-"%s: Wrong second input argument: Square matrix or row vector expected.\n"
+"%s: Wrong type for input argument #%d: Square matrix or row vector "
+"expected.\n"
 msgstr ""
-"%s: El segon argument d'entrada és incorrecte: Ha de ser una matriu quadrada "
-"o un vector fila.\n"
 
 msgid "X0 is empty\n"
 msgstr "X0 és buida\n"

@@ -225,7 +225,7 @@
                     <para>
                         <code>Y = grand(m, n, "nbn", N, p)</code> generates random variates from the
                         negative binomial distribution with parameters <varname>N</varname> (positive integer) and <varname>p</varname> (<literal>real</literal>
-                            in <literal>(0,1)</literal>) : number of failures occurring before <varname>N</varname> successes
+                        in <literal>(0,1)</literal>) : number of failures occurring before <varname>N</varname> successes
                         in independent Bernouilli trials with probability <varname>p</varname> of success.
                         Related function: <link linkend="cdfnbn">cdfnbn</link>.
                     </para>
@@ -249,7 +249,7 @@
                         <code>Y = grand(m, n, "nch", Df, Xnonc)</code> generates
                         random variates from the non-central chisquare
                         distribution with <varname>Df</varname> degrees of freedom
-                            (<literal>real</literal> &gt;= <literal>1.0</literal>) and noncentrality parameter
+                        (<literal>real</literal> &gt;= <literal>1.0</literal>) and noncentrality parameter
                         <varname>Xnonc</varname> (<literal>real</literal> &gt;= <literal>0.0</literal>).  Related
                         function: <link linkend="cdfchn">cdfchn</link>.
                     </para>
@@ -261,7 +261,7 @@
                     <para>
                         <code>Y = grand(m, n, "exp", Av)</code> generates
                         random variates from the exponential distribution with mean
-                            <varname>Av</varname> (<literal>real</literal> &gt; <literal>0.0</literal>).
+                        <varname>Av</varname> (<literal>real</literal> &gt; <literal>0.0</literal>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -445,7 +445,7 @@
                         <varname>Low</varname> and <varname>High</varname>
                         (included). <varname>High</varname> and
                         <varname>Low</varname> must be integers such that
-                        <literal>(High-Low+1) &lt; 2,147,483,561</literal>.
+                        <latex><![CDATA[(\textrm{High}-\textrm{Low}+1) < 2\,147\,483\,561]]></latex>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -933,7 +933,7 @@ grand("setsd",n)
             that used by  method  one.  When both  have concluded,  advance the block for both generators.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
             <member>

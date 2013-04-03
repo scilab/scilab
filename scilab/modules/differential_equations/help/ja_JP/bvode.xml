@@ -1448,7 +1448,7 @@ function [dmval,zu]=fsub(x,parameters)
             この方法は,i番目(i = 1:N)の要素についてm(i)-1階の連続微分が可であることを
             必要とします.
             ここで, k はサブ区間毎のコロケーション点(ステージ)の数で,
-            k .ge. max m(i) となるように選択されます.
+            <latex>k \ge \max\left(m(i)\right)</latex> となるように選択されます.
             ルンゲクッタのノミナル解表現が使用されます.
         </para>
     </refsection>

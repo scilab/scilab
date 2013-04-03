@@ -162,6 +162,9 @@ deff("[z]=g(t,y)","z=y-[2;2;33]")
                 <link linkend="dasrt">dasrt</link>
             </member>
             <member>
+                <link linkend="daskr">daskr</link>
+            </member>
+            <member>
                 <link linkend="ode">ode</link>
             </member>
         </simplelist>

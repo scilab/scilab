@@ -13,45 +13,54 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="Sfgrayplot">
     <refnamediv>
         <refname>Sfgrayplot</refname>
-        <refpurpose>smooth 2D plot of a surface defined by a function using colors
+        <refpurpose>
+            smooth 2D plot of a surface defined by a function using colors
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>Sfgrayplot(x,y,f,&lt;opt_args&gt;)
-            Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])
+        <synopsis>
+            Sfgrayplot(x, y, f, &lt;opt_args&gt;)
+            Sfgrayplot(x, y, f [,strf, rect, nax, zminmax, colminmax, mesh, colout])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x,y</term>
+                <term>x, y</term>
                 <listitem>
-                    <para>real row vectors of size n1 and n2.</para>
+                    <para>
+                        real row vectors of size <literal>n1</literal> and <literal>n2</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>scilab function (z=f(x,y))</para>
+                    <para>
+                        a scilab function (<literal>z=f(x,y)</literal>).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
                     <para>
-                        This represents a sequence of statements <literal>key1=value1,
-                            key2=value2
-                        </literal>
-                        ,... where <literal>key1</literal>,
-                        <literal>key2,...</literal> can be one of the following: strf, rect, nax, zminmax, colminmax, mesh, colout
-                        (see <link linkend="plot2d">plot2d</link> for the 3 first and <link linkend="fec">fec</link> for the 4 last).
+                        this represents a sequence of statements 
+                        <literal>key1=value1, key2=value2, ...</literal>
+                        where <literal>key1</literal>, <literal>key2, ...</literal>
+                        can be one of the following: <varname>strf</varname>,
+                        <varname>rect</varname>, <varname>nax</varname>,
+                        <varname>zminmax</varname>, <varname>colminmax</varname>,
+                        <varname>mesh</varname>, <varname>colout</varname>
+                        (see <link linkend="plot2d">plot2d</link> for the 3 first
+                        and <link linkend="fec">fec</link> for the 4 last).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>strf,rect,nax</term>
+                <term>strf, rect, nax</term>
                 <listitem>
                     <para>
                         see <link linkend="plot2d">plot2d</link>.
@@ -71,10 +80,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>Sfgrayplot</literal> is the same as <literal>fgrayplot</literal> but the
-            plot is smoothed. The function <literal>fec</literal> is used for smoothing. The
+            <function>Sfgrayplot</function> is the same as <function>fgrayplot</function> but the
+            plot is smoothed. The function <function>fec</function> is used for smoothing. The
             surface is plotted assuming that it is linear on a set of triangles built
-            from the grid (here with n1=5, n2=3):
+            from the grid (here with <literal>n1=5</literal>, <literal>n2=3</literal>):
         </para>
         <screen><![CDATA[ 
 _____________
@@ -88,11 +97,11 @@ _____________
             you must know (or compute) the min and max values).
         </para>
         <para>
-            Instead of Sfgrayplot, you can use <link linkend="Sgrayplot">Sgrayplot</link> and this may be
+            Instead of <function>Sfgrayplot</function>, you can use <link linkend="Sgrayplot">Sgrayplot</link> and this may be
             a little faster.
         </para>
         <para>
-            Enter the command <literal>Sfgrayplot()</literal> to see a demo.
+            Enter the command <code>Sfgrayplot()</code> to see a demo.
         </para>
     </refsection>
     <refsection>
@@ -104,10 +113,10 @@ function z=surf2(x,y), z=x^2-y^2, endfunction
 function z=surf3(x,y), z=x^3+y^2, endfunction
 function z=surf4(x,y), z=x^2+y^2, endfunction
 clf()
-xset("colormap",[jetcolormap(64);hotcolormap(64)])
+set(gcf(),"color_map",[jetcolormap(64);hotcolormap(64)])
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
-drawlater() ;
+drawlater();
 subplot(2,2,1)
   colorbar(-1,1,[1,64])
   Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
@@ -124,7 +133,7 @@ subplot(2,2,4)
   colorbar(0,2,[1,64])
   Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
   xtitle("f(x,y) = x^2+y^2")
-drawnow() ;
+drawnow();
 show_window()
  ]]></programlisting>
         <scilab:image>
@@ -133,10 +142,10 @@ show_window()
             function z=surf3(x,y), z=x^3+y^2, endfunction
             function z=surf4(x,y), z=x^2+y^2, endfunction
             clf()
-            xset("colormap",[jetcolormap(64);hotcolormap(64)])
+            set(gcf(),"color_map",[jetcolormap(64);hotcolormap(64)])
             x = linspace(-1,1,60);
             y = linspace(-1,1,60);
-            drawlater() ;
+            drawlater();
             subplot(2,2,1)
             colorbar(-1,1,[1,64])
             Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
@@ -153,8 +162,7 @@ show_window()
             colorbar(0,2,[1,64])
             Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
             xtitle("f(x,y) = x^2+y^2")
-            drawnow() ;
-            show_window()
+            drawnow();
         </scilab:image>
         <programlisting role="example"><![CDATA[ 
 // example #2: plot surf3 and add some contour lines 
@@ -162,13 +170,13 @@ function z=surf3(x,y), z=x^3+y^2, endfunction
 clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
-xset("colormap",hotcolormap(128))
-drawlater() ;
+set(gcf(),"color_map",hotcolormap(128))
+drawlater();
 colorbar(-1,2)
 Sfgrayplot(x,y,surf3,strf="041")
-fcontour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
+contour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
 xtitle("f(x,y) = x^3+y^2")
-drawnow() ;
+drawnow();
 show_window()
  ]]></programlisting>
         <scilab:image>
@@ -176,11 +184,11 @@ show_window()
             clf()
             x = linspace(-1,1,60);
             y = linspace(-1,1,60);
-            xset("colormap",hotcolormap(128))
-            drawlater() ;
+            set(gcf(),"color_map",hotcolormap(128))
+            drawlater();
             colorbar(-1,2)
             Sfgrayplot(x,y,surf3,strf="041")
-            fcontour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
+            contour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
             xtitle("f(x,y) = x^3+y^2")
             drawnow() ;
             show_window()
@@ -192,12 +200,12 @@ function z=surf3(x,y), z=x^3+y^2, endfunction
 clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
-xset("colormap",jetcolormap(128))
-drawlater() ;
+set(gcf(),"color_map",jetcolormap(128))
+drawlater();
 zminmax = [-0.5 1]; colors=[32 96];
 colorbar(zminmax(1),zminmax(2),colors)
 Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
-fcontour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
+contour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
 xtitle("f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed")
 drawnow() ;
 show_window()
@@ -207,12 +215,12 @@ show_window()
             clf()
             x = linspace(-1,1,60);
             y = linspace(-1,1,60);
-            xset("colormap",jetcolormap(128))
+            set(gcf(),"color_map",jetcolormap(128))
             drawlater() ;
             zminmax = [-0.5 1]; colors=[32 96];
             colorbar(zminmax(1),zminmax(2),colors)
             Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
-            fcontour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
+            contour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
             xtitle("f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed")
             drawnow() ;
             show_window()

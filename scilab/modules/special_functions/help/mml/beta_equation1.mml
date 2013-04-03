@@ -80,7 +80,7 @@
        <math:mo math:stretchy="false">(</math:mo>
        <math:mrow>
         <math:mi>x</math:mi>
-        <math:mo math:stretchy="false">⋅</math:mo>
+        <math:mo math:stretchy="false">+</math:mo>
         <math:mi>y</math:mi>
        </math:mrow>
        <math:mo math:stretchy="false">)</math:mo>
@@ -89,6 +89,6 @@
     </math:mfrac>
    </math:mrow>
   </math:mrow>
-  <math:annotation math:encoding="StarMath 5.0">B(x,y) = int from 0 to 1 t^{x-1} cdot (1-t)^{y-1} cdot dt = {{%GAMMA(x) cdot %GAMMA(y)} over {%GAMMA(x cdot y)}}</math:annotation>
+  <math:annotation math:encoding="StarMath 5.0">B(x,y) = int from 0 to 1 t^{x-1} cdot (1-t)^{y-1} cdot dt = {{%GAMMA(x) cdot %GAMMA(y)} over {%GAMMA(x + y)}}</math:annotation>
  </math:semantics>
 </math:math>

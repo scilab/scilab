@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-06-13 15:54+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-26 17:13+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: ru\n"
 
 #, c-format
@@ -1248,6 +1248,10 @@ msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась диаграмма.\n"
 
 #, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s: Ошибка во время вычисления параметров блока.\n"
+
+#, c-format
 msgid "%s: Unable to find diagram inputs\n"
 msgstr "%s: Нельзя найти входы схемы\n"
 
@@ -1303,16 +1307,12 @@ msgstr "Не могу преобразовать старую схему (про
 
 #, c-format
 msgid ""
-"Warning the variable %s do not match any context variable name\n"
+"Warning the variable %s does not match any context variable name\n"
 "ignored"
 msgstr ""
-"Предупреждение. Переменная %s не соответствует по имени никакой из "
-"контекстных переменных.\n"
-"Переменная проигнорирована."
-
-#, c-format
-msgid "%s: Error during block parameters evaluation.\n"
-msgstr "%s: Ошибка во время вычисления параметров блока.\n"
+"Внимание: переменная %s не соответствует никакому имени контекстной "
+"переменной\n"
+"проигнорировано"
 
 #, c-format
 msgid "%s: Error during block parameters update.\n"
@@ -1463,19 +1463,19 @@ msgstr "работает scs_show..."
 
 #, c-format
 msgid "Scilab Graphics of %s"
-msgstr ""
+msgstr "График Scilab: %s"
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: Тип %s не реализован.\n"
 
 #, c-format
-msgid "%s: invalid dimension for '%s', waiting for %s"
-msgstr "%s: неверная размерность '%s', ожидается %s"
+msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
+msgstr "%s: Неверный размер параметра блока «%s»: ожидалось %s, получено %s"
 
 #, c-format
-msgid "%s: incorrect type for '%s', getting %s"
-msgstr "%s: неправильный тип для '%s', получение %s"
+msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
+msgstr "%s: Неверный тип параметра блока «%s»: ожидалось %s(%s), получено %s"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

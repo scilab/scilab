@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2013 - Samuel GOUGEON
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="fr">
     <refnamediv>
         <refname>modulo</refname>
@@ -10,8 +22,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>i=modulo(n,m)</synopsis>
-        <synopsis>i=pmodulo(n,m)</synopsis>
+        <synopsis>i = modulo(n,m)</synopsis>
+        <synopsis>i = pmodulo(n,m)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -19,7 +31,7 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>entier</para>
+                    <para>vecteur ou matrice de rééls ou de polynômes</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -42,8 +54,8 @@
             <literal>n</literal> et/ou <literal>m</literal> sont négatifs.
         </para>
         <para>
-            <literal>pmodulo</literal> calcule <literal>i = n - m .* floor (n ./
-                m)
+            <literal>pmodulo</literal> calcule <literal>i = n - |m| .* floor (n ./
+                |m|)
             </literal>
             ,la réponse est positive ou nulle.
         </para>
@@ -51,11 +63,16 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
-n=[1,2,10,15];m=[2,2,3,5];
+n = [1,2,10,15];
+m = [2,2,3,5];
 modulo(n,m)
 
-modulo(-3,9)
-pmodulo(-3,9)
+modulo(-3, 9)
+modulo(10, -4)
+
+pmodulo(-3, 9)
+pmodulo(10, -6)
+pmodulo(-10, -6)
  ]]></programlisting>
     </refsection>
 </refentry>

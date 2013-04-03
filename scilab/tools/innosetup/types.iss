@@ -12,13 +12,8 @@
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
 ;
 ;-------------------------------------------------------------------------------
-
-Name: full; Description: {cm:DescriptionFullInstall}
-;
 Name: default; Description: {cm:DescriptionDefaultInstall}
-;
+Name: full; Description: {cm:DescriptionFullInstall}
 Name: custom; Description: {cm:DescriptionCustomInstall}; Flags: iscustom
-
 Name: cli; Description: {cm:DescriptionCLIInstall};
-;
 ;-------------------------------------------------------------------------------

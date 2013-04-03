@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>xarrows(nx,ny,[arsize,style])</synopsis>
+        <synopsis>xarrows(nx, ny, [arsize, color])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -32,18 +32,18 @@
                 <term>arsize</term>
                 <listitem>
                     <para>escalar real, o tamanho da cabeça da seta. O tamanho padrão
-                        pode ser obtido ajustando arsize para -1. 
+                        pode ser obtido ajustando <varname>arsize</varname> para -1. 
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>style</term>
+                <term>color</term>
                 <listitem>
                     <para>
-                        matriz ou escalar. Se <literal>style</literal> for um escalar
+                        matriz ou escalar. Se <varname>color</varname> for um escalar
                         positivo, fornece a cor a ser usada em todas as setas. Se for
                         negativo, a cor corrente é utilizada. Se for um vetor
-                        <literal>style(i)</literal> fornece a cor a ser utilizada no vetor
+                        <literal>color(i)</literal> fornece a cor a ser utilizada no vetor
                         <literal>i</literal>.
                     </para>
                 </listitem>
@@ -53,11 +53,11 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>xarrows</literal> desenha um conjunto de setas dadas por
-            <literal>nx</literal> e <literal>ny</literal>. Se <literal>nx</literal> e
-            <literal>ny</literal> forem vetores, a i-ésima seta é definida por
+            <function>xarrows</function> desenha um conjunto de setas dadas por
+            <varname>nx</varname> e <varname>ny</varname>. Se <varname>nx</varname> e
+            <varname>ny</varname> forem vetores, a i-ésima seta é definida por
             <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>. Se
-            <literal>nx</literal> e <literal>ny</literal> são matrizes:
+            <varname>nx</varname> e <varname>ny</varname> são matrizes:
         </para>
         <programlisting role=""><![CDATA[ 
 nx=[xi_1 x1_2 ...; xf_1 xf_2 ...]
@@ -68,21 +68,30 @@ ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
             <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.
         </para>
         <para>
-            <literal>xarrows</literal> utiliza a escala de gráficos corrente que
+            <function>xarrows</function> utiliza a escala de gráficos corrente que
             pode ser ajustada através de uma chamada a uma função de esboço de
-            alto-nível como <literal>plot2d</literal>.
+            alto-nível como <function>plot2d</function>.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
-x=2*%pi*(0:9)/8;
-x1=[sin(x);9*sin(x)];
-y1=[cos(x);9*cos(x)];
-plot2d([-10,10],[-10,10],[-1,-1],"022")
+x = 2*%pi*(0:7)/8
+x1 = [sin(x); 9*sin(x)];
+y1 = [cos(x); 9*cos(x)];
+plot2d([-10,10], [-10,10], [-1,-1], "022")
 xset("clipgrf")
-xarrows(x1,y1,1,1:10)
+xarrows(x1, y1, -1, [1:7,9]) //8-th color is white
 xset("clipoff")
  ]]></programlisting>
+        <scilab:image>
+            x = 2*%pi*(0:7)/8
+            x1 = [sin(x); 9*sin(x)];
+            y1 = [cos(x); 9*cos(x)];
+            plot2d([-10,10], [-10,10], [-1,-1], "022")
+            xset("clipgrf")
+            xarrows(x1, y1, -1, [1:7,9])
+            xset("clipoff")
+        </scilab:image>
     </refsection>
 </refentry>

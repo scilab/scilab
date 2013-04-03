@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="Sfgrayplot">
+    <refnamediv>
+        <refname>Sfgrayplot</refname>
+        <refpurpose>
+            сглаженный двумерный график поверхности, определённой через функцию, с использованием цветов
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            Sfgrayplot(x, y, f, &lt;opt_args&gt;)
+            Sfgrayplot(x, y, f [,strf, rect, nax, zminmax, colminmax, mesh, colout])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>
+                        вещественные векторы-строки размером <literal>n1</literal> и <literal>n2</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>
+                        Scilab-функция (<literal>z=f(x,y)</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;opt_args&gt;</term>
+                <listitem>
+                    <para>
+                        представляет последовательность инструкций
+                        <literal>key1=value1, key2=value2, ...</literal>,
+                        где <literal>key1</literal>, <literal>key2, ...</literal>
+                        может быть одним из следующих: <varname>strf</varname>,
+                         <varname>rect</varname>, <varname>nax</varname>,
+                         <varname>zminmax</varname>, <varname>colminmax</varname>,
+                         <varname>mesh</varname>, <varname>colout</varname>
+                        (о первых трёх см. <link linkend="plot2d">plot2d</link>, а
+                        о последних четырёх см. <link linkend="fec">fec</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>strf, rect, nax</term>
+                <listitem>
+                    <para>
+                        см. <link linkend="plot2d">plot2d</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zminmax, colminmax, mesh, colout</term>
+                <listitem>
+                    <para>
+                        см. <link linkend="fec">fec</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>Sfgrayplot</function> - это то же самое, что и 
+            <function>fgrayplot</function>, но график сглажен. Для сглаживания
+            используется функция <function>fec</function>. Поверхность строится
+            в предположении, что она линейна на множестве треугольников, 
+            построенных из сетки (здесь с <literal>n1=5</literal>, <literal>n2=3</literal>):
+        </para>
+        <screen><![CDATA[ 
+_____________
+| /| /| /| /|
+|/_|/_|/_|/_| 
+| /| /| /| /| 
+|/_|/_|/_|/_|
+ ]]></screen>
+        <para>
+            Чтобы увидеть цветовую шкалу, может быть использована функция
+            <link linkend="colorbar">colorbar</link> (но вы должны знать
+            (или вычислить) минимальное и максимальное значения).
+        </para>
+        <para>
+            Вместо функции <function>Sfgrayplot</function>, вы можете
+            использовать функцию <link linkend="Sgrayplot">Sgrayplot</link>,
+            и это может быть несколько быстрее.
+        </para>
+        <para>
+            Введите команду <code>Sfgrayplot()</code>, чтобы посмотреть наглядную иллюстрацию.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+// Пример №1: построение 4 поверхностей
+function z=surf1(x,y), z=x*y, endfunction
+function z=surf2(x,y), z=x^2-y^2, endfunction
+function z=surf3(x,y), z=x^3+y^2, endfunction
+function z=surf4(x,y), z=x^2+y^2, endfunction
+clf()
+set(gcf(),"color_map",[jetcolormap(64);hotcolormap(64)])
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+drawlater() ;
+subplot(2,2,1)
+  colorbar(-1,1,[1,64])
+  Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
+  xtitle("f(x,y) = x*y")
+subplot(2,2,2)
+  colorbar(-1,1,[65,128])
+  Sfgrayplot(x,y,surf2,strf="041",colminmax=[65,128])
+  xtitle("f(x,y) = x^2-y^2")
+subplot(2,2,3)
+  colorbar(-1,2,[65,128])
+  Sfgrayplot(x,y,surf3,strf="041",colminmax=[65,128])
+  xtitle("f(x,y) = x^3+y^2")
+subplot(2,2,4)
+  colorbar(0,2,[1,64])
+  Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
+  xtitle("f(x,y) = x^2+y^2")
+drawnow() ;
+show_window()
+ ]]></programlisting>
+        <scilab:image>
+            function z=surf1(x,y), z=x*y, endfunction
+            function z=surf2(x,y), z=x^2-y^2, endfunction
+            function z=surf3(x,y), z=x^3+y^2, endfunction
+            function z=surf4(x,y), z=x^2+y^2, endfunction
+            clf()
+            set(gcf(),"color_map",[jetcolormap(64);hotcolormap(64)])
+            x = linspace(-1,1,60);
+            y = linspace(-1,1,60);
+            drawlater();
+            subplot(2,2,1)
+            colorbar(-1,1,[1,64])
+            Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
+            xtitle("f(x,y) = x*y")
+            subplot(2,2,2)
+            colorbar(-1,1,[65,128])
+            Sfgrayplot(x,y,surf2,strf="041",colminmax=[65,128])
+            xtitle("f(x,y) = x^2-y^2")
+            subplot(2,2,3)
+            colorbar(-1,2,[65,128])
+            Sfgrayplot(x,y,surf3,strf="041",colminmax=[65,128])
+            xtitle("f(x,y) = x^3+y^2")
+            subplot(2,2,4)
+            colorbar(0,2,[1,64])
+            Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
+            xtitle("f(x,y) = x^2+y^2")
+            drawnow();
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+// Пример №2: построение surf3 и добавление некоторых контурных линий
+function z=surf3(x,y), z=x^3+y^2, endfunction
+clf()
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+set(gcf(),"color_map",hotcolormap(128))
+drawlater() ;
+colorbar(-1,2)
+Sfgrayplot(x,y,surf3,strf="041")
+contour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
+xtitle("f(x,y) = x^3+y^2")
+drawnow() ;
+show_window()
+ ]]></programlisting>
+        <scilab:image>
+            function z=surf3(x,y), z=x^3+y^2, endfunction
+            clf()
+            x = linspace(-1,1,60);
+            y = linspace(-1,1,60);
+            set(gcf(),"color_map",hotcolormap(128))
+            drawlater();
+            colorbar(-1,2)
+            Sfgrayplot(x,y,surf3,strf="041")
+            contour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
+            xtitle("f(x,y) = x^3+y^2")
+            drawnow() ;
+            show_window()
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+// Пример №3: построение surf3 и использование необязательных аргументов
+//            zminmax и colout для ограничения графика в -0.5 <= z <= 1
+function z=surf3(x,y), z=x^3+y^2, endfunction
+clf()
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+set(gcf(),"color_map",jetcolormap(128))
+drawlater() ;
+zminmax = [-0.5 1]; colors=[32 96];
+colorbar(zminmax(1),zminmax(2),colors)
+Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
+contour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
+xtitle("f(x,y) = x^3+y^2, с удалёнными частями ниже z = -0.5 и выше z = 1")
+drawnow() ;
+show_window()
+ ]]></programlisting>
+        <scilab:image localized="true">
+            function z=surf3(x,y), z=x^3+y^2, endfunction
+            clf()
+            x = linspace(-1,1,60);
+            y = linspace(-1,1,60);
+            set(gcf(),"color_map",jetcolormap(128))
+            drawlater() ;
+            zminmax = [-0.5 1]; colors=[32 96];
+            colorbar(zminmax(1),zminmax(2),colors)
+            Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
+            contour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
+            xtitle("f(x,y) = x^3+y^2, с удалёнными частями ниже z = -0.5 и выше z = 1")
+            drawnow() ;
+            show_window()
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fec">fec</link>
+            </member>
+            <member>
+                <link linkend="fgrayplot">fgrayplot</link>
+            </member>
+            <member>
+                <link linkend="grayplot">grayplot</link>
+            </member>
+            <member>
+                <link linkend="Sgrayplot">Sgrayplot</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

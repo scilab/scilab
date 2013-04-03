@@ -80,10 +80,11 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/special_functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -137,7 +138,7 @@ libscispecial_functions_algo_la_LIBADD =
 am__objects_1 = libscispecial_functions_algo_la-zbeshv.lo
 am__objects_2 = dbesig.lo dbesjg.lo dbeskg.lo dbesyg.lo zbesig.lo \
 	zbesjg.lo zbeskg.lo zbesyg.lo
-am__objects_3 =
+am__objects_3 = libscispecial_functions_algo_la-faddeeva.lo
 am_libscispecial_functions_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3)
 libscispecial_functions_algo_la_OBJECTS =  \
@@ -153,10 +154,11 @@ am__objects_4 = libscispecial_functions_la-sci_dlgamma.lo \
 	libscispecial_functions_la-sci_besseli.lo \
 	libscispecial_functions_la-sci_besselj.lo \
 	libscispecial_functions_la-sci_besselk.lo \
-	libscispecial_functions_la-sci_calerf.lo \
 	libscispecial_functions_la-gw_special_functions.lo \
 	libscispecial_functions_la-sci_lgamma.lo
-am_libscispecial_functions_la_OBJECTS = $(am__objects_4)
+am__objects_5 = libscispecial_functions_la-sci_faddeeva.lo
+am_libscispecial_functions_la_OBJECTS = $(am__objects_4) \
+	$(am__objects_5)
 libscispecial_functions_la_OBJECTS =  \
 	$(am_libscispecial_functions_la_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
@@ -171,6 +173,15 @@ LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -221,6 +232,10 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CURL_CFLAGS = @CURL_CFLAGS@
+CURL_CONFIG = @CURL_CONFIG@
+CURL_LIBS = @CURL_LIBS@
+CURL_VERSION = @CURL_VERSION@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -450,7 +465,9 @@ top_srcdir = @top_srcdir@
 SPECIAL_FUNCTIONS_C_SOURCES = src/c/zbeshv.c
 
 # List of the cpp files
-SPECIAL_FUNCTIONS_CXX_SOURCES = 
+SPECIAL_FUNCTIONS_CXX_SOURCES = \
+src/cpp/faddeeva.cpp
+
 SPECIAL_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/dbesig.f \
 src/fortran/dbesjg.f \
@@ -471,17 +488,21 @@ sci_gateway/c/sci_besselh.c \
 sci_gateway/c/sci_besseli.c \
 sci_gateway/c/sci_besselj.c \
 sci_gateway/c/sci_besselk.c \
-sci_gateway/c/sci_calerf.c \
 sci_gateway/c/gw_special_functions.c \
 sci_gateway/c/sci_lgamma.c
+
+GATEWAY_CXX_SOURCES = \
+sci_gateway/cpp/sci_faddeeva.cpp
 
 
 # Includes need for the compilation
 libscispecial_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(srcdir)/src/cpp/ \
+-I$(srcdir)/sci_gateway/cpp/ \
 -I$(top_srcdir)/modules/core/src/c/ \
 -I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/src/cpp/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
@@ -490,7 +511,7 @@ $(AM_CPPFLAGS)
 pkglib_LTLIBRARIES = libscispecial_functions.la
 noinst_LTLIBRARIES = libscispecial_functions-algo.la
 libscispecial_functions_algo_la_SOURCES = $(SPECIAL_FUNCTIONS_C_SOURCES) $(SPECIAL_FUNCTIONS_FORTRAN_SOURCES) $(SPECIAL_FUNCTIONS_CXX_SOURCES)
-libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscispecial_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscispecial_functions_algo_la_CPPFLAGS = $(libscispecial_functions_la_CPPFLAGS)
 
 # For the code check (splint)
@@ -588,7 +609,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .f .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .f .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -662,9 +683,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscispecial_functions-algo.la: $(libscispecial_functions_algo_la_OBJECTS) $(libscispecial_functions_algo_la_DEPENDENCIES) $(EXTRA_libscispecial_functions_algo_la_DEPENDENCIES) 
-	$(F77LINK)  $(libscispecial_functions_algo_la_OBJECTS) $(libscispecial_functions_algo_la_LIBADD) $(LIBS)
+	$(CXXLINK)  $(libscispecial_functions_algo_la_OBJECTS) $(libscispecial_functions_algo_la_LIBADD) $(LIBS)
 libscispecial_functions.la: $(libscispecial_functions_la_OBJECTS) $(libscispecial_functions_la_DEPENDENCIES) $(EXTRA_libscispecial_functions_la_DEPENDENCIES) 
-	$(LINK) -rpath $(pkglibdir) $(libscispecial_functions_la_OBJECTS) $(libscispecial_functions_la_LIBADD) $(LIBS)
+	$(CXXLINK) -rpath $(pkglibdir) $(libscispecial_functions_la_OBJECTS) $(libscispecial_functions_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -672,6 +693,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_algo_la-faddeeva.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_algo_la-zbeshv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_la-gw_special_functions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_la-sci_besselh.Plo@am__quote@
@@ -680,8 +702,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_la-sci_besselk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_la-sci_bessely.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_la-sci_beta.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_la-sci_calerf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_la-sci_dlgamma.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_la-sci_faddeeva.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_la-sci_gamma.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_la-sci_legendre.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispecial_functions_la-sci_lgamma.Plo@am__quote@
@@ -777,13 +799,6 @@ libscispecial_functions_la-sci_besselk.lo: sci_gateway/c/sci_besselk.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispecial_functions_la-sci_besselk.lo `test -f 'sci_gateway/c/sci_besselk.c' || echo '$(srcdir)/'`sci_gateway/c/sci_besselk.c
 
-libscispecial_functions_la-sci_calerf.lo: sci_gateway/c/sci_calerf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispecial_functions_la-sci_calerf.lo -MD -MP -MF $(DEPDIR)/libscispecial_functions_la-sci_calerf.Tpo -c -o libscispecial_functions_la-sci_calerf.lo `test -f 'sci_gateway/c/sci_calerf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_calerf.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispecial_functions_la-sci_calerf.Tpo $(DEPDIR)/libscispecial_functions_la-sci_calerf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_calerf.c' object='libscispecial_functions_la-sci_calerf.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispecial_functions_la-sci_calerf.lo `test -f 'sci_gateway/c/sci_calerf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_calerf.c
-
 libscispecial_functions_la-gw_special_functions.lo: sci_gateway/c/gw_special_functions.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispecial_functions_la-gw_special_functions.lo -MD -MP -MF $(DEPDIR)/libscispecial_functions_la-gw_special_functions.Tpo -c -o libscispecial_functions_la-gw_special_functions.lo `test -f 'sci_gateway/c/gw_special_functions.c' || echo '$(srcdir)/'`sci_gateway/c/gw_special_functions.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispecial_functions_la-gw_special_functions.Tpo $(DEPDIR)/libscispecial_functions_la-gw_special_functions.Plo
@@ -797,6 +812,41 @@ libscispecial_functions_la-sci_lgamma.lo: sci_gateway/c/sci_lgamma.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_lgamma.c' object='libscispecial_functions_la-sci_lgamma.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispecial_functions_la-sci_lgamma.lo `test -f 'sci_gateway/c/sci_lgamma.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lgamma.c
+
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+libscispecial_functions_algo_la-faddeeva.lo: src/cpp/faddeeva.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscispecial_functions_algo_la-faddeeva.lo -MD -MP -MF $(DEPDIR)/libscispecial_functions_algo_la-faddeeva.Tpo -c -o libscispecial_functions_algo_la-faddeeva.lo `test -f 'src/cpp/faddeeva.cpp' || echo '$(srcdir)/'`src/cpp/faddeeva.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscispecial_functions_algo_la-faddeeva.Tpo $(DEPDIR)/libscispecial_functions_algo_la-faddeeva.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/faddeeva.cpp' object='libscispecial_functions_algo_la-faddeeva.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscispecial_functions_algo_la-faddeeva.lo `test -f 'src/cpp/faddeeva.cpp' || echo '$(srcdir)/'`src/cpp/faddeeva.cpp
+
+libscispecial_functions_la-sci_faddeeva.lo: sci_gateway/cpp/sci_faddeeva.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscispecial_functions_la-sci_faddeeva.lo -MD -MP -MF $(DEPDIR)/libscispecial_functions_la-sci_faddeeva.Tpo -c -o libscispecial_functions_la-sci_faddeeva.lo `test -f 'sci_gateway/cpp/sci_faddeeva.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_faddeeva.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscispecial_functions_la-sci_faddeeva.Tpo $(DEPDIR)/libscispecial_functions_la-sci_faddeeva.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_faddeeva.cpp' object='libscispecial_functions_la-sci_faddeeva.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispecial_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscispecial_functions_la-sci_faddeeva.lo `test -f 'sci_gateway/cpp/sci_faddeeva.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_faddeeva.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

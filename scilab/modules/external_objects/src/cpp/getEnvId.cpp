@@ -18,15 +18,13 @@ namespace org_modules_external_objects
 int ScilabGateway::getEnvId(char * fname, const int envId, void * pvApiCtx)
 {
     SciErr sciErr;
-    int * addr = 0;
-    int val = 0;
 
     CheckInputArgument(pvApiCtx, 0, 0);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();
-    OptionsHelper::setCopyOccured(false);
+    OptionsHelper::setCopyOccurred(false);
     ScilabObjects::initialization(env, pvApiCtx);
     options.setIsNew(false);
 

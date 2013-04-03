@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="resume">
+    <refnamediv>
+        <refname>resume</refname>
+        <refpurpose>sortie d'une fonction ou reprise d'exécution, avec récupération de variables locales  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>resume
+            [x1,..,xn]=resume(a1,..,an)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Dans une fonction <literal>resume</literal> termine son exécution et
+            <literal>[..]=resume(..)</literal> renvoie les variables locales
+            <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
+        </para>
+        <para>
+        </para>
+        <para>
+            En mode de <literal>pause</literal>, cela permet de reprendre l'exécution et
+            <literal>[..]=resume(..)</literal> renvoie les variables locales
+            <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
+        </para>
+        <para>
+            Utilisé dans l'argument de <literal>execstr</literal> appelé dans une fonction <literal>[..]=resume(..)</literal> termine l'exécution de la fonction et renvoie les variables locales <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
+        </para>
+        <para>
+            <literal>resume</literal> est équivalent à <literal>return</literal>.
+        </para>
+        <para>
+            <note>
+                Note: l'utilisation de cette fonctionnalité peut complexifier le code. A la place, la syntaxe <code>function b = foo()</code> est recommendée.
+            </note>
+        </para>
+    </refsection>
+    
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+function foo(a)
+         a=a+1
+         b=resume(a)
+         c=52
+endfunction
+
+foo(42);
+assert_checkequal(b,43);
+// c n'exite pas
+
+]]></programlisting>
+        <programlisting role="example"><![CDATA[
+
+// Avec plusieurs appels de fonctions
+function foo1()
+  a=1;
+  b=2;
+  c=3;
+  [x,y,z]=resume(a, b, c)
+endfunction
+
+function foo2()
+  foo1()
+  x, y, z // Déclarés
+endfunction
+
+foo2()
+// x y z n'existent pas ici
+]]></programlisting>
+        
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abort">abort</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="return">return</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

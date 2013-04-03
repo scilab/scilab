@@ -79,13 +79,17 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example">a = 1; b = 2; Z = ['a','b'];
-            evstr(Z) 
-            a = 1; b = 2; Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
-            evstr(Z)
-            
-            evstr('NaN'), evstr('Inf') 
-        </programlisting>
+        <programlisting role="example"><![CDATA[ 
+a = 1;
+b = 2;
+Z = ['a','b'];
+evstr(Z)
+a = 1;
+b = 2;
+Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+evstr(Z)
+evstr('NaN'), evstr('Inf') 
+        ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

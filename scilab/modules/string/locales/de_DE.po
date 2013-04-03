@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-09-01 13:26+0100\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
 "PO-Revision-Date: 2012-11-08 15:34+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: de\n"
 
 msgid "WARNING : \n"
@@ -370,6 +370,16 @@ msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
 msgstr ""
 "%s: Falsche Größe für Eingangsargument #%d: Eine Zeichenkette mit Buchstaben "
 "wird erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"

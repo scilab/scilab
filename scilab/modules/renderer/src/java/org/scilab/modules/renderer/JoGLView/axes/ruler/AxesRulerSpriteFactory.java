@@ -92,10 +92,17 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
             }
         } else {
             FormattedText formattedText = getTextAtValue(value);
-            FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, formattedText);
-            Texture texture = textureManager.createTexture();
-            texture.setDrawer(textObjectSpriteDrawer);
-            return texture;
+            if (formattedText != null && formattedText.getText() != null && !formattedText.getText().isEmpty()) {
+                FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, formattedText);
+                Texture texture = textureManager.createTexture();
+                texture.setMagnificationFilter(Texture.Filter.LINEAR);
+                texture.setMinifyingFilter(Texture.Filter.LINEAR);
+                texture.setDrawer(textObjectSpriteDrawer);
+
+                return texture;
+            }
+
+            return null;
         }
     }
 
@@ -107,6 +114,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         DecimalFormatSymbols decimalFormatSymbols = format.getDecimalFormatSymbols();
         decimalFormatSymbols.setDecimalSeparator('.');
         decimalFormatSymbols.setExponentSeparator("e");
+        decimalFormatSymbols.setGroupingSeparator('\u00A0');
         format.setDecimalFormatSymbols(decimalFormatSymbols);
     }
 
@@ -120,6 +128,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
     private Texture createScientificStyleSprite(double value, TextureManager textureManager) {
         Integer exponent = (int) Math.floor(Math.log10(value));
         Double mantissa = value / Math.pow(10, exponent);
+        mantissa = Math.round(mantissa * 1e6) * 1e-6;
 
         /**
          * Create mantissa.

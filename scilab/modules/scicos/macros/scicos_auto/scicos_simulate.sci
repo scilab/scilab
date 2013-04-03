@@ -106,7 +106,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
     end
     if argn(2) == 4 then Ignb = "",end
   else
-    error(mprintf(_("%s: Wrong number of input arguments. Must be between %d and %d.\n"),...
+    error(msprintf(_("%s: Wrong number of input arguments. Must be between %d and %d.\n"),...
                   "scicos_simulate", 1, 5))
   end
 
@@ -177,7 +177,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
   %scicos_debug_gr = %f;
 
 
-  //** redefine some  functions
+  //** redefine some functions
   prot = funcprot();funcprot(0);
   do_terminate = do_terminate1
   funcprot(prot)
@@ -232,7 +232,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
     if or(u==contextvars) then
       %scicos_context(u)=updated_vars(u)
     else
-      mprintf(_("Warning the variable %s do not match any context variable name\nignored"),u)
+      mprintf(_("Warning the variable %s does not match any context variable name\nignored"),u)
     end
   end
   if ierr == 0 then //++ no error
@@ -287,7 +287,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
     end
   end
 
-  if needstart then //scicos initialisation
+  if needstart then //scicos initialization
     if alreadyran then
       [alreadyran, %cpr] = do_terminate1(scs_m, %cpr)
       alreadyran = %f

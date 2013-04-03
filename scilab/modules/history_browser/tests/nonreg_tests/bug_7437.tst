@@ -17,8 +17,8 @@
 //
 
 // start scilab once time
-// edit SCIHOME/history.scilab
-editor SCIHOME/history.scilab
+// edit SCIHOME/history
+editor SCIHOME/history
 // remove first "// -- Begin Session"
 // and restart scilab
 

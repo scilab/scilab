@@ -1,0 +1,74 @@
+# German translation for scilab
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-01-24 17:03+0100\n"
+"PO-Revision-Date: 2013-01-18 19:34+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16546)\n"
+
+msgid "Double"
+msgstr "Doppelt"
+
+msgid "Polynomial"
+msgstr "Polynomisch"
+
+msgid "Boolean"
+msgstr "Boolsch"
+
+msgid "Sparse"
+msgstr ""
+
+msgid "Boolean Sparse"
+msgstr ""
+
+msgid "Matlab Sparse"
+msgstr ""
+
+msgid "Integer"
+msgstr ""
+
+msgid "Graphic handle"
+msgstr ""
+
+msgid "String"
+msgstr ""
+
+msgid "User function"
+msgstr ""
+
+msgid "Compiled function"
+msgstr ""
+
+msgid "Function library"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "Tlist"
+msgstr ""
+
+msgid "Mlist"
+msgstr ""
+
+msgid "Pointer"
+msgstr ""
+
+msgid "Implicit polynomial"
+msgstr ""
+
+msgid "Intrinsic function"
+msgstr ""
+
+msgid "Unknown datatype"
+msgstr ""

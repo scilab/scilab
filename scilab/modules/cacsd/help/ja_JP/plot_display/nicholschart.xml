@@ -18,7 +18,7 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>nicholschart([ modules [,args [,colors]]])</synopsis>
-        <synopsis/>
+        
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -72,7 +72,7 @@
     nicholschart(modules=[-6 -3 -1 1 3 6], args=[-1 -20 20 40 80 160 180]);
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 nicholschart(modules=[-6 -3 -1 1 3 6], args=[-1 -20 20 40 80 160 180]);
             </scilab:image>
         </para>
@@ -91,7 +91,7 @@
     nicholschart(colors=color('light gray')*[1 1])
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=poly(0,'s');
                 Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
                 tau=0.2;xsi=1.2;

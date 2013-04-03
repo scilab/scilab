@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.xml.sax.Attributes;
+import org.xml.sax.Locator;
 
 import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 import org.scilab.modules.helptools.image.ImageConverter;
@@ -28,14 +29,16 @@ import org.scilab.modules.helptools.image.ImageConverter;
 public class HTMLSVGHandler extends ExternalXMLHandler {
 
     private static final String SVG = "svg";
-    private static final String BASENAME = "Equation_SVG_";
+    private static final String BASENAME = "_SVG_";
 
     private static HTMLSVGHandler instance;
 
-    private int compt;
+    private int compt = 1;
     private StringBuilder buffer = new StringBuilder(8192);
     private String baseDir;
     private String outputDir;
+    private boolean isLocalized;
+    private int line;
 
     /**
      * Constructor
@@ -53,9 +56,16 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
 
         return instance;
     }
+    public static HTMLSVGHandler getInstance() {
+        return instance;
+    }
 
     public static void clean() {
         instance = null;
+    }
+
+    public void resetCompt() {
+        compt = 1;
     }
 
     /**
@@ -68,7 +78,13 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
     /**
      * {@inheritDoc}
      */
-    public StringBuilder startExternalXML(String localName, Attributes attributes) {
+    public StringBuilder startExternalXML(String localName, Attributes attributes, Locator locator) {
+        if (SVG.equals(localName)) {
+            String v = attributes.getValue(getScilabURI(), "localized");
+            isLocalized = "true".equalsIgnoreCase(v);
+            line = locator.getLineNumber();
+        }
+
         recreateTag(buffer, localName, attributes);
         if (SVG.equals(localName)) {
             return buffer;
@@ -83,14 +99,26 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
     public String endExternalXML(String localName) {
         if (SVG.equals(localName)) {
             recreateTag(buffer, localName, null);
-            File f = new File(outputDir, BASENAME + (compt++) + ".png");
+            File f;
+            String language = ((HTMLDocbookTagConverter) getConverter()).getLanguage();
+            if (isLocalized) {
+                f = new File(outputDir, BASENAME + getConverter().getCurrentBaseName() + "_" + language + "_" + (compt++) + ".png");
+            } else {
+                if ("ru_RU".equals(language) && HTMLDocbookTagConverter.containsCyrillic(buffer)) {
+                    System.err.println("Warning: SVG code in " + getConverter().getCurrentFileName() + " at line " + line + " contains cyrillic character. The tag <svg> should contain the attribute scilab:localized=\"true\"");
+                } else if ("ja_JP".equals(language) && HTMLDocbookTagConverter.containsCJK(buffer)) {
+                    System.err.println("Warning: SVG code in " + getConverter().getCurrentFileName() + " at line " + line + " contains CJK character. The tag <svg> should contain the attribute scilab:localized=\"true\"");
+                }
+                f = new File(outputDir, BASENAME + getConverter().getCurrentBaseName() + "_" + (compt++) + ".png");
+            }
+
             Map<String, String> attributes = new HashMap<String, String>();
             String baseImagePath = "";
             if (getConverter() instanceof HTMLDocbookTagConverter) {
                 baseImagePath = ((HTMLDocbookTagConverter) getConverter()).getBaseImagePath();
             }
 
-            String ret = ImageConverter.getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/svg", f, baseDir + f.getName(), baseImagePath);
+            String ret = ImageConverter.getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/svg", f, baseDir + f.getName(), baseImagePath, line, language, isLocalized);
             buffer.setLength(0);
 
             return ret;

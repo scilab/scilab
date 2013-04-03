@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-30 21:04+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-27 16:54+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: uk\n"
 
 #, c-format
@@ -167,9 +167,70 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
-#, c-format
-msgid "%02d-%02d-%04d"
-msgstr "%02d-%02d-%04d"
+msgid " * Add some comments about XML file"
+msgstr " * Додайте коментарі щодо файла XML"
+
+msgid "Add short description here."
+msgstr "Додайте короткий опис."
+
+msgid "Calling Sequence"
+msgstr "Послідовність виклику"
+
+msgid "Arguments"
+msgstr "Параметри"
+
+msgid "            Add here the input/output argument description."
+msgstr "            Додайте опис вхідних і вихідних параметрів функції."
+
+msgid "          Add here a paragraph of the function description."
+msgstr "          Додайте текст з описом функції."
+
+msgid "          Other paragraph can be added"
+msgstr "          Додайте ще один абзац з текстом"
+
+msgid "More information"
+msgstr "Докладніше"
+
+msgid "Examples"
+msgstr "Приклади"
+
+msgid "        Add here scilab instructions and comments"
+msgstr "        Тут можна додати команди scilab та коментарі до них"
+
+msgid "See Also"
+msgstr "Дивіться також"
+
+msgid "add a reference"
+msgstr "додайте посилання"
+
+msgid "add a reference name"
+msgstr "додайте назву посилання"
+
+msgid "Authors"
+msgstr "Автори"
+
+msgid "add the author name and author reference"
+msgstr "додайте ім’я автора та посилання для зв’язку з ним"
+
+msgid "add another author name and his/her reference"
+msgstr "додайте ім’я іншого автора і дані для зв’язку з ним або нею"
+
+msgid "Bibliography"
+msgstr "Бібліографія"
+
+msgid "         Add here the function bibliography"
+msgstr "         Додайте бібліографічні посилання, пов’язані з функцією"
+
+msgid "History"
+msgstr "Журнал"
+
+msgid "Used Functions"
+msgstr "Використані функції"
+
+msgid "         Add here the Scilab, C,... used code references"
+msgstr ""
+"         Додайте посилання на використаний код мовою Scilab, C або іншою "
+"мовою програмування"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"

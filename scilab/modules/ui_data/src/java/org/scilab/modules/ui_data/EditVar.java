@@ -485,6 +485,6 @@ public final class EditVar {
      * Close Variable Editor
      */
     public static void closeVariableEditor() {
-        ScilabVariableEditor.getVariableEditor().close();
+        ScilabVariableEditor.closeEditVar();
     }
 }

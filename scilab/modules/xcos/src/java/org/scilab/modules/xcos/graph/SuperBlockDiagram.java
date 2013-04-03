@@ -37,9 +37,11 @@ import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxUtils;
 
 public final class SuperBlockDiagram extends XcosDiagram implements Serializable, Cloneable {
 
@@ -197,6 +199,19 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
             str.append("</body></html>    ");
 
             err = str.toString();
+        }
+
+        // Update the port labels on the superblock
+        if (err == null) {
+            mxCell identifier = this.getOrCreateCellIdentifier(block);
+            final Object current = this.getModel().getValue(identifier);
+            String text = "";
+            if (current == null) {
+                text = "";
+            } else {
+                text = mxUtils.getBodyMarkup(current.toString(), false);
+            }
+            this.fireEvent(new mxEventObject(mxEvent.LABEL_CHANGED, "cell", identifier, "value", text, "parent", block));
         }
 
         return err;

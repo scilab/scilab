@@ -159,7 +159,7 @@
 extern int C2F(fortrangetch)();
 
 
-int C2F(getval)(double *s, int *dotdet)
+int C2F(getval)(double *s, int *dotdet, int *opt)
 {
     /* Initialized constants */
     static double toto = 0.;
@@ -212,7 +212,7 @@ int C2F(getval)(double *s, int *dotdet)
         {
             detdot = TRUE;
             C2F(fortrangetch)();
-            if (getWarningMode())
+            if (*opt == 0 && getWarningMode())
             {
                 if ((abs(C2F(com).char1) == slash) || (abs(C2F(com).char1) == bchar_slash))
                 {
@@ -223,11 +223,11 @@ int C2F(getval)(double *s, int *dotdet)
                         v = v * 10 + digit[i];
                     }
                     if (abs(C2F(com).char1) == slash)
-                        sciprint(_("%s: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for element wise operation \n") ,
-                                 "Warning", v, "/", v, "/", v, "/");
+                        sciprint(_("Warning: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for element wise operation \n") ,
+                                 v, "/", v, "/", v, "/");
                     else
-                        sciprint(_("%s: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for element wise operation \n") ,
-                                 "Warning", v, "\\", v, "\\", v, "\\");
+                        sciprint(_("Warning: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for element wise operation \n") ,
+                                 v, "\\", v, "\\", v, "\\");
                 }
             }
         }

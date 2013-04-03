@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -19,19 +19,35 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>The LineSpec is an optional argument that can be used inside a plot command to customize each new line aspect. It has to be given as a concatenated string containing information about color, line style or markers. It is very useful to quickly specify such basic line properties.</para>
-        <para>To specify a red longdash-dot with diamond marker, the string can be 'r-.diam'. As you can see, a full complete spelling of each property value is not required but the string, which is a concatenation (in any order) of these three types of properties , must remain unambiguous. Furthermore, the string specification is not case sensitive.</para>
         <para>
-            Here is a complete list of the <literal>LineSpec</literal> types you can
-            specify (using <link linkend="plot">plot</link>).
+            The <literal>LineSpec</literal> is an optional argument
+            that can be used inside a <function>plot</function>
+            command to customize each new line aspect. It has to 
+            be given as a concatenated string containing information
+            about color, line style or markers. It is very useful to
+            quickly specify such basic line properties.
+        </para>
+        <para>
+            To specify a red longdash-dot with diamond marker, the
+            string can be <literal>'r-.diam'</literal>. As you can
+            see, a full complete spelling of each property value is
+            not required but the string, which is a concatenation
+            (in any order) of these three types of properties, must
+            remain unambiguous. Furthermore, the string specification
+            is not case sensitive.
+        </para>
+        <para>
+            Here is a complete list of the <literal>LineSpec</literal>
+            types you can specify (using <link linkend="plot">plot</link>).
         </para>
         <variablelist>
             <varlistentry>
                 <term>LineStyle: </term>
                 <listitem>
-                    <para>a string defining the line style. This property is linked to the
+                    <para>
+                        a string defining the line style. This property is linked to the
                         object's <literal>line_style</literal> property (see
-                        <link linkend="polyline_properties">polyline_properties</link>).
+                        <link linkend="polyline_properties">polyline properties</link>).
                     </para>
                     <para/>
                     <informaltable border="1">
@@ -73,9 +89,10 @@
             <varlistentry>
                 <term>Color: </term>
                 <listitem>
-                    <para>a string defining the line color. This property is linked to the
+                    <para>
+                        a string defining the line color. This property is linked to the
                         object's <literal>foreground</literal> property (see
-                        <link linkend="polyline_properties">polyline_properties</link>).
+                        <link linkend="polyline_properties">polyline properties</link>).
                     </para>
                     <para/>
                     <informaltable border="1">
@@ -141,11 +158,12 @@
             <varlistentry>
                 <term/>
                 <listitem>
-                    <para>A default color table is used to color plotted curves if you do
+                    <para>
+                        A default color table is used to color plotted curves if you do
                         not specify a color (neither with <literal>LineSpec</literal> nor with
-                        <link linkend="GlobalProperty">GlobalProperty</link>). When drawing multiple lines, the plot
-                        command automatically cycles through this table. Here are the used
-                        colors:
+                        <link linkend="GlobalProperty">GlobalProperty</link>). When drawing
+                        multiple lines, the plot command automatically cycles through
+                        this table. Here are the used colors:
                     </para>
                     <para/>
                 </listitem>
@@ -206,11 +224,12 @@
             <varlistentry>
                 <term>Marker type: </term>
                 <listitem>
-                    <para>A string defining the marker type. note that if you specify a
+                    <para>
+                        A string defining the marker type. Note that if you specify a
                         marker without a line style, only the marker is drawn. This property
                         is linked to the object's <literal>mark_style</literal> and
                         <literal>mark_mode</literal> properties (see
-                        <link linkend="polyline_properties">polyline_properties</link>).
+                        <link linkend="polyline_properties">polyline properties</link>).
                     </para>
                     <para/>
                     <informaltable border="1">
@@ -292,13 +311,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <literal>'pentagram'</literal>
+                                <literal>'pentagram' or 'p'</literal>
                             </td>
                             <td>Five-pointed star (pentagram)</td>
                         </tr>
                         <tr>
                             <td>
-                                <literal>'none'</literal>
                             </td>
                             <td>No marker (default)</td>
                         </tr>
@@ -309,41 +327,49 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
+clf();
 x=1:0.1:10; // Init.
-plot(x,sin(x),'r.->') // plots a dash-dotted line with a right-pointing triangle centered on each points.
+plot(x,sin(x),'r-.>') // plots a dash-dotted line with a right-pointing triangle centered on each points.
  ]]></programlisting>
-        <scilab:image>
-            x=1:0.1:10;
-            plot(x,sin(x),'r.->')
+        <scilab:image>x=1:0.1:10; // Init.
+            plot(x,sin(x),'r.-&gt;')
+            t=0:%pi/20:2*%pi;
+            plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
         </scilab:image>
         <programlisting role="example"><![CDATA[
 clf();
 x=1:0.1:10;
 // If you specify a marker without a line style, only the marker is drawn
-plot(x,sin(x),'d') // plots a dash-dotted line with a right-pointing triangle centered on each points.
+plot(x,sin(x),'d') 
  ]]></programlisting>
         <scilab:image>
             x=1:0.1:10;
             plot(x,sin(x),'d')
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
-x=1:10; // Init.
-// combinations' order does not matter
-plot(x,x.*x,'*cya--') 
+        <programlisting role="example"><![CDATA[
+clf();
+x = 1:0.5:10; // Init.
+// The order of information about color, line style or markers does not matter
+// BUT the information must be unambiguous 
+subplot(311);plot(x,sin(x),'.b-');
+subplot(312);plot(x,sin(x),'b.-');
+subplot(313);plot(x,sin(x),'b-.');// The point belongs to information about line style (not marker!)
+
  ]]></programlisting>
         <scilab:image>
-            x=1:10;
-            plot(x,x.*x,'*cya--')
+            x = 1:0.5:10;
+            subplot(311);plot(x,sin(x),'.b-');
+            subplot(312);plot(x,sin(x),'b.-');
+            subplot(313);plot(x,sin(x),'b-.');
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //multiple plots with different LineSpecs
 clf();
 t=0:%pi/20:2*%pi;
 plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
  ]]></programlisting>
-        <scilab:image>x=1:0.1:10;
-            plot(x,sin(x),'r.-&gt;')
+        <scilab:image>
             t=0:%pi/20:2*%pi;
             plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
         </scilab:image>
@@ -351,6 +377,9 @@ plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="color">color</link>
+            </member>
             <member>
                 <link linkend="GlobalProperty">GlobalProperty</link>
             </member>

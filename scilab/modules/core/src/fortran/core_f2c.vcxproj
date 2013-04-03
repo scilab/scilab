@@ -321,7 +321,6 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_argn.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clear.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clearglobal.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_comp.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delbpt.c" />
@@ -385,9 +384,7 @@ cd ..
     <ClCompile Include="intstr.c" />
     <ClCompile Include="isany.c" />
     <ClCompile Include="isbrk.c" />
-    <ClCompile Include="iseye.c" />
     <ClCompile Include="isinstring.c" />
-    <ClCompile Include="isnum.c" />
     <ClCompile Include="istrue.c" />
     <ClCompile Include="itosci.c" />
     <ClCompile Include="lst2vars.c" />
@@ -419,7 +416,6 @@ cd ..
     <ClCompile Include="stackp.c" />
     <ClCompile Include="stackr2d.c" />
     <ClCompile Include="storeglobal.c" />
-    <ClCompile Include="termf.c" />
     <ClCompile Include="tradsl.c" />
     <ClCompile Include="typ2cod.c" />
     <ClCompile Include="varfunptr.c" />
@@ -433,7 +429,6 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_argn.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clear.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clearglobal.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_comp.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delbpt.f" />
@@ -496,9 +491,7 @@ cd ..
     <f2c_rule Include="intstr.f" />
     <f2c_rule Include="isany.f" />
     <f2c_rule Include="isbrk.f" />
-    <f2c_rule Include="iseye.f" />
     <f2c_rule Include="isinstring.f" />
-    <f2c_rule Include="isnum.f" />
     <f2c_rule Include="istrue.f" />
     <f2c_rule Include="itosci.f" />
     <f2c_rule Include="lst2vars.f" />
@@ -530,7 +523,6 @@ cd ..
     <f2c_rule Include="stackp.f" />
     <f2c_rule Include="stackr2d.f" />
     <f2c_rule Include="storeglobal.f" />
-    <f2c_rule Include="termf.f" />
     <f2c_rule Include="tradsl.f" />
     <f2c_rule Include="typ2cod.f" />
     <f2c_rule Include="varfunptr.f" />

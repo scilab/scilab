@@ -12,7 +12,7 @@
 
 #include <math.h>
 #include <string.h>
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "core_math.h"
 #include "gw_arnoldi.h"
 #include "localization.h"
@@ -27,60 +27,290 @@ extern int C2F(znaupd)(int * ido, char * bmat, int * n, char * which,
 /*--------------------------------------------------------------------------*/
 int sci_znaupd(char *fname, unsigned long fname_len)
 {
-    int IDO,   mIDO,   nIDO,    pIDO;
-    int mBMAT,  nBMAT,   pBMAT;
-    int mN,     nN,      pN;
-    int mWHICH, nWHICH,  pWHICH;
-    int mNEV,   nNEV,    pNEV;
-    int mTOL,   nTOL,    pTOL;
-    int RESID, mRESID, nRESID,  pRESID;
-    int mNCV,   nNCV,    pNCV;
-    int V,     mV,     nV,      pV;
-    int IPARAM, mIPARAM, nIPARAM, pIPARAM;
-    int IPNTR, mIPNTR, nIPNTR,  pIPNTR;
-    int WORKD, mWORKD, nWORKD,  pWORKD;
-    int WORKL, mWORKL, nWORKL,  pWORKL;
-    int RWORK, mRWORK, nRWORK,  pRWORK;
-    int INFO,  mINFO,  nINFO,   pINFO;
+    SciErr sciErr;
+
+    int* piAddrpIDO     = NULL;
+    int* pIDO           = NULL;
+    int* piAddrpBMAT    = NULL;
+    char* pBMAT         = NULL;
+    int* piAddrpN       = NULL;
+    int* pN             = NULL;
+    int* piAddrpWHICH   = NULL;
+    char* pWHICH        = NULL;
+    int* piAddrpNEV     = NULL;
+    int* pNEV           = NULL;
+    int* piAddrpTOL     = NULL;
+    double* pTOL        = NULL;
+    int* piAddrpNCV     = NULL;
+    int* pNCV           = NULL;
+    int* piAddrpIPARAM  = NULL;
+    int* pIPARAM        = NULL;
+    int* piAddrpIPNTR   = NULL;
+    int* pIPNTR         = NULL;
+    int* piAddrpRWORK   = NULL;
+    double* pRWORK      = NULL;
+    int* piAddrpINFO    = NULL;
+    int* pINFO          = NULL;
+    int* piAddrpV       = NULL;
+
+    doublecomplex* pV       = NULL;
+    int* piAddrpRESID       = NULL;
+    doublecomplex* pRESID   = NULL;
+    int* piAddrpWORKD       = NULL;
+    doublecomplex* pWORKD   = NULL;
+    int* piAddrpWORKL       = NULL;
+    doublecomplex* pWORKL   = NULL;
+
+    int IDO,   mIDO,   nIDO;
+    int mBMAT,  nBMAT;
+    int mN,     nN;
+    int mWHICH, nWHICH;
+    int mNEV,   nNEV;
+    int mTOL,   nTOL;
+    int RESID, mRESID, nRESID;
+    int mNCV,   nNCV;
+    int V,     mV,     nV;
+    int IPARAM, mIPARAM, nIPARAM;
+    int IPNTR, mIPNTR, nIPNTR;
+    int WORKD, mWORKD, nWORKD;
+    int WORKL, mWORKL, nWORKL;
+    int RWORK, mRWORK, nRWORK;
+    int INFO,  mINFO,  nINFO;
 
     int minlhs = 1, minrhs = 15, maxlhs = 9, maxrhs = 15;
     int LDV, LWORKL;
     int sizeWORKL = 0;
 
-    CheckRhs(minrhs, maxrhs);
-    CheckLhs(minlhs, maxlhs);
+    CheckInputArgument(pvApiCtx, minrhs, maxrhs);
+    CheckOutputArgument(pvApiCtx, minlhs, maxlhs);
 
     /*                                                  VARIABLE = NUMBER   */
-    GetRhsVar( 1, MATRIX_OF_INTEGER_DATATYPE, &mIDO,    &nIDO,    &pIDO);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrpIDO);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 1.
+    sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddrpIDO, &mIDO, &nIDO, &pIDO);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        return 1;
+    }
+
     IDO =  1;
-    GetRhsVar( 2, STRING_DATATYPE,            &mBMAT,   &nBMAT,   &pBMAT);
-    GetRhsVar( 3, MATRIX_OF_INTEGER_DATATYPE, &mN,      &nN,      &pN);
-    GetRhsVar( 4, STRING_DATATYPE,            &mWHICH,  &nWHICH,  &pWHICH);
-    GetRhsVar( 5, MATRIX_OF_INTEGER_DATATYPE, &mNEV,    &nNEV,    &pNEV);
-    GetRhsVar( 6, MATRIX_OF_DOUBLE_DATATYPE,  &mTOL,    &nTOL,    &pTOL);
-    GetRhsVar( 7, MATRIX_OF_COMPLEX_DATATYPE, &mRESID,  &nRESID,  &pRESID);
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrpN);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 3.
+    sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddrpN, &mN, &nN, &pN);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 5, &piAddrpNEV);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 5.
+    sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddrpNEV, &mNEV, &nNEV, &pNEV);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 6, &piAddrpTOL);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 6.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrpTOL, &mTOL, &nTOL, &pTOL);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 6);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 7, &piAddrpRESID);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 7.
+    sciErr = getComplexZMatrixOfDouble(pvApiCtx, piAddrpRESID, &mRESID, &nRESID, &pRESID);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 7);
+        return 1;
+    }
+
     RESID =  7;
-    GetRhsVar( 8, MATRIX_OF_INTEGER_DATATYPE, &mNCV,    &nNCV,    &pNCV);
-    GetRhsVar( 9, MATRIX_OF_COMPLEX_DATATYPE, &mV,      &nV,      &pV);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 8, &piAddrpNCV);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 8.
+    sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddrpNCV, &mNCV, &nNCV, &pNCV);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 8);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 9, &piAddrpV);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 9.
+    sciErr = getComplexZMatrixOfDouble(pvApiCtx, piAddrpV, &mV, &nV, &pV);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 9);
+        return 1;
+    }
+
     V =  9;
-    GetRhsVar(10, MATRIX_OF_INTEGER_DATATYPE, &mIPARAM, &nIPARAM, &pIPARAM);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 10, &piAddrpIPARAM);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 10.
+    sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddrpIPARAM, &mIPARAM, &nIPARAM, &pIPARAM);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 10);
+        return 1;
+    }
+
     IPARAM = 10;
-    GetRhsVar(11, MATRIX_OF_INTEGER_DATATYPE, &mIPNTR,  &nIPNTR,  &pIPNTR);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 11, &piAddrpIPNTR);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 11.
+    sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddrpIPNTR, &mIPNTR, &nIPNTR, &pIPNTR);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 11);
+        return 1;
+    }
+
     IPNTR = 11;
-    GetRhsVar(12, MATRIX_OF_COMPLEX_DATATYPE, &mWORKD,  &nWORKD,  &pWORKD);
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 12, &piAddrpWORKD);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 12.
+    sciErr = getComplexZMatrixOfDouble(pvApiCtx, piAddrpWORKD, &mWORKD, &nWORKD, &pWORKD);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 12);
+        return 1;
+    }
+
     WORKD = 12;
-    GetRhsVar(13, MATRIX_OF_COMPLEX_DATATYPE, &mWORKL,  &nWORKL,  &pWORKL);
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 13, &piAddrpWORKL);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 13.
+    sciErr = getComplexZMatrixOfDouble(pvApiCtx, piAddrpWORKL, &mWORKL, &nWORKL, &pWORKL);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 13);
+        return 1;
+    }
+
     WORKL = 13;
-    GetRhsVar(14, MATRIX_OF_DOUBLE_DATATYPE,  &mRWORK,  &nRWORK,  &pRWORK);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 14, &piAddrpRWORK);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 14.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrpRWORK, &mRWORK, &nRWORK, &pRWORK);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 14);
+        return 1;
+    }
+
     RWORK = 14;
-    GetRhsVar(15, MATRIX_OF_INTEGER_DATATYPE, &mINFO,   &nINFO,   &pINFO);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 15, &piAddrpINFO);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 15.
+    sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddrpINFO, &mINFO, &nINFO, &pINFO);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 15);
+        return 1;
+    }
+
     INFO = 15;
 
     LWORKL = mWORKL * nWORKL;
-    LDV = Max(1, *istk(pN));
+    LDV = Max(1, pN[0]);
 
     /* Don't call dnaupd if ido == 99 */
-    if (*istk(pIDO) == 99)
+    if (pIDO[0] == 99)
     {
         Scierror(999, _("%s: the computation is already terminated\n"), fname);
         return 0;
@@ -99,25 +329,25 @@ int sci_znaupd(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (mRESID*nRESID != *istk(pN))
+    if (mRESID*nRESID != pN[0])
     {
-        Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "RESID", *istk(pN));
+        Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "RESID", pN[0]);
         return 0;
     }
 
-    if ((mV != *istk(pN)) || (nV != *istk(pNCV)))
+    if ((mV != pN[0]) || (nV != pNCV[0]))
     {
-        Scierror(999, _("%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"), fname, "V", *istk(pN), *istk(pNCV));
+        Scierror(999, _("%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"), fname, "V", pN[0], pNCV[0]);
         return 0;
     }
 
-    if (mWORKD * nWORKD < 3 * *istk(pN))
+    if (mWORKD * nWORKD < 3 * pN[0])
     {
-        Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "WORKD", 3 * *istk(pN));
+        Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "WORKD", 3 * pN[0]);
         return 0;
     }
 
-    sizeWORKL = 3 * *istk(pNCV) * *istk(pNCV) + 5 * *istk(pNCV);
+    sizeWORKL = 3 * pNCV[0] * pNCV[0] + 5 * pNCV[0];
 
     if (mWORKL * nWORKL < sizeWORKL)
     {
@@ -125,29 +355,63 @@ int sci_znaupd(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    C2F(znaupd)(istk(pIDO), cstk(pBMAT), istk(pN),
-                cstk(pWHICH), istk(pNEV), stk(pTOL),
-                zstk(pRESID), istk(pNCV), zstk(pV), &LDV,
-                istk(pIPARAM), istk(pIPNTR), zstk(pWORKD),
-                zstk(pWORKL), &LWORKL, stk(pRWORK), istk(pINFO));
 
-    if (*istk(pINFO) < 0)
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrpBMAT);
+    if (sciErr.iErr)
     {
-        C2F(errorinfo)("znaupd", istk(pINFO), 6L);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 2.
+    if (getAllocatedSingleString(pvApiCtx, piAddrpBMAT, &pBMAT))
+    {
+        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddrpWHICH);
+    if (sciErr.iErr)
+    {
+        freeAllocatedSingleString(pBMAT);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 4.
+    if (getAllocatedSingleString(pvApiCtx, piAddrpWHICH, &pWHICH))
+    {
+        freeAllocatedSingleString(pBMAT);
+        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 4);
+        return 1;
+    }
+
+    C2F(znaupd)(pIDO, pBMAT, pN,
+                pWHICH, pNEV, pTOL,
+                pRESID, pNCV, pV, &LDV,
+                pIPARAM, pIPNTR, pWORKD,
+                pWORKL, &LWORKL, pRWORK, pINFO);
+
+    freeAllocatedSingleString(pBMAT);
+    freeAllocatedSingleString(pWHICH);
+
+    if (pINFO[0] < 0)
+    {
+        C2F(errorinfo)("znaupd", pINFO, 6L);
         return 0;
     }
 
-    LhsVar(1) = IDO;
-    LhsVar(2) = RESID;
-    LhsVar(3) = V;
-    LhsVar(4) = IPARAM;
-    LhsVar(5) = IPNTR;
-    LhsVar(6) = WORKD;
-    LhsVar(7) = WORKL;
-    LhsVar(8) = RWORK;
-    LhsVar(9) = INFO;
+    AssignOutputVariable(pvApiCtx, 1) = IDO;
+    AssignOutputVariable(pvApiCtx, 2) = RESID;
+    AssignOutputVariable(pvApiCtx, 3) = V;
+    AssignOutputVariable(pvApiCtx, 4) = IPARAM;
+    AssignOutputVariable(pvApiCtx, 5) = IPNTR;
+    AssignOutputVariable(pvApiCtx, 6) = WORKD;
+    AssignOutputVariable(pvApiCtx, 7) = WORKL;
+    AssignOutputVariable(pvApiCtx, 8) = RWORK;
+    AssignOutputVariable(pvApiCtx, 9) = INFO;
 
-    PutLhsVar();
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

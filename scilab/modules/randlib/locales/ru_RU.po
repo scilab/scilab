@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-01-15 12:30+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-19 15:33+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: ru\n"
 
 #, c-format
@@ -40,20 +40,8 @@ msgstr ""
 "параметра «%s».\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: Scalar expected.\n"
-msgstr "%s: Неверный тип входного параметра №2: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong type for third input argument: Scalar expected.\n"
-msgstr "%s: Неверный тип входного параметра №3: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
-msgstr "%s: Неверный тип входного параметра №4: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
-msgstr "%s: Неверный тип входного параметра №5: ожидался скаляр.\n"
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid ""
@@ -72,8 +60,8 @@ msgstr ""
 "в диапазоне [%d,%d] для генератора %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
-msgstr "%s: Неверный размер входного параметра №2: ожидался %d x %d.\n"
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался %dx%d.\n"
 
 #, c-format
 msgid ""
@@ -110,42 +98,43 @@ msgid "%s: The %s option affects only the %s generator\n"
 msgstr "%s: Параметр %s влияет только на генератор %s\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: %d, %d or %d expected.\n"
+msgid "%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №2: ожидалось %d, %d или %d.\n"
+"%s: Неверное значение входного аргумента №%d: ожидалось %d, %d или %d.\n"
 
 #, c-format
 msgid "The %s option affects only the %s generator\n"
 msgstr "Параметр %s влияет только на генератор %s\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №2: должно быть между %d и %d.\n"
+"%s: Неверное значение входного параметра №%d: должно быть между %d и %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be > %d.\n"
-msgstr "%s: Неверное значение входного параметра №2: должно быть > %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s: Неверное значение входного параметра №%d: должно быть > %d.\n"
 
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Эта информация относится только к генератору clcg4\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
-"'%s' expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №2: ожидалось «%s», «%s», «%s», "
+"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s», «%s», "
 "«%s», «%s» или «%s».\n"
 
 #, c-format
-msgid "%s Wrong value for first input argument %s.\n"
-msgstr "%s: Неверное значение входного параметра №1: %s.\n"
+msgid "%s Wrong value for input argument #%d: %s.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Scalar expected.\n"
-msgstr "%s: Неверный тип входного параметра №1: ожидался скаляр.\n"
+msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался положительный "
+"скаляр.\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "Отсутствуют A и B для бета-распределения\n"
@@ -166,11 +155,9 @@ msgstr "Степени свободы не положительны\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "deviate.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №1: ожидалось количество случайных "
-"испытаний.\n"
 
 msgid "Missing N and P for MULtinomial law\n"
 msgstr "Отсутствуют N и P для полиномиального распределения\n"
@@ -251,11 +238,9 @@ msgstr "Отсутствуют N и P для биноминального рас
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "simulation.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №1: ожидалось количество случайных "
-"испытаний.\n"
 
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr "Отсутствуют Mean и Cov для многомерного нормального распределения\n"
@@ -282,9 +267,10 @@ msgstr "%s: Отсутствует матрица P и X0 для цепи Мар
 
 #, c-format
 msgid ""
-"%s: Wrong second input argument: Square matrix or row vector expected.\n"
+"%s: Wrong type for input argument #%d: Square matrix or row vector "
+"expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №2: ожидалась квадратная матрица или "
+"%s: Неверный тип входного аргумента №%d: ожидалась квадратная матрица или "
 "вектор-строка.\n"
 
 msgid "X0 is empty\n"

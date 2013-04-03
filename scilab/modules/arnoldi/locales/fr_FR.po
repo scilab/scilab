@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-30 14:14+0000\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2013-03-22 09:31+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: fr\n"
 
 #, c-format
@@ -154,6 +154,18 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgstr ""
+"%s : N n'est pas définie positive. Essayez avec sigma='SM' ou sigma "
+"scalaire.\n"
+
+#, c-format
+msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
+msgstr ""
+"%s : Si opts.cholB est vrai, B devrait être triangulaire supérieure.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle ou "
@@ -221,11 +233,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: B must be symmetric or hermitian, "
-"definite, semi positive.\n"
+"%s: Error with input argument #%d: B is not positive definite. Try with "
+"sigma='SM' or sigma=scalar.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : B doit être symétrique ou "
-"hermitienne, définie, semi-positive.\n"
+"%s : Erreur avec l'argument d'entrée n°%d : B n'est pas définie positive. "
+"Essayez avec sigma='SM' ou sigma scalaire.\n"
 
 #, c-format
 msgid "%s: Error with %s: info = %d \n"
@@ -234,6 +246,13 @@ msgstr "%s : Erreur avec %s : info = %d \n"
 #, c-format
 msgid "%s: Error with %s: unknown mode returned.\n"
 msgstr "%s : Erreur avec %s : mode inconnu retourné.\n"
+
+#, c-format
+msgid ""
+"%s: A - sigma * B is not inversible, try with a different value of sigma.\n"
+msgstr ""
+"%s : A - sigma * B n'est pas inversible, essayez avec une valeur différente "
+"pour sigma.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -271,14 +290,6 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée : Si A est une matrice, utilisez "
 "opts avec tol, maxiter, ncv, resid, cholB."
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument: Use opts with tol, maxiter, ncv, resid, "
-"cholB, issym, isreal"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée : Utilisez opts avec tol, maxiter, "
-"ncv, resid, cholB, issym, isreal."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -326,6 +337,14 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
+"upper triangular.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : si opts.cholB est vrai, B "
+"doit être triangulaire supérieur.\n"
+
+#, c-format
+msgid ""
 "%s: Impossible to use the Cholesky factorisation with complex sparse "
 "matrices.\n"
 msgstr ""
@@ -335,10 +354,6 @@ msgstr ""
 #, c-format
 msgid "%s: Error with %s: info = %d.\n"
 msgstr "%s : Erreur avec %s: info = %d.\n"
-
-#, c-format
-msgid "%s: Impossible to invert complex sparse matrix.\n"
-msgstr "%s : Impossible d'inverser une matrice creuse complexe.\n"
 
 #, c-format
 msgid ""

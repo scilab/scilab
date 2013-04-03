@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-01-24 17:03+0100\n"
 "PO-Revision-Date: 2012-04-19 17:56+0000\n"
 "Last-Translator: Marc Coll Carrillo <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: ca\n"
 
 msgid "X,Y,A and B"
@@ -192,6 +192,36 @@ msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "La resposta són major que el límit superior de la cerca %f\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha d'estar entre %d i "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
@@ -287,12 +317,6 @@ msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
 msgstr ""
 "%s: Els arguments d'entrdara #%d són d'un tipus incorrecte: Han de ser "
 "numèrics.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha d'estar entre %d i "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
@@ -437,14 +461,14 @@ msgid "Unexpected value of orien : %s\n"
 msgstr "Valor inesperat per a orien : %s\n"
 
 #, c-format
-msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
-msgstr "%s: El valor de w és incorrecte : Ha de ser %d; 0 o 1.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: L'argument d'entrada té un valor incorrecte: Ha de ser '%s', '%s', %d o "
 "%d.\n"
+
+#, c-format
+msgid "%s: Wrong value of w : %s; %d or %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"

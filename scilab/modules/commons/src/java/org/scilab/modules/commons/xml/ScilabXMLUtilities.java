@@ -483,4 +483,55 @@ public class ScilabXMLUtilities {
         }
         return length;
     }
+
+    /**
+     * Replace classical XML reserved chars by their XML equivalent entities
+     * @param str the String to parse and transform
+     * @return a String with the XML entities.
+     */
+    public static String getXMLString(String str) {
+        if (str != null && !str.isEmpty()) {
+            StringBuilder buf = new StringBuilder();
+            char[] chars = str.toCharArray();
+            int last = 0;
+            for (int i = 0; i < chars.length; i++) {
+                switch (chars[i]) {
+                case '\'' :
+                    buf.append(chars, last, i - last).append("&apos;");
+                    last = i + 1;
+                    break;
+                case '\"' :
+                    buf.append(chars, last, i - last).append("&quot;");
+                    last = i + 1;
+                    break;
+                case '<' :
+                    buf.append(chars, last, i - last).append("&lt;");
+                    last = i + 1;
+                    break;
+                case '>' :
+                    buf.append(chars, last, i - last).append("&gt;");
+                    last = i + 1;
+                    break;
+                case '&' :
+                    buf.append(chars, last, i - last).append("&amp;");
+                    last = i + 1;
+                    break;
+                default :
+                    break;
+                }
+            }
+
+            if (last == 0) {
+                return str;
+            }
+
+            if (last < chars.length) {
+                buf.append(chars, last, chars.length - last);
+            }
+
+            return buf.toString();
+        }
+
+        return str;
+    }
 }

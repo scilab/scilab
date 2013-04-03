@@ -66,6 +66,11 @@ int ScilabObjects::createNamedEnvironmentObject(int type, const char * name, int
     err = createNamedMList(pvApiCtx, name, FIELDS_LENGTH, &mlistaddr);
     if (err.iErr)
     {
+        if (err.iErr == API_ERROR_INVALID_NAME)
+        {
+            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable name: %s"), name);
+        }
+
         throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Cannot allocate memory"));
     }
 
@@ -173,7 +178,7 @@ void ScilabObjects::copyInvocationMacroToStack(int pos, ScilabAbstractEnvironmen
 
     Top = tops;
 
-    OptionsHelper::setCopyOccured(true);
+    OptionsHelper::setCopyOccurred(true);
 }
 
 void ScilabObjects::removeTemporaryVars(const int envId, int * tmpvar)
@@ -808,7 +813,6 @@ int ScilabObjects::isPositiveIntegerAtAddress(int * addr, void * pvApiCtx)
 {
     SciErr err;
     int typ = 0, row, col, prec;
-    int * id = 0;
 
     err = getVarDimension(pvApiCtx, addr, &row, &col);
     if (err.iErr)

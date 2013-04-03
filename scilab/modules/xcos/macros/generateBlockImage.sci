@@ -63,6 +63,13 @@ function status = generateBlockImage(block, path, filename, imageType, withPort)
         outFile = path + "/" + filename + "." + imageType;
     end
     
+    // if the gr_i value of a bloc is empty, return
+    if (block.graphics.gr_i(1) == []) then
+      mputl("<svg/>", outFile);
+      status = %t;
+      return
+    end
+
     // set export properties before creating any graphic object (including any figure)
     previous_driver = driver(imageType);
     xinit(outFile);

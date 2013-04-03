@@ -63,7 +63,9 @@ c
           it1=0
           ik=1
        endif
-       if(nlr2.eq.3) ik=3
+       
+c       if(nlr2.eq.3) ik=3
+       
        if(ityp(ik:ik).eq.'c') then
           it1=it1+1
        elseif(ityp(ik:ik).eq.'s') then

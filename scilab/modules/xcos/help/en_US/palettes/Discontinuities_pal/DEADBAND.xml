@@ -163,7 +163,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">zero crossing</emphasis>
+                    <emphasis role="bold">Zero crossing</emphasis>
                 </para>
                 <para>Select to enable zero crossing detection to detect when the
                     limits are reached.

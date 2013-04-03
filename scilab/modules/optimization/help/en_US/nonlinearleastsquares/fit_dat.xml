@@ -17,7 +17,7 @@
         <refpurpose>
             Parameter identification based on measured data 
             <emphasis role="bold">
-                This function is obsolete. Use <link linkend="datafit">datafit</link>
+                This function is obsolete. Please use <link linkend="datafit">datafit</link>.
             </emphasis>
         </refpurpose>
     </refnamediv>
@@ -151,5 +151,16 @@ plot2d(X',FF(X)',12,'002')
                 <link linkend="datafit">datafit</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>
+                    Function tagged obsolete. Will be removed in 5.5.0. Please use <link linkend="datafit">datafit</link> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

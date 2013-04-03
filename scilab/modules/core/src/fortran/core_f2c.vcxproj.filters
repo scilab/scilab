@@ -162,13 +162,7 @@
     <ClCompile Include="isbrk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="iseye.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="isinstring.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="isnum.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="istrue.c">
@@ -264,9 +258,6 @@
     <ClCompile Include="storeglobal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="termf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tradsl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -286,9 +277,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_argn.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clear.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clearglobal.c">
@@ -490,13 +478,7 @@
     <f2c_rule Include="isbrk.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="iseye.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="isinstring.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="isnum.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="istrue.f">
@@ -592,9 +574,6 @@
     <f2c_rule Include="storeglobal.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="termf.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="tradsl.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -614,9 +593,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_argn.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clear.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clearglobal.f">

@@ -19,7 +19,8 @@
 #include "xerhlt.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] = {
+static gw_generic_table Tab[] =
+{
     {sci_legendre, "legendre"},
     {sci_beta, "beta"},
     {sci_besseli, "besseli"},
@@ -27,10 +28,14 @@ static gw_generic_table Tab[] = {
     {sci_besselk, "besselk"},
     {sci_bessely, "bessely"},
     {sci_besselh, "besselh"},
-    {sci_gamma,"gamma"},
-    {sci_lgamma,"gammaln"},
-    {sci_dlgamma,"dlgamma"},
-    {sci_calerf,"calerf"}
+    {sci_gamma, "gamma"},
+    {sci_lgamma, "gammaln"},
+    {sci_dlgamma, "dlgamma"},
+    {sci_Faddeeva_erf, "erf"},
+    {sci_Faddeeva_erfc, "erfc"},
+    {sci_Faddeeva_erfcx, "erfcx"},
+    {sci_Faddeeva_erfi, "erfi"},
+    {sci_Faddeeva_dawson, "dawson"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_special_functions(void)
@@ -38,16 +43,16 @@ int gw_special_functions(void)
     Rhs = Max(0, Rhs);
     if (setjmp_slatec_jmp_env())
     {
-        Scierror(999,"%s: Wrong value for input argument: Positive expected.\n", Tab[Fin-1].name);
+        Scierror(999, "%s: Wrong value for input argument: Positive expected.\n", Tab[Fin - 1].name);
         return 0;
     }
 
-    if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }

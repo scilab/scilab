@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-10 17:04+0100\n"
+"Revision-Date: 2013-03-27 13:20+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -1545,7 +1545,7 @@ msgid "Error: cannot write to  '%s'  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 5965
+# File: src/c/scicos.c, line: 5974
 #, c-format
 msgid ""
 "\n"
@@ -1553,7 +1553,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6092
+# File: src/c/scicos.c, line: 6101
 #, c-format
 msgid ""
 "\n"
@@ -1561,7 +1561,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6093
+# File: src/c/scicos.c, line: 6102
 msgid ""
 "\n"
 " The residual function returns NAN/Inf. \n"
@@ -1589,52 +1589,60 @@ msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/lincos.sci, line: 123
-# File: macros/scicos_auto/steadycos.sci, line: 112
+# File: macros/scicos_auto/lincos.sci, line: 107
+# File: macros/scicos_auto/scicos_simulate.sci, line: 241
+# File: macros/scicos_auto/steadycos.sci, line: 94
+#, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr ""
+
+#
+# File: macros/scicos_auto/lincos.sci, line: 140
+# File: macros/scicos_auto/steadycos.sci, line: 129
 #, c-format
 msgid "%s: Unable to find diagram inputs\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/lincos.sci, line: 126
-# File: macros/scicos_auto/steadycos.sci, line: 115
+# File: macros/scicos_auto/lincos.sci, line: 143
+# File: macros/scicos_auto/steadycos.sci, line: 132
 #, c-format
 msgid "%s: Unable to find diagram outputs\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/lincos.sci, line: 131
-# File: macros/scicos_auto/steadycos.sci, line: 120
+# File: macros/scicos_auto/lincos.sci, line: 148
+# File: macros/scicos_auto/steadycos.sci, line: 137
 #, c-format
 msgid "%s: Input ports are not numbered properly.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/lincos.sci, line: 136
-# File: macros/scicos_auto/steadycos.sci, line: 125
+# File: macros/scicos_auto/lincos.sci, line: 153
+# File: macros/scicos_auto/steadycos.sci, line: 142
 #, c-format
 msgid "%s: Output ports are not numbered properly.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/lincos.sci, line: 142
-# File: macros/scicos_auto/lincos.sci, line: 152
-# File: macros/scicos_auto/steadycos.sci, line: 131
-# File: macros/scicos_auto/steadycos.sci, line: 138
+# File: macros/scicos_auto/lincos.sci, line: 159
+# File: macros/scicos_auto/lincos.sci, line: 169
+# File: macros/scicos_auto/steadycos.sci, line: 148
+# File: macros/scicos_auto/steadycos.sci, line: 155
 #, c-format
 msgid "%s: Diagram does not compile in pass %d.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/lincos.sci, line: 197
-# File: macros/scicos_auto/lincos.sci, line: 203
+# File: macros/scicos_auto/lincos.sci, line: 217
+# File: macros/scicos_auto/lincos.sci, line: 223
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Empty matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/lincos.sci, line: 199
-# File: macros/scicos_auto/lincos.sci, line: 205
+# File: macros/scicos_auto/lincos.sci, line: 219
+# File: macros/scicos_auto/lincos.sci, line: 225
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
@@ -1681,14 +1689,8 @@ msgstr ""
 # File: macros/scicos_auto/scicos_simulate.sci, line: 235
 #, c-format
 msgid ""
-"Warning the variable %s do not match any context variable name\n"
+"Warning the variable %s does not match any context variable name\n"
 "ignored"
-msgstr ""
-
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 241
-#, c-format
-msgid "%s: Error during block parameters evaluation.\n"
 msgstr ""
 
 #
@@ -1732,7 +1734,7 @@ msgid "End problem: "
 msgstr ""
 
 #
-# File: macros/scicos_auto/steadycos.sci, line: 96
+# File: macros/scicos_auto/steadycos.sci, line: 113
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -1876,6 +1878,7 @@ msgstr ""
 
 #
 # File: macros/scicos_scicos/do_eval.sci, line: 125
+# File: macros/scicos_scicos/do_eval.sci, line: 129
 msgid "Evaluation problem: Unknown block"
 msgstr ""
 
@@ -1896,7 +1899,7 @@ msgid "%s: Empty diagram"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/script2var.sci, line: 69
+# File: macros/scicos_scicos/script2var.sci, line: 72
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored"
 msgstr ""
@@ -1920,15 +1923,15 @@ msgid "%s: Type %s is not implemented.\n"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/setvalue.sci, line: 253
+# File: macros/scicos_scicos/setvalue.sci, line: 256
 #, c-format
-msgid "%s: invalid dimension for '%s', waiting for %s"
+msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/setvalue.sci, line: 263
+# File: macros/scicos_scicos/setvalue.sci, line: 266
 #, c-format
-msgid "%s: incorrect type for '%s', getting %s"
+msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
 msgstr ""
 
 #

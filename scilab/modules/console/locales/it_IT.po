@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-03 10:45+0000\n"
-"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"PO-Revision-Date: 2012-12-15 07:46+0000\n"
+"Last-Translator: Stefano Saraceni <qddsar@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: it\n"
 
 #, c-format
@@ -200,9 +200,6 @@ msgstr ""
 msgid "Previous char"
 msgstr ""
 
-msgid "Next char"
-msgstr ""
-
 msgid "Delete next char"
 msgstr ""
 
@@ -243,6 +240,9 @@ msgid "Next history line"
 msgstr ""
 
 msgid "Help Browser"
+msgstr ""
+
+msgid "Console Search Field"
 msgstr ""
 
 msgid "Paste"
@@ -684,19 +684,19 @@ msgid "Floating point exception (ieee): "
 msgstr ""
 
 msgid "Printing format: "
-msgstr ""
+msgstr "Formato di stampa "
 
 msgid "Width: "
 msgstr ""
 
 msgid "Language setting"
-msgstr ""
+msgstr "Impostazioni lingua"
 
 msgid "Default language: "
 msgstr ""
 
 msgid "(This requires a restart of Scilab)"
-msgstr ""
+msgstr "Questo richiede un riavvio di Scilab"
 
 msgid "Java Heap Memory"
 msgstr ""
@@ -711,7 +711,7 @@ msgid "Select a layout"
 msgstr ""
 
 msgid "(Modify the layout requires to restart Scilab)"
-msgstr ""
+msgstr "Modificare l'aspetto richiede il riavvio di Scilab"
 
 msgid "Keys binding"
 msgstr ""
@@ -763,6 +763,8 @@ msgid ""
 "Command is too long (more than %d characters long): could not send it to "
 "Scilab\n"
 msgstr ""
+"Il comando è troppo lungo (oltre %d caratteri): impossibile inviarlo a "
+"Scialab\n"
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
