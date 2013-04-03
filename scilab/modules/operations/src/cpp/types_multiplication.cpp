@@ -368,7 +368,7 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
 
     if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getCols() != _pDouble2->getRows())
     {
-        return 0;
+        return 1;
     }
 
     bool bComplex1  = _pDouble1->isComplex();
