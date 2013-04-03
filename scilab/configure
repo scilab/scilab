@@ -9937,7 +9937,7 @@ save_LIBS="$LIBS"
 
 # --with-hdf5-library set then check in this dir
 if test "x$with_hdf5_library" != "xyes"; then
-    HDF5_LIBS="-L$with_hdf5_library -lhdf5"
+    HDF5_LIBS="-L$with_hdf5_library -lhdf5 -lhdf5_hl"
     LIBS="$LIBS $HDF5_LIBS"
     { $as_echo "$as_me:${as_lineno-$LINENO}: checking for H5Fopen in -lhdf5" >&5
 $as_echo_n "checking for H5Fopen in -lhdf5... " >&6; }
@@ -9983,13 +9983,13 @@ _ACEOF
   LIBS="-lhdf5 $LIBS"
 
 else
-  as_fn_error $? "libhdf5 : library missing. (Cannot find symbol H5Fopen) in $with_hdf5_library. Check if libhdf5 is installed and if the version is correct" "$LINENO" 5
+  as_fn_error $? "libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen) in $with_hdf5_library. Check if libhdf5 is installed and if the version is correct" "$LINENO" 5
 
 fi
 
 
 else
-    HDF5_LIBS="-lhdf5"
+    HDF5_LIBS="-lhdf5 -lhdf5_hl"
     LIBS="$LIBS $HDF5_LIBS"
     { $as_echo "$as_me:${as_lineno-$LINENO}: checking for H5Fopen in -lhdf5" >&5
 $as_echo_n "checking for H5Fopen in -lhdf5... " >&6; }
@@ -10035,7 +10035,7 @@ _ACEOF
   LIBS="-lhdf5 $LIBS"
 
 else
-  as_fn_error $? "libhdf5 : library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct" "$LINENO" 5
+  as_fn_error $? "libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct" "$LINENO" 5
 
 fi
 
