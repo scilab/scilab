@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5dataset" xml:lang="en">
+    <refnamediv>
+        <refname>h5dataset</refname>
+        <refpurpose>Create a dataset and write the data</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            h5dataset(obj, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
+            h5dataset(filename, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>a string giving the path to the new dataset</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sourceInfo</term>
+                <listitem>
+                    <para>a matrix 5xn of doubles</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sourceType</term>
+                <listitem>
+                    <para>a string giving the type of the source</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data</term>
+                <listitem>
+                    <para>a Scilab data</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>targetInfo</term>
+                <listitem>
+                    <para>a matrix 6xn of doubles</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>targetType</term>
+                <listitem>
+                    <para>a string giving the type of the target</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a string giving the filename</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Create a new named dataset (if it does not exist) based on the Scilab data passed as argument.</para>
+        <para>
+            The target HDF5 type can be chosen in the list available in the <ulink url="http://www.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html">HDF5 manual</ulink>.
+            Examples of this HDF5 type are "H5T_MIPS_U32" or "H5T_STD_B64BE", but shortcuts as "MIPS_U32" or "STD_B64BE" can also be used.
+        </para>
+        <para>The source info gives informations on how to get the data. It is a matrix 5xn where n is the number of dimensions of the data. The rows give the following informations:</para>
+        <simplelist type="inline">
+            <member>
+                1st row: the data dimensions. 
+            </member>
+            <member>
+                2nd row: the start point of the hyperslab. 
+            </member>
+            <member>
+                3rd row: the hyperslab's count.
+            </member>
+            <member>
+                4th row: the hyperslab's stride.
+            </member>
+            <member>
+                5th row: the hyperslab's block.
+            </member>
+        </simplelist>
+        <para>
+            For more explanation about hyperslab selection, see <link linkend="h5write">h5write</link>.
+        </para>
+        <para>The targetInfo matrix is 6xn double matrix. The first row gives the dimensions of the target dataset and the second one gives the maximal possible dimensions. When the first and the second row are not equal, the dataset will be chunked. The rows 3 to 6 give the hyperslab's start, count, stride and block.</para> 
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// We create a new HDF5 file
+a = h5open(TMPDIR + "/test.h5", "w")
+
+// The data
+x = uint32(1:100);
+y = uint32(1:9);
+
+// We create the dataset
+// x is viewed as a C-matrix (row-major)
+h5dataset(a, "My_Dataset", [10 10 ; 2 1 ; 4 1 ; 2 1 ; 1 9], x, [7 12 ; 9 14 ; 3 3 ; 1 1 ; 1 1 ; 4 9])
+h5dump(a, "My_Dataset");
+
+// We add y data in extending the dataset dimensions
+h5dataset(a, "My_Dataset", [9 1 ; 1 1 ; 1 1 ; 1 1 ; 9 1], y, [9 12 ; 9 14 ; 1 1 ; 1 1 ; 1 1 ; 9 1])
+h5dump(a, "My_Dataset");
+
+// We can replace the y data
+h5dataset(a, "My_Dataset", [9 1 ; 1 1 ; 1 1 ; 1 1 ; 9 1], uint32(11:19), [9 12 ; 9 14 ; 1 1 ; 1 1 ; 1 1 ; 9 1])
+h5dump(a, "My_Dataset");
+
+// Free all the resources
+h5close(a)
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5group">h5group</link>
+            </member>
+            <member>
+                <link linkend="h5attr">h5attr</link>
+            </member>
+            <member>
+                <link linkend="h5write">h5write</link>
+            </member>
+            <member>
+                <link linkend="h5writeattr">h5writeattr</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

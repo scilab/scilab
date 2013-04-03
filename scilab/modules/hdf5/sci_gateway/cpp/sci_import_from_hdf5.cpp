@@ -51,8 +51,8 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
     char* pstFilename = NULL;
     char* pstExpandedFilename = NULL;
     bool bImport = true;
-
-    int iSelectedVar = Rhs - 1;
+    const int nbIn = nbInputArgument(pvApiCtx);
+    int iSelectedVar = nbIn - 1;
 
     CheckInputArgumentAtLeast(pvApiCtx, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
@@ -160,7 +160,7 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 
     int *piReturn = NULL;
 
-    sciErr = allocMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, 1, &piReturn);
+    sciErr = allocMatrixOfBoolean(pvApiCtx, nbIn + 1, 1, 1, &piReturn);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -176,7 +176,7 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
         piReturn[0] = 0;
     }
 
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
     ReturnArguments(pvApiCtx);
 
     //  printf("End gateway !!!\n");

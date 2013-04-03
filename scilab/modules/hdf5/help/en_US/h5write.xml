@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5write" xml:lang="en">
+    <refnamediv>
+        <refname>h5write</refname>
+        <refpurpose>Create a dataset (if it does not exist) and write the data</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            h5write(obj, name, data [, targetType], [, start, count [, stride [, block]]])
+            h5write(filename, name, data [, targetType], [, start, count [, stride [, block]]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>a string giving the path to the dataset</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data</term>
+                <listitem>
+                    <para>a Scilab data</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>targetType</term>
+                <listitem>
+                    <para>a string giving the type of the target</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>start</term>
+                <listitem>
+                    <para>a row of doubles containing the start of the hyperslab</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>count</term>
+                <listitem>
+                    <para>a row of doubles containing the count of the hyperslab</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>stride</term>
+                <listitem>
+                    <para>a row of doubles containing the stride of the hyperslab</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>block</term>
+                <listitem>
+                    <para>a row of doubles containing the block of the hyperslab</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a string giving the filename</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Create a new named dataset (if it does not exist) based on the Scilab data passed as argument.</para>
+        <para>
+            The target HDF5 type can be chosen in the list available in the <ulink url="http://www.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html">HDF5 manual</ulink>.
+            Examples of this HDF5 type are "H5T_MIPS_U32" or "H5T_STD_B64BE", but shortcuts as "MIPS_U32" or "STD_B64BE" can also be used.
+        </para>
+        <para>It is possible to make an hyperslab selection on the data.</para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/hyperslab_selection.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>The arguments start, count, stride and block must have a size equals to the number of dimensions of the data:
+            <simplelist type="inline">
+                <member>
+                    start: gives the coordinates in the data where to start the selection. 
+                </member>
+                <member>
+                    count: gives the number of selected blocks in each dimension. 
+                </member>
+                <member>
+                    stride: gives the shift between two consecutives blocks in each dimension. Take care that the stride must be greater than the corresponding block dimension. 
+                </member>
+                <member>
+                    block: gives the block dimensions. 
+                </member>
+            </simplelist>
+            By default stride and block are set to 1 in each dimension.
+        </para>
+        <para>
+            If the target type is "H5T_STD_REF_OBJ", the data matrix must be a string matrix containing the absolute paths of group or datasets.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = matrix(1:20, 4, 5);
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+
+// Open the created file
+a = h5open(TMPDIR + "/x.sod");
+
+// We want to add a new dataset named "y"
+y = uint32(matrix(10:30, 7, 3));
+h5write(a, "y", y);
+
+// We add a dataset "z" in using MIPS representation
+h5write(a, "z", y, "H5T_MIPS_U32");
+
+// Now we make an hyperslab selection
+x = uint32(matrix(1:(11*17), 11, 17));
+h5write(a, "t", x, [1 2], [2 4], [5 3], [3 2]);
+
+//Now check that all is ok
+x, a("/t").data'
+
+// We have finished so we free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5group">h5group</link>
+            </member>
+            <member>
+                <link linkend="h5attr">h5attr</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -22,14 +22,58 @@ src/c/h5_readDataFromFile_v1.c \
 src/cpp/import_from_hdf5_v1.cpp \
 src/cpp/listvar_in_hdf5_v1.cpp
 
-
+HDF5_CXX_SOURCES = src/cpp/H5Attribute.cpp \
+		   src/cpp/H5AttributesList.cpp \
+		   src/cpp/H5DataConverter.cpp \
+		   src/cpp/H5Dataset.cpp \
+		   src/cpp/H5Dataspace.cpp \
+		   src/cpp/H5File.cpp \
+		   src/cpp/H5Group.cpp \
+		   src/cpp/H5Object.cpp \
+		   src/cpp/H5Type.cpp \
+		   src/cpp/H5DataFactory.cpp \
+		   src/cpp/H5VariableScope.cpp \
+		   src/cpp/H5SoftLink.cpp \
+		   src/cpp/H5ExternalLink.cpp \
+		   src/cpp/H5HardLink.cpp \
+		   src/cpp/H5Link.cpp \
+		   src/cpp/HDF5Scilab.cpp \
+		   src/cpp/H5StringData.cpp \
+		   src/cpp/H5ReferenceData.cpp \
+		   src/cpp/H5CompoundData.cpp \
+		   src/cpp/H5ArrayData.cpp \
+		   src/cpp/H5VlenData.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
 sci_gateway/cpp/sci_import_from_hdf5.cpp \
 sci_gateway/cpp/sci_is_hdf5_file.cpp \
-sci_gateway/cpp/sci_listvar_in_hdf5.cpp
+sci_gateway/cpp/sci_listvar_in_hdf5.cpp \
+sci_gateway/cpp/sci_h5dump.cpp \
+sci_gateway/cpp/sci_h5open.cpp \
+sci_gateway/cpp/sci_h5close.cpp \
+sci_gateway/cpp/sci_h5read.cpp \
+sci_gateway/cpp/sci_h5ls.cpp \
+sci_gateway/cpp/sci_percent_H5Object_p.cpp \
+sci_gateway/cpp/sci_percent_H5Object_e.cpp \
+sci_gateway/cpp/sci_h5group.cpp \
+sci_gateway/cpp/sci_h5rm.cpp \
+sci_gateway/cpp/sci_h5dataset.cpp \
+sci_gateway/cpp/sci_h5write.cpp \
+sci_gateway/cpp/sci_h5attr.cpp \
+sci_gateway/cpp/sci_h5ln.cpp \
+sci_gateway/cpp/sci_h5readattr.cpp \
+sci_gateway/cpp/sci_h5flush.cpp \
+sci_gateway/cpp/sci_h5cp.cpp \
+sci_gateway/cpp/sci_h5isfoo.cpp \
+sci_gateway/cpp/sci_h5mount.cpp \
+sci_gateway/cpp/sci_h5umount.cpp \
+sci_gateway/cpp/sci_h5mv.cpp \
+sci_gateway/cpp/sci_h5get.cpp \
+sci_gateway/cpp/sci_h5label.cpp \
+sci_gateway/cpp/sci_h5exists.cpp \
+sci_gateway/cpp/sci_percent_H5Object_fieldnames.cpp
 
 if GIWS
 BUILT_SOURCES=giws
@@ -37,6 +81,9 @@ endif
 
 
 #### hdf5 : include files ####
+FORCE_HDF_1.8_API =   -DH5Topen_vers=2 -DH5Dcreate_vers=2 -DH5Aiterate_vers=2 \
+ -DH5Gcreate_vers=2 -DH5Gopen_vers=2 -DH5Tget_array_dims_vers=2 \
+ -DH5Acreate_vers=2 -DNO_DEPRECATED_SYMBOLS
 
 libscihdf5_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -50,7 +97,10 @@ libscihdf5_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \
 				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS) \
-				$(AM_CPPFLAGS)
+				$(AM_CPPFLAGS) \
+				$(FORCE_HDF_1.8_API)
+
+
 
 
 #### hdf5 : gateway declaration ####
@@ -64,9 +114,9 @@ noinst_LTLIBRARIES += libscihdf5-algo.la
 
 # When Scilab is built with HDF5, we need some libraries for a workaround
 
-libscihdf5_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS)
+libscihdf5_la_LDFLAGS = $(HDF5_LIBS) $(AM_LDFLAGS) -lhdf5_hl
 
-libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES)
+libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES) $(HDF5_CXX_SOURCES)
 libscihdf5_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES)
 libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 
