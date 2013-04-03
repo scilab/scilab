@@ -18,6 +18,7 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
  - getURL - Download an URL (HTTP, HTTPS, FTP...)
  - splitURL - Split a URL (HTTP, HTTPS, FTP...)
 
+* Add a complete set of functions to read and write any HDF5 file from Scilab.
 
 
 Syntax changes
