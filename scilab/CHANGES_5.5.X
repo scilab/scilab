@@ -49,6 +49,8 @@ Xcos
 Bug fixes
 ==========
 
+* Bug #6693 fixed - modulo did not accept polynomial inputs. Help page was not updated.
+
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
 
 * Bug #10862 fixed - Add a without internet connection installation
