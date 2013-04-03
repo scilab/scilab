@@ -1585,6 +1585,14 @@ int errorTable(int iErr)
             iValueReturned = Scierror(iErr, "");
         }
         break;
+        case 281:
+        {
+            char localbuf[3];
+            strncpy(localbuf, C2F(cha1).buf, 2);
+            localbuf[2] = '\0';
+            iValueReturned = Scierror(iErr, _("%s: Wrong value for input argument #%d: Wrong value for element %s.\n"), "bvode", 7, localbuf);
+        }
+        break;
 
         default:
         {
