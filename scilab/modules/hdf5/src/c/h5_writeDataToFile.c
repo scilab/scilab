@@ -1793,7 +1793,7 @@ static int deleteHDF5group(int _iFile, char* _pstName)
     hid_t status = 0;
     //open group
     char* pstGroupName = createGroupName(_pstName);
-    hid_t groupID = H5Gopen(_iFile, pstGroupName);
+    hid_t groupID = H5Gopen(_iFile, pstGroupName, H5P_DEFAULT);
     if (groupID >= 0)
     {
         int i = 0;
