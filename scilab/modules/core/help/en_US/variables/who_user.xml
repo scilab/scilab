@@ -15,7 +15,7 @@
                 <term>bPrint</term>
                 <listitem>
                     <para>
-                        Enable or disable screen outputs (Default: %t).
+                        enable or disable screen outputs (default: <constant>%t</constant>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -28,7 +28,7 @@
                 <term>varList</term>
                 <listitem>
                     <para>
-                        Column vector of user's variables or [] if user does not have variable.
+                        a column vector of user's variables or <listing>[]</listing> if user does not have variable.
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,8 +42,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="code_scilab">
-            <![CDATA[ 
+        <programlisting role="code_scilab"><![CDATA[ 
 clear;
 who_user()
 who_user(%t)
@@ -73,7 +72,10 @@ clear;
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>who_user can now return user's variable names in a column vector of character strings.</revremark>
+                <revremark>
+                    <function>who_user</function> can now return user's 
+                    variable names in a column vector of character strings.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

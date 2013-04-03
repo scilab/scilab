@@ -220,6 +220,7 @@
     <refsection>
     </refsection>
     <refsection>
+        <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // open a SCI+'/ACKNOWLEDGEMENTS' as text and read only
 fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS', 'rt')
@@ -255,7 +256,6 @@ mclose(fd_r2);
     <refsection>
     </refsection>
     <refsection>
-        <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // read/write a file as binary
 

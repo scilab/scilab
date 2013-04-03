@@ -6,7 +6,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>clearglobal()
+        <synopsis>
+            clearglobal()
             clearglobal nam1 ... namn
             clearglobal('nam1', ...,'namn')
         </synopsis>
@@ -25,15 +26,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>clearglobal()</literal> kills all the global variables.
+            <code>clearglobal()</code> kills all the global variables.
         </para>
         <para>
             <literal>clearglobal nam1 ... namn</literal>  kills  the global variables given by
             their names.
         </para>
         <para>
-            Note that <literal>clearglobal() </literal> only clears the global variables, the
-            local copies of these global variables are not destroyed.
+            <note>
+                Note that <code>clearglobal()</code> only clears 
+                the global variables, the local copies of these global 
+                variables are not destroyed.
+            </note>
         </para>
     </refsection>
     <refsection>
