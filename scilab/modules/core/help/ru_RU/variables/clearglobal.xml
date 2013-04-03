@@ -26,14 +26,18 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>clearglobal()</literal> уничтожает все глобальные переменные.
+            <code>clearglobal()</code> уничтожает все глобальные переменные.
         </para>
         <para>
-            <literal>clearglobal nam1 ... namn</literal> уничтожает глобальные переменные, перечисленные 
-            по именам.
+            <literal>clearglobal nam1 ... namn</literal> уничтожает 
+            глобальные переменные, перечисленные по именам.
         </para>
         <para>
-            Обратите внимание, что <literal>clearglobal()</literal> уничтожает только глобальные переменные, но локальные копии этих глобальных переменных не уничтожаются.
+            <note>
+                Обратите внимание, что <code>clearglobal()</code> 
+                уничтожает только глобальные переменные, но локальные 
+                копии этих глобальных переменных не уничтожаются.
+            </note>
         </para>
     </refsection>
     <refsection>

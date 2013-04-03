@@ -43,7 +43,7 @@
                         указания бинарного файла.
                     </para>
                     <para>
-                        Значение по умолчанию -- <literal>'rb'</literal>.
+                        Значение по умолчанию - <literal>'rb'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -212,6 +212,7 @@
     <refsection>
     </refsection>
     <refsection>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 // открываем SCI+'/ACKNOWLEDGEMENTS' как текст только для чтения
 fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS', 'rt')

@@ -160,11 +160,22 @@
             Числовой режим представляет собой от одной до четырёх восьмеричных цифр
             (0-7), полученных добавлением битов со значениями 4, 2 и
             1. Любые опущенные цифры предполагаются предварёнными
-            нулями. Первая цифра выбирает набор аттрибутов идентификатора пользователя
+            нулями. Первая цифра выбирает набор атрибутов идентификатора пользователя
             (4), группы пользователя (2) и sticky-бита (1). Вторая цифра
             выбирает права пользователя, который владеет файлом: чтение (4),
             запись (2) и исполнение (1); третье число выбирает права для
             других пользователей в группе файлов с теми же самыми значениями.
+        </para>
+        <para>
+            So, to check permissions, it is necessary to use masks. Let us take an example:
+            In octal, x(2)=1664, so first digit corresponds to sticky attributes. The second
+            indicates that file owner has permission of writing and reading. It is the same
+            for other users in the file's group. Finally, others users has just right to read.
+            To apply a mask, it is simpler to look at this octal in binary. 
+            So: <varname>x</varname>(2)= 1 110 110 100.
+            To check if the owner has write permission, we must take a look at the second triplet: 110 
+            and compare it with write permission 010. So, the operation is: 110 000 000 &amp; 010 000 000.
+            If result is not null (it is the case here), owner has write permission.
         </para>
     </refsection>
     <refsection>
