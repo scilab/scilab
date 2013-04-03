@@ -54,6 +54,8 @@ Bug fixes
 * Bug #11343 fixed - The "isoview" figure property did not work when the axes
                      margins had been modified.
 
+* Bug #12163 fixed - unzoom did not work with a single input argument.
+
 * Bug #12463 fixed - Bad specification for rect=[x,y,w,h] argument in french help
                      page of xstringb.
 
