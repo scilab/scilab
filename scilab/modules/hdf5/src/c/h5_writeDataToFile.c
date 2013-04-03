@@ -1791,6 +1791,8 @@ int closeList(int _iFile, void *_pvList, char *_pstListName, int _iNbItem, int _
 static int deleteHDF5group(int _iFile, char* _pstName)
 {
     hid_t status = 0;
+    char** pstChildName = NULL;
+
     //open group
     char* pstGroupName = createGroupName(_pstName);
     hid_t groupID = H5Gopen(_iFile, pstGroupName, H5P_DEFAULT);
@@ -1808,25 +1810,30 @@ static int deleteHDF5group(int _iFile, char* _pstName)
         //for each child,
         for (i = 0 ; i < groupInfo.nlinks ; i++)
         {
-            ssize_t size = 0;
             char* pstPathName = NULL;
-            char* pstChildName = NULL;
             //build child path
             pstPathName = createPathName(pstGroupName, i);
 
             //try to delete child and his children
             deleteHDF5group(_iFile, pstPathName);
-
-            //get child name
-            size = H5Lget_name_by_idx(groupID, ".", H5_INDEX_NAME, H5_ITER_INC, 0, 0, 0, H5P_DEFAULT) + 1;
-            pstChildName = (char*)MALLOC(sizeof(char) * size);
-            H5Lget_name_by_idx(groupID, ".", H5_INDEX_NAME, H5_ITER_INC, 0, pstChildName, size, H5P_DEFAULT);
-
-            //unlink child
-            status = H5Ldelete(groupID, pstChildName, H5P_DEFAULT);
-
-            FREE(pstChildName);
             FREE(pstPathName);
+        }
+
+        pstChildName = (char**)MALLOC(sizeof(char*) * groupInfo.nlinks);
+
+        for (i = 0 ; i < groupInfo.nlinks ; i++)
+        {
+            //get child name
+            ssize_t size = H5Lget_name_by_idx(groupID, ".", H5_INDEX_NAME, H5_ITER_INC, i, 0, 0, H5P_DEFAULT) + 1;
+            pstChildName[i] = (char*)MALLOC(sizeof(char) * size);
+            H5Lget_name_by_idx(groupID, ".", H5_INDEX_NAME, H5_ITER_INC, i, pstChildName[i], size, H5P_DEFAULT);
+        }
+
+        for (i = 0 ; i < groupInfo.nlinks ; i++)
+        {
+            //unlink child
+            status = H5Ldelete(groupID, pstChildName[i], H5P_DEFAULT);
+            FREE(pstChildName[i]);
 
             if (status < 0)
             {
@@ -1834,6 +1841,7 @@ static int deleteHDF5group(int _iFile, char* _pstName)
             }
         }
 
+        FREE(pstChildName);
         //close group
         status = H5Gclose(groupID);
         if (status < 0)

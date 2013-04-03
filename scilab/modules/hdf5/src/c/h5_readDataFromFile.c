@@ -84,7 +84,7 @@ static int readIntAttribute(int _iDatasetId, const char *_pstName)
 
     if (H5Aiterate(_iDatasetId, H5_INDEX_NAME, H5_ITER_NATIVE, &n, find_attr_by_name, (void *)_pstName) > 0)
     {
-        iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
+        iAttributeId = H5Aopen(_iDatasetId, _pstName, H5P_DEFAULT);
         if (iAttributeId < 0)
         {
             return -1;
@@ -121,7 +121,7 @@ static char* readAttribute(int _iDatasetId, const char *_pstName)
 
     if (H5Aiterate(_iDatasetId, H5_INDEX_NAME, H5_ITER_NATIVE, &n, find_attr_by_name, (void *)_pstName) > 0)
     {
-        iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
+        iAttributeId = H5Aopen(_iDatasetId, _pstName, H5P_DEFAULT);
         if (iAttributeId < 0)
         {
             return NULL;
@@ -379,13 +379,15 @@ int getVariableNames(int _iFile, char **pstNameList)
     herr_t status = 0;
     int iNbItem = 0;
     H5O_info_t oinfo;
+    H5G_info_t ginfo;
 
-    status = H5Gget_num_objs(_iFile, &iCount);
+    status = H5Gget_info(_iFile, &ginfo);
     if (status != 0)
     {
         return 0;
     }
 
+    iCount = ginfo.nlinks;
     for (i = 0; i < iCount; i++)
     {
         status = H5Oget_info_by_idx(_iFile, "/", H5_INDEX_NAME, H5_ITER_NATIVE, i, &oinfo, H5P_DEFAULT);
@@ -398,11 +400,9 @@ int getVariableNames(int _iFile, char **pstNameList)
         {
             if (pstNameList != NULL)
             {
-                int iLen = 0;
-
-                iLen = (int)H5Gget_objname_by_idx(_iFile, i, NULL, iLen);
-                pstNameList[iNbItem] = (char *)MALLOC(sizeof(char) * (iLen + 1));   //null terminated
-                H5Gget_objname_by_idx(_iFile, i, pstNameList[iNbItem], iLen + 1);
+                ssize_t iLen = H5Lget_name_by_idx(_iFile, ".", H5_INDEX_NAME, H5_ITER_INC, i, 0, 0, H5P_DEFAULT) + 1;
+                pstNameList[iNbItem] = (char*)MALLOC(sizeof(char) * iLen);
+                H5Lget_name_by_idx(_iFile, ".", H5_INDEX_NAME, H5_ITER_INC, i, pstNameList[iNbItem], iLen, H5P_DEFAULT);
             }
             iNbItem++;
         }

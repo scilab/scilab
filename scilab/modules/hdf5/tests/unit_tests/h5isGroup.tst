@@ -4,8 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- CLI SHELL MODE -->
+//
+// <-- ENGLISH IMPOSED -->
 
 msgerr = msprintf(gettext("%s: Wrong number of input argument(s): 1 expected."), "h5isGroup");
 assert_checkerror("h5isGroup()",msgerr,77);

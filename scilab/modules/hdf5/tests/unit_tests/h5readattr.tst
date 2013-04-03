@@ -23,15 +23,15 @@ assert_checkerror("h5readattr(""42"",""42"",""42"")",msgerr,999);
 x = int8(matrix(1:80, 10, 8));
 save(TMPDIR + "/x.sod", "x");
 version = string(getversion('scilab'));
-version = getversion()+" "+strcat([version(1),version(2),version(3)],'.')
+version = getversion()+" "+strcat([version(1),version(2),version(3)],'.');
 
 a = h5open(TMPDIR + "/x.sod");
 
 scilab_version = h5readattr(a, "/", "SCILAB_scilab_version");
 assert_checkequal(scilab_version,version);
 
-scilab_class = h5readattr(a.root.x, "SCILAB_Class")
-assert_checkequal(scilab_class,"integer")
+scilab_class = h5readattr(a.root.x, "SCILAB_Class");
+assert_checkequal(scilab_class,"integer");
 
 msgerr = msprintf(gettext("%s: Cannot open attribute: %s\n"), ..
                 "h5readattr","test");

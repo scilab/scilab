@@ -328,13 +328,8 @@ herr_t H5Group::printLsInfo(hid_t g_id, const char * name, const H5L_info_t * in
     H5O_info_t oinfo;
     herr_t err;
     H5Object * hobj = 0;
-    hid_t obj;
+    hid_t obj = 0;
     OpDataPrintLs & opdata = *(OpDataPrintLs *)op_data;
-
-    if (obj < 0)
-    {
-        return (herr_t) - 1;
-    }
 
     switch (info->type)
     {

@@ -186,7 +186,7 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 static bool import_variable(int _iFile, char* _pstVarName)
 {
     int iDataSetId = getDataSetIdFromName(_iFile, _pstVarName);
-    if (iDataSetId == 0)
+    if (iDataSetId <= 0)
     {
         return false;
     }

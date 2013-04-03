@@ -327,13 +327,15 @@ int getVariableNames_v1(int _iFile, char **pstNameList)
     herr_t status = 0;
     int iNbItem = 0;
     H5O_info_t oinfo;
+    H5G_info_t ginfo;
 
-    status = H5Gget_num_objs(_iFile, &iCount);
+    status = H5Gget_info(_iFile, &ginfo);
     if (status != 0)
     {
         return 0;
     }
 
+    iCount = ginfo.nlinks;
     for (i = 0; i < iCount; i++)
     {
         status = H5Oget_info_by_idx(_iFile, "/", H5_INDEX_NAME, H5_ITER_NATIVE, i, &oinfo, H5P_DEFAULT);
@@ -346,11 +348,9 @@ int getVariableNames_v1(int _iFile, char **pstNameList)
         {
             if (pstNameList != NULL)
             {
-                int iLen = 0;
-
-                iLen = (int)H5Gget_objname_by_idx(_iFile, i, NULL, iLen);
-                pstNameList[iNbItem] = (char *)MALLOC(sizeof(char) * (iLen + 1));   //null terminated
-                H5Gget_objname_by_idx(_iFile, i, pstNameList[iNbItem], iLen + 1);
+                ssize_t iLen = H5Lget_name_by_idx(_iFile, ".", H5_INDEX_NAME, H5_ITER_INC, i, 0, 0, H5P_DEFAULT) + 1;
+                pstNameList[iNbItem] = (char*)MALLOC(sizeof(char) * iLen);
+                H5Lget_name_by_idx(_iFile, ".", H5_INDEX_NAME, H5_ITER_INC, i, pstNameList[iNbItem], iLen, H5P_DEFAULT);
             }
             iNbItem++;
         }
@@ -375,11 +375,12 @@ int getDataSetId_v1(int _iFile)
 {
     herr_t status = 0;
     int iDatasetId = 0;
+    hsize_t idx = 0;
 
     /*
     * Begin iteration.
     */
-    status = H5Giterate(_iFile, "/", NULL, op_func_v1, &iDatasetId);
+    status = H5Literate(_iFile, H5_INDEX_NAME, H5_ITER_NATIVE, &idx, op_func_v1, &iDatasetId);
     if (status < 0)
     {
         return -1;
