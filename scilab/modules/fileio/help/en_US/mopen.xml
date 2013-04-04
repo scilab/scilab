@@ -26,23 +26,13 @@
             <varlistentry>
                 <term>file</term>
                 <listitem>
-                    <para>a character string. The pathname of the file to open.</para>
+                    <para>a character string containing the path of the file to open.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mode</term>
                 <listitem>
-                    <para>
-                        a character string that controls whether the file is opened for 
-                        reading (<literal>r</literal>), writing (<literal>w</literal>), 
-                        or appending (<literal>a</literal>) and whether the file is 
-                        opened for updating (<literal>+</literal>). The 
-                        <varname>mode</varname> can also include a <literal>b</literal> 
-                        parameter to indicate a binary file.
-                    </para>
-                    <para>
-                        The default value is <literal>'rb'</literal>.
-                    </para>
+                    <para>a character string specifying the access mode requested for the file.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -106,111 +96,93 @@
         <title>Description</title>
         <para>
             <function>mopen</function> may be used to open a <varname>file</varname> in a way
-            compatible with the C <function>fopen</function> procedure. Without 
-            <varname>swap</varname> argument the <varname>file</varname> is supposed to be coded in "little endian IEEE 
-            format" and data are swaped if necessary to match the IEEE format of 
+            compatible with the C <function>fopen</function> procedure. Without
+            <varname>swap</varname> argument the <varname>file</varname> is supposed to be coded in "little endian IEEE
+            format" and data are swaped if necessary to match the IEEE format of
             the processor.
         </para>
         <para>
-            The <varname>mode</varname> parameter controls the access allowed to 
-            the stream. The parameter can have one of the following values. In this 
-            list of values, the <literal>b</literal> character indicates a binary 
-            file.
+            The <varname>mode</varname> parameter controls the access type requested for
+            the stream. The parameter can have one of the following values:
+            <variablelist>
+                <varlistentry>
+                    <term>r</term>
+                    <listitem>
+                        <para>opens for reading (default). The file must exist, otherwise it fails.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>w</term>
+                    <listitem>
+                        <para>opens for writing. If the file exists, its contents are destroyed.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>a</term>
+                    <listitem>
+                        <para>opens for appending. It creates the file if it does not exist.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>r+</term>
+                    <listitem>
+                        <para>opens for both reading and writing. The file must exist, otherwise it fails.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>w+</term>
+                    <listitem>
+                        <para>opens for both reading and writing. If the file exists, its contents are destroyed.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>a+</term>
+                    <listitem>
+                        <para>opens for both reading and appending. It creates the file if it does not exist.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
         </para>
-        <variablelist>
-            <varlistentry>
-                <term>r</term>
-                <listitem>
-                    <para>opens the file for reading.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>rb</term>
-                <listitem>
-                    <para>opens a binary file for reading.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>rt</term>
-                <listitem>
-                    <para>opens a text file for reading.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>w</term>
-                <listitem>
-                    <para>
-                        creates a new file for writing, or opens and truncates a file
-                        to zero length.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>wb</term>
-                <listitem>
-                    <para>
-                        creates a new binary file for writing, or opens and truncates
-                        a file to zero length.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>wt</term>
-                <listitem>
-                    <para>
-                        creates a text binary file for writing, or opens and truncates 
-                        a file to zero length.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>a or ab</term>
-                <listitem>
-                    <para>
-                        appends (opens a file for writing at the end of the file, or
-                        creates a file for writing).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>r+ or r+b</term>
-                <listitem>
-                    <para>opens a file for update (reading and writing).</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>w+ or w+b</term>
-                <listitem>
-                    <para>truncates to zero length or creates a file for update.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>a+ or a+b</term>
-                <listitem>
-                    <para>
-                        appends (opens a file for update, writing at the end of the
-                        file, or creates a file for writing).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
         <para>
-            When you open a file for update, you can perform both input and output 
-            operations on the resulting stream. However, an output operation cannot 
-            be directly followed by an input operation without a file-positioning 
-            operation (<function>mseek</function> function). Also, an input 
-            operation cannot be directly followed by an output operation without an 
-            intervening file positioning operation, unless the input operation 
+            In addition, the following characters can be used to specify the type of file:
+            <variablelist>
+                <varlistentry>
+                    <term>t</term>
+                    <listitem>
+                        <para>text file.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>b</term>
+                    <listitem>
+                        <para>binary file (default).</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </para>
+        <para>
+            The default access mode is 'rb' (binary file reading).
+        </para>
+        <para>
+            Note: on Windows, in text file mode, CR (carriage return) - LF (linefeed) combinations are translated into LF on reading, and LF are translated to CR-LF combinations on writing.
+        </para>
+        <para>
+            When you open a file for update, you can perform both input and output
+            operations on the resulting stream. However, an output operation cannot
+            be directly followed by an input operation without a file-positioning
+            operation (<function>mseek</function> function). Also, an input
+            operation cannot be directly followed by an output operation without an
+            intervening file positioning operation, unless the input operation
             encounters the end of the file.
         </para>
         <para>
-            When you open a file for append (that is, when the 
-            <varname>mode</varname> parameter is <literal>a</literal> or 
-            <literal>a+</literal>), it is impossible to overwrite information 
-            already in the file. You can use the <function>mseek</function> 
-            function to reposition the file pointer to any position in the file, 
-            but when output is written to the file, the current file pointer is 
-            ignored. All output is written at the end of the file and the file 
+            When you open a file for append (that is, when the
+            <varname>mode</varname> parameter is <literal>a</literal> or
+            <literal>a+</literal>), it is impossible to overwrite information
+            already in the file. You can use the <function>mseek</function>
+            function to reposition the file pointer to any position in the file,
+            but when output is written to the file, the current file pointer is
+            ignored. All output is written at the end of the file and the file
             pointer is repositioned to the end of the output.
         </para>
         <para>
@@ -279,7 +251,7 @@ mget(fd_rb, 'i')
 mget(fd_rb, 's')
 mget(fd_rb, 'c')
 
-mclose(fd_rb) 
+mclose(fd_rb)
     ]]></programlisting>
     </refsection>
     <refsection>

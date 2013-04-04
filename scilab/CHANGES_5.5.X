@@ -63,3 +63,6 @@ Bug fixes
 
 * Bug #12473 fixed - Problems with "é" in french help page of mkdir.
 
+* Bug #12443 fixed - Document behavior of mopen() in text file mode
+                     on Windows.
+
