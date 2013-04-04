@@ -46,7 +46,8 @@
         <para>
             <note>
                 Note: If a variable is global, a <literal>*</literal> appears after its type name.
-            </para>
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

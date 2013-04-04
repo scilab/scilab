@@ -53,8 +53,7 @@
                 лучше использовать функцию <function>msscanf</function>, 
                 которая более эффективна и более совместима с C-функцией 
                 <function>sscanf</function>.
-             </caution>
-             </caution>
+            </caution>
         </para>
         <para>
             Функция <function>sscanf</function> интерпретирует символьную 
