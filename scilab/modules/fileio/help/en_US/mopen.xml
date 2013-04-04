@@ -98,7 +98,7 @@
             <function>mopen</function> may be used to open a <varname>file</varname> in a way
             compatible with the C <function>fopen</function> procedure. Without
             <varname>swap</varname> argument the <varname>file</varname> is supposed to be coded in "little endian IEEE
-            format" and data are swaped if necessary to match the IEEE format of
+            format" and data are swapped if necessary to match the IEEE format of
             the processor.
         </para>
         <para>
@@ -161,10 +161,16 @@
             </variablelist>
         </para>
         <para>
-            The default access mode is 'rb' (binary file reading).
+            The default access mode is <literal>'rb'</literal> (binary
+            file reading).
         </para>
         <para>
-            Note: on Windows, in text file mode, CR (carriage return) - LF (linefeed) combinations are translated into LF on reading, and LF are translated to CR-LF combinations on writing.
+            <note>
+                Note: on Windows, in text file mode, CR (carriage
+                return) - LF (linefeed) combinations are translated into
+                LF on reading, and LF are translated to CR-LF
+                combinations on writing.
+            </note>
         </para>
         <para>
             When you open a file for update, you can perform both input and output
