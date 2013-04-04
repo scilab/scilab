@@ -48,6 +48,8 @@ Xcos
 Bug fixes
 ==========
 
+* Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
+
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
 
