@@ -38,6 +38,7 @@ Obsolete
   Only the following strings will be allowed : option : "r" "c" "g" "lr" "lc"
                                               direction : "d" "i"
 
+
 Xcos
 ====
 
@@ -47,6 +48,13 @@ Xcos
 
 * Bug #12384 fixed - Using a modelica part linked with explicit link to 
                      another modelica part lead to an algebraic loop error.
+
+
+Toolbox skeleton
+=================
+
+* Add some Xcos specific content to xcos_toolbox_skeleton help pages.
+
 
 Bug fixes
 ==========

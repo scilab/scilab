@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="xcos_toolbox_skeleton_available_blocks">
+    <refnamediv>
+        <refname>Available blocks</refname>
+        <refpurpose>Example page to document some fonctionnalities</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Schema</title>
+        <link type="scilab" linkend="xcos_toolbox_skeleton.xcos/demos/Blocks.zcos">Open the schema</link>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../demos/Blocks.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This page describe how to use the Xcos specific helptools provided with Scilab. Using these tools you can automatically generate a diagram view and add a link to open it inside Xcos.
+        </para>
+        <para>
+            To add a link to an Xcos schema inside an help page, you should use the standard <literal>link</literal> element with a <literal>type="scilab"</literal> attribute and a toolbox specific <literal>linkend</literal> url.
+        </para>
+        <para>
+            Example for the <literal>xcos_toolbox_skeleton</literal> toolbox:
+            
+        </para>
+        <programlisting role="xml"><![CDATA[
+...
+<link type="scilab" linkend="xcos_toolbox_skeleton.xcos/demos/Blocks.zcos">Open the schema</link>
+...
+]]></programlisting>
+        <para>
+            To render an Xcos schema inside an help page, you should use the standard <literal>imagedata</literal> element with a <literal>fileref</literal> attribute to an Xcos schema.
+        </para>
+        <para>
+            Example for the <literal>xcos_toolbox_skeleton</literal> toolbox and the <literal>demos/Blocks.zcos</literal>:
+        </para>
+        <programlisting role="xml"><![CDATA[
+...
+<inlinemediaobject>
+    <imageobject>
+        <imagedata align="center" fileref="../../demos/Blocks.zcos" valign="middle"/>
+    </imageobject>
+</inlinemediaobject>
+...
+]]></programlisting>
+    </refsection>
+</refentry>

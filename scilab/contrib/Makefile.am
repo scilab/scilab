@@ -65,6 +65,7 @@ toolbox_skeleton/toolbox_skeleton.iss \
 xcos_toolbox_skeleton/builder.sce \
 xcos_toolbox_skeleton/changelog.txt \
 xcos_toolbox_skeleton/cleaner.sce \
+xcos_toolbox_skeleton/demos/Blocks.zcos \
 xcos_toolbox_skeleton/demos/xcos_toolbox_skeleton.dem.gateway.sce \
 xcos_toolbox_skeleton/demos/allSum.dem.sce \
 xcos_toolbox_skeleton/DESCRIPTION \
@@ -74,6 +75,7 @@ xcos_toolbox_skeleton/etc/xcos_toolbox_skeleton.start \
 xcos_toolbox_skeleton/examples/AllSum.zcos \
 xcos_toolbox_skeleton/help/builder_help.sce \
 xcos_toolbox_skeleton/help/cleaner_help.sce \
+xcos_toolbox_skeleton/help/en_US/available_blocks.xml \
 xcos_toolbox_skeleton/help/en_US/build_help.sce \
 xcos_toolbox_skeleton/help/en_US/TBX_SUM_c.xml \
 xcos_toolbox_skeleton/help/en_US/tbx_sum.xml \
