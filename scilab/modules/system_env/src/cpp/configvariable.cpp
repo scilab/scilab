@@ -409,6 +409,7 @@ std::wstring ConfigVariable::getLastErrorFunction()
 
 int ConfigVariable::m_iPromptMode = 0;
 int ConfigVariable::m_iSilentError = 0;
+bool ConfigVariable::m_bVerbose = true;
 
 void ConfigVariable::setPromptMode(int _iPromptMode)
 {
@@ -447,6 +448,16 @@ void ConfigVariable::setSilentError(int _iSilentError)
 int ConfigVariable::getSilentError(void)
 {
     return m_iSilentError;
+}
+
+void ConfigVariable::setVerbose(bool _bVerbose)
+{
+    m_bVerbose = _bVerbose;
+}
+
+bool ConfigVariable::getVerbose(void)
+{
+    return m_bVerbose;
 }
 
 /*

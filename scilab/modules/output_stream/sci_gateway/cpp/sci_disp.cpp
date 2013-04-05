@@ -26,22 +26,21 @@ using namespace types;
 
 Function::ReturnValue sci_disp(typed_list &in, int _piRetCount, typed_list &out)
 {
-	typed_list::reverse_iterator it;
+    typed_list::reverse_iterator it;
 
-	if(in.empty())
-	{
-		Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), "disp", 1);
-		return Function::Error;
-	}
+    if (in.empty())
+    {
+        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), "disp", 1);
+        return Function::Error;
+    }
 
-	for(it = in.rbegin() ; it != in.rend() ; it++)
-	{
+    for (it = in.rbegin() ; it != in.rend() ; it++)
+    {
         std::wostringstream ostr;
         (*it)->toString(ostr);
         scilabForcedWriteW(L"\n");
-		scilabForcedWriteW(ostr.str().c_str());
-	}
+        scilabForcedWriteW(ostr.str().c_str());
+    }
 
-	scilabForcedWriteW(L"\n");
     return Function::OK;
 }
