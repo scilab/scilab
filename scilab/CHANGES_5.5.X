@@ -94,3 +94,5 @@ Bug fixes
 * Bug #12473 fixed - Problems with "é" in french help page of mkdir.
 
 * Bug #12475 fixed - csvRead() does not support double quoted fields.
+
+* Bug #12506 fixed - In SciNotes, miscolorization when returned values list was broken.
