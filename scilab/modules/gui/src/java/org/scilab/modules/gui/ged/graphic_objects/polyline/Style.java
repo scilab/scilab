@@ -501,9 +501,7 @@ public class Style extends Position {
     * @param evt ActionEvent.
     */
     private void cArrowSizeActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__,
-                Double.parseDouble(cArrowSize.getText()));
+        setArrowSize(cArrowSize.getText());
     }
 
     /**
@@ -511,9 +509,22 @@ public class Style extends Position {
     * @param evt FocusEvent.
     */
     private void cArrowSizeFocusLost(FocusEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__,
-                Double.parseDouble(cArrowSize.getText()));
+        setArrowSize(cArrowSize.getText());
+    }
+
+    /**
+    * Set Arrow Size.
+    * @param size Arrow Size.
+    */
+    public void setArrowSize(String size) {
+        try {
+            GraphicController.getController().setProperty(
+                    currentpolyline,
+                    GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__,
+                    Double.parseDouble(size));
+        } catch (NumberFormatException e) {
+            cArrowSize.setText("1.0");
+        }
     }
 
     /**
@@ -521,9 +532,7 @@ public class Style extends Position {
     * @param evt ActionEvent.
     */
     private void cBarWidthActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_BAR_WIDTH__,
-                Double.parseDouble(cBarWidth.getText()));
+        setBarWidth(cBarWidth.getText());
     }
 
     /**
@@ -531,9 +540,22 @@ public class Style extends Position {
     * @param evt FocusEvent.
     */
     private void cBarWidthFocusLost(FocusEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_BAR_WIDTH__,
-                Double.parseDouble(cBarWidth.getText()));
+        setBarWidth(cBarWidth.getText());
+    }
+
+    /**
+    * Set Bar Width.
+    * @param width Bar Width.
+    */
+    public void setBarWidth(String width) {
+        try {
+            GraphicController.getController().setProperty(
+                    currentpolyline,
+                    GraphicObjectProperties.__GO_BAR_WIDTH__,
+                    Double.parseDouble(width));
+        } catch (NumberFormatException e) {
+            cBarWidth.setText("0.0");
+        }
     }
 
     /**
@@ -577,9 +599,7 @@ public class Style extends Position {
     * @param evt ActionEvent.
     */
     private void cThicknessActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_LINE_THICKNESS__,
-                Double.parseDouble(cThickness.getText()));
+        setThickness(cThickness.getText());
     }
 
     /**
@@ -587,9 +607,22 @@ public class Style extends Position {
     * @param evt FocusEvent.
     */
     private void cThicknessFocusLost(FocusEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_LINE_THICKNESS__,
-                Double.parseDouble(cThickness.getText()));
+        setThickness(cThickness.getText());
+    }
+
+    /**
+    * Set Thickness.
+    * @param thickness.
+    */
+    public void setThickness(String thickness) {
+        try {
+            GraphicController.getController().setProperty(
+                    currentpolyline,
+                    GraphicObjectProperties.__GO_LINE_THICKNESS__,
+                    Double.parseDouble(thickness));
+        } catch (NumberFormatException e) {
+            cThickness.setText("1.0");
+        }
     }
 
     /**
@@ -613,9 +646,7 @@ public class Style extends Position {
     * @param evt ActionEvent.
     */
     private void cMarkSizeActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_MARK_SIZE__,
-                Integer.parseInt(cMarkSize.getText()));
+        setMarkSize(cMarkSize.getText());
     }
 
     /**
@@ -623,9 +654,22 @@ public class Style extends Position {
     * @param evt FocusEvent.
     */
     private void cMarkSizeFocusLost(FocusEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_MARK_SIZE__,
-                Integer.parseInt(cMarkSize.getText()));
+        setMarkSize(cMarkSize.getText());
+    }
+
+    /**
+    * Set Mark Size.
+    * @param size mark size.
+    */
+    public void setMarkSize(String size) {
+        try {
+            GraphicController.getController().setProperty(
+                currentpolyline,
+                GraphicObjectProperties.__GO_MARK_SIZE__,
+                Integer.parseInt(size));
+        } catch (NumberFormatException e) {
+            cMarkSize.setText("1");
+        }
     }
 
     /**
