@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [model,ok]=build_modelica_block(blklstm,corinvm,cmmat,NiM,NoM,scs_m,path)
+function [model,ok]=build_modelica_block(blklstm,corinvm,cmmat,NiM,NoM,NvM,scs_m,path)
     // given the blocks definitions in blklstm and connections in cmmat this
     // function first create  the associated modelicablock  and writes its code
     // in the file named 'imppart_'+name+'.mo' in the directory given by path
@@ -34,7 +34,7 @@ function [model,ok]=build_modelica_block(blklstm,corinvm,cmmat,NiM,NoM,scs_m,pat
 
     //## generation of the txt for the main modelica file
     //## plus return ipar/rpar for the model of THE modelica block
-    [txt,rpar,ipar]=create_modelica(blklstm,corinvm,cmmat,name,scs_m);
+    [txt,rpar,ipar]=create_modelica(blklstm,corinvm,cmmat,NvM,name,scs_m);
 
     //## write txt in the file path+name+'.mo'
     path=pathconvert(stripblanks(path),%t,%t)

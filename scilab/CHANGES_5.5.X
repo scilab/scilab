@@ -45,6 +45,8 @@ Xcos
 
 * Bug #12359 fixed - Xcos files has been converted to zcos to gain some space.
 
+* Bug #12384 fixed - Using a modelica part linked with explicit link to 
+                     another modelica part lead to an algebraic loop error.
 
 Bug fixes
 ==========

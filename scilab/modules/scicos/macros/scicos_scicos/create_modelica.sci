@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [txt,rpar,ipar] = create_modelica(blklst,corinvm,cmat,name,scs_m)
+function [txt,rpar,ipar] = create_modelica(blklst,corinvm,cmat,NvM,name,scs_m)
 
     if exists("%Modelica_Init")==0 then
         // Modelica_Init becomes true only in "Modelicainitialize_.sci"
@@ -160,6 +160,7 @@ function [txt,rpar,ipar] = create_modelica(blklst,corinvm,cmat,name,scs_m)
 
         if or(blklst(from(1)).equations.model==["InPutPort","OutPutPort"]) ...
             | or(blklst(to(1)).equations.model==["InPutPort","OutPutPort"]) ...
+            | (k > (size(cmat,1) - NvM)) ...
             then
             eqns=[eqns
             "  "+n1+"."+p1+" = "+n2+"."+p2+";"]

@@ -155,11 +155,21 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,f
         cmmat=mmatfromT(links_table(find(links_table(:,5)==2),:),nb); //modelica links
         cmat=matfromT(links_table(find(links_table(:,5)==1),:),nb); //data flow links
         ccmat=cmatfromT(links_table(find(links_table(:,5)==-1),:),nb);//event links
+
         //build connections between modelica world and regular one. These
         //links should be data flow links
         // links from modelica world to regular world
-        fromM=find(dsearch(cmat(:,1),imp,"d")>0);NoM=size(fromM,"*");
+        fromM=find(dsearch(cmat(:,1),imp,"d")>0);
 
+        // links from regular world to modelica world
+        toM=find(dsearch(cmat(:,3),imp,"d")>0);
+
+        // merge the modelica to modelica as data flow links
+        [varM, kfrom, kto] = intersect(fromM, toM);
+        fromM(kfrom) = [];
+        toM(kto) = [];
+
+        NoM=size(fromM,"*");
         if NoM>0 then
             //add modelica Output ports in Modelica world
             mo=modelica();mo.model="OutPutPort";mo.outputs="vo";mo.inputs="vi";
@@ -170,14 +180,11 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,f
             cmat(fromM,1:2) zeros(NoM,1) -(nm+(1:NoM)'),ones(NoM,1),ones(NoM,1)];
 
             nm=nm+NoM;
-
             //add regular connection with regular block replacing the modelica world
-
             cmat(fromM,1:2)=[-(nr+1)*ones(NoM,1),(1:NoM)'];
         end
 
-        // links from regular world to modelica world
-        toM=find(dsearch(cmat(:,3),imp,"d")>0);NiM=size(toM,"*");
+        NiM=size(toM,"*");
         if NiM>0 then
             //add modelica Input ports in Modelica world
             mo=modelica();mo.model="InPutPort";mo.outputs="vo";mo.inputs="vi";
@@ -190,6 +197,17 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,f
             nm=nm+NiM;
             //add regular connection with regular block replacing the modelica world
             cmat(toM,3:4)=[-(nr+1)*ones(NiM,1),(1:NiM)'];
+        end
+
+        NvM=size(varM, "*");
+        if NvM>0 then
+            //add modelica Values (both input and output) ports in Modelica world
+            l=[cmat(varM,1:2), zeros(NvM,1), cmat(varM,3:4), ones(NvM,1)];
+            cmmat=[cmmat;
+            l];
+
+            // remove the corresponding explicit link
+            cmat(varM, :) = [];
         end
 
         // modelica blocks with events ports are not allowed yet
@@ -249,7 +267,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,f
 
         //create regular block associated to all modelica blocks
 
-        [model,ok]=build_modelica_block(blklstm,corinvm,cmmat,NiM,NoM,scs_m,TMPDIR+"/");
+        [model,ok]=build_modelica_block(blklstm,corinvm,cmmat,NiM,NoM,NvM,scs_m,TMPDIR+"/");
 
         if ~ok then
             disp(mprintf("%s: build the modelica meta-block failed", "c_pass1"));
