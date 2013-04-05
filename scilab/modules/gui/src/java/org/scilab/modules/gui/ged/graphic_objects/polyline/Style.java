@@ -425,7 +425,8 @@ public class Style extends Position {
             // Get the current status of the property: Mark Style
             int currentMarkStyle = (Integer) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_STYLE__);
-            cMarkStyle.setSelectedIndex(currentMarkStyle);
+            if (getMarkMode()) //If mark_mode is on
+                cMarkStyle.setSelectedIndex(currentMarkStyle);
         }
     }
 
@@ -632,6 +633,12 @@ public class Style extends Position {
     * @param evt ActionEvent.
     */
     private void cMarkStyleActionPerformed(ActionEvent evt) {
+        // Get the current status of the mark_mode
+        boolean markMode = getMarkMode();
+        //If mark_mode is off
+        if (!markMode) {
+            setMarkMode(true);
+        }
         GraphicController.getController().setProperty(
                 currentpolyline, GraphicObjectProperties.__GO_MARK_STYLE__, cMarkStyle.getSelectedIndex());
     }
@@ -652,10 +659,11 @@ public class Style extends Position {
     * @param scilabColor index of the color map.
     */
     public void setForegroundColor(int scilabColor) {
-    	if ((Boolean)GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__) == false) {
-    		EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
+        if (getMarkMode()) {
+            GraphicController.getController().setProperty(
+                    currentpolyline, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
     	} else {
-    		GraphicController.getController().setProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
+            EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
     	}
     }
 
@@ -677,10 +685,11 @@ public class Style extends Position {
     * @param scilabColor index of the color map.
     */
     public void setMarkForeground(int scilabColor) {
-    	if ((Boolean)GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__) == true) {
-    		EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
+        if (getMarkMode()) {
+            EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
     	} else {
-    		GraphicController.getController().setProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
+            GraphicController.getController().setProperty(
+                    currentpolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
     	}
         //update color of graphics in MarkStyle ComboBox
         markStyleRenderer.setMarkForeground(chooserMarkForeground.getColor());

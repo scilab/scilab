@@ -269,7 +269,27 @@ public class BaseProperties extends ContentLayout {
     private void cMarkModeActionPerformed(ActionEvent evt) {
         GraphicController.getController().setProperty(
                 currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__,
-                cMarkMode.getSelectedIndex() == 0 ? false : true
+                getMarkMode()
+                );
+    }
+
+    /**
+    * Get Mark Mode.
+    * @return boolean
+    */
+    public boolean getMarkMode() {
+        return cMarkMode.getSelectedIndex() == 0 ? false : true;
+    }
+
+    /**
+    * Set Mark Mode.
+    * @param boolean
+    */
+    public void setMarkMode(boolean enable) {
+        cMarkMode.setSelectedIndex(enable==false?0:1);
+        GraphicController.getController().setProperty(
+                currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__,
+                enable
                 );
     }
 
