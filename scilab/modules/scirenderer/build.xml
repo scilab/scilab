@@ -31,6 +31,7 @@
     </condition>
     
     <echo message="Using:" />
+    <echo message="${thirdparty.dir}"/>
     <echo message="${jogl2.jar}"/>
     <echo message="${gluegen2.jar}"/>
     <echo message="${jlatexmath.jar}"/>
