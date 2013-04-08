@@ -81,8 +81,6 @@ Bug fixes
 * Bug #11343 fixed - The "isoview" figure property did not work when the axes
                      margins had been modified.
 
-* Bug #11479 fixed - Under Ubuntu Unity, the color of the text menu was wrong.
-
 * Bug #12163 fixed - unzoom did not work with a single input argument.
 
 * Bug #12443 fixed - Document behavior of mopen() in text file mode

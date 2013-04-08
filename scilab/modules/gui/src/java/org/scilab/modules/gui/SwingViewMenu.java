@@ -26,7 +26,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
-import javax.swing.UIManager;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -80,7 +79,10 @@ public final class SwingViewMenu {
             uimenu.setVisible((Boolean) value);
             break;
         case __GO_UI_FOREGROUNDCOLOR__ :
-            uimenu.setForeground(UIManager.getColor("MenuBar.foreground"));
+            Double[] allColors = ((Double[]) value);
+            uimenu.setForeground(new Color((int) (allColors[0] * COLORS_COEFF),
+                                           (int) (allColors[1] * COLORS_COEFF),
+                                           (int) (allColors[2] * COLORS_COEFF)));
             break;
         case __GO_UI_ICON__ :
             if (!((String) value).equals("")) {
