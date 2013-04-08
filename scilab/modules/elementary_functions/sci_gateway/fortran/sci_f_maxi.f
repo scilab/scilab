@@ -326,7 +326,7 @@ c     test si n1 > 1
 c     mini
                do 211 j=0,m*n-1
                   x1=stk(lri+j)
-                  if (x1.lt.stk(lrw+j).or.isanan(lrw+j).eq.1) then
+                  if (x1.lt.stk(lrw+j).or.isanan(stk(lrw+j)).eq.1) then
                      stk(lrw+j)=x1
                      stk(lrkw+j)= i
                   endif
@@ -334,7 +334,7 @@ c     mini
             else
                do 212 j=0,m*n-1
                   x1=stk(lri+j)
-                  if (x1.gt.stk(lrw+j).or.isanan(lrw+j).eq.1) then
+                  if (x1.gt.stk(lrw+j).or.isanan(stk(lrw+j)).eq.1) then
                      stk(lrw+j)=x1
                      stk(lrkw+j)= i
                   endif

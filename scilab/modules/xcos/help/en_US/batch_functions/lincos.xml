@@ -57,7 +57,7 @@ exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
 exec("SCI/modules/xcos/tests/unit_tests/anim_pen.sci");
 
 loadXcosLibs(); loadScicos();
-importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.xcos");
+importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.zcos");
 
 // specific context data
 M  = 10;

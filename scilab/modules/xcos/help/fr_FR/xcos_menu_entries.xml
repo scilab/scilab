@@ -119,7 +119,7 @@
                     </inlinemediaobject>
                 </para>
                 <para>
-                    Sélectionnez l'item <emphasis>Ouvrir</emphasis> pour charger un fichier XML (<emphasis>.xcos</emphasis>)
+                    Sélectionnez l'item <emphasis>Ouvrir</emphasis> pour charger un fichier XML (<emphasis>.zcos</emphasis>)
                     ou binaire (<emphasis>.cos</emphasis>) contenant un schéma-bloc ou une palette. La commande ouvre une boîte de
                     dialogue qui vous permet de choisir un dossier et un fichier.
                 </para>
@@ -141,7 +141,7 @@
                 <para>
                     Si vous choisissez cet item sans jamais avoir cliqué sur l'item <emphasis>Enregistrer</emphasis> ou
                     l'item <emphasis>Enregistrer sous</emphasis>, un dialogue vous permet de choisir un répertoire et de spécifier
-                    un nom de fichier sans extension. L'extension par défaut est <emphasis>.xcos</emphasis>
+                    un nom de fichier sans extension. L'extension par défaut est <emphasis>.zcos</emphasis>
                 </para>
                 <para>
                     Le schéma prend le nom du fichier (sans l'extension).
@@ -163,7 +163,7 @@
                 </para>
                 <para>
                     Un dialogue permet de spécifier un nom de fichier et un dossier de sauvegarde. Comme nous l'avons dit ci-dessus ne
-                    spécifiez pas d'extension. L'extension par défaut est <emphasis>.xcos</emphasis>.
+                    spécifiez pas d'extension. L'extension par défaut est <emphasis>.zcos</emphasis>.
                 </para>
                 <para>
                     Le schéma prend le nom du fichier (sans l'extension).

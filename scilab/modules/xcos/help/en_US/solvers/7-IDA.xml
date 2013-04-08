@@ -137,17 +137,17 @@
             The 'Modelica Generic' block returns its continuous states, we can evaluate them with <emphasis>IDA</emphasis> by running the example:
         </para>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/IDA_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/IDA_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../examples/solvers/IDA_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../examples/solvers/IDA_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
 loadScicos();
 loadXcosLibs();
-importXcosDiagram(SCI + "/modules/xcos/examples/solvers/IDA_Example.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/IDA_Example.zcos");
 // Redefining messagebox() to avoid popup
 function messagebox(msg, title)
  disp(title);

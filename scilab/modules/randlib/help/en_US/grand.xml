@@ -27,7 +27,7 @@
             Y = grand(m, n, "exp", Av)
             Y = grand(m, n, "f", Dfn, Dfd)
             Y = grand(m, n, "nf", Dfn, Dfd, Xnon)
-            Y = grand(m, n, "gam", shape, scale)
+            Y = grand(m, n, "gam", shape, rate)
             Y = grand(m, n, "nor", Av, Sd)
             Y = grand(m, n, "geom", p)
             Y = grand(m, n, "poi", mu)
@@ -116,7 +116,7 @@
                 Y = grand(m, n, "exp", Av)
                 Y = grand(m, n, "f", Dfn, Dfd)
                 Y = grand(m, n, "nf", Dfn, Dfd, Xnon)
-                Y = grand(m, n, "gam", shape, scale)
+                Y = grand(m, n, "gam", shape, rate)
                 Y = grand(m, n, "nor", Av, Sd)
                 Y = grand(m, n, "geom", p)
                 Y = grand(m, n, "poi", mu)
@@ -297,15 +297,15 @@
                 <term>gamma</term>
                 <listitem>
                     <para>
-                        <code>Y = grand(m, n, "gam", shape, scale)</code>
+                        <code>Y = grand(m, n, "gam", shape, rate)</code>
                         generates random variates from the gamma distribution with
                         parameters <varname>shape</varname> (<literal>real</literal> &gt; <literal>0</literal>) and
-                        <varname>scale</varname> (<literal>real</literal> &gt; <literal>0</literal>). The density of the
+                        <varname>rate</varname> (<literal>real</literal> &gt; <literal>0</literal>). The density of the
                         gamma distribution is :
                     </para>
                     <para>
                         <latex>
-                            \dfrac{ \textrm{scale}^{\textrm{shape}} x^{\textrm{shape}-1} e^{-\textrm{scale} x}}{\gamma(\textrm{shape}) }
+                            \dfrac{ \textrm{rate}^{\textrm{shape}} x^{\textrm{shape}-1} e^{-\textrm{rate} x}}{\gamma(\textrm{shape}) }
                         </latex>
                     </para>
                     <para>

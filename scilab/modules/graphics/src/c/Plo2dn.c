@@ -477,7 +477,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             setGraphicObjectRelationship(psubwinUID, compoundUID);
             getGraphicObjectProperty(psubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piParentVisible);
             setGraphicObjectProperty(compoundUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
-	    releaseGraphicObjectProperty(__GO_PARENT__, compoundUID, jni_string, 1);
+            releaseGraphicObjectProperty(__GO_PARENT__, compoundUID, jni_string, 1);
         }
         FREE(hdltab);
 
@@ -520,8 +520,9 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
     {
         if (logflags[0] != 'l')
         {
-            drect[0] = Mini(x1, size_x);
-            drect[1] = Maxi(x1, size_x);
+            MiniMaxi(x1, size_x, drect, drect + 1);
+            //drect[0] = Mini(x1, size_x);
+            //drect[1] = Maxi(x1, size_x);
         }
         else
         {
@@ -551,8 +552,9 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
     {
         if (logflags[1] != 'l')
         {
-            drect[2] = Mini(y, size_y);
-            drect[3] = Maxi(y, size_y);
+            MiniMaxi(y, size_y, drect + 2, drect + 3);
+            //drect[2] = Mini(y, size_y);
+            //drect[3] = Maxi(y, size_y);
         }
         else
         {
@@ -560,7 +562,6 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
             drect[2] = sciFindStPosMin(y, size_y);
             drect[3] = Maxi(y, size_y);
         }
-
     }
     else
     {
@@ -576,18 +577,35 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
             drect[3] = 10.0;
         }
     }
+
     /* back to default values for  x=[] and y = [] */
-    if (drect[2] == LARGEST_REAL)
+    if (drect[2] == LARGEST_REAL || drect[3] == -LARGEST_REAL)
     {
-        drect[2] = 0.0;
+        if (logflags[1] != 'l')
+        {
+            drect[2] = 0.0;
+        }
+        else
+        {
+            drect[2] = 1.0;
+        }
+
         drect[3] = 10.0;
     }
-    if (drect[0] == LARGEST_REAL)
+
+    if (drect[0] == LARGEST_REAL || drect[1] == -LARGEST_REAL)
     {
-        drect[0] = 0.0;
+        if (logflags[0] != 'l')
+        {
+            drect[0] = 0.0;
+        }
+        else
+        {
+            drect[0] = 1.0;
+        }
+
         drect[1] = 10.0;
     }
-
 }
 
 BOOL update_specification_bounds(char *psubwinUID, double rect[6], int flag)

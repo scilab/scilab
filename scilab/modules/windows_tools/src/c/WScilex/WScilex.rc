@@ -74,7 +74,7 @@ BEGIN
         BLOCK "040c04b0"
         BEGIN
             VALUE "CompanyName", "Scilab Enterprises"
-            VALUE "FileDescription", "Scilab 5.4.0 (GUI)"
+            VALUE "FileDescription", "Scilab 5.5.0 (GUI)"
             VALUE "FileVersion", "5, 5, 0, 0"
             VALUE "InternalName", "WScilex"
             VALUE "LegalCopyright", "Copyright (C) 2013"

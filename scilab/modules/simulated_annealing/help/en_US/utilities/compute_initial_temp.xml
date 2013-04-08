@@ -121,9 +121,9 @@ It_Pre = 100;
 x_test = neigh_func_default(x0);
 
 saparams = init_param();
-saparams = add_param(comp_t_params,'neigh_func', neigh_func_default);
+saparams = add_param(saparams,'neigh_func', neigh_func_default);
 
-T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre, saparams);
+T0 = compute_initial_temp(x0, f, Proba_start, It_Pre, saparams);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

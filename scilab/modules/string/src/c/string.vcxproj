@@ -263,7 +263,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="stringToDouble.c" />
     <ClCompile Include="stripblanks.c" />
     <ClCompile Include="stristr.c" />
-    <ClCompile Include="strsplitfunction.c" />
+    <ClCompile Include="strsplit.c" />
     <ClCompile Include="strsubst.c" />
     <ClCompile Include="tokens.c" />
   </ItemGroup>
@@ -329,7 +329,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClInclude Include="stringsCompare.h" />
     <ClInclude Include="stringsstrrchr.h" />
     <ClInclude Include="stringsstrrev.h" />
-    <ClInclude Include="strsplitfunction.h" />
+    <ClInclude Include="strsplit.h" />
     <ClInclude Include="tokens.h" />
     <ClInclude Include="ucp.h" />
   </ItemGroup>

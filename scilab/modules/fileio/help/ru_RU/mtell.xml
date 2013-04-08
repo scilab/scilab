@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="mtell">
     <refnamediv>
         <refname>mtell</refname>
-        <refpurpose>управление двоичными файлами</refpurpose>
+        <refpurpose>возвращает смещение текущего байта относительно начала файла</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
@@ -39,6 +39,25 @@
         <para>
             Функция <function>mtell</function> возвращает смещение текущего байта относительно начала файла, связанного с именованным потоком <varname>fd</varname>.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Откроем запись временного двоичного файла
+testFile=TMPDIR + '/testFile.bin';
+fd = mopen(testFile,'wb');
+
+mput(42,'d'); // Запишем 42 в последний открытый файл
+mtell() // Вернёт 8, текущее положение в дескрипторе файла
+
+mput(42+2,'d', fd); // Откроем непосредственно fd, чтобы записать 42
+mtell(fd) // Вернёт 16, текущее положение в дескрипторе файла
+
+mseek(0, fd); // возврат в начало файла
+mtell(fd) // Вернёт 0
+
+mclose(fd);
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

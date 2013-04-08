@@ -49,34 +49,34 @@ double sciFindStPosMin(const double x[], int n)
 int checkMonotony(const double vector[], int nbElement)
 {
     int i = 0;
-    if (vector[1] >= vector[0])
+    if ( vector[1] >= vector[0] )
     {
         /* might be increasing */
-        for (i = 1 ; i < nbElement - 1 ; i++)
+        for ( i = 1 ; i < nbElement - 1 ; i++ )
         {
-            if (vector[i + 1] < vector[i])
+            if ( vector[i + 1] < vector[i] )
             {
                 /* not increasing */
-                return 0;
+                return 0 ;
             }
         }
-        return 1;
+        return 1 ;
     }
     else
     {
         /* might be decreasing */
-        for (i = 1 ; i < nbElement - 1 ; i++)
+        for ( i = 1 ; i < nbElement - 1 ; i++ )
         {
-            if (vector[i + 1] > vector[i])
+            if ( vector[i + 1] > vector[i] )
             {
                 /* not decreasing */
-                return 0;
+                return 0 ;
             }
         }
-        return -1;
+        return -1 ;
 
     }
-    return 0;
+    return 0 ;
 
 }
 /*------------------------------------------------------------------------*/
@@ -95,64 +95,64 @@ BOOL containsOneFiniteElement(const double vector[], int nbElement)
 /*------------------------------------------------------------------------*/
 void doubleArrayCopy(double dest[], const double src[], int nbElement)
 {
-    memcpy(dest, src, nbElement * sizeof(double));
+    memcpy( dest, src, nbElement * sizeof(double) ) ;
 }
 /*------------------------------------------------------------------------*/
 void intArrayCopy(int dest[], const int src[], int nbElement)
 {
-    memcpy(dest, src, nbElement * sizeof(int));
+    memcpy( dest, src, nbElement * sizeof(int) ) ;
 }
 /*------------------------------------------------------------------------*/
 void stringArrayCopy(char * dest[], char * src[], int nbElement)
 {
     int i = 0;
-    for (i = 0 ; i < nbElement ; i++)
+    for ( i = 0 ; i < nbElement ; i++ )
     {
-        int elemSize =  (int)strlen(src[i]) + 1;
-        FREE(dest[i]);
+        int elemSize =  (int)strlen( src[i] ) + 1 ;
+        FREE( dest[i] ) ;
 
-        dest[i] = (char*)MALLOC(elemSize * sizeof(char));
+        dest[i] = MALLOC( elemSize * sizeof(char) ) ;
 
-        if (dest[i] == NULL)
+        if ( dest[i] == NULL )
         {
-            destroyStringArray(dest, nbElement);
-            return;
+            destroyStringArray( dest, nbElement ) ;
+            return ;
         }
 
-        strcpy(dest[i], src[i]);
+        strcpy( dest[i], src[i] ) ;
     }
 }
 /*------------------------------------------------------------------------*/
 void setDoubleArraySingleValue(double dest[], double value, int nbElement)
 {
     int i = 0;
-    for (i = 0 ; i < nbElement ; i++)
+    for ( i = 0 ; i < nbElement ; i++ )
     {
-        dest[i] = value;
+        dest[i] = value ;
     }
 }
 /*------------------------------------------------------------------------*/
 double* createNewArrayFromSource(int destSize, const double src[], int srcSize)
 {
     int i = 0;
-    int endCopy = Min(destSize, srcSize);
+    int endCopy = Min( destSize, srcSize ) ;
     /* create new array */
-    double* dest = (double*)MALLOC(destSize * sizeof(double));
+    double * dest = MALLOC( destSize * sizeof(double) ) ;
 
-    if (dest == NULL)
+    if ( dest == NULL )
     {
-        return NULL;
+        return NULL ;
     }
 
     /* copy the element which needs to be copied */
-    memcpy(dest, src, endCopy * sizeof(double));
+    memcpy( dest, src, endCopy * sizeof( double ) ) ;
 
-    for (i = endCopy ; i < destSize ; i++)
+    for ( i = endCopy ; i < destSize ; i++ )
     {
-        dest[i] = 0.0;
+        dest[i] = 0.0 ;
     }
 
-    return dest;
+    return dest ;
 
 }
 /*------------------------------------------------------------------------*/
@@ -163,62 +163,61 @@ void destroyStringArray(char * src[], int nbStrings)
 /*--------------------------------------------------------------------------*/
 double* createDoubleArrayCopy(const double src[], int nbElement)
 {
-    double* res = (double*)MALLOC(nbElement * sizeof(double));
+    double * res = MALLOC( nbElement * sizeof(double) ) ;
 
-    if (res == NULL)
+    if ( res == NULL )
     {
-        return NULL;
+        return NULL ;
     }
 
-    memcpy(res, src, nbElement * sizeof(double));
+    memcpy( res, src, nbElement * sizeof(double) ) ;
 
-    return res;
+    return res ;
 }
 /*--------------------------------------------------------------------------*/
 int * createIntArrayCopy(const int src[], int nbElement)
 {
-    int * res = (int*)MALLOC(nbElement * sizeof(int));
+    int * res = MALLOC( nbElement * sizeof(int) ) ;
 
-    if (res == NULL)
+    if ( res == NULL )
     {
-        return NULL;
+        return NULL ;
     }
 
-    memcpy(res, src, nbElement * sizeof(int));
+    memcpy( res, src, nbElement * sizeof(int) ) ;
 
-    return res;
+    return res ;
 }
 /*--------------------------------------------------------------------------*/
 char ** createStringArrayCopy(char * src[], int nbElement)
 {
     char ** res = createStringArray(nbElement);
-
-    if (res == NULL)
+    if ( res == NULL )
     {
-        return NULL;
+        return NULL ;
     }
 
-    stringArrayCopy(res, src, nbElement);
+    stringArrayCopy( res, src, nbElement ) ;
 
-    return res;
+    return res ;
 
 }
 /*--------------------------------------------------------------------------*/
 char ** createStringArray(int nbElement)
 {
     int i = 0;
-    char ** res = (char**)MALLOC(nbElement * sizeof(char *));
+    char ** res = MALLOC( nbElement * sizeof(char *) ) ;
 
-    if (res == NULL)
+    if ( res == NULL )
     {
-        return NULL;
+        return NULL ;
     }
 
-    for (i = 0 ; i < nbElement; i++)
+    for ( i = 0 ; i < nbElement; i++ )
     {
-        res[i] = NULL;
+        res[i] = NULL ;
     }
 
-    return res;
+    return res ;
 }
 /*--------------------------------------------------------------------------*/

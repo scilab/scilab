@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // Port ordering is not the good one when using region to super block
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8042.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8042.zcos");
 
 // Select the middle blocks (below the green rectangle)
 // right-click -> region to superblock

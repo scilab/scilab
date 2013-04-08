@@ -6,7 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[xe,pe]=sskf(y,f,h,q,r,x0)</synopsis>
+        <synopsis>
+            xe = sskf(y,f,h,q,r,x0)
+            [xe, pe]=sskf(y,f,h,q,r,x0)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -86,7 +89,7 @@ r=[2 0;0 2];
 v=(chol(r))'*rand(2,11);
 y=x+v;
 h=eye(2,2);
-[xe]=sskf(y,f,h,q,r,m0)
+[xe pe]=sskf(y,f,h,q,r,m0)
  ]]></programlisting>
     </refsection>
 </refentry>

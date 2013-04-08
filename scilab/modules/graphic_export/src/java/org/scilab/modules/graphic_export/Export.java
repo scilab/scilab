@@ -364,19 +364,22 @@ public class Export {
 
             @Override
             public void updateObject(String id, int property) {
-                if (property == GraphicObjectProperties.__GO_AXES_SIZE__) {
-                    Integer[] size = getFigure().getAxesSize();
-                    if (size[0] != dims[0] || size[1] != dims[1]) {
-                        Graphics2D newg2d = exporter.getGraphics2D(size[0], size[1], null, params);
-                        params.setParamsOnGraphics(newg2d);
-                        canvas.setGraphics(newg2d, size[0], size[1]);
-                        dims[0] = size[0];
-                        dims[1] = size[1];
+                if (needUpdate(id, property)) {
+                    axesDrawer.update(id, property);
+                    if (property == GraphicObjectProperties.__GO_AXES_SIZE__) {
+                        Integer[] size = getFigure().getAxesSize();
+                        if (size[0] != dims[0] || size[1] != dims[1]) {
+                            Graphics2D newg2d = exporter.getGraphics2D(size[0], size[1], null, params);
+                            params.setParamsOnGraphics(newg2d);
+                            canvas.setGraphics(newg2d, size[0], size[1]);
+                            dims[0] = size[0];
+                            dims[1] = size[1];
 
-                        g2d.dispose();
+                            g2d.dispose();
+                        }
+                    } else if (property == GraphicObjectProperties.__GO_ANTIALIASING__) {
+                        canvas.setAntiAliasingLevel(getFigure().getAntialiasing());
                     }
-                } else if (property == GraphicObjectProperties.__GO_ANTIALIASING__) {
-                    canvas.setAntiAliasingLevel(getFigure().getAntialiasing());
                 }
             }
         };

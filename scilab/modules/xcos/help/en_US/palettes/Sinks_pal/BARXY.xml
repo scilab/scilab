@@ -216,10 +216,10 @@
     </refsection>
     <refsection id="Example_BARXY">
         <title>Animated bar viewer example</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/BARXY_Example.xcos">
+        <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/BARXY_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/sinks_pal/BARXY_Example.xcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/sinks_pal/BARXY_Example.zcos" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </link>

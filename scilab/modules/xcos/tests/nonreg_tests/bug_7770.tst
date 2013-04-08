@@ -26,7 +26,7 @@ endfunction
 
 ilib_verbose(0);
 // import a diagram of a Modelica demo in Scilab
-result= importXcosDiagram(SCI+"/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.xcos");
+result= importXcosDiagram(SCI+"/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.zcos");
 if ~result then pause,end
 
 // compile the diagram

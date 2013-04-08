@@ -15,10 +15,70 @@
 #include "csv_strsubst.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
-/* ==================================================================== */
-char **splitLineCSV(const char *str, const char *sep, int *toks, char meta)
-{
+
 #define EMPTYFIELD "__EMPTY_FIELD_CSV__"
+#define DOUBLE_QUOTE '"'
+
+// Add the token (string) to the array of tokens,
+// and applies post processing (escape double quotes,...)
+static int addToken(char **tokens, int *tokenIdx, const char* tokenValue, int tokenLen)
+{
+    char *token = (char *) MALLOC((sizeof(char) * tokenLen) + 1);
+
+    if (token)
+    {
+        char *token2;
+        const char *c, *c_end;
+        char *c2;
+
+        memcpy(token, tokenValue, tokenLen);
+        token[tokenLen] = 0;
+
+        if (strcmp(token, EMPTYFIELD) == 0)
+        {
+            strcpy(token, "");
+        }
+
+        // Escape double quotes, and remove simple quotes
+        token2 = (char *) MALLOC((sizeof(char) * tokenLen) + 1);
+        c = token;
+        c_end = c + tokenLen;
+        c2 = token2;
+        while (c < c_end)
+        {
+            if (*c == DOUBLE_QUOTE)
+            {
+                c++;
+                if (*c == DOUBLE_QUOTE)
+                {
+                    *c2 = DOUBLE_QUOTE;
+                    c++;
+                    c2++;
+                }
+            }
+            else
+            {
+                *c2 = *c;
+                c++;
+                c2++;
+            }
+        }
+        *c2 = 0;
+
+        // Add token
+        tokens[*tokenIdx] = token2;
+        (*tokenIdx)++;
+
+        FREE(token);
+
+        return TRUE;
+    }
+    return FALSE;
+}
+
+/* ==================================================================== */
+char **splitLineCSV(const char *str, const char *sep, int *toks)
+{
     char **retstr = NULL;
     const char *idx = NULL;
     const char *end = NULL;
@@ -26,7 +86,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks, char meta)
     const char *sep_idx = NULL;
     int len = 0;
     int curr_str = 0;
-    char last_char = 0xFF;
+    int inDoubleQuote = 0;
 
     /* Usually, it should be ,, or ;; */
     char tokenstring_to_search[64] = "";
@@ -61,20 +121,17 @@ char **splitLineCSV(const char *str, const char *sep, int *toks, char meta)
         sprintf(tmp, "%s%s", substitutedstring, EMPTYFIELD);
         FREE(substitutedstring);
         substitutedstring = tmp;
-
     }
 
     sep_end = sep + strlen(sep);
     end = substitutedstring + strlen(substitutedstring);
 
-    sep_idx = sep;
     idx = substitutedstring;
 
     if (strstr(substitutedstring, sep) == NULL)
     {
         *toks = 0;
         FREE(substitutedstring);
-        substitutedstring = NULL;
         return NULL;
     }
 
@@ -83,101 +140,101 @@ char **splitLineCSV(const char *str, const char *sep, int *toks, char meta)
     {
         *toks = 0;
         FREE(substitutedstring);
-        substitutedstring = NULL;
         return NULL;
     }
 
     while (idx < end)
     {
-        while (sep_idx < sep_end)
+        // If we are in a double quoted field, we do not plit on separators
+        if (!inDoubleQuote)
         {
-            if ((*idx == *sep_idx) && (last_char != meta))
+            sep_idx = sep;
+            while (sep_idx < sep_end)
             {
-                if (len > 0)
+                if ((*idx == *sep_idx))
                 {
-                    if (curr_str < (int)strlen(substitutedstring))
+                    if (len > 0)
                     {
-                        retstr[curr_str] = (char *) MALLOC((sizeof(char) * len) + 1);
-
-                        if (retstr[curr_str] == NULL)
+                        if (curr_str < (int)strlen(substitutedstring))
                         {
-                            *toks = 0;
+                            // New token (= field)
+                            if (addToken(retstr, &curr_str, (char*)(idx - len), len))
+                            {
+                                // Reset for next field
+                                len = 0;
+                                idx++;
+                            }
+                            else
+                            {
+                                *toks = 0;
+                                FREE(substitutedstring);
+                                freeArrayOfString(retstr, strlen(substitutedstring));
+                                return NULL;
+                            }
+                        }
+
+                        if (curr_str >= (int)strlen(substitutedstring))
+                        {
+                            *toks = curr_str + 1;
                             FREE(substitutedstring);
-                            substitutedstring = NULL;
-                            freeArrayOfString(retstr, strlen(substitutedstring));
-                            return NULL;
+                            return retstr;
                         }
-                        memcpy(retstr[curr_str], (idx - len), len);
-                        retstr[curr_str][len] = 0;
-                        if (strcmp(retstr[curr_str], EMPTYFIELD) == 0)
-                        {
-                            strcpy(retstr[curr_str], "");
-                        }
-                        len = 0;
-                        curr_str++;
-                        last_char = *idx;
-                        idx++;
                     }
-
-                    if (curr_str >= (int)strlen(substitutedstring))
+                    else
                     {
-                        *toks = curr_str + 1;
-                        FREE(substitutedstring);
-                        substitutedstring = NULL;
-                        return retstr;
+                        idx++;
+                        len = 0;
                     }
                 }
                 else
                 {
-                    last_char = *idx;
-                    idx++;
-                    sep_idx = sep;
-                    len = 0;
+                    sep_idx++;
                 }
-            }
-            else
-            {
-                sep_idx++;
             }
         }
 
-        sep_idx = sep;
-        len++;
-        last_char = *idx;
-        idx++;
+        if (*idx == '"')
+        {
+            // Count number of consecutive double quotes
+            int nbDoubleQuotes = 0;
+            const char *idxTmp = idx;
+
+            while (*idxTmp == '"')
+            {
+                *idxTmp++;
+            }
+            nbDoubleQuotes = idxTmp - idx;
+
+            // if it is odd, we enter or leave a double quoted field
+            if (nbDoubleQuotes % 2 == 1)
+            {
+                inDoubleQuote = (inDoubleQuote == 0) ? 1 : 0;
+            }
+            len += nbDoubleQuotes;
+            idx += nbDoubleQuotes;
+        }
+        else
+        {
+            len++;
+            idx++;
+        }
     }
 
     if (len > 0)
     {
-        retstr[curr_str] = (char *) MALLOC((sizeof(char) * len) + 1);
-
-        if (retstr[curr_str] == NULL)
+        // New token (= field)
+        if (!addToken(retstr, &curr_str, (char*)(idx - len), len))
         {
             *toks = 0;
-            if (substitutedstring)
-            {
-                FREE(substitutedstring);
-                substitutedstring = NULL;
-            }
+            FREE(substitutedstring);
             freeArrayOfString(retstr, strlen(substitutedstring));
             return NULL;
         }
-
-        memcpy(retstr[curr_str], (idx - len), len);
-        retstr[curr_str][len] = 0;
-        if (strcmp(retstr[curr_str], EMPTYFIELD) == 0)
-        {
-            strcpy(retstr[curr_str], "");
-        }
-
-        *toks = curr_str + 1;
     }
 
-    if (substitutedstring)
-    {
-        FREE(substitutedstring);
-        substitutedstring = NULL;
-    }
+    *toks = curr_str;
+
+    FREE(substitutedstring);
 
     return retstr;
 }

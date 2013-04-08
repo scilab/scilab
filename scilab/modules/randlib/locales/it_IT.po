@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: it\n"
 
 #, c-format
@@ -40,28 +40,8 @@ msgstr ""
 "opzione \"%s\".\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso è di tipo sbagliato: era atteso uno "
-"scalare.\n"
-
-#, c-format
-msgid "%s: Wrong type for third input argument: Scalar expected.\n"
-msgstr ""
-"%s: Il terzo argomento in ingresso è di tipo sbagliato: era atteso uno "
-"scalare.\n"
-
-#, c-format
-msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
-msgstr ""
-"%s: Il quarto argomento in ingresso è di tipo sbagliato: era atteso uno "
-"scalare.\n"
-
-#, c-format
-msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
-msgstr ""
-"%s: Il quinto argomento in ingresso è di tipo sbagliato: era atteso uno "
-"scalare.\n"
 
 #, c-format
 msgid ""
@@ -80,10 +60,8 @@ msgstr ""
 "di %d o %d valori per '\"%s\".\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha una dimensione sbagliata era atteso "
-"%dx%d.\n"
 
 #, c-format
 msgid ""
@@ -120,48 +98,37 @@ msgid "%s: The %s option affects only the %s generator\n"
 msgstr "%s: L'opzione %s riguarda solo il generatore %s\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: %d, %d or %d expected.\n"
+msgid "%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha un valore sbagliato: era atteso %d, "
-"%d o %d.\n"
 
 #, c-format
 msgid "The %s option affects only the %s generator\n"
 msgstr "L'opzione %s riguarda solo il generatore %s\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha un valore sbagliato: deve essere tra "
-"%d e %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be > %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha un valore sbagliato: deve essere > "
-"%d.\n"
 
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Questa informazione riguarda solo il generatore clcg4\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
-"'%s' expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha un valore sbagliato: era atteso "
-"\"%s\", \"%s\", \"%s\", \"%s\", \"%s\" o\"%s\".\n"
 
 #, c-format
-msgid "%s Wrong value for first input argument %s.\n"
-msgstr "%s: Il primo argomento in ingresso %s ha un valore sbagliato.\n"
+msgid "%s Wrong value for input argument #%d: %s.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Scalar expected.\n"
+msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
 msgstr ""
-"%s: Il primo argomento in ingresso è di tipo sbagliato: era atteso uno "
-"scalare.\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "Mancano A e B per la legge Beta\n"
@@ -184,11 +151,9 @@ msgstr "I gradi di libertà non sono positivi\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "deviate.\n"
 msgstr ""
-"%s: Il primo argomento in ingresso ha un valore sbagliato: deve essere il "
-"numero della devianza casuale.\n"
 
 msgid "Missing N and P for MULtinomial law\n"
 msgstr "Mancano N e P per la legge Multinomiale\n"
@@ -274,11 +239,9 @@ msgstr "Mancano N e P per la legge Binomiale\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "simulation.\n"
 msgstr ""
-"%s: Il primo argomento in ingresso ha un valore sbagliato: deve essere il "
-"numero della simulazione casuale.\n"
 
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr "Mancano Mean e Cov per la legge Normale Multivariata\n"
@@ -309,10 +272,9 @@ msgstr "%s: Mancano la matrice P e X0 per la catena di Markov\n"
 
 #, c-format
 msgid ""
-"%s: Wrong second input argument: Square matrix or row vector expected.\n"
+"%s: Wrong type for input argument #%d: Square matrix or row vector "
+"expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso è sbagliato: era attesa una matrice "
-"quadrata o un vettore riga.\n"
 
 msgid "X0 is empty\n"
 msgstr "X0è vuoto\n"

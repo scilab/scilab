@@ -21,7 +21,7 @@ pause,
 // check that a window is open
 closeXcos();
 
-xcos("modules/xcos/demos/Bouncing_ball.xcos");
+xcos("modules/xcos/demos/Bouncing_ball.zcos");
 pause,
 // check that a window is open with a complete diagram on it
 closeXcos();

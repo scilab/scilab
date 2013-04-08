@@ -67,7 +67,6 @@ static gw_generic_table Tab[] =
     {sci_mputl, "mputl"},
     {sci_tempname, "tempname"},
     {sci_getURL, "getURL"},
-    {sci_getURLcontent, "getURLcontent"},
     {sci_splitURL, "splitURL"}
 };
 /*--------------------------------------------------------------------------*/

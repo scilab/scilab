@@ -13,7 +13,7 @@
 //
 // <-- Short Description -->
 // FROMWS block does not works
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_9346.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_9346.zcos");
 if ~status then bugmes();quit;end;
 V.time = (1:10)';
 V.values = matrix(1:50, [10 5]);

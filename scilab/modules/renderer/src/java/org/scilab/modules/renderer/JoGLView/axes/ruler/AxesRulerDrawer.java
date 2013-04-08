@@ -134,6 +134,9 @@ public class AxesRulerDrawer {
         rulerModel.setTicksDirection(xTicksDirection);
         rulerModel.setFirstPoint(xAxisPosition.setX(-1));
         rulerModel.setSecondPoint(xAxisPosition.setX(1));
+        if (!axes.getAutoSubticks()) {
+            rulerModel.setSubticksNumber(axes.getXAxisSubticks());
+        }
 
         setRulerBounds(axes.getXAxis(), rulerModel, bounds[0], bounds[1]);
 
@@ -159,7 +162,9 @@ public class AxesRulerDrawer {
                 Arrays.sort(values);
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
-                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                if (axes.getAutoSubticks()) {
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                }
             }
 
             distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
@@ -179,6 +184,9 @@ public class AxesRulerDrawer {
         rulerModel.setTicksDirection(yTicksDirection);
         rulerModel.setFirstPoint(yAxisPosition.setY(-1));
         rulerModel.setSecondPoint(yAxisPosition.setY(1));
+        if (!axes.getAutoSubticks()) {
+            rulerModel.setSubticksNumber(axes.getYAxisSubticks());
+        }
 
         setRulerBounds(axes.getYAxis(), rulerModel, bounds[2], bounds[3]);
         rulerModel.setLogarithmic(axes.getYAxis().getLogFlag());
@@ -201,7 +209,9 @@ public class AxesRulerDrawer {
                 Arrays.sort(values);
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
-                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                if (axes.getAutoSubticks()) {
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                }
             }
 
             distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
@@ -238,6 +248,9 @@ public class AxesRulerDrawer {
             rulerModel.setFirstPoint(new Vector3d(xs, ys, -1));
             rulerModel.setSecondPoint(new Vector3d(xs, ys, 1));
             rulerModel.setTicksDirection(new Vector3d(txs, tys, 0));
+            if (!axes.getAutoSubticks()) {
+                rulerModel.setSubticksNumber(axes.getZAxisSubticks());
+            }
 
             setRulerBounds(axes.getZAxis(), rulerModel, bounds[4], bounds[5]);
             rulerModel.setLogarithmic(axes.getZAxis().getLogFlag());
@@ -260,7 +273,9 @@ public class AxesRulerDrawer {
                     Arrays.sort(values);
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                    if (axes.getAutoSubticks()) {
+                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                    }
                 }
 
                 distanceRatio = rulerDrawingResult.getMaxDistToTicksDirNorm();
@@ -298,8 +313,9 @@ public class AxesRulerDrawer {
 
         RulerDrawer[] rulerDrawers = rulerDrawerManager.get(axes);
         ElementsBuffer vertexBuffer = drawingTools.getCanvas().getBuffersManager().createElementsBuffer();
+        final boolean is3D = axes.getViewAsEnum() == Camera.ViewType.VIEW_3D && axes.getRotationAngles()[1] != 90.0;
 
-        if (rulerDrawers[0].getModel() == null) {
+        if (rulerDrawers[0].getModel() == null || rulerDrawers[1].getModel() == null || (is3D && rulerDrawers[2].getModel() == null)) {
             computeRulers(axes, axesDrawer, colorMap, drawingTools, drawingTools.getTransformationManager().getModelViewStack().peek(), drawingTools.getTransformationManager().getCanvasProjection());
         }
 
@@ -317,7 +333,12 @@ public class AxesRulerDrawer {
             if (axes.getXAxisGridColor() != -1) {
                 FloatBuffer vertexData;
                 if (axes.getXAxisLogFlag()) {
-                    vertexData = getXGridData(rulerDrawers[0].getSubTicksValue(), rulerDrawers[0].getModel());
+                    List<Double> values = rulerDrawers[0].getSubTicksValue();
+                    if (values == null || values.isEmpty()) {
+                        vertexData = getXGridData(rulerDrawers[0].getTicksValue(), rulerDrawers[0].getModel());
+                    } else {
+                        vertexData = getXGridData(values, rulerDrawers[0].getModel());
+                    }
                 } else {
                     vertexData = getXGridData(rulerDrawers[0].getTicksValue(), rulerDrawers[0].getModel());
                 }
@@ -353,7 +374,12 @@ public class AxesRulerDrawer {
             if (axes.getYAxisGridColor() != -1) {
                 FloatBuffer vertexData;
                 if (axes.getYAxisLogFlag()) {
-                    vertexData = getYGridData(rulerDrawers[1].getSubTicksValue(), rulerDrawers[1].getModel());
+                    List<Double> values = rulerDrawers[1].getSubTicksValue();
+                    if (values == null || values.isEmpty()) {
+                        vertexData = getYGridData(rulerDrawers[1].getTicksValue(), rulerDrawers[1].getModel());
+                    } else {
+                        vertexData = getYGridData(values, rulerDrawers[1].getModel());
+                    }
                 } else {
                     vertexData = getYGridData(rulerDrawers[1].getTicksValue(), rulerDrawers[1].getModel());
                 }
@@ -383,14 +409,19 @@ public class AxesRulerDrawer {
         }
 
         // Draw Z ruler
-        if (axes.getViewAsEnum() == Camera.ViewType.VIEW_3D && axes.getRotationAngles()[1] != 90.0) {
+        if (is3D) {
             if (axes.getZAxisVisible()) {
                 rulerDrawers[2].draw(drawingTools);
 
                 if (axes.getZAxisGridColor() != -1 || !axes.getZAxisVisible()) {
                     FloatBuffer vertexData;
                     if (axes.getZAxisLogFlag()) {
-                        vertexData = getZGridData(rulerDrawers[2].getSubTicksValue(), rulerDrawers[2].getModel());
+                        List<Double> values = rulerDrawers[2].getSubTicksValue();
+                        if (values == null || values.isEmpty()) {
+                            vertexData = getZGridData(rulerDrawers[2].getTicksValue(), rulerDrawers[2].getModel());
+                        } else {
+                            vertexData = getZGridData(values, rulerDrawers[2].getModel());
+                        }
                     } else {
                         vertexData = getZGridData(rulerDrawers[2].getTicksValue(), rulerDrawers[2].getModel());
                     }

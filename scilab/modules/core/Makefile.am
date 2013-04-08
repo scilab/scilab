@@ -35,7 +35,6 @@ src/c/scimem.c \
 src/c/banier.c \
 src/c/isanan.c \
 src/c/parse.c \
-src/c/timer.c \
 src/c/stack2.c \
 src/c/xscion.c \
 src/c/SetScilabEnvironment.c \
@@ -91,7 +90,6 @@ src/c/storeCommand.c \
 src/c/backtrace.c \
 src/c/signal_mgmt.c \
 src/c/suspendProcess.c \
-src/c/windowsChangeManagement.c \
 src/c/setieee.c \
 src/c/setlines.c \
 src/c/setformat.c \

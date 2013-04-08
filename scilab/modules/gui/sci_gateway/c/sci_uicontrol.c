@@ -562,6 +562,14 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         setGraphicObjectProperty(pUicontrol, __GO_UI_SLIDERSTEP__, pdblStep, jni_double_vector, 2);
     }
 
+    if ((Rhs < 2) || (propertiesValuesIndices[10] == NOT_FOUND))    /* Position property not set */
+    {
+        double* pdblPosition = NULL;
+
+        getGraphicObjectProperty(pUicontrol, __GO_POSITION__, jni_double_vector, (void**) &pdblPosition);
+        setGraphicObjectProperty(pUicontrol, __GO_POSITION__, pdblPosition, jni_double_vector, 4);
+    }
+
     FREE(propertiesValuesIndices);
 
     /* Create return variable */

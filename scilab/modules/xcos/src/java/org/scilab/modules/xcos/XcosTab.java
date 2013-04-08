@@ -61,6 +61,7 @@ import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.ExportAction;
+import org.scilab.modules.xcos.actions.ExportAllAction;
 import org.scilab.modules.xcos.actions.ExternalAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.InitModelicaAction;
@@ -377,6 +378,7 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         fileMenu.add(SaveAction.createMenu(diagram));
         fileMenu.add(SaveAsAction.createMenu(diagram));
         fileMenu.add(ExportAction.createMenu(diagram));
+        fileMenu.add(ExportAllAction.createMenu(diagram));
 
         recentsMenu = createRecentMenu();
 

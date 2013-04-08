@@ -204,15 +204,15 @@
     <refsection id="Example_DOLLAR_f">
         <title>Exemple</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/discrete_pal/en_US/DELAY_f_2_en_US.xcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>

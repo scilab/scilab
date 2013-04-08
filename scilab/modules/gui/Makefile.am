@@ -314,6 +314,7 @@ images/icons/16x16/actions/zoom-original.png \
 images/icons/16x16/actions/zoom-out.png \
 images/icons/16x16/animations/process-working.png \
 images/icons/16x16/apps/accessories-text-editor.png \
+images/icons/16x16/apps/datatips.png \
 images/icons/16x16/apps/help-browser.png \
 images/icons/16x16/apps/scilab.png \
 images/icons/16x16/apps/utilities-system-monitor.png \
@@ -349,7 +350,6 @@ images/icons/256x256/apps/system-search.png \
 images/icons/256x256/apps/utilities-system-monitor.png \
 images/icons/32x32/actions/edit-clear.png \
 images/icons/32x32/apps/accessories-text-editor.png \
-images/icons/32x32/apps/datatips.png \
 images/icons/32x32/apps/graphic-window.png \
 images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/scilab.png \

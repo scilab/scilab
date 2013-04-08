@@ -11,7 +11,7 @@
 
 loadXcosLibs();
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cumsum.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cumsum.zcos"));
 scicos_simulate(scs_m, list());
 
 in = ones(4,2);

@@ -17,7 +17,7 @@
 // Opening a block parameters without modifying them should not re-position 
 // ports.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8348.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8348.zcos");
 // Open the block settings of the CMSCOPE block.
 // OK
 // Check that the ports should not be misplaced (check the link)

@@ -32,7 +32,7 @@ static int sci_clear_n_rhs(const char *fname);
 /*--------------------------------------------------------------------------*/
 extern int C2F(stackp)(int *, int *); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_clear)(char *fname,unsigned long fname_len)
+int C2F(sci_clear)(char *fname, unsigned long fname_len)
 {
     if (Rhs == 0)
     {
@@ -80,7 +80,7 @@ static int sci_clear_n_rhs(const char *fname)
 
     if (!VariableNameToClear)
     {
-        Scierror(999,_("%s: No more memory.\n"), fname);
+        Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }
 
@@ -97,12 +97,12 @@ static int sci_clear_n_rhs(const char *fname)
                 {
                     VariableNameToClear[i] =  variablename;
                     i++;
-                 }
+                }
                 else
                 {
                     freeAllocatedMatrixOfString(i, 1, VariableNameToClear);
                     VariableNameToClear = NULL;
-                    Scierror(999,_("%s: No more memory.\n"), fname);
+                    Scierror(999, _("%s: No more memory.\n"), fname);
                     return 0;
                 }
             }
@@ -113,12 +113,12 @@ static int sci_clear_n_rhs(const char *fname)
 
                 if (isScalar(pvApiCtx, piAddressVar))
                 {
-                    Scierror(201, _("%s: Wrong type for argument %d: A single string expected.\n"), fname, k + 1);
+                    Scierror(201, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, k + 1);
                     return 0;
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong size for argument %d: A single string expected.\n"), fname, k + 1);
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, k + 1);
                     return 0;
                 }
             }

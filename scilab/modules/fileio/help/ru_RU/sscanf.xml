@@ -49,9 +49,10 @@
         <title>Описание</title>
         <para>
             <caution>
-                Эта функция устарела, лучше использовать функцию
-                <function>msscanf</function>, которая более эффективна и более 
-                совместима с C-функцией <function>sscanf</function>.
+                Эта функция устарела и будет удалена в Scilab 5.5.0, 
+                лучше использовать функцию <function>msscanf</function>, 
+                которая более эффективна и более совместима с C-функцией 
+                <function>sscanf</function>.
             </caution>
         </para>
         <para>
@@ -88,6 +89,17 @@
                 </para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    Функция помечена как устаревшая. Будет удалена в 5.5.0.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

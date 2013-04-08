@@ -813,7 +813,6 @@ int ScilabObjects::isPositiveIntegerAtAddress(int * addr, void * pvApiCtx)
 {
     SciErr err;
     int typ = 0, row, col, prec;
-    int * id = 0;
 
     err = getVarDimension(pvApiCtx, addr, &row, &col);
     if (err.iErr)

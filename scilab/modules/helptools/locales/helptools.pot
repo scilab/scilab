@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-03-18 15:28+0100\n"
+"Revision-Date: 2013-03-27 13:20+0100\n"
 
 # File: sci_gateway/c/gw_helptools.c, line: 38
 #, c-format
@@ -310,7 +310,7 @@ msgstr ""
 
 #
 # File: macros/help_skeleton.sci, line: 176
-msgid "add another author name and it's reference"
+msgid "add another author name and his/her reference"
 msgstr ""
 
 #

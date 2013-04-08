@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // Hidden links should not be ordered when exported
 
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8737.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8737.zcos");
 if ~status then pause, end
 
 // compile and simulate

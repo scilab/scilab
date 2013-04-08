@@ -17,7 +17,7 @@
 // "Code Generation" menu did not work
 
 
-// xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.xcos');
+// xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.zcos');
 // rigth click on superblock
 // changes Created file Path
 // code must be generated

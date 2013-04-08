@@ -221,10 +221,10 @@
     <refsection id="Example_IdealTransformer">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/electrical_pal/IdealTransformer_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/electrical_pal/IdealTransformer_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/electrical_pal/IdealTransformer_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/electrical_pal/IdealTransformer_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

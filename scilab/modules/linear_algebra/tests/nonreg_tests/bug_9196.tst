@@ -1,7 +1,8 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Sylvestre Ledru
-// Copyright (C) 2013 - Michaël Baudin
+// Copyright (C) 2013 - MichaÃ«l Baudin
+// Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -30,14 +31,14 @@ xexpected=[7129/2520
            113567/144144
            1768477/2450448];
 x=A\b;
-assert_checkalmostequal(x, xexpected);
+assert_checkalmostequal(x, xexpected, [], 1e-6);
 
 
 Ac=complex(A,zeros(A));
 bc=complex(b,zeros(b));
 xc = Ac\bc;
 xcexpected=complex(xexpected,zeros(xexpected));
-assert_checkalmostequal(xc, xexpected);
+assert_checkalmostequal(xc, xcexpected, [], 1e-5);
 
 b=(1:n)';
 xexpected=[9;
@@ -50,12 +51,12 @@ xexpected=[9;
            71761/20592;
            988277/306306];
 x=A\b;
-assert_checkalmostequal(x, xexpected);
+assert_checkalmostequal(x, xexpected, [], 1e-5);
 Ac=complex(A,zeros(A));
 bc=complex(b,zeros(b));
 xc = Ac\bc;
 xcexpected=complex(xexpected,zeros(xexpected));
-assert_checkalmostequal(xc, xexpected);
+assert_checkalmostequal(xc, xcexpected, [], 1e-5);
 
 b=[1;-1;1;-1;1;-1;1;-1;1];
 xexpected=[1879/2520;
@@ -68,12 +69,12 @@ xexpected=[1879/2520;
            69659/720720;
            1068047/12252240];
 x=A\b;
-assert_checkalmostequal(x, xexpected);
+assert_checkalmostequal(x, xexpected, [], 1e-7);
 Ac=complex(A,zeros(A));
 bc=complex(b,zeros(b));
 xc = Ac\bc;
 xcexpected=complex(xexpected,zeros(xexpected));
-assert_checkalmostequal(xc, xexpected);
+assert_checkalmostequal(xc, xcexpected, [], 1e-6);
 
 n=9;
 A = testmatrix("hilb",n);
@@ -90,4 +91,4 @@ xexpected=[
 7.87871850371850480e-001
 7.21695379783615090e-001
 ];
-assert_checkalmostequal(x, xexpected);
+assert_checkalmostequal(x, xexpected, [], 1e-6);

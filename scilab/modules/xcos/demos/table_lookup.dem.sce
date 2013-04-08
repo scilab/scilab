@@ -4,4 +4,4 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-xcos("SCI/modules/xcos/demos/Table_Lookup.xcos");
+xcos("SCI/modules/xcos/demos/Table_Lookup.zcos");

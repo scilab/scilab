@@ -90,6 +90,9 @@ list('link','name_of_link',
             связывает (выходной) порт 1 <literal>S2</literal> с выходом (порт 0 условного блока 
             -1 не рассматривается) и с (входным) портом 2 сумматора.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 //Инициализация
 syst=list('blocd'); l=1;

@@ -120,17 +120,17 @@
     <refsection>
         <title>Examples</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
 loadScicos();
 loadXcosLibs();
-importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.zcos");
 scs_m.props.tol(6) = 5;
 scs_m.props.tol(7) = 10^-2;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
@@ -144,7 +144,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       // Import the diagram and set the ending time
       loadScicos();
       loadXcosLibs();
-      importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
+      importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.zcos");
       scs_m.props.tf = 5000;
 
       // Select the Dormand-Prince solver and set the precision

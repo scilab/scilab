@@ -1910,19 +1910,15 @@ public class Axes extends GraphicObject {
     public Double[] getMaximalDisplayedBounds() {
         Double[] bounds = getDataBounds();
 
-        /**
-         * Remove 0 sized bounds
-         */
-        for (int i = 0 ; i < 6 ; i += 2) {
-            if (bounds[i].equals(bounds[i + 1])) {
-                bounds[i]--;
-                bounds[i + 1]++;
-            }
-        }
-
+        boolean eq = bounds[0].equals(bounds[1]);
         if (getXAxisLogFlag()) {
             bounds[0] = Math.log10(bounds[0]);
             bounds[1] = Math.log10(bounds[1]);
+        }
+        if (eq) {
+            // Avoid to have same bounds.
+            bounds[0]--;
+            bounds[1]++;
         }
 
         if (getXAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
@@ -1933,9 +1929,14 @@ public class Axes extends GraphicObject {
             }
         }
 
+        eq = bounds[2].equals(bounds[3]);
         if (getYAxisLogFlag()) {
             bounds[2] = Math.log10(bounds[2]);
             bounds[3] = Math.log10(bounds[3]);
+        }
+        if (eq) {
+            bounds[2]--;
+            bounds[3]++;
         }
 
         if (getYAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
@@ -1946,9 +1947,14 @@ public class Axes extends GraphicObject {
             }
         }
 
+        eq = bounds[4].equals(bounds[5]);
         if (getZAxisLogFlag()) {
             bounds[4] = Math.log10(bounds[4]);
             bounds[5] = Math.log10(bounds[5]);
+        }
+        if (eq) {
+            bounds[4]--;
+            bounds[5]++;
         }
 
         if (getZAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
