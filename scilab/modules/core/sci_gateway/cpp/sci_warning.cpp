@@ -91,6 +91,8 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
             wchar_t* pwstToPrint = (wchar_t*)MALLOC(sizeof(wchar_t) * iSize);
             os_swprintf(pwstToPrint, iSize, pwstWarn, pwstTemp);
             scilabForcedWriteW(pwstToPrint);
+            FREE(pwstWarn);
+            FREE(pwstToPrint);
         }
     }
 
