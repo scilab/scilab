@@ -713,7 +713,11 @@ DOCIMAGES = scilab_images.jar
 # Path to builded files
 PATHTOHELPFILES = modules/helptools/jar/
 
-# Path javasci to builded files
+# Path to scirenderer jar
+PATHTOSCIRENDERER = modules/scirenderer/jar/
+SCIRENDERERJAR = scirenderer.jar
+
+# Path javasci to built files
 PATHTOJAVASCIDOC = modules/javasci/javadoc/
 JAVASCI_DIRS = . resources \
 	org/scilab/modules/javasci/ \
@@ -2084,6 +2088,9 @@ codecoverage-java: clean-reports
 @BUILD_HELP_TRUE@			done; \
 @BUILD_HELP_TRUE@	done; \
 @BUILD_HELP_TRUE@	fi
+# Also install scirenderer.jar
+@EXTERNAL_SCIRENDERER_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)
+@EXTERNAL_SCIRENDERER_FALSE@	$(INSTALL_DATA) $(top_builddir)/$(PATHTOSCIRENDERER)/$(SCIRENDERERJAR) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)/
 
 .PHONY: macros localization doc
 

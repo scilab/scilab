@@ -743,12 +743,15 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 AC_HDF5()
 # The Java detection is done after in this file.
 
+
 #################
 ## scirenderer
 #################
 
-AC_ARG_WITH(embedded-scirenderer,
-    AC_HELP_STRING([--without-embedded-scirenderer],[Disable the usage of the internal copy of scirenderer. Intended for packaging of Scilab]))
+AC_ARG_WITH(external-scirenderer,
+    AC_HELP_STRING([--with-external-scirenderer],[Disable the usage of the internal copy of scirenderer. Intended for packaging of Scilab]))
+
+AM_CONDITIONAL(EXTERNAL_SCIRENDERER, "$with_external_scirenderer" = yes)
 
 
 #################
@@ -861,7 +864,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
                 fi
 
-                if test "$with_embedded_scirenderer" = yes; then
+                if test "$with_external_scirenderer" = yes; then
                    # scirenderer
                    AC_JAVA_CHECK_PACKAGE([scirenderer],[org.scilab.forge.scirenderer.PackageInfo],[Scilab Renderer])
                    SCIRENDERER=$PACKAGE_JAR_FILE
@@ -869,7 +872,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
                    AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.1.0],[PackageInfo.VERSION])
                  else
-                   echo "Use embedded version of scirenderer"
+                   echo "Use external version of scirenderer"
                    # Use the scirenderer in Scilab sources
                    SCIRENDERER="\${modules.dir}/scirenderer/\${build.jar.dir}/scirenderer.jar"
                    SCIRENDERER_CP="\$SCILAB/modules/scirenderer/jar/scirenderer.jar"
