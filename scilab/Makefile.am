@@ -416,7 +416,7 @@ endif
 DOCMASK=scilab_*_help.jar
 DOCIMAGES=scilab_images.jar
 
-# Path to builded files
+# Path to built files
 PATHTOHELPFILES = modules/helptools/jar/
 
 # Path to scirenderer jar
