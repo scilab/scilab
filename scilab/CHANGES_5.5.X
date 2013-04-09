@@ -83,6 +83,10 @@ Bug fixes
 
 * Bug #12163 fixed - unzoom did not work with a single input argument.
 
+* Bug #12415 fixed - PATH environment variable grew when using call_scilab in a loop.
+
+* Bug #12426 fixed - By using addErrorMessage, random string error could be displayed.
+
 * Bug #12443 fixed - Document behavior of mopen() in text file mode
                      on Windows.
 

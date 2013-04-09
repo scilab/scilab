@@ -644,9 +644,6 @@ Xcos
                      simulation fixed.
 
 
-* bug #12415 fixed - PATH environment variable grows when using call_scilab in a loop
-
-* Bug #12426 fixed - By using addErrorMessage, random string error can be displayed.
 
 
                     Changes between version 5.3.3 and 5.4.0
