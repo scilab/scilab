@@ -58,6 +58,9 @@
     <ClCompile Include="cpp\sci_odedc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cpp\sci_daskr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="differential_equations_f_Import.def">

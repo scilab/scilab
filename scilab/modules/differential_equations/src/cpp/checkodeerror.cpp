@@ -203,6 +203,13 @@ int checkDasslError(int idid)
             }
             return 2;
         }
+        case -5 : // only used in daskr
+        {
+            // There were repeated failures in the evaluation
+            // or processing of the preconditioner (in JAC).
+            sciprint(_("Cannot evaluate the preconditioner.\n"));
+            return 1;
+        }
         case -6 : //Repeated error test failures on the last attempted step.
         {
             if (getWarningMode())
@@ -247,9 +254,22 @@ int checkDasslError(int idid)
             sciprint(_("Error in external ''res''.\n"));
             return 1;
         }
-        case -12 : //DDASSL failed to compute the initial YPRIME.
+        case -12 : //DDASSL, dasrt or daskr failed to compute the initial YPRIME.
         {
-            sciprint(_("dassl failed to compute the initial Ydot.\n"));
+            sciprint(_("failed to compute the initial Ydot.\n"));
+            return 1;
+        }
+        case -13 : // only used in daskr
+        {
+            // An unrecoverable error was encountered inside the user's PSOL routine,
+            // and control is being returned to the calling program.
+            sciprint(_("Error in external psol.\n"));
+            return 1;
+        }
+        case -14 : // only used in daskr
+        {
+            // The Krylov linear system solver could not achieve convergence.
+            sciprint(_("The Krylov linear system did not converge.\n"));
             return 1;
         }
         case -33 :
@@ -261,7 +281,7 @@ int checkDasslError(int idid)
             //when invalid input is detected.
             if (getWarningMode())
             {
-                sciprint(_("dassl encountered trouble.\n"));
+                sciprint(_("encountered trouble.\n"));
             }
             return 2;
         }

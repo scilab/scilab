@@ -2,22 +2,11 @@
 #include <stdlib.h>
 #include "machine.h"
 #include "core_math.h"
+#include "Ex-daskr.h"
 
-extern void   C2F(dgefa) (double *A, int *lead_dim_A, int *n, int *ipivots, int *info);
-extern void   C2F(dgesl) (double *A, int *lead_dim_A, int *n, int *ipivots, double *B, int *job);
-extern double C2F(dlamch) (const char*);
-typedef void (*resfunc) (double*, double*, double*, double*, int*, double*, int*);
-
-void C2F(pjac1) (resfunc res, int *ires, int *neq, double *tOld, double *actual, double *actualP,
-                 double *rewt, double *savr, double *wk, double *h, double *cj, double *wp, int *iwp,
-                 int *ier, double *rpar, int *ipar);
-void C2F(psol1) (int *neq, double *tOld, double *actual, double *actualP,
-                 double *savr, double *wk, double *cj, double *wght, double *wp,
-                 int *iwp, double *b, double *eplin, int *ier, double *dummy1, int *dummy2);
-
-void C2F(pjac1) (resfunc res, int *ires, int *neq, double *tOld, double *actual, double *actualP,
-                 double *rewt, double *savr, double *wk, double *h, double *cj, double *wp, int *iwp,
-                 int *ier, double *rpar, int *ipar)
+void pjac1( resfunc res, int *ires, int *nequations, double *tOld, double *actual, double *actualP,
+            double *rewt, double *savr, double *wk, double *h, double *cj, double *wp, int *iwp,
+            int *ier, double *rpar, int *ipar)
 {
     int i = 0;
     int j = 0;
@@ -30,13 +19,15 @@ void C2F(pjac1) (resfunc res, int *ires, int *neq, double *tOld, double *actual,
     double ypsave = 0;
     double * e = NULL;
 
-    double SQuround = sqrt(C2F(dlamch)("P"));
+    int neq = *nequations;
+    char cP[1] = "P";
+    double SQuround = sqrt(C2F(dlamch)(cP, 1L));
 
     tx = *tOld;
 
-    e = (double *) calloc(*neq, sizeof(double));
+    e = (double *) calloc(neq, sizeof(double));
 
-    for (i = 0 ; i < *neq ; ++i)
+    for (i = 0 ; i < neq ; ++i)
     {
         del =  Max(SQuround * Max(fabs(actual[i]), fabs(*h * actualP[i])), 1. / rewt[i]);
         del *= (*h * actualP[i] >= 0) ? 1 : -1;
@@ -55,9 +46,10 @@ void C2F(pjac1) (resfunc res, int *ires, int *neq, double *tOld, double *actual,
         }
 
         delinv = 1. / del;
-        for (j = 0 ; j < *neq ; j++)
+        for (j = 0 ; j < neq ; j++)
         {
             wp[nrow + j] = (e[j] - savr[j]) * delinv;
+
             /* NaN test */
             if (ISNAN(wp[nrow + j]))
             {
@@ -66,13 +58,13 @@ void C2F(pjac1) (resfunc res, int *ires, int *neq, double *tOld, double *actual,
                 return;
             }
         }
-        nrow       += *neq;
+        nrow       += neq;
         actual[i]  =  ysave;
         actualP[i] =  ypsave;
     }
 
     /* Proceed to LU factorization of P. */
-    C2F(dgefa) (wp, neq, neq, iwp, &info);
+    C2F(dgefa) (wp, nequations, nequations, iwp, &info);
     if (info != 0)
     {
         *ier = -1;
@@ -81,16 +73,16 @@ void C2F(pjac1) (resfunc res, int *ires, int *neq, double *tOld, double *actual,
     free(e);
 }
 
-void C2F(psol1) (int *neq, double *tOld, double *actual, double *actualP,
-                 double *savr, double *wk, double *cj, double *wght, double *wp,
-                 int *iwp, double *b, double *eplin, int *ier, double *dummy1, int *dummy2)
+void psol1( int *nequations, double *tOld, double *actual, double *actualP,
+            double *savr, double *wk, double *cj, double *wght, double *wp,
+            int *iwp, double *b, double *eplin, int *ier, double *dummy1, int *dummy2)
 {
     int i = 0, job = 0;
 
-    C2F(dgesl) (wp, neq, neq, iwp, b, &job);
+    C2F(dgesl) (wp, nequations, nequations, iwp, b, &job);
 
     /* NaN test */
-    for (i = 0; i < *neq; ++i)
+    for (i = 0; i < *nequations; ++i)
     {
         if (ISNAN(b[i]))
         {

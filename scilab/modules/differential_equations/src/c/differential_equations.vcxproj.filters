@@ -47,10 +47,10 @@
     <ClCompile Include="..\cpp\differentialequationfunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\Ex-daskr.c">
+    <ClCompile Include="Ex-odedc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ex-odedc.c">
+    <ClCompile Include="Ex-daskr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,6 +80,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Ex-odedc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ex-daskr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

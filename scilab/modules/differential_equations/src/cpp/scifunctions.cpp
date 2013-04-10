@@ -191,7 +191,7 @@ int impl_jac(int* neq, double* t, double* y, double* s, double* ml, double* mu, 
     return deFunction->execImplJac(neq, t, y, s, ml, mu, p, nrowp);
 }
 
-// dassl dasrt
+// dassl, dasrt, daskr
 int dassl_f(double* t, double* y, double* ydot, double* delta, int* ires, double* rpar, int* ipar)
 {
     DifferentialEquationFunctions* deFunction = NULL;
@@ -226,4 +226,34 @@ int dasrt_g(int* ny, double* t, double* y, int* ng, double* gout, double* rpar, 
         return 0;
     }
     return deFunction->execDasrtG(ny, t, y, ng, gout, rpar, ipar);
+}
+
+//daskr
+int daskr_psol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
+               double* cj, double* wght, double* wp, int* iwp, double* b, double* eplin,
+               int* ier, double* rpar, int* ipar)
+{
+    DifferentialEquationFunctions* deFunction = NULL;
+    deFunction = DifferentialEquation::getDifferentialEquationFunctions();
+
+    if (deFunction == NULL)
+    {
+        return 0;
+    }
+    return deFunction->execDaskrPsol(neq, t, y, ydot, savr, wk, cj, wght, wp, iwp,
+                                     b, eplin, ier, rpar, ipar);
+}
+int daskr_pjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
+               double* rewt, double* savr, double* wk, double* h, double* cj,
+               double* wp, int* iwp, int* ier, double* rpar, int* ipar)
+{
+    DifferentialEquationFunctions* deFunction = NULL;
+    deFunction = DifferentialEquation::getDifferentialEquationFunctions();
+
+    if (deFunction == NULL)
+    {
+        return 0;
+    }
+    return deFunction->execDaskrPjac(res, ires, neq, t, y, ydot, rewt, savr, wk, h, cj,
+                                     wp, iwp, ier, rpar, ipar);
 }

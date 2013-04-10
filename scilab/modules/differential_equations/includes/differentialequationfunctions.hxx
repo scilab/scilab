@@ -71,7 +71,7 @@ extern "C"
     void C2F(aplusp)(int*, double*, double*, double*, double*, double*, int*);
     void C2F(dgbydy)(int*, double*, double*, double*, double*, double*, double*, int*);
 
-    // dassl dasrt
+    // dassl, dasrt, daskr
     void C2F(res1)  (double*, double*, double*, double*, int*, double*, int*);
     void C2F(res2)  (double*, double*, double*, double*, int*, double*, int*);
     void C2F(dres1) (double*, double*, double*, double*, int*, double*, int*);
@@ -83,6 +83,12 @@ extern "C"
     // dasrt
     void C2F(gr1)(int*, double*, double*, int*, double*, double*, int*);
     void C2F(gr2)(int*, double*, double*, int*, double*, double*, int*);
+
+    // daskr
+    void C2F(bpjacd)(double*, int*, int*, double*, double*, double*, double*, double*,
+                     double*, double*, double*, double*, int*, int*, double*, int*);
+    void C2F(bpsold)(int*, double*, double*, double*, double*, double*, double*,
+                     double*, double*, int*, double*, double*, int*, double*, int*);
 }
 
 class DIFFERENTIAL_EQUATIONS_IMPEXP DifferentialEquationFunctions
@@ -103,14 +109,20 @@ public :
     void setFFunction(types::Callable*);
     void setJacFunction(types::Callable*);
     void setGFunction(types::Callable*);
+    void setPsolFunction(types::Callable*);
+    void setPjacFunction(types::Callable*);
 
     bool setFFunction(types::String*);
     bool setJacFunction(types::String*);
     bool setGFunction(types::String*);
+    bool setPsolFunction(types::String*);
+    bool setPjacFunction(types::String*);
 
     void setFArgs(types::InternalType*);
     void setJacArgs(types::InternalType*);
     void setGArgs(types::InternalType*);
+    void setPsolArgs(types::InternalType*);
+    void setPjacArgs(types::InternalType*);
 
     int getOdeYRows();
     int getOdeYCols();
@@ -170,6 +182,15 @@ public :
     // dasrt
     int execDasrtG(int*, double*, double*, int*, double*, double*, int*);
 
+    // daskr
+    int execDaskrPsol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
+                      double* cj, double* wght, double* wp, int* iwp, double* b, double* eplin,
+                      int* iter, double* rpar, int* ipar);
+    int execDaskrPjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
+                      double* rewt, double* savr, double* wk, double* h, double* cj,
+                      double* wp, int* iwp, int* ier, double* rpar, int* ipar);
+
+
 private :
 
     std::map<std::wstring, void*> m_staticFunctionMap;
@@ -186,7 +207,7 @@ private :
     int m_bvodeM;
     int m_bvodeN;
 
-    // dassl dasrt
+    // dassl dasrt daskr
     int m_mu;
     int m_ml;
     bool m_bandedJac;
@@ -194,18 +215,26 @@ private :
     types::Callable* m_pCallFFunction;
     types::Callable* m_pCallJacFunction;
     types::Callable* m_pCallGFunction;
+    types::Callable* m_pCallPsolFunction;
+    types::Callable* m_pCallPjacFunction;
 
     types::String* m_pStringFFunctionDyn;
     types::String* m_pStringJacFunctionDyn;
     types::String* m_pStringGFunctionDyn;
+    types::String* m_pStringPsolFunctionDyn;
+    types::String* m_pStringPjacFunctionDyn;
 
     types::String* m_pStringFFunctionStatic;
     types::String* m_pStringJacFunctionStatic;
     types::String* m_pStringGFunctionStatic;
+    types::String* m_pStringPsolFunctionStatic;
+    types::String* m_pStringPjacFunctionStatic;
 
     std::vector<types::InternalType*> m_FArgs;
     std::vector<types::InternalType*> m_JacArgs;
     std::vector<types::InternalType*> m_odeGArgs;
+    std::vector<types::InternalType*> m_pSolArgs;
+    std::vector<types::InternalType*> m_pJacArgs;
 
     // ode / odedc
     int callOdeMacroF(int* n, double* t, double* y, double* ydot);
@@ -266,6 +295,14 @@ private :
 
     // dasrt
     int callDasrtMacroG(int*, double*, double*, int*, double*, double*, int*);
+
+    // daskr
+    int callDaskrMacroPsol(int* neq, double* t, double* y, double* ydot, double* savr, double* wk,
+                           double* cj, double* wght, double* wp, int* iwp, double* b, double* eplin,
+                           int* iter, double* rpar, int* ipar);
+    int callDaskrMacroPjac(double* res, int* ires, int* neq, double* t, double* y, double* ydot,
+                           double* rewt, double* savr, double* wk, double* h, double* cj,
+                           double* wp, int* iwp, int* ier, double* rpar, int* ipar);
 };
 
 class DIFFERENTIAL_EQUATIONS_IMPEXP DifferentialEquation

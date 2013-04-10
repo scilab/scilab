@@ -68,7 +68,9 @@
 				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration>
 			<FileConfiguration Name="Release|Win32">
 				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration></File>
+		<File RelativePath=".\daux.f"/>
 		<File RelativePath=".\dcutet.f"/>
+		<File RelativePath=".\ddaskr.f"/>
 		<File RelativePath=".\ddasrt.f"/>
 		<File RelativePath=".\ddassl.f"/>
 		<File RelativePath=".\dgbsl.f"/>

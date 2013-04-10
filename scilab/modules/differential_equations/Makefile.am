@@ -9,13 +9,16 @@ src/cpp/checkodeerror.cpp \
 src/cpp/differentialequationfunctions.cpp
 
 
-DIFFERENTIAL_EQUATIONS_C_SOURCES = src/c/dassl.c \
+DIFFERENTIAL_EQUATIONS_C_SOURCES = \
+src/c/dassl.c \
 src/c/feval.c \
 src/c/arnol.c \
 src/c/rk4.c \
-src/c/Ex-odedc.c
+src/c/Ex-odedc.c \
+src/c/Ex-daskr.c
 
-DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
+DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
+src/fortran/rscar1.f \
 src/fortran/bcomp.f \
 src/fortran/lcomp.f \
 src/fortran/loren.f \
@@ -60,6 +63,8 @@ src/fortran/prepj.f \
 src/fortran/lsdisc.f \
 src/fortran/fnorm.f \
 src/fortran/ddasrt.f \
+src/fortran/ddaskr.f \
+src/fortran/daux.f \
 src/fortran/stodi.f \
 src/fortran/xsetun.f \
 src/fortran/intdy.f \
@@ -92,7 +97,8 @@ sci_gateway/cpp/sci_feval.cpp \
 sci_gateway/cpp/sci_bvode.cpp \
 sci_gateway/cpp/sci_impl.cpp \
 sci_gateway/cpp/sci_dassl.cpp \
-sci_gateway/cpp/sci_dasrt.cpp
+sci_gateway/cpp/sci_dasrt.cpp \
+sci_gateway/cpp/sci_daskr.cpp
 
 libscidifferential_equations_la_CPPFLAGS= \
 -I$(srcdir)/includes/ \

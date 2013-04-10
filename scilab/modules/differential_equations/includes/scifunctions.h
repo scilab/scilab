@@ -79,7 +79,7 @@ DIFFERENTIAL_EQUATIONS_IMPEXP int impl_f(int*, double*, double*, double*, double
 DIFFERENTIAL_EQUATIONS_IMPEXP int impl_g(int*, double*, double*, double*, double*, double*, int*);
 DIFFERENTIAL_EQUATIONS_IMPEXP int impl_jac(int*, double*, double*, double*, double*, double*, double*, int*);
 
-//dassl dasrt
+//dassl dasrt daskr
 typedef int(*dassl_f_t)(double*, double*, double*, double*, int*, double*, int*);
 typedef int(*dassl_jac_t)(double*, double*, double*, double*, double*, double*, int*);
 
@@ -90,8 +90,13 @@ DIFFERENTIAL_EQUATIONS_IMPEXP int dassl_jac(double*, double*, double*, double*, 
 
 //dasrt
 typedef int(*dasrt_g_t)(int*, double*, double*, int*, double*, double*, int*);
-
 extern void C2F(ddasrt)(dassl_f_t, int*, double*, double*, double*, double*, int*, double*, double*, int*, double*, int*, int*, int*, double*, int*, dassl_jac_t, dasrt_g_t, int*, int*);
-
 DIFFERENTIAL_EQUATIONS_IMPEXP int dasrt_g(int*, double*, double*, int*, double*, double*, int*);
+
+//daskr
+typedef int(*daskr_psol_t)(int*, double*, double*, double*, double*, double*, double*, double*, double*, int*, double*, double*, int*, double*, int*);
+typedef int(*daskr_pjac_t)(double*, int*, int*, double*, double*, double*, double*, double*, double*, double*, double*, double*, int*, int*, double*, int*);
+extern void C2F(ddaskr)(dassl_f_t, int*, double*, double*, double*, double*, int*, double*, double*, int*, double*, int*, int*, int*, double*, int*, void*/*dassl_jac_t or daskr_pjac_t*/, daskr_psol_t, dasrt_g_t, int*, int*);
+DIFFERENTIAL_EQUATIONS_IMPEXP int daskr_psol(int*, double*, double*, double*, double*, double*, double*, double*, double*, int*, double*, double*, int*, double*, int*);
+DIFFERENTIAL_EQUATIONS_IMPEXP int daskr_pjac(double*, int*, int*, double*, double*, double*, double*, double*, double*, double*, double*, double*, int*, int*, double*, int*);
 

@@ -235,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cpp\sci_bvode.cpp" />
+    <ClCompile Include="cpp\sci_daskr.cpp" />
     <ClCompile Include="cpp\sci_dasrt.cpp" />
     <ClCompile Include="cpp\sci_dassl.cpp" />
     <ClCompile Include="cpp\sci_feval.cpp" />

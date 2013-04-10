@@ -197,10 +197,10 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\cpp\checkodeerror.cpp" />
     <ClCompile Include="..\cpp\differentialequationfunctions.cpp" />
     <ClCompile Include="..\cpp\scifunctions.cpp" />
-    <ClCompile Include="..\..\sci_gateway\c\Ex-daskr.c" />
     <ClCompile Include="arnol.c" />
     <ClCompile Include="dassl.c" />
     <ClCompile Include="DllmainDifferential_equations.c" />
+    <ClCompile Include="Ex-daskr.c" />
     <ClCompile Include="Ex-odedc.c" />
     <ClCompile Include="feval.c" />
     <ClCompile Include="rk4.c" />
@@ -212,6 +212,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\..\includes\scifunctions.h" />
     <ClInclude Include="arnol.h" />
     <ClInclude Include="..\..\includes\dynlib_differential_equations.h" />
+    <ClInclude Include="Ex-daskr.h" />
     <ClInclude Include="Ex-odedc.h" />
     <ClInclude Include="feval.h" />
     <ClInclude Include="rk4.h" />
