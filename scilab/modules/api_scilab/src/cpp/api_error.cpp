@@ -80,15 +80,16 @@ int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)
     if (_psciErr->iMsgCount >= MESSAGE_STACK_SIZE)
     {
         // no more space, shift error messages
+        FREE(_psciErr->pstMsg[0]);
         for (int i = 1; i < MESSAGE_STACK_SIZE; i++)
         {
-            strcpy(_psciErr->pstMsg[i - 1], _psciErr->pstMsg[i]);
+            _psciErr->pstMsg[i - 1] = _psciErr->pstMsg[i];
         }
-        strcpy(_psciErr->pstMsg[MESSAGE_STACK_SIZE - 1], pstMsg);
+        _psciErr->pstMsg[MESSAGE_STACK_SIZE - 1] = strdup(pstMsg);
     }
     else
     {
-        strcpy(_psciErr->pstMsg[_psciErr->iMsgCount++], pstMsg);
+        _psciErr->pstMsg[_psciErr->iMsgCount++] = strdup(pstMsg);
     }
 
     _psciErr->iErr = _iErr;
